@@ -52,6 +52,17 @@
 
   Both Lazy and ArrayDataSources supports these new props.
 
+* Forms validation - better cross-fields dependencies.
+  'validate' function in Metadata now receives all parent objects in path as argument.
+  Each validator receives N arguments - first is the value itself, then it's container, and down to the root object.
+  You can use this to make validation dependencies between items. For example:
+  ```
+    const value = { array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }] };
+    const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
+    const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
+  ```
+
+
 # 3.47.4 - 23.02.2021
 
 **What’s Fixed**
@@ -154,7 +165,7 @@
 * [PickerInput][Promo]: removed inner shadows in DataPickerBody
 * [Button][Loveship]: samall fixes fill light style
 * [SlateRTE]: fixed sidebar visibility on first renderCell
-* [Dropdown]: fixed dropdown click outside behavior, when ckicking on dropdown with higer zIndex 
+* [Dropdown]: fixed dropdown click outside behavior, when ckicking on dropdown with higer zIndex
 
 
 # 3.46.2 - 23.12.2020

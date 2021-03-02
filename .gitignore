@@ -23,6 +23,5 @@ _ReSharper.Caches
 .idea
 
 *.log
-/yarn.lock
 .DS_Store
 coverage

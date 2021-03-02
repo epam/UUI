@@ -5,35 +5,45 @@ import {Metadata} from "../../types";
 export const blankValidationState: ICanBeInvalid = {};
 
 export function validate<T>(value: T, meta: Metadata<T>): ICanBeInvalid {
-    let result: ICanBeInvalid = { isInvalid: false };
+    return validateRec(value, [value], meta);
+}
+
+export function validateRec<T>(value: T, path: any[], meta: Metadata<T>): ICanBeInvalid {
+    let result: ICanBeInvalid = validateValue(value, path, meta);
+
+    const validateItem = (key: string, meta: Metadata<any>) => {
+        let childValue = value && (value as any)[key];
+        let newPath = [childValue, ...path];
+        const childResult = validateRec(childValue, newPath, meta);
+        result.isInvalid = result.isInvalid || childResult.isInvalid;
+        result.validationProps = result.validationProps || {};
+        result.validationProps[key] = childResult;
+    }
 
     if (meta.props) {
         for (let key in meta.props) {
-            let childMeta = meta.props[key];
-
+            const childMeta = meta.props[key];
             if (childMeta) {
-                validateItem(key, value && value[key], childMeta, result);
+                validateItem(key, childMeta);
             }
         }
-    } else {
-        result = validateValue(value, meta);
     }
 
     if (meta.all && value != null) {
         for (let key in value) {
-            validateItem(key, (value as any)[key], meta.all, result);
+            validateItem(key, meta.all);
         }
     }
 
     return result;
 }
 
-function validateValue(value: any, meta: Metadata<any>): any {
+function validateValue(value: any, path: any[], meta: Metadata<any>): any {
     if (meta.validators) {
         const customValidationMessages = meta.validators
-            .map(validator => validator(value))
+            .map(validator => validator.apply(null, path))
             .reduce((a, b) => a.concat(b), [])
-            .filter(msg => !!msg);
+            .filter((msg: string | null) => !!msg);
 
         if (customValidationMessages.length > 0) {
             return {
@@ -79,19 +89,4 @@ function validateValue(value: any, meta: Metadata<any>): any {
     return {
         isInvalid: false,
     };
-}
-
-function validateItem(key: string, value: any, meta: Metadata<any>, parentResult: ICanBeInvalid) {
-    const valueResult = validateValue(value, meta);
-    const recursiveResult = validate(value, meta);
-
-    recursiveResult.isInvalid = recursiveResult.isInvalid || valueResult.isInvalid;
-
-    if (valueResult.message) {
-        recursiveResult.validationMessage = valueResult.message;
-    }
-
-    parentResult.validationProps = parentResult.validationProps || {};
-    parentResult.validationProps[key] = recursiveResult;
-    parentResult.isInvalid = parentResult.isInvalid || recursiveResult.isInvalid;
 }

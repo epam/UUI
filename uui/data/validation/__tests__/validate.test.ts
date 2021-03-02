@@ -2,6 +2,7 @@ import { validate } from "../validate";
 import {Metadata} from "../../../types";
 
 interface IBar {
+    id?: number;
     name: string;
 }
 interface IFoo {
@@ -108,6 +109,85 @@ describe('validate', () => {
                         user2: {
                             isInvalid: true, validationProps: {
                                 name: { isInvalid: true },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    });
+
+    it('Can use custom validators', () => {
+        const value: IBar = { name: "bar" };
+        const meta: Metadata<IBar> = {
+            props: {
+                name: {
+                    validators: [(v) => [v === 'bar' && 'expect anything but bar']],
+                }
+            }
+        }
+        expect(validate(value, meta)).toEqual({
+            isInvalid: true,
+            validationProps: {
+                name: {
+                    isInvalid: true,
+                    validationMessage: "expect anything but bar",
+                }
+            }
+        });
+    });
+
+    it('Metadata root can contain rules', () => {
+        const value: IBar = { name: "bar" };
+        const meta: Metadata<IBar> = {
+            isRequired: true,
+            validators: [(v) => [!v && "failed"]],
+            props: { name: { isRequired: true } },
+            all: { isRequired: true },
+        }
+        const result = validate(value, meta);
+        expect(result).toEqual(expect.objectContaining({ isInvalid: false }));
+    });
+
+
+    it('Custom validators receive parent objects', () => {
+        const validator = jest.fn().mockReturnValue(['error']);
+        const value = { array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }] };
+
+        const result = validate<IFoo>(value, {
+            props: {
+                array: {
+                    all: {
+                        props: {
+                            name: {
+                                validators: [validator]
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        expect(validator).toBeCalledTimes(2);
+        expect(validator).nthCalledWith(1, 'abc', value.array[0], value.array, value);
+        expect(validator).nthCalledWith(2, 'bcd', value.array[1], value.array, value);
+
+        expect(result).toMatchObject({
+            isInvalid: true,
+            validationProps: {
+                array: {
+                    isInvalid: true,
+                    validationProps: {
+                        0: {
+                            isInvalid: true,
+                            validationProps: {
+                                name: { isInvalid: true, validationMessage: 'error' },
+                            },
+                        },
+                        1: {
+                            isInvalid: true,
+                            validationProps: {
+                                name: { isInvalid: true, validationMessage: 'error' },
                             },
                         },
                     },
