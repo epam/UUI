@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "cd server && yarn",
+    "postinstall": "cd server && yarn",
     "test": "node uui-build/scripts/runTests.js",
     "coverage": "yarn test --coverage",
     "process-icons": "node uui-build/scripts/processIcons.js",
