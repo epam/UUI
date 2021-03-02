@@ -8,7 +8,7 @@ export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequire
     minValue?: number;
     maxValue?: number;
     maxLength?: number;
-    validators?: CustomValidator[];
+    validators?: CustomValidator<T>[];
 }
 
 export interface FormState<T> {
@@ -19,4 +19,4 @@ export interface FormState<T> {
     isChanged: boolean;
 }
 
-type CustomValidator = (value: any) => (string | boolean)[];
+type CustomValidator<T> = (value: T, ...parentValues: any[]) => (string | boolean)[];
