@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-bar_stacked</title>
+    <g id="Icons/24/editor-chart-bar_stacked" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M22,21 L2,21 L2,3 L4,3 L4,19 L6,19 L6,17 L10,17 L10,19 L12,19 L12,16 L16,16 L16,19 L18,19 L18,17 L22,17 L22,21 L22,21 Z M18,14 L22,14 L22,16 L18,16 L18,14 L18,14 Z M12,6 L16,6 L16,9 L12,9 L12,6 L12,6 Z M16,15 L12,15 L12,10 L16,10 L16,15 L16,15 Z M6,10 L10,10 L10,12 L6,12 L6,10 L6,10 Z M10,16 L6,16 L6,13 L10,13 L10,16 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

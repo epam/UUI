@@ -1,0 +1,99 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    :global(.uui-tooltip-body) {
+        padding: 3px 12px;
+        line-height: 18px;
+        font-size: 12px;
+        font-family: $font-sans;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        border-radius: 3px;
+        word-wrap: break-word;
+    }
+
+    :global(.uui-tooltip-arrow) {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        overflow: hidden;
+    }
+
+    :global(.uui-tooltip-arrow)::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='right']) {
+        :global(.uui-tooltip-arrow) {
+            right: 100%;
+
+            &::after {
+                transform: translateX(100%) translateY(20%) rotate(45deg);
+            }
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='left']) {
+        :global(.uui-tooltip-arrow) {
+            left: 100%;
+
+            &::after {
+                transform: translateX(-50%) translateY(20%) rotate(45deg);
+            }
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='top']) {
+        :global(.uui-tooltip-arrow) {
+            top: 100%;
+
+            &::after {
+                transform: translateX(30%) translateY(-50%) rotate(45deg);
+            }
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='bottom']) {
+        :global(.uui-tooltip-arrow) {
+            bottom: 100%;
+
+            &::after {
+                transform: translateX(30%) translateY(100%) rotate(45deg);
+            }
+        }
+    }
+
+    // Colors
+    :global(.uui-tooltip-body) {
+        background-color: var(--uui-color-700);
+        color: var(--uui-contrast-color-700);
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='right']) {
+        :global(.uui-tooltip-arrow)::after {
+            background: var(--uui-color-700);
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='left']) {
+        :global(.uui-tooltip-arrow)::after {
+            background: var(--uui-color-700);
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='top']) {
+        :global(.uui-tooltip-arrow)::after {
+            background: var(--uui-color-700);
+        }
+    }
+
+    &:global(.uui-tooltip-container[data-placement^='bottom']) {
+        :global(.uui-tooltip-arrow)::after {
+            background: var(--uui-color-700);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.footer-wrapper {
+    border-top: 1px solid $night400;
+    background: $white;
+    padding: 3px 12px;
+    display: flex;
+}
+
+.footer-size-24 {
+    min-height: 24px;
+    padding: 0 12px;
+}
+
+.footer-size-30 {
+    min-height: 24px;
+}
+
+.footer-size-36, .footer-size-48 {
+    min-height: 30px;
+}

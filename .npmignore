@@ -1,0 +1,28 @@
+# built files
+built
+    
+
+# Dependency directories
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Visual Studio stuff
+.vs
+
+dist
+
+# webpack cache
+.awcache
+
+npm-debug.log
+_ReSharper.Caches
+
+.idea
+
+infrastructure
+
+ui.sln
+
+webpack.config.js

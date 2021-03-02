@@ -1,0 +1,26 @@
+.root {
+    &:global(.uui-blocker-container) {
+        :global(.uui-blocker) {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        :global(.uui-blocker-enter) {
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        :global(.uui-blocker-enter-active) {
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: opacity 1000ms ease-out, background-color 2000ms ease-out;
+        }
+
+        :global(.uui-blocker-exit) {
+            background-color: rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+            transition: opacity 1000ms ease-out, background-color 200ms ease-out;
+        }
+
+        :global(.uui-blocker-exit-active) {
+            background-color: rgba(255, 255, 255, 0);
+        }
+    }
+}

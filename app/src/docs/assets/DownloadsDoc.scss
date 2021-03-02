@@ -1,0 +1,62 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+.title {
+    font-family: $font-museo-sans;
+    margin: 30px 0;
+    font-size: 36px;
+    line-height: 48px;
+}
+
+.header-row {
+    padding-bottom: 30px;
+    border-bottom: 1px solid $gray40;
+    margin-bottom: 30px;
+
+    .content-block {
+        margin-right: 24px;
+
+        h2 {
+            margin-top: 0;
+        }
+    }
+}
+
+.downloads-row {
+    .downloads-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        :global(.uui-caption) {
+            font-size: 16px;
+        }
+    }
+
+    .downloads-oval {
+        display: flex;
+        justify-content: center;
+        height: 78px;
+        width: 78px;
+        border-radius: 50%;
+        margin: 0 auto 12px;
+    }
+
+    .font-pack-background {
+        background-color: $blue-lightest;
+    }
+
+    .logotypes-background {
+        background: linear-gradient(36deg, #467EC0 4%, #1B9AD2 51%, #41C3DE 99%);
+    }
+
+    .icon-set-background {
+        background-color: $purple-lightest;
+    }
+
+    .color-palette-background {
+        background: conic-gradient(from 90deg, #008ACE 0%, #88CC00 29%, #FFC000 64%, #E54322 100%);
+    }
+}
+
+
+

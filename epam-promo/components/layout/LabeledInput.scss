@@ -1,0 +1,110 @@
+@use  '../../assets/styles/index' as *;
+@import '../../assets/styles/colorvars/inputs/labeledInput-colorvars.scss';
+
+.root {
+    @include labeled-input-color();
+    width: 100%;
+
+    :global(.uui-label) {
+        @include overflow-ellipsis();
+        font-family: $font-sans-semibold;
+        font-weight: normal;
+        color: var(--color);
+
+        :global(.uui-labeled-input-info-icon) {
+            flex-shrink: 0;
+            margin: 0 4px;
+            fill: var(--fill-color);
+        }
+
+        :global(.uui-labeled-input-asterisk) {
+            color: $red;
+        }
+
+        :global(.uui-labeled-input-optional) {
+            font-family: $font-sans-italic;
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--optional-text-color);
+        }
+    }
+
+    :global(.uui-label-left) {
+        > :global(.uui-label) {
+            margin-right: 5px;
+        }
+    }
+
+    :global(.uui-invalid-message) {
+        line-height: 18px;
+        font-size: 12px;
+        color: var(--color-errored);
+        font-family: $font-sans;
+    }
+
+    // Sizes
+    &.size-24 {
+        :global(.uui-label-top) {
+            > :global(.uui-label) {
+                margin-bottom: 6px;
+            }
+        }
+
+        :global(.uui-label) {
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+
+    &.size-30 {
+        :global(.uui-label-top) {
+            > :global(.uui-label) {
+                margin-bottom: 6px;
+            }
+        }
+
+        :global(.uui-label) {
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+
+    &.size-36 {
+        :global(.uui-label-top) {
+            > :global(.uui-label) {
+                margin-bottom: 6px;
+            }
+        }
+
+        :global(.uui-label) {
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
+
+    &.size-42 {
+        :global(.uui-label-top) {
+            > :global(.uui-label) {
+                margin-bottom: 6px;
+            }
+        }
+
+        :global(.uui-label) {
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
+
+    &.size-48 {
+        :global(.uui-label-top) {
+            > :global(.uui-label) {
+                margin-bottom: 6px;
+            }
+        }
+
+        :global(.uui-label) {
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
+}

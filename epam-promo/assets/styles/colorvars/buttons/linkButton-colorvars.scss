@@ -1,0 +1,29 @@
+@use  '../../colors' as *;
+
+.linkButton-color-blue {
+    --text-color: #{$blue};
+    --text-color-hover: #{$blue-dark};
+    --text-color-active: #{$blue-darkest};
+    --text-color-disabled: #{$gray40};
+}
+
+.linkButton-color-green {
+    --text-color: #{$green};
+    --text-color-hover: #{$green-dark};
+    --text-color-active: #{$green-darkest};
+    --text-color-disabled: #{$gray40};
+}
+
+.linkButton-color-amber {
+    --text-color: #{$amber};
+    --text-color-hover: #{$amber-dark};
+    --text-color-active: #{$amber-darkest};
+    --text-color-disabled: #{$gray40};
+}
+
+.linkButton-color-red {
+    --text-color: #{$red};
+    --text-color-hover: #{$red-dark};
+    --text-color-active: #{$red-darkest};
+    --text-color-disabled: #{$gray40};
+}

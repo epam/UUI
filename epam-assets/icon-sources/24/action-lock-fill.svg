@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-lock-fill</title>
+    <g id="Icons/24/action-lock-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,18 C13.1045695,18 14,17.1045695 14,16 C14,14.89 13.1,14 12,14 C10.8954305,14 10,14.8954305 10,16 C10,17.1045695 10.8954305,18 12,18 Z M7,9 L7,7 C7,4.23857625 9.23857625,2 12,2 C14.7614237,2 17,4.23857625 17,7 L17,9 L18,9 C19.1045695,9 20,9.8954305 20,11 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,11 C4,9.89 4.9,9 6,9 L7,9 L7,9 Z M9,9 L15,9 L15,7 C15,5.34314575 13.6568542,4 12,4 C10.3431458,4 9,5.34314575 9,7 L9,9 L9,9 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

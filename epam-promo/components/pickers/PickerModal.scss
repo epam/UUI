@@ -1,0 +1,10 @@
+@use  '../../assets/styles/index' as *;
+
+.sub-header-wrapper {
+    border-bottom: 1px solid $gray40;
+    padding: 6px 24px;
+}
+
+.switch {
+    margin-bottom: 6px;
+}

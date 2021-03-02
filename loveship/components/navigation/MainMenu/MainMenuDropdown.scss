@@ -1,0 +1,10 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.open {
+    background-color: $night900;
+
+    :global(.uui-caption), :global(.uui-icon) {
+        color: $white;
+        fill: $white;
+    }
+}

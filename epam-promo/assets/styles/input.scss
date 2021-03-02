@@ -1,0 +1,51 @@
+@use './colors' as *;
+
+@mixin disabled-input() {
+    @include input-colors($gray5, $gray50, $gray30);
+    cursor: default;
+    pointer-events: none;
+
+    &:hover, &:active, &:focus {
+        @include input-colors($gray5, $gray50, $gray30);
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: $gray50;
+    }
+}
+
+@mixin readonly-input() {
+    &.mode-form,
+    &.mode-cell {
+        background: $gray30;
+    }
+
+    &.mode-form:hover {
+        border-color: $gray40;
+    }
+
+    &.mode-inline:hover {
+        border-color: transparent;
+    }
+
+    &.mode-cell:hover {
+        border-color: transparent;
+    }
+}
+
+@mixin input-colors($bg, $fg, $brd) {
+    background-color: $bg;
+    color: $fg;
+    fill: $fg;
+    border-color: $brd;
+
+    // override more selective selector on input tag in browsers stylesheets
+    :global(.uui-input) {
+        color: $fg;
+
+        &::placeholder {
+            color: $gray50;
+        }
+    }
+}

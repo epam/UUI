@@ -1,0 +1,27 @@
+.avatar-row {
+    position: relative;
+}
+
+.avatar-content {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    border: 2px solid white;
+}
+
+.size-24 {
+    bottom: -12px;
+}
+
+.size-36 {
+    bottom: -18px;
+}
+
+.size-48 {
+    bottom: -24px;
+}
+
+.size-144 {
+    bottom: -72px;
+}

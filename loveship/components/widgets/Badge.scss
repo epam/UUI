@@ -1,0 +1,66 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    cursor: default;
+    flex-shrink: 0;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        cursor: default;
+    }
+
+    &.size-12 {
+        @include control-horizontal-layout(12px, 1px);
+        padding: 0;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 1px;
+            padding-bottom: 1px;
+            line-height: 10px;
+            font-size: 10px;
+        }
+
+        &:global(.uui-button-box), &:global(.uui-input-box) {
+            min-height: 12px;
+            border-width: 1px;
+        }
+
+        :global(.uui-icon) {
+            svg {
+                height: 10px;
+                max-width: 10px;
+            }
+        }
+    }
+
+    &.size-18 {
+        @include control-box-layout(18px, 1px);
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            line-height: 12px;
+            font-size: 10px;
+        }
+    }
+
+    &.fill-solid {
+        @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
+    }
+
+    &.fill-white {
+        @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
+    }
+
+    &.fill-none {
+        @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
+    }
+
+    &.style-round {
+        &.size-18 { border-radius: 10px; }
+        &.size-12 { border-radius: 8px; }
+    }
+}

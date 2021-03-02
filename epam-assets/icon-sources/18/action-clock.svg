@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/action-clock</title>
+    <g id="Icons/18/action-clock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,15 C12.3,15 15,12.3 15,9 C15,5.7 12.3,3 9,3 C5.7,3 3,5.7 3,9 C3,12.3 5.7,15 9,15 M9,1 C13.4,1 17,4.6 17,9 C17,13.4 13.4,17 9,17 C4.6,17 1,13.4 1,9 C1,4.6 4.6,1 9,1 M13,9 L13,10 L8,10 L8,5 L9,5 L9,9 L13,9 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

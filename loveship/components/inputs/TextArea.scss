@@ -1,0 +1,149 @@
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin disabled-textarea($background, $color, $fill, $border) {
+    background-color: $background;
+    color: $color;
+    fill: $fill;
+    border-color: $border;
+
+    &:hover, &:active, &:focus {
+        background-color: $background;
+        color: $color;
+        fill: $fill;
+        border-color: $border;
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: $night300;
+    }
+}
+
+.root {
+    &.mode-form {
+        :global(.uui-input) {
+            @include control-form-mode();
+            padding-left: 11px;
+            padding-right: 11px;
+
+            &:global(.uui-readonly) {
+                background: $night50;
+                border-color: $night300;
+            }
+
+            &:global(.uui-disabled) {
+                @include disabled-textarea($night50, $night500, $night500, $night300);
+            }
+        }
+    }
+
+    &.mode-inline {
+        :global(.uui-input) {
+            @include control-inline-mode();
+            padding-left: 5px;
+            padding-right: 5px;
+
+            &:global(.uui-readonly) {
+                &:hover {
+                    border-color: transparent;
+                }
+
+                &:global(.uui-focus) {
+                    border-color: transparent;
+                    box-shadow: none;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                @include disabled-textarea(transparent, $night500, $night500, transparent);
+            }
+        }
+    }
+
+    &.mode-cell {
+        :global(.uui-input) {
+            @include control-cell-mode();
+            padding-left: 11px;
+            padding-right: 11px;
+
+            &:global(.uui-readonly) {
+                background: transparent;
+
+                &:hover {
+                    border-color: transparent;
+                }
+
+                &:global(.uui-focus) {
+                    border-color: transparent;
+                    box-shadow: none;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                @include disabled-textarea(transparent, $night500, $night500, transparent);
+            }
+        }
+    }
+
+    // Firefox add an extra row in textarea when overflow-x is not hidden
+    :global(.uui-input) {
+        color: $night700;
+        font-family: $font-sans;
+        border-width: 1px;
+        overflow-x: hidden;
+        box-sizing: border-box;
+
+        &::placeholder {
+            color: $night500;
+            opacity: 1;
+        }
+
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+
+        &:global(.uui-invalid) {
+            border-color: $fire;
+
+            &:hover {
+                border-color: $fire;
+            }
+        }
+    }
+
+    :global(.uui-textarea-counter) {
+        line-height: 18px;
+        font-size: 12px;
+        color: $night400;
+        font-family: $font-sans;
+    }
+
+    // Sizes
+    &.size-24 {
+        min-height: 24px;
+    }
+
+    &.size-30 {
+        min-height: 30px;
+    }
+
+    &.size-36 {
+        min-height: 36px;
+    }
+
+    &.size-42 {
+        min-height: 42px;
+    }
+
+    &.size-48 {
+        min-height: 48px;
+    }
+
+    &.size-60 {
+        min-height: 60px;
+    }
+}

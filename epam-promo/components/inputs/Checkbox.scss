@@ -1,0 +1,121 @@
+@use  '../../assets/styles/index.scss' as *;
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    :global(.uui-checkbox) {
+        width: $size;
+        height: $size;
+
+        :global(.uui-icon) {
+            svg {
+                width: $size;
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+}
+
+.root {
+    :global(.uui-checkbox) {
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color-default);
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline();
+        font-family: $font-sans;
+        color: var(--text-color-default);
+        margin-left: 12px;
+        flex-grow: 1;
+    }
+
+
+    //Colors
+    &:hover, &:active, &:focus {
+        :global(.uui-checkbox) {
+            border-color: var(--border-color-hovered);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--background-color-checked-hovered);
+        }
+    }
+
+    :global(.uui-checked) {
+        background-color: var(--background-color-checked);
+        border-color: var(--background-color-checked);
+        fill: var(--fill-color);
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+
+        :global(.uui-checkbox) {
+            background-color: var(--background-color-disabled);
+            border-color: var(--border-color-disabled);
+        }
+
+        &:hover, &:active, &:focus {
+            :global(.uui-checkbox) {
+                border-color: var(--border-color-disabled);
+            }
+
+            :global(.uui-checked) :global(.uui-checked) {
+                background-color: var(--background-color-checked-disabled);
+                border-color: var(--border-color-checked-disabled);
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--text-color-disabled);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--background-color-checked-disabled);
+            border-color: var(--border-color-checked-disabled);
+        }
+    }
+
+    &:global(.uui-invalid) {
+        :global(.uui-checkbox) {
+            border-color: var(--errored-color);
+            fill: var(--errored-color);
+
+            &:hover, &:active {
+                border-color: var(--errored-color);
+                fill: var(--errored-color);
+            }
+
+            &:global(.uui-checked) {
+                fill: white;
+                background-color: var(--errored-color);
+                border-color: var(--errored-color);
+
+                &:hover, &:active {
+                    background-color: var(--errored-color);
+                    border-color: var(--errored-color);
+                }
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--errored-color);
+        }
+    }
+
+    //Sizes
+    &.size-18 {
+        @include icon-sizes(18px, 14px, 18px);
+    }
+
+    &.size-12 {
+        @include icon-sizes(12px, 12px, 12px);
+
+        :global(.uui-input-label) {
+            margin-left: 6px;
+        }
+    }
+}

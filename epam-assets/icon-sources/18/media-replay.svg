@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/media-replay</title>
+    <g id="Icons/18/media-replay" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,3.75 L9,0.75 L5.25,4.5 L9,8.25 L9,5.25 C11.4852814,5.25 13.5,7.26471863 13.5,9.75 C13.5,12.2352814 11.4852814,14.25 9,14.25 C6.51471863,14.25 4.5,12.2352814 4.5,9.75 L3,9.75 C3,13.0637085 5.6862915,15.75 9,15.75 C12.3137085,15.75 15,13.0637085 15,9.75 C15,6.4362915 12.3137085,3.75 9,3.75 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

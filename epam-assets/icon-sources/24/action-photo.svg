@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-photo</title>
+    <g id="Icons/24/action-photo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,3 L7.17,5 L4,5 C2.9,5 2,5.9 2,7 L2,19 C2,20.1 2.9,21 4,21 L20,21 C21.1,21 22,20.1 22,19 L22,7 C22,5.9 21.1,5 20,5 L16.83,5 L15,3 L9,3 Z M12,8 C14.76,8 17,10.24 17,13 C17,15.76 14.76,18 12,18 C9.24,18 7,15.76 7,13 C7,10.24 9.24,8 12,8 Z M12,10 C10.3431458,10 9,11.3431458 9,13 C9,14.6568542 10.3431458,16 12,16 C13.6568542,16 15,14.6568542 15,13 C15,11.3431458 13.6568542,10 12,10 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

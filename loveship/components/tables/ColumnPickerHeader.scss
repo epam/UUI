@@ -1,0 +1,24 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.filter-sort-button {
+    :global(.uui-icon) {
+        margin: 0 12px;
+    }
+
+    &:global(.uui-button-box) {
+        &:global(.-clickable) {
+            &:hover {
+                @include button-colors(transparent, $sky, transparent);
+            }
+        }
+    }
+}
+
+.sorting-panel-container {
+    padding: 6px 0;
+    border-bottom: 1px solid $night300;
+}
+
+.sort-active {
+    margin-right: 12px;
+}

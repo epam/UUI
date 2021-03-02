@@ -1,0 +1,8 @@
+@use  '../../assets/styles/index' as *;
+@import '../../assets/styles/colorvars/typography/text-colorvars.scss';
+
+.root {
+    @include epam-uui-fonts();
+    color: var(--color);
+}
+

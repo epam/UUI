@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RangeDataPicker should be rendered correctly 1`] = `
+<div
+  className="dateInputGroup"
+  onBlur={[Function]}
+  onClick={[Function]}
+>
+  <div
+    className="container uui-input-box -clickable root size-36 dateInput size-36"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#calendar-18.svg"
+        />
+      </svg>
+    </div>
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="From:"
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="separator"
+  />
+  <div
+    className="container uui-input-box -clickable root size-36 dateInput size-36"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="To:"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`RangeDataPicker should be rendered correctly 2`] = `
+<div
+  className="dateInputGroup uui-disabled uui-readonly uui-invalid"
+  onBlur={[Function]}
+  onClick={false}
+>
+  <div
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 dateInput size-36"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#calendar-18.svg"
+        />
+      </svg>
+    </div>
+    <input
+      className="uui-input"
+      disabled={true}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      readOnly={true}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="separator"
+  />
+  <div
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 dateInput size-36"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <input
+      className="uui-input"
+      disabled={true}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      readOnly={true}
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

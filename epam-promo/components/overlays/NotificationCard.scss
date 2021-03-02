@@ -1,0 +1,62 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: var(--fill-color);
+        }
+    }
+}
+
+.notification-wrapper {
+    border: 1px solid var(--fill-color);
+    border-top: 6px solid var(--fill-color);
+    padding: 6px 18px;
+    width: 360px;
+    background: $white;
+    display: flex;
+    overflow: hidden;
+
+    @media (max-width: 720px) {
+        width: 100%;
+    }
+}
+
+.icon-wrapper {
+    height: 100%;
+    padding: 6px 0;
+    margin-right: 14px;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-link:not(:last-child) {
+    margin-right: 12px;
+}
+
+.close-icon {
+    height: 100%;
+    padding: 6px 0;
+    margin-left: 17px;
+}
+
+.main-path {
+    width: 100%;
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.clear-button {
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px;
+}

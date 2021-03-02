@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/notification-warning-outline</title>
+    <g id="Icons/18/notification-warning-outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,3 L16,15 L2,15 L9,3 L9,3 Z M9,1 L0,16 L18,16 L9,1 L9,1 Z M10,12 L8,12 L8,14 L10,14 L10,12 L10,12 Z M10,6 L8,6 L8,11 L10,11 L10,6 L10,6 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

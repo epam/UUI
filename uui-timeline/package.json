@@ -1,0 +1,29 @@
+{
+  "name": "@epam/uui-timeline",
+  "version": "3.48.0-beta.1",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "publish": "npm publish ./build --access public"
+  },
+  "dependencies": {
+    "@epam/uui": "3.48.0-beta.1",
+    "@epam/uui-components": "3.48.0-beta.1",
+    "@types/lodash.sortby": "4.7.6",
+    "@types/lodash.sortedindex": "4.1.6",
+    "classnames": "^2.2.6",
+    "lodash.sortby": "4.7.0",
+    "lodash.sortedindex": "4.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

@@ -1,0 +1,17 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    background: $gray5;
+    border-bottom: 1px solid $gray30;
+}
+
+.header-cell {
+    background: none;
+}
+
+.config-icon {
+    position: absolute;
+    display: flex;
+    right: 24px;
+    height: 100%;
+}

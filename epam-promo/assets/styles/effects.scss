@@ -1,0 +1,25 @@
+@mixin panel-shadow() { box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10); }
+
+@mixin panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
+
+//@mixin button-focus-shadow() { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); } // TODO: design?
+
+@mixin dnd-ghost-shadow() { box-shadow: 0 6px 18px 0 rgba(29,30,38,0.05), 0 3px 12px 0 rgba(29,30,38,0.05); }
+
+@mixin control-focus-effect($name) { box-shadow: 0 0 0 2px fade-out($name, 0.6); } // TODO: design?
+
+$scroll-shadow-size: 10px;
+$scroll-shadow-opacity: 0.2;
+
+//@mixin scroll-shadow-base() {
+//    position: absolute;
+//}
+//
+//@mixin scroll-shadow-top() {
+//    @include scroll-shadow-base();
+//    top: 0;
+//    left: 0;
+//    right: 0;
+//    height: $scroll-shadow-size;
+//    background: 'linear-gradient(to bottom, rgba(0, 0, 0, #{$scroll-shadow-opacity}) 0%, rgba(0, 0, 0, 0) 100%)';
+//}

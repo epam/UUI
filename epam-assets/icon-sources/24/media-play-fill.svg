@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/media-play-fill</title>
+    <g id="Icons/24/media-play-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M10,16.5 L10,7.5 L16,12 L10,16.5 Z M12,2 C6.4771525,2 2,6.4771525 2,12 C2,14.6521649 3.0535684,17.195704 4.92893219,19.0710678 C6.80429597,20.9464316 9.3478351,22 12,22 C14.6521649,22 17.195704,20.9464316 19.0710678,19.0710678 C20.9464316,17.195704 22,14.6521649 22,12 C22,9.3478351 20.9464316,6.80429597 19.0710678,4.92893219 C17.195704,3.0535684 14.6521649,2 12,2 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

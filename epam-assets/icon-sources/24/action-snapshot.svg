@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-snapshot</title>
+    <g id="Icons/24/action-snapshot" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M20,15 L20,18 C20,19.1045695 19.1045695,20 18,20 L15,20 L15,18 L18,18 L18,15 L20,15 Z M6,15 L6,18 L9,18 L9,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,15 L6,15 Z M12,9 C13.6568542,9 15,10.3431458 15,12 C15,13.6568542 13.6568542,15 12,15 C10.3431458,15 9,13.6568542 9,12 C9,10.3431458 10.3431458,9 12,9 Z M9,4 L9,6 L6,6 L6,9 L4,9 L4,6 C4,4.8954305 4.8954305,4 6,4 L9,4 Z M18,4 C19.1045695,4 20,4.8954305 20,6 L20,9 L18,9 L18,6 L15,6 L15,4 L18,4 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

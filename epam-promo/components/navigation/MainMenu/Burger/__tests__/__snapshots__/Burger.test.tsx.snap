@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Burger should be rendered correctly 1`] = `
+Array [
+  <div
+    className="root uui-burger-menu container"
+  >
+    <div
+      className="uui-burger-button"
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundColor": undefined,
+        }
+      }
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#burger.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="root burgerContent uui-burger-overlay"
+    onClick={[Function]}
+  >
+    <div
+      className="root uui-burger-items"
+      onClick={[Function]}
+      style={
+        Object {
+          "width": 160,
+        }
+      }
+    />
+  </div>,
+]
+`;

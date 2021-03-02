@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/table-table_edit</title>
+    <g id="Icons/24/table-table_edit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M21.7,15.35 L20.7,16.35 L18.65,14.3 L19.65,13.3 C19.86,13.08 20.21,13.08 20.42,13.3 L21.7,14.58 C21.92,14.79 21.92,15.14 21.7,15.35 L21.7,15.35 Z M12,20.94 L18.07,14.88 L20.12,16.93 L14.06,23 L12,23 L12,20.94 L12,20.94 Z M4,4 L18,4 C19.1045695,4 20,4.8954305 20,6 L20,10.17 L16.17,14 L12,14 L12,18.17 L10.17,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 L4,4 Z M4,8 L4,12 L10,12 L10,8 L4,8 L4,8 Z M12,8 L12,12 L18,12 L18,8 L12,8 L12,8 Z M4,14 L4,18 L10,18 L10,14 L4,14 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

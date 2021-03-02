@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenuSearch should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable searchInput"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#search-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="test"
+  />
+</div>
+`;
+
+exports[`MainMenuSearch should be rendered correctly with props 1`] = `
+<div
+  className="container uui-input-box -clickable searchInput"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#search-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="test"
+  />
+</div>
+`;

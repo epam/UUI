@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BurgerButton should be rendered correctly 1`] = `
+<div
+  className="container uui-button-box uui-enabled root button-primary indent-0"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+/>
+`;
+
+exports[`BurgerButton should be rendered correctly 2`] = `
+<a
+  className="container uui-button-box uui-enabled -clickable root button-secondary indent-0 dropdown hasIcon"
+  href="#"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+  target="_blank"
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#triangle.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#calendar-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="uui-caption"
+  >
+    Test button
+  </div>
+</a>
+`;

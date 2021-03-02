@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="68px" viewBox="0 0 56 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>09E663DB-D956-4458-99DB-F15E26B62C39@2x</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="LP-Fix" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LP-{Ready-to-Development}-UPD" transform="translate(-1220.000000, -1966.000000)" fill="#FFFFFF">
+            <g id="Big-Block-#2" transform="translate(0.000000, 1692.000000)">
+                <g id="Card-IMG-Small-Copy-2" transform="translate(936.000000, 192.000000)">
+                    <g filter="url(#filter-1)" id="24/download">
+                        <g transform="translate(264.000000, 66.000000)">
+                            <path d="M76,40 L60,40 L60,16 L36,16 L36,40 L20,40 L48,68 L76,40 Z M20,76 L20,84 L76,84 L76,76 L20,76 Z" id="icon" fill="#45FF00"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

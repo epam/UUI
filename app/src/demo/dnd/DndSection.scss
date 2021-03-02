@@ -1,0 +1,48 @@
+@use './mixins' as *;
+
+.drag-element {
+    position: relative;
+    padding: 6px 0;
+
+    .dnd-item:hover {
+        box-shadow: 0 6px 12px 0 rgba(29,30,38,0.10), 0 3px 6px 0 rgba(29,30,38,0.10);
+    }
+
+    .title {
+        padding: 6px 24px;
+    }
+
+    .description-section {
+        padding: 0 24px;
+    }
+
+    .criteria-section {
+        position: relative;
+    }
+
+    .materials-section {
+        margin-bottom: 18px;
+    }
+
+    @include cursor-style;
+
+    .grab-area {
+        position: relative;
+    }
+
+    .grab-area:hover {
+        @include visibility;
+        background-color: white;
+    }
+
+    &:global(.uui-dragged-out) {
+        @include drag-out;
+    }
+
+    :global(.uui-drag-ghost) {
+        @include visibility;
+        box-shadow: 0 6px 18px 0 rgba(29,30,38,0.05), 0 3px 12px 0 rgba(29,30,38,0.05);
+    }
+}
+
+@include drag-handle(8px, 11px, 11px, 130%);

@@ -1,0 +1,21 @@
+@use  '../../colors' as *;
+
+.color-amber {
+    --fill-color: #{$amber};
+}
+
+.color-green {
+    --fill-color: #{$green};
+}
+
+.color-blue {
+    --fill-color: #{$blue};
+}
+
+.color-red {
+    --fill-color: #{$red};
+}
+
+.color-gray60 {
+    --fill-color: #{$gray60};
+}

@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-blue root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Alert should be rendered correctly 2`] = `
+<div
+  className="alertWrapper color-amber root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#calendar-18.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="actionWrapper"
+      >
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-24 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLink"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption"
+          >
+            ACTION 1
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#navigation-close-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ErrorAlert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-red root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-error-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;
+
+exports[`HintAlert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-blue root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-help-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;
+
+exports[`SuccessAlert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-green root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-check_circle-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;
+
+exports[`WarningAlert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-amber root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-warning-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;

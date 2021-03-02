@@ -1,0 +1,6 @@
+@mixin control-size($size, $borderWidth) {
+    $padding: $size / 6 - $borderWidth;
+    min-width: $size;
+    padding-left: $padding;
+    padding-right: $padding;
+}

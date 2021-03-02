@@ -1,0 +1,33 @@
+{
+  "name": "Sort array",
+  "date": "2020-04-27T23:07:24.758Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "array.sort, hard-coded",
+      "ops": 2645,
+      "margin": 2.18,
+      "percentSlower": 0
+    },
+    {
+      "name": "_.sort, hard-coded",
+      "ops": 464,
+      "margin": 1.96,
+      "percentSlower": 82.46
+    },
+    {
+      "name": "array.sort, getOrderComparer",
+      "ops": 1939,
+      "margin": 0.47,
+      "percentSlower": 26.69
+    }
+  ],
+  "fastest": {
+    "name": "array.sort, hard-coded",
+    "index": 0
+  },
+  "slowest": {
+    "name": "_.sort, hard-coded",
+    "index": 1
+  }
+}

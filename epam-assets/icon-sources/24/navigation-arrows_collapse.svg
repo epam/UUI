@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/navigation-arrows_collapse</title>
+    <g id="Icons/24/navigation-arrows_collapse" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M19.5757576,3 L15.030303,7.54545455 L15.030303,3.91919192 L13.010101,3.91919192 L13.010101,10.989899 L20.0808081,10.989899 L20.0808081,8.96969697 L16.4545455,8.96969697 L21,4.42424242 L19.5757576,3 L19.5757576,3 Z M3.91919192,13.010101 L3.91919192,15.030303 L7.54545455,15.030303 L3,19.5757576 L4.42424242,21 L8.96969697,16.4545455 L8.96969697,20.0808081 L10.989899,20.0808081 L10.989899,13.010101 L3.91919192,13.010101 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.sub-header-wrapper {
+    border-bottom: 1px solid $night400;
+    padding: 6px 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid $night400;
+}
+
+.switch {
+    margin-bottom: 6px;
+}

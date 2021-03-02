@@ -1,0 +1,131 @@
+@use  '../../assets/styles/index' as *;
+
+@mixin icon() {
+    flex: 0 0 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.cell {
+    color: $gray80;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        &:hover {
+            background: $gray20;
+
+            .sort-icon {
+                fill: $gray70;
+            }
+
+            .dropdown-icon {
+                fill: $gray70;
+            }
+        }
+    }
+
+    &.size-30 { height: 30px; }
+    &.size-36 { height: 36px; }
+    &.size-48 { height: 48px; }
+
+    &.padding-left-24 { padding-left: 24px; }
+
+    &.padding-right-24 { padding-right: 24px; }
+
+
+    .caption {
+        font-family: $font-sans-semibold;
+    }
+
+    .checkbox {
+        margin-right: 12px;
+    }
+
+    .icon {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .sort-icon {
+        margin-left: 1px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .sort-icon-active {
+        fill: $gray60;
+    }
+
+    .dropdown-icon {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .filter-icon {
+        padding-left: 3px;
+    }
+
+    .icon-cell {
+        display: flex;
+        overflow: hidden;
+
+        &.align-right {
+            justify-content: flex-end;
+        }
+
+        &.align-center {
+            justify-content: center;
+        }
+    }
+
+    .tooltip-wrapper {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .cell-tooltip {
+        top: 0;
+    }
+
+    .overflowed-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .upper-case {
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .font-size-14 {
+        font-size: 14px;
+    }
+
+    .resize-mark {
+        position: absolute;
+        width: 12px;
+        right: 0;
+        height: 100%;
+        cursor: col-resize;
+    }
+
+    &.ghost {
+        background-color: $gray20;
+    }
+
+    &.is-dragged-out {
+        background-color: $gray10;
+    }
+}

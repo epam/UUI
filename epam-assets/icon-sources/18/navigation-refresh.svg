@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/navigation-refresh</title>
+    <g id="Icons/18/navigation-refresh" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13.2363977,4.7625 C12.1482176,3.675 10.6547842,3 8.99624765,3 C5.67917448,3 3,5.685 3,9 C3,12.315 5.67917448,15 8.99624765,15 C11.7954972,15 14.1294559,13.0875 14.7973734,10.5 L13.2363977,10.5 C12.6210131,12.2475 10.9549719,13.5 8.99624765,13.5 C6.51219512,13.5 4.4934334,11.4825 4.4934334,9 C4.4934334,6.5175 6.51219512,4.5 8.99624765,4.5 C10.2420263,4.5 11.3527205,5.0175 12.163227,5.835 L9.7467167,8.25 L15,8.25 L15,3 L13.2363977,4.7625 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

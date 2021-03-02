@@ -1,0 +1,129 @@
+@use '../../assets/styles/index.scss' as *;
+@use '../../assets/styles/colorvars/inputs/radioInput-colorvars.scss' as *;
+
+
+@mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
+    $vpadding: ($line-height - $size)/2;
+
+    :global(.uui-radioinput) {
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+        margin: $vpadding 0;
+
+        :global(.uui-icon) {
+            svg {
+                width: $bullet-size;
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+}
+
+.root {
+    @include radio-input-color();
+    outline: none;
+
+    :global(.uui-radioinput) {
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        fill: var(--fill-color);
+        align-self: baseline;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline();
+        color: var(--caption-color);
+        flex-grow: 1;
+        font-family: $font-sans;
+        margin-left: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    &:hover, &:focus {
+        :global(.uui-radioinput) {
+            border-color: var(--border-color-hovered);
+            fill: var(--fill-color-hovered);
+
+        }
+    }
+
+    :global(.uui-checked) {
+        border-color: var(--border-color-checked);
+        fill: var(--fill-color-checked);
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+
+        :global(.uui-radioinput) {
+            background-color: var(--background-color-disabled);
+            border-color: var(--border-color-disabled);
+
+            &:global(.uui-checked) {
+                background-color: var(--background-color-checked-disabled);
+                border-color: var(--border-color-checked-disabled);
+                fill: var(--fill-color-checked-disabled);
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--caption-color-disabled);
+        }
+    }
+
+    &:global(.uui-readonly) {
+        cursor: default;
+
+        :global(.uui-radioinput) {
+            background-color: var(--background-color-disabled);
+            border-color: var(--border-color-disabled);
+
+            &:global(.uui-checked) {
+                background-color: var(--background-color-checked-disabled);
+                border-color: var(--border-color-checked-disabled);
+                fill: var(--fill-color-checked-disabled);
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        :global(.uui-radioinput) {
+            border-color: var(--errored-color);
+            fill: var(--errored-color);
+
+            &:hover, &:active {
+                border-color: var(--errored-color);
+                fill: var(--errored-color);
+            }
+
+            &:global(.uui-checked) {
+                border: 1px solid var(--errored-color);
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: var(--errored-color);
+        }
+    }
+
+    //Sizes
+    &.size-18 {
+        @include radio-sizes(18px, 14px, 12px, 18px);
+    }
+
+    &.size-12 {
+        @include radio-sizes(12px, 12px, 8px, 14px);
+
+        :global(.uui-input-label) {
+            margin-left: 6px;
+        }
+    }
+}

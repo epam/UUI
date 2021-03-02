@@ -1,0 +1,21 @@
+.container {
+    :global(.uui-label) {
+        display: flex;
+        align-items: center;
+
+        :global(.uui-labeled-input-info-icon) {
+            display: flex;
+        }
+    }
+
+    .optionalFieldWrapper {
+        flex-grow: 1;
+        text-align: right;
+        text-overflow: ellipsis;
+    }
+
+    :global(.uui-label-left) {
+        display: flex;
+        align-items: center;
+    }
+}

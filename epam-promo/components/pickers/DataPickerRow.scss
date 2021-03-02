@@ -1,0 +1,21 @@
+@use  '../../assets/styles/index' as *;
+
+.render-item {
+    display: flex;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picker-row {
+    &:global(.uui-focus) {
+        background-color: $gray10;
+    }
+
+    &:global(.-clickable) {
+        cursor: pointer;
+    }
+}

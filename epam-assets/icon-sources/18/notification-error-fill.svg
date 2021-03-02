@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/notification-error-fill</title>
+    <g id="Icons/18/notification-error-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,1 C4.584,1 1,4.584 1,9 C1,13.416 4.584,17 9,17 C13.416,17 17,13.416 17,9 C17,4.584 13.416,1 9,1 Z M10,13 L8,13 L8,11 L10,11 L10,13 Z M10,10 L8,10 L8,5 L10,5 L10,10 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

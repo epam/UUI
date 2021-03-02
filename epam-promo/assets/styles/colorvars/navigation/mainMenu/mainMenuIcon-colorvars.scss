@@ -1,0 +1,6 @@
+@use  '../../../colors' as *;
+
+@mixin mainMenu-icon-color() {
+    --background-color-hover: black;
+    --background-color-active: black;
+}

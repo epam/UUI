@@ -1,0 +1,16 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+
+.container {
+    height: 400px;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+}
+
+.id-column {
+    background-color: $green-lightest;
+}
+
+.name-column {
+    background-color: $blue-lightest;
+}

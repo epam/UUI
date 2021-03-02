@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton should be rendered correctly 1`] = `
+<div
+  className="root color-night600 uui-button-box uui-enabled"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  />
+</div>
+`;
+
+exports[`IconButton should be rendered correctly with props 1`] = `
+<div
+  className="root color-sun uui-button-box uui-enabled -clickable"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#accept-12.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

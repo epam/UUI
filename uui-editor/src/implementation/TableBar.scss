@@ -1,0 +1,16 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.container {
+    position: absolute;
+    background-color: $gray80;
+    display: flex;
+}
+
+.tablebar-button {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    &:global(.uui-button-box) {
+        border-radius: 0;
+    }
+}

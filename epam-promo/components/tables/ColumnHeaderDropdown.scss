@@ -1,0 +1,42 @@
+@use  '../../assets/styles/index' as *;
+
+.filter-sort-button {
+    &:global(.-clickable) {
+        &:hover {
+            background-color: $white;
+
+            .sort-text {
+                color: $blue;
+            }
+
+            :global(.uui-icon) {
+                fill: $blue;
+            }
+        }
+
+        .active-text {
+            color: $blue;
+        }
+    }
+
+    :global(.uui-icon) {
+        margin-left: 12px;
+    }
+
+    &:global(.uui-button-box) {
+        &:global(.-clickable) {
+            &:hover {
+                @include button-colors(white, $blue, transparent);
+            }
+        }
+    }
+}
+
+.sorting-panel-container {
+    padding: 6px 0;
+    border-bottom: 1px solid $gray40;
+}
+
+.sort-active {
+    margin-right: 12px;
+}

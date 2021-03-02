@@ -1,0 +1,19 @@
+@use  '../../assets/styles/index' as *;
+
+.text {
+    &.theme-dark {
+        color: $gray5;
+
+        &.size-12 {
+            b, strong {
+                color: $gray10;
+            }
+        }
+
+        pre, code {
+            color: $gray90;
+            background-color: $gray10;
+        }
+    }
+}
+

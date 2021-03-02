@@ -1,0 +1,17 @@
+.icon-layout(@size) {
+    :global(.uui-icon) {
+        svg {
+            height: @size/36*24;
+            max-width: @size/36*24;
+        }
+    }
+}
+
+.icon-size(@size) {
+    :global(.uui-icon) {
+        svg {
+            height: @size;
+            max-width: @size;
+        }
+    }
+}

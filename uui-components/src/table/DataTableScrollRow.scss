@@ -1,0 +1,26 @@
+:global(.uui-table-scroll-row-container) {
+    display: flex;
+    position: relative;
+    height: 0;
+    pointer-events: none;
+
+    :global(.uui-table-scroll-row) {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: none;
+    }
+}
+
+:global(.uui-table-scroll-bar) {
+    height: 10px;
+    pointer-events: all;
+}
+  
+.cell-placeholder {
+    height: 10px;
+    pointer-events: none;
+}

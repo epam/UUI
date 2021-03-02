@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmationModal should be rendered correctly 1`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 15,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-420 height-auto container"
+  >
+    <div
+      className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+    >
+      <div
+        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+      >
+        Title
+      </div>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "auto",
+            "flexGrow": undefined,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          className="root color-night600 uui-button-box uui-enabled -clickable"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#modal-close-cross.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="root root theme-light"
+      cx={
+        Array [
+          Array [
+            "root",
+            "theme-light",
+          ],
+          undefined,
+        ]
+      }
+      style={
+        Object {
+          "display": "flex",
+          "height": "100%",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "WebkitOverflowScrolling": "touch",
+            "bottom": 0,
+            "flex": "1 1 auto",
+            "left": 0,
+            "marginBottom": 0,
+            "marginRight": 0,
+            "overflow": "scroll",
+            "position": "relative",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "borderRadius": 3,
+            "bottom": 2,
+            "display": "none",
+            "height": 6,
+            "left": 2,
+            "position": "absolute",
+            "right": 2,
+          }
+        }
+      >
+        <div
+          className="uui-thumb"
+        />
+      </div>
+      <div
+        style={
+          Object {
+            "borderRadius": 3,
+            "bottom": 2,
+            "display": "none",
+            "position": "absolute",
+            "right": 2,
+            "top": 2,
+            "width": 6,
+          }
+        }
+      >
+        <div
+          className="uui-thumb"
+        />
+      </div>
+    </div>
+    <div
+      className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+    >
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="container uui-button-box uui-enabled -clickable root size-36 color-night400 fill-solid style-square"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <div
+          className="uui-caption line-height-24 font-size-14 v-padding-5"
+        >
+          Discard
+        </div>
+      </div>
+      <div
+        className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <div
+          className="uui-caption line-height-24 font-size-14 v-padding-5"
+        >
+          Save
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 15,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-900 height-auto container"
+  >
+    <div
+      className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+    >
+      <div
+        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+      >
+        Title
+      </div>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "auto",
+            "flexGrow": undefined,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          className="root color-night600 uui-button-box uui-enabled -clickable"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#modal-close-cross.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="root root theme-light"
+      cx={
+        Array [
+          Array [
+            "root",
+            "theme-light",
+          ],
+          undefined,
+        ]
+      }
+      style={
+        Object {
+          "display": "flex",
+          "height": "100%",
+          "overflow": "hidden",
+          "position": "relative",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "WebkitOverflowScrolling": "touch",
+            "bottom": 0,
+            "flex": "1 1 auto",
+            "left": 0,
+            "marginBottom": 0,
+            "marginRight": 0,
+            "overflow": "scroll",
+            "position": "relative",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          className="root margin-24 container"
+        >
+          <div>
+            content
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "borderRadius": 3,
+            "bottom": 2,
+            "display": "none",
+            "height": 6,
+            "left": 2,
+            "position": "absolute",
+            "right": 2,
+          }
+        }
+      >
+        <div
+          className="uui-thumb"
+        />
+      </div>
+      <div
+        style={
+          Object {
+            "borderRadius": 3,
+            "bottom": 2,
+            "display": "none",
+            "position": "absolute",
+            "right": 2,
+            "top": 2,
+            "width": 6,
+          }
+        }
+      >
+        <div
+          className="uui-thumb"
+        />
+      </div>
+    </div>
+    <div
+      className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+    >
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <div
+          className="uui-caption line-height-24 font-size-14 v-padding-5"
+        >
+          Save
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

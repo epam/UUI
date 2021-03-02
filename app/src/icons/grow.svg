@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/grow</title>
+    <defs>
+        <linearGradient x1="90.2076729%" y1="6.18582821%" x2="12.5953326%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#C8DE49" offset="0%"></stop>
+            <stop stop-color="#62A231" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Other/logo/colored/grow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" fill="#FFFFFF" opacity="0" x="0" y="0" width="192" height="192"></rect>
+        <path d="M91,164 C59,160 39,132 35,96 C111,80 107,160 107,160 C99,136 83,116 59,112 C67,116 91,144 91,164 M115,144 C115.124,131.136 112.076,119.921 107,112 C111,92 119,80 131,64 C119,72 103,88 99,100 C93.681,95.09 86.022,89.922 79,88 C83,68 123,36 151,28 C175,96 119,144 115,144" id="Logo" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > * {
+        margin-right: -1px;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}

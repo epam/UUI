@@ -1,0 +1,24 @@
+@import '../../../assets/styles/colorvars/navigation/mainMenu/globalMenu-colorvars.scss';
+
+.global-menu-btn {
+    @include globalMenu-color();
+    display: block;
+    height: 60px;
+    width: 60px;
+    fill: var(--fill);
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--background-color-hover);
+    }
+
+    &:active {
+        background-color: var(--background-color-active);
+    }
+}
+
+.globalMenuIcon svg {
+    width: 60px;
+    height: 60px;
+}

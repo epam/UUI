@@ -1,0 +1,24 @@
+.container {
+    &:global(.uui-yearselection-container) {
+        :global(.uui-yearselection-content) {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+
+        :global(.uui-yearselection-year-container) {
+            display: flex;
+            flex-direction: column;
+
+            & > * {
+                display: flex;
+            }
+        }
+
+        :global(.uui-yearselection-year) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

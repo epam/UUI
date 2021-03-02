@@ -1,0 +1,51 @@
+@import (reference) 'loveship-colors.less';
+
+.disabled-input() {
+    cursor: default;
+    .input-colors(@night50, @night500, @night500, @night300);
+    pointer-events: none;
+
+    &:hover, &:active, &:focus {
+        .input-colors(@night50, @night500, @night500, @night300);
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: @night300;
+    }
+}
+
+.readonly-input() {
+    &.mode-form,
+    &.mode-cell {
+        background: @night50;
+    }
+
+    &.mode-form:hover {
+        border-color: @night300;
+    }
+
+    &.mode-inline:hover {
+        border-color: transparent;
+    }
+
+    &.mode-cell:hover {
+        border-color: transparent;
+    }
+}
+
+.input-colors(@background, @color, @fill, @border) {
+    background-color: @background;
+    color: @color;
+    fill: @fill;
+    border-color: @border;
+
+    // override more selective selector on input tag in browsers stylesheets
+    :global(.uui-input) {
+        color: @color;
+
+        &::placeholder {
+            color: @night500;
+        }
+    }
+}

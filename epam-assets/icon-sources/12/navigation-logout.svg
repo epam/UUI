@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/navigation-logout</title>
+    <g id="Icons/12/navigation-logout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2,9 L2,10 L10,10 L10,2 L2,2 L2,3 L1,3 L1,2 C1,1.44771525 1.44771525,1 2,1 L10,1 C10.5522847,1 11,1.44771525 11,2 L11,10 C11,10.5522847 10.5522847,11 10,11 L2,11 C1.44771525,11 1,10.5522847 1,10 L1,9 L2,9 Z M4,5 L8,5 L8,7 L4,7 L4,9 L1,6 L4,3 L4,5 Z" id="Shape" fill="#45FF00"></path>
+    </g>
+</svg>

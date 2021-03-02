@@ -1,0 +1,24 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    :global(.uui-presets-container) {
+        padding: 12px 24px;
+        font-family: $font-sans;
+    }
+
+    :global(.uui-presets-header) {
+        @include text-size(36);
+        padding-bottom: 12px;
+    }
+
+    :global(.uui-presets-item) {
+        @include text-size(36);
+        color: $blue;
+        padding: 0;
+
+        &:hover {
+            color: $blue-darkest;
+            cursor: pointer;
+        }
+    }
+}

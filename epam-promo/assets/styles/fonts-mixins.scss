@@ -1,0 +1,28 @@
+@use './fonts';
+
+@mixin epam-uui-fonts() {
+    &.font-sans {
+        font-family: fonts.$font-sans;
+        font-weight: normal;
+    }
+
+    &.font-sans-semibold {
+        font-family: fonts.$font-sans-semibold;
+        font-weight: normal;
+    }
+
+    &.font-sans-italic {
+        font-family: fonts.$font-sans-italic;
+        font-weight: normal;
+    }
+
+    &.font-museo-sans {
+        font-family: fonts.$font-museo-sans;
+        font-weight: normal;
+    }
+
+    &.font-museo-slab {
+        font-family: fonts.$font-museo-slab;
+        font-weight: normal;
+    }
+}

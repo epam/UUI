@@ -1,0 +1,18 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.text {
+    &.theme-dark {
+        color: $night50;
+
+        &.size-12 {
+            b, strong {
+                color: $night50;
+            }
+        }
+
+        pre, code {
+            color: $night900;
+            background-color: $night50;
+        }
+    }
+}

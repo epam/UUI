@@ -1,0 +1,63 @@
+{
+  "name": "Find N entities in 10 dataset by departmentId, sorted by name",
+  "date": "2020-06-10T00:28:09.339Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "Array - scan",
+      "ops": 3479592,
+      "margin": 1.52,
+      "percentSlower": 84.09
+    },
+    {
+      "name": "Array - with filterPredicate/orderComparer",
+      "ops": 21875683,
+      "margin": 1.42,
+      "percentSlower": 0
+    },
+    {
+      "name": "BTree - toArray/scan",
+      "ops": 4114655,
+      "margin": 1.38,
+      "percentSlower": 81.19
+    },
+    {
+      "name": "I.Map - iterable.filter.sort, then toArray",
+      "ops": 535956,
+      "margin": 1.05,
+      "percentSlower": 97.55
+    },
+    {
+      "name": "I.Map - toArray, then filter/sort",
+      "ops": 699351,
+      "margin": 1.27,
+      "percentSlower": 96.8
+    },
+    {
+      "name": "IxSet - with indexes",
+      "ops": 467251,
+      "margin": 1.09,
+      "percentSlower": 97.86
+    },
+    {
+      "name": "IxSet - no indexes",
+      "ops": 538732,
+      "margin": 1.15,
+      "percentSlower": 97.54
+    },
+    {
+      "name": "DbTable - with index",
+      "ops": 2155399,
+      "margin": 1.05,
+      "percentSlower": 90.15
+    }
+  ],
+  "fastest": {
+    "name": "Array - with filterPredicate/orderComparer",
+    "index": 1
+  },
+  "slowest": {
+    "name": "IxSet - with indexes",
+    "index": 5
+  }
+}

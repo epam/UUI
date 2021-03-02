@@ -1,0 +1,208 @@
+MUST
+
+Fix bug:
+  - check a row
+  - change sorting
+  - select all checkbox is clear
+  TBD: Extract missing checked items, along with their subtree, if they aren't loaded already or loaded with visible rows
+
+Implement batch API
+
+Flat sorting view option
+
+Separate cascading checked loading from the visible tree
+
+Editable table demo
+
+OPTIONAL
+
+Better loading UX
+- loading checkboxes state?
+- loading folding state?
+- avoid empty state on filter change?
+
+Handle disabled checkboxes when cascading
+- don't select items with checkbox.disabled
+- respect checked and disabled items (don't uncheck them)
+
+Docs page
+
+
+Selection cascading
+- check/uncheck on all sibling checked/unchecked?
+
+
+*** Batch API ***
+
+Cases:
+1. Load whole tree in a single request. For example - on search (when we sure that there's not many results)
+2. Load sub-tree for a particular node (for selection cascading)
+3. Load groups with items (when each group doesn't have many items)
+4. Load all children in particular layer with a query like:
+    {
+        filter: { parentId: { in: [1,2,3] }} // ids of unfolded children
+        sorting: { [ { field: 'parentName' }, { field: 'name' }]} // to have children appear in order of parents
+        range: { count: X } // where X is a sum of all childCounts
+    }
+
+Implementation option #1 - prefetch.
+    /**
+     * One can use prefetchApi if it's possible to resolve multiple queries at once.
+     * To do this, store some intermediate data in closure, and return this data on subsequent calls.
+     */
+    prefetchApi?: (state: DataSourceState<TItem, TId>) => LazyDataSourceApi<TItem, TId, TFilter>;
+
+Works for:
+1 - yes
+2 - no (we don't know which sub-tree to load)
+3 - yes
+4 - only for top-level
+
+Implementation option #2 - allow api to return children:
+{
+    items,
+    count,
+    ...
+    [parentId]: LazyDataSourceApiResponse }
+}
+
+1 - yes
+2 - yes (if we pass isForSelectionCascading: true, checkedItemId: 123)
+3 - yes
+4 - yes
+
+- we need to split resulting list, which would be like [
+    { id: 1, name: 'child1', parentId: 10 },
+    { id: 2, name: 'child2', parentId: 10 }
+    { id: 3, name: 'child3', parentId: 11 }
+]
+ into list of children for each parent.
+   two options:
+   a) introduce 'getParentId' prop
+   b) let batch API to split the list, and return a hash of arrays like { 10: [list of children], 11: [list of children]}
+
+- API options:
+a) another property like batchApi(rq, { childIds }) => []
+b) an 'batchChildrenLoads' flag, and pass parentIds in requestOptions (2nd argument of )
+
+
+
+
+
+
+Reset selection on changing filter
+- investigate problems on demo
+- we don't change the filter, use code does it. Should be implemented at user-side?
+
+
+Smart Selection Cascading
+- use hash instead of array for selection. Distinguish empty/undefined, true, and false values. Empty - means 'inherit from parent'
+- this would allow to cascade selection without need to load all children
+- how to change API w/o huge breaking change?
+
+Editable rows
+- how to inject edited version of row?
+- how to get a table re-rendered if row is changed?
+
+DB data sources
+- are we need them?
+  - APIs for editable table
+  - helpers to wrap API to rebase DB and pass list to DS?
+
+Item By ID store
+- adjust to current use (remove lists caching)
+- allow to put an external implementation?
+
+Make lazy tree sync/async
+- in some cases, we can complete tree load operation synchroniously.
+  But JS Promise-based algorytm would execute continuation on the next tick in any case
+- we can build a Promise-like Monad to allow sync execution
+- this would allow us to re-use LazyListView for ArrayDataSource
+
+Cosmetic rename: LazyListView => LazyTreeView
+
+Better LazyDataSourceApi - how to make implementation simpler?
+- path to the item?
+- depth?
+- maybe an convention to reuse parentId somehow?
+  - groping + parentId?
+- instead of one API, introduce a more complex structure (like 'layers') to setup API for each entity individually?
+
+Iterate loading algorithm to remove showing intermediate states when childCount is estimated less than actual
+- while (notAllLoaded) { loadAgain() }
+- to remove flicker when getChildCounts lied (provided wrong estimates)
+
+
+Rework ArrayDataSource to re-use LazyListView.
+
+
+DONE:
+
+Don't load items until getVisibleRows is called
+
+
+Fix bug:
+  - select all doesn't load all rows
+
+Fix and write test for focused items
+
+
+Fix bug:
+  - check children
+  - fold parent
+  - parent is unchecked (expected intermediate)
+
+Rework loading state machine
+- handle concurent checking-induced and value-change loads
+
+
+Select all
+
+Test complex IDs, like [entitytype, number]
+- use in demo
+
+Selection cascading
+
+Change log
+
+Refactoring - LazyListView - remove datasource dependency
+
+Cover cases when children are loaded along with parents
+
+Test options.filters
+
+Item by ID store - fix
+fix:
+ - Pickers / Getting selected entity
+
+Refactoring - extract lazy tree
+
+Fix clearCache
+Fix counts calculation
+Correct Indenting
+
+Fold/Unfold all button on demo
+
+API - allow estimated rows count (HasChidren instead of ChildCount)?
+ - tests!
+ - fix problems with locations demo
+   - folding icon doesn't get hidden if there's no items inside
+
+Test when no count is returned
+
+Docs
+
+    More details:
+
+    Every view tracks a single loaded list/tree of items, according to the current filter/search/folding/other options
+    The view can be incomplete (not fully loaded). In case more items needed, LazyTreeView calls API to retrieve and append them.
+    If certain options changes, LazyTreeView reloads whole list/tree.
+    There options includes: filter, search, sorting, and certain callbacks (which are expected to not change)
+
+    Entities themselves (item by id) are still kept in the LazyDataSource.
+    This allows to use the same entities in different views. E.g. show selected items in the PickerInput - both in input area and in dropdown.
+    It also opens opportunity to make items editable, while keeping their order in the list driven by server.
+    This way we can make a lazy-loaded list/tree editable, while not reading all items from the server.
+    Keep in mind, that changing an entity attribute, which can affect it's order in the list, wouldn't move it accordingly.
+    You need to call .reload() after saving an item to server, to re-order the list.
+    However, this behavior can be even better than shuffling an item around the list while user edits it.

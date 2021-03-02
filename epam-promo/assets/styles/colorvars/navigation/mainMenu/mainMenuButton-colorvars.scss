@@ -1,0 +1,11 @@
+@use  '../../../colors' as *;
+
+@mixin mainMenu-button-color() {
+    --color: white;
+    --fill: white;
+    --color-hover: white;
+    --fill-hover: white;
+    --color-active: white;
+    --fill-active: white;
+    --border-color-active: #{$blue};
+}

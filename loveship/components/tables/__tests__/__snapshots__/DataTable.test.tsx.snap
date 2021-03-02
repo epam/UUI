@@ -1,0 +1,1471 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable should be rendered correctly 1`] = `
+Array [
+  <div
+    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  >
+    <div
+      className="scrollableColumnsWrapper"
+      style={
+        Object {
+          "flexGrow": 100,
+          "flexShrink": 1,
+          "minWidth": 0,
+          "width": 0,
+        }
+      }
+    >
+      <div
+        className="scrollableColumnsContainer"
+      >
+        <div
+          className="container align-items-center"
+        >
+          <div
+            className="flexCell -clickable cell size-36 padding-left-24"
+            onClick={[Function]}
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "96px",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "minWidth": 0,
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div
+              className="tooltipWrapper"
+              onClick={null}
+            >
+              <div
+                className="iconCell align-undefined"
+              >
+                <div
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                >
+                  ID
+                </div>
+                <div
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  href={null}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="resizeMark"
+              onMouseDown={[Function]}
+            />
+          </div>
+          <div
+            className="flexCell -clickable cell size-36"
+            onClick={[Function]}
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "96px",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "minWidth": 0,
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div
+              className="tooltipWrapper"
+              onClick={null}
+            >
+              <div
+                className="iconCell align-undefined"
+              >
+                <div
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                >
+                  Level
+                </div>
+                <div
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  href={null}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="resizeMark"
+              onMouseDown={[Function]}
+            />
+          </div>
+          <div
+            className="flexCell -clickable cell size-36 padding-right-24"
+            onClick={[Function]}
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "96px",
+                "flexGrow": 0,
+                "flexShrink": 0,
+                "minWidth": 0,
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div
+              className="tooltipWrapper"
+              onClick={null}
+            >
+              <div
+                className="iconCell align-undefined"
+              >
+                <div
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                >
+                  DATE
+                </div>
+                <div
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  href={null}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="resizeMark"
+              onMouseDown={[Function]}
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="scrollShadowLeft"
+      />
+      <div
+        className="scrollShadowRight"
+      />
+    </div>
+  </div>,
+  <div
+    className="root size-36 background-white topShadow spacing-6 body container align-items-center"
+  >
+    <div
+      className="wrapper root shadow-dark"
+    >
+      <div
+        className="body"
+        style={
+          Object {
+            "height": "auto",
+            "maxHeight": 100500,
+            "minHeight": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="container1"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 100500,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container2"
+            style={
+              Object {
+                "height": null,
+              }
+            }
+          >
+            <div
+              className="container3"
+              style={
+                Object {
+                  "top": 0,
+                }
+              }
+            >
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Ken Sánchez
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Chief Executive Officer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 uui-focus container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Terri Duffy
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Vice President of Engineering
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Roberto Tamburello
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Engineering Manager
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Rob Walters
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Senior Tool Designer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Gail Erickson
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Design Engineer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Jossef Goldberg
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Design Engineer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Dylan Miller
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Research and Development Manager
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Diane Margheim
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Research and Development Engineer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Gigi Matthew
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Research and Development Engineer
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+              <div
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+              >
+                <div
+                  className="scrollableColumnsWrapper"
+                  style={
+                    Object {
+                      "flexGrow": 100,
+                      "flexShrink": 1,
+                      "minWidth": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="scrollableColumnsContainer"
+                  >
+                    <div
+                      className="container align-items-center"
+                    >
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-left-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Michael Raheem
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div>
+                          Research and Development Manager
+                        </div>
+                      </div>
+                      <div
+                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "96px",
+                            "flexGrow": 0,
+                            "flexShrink": 0,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="scrollShadowLeft"
+                  />
+                  <div
+                    className="scrollShadowRight"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+      </div>
+      <div
+        className="uui-scroll-shadow-top"
+      />
+      <div
+        className="uui-scroll-shadow-bottom"
+      />
+    </div>
+  </div>,
+  <div
+    className="uui-table-scroll-row-container cellClass"
+  >
+    <div
+      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+    >
+      <div
+        className="uui-table-scroll-bar"
+        style={
+          Object {
+            "flexGrow": 100,
+            "flexShrink": 1,
+            "height": "auto",
+            "maxHeight": 200,
+            "minHeight": 0,
+            "minWidth": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 0,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 200,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container align-items-center"
+          >
+            <div
+              className="cellPlaceholder"
+              onClick={[Function]}
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "minWidth": 0,
+                  "textAlign": undefined,
+                }
+              }
+            />
+            <div
+              className="cellPlaceholder"
+              onClick={[Function]}
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "minWidth": 0,
+                  "textAlign": undefined,
+                }
+              }
+            />
+            <div
+              className="cellPlaceholder"
+              onClick={[Function]}
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": 0,
+                  "minWidth": 0,
+                  "textAlign": undefined,
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "height": "100%",
+                "position": "relative",
+              }
+            }
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`DataTable should be rendered correctly with empty columns and rows 1`] = `
+Array [
+  <div
+    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  >
+    <div
+      className="scrollableColumnsWrapper"
+      style={
+        Object {
+          "flexGrow": 100,
+          "flexShrink": 1,
+          "minWidth": 0,
+          "width": 0,
+        }
+      }
+    >
+      <div
+        className="scrollableColumnsContainer"
+      >
+        <div
+          className="container align-items-center"
+        />
+      </div>
+      <div
+        className="scrollShadowLeft"
+      />
+      <div
+        className="scrollShadowRight"
+      />
+    </div>
+  </div>,
+  <div
+    className="root size-36 background-white topShadow spacing-6 body container align-items-center"
+  >
+    <div
+      className="wrapper root shadow-dark"
+    >
+      <div
+        className="body"
+        style={
+          Object {
+            "height": "auto",
+            "maxHeight": 100500,
+            "minHeight": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="container1"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 100500,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container2"
+            style={
+              Object {
+                "height": null,
+              }
+            }
+          >
+            <div
+              className="container3"
+              style={
+                Object {
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+      </div>
+      <div
+        className="uui-scroll-shadow-top"
+      />
+      <div
+        className="uui-scroll-shadow-bottom"
+      />
+    </div>
+  </div>,
+  <div
+    className="uui-table-scroll-row-container cellClass"
+  >
+    <div
+      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+    >
+      <div
+        className="uui-table-scroll-bar"
+        style={
+          Object {
+            "flexGrow": 100,
+            "flexShrink": 1,
+            "height": "auto",
+            "maxHeight": 200,
+            "minHeight": 0,
+            "minWidth": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 0,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 200,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container align-items-center"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "height": "100%",
+                "position": "relative",
+              }
+            }
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

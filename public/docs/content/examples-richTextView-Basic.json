@@ -1,0 +1,65 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic example of using text with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "html",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " markup.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It has ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "12 | 14 | 16",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " size values to configure paragraph text size and scale or to reduce other elements according to it.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

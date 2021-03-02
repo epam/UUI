@@ -1,0 +1,48 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.root {
+    @include button-reset();
+    @include epam-uui-fonts();
+    flex-shrink: 0;
+    color: $white;
+    fill: $white;
+    cursor: pointer;
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-top: 22px;
+        padding-bottom: 22px;
+        line-height: 16px;
+        margin-bottom: -2px;
+        font-family: $font-sans-semibold;
+    }
+
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: 60px;
+    }
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+        font-size: 16px;
+    }
+
+    &.type-primary {
+        @include icon-layout(42px);
+        @include control-horizontal-layout(54px, 0);
+    }
+
+    &.type-secondary {
+        @include icon-layout(36px);
+        @include control-horizontal-layout(54px, 0);
+    }
+
+    &:hover, &:focus {
+        color: $sky;
+        fill: $sky;
+    }
+
+    &:global(.uui-active) {
+        border-bottom: 2px solid $sky;
+        color: $sky;
+        fill: $sky;
+    }
+}

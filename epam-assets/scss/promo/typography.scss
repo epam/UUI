@@ -1,0 +1,203 @@
+@use 'colors' as *;
+@use 'fonts' as *;
+
+@mixin overflow-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin typography-header() {
+    :global(.hero-header), h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+    }
+
+    :global(.hero-header) {
+        font-family: $font-museo-slab;
+        margin: 30px 0;
+        font-size: 66px;
+        line-height: 72px;
+    }
+
+    :global(.hero-header), :global(.promo-header) {
+        color: $gray90;
+        text-align: center;
+    }
+
+    :global(.promo-header), h1, h2, h3 {
+        font-family: $font-museo-sans;
+    }
+
+    :global(.promo-header) {
+        text-transform: uppercase;
+    }
+
+    h4, h5, h6 {
+        font-family: $font-sans-semibold;
+        margin: 12px 0;
+        line-height: 24px;
+    }
+
+    h1 {
+        margin: 24px 0;
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    h2 {
+        margin: 18px 0;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: 0.1px;
+
+        &:global(.promo-header) {
+            letter-spacing: 2px;
+        }
+    }
+
+    h3 {
+        margin: 12px 0;
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    h4 {
+        font-size: 18px;
+        letter-spacing: 0.1px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+}
+
+@mixin typography-inline() {
+    b, strong {
+        font-family: $font-sans-semibold;
+    }
+
+    i, em {
+        font-family: $font-sans-italic;
+    }
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        color: $blue;
+
+        &:visited {
+            color: #5214CC;
+
+            &:hover {
+                color: #3F0F9E;
+            }
+        }
+
+        &:hover {
+            text-decoration: underline;
+            color: $blue-dark;
+        }
+    }
+
+    code {
+        //margin: 0 4px;
+        padding: 2px 4px;
+        color: $gray80;
+        background-color: $gray30;
+        //border-radius: 3px;
+        font-family: $font-roboto-mono;
+        white-space: pre-wrap;
+        word-wrap: normal;
+    }
+}
+
+@mixin typography-block() {
+    ol, ul {
+        padding: 0;
+
+        ol, ul {
+            margin-left: 18px;
+        }
+    }
+
+    li {
+        margin-left: 18px;
+    }
+
+    pre {
+        margin: 12px 0;
+        padding: 12px 18px;
+        color: $gray10;
+        background-color: $gray70;
+        //border-radius: 3px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-wrap: normal;
+    }
+
+    figure {
+        margin: 12px 0;
+    }
+}
+
+@mixin typography-12() {
+    font-size: 12px;
+    line-height: 18px;
+
+    p {
+        margin: 6px 0;
+    }
+}
+
+@mixin typography-14() {
+    font-size: 14px;
+    line-height: 24px;
+
+    p {
+        margin: 12px 0;
+    }
+}
+
+@mixin typography-16() {
+    font-size: 16px;
+    line-height: 24px;
+
+    p {
+        margin: 18px 0;
+    }
+}
+
+:local(.typography-header) {
+    @include typography-header();
+}
+
+:local(.typography-block) {
+    @include typography-block();
+}
+
+:local(.typography-inline) {
+    @include typography-inline();
+}
+
+:local(.typography-16) {
+    @include typography-16();
+}
+
+:local(.typography-14) {
+    @include typography-14();
+}
+
+:local(.typography-12) {
+    @include typography-12();
+}
+
+:local(.typography-promo) {
+    font-family: $font-sans;
+    color: $gray80;
+    composes: typography-header;
+    composes: typography-block;
+    composes: typography-inline;
+}

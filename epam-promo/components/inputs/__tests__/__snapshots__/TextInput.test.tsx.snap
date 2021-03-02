@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`TextInput should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box -clickable root size-36"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value=""
+  />
+  <div
+    className="container uui-icon uui-disabled uui-icon-accept"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#accept-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[Function]}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#calendar-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable"
+  >
+    <svg
+      className="flipY"
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#folding-arrow-18.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

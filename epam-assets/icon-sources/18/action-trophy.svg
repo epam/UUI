@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/action-trophy</title>
+    <g id="Icons/18/action-trophy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,3 L1,3 L1,8 C1,9 2,10 3,10 L5,10 C5,12 7,13 8,13 L8,15 C7,15 6,16 6,17 C10,17 12,17 12,17 C12,16 11,15 10,15 L10,13 C11,13 13,12 13,10 L15,10 C16,10 17,9 17,8 L17,3 L13,3 L13,1 L5,1 L5,3 Z M11,3 L11,8.81818182 C11,10.0231667 10.1045695,11 9,11 C7.66666667,11 7,10.0254545 7,8.81818182 L7,3 L11,3 Z M3,5 L5,5 L5,8 L3,8 L3,5 Z M13,5 L15,5 L15,8 L13,8 L13,5 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

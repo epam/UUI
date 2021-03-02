@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+
+    &.day-selection {
+        .from-picker {
+            :global(.uui-datepickerheader-nav-icon-right) {
+                visibility: hidden;
+            }
+        }
+
+        .to-picker {
+            :global(.uui-datepickerheader-nav-icon-left) {
+                visibility: hidden;
+            }
+        }
+    }
+
+    .picker-wrapper {
+        position: relative;
+    }
+
+    .bodes-wrapper {
+        transition: height .3s ease-in-out;
+    }
+
+    .blocker {
+        background-color: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+:global(.uui-datepicker-container) {
+    transition: height .3s ease-in-out;
+}

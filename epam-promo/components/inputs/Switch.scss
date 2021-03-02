@@ -1,0 +1,126 @@
+@use  '../../assets/styles/index.scss' as *;
+@import '../../assets/styles/colorvars/inputs/switch-colorvars.scss';
+
+@mixin control-switch-size($size-name, $size) {
+    &.size-#{$size-name} {
+        :global(.uui-switch-body) {
+            height: $size;
+            width: $size * 2;
+        }
+
+        :global(.uui-switch-toggler) {
+            height: $size;
+            width: $size;
+        }
+
+        :global(.uui-input-label) {
+            @if ($size == 12px) {
+                font-size: 12px;
+                letter-spacing: 0.2px;
+            } @else if ($size == 18px or $size == 24px) {
+                font-size: 14px;
+                letter-spacing: 0.1px;
+            }
+        }
+
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX($size);
+            }
+        }
+    }
+}
+
+.root {
+    @include switch-color();
+
+    //Sizes
+    @include control-switch-size('12', 12px);
+    @include control-switch-size('18', 18px);
+    @include control-switch-size('24', 24px);
+
+    :global(.uui-switch-body) {
+        background-color: var(--background-color);
+        border: 1px solid var(--border-color);
+        width: 36px;
+        border-radius: 18px;
+        box-sizing: border-box;
+    }
+
+    :global(.uui-switch-toggler) {
+        top: -1px;
+        left: -1px;
+        box-sizing: border-box;
+        background-color: var(--toggler-background-color);
+        border: 1px solid var(--toggler-border-color);
+        transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline;
+        font-family: $font-sans;
+        color: var(--caption-color);
+        cursor: pointer;
+        margin-left: 11px;
+    }
+
+    //Colors
+    &:hover {
+        :global(.uui-switch-body) {
+            background-color: var(--background-color-hovered);
+            border-color: var(--border-color-hovered);
+
+            :global(.uui-switch-toggler) {
+                border-color: var(--toggler-border-color-hovered);
+            }
+        }
+
+        :global(.uui-checked):global(.uui-switch-body) {
+            background-color: var(--background-color-checked-hovered);
+            border-color: var(--border-color-checked-hovered);
+
+            :global(.uui-switch-toggler) {
+                border-color: var(--toggler-border-color-checked-hovered);
+            }
+        }
+    }
+
+    :global(.uui-checked) {
+        &:global(.uui-switch-body) {
+            background-color: var(--background-color-checked);
+            border: 1px solid var(--border-color-checked);
+
+            :global(.uui-switch-toggler) {
+                border: 1px solid var(--toggler-border-color-checked);
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-input-label) {
+            color: var(--caption-color-disabled);
+            cursor: default;
+        }
+
+        :global(.uui-switch-body) {
+            background-color: var(--background-color-disabled);
+            border: 1px solid var(--border-color-disabled);
+            cursor: default;
+
+            :global(.uui-switch-toggler) {
+                background-color: var(--toggler-background-color-disabled);
+                border-color: var(--toggler-border-color-disabled);
+            }
+        }
+
+        :global(.uui-checked):global(.uui-switch-body) {
+            background-color: var(--background-color-checked-disabled);
+            border: 1px solid var(--border-color-checked-disabled);
+
+            :global(.uui-switch-toggler) {
+                background-color: var(--toggler-background-color-disabled);
+                border-color: var(--toggler-border-color-checked-disabled);
+            }
+        }
+    }
+}

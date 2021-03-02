@@ -1,0 +1,18 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &:hover {
+        background: $night900;
+    }
+
+    &:active {
+        background-color: darken($night900, 10%);
+    }
+}

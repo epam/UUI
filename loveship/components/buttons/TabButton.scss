@@ -1,0 +1,99 @@
+@use '../../assets/styles/scss/index'  as *;
+
+$text-size-caption: 36px;
+$text-size-count: 24px;
+
+@mixin tab-button-color($bg, $fg, $brd) {
+    color: $fg;
+    fill: $fg;
+
+    &:hover {
+        fill: $bg;
+        color: $bg;
+    }
+
+    &:global(.uui-active) {
+        fill: $bg;
+        color: $bg;
+        border-color: $brd;
+    }
+}
+
+.root {
+    @include button-reset();
+    @include link-button-horizontal-layout();
+    min-width: 36px;
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    bottom: -1px;
+    display: flex;
+    align-items: center;
+    font-family: $font-sans-semibold;
+    font-weight: normal;
+    border-bottom: 2px solid transparent;
+
+    // &:focus {
+    //     .control-focus-effect();
+    // }
+
+    &.theme-light {
+        @include tab-button-color($sky, $night700, $sky);
+
+        &:global(.uui-disabled) {
+            @include tab-button-color($night500, $night500, $night500);
+        }
+    }
+
+    &.theme-dark {
+        @include tab-button-color($sky, white, $sky);
+
+        &:global(.uui-disabled) {
+            @include tab-button-color($night600, $night600, $night600);
+        }
+    }
+
+    &.uui-notification {
+        &::after {
+            content: '';
+            margin-bottom: $text-size-caption / 2;
+            height: 6px;
+            width: 6px;
+            background: $fire;
+            box-shadow: 0 1px 8px 0 $fire;
+            border-radius: 50%;
+        }
+    }
+
+    :global(.uui-count) {
+        @include text-size($text-size-count, 0);
+        letter-spacing: 0;
+        color: $night600;
+        background-color: $night300;
+        padding: 0 6px;
+        margin-left: 6px;
+        margin-right: 3px;
+        border-radius: 9px;
+    }
+
+    &:global(.uui-active) {
+        border-bottom: 2px solid;
+    }
+
+    :global(.uui-caption) {
+        @include text-size($text-size-caption, 0);
+    }
+
+    // Sizes
+    &.size-36 {
+        height: 36px;
+    }
+
+    &.size-48 {
+        height: 48px;
+    }
+
+    &.size-60 {
+        height: 60px;
+    }
+}

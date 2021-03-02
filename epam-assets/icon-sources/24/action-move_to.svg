@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-move_to</title>
+    <g id="Icons/24/action-move_to" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13,2 L5,2 C3.9,2 3,2.9 3,4 L3,20 C3,20.41 3.12,20.8 3.34,21.12 C3.41,21.23 3.5,21.33 3.59,21.41 C3.95,21.78 4.45,22 5,22 L12.53,22 C12,21.42 11.61,20.75 11.35,20 L5,20 L5,4 L12,4 L12,9 L17,9 L17,12 C17.7,12 18.37,12.12 19,12.34 L19,8 L13,2 M17,23 L22,18.5 L19,15.8 L17,14 L17,17 L13,17 L13,20 L17,20 L17,23 Z" id="Shape" fill="#45FF00"></path>
+    </g>
+</svg>

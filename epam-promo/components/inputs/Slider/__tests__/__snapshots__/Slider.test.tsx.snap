@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider should be rendered correctly 1`] = `
+<div
+  className="uui-slider-container root root"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      0
+    </div>
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      50
+    </div>
+  </div>
+  <div
+    className="uui-slider-handle root"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Slider should be rendered correctly 2`] = `
+<div
+  className="uui-slider-container root root"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      0
+    </div>
+    <div
+      className="uui-slider-scale-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      50
+    </div>
+  </div>
+  <div
+    className="uui-slider-handle root"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+</div>
+`;

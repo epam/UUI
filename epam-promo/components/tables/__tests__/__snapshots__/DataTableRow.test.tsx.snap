@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableRow should be rendered correctly 1`] = `
+<div
+  className="container uui-table-row-container uui-table-row root border-gray30 size-30 container align-items-center"
+>
+  <div
+    className="scrollableColumnsWrapper"
+    style={
+      Object {
+        "flexGrow": 100,
+        "flexShrink": 1,
+        "minWidth": 0,
+        "width": 0,
+      }
+    }
+  >
+    <div
+      className="scrollableColumnsContainer"
+    >
+      <div
+        className="container align-items-center"
+      >
+        <div
+          className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div />
+        </div>
+      </div>
+    </div>
+    <div
+      className="scrollShadowLeft"
+    />
+    <div
+      className="scrollShadowRight"
+    />
+  </div>
+</div>
+`;

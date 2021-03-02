@@ -1,0 +1,31 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    @include button-reset();
+    overflow: visible;
+    cursor: pointer;
+    fill: var(--uui-color-700);
+
+    &:global(.-clickable) {
+        &:hover {
+            fill: var(--uui-color-800);
+        }
+
+        &:active {
+            fill: var(--uui-color-900);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        fill: $night500;
+        cursor: default;
+
+        &:hover {
+            fill: $night500;
+        }
+    }
+
+    &:global(.uui-invalid) {
+        fill: $fire;
+    }
+}

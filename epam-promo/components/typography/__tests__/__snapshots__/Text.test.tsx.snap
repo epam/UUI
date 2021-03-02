@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should be rendered correctly 1`] = `
+<div
+  className="root font-sans text-color-gray80 line-height-24 font-size-14 v-padding-6 container"
+>
+  Test
+</div>
+`;
+
+exports[`Text should be rendered correctly 2`] = `
+<div
+  className="root font-museo-slab text-color-gray60 line-height-30 font-size-24 v-padding-9 container"
+  onClick={[Function]}
+>
+  Test
+</div>
+`;

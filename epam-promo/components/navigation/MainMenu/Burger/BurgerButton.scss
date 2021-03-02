@@ -1,0 +1,59 @@
+@use  '../../../../assets/styles/index' as *;
+@import '../../../../assets/styles/colorvars/navigation/mainMenu/burger/burgerButton-colorvars';
+
+.root {
+    @include button-reset();
+    @include burger-button-color();
+    padding: 0 48px;
+    background: none;
+    border: 0;
+    outline: none;
+    font-family: $font-sans;
+    line-height: 48px;
+    flex-shrink: 0;
+
+    &:global(.uui-enabled) {
+        color: var(--color);
+        fill: var(--fill);
+
+        &:hover {
+            color: var(--color-hover);
+            fill: var(--fill-hover);
+        }
+    }
+
+    &:global(.uui-active) {
+        color: var(--color-active);
+    }
+
+    :global(.uui-icon) {
+        padding: 0 12px 0 24px;
+    }
+
+    &.button-primary {
+        font-size: 18px;
+    }
+
+    &.button-secondary {
+        font-size: 14px;
+        padding-left: 18px;
+        margin-left: 48px;
+        border-left: 1px $gray30 solid;
+        &:hover {
+            // border-left-color: @blue;
+        }
+    }
+
+    &.hasIcon,
+    &.dropdown {
+        padding-left: 0;
+    }
+
+    &.hasIcon {
+        @include icon-layout(24px);
+
+        :global(.uui-icon) {
+            padding: 0 12px 0 20px;
+        }
+    }
+}

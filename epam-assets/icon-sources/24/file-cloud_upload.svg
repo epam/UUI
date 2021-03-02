@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/file-cloud_upload</title>
+    <g id="Icons/24/file-cloud_upload" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,13 L14,17 L10,17 L10,13 L7,13 L12,8 L17,13 M19.35,10.03 C18.67,6.59 15.64,4 12,4 C9.11,4 6.6,5.64 5.35,8.03 C2.34,8.36 0,10.9 0,14 C0,17.3137085 2.6862915,20 6,20 L19,20 C20.3260824,20 21.597852,19.4732158 22.5355339,18.5355339 C23.4732158,17.597852 24,16.3260824 24,15 C24,12.36 21.95,10.22 19.35,10.03 Z" id="Shape" fill="#45FF00"></path>
+    </g>
+</svg>

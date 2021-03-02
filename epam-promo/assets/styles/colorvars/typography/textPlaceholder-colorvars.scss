@@ -1,0 +1,13 @@
+@use  '../../colors' as *;
+
+.text-placeholder-color-gray10 {
+    --background-color: #{$gray10};
+    --background-color-gradient: #{$gray20};
+    --color: #{$gray10};
+}
+
+.text-placeholder-color-gray40 {
+    --background-color: #{$gray40};
+    --background-color-gradient: #{$gray50};
+    --color: #{$gray40};
+}

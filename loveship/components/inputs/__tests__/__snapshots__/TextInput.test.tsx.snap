@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable colorSky root size-36 mode-form"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input line-height-24 font-size-14 v-padding-5"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="test"
+  />
+</div>
+`;
+
+exports[`TextInput should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-input-box -clickable colorSky root size-60 mode-form"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input line-height-30 font-size-24 v-padding-14"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="test"
+  />
+  <div
+    className="container uui-icon uui-enabled -clickable uui-icon-accept"
+    onClick={[MockFunction]}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#accept-24.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[MockFunction]}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-24.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#accept-12.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable"
+  >
+    <svg
+      className="flipY"
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#folding-arrow-24.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

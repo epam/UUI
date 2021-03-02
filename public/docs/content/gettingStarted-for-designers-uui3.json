@@ -1,0 +1,252 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "How to install design library",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Fonts_UUI3.7z"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Download",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " & install Source Sans Pro font family.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item-child",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      },
+                      {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                          "url": "sketch://add-library/?url=https://www.dropbox.com/s/gsa7wssbtgwwao9/UUI3.xml?dl=1"
+                        },
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Download",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": " & install sketch library. The library will be added to your Sketch: ",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Screenshot 2021-01-11 at 14.09.05.png",
+          "imageSize": {
+            "width": 472,
+            "height": 485
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "3.  Review design components specifications in ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://display.lab.epam.com/share/5nH9dEIae"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Display",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and its developed properties ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?category=components&id=button&mode=propsEditor&skin=UUI3_loveship"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note: If you're planned to design emails, also install Email library via ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "sketch://add-library/?url=https:/www.dropbox.com/s/yg21gvdhogv8kr9/DP_Emails.xml?dl=1"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "link",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Being up to date",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The library updates approximately once a week. When the next update is available, Sketch notifies you by following message \"Library Updates Available\" in the right top corner. Click on the message and download the latest version.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Screenshot 2021-01-11 at 14.11.02.png",
+          "imageSize": {
+            "width": 260,
+            "height": 120
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

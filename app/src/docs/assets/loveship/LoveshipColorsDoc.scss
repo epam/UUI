@@ -1,0 +1,76 @@
+@use '~@epam/loveship/assets/styles/scss/index' as *;
+
+.hex-text, .color-name {
+    font-size: 14px;
+}
+
+.contrast-text {
+    color: var(--uui-contrast-color-700);
+}
+
+.hex-text {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.75;
+    }
+}
+
+.box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.basic-color-box {
+    width: 120px;
+    height: 60px;
+    align-items: center;
+
+    &:nth-child(1) {
+        background-color: var(--uui-color-500);
+    }
+
+    &:nth-child(2) {
+        background-color: var(--uui-color-600);
+    }
+
+    &:nth-child(3) {
+        background-color: var(--uui-color-700);
+    }
+
+    &:nth-child(4) {
+        background-color: var(--uui-color-800);
+    }
+
+    &:nth-child(5) {
+        background-color: var(--uui-color-900);
+    }
+}
+
+.grayscale-color-box {
+    width: 96px;
+    height: 60px;
+    align-items: center;
+    background-color: var(--uui-color-700);
+
+    color: var(--uui-contrast-color-700);
+}
+
+.additional-color-box {
+    width: 80px;
+    height: 60px;
+    align-items: center;
+    background-color: var(--uui-color-700);
+
+    .contrast-text {
+        color: white;
+    }
+}
+
+.caption-color-box {
+    width: 96px;
+    height: 60px;
+    padding-left: 12px;
+}

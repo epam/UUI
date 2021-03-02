@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/Anywhere</title>
+    <g id="Other/logo/colored/Anywhere" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" x="0" y="0" width="192" height="192"></rect>
+        <g id="Logo" transform="translate(28.000000, 36.000000)">
+            <path d="M122.535117,110 L136,110 L102.797085,18 L89.2024122,18 L56,110 L69.333283,110 L78.483528,83.5467578 L113.25468,83.5467578 L122.535117,110 Z M96.1305439,30.6402735 C96.1305439,30.6402735 98.0912675,38.9802302 99.6599068,43.671412 L109.856012,72.8612103 L81.8821961,72.8612103 L92.208996,43.671412 C93.7775346,38.9802302 95.8690537,30.6402735 95.8690537,30.6402735 L96.1305439,30.6402735 Z" id="Shape" fill="#222222" fill-rule="nonzero"></path>
+            <polygon id="Path" fill="#008ACE" points="46.6987128 0.000238361444 37 0 0 120 9.44887326 120 19 120 56 0"></polygon>
+        </g>
+    </g>
+</svg>

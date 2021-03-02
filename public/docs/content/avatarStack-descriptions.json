@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "A component that pushes avatars onto a stack and can add an overflow of type ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "+n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to it.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

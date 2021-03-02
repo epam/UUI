@@ -1,0 +1,8 @@
+@use  '../../../../colors' as *;
+
+@mixin burger-search-color() {
+    --background-color: #{$gray80};
+    --color: #{$gray40};
+    --fill: #{$gray50};
+    --placeholder-color: #{$gray50};
+}

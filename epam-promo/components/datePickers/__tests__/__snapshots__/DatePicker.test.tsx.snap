@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPicker should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 dateInput"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#calendar-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="MMM D, YYYY"
+    type="text"
+    value=""
+  />
+  
+</div>
+`;
+
+exports[`DataPicker should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box -clickable root size-36 dateInput"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#calendar-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Test"
+    type="text"
+    value=""
+  />
+  
+</div>
+`;

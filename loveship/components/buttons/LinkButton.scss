@@ -1,0 +1,66 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    @include button-reset();
+
+    // Fonts
+    @include epam-uui-fonts();
+
+    // Sizes
+    &.size-18 {
+        @include link-button-layout(18px);
+        min-width: auto;
+    }
+
+    &.size-24 {
+        @include link-button-layout(24px);
+        min-width: auto;
+    }
+
+    &.size-30 {
+        @include link-button-layout(30px);
+        min-width: auto;
+    }
+
+    &.size-36 {
+        @include link-button-layout(36px);
+        min-width: auto;
+    }
+
+    &.size-42 {
+        @include link-button-layout(42px);
+        min-width: auto;
+    }
+
+    &.size-48 {
+        @include link-button-layout(48px);
+        min-width: auto;
+    }
+
+    &:global(.uui-button-box) {
+        @include button-colors(transparent, var(--uui-color-700), transparent);
+
+        &:global(.-clickable) {
+            &:hover {
+                @include button-colors(transparent, var(--uui-color-800), transparent);
+            }
+
+            &:active {
+                @include button-colors(transparent, var(--uui-color-900), transparent);
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            @include disabled-input();
+            background-color: transparent;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+}

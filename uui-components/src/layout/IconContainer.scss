@@ -1,0 +1,36 @@
+.container {
+    &:global(.uui-icon) {
+        align-self: stretch;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        justify-content: space-around;
+        transform-origin: 50% 50%;
+
+        use, svg {
+            pointer-events: none;
+        }
+    }
+
+    &:global(.-clickable) {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.flipY {
+    transform: scale(1, -1);
+}
+
+.rotate-90cw {
+    transform: rotate(90deg);
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.rotate-90ccw {
+    transform: rotate(-90deg);
+}

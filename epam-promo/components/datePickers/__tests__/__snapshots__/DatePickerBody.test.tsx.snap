@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPicker should be rendered correctly 1`] = `
+<div
+  className="uui-datepicker-container root root"
+>
+  <div
+    className="uui-datepickerBody-wrapper"
+  >
+    <div
+      className="container uui-datepickerheader-container"
+    >
+      <header
+        className="uui-datepickerheader-header"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
+          onClick={[Function]}
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#folding-arrow-18.svg"
+            />
+          </svg>
+        </div>
+        <div
+          className="uui-datepickerheader-nav-title"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          undefined undefined
+        </div>
+        <div
+          className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
+          onClick={[Function]}
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#folding-arrow-18.svg"
+            />
+          </svg>
+        </div>
+      </header>
+    </div>
+  </div>
+</div>
+`;

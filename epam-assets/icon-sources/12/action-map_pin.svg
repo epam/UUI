@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/action-map_pin</title>
+    <g id="Icons/12/action-map_pin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,1 C8.209139,1 10,2.790861 10,5 C10,6.47275933 8.66666667,8.47275933 6,11 C3.33333333,8.47275933 2,6.47275933 2,5 C2,2.790861 3.790861,1 6,1 Z M6,3 C4.8954305,3 4,3.8954305 4,5 C4,6.1045695 4.8954305,7 6,7 C7.1045695,7 8,6.1045695 8,5 C8,3.8954305 7.1045695,3 6,3 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

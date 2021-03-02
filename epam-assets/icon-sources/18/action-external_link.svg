@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/action-external_link</title>
+    <g id="Icons/18/action-external_link" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,14 L4,14 L4,3.952 L8,3.952 L8,2 L4,2 C3,2 2,3 2,4 L2,14 C2,15 3,16 4,16 L14,16 C15,16 16,15 16,14 L16,10 L14,10 L14,14 Z M16,2 L16,8 L14,8 L13.999,5.415 L7.70710678,11.7071068 L6.29289322,10.2928932 L12.584,4 L10,4 L10,2 L16,2 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,1873 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Packages",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI is split into a separate packages, to support \"pay for what you use\" approach.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/uui",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — core business logic,  services, helpers, basic types",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/uui-components",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "— Core of UUI components. Set of basic non-styled components with business logic and global css classes. Generally you don't need to use components from this package, if the same component exist in skin specific package",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/loveship",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — styled set of components in UUI3 (Loveship) style",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/promo",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — styled set of components in UUI4 (Promo) style",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/assets",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — contains icons set, fonts, scss/less global variables and common mixins",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/uui-editor",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — Rich Text Editor based on SlateJS",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/draft-rte",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " —  Rich Text Editor based on DraftJS (deprecated)",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "@epam/uui-timeline",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " — set of components to build interactive timelines",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {
+          "checked": false
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#FF4E33"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " Please, use all UUI packages with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "the same version",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to prevent unused packages installation.",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " \n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "For example, if you use @epam/loveship: 3.40.0 version, all other UUI packages should be also 3.40.0 version.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Interfaces",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We use TypeScript interfaces a lot.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example, every component that can be clicked, would got the same IClickable interface. This is done to:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Let developers learn less. Similarly behaving components have similar APIs",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Enforce API consistency",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Composability. If a component needs some other component to plug into, it can require it like \"I need something IClickable\" ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The most notable props-related interfaces are:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "text": "IHasCX",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " { ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "cx",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#001080"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "?: ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "CX",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "} \"",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "CX\" means \"Classes\" here. It's a short-cut to the ",
+                "marks": []
+              },
+              {
+                "object": "inline",
+                "type": "link",
+                "data": {
+                  "url": "https://github.com/JedWatson/classnames"
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "classnames ",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "library. Most components implements this interface. This allows to put CSS classes on a component. Cx can be an object or array, and all it's non-falsy values would be putas classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "text": "IEditable",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "<",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "T",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "> ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "{ ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "value",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#001080"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ": ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "T",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "; ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "onValueChange",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#795e26"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "(",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "newValue",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#001080"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ": ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "T",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "): ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "void",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#267f99"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "; ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "} - ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "component, which allows user to change some value inside it. TextInput is a basic example. However, it's used way wider. For example, a DataTable component is build the way that it changes DataTableState - which sorting is chosen, which columns are visible. In other words, that's the way we make all components ",
+                "marks": []
+              },
+              {
+                "object": "inline",
+                "type": "link",
+                "data": {
+                  "url": "https://reactjs.org/docs/forms.html#controlled-components"
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "controlled",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "ICanRedirect",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#267f99"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " { ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "link",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#001080"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "?: ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Link",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#267f99"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "; ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "href",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#001080"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "?: ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "string",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#267f99"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "; ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "isLinkActive",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#001080"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "?: ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "boolean",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#267f99"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "; ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "target",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#001080"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "?: ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "'_blank'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#a31515"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "; ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "} ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "- ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#000000"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "a control, which can perform a redirect. SPA links are tricky - you can click them and get a virtual redirect, you can click them with the right mouse button, and pick 'Open in new window'. Links can be 'visited' or not. Components with this interface handles such cases.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We use interfaces for other parts, to allow to plug-in your implementations, and build consistent APIs.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Services",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI have various services, which helps your app to handle routine tasks. They are implemented as a singleton classes, which are accessible via React Contexts.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We usually make them available as a global module in our apps, as in our application template. So you can access a service in your app with:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "import { svc } from '../../services';",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "...",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "svc.uuiModals.showModal(...)",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We require apps to ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "initialize",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " all services, and bring them to React Context, with the ContextProvider component. It's required to be one of the root components of the application, an usually initialized at index.ts file.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "There are following contexts/services exist in UUI:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "AnalyticsContext / svc.uuiAnalytics - Web Analytics abstraction. ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "ApiContext / svc.uuiApi - makes API calls gently - handling common HTTP errors, can re-login user if session is lost w/o loosing his work",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "DndContext / svc.uuiDnd - handles Drag-n-drop operations. See ",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/demo?id=dnd"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "demo ",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "ErrorContext / svc.uuiError - handles React crashes with spash-screen errors. ApiContext uses it to show HTTP errors.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "LayoutContext / svc.uuiLayout - tracks z-indexes for modal windows",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "LockContext / svc.uuiLocks - allow to 'lock' user into a certain state, usually used to keep user from losing unsaved data ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "ModalContext / svc.uuiModals - handles showing modal dialogs out of primary rendering tree, and stacking them correctly",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "NotificationContext / svc.uuiNotifications- allows to show temporary floating messages",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "UserSettingsContext / svc.uuiUserSettings - an abstraction layer to save temporary user settings. Like visible columns in a table. Defaults to LocalStore, but this can be changed by application.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "State management",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI contains several tools to cover common state management and data-manipulation patterns. This includes ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "DataSources subsystem - an abstraction to stream data into list/tree components, like Pickers and DataTable. ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Forms and Lenses - a set of helpers to streamline development of Forms, and other interfaces with load-edit-save flow.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Helpers",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI contains some light-weight helpers. Notable mentions:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "mouseCoords - to get X and Y of user's mouse pointer",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "windowSize - width and height of users' window",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "getScrollBarSize - to get user's brower's scrollbar size",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "getCookie/deleteCookie ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Skins",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Usually, UI libraries use a common approach to use parameterized CSS pre-processor: you can tweak colors, some sizes, and that's it. The result of such skinization, usually looks like re-colored Material UI or Bootstrap. It's a poor man branding.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "At EPAM",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://git.epam.com/epm-tmc/ui-template"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", we can't afford limiting our UI to just re-coloring existing library. We want to be able to create first-class visual look, communicating our brand and voice with no compromises . To allow that, we can't limit our designers to some other's choice - we need them to be able to tweak everything. At the other hand, as engineers, we know that brand is changing, and we want to re-use as much as possible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "That's why, in UUI, we picked a very different approach to customization. We have the @epam/uui-components package, which contains components with no styling, just behavior and minor CSS which which is must. Then, we create a 'skin' package, which contains derived components, which wraps components from @epam/uui-components, to add your it's own Design System on top. Everything - from the grid step, via typography, icon set, colors - are baked into skin, not the core. Everything in uui-components doesn't dictates anything about visuals, and is tweakable as possible.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "This allows us to build a first-class branded component libraries, without common limitations. For example:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "unordered-list",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item-child",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "a skin you can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can just use brand-named set of colors, and add a custom components variations",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "list-item",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item-child",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "a skin, being a component library, can define a custom, brand-specific components, which doesn't exists in the base library",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "This approach is re-usable for everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting your design team with some technical restrictions. And you can still re-use years or work.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

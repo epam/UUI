@@ -1,0 +1,32 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you need to load items from the server, use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AsyncDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

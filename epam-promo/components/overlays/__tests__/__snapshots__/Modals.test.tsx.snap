@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modals should be rendered correctly 1`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-420 height-auto container"
+  >
+    <div
+      className="root size-36 background-none padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+    />
+    <div
+      className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modals should be rendered correctly 2`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-300 height-300 container"
+  >
+    <div
+      className="root size-36 background-gray5 padding-6 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+    >
+      <div
+        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+      >
+        Test header
+      </div>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "auto",
+            "flexGrow": undefined,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#navigation-close-24.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="root size-36 background-white padding-18 vPadding-24 spacing-12 modalFooter container align-items-center"
+    />
+  </div>
+</div>
+`;

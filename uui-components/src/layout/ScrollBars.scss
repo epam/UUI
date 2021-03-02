@@ -1,0 +1,31 @@
+.root {
+    &:global(.uui-shadow-top)::before,
+    &:global(.uui-shadow-bottom)::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 6px;
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+
+    &:global(.uui-shadow-top)::before {
+        top: 0;
+        background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+        z-index: 1;
+    }
+
+    &:global(.uui-shadow-bottom)::after {
+        bottom: 0;
+        background: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    &:global(.uui-shadow-top-visible)::before {
+        opacity: 1;
+    }
+
+    &:global(.uui-shadow-bottom-visible)::after {
+        opacity: 1;
+    }
+}

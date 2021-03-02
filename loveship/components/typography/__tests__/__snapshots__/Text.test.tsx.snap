@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should be rendered correctly 1`] = `
+<div
+  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+>
+  Test text
+</div>
+`;
+
+exports[`Text should be rendered correctly with extra props 1`] = `
+<div
+  className="text font-sans-light color-sun line-height-30 font-size-14 v-padding-6 container"
+  onClick={[Function]}
+>
+  Test text
+</div>
+`;

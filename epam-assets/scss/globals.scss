@@ -1,0 +1,9 @@
+@import './font-faces';
+@import '~normalize.css/normalize.css';
+@import './loveship-colors';
+
+@each $name, $value in $loveship-epam-colors {
+    :global(.ls-color-#{"" + $name}) {
+        color: $value;
+    }
+}

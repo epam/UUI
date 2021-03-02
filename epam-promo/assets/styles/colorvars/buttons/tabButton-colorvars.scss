@@ -1,0 +1,8 @@
+@use  '../../colors' as *;
+
+.tabButton-color {
+    --text-color: #{$gray80};
+    --text-color-hover: #{$blue};
+    --text-color-active: #{$blue};
+    --text-color-disabled: #{$gray40};
+}

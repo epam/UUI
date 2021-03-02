@@ -1,0 +1,62 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+
+.root {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.container {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-width: 480px;
+    max-width: 726px;
+    border-right: 1px solid $gray40;
+    flex: 1 1 auto;
+
+    .box-sizing {
+        box-sizing: border-box;
+    }
+
+    .v-padding {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .row-props {
+        overflow: auto;
+        border-bottom: 1px solid $gray40;
+        flex: 1 0 0;
+    }
+
+    .code {
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 24px;
+        color: $gray70;
+        padding: 12px 24px;
+        white-space: pre-wrap;
+        overflow: hidden;
+    }
+}
+
+.demo-context {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 3 1 0;
+    align-items: flex-start;
+
+    .context-setting-row {
+        width: inherit;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}
+
+.demo-container {
+    overflow: auto;
+    flex: 1 0 0;
+    width: 100%;
+}

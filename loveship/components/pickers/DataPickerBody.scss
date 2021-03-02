@@ -1,0 +1,36 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.body {
+    flex: 1 1 auto;
+}
+
+// TBD: replace with search prop when it will be done
+.search {
+    &:global(.uui-input-box) {
+        border: 0;
+        box-shadow: none;
+
+        &:global(.uui-focus) {
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+.checkbox {
+    padding: 6px 0;
+}
+
+.search-wrapper {
+    border-bottom: 1px solid $night400;
+    background: white;
+    padding: 0 4px;
+}
+
+.search-size-24 {
+    padding: 0 7px;
+}
+
+.search-size-30 {
+    padding: 0 6px;
+}

@@ -1,0 +1,20 @@
+@use  '../../colors' as *;
+
+@mixin textArea-color() {
+    --background-color: white;
+    --background-color-disabled: #{$gray5};
+    --background-color-readonly: #{$gray5};
+    --border-color: #{$gray40};
+    --border-color-hovered: #{$gray60};
+    --border-color-active: #{$blue};
+    --border-color-errored: #{$red};
+    --border-color-disabled: #{$gray30};
+    --border-color-readonly: #{$gray30};
+    --placeholder-color: #{$gray60};
+    --placeholder-color-disabled: #{$gray50};
+    --text-color: #{$gray70};
+    --text-color-disabled: #{$gray50};
+    --icon-color: #{$gray60};
+    --icon-color-disabled: #{$gray50};
+    --counter-color: #{$gray60};
+}

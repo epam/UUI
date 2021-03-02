@@ -1,0 +1,576 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickerModal should be rendered correctly 1`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-600 height-700 container"
+  >
+    <div
+      className="root size-36 background-none padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+    >
+      <div
+        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+      >
+        Please select
+      </div>
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="flexCell"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "auto",
+            "flexGrow": undefined,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          className="root color-night600 uui-button-box uui-enabled -clickable"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#modal-close-cross.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="flexCell subHeaderWrapper"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="root size-36 background-none vPadding-24 spacing-6 container align-items-center"
+      >
+        <div
+          className="container uui-input-box -clickable colorSky root size-36 mode-form"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          tabIndex={-1}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#search-18.svg"
+              />
+            </svg>
+          </div>
+          <input
+            autoFocus={true}
+            className="uui-input line-height-24 font-size-14 v-padding-5"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Type text for quick search"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="root size-36 background-white spacing-6 body container align-items-center"
+      style={
+        Object {
+          "maxHeight": undefined,
+        }
+      }
+    >
+      <div
+        className="wrapper root shadow-white"
+      >
+        <div
+          className="body"
+          style={
+            Object {
+              "height": "auto",
+              "maxHeight": 100500,
+              "minHeight": 0,
+              "overflow": "hidden",
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="container1"
+            style={
+              Object {
+                "WebkitOverflowScrolling": "touch",
+                "bottom": undefined,
+                "left": undefined,
+                "marginBottom": 0,
+                "marginRight": 0,
+                "maxHeight": 100500,
+                "minHeight": 0,
+                "overflow": "scroll",
+                "position": "relative",
+                "right": undefined,
+                "top": undefined,
+              }
+            }
+          >
+            <div
+              className="container2"
+              style={
+                Object {
+                  "height": null,
+                }
+              }
+            >
+              <div
+                className="container3"
+                style={
+                  Object {
+                    "top": 0,
+                  }
+                }
+              >
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Ken Sánchez
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Terri Duffy
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Roberto Tamburello
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Rob Walters
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Gail Erickson
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Jossef Goldberg
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Dylan Miller
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Diane Margheim
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Gigi Matthew
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                      >
+                        Michael Raheem
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style={
+              Object {
+                "borderRadius": 3,
+                "bottom": 2,
+                "display": "none",
+                "height": 6,
+                "left": 2,
+                "position": "absolute",
+                "right": 2,
+              }
+            }
+          >
+            <div
+              className="uui-thumb"
+            />
+          </div>
+          <div
+            style={
+              Object {
+                "borderRadius": 3,
+                "bottom": 2,
+                "display": "none",
+                "position": "absolute",
+                "right": 2,
+                "top": 2,
+                "width": 6,
+              }
+            }
+          >
+            <div
+              className="uui-thumb"
+            />
+          </div>
+        </div>
+        <div
+          className="uui-scroll-shadow-top"
+        />
+        <div
+          className="uui-scroll-shadow-bottom"
+        />
+      </div>
+    </div>
+    <div
+      className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+    >
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <div
+          className="uui-caption line-height-24 font-size-14 v-padding-5"
+        >
+          Cancel
+        </div>
+      </div>
+      <div
+        className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <div
+          className="uui-caption line-height-24 font-size-14 v-padding-5"
+        >
+          Select
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

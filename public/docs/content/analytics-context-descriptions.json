@@ -1,0 +1,147 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "AnalyticsContext provides solution to send analytics events to ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://developers.google.com/analytics"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Google Analytics",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " or/and ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://amplitude.com/"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Amplitude",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Out of box, we automatically track following events for GA:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Page views (on first load and on react-router url change)",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Api calls timings and errors (you need to use our ",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "/documents?category=contexts&id=apiContext"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "api context",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ")",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For Amplitude(and GA also) we provide manual event tracking for user actions like clicks, input changes and etc.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

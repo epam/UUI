@@ -1,0 +1,137 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can configure how much tags should be shown in picker toggler via ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "maxItems",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop, if you have more items than maxItem number, they will be wrapped into one tag.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default pickerInput wraps tags to a new line, you can change this behavior via ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isSingleLine={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you want autocomplete behavior, when dropdown opened after you type some number of symbols - use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "minCharsToSearch",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop. Pay attention that you set ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "searchPosition='input'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in this case.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "At last, you can define you own toggler components via ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderToggler",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

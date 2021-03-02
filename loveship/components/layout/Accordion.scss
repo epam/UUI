@@ -1,0 +1,123 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    :global(.uui-accordion-toggler) {
+        font-family: $font-sans-semibold;
+        cursor: pointer;
+    }
+
+    :global(.uui-accordion-body) {
+        font-family: $font-sans;
+    }
+
+    &.mode-block {
+        border-radius: 6px;
+
+        :global(.uui-accordion-toggler) {
+            background: $white;
+            box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+            border-radius: 6px;
+            fill: $night600;
+            line-height: 24px;
+            font-size: 18px;
+            padding: 0 24px;
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 48px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+
+                :global(.uui-accordion-title) {
+                    color: $night700;
+                }
+            }
+
+            &:hover {
+                box-shadow: 0 4px 22px 0 rgba(29, 30, 38, 0.15);
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            background: $white;
+            padding: 18px 24px;
+            line-height: 24px;
+            letter-spacing: 0;
+            border-top: unset;
+            border-radius: 0 0 6px 6px;
+        }
+
+        &:global(.uui-opened) {
+            box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+
+            :global(.uui-accordion-toggler) {
+                border-bottom: 1px solid $night400;
+                border-radius: 6px 6px 0 0;
+                box-shadow: unset;
+
+                &:hover {
+                    box-shadow: unset;
+                }
+            }
+        }
+
+        &:global(.uui-disabled) {
+            box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                border-color: $night400;
+                fill: $night500;
+                border-bottom: 1px solid $night400;
+                box-shadow: unset;
+
+                :global(.uui-accordion-title) {
+                    color: #9FA1AE;
+                }
+            }
+
+            :global(.uui-opened) {
+                border-radius: 6px 6px 0 0;
+            }
+        }
+    }
+
+    &.mode-inline {
+        :global(.uui-accordion-toggler) {
+            border-bottom: 1px solid $night400;
+            fill: $night600;
+            line-height: 18px;
+            font-size: 14px;
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 24px;
+                padding: 3px 12px 8px;
+
+                :global(.uui-accordion-title) {
+                    color: $night700;
+                }
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            padding: 1px 12px 12px;
+            border-bottom: 1px solid $night400;
+        }
+
+        &:global(.uui-opened) {
+            :global(.uui-accordion-toggler) {
+                border-bottom: unset;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                fill: $night500;
+
+                :global(.uui-accordion-title) {
+                    color: #9FA1AE;
+                }
+            }
+        }
+    }
+}

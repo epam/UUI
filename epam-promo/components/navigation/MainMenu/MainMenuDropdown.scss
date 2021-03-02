@@ -1,0 +1,11 @@
+@import '../../../assets/styles/colorvars/navigation/mainMenu/mainMenuDropdown-colorvars.scss';
+
+.dropdown-body {
+    @include mainMenu-dropdown-color();
+    min-width: 200px;
+    background-color: var(--dropdown-body-background-color);
+
+    :global(.uui-button-box):hover {
+        background-color: var(--dropdown-item-background-color);
+    }
+}

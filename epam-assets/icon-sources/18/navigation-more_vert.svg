@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/navigation-more_vert</title>
+    <g id="Icons/18/navigation-more_vert" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,6 C9.825,6 10.5,5.325 10.5,4.5 C10.5,3.675 9.825,3 9,3 C8.175,3 7.5,3.675 7.5,4.5 C7.5,5.325 8.175,6 9,6 Z M9,7.5 C8.175,7.5 7.5,8.175 7.5,9 C7.5,9.825 8.175,10.5 9,10.5 C9.825,10.5 10.5,9.825 10.5,9 C10.5,8.175 9.825,7.5 9,7.5 Z M9,12 C8.175,12 7.5,12.675 7.5,13.5 C7.5,14.325 8.175,15 9,15 C9.825,15 10.5,14.325 10.5,13.5 C10.5,12.675 9.825,12 9,12 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

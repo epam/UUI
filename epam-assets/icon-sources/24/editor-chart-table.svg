@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-table</title>
+    <g id="Icons/24/editor-chart-table" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,10.02 L15,10.02 L15,21 L9,21 L9,10.02 Z M17,21 L20,21 C21.1,21 22,20.1 22,19 L22,10 L17,10 L17,21 Z M19.8947368,3 L4.10526316,3 C2.94736842,3 2,3.9 2,5 L2,8 L22,8 L22,5 C22,3.9 21.0526316,3 19.8947368,3 Z M2,19 C2,20.1 2.9,21 4,21 L7,21 L7,10 L2,10 L2,19 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

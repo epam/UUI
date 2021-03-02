@@ -1,0 +1,38 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.root {
+    border-radius: $panel-border-radius;
+    overflow: hidden;
+
+    &.background-white {
+        background-color: white;
+    }
+
+    &.background-night50 {
+        background-color: $night50;
+    }
+
+    &.background-none {
+        background-color: transparent;
+    }
+
+    &.margin-24 {
+        margin: 24px;
+    }
+
+    &.padding-12 {
+        padding: 12px;
+    }
+
+    &.padding-24 {
+        padding: 24px;
+    }
+
+    &.shadow {
+        @include panel-shadow();
+    }
+
+    &:global(.-clickable):hover {
+        cursor: pointer;
+    }
+}

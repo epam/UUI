@@ -1,0 +1,56 @@
+// Main Colors
+$sky: #009ECC;
+$grass: #67A300;
+$sun: #FCAA00;
+$fire: #FA4B4B;
+
+// Secondary Colors
+$cobalt: #0E74E2;
+$lavanda: #2E3A9D;
+$fuchsia: #CD0053;
+$white: #FFFFFF;
+
+/* Carbon scale */
+$carbon50: #F5F6FA;
+$carbon100: #D7D9E0;
+$carbon200: #B6B8C2;
+$carbon300: #9698A3;
+$carbon400: #81838F;
+$carbon500: #6C6E7A;
+$carbon600: #4F515C;
+$carbon700: #3D404D;
+$carbon800: #272933;
+$carbon900: #17181F;
+
+/* Night scale */
+$night50: #FAFAFC;
+$night100: #F5F6FA;
+$night200: #EBEDF5;
+$night300: #E1E3EB;
+$night400: #CED0DB;
+$night500: #ACAFBF;
+$night600: #6C6F80;
+$night700: #474A59;
+$night800: #303240;
+$night900: #1D1E26;
+
+$loveship-epam-colors: (
+    sky: $sky,
+    grass: $grass,
+    sun: $sun,
+    fire: $fire,
+    carbon: $carbon700,
+    cobalt: $cobalt,
+    lavanda: $lavanda,
+    fuchsia: $fuchsia,
+    white: $white,
+    night50: $night50,
+    night100: $night100,
+    night200: $night200,
+    night300: $night300,
+    night400: $night400,
+    night500: $night500,
+    night600: $night600,
+    night700: $night700,
+    night900: $night900
+);

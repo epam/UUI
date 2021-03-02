@@ -1,0 +1,154 @@
+@use '../../assets/styles/scss/index' as *;
+
+.root {
+    @include button-reset();
+    font-family: $font-sans-semibold;
+    font-weight: normal;
+
+    &:global(.uui-button-box) {
+        border-style: solid;
+        justify-content: center;
+        border-radius: $control-border-radius;
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        min-width: 0;
+        text-align: center;
+        flex: 1 1 auto;
+    }
+
+    &:global(.-clickable):focus {
+        @include control-focus-effect();
+    }
+}
+
+// Sizes
+.size-18 { @include button-layout(18px, 1px); }
+.size-24 { @include button-layout(24px, 1px); }
+.size-30 { @include button-layout(30px, 1px); }
+.size-36 { @include button-layout(36px, 1px); }
+.size-42 { @include button-layout(42px, 1px); }
+.size-48 { @include button-layout(48px, 1px); }
+
+// Border style
+.style-round {
+    &.size-48 { border-radius: 24px; }
+    &.size-42 { border-radius: 21px; }
+    &.size-36 { border-radius: 18px; }
+    &.size-30 { border-radius: 15px; }
+    &.size-24 { border-radius: 12px; }
+    &.size-18 { border-radius: 10px; }
+}
+
+.fill-solid {
+    @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
+
+    &:global(.-clickable) {
+        &:hover {
+            @include button-colors(var(--uui-color-800), var(--uui-contrast-color-700), var(--uui-color-800));
+        }
+
+        &:active {
+            @include button-colors(var(--uui-color-900), var(--uui-contrast-color-700), var(--uui-color-900));
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-colors($night300, $night500, $night300);
+        cursor: default;
+
+        &:hover, &:active, &:focus {
+            @include button-colors($night300, $night500, $night300);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $night300;
+        }
+    }
+}
+
+.fill-white {
+    @include button-colors(white, var(--uui-color-700), var(--uui-color-700));
+
+    &:global(.-clickable) {
+        &:hover {
+            @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-800));
+        }
+
+        &:active {
+            @include button-colors(var(--uui-color-600), var(--uui-color-900), var(--uui-color-900));
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-colors(white, $night500, $night300);
+        cursor: default;
+
+        &:hover, &:active, &:focus {
+            @include button-colors(white, $night500, $night300);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $night300;
+        }
+    }
+}
+
+.fill-none {
+    @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
+
+    &:global(.-clickable) {
+        &:hover {
+            @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-800));
+        }
+
+        &:active {
+            @include button-colors(var(--uui-color-600), var(--uui-color-900), var(--uui-color-900));
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-colors(transparent, $night500, $night300);
+        cursor: default;
+
+        &:hover, &:active, &:focus {
+            @include button-colors(transparent, $night500, $night300);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $night300;
+        }
+    }
+}
+
+.fill-light {
+    @include button-colors(transparent, var(--uui-color-700), transparent);
+
+    &:global(.-clickable) {
+        &:hover {
+            @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-500));
+        }
+
+        &:active {
+            @include button-colors(var(--uui-color-600), var(--uui-color-900), var(--uui-color-600));
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-colors(transparent, $night500, transparent);
+        cursor: default;
+
+        &:hover, &:active, &:focus {
+            @include button-colors(transparent, $night500, transparent);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $night300;
+        }
+    }
+}

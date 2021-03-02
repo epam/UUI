@@ -1,0 +1,59 @@
+@use '../../assets/styles/index' as *;
+
+.blocker {
+    // background-color: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.marker {
+    position: absolute;
+    pointer-events: none;
+}
+
+$drop-marker-width: 2px;
+$drop-marker-offset: -1px;
+
+.top {
+    top: $drop-marker-offset;
+    left: 0;
+    right: 0;
+    height: $drop-marker-width;
+    background-color: $blue;
+}
+
+.bottom {
+    bottom: $drop-marker-offset;
+    left: 0;
+    right: 0;
+    height: $drop-marker-width;
+    background-color: $blue;
+}
+
+.left {
+    top: 0;
+    bottom: 0;
+    left: $drop-marker-offset;
+    width: $drop-marker-width;
+    background-color: $blue;
+}
+
+.right {
+    top: 0;
+    bottom: 0;
+    right: $drop-marker-offset;
+    width: $drop-marker-width;
+    background-color: $blue;
+}
+
+.inside {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: $drop-marker-width solid $blue;
+    background-color: rgba(255, 255, 255, 0.5);
+}

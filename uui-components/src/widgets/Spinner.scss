@@ -1,0 +1,20 @@
+.container {
+    &:global(.uui-spinner-container) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        height: 100%;
+
+        :global(.uui-spinner-animation) {
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        :global(.uui-spinner-dot) {
+
+        }
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="30px" viewBox="0 0 26 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>96450DDC-373D-401A-9948-A3DF2B9C41DD@2x</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.525490 0 0 0 0 0.058824 0 0 0 0 0.619608 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Ready" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets/Downloads" transform="translate(-1256.000000, -533.000000)">
+            <g id="Other" transform="translate(420.000000, 508.000000)">
+                <g id="SVG" transform="translate(738.000000, 0.000000)">
+                    <g id="Img" transform="translate(72.000000, 0.000000)">
+                        <g id="Other/Icons/24/download" transform="translate(18.000000, 18.000000)" filter="url(#filter-1)">
+                            <g>
+                                <path d="M33.25,17.5 L26.25,17.5 L26.25,7 L15.75,7 L15.75,17.5 L8.75,17.5 L21,29.75 L33.25,17.5 Z M8.75,33.25 L8.75,36.75 L33.25,36.75 L33.25,33.25 L8.75,33.25 Z" id="icon" fill="#45FF00"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

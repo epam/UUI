@@ -1,0 +1,114 @@
+@use  '../../assets/styles/index' as *;
+
+.dropdown-container {
+    align-items: normal;
+}
+
+.container {
+    display: flex;
+    padding: 9px 30px;
+    justify-content: space-between;
+    border-top: 1px solid $gray40;
+    align-items: center;
+    background-color: $white;
+    position: relative;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.counter {
+    color: $gray40;
+    font-size: 15px;
+    font-family: $font-sans;
+}
+
+.date-input {
+    min-width: 0;
+    padding: 0 5px;
+
+    &:global(.uui-focus) {
+        border: 1px solid $blue;
+    }
+
+    &.size-24 {
+        @include control-box-layout(22px, 0);
+    }
+
+    &.size-30 {
+        @include control-box-layout(28px, 0);
+    }
+
+    &.size-36 {
+        @include control-box-layout(34px, 0);
+    }
+
+    &.size-48 {
+        @include control-box-layout(46px, 0);
+    }
+}
+
+.date-input-group {
+    display: flex;
+    min-width: 0;
+    background-color: $white;
+    border: 1px solid $gray40;
+
+    .separator {
+        display: flex;
+        flex-shrink: 0;
+        margin: 6px 0;
+        background: $gray40;
+        width: 1px;
+    }
+
+    &:hover {
+        border-color: $gray60;
+
+        .separator {
+            background: $gray60;
+        }
+
+        &:global(.uui-disabled), &:global(.uui-readonly) {
+            border-color: $gray40;
+
+            .separator {
+                background: $gray40;
+            }
+        }
+    }
+
+    &:global(.uui-focus) {
+        border-color: $gray40;
+
+        .separator {
+            background: $blue;
+        }
+
+        .date-input {
+            &:hover {
+                outline: 1px solid $gray60;
+            }
+
+            &:global(.uui-focus) {
+                outline: 1px solid $blue;
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+
+        .date-input {
+            &:global(.uui-focus) {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        border-color: $red;
+    }
+}

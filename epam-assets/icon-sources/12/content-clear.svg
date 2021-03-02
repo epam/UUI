@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/content-clear</title>
+    <g id="Icons/12/content-clear" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,1 C3.235,1 1,3.235 1,6 C1,8.765 3.235,11 6,11 C8.765,11 11,8.765 11,6 C11,3.235 8.765,1 6,1 Z M8.5,7.795 L7.795,8.5 L6,6.705 L4.205,8.5 L3.5,7.795 L5.295,6 L3.5,4.205 L4.205,3.5 L6,5.295 L7.795,3.5 L8.5,4.205 L6.705,6 L8.5,7.795 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

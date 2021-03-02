@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/table-column_plus_before</title>
+    <g id="Icons/24/table-column_plus_before" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13,2 C11.8954305,2 11,2.8954305 11,4 L11,20 C11,21.1045695 11.8954305,22 13,22 L22,22 L22,2 L13,2 L13,2 Z M20,10 L20,14 L13,14 L13,10 L20,10 L20,10 Z M20,16 L20,20 L13,20 L13,16 L20,16 L20,16 Z M20,4 L20,8 L13,8 L13,4 L20,4 L20,4 Z M9,11 L6,11 L6,8 L4,8 L4,11 L1,11 L1,13 L4,13 L4,16 L6,16 L6,13 L9,13 L9,11 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

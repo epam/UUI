@@ -1,0 +1,11 @@
+@import 'font-faces.less';
+@import '~normalize.css/normalize.css';
+@import (reference) 'loveship-colors';
+
+.-(@i: length(@loveship-epam-colors)) when (@i > 0) {
+    @name: extract(@loveship-epam-colors, @i);
+    :global(.ls-color-@{name}) {
+        color: @@name;
+    }
+    .-((@i - 1));
+} .-;

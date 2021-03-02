@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert should be rendered correctly 1`] = `
+<div
+  className="alertWrapper color-sky"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="content"
+    />
+  </div>
+</div>
+`;
+
+exports[`Alert should be rendered correctly with props 1`] = `
+<div
+  className="alertWrapper color-sun root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#accept-12.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="actionWrapper"
+      >
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-24 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLink"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption line-height-18 font-size-14 v-padding-3"
+          >
+            test
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#navigation-close-24.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/navigation-logout</title>
+    <g id="Icons/24/navigation-logout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3,17 L5,17 L5,14 L8,17 L8,13 L13,13 L13,11 L8,11 L8,7 L5,10 L5,5 L19,5 L19,19 L5,19 L5,14 L3,12 L5,10 L5,7 L3,7 L3,5 C3,3.8954305 3.8954305,3 5,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,19 C21,20.1045695 20.1045695,21 19,21 L5,21 C3.8954305,21 3,20.1045695 3,19 L3,17 Z" id="Path" fill="#45FF00"></path>
+    </g>
+</svg>

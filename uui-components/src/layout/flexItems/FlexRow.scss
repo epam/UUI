@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-top {
+    align-items: flex-start;
+}
+
+.align-items-bottom {
+    align-items: flex-end;
+}
+
+.align-items-stretch {
+    align-items: stretch;
+}

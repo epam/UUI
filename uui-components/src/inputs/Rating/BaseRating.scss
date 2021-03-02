@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+    cursor: pointer;
+
+    &--readonly {
+        cursor: default;
+    }
+}
+
+

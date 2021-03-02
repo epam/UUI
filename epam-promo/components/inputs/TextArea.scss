@@ -1,0 +1,116 @@
+@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/colorvars/inputs/textArea-colorvars.scss' as *;
+
+.root {
+    @include textArea-color();
+
+    :global(.uui-input) {
+        color: var(--text-color);
+        fill: var(--icon-color);
+        background-color: var(--background-color);
+        border-color: var(--border-color);
+        border-style: solid;
+        font-family: $font-sans;
+        box-sizing: border-box;
+        padding-right: 18px;
+        padding-left: 12px;
+        overflow-x: hidden;  // Firefox add an extra row in textarea when overflow-x is not hidden
+
+        &::placeholder {
+            color: var(--placeholder-color);
+        }
+
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+
+        &:hover {
+            border-color: var(--border-color-hovered);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--border-color-active);
+        }
+
+        &:global(.uui-invalid) {
+            border-color: var(--border-color-errored);;
+        }
+
+        &:global(.uui-readonly) {
+            background-color: var(--background-color-readonly);
+            color: var(--text-color);
+            fill: var(--icon-color);
+            border-color: var(--border-color-readonly);
+            pointer-events: none;
+        }
+
+        &:global(.uui-disabled) {
+            background-color: var(--background-color-disabled);
+            color: var(--text-color-disabled);
+            fill: var(--icon-color-disabled);
+            border-color: var(--border-color-disabled);
+            pointer-events: none;
+
+            &::placeholder {
+                color: var(--placeholder-color-disabled);
+            }
+        }
+    }
+
+    :global(.uui-textarea-counter) {
+        line-height: 18px;
+        font-size: 12px;
+        color: var(--counter-color);
+        font-family: $font-sans;
+    }
+
+    //Sizes
+    &.size-24 {
+        min-width: 24px;
+        min-height: 24px;
+
+        :global(.uui-input) {
+            @include text-size(24px, 1px);
+        }
+    }
+
+    &.size-30 {
+        min-width: 30px;
+        min-height: 30px;
+
+        :global(.uui-input) {
+            @include text-size(30px, 1px);
+        }
+    }
+
+    &.size-36 {
+        min-width: 36px;
+        min-height: 36px;
+
+        :global(.uui-input) {
+            @include text-size(36px, 1px);
+        }
+    }
+
+    &.size-42 {
+        min-width: 42px;
+        min-height: 42px;
+
+        :global(.uui-input) {
+            @include text-size(42px, 1px);
+        }
+    }
+
+    &.size-48 {
+        min-width: 48px;
+        min-height: 48px;
+
+        :global(.uui-input) {
+            @include text-size(48px, 1px);
+        }
+    }
+}

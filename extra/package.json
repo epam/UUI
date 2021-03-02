@@ -1,0 +1,38 @@
+{
+  "name": "@epam/uui-extra",
+  "version": "3.48.0-beta.1",
+  "description": "EPAM UUI components set branded with 'loveship' style",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "publish": "npm publish ./build --access public"
+  },
+  "dependencies": {
+    "@epam/assets": "3.48.0-beta.1",
+    "@epam/loveship": "3.48.0-beta.1",
+    "@epam/uui": "3.48.0-beta.1",
+    "@epam/uui-components": "3.48.0-beta.1",
+    "@types/shallowequal": "^1.1.1",
+    "immutable": "3.8.2",
+    "shallowequal": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.5"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "optionalDependencies": {
+    "@epam/uui-docs": "3.48.0-beta.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

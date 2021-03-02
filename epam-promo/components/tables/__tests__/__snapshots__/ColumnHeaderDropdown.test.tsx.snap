@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
+Array [
+  <div
+    className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption"
+    >
+      Test
+    </div>
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className="flipY"
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>,
+  <div
+    className="uui-popper"
+    style={
+      Object {
+        "left": 0,
+        "opacity": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "top": 0,
+        "zIndex": undefined,
+      }
+    }
+  >
+    <div
+      className="root shadow background-white container"
+      style={
+        Object {
+          "width": 350,
+        }
+      }
+    >
+      <div
+        className="flexCell sortingPanelContainer"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "0",
+            "flexGrow": undefined,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          className="root size-36 background-none spacing-6 filterSortButton container -clickable align-items-center"
+          onClick={[Function]}
+        >
+          <div
+            className="root icon-color-blue uui-button-box uui-enabled"
+            href={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#table-sort_asc-18.svg"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 activeText container"
+          >
+            Sort Ascending
+          </div>
+        </div>
+        <div
+          className="root size-36 background-none spacing-6 filterSortButton container -clickable align-items-center"
+          onClick={[Function]}
+        >
+          <div
+            className="root icon-color-gray60 uui-button-box uui-enabled"
+            href={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#table-sort_desc-18.svg"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 sortText container"
+          >
+            Sort Descending
+          </div>
+        </div>
+      </div>
+      <div>
+        Picker
+      </div>
+    </div>
+  </div>,
+]
+`;

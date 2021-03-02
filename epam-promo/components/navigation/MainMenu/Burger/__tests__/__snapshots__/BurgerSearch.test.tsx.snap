@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BurgerSearch should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable searchInput"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#search-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    autoFocus={true}
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`BurgerSearch should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box -clickable searchInput"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#search-18.svg"
+      />
+    </svg>
+  </div>
+  <input
+    autoFocus={true}
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value=""
+  />
+  <div
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[Function]}
+  />
+</div>
+`;

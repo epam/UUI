@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/action-lock_open-fill</title>
+    <g id="Icons/12/action-lock_open-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4,9 C4.55228475,9 5,8.55228475 5,8 C5,7.445 4.55,7 4,7 C3.44771525,7 3,7.44771525 3,8 C3,8.55228475 3.44771525,9 4,9 L4,9 Z M6,5 L6,4 C6,2.34314575 7.34314575,1 9,1 C10.6568542,1 12,2.34314575 12,4 L12,5 L11,5 L11,4 C11,2.8954305 10.1045695,2 9,2 C7.8954305,2 7,2.8954305 7,4 L7,5 C7.55228475,5 8,5.38375593 8,5.85714286 L8,10.1428571 C8,10.6162441 7.55228475,11 7,11 L1,11 C0.44771525,11 0,10.6162441 0,10.1428571 L0,5.85714286 C0,5.38142857 0.45,5 1,5 L6,5 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,44 @@
+@use '../../../../assets/styles/scss/index'  as *;
+
+.search-input {
+    height: 60px;
+    background-color: $night800;
+    fill: $night500;
+    padding: 0 16px;
+    flex-shrink: 0;
+    width: auto;
+
+    :global(.uui-input) {
+        color: $night300;
+        font-family: $font-sans;
+
+        &::placeholder {
+            color: $night500;
+        }
+    }
+
+    :global(.uui-caption),
+    :global(.uui-input) {
+        padding: 18px 16px;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: 16px;
+            max-width: 16px;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        svg {
+            height: 24px;
+            max-width: 24px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

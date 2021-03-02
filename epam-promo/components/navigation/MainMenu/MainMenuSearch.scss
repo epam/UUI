@@ -1,0 +1,54 @@
+@use  '../../../assets/styles/index' as *;
+@import '../../../assets/styles/colorvars/navigation/mainMenu/mainMenuSearch-colorvars.scss';
+
+.search-input {
+    @include mainMenu-search-color();
+    flex-basis: 200px;
+    max-width: 500px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 18px;
+    background-color: var(--background-color);
+    fill: var(--fill);
+    padding: 0 16px;
+    margin: 0 16px;
+    transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
+
+    :global(.uui-input) {
+        color: var(--color);
+        font-family: $font-sans;
+
+        &::placeholder {
+            color: var(--placeholder-color);
+        }
+    }
+
+    :global(.uui-caption),
+    :global(.uui-input) {
+        padding: 8px 6px;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: 16px;
+            max-width: 16px;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        svg {
+            height: 24px;
+            max-width: 24px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &:global(.uui-input-box) {
+        min-height: 36px;
+    }
+}

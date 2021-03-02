@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenuButton should be rendered correctly 1`] = `
+<div
+  className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+/>
+`;
+
+exports[`MainMenuButton should be rendered correctly with props 1`] = `
+<a
+  className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+  target="_blank"
+>
+  <div
+    className="uui-caption"
+  >
+    Test button
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#triangle.svg"
+      />
+    </svg>
+  </div>
+</a>
+`;

@@ -1,0 +1,47 @@
+@use  '../../assets/styles/index' as *;
+
+.body {
+    flex: 1 1 auto;
+}
+
+.modal {
+    border: 0;
+}
+
+// TBD: replace with search prop when it will be done
+.search {
+    &:global(.uui-input-box) {
+        border: 0;
+        box-shadow: none;
+
+        &:global(.uui-focus) {
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+.checkbox {
+    padding: 6px 0;
+}
+
+.search-wrapper {
+    border-bottom: 1px solid $gray40;
+    background: white;
+    padding: 0 4px;
+}
+
+.search-size-24, .search-size-30, .search-size-36, .search-size-42 {
+    padding: 0 5px;
+}
+
+.no-found-size-24 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.no-found-size-30, .no-found-size-36, .no-found-size-42 {
+    padding-top: 23px;
+    padding-bottom: 23px;
+}
+

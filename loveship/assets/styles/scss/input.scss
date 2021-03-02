@@ -1,0 +1,55 @@
+@use 'loveship-colors' as *;
+
+@mixin disabled-input() {
+    @include input-colors($night50, $night500, $night500, $night300);
+    cursor: default;
+    pointer-events: none;
+
+    &:hover, &:active, &:focus {
+        @include input-colors($night50, $night500, $night500, $night300);
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        color: $night300;
+    }
+}
+
+@mixin readonly-input() {
+    &.mode-form {
+        background: $night50;
+        border-color: $night300;
+    }
+
+    &.mode-cell {
+        background: transparent;
+    }
+
+    &.mode-form:hover {
+        border-color: $night300;
+    }
+
+    &.mode-inline:hover {
+        border-color: transparent;
+    }
+
+    &.mode-cell:hover {
+        border-color: transparent;
+    }
+}
+
+@mixin input-colors($background, $color, $fill, $border) {
+    background-color: $background;
+    color: $color;
+    fill: $fill;
+    border-color: $border;
+
+    // override more selective selector on input tag in browsers stylesheets
+    :global(.uui-input) {
+        color: $color;
+
+        &::placeholder {
+            color: $night500;
+        }
+    }
+}

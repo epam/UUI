@@ -1,0 +1,68 @@
+@use '~@epam/assets/scss/index' as *;
+@use '~@epam/assets/scss/promo/colors' as *;
+
+table {
+    position: relative;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-wrapper {
+    display: flex;
+    max-width: 100%;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+}
+
+.row {
+    width: 100%;
+    position: relative;
+    height: 42px;
+
+    .resizing-border {
+        height: 100%;
+        width: 9px;
+        position: absolute;
+        right: -6px;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .resizing-border:hover {
+        cursor: col-resize;
+    }
+}
+
+.cell {
+    border: 1px solid $gray30;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.tablebar {
+    position: absolute;
+    top: -28px;
+    left: -18px;
+}
+
+.table-body {
+    p {
+        padding: 6px 24px;
+        margin: 0;
+    }
+
+    th {
+        font-family: $font-sans-semibold;
+        text-align: left;
+
+        p {
+            padding: 6px 24px;
+            margin: 0;
+            font-family: $font-sans-semibold;
+        }
+    }
+}
+
+.header-row {
+    background: $gray5;
+}

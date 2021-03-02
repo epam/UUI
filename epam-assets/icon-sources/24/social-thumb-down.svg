@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/social-thumb-down</title>
+    <g id="Icons/24/social-thumb-down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M15,2 L6,2 C5.17,2 4.46,2.5 4.16,3.22 L1.14,10.27 C1.05,10.5 1,10.74 1,11 L1,13 C1,14.1 1.9,15 3,15 L9.31,15 L8.36,19.57 L8.33,19.89 C8.33,20.3 8.5,20.68 8.77,20.95 L9.83,22 L16.41,15.41 C16.78,15.05 17,14.55 17,14 L17,4 C17,2.9 16.1,2 15,2 Z M19,2 L23,2 L23,14 L19,14 L19,2 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumericInput should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box root root size-36 size-36"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    max={50}
+    min={0}
+    onChange={[Function]}
+    placeholder="0"
+    step={1}
+    type="number"
+    value=""
+  />
+  <div
+    className="uui-numeric-input-button-group"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NumericInput should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box root root size-36 size-36"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    max={50}
+    min={0}
+    onChange={[Function]}
+    placeholder="0"
+    step={1}
+    type="number"
+    value=""
+  />
+  <div
+    className="uui-numeric-input-button-group"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

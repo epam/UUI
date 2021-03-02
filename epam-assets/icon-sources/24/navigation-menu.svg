@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/navigation-menu</title>
+    <g id="Icons/24/navigation-menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3,6 L21,6 L21,8 L3,8 L3,6 L3,6 Z M3,11 L21,11 L21,13 L3,13 L3,11 L3,11 Z M3,16 L21,16 L21,18 L3,18 L3,16 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

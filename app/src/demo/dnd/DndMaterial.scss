@@ -1,0 +1,41 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use './mixins' as *;
+
+.drag-element {
+    position: relative;
+    padding: 6px 0;
+    margin: 0 24px;
+
+    .material-row {
+        border: 1px solid $gray40;
+    }
+
+    &:hover .drag-handle {
+        visibility: visible;
+    }
+
+    @include cursor-style;
+
+    .icon-wrapper {
+        padding: 12px 24px;
+
+        &:first-child {
+            border-right: 1px solid $gray40;
+        }
+    }
+
+    .text-wrapper {
+        padding-left: 6px;
+    }
+
+    &:global(.uui-dragged-out) {
+        @include drag-out;
+    }
+
+    :global(.uui-drag-ghost) {
+        @include visibility;
+        box-shadow: 0 6px 18px 0 rgba(29,30,38,0.05), 0 3px 12px 0 rgba(29,30,38,0.05);
+    }
+}
+
+@include drag-handle(8px, 12px, 12px, 130%);

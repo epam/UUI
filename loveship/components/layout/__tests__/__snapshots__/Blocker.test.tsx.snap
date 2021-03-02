@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Blocker should be rendered correctly 1`] = `
+<div
+  className="container uui-blocker-container root"
+  style={
+    Object {
+      "minHeight": undefined,
+    }
+  }
+>
+  <div>
+    <div
+      className="uui-blocker"
+    >
+      <div
+        className="container uui-spinner-container root color-sky"
+      >
+        <div
+          className="uui-spinner-animation"
+        >
+          <div
+            className="uui-spinner-dot uui-spinner-dot-1"
+          />
+          <div
+            className="uui-spinner-dot uui-spinner-dot-2"
+          />
+          <div
+            className="uui-spinner-dot uui-spinner-dot-3"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Blocker should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-blocker-container root"
+  style={
+    Object {
+      "minHeight": undefined,
+    }
+  }
+>
+  <div>
+    <div
+      className="uui-blocker"
+    >
+      <div
+        className="container uui-spinner-container root color-sun"
+      >
+        <div
+          className="uui-spinner-animation"
+        >
+          <div
+            className="uui-spinner-dot uui-spinner-dot-1"
+          />
+          <div
+            className="uui-spinner-dot uui-spinner-dot-2"
+          />
+          <div
+            className="uui-spinner-dot uui-spinner-dot-3"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

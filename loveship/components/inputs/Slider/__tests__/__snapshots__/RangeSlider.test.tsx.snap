@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RangeSlider should be rendered correctly 1`] = `
+<div
+  className="uui-slider-container root root color-sky"
+  onClick={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "left": 0,
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      100
+    </div>
+  </div>
+  <div
+    className="uui-slider-handle root color-sky"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+  <div
+    className="uui-slider-handle root color-sky"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`RangeSlider should be rendered correctly with extra props 1`] = `
+<div
+  className="uui-slider-container root root color-sun"
+  onClick={[Function]}
+>
+  <div
+    className="uui-slider"
+  />
+  <div
+    className="uui-slider-filled"
+    style={
+      Object {
+        "left": 0,
+        "width": 0,
+      }
+    }
+  />
+  <div
+    className="uui-slider-scale"
+  >
+    <div
+      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      1
+    </div>
+    <div
+      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    />
+    <div
+      className="uui-slider-scale-number"
+      style={
+        Object {
+          "transform": "translateX(0px)",
+        }
+      }
+    >
+      100
+    </div>
+  </div>
+  <div
+    className="uui-slider-handle root color-sun"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+  <div
+    className="uui-slider-handle root color-sun"
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "transform": "translateX(0px)",
+      }
+    }
+  />
+</div>
+`;

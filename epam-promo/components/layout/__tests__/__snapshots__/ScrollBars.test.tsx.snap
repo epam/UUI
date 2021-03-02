@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScrollBars should be rendered correctly 1`] = `
+<div
+  className="root root theme-light"
+  cx={
+    Array [
+      Array [
+        "root",
+        "theme-light",
+      ],
+      undefined,
+    ]
+  }
+  style={
+    Object {
+      "display": "flex",
+      "height": "100%",
+      "overflow": "hidden",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "WebkitOverflowScrolling": "touch",
+        "bottom": 0,
+        "flex": "1 1 auto",
+        "left": 0,
+        "marginBottom": 0,
+        "marginRight": 0,
+        "overflow": "scroll",
+        "position": "relative",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "borderRadius": 3,
+        "bottom": 2,
+        "display": "none",
+        "height": 6,
+        "left": 2,
+        "position": "absolute",
+        "right": 2,
+      }
+    }
+  >
+    <div
+      className="uui-thumb"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "borderRadius": 3,
+        "bottom": 2,
+        "display": "none",
+        "position": "absolute",
+        "right": 2,
+        "top": 2,
+        "width": 6,
+      }
+    }
+  >
+    <div
+      className="uui-thumb"
+    />
+  </div>
+</div>
+`;

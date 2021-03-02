@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/file-export</title>
+    <g id="Icons/12/file-export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M1.71428571,6 L1.71428571,10.2857143 L10.2857143,10.2857143 L10.2857143,6 L12,6 L12,10.6666667 C12,11.4 11.4,12 10.6666667,12 L10.6666667,12 L1.33333333,12 C0.6,12 0,11.4 0,10.6666667 L0,10.6666667 L0,6 L1.71428571,6 Z M6.85714286,-1.24344979e-14 L6.85714286,5.71714286 L8.22,4.36285714 L9.42857143,5.57142857 L6,9 L2.57142857,5.57142857 L3.78,4.36285714 L5.14285714,5.71714286 L5.14285714,-1.24344979e-14 L6.85714286,-1.24344979e-14 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

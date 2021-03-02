@@ -1,0 +1,17 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.user-name {
+    padding-bottom: 2px;
+    padding-top: 4px;
+}
+
+.user-title {
+    padding-top: 2px;
+}
+
+.parent {
+    &:global(.uui-table-row.-clickable) {
+        background: $night50;
+        pointer-events: none;
+    }
+}

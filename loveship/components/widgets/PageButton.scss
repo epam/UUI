@@ -1,0 +1,50 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.fill-light {
+    color: $night700;
+    box-shadow: none;
+
+    &:global(.-clickable) {
+        &:hover {
+            color: var(--uui-color-700);
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.fill-white {
+    fill: $night600;
+
+    &:global(.-clickable) {
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:hover, &:active {
+            fill: $night600;
+        }
+    }
+}
+
+.size-24 {
+    padding-left: 0;
+    padding-right: 0;
+
+    :global(.uui-caption) {
+        font-family: $font-sans;
+        font-size: 14px;
+    }
+}
+
+.size-30 {
+    padding-left: 2px;
+    padding-right: 2px;
+
+    :global(.uui-caption) {
+        font-family: $font-sans;
+        font-size: 14px;
+    }
+}

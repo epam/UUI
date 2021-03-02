@@ -1,0 +1,21 @@
+.root {
+    &:global(.uui-horizontal-direction) {
+        > * {
+            margin-left: 18px;
+        }
+
+        :first-child {
+            margin-left: 0;
+        }
+    }
+
+    &:global(.uui-vertical-direction) {
+        > * {
+            margin-bottom: 10px;
+        }
+
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+}

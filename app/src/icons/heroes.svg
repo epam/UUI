@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/heroes</title>
+    <defs>
+        <linearGradient x1="72.225566%" y1="6.18582821%" x2="29.3238494%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FED143" offset="0%"></stop>
+            <stop stop-color="#F3800D" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Other/logo/colored/heroes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" opacity="0" x="0" y="0" width="192" height="192"></rect>
+        <path d="M131.9,53 C144.3,63.4 152.2,79.1 152,96.6 C151.6,127.5 126,152.4 95.1,152 C90.1,151.9 85.3,151.2 80.8,149.9 L61.2,180 L87.8,101.5 C88,101 88.4,100.6 89,100.6 L99.7,100.6 C100,100.6 100.2,100.8 100.4,101 C100.6,101.3 100.6,101.5 100.5,101.8 L92,126.9 C100.9,126.9 108.8,121.2 111.7,112.8 L131.9,53 Z M130.8,12 L105.4,87.2 C105.2,87.7 104.7,88.1 104.2,88.1 L93.5,88.1 C93.2,88.1 93,88 92.8,87.8 C92.6,87.6 92.5,87.3 92.6,87 L99.9,65.2 C91,65.1 83.1,70.8 80.3,79.2 L60.1,139 C47.9,128.8 40.2,113.6 40,96.7 C39.6,65.7 64.7,40.2 95.6,40 C101,40 106.2,40.7 111.1,42.1 L130.8,12 Z" id="Logo" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

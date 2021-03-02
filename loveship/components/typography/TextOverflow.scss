@@ -1,0 +1,10 @@
+.container {
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 15px;
+}
+
+.textContainer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

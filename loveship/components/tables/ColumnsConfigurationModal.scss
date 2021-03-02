@@ -1,0 +1,49 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.container {
+    .checkboxContainer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 425px;
+        margin: 12px 24px 0 24px;
+
+        > * {
+            min-width: 210px;
+        }
+    }
+
+    .actionButton {
+        margin-left: 18px;
+    }
+
+    .actionLinkButton {
+        margin: 0 6px 0 18px;
+    }
+}
+
+.dragElement {
+    position: relative;
+    padding: 1px;
+
+    .dndItem {
+        position: relative;
+        padding-left: 2px;
+        border-radius: 3px;
+        background-color: white;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &:hover {
+        box-shadow: 0 0 1px $night300;
+    }
+
+    .dragHandle {
+        height: 24px;
+    }
+}
+
+.ModalWindow {
+    width: 710px !important;
+}

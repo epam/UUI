@@ -1,0 +1,9 @@
+@use  '../../colors' as *;
+
+@mixin labeled-input-color() {
+    --color: #{$gray80};
+    --color-disabled: #{$gray60};
+    --color-errored: #{$red};
+    --fill-color: #{$gray60};
+    --optional-text-color: #{$gray60};
+}

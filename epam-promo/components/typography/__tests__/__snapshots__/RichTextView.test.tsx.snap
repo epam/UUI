@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTextView should be rendered correctly 1`] = `
+<div
+  className="text typographyPromo typography-14"
+>
+  <p>
+    Test
+  </p>
+</div>
+`;
+
+exports[`RichTextView should be rendered correctly 2`] = `
+<div
+  className="text typographyPromo typography-16"
+>
+  <div>
+    Test
+  </div>
+</div>
+`;

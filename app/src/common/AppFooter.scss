@@ -1,0 +1,35 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.layout {
+    display: flex;
+    background-color: #222222;
+    height: 60px;
+    flex-shrink: 0;
+
+    .footer {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+
+        :global(.uui-icon) {
+            padding-top: 3px;
+        }
+
+        .copyright {
+            padding-left: 21px;
+        }
+    }
+
+    @media (max-width: 1280px) {
+        .footer {
+            max-width: 732px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .footer {
+            margin: 0 12px;
+            max-width: fit-content;
+        }
+    }
+}

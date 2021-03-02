@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-timeline</title>
+    <g id="Icons/24/editor-chart-timeline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2,2 L4,2 L4,20 L22,20 L22,22 L2,22 L2,2 L2,2 Z M7,10 L17,10 L17,13 L7,13 L7,10 L7,10 Z M11,15 L21,15 L21,18 L11,18 L11,15 L11,15 Z M6,4 L22,4 L22,8 L20,8 L20,6 L8,6 L8,8 L6,8 L6,4 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

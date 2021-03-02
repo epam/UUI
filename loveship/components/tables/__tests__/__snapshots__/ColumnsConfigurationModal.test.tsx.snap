@@ -1,0 +1,350 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
+<div
+  className="container modalBlocker shadow-dark"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    className="uui-modal-window modal width-600 height-auto container"
+    style={
+      Object {
+        "width": "600px",
+      }
+    }
+  >
+    <div
+      className="root background-white container container"
+    >
+      <div
+        className="root size-36 background-none padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+      >
+        <div
+          className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        >
+          Configure columns
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="root color-night600 uui-button-box uui-enabled -clickable"
+            href={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#modal-close-cross.svg"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="root root theme-light"
+        cx={
+          Array [
+            Array [
+              "root",
+              "theme-light",
+            ],
+            undefined,
+          ]
+        }
+        style={
+          Object {
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
+              "flex": "1 1 auto",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <div
+            className="checkboxContainer"
+          >
+            <div
+              className="dragElement"
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              onMouseUp={[Function]}
+            >
+              <div
+                className="dndItem"
+              >
+                <div
+                  className="root size-36 background-white spacing-6 container align-items-center"
+                >
+                  <div
+                    className="dragHandle container uui-drag-handle"
+                  />
+                  <div
+                    className="container root size-18 theme-light color-sky uui-disabled"
+                    onKeyDown={[Function]}
+                  >
+                    <div
+                      className="uui-checkbox uui-checked"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#checkbox-checked.svg"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      ID
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="dragElement"
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              onMouseUp={[Function]}
+            >
+              <div
+                className="dndItem"
+              >
+                <div
+                  className="root size-36 background-white spacing-6 container align-items-center"
+                >
+                  <div
+                    className="dragHandle container uui-drag-handle"
+                  />
+                  <div
+                    className="container root size-18 theme-light color-sky -clickable"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    tabIndex={0}
+                  >
+                    <div
+                      className="uui-checkbox uui-checked"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#checkbox-checked.svg"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      Level
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="dragElement"
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              onMouseUp={[Function]}
+            >
+              <div
+                className="dndItem"
+              >
+                <div
+                  className="root size-36 background-white spacing-6 container align-items-center"
+                >
+                  <div
+                    className="dragHandle container uui-drag-handle"
+                  />
+                  <div
+                    className="container root size-18 theme-light color-sky -clickable"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    tabIndex={0}
+                  >
+                    <div
+                      className="uui-checkbox uui-checked"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#checkbox-checked.svg"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      DATE
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+      >
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption line-height-24 font-size-14 v-padding-6"
+          >
+            CHECK ALL
+          </div>
+        </div>
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption line-height-24 font-size-14 v-padding-6"
+          >
+            UNCHECK ALL
+          </div>
+        </div>
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square actionButton"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption line-height-24 font-size-14 v-padding-5"
+          >
+            Apply
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

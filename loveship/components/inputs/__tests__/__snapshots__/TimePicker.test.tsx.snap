@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimePicker should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable colorSky root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input line-height-24 font-size-14 v-padding-5"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="01:01 AM"
+  />
+  <div
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[Function]}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-18.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`TimePicker should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-input-box uui-disabled colorSky root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input line-height-24 font-size-14 v-padding-5"
+    disabled={true}
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="01:01"
+  />
+  <div
+    className="container uui-icon uui-disabled uui-icon-cancel -clickable hidden"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-18.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

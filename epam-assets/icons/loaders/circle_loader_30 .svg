@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20" height="20" version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0,-294.65)" display="none">
+  <path d="m6 297.65v1h-2v2h-1v8h1v2h2v1h8v-1h2v-2h1v-8h-1v-2h-2v-1z" fill-opacity=".27451" opacity=".544"/>
+  <path d="m9.91 297.99a6.6574 6.6574 89.506 0 0-6.568 6.7468 6.6574 6.6574 89.506 0 0 6.7468 6.568 6.6574 6.6574 89.506 0 0 6.568-6.7468 6.6574 6.6574 89.506 0 0-6.7468-6.568zm0.089396 0.83218a5.8252 5.8252 0 0 1 5.8252 5.8252 5.8252 5.8252 0 0 1-5.8252 5.8252 5.8252 5.8252 0 0 1-5.8252-5.8252 5.8252 5.8252 0 0 1 5.8252-5.8252z"/>
+  <rect x="-4.9792" y="289.67" width="29.958" height="29.958" fill="none" stroke="#000000" stroke-width=".041609"/>
+  <ellipse cx="10" cy="304.65" rx="14.979" ry="14.979" fill="none" stroke="#000000" stroke-width=".041609"/>
+ </g>
+ <g transform="translate(0,-4)">
+  <g transform="matrix(.21753 0 0 .20858 -.94907 3.7293)">
+   <g transform="translate(75.398 58.564)">
+    <g>
+     <circle transform="scale(.88934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.1s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(62.598 74.39)">
+    <g transform="rotate(36)">
+     <circle transform="scale(.83934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.2s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(41.061 76.185)">
+    <g transform="rotate(72)">
+     <circle transform="scale(.78934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.3s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(26.77 64.657)">
+    <g transform="rotate(108)">
+     <circle transform="scale(.73934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.4s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(23.678 47.6)">
+    <g transform="rotate(144)">
+     <circle transform="scale(.68934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.5s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(32.507 32.433)">
+    <g transform="scale(-1)">
+     <circle transform="scale(.63934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.6s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(52.699 23.596)">
+    <g transform="rotate(-72)">
+     <circle transform="scale(.98934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.7s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+   <g transform="translate(72.15 36.48)">
+    <g transform="rotate(-36)">
+     <circle transform="scale(.93934)" r="8">
+      <animateTransform attributeName="transform" begin="-0.8s" dur="0.8s" keyTimes="0;1" repeatCount="indefinite" type="scale" values="1 1;0.1 0.1"/>
+     </circle>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GlobalMenu should be rendered correctly 1`] = `
+<div
+  className="globalMenuBtn"
+  id="global_menu_toggle"
+>
+  <div
+    className="container uui-icon uui-enabled globalMenuIcon"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#global_menu.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

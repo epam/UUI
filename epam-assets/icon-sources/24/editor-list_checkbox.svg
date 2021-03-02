@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-list_checkbox</title>
+    <g id="Icons/24/editor-list_checkbox" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M21,19 L21,17 L7,17 L7,19 L21,19 L21,19 Z M21,13 L21,11 L7,11 L7,13 L21,13 L21,13 Z M7,7 L21,7 L21,5 L7,5 L7,7 L7,7 Z M3,5 L3,7 L5,7 L5,5 L3,5 L3,5 Z M2,5 C2,4.44771525 2.44771525,4 3,4 L5,4 C5.55228475,4 6,4.44771525 6,5 L6,7 C6,7.55228475 5.55228475,8 5,8 L3,8 C2.44771525,8 2,7.55228475 2,7 L2,5 L2,5 Z M3,11 L3,13 L5,13 L5,11 L3,11 L3,11 Z M2,11 C2,10.4477153 2.44771525,10 3,10 L5,10 C5.55228475,10 6,10.4477153 6,11 L6,13 C6,13.5522847 5.55228475,14 5,14 L3,14 C2.44771525,14 2,13.5522847 2,13 L2,11 L2,11 Z M3,17 L3,19 L5,19 L5,17 L3,17 L3,17 Z M2,17 C2,16.4477153 2.44771525,16 3,16 L5,16 C5.55228475,16 6,16.4477153 6,17 L6,19 C6,19.5522847 5.55228475,20 5,20 L3,20 C2.44771525,20 2,19.5522847 2,19 L2,17 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

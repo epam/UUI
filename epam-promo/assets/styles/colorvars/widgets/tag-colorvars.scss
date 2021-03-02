@@ -1,0 +1,11 @@
+@use  '../../colors' as *;
+
+.tag-color {
+    --background-color: #{$gray30};
+    --background-color-hover: #{$gray40};
+    --caption-color: #{$gray80};
+    --fill: #{$gray60};
+    --fill-hover: #{$gray70};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}

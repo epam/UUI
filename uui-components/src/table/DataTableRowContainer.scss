@@ -1,0 +1,52 @@
+@use '~@epam/assets/scss/index' as *;
+
+.container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.scrollable-columns-wrapper {
+    position: relative;
+    display: flex;
+    align-self: stretch;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollable-columns-container {
+    flex: 1 1 0;
+    align-self: stretch;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+}
+
+@mixin scroll-shadow($position, $direction) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    #{$position}: 0;
+    width: 5px;
+    pointer-events: none;
+    background: linear-gradient(to $direction, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
+}
+
+.scroll-shadow-left {
+    @include scroll-shadow(left, right);
+}
+
+:global(.-scrolled-left) ~ .scroll-shadow-left {
+    opacity: 1;
+}
+
+.scroll-shadow-right {
+    @include scroll-shadow(right, left);
+}
+
+:global(.-scrolled-right) ~ .scroll-shadow-right {
+    opacity: 1;
+}
+

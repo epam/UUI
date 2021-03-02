@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClearNotification should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper clearButton"
+>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption"
+    >
+      CLOSE ALL NOTIFICATIONS
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ErrorNotification should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper color-red root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-error-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HintNotification should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper color-blue root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-help-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NotificationCard should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper color-red root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NotificationCard should be rendered correctly 2`] = `
+<div
+  className="notificationWrapper color-red root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#calendar-18.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SuccessNotification should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper color-green root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-check_circle-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`WarningNotification should be rendered correctly 1`] = `
+<div
+  className="notificationWrapper color-amber root"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#notification-warning-fill-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="content"
+    />
+    <div
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#cross.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

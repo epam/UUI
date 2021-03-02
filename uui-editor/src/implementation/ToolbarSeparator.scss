@@ -1,0 +1,6 @@
+@use '~@epam/assets/scss/promo-colors' as *;
+
+.separator {
+    width: 1px;
+    background: $gray40;
+}

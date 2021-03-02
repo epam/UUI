@@ -1,0 +1,301 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileCard should be rendered correctly 1`] = `
+<div
+  className="flexCell fileCardWrapper uui-loading"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "100%",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+  >
+    <div
+      className="container uui-icon uui-enabled root icon-container-color-gray60 xlsColor"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={24}
+      >
+        <use
+          xlinkHref="#file-file_excel-24.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "100%",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 fileName container"
+      >
+        Test.xls
+      </div>
+      <div
+        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+      >
+        0 Bytes of 12.25 KB
+      </div>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": "18px",
+          "textAlign": undefined,
+        }
+      }
+    >
+      <svg
+        className="root"
+        height={18}
+        width={18}
+      >
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={3}
+          stroke="#ACAFBF"
+          strokeDasharray={18.84955592153876}
+          strokeDashoffset={18.84955592153876}
+          strokeWidth={6}
+        />
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={8}
+          stroke="#ACAFBF"
+          strokeWidth={1}
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FileCard should be rendered correctly 2`] = `
+<div
+  className="flexCell fileCardWrapper uui-loading"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "0",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": "140px",
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+  >
+    <div
+      className="container uui-icon uui-enabled root icon-container-color-gray60 docColor"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={24}
+      >
+        <use
+          xlinkHref="#file-file_word-24.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "100%",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 fileName container"
+      >
+        Test.doc
+      </div>
+      <div
+        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+      >
+        0 Bytes of 12.25 KB
+      </div>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": "18px",
+          "textAlign": undefined,
+        }
+      }
+    >
+      <svg
+        className="root"
+        height={18}
+        width={18}
+      >
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={3}
+          stroke="#ACAFBF"
+          strokeDasharray={18.84955592153876}
+          strokeDashoffset={18.84955592153876}
+          strokeWidth={6}
+        />
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={8}
+          stroke="#ACAFBF"
+          strokeWidth={1}
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FileCard should be rendered correctly 3`] = `
+<div
+  className="flexCell fileCardWrapper uui-loading"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "0",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": "140px",
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+  >
+    <div
+      className="container uui-icon uui-enabled root icon-container-color-gray60 imgColor"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={24}
+      >
+        <use
+          xlinkHref="#file-file_image-24.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "100%",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-0 fileName container"
+      >
+        Test.gif
+      </div>
+      <div
+        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+      >
+        12.25 KB
+      </div>
+    </div>
+    <div
+      className="flexCell"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": "18px",
+          "textAlign": undefined,
+        }
+      }
+    >
+      <svg
+        className="root"
+        height={18}
+        width={18}
+      >
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={3}
+          stroke="#ACAFBF"
+          strokeDasharray={18.84955592153876}
+          strokeDashoffset={0}
+          strokeWidth={6}
+        />
+        <circle
+          cx={9}
+          cy={9}
+          fill="transparent"
+          r={8}
+          stroke="#ACAFBF"
+          strokeWidth={1}
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

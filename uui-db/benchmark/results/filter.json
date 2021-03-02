@@ -1,0 +1,39 @@
+{
+  "name": "Filter array",
+  "date": "2020-04-27T23:32:22.860Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "array.filter, hard-coded",
+      "ops": 12955,
+      "margin": 15.71,
+      "percentSlower": 65.61
+    },
+    {
+      "name": "for-loop, array.push, hard-coded",
+      "ops": 37675,
+      "margin": 5.39,
+      "percentSlower": 0
+    },
+    {
+      "name": "array.filter, getPatternPredicate",
+      "ops": 5177,
+      "margin": 5.97,
+      "percentSlower": 86.26
+    },
+    {
+      "name": "for-loop, array.push, getPatternPredicate",
+      "ops": 8475,
+      "margin": 2.9,
+      "percentSlower": 77.5
+    }
+  ],
+  "fastest": {
+    "name": "for-loop, array.push, hard-coded",
+    "index": 1
+  },
+  "slowest": {
+    "name": "array.filter, getPatternPredicate",
+    "index": 2
+  }
+}

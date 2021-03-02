@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/notification-check-fill</title>
+    <g id="Icons/18/notification-check-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,1 C4.584,1 1,4.584 1,9 C1,13.416 4.584,17 9,17 C13.416,17 17,13.416 17,9 C17,4.584 13.416,1 9,1 Z M6.92857143,13 L3,9.16122841 L4.10785714,8.07869482 L6.92857143,10.8272553 L12.8921429,5 L14,6.09021113 L6.92857143,13 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

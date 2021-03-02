@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-arc</title>
+    <g id="Icons/24/editor-chart-arc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M16.18,19.6 L14.17,16.12 C15.15,15.4 15.83,14.28 15.97,13 L20,13 C19.83,15.76 18.35,18.16 16.18,19.6 L16.18,19.6 Z M13,7.03 L13,3 C17.3,3.26 20.74,6.7 21,11 L16.97,11 C16.74,8.91 15.09,7.26 13,7.03 L13,7.03 Z M7,12.5 C7,13.14 7.13,13.75 7.38,14.3 L3.9,16.31 C3.32,15.16 3,13.87 3,12.5 C3,7.97 6.54,4.27 11,4 L11,8.03 C8.75,8.28 7,10.18 7,12.5 L7,12.5 Z M11.5,21 C8.53,21 5.92,19.5 4.4,17.18 L7.88,15.17 C8.7,16.28 10,17 11.5,17 C12.14,17 12.75,16.87 13.3,16.62 L15.31,20.1 C14.16,20.68 12.87,21 11.5,21 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

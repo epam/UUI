@@ -1,0 +1,53 @@
+@use  '../../assets/styles/colors' as *;
+
+.root {
+    &.shadow-dark {
+        :global(.uui-scroll-shadow-top) {
+            height: 5px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+
+        :global(.uui-thumb) {
+            background: $gray40;
+            width: 3px;
+            border-radius: 1.5px;
+
+            &:hover {
+                width: 6px;
+                border-radius: 3px;
+            }
+
+            &:active {
+                width: 6px;
+                border-radius: 3px;
+                background: $gray60;
+            }
+        }
+    }
+
+    &.shadow-white {
+        :global(.uui-scroll-shadow-bottom) {
+            height: 30px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 54%);
+        }
+
+        :global(.uui-thumb) {
+            background: $gray40;
+            width: 3px;
+            border-radius: 1.5px;
+
+            &:hover {
+                width: 6px;
+                border-radius: 3px;
+            }
+
+            &:active {
+                width: 6px;
+                border-radius: 3px;
+                background: $gray60;
+            }
+        }
+    }
+}

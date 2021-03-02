@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/social-hot</title>
+    <g id="Icons/24/social-hot" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13.5,0.67 C13.5,0.67 14.24,3.32 14.24,5.47 C14.24,7.53 12.89,9.2 10.83,9.2 C8.76,9.2 7.2,7.53 7.2,5.47 L7.23,5.11 C5.21,7.51 4,10.62 4,14 C4,18.42 7.58,22 12,22 C16.42,22 20,18.42 20,14 C20,8.61 17.41,3.8 13.5,0.67 Z M11.71,19 C9.93,19 8.49,17.6 8.49,15.86 C8.49,14.24 9.54,13.1 11.3,12.74 C13.07,12.38 14.9,11.53 15.92,10.16 C16.31,11.45 16.51,12.81 16.51,14.2 C16.51,16.85 14.36,19 11.71,19 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+.root {
+    &:global(.uui-blocker-container) {
+        :global(.uui-blocker) {
+            background-color: #F5F6FA80;
+        }
+
+        :global(.uui-blocker-enter) {
+            background-color: #F5F6FA00;
+        }
+
+        :global(.uui-blocker-enter-active) {
+            background-color: #F5F6FA80;
+            transition: opacity 1000ms ease-out, background-color 2000ms ease-out;
+        }
+
+        :global(.uui-blocker-exit) {
+            background-color: #F5F6FA80;
+            pointer-events: none;
+            transition: opacity 1000ms ease-out, background-color 200ms ease-out;
+        }
+
+        :global(.uui-blocker-exit-active) {
+            background-color: #F5F6FA00;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@epam/assets",
+  "version": "3.48.0-beta.1",
+  "description": "EPAM Assets Library",
+  "author": "EPAM",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "publish": "npm publish ./build --access public"
+  },
+  "dependencies": {
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "@epam/uui-build": "3.48.0-beta.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

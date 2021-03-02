@@ -1,0 +1,35 @@
+{
+  "name": "@epam/edu-core-routing",
+  "version": "3.48.0-beta.1",
+  "description": "EPAM Edu Core Routing",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "publish": "npm publish ./build --access public"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "dependencies": {
+    "@epam/uui": "3.48.0-beta.1",
+    "jsurl": "0.1.5",
+    "lodash.clone": "4.5.0",
+    "lodash.merge": "4.6.2",
+    "query-string": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/lodash.clone": "4.5.6",
+    "@types/lodash.merge": "4.6.6",
+    "@types/react": "^16.4.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "8340473ac3c870b0bf7138186a3d18604b0ce62a"
+}
