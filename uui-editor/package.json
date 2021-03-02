@@ -1,0 +1,48 @@
+{
+  "name": "@epam/uui-editor",
+  "version": "3.48.0-beta.1",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "publish": "npm publish ./build --access public"
+  },
+  "dependencies": {
+    "@braintree/sanitize-url": "4.0.1",
+    "@convertkit/slate-lists": "0.2.2",
+    "@epam/assets": "3.48.0-beta.1",
+    "@epam/uui": "3.48.0-beta.1",
+    "@epam/uui-components": "3.48.0-beta.1",
+    "@mercuriya/slate-linkify": "0.1.2",
+    "@types/lodash.flatten": "4.4.6",
+    "@types/slate": "0.47.5",
+    "@types/slate-react": "0.22.8",
+    "classnames": "2.2.6",
+    "get-video-id": "3.1.3",
+    "htmlclean": "3.0.8",
+    "immutable": "*",
+    "lodash.flatten": "4.4.0",
+    "popper.js": "1.15.0",
+    "re-resizable": "6.0.0",
+    "react-broadcast": "0.7.1",
+    "react-popper": "1.3.3",
+    "slate": "0.47.9",
+    "slate-drop-or-paste-images": "0.9.1",
+    "slate-html-serializer": "0.8.5",
+    "slate-react": "0.22.10",
+    "slate-soft-break": "0.9.0",
+    "slate-uui-table-plugin": "^1.0.6"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

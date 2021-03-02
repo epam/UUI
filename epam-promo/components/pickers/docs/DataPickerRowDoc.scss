@@ -1,0 +1,17 @@
+@use '../../../assets/styles/colors' as *;
+
+.user-name {
+    padding: 0;
+    //padding-top: 2px;
+}
+
+.user-title {
+    padding: 0;
+}
+
+.parent {
+    &:global(.uui-table-row.-clickable) {
+        background: $gray5;
+        pointer-events: none;
+    }
+}

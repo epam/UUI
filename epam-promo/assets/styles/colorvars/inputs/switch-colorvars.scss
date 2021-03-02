@@ -1,0 +1,26 @@
+@use  '../../colors' as *;
+
+@mixin switch-color() {
+    --background-color: #{$gray40};
+    --background-color-checked: #{$blue};
+    --background-color-hovered: #{$gray60};
+    --background-color-disabled: #{$gray5};
+    --background-color-checked-hovered: #{$blue-dark};
+    --background-color-checked-disabled: #{$blue-light};
+    --border-color: #{$gray40};
+    --border-color-checked: #{$blue};
+    --border-color-hovered: #{$gray60};
+    --border-color-disabled: #{$gray30};
+    --border-color-checked-hovered: #{$blue-dark};
+    --border-color-checked-disabled: #{$blue-light};
+    --caption-color: #{$gray80};
+    --caption-color-disabled: #{$gray60};
+    --toggler-background-color: #{white};
+    --toggler-background-color-disabled: #{$gray5};
+    --toggler-border-color: #{$gray40};
+    --toggler-border-color-checked: #{$blue};
+    --toggler-border-color-hovered: #{$gray60};
+    --toggler-border-color-disabled: #{$gray30};
+    --toggler-border-color-checked-hovered: #{$blue-dark};
+    --toggler-border-color-checked-disabled: #{$blue-light};
+}

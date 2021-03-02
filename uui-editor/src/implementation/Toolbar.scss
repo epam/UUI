@@ -1,0 +1,7 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.container {
+    position: absolute;
+    background-color: $gray80;
+    display: flex;
+}

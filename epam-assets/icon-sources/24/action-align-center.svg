@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-align-center</title>
+    <g id="Icons/24/action-align-center" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M19,16 L19,13 L23,13 L23,11 L19,11 L19,8 L15,12 L19,16 L19,16 Z M5,8 L5,11 L1,11 L1,13 L5,13 L5,16 L9,12 L5,8 L5,8 Z M11,20 L13,20 L13,4 L11,4 L11,20 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

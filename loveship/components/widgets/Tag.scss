@@ -1,0 +1,132 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        cursor: default;
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        font-family: $font-sans;
+        align-self: center;
+        white-space: nowrap;
+    }
+
+    &:global(.uui-button-box) {
+        border-radius: 30px;
+    }
+
+    &.size-18 {
+        @include control-box-layout(18px, 1px);
+        height: 18px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 16px;
+            font-size: 12px;
+        }
+
+        :global(.uui-count) {
+            min-height: 14px;
+            line-height: 14px;
+
+            &:not(:first-child) {
+                margin-left: 3px;
+            }
+        }
+    }
+
+    &.size-24 {
+        @include control-box-layout(36px, 1px);
+        @include control-vertical-layout(24px, 1px);
+        height: 24px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 22px;
+            font-size: 14px;
+        }
+
+        :global(.uui-count) {
+            min-height: 16px;
+            line-height: 16px;
+
+            &:not(:first-child) {
+                margin-left: 6px;
+            }
+        }
+    }
+
+    &.size-30 {
+        @include control-box-layout(36px, 1px);
+        @include control-vertical-layout(30px, 1px);
+        height: 30px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 22px;
+            font-size: 14px;
+        }
+
+        :global(.uui-count) {
+            min-height: 18px;
+            line-height: 18px;
+
+            &:not(:first-child) {
+                margin-left: 6px;
+            }
+        }
+    }
+
+    &.size-36 {
+        @include control-box-layout(36px, 1px);
+        height: 36px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 22px;
+            font-size: 14px;
+        }
+
+        :global(.uui-count) {
+            min-height: 18px;
+            line-height: 18px;
+
+            &:not(:first-child) {
+                margin-left: 6px;
+            }
+        }
+    }
+
+    &.fill-solid {
+        @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
+    }
+
+    &.fill-white {
+        @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
+    }
+
+    &.fill-none {
+        @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
+    }
+
+    :global(.uui-count) {
+        font-size: 12px;
+        letter-spacing: 0;
+        color: $night600;
+        background-color: $white;
+        padding: 0 6px;
+        border-radius: 9px;
+        min-height: 14px;
+        line-height: 14px;
+    }
+}

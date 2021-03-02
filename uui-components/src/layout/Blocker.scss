@@ -1,0 +1,28 @@
+.container {
+    &:global(.uui-blocker-container) {
+        :global(.uui-blocker) {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        :global(.uui-blocker-enter) {
+            opacity: 0;
+        }
+
+        :global(.uui-blocker-enter-active) {
+            opacity: 1;
+        }
+
+        :global(.uui-blocker-exit) {
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        :global(.uui-blocker-exit-active) {
+            opacity: 0;
+        }
+    }
+}

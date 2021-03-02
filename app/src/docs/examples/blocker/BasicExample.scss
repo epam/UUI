@@ -1,0 +1,6 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.root {
+    position: relative;
+    border: 1px solid $gray30;
+}

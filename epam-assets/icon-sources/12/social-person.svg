@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/social-person</title>
+    <g id="Icons/12/social-person" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,6 C7.105,6 8,5.105 8,4 C8,2.895 7.105,2 6,2 C4.895,2 4,2.895 4,4 C4,5.105 4.895,6 6,6 Z M6,7 C4.665,7 2,7.67 2,9 L2,10 L10,10 L10,9 C10,7.67 7.335,7 6,7 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,50 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    :global(.uui-table-loading-row) {
+        background-color: $gray5;
+        height: 10px;
+        display: inline-block;
+    }
+
+    &:global(.uui-table-row) {
+        background: $white;
+
+        &:global(.-clickable) {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $gray20;
+            }
+        }
+
+        &:global(.-draggable) {
+            cursor: pointer;
+        }
+
+        &:global(.uui-dragged-out) {
+            opacity: 0.5;
+        }
+
+        &:global(.uui-drag-ghost) {
+            @include dnd-ghost-shadow();
+        }
+
+        &:global(.uui-focus) {
+            border: 1px solid $blue;
+        }
+
+        &.size-24 { min-height: 24px; }
+        &.size-30 { min-height: 30px; }
+        &.size-36 { min-height: 36px; }
+        &.size-48 { min-height: 48px; }
+        &.size-60 { min-height: 60px; }
+    }
+
+    // Border
+    &.border-gray30 {
+        &:global(.uui-table-row) {
+            border-bottom: 1px solid $gray30;
+        }
+    }
+}

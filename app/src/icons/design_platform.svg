@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/_design platform</title>
+    <g id="Other/logo/colored/_design-platform" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" opacity="0" x="0" y="0" width="192" height="192"></rect>
+        <g id="Logo" transform="translate(34.000000, 18.921000)">
+            <polygon id="Fill-74" fill="#1B9AD2" points="61.9104293 120.7292 0.764648761 78.3250558 0.764648761 61.4514428 61.9120756 103.848209 123.167337 61.4555417 123.167337 78.316858"></polygon>
+            <polygon id="Fill-76" fill="#467EC0" points="61.9104293 153.791579 0.764648761 111.343166 0.764648761 94.4605354 61.9120756 136.910588 123.167337 94.4129879 123.167337 111.29152"></polygon>
+            <polygon id="Fill-80" fill="#41C3DE" points="123.167337 35.6389875 72.4955532 0.0365903191 72.4955532 16.9766059 106.55662 40.311756 72.4955532 63.6649414 72.548236 80.5738052 123.167337 44.9804256"></polygon>
+            <polygon id="Fill-84" fill="#41C3DE" points="51.3273632 0.0732346617 0.764237176 35.5993919 0.764237176 45.0195293 51.3273632 80.5735592 51.3273632 63.6278052 17.318156 40.3115101 51.3273632 17.01407"></polygon>
+        </g>
+    </g>
+</svg>

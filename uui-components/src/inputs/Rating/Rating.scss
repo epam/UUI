@@ -1,0 +1,19 @@
+.container {
+    :global(.uui-rating-empty-star-container) {
+        display: flex;
+    }
+
+    :global(.uui-rating-filled-star-container) {
+        display: flex;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    :global(.uui-rating-star) {
+        flex-shrink: 0;
+    }
+}
+
+

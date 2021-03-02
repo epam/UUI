@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickerListItem should render with all new props 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="container uui-disabled root size-18 color-sky theme-light"
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-radioinput"
+    />
+  </div>
+</div>
+`;
+
+exports[`PickerListItem should render with default props 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="container uui-disabled root size-18 color-sky theme-light"
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-radioinput"
+    />
+  </div>
+</div>
+`;

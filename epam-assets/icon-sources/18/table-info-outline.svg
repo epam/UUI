@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/table-info-outline</title>
+    <g id="Icons/18/table-info-outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M8,13 L10,13 L10,8 L8,8 L8,13 Z M9,2 C5.136,2 2,5.136 2,9 C2,12.864 5.136,16 9,16 C12.864,16 16,12.864 16,9 C16,5.136 12.864,2 9,2 Z M9,15 C5.6925,15 3,12.3075 3,9 C3,5.6925 5.6925,3 9,3 C12.3075,3 15,5.6925 15,9 C15,12.3075 12.3075,15 9,15 Z M8,7 L10,7 L10,5 L8,5 L8,7 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

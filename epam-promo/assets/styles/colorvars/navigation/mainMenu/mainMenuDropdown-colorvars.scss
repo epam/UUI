@@ -1,0 +1,7 @@
+@use  '../../../colors' as *;
+
+@mixin mainMenu-dropdown-color() {
+    --background-color: black;
+    --dropdown-body-background-color: #000000;
+    --dropdown-item-background-color: #{$blue};
+}

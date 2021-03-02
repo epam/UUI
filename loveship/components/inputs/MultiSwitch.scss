@@ -1,0 +1,6 @@
+.selected-item {
+  &:focus {
+    z-index: 1;
+    position: relative;
+  }
+}

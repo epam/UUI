@@ -1,0 +1,16 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    background: $night50;
+    border-bottom: 1px solid $night300;
+}
+
+.header-cell {
+    background: none;
+}
+
+.config-icon {
+    position: absolute;
+    right: 24px;
+    height: 100%;
+}

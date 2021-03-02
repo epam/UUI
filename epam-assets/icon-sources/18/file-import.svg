@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/file-import</title>
+    <g id="Icons/18/file-import" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4,9 L4,14 L14,14 L14,9 L16,9 L16,14.4444444 C16,15.3 15.3,16 14.4444444,16 L14.4444444,16 L3.55555556,16 C2.7,16 2,15.3 2,14.4444444 L2,14.4444444 L2,9 L4,9 Z M9,1.5 L13,5.5 L11.59,6.91 L10,5.33 L10,12 L8,12 L8,5.33 L6.41,6.91 L5,5.5 L9,1.5 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

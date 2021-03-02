@@ -1,0 +1,36 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    @include button-reset();
+    cursor: pointer;
+    fill: var(--icon-color);
+
+    &:global(.-clickable) {
+        &:hover {
+            fill: var(--icon-color-hover);
+        }
+
+        &:active {
+            fill: var(--icon-color-active);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        fill: var(--icon-color-disabled);
+        cursor: default;
+
+        &:global(.-clickable) {
+            &:hover {
+                fill: var(--icon-color-disabled);
+            }
+
+            &:active {
+                fill: var(--icon-color-disabled);
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        fill: var(--icon-color-invalid);
+    }
+}

@@ -1,0 +1,179 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    :global(.uui-switch-body) {
+        background-color: $night400;
+        border: 1px solid $night400;
+        width: 36px;
+        border-radius: 18px;
+        box-sizing: border-box;
+    }
+
+    :global(.uui-switch-toggler) {
+        background-color: $white;
+        transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline();
+        font-family: $font-sans;
+        margin-left: 11px;
+    }
+
+    // Sizes
+    &.size-12 {
+        :global(.uui-switch-body) {
+            height: 12px;
+            width: 24px;
+        }
+
+        :global(.uui-switch-toggler) {
+            height: 10px;
+            width: 10px;
+        }
+
+        :global(.uui-input-label) {
+            font-size: 12px;
+        }
+
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX(12px);
+            }
+        }
+    }
+
+    &.size-18 {
+        :global(.uui-switch-body) {
+            height: 18px;
+        }
+
+        :global(.uui-switch-toggler) {
+            height: 16px;
+            width: 16px;
+        }
+
+        :global(.uui-input-label) {
+            font-size: 14px;
+        }
+
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX(18px);
+            }
+        }
+    }
+
+    &.size-24 {
+        :global(.uui-switch-body) {
+            height: 24px;
+            width: 48px;
+        }
+
+        :global(.uui-switch-toggler) {
+            height: 22px;
+            width: 22px;
+        }
+
+        :global(.uui-input-label) {
+            font-size: 14px;
+        }
+
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX(24px);
+            }
+        }
+    }
+
+    &:focus {
+        :global(.uui-switch-body) {
+            @include control-focus-effect();
+        }
+    }
+
+    // Colors
+    :global(.uui-checked) {
+        &:global(.uui-switch-body) {
+            background-color: var(--uui-color-700);
+            border-color: var(--uui-color-700);
+        }
+    }
+
+    &:hover {
+        :global(.uui-switch-body) {
+            background-color: $night500;
+            border-color: $night500;
+        }
+
+        :global(.uui-checked):global(.uui-switch-body) {
+            background-color: var(--uui-color-800);
+            border-color: var(--uui-color-800);
+        }
+    }
+
+    &:active {
+        :global(.uui-switch-body) {
+            background-color: $night600;
+            border-color: $night600;
+        }
+
+        :global(.uui-checked):global(.uui-switch-body) {
+            background-color: var(--uui-color-900);
+            border-color: var(--uui-color-900);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-switch-body) {
+            background-color: $night50;
+            border-color: $night300;
+        }
+
+        :global(.uui-switch-toggler) {
+            background-color: $white;
+            box-shadow: 0 0 0 1px $night300;
+        }
+
+        :global(.uui-checked):global(.uui-switch-body) {
+            background-color: var(--uui-color-600);
+            border-color: var(--uui-color-600);
+
+            :global(.uui-switch-toggler) {
+                background-color: $night50;
+                box-shadow: none;
+            }
+        }
+
+        :global(.uui-switch-body),
+        :global(.uui-checked):global(.uui-switch-body),
+        :global(.uui-input-label) {
+            cursor: default;
+        }
+
+        &:focus {
+            :global(.uui-switch-body) {
+                box-shadow: none;
+            }
+        }
+    }
+
+    // Mods
+    &.theme-light {
+        :global(.uui-input-label) {
+            color: $night700;
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-input-label) {
+                color: $night500;
+            }
+        }
+    }
+
+    &.theme-dark {
+        :global(.uui-input-label) {
+            color: $night50;
+        }
+    }
+}

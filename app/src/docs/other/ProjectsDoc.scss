@@ -1,0 +1,72 @@
+@import '~@epam/promo/assets/styles/index';
+
+.title {
+    font-family: $font-museo-sans;
+    margin: 24px 0;
+    font-size: 36px;
+    line-height: 48px;
+}
+
+.layout {
+    .project-container {
+        background: $white;
+        border: 1px solid $gray40;
+        max-width: 960px;
+        margin-bottom: -1px;
+
+        .project-row {
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+
+        .project-description {
+            padding-left: 12px;
+        }
+
+        .project-name {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .project-link {
+            :global(.uui-caption) {
+                padding-top: 0;
+                padding-bottom: 0;
+                font-size: 24px;
+                line-height: 30px;
+                text-transform: none;
+            }
+        }
+
+        .project-code {
+            padding: 0;
+        }
+
+        .avatars-stack {
+            flex-direction: row-reverse;
+
+            .contact-wrapper {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                border: 3px solid white;
+                background-color: var(--background-color);
+                text-decoration: none;
+                text-align: center;
+
+                &:not(:first-child) {
+                    margin-right: -30px;
+                }
+
+                &:hover {
+                    z-index: 1;
+                }
+
+                .contact-initials {
+                    color: var(--color-initials);
+                    line-height: 36px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+@import (reference) 'index';
+
+.control-box-layout(@size, @borderWidth) {
+    .control-size(@size, @borderWidth);
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-left: @size / 6;
+        padding-right: @size / 6;
+    }
+
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: @size;
+        border-width: @borderWidth;
+    }
+}
+
+.control-horizontal-layout(@size, @borderWidth) {
+    @paddingStep: (@size / 6);
+    .control-size(@size, @borderWidth);
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-left: @paddingStep;
+        padding-right: @paddingStep;
+    }
+}
+
+.control-vertical-layout(@size, @borderWidth) {
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: @size;
+        border-width: @borderWidth;
+    }
+}
+
+
+@panel-border-radius: 6px;
+@control-border-radius: 3px;

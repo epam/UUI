@@ -1,0 +1,89 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+.root {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 108px);
+    overflow: auto;
+
+    .nav-page {
+        margin: 30px auto;
+        max-width: 1200px;
+
+        .nav-title {
+            font-family: $font-museo-sans;
+            margin: 30px 0 5px;
+            font-size: 36px;
+            line-height: 48px;
+        }
+
+        .nav-cards {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+
+            .nav-card {
+                position: relative;
+                margin-top: 20px;
+                width: 590px;
+                height: 242px;
+                flex-wrap: wrap;
+                transition: 1s;
+
+                &.form-card {
+                    background: url('/static/images/DemoForms.png') no-repeat center;
+                    background-size: 100%;
+                }
+
+                &.dnd-card {
+                    background: url('/static/images/DemoDnD.png') no-repeat center;
+                    background-size: 100%;
+                }
+
+                &.timeline-card {
+                    background: url('/static/images/DemoTimeline.png') no-repeat center;
+                    background-size: 100%;
+                }
+
+                &.table-card {
+                    background: url('/static/images/DemoTable.png') no-repeat center;
+                    background-size: 100%;
+                }
+
+                &:hover {
+                    background-size: 150%;
+                }
+
+                .nav-caption {
+                    position: absolute;
+                    left: 18px;
+                    bottom: 24px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        @media (max-width: 1280px) {
+            width: fit-content;
+
+            .nav-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+    .secondary-navigation {
+        min-height: 48px;
+        padding: 0 18px;
+
+        .source-link {
+            padding: 0 12px 0 6px;
+        }
+    }
+}
+
+
+
+

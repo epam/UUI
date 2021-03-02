@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/table-row_remove</title>
+    <g id="Icons/24/table-row_remove" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.41,13 L12,15.59 L14.59,13 L16,14.41 L13.41,17 L16,19.59 L14.59,21 L12,18.41 L9.41,21 L8,19.59 L10.59,17 L8,14.41 L9.41,13 L9.41,13 Z M22,9 C22,10.1045695 21.1045695,11 20,11 L4,11 C2.8954305,11 2,10.1045695 2,9 L2,6 C2,4.8954305 2.8954305,4 4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,9 L22,9 Z M4,9 L8,9 L8,6 L4,6 L4,9 L4,9 Z M10,9 L14,9 L14,6 L10,6 L10,9 L10,9 Z M16,9 L20,9 L20,6 L16,6 L16,9 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

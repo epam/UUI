@@ -1,0 +1,48 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    background-color: var(--background-color);
+    border-left: 6px solid var(--fill-color);
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: var(--fill-color);
+        }
+    }
+}
+
+.alert-wrapper {
+    padding: 12px 18px;
+    display: flex;
+    overflow: hidden;
+}
+
+.icon-wrapper {
+    height: 100%;
+    margin-right: 14px;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-link:not(:last-child) {
+    margin-right: 12px;
+}
+
+.close-icon {
+    height: 100%;
+    margin-left: 17px;
+}
+
+.main-path {
+    width: 100%;
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}

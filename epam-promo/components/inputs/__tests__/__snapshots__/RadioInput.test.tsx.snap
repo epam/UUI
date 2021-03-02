@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioInput should be rendered correctly 1`] = `
+<div
+  className="container root size-18"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-radioinput"
+  />
+</div>
+`;
+
+exports[`RadioInput should be rendered correctly 2`] = `
+<div
+  className="container root size-18"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-radioinput"
+  />
+  <div
+    className="uui-input-label"
+  >
+    Open
+  </div>
+</div>
+`;

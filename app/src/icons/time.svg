@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/time</title>
+    <defs>
+        <linearGradient x1="23.5906059%" y1="88.008125%" x2="79.3721548%" y2="10.6570508%" id="linearGradient-1">
+            <stop stop-color="#467EC0" offset="0%"></stop>
+            <stop stop-color="#1B9AD2" offset="49.1568917%"></stop>
+            <stop stop-color="#41C3DE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Other/logo/colored/time" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" opacity="0" x="0" y="0" width="192" height="192"></rect>
+        <path d="M96,28 C133.495,28 164,58.505 164,96 C164,133.495 133.495,164 96,164 C58.505,164 28,133.495 28,96 C28,58.505 58.505,28 96,28 Z M96,40 C65.121,40 40,65.121 40,96 C40,126.879 65.121,152 96,152 C126.879,152 152,126.879 152,96 C152,65.121 126.879,40 96,40 Z M96,48 C99.313,48 102,50.687 102,54 L102,93.515 L122.242,113.758 C124.586,116.101 124.586,119.899 122.242,122.242 C121.071,123.414 119.535,124 118,124 C116.465,124 114.929,123.414 113.758,122.242 L90,98.485 L90,54 C90,50.687 92.687,48 96,48 Z" id="Logo" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

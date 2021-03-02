@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexSpacer should be rendered correctly 1`] = `
+<div
+  className="flexSpacer"
+/>
+`;
+
+exports[`FlexSpacer should be rendered correctly with props 1`] = `
+<div
+  className="flexSpacer"
+  collapseToMore={true}
+  estimatedWidth={100}
+  priority={3}
+  showInBurgerMenu={true}
+/>
+`;

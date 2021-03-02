@@ -1,0 +1,39 @@
+{
+  "name": "Find 1 entity by number ID in 100k dataset",
+  "date": "2020-04-27T20:11:04.585Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "IxSet.byId",
+      "ops": 3014117,
+      "margin": 1.7,
+      "percentSlower": 96.31
+    },
+    {
+      "name": "Map.get",
+      "ops": 63124014,
+      "margin": 4.62,
+      "percentSlower": 22.77
+    },
+    {
+      "name": "hash[id]",
+      "ops": 81740079,
+      "margin": 5.07,
+      "percentSlower": 0
+    },
+    {
+      "name": "I.Map.get(id)",
+      "ops": 16012303,
+      "margin": 4.65,
+      "percentSlower": 80.41
+    }
+  ],
+  "fastest": {
+    "name": "hash[id]",
+    "index": 2
+  },
+  "slowest": {
+    "name": "IxSet.byId",
+    "index": 0
+  }
+}

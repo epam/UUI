@@ -1,0 +1,75 @@
+{
+  "name": "@epam/app",
+  "version": "3.48.0-beta.1",
+  "description": "EPAM Unified UI landing",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "start": "node ../uui-build/scripts/start",
+    "build": "node ../uui-build/scripts/build",
+    "build-dev": "node ../uui-build/scripts/build-dev",
+    "server": "node ../server/app.js",
+    "publish": "echo Not Published"
+  },
+  "dependencies": {
+    "@epam/assets": "3.48.0-beta.1",
+    "@epam/loveship": "3.48.0-beta.1",
+    "@epam/promo": "3.48.0-beta.1",
+    "@epam/uui": "3.48.0-beta.1",
+    "@epam/uui-components": "3.48.0-beta.1",
+    "@epam/uui-db": "3.48.0-beta.1",
+    "@epam/uui-editor": "3.48.0-beta.1",
+    "@epam/uui-timeline": "3.48.0-beta.1",
+    "@epam/internal": "0.0.1",
+    "@types/history": "4.7.6",
+    "@types/jest": "25.2.3",
+    "@types/node": "14.0.5",
+    "@types/prismjs": "1.16.1",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@types/react-router": "5.1.7",
+    "@types/react-router-dom": "5.1.5",
+    "classnames": "2.2.6",
+    "history": "4.10.1",
+    "lodash.assign": "4.2.0",
+    "lodash.clone": "4.5.0",
+    "lodash.isequal": "4.5.0",
+    "lodash.sortby": "4.7.0",
+    "memoize-one": "5.1.1",
+    "moment": "2.27.0",
+    "prismjs": "^1.19.0",
+    "prop-types": "15.7.2",
+    "qhistory": "1.0.3",
+    "query-string": "6.13.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-markdown": "4.3.1",
+    "react-measure": "2.1.2",
+    "react-router": "5.2.0",
+    "react-router-dom": "5.2.0",
+    "slate": "0.47.9"
+  },
+  "optionalDependencies": {
+    "@epam/uui-docs": "3.48.0-beta.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

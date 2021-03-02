@@ -1,0 +1,38 @@
+.root {
+    :global(.uui-thumb) {
+        cursor: pointer;
+        border-radius: 3px;
+        width: 6px;
+    }
+
+    &.shadow-dark {
+        :global(.uui-scroll-shadow-top) {
+            height: 5px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+
+        :global(.uui-thumb) {
+            background: rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &.shadow-white {
+        :global(.uui-scroll-shadow-top) {
+            height: 15px;
+            background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+
+        :global(.uui-scroll-shadow-bottom) {
+            height: 15px;
+            background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        :global(.uui-thumb) {
+            background: rgba(0, 0, 0, 0.2);
+        }
+    }
+}

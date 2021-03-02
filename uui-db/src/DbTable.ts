@@ -1,0 +1,251 @@
+import { DbTablePatch, DbQuery, DbEntitySchema, DbPkFieldType, DbTablesSet } from './types';
+import * as I from 'immutable';
+import { SortDirection, getPatternPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui';
+import { Seq, Iterable } from 'immutable';
+
+interface ApplyQueryOptions {
+    runSort?: boolean;
+}
+
+interface DbIndex<TEntity, TId> {
+    field: (keyof TEntity);
+    map: I.Map<any, I.Set<any>>;
+}
+
+interface DbTableState<TEntity, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>> {
+    pk: I.Map<any, TEntity>;
+    indexes: DbIndex<TEntity, TId>[];
+}
+
+export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>> {
+    constructor(
+        public readonly schema: DbEntitySchema<TEntity, TId, TTables>,
+        private state?: DbTableState<TEntity, TId, TTables>,
+        private q?: DbQuery<TEntity>,
+    ) {
+        if (!state) {
+            const indexes: DbIndex<TEntity, TId>[] = (schema.indexes || []).map(indexDef => {
+                return {
+                    field: indexDef,
+                    map: I.Map(),
+                };
+            });
+
+            this.state = { pk: I.Map(), indexes };
+        }
+
+        if (!q) {
+            this.q = {};
+        }
+    }
+
+    protected keyToImmutable(id: TId) {
+        if (Array.isArray(id)) {
+            return I.List(id);
+        } else {
+            return id;
+        }
+    }
+
+    public byId(id: TId): TEntity {
+        return this.state.pk.get(this.keyToImmutable(id));
+    }
+
+    public getId(entity: Partial<TEntity>): TId {
+        if (Array.isArray(this.schema.primaryKey)) {
+            return this.schema.primaryKey.map((key: keyof TEntity) => entity[key]) as any as TId;
+        }
+        return entity[this.schema.primaryKey as keyof TEntity] as any as TId;
+    }
+
+    private update(mutate: (t: DbTable<TEntity, TId, TTables>) => void): this {
+        const clone = new (this.constructor as any)(this.schema, this.state, this.q);
+        mutate(clone);
+        return clone;
+    }
+
+    /* Mutation */
+
+    public with(patch: DbTablePatch<TEntity>) {
+        const updates = patch.map(entityPatch => {
+            const id = this.getId(entityPatch);
+            const immId = this.keyToImmutable(id);
+            const existing = this.state.pk.get(immId);
+            let updated = entityPatch as TEntity;
+            if (existing) {
+                updated = { ...existing, ...entityPatch };
+            }
+            return { id, immId, patch: entityPatch, existing, updated, updatedFieldsisNew: !existing };
+        });
+
+        const idVal = Seq.Keyed<TId, TEntity>(updates.map(entity => [entity.immId, entity.updated]));
+        const newPk = this.state.pk.merge(idVal);
+
+        const newIndexes = this.state.indexes.map(index => {
+            let newMap = index.map;
+
+            for (let n = 0; n < updates.length; n++) {
+                let update = updates[n];
+
+                const newKey = update.updated[index.field];
+
+                if (update.existing) {
+                    const oldKey = update.existing[index.field];
+
+                    if (oldKey !== newKey) {
+                        newMap = newMap.update(oldKey, set => set.remove(update.immId));
+                    }
+                }
+
+                newMap = newMap.update(newKey, I.Set(), set => set.add(update.immId));
+            }
+
+            return { ...index, map: newMap };
+        });
+
+        const newState: DbTableState<TEntity, TId, TTables> = { pk: newPk, indexes: newIndexes };
+
+        return this.update(t => t.state = newState);
+    }
+
+    /* Query */
+
+    public find(filter: DataQueryFilter<TEntity>): DbTable<TEntity, TId, TTables> {
+        return this.update(t => t.q = { ...t.q, filter: { ...this.q.filter as any, ...filter as any } });
+    }
+
+    public order(order: SortingOption[]) {
+        return this.update(t => t.q = { ...t.q, sorting: order });
+    }
+
+    public orderBy(field: Extract<keyof TEntity, string>, direction: SortDirection = 'asc') {
+        return this.update(t => t.q = { ...t.q, sorting: [{ field, direction }] });
+    }
+
+    public thenBy(field: Extract<keyof TEntity, string>, direction?: SortDirection) {
+        return this.update(t => t.q = { ...t.q, sorting: [...t.q.sorting, { field, direction }] });
+    }
+
+    public search(text: string) {
+        if (!this.schema.searchBy) {
+            throw new Error(`Can't search in the ${this.schema.typeName} table - searchBy is not defined in the schema.`);
+        }
+        return this.update(t => t.q = { ...t.q, search: text });
+    }
+
+    /* Materializing */
+
+    public range(from: number, count: number): TEntity[] {
+        return this.runQuery({ ...this.q, range: { from, count }});
+    }
+
+    public count() {
+        return this.runQuery(this.q).length;
+    }
+
+    public one(): TEntity {
+        return this.runQuery(this.q)[0] || null;
+    }
+
+    public toArray(): TEntity[] {
+        return this.runQuery(this.q);
+    }
+
+    public map<T>(fn: (item: TEntity, index?: number) => T) {
+        return this.toArray().map(fn);
+    }
+
+    /* Query implementation */
+
+    private runQuery(q: DataQuery<TEntity>) {
+        let result: TEntity[] = null;
+        let filter = q.filter;
+
+        if (filter) {
+            let indexes = this.state.indexes;
+
+            // Try to use indexes to fulfill filter conditions
+            for (let n = 0; n < indexes.length; n++) {
+                const index = indexes[n];
+
+                if (index.field in filter) {
+                    const { [index.field]: condition, ...rest } = filter as any;
+                    let conditionValues: any[] = null;
+
+                    if (condition != null && typeof condition === "object") {
+                        // Attempt to use index for 'in' and 'isNull' criteria.
+                        // We need to be very conservative here, indexed field should work the same way as getPatternPredicate. So
+                        // - it's better to leave corner cases to getPatternPredicate
+
+                        const { in: inCriteria, isNull: nullCriteria, ...restCriteria } = condition as any;
+                        if (inCriteria && Array.isArray(inCriteria)) {
+                            conditionValues = inCriteria;
+                        } else {
+                            restCriteria.in = inCriteria;
+                        }
+
+                        // Conditions in getPatternPredicate are composed with 'and' logic,
+                        // For now, let's not attempt to handle tricky cases like { in: [1,2] isNull: true }, or { in: [1, null] isNull: false }
+                        // - just leave this to getPatternPredicate.
+                        // Let's just handle the a most common case { isNull: true } - find all null and undefined
+                        if (nullCriteria === true && !conditionValues) {
+                            conditionValues = [null, undefined];
+                        } else {
+                            restCriteria.in = inCriteria;
+                        }
+
+                        // Keep other conditions, e.g. { in: [1,2,3], isNull: true } - in works via index, isNull - via filter
+                        if (Object.keys(restCriteria).length > 0) {
+                            rest[index.field] = restCriteria;
+                        }
+                    } else {
+                        conditionValues = [condition];
+                    }
+
+                    if (conditionValues) {
+                        result = [];
+
+                        for (let i = 0; i < conditionValues.length; i++) {
+                            const idsSet = index.map.get(conditionValues[i]);
+                            if (idsSet) {
+                                const idsArray = idsSet.toArray();
+                                for (let j = 0; j < idsArray.length; j++) {
+                                    const item = this.state.pk.get(idsArray[j]);
+                                    result.push(item);
+                                }
+                            }
+                        }
+
+                        filter = Object.keys(rest).length > 0 ? rest as any : null;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!result) {
+            result = this.state.pk.toArray();
+        }
+
+        if (filter) {
+            let predicate = getPatternPredicate<TEntity>(q.filter);
+            result = result.filter(predicate);
+        }
+
+        if (q.search) {
+            let searchFilter = getSearchFilter(q.search);
+            result = result.filter(item => searchFilter(this.schema.searchBy.map(field => (item as any)[field])));
+        }
+
+        if (q.sorting) {
+            let comparer = getOrderComparer(q.sorting);
+            result = result.sort(comparer);
+        }
+
+        if (q.range) {
+            result = result.slice(q.range.from, q.range.from + q.range.count);
+        }
+
+        return result;
+    }
+}

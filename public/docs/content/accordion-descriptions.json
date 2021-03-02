@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Accordion is UI element represented by vertically stacked list of items (labels/titles/thumbnails). Each item associated with data container that can be expanded or collapsed to present the content associated with that item.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

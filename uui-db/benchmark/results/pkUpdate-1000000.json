@@ -1,0 +1,51 @@
+{
+  "name": "Update 1 entity in 1000000 dataset",
+  "date": "2020-06-10T00:23:23.627Z",
+  "version": "1.0.0",
+  "results": [
+    {
+      "name": "BTree - with()",
+      "ops": 426540,
+      "margin": 2.93,
+      "percentSlower": 49.03
+    },
+    {
+      "name": "Map - clone with Map(previous)",
+      "ops": 2,
+      "margin": 41.32,
+      "percentSlower": 100
+    },
+    {
+      "name": "hash - spread clone",
+      "ops": 1,
+      "margin": 31.08,
+      "percentSlower": 100
+    },
+    {
+      "name": "I.Map.set(id)",
+      "ops": 836796,
+      "margin": 1.77,
+      "percentSlower": 0
+    },
+    {
+      "name": "DbTable with single index",
+      "ops": 92720,
+      "margin": 1.45,
+      "percentSlower": 88.92
+    },
+    {
+      "name": "IxSet (with two indexes)",
+      "ops": 55331,
+      "margin": 1.37,
+      "percentSlower": 93.39
+    }
+  ],
+  "fastest": {
+    "name": "I.Map.set(id)",
+    "index": 3
+  },
+  "slowest": {
+    "name": "hash - spread clone",
+    "index": 2
+  }
+}

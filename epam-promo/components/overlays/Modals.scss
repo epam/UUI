@@ -1,0 +1,109 @@
+@use  '../../assets/styles/index' as *;
+
+.modal-blocker {
+    animation-duration: 0.3s;
+    animation-name: animateModalBlocker;
+    opacity: 1;
+    transition: all 0.3s ease-out;
+
+    @keyframes animateModalBlocker {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+
+    &.shadow-light {
+        :global(.uui-modal-blocker) {
+            background-color: rgba(245, 245, 245, 0.9);
+        }
+    }
+
+    &.shadow-dark {
+        :global(.uui-modal-blocker) {
+            background: rgba(29, 30, 38, 0.8);
+        }
+    }
+
+    &.shadow-none {
+        :global(.uui-modal-blocker) {
+            background-color: transparent;
+        }
+    }
+}
+
+.modal {
+    &.width-300 {
+        &:global(.uui-modal-window) {
+            width: 300px;
+        }
+    }
+
+    &.width-420 {
+        &:global(.uui-modal-window) {
+            width: 420px;
+        }
+    }
+
+    &.width-600 {
+        &:global(.uui-modal-window) {
+            width: 600px;
+        }
+    }
+
+    &.width-900 {
+        &:global(.uui-modal-window) {
+            width: 900px;
+        }
+    }
+
+    &.height-300 {
+        &:global(.uui-modal-window) {
+            height: 300px;
+        }
+    }
+
+    &.height-700 {
+        &:global(.uui-modal-window) {
+            height: 700px;
+        }
+    }
+
+    &:global(.uui-modal-window) {
+        background-color: white;
+        overflow: auto;
+        border-radius: 0;
+        max-height: 80vh;
+        box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+
+        @media (max-width: 640px) {
+            min-width: 100%;
+            max-height: 100%;
+            border-radius: 0;
+        }
+
+        :global(.uui-shadow-top)::before {
+            background: $gray40;
+            height: 1px;
+        }
+
+        :global(.uui-shadow-bottom)::after {
+            background: $gray40;
+            height: 1px;
+        }
+    }
+}
+
+.modal-footer {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &.border-top {
+        border-top: 1px solid $gray40;
+    }
+}
+
+.modal-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+

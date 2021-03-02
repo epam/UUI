@@ -1,0 +1,56 @@
+@use '~@epam/promo/assets/styles/fonts.scss' as *;
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.root {
+    &:global(.uui-button-box) {
+        height: 36px;
+        align-items: center;
+        justify-content: left;
+        padding-left: 11px;
+        padding-right: 12px;
+        border-left: 3px solid transparent;
+        outline: none;
+        text-decoration: none;
+    }
+
+    :global(.uui-caption) {
+        min-width: 0;
+        text-align: left;
+        flex: 1 1 auto;
+        font-family: $font-sans;
+        color: $gray80;
+        user-select: none;
+    }
+
+    &:global(.-clickable) {
+        &:hover {
+            :global(.uui-caption) {
+                color: $blue;
+            }
+        }
+
+        &.active {
+            border-left: 3px solid $blue;
+
+            :global(.uui-caption) {
+                color: $blue;
+            }
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &.indent-12 {
+        :global(.uui-caption) {
+            margin-left: 12px;
+        }
+    }
+
+    &.indent-24 {
+        :global(.uui-caption) {
+            margin-left: 24px;
+        }
+    }
+}

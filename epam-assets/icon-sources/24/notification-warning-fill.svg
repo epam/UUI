@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/notification-warning-fill</title>
+    <g id="Icons/24/notification-warning-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M1,21 L23,21 L12,2 L1,21 Z M13,18 L11,18 L11,16 L13,16 L13,18 Z M13,14 L11,14 L11,10 L13,10 L13,14 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

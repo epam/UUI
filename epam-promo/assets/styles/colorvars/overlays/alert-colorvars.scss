@@ -1,0 +1,21 @@
+@use  '../../colors' as *;
+
+.color-amber {
+    --fill-color: #{$amber};
+    --background-color: #{$amber-lightest};
+}
+
+.color-green {
+    --fill-color: #{$green};
+    --background-color: #{$green-lightest};
+}
+
+.color-blue {
+    --fill-color: #{$blue};
+    --background-color: #{$blue-lightest};
+}
+
+.color-red {
+    --fill-color: #{$red};
+    --background-color: #{$red-lightest};
+}

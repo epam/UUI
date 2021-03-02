@@ -1,0 +1,89 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    :global(.uui-calendar-days) > div:last-child {
+        :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
+            &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
+                &:not(:global(.uui-range-datepicker-last-day-in-range-wrapper)) {
+                    position: relative;
+
+                    :global(.uui-calendar-day) {
+                        top: -3px;
+                    }
+
+                    &:after {
+                        background: linear-gradient(320deg, #ffffff 3px, transparent 0), linear-gradient(-135deg, #ffffff 3px, transparent 0);
+                        background-position: left-bottom;
+                        background-repeat: repeat-y;
+                        background-size: 6px 6px;
+                        content: " ";
+                        display: block;
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        width: 6px;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    :global(.uui-calendar-days) > div:first-child {
+        :global(.uui-calendar-day-cell):empty + :global(.uui-calendar-day-cell) :global(.uui-range-datepicker-in-range),
+        :global(.uui-calendar-day-cell):first-child :global(.uui-range-datepicker-in-range) {
+            &:not(:global(.uui-range-datepicker-first-day-in-range-wrapper)) {
+                &:not(:global(.uui-range-datepicker-last-day-in-range-wrapper)) {
+                    position: relative;
+
+                    :global(.uui-calendar-day) {
+                        top: -3px;
+                    }
+
+                    &:after {
+                        background: linear-gradient(45deg, #ffffff 3px, transparent 0), linear-gradient(135deg, #ffffff 3px, transparent 0);
+                        background-position: left-bottom;
+                        background-repeat: repeat-y;
+                        background-size: 6px 6px;
+                        content: " ";
+                        display: block;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 6px;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    :global(.uui-range-datepicker-in-range) {
+        &:global(.uui-calendar-day-wrapper) {
+            background-color: $blue-lightest;
+            border-radius: 0;
+            width: 40px;
+        }
+    }
+
+    :global(.uui-range-datepicker-first-day-in-range-wrapper) {
+        &:global(.uui-calendar-selected-day) {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+    }
+
+    :global(.uui-range-datepicker-last-day-in-range-wrapper) {
+        &:global(.uui-calendar-selected-day) {
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+    :global(.uui-range-datepicker-separator) {
+        display: flex;
+        flex: 0 0 auto;
+        border-left: 1px solid $gray40;
+    }
+}

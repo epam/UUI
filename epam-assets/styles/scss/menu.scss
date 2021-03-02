@@ -1,0 +1,360 @@
+@use '~@epam/assets/scss/index' as *;
+
+@mixin epam-menu-button() {
+    @include button-reset();
+    display: flex;
+    flex-shrink: 0;
+    height: 60px;
+    color: $white;
+    fill: white;
+    cursor: pointer;
+    min-width: 48px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    &:hover,
+    &:focus {
+        background-color: darken($graphite, 10%);
+    }
+
+    &:active {
+        background-color: darken($graphite, 20%);
+    }
+}
+
+.epam-menu-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 60px;
+    height: 60px;
+    min-width: 360px;
+    user-select: none;
+    height: 60px;
+    width: 100%;
+    background-color: $graphite;
+
+    &__button {
+        @include epam-menu-button();
+        font-family: $font-oswald;
+        text-transform: uppercase;
+        font-weight: normal;
+
+        &--dropdown {
+            padding-right: 16px;
+
+            &::after {
+                content: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/dropdown.svg');
+                width: 8px;
+                padding-top: 17px;
+            }
+
+            &-open {
+                background-color: darken($graphite, 10%);
+
+                &::after {
+                    transform: scale(1, -1);
+                }
+            }
+        }
+    }
+
+    &__button-caption {
+        display: inline-block;
+        padding: 23px 8px 21px;
+        line-height: 16px;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    &__dropdown {
+        @include panel-shadow();
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+
+        &-item {
+            @include button-reset();
+            padding: 0 8px;
+            fill: $gray20;
+            background-color: darken($graphite, 10%);
+            display: flex;
+            flex-shrink: 0;
+            height: 48px;
+            cursor: pointer;
+
+            &:hover,
+            &:active {
+                background-color: #30b6dd;
+            }
+
+            &-caption {
+                color: $white;
+                font-family: $font-oswald;
+                font-size: 16px;
+                padding: 16px 8px;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    &__icon-button {
+        @include epam-menu-button();
+        height: 60px;
+        width: 60px;
+        flex-shrink: 0;
+        cursor: pointer;
+
+        &--pin {
+            background-image: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/pin-white.svg');
+        }
+
+        &--help {
+            background-image: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/help.svg');
+        }
+    }
+
+    &__spacer {
+        flex: auto;
+    }
+}
+
+.epam-global-menu {
+    @include button-reset();
+    display: block;
+    height: 60px;
+    width: 60px;
+    fill: white;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: darken($graphite, 10%);
+    }
+
+    &:active {
+        background-color: darken($graphite, 20%);
+    }
+}
+
+.epam-menu-avatar {
+    @include epam-menu-button();
+    align-items: center;
+
+    &__image {
+        display: block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin: 0 8px;
+    }
+
+    &--dropdown {
+        padding-right: 16px;
+
+        &::after {
+            content: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/dropdown.svg');
+            width: 8px;
+            padding-bottom: 6px;
+        }
+    }
+}
+
+.epam-menu-logo,
+.epam-menu-logo__image {
+    display: block;
+    flex-shrink: 0;
+    height: 60px;
+}
+
+.epam-menu-burger {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 60px;
+    height: calc(100% - 60px);
+    width: 300px;
+    background: #464547;
+    overflow-y: overlay;
+    z-index: 1000;
+
+    &-toggler {
+        @include epam-menu-button();
+        height: 60px;
+        width: 60px;
+        flex-shrink: 0;
+        cursor: pointer;
+        background-image: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/burger.svg');
+    }
+
+    &__nav-item,
+    &__dropdown {
+        @include button-reset();
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        height: 48px;
+        cursor: pointer;
+        min-width: 48px;
+        color: $gray20;
+        fill: $gray20;
+        padding: 0 48px;
+        background: none;
+        border: 0;
+        outline: none;
+        font-family: $font-sans;
+        line-height: 48px;
+        font-size: 18px;
+
+        &:hover {
+            color: $blue;
+            fill: $blue;
+        }
+
+        &:hover,
+        &:focus {
+            color: $blue;
+            fill: $blue;
+        }
+
+        &:active {
+            color: $blue;
+            fill: $blue;
+        }
+
+        &-icon {
+            display: block;
+            width: 16px;
+            margin-right: 12px;
+        }
+
+        &--iconed {
+            padding-left: 20px;
+        }
+
+        &--secondary {
+            font-size: 14px;
+            padding-left: 18px;
+            margin-left: 48px;
+            border-left: 1px $gray40 solid;
+
+            // &:hover {
+            //     border-left-color: $blue;
+            // }
+        }
+    }
+
+    &__dropdown {
+        padding-left: 24px;
+
+        &-arrow {
+            width: 12px;
+            margin-right: 12px;
+        }
+
+        &--open {
+            .epam-menu-burger__dropdown-arrow {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    &__search {
+        display: flex;
+        height: 60px;
+        background-color: $gray80;
+        fill: $gray40;
+        padding: 0 16px;
+        flex-shrink: 0;
+
+        & &-input {
+            flex: 1 1 auto;
+            padding: 18px 16px;
+            line-height: 24px;
+            color: $gray20;
+            font-family: $font-sans;
+            font-size: 14px;
+            border: 0;
+            outline: none;
+            background: none;
+
+            &::placeholder {
+                color: $gray40;
+            }
+        }
+
+        &::before {
+            content: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/search.svg');
+            padding-top: 22px;
+            height: 16px;
+            width: 16px;
+        }
+    }
+
+    &__group-header {
+        position: relative;
+        display: flex;
+        padding: 17px 0 0 0;
+        overflow: hidden;
+        flex-shrink: 0;
+
+        &-name {
+            position: relative;
+            flex-shrink: 0;
+            font-family: $font-sans;
+            font-size: 12px;
+            color: $gray40;
+            background: $graphite;
+            padding: 0 15px 0 18px;
+            z-index: 1;
+        }
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: $gray40;
+            position: absolute;
+            bottom: 6px;
+        }
+    }
+}
+
+.epam-menu-search {
+    display: flex;
+    flex-basis: 200px;
+    max-width: 500px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 18px;
+    background-color: $gray80;
+    fill: $gray40;
+    padding: 0 16px;
+    margin: 0 16px;
+
+    & &__input {
+        flex: 1 1 auto;
+        min-width: 0;
+        border: 0;
+        outline: none;
+        background: none;
+        color: $gray20;
+        font-family: $font-sans;
+        padding: 8px 6px;
+        line-height: 18px;
+        font-size: 14px;
+
+        &::placeholder {
+            color: $gray40;
+        }
+    }
+
+    &::before {
+        content: url('http://static.cdn.epam.com/uploads/15b8e554acfe302df9bbed00abaf5958/EPM-GROW/Misc/search.svg');
+        padding-top: 10px;
+        height: 17px;
+        width: 16px;
+    }
+}

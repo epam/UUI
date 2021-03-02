@@ -1,0 +1,82 @@
+@use  '../../assets/styles/index.scss' as *;
+@import '../../assets/styles/colorvars/inputs/numericInput-colorvars.scss';
+
+.root {
+    @include numeric-input-color();
+
+    &:global(.uui-input-box) {
+        padding-right: 0;
+        min-width: 40px;
+
+        :global(.uui-numeric-input-up-button) {
+            transform: rotate(180deg);
+
+            &:hover {
+                svg {
+                    fill: var(--icon-color-hovered);
+                }
+            }
+        }
+
+        :global(.uui-numeric-input-down-button) {
+            &:hover {
+                svg {
+                    fill: var(--icon-color-hovered);
+                }
+            }
+        }
+
+        :global(.uui-icon) svg {
+            margin-top: -2px;
+        }
+
+        &.size-24 {
+            :global(.uui-numeric-input-button-group) {
+                > * {
+                    height: 12px;
+                }
+            }
+        }
+
+        &.size-30 {
+            :global(.uui-numeric-input-button-group) {
+                > * {
+                    height: 15px;
+                }
+            }
+        }
+
+        &.size-36 {
+            :global(.uui-numeric-input-button-group) {
+                > * {
+                    height: 17px;
+                }
+            }
+        }
+
+        &.size-42 {
+            :global(.uui-numeric-input-button-group) {
+                > * {
+                    height: 21px;
+                }
+            }
+        }
+
+        &.size-48 {
+            :global(.uui-numeric-input-button-group) {
+                > * {
+                    height: 23px;
+                }
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-numeric-input-button-group) {
+            > *:hover, > *:focus {
+                cursor: default;
+                background-color: transparent;
+            }
+        }
+    }
+}

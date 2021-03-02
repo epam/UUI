@@ -1,0 +1,89 @@
+@import '../../../../assets/styles/colorvars/navigation/mainMenu/burger/burger-colorvars';
+
+.root {
+    @include burger-color();
+    position: relative;
+    display: flex;
+
+    &:global(.uui-burger-menu-open) {
+        z-index: 1001;
+    }
+
+    &:global(.uui-burger-menu-open) ~ :global(#global_menu_toggle) {
+        background-color: var(--background-color);
+        z-index: 1001;
+
+        :hover {
+            background-color: var(--background-color-hover);
+        }
+    }
+
+    :global(.uui-burger-button) {
+        width: 60px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &:active {
+            opacity: 0.8;
+        }
+
+        :global(.uui-icon) svg {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    :global(.uui-burger-logo-container) {
+        position: absolute;
+        left: 60px;
+        top: 0;
+    }
+
+    :global(.uui-burger-logo) {
+        display: block;
+        height: 60px;
+    }
+
+
+}
+
+.burger-content {
+    &:global(.uui-burger-overlay) {
+        opacity: 0;
+
+        &:global(.uui-burger-overlay-visible) {
+            opacity: 1;
+            position: fixed;
+            z-index: 1000;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(29, 30, 38, 0.8);
+            transition: opacity 0.2s ease-in-out;
+        }
+    }
+
+    :global(.uui-burger-items) {
+        @include burger-color();
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        background: var(--items-background-color);
+        transform: translateX(-100px);
+        overflow-y: overlay;
+
+        &:global(.uui-burger-items-visible) {
+            transform: translateX(0);
+        }
+    }
+}
+
+
+

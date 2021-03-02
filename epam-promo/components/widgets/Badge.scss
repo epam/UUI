@@ -1,0 +1,161 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    :global(.uui-count) {
+        font-family: $font-sans-semibold;
+        margin: auto;
+        height: 18px;
+        line-height: 18px;
+        font-size: 12px;
+        border-radius: 9px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    :global(.uui-count):not(:first-child) {
+        margin-left: 6px;
+    }
+
+    :global(.uui-caption) {
+        font-family: $font-sans;
+    }
+
+    &:global(.uui-button-box) {
+        border-width: 1px;
+
+    }
+
+    &.size-18 {
+        min-width: 18px;
+        min-height: 18px;
+        padding-left: 3px;
+        padding-right: 3px;
+        border-radius: 9px;
+
+        :global(.uui-count) {
+            height: 12px;
+            line-height: 12px;
+            font-size: 8px;
+            border-radius: 6px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        :global(.uui-count):not(:first-child) {
+            margin-left: 3px;
+        }
+
+        :global(.uui-caption) {
+            padding: 2px 3px;
+            line-height: 12px;
+            font-size: 12px;
+        }
+    }
+
+    &.size-24 {
+        @include button-horizontal-layout(24px, 1px);
+        border-radius: 12px;
+        min-height: 24px;
+
+        :global(.uui-caption) {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-30 {
+        @include button-horizontal-layout(30px, 1px);
+        border-radius: 15px;
+        min-height: 30px;
+
+        :global(.uui-caption) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-36 {
+        @include button-horizontal-layout(36px, 1px);
+        border-radius: 18px;
+        min-height: 36px;
+
+        :global(.uui-caption) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 24px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-42 {
+        @include button-horizontal-layout(42px, 1px);
+        border-radius: 21px;
+        min-height: 42px;
+
+        :global(.uui-caption) {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+    }
+
+    &.fill-solid {
+        background-color: var(--background-color);
+        color: var(--caption-color-solid);
+        fill: var(--caption-color-solid);
+        border-color: var(--background-color);
+
+        :global(.uui-count) {
+            background-color: var(--count-background-color);
+            color: var(--count-color);
+        }
+
+        &:global(.-clickable) {
+            &:hover {
+                background-color: var(--background-color-hover);
+                border-color: var(--background-color-hover);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.fill-semitransparent {
+        background-color: var(--background-color-semitransparent);
+        color: var(--caption-color-semitransparent);
+        fill: var(--caption-color-semitransparent);
+        border-color: var(--border-color-semitransparent);
+
+        :global(.uui-count) {
+            background-color: var(--count-background-color);
+            color: var(--count-color);
+        }
+
+        &:global(.-clickable) {
+            &:hover {
+                background-color: var(--border-color-semitransparent);
+                color: var(--caption-color-semitransparent-hover);
+                fill: var(--caption-color-semitransparent-hover);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.fill-transparent {
+        background-color: transparent;
+        color: var(--caption-color-transparent);
+        fill: var(--background-color);
+        border-color: transparent;
+
+        &:global(.-clickable) {
+            &:hover {
+                fill: var(--background-color-hover);
+                cursor: pointer;
+            }
+        }
+    }
+}

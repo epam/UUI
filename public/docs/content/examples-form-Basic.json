@@ -1,0 +1,191 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic form example with validation, undo/redo/revert actions and storing unsaved changes in localStorage.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Lenses",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " approach for form state management and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Metadata",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " for validation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To make notifications about leaving with unsaved changes work, you need to have ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?category=contexts&id=lockContextDoc"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "LockContext",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in your app, for this you need to wrap your application in UUI ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?category=contexts&id=contextProvider"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "ContextProvider",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". To turn of this mechanism pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "beforeLeave={ null }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "From handle success/error result after save action, use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onSuccess",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onError",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props. Do not chain promises in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onSave",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback, because it does't guarantee that form was completely saved. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

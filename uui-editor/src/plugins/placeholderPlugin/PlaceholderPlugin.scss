@@ -1,0 +1,35 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+@use '~@epam/assets/scss/promo/fonts' as *;
+
+.dropdown-item {
+    font-size: 14px;
+    font-family: $font-sans;
+    line-height: 36px;
+    height: 36px;
+    background-color: $gray80;
+    color: white;
+    padding: 0 18px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $gray90;
+    }
+}
+
+.dropdown-container {
+    background-color: $gray80;
+    padding: 6px 0;
+    min-width: 180px;
+}
+
+.placeholder-block {
+    background-color: $blue-lightest;
+    color: $blue;
+    padding: 0 3px;
+
+    &:global(.uui-focus) {
+        outline: 1px solid $blue;
+        //outline-offset: -1px;
+    }
+}
+

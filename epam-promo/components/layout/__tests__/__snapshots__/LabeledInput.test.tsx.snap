@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LabeledInput should be rendered correctly 1`] = `
+<div
+  className="container root size-36"
+>
+  <div
+    className="uui-label-top"
+  >
+    <div
+      className="container uui-input-box -clickable root size-36"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LabeledInput should be rendered correctly with props 1`] = `
+<div
+  className="container root size-36"
+>
+  <div
+    className="uui-label-left"
+  >
+    <div
+      className="uui-label"
+    >
+      Test label
+      <svg
+        className="uui-labeled-input-info-icon"
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#help-fill-16.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box -clickable root size-36"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="uui-invalid-message"
+  >
+    Test invalid message
+  </div>
+</div>
+`;

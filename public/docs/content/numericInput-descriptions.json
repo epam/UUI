@@ -1,0 +1,1 @@
+{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"NumericInput is used to let the user enter a number. It includes built-in validation to reject non-numerical entries.","marks":[]}]}]}}

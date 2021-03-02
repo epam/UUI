@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTable should be rendered correctly 1`] = `
+Array [
+  <div
+    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  >
+    <div
+      className="scrollableColumnsWrapper"
+      style={
+        Object {
+          "flexGrow": 100,
+          "flexShrink": 1,
+          "minWidth": 0,
+          "width": 0,
+        }
+      }
+    >
+      <div
+        className="scrollableColumnsContainer"
+      >
+        <div
+          className="container align-items-center"
+        />
+      </div>
+      <div
+        className="scrollShadowLeft"
+      />
+      <div
+        className="scrollShadowRight"
+      />
+    </div>
+  </div>,
+  <div
+    className="root size-36 background-white topShadow body container align-items-center"
+  >
+    <div
+      className="wrapper root shadow-dark"
+    >
+      <div
+        className="body"
+        style={
+          Object {
+            "height": "auto",
+            "maxHeight": 100500,
+            "minHeight": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="container1"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 100500,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container2"
+            style={
+              Object {
+                "height": null,
+              }
+            }
+          >
+            <div
+              className="container3"
+              style={
+                Object {
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+      </div>
+      <div
+        className="uui-scroll-shadow-top"
+      />
+      <div
+        className="uui-scroll-shadow-bottom"
+      />
+    </div>
+  </div>,
+  <div
+    className="uui-table-scroll-row-container cellClass"
+  >
+    <div
+      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+    >
+      <div
+        className="uui-table-scroll-bar"
+        style={
+          Object {
+            "flexGrow": 100,
+            "flexShrink": 1,
+            "height": "auto",
+            "maxHeight": 200,
+            "minHeight": 0,
+            "minWidth": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": 0,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 200,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container align-items-center"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "height": "100%",
+                "position": "relative",
+              }
+            }
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "rgba(0,0,0,.2)",
+                "borderRadius": "inherit",
+                "cursor": "pointer",
+                "display": "block",
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

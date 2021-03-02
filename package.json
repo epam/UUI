@@ -1,0 +1,74 @@
+{
+  "name": "@uui/monorepo",
+  "private": true,
+  "version": "2.1.434",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && yarn",
+    "test": "node uui-build/scripts/runTests.js",
+    "coverage": "yarn test --coverage",
+    "process-icons": "node uui-build/scripts/processIcons.js",
+    "start": "cd ./app && yarn start",
+    "build": "cd ./app && yarn build",
+    "build-dev": "cd ./app && yarn build-dev",
+    "start-server": "cd ./app && yarn server",
+    "release": "node uui-build/scripts/buildModules",
+    "lint": "npx tslint -p ./tsconfig.json -e node_modules",
+    "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
+    "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
+    "copy-to-template": "node uui-build/scripts/copyToTemplate",
+    "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
+    "generate-components-api": "cd uui-build && yarn generate-components-api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.epam.com:epm-tmc/ui.git"
+  },
+  "workspaces": [
+    "app",
+    "edu-core-routing",
+    "epam-assets",
+    "epam-uui",
+    "loveship",
+    "epam-promo",
+    "uui",
+    "uui-components",
+    "uui-build",
+    "uui-docs",
+    "uui-db",
+    "uui-timeline",
+    "uui-editor",
+    "extra",
+    "draft-rte"
+  ],
+  "author": "",
+  "license": "MIT",
+  "resolutions": {
+    "@types/chai": "4.1.1",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "typescript": "4.1.5",
+    "prop-types": "15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "moment": "2.19.3",
+    "lodash": "4.17.20",
+    "mixin-deep": "2.0.1",
+    "tar": "6.0.5",
+    "extend-shallow": "3.0.2",
+    "braces": "3.0.2",
+    "set-value": "3.0.2",
+    "y18n": "5.0.5"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "lerna": "3.22.1",
+    "typedoc": "0.17.4"
+  }
+}

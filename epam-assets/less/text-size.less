@@ -1,0 +1,49 @@
+.text-size(@size, @border-width: 0px) {
+    & when (@size = 18) {
+        @vpadding: 3px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 12px;
+        font-size: 10px;
+    }
+
+    & when (@size = 24) {
+        @vpadding: 3px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 18px;
+        font-size: 12px;
+    }
+
+    & when (@size = 30) {
+        @vpadding: 6px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    & when (@size = 36) {
+        @vpadding: 6px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    & when (@size = 42) {
+        @vpadding: 9px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+    & when (@size = 48) {
+        @vpadding: 12px - @border-width;
+        padding-top: @vpadding;
+        padding-bottom: @vpadding;
+        line-height: 24px;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,8 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.container {
+    width: 100%;
+    border-top: 1px solid $gray40;
+    background-color: $white;
+    position: relative;
+}

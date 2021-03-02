@@ -1,0 +1,14 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+
+.user-name {
+    font-size: 14px;
+    font-family: $font-sans;
+    color: $gray80;
+}
+
+.user-title {
+    font-size: 12px;
+    font-family: $font-sans;
+    color: $gray60;
+}

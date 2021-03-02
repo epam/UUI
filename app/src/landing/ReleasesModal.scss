@@ -1,0 +1,20 @@
+@use '~@epam/promo/assets/styles/fonts.scss' as *;
+
+.modal {
+    margin: 24px;
+
+    p, span {
+        font: $font-sans;
+        font-size: 16px;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin: 0 0 0 6px;
+
+        li {
+            font-size: 16px;
+            padding-left: 12px;
+        }
+    }
+}

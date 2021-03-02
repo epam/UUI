@@ -1,0 +1,66 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    &:global(.uui-timepicker-container) {
+        display: flex;
+        padding: 8px;
+
+        :global(.uui-timepicker-input) {
+            &:global(.uui-input-box) {
+                border: 1px solid $night600;
+                width: 36px;
+                height: 36px;
+            }
+
+            > input {
+                text-align: center;
+                color: $night700;
+                font-family: $font-sans;
+            }
+        }
+
+        :global(.uui-timepicker-item) {
+            position: relative;
+            padding: 5px;
+        }
+
+        :global(.uui-timepicker-item:first-child) {
+            &::after {
+                color: $night600;
+                font-size: 20px;
+                content: ':';
+                position: absolute;
+                top: 33px;
+                left: 45px;
+            }
+        }
+
+        .icon {
+            align-items: center;
+            fill: $night600;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        :global(.uui-timepicker-icon-up) {
+            align-items: center;
+            fill: $night600;
+            transform: rotate(180deg);
+        }
+
+        :global(.uui-timepicker-icon-down) {
+            align-items: center;
+            fill: $night600;
+        }
+    }
+}
+
+.date-input {
+    width: 100%;
+}
+
+:global(.uui-dropdown-body) {
+    align-items: center;
+}

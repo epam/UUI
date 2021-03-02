@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar should be rendered correctly 1`] = `
+<img
+  className="avatar"
+  height="36"
+  src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+  width="36"
+/>
+`;
+
+exports[`Avatar should be rendered correctly with props 1`] = `
+<img
+  alt="Test avatar"
+  className="avatar"
+  height="36"
+  src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
+  width="36"
+/>
+`;

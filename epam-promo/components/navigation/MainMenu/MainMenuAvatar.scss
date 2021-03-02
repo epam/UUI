@@ -1,0 +1,41 @@
+@use  '../../../assets/styles/index' as *;
+
+.container {
+    @include control-horizontal-layout(48px, 0);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 60px;
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-top: 21px;
+        padding-bottom: 21px;
+        min-width: 60px;
+        line-height: 18px;
+        font-size: 18px;
+    }
+}
+
+.photo {
+    margin: 0 4px;
+}
+
+.dropdown {
+    cursor: pointer;
+
+    &:hover {
+        background: black;
+    }
+
+    &:active {
+        background-color: black;
+    }
+}
+
+.open {
+    background: black;
+}
+
+.dropdown-icon {
+    @include icon-layout(36px);
+}

@@ -1,0 +1,180 @@
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
+    $vpadding: ($line-height - $size) / 2;
+
+    :global(.uui-radioinput) {
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+        margin: $vpadding 0;
+
+        :global(.uui-icon) {
+            svg {
+                width: $bullet-size;
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+}
+
+.root {
+    :global(.uui-radioinput) {
+        fill: $sky;
+        align-self: baseline;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+
+    :global(.uui-radioinput) {
+        border: 1px solid $night400;
+        fill: var(--uui-color-700);
+
+        &:global(.uui-checked) {
+            border: 1px solid var(--uui-color-700);
+        }
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline();
+        flex-grow: 1;
+        font-family: $font-sans;
+        margin-left: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    &:hover, &:active, &:focus {
+        :global(.uui-radioinput) {
+            border-color: var(--uui-color-700);
+        }
+    }
+
+    &:hover {
+        :global(.uui-radioinput):global(.uui-checked) {
+            border-color: var(--uui-color-800);
+            fill: var(--uui-color-800);
+        }
+    }
+
+    &:focus {
+        outline: none;
+
+        :global(.uui-radioinput) {
+            @include control-focus-effect();
+        }
+    }
+
+    // Sizes
+    &.size-18 {
+        @include radio-sizes(18px, 14px, 12px, 18px);
+    }
+
+    &.size-12 {
+        @include radio-sizes(12px, 12px, 8px, 14px);
+
+        :global(.uui-input-label) {
+            margin-left: 6px;
+        }
+    }
+
+    // Mods
+    &.theme-light {
+        :global(.uui-input-label) {
+            color: $night700;
+        }
+
+        &:global(.uui-disabled) {
+            cursor: default;
+
+            :global(.uui-radioinput) {
+                background-color: $night50;
+                border-color: $night300;
+                fill: var(--uui-color-600);
+                box-shadow: none;
+
+                &:global(.uui-checked) {
+                    border-color: var(--uui-color-600);
+                }
+            }
+
+            :global(.uui-input-label) {
+                color: $night500;
+            }
+        }
+
+        &:global(.uui-readonly) {
+            cursor: default;
+
+            :global(.uui-radioinput) {
+                background-color: $night50;
+                border-color: $night300;
+                fill: var(--uui-color-600);
+                box-shadow: none;
+
+                &:global(.uui-checked) {
+                    border-color: var(--uui-color-600);
+                }
+            }
+        }
+    }
+
+    &.theme-dark {
+        :global(.uui-input-label) {
+            color: $night50;
+        }
+
+        &:global(.uui-disabled) {
+            cursor: default;
+
+            :global(.uui-radioinput) {
+                @include input-colors($night600, $night500, $night500, $night600);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night600, $night500, $night500, $night600);
+                }
+            }
+
+            :global(.uui-input-label) {
+                color: $night500;
+            }
+        }
+
+        &:global(.uui-readonly) {
+            cursor: default;
+            background: none;
+
+            :global(.uui-radioinput) {
+                @include input-colors($night600, $night500, $night500, $night600);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night600, $night500, $night500, $night600);
+                }
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        :global(.uui-radioinput) {
+            border-color: $fire;
+            fill: $fire;
+
+            &:hover, &:active {
+                border-color: darken($fire, 10%);
+                fill: darken($fire, 10%);
+            }
+
+            &:global(.uui-checked) {
+                border: 1px solid $fire;
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: $fire;
+        }
+    }
+}

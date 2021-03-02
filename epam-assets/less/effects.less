@@ -1,0 +1,25 @@
+.panel-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
+
+.panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
+
+.button-focus-shadow() { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); }
+
+.dnd-ghost-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
+
+.control-focus-effect(@name) { box-shadow: 0 0 0 2px fade(@name, 40%); }
+
+@scroll-shadow-size: 10px;
+@scroll-shadow-opacity: 0.2;
+
+.scroll-shadow-base() {
+    position: absolute;
+}
+
+.scroll-shadow-top() {
+    .scroll-shadow-base();
+    top: 0;
+    left: 0;
+    right: 0;
+    height: @scroll-shadow-size;
+    background: 'linear-gradient(to bottom, rgba(0, 0, 0, @{scroll-shadow-opacity}) 0%, rgba(0, 0, 0, 0) 100%)';
+}

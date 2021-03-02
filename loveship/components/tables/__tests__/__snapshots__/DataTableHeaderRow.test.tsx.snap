@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+>
+  <div
+    className="scrollableColumnsWrapper"
+    style={
+      Object {
+        "flexGrow": 100,
+        "flexShrink": 1,
+        "minWidth": 0,
+        "width": 0,
+      }
+    }
+  >
+    <div
+      className="scrollableColumnsContainer"
+    >
+      <div
+        className="container align-items-center"
+      >
+        <div
+          className="flexCell -clickable cell size-24 padding-left-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+              >
+                ID
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+        <div
+          className="flexCell -clickable cell size-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+              >
+                Level
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+        <div
+          className="flexCell -clickable cell size-24 padding-right-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+              >
+                DATE
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="scrollShadowLeft"
+    />
+    <div
+      className="scrollShadowRight"
+    />
+  </div>
+</div>
+`;
+
+exports[`DataTableHeaderRow should render with default props 1`] = `
+<div
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+>
+  <div
+    className="scrollableColumnsWrapper"
+    style={
+      Object {
+        "flexGrow": 100,
+        "flexShrink": 1,
+        "minWidth": 0,
+        "width": 0,
+      }
+    }
+  >
+    <div
+      className="scrollableColumnsContainer"
+    >
+      <div
+        className="container align-items-center"
+      >
+        <div
+          className="flexCell -clickable cell size-36 padding-left-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+              >
+                ID
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+        <div
+          className="flexCell -clickable cell size-36"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+              >
+                Level
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+        <div
+          className="flexCell -clickable cell size-36 padding-right-24"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="tooltipWrapper"
+            onClick={null}
+          >
+            <div
+              className="iconCell align-undefined"
+            >
+              <div
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+              >
+                DATE
+              </div>
+              <div
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                href={null}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
+              >
+                <div
+                  className="container uui-icon uui-enabled"
+                >
+                  <svg
+                    className=""
+                    height={24}
+                    viewBox="0 0 12 24"
+                    width={12}
+                  >
+                    <use
+                      xlinkHref="#sort.svg"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="scrollShadowLeft"
+    />
+    <div
+      className="scrollShadowRight"
+    />
+  </div>
+</div>
+`;

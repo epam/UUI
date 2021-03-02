@@ -1,0 +1,57 @@
+@use  '../../colors' as *;
+
+.icon-color-blue {
+    --icon-color: #{$blue};
+    --icon-color-hover: #{$blue-dark};
+    --icon-color-active: #{$blue-darkest};
+    --icon-color-disabled: #{$gray50};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-green {
+    --icon-color: #{$green};
+    --icon-color-hover: #{$green-dark};
+    --icon-color-active: #{$green-darkest};
+    --icon-color-disabled: #{$gray50};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-amber {
+    --icon-color: #{$amber};
+    --icon-color-hover: #{$amber-dark};
+    --icon-color-active: #{$amber-darkest};
+    --icon-color-disabled: #{$gray50};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-red {
+    --icon-color: #{$red};
+    --icon-color-hover: #{$red-dark};
+    --icon-color-active: #{$red-darkest};
+    --icon-color-disabled: #{$gray50};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-gray30 {
+    --icon-color: #{$gray30};
+    --icon-color-hover: #FFFFFF;
+    --icon-color-active: #{$gray5};
+    --icon-color-disabled: #{$gray60};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-gray50 {
+    --icon-color: #{$gray50};
+    --icon-color-hover: #{$gray60};
+    --icon-color-active: #{$gray70};
+    --icon-color-disabled: #{$gray40};
+    --icon-color-invalid: #{$red};
+}
+
+.icon-color-gray60 {
+    --icon-color: #{$gray60};
+    --icon-color-hover: #{$gray70};
+    --icon-color-active: #{$gray80};
+    --icon-color-disabled: #{$gray50};
+    --icon-color-invalid: #{$red};
+}

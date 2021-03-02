@@ -1,0 +1,115 @@
+@use '../../assets/styles/fonts' as *;
+
+$shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+$shadow-hovered: 0 6px 12px 0 rgba(29,30,38,0.10), 0 3px 6px 0 rgba(29,30,38,0.10);
+
+.root {
+    :global(.uui-accordion-toggler) {
+        font-family: $font-sans-semibold;
+        cursor: pointer;
+    }
+
+    :global(.uui-accordion-body) {
+        font-family: $font-sans;
+    }
+
+    &.mode-block {
+        :global(.uui-accordion-toggler) {
+            background: var(--background-color);
+            box-shadow: $shadow;
+            fill: var(--icon-color);
+            line-height: 24px;
+            font-size: 18px;
+            padding: 0 18px;
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 48px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            :global(.uui-accordion-title) {
+                color: var(--text-color);
+            }
+
+            &:hover {
+                box-shadow: $shadow-hovered;
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            padding: 18px;
+            line-height: 24px;
+            letter-spacing: 0;
+            background: var(--background-color);
+            box-shadow: $shadow;
+            border-top: 1px solid var(--border-color);
+        }
+
+        &:global(.uui-opened) {
+            :global(.uui-accordion-toggler) {
+                &:hover {
+                    border-color: var(--border-color);
+                }
+            }
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                border-color: var(--border-color-disabled);
+                fill: var(--icon-color-disabled);
+
+                :global(.uui-accordion-title) {
+                    color: var(--text-color-disabled);
+                }
+
+                &:hover {
+                    box-shadow: $shadow;
+                }
+            }
+        }
+    }
+
+    &.mode-inline {
+        :global(.uui-accordion-toggler) {
+            border-bottom: 1px solid var(--border-color);
+            fill: var(--icon-color);
+            line-height: 18px;
+            font-size: 14px;
+
+            :global(.uui-accordion-toggle-container) {
+                min-height: 24px;
+                padding: 3px 12px 8px;
+            }
+
+            :global(.uui-accordion-title) {
+                color: var(--text-color);
+            }
+        }
+
+        :global(.uui-accordion-body) {
+            padding: 1px 12px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        &:global(.uui-opened) {
+            :global(.uui-accordion-toggler) {
+                border-bottom: unset;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            :global(.uui-accordion-toggler) {
+                cursor: default;
+                border-color: var(--border-color-disabled);
+                fill: var(--icon-color-disabled);
+                border-bottom: unset;
+
+                :global(.uui-accordion-title) {
+                    color: var(--text-color-disabled);
+                }
+            }
+        }
+    }
+}

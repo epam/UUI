@@ -1,0 +1,140 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    // DatePickerBase style
+    :global(.uui-datepicker-container) {
+        background-color: $white;
+    }
+
+    // Header styles
+    :global(.uui-datepickerheader-header) {
+        padding-top: 18px;
+        padding-bottom: 6px;
+    }
+
+    :global(.uui-datepickerBody-wrapper) {
+        padding: 0 18px 12px;
+    }
+
+    :global(.uui-datepickerheader-nav-title) {
+        font-family: $font-sans-semibold;
+        color: $blue;
+        font-size: 14px;
+        padding: 3px 10px;
+
+        &:hover {
+            background-color: $blue-lightest;
+            cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    :global(.uui-datepickerheader-nav-icon-right), :global(.uui-datepickerheader-nav-icon-left) {
+        fill: $gray60;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $gray20;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    :global(.uui-datepickerheader-nav-icon-right) {
+        transform: rotate(-90deg);
+    }
+
+    :global(.uui-datepickerheader-nav-icon-left) {
+        transform: rotate(90deg);
+    }
+
+    // Month and Year selection styles
+    :global(.uui-monthselection-content), :global(.uui-yearselection-content) {
+        font-family: $font-sans;
+    }
+
+    :global(.uui-monthselection-month-container) {
+        margin: 0 0 12px;
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            display: flex;
+        }
+    }
+
+    :global(.uui-yearselection-year-container) {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 12px;
+
+        & > * {
+            display: flex;
+        }
+    }
+
+    :global(.uui-yearselection-year-row) {
+        display: flex;
+        justify-content: space-between;
+        width: 252px;
+    }
+
+    :global(.uui-monthselection-month) {
+        width: 72px;
+        height: 36px;
+        border-radius: 20px;
+        margin: 6px;
+        color: $gray80;
+
+        &:hover {
+            width: 70px;
+            height: 34px;
+            border: 1px solid $blue;
+            cursor: pointer;
+        }
+    }
+
+    :global(.uui-yearselection-year) {
+        width: 63px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        margin: 6px 0;
+        color: $gray80;
+
+        &:hover {
+            width: 61px;
+            height: 34px;
+            border: 1px solid $blue;
+            cursor: pointer;
+        }
+    }
+
+    :global(.uui-monthselection-current-month) {
+        &:global(.uui-monthselection-month) {
+            background-color: $blue;
+            color: $white;
+        }
+    }
+
+    :global(.uui-yearselection-current-year) {
+        &:global(.uui-yearselection-year) {
+            background-color: $blue;
+            color: $white;
+        }
+    }
+}
+
+.date-input {
+    width: 100%;
+}

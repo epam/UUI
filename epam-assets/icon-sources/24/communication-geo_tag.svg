@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/communication-geo_tag</title>
+    <g id="Icons/24/communication-geo_tag" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,2 C16.418278,2 20,5.581722 20,10 C20,14 17.3333333,18 12,22 C6.66666667,18 4,14 4,10 C4,5.581722 7.581722,2 12,2 Z M12,6 C9.790861,6 8,7.790861 8,10 C8,12.209139 9.790861,14 12,14 C14.209139,14 16,12.209139 16,10 C16,7.790861 14.209139,6 12,6 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

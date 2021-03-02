@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "target": "es5",
+    "declaration": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "jsx": "react",
+    "outDir": "./build/dist",
+    "rootDir": ".",
+    "lib": [
+      "dom",
+      "es6"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "built",
+    "build",
+    "infrastructure/tests",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "*/**/globals.d.ts"
+  ]
+}

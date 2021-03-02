@@ -1,0 +1,15 @@
+.slider {
+    position: relative;
+
+    .controls {
+        position: absolute;
+        display: flex;
+        right: 0;
+        top: -66px;
+
+        :global(.uui-icon) {
+            padding: 12px;
+        }
+    }
+}
+

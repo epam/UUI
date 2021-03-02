@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] = `
+<div
+  className="flexCell sortingPanelContainer"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "0",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root size-36 background-none spacing-6 container align-items-center"
+  >
+    <div
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#sort_asc-12.svg"
+          />
+        </svg>
+      </div>
+      <div
+        className="uui-caption line-height-30 font-size-14 v-padding--3"
+      >
+        Sort Ascending
+      </div>
+    </div>
+    <div
+      className="flexSpacer"
+    />
+    <div
+      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon sortActive"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#tick-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    className="root size-36 background-none spacing-6 container align-items-center"
+  >
+    <div
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#sort_desc-12.svg"
+          />
+        </svg>
+      </div>
+      <div
+        className="uui-caption line-height-30 font-size-14 v-padding--3"
+      >
+        Sort Descending
+      </div>
+    </div>
+    <div
+      className="flexSpacer"
+    />
+  </div>
+</div>
+`;
+
+exports[`ColumnPickerHeader should be rendered correctly with desc direction 1`] = `
+<div
+  className="flexCell sortingPanelContainer"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "0",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root size-36 background-none spacing-6 container align-items-center"
+  >
+    <div
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#sort_asc-12.svg"
+          />
+        </svg>
+      </div>
+      <div
+        className="uui-caption line-height-30 font-size-14 v-padding--3"
+      >
+        Sort Ascending
+      </div>
+    </div>
+    <div
+      className="flexSpacer"
+    />
+  </div>
+  <div
+    className="root size-36 background-none spacing-6 container align-items-center"
+  >
+    <div
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#sort_desc-12.svg"
+          />
+        </svg>
+      </div>
+      <div
+        className="uui-caption line-height-30 font-size-14 v-padding--3"
+      >
+        Sort Descending
+      </div>
+    </div>
+    <div
+      className="flexSpacer"
+    />
+    <div
+      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon sortActive"
+      href={null}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#tick-24.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

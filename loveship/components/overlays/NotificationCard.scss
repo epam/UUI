@@ -1,0 +1,91 @@
+@use '../../assets/styles/scss/index' as *;
+
+.notification-wrapper {
+    border-top: 6px solid var(--uui-color-700);
+    padding: 6px 18px;
+    width: 360px;
+    background: $white;
+    border-radius: 3px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 720px) {
+        width: 100%;
+    }
+}
+
+.icon-wrapper {
+    height: 100%;
+    padding: 6px 0;
+    margin-right: 12px;
+
+    :global(.uui-icon) {
+        fill: var(--uui-color-700);
+    }
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-link:not(:last-child) {
+    margin-right: 12px;
+}
+
+.close-icon {
+    height: 100%;
+    padding: 6px 0;
+    margin-left: 18px;
+}
+
+.main-path {
+    width: 100%;
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.clear-button {
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px;
+}
+
+.type-warning {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $sun;
+        }
+    }
+}
+
+.type-hint {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $sky;
+        }
+    }
+}
+
+.type-error {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $fire;
+        }
+    }
+}
+
+.type-success {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $grass;
+        }
+    }
+}

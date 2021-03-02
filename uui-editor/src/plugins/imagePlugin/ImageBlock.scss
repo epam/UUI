@@ -1,0 +1,90 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.container {
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    position: relative;
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+}
+
+.container-hover:hover {
+    border: 1px solid $blue;
+}
+
+.image-toolbar {
+    background-color: $gray80;
+    display: flex;
+}
+
+.image-toolbar-wrapper {
+    margin-bottom: 6px;
+}
+
+.all-width {
+    width: 100%;
+}
+
+.wrapper {
+    margin: 18px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: $blue;
+    visibility: hidden;
+}
+
+.container-wrapper:hover {
+    .dot {
+        visibility: visible;
+    }
+}
+
+.left-top-dot {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+}
+
+.right-top-dot {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}
+
+.left-bot-dot {
+    position: absolute;
+    bottom: -6px;
+    left: -6px;
+}
+
+.right-bot-dot {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+}
+
+.align-right {
+    align-items: flex-end;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-left {
+    align-items: flex-start;
+}
+
+.spinner {
+    padding: 12px 0;
+}

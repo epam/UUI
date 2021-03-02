@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion should be rendered correctly 1`] = `
+<div
+  className="container root mode-block"
+>
+  <div
+    className="uui-accordion-toggler"
+    onClick={[Function]}
+  >
+    <div
+      className="uui-accordion-toggle-container"
+    >
+      <div
+        className="uui-accordion-title"
+      >
+        test
+      </div>
+      <div
+        className="spacer"
+      />
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#folding-arrow-18.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Accordion should be rendered correctly with extra props 1`] = `
+<div
+  className="container root mode-inline"
+>
+  <div
+    className="uui-accordion-toggler"
+    onClick={[Function]}
+  >
+    <div
+      className="uui-accordion-toggle-container"
+    >
+      <div
+        className="uui-accordion-title"
+      >
+        test
+      </div>
+      <div
+        className="spacer"
+      />
+      <div
+        className="container uui-icon uui-enabled"
+      >
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#folding-arrow-18.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

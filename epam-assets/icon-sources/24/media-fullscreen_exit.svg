@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/media-fullscreen_exit</title>
+    <g id="Icons/24/media-fullscreen_exit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,14 L19,14 L19,16 L16,16 L16,19 L14,19 L14,14 L14,14 Z M5,14 L10,14 L10,19 L8,19 L8,16 L5,16 L5,14 L5,14 Z M8,5 L10,5 L10,10 L5,10 L5,8 L8,8 L8,5 L8,5 Z M19,8 L19,10 L14,10 L14,5 L16,5 L16,8 L19,8 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

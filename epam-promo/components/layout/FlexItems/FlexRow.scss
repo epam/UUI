@@ -1,0 +1,115 @@
+@use '../../../assets/styles/index.scss' as *;
+
+@mixin items-spacing($size) {
+    >*:not(:last-child) {
+        margin-right: $size / 2;
+    }
+
+    >*:not(:first-child) {
+        margin-left: $size / 2;
+    }
+}
+
+.root {
+    // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
+    box-sizing: content-box;
+
+    &:global(.-clickable):hover {
+        background-color: $gray5;
+        cursor: pointer;
+    }
+
+    &.top-shadow {
+        @include panel-top-shadow();
+    }
+
+    &.size-24 {
+        min-height: 24px;
+    }
+
+    &.size-36 {
+        min-height: 36px;
+    }
+
+    &.size-48 {
+        min-height: 48px;
+    }
+
+    &.padding-6 {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    &.padding-12 {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    &.padding-18 {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    &.padding-24 {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    &.margin-24 {
+        margin: 24px;
+    }
+
+    &.margin-12 {
+        margin: 12px;
+    }
+
+
+    &.vPadding-12 {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    &.vPadding-18 {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    &.vPadding-24 {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    &.vPadding-48 {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    &.spacing-6 {
+        @include items-spacing(6px);
+    }
+
+    &.spacing-12 {
+        @include items-spacing(12px);
+    }
+
+    &.spacing-18 {
+        @include items-spacing(18px);
+    }
+
+    &.background-white {
+        background-color: white;
+    }
+
+    &.background-gray5 {
+        background-color: $gray5;
+    }
+
+    &.background-none {
+        background-color: transparent;
+    }
+
+    &.border-bottom-gray40 {
+        border-bottom: 1px solid $gray40;
+    }
+}
+

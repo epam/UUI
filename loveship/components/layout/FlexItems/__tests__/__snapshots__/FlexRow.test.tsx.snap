@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexRow should be rendered correctly 1`] = `
+<div
+  className="root size-36 background-none spacing-6 container align-items-center"
+/>
+`;
+
+exports[`FlexRow should be rendered correctly with props 1`] = `
+<div
+  className="root size-24 background-night100 padding-18 vPadding-24 margin-24 topShadow border-bottom-night300 spacing-6 container align-items-bottom"
+/>
+`;

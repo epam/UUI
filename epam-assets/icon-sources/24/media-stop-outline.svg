@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/media-stop-outline</title>
+    <g id="Icons/24/media-stop-outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,2 C6.4771525,2 2,6.4771525 2,12 C2,14.6521649 3.0535684,17.195704 4.92893219,19.0710678 C6.80429597,20.9464316 9.3478351,22 12,22 C14.6521649,22 17.195704,20.9464316 19.0710678,19.0710678 C20.9464316,17.195704 22,14.6521649 22,12 C22,9.3478351 20.9464316,6.80429597 19.0710678,4.92893219 C17.195704,3.0535684 14.6521649,2 12,2 M12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 M9,9 L9,15 L15,15 L15,9" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box root size-36"
+>
+  <textarea
+    className="-clickable noAutoSize uui-input"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`TextArea should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box root size-36"
+>
+  <textarea
+    className="-clickable noAutoSize uui-input"
+    maxLength={200}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Type here"
+    rows={4}
+    value=""
+  />
+  <div
+    className="uui-textarea-counter"
+  >
+    0/200
+  </div>
+</div>
+`;

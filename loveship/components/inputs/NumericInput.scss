@@ -1,0 +1,86 @@
+@use '../../assets/styles/scss/index'  as *;
+@import 'TextInput';
+
+.root {
+    &:global(.uui-focus) {
+        @include control-focus-effect();
+        border-color: $sky;
+
+        &.mode-cell {
+            :global(.uui-numeric-input-button-group) {
+                & > :first-child:hover, & > :first-child:focus {
+                    box-shadow: inset 1px -1px 0 1px rgba(48, 182, 221, 0.4);
+                }
+
+                & > :last-child:hover, & > :last-child:focus {
+                    box-shadow: inset -1px -1px 0 1px rgba(48, 182, 221, 0.4);
+                }
+            }
+        }
+    }
+
+    &:global(.uui-input-box) {
+        padding-right: 0;
+        min-width: 40px;
+
+        :global(.uui-numeric-input-up-button) {
+            transform: rotate(180deg);
+        }
+
+        :global(.uui-numeric-input-button-group) {
+            & > *:hover, & > *:focus {
+                outline: none;
+                background-color: $night50;
+            }
+        }
+
+        :global(.uui-icon) svg {
+            margin-top: -2px;
+        }
+
+        &.size-24 {
+            :global(.uui-numeric-input-button-group) {
+                & > * {
+                    height: 11px;
+                }
+            }
+        }
+
+        &.size-30 {
+            :global(.uui-numeric-input-button-group) {
+                & > * {
+                    height: 14px;
+                }
+            }
+        }
+
+        &.size-36 {
+            :global(.uui-numeric-input-button-group) {
+                & > * {
+                    height: 17px;
+                }
+            }
+        }
+
+        &.size-48 {
+            :global(.uui-numeric-input-button-group) {
+                & > * {
+                    height: 23px;
+                }
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-numeric-input-button-group) {
+            & > *:hover, & > *:focus {
+                cursor: default;
+                background-color: transparent;
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+    }
+}

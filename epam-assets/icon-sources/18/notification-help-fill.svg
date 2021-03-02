@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/notification-help-fill</title>
+    <g id="Icons/18/notification-help-fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,1 C13.416,1 17,4.584 17,9 C17,13.416 13.416,17 9,17 C4.584,17 1,13.416 1,9 C1,4.584 4.584,1 9,1 Z M10,12 L10,14 L8,14 L8,12 L10,12 Z M9,4 C10.6568542,4 12,5.34314575 12,7 C12,7.96120391 11.5469904,8.86722321 10.7071068,9.70710678 C10.213657,10.2005565 10,10.6278706 10,11 L10,11 L8,11 C8,10.0387961 8.45300965,9.13277679 9.29289322,8.29289322 C9.78634298,7.79944345 10,7.37212942 10,7 C10,6.44771525 9.55228475,6 9,6 C8.44771525,6 8,6.44771525 8,7 L8,7 L6,7 C6,5.34314575 7.34314575,4 9,4 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

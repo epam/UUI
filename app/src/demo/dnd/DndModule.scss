@@ -1,0 +1,40 @@
+@use './mixins' as *;
+
+.drag-element {
+    position: relative;
+    margin: 1px 0;
+
+    @include cursor-style;
+
+    &:hover .drag-handle {
+        visibility: visible;
+    }
+
+    &:global(.uui-dragged-out) {
+        @include drag-out;
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include visibility;
+        box-shadow: 0 6px 18px 0 rgba(29,30,38,0.05), 0 3px 12px 0 rgba(29,30,38,0.05);
+    }
+
+    .module-icon {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        margin: auto;
+        border-radius: 50%;
+        box-sizing: border-box;
+
+        &.complete-icon {
+            background-color: #EEFFCC;
+        }
+
+        &.schedule-icon {
+            background-color: #F5F6FA;
+        }
+    }
+}
+
+@include drag-handle(5px, 9px, 9px, 125%);

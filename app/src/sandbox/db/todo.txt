@@ -1,0 +1,47 @@
+Layout and scrolling
+[x] Lazy rows rendering (virtual scrolling)
+    [x] Supporting arbitrary row-heights
+[x] Horizontal scrolling
+    [x] Fixed columns
+
+Editing
+[ ] Most input types supports mode='cell', to behave like editable cell
+    [x] TextInput
+    [ ] DatePicker
+    [ ] PickerInput
+    [x] TextArea
+
+Performance
+[ ] DB Indexes
+    [x] Fast lookup by PK. E.g. for dictionary fields: Person.locationId would result db.locations.byId(person.locationID) for each row. Need O(log(N)) here.
+    [ ] Fast lookup for many-to-many relations.
+
+Filtering
+[ ] All common filter types
+    [x] MultiPicker for a single dictionary lookup (filter by person.departmentId)
+        [ ] handle null-value in facet filters
+    [ ] MultiPicker for a many-to-many relation
+    [ ] DateRange filter
+    [ ] Search
+[ ] Extracting facets from data
+
+Data Handling and Lazy Loading
+[ ] Db - support lazy loading
+[ ] Flat list lazy Loading
+[ ] Hierarchical layer-by-layer loading (load all roots, load all children on unfolding)
+    [ ] recursively
+[ ] Hierarchical lazy loading (load top N roots, load top N children of unfolded roots)
+    [ ] recursively
+
+Customization
+[ ] ColumnConfigDialog - configure visible columns and reorder them
+[ ] Column reordering and resizing
+
+Demo features
+[ ] Huge data set
+[ ] Many-to-many example
+[ ] Extract helpers to make them re-usable
+[ ] Toolbar
+    [ ] Search
+[ ] Footer
+    [ ] Filterer/Unfiltered counts

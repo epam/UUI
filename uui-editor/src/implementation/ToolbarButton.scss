@@ -1,0 +1,104 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+@use '~@epam/assets/scss/promo/fonts' as *;
+
+.toolbar-button {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    min-width: 42px;
+    color: $gray30;
+    fill: $gray30;
+    outline: none;
+
+    &:global(.uui-button-box) {
+        border-radius: 0;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: 42px !important;
+            max-width: 42px !important;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        fill: $gray60;
+        color: $gray60;
+    }
+
+    :global(.uui-caption) {
+        padding: 0 12px;
+        align-self: center;
+        font-family: $font-sans-semibold;
+        font-size: 14px;
+    }
+}
+
+.color-red {
+    :global(.uui-icon) {
+        fill: $red;
+    }
+}
+
+.color-green {
+    :global(.uui-icon) {
+        fill: $green;
+    }
+}
+
+.color-amber {
+    :global(.uui-icon) {
+        fill: $amber;
+    }
+}
+
+.color-blue {
+    :global(.uui-icon) {
+        fill: $blue;
+    }
+}
+
+.color-gray60 {
+    :global(.uui-icon) {
+        fill: $gray60;
+    }
+}
+
+.gray80 {
+    background-color: $gray80;
+
+    &:not(&:global(.uui-disabled)) {
+        &:hover {
+            background-color: darken($gray80, 5%);
+        }
+
+        &:active {
+            background-color: darken($gray80, 10%);
+        }
+    }
+
+}
+
+.gray90 {
+    background-color: $gray90;
+
+    &:not(&:global(.uui-disabled)) {
+        &:hover {
+            background-color: darken($gray90, 5%);
+        }
+
+        &:active {
+            background-color: darken($gray90, 10%);
+        }
+    }
+}
+
+.target-button {
+    position: relative;
+}
+
+.sub-button {
+    position: absolute;
+    display: flex;
+    top: -42px;
+    background: $gray80;
+}

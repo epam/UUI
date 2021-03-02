@@ -1,0 +1,85 @@
+@use  '../../assets/styles/index' as *;
+
+@mixin tab-button-color($color, $activeColor, $backgroundColor) {
+    color: $color;
+    fill: $color;
+    background-color: $backgroundColor;
+
+    &:hover {
+        color: $activeColor;
+        fill: $activeColor;
+    }
+
+    &:global(.uui-active) {
+        color: $activeColor;
+        fill: $activeColor;
+        border-color: $activeColor;
+    }
+}
+
+$text-size-caption: 36px;
+$text-size-count: 24px;
+
+.root {
+    @include button-reset();
+    @include link-button-horizontal-layout(36px);
+    @include tab-button-color(var(--text-color), var(--text-color-active), transparent);
+    cursor: pointer;
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    bottom: -1px;
+    display: flex;
+    align-items: center;
+    font-family: $font-sans-semibold;
+    font-weight: normal;
+    border-bottom: 3px solid transparent;
+
+    &:global(.uui-disabled) {
+        @include tab-button-color(var(--text-color-disabled), var(--text-color-disabled), transparent);
+    }
+
+    // &:focus {
+    //     .control-focus-effect();
+    // }
+
+    &.uui-notification {
+        &::after {
+            content: '';
+            margin-bottom: $text-size-caption / 2;
+            height: 6px;
+            width: 6px;
+            background: $red;
+            box-shadow: 0 1px 8px 0 $red;
+            border-radius: 50%;
+        }
+    }
+
+    :global(.uui-count) {
+        @include text-size($text-size-count, 0);
+        letter-spacing: 0;
+        color: $gray60;
+        background-color: $gray30;
+        padding: 0 6px;
+        margin-left: 6px;
+        margin-right: 3px;
+        border-radius: 9px;
+    }
+
+    :global(.uui-caption) {
+        @include text-size($text-size-caption, 0);
+    }
+
+    // Sizes
+    &.size-36 {
+        height: 36px;
+    }
+
+    &.size-48 {
+        height: 48px;
+    }
+
+    &.size-60 {
+        height: 60px;
+    }
+}

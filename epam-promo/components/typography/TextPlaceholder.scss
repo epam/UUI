@@ -1,0 +1,25 @@
+@use  '../../assets/styles/index' as *;
+@import '../../assets/styles/colorvars/typography/textPlaceholder-colorvars';
+
+@keyframes skeleton_loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: 0 0; }
+}
+
+.loading-word {
+    user-select: none;
+    font-family: $font-redacted;
+    letter-spacing: -1px;
+    word-spacing: 6px;
+    color: var(--color);
+    vertical-align: 1px; // to fix vertical over-sizing of line
+
+    &.animated-loading {
+        color: transparent;
+        background: linear-gradient(to right, var(--background-color) 0%, var(--background-color-gradient) 50%, var(--background-color) 100%) repeat;
+        background-size: 200% 100%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        animation: skeleton_loading 1s ease infinite;
+    }
+}

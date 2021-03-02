@@ -1,0 +1,37 @@
+@use  '../../../assets/styles/index' as *;;
+
+.root {
+    overflow: hidden;
+
+    &.background-white {
+        background-color: white;
+    }
+
+    &.background-gray90 {
+        background-color: $gray90;
+    }
+
+    &.background-none {
+        background-color: transparent;
+    }
+
+    &.margin-24 {
+        margin: 24px;
+    }
+
+    &.padding-12 {
+        padding: 12px;
+    }
+
+    &.padding-24 {
+        padding: 24px;
+    }
+
+    &.shadow {
+        @include panel-shadow();
+    }
+
+    &:global(.-clickable):hover {
+        cursor: pointer;
+    }
+}

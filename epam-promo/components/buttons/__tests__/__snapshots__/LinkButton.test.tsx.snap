@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkButton should be rendered correctly 1`] = `
+<div
+  className="container uui-button-box uui-enabled root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+/>
+`;
+
+exports[`LinkButton should be rendered correctly with props 1`] = `
+<div
+  className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-has-left-icon uui-has-right-icon"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#calendar-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#folding-arrow-18.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable -clickable"
+    onClick={[Function]}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-18.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;

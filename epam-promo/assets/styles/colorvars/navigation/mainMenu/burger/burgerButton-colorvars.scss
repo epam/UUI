@@ -1,0 +1,9 @@
+@use  '../../../../colors' as *;
+
+@mixin burger-button-color() {
+    --color: white;
+    --fill: white;
+    --color-hover: #{$blue};
+    --fill-hover: #{$blue};
+    --color-active: #{$blue};
+}

@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel should be rendered correctly 1`] = `
+<div
+  className="container uui-carousel-container root color-sky container"
+>
+  <div
+    className="container align-items-center"
+  >
+    <div
+      className="uui-carousel-bar"
+    >
+      <div
+        className="uui-carousel-bar-item uui-active"
+        onClick={[Function]}
+      />
+      <div
+        className="uui-carousel-bar-item"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="container align-items-center"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-24.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="uui-carousel-items-container"
+    >
+      <div
+        className="uui-carousel-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "0",
+            "flexGrow": 1,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          data-test={
+            Object {
+              "test1": 1,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-carousel-right-arrow"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-24.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Carousel should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-carousel-container root color-sun container"
+>
+  <div
+    className="container align-items-center"
+  >
+    <div
+      className="uui-carousel-bar"
+    >
+      <div
+        className="uui-carousel-bar-item uui-active"
+        onClick={[Function]}
+      />
+      <div
+        className="uui-carousel-bar-item"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <div
+    className="container align-items-center"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-24.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="uui-carousel-items-container"
+    >
+      <div
+        className="uui-carousel-item"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "0",
+            "flexGrow": 1,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div
+          data-test={
+            Object {
+              "test1": 1,
+            }
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-carousel-right-arrow"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-24.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

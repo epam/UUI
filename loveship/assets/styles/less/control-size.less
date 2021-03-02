@@ -1,0 +1,43 @@
+.control-size(@size, @borderWidth) {
+    & when (@size = 18) {
+        min-width: 18px;
+        padding-left: 3px - @borderWidth;
+        padding-right: 3px - @borderWidth;
+    }
+
+    & when (@size = 24) {
+        min-width: 24px;
+        padding-left: 4px - @borderWidth;
+        padding-right: 4px - @borderWidth;
+    }
+
+    & when (@size = 30) {
+        min-width: 30px;
+        padding-left: 5px - @borderWidth;
+        padding-right: 5px - @borderWidth;
+    }
+
+    & when (@size = 36) {
+        min-width: 36px;
+        padding-left: 6px - @borderWidth;
+        padding-right: 6px - @borderWidth;
+    }
+
+    & when (@size = 42) {
+        min-width: 42px;
+        padding-left: 7px - @borderWidth;
+        padding-right: 7px - @borderWidth;
+    }
+
+    & when (@size = 48) {
+        min-width: 48px;
+        padding-left: 8px - @borderWidth;
+        padding-right: 8px - @borderWidth;
+    }
+
+    & when (@size = 60) {
+        min-width: 60px;
+        padding-left: 10px - @borderWidth;
+        padding-right: 10px - @borderWidth;
+    }
+}

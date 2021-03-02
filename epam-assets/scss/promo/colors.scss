@@ -1,0 +1,71 @@
+/* Main Colors */
+$white: #FFFFFF;
+
+$blue: #008ACE;
+$blue-dark: darken($blue, 5%);
+$blue-darkest: darken($blue, 10%);
+$blue-light: lighten($blue, 45%);
+$blue-lightest: lighten($blue, 50%);
+
+$green: #88CC00;
+$green-dark: darken($green, 5%);
+$green-darkest: darken($green, 10%);
+$green-light: lighten($green, 45%);
+$green-lightest: lighten($green, 50%);
+
+$amber: #FFC000;
+$amber-dark: darken($amber, 5%);
+$amber-darkest: darken($amber, 10%);
+$amber-light: lighten($amber, 35%);
+$amber-lightest: lighten($amber, 40%);
+
+$red: #E54322;
+$red-dark: darken($red, 5%);
+$red-darkest: darken($red, 10%);
+$red-light: lighten($red, 35%);
+$red-lightest: lighten($red, 40%);
+
+$cyan: #14CCCC;
+$cyan-dark: darken($cyan, 10%);
+$cyan-darkest: darken($cyan, 20%);
+$cyan-light: lighten($cyan, 40%);
+$cyan-lightest: lighten($cyan, 50%);
+
+$orange: #E67E17;
+$orange-dark: #89370E;
+$orange-darkest: #72250B;
+$orange-light: lighten($orange, 30%);
+$orange-lightest: lighten($orange, 40%);
+
+$purple: #AD14CC;
+$purple-dark: darken($purple, 10%);
+$purple-darkest: darken($purple, 20%);
+$purple-light: lighten($purple, 35%);
+$purple-lightest: lighten($purple, 45%);
+
+$violet: #5214CC;
+$violet-dark: darken($violet, 10%);
+$violet-darkest: darken($violet, 20%);
+$violet-light: lighten($violet, 35%);
+$violet-lightest: lighten($violet, 45%);
+
+/* Gray */
+$gray5: #FAFAFC;
+$gray10: #F5F6FA;
+$gray20: #EBEDF5;
+$gray30: #E1E3EB;
+$gray40: #CED0DB;
+$gray50: #ACAFBF;
+$gray60: #6C6F80;
+$gray70: #474A59;
+$gray80: #303240;
+$gray90: #1D1E26;
+
+$epam-basic-color-names: ('blue' $blue, 'blue-dark' $blue-dark, 'blue-darkest' $blue-darkest, 'blue-light' $blue-light, 'blue-lightest' $blue-lightest,
+'green' $green, 'green-dark' $green-dark, 'green-darkest' $green-darkest, 'green-light' $green-light, 'green-lightest' $green-lightest,
+'amber' $amber, 'amber-dark' $amber-dark, 'amber-darkest' $amber-darkest, 'amber-light' $amber-light, 'amber-lightest' $amber-lightest,
+'red' $red, 'red-dark' $red-dark, 'red-darkest' $red-darkest, 'red-light' $red-light, 'red-lightest' $red-lightest);
+
+$epam-grayscale-color-names: ('gray5' $gray5, 'gray10' $gray10, 'gray20' $gray20, 'gray30' $gray30, 'gray40' $gray40,
+'gray50' $gray50, 'gray60' $gray60, 'gray70' $gray70, 'gray80' $gray80, 'gray90' $gray90);
+

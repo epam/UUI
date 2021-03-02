@@ -1,0 +1,373 @@
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    $vpadding: ($line-height - $size) / 2;
+
+    :global(.uui-checkbox) {
+        width: $size;
+        height: $size;
+        margin: $vpadding 0;
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: $size;
+        }
+    }
+}
+
+.splitterRoot {
+    .splitter {
+        width: 100%;
+        height: 1px;
+        margin: 7px 0;
+        border: 0;
+    }
+}
+
+.headerRoot {
+    display: flex;
+    margin-bottom: 7px;
+
+    .title {
+        flex-grow: 1;
+        padding: 7px 36px 7px 0;
+        text-align: left;
+        border-bottom: 1px solid;
+    }
+}
+
+.bodyRoot {
+    @include icon-layout(24px);
+    @include panel-shadow();
+    font-family: $font-sans;
+    font-size: 14px;
+    padding-bottom: 5px;
+    border-radius: $panel-border-radius;
+
+    &.color-white {
+        background-color: $white;
+        fill: $night500;
+        color: $night600;
+
+        .title {
+            color: $night500;
+            border-bottom-color: $night300;
+        }
+
+        .splitter {
+            background-color: $night300;
+        }
+
+        :global(.uui-input) {
+            color: inherit;
+
+            &::placeholder {
+                color: $night300;
+            }
+        }
+
+        .checkboxRoot {
+            &:hover, &:focus {
+                color: $sky;
+
+                :global(.uui-checkbox) {
+                    border-color: $sky;
+                }
+            }
+
+            :global(.uui-checkbox) {
+                background-color: white;
+                fill: $sky;
+            }
+        }
+
+        :global(.uui-button-box) {
+            &:global(.-clickable) {
+                &:hover, &:focus {
+                    color: $sky;
+                    fill: $sky;
+                }
+
+                &:global(.uui-disabled) {
+                    color: $night500;
+                    fill: $night500;
+
+                    &:hover, &:focus {
+                        cursor: default;
+                    }
+                }
+            }
+        }
+    }
+
+    &.color-night {
+        background-color: $night800;
+        fill: $night300;
+        color: $night300;
+
+        .title {
+            border-bottom-color: $night300;
+        }
+
+        .splitter {
+            background-color: $night300;
+        }
+
+        :global(.uui-input) {
+            color: inherit;
+
+            &::placeholder {
+                color: $night500;
+            }
+        }
+
+        .buttonRoot {
+            @include button-reset();
+            color: $night300;
+            fill: $night300;
+        }
+
+        .checkboxRoot {
+            &:hover, &:focus {
+                color: $white;
+
+                :global(.uui-checkbox) {
+                    border-color: $white;
+                }
+            }
+
+            :global(.uui-checkbox) {
+                background-color: $night800;
+            }
+        }
+
+        :global(.uui-button-box) {
+            &:global(.-clickable) {
+                &:hover, &:focus {
+                    color: $white;
+                    fill: $white;
+                }
+
+                &:global(.uui-disabled) {
+                    color: $night500;
+                    fill: $night500;
+
+                    &:hover, &:focus {
+                        cursor: default;
+                    }
+                }
+            }
+        }
+    }
+
+    :global(.uui-icon) {
+        padding: 0 10px;
+    }
+}
+
+.buttonRoot {
+    @include button-reset();
+    color: $night600;
+    fill: $night500;
+
+    &:global(.uui-button-box) {
+        :global(.uui-caption) {
+            padding: 7px 36px 7px 0;
+            text-align: left;
+        }
+
+        :global(.uui-icon) {
+            width: 36px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &:global(.uui-active) {
+            color: $sky;
+        }
+    }
+}
+
+
+.no-icon {
+    margin-left: 36px;
+}
+
+.in-main-menu {
+    min-width: 200px;
+    padding-bottom: 0;
+
+    :global(.uui-button-box) {
+        @include control-vertical-layout(48px, 0);
+        background-color: $night900;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            line-height: 24px;
+            font-size: 16px;
+            font-family: $font-sans-semibold;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+
+        &:hover {
+            background-color: $sky;
+        }
+    }
+}
+
+.checkboxRoot {
+    @include icon-sizes(12px, 14px, 14px);
+
+    :global(.uui-checkbox) {
+        border: 1px solid $night300;
+        align-self: baseline;
+        margin: 9px 12px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+
+        :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
+            @include disabled-input();
+            fill: white;
+        }
+
+        :global(.uui-input-label) {
+            color: $night300;
+        }
+    }
+
+    &:global(.uui-invalid) {
+        :global(.uui-checkbox) {
+            border-color: $fire;
+            fill: $fire;
+
+            &:hover, &:active {
+                border-color: darken($fire, 10%);
+                fill: darken($fire, 10%);
+            }
+
+            :local(.fill-solid):global(.uui-checked) {
+                fill: white;
+                background-color: $fire;
+                border-color: $fire;
+
+                &:hover, &:active {
+                    background-color: darken($fire, 10%);
+                    border-color: darken($fire, 10%);
+                }
+            }
+        }
+
+        :global(.uui-input-label) {
+            color: $fire;
+        }
+    }
+}
+
+.searchRoot {
+    @include icon-layout(24px);
+    width: 100%;
+    display: flex;
+    padding-bottom: 5px;
+
+    &:hover {
+        border-color: $night500;
+    }
+
+    :global(.uui-input-box) {
+        :global(.uui-input) {
+            font-family: $font-sans;
+            font-size: 14px;
+            border-bottom: 1px solid $night300;
+            padding-left: 12px;
+        }
+
+        :global(.uui-icon) {
+            padding: 7px;
+            border-bottom: 1px solid $night300;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+        fill: $night500;
+
+        :global(.uui-input) {
+            &::placeholder {
+                color: $night500;
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        border-color: $fire;
+    }
+
+    &:global(.uui-active) {
+        border-color: $night300;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $night500;
+    }
+
+    // Icons
+    :global(.uui-icon-accept) {
+        cursor: pointer;
+
+        &:global(.uui-enabled) {
+            fill: $grass;
+
+            &:hover {
+                fill: darken($grass, 10%);
+            }
+        }
+
+        &:global(.uui-disabled) {
+            fill: $night300;
+            cursor: default;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        cursor: pointer;
+
+        &:global(.uui-enabled) {
+            fill: $night600;
+
+            &:hover {
+                fill: $fire;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            fill: $night300;
+            cursor: default;
+        }
+    }
+
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        :global(.uui-input) {
+            cursor: pointer;
+        }
+    }
+}

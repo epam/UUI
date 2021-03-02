@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192px" height="192px" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Other/logo/colored/level up</title>
+    <defs>
+        <linearGradient x1="23.5906059%" y1="78.506335%" x2="79.3721548%" y2="20.4925384%" id="linearGradient-1">
+            <stop stop-color="#467EC0" offset="0%"></stop>
+            <stop stop-color="#1B9AD2" offset="49.1568917%"></stop>
+            <stop stop-color="#41C3DE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Other/logo/colored/level-up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="area" opacity="0" x="0" y="0" width="192" height="192"></rect>
+        <path d="M86.985,128 L69.348,128 L82.848,104.617 L96.348,81.234 L109.848,104.617 L123.348,128 L103.716,128 C107.134,155.781 134.377,163.28 154.259,165 L175.348,165 L135.511,96 L95.674,27 L55.837,96 L16,165 L16.348,165 L37.144,165 C56.751,163.28 83.615,155.781 86.985,128" id="Logo" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

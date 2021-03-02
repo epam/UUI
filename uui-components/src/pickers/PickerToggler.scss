@@ -1,0 +1,47 @@
+.container {
+    &:global(.uui-input-box) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        outline: none;
+    }
+
+    :global(.uui-input) {
+        flex: 1 0 auto;
+        min-width: 0;
+        border: 0;
+        outline: none;
+        background: none;
+
+        &.single-input {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+.body {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    outline: none;
+    align-items: center;
+
+    &.multiline {
+        flex-wrap: wrap;
+    }
+}
+
+.actions {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.toggler {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.hidden {
+    visibility: hidden;
+}

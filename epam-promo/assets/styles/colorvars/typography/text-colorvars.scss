@@ -1,0 +1,17 @@
+@use  '../../colors' as *;
+
+.text-color-gray90 {
+    --color: #{$gray90};
+}
+
+.text-color-gray80 {
+    --color: #{$gray80};
+}
+
+.text-color-gray60 {
+    --color: #{$gray60};
+}
+
+.text-color-gray5 {
+    --color: #{$gray5};
+}

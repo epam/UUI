@@ -1,0 +1,35 @@
+@use '../../assets/styles/colors.scss' as *;
+
+.root {
+    .recommendedText {
+        text-align: center;
+    }
+
+    .infoTable {
+        margin-top: 12px;
+        border: 1px solid $gray40;
+        text-align: center;
+        background: white;
+    }
+
+    .height18 {
+        min-height: 18px;
+    }
+
+    .height24 {
+        min-height: 24px;
+    }
+
+    .leftCell {
+        border-right: 1px solid $gray40;
+    }
+
+    .borderBottom {
+        border-bottom: 1px solid $gray40;
+    }
+
+    .activeV,
+    .activeH {
+        background: #577ce633;
+    }
+}

@@ -1,0 +1,64 @@
+.button-layout(@size, @borderWidth) {
+    .button-horizontal-layout(@size, @borderWidth);
+    .button-vertical-layout(@size, @borderWidth);
+}
+
+.link-button-layout(@size) {
+    .link-button-horizontal-layout();
+    .button-vertical-layout(@size, 0);
+}
+
+.button-vertical-layout(@size, @borderWidth) {
+    &:global(.uui-button-box) {
+        min-height: @size;
+        border-width: @borderWidth;
+    }
+}
+
+.button-horizontal-layout(@size, @borderWidth) {
+    min-width: @size;
+
+    & when (@size = 18) {
+        .button-padding(3px, 3px, @borderWidth);
+    }
+
+    & when (@size = 24) {
+        .button-padding(6px, 6px, @borderWidth);
+    }
+
+    & when (@size = 30) {
+        .button-padding(6px, 6px, @borderWidth);
+    }
+
+    & when (@size = 36) {
+        .button-padding(6px, 6px, @borderWidth);
+    }
+
+    & when (@size = 42) {
+        .button-padding(12px, 6px, @borderWidth);
+    }
+
+    & when (@size = 48) {
+        .button-padding(12px, 6px, @borderWidth);
+    }
+}
+
+.button-padding(@controlPadding, @captionPadding, @borderWidth) {
+    padding-left: @controlPadding - @borderWidth;
+    padding-right: @controlPadding - @borderWidth;
+
+    :global(.uui-caption) {
+        padding-left: @captionPadding;
+        padding-right: @captionPadding;
+    }
+}
+
+.link-button-horizontal-layout() {
+    &:global(.uui-has-left-icon) :global(.uui-caption) {
+        padding-left: 6px;
+    }
+
+    &:global(.uui-has-right-icon) :global(.uui-caption) {
+        padding-right: 6px;
+    }
+}

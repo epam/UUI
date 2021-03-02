@@ -1,0 +1,369 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimePickerBody should be rendered correctly 1`] = `
+<div
+  className="uui-timepicker-container root"
+>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        max={12}
+        min={0}
+        onChange={[Function]}
+        placeholder="0"
+        step={1}
+        type="number"
+        value=""
+      />
+      <div
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        max={59}
+        min={0}
+        onChange={[Function]}
+        placeholder="0"
+        step={1}
+        type="number"
+        value=""
+      />
+      <div
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-readonly uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        readOnly={true}
+        type="text"
+        value="Invalid date"
+      />
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePickerBody should be rendered correctly 2`] = `
+<div
+  className="uui-timepicker-container root"
+>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        max={12}
+        min={1}
+        onChange={[Function]}
+        placeholder="0"
+        step={1}
+        type="number"
+        value=""
+      />
+      <div
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        max={59}
+        min={0}
+        onChange={[Function]}
+        placeholder="0"
+        step={1}
+        type="number"
+        value=""
+      />
+      <div
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="uui-timepicker-item"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box uui-readonly uui-timepicker-input"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        readOnly={true}
+        type="text"
+        value="Invalid date"
+      />
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPickerBody should be rendered correctly 1`] = `
+<div
+  className="root size-36 background-white spacing-6 body container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div
+      className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+    >
+      No Results found
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
+<div
+  className="root size-36 background-white spacing-6 body container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div
+    className=""
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div
+      className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+    >
+      No Results found
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataPickerBody should be rendered correctly with extra props 1`] = `
+Array [
+  <div
+    className="searchWrapper search-size-24"
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": 1,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="container uui-input-box -clickable colorSky root size-24 mode-form search"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#search-12.svg"
+            />
+          </svg>
+        </div>
+        <input
+          className="uui-input line-height-18 font-size-12 v-padding-2"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className="root size-36 background-white spacing-6 body container align-items-center"
+    style={
+      Object {
+        "maxHeight": 200,
+      }
+    }
+  >
+    <div>
+      Not found
+    </div>
+  </div>,
+]
+`;

@@ -1,0 +1,47 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    height: calc(100vh - 121px);
+
+    .counter {
+        &:global(.uui-button-box) {
+            background: transparent;
+
+            :global(.uui-count) {
+                background: $gray30;
+                font-family: $font-sans;
+            }
+        }
+    }
+
+    .status {
+        &:global(.uui-button-box) {
+            padding-left: 0;
+
+            :global(.uui-caption) {
+                font-family: $font-sans;
+            }
+        }
+    }
+
+    :global(.uui-table-row) {
+        .detailed-icon {
+            visibility: hidden;
+        }
+
+        &:hover {
+            .detailed-icon {
+                visibility: visible;
+            }
+        }
+    }
+
+    .manager-cell {
+        font-family: $font-sans;
+    }
+}
+

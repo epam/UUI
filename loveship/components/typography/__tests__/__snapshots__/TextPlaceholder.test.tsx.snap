@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextPlaceholder should be rendered correctly 1`] = `
+<span
+  className="loadingWord color-night100 animatedLoading"
+>
+  0000000000000
+</span>
+`;
+
+exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
+<span
+  className="loadingWord color-sun"
+>
+  0000000000000 0000000000000 0000000000000 0000000000000 0000000000000 0000000000000 0000000000000 0000000000000 0000000000000 0000000000000
+</span>
+`;

@@ -1,0 +1,12 @@
+@use  '../../colors' as *;
+
+.accordion-colors {
+    --background-color: white;
+    --border-color: #{$gray40};
+    --border-color-hovered: #{$gray60};
+    --border-color-disabled: #{$gray30};
+    --text-color: #{$gray80};
+    --text-color-disabled: #{$gray50};
+    --icon-color: #{$gray60};
+    --icon-color-disabled: #{$gray50};
+}

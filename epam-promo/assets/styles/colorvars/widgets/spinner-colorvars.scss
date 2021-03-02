@@ -1,0 +1,13 @@
+@use  '../../colors' as *;
+
+.spinner-color-blue {
+    --background-color: #{$blue};
+}
+
+.spinner-color-gray50 {
+    --background-color: #{$gray50};
+}
+
+.spinner-color-white {
+    --background-color: white;
+}

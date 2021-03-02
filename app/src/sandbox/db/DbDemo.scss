@@ -1,0 +1,8 @@
+@use '~@epam/assets/scss/index' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    height: calc(100vh - 60px);
+}

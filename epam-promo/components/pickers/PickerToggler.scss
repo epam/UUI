@@ -1,0 +1,151 @@
+@use  '../../assets/styles/index' as *;
+
+$shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
+
+@mixin picker-toggler-vertical-layout($size, $borderWidth) {
+    &:global(.uui-input-box) {
+        min-height: $size;
+        border-width: $borderWidth;
+    }
+
+    :global(.uui-input) {
+        @include text-size($size, 3px);
+    }
+
+    :not(:global(.uui-button-box)) > :global(.uui-icon) {
+        height: $size - 6px;
+        margin-bottom: 2px;
+    }
+}
+
+.root {
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    fill: $gray60;
+    box-sizing: border-box;
+    background-color: $white;
+    border-color: $gray40;
+    border-style: solid;
+
+    &:hover {
+        border-color: $gray60;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+        outline: none;
+    }
+
+    :global(.uui-input) {
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-bottom: 2px;
+        font-family: $font-sans;
+        color: $gray80;
+
+        &::placeholder {
+            color: $gray60;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        font-family: $font-sans;
+        align-self: center;
+        white-space: nowrap;
+    }
+
+    :global(.uui-button-box) {
+        margin-right: 3px;
+        margin-bottom: 2px;
+        background-color: $gray30;
+        color: $gray70;
+        fill: $gray70;
+        border-color: $gray30;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+
+    :global(.uui-placeholder) {
+        color: $gray80;
+    }
+
+    :global(.uui-placeholder)::placeholder {
+        color: $gray80;
+    }
+
+    :global(.uui-placeholder)::-moz-placeholder {
+        opacity: 1;
+    }
+
+    :global(.uui-icon-cancel) {
+        margin-left: 6px;
+    }
+
+    // Sizes
+    &.size-24 {
+        @include picker-toggler-vertical-layout(24px, 1px);
+        min-width: 24px;
+    }
+
+    &.size-30 {
+        @include picker-toggler-vertical-layout(30px, 1px);
+        min-width: 30px;
+    }
+
+    &.size-36 {
+        @include picker-toggler-vertical-layout(36px, 1px);
+        min-width: 36px;
+    }
+
+    &.size-42 {
+        @include picker-toggler-vertical-layout(42px, 1px);
+        min-width: 42px;
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+        fill: $gray50;
+
+        :global(.uui-input) {
+            cursor: default;
+
+            &::placeholder {
+                color: $gray60;
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+    }
+
+    &:global(.uui-invalid) {
+        border-color: $red;
+    }
+
+    :global(.uui-icon):global(.-clickable) {
+        cursor: pointer;
+
+        &:global(.uui-enabled) {
+            fill: $gray60;
+
+            &:hover {
+                fill: $gray70;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            fill: $gray50;
+            cursor: default;
+        }
+    }
+}

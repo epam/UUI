@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageButton should be rendered correctly 1`] = `
+<div
+  className="container uui-button-box uui-enabled button-color-blue root size-30 fill-light fill-light size-30"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-caption"
+  >
+    ...
+  </div>
+</div>
+`;
+
+exports[`PageButton should be rendered correctly with props 1`] = `
+<div
+  className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-white fill-white size-24"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-caption"
+  >
+    1
+  </div>
+</div>
+`;

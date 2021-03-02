@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/media-playlist-check</title>
+    <g id="Icons/24/media-playlist-check" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M15,11 L3,11 L3,13 L15,13 L15,11 L15,11 Z M15,7 L3,7 L3,9 L15,9 L15,7 L15,7 Z M3,17 L11,17 L11,15 L3,15 L3,17 L3,17 Z M22.5,12.5 L24,14 L17,21 L12.5,16.5 L14,15 L17,18 L22.5,12.5 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

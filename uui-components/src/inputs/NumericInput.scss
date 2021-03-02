@@ -1,0 +1,40 @@
+.container {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &:global(.uui-input-box) {
+        position: relative;
+        display: flex;
+        outline: none;
+
+        :global(.uui-input) {
+            -moz-appearance: textfield;
+            flex: 1 1 auto;
+            min-width: 0;
+            border: 0;
+            outline: none;
+            background: none;
+
+            &::-ms-clear {
+                display: none;
+            }
+
+            &:invalid {
+                box-shadow: none;
+            }
+        }
+
+        :global(.uui-numeric-input-up-button), :global(.uui-numeric-input-down-button) {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}

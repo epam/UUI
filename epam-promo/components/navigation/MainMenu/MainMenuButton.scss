@@ -1,0 +1,55 @@
+@use  '../../../assets/styles/index' as *;
+@import '../../../assets/styles/colorvars/navigation/mainMenu/mainMenuButton-colorvars.scss';
+
+.root {
+    @include button-reset();
+    @include mainMenu-button-color();
+    flex-shrink: 0;
+    color: var(--color);
+    fill: var(--fill);
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-top: 22px;
+        padding-bottom: 22px;
+        line-height: 16px;
+        margin-bottom: -3px;
+        font-family: $font-sans-semibold;
+    }
+
+    &:global(.uui-button-box), &:global(.uui-input-box) {
+        min-height: 60px;
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+        font-size: 16px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: 18px;
+        }
+    }
+
+    &.type-primary {
+        @include icon-layout(36px);
+    }
+
+    &.type-secondary {
+        @include icon-layout(36px);
+    }
+
+    &:hover, &:focus {
+        background-color: black;
+        color: var(--color-hover);
+        fill: var(--fill-hover);
+    }
+
+    &:global(.uui-active) {
+        border-bottom: 3px solid var(--border-color-active);
+        color: var(--color-active);
+        fill: var(--fill-active);
+    }
+}

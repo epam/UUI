@@ -1,0 +1,53 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+
+.wrapper {
+    border: 1px solid;
+    border-left: 6px solid;
+    position: relative;
+    margin: 24px 0;
+    padding: 18px 24px;
+    background: fade-out($amber, 0.8);
+}
+
+.error {
+    background: fade-out($red, 0.8);
+    border-color: $red;
+}
+
+.warning {
+    background: fade-out($amber, 0.8);
+    border-color: $amber;
+}
+
+.link {
+    background: fade-out($blue, 0.8);
+    border-color: $blue;
+}
+
+.quote {
+    background: fade-out($gray60, 0.8);
+    border-color: $gray60;
+}
+
+.icon {
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    margin-left: -15px;
+    top: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-radius: 50px;
+    background: white;
+
+    svg {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.info-color {
+    fill: $amber;
+}

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenuAvatar should be rendered correctly 1`] = `
+<div
+  className="container"
+>
+  <img
+    className="avatar photo"
+    height="36"
+    src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
+    width="36"
+  />
+</div>
+`;
+
+exports[`MainMenuAvatar should be rendered correctly 2`] = `
+<div
+  className="container dropdown"
+>
+  <img
+    className="avatar photo"
+    height="36"
+    src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
+    width="36"
+  />
+  <div
+    className="dropdownIcon"
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#folding-arrow-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

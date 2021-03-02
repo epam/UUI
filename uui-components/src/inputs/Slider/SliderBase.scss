@@ -1,0 +1,38 @@
+.root {
+    &:global(.uui-slider-container) {
+        display: flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        padding: 12px 0;
+        cursor: pointer;
+
+        :global(.uui-slider-handle) {
+            position: absolute;
+            left: 0;
+        }
+
+        :global(.uui-slider) {
+            pointer-events: none;
+        }
+
+        :global(.uui-slider-filled) {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        :global(.uui-slider-scale) {
+            position: absolute;
+        }
+
+        :global(.uui-slider-scale-number) {
+            position: absolute;
+        }
+
+        :global(.uui-slider-scale-dot) {
+            position: absolute;
+        }
+    }
+}
+
+

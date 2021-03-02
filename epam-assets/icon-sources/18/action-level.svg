@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/action-level</title>
+    <g id="Icons/18/action-level" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="icon" fill="#45FF00" x="14" y="2" width="2" height="14"></rect>
+        <rect id="icon" fill="#45FF00" x="11" y="5" width="2" height="11"></rect>
+        <rect id="icon" fill="#45FF00" x="8" y="8" width="2" height="8"></rect>
+        <rect id="icon" fill="#45FF00" x="5" y="11" width="2" height="5"></rect>
+        <rect id="icon" fill="#45FF00" x="2" y="14" width="2" height="2"></rect>
+    </g>
+</svg>

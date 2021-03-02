@@ -1,0 +1,70 @@
+{
+  "name": "@epam/uui-db",
+  "version": "3.48.0-beta.1",
+  "description": "UUI - client-side relational state cache",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "perf": "npx ts-node -T ./src/__benchmarks__/index.ts",
+    "perf-prof": "node -r ts-node/register/transpile-only --prof ./src/__benchmarks__/index.ts",
+    "publish": "npm publish ./build --access public"
+  },
+  "dependencies": {
+    "@epam/uui": "3.48.0-beta.1",
+    "@types/lodash.countby": "4.6.6",
+    "@types/lodash.filter": "4.6.6",
+    "@types/lodash.foreach": "4.5.6",
+    "@types/lodash.groupby": "4.6.6",
+    "@types/lodash.isempty": "4.4.6",
+    "@types/lodash.isequal": "4.5.5",
+    "@types/lodash.map": "4.6.13",
+    "@types/lodash.merge": "4.6.6",
+    "@types/lodash.orderby": "4.6.6",
+    "@types/lodash.pick": "4.4.6",
+    "@types/lodash.range": "3.2.6",
+    "@types/lodash.sortby": "4.7.6",
+    "@types/lodash.transform": "4.6.6",
+    "@types/lodash.zip": "4.2.6",
+    "@types/react": "16.4.14",
+    "@types/shallowequal": "^1.1.1",
+    "immutable": "3.8.2",
+    "lodash.countby": "4.6.0",
+    "lodash.filter": "4.6.0",
+    "lodash.foreach": "4.5.0",
+    "lodash.groupby": "4.6.0",
+    "lodash.isempty": "4.4.0",
+    "lodash.isequal": "4.5.0",
+    "lodash.map": "4.6.0",
+    "lodash.merge": "4.6.2",
+    "lodash.orderby": "4.6.0",
+    "lodash.pick": "4.4.0",
+    "lodash.range": "3.2.0",
+    "lodash.sortby": "4.7.0",
+    "lodash.transform": "4.6.0",
+    "lodash.zip": "4.2.0",
+    "shallowequal": "^1.1.0",
+    "sorted-btree": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^1.0.31",
+    "@types/jest": "^23.3.5",
+    "benny": "^3.6.14",
+    "ts-node": "^8.9.1"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "optionalDependencies": {
+    "@epam/uui-docs": "3.48.0-beta.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+}

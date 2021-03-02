@@ -1,0 +1,18 @@
+@use '~@epam/assets/scss/index' as *;
+
+.right-link {
+    margin-left: auto;
+    padding-left: 4px;
+}
+
+.icon {
+    margin-left: 4px;
+    fill: $sky;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+
+    &:hover {
+        fill: darken($sky, 10%);
+    }
+}

@@ -1,0 +1,68 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+
+.container {
+    margin: 24px 0;
+}
+
+.title-row {
+    width: fit-content;
+    width: -moz-fit-content;
+
+    .title {
+        font-family: $font-museo-sans;
+        color: $gray80;
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .anchor {
+        fill: transparent;
+    }
+
+    &:hover {
+        .anchor {
+            fill: $blue;
+        }
+    }
+}
+
+
+
+.preview-container {
+    background: $white;
+    border: 1px solid $gray40;
+    width: 960px;
+}
+
+.code {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 24px;
+    margin: 0;
+    border-top: 1px solid $gray40;
+    background-color: white;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: normal;
+    overflow: auto;
+
+    /* Highly opinionated - make comments stand out and more readable // YakovZh */
+    :global(.token):global(.comment) {
+        color: $gray40;
+        font-family: $font-sans;
+        font-size: 14px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 18px;
+            width: 12px;
+            background: white;
+            opacity: 0.7;
+        }
+    }
+}

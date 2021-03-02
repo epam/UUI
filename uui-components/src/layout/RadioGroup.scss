@@ -1,0 +1,6 @@
+.container {
+    &:global(.uui-horizontal-direction) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

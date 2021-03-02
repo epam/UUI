@@ -1,0 +1,61 @@
+@use  '../../colors' as *;
+
+.button-color-blue {
+    --background-color: #{$blue};
+    --background-color-hover: #{$blue-dark};
+    --background-color-active: #{$blue-darkest};
+    --background-color-light-hover: #{$blue-lightest};
+    --background-color-light-active: #{$blue-light};
+    --background-color-contrast: white;
+    --border-color: #{$blue};
+    --border-color-hover: #{$blue-dark};
+    --border-color-active: #{$blue-darkest};
+    --background-color-disabled: #{$gray30};
+    --caption-color: #{$blue};
+    --caption-color-disabled: #{$gray50};
+}
+
+.button-color-green {
+    --background-color: #{$green};
+    --background-color-hover: #{$green-dark};
+    --background-color-active: #{$green-darkest};
+    --background-color-light-hover: #{$green-lightest};
+    --background-color-light-active: #{$green-light};
+    --background-color-contrast: white;
+    --border-color: #{$green};
+    --border-color-hover: #{$green-dark};
+    --border-color-active: #{$green-darkest};
+    --background-color-disabled: #{$gray30};
+    --caption-color: #{$green};
+    --caption-color-disabled: #{$gray50};
+}
+
+.button-color-red {
+    --background-color: #{$red};
+    --background-color-hover: #{$red-dark};
+    --background-color-active: #{$red-darkest};
+    --background-color-light-hover: #{$red-lightest};
+    --background-color-light-active: #{$red-light};
+    --background-color-contrast: white;
+    --border-color: #{$red};
+    --border-color-hover: #{$red-dark};
+    --border-color-active: #{$red-darkest};
+    --background-color-disabled: #{$gray30};
+    --caption-color: #{$red};
+    --caption-color-disabled: #{$gray50};
+}
+
+.button-color-gray50 {
+    --background-color: #{$gray50};
+    --background-color-hover: #{$gray60};
+    --background-color-active: #{$gray70};
+    --background-color-light-hover: #{$gray20};
+    --background-color-light-active: #{$gray30};
+    --background-color-contrast: white;
+    --border-color: #{$gray50};
+    --border-color-hover: #{$gray60};
+    --border-color-active: #{$gray70};
+    --background-color-disabled: #{$gray30};
+    --caption-color: #{$gray60};
+    --caption-color-disabled: #{$gray50};
+}

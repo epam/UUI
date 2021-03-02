@@ -1,0 +1,67 @@
+@use '~@epam/assets/scss/index' as *;
+
+.epam-error {
+    background-color: $gray4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.epam-error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px;
+
+    &__message-main {
+        font-family: $font-oswald;
+        font-size: 32px;
+        line-height: 32px;
+        text-transform: uppercase;
+        color: $graphite;
+        padding-top: 24px;
+        text-align: center;
+
+    }
+
+    &__message-secondary {
+        font-family: $font-sans;
+        font-size: 15px;
+        line-height: 18px;
+        color: $graphite;
+        padding-top: 12px;
+        text-align: center;
+
+    }
+
+    &__contact-us {
+        font-family: $font-sans;
+        font-size: 15px;
+        line-height: 18px;
+        color: $gray40;
+        padding-top: 36px;
+
+        a {
+            color: $blue;
+            text-decoration: none;
+
+            &:hover {
+                color: #25a4b8;
+            }
+        }
+    }
+
+    &__image {
+        max-height: 430px;
+        max-width: 100%;
+        width: 430px;
+
+        &--big {
+            max-height: 430px;
+            max-width: 100%;
+            width: 760px;
+        }
+    }
+}

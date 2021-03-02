@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/file-file_image</title>
+    <g id="Icons/24/file-file_image" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13,9 L18.5,9 L13,3.5 L13,9 L13,9 Z M6,2 L14,2 L20,8 L20,20 C20,21.1045695 19.1045695,22 18,22 L6,22 C4.89,22 4,21.1 4,20 L4,4 C4,2.89 4.89,2 6,2 L6,2 Z M6,20 L15,20 L18,20 L18,12 L14,16 L12,14 L6,20 L6,20 Z M8,9 C6.8954305,9 6,9.8954305 6,11 C6,12.1045695 6.8954305,13 8,13 C9.1045695,13 10,12.1045695 10,11 C10,9.8954305 9.1045695,9 8,9 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

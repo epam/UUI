@@ -1,0 +1,21 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+.root {
+    min-width: 240px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+
+    .tree {
+        overflow: auto;
+        border: 1px solid $gray40;
+        border-top: 0;
+        border-bottom: 0;
+        flex: 1 0 0;
+    }
+}
+
+.search {
+    padding: 0 12px;
+}

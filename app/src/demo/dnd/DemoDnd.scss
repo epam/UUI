@@ -1,0 +1,21 @@
+.root {
+    margin: 30px auto;
+    max-width: 1200px;
+
+    .module-rows-container {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .module-header {
+        font-size: 36px;
+        line-height: 48px;
+        margin-bottom: 12px;
+    }
+
+    .module-content {
+        position: relative;
+    }
+}

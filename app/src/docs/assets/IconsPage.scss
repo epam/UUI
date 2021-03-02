@@ -1,0 +1,352 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 60px);
+
+    .content-container {
+        flex: 1 0 0;
+        overflow-y: auto;
+        min-height: 0;
+
+        >  :first-child {
+            display: flex;
+        }
+
+        .icons-block {
+            padding: 30px 60px;
+            max-width: 522px;
+            min-width: 72px;
+        }
+
+        .title {
+            font-family: $font-museo-sans;
+            margin-bottom: 24px;
+            font-size: 36px;
+            line-height: 48px;
+        }
+
+        .search {
+            margin-bottom: 21px;
+        }
+
+        .grid {
+            margin: 9px -9px;
+            margin-bottom: 21px;
+            display: flex;
+            flex-wrap: wrap;
+
+            .item {
+                margin: 9px;
+                width: 72px;
+                height: 72px;
+                border: 1px solid $gray40;
+                background: white;
+                cursor: pointer;
+                box-sizing: border-box;
+
+                .itemIcon {
+                    padding: 11px 0 6px;
+                    align-items: center;
+                    fill: $gray60;
+
+                    svg {
+                        width: 36px;
+                        height: 36px;
+                    }
+                }
+
+                .itemName {
+                    padding: 0 11px;
+                    text-align: center;
+                    white-space: nowrap;
+                }
+
+                &:hover {
+                    border-color: $blue;
+
+                    .itemIcon {
+                        fill: $blue;
+                    }
+                }
+            }
+
+            .activeItem {
+                border-color: $blue;
+
+                .itemIcon {
+                    fill: $blue;
+                }
+            }
+        }
+
+        .unsuccessful-search {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+
+            .unsuccessful-search-text {
+                margin-top: 3px;
+                margin-bottom: 12px;
+
+                span {
+                    font-family: $font-sans-semibold;
+                }
+            }
+        }
+    }
+
+    .sticky-panel {
+        position: sticky;
+        top: 30px;
+        padding-bottom: 30px;
+        padding-right: 30px;
+
+        &.sticky-panel-height-563 {
+            height: 660px;
+        }
+
+        &.sticky-panel-height-612 {
+            height: 710px;
+        }
+
+        .icon-card {
+            box-sizing: border-box;
+            border: 1px solid $gray40;
+            background-color: #FFFFFF;
+            min-height: 380px;
+
+            .icon-card-title {
+                padding: 0;
+            }
+
+            .lock-button {
+                :global(.uui-icon) {
+                    fill: $gray60;
+                }
+            }
+
+            .preview-icon {
+                width: 120px;
+                height: 120px;
+                margin-top: 18px;
+                padding: 9px;
+                box-sizing: border-box;
+                border: 1px solid $gray40;
+                background: $gray5;
+                fill: $gray60;
+            }
+
+            .icon-box {
+                text-align: center;
+
+                .size-icon {
+                    padding: 8px;
+                    border: 1px solid $gray40;
+                    fill: $gray40;
+                }
+
+                .selected-icon {
+                    border-color: $gray60;
+                    fill: $gray60;
+                }
+
+                .selectable-icon {
+                    border-color: $gray60;
+                    fill: $gray60;
+                    cursor: pointer;
+
+                    &:hover {
+                        border-color: $blue;
+                        background-color: $blue-lightest;
+                        fill: $blue;
+                    }
+
+                    &:active {
+                        background-color: $blue-light;
+                    }
+
+                    &.selected-icon {
+                        border-color: $blue;
+                        fill: $blue;
+                    }
+                }
+            }
+
+            .icon-box-label {
+                font-family: $font-sans-semibold;
+                font-size: 12px;
+                line-height: 18px;
+                color: $gray80;
+            }
+
+            .recommended-size {
+                z-index: 1;
+            }
+
+            .recommended-size-icon {
+                .recommended-size-icon-row {
+                    justify-content: space-between;
+                }
+
+                .recommended-caption {
+                    margin-bottom: 12px;
+                }
+
+                .sizes-captions {
+                    margin-right: 6px;
+                    text-align: right;
+                }
+
+                .sizes {
+                    text-align: center;
+                    cursor: default;
+                }
+
+                .active-sizes {
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $blue-lightest;
+                    }
+                }
+
+                .disabled-sizes {
+                    .sizes-text {
+                        color: $gray40;
+                    }
+                }
+
+                .selected-sizes {
+                    background-color: $blue-lightest;
+
+                    .sizes-text {
+                        color: $blue;
+                    }
+                }
+
+                .warning-wrapper {
+                    display: flex;
+                    width: 60px;
+                    height: 60px;
+                    justify-content: center;
+                    border-radius: 50%;
+                    position: relative;
+
+                    &::after {
+                        position: absolute;
+                        content: '';
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50%;
+                        background-color: $red-lightest;
+                        animation: pulse-wrapper 3s infinite linear;
+                    }
+
+                    .warning-icon {
+                        width: 36px;
+                        height: 36px;
+                        align-items: center;
+                        align-self: center;
+                        border-radius: 50%;
+                        z-index: 1;
+                        position: relative;
+
+                        &::after {
+                            position: absolute;
+                            content: '';
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background-color: $red-light;
+                            z-index: -1;
+                            animation: pulse-icon 3s infinite linear;
+                        }
+                    }
+                }
+
+                .bottom-text {
+                    padding-bottom: 0;
+
+                    :global(.uui-caption) {
+                        padding-bottom: 0;
+                        padding-top: 6px;
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+                }
+
+                @keyframes pulse-icon {
+                    0% {
+                        transform: scale(0.6, 0.6);
+                    }
+
+                    50% {
+                        transform: scale(1, 1);
+                    }
+
+                    100% {
+                        transform: scale(0.6, 0.6);
+                    }
+                }
+
+                @keyframes pulse-wrapper {
+                    0% {
+                        transform: scale(0.4, 0.4);
+                    }
+
+                    50% {
+                        transform: scale(1, 1);
+                    }
+
+                    100% {
+                        transform: scale(0.4, 0.4);
+                    }
+                }
+            }
+
+            .control-size-wrapper {
+                position: relative;
+            }
+
+            .hide-control-size {
+                height: 0;
+                transition: all 0.5s linear;
+            }
+
+            .show-control-size {
+                height: 49px;
+                transition: all 0.5s linear;
+            }
+
+            .controlSizeContent {
+                position: absolute;
+                z-index: 0;
+                width: 100%;
+                bottom: 0;
+            }
+
+            .icon-card-demo {
+                padding-bottom: 12px;
+
+                .demo-examples {
+                    flex-wrap: wrap;
+                }
+            }
+
+            .icon-card-import {
+                font-family: $font-sans;
+                font-size: 14px;
+                line-height: 24px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .empty-block {
+        height: 1px;
+    }
+}
+

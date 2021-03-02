@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableCell should be rendered correctly 1`] = `
+<div
+  className="flexCell cell size-36 padding-12"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "150px",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div>
+    Test
+  </div>
+</div>
+`;
+
+exports[`DataTableCell should be rendered correctly 2`] = `
+<div
+  className="flexCell cell size-48 padding-24 padding-right-24"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "150px",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div>
+    Test
+  </div>
+</div>
+`;

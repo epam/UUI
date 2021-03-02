@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/social-thumb-up</title>
+    <g id="Icons/24/social-thumb-up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M21,9 L14.69,9 L15.64,4.43 L15.67,4.11 C15.67,3.7 15.5,3.32 15.23,3.05 L14.17,2 L7.59,8.59 C7.22,8.95 7,9.45 7,10 L7,20 C7,21.1 7.9,22 9,22 L18,22 C18.83,22 19.54,21.5 19.84,20.78 L22.86,13.73 C22.95,13.5 23,13.26 23,13 L23,11 C23,9.9 22.1,9 21,9 Z M1,10 L5,10 L5,22 L1,22 L1,10 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

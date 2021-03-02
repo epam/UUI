@@ -1,0 +1,131 @@
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin icon() {
+    flex: 0 0 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.cell {
+    color: $night700;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        &:hover {
+            background: $night200;
+
+            .sort-icon {
+                fill: $night600;
+            }
+        }
+    }
+
+    &.size-24 { height: 24px; }
+    &.size-30 { height: 30px; }
+    &.size-36 { height: 36px; }
+    &.size-48 { height: 48px; }
+    &.size-60 { height: 60px; }
+
+    &.padding-left-18 { padding-left: 18px; }
+    &.padding-left-24 { padding-left: 24px; }
+    &.padding-left-30 { padding-left: 30px; }
+    &.padding-left-36 { padding-left: 36px; }
+
+    &.padding-right-12 { padding-right: 12px; }
+    &.padding-right-18 { padding-right: 18px; }
+    &.padding-right-24 { padding-right: 24px; }
+    &.padding-right-30 { padding-right: 30px; }
+    &.padding-right-36 { padding-right: 36px; }
+
+    .caption {
+        font-family: $font-sans-semibold;
+    }
+
+    .checkbox {
+        margin-right: 12px;
+    }
+
+    .icon {
+        flex-shrink: 0;
+    }
+
+    .sort-icon {
+        margin-left: 1px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .sort-icon-active {
+        fill: $night600;
+    }
+
+    .dropdownIcon {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .icon-cell {
+        display: flex;
+        overflow: hidden;
+
+        &.align-right {
+            justify-content: flex-end;
+        }
+
+        &.align-center {
+            justify-content: center;
+        }
+    }
+
+    .tooltip-wrapper {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .options-icon {
+        flex-shrink: 0;
+        margin-left: 5px;
+    }
+
+    .cell-tooltip {
+        top: 0;
+    }
+
+    .overflowed-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .upper-case {
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .font-size-13 {
+        font-size: 13px;
+    }
+
+    .font-size-14 {
+        font-size: 14px;
+    }
+
+    .resize-mark {
+        position: absolute;
+        width: 12px;
+        right: 0;
+        height: 100%;
+        cursor: col-resize;
+    }
+}

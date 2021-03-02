@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/database-database</title>
+    <g id="Icons/24/database-database" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,3 C7.58,3 4,4.79 4,7 C4,9.21 7.58,11 12,11 C16.42,11 20,9.21 20,7 C20,4.79 16.42,3 12,3 L12,3 Z M4,9 L4,12 C4,14.21 7.58,16 12,16 C16.42,16 20,14.21 20,12 L20,9 C20,11.21 16.42,13 12,13 C7.58,13 4,11.21 4,9 L4,9 Z M4,14 L4,17 C4,19.21 7.58,21 12,21 C16.42,21 20,19.21 20,17 L20,14 C20,16.21 16.42,18 12,18 C7.58,18 4,16.21 4,14 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-search</title>
+    <g id="Icons/24/action-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M17.3198574,15.9056439 L21.4142136,20 L20,21.4142136 L15.9056439,17.3198574 C14.5509601,18.3729184 12.8487115,19 11,19 C6.581722,19 3,15.418278 3,11 C3,6.581722 6.581722,3 11,3 C15.418278,3 19,6.581722 19,11 C19,12.8487115 18.3729184,14.5509601 17.3198574,15.9056439 L17.3198574,15.9056439 Z M11,17 C14.3137085,17 17,14.3137085 17,11 C17,7.6862915 14.3137085,5 11,5 C7.6862915,5 5,7.6862915 5,11 C5,14.3137085 7.6862915,17 11,17 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

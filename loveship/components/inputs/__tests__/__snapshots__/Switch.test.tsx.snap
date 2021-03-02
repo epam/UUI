@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should be rendered correctly 1`] = `
+<div
+  className="container root size-18 color-sky theme-light -clickable"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-switch-body"
+  >
+    <div
+      className="uui-switch-toggler"
+    />
+  </div>
+  <div
+    className="uui-input-label"
+  />
+</div>
+`;
+
+exports[`Switch should be rendered correctly with new props 1`] = `
+<div
+  className="container root size-12 color-sky theme-dark -clickable"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="uui-switch-body"
+  >
+    <div
+      className="uui-switch-toggler"
+    />
+  </div>
+  <div
+    className="uui-input-label"
+  >
+    Open
+  </div>
+</div>
+`;

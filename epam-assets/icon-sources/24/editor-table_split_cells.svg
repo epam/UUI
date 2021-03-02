@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-table_split_cells</title>
+    <g id="Icons/24/editor-table_split_cells" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M19,14 L21,14 L21,20 L3,20 L3,14 L5,14 L5,18 L19,18 L19,14 M3,4 L3,10 L5,10 L5,6 L19,6 L19,10 L21,10 L21,4 L3,4 M11,11 L11,13 L8,13 L8,15 L5,12 L8,9 L8,11 L11,11 M16,11 L16,9 L19,12 L16,15 L16,13 L13,13 L13,11 L16,11 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

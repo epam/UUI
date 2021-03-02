@@ -1,0 +1,502 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPickerBody should be rendered correctly 1`] = `
+<div
+  className="root size-36 background-white body undefined container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div
+    className="no-found-size-36"
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div
+      className="root font-sans text-color-gray80 line-height-24 font-size-14 v-padding-6 container"
+    >
+      No records found
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataPickerBody should be rendered correctly 2`] = `
+<div
+  className="root size-36 background-white body undefined container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div>
+    Not found
+  </div>
+</div>
+`;
+
+exports[`DataPickerBody should be rendered correctly 3`] = `
+Array [
+  <div
+    className="searchWrapper search-size-48"
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": 1,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <div
+        className="container uui-input-box -clickable root size-48 search"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        tabIndex={-1}
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#search-24.svg"
+            />
+          </svg>
+        </div>
+        <input
+          className="uui-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>,
+  <div
+    className="root size-36 background-white body modal container align-items-center"
+    style={
+      Object {
+        "maxHeight": 800,
+      }
+    }
+  >
+    <div
+      className="wrapper root"
+    >
+      <div
+        className="body"
+        style={
+          Object {
+            "height": "auto",
+            "maxHeight": 100500,
+            "minHeight": 0,
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="container1"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": undefined,
+              "left": undefined,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "maxHeight": 100500,
+              "minHeight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": undefined,
+              "top": undefined,
+            }
+          }
+        >
+          <div
+            className="container2"
+            style={
+              Object {
+                "height": null,
+              }
+            }
+          >
+            <div
+              className="container3"
+              style={
+                Object {
+                  "top": 0,
+                }
+              }
+            >
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pickerRow container align-items-center"
+              >
+                <div
+                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb"
+          />
+        </div>
+      </div>
+      <div
+        className="uui-scroll-shadow-top"
+      />
+      <div
+        className="uui-scroll-shadow-bottom"
+      />
+    </div>
+  </div>,
+]
+`;

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableHeaderRow should be rendered correctly 1`] = `
+<div
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+>
+  <div
+    className="scrollableColumnsWrapper"
+    style={
+      Object {
+        "flexGrow": 100,
+        "flexShrink": 1,
+        "minWidth": 0,
+        "width": 0,
+      }
+    }
+  >
+    <div
+      className="scrollableColumnsContainer"
+    >
+      <div
+        className="container align-items-center"
+      />
+    </div>
+    <div
+      className="scrollShadowLeft"
+    />
+    <div
+      className="scrollShadowRight"
+    />
+  </div>
+</div>
+`;
+
+exports[`DataTableHeaderRow should be rendered correctly 2`] = `
+<div
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+>
+  <div
+    className="scrollableColumnsWrapper"
+    style={
+      Object {
+        "flexGrow": 100,
+        "flexShrink": 1,
+        "minWidth": 0,
+        "width": 0,
+      }
+    }
+  >
+    <div
+      className="scrollableColumnsContainer"
+    >
+      <div
+        className="container align-items-center"
+      />
+    </div>
+    <div
+      className="scrollShadowLeft"
+    />
+    <div
+      className="scrollShadowRight"
+    />
+  </div>
+</div>
+`;

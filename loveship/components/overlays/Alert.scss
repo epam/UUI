@@ -1,0 +1,83 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.alert-wrapper {
+    padding: 12px 18px;
+    border-radius: 6px;
+    display: flex;
+    overflow: hidden;
+}
+
+.icon-wrapper {
+    height: 100%;
+    margin-right: 12px;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-link:not(:last-child) {
+    margin-right: 12px;
+}
+
+.main-path {
+    width: 100%;
+    display: flex;
+}
+
+.close-icon {
+    height: 100%;
+    margin-left: 17px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.color-sun {
+    background-color: fade-out($sun, 0.9);
+    border-left: 6px solid $sun;
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $sun;
+        }
+    }
+
+}
+
+.color-sky {
+    background-color: fade-out($sky, 0.9);
+    border-left: 6px solid $sky;
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $sky;
+        }
+    }
+}
+
+.color-fire {
+    background-color: fade-out($fire, 0.9);
+    border-left: 6px solid $fire;
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $fire;
+        }
+    }
+}
+
+.color-grass {
+    background-color: fade-out($grass, 0.9);
+    border-left: 6px solid $grass;
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: $grass;
+        }
+    }
+}

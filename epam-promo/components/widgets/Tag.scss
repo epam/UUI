@@ -1,0 +1,114 @@
+@use  '../../assets/styles/index' as *;
+@import '../../assets/styles/colorvars/widgets/tag-colorvars';
+
+.root {
+    &:global(.uui-button-box) {
+        background-color: var(--background-color);
+        fill: var(--fill);
+        border: 0;
+
+        :global(.uui-count) {
+            background-color: var(--count-background-color);
+            color: var(--count-color);
+            font-family: $font-sans-semibold;
+            margin: auto;
+            height: 18px;
+            line-height: 18px;
+            font-size: 12px;
+            border-radius: 9px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        :global(.uui-count):not(:first-child) {
+            margin-left: 6px;
+        }
+
+        &:global(.-clickable) {
+            &:hover {
+                background-color: var(--background-color-hover);
+                fill: var(--fill-hover);
+                cursor: pointer;
+            }
+        }
+
+        :global(.uui-caption) {
+            font-family: $font-sans;
+            color: var(--caption-color);
+        }
+    }
+
+    &.size-18 {
+        min-height: 18px;
+        min-width: 18px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        :global(.uui-count) {
+            height: 12px;
+            line-height: 12px;
+            font-size: 8px;
+            border-radius: 6px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        :global(.uui-count):not(:first-child) {
+            margin-left: 3px;
+        }
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding: 3px 3px;
+            line-height: 12px;
+            font-size: 12px;
+        }
+    }
+
+    &.size-24 {
+        @include button-horizontal-layout(24px, 0);
+        min-height: 24px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-30 {
+        @include button-horizontal-layout(30px, 0);
+        min-height: 30px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-36 {
+        @include button-horizontal-layout(36px, 0);
+        min-height: 36px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            line-height: 24px;
+            font-size: 14px;
+        }
+    }
+
+    &.size-42 {
+        @include button-horizontal-layout(42px, 0);
+        min-height: 42px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 9px;
+            padding-bottom: 9px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+    }
+}

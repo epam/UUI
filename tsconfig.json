@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "module": "commonjs",
+        "target": "es5",
+        "declaration": false,
+        "declarationMap": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": false,
+        "strictFunctionTypes": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "noEmitOnError": true,
+        "jsx": "react",
+        "outDir": "./build",
+        "rootDir": ".",
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "lib": [
+            "dom",
+            "es6",
+            "esnext.asynciterable" /* added to support graphql package. Recheck if needed later. Yakov Zh, 12/9/2018 */
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "built",
+        "build",
+        "**/build",
+        "webpack",
+        "jest",
+        "*/**/globals.d.ts"
+    ]
+}

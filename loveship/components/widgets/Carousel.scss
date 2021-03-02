@@ -1,0 +1,41 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    &:global(.uui-carousel-container) {
+        min-width: 300px;
+        width: 100%;
+    }
+
+    :global(.uui-carousel-bar) {
+        display: flex;
+        margin: 0 0 0 auto;
+    }
+
+    :global(.uui-carousel-bar-item) {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #e5e5e5;
+        cursor: pointer;
+    }
+
+    :global(.uui-carousel-left-arrow) {
+        cursor: pointer;
+        width: 30px;
+        fill: $night400;
+        transform: rotate(90deg);
+        align-items: center;
+    }
+
+    :global(.uui-carousel-right-arrow) {
+        cursor: pointer;
+        width: 30px;
+        fill: $night400;
+        transform: rotate(-90deg);
+        align-items: center;
+    }
+
+    :global(.uui-active) {
+        background-color: var(--uui-color-700);
+    }
+}

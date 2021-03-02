@@ -1,0 +1,33 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    &:global(.uui-dropdown-body) {
+        display: flex;
+        flex-direction: column;
+        min-width: 150px;
+        box-sizing: border-box;
+        box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+        border: 0;
+        overflow: hidden;
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            //background: #e6e6e6;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: $gray50;
+        }
+    }
+
+    &.background-white {
+        background-color: white;
+    }
+
+    &.background-gray70 {
+        background-color: $gray70;
+    }
+}

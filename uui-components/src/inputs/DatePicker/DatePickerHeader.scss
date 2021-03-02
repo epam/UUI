@@ -1,0 +1,15 @@
+.container {
+    &:global(.uui-datepickerheader-container) {
+        :global(.uui-datepickerheader-header) {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        :global(.uui-datepickerheader-nav-title) {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+

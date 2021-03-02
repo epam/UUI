@@ -1,0 +1,104 @@
+@use '~@epam/promo/assets/styles/index' as *;
+@use '~@epam/assets/scss/contrast' as *;
+@use './additionalColors' as *;
+
+@each $name, $color in $epam-basic-color-names {
+    .basic-color-#{$name} {
+        background-color: $color;
+        color: contrast($color, $gray90, #FFFFFF);
+    }
+}
+
+@each $name, $color in $epam-grayscale-color-names {
+    .grayscale-color-#{$name} {
+        background-color: $color;
+        color: contrast($color, $gray70, #FFFFFF);
+    }
+}
+
+$i: 0;
+@each $name, $color in $epam-additional-color-names {
+    $i: $i + 1;
+    $name-dark: null;
+    @if ($i <= 5) {
+        $name-dark: 'blue-darkest';
+    } @else if ($i > 5 and $i <= 10 ) {
+        $name-dark: 'cyan-darkest';
+    } @else if ($i > 10 and $i <= 15 ) {
+        $name-dark: 'green-darkest';
+    } @else if ($i > 15 and $i <= 20 ) {
+        $name-dark: 'amber-darkest';
+    } @else if ($i > 20 and $i <= 25 ) {
+        $name-dark: 'orange-darkest';
+    } @else if ($i > 25 and $i <= 30 ) {
+        $name-dark: 'red-darkest';
+    } @else if ($i > 30 and $i <= 35 ) {
+        $name-dark: 'purple-darkest';
+    } @else if ($i > 35 and $i <= 40 ) {
+        $name-dark: 'violet-darkest';
+    }
+
+    $dark-color: map-get($epam-additional-color-names, $name-dark);
+
+    .additional-color-#{$name} {
+        background-color: $color;
+        color: contrast($color, $dark-color, #FFFFFF);
+    }
+}
+
+.title {
+    font-family: $font-museo-sans;
+    color: $gray80;
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.hex-text, .color-name {
+    font-size: 14px;
+}
+
+.hex-text {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.75;
+    }
+}
+
+.box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.basic-color-box {
+    width: 120px;
+    height: 60px;
+    align-items: center;
+}
+
+.grayscale-color-box {
+    width: 96px;
+    height: 60px;
+    align-items: center;
+}
+
+.additional-color-box {
+    width: 120px;
+    height: 60px;
+    align-items: center;
+}
+
+.caption-color-box {
+    width: 96px;
+    height: 60px;
+    padding-left: 12px;
+}
+
+.title {
+    font-family: $font-museo-sans;
+    margin: 24px 0;
+    font-size: 36px;
+    line-height: 48px;
+}

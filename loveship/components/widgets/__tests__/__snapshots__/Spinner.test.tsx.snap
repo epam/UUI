@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner should be rendered correctly 1`] = `
+<div
+  className="container uui-spinner-container root color-sky"
+>
+  <div
+    className="uui-spinner-animation"
+  >
+    <div
+      className="uui-spinner-dot uui-spinner-dot-1"
+    />
+    <div
+      className="uui-spinner-dot uui-spinner-dot-2"
+    />
+    <div
+      className="uui-spinner-dot uui-spinner-dot-3"
+    />
+  </div>
+</div>
+`;
+
+exports[`Spinner should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-spinner-container root color-sun"
+>
+  <div
+    className="uui-spinner-animation"
+  >
+    <div
+      className="uui-spinner-dot uui-spinner-dot-1"
+    />
+    <div
+      className="uui-spinner-dot uui-spinner-dot-2"
+    />
+    <div
+      className="uui-spinner-dot uui-spinner-dot-3"
+    />
+  </div>
+</div>
+`;

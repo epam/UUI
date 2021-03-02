@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconContainer should be rendered correctly 1`] = `
+<div
+  className="container uui-icon uui-enabled root icon-container-color-gray60"
+>
+  <svg
+    className=""
+    height={24}
+    viewBox="0 0 12 24"
+    width={12}
+  >
+    <use
+      xlinkHref="#calendar-18.svg"
+    />
+  </svg>
+</div>
+`;
+
+exports[`IconContainer should be rendered correctly with props 1`] = `
+<div
+  className="container uui-icon uui-enabled -clickable root icon-container-color-blue"
+  onClick={[Function]}
+  tabIndex={0}
+>
+  <svg
+    className="flipY rotate-90ccw"
+    height={36}
+    viewBox="0 0 12 24"
+    width={36}
+  >
+    <use
+      xlinkHref="#calendar-18.svg"
+    />
+  </svg>
+</div>
+`;

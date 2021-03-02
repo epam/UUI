@@ -1,0 +1,1 @@
+{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Tooltip is text description related to particular UI element. Tooltip appears near \"hovered\", \"clicked\" or \"pressed\" element depending on configuration.","marks":[]}]}]}}

@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating should be rendered correctly 1`] = `
+<div
+  className="container root color-sun size-18"
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+>
+  <div
+    className="container"
+  >
+    <div
+      className="uui-rating-empty-star-container"
+    >
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      className="uui-rating-filled-star-container"
+      style={
+        Object {
+          "width": NaN,
+        }
+      }
+    >
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Rating should be rendered correctly with props 1`] = `
+<div
+  className="container root color-sky size-24"
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+>
+  <div
+    className="container"
+  >
+    <div
+      className="uui-rating-empty-star-container"
+    >
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-empty.svg"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      className="uui-rating-filled-star-container"
+      style={
+        Object {
+          "width": NaN,
+        }
+      }
+    >
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        className="uui-rating-star"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#star-filled.svg"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

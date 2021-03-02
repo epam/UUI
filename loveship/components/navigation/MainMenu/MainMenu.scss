@@ -1,0 +1,40 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+.root {
+    height: 60px;
+    min-height: 60px;
+    min-width: 360px;
+    background-color: $night800;
+    color: white;
+    fill: white;
+
+    :global(.uui-mainmenu-server-badge) {
+        position: absolute;
+        left: 80px;
+        bottom: 0;
+    }
+
+    :global(.uui-mainmenu-server-badge-label) {
+        padding: 0 5px;
+        border: 2px solid $white;
+        border-radius: 5px 5px 0 0;
+        border-bottom: 0;
+        font-family: $font-sans-bold;
+        font-size: 9px;
+        text-transform: uppercase;
+    }
+
+    &:global(.uui-mainmenu-transparent) {
+        background-color: transparent;
+
+        :global(#global_menu_toggle), :global(.uui-burger-menu) {
+            background-color: transparent;
+
+            &:hover, &:active {
+                background-color: transparent;
+                color: $sky;
+                fill: $sky;
+            }
+        }
+    }
+}

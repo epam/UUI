@@ -1,0 +1,99 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.layout {
+    margin: 0 auto;
+    background: #FFFFFF;
+
+    .landing-quote {
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 60px 0;
+        border-bottom: 1px solid $gray40;
+
+        .card {
+            min-width: auto;
+
+            img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .text {
+            padding: 0 48px;
+        }
+
+        .quote-text {
+            font-size: 30px;
+            line-height: 36px;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        .quote-text:first-child {
+            margin-bottom: 24px;
+        }
+    }
+
+    @media (max-width: 1280px) {
+        .landing-quote {
+            max-width: 732px;
+            padding: 48px 0;
+
+            .card {
+                img {
+                    width: 169px;
+                    height: 169px;
+                }
+            }
+
+            .text {
+                padding: 0 0 0 18px;
+            }
+
+            .quote-text {
+                font-size: 24px;
+                letter-spacing: -1px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .landing-quote {
+            max-width: none;
+            width: inherit;
+            padding: 30px 0;
+            margin: 0 12px;
+            flex-direction: column-reverse;
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                max-height: 48px;
+                max-width: 230px;
+                flex-wrap: wrap;
+
+                img {
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+
+            .text {
+                padding: 0 0 18px 0;
+            }
+
+            .quote-text {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            .quote-text:first-child {
+                margin-bottom: 18px;
+            }
+        }
+    }
+}

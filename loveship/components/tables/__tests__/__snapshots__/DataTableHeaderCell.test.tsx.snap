@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableHeaderCell should be rendered correctly 1`] = `
+<div
+  className="flexCell cell size-36 padding-left-24"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "200px",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="tooltipWrapper"
+    onClick={null}
+  >
+    <div
+      className="iconCell align-undefined"
+    >
+      <div
+        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+      >
+        Test
+      </div>
+    </div>
+  </div>
+  <div
+    className="resizeMark"
+    onMouseDown={[Function]}
+  />
+</div>
+`;

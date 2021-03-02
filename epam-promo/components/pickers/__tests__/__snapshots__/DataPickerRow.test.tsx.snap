@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataPickerRow should be rendered correctly 1`] = `
+<div
+  className="pickerRow container align-items-center"
+>
+  <div
+    className="flexCell cell size-36 padding-24 padding-left-24"
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="renderItem"
+    >
+      <div />
+      <div
+        className="flexSpacer"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataPickerRow should be rendered correctly 2`] = `
+<div
+  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+  onClick={[Function]}
+>
+  <div
+    className="flexCell cell size-48 padding-24 padding-left-24"
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="renderItem"
+    >
+      <div />
+      <div
+        className="flexSpacer"
+      />
+      <div
+        className="iconWrapper"
+      >
+        <div
+          className="root icon-color-blue uui-button-box uui-enabled"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#notification-done-18.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

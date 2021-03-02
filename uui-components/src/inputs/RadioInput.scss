@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+    :global(.uui-radioinput) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+}

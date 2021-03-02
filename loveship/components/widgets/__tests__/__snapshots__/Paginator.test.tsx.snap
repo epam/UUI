@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Paginator should be rendered correctly 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container uui-button-box uui-disabled -clickable root size-24 color-night400 fill-solid style-square fill-solid size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={null}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#navigation-chevron-left-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-white style-square fill-white size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      1
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      2
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      3
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      4
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      5
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      ...
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="uui-caption line-height-18 font-size-12 v-padding-2"
+    >
+      10
+    </div>
+  </div>
+  <div
+    className="container uui-button-box uui-enabled -clickable root size-24 color-night400 fill-white style-square fill-white size-24"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+    >
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#navigation-chevron-right-18.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

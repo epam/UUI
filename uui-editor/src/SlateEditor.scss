@@ -1,0 +1,82 @@
+@use '~@epam/assets/scss/promo/colors' as *;
+@use '~@epam/assets/scss/promo/fonts' as *;
+
+.container {
+    position: relative;
+    border-width: 1px;
+    width: 100%;
+    box-sizing: border-box;
+
+    :global(.ordered-list),
+    :global(.unordered-list),
+    blockquote {
+        margin: 12px 0;
+    }
+
+    :global(.ordered-list),
+    :global(.unordered-list) {
+        ul, ol {
+            margin: 3px 0;
+        }
+    }
+
+    blockquote p {
+        margin: 0;
+    }
+}
+
+.mode-form {
+    background-color: $white;
+    border-color: $gray40;
+    border-style: solid;
+
+    &:hover {
+        border-color: $gray60;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+
+    &:global(.uui-readonly) {
+        border-color: $gray40;
+    }
+}
+
+.mode-inline {
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+
+    &:hover {
+        border-color: $gray60;
+    }
+
+    &:global(.uui-focus) {
+        border-color: $blue;
+    }
+
+    &:global(.uui-readonly) {
+        border-color: transparent;
+    }
+}
+
+.placeholder {
+    pointer-events: none;
+    position: absolute;
+    color: $gray60;
+    font-family: $font-sans;
+    line-height: 24px;
+}
+
+.placeholder-14 {
+    top: 12px;
+    left: 24px;
+    font-size: 14px;
+}
+
+.placeholder-16 {
+    top: 18px;
+    left: 24px;
+    font-size: 16px;
+}

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BurgerSearch should be rendered correctly 1`] = `
+<div
+  className="groupHeader"
+>
+  <hr
+    className="line"
+  />
+  <span
+    className="groupName"
+  >
+    Test
+  </span>
+</div>
+`;

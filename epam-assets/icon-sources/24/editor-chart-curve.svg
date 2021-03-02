@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-curve</title>
+    <g id="Icons/24/editor-chart-curve" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.96,10.31 C10.82,7.1 11.5,5 13,5 C14.5,5 15.18,7.1 16.04,10.31 C17,13.92 18.1,18 22,18 L22,16 C19.8,16 19,13.54 17.97,9.8 C17.08,6.46 16.15,3 13,3 C9.85,3 8.92,6.46 8.03,9.8 C7.03,13.54 6.2,16 4,16 L4,3 L2,3 L2,21 L22,21 L22,19 L4,19 L4,18 C7.9,18 9,13.92 9.96,10.31 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    position: relative;
+
+    &:global(.-clickable) {
+        cursor: pointer;
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+    }
+}

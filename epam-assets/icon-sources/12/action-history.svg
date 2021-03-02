@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/action-history</title>
+    <g id="Icons/12/action-history" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6,1 C8.76142375,1 11,3.23857625 11,6 C11,8.76142375 8.76142375,11 6,11 C4.4383098,11 3.04384363,10.2840288 2.1269389,9.16242381 L2.7498492,8.33215261 C3.47589322,9.34219982 4.66112788,10 6,10 C8.209139,10 10,8.209139 10,6 C10,3.790861 8.209139,2 6,2 C3.790861,2 2,3.790861 2,6 L3,6 L1.5,8 L0,6 L1,6 C1,3.23857625 3.23857625,1 6,1 Z M6,3.5 L6,6.19 L7.72539925,7.05269848 L7.27853752,7.94730152 L5,6.80915292 L5,3.5 L6,3.5 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

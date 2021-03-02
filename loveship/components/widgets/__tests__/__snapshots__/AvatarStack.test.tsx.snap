@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarStack should be rendered correctly 1`] = `
+<div
+  className="root size-36 background-none spacing-6 container align-items-center"
+>
+  <div
+    className="avatars avatar-right"
+  >
+    <img
+      alt="avatar"
+      height="48"
+      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      style={
+        Object {
+          "--overlap": "-12px",
+        }
+      }
+      width="48"
+    />
+    <img
+      alt="avatar"
+      height="48"
+      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      style={
+        Object {
+          "--overlap": "-12px",
+        }
+      }
+      width="48"
+    />
+    <img
+      alt="avatar"
+      height="48"
+      src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+      style={
+        Object {
+          "--overlap": "-12px",
+        }
+      }
+      width="48"
+    />
+  </div>
+  <div
+    className="text font-sans-semibold color-night700 line-height-24 font-size-14 v-padding-6 container"
+  >
+    +2
+  </div>
+</div>
+`;

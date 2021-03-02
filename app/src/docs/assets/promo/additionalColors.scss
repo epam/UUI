@@ -1,0 +1,56 @@
+$blue: #008ACE;
+$blue-dark: darken($blue, 10%);
+$blue-darkest: darken($blue, 20%);
+$blue-light: lighten($blue, 40%);
+$blue-lightest: lighten($blue, 50%);
+
+$cyan: #14CCCC;
+$cyan-dark: darken($cyan, 10%);
+$cyan-darkest: darken($cyan, 20%);
+$cyan-light: lighten($cyan, 40%);
+$cyan-lightest: lighten($cyan, 50%);
+
+$green: #88CC00;
+$green-dark: darken($green, 10%);
+$green-darkest: darken($green, 20%);
+$green-light: lighten($green, 40%);
+$green-lightest: lighten($green, 50%);
+
+$amber: #FFC000;
+$amber-dark: #995A00;
+$amber-darkest: #804000;
+$amber-light: lighten($amber, 30%);
+$amber-lightest: lighten($amber, 40%);
+
+$orange: #E67E17;
+$orange-dark: #89370E;
+$orange-darkest: #72250B;
+$orange-light: lighten($orange, 30%);
+$orange-lightest: lighten($orange, 40%);
+
+$red: #E54322;
+$red-dark: #A72014;
+$red-darkest: #901111;
+$red-light: lighten($red, 30%);
+$red-lightest: lighten($red, 40%);
+
+$purple: #AD14CC;
+$purple-dark: darken($purple, 10%);
+$purple-darkest: darken($purple, 20%);
+$purple-light: lighten($purple, 35%);
+$purple-lightest: lighten($purple, 45%);
+
+$violet: #5214CC;
+$violet-dark: darken($violet, 10%);
+$violet-darkest: darken($violet, 20%);
+$violet-light: lighten($violet, 35%);
+$violet-lightest: lighten($violet, 45%);
+
+$epam-additional-color-names: ('blue': $blue, 'blue-dark': $blue-dark, 'blue-darkest': $blue-darkest, 'blue-light': $blue-light, 'blue-lightest': $blue-lightest,
+'cyan': $cyan, 'cyan-dark': $cyan-dark, 'cyan-darkest': $cyan-darkest, 'cyan-light': $cyan-light, 'cyan-lightest': $cyan-lightest,
+'green': $green, 'green-dark': $green-dark, 'green-darkest': $green-darkest, 'green-light': $green-light, 'green-lightest': $green-lightest,
+'amber': $amber, 'amber-dark': $amber-dark, 'amber-darkest': $amber-darkest, 'amber-light': $amber-light, 'amber-lightest': $amber-lightest,
+'orange': $orange, 'orange-dark': $orange-dark, 'orange-darkest': $orange-darkest, 'orange-light': $orange-light, 'orange-lightest': $orange-lightest,
+'red': $red, 'red-dark': $red-dark, 'red-darkest': $red-darkest, 'red-light': $red-light, 'red-lightest': $red-lightest,
+'purple': $purple, 'purple-dark': $purple-dark, 'purple-darkest': $purple-darkest, 'purple-light': $purple-light, 'purple-lightest': $purple-lightest,
+'violet': $violet, 'violet-dark': $violet-dark, 'violet-darkest': $violet-darkest, 'violet-light': $violet-light, 'violet-lightest': $violet-lightest);

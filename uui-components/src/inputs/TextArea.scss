@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    :global(.uui-input) {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        outline: none;
+    }
+
+    :global(.uui-textarea-counter) {
+        align-self: flex-end;
+    }
+}
+
+.auto-size {
+    resize: none;
+    overflow-y: hidden;
+}
+
+.no-auto-size {
+    resize: vertical;
+    overflow: auto;
+}

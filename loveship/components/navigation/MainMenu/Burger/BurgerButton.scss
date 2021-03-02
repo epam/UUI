@@ -1,0 +1,58 @@
+@use '../../../../assets/styles/scss/index'  as *;
+
+.root {
+    @include button-reset();
+    padding: 0 54px;
+    background: none;
+    border: 0;
+    outline: none;
+    font-family: $font-sans;
+    line-height: 48px;
+    flex-shrink: 0;
+
+    &:global(.uui-enabled) {
+        color: $white;
+        fill: $white;
+
+        &:hover {
+            color: $sky;
+            fill: $sky;
+        }
+    }
+
+    &:global(.uui-active) {
+        color: $sky;
+    }
+
+    :global(.uui-icon) {
+        padding: 0 18px 0 24px;
+    }
+
+    &.button-primary {
+        font-size: 18px;
+    }
+
+    &.button-secondary {
+        font-size: 14px;
+        padding-left: 18px;
+        margin-left: 54px;
+        border-left: 1px $night700 solid;
+
+        // &:hover {
+        //     border-left-color: $sky;
+        // }
+    }
+
+    &.hasIcon,
+    &.dropdown {
+        padding-left: 0;
+    }
+
+    &.hasIcon {
+        @include icon-layout(24px);
+
+        :global(.uui-icon) {
+            padding: 0 12px 0 20px;
+        }
+    }
+}

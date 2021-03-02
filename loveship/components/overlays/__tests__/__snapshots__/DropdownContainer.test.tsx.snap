@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownContainer should be rendered correctly 1`] = `
+<div
+  className="container uui-dropdown-body root background-white container"
+  style={
+    Object {
+      "minHeight": undefined,
+      "minWidth": undefined,
+    }
+  }
+>
+  <div
+    className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  />
+</div>
+`;
+
+exports[`DropdownContainer should be rendered correctly with extra props 1`] = `
+<div
+  className="container uui-dropdown-body root background-night700 container"
+  style={
+    Object {
+      "minHeight": 300,
+      "minWidth": 200,
+    }
+  }
+>
+  <div
+    className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
+    href={null}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+  />
+</div>
+`;

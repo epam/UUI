@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/18/action-eye</title>
+    <g id="Icons/18/action-eye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,3 C12.3137085,3 15.3137085,5 18,9 C15.3137085,13 12.3137085,15 9,15 C5.6862915,15 2.6862915,13 7.10542736e-15,9 C2.6862915,5 5.6862915,3 9,3 Z M9,5 C6.790861,5 5,6.790861 5,9 C5,11.209139 6.790861,13 9,13 C11.209139,13 13,11.209139 13,9 C13,6.790861 11.209139,5 9,5 Z M9,7 C10.1045695,7 11,7.8954305 11,9 C11,10.1045695 10.1045695,11 9,11 C7.8954305,11 7,10.1045695 7,9 C7,7.8954305 7.8954305,7 9,7 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

@@ -1,0 +1,57 @@
+@use '../../../assets/styles/scss/index'  as *;
+
+// .container {
+//     display: flex;
+//     align-items: center;
+// }
+
+.search-input {
+    flex-basis: 200px;
+    max-width: 500px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 18px;
+    background-color: $night700;
+    fill: $night400;
+    padding: 0 16px;
+    margin: 0 16px;
+    transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
+
+    :global(.uui-input) {
+        color: $night300;
+        font-family: $font-sans;
+
+        &::placeholder {
+            color: $night500;
+        }
+    }
+
+    :global(.uui-caption),
+    :global(.uui-input) {
+        padding: 8px 6px;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: 19px;
+            max-width: 19px;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        svg {
+            height: 24px;
+            max-width: 24px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &:global(.uui-input-box) {
+        min-height: 36px;
+    }
+}

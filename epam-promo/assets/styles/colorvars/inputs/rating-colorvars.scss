@@ -1,0 +1,10 @@
+@use  '../../colors' as *;
+
+@mixin rating-color() {
+    --fill-color: #{$amber};
+    --fill-color-empty: #{$gray50};
+    --fill-color-hovered: #{$amber-dark};
+    --fill-color-disabled: #{$gray60};
+    --fill-color-disabled-empty: #{$gray50};
+    --fill-color-invalid: #{$red};
+}

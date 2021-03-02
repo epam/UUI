@@ -1,0 +1,5 @@
+@use '../../../assets/styles/scss/typography' as *;
+
+.flexCell {
+    @include overflow-ellipsis();
+}

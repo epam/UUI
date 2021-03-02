@@ -1,0 +1,185 @@
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    $vpadding: ($line-height - $size) / 2;
+
+    :global(.uui-checkbox) {
+        width: $size;
+        height: $size;
+        margin: $vpadding 0;
+
+        :global(.uui-icon) {
+            svg {
+                width: $size;
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+}
+
+.root {
+    :global(.uui-checkbox) {
+        border: 1px solid $night400;
+        border-radius: $control-border-radius;
+    }
+
+    :global(.uui-input-label) {
+        @include typography-inline();
+        font-family: $font-sans;
+        margin-left: 12px;
+        flex-grow: 1;
+    }
+
+    :global(.uui-checked) {
+        background-color: var(--uui-color-700);
+        border-color: var(--uui-color-700);
+        fill: $white;
+
+        &:hover, &:active, &:focus {
+            background-color: var(--uui-color-800);
+            border-color: var(--uui-color-800);
+        }
+    }
+
+    &:hover, &:active, &:focus {
+        :global(.uui-checkbox) {
+            border-color: var(--uui-color-800);
+        }
+    }
+
+    &:focus {
+        :global(.uui-checkbox) {
+            @include control-focus-effect();
+        }
+    }
+
+    // Sizes
+    &.size-18 {
+        @include icon-sizes(18px, 14px, 18px);
+    }
+
+    &.size-12 {
+        @include icon-sizes(12px, 12px, 12px);
+
+        :global(.uui-input-label) {
+            margin-left: 6px;
+        }
+    }
+
+    // Mods
+    &.theme-light {
+        :global(.uui-input-label) {
+            color: $night700;
+        }
+
+        &:global(.uui-disabled) {
+            cursor: default;
+
+            :global(.uui-checkbox) {
+                @include input-colors($night50, $night500, $night50, $night300);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night50, $night500, $night50, $night300);
+                }
+            }
+
+            :global(.uui-checkbox):global(.uui-checked) {
+                @include input-colors(var(--uui-color-600), var(--uui-color-600), $night50, var(--uui-color-600));
+
+                &:hover, &:active, &:focus {
+                    @include input-colors(var(--uui-color-600), var(--uui-color-600), $night50, var(--uui-color-600));
+                }
+            }
+
+            :global(.uui-input-label) {
+                color: $night500;
+            }
+        }
+
+        &:global(.uui-readonly) {
+            cursor: default;
+
+            :global(.uui-checkbox) {
+                @include input-colors($night50, $night500, white, $night300);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night50, $night500, white, $night300);
+                }
+            }
+
+            :global(.uui-checkbox):global(.uui-checked) {
+                @include input-colors(var(--uui-color-600), var(--uui-color-600), white, var(--uui-color-600));
+
+                &:hover, &:active, &:focus {
+                    @include input-colors(var(--uui-color-600), var(--uui-color-600), white, var(--uui-color-600));
+                }
+            }
+        }
+    }
+
+    &.theme-dark {
+        :global(.uui-input-label) {
+            color: $night50;
+        }
+
+        &:global(.uui-disabled) {
+            cursor: default;
+
+            :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
+                @include input-colors($night600, $night500, $night500, $night600);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night600, $night500, $night500, $night600);
+                }
+            }
+
+            :global(.uui-input-label) {
+                color: $night500;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            cursor: default;
+            background: none;
+
+            :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
+                @include input-colors($night600, $night500, $night500, $night600);
+
+                &:hover, &:active, &:focus {
+                    @include input-colors($night600, $night500, $night500, $night600);
+                }
+            }
+        }
+
+        &:global(.uui-invalid) {
+            :global(.uui-checkbox) {
+                border-color: $fire;
+                fill: $fire;
+
+                &:hover, &:active {
+                    border-color: $fire;
+                    fill: $fire;
+                }
+
+                :global(.uui-checkbox):global(.uui-checked) {
+                    fill: white;
+                    background-color: $fire;
+                    border-color: $fire;
+
+                    &:hover, &:active {
+                        background-color: $fire;
+                        border-color: $fire;
+                    }
+                }
+            }
+
+            :global(.uui-input-label) {
+                color: $fire;
+            }
+        }
+    }
+}

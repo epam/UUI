@@ -1,0 +1,137 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    color: $night700;
+    fill: $night600;
+    box-sizing: border-box;
+
+    :global(.uui-input) {
+        color: $night700;
+        font-family: $font-sans;
+
+        &::placeholder {
+            color: $night500;
+        }
+
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+    }
+
+    // Mods
+    &.mode-form {
+        @include control-form-mode();
+        padding-left: 5px;
+        padding-right: 5px;
+
+        :global(.uui-input) {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        &.size-24 { min-width: 24px; }
+        &.size-30 { min-width: 30px; }
+        &.size-36 { min-width: 36px; }
+        &.size-42 { min-width: 42px; }
+        &.size-48 { min-width: 48px; }
+        &.size-60 { min-width: 60px; }
+    }
+
+    &.mode-inline {
+        @include control-inline-mode();
+
+        :global(.uui-input) {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+
+    &.mode-cell {
+        @include control-cell-mode();
+        padding: 0 6px;
+
+        :global(.uui-input) {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        :global(.uui-icon):first-child {
+            padding-left: 5px;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+        fill: $night500;
+
+        :global(.uui-input) {
+            &::placeholder {
+                color: $night300;
+            }
+        }
+
+        &.mode-inline, &.mode-cell {
+            @include input-colors(transparent, $night500, $night500, transparent);
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+    }
+
+    &:global(.uui-invalid) {
+        border-color: $fire;
+    }
+
+    // Sizes
+    &.size-24 { @include control-vertical-layout(24px, 1px); }
+    &.size-30 { @include control-vertical-layout(30px, 1px); }
+    &.size-36 { @include control-vertical-layout(36px, 1px); }
+    &.size-42 { @include control-vertical-layout(42px, 1px); }
+    &.size-48 { @include control-vertical-layout(48px, 1px); }
+    &.size-60 { @include control-vertical-layout(60px, 1px); }
+
+    // Icons
+    :global(.uui-icon):global(.-clickable) {
+        cursor: pointer;
+
+        &:global(.uui-enabled) {
+            fill: $night600;
+
+            &:hover {
+                fill: $night700;
+            }
+        }
+
+        &:global(.uui-disabled) {
+            fill: $night500;
+            cursor: default;
+        }
+    }
+
+    :global(.uui-icon-accept):global(.-clickable) {
+        &:global(.uui-enabled) {
+            fill: var(--uui-color-700);
+
+            &:hover {
+                fill: var(--uui-color-800);
+            }
+        }
+    }
+
+    // It seems like these styles intended to work when onClick is attached to the input.
+    // However, we now always set -clickable marker on inputs, to prevent clicks on them to get focus, from bubbling
+    // In this case, we shouldn't get cursor pointer, while still get behavior of -clickable.
+    // Contact me if you need to fix that. Yakov Zh.
+    //   &:global(.-clickable) {
+    //     cursor: pointer;
+
+    //     :global(.uui-input) {
+    //       cursor: pointer;
+    //     }
+    //   }
+}

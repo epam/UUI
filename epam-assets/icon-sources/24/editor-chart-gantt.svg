@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/editor-chart-gantt</title>
+    <g id="Icons/24/editor-chart-gantt" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2,5 L10,5 L10,2 L12,2 L12,22 L10,22 L10,18 L6,18 L6,15 L10,15 L10,13 L4,13 L4,10 L10,10 L10,8 L2,8 L2,5 L2,5 Z M14,5 L17,5 L17,8 L14,8 L14,5 L14,5 Z M14,10 L19,10 L19,13 L14,13 L14,10 L14,10 Z M14,15 L22,15 L22,18 L14,18 L14,15 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

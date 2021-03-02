@@ -1,0 +1,60 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    :global(.uui-table-loading-row) {
+        background-color: $night50;
+        height: 10px;
+        display: inline-block;
+    }
+
+    &:global(.uui-table-row) {
+        &:global(.-clickable) {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $night100;
+            }
+        }
+
+        &:global(.-draggable) {
+            cursor: pointer;
+        }
+
+        &:global(.uui-dragged-out) {
+            opacity: 0.5;
+        }
+
+        &:global(.uui-drag-ghost) {
+            @include dnd-ghost-shadow();
+        }
+
+        &:global(.uui-focus) {
+            background-color: $night100;
+        }
+
+        &.size-24 { min-height: 24px; }
+        &.size-30 { min-height: 30px; }
+        &.size-36 { min-height: 36px; }
+        &.size-48 { min-height: 48px; }
+        &.size-60 { min-height: 60px; }
+
+        &.padding-12 { padding-left: 12px; }
+        &.padding-18 { padding-left: 18px; }
+        &.padding-24 { padding-left: 24px; }
+    }
+
+    &.background-night50 {
+        background: $night50;
+    }
+
+    &.background-white {
+        background: $white;
+    }
+
+    // Border
+    &.border-night300 {
+        &:global(.uui-table-row) {
+            border-bottom: 1px solid $night300; // TODO: add new border
+        }
+    }
+}

@@ -1,0 +1,114 @@
+.container {
+    &:global(.uui-snackbar) {
+        visibility: visible;
+        z-index: 100500;
+        position: fixed;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        :global(.uui-snackbar-item-wrapper-self) {
+            left: 24px;
+            position: absolute;
+            padding: 5px 0;
+            transition: all 0.2s ease-in;
+            pointer-events: all;
+
+            @media (max-width: 720px) {
+                left: 18px;
+                right: 18px;
+            }
+        }
+
+        :global(.uui-snackbar-item-wrapper-enter) {
+            margin-top: 100px;
+            opacity: 0;
+        }
+
+        :global(.uui-snackbar-item-wrapper-exit) {
+            left: 0;
+            opacity: 1;
+        }
+
+        :global(.uui-snackbar-item-wrapper-enter-active) {
+            margin-top: 0;
+            opacity: 1;
+        }
+
+        :global(.uui-snackbar-item-wrapper-exit-active) {
+            left: -300px;
+            opacity: 0;
+        }
+
+        :global(.uui-snackbar-item-self) {
+            display: flex;
+            margin: auto;
+            pointer-events: auto;
+        }
+
+        :global(.uui-snackbar-text) {
+            flex: auto 1 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+        }
+
+        :global(.uui-snackbar-close) {
+            flex: 20px 0 0;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        :global(.uui-snackbar-item-wrapper-right-self) {
+            right: 30px;
+            position: absolute;
+            padding: 5px 0;
+            transition: all 0.2s ease-in;
+            pointer-events: all;
+        }
+
+        :global(.uui-snackbar-item-wrapper-right-exit) {
+            right: 0;
+            opacity: 1;
+        }
+
+        :global(.uui-snackbar-item-wrapper-right-exit-active) {
+            right: -300px;
+            opacity: 0;
+        }
+
+        :global(.uui-snackbar-item-wrapper-center-self) {
+            position: absolute;
+            display: flex;
+            pointer-events: none;
+            left: 0;
+            right: 0;
+            padding: 5px 0;
+            transition: all 0.2s ease-in;
+        }
+
+        :global(.uui-snackbar-item-wrapper-center-exit) {
+            top: 0 !important;
+            opacity: 1;
+        }
+
+        :global(.uui-snackbar-item-wrapper-center-exit-active) {
+            top: -300px !important;
+            opacity: 0;
+        }
+
+        :global(.uui-snackbar-item-wrapper-bottom-center-exit) {
+            bottom: 0 !important;
+            opacity: 1;
+        }
+
+        :global(.uui-snackbar-item-wrapper-bottom-center-exit-active) {
+            bottom: -300px !important;
+            opacity: 0;
+        }
+    }
+}
+

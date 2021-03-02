@@ -1,0 +1,135 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.dropdown-container {
+    align-items: normal;
+}
+
+.container {
+    display: flex;
+    padding: 10px 30px;
+    justify-content: space-between;
+    border-top: 1px solid $night400;
+    align-items: center;
+    background-color: $white;
+    position: relative;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.counter {
+    color: $night400;
+    font-size: 15px;
+    font-family: $font-sans;
+}
+
+.date-input {
+    min-width: 0;
+    border-radius: $control-border-radius;
+    padding: 0 5px;
+
+    &:global(.uui-focus) {
+        border: 1px solid $sky;
+    }
+
+    &.size-24 {
+        @include control-box-layout(22px, 0);
+    }
+
+    &.size-30 {
+        @include control-box-layout(28px, 0);
+    }
+
+    &.size-36 {
+        @include control-box-layout(34px, 0);
+    }
+
+    &.size-48 {
+        @include control-box-layout(46px, 0);
+    }
+}
+
+.separator {
+    display: flex;
+    flex-shrink: 0;
+    margin: 6px 3px;
+    background: $night400;
+    width: 1px;
+}
+
+.date-input-group {
+    display: flex;
+    min-width: 0;
+    background-color: $white;
+    border: 1px solid $night400;
+    border-radius: 3px;
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+
+        .date-input {
+            &:global(.uui-focus) {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+    }
+
+    &:global(.uui-invalid) {
+        border-color: $fire;
+    }
+}
+
+.date-input-group-inline {
+    background: none;
+    border: 0;
+
+    .date-input {
+        &:global(.uui-input-box) {
+            border-width: 1px;
+        }
+
+        &:global(.uui-readonly) {
+            background: none;
+
+            &:global(.uui-focus), &:hover {
+                border-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        background: none;
+    }
+}
+
+.date-input-group-cell {
+    background: none;
+    border: 0;
+    border-radius: 0;
+
+    .date-input {
+        &:global(.uui-input-box) {
+            border-width: 1px;
+        }
+
+        &:global(.uui-readonly) {
+            background: none;
+
+            &:global(.uui-focus), &:hover {
+                border-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-disabled) {
+        background: none;
+    }
+}

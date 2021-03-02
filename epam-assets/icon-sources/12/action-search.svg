@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/12/action-search</title>
+    <g id="Icons/12/action-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5.5,1 C7.98528137,1 10,3.01471863 10,5.5 C10,6.56240691 9.63183285,7.53882377 9.01612347,8.30862564 L10.7071068,10 L10,10.7071068 L8.30862564,9.01612347 C7.53882377,9.63183285 6.56240691,10 5.5,10 C3.01471863,10 1,7.98528137 1,5.5 C1,3.01471863 3.01471863,1 5.5,1 Z M5.5,2 C3.56700338,2 2,3.56700338 2,5.5 C2,7.43299662 3.56700338,9 5.5,9 C7.43299662,9 9,7.43299662 9,5.5 C9,3.56700338 7.43299662,2 5.5,2 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

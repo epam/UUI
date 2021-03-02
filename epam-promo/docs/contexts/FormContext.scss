@@ -1,0 +1,17 @@
+.panel {
+    max-width: 600px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+
+    > * {
+        margin: 10px;
+    }
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+}

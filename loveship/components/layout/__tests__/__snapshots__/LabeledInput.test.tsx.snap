@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LabeledInput should be rendered correctly 1`] = `
+<div
+  className="container root size-36 color-night700"
+>
+  <div
+    className="uui-label-top"
+  >
+    <div
+      className="container uui-input-box -clickable colorSky root size-36 mode-form"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input line-height-24 font-size-14 v-padding-5"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value="test"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LabeledInput should be rendered correctly with props 1`] = `
+<div
+  className="container root size-36 color-night700"
+>
+  <div
+    className="uui-label-left"
+  >
+    <div
+      className="uui-label"
+    >
+      Test label
+      <svg
+        className="uui-labeled-input-info-icon"
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#info-18.svg"
+        />
+      </svg>
+    </div>
+    <div
+      className="container uui-input-box -clickable colorSky root size-36 mode-form"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      tabIndex={-1}
+    >
+      <input
+        className="uui-input line-height-24 font-size-14 v-padding-5"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value="test"
+      />
+    </div>
+  </div>
+  <div
+    className="uui-invalid-message"
+  >
+    Test invalid message
+  </div>
+</div>
+`;

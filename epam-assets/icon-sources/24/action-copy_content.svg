@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/24/action-copy_content</title>
+    <g id="Icons/24/action-copy_content" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M20,20 L8,20 L8,8 L20,8 M8,6 C6.8954305,6 6,6.8954305 6,8 L6,20 C6,21.1045695 6.8954305,22 8,22 L20,22 C21.1045695,22 22,21.1045695 22,20 L22,8 C22,6.8954305 21.1045695,6 20,6 L8,6 Z M14,2 L4,2 C2.8954305,2 2,2.8954305 2,4 L2,14 L4,14 L4,4 L14,4 L14,2 Z" id="icon" fill="#45FF00"></path>
+    </g>
+</svg>

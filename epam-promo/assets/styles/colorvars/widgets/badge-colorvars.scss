@@ -1,0 +1,105 @@
+@use  '../../colors' as *;
+
+.badge-color-blue {
+    --background-color: #{$blue};
+    --background-color-hover: #{darken($blue, 10%)};
+    --background-color-semitransparent: #{lighten($blue, 50%)};
+    --border-color-semitransparent: #{lighten($blue, 40%)};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{darken($blue, 10%)};
+    --caption-color-semitransparent-hover: #{darken($blue, 20%)};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-cyan {
+    --background-color: #{$cyan};
+    --background-color-hover: #{$cyan-dark};
+    --background-color-semitransparent: #{$cyan-lightest};
+    --border-color-semitransparent: #{$cyan-light};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{$cyan-dark};
+    --caption-color-semitransparent-hover: #{$cyan-darkest};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-green {
+    --background-color: #{$green};
+    --background-color-hover: #{darken($green, 10%)};
+    --background-color-semitransparent: #{lighten($green, 50%)};
+    --border-color-semitransparent: #{lighten($green, 40%)};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{darken($green, 10%)};
+    --caption-color-semitransparent-hover: #{darken($green, 20%)};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-amber {
+    --background-color: #{$amber};
+    --background-color-hover: #995A00;
+    --background-color-semitransparent: #{lighten($amber, 40%)};
+    --border-color-semitransparent: #{lighten($amber, 30%)};
+    --caption-color-solid: #{$gray80};
+    --caption-color-semitransparent: #995A00;
+    --caption-color-semitransparent-hover: #804000;
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-orange {
+    --background-color: #{$orange};
+    --background-color-hover: #{$orange-dark};
+    --background-color-semitransparent: #{$orange-lightest};
+    --border-color-semitransparent: #{$orange-light};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{$orange-dark};
+    --caption-color-semitransparent-hover: #{$orange-darkest};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-red {
+    --background-color: #{$red};
+    --background-color-hover: #A72014;
+    --background-color-semitransparent: #{lighten($red, 40%)};
+    --border-color-semitransparent: #{lighten($red, 30%)};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #A72014;
+    --caption-color-semitransparent-hover: #901111;
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-purple {
+    --background-color: #{$purple};
+    --background-color-hover: #{$purple-dark};
+    --background-color-semitransparent: #{$purple-lightest};
+    --border-color-semitransparent: #{$purple-light};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{$purple-dark};
+    --caption-color-semitransparent-hover: #{$purple-darkest};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}
+
+.badge-color-violet {
+    --background-color: #{$violet};
+    --background-color-hover: #{$violet-dark};
+    --background-color-semitransparent: #{$violet-lightest};
+    --border-color-semitransparent: #{$violet-light};
+    --caption-color-solid: white;
+    --caption-color-semitransparent: #{$violet-dark};
+    --caption-color-semitransparent-hover: #{$violet-darkest};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}

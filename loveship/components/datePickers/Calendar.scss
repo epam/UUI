@@ -1,0 +1,116 @@
+@use '../../assets/styles/scss/index'  as *;
+
+.root {
+    :global(.uui-calendar-content) {
+        font-family: $font-sans;
+    }
+
+    :global(.uui-calendar-weekdays-container) {
+        //margin-bottom: 5px;
+    }
+
+    :global(.uui-calendar-weekday) {
+        font-family: $font-sans;
+        color: $night500;
+        width: 34px;
+        font-size: 12px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    :global(.uui-calendar-day-cell) {
+        color: $night700;
+        text-align: center;
+        padding: 0;
+        height: 36px;
+        width: 36px;
+        display: flex;
+        position: relative;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    :global(.uui-calendar-day-wrapper) {
+        height: 30px;
+        width: 30px;
+        font-size: 14px;
+        line-height: 30px;
+        margin: auto;
+        cursor: default;
+    }
+
+    :global(.uui-calendar-day) {
+        border-radius: 50%;
+        height: 36px;
+        width: 36px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: 34px;
+        border: 1px solid transparent;
+        box-sizing: border-box;
+    }
+
+    :global(.uui-calendar-clickable-day) {
+        &:hover {
+            &:not(:global(.uui-calendar-filtered-day)) {
+                cursor: pointer;
+
+                :global(.uui-calendar-day) {
+                    border: 1px solid $sky;
+                    background-color: $white;
+                    z-index: 1;
+                }
+
+                &:global(.uui-calendar-selected-day) {
+                    :global(.uui-calendar-day) {
+                        border: 1px solid $sky;
+                        background-color: $sky;
+                    }
+                }
+            }
+        }
+    }
+
+    :global(.uui-calendar-current-day) {
+        &:global(.uui-calendar-day-wrapper) {
+            color: $sky;
+        }
+    }
+
+    :global(.uui-calendar-selected-day) {
+        :global(.uui-calendar-day) {
+            background-color: $sky;
+            color: $white;
+        }
+
+        &:global(.uui-calendar-clickable-day) {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    :global(.uui-calendar-day-holiday) {
+        color: $night600,
+    }
+
+    :global(.uui-calendar-filtered-day) {
+        &:global(.uui-calendar-day-wrapper) {
+            color: $night500;
+
+            &:hover {
+                cursor: default;
+                background-color: transparent;
+            }
+
+            &:global(.uui-calendar-selected-day) {
+                :global(.uui-calendar-day) {
+                    background-color: #B3B6C3;
+                }
+            }
+        }
+    }
+}
