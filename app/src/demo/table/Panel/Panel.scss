@@ -1,0 +1,13 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+
+.container {
+    width: 25%;
+    background-color: #fff;
+    border-right: 1px solid $gray30;
+}
+
+.accordion {
+    :global(.uui-accordion-title) {
+        font-size: 16px;
+    }
+}

@@ -5,7 +5,7 @@ import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Count
 import { svc } from '../../services';
 import { PersonTableRecordId } from './types';
 import { SidebarPanel } from "./SidebarPanel";
-import * as css from './DemoTable.scss';
+import * as css from './Table.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
 export function getColumns() {
@@ -41,7 +41,6 @@ export function getColumns() {
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
             width: 200,
-            minWidth: 100,
             fix: 'left',
             isSortable: true,
         },
@@ -56,7 +55,6 @@ export function getColumns() {
                     caption={ p.profileStatus } />
             </FlexRow>,
             width: 140,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderStatusFilter,
             isFilterActive: f => !!f.profileStatusId,
@@ -65,8 +63,7 @@ export function getColumns() {
             key: 'jobTitle',
             caption: "Title",
             render: r => <Text>{ r.jobTitle }</Text>,
-            width: 250,
-            minWidth: 150,
+            width: 200,
             isSortable: true,
             renderFilter: renderJobTitlesFilter,
             isFilterActive: f => !!f.jobTitleId,
@@ -75,8 +72,7 @@ export function getColumns() {
             key: 'departmentName',
             caption: "Department",
             render: p => <Text>{ p.departmentName }</Text>,
-            width: 250,
-            minWidth: 150,
+            width: 200,
             isSortable: true,
             renderFilter: renderDepartmentFilter,
             isFilterActive: f => !!f.departmentId,
@@ -87,7 +83,6 @@ export function getColumns() {
             caption: "Office",
             render: p => <Text cx={ css.office }>{ p.officeAddress }</Text>,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderOfficeFilter,
             isFilterActive: f => !!f.officeId,
@@ -97,7 +92,6 @@ export function getColumns() {
             caption: "Manager",
             render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#' />,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderManagerFilter,
             isFilterActive: f => !!f.managerId,
@@ -107,7 +101,6 @@ export function getColumns() {
             caption: 'Country',
             render: p => <Text>{ p.countryName }</Text>,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderCountryFilter,
             isFilterActive: f => !!f.countryId,
@@ -117,7 +110,6 @@ export function getColumns() {
             caption: 'City',
             render: p => <Text>{ p.cityName }</Text>,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderCityFilter,
             isFilterActive: f => !!f.cityId,
@@ -127,14 +119,12 @@ export function getColumns() {
             caption: 'Profile Type',
             render: p => <Text>{ p.hireDate ? 'Employee' : 'Student' }</Text>,
             width: 150,
-            minWidth: 100,
         },
         {
             key: 'birthDate',
             caption: "Birth Date",
             render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
             width: 120,
-            minWidth: 80,
             isSortable: true,
             isHiddenByDefault: true,
         },
@@ -143,7 +133,6 @@ export function getColumns() {
             caption: "Related NPR",
             render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,
             width: 120,
-            minWidth: 80,
             isSortable: true,
             isHiddenByDefault: true,
         },
@@ -151,8 +140,7 @@ export function getColumns() {
             key: 'titleLevel',
             caption: 'Track & Level',
             render: p => <Text>{ p.titleLevel }</Text>,
-            width: 150,
-            minWidth: 120,
+            width: 100,
             isSortable: true,
             isHiddenByDefault: true,
         },
