@@ -7,7 +7,7 @@ import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 
-const GIT_LINK = 'https://git.epam.com/epm-tmc/ui/-/tree/master';
+const GIT_LINK = 'https://github.com/epam/UUI';
 
 export class AppHeader extends React.Component {
     state = {
