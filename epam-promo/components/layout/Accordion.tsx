@@ -6,6 +6,7 @@ import * as css from './Accordion.scss';
 
 export interface AccordionMods {
     mode?: 'block' | 'inline';
+    padding?: '6' | '12' | '18';
 }
 
 function applyAccordionMods(mods: AccordionMods & AccordionProps) {
@@ -13,6 +14,7 @@ function applyAccordionMods(mods: AccordionMods & AccordionProps) {
         css.root,
         styles.accordionColors,
         css['mode-' + (mods.mode || 'block')],
+        mods.padding && css['padding-' + mods.padding],
     ];
 }
 
