@@ -91,6 +91,8 @@ export interface IErrorContext {
     currentError?: Error;
     reportError(error: Error): void;
     onError(callback: Function): void;
+    discardError(): void;
+    recover(): void;
 }
 
 export type ApiStatus = 'idle' | 'running' | 'error' | 'recovery';
