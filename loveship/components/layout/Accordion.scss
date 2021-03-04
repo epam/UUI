@@ -122,39 +122,55 @@
         }
     }
 
-    &.mode-block.padding-6 {
-        :global(.uui-accordion-toggler) {
-            @include padding(6);
+    &.mode-block {
+        &.padding-0 {
+            :global(.uui-accordion-toggler) {
+                @include padding(0);
+            }
+        }
+
+        &.padding-6 {
+            :global(.uui-accordion-toggler) {
+                @include padding(6);
+            }
+        }
+
+        &.padding-12 {
+            :global(.uui-accordion-toggler) {
+                @include padding(12);
+            }
+        }
+
+        &.padding-18 {
+            :global(.uui-accordion-toggler) {
+                @include padding(18);
+            }
         }
     }
 
-    &.mode-block.padding-12 {
-        :global(.uui-accordion-toggler) {
-            @include padding(12);
+    &.mode-inline {
+        &.padding-0 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(0);
+            }
         }
-    }
 
-    &.mode-block.padding-18 {
-        :global(.uui-accordion-toggler) {
-            @include padding(18);
+        &.padding-6 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(6);
+            }
         }
-    }
 
-    &.mode-inline.padding-6 {
-        :global(.uui-accordion-toggle-container) {
-            @include padding(6);
+        &.padding-12 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(12);
+            }
         }
-    }
 
-    &.mode-inline.padding-12 {
-        :global(.uui-accordion-toggle-container) {
-            @include padding(12);
-        }
-    }
-
-    &.mode-inline.padding-18 {
-        :global(.uui-accordion-toggle-container) {
-            @include padding(18);
+        &.padding-18 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(18);
+            }
         }
     }
 }

@@ -50,14 +50,12 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                         { this.props.title }
                     </div>
                     
-                    { this.props.renderAdditionalItems
-                        ? this.props.renderAdditionalItems(this.state.opened)
-                        : <div className={ css.spacer } /> }
+                    { this.props.renderAdditionalItems?.(this.state.opened) }
                     
                     <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ isAccordionOpened }
-                        cx={ this.props.isDisabled && uuiMod.disabled }
+                        cx={ [this.props.isDisabled && uuiMod.disabled, css.arrow] }
                     />
                 </div>
             </div>
