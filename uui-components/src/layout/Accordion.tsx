@@ -7,6 +7,7 @@ import cx from 'classnames';
 export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren {
     title: string;
     dropdownIcon?: Icon;
+    renderAdditionalItems?: (isOpened: boolean) => React.ReactNode;
 }
 
 export interface AccordionState {
@@ -48,7 +49,11 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                     <div className={ cx(uuiAccordion.title) }>
                         { this.props.title }
                     </div>
-                    <div className={ css.spacer } />
+                    
+                    { this.props.renderAdditionalItems
+                        ? this.props.renderAdditionalItems(this.state.opened)
+                        : <div className={ css.spacer } /> }
+                    
                     <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ isAccordionOpened }
@@ -64,7 +69,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
             { this.props.children }
         </div>
     )
-
+    
     render() {
         const isAccordionOpened = this.isOpened();
 

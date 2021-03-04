@@ -5,12 +5,14 @@ import * as css from './Accordion.scss';
 
 export interface AccordionMods {
     mode?: 'block' | 'inline';
+    padding?: '6' | '12' | '18';
 }
 
 function applyAccordionMods(mods: AccordionMods & AccordionProps) {
     return [
         css.root,
-        css['mode-' + (mods.mode || 'block')]
+        css['mode-' + (mods.mode || 'block')],
+        mods.padding && css['padding-' + mods.padding],
     ];
 }
 
