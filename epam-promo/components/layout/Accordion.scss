@@ -1,7 +1,9 @@
 @use '../../assets/styles/fonts' as *;
+@use '../../assets/styles/layout-mixins' as *;
 
 $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-$shadow-hovered: 0 6px 12px 0 rgba(29,30,38,0.10), 0 3px 6px 0 rgba(29,30,38,0.10);
+$shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
+
 
 .root {
     :global(.uui-accordion-toggler) {
@@ -109,6 +111,58 @@ $shadow-hovered: 0 6px 12px 0 rgba(29,30,38,0.10), 0 3px 6px 0 rgba(29,30,38,0.1
                 :global(.uui-accordion-title) {
                     color: var(--text-color-disabled);
                 }
+            }
+        }
+    }
+
+    &.mode-block {
+        &.padding-0 {
+            :global(.uui-accordion-toggler) {
+                @include padding(0);
+            }
+        }
+        
+        &.padding-6 {
+            :global(.uui-accordion-toggler) {
+                @include padding(6);
+            }
+        }
+
+        &.padding-12 {
+            :global(.uui-accordion-toggler) {
+                @include padding(12);
+            }
+        }
+
+        &.padding-18 {
+            :global(.uui-accordion-toggler) {
+                @include padding(18);
+            }
+        }
+    }
+
+    &.mode-inline {
+        &.padding-0 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(0);
+            }
+        }
+        
+        &.padding-6 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(6);
+            }
+        }
+
+        &.padding-12 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(12);
+            }
+        }
+
+        &.padding-18 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(18);
             }
         }
     }
