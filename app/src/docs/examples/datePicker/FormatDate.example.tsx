@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import moment from "moment";
+import moment from 'moment';
 import { DatePicker, FlexRow, LinkButton } from '@epam/promo';
 import * as css from './FormatDateExample.scss';
 
@@ -7,7 +7,7 @@ export const DatePickerFormatDateExample = () => {
     const [value, onValueChange] = useState('');
 
     return (
-        <>
+        <FlexRow>
             <DatePicker
                 value={ value } // value format 'YYYY-MM-DD'
                 onValueChange={ onValueChange }
@@ -16,6 +16,6 @@ export const DatePickerFormatDateExample = () => {
                     <LinkButton size='42' caption='Today' onClick={ () => onValueChange(moment().format('YYYY-MM-DD')) } />
                 </FlexRow> }
             />
-        </>
+        </FlexRow>
     );
 };
