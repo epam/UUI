@@ -5,12 +5,12 @@ export const DatePickerBaseExample = () => {
     const [value, onValueChange] = useState('');
 
     return (
-        <>
+        <FlexRow>
             <DatePicker
                 value={ value }
                 onValueChange={ onValueChange }
                 format='MMM D, YYYY'
             />
-        </>
+        </FlexRow>
     );
 };
