@@ -8,7 +8,7 @@ import * as mailIcon from '../icons/outlook-90.svg';
 import * as gitIcon from '../icons/github-90.svg';
 
 const EMAIL = 'SupportEPM-UUI@epam.com';
-const GIT_LINK = 'https://git.epam.com/epm-tmc/ui/-/issues';
+const GIT_LINK = 'https://github.com/epam/UUI/issues';
 
 export class ContactsBlock extends React.Component {
     private emailClickEvent = analyticsEvents.welcome.contact('Email');

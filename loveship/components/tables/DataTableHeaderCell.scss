@@ -45,6 +45,10 @@
 
     .caption {
         font-family: $font-sans-semibold;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .checkbox {
@@ -102,12 +106,6 @@
         top: 0;
     }
 
-    .overflowed-cell {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
     .upper-case {
         text-transform: uppercase;
         font-size: 12px;
@@ -127,5 +125,30 @@
         right: 0;
         height: 100%;
         cursor: col-resize;
+    }
+
+    &.ghost {
+        background-color: $night200;
+    }
+
+    &.is-dragged-out {
+        background-color: $night100;
+
+        :local(.caption) {
+            color: $night500;
+        }
+
+        :local(.icon) {
+            fill: $night500;
+        }
+
+    }
+
+    &.dnd-marker-left {
+        box-shadow: inset 2px 0 0 0 $sky;
+    }
+
+    &.dnd-marker-right {
+        box-shadow: inset -2px 0 0 0 $sky;
     }
 }

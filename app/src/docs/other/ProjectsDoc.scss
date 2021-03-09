@@ -17,6 +17,7 @@
         .project-row {
             padding-top: 18px;
             padding-bottom: 18px;
+            padding-right: 24px;
         }
 
         .project-description {
@@ -42,30 +43,17 @@
             padding: 0;
         }
 
-        .avatars-stack {
-            flex-direction: row-reverse;
+        .team-link {
+            visibility: hidden;
 
-            .contact-wrapper {
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                border: 3px solid white;
-                background-color: var(--background-color);
-                text-decoration: none;
-                text-align: center;
+            :global(.uui-caption) {
+                font-size: 16px;
+            }
+        }
 
-                &:not(:first-child) {
-                    margin-right: -30px;
-                }
-
-                &:hover {
-                    z-index: 1;
-                }
-
-                .contact-initials {
-                    color: var(--color-initials);
-                    line-height: 36px;
-                }
+        &:hover {
+            .team-link {
+                visibility: visible;
             }
         }
     }
