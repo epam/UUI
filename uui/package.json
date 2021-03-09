@@ -7,7 +7,8 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule"
+    "build": "node ../uui-build/scripts/buildModule",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@types/classnames": "2.2.6",
@@ -51,5 +52,8 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f",
+  "publishConfig": {
+    "directory": "build"
+  }
 }
