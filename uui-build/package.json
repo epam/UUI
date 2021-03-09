@@ -3,8 +3,7 @@
   "version": "4.0.0-beta.0",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "generate-components-api": "ts-node getComponentsPropsSet.ts",
-    "publish": "npm publish ./build --access public"
+    "generate-components-api": "ts-node getComponentsPropsSet.ts"
   },
   "dependencies": {
     "@babel/core": "7.9.6",
