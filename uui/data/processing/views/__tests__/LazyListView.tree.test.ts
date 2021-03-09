@@ -106,11 +106,11 @@ describe('LazyListView', () => {
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { id: 100, depth: 0, indent: 1, path: [], isLastChild: false},
-            { isLoading: true, depth: 1, indent: 1, path: [{ id: 100, isLastChild: false }], isLastChild: false },
-            { isLoading: true, depth: 1, indent: 1, path: [{ id: 100, isLastChild: false }], isLastChild: true },
-            { id: 200, depth: 0, indent: 1, isLastChild: false },
-            { id: 300, depth: 0, indent: 1, isLastChild: true },
+            { id: 100, depth: 0, indent: 1 },
+            { isLoading: true, depth: 1, indent: 1 },
+            { isLoading: true, depth: 1, indent: 1 },
+            { id: 200, depth: 0, indent: 1 },
+            { id: 300, depth: 0, indent: 1 },
         ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
 
         await delay();
@@ -132,8 +132,8 @@ describe('LazyListView', () => {
             { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
             { id: 110, depth: 1, indent: 2, isFoldable: false },
             { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { isLoading: true, depth: 2, indent: 2, path: [{ id: 100, isLastChild: false }, { id: 120, isLastChild: true }], isLastChild: false },
-            { isLoading: true, depth: 2, indent: 2, path: [{ id: 100, isLastChild: false }, { id: 120, isLastChild: true }], isLastChild: true },
+            { isLoading: true, depth: 2, indent: 2 },
+            { isLoading: true, depth: 2, indent: 2 },
             { id: 200, depth: 0, indent: 1, },
         ], 7);
 
@@ -569,22 +569,55 @@ describe('LazyListView', () => {
             });
 
         let ds = treeDataSource;
+        value.folded = { '120': true };
         value.visibleCount = 10;
         let view = getView();
         view.getListProps(); // trigger loading
+
+        await delay();
+
+        value.folded = { '120': false };
+        view = getView();
+        view.getListProps(); // trigger loading
+
+        expectViewToLookLike(view, [
+            { id: 100, path: [], isLastChild: false },
+            { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+            { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+            {
+                isLoading: true,
+                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                isLastChild: false
+            },
+            {
+                isLoading: true,
+                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                isLastChild: true
+            },
+            { id: 200, path: [], isLastChild: false },
+            { id: 300, path: [], isLastChild: true },
+            { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+            { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+            { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+        ], 10);
+
         await delay();
 
         expectViewToLookLike(view, [
             { id: 100, path: [], isLastChild: false },
-            { id: 110, path: [{ id: 100, isLastChild: false }], isLastChild: false },
-            { id: 120, path: [{ id: 100, isLastChild: false }], isLastChild: true },
-            { id: 121, path: [{ id: 100, isLastChild: false }, { id: 120, isLastChild: true }], isLastChild: false },
-            { id: 122, path: [{ id: 100, isLastChild: false }, { id: 120, isLastChild: true }], isLastChild: true },
+            { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+            { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+            {
+                id: 121,
+                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                isLastChild: false
+            },
+            { id: 122, path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }], isLastChild: true },
             { id: 200, path: [], isLastChild: false },
             { id: 300, path: [], isLastChild: true },
-            { id: 310, path: [{ id: 300, isLastChild: true }], isLastChild: false },
-            { id: 320, path: [{ id: 300, isLastChild: true }], isLastChild: false },
-            { id: 330, path: [{ id: 300, isLastChild: true }], isLastChild: true },
+            { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+            { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+            { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
         ], 10);
     });
 });

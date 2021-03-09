@@ -165,7 +165,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
 
-        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild }));
+        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
 
         const rowProps = {
             id,
@@ -189,7 +189,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<any, any> {
         const rowOptions = this.props.rowOptions;
 
-        const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild })) : [];
+        const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value })) : [];
 
         return {
             id,
