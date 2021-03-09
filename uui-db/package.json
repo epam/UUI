@@ -9,7 +9,8 @@
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "perf": "npx ts-node -T ./src/__benchmarks__/index.ts",
-    "perf-prof": "node -r ts-node/register/transpile-only --prof ./src/__benchmarks__/index.ts"
+    "perf-prof": "node -r ts-node/register/transpile-only --prof ./src/__benchmarks__/index.ts",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@epam/uui": "^4.0.0-beta.1",
@@ -65,5 +66,8 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f",
+  "publishConfig": {
+    "directory": "build"
+  }
 }
