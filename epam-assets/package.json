@@ -5,8 +5,7 @@
   "author": "EPAM",
   "license": "MIT",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
-    "publish": "npm publish ./build --access public"
+    "build": "node ../uui-build/scripts/buildModule"
   },
   "dependencies": {
     "normalize.css": "^7.0.0"

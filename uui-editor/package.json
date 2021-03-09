@@ -6,8 +6,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
-    "publish": "npm publish ./build --access public"
+    "build": "node ../uui-build/scripts/buildModule"
   },
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
