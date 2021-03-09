@@ -9,10 +9,14 @@ Fix bug:
 Implement batch API
 
 Flat sorting view option
+- How to adjust row to render this?
+- How to return list of parents?
 
 Separate cascading checked loading from the visible tree
 
 Editable table demo
+
+.reload() method
 
 OPTIONAL
 
@@ -27,6 +31,7 @@ Handle disabled checkboxes when cascading
 
 Docs page
 
+GQL Cursor support
 
 Selection cascading
 - check/uncheck on all sibling checked/unchecked?
