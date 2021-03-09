@@ -1,4 +1,5 @@
 @use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss/layout-mixins' as *;
 
 .root {
     :global(.uui-accordion-toggler) {
@@ -117,6 +118,58 @@
                 :global(.uui-accordion-title) {
                     color: #9FA1AE;
                 }
+            }
+        }
+    }
+
+    &.mode-block {
+        &.padding-0 {
+            :global(.uui-accordion-toggler) {
+                @include padding(0);
+            }
+        }
+
+        &.padding-6 {
+            :global(.uui-accordion-toggler) {
+                @include padding(6);
+            }
+        }
+
+        &.padding-12 {
+            :global(.uui-accordion-toggler) {
+                @include padding(12);
+            }
+        }
+
+        &.padding-18 {
+            :global(.uui-accordion-toggler) {
+                @include padding(18);
+            }
+        }
+    }
+
+    &.mode-inline {
+        &.padding-0 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(0);
+            }
+        }
+
+        &.padding-6 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(6);
+            }
+        }
+
+        &.padding-12 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(12);
+            }
+        }
+
+        &.padding-18 {
+            :global(.uui-accordion-toggle-container) {
+                @include padding(18);
             }
         }
     }

@@ -41,6 +41,9 @@
 
     .caption {
         font-family: $font-sans-semibold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .checkbox {
@@ -98,12 +101,6 @@
         top: 0;
     }
 
-    .overflowed-cell {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
     .upper-case {
         text-transform: uppercase;
         font-size: 12px;
@@ -127,5 +124,17 @@
 
     &.is-dragged-out {
         background-color: $gray10;
+
+        :local(.caption) {
+            color: $gray50;
+        }
+    }
+
+    &.dnd-marker-left {
+        box-shadow: inset 2px 0 0 0 $blue;
+    }
+
+    &.dnd-marker-right {
+        box-shadow: inset -2px 0 0 0 $blue;
     }
 }

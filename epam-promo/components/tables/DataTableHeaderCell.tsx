@@ -1,8 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DataTableHeaderCellProps, uuiMarkers, isClickableChildClicked, uuiDataTableHeaderCell } from '@epam/uui';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell } from '@epam/uui';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from "@epam/uui-components";
-import { DropMarker } from "../dnd";
 import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
 import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
 import * as css from './DataTableHeaderCell.scss';
@@ -38,7 +37,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 lineHeight='30'
                 fontSize='14'
                 size='30'
-                cx={ cx(css.caption, css.overflowedCell, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }
+                cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }
             >
                 { this.props.column.caption }
             </Text>
@@ -112,6 +111,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     props.isDragGhost && css.ghost,
                     props.isDraggedOut && css.isDraggedOut,
+                    props.isDndInProgress && css['dnd-marker-' + props.position],
                 ) }
                 onClick={ !this.props.column.renderFilter && props.toggleSort }
                 rawProps={ props.eventHandlers }
@@ -119,7 +119,6 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 { this.renderHeaderCheckbox() }
                 { this.renderColumnCaption() }
                 { this.props.allowColumnsResizing && this.renderResizeMark(props) }
-                <DropMarker { ...props } />
             </FlexCell >
         );
     }

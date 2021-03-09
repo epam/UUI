@@ -39,158 +39,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "2.  add ",
-                "marks": []
-              },
-              {
-                "object": "text",
-                "text": ".yarnrc",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " file in root folder and paste there this text:",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "note-quote",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "registry \"https://registry.npmjs.org/\"\n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "\"@epam:registry\" \"https://artifactory.epam.com/artifactory/api/npm/shared-npm/\" ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "3. ",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "npm login -registry https://artifactory.epam.com/artifactory/api/npm/shared-npm/",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-code",
-                    "data": {}
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "note-quote",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "login: shared-npm\n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "password: shared-npm",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": " \n",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "email: any (e.g. shared-npm@epam.com)",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "paragraph",
-            "data": {},
-            "nodes": [
-              {
-                "object": "text",
-                "text": "4",
+                "text": "2",
                 "marks": [
                   {
                     "object": "mark",
@@ -278,7 +127,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "5. Import styles from UUI packages in root of your app(e.g. index.tsx):",
+                "text": "3. Import styles from UUI packages in root of your app(e.g. index.tsx):",
                 "marks": []
               }
             ]
@@ -810,7 +659,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "6.  if you want to use ",
+                "text": "4.  if you want to use ",
                 "marks": []
               },
               {

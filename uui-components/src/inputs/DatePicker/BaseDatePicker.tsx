@@ -71,7 +71,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!(moment(this.state.inputValue ? this.state.inputValue : undefined, this.getFormat(), true).isValid()) || (this.props.filter && !this.props.filter(moment(this.props.value)))) {
+        if (!(moment(this.state.inputValue ? this.state.inputValue : undefined, this.getFormat(), true).isValid()) || (this.props.filter && !this.props.filter(moment(this.state.inputValue, this.getFormat())))) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
         }
@@ -79,7 +79,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
 
     handleInputChange = (value: string) => {
         const resultValue = toValueDateFormat(value, this.getFormat());
-        if (moment(value, this.getFormat(), true).isValid() && (!this.props.filter || this.props.filter(moment(value)))) {
+        if (moment(value, this.getFormat(), true).isValid() && (!this.props.filter || this.props.filter(moment(value, this.getFormat())))) {
             this.handleValueChange(resultValue);
             this.setState({ inputValue: value });
         } else {

@@ -37,7 +37,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
         let captionContent = <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign]) }>
             <Text
                 key='text'
-                cx={ cx(css.caption, css.overflowedCell, this.getTextStyle()) }
+                cx={ cx(css.caption, this.getTextStyle()) }
             >
                 { this.props.column.caption }
             </Text>
@@ -105,6 +105,9 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     css.cell, css['size-' + (this.props.size || '36')],
                     this.props.isFirstColumn && css[`padding-left-${this.props.size === '30' ? 18 : 24}`],
                     this.props.isLastColumn && css['padding-right-24'],
+                    props.isDragGhost && css.ghost,
+                    props.isDraggedOut && css.isDraggedOut,
+                    props.isDndInProgress && css['dnd-marker-' + props.position],
                     this.props.cx,
                 ] }
                 onClick={ !this.props.column.renderFilter && props.toggleSort }
@@ -113,8 +116,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             >
                 { this.renderHeaderCheckbox() }
                 { this.renderColumnCaption() }
-                { this.renderResizeMark(props) }
-                <DropMarker { ...props } />
+                { this.props.allowColumnsResizing && this.renderResizeMark(props) }
             </FlexCell >
         );
     }

@@ -24,6 +24,8 @@ export const PersonsTable = (props: PersonsTableProps) => {
             columns={ columnsSet.personColumns }
             renderRow={ renderRow }
             selectAll={ { value: false, isDisabled: true, onValueChange: null } }
+            allowColumnsResizing={ true }
+            allowColumnsReordering={ true }
             { ...tableLens }
             { ... props.view.getListProps() }
         />
