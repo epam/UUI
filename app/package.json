@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.1",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -16,13 +16,13 @@
   "dependencies": {
     "@epam/assets": "4.0.0-beta.0",
     "@epam/internal": "0.0.1",
-    "@epam/loveship": "4.0.0-beta.0",
-    "@epam/promo": "4.0.0-beta.0",
-    "@epam/uui": "4.0.0-beta.0",
-    "@epam/uui-components": "4.0.0-beta.0",
-    "@epam/uui-db": "4.0.0-beta.0",
-    "@epam/uui-editor": "4.0.0-beta.0",
-    "@epam/uui-timeline": "4.0.0-beta.0",
+    "@epam/loveship": "^4.0.0-beta.1",
+    "@epam/promo": "^4.0.0-beta.1",
+    "@epam/uui": "^4.0.0-beta.1",
+    "@epam/uui-components": "^4.0.0-beta.1",
+    "@epam/uui-db": "^4.0.0-beta.1",
+    "@epam/uui-editor": "^4.0.0-beta.1",
+    "@epam/uui-timeline": "^4.0.0-beta.1",
     "@types/history": "4.7.6",
     "@types/jest": "25.2.3",
     "@types/node": "14.0.5",
@@ -52,7 +52,7 @@
     "slate": "0.47.9"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.0.0-beta.0"
+    "@epam/uui-docs": "^4.0.0-beta.1"
   },
   "browserslist": {
     "production": [
