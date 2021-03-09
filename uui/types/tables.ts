@@ -71,8 +71,9 @@ export interface DataRowOptions<TItem, TId> extends IDisableable {
     columns?: DataColumnProps<TItem, TId>[];
 }
 
-export interface DataRowPathItem<TId> {
+export interface DataRowPathItem<TId, TItem> {
     id: TId;
+    value: TItem;
     isLastChild: boolean;
 }
 
@@ -105,7 +106,7 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     value?: TItem;
 
     /** Hierarchical path from the root node to the item (excluding the item itself) */
-    path?: DataRowPathItem<TId>[];
+    path?: DataRowPathItem<TId, TItem>[];
 
     /* visual */
 
