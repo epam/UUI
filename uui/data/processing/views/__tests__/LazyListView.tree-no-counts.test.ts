@@ -142,11 +142,11 @@ describe('LazyListView', () => {
         await delay();
 
         expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 1, isFoldable: true },
-            { id: 110, depth: 2, isFoldable: false },
-            { id: 120, depth: 2, isFoldable: true },
-            { id: 200, depth: 1 },
-            { id: 300, depth: 1 },
+            { id: 100, isFolded: false, depth: 0, isFoldable: true },
+            { id: 110, depth: 1, isFoldable: false },
+            { id: 120, depth: 1, isFoldable: true },
+            { id: 200, depth: 0 },
+            { id: 300, depth: 0 },
         ], 5);
     });
 });

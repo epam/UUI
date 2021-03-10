@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.0.0-beta.0",
+  "version": "4.0.0-beta.2",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -8,10 +8,10 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "publish": "npm publish ./build --access public"
+    "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.0.0-beta.0",
+    "@epam/uui": "^4.0.0-beta.2",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
     "@types/lodash.isequal": "4.5.5",
@@ -49,5 +49,8 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f",
+  "publishConfig": {
+    "directory": "build"
+  }
 }

@@ -73,6 +73,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         let fullSelection: TId[] = [];
         let emptySelection: TId[] = [];
         let currentIndex = 0;
+        let isFlatList = this.dataSource.maxDepth == 1;
 
         this.updateCheckedLookup(this.value.checked);
 
@@ -110,6 +111,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 const isFoldable = children && children.rows.length > 0;
 
                 if ((isPassedSearch && isPassedFilter) || children.rows.length > 0) {
+                    rowProps.indent = isFlatList ? 0 : depth;
                     rowProps.depth = depth;
                     rowProps.isFolded = isFolded;
                     rowProps.isFoldable = isFoldable;
