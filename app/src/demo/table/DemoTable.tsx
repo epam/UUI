@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import css from "./DemoTable.scss";
-import {FlexRow} from "@epam/promo";
-import {Table} from "./Table";
-import {Panel} from "./Panel";
-import {Top} from "./Top";
+import { FlexRow } from "@epam/promo";
+import { Table } from "./Table";
+import { Panel } from "./Panel";
+import { Top } from "./Top";
 
 export const DemoTable: React.FC = () => {
     const [isPanelOpened, setIsPanelOpened] = useState(false);
