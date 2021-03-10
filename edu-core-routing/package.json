@@ -1,6 +1,6 @@
 {
   "name": "@epam/edu-core-routing",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.4",
   "description": "EPAM Edu Core Routing",
   "author": "EPAM",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@epam/uui": "^4.0.0-beta.2",
+    "@epam/uui": "^4.0.0-beta.4",
     "jsurl": "0.1.5",
     "lodash.clone": "4.5.0",
     "lodash.merge": "4.6.2",
@@ -31,7 +31,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8340473ac3c870b0bf7138186a3d18604b0ce62a",
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
   "publishConfig": {
     "directory": "build"
   }
