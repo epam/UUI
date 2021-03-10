@@ -124,25 +124,25 @@
 
     &.mode-block {
         &.padding-0 {
-            :global(.uui-accordion-toggler) {
+            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
                 @include padding(0);
             }
         }
 
         &.padding-6 {
-            :global(.uui-accordion-toggler) {
+            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
                 @include padding(6);
             }
         }
 
         &.padding-12 {
-            :global(.uui-accordion-toggler) {
+            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
                 @include padding(12);
             }
         }
 
         &.padding-18 {
-            :global(.uui-accordion-toggler) {
+            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
                 @include padding(18);
             }
         }
@@ -150,25 +150,25 @@
 
     &.mode-inline {
         &.padding-0 {
-            :global(.uui-accordion-toggle-container) {
+            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
                 @include padding(0);
             }
         }
 
         &.padding-6 {
-            :global(.uui-accordion-toggle-container) {
+            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
                 @include padding(6);
             }
         }
 
         &.padding-12 {
-            :global(.uui-accordion-toggle-container) {
+            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
                 @include padding(12);
             }
         }
 
         &.padding-18 {
-            :global(.uui-accordion-toggle-container) {
+            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
                 @include padding(18);
             }
         }
