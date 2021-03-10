@@ -79,10 +79,10 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
             fill: var(--icon-color);
             line-height: 18px;
             font-size: 14px;
+            padding: 3px 12px 8px;
 
             :global(.uui-accordion-toggle-container) {
                 min-height: 24px;
-                padding: 3px 12px 8px;
             }
 
             :global(.uui-accordion-title) {
@@ -115,55 +115,27 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
         }
     }
 
-    &.mode-block {
-        &.padding-0 {
-            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-                @include padding(0);
-            }
-        }
-        
-        &.padding-6 {
-            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-                @include padding(6);
-            }
-        }
-
-        &.padding-12 {
-            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-                @include padding(12);
-            }
-        }
-
-        &.padding-18 {
-            :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-                @include padding(18);
-            }
+    &.padding-0 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(0);
         }
     }
 
-    &.mode-inline {
-        &.padding-0 {
-            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
-                @include padding(0);
-            }
+    &.padding-6 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(6);
         }
-        
-        &.padding-6 {
-            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
-                @include padding(6);
-            }
-        }
+    }
 
-        &.padding-12 {
-            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
-                @include padding(12);
-            }
+    &.padding-12 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(12);
         }
+    }
 
-        &.padding-18 {
-            :global(.uui-accordion-toggle-container), :global(.uui-accordion-body) {
-                @include padding(18);
-            }
+    &.padding-18 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(18);
         }
     }
 }
