@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Let's describe the ways to send event:",
+            "text": "There are two ways to send an event:",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "By component props :",
+                    "text": "Most components provide convenience props. Set these props to emit an event on click or changing input value:",
                     "marks": []
                   }
                 ]
