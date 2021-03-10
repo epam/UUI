@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "typings": "index.d.ts",
+  "private": true,
   "scripts": {
     "start": "node ../uui-build/scripts/start",
     "build": "node ../uui-build/scripts/build",
@@ -70,8 +71,5 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f",
-  "publishConfig": {
-    "directory": "build"
-  }
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
 }
