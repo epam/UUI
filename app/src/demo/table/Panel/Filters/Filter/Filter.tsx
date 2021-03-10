@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import css from "./Filter.scss";
 import { CheckboxGroup, IconContainer } from "@epam/promo";
-import { systemIcons } from "@epam/promo/icons/icons";
+import arrowDown from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 import { columns } from "../../../data";
 
 const Filter: React.FC<typeof columns[number]> = ({ name }) => {
@@ -28,7 +28,7 @@ const Filter: React.FC<typeof columns[number]> = ({ name }) => {
         <div>
             <div className={ css.title } onClick={ toggle }>
                 <div>{ name }</div>
-                <IconContainer icon={ systemIcons['30'].foldingArrow } flipY={ isOpened }/>
+                <IconContainer icon={ arrowDown } flipY={ isOpened }/>
             </div>
 
             { isOpened && (
