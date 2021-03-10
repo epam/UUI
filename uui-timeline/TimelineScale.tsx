@@ -73,17 +73,24 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
       superscript?: string,
     ) {
         ctx.fillStyle = textColor;
+
         const padding = 12;
         const headerTextWidth = ctx.measureText(header).width;
         const textWidth = headerTextWidth + padding * 2;
         const center = x + width / 2;
         let left = center - textWidth / 2;
+
+        // Stick to the edges
         if (width > 120) {
-            if (left < 0) {
-                left = 0;
+            const leftBound = 24;
+            const rightBound = t.widthPx - 24;
+            const isOutOfLeftBound = left < leftBound;
+            const isOutOfRightBound = (left + textWidth) > rightBound;
+            if (isOutOfLeftBound) {
+                left = leftBound;
             }
-            if ((left + textWidth) > t.widthPx) {
-                left = t.widthPx - textWidth;
+            if (isOutOfRightBound) {
+                left = rightBound - textWidth;
             }
             if (left < x) {
                 left = x;
@@ -121,6 +128,14 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         render.call(this, ctx, t, visibility);
 
         ctx.restore();
+    }
+
+    private renderMinutes(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+        t.getVisibleMinutes().map(w => {
+            const header = w.leftDate.getHours().toString().padStart(2, "0") + ":" + w.leftDate.getMinutes().toString().padStart(2, "0");
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            this.renderHeader(ctx, t, header, w.left, w.right - w.left, 2 + (1 - visibility) * moveAmount, isCurrentPeriod, '#525462', visibility);
+        });
     }
 
     private renderRemainingHours(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
@@ -238,8 +253,9 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
 
         ctx.font = '12px Sans Regular';
 
-        this.renderPart(ctx, t, 800, null, this.renderRemainingHours);
-        this.renderPart(ctx, t, 200, null, this.renderHours);
+        this.renderPart(ctx, t, 40000, null, this.renderMinutes);
+        this.renderPart(ctx, t, 800, 40000, this.renderRemainingHours);
+        this.renderPart(ctx, t, 200, 20000, this.renderHours);
         this.renderPart(ctx, t, 200, null, this.renderTopDays);
         this.renderPart(ctx, t, 20, 200, this.renderDays);
         this.renderPart(ctx, t, 6, 200, this.renderTopMonths);
