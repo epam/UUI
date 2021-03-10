@@ -1,6 +1,6 @@
 {
   "name": "@epam/assets",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "EPAM Assets Library",
   "author": "EPAM",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
-    "@epam/uui-build": "^4.0.0-beta.3"
+    "@epam/uui-build": "^4.0.0-beta.4"
   },
   "repository": {
     "type": "git",
