@@ -59,9 +59,9 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                 });
             }
 
-            if (row.depth > 0) {
+            if (row.indent > 0) {
                 allAddons.push({
-                    component: <div key='fold' className={ css.indent } style={ { marginLeft: (row.depth - 1) * 24 } }>
+                    component: <div key='fold' className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
                         { row.isFoldable && <IconContainer
                             key='icon'
                             icon={ foldingArrow }
@@ -70,7 +70,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                             onClick={ () => row.onFold(row) }
                         /> }
                     </div>,
-                    widthCost: row.depth * 24,
+                    widthCost: row.indent * 24,
                 });
             }
 
