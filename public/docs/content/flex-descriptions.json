@@ -1,1 +1,116 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"For case when you need to quickly layout something with flexbox without using your own css, you can use the following components:","marks":[]}]},{"object":"block","type":"unordered-list","data":{},"nodes":[{"object":"block","type":"list-item","data":{},"nodes":[{"object":"block","type":"list-item-child","data":{},"nodes":[{"object":"text","text":"Panel","marks":[]}]}]},{"object":"block","type":"list-item","data":{},"nodes":[{"object":"block","type":"list-item-child","data":{},"nodes":[{"object":"text","text":"FlexRow","marks":[]}]}]},{"object":"block","type":"list-item","data":{},"nodes":[{"object":"block","type":"list-item-child","data":{},"nodes":[{"object":"text","text":"FlexCell","marks":[]}]}]},{"object":"block","type":"list-item","data":{},"nodes":[{"object":"block","type":"list-item-child","data":{},"nodes":[{"object":"text","text":"FlexSpacer","marks":[]}]}]}]},{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"By using these components you can implements most commonly and simple cases, if you need more — just use simple html with css.","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We provide a set of components, to simplify building layouts. They are basically short-cuts for FlexBox elements, with some convenience styling props on top:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Panel",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "FlexRow",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "FlexCell",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "FlexSpacer",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By using these components you can implements most commonly and simple cases, if you need more — just use simple html with css.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
