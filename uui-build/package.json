@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.4",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -93,5 +93,6 @@
   },
   "publishConfig": {
     "directory": "build"
-  }
+  },
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
 }
