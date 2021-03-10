@@ -93,5 +93,6 @@
   },
   "publishConfig": {
     "directory": "build"
-  }
+  },
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
 }
