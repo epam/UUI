@@ -34,7 +34,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     getColumnCaption = (props?: any) => {
-        let captionContent = <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign]) }>
+        let captionContent = <div className={ cx(css.iconCell, this.props.column.textAlign && css['align-' + this.props.column.textAlign]) }>
             <Text
                 key='text'
                 cx={ cx(css.caption, this.getTextStyle()) }

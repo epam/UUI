@@ -40,7 +40,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
@@ -91,7 +91,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
@@ -142,7 +142,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
@@ -226,7 +226,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
@@ -277,7 +277,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
@@ -328,7 +328,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={null}
           >
             <div
-              className="iconCell align-undefined"
+              className="iconCell"
             >
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
