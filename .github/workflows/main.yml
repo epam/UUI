@@ -16,31 +16,34 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-
+  
     runs-on: ubuntu-latest
+    container: node:14
+  
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: '14.x'
-    - run: yarn
-    - run: yarn build
-    - run: yarn generate-components-api
-    - run: cd server && yarn
-    
-  test:
-    needs: build
-    runs-on: ubuntu-latest
+        
+    - uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+          ./*/node_modules
+        key: v1-npm-deps-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: v1-npm-deps-
+      
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - run: yarn test
+    - name: build
+      run: | 
+        yarn
+        cd server && yarn
+        yarn build
+        yarn generate-components-api 
+    - name: test  
+      run: yarn test
         
         
         
