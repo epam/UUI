@@ -21,7 +21,7 @@ export class TimelineTransform {
 
     getX(date: Date, trim?: undefined | 'left' | 'right'): number {
         let ms = date.getTime();
-        
+
         if (trim == 'left' && ms < this.leftMs) {
             ms = this.leftMs;
         }
@@ -36,7 +36,7 @@ export class TimelineTransform {
     }
 
     getDate(mouseX: number) {
-        return new Date(this.leftMs + mouseX / this.pxPerMs);                                
+        return new Date(this.leftMs + mouseX / this.pxPerMs);
     }
 
     getPxInDay() {
@@ -76,14 +76,14 @@ export class TimelineTransform {
         let rightBorder = right ? right : new Date(this.rightMs);
 
         let result = {
-            left: this.getX(leftBorder),            
+            left: this.getX(leftBorder),
             right: this.getX(rightBorder),
-            width: 0,            
-            leftTrimmed: this.getX(leftBorder, 'left'),  
+            width: 0,
+            leftTrimmed: this.getX(leftBorder, 'left'),
             rightTrimmed: this.getX(rightBorder, 'right'),
             widthTrimmed: 0,
             isVisible: (leftBorder.getTime() < this.rightMs) && (rightBorder.getTime() > this.leftMs),
-        };  
+        };
 
         result.width = result.right - result.left;
         result.widthTrimmed = result.rightTrimmed - result.leftTrimmed;
@@ -165,13 +165,29 @@ export class TimelineTransform {
         );
     }
 
+    public getVisibleQuoterHours() {
+        return this.getScaleBars(
+            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
+            (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
+            "Q",
+        );
+    }
+
+    public getVisibleMinutes() {
+        return this.getScaleBars(
+            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes()),
+            (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n),
+            "m",
+        );
+    }
+
     public getScale() {
         let pxPerDay = this.pxPerMs * msPerDay;
-        
+
         // These values are guessed and have no math behind them
         if (pxPerDay < 1.5) {
             return Scales.Year;
-        } else if (pxPerDay < 10) { 
+        } else if (pxPerDay < 10) {
             return Scales.Month;
         } else if (pxPerDay < 25) {
             return Scales.Week;

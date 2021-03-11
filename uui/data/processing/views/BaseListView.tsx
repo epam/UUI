@@ -165,14 +165,14 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
 
-        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild }));
+        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
 
         const rowProps = {
             id,
             rowKey: key,
             index,
             value: item,
-            depth: 0,
+            depth: parents.length,
             path,
             ...rowOptions,
             isFocused: value.focusedIndex === index,
@@ -186,15 +186,18 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return rowProps;
     }
 
-    protected getLoadingRow(id: any, index: number = 0, depth = 0): DataRowProps<any, any> {
+    protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<any, any> {
         const rowOptions = this.props.rowOptions;
+
+        const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value })) : [];
 
         return {
             id,
             rowKey: JSON.stringify(id),
             index,
             isLoading: true,
-            depth,
+            depth: parents ? parents.length : 0,
+            path,
             checkbox: rowOptions?.checkbox.isVisible && { isVisible: true, isDisabled: true },
         };
     }

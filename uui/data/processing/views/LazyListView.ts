@@ -148,7 +148,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (item !== null) {
             return this.getRowProps(item, index, []);
         } else {
-            return this.getLoadingRow('_loading_' + id as any, index);
+            return this.getLoadingRow('_loading_' + id as any, index, []);
         }
     }
 
@@ -271,8 +271,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         row.isFolded = this.isFolded(item);
                         row.onFold = row.isFoldable && this.handleOnFold;
 
+                        const parentsWithRow = [...parents, row];
+
                         if (itemNode.children) { // children loaded
-                            const childStats = iterateNode(itemNode.children, appendRows && !row.isFolded, [...parents, row], reportedChildCount);
+                            const childStats = iterateNode(itemNode.children, appendRows && !row.isFolded, parentsWithRow, reportedChildCount);
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats.isSomeCheckable = stats.isSomeCheckable || childStats.isSomeCheckable;
@@ -285,7 +287,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                             if (!row.isFolded) {
                                 for (let m = 0; m < reportedChildCount && index < lastIndex; m++) {
-                                    rows.push(this.getLoadingRow('_loading_' + index  as any, index, parents.length + 1));
+                                    const row = this.getLoadingRow('_loading_' + index  as any, index, parentsWithRow);
+                                    row.indent = parentsWithRow.length;
+                                    row.isLastChild = m == (reportedChildCount - 1);
+                                    rows.push(row);
                                     index++;
                                     addedCount++;
                                 }
@@ -294,10 +299,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     }
                 }
             }
-
-            const isAnyChildren = layerRows.some(r => r.isFoldable);
-            const depth = isAnyChildren ? (parents.length + 1) : parents.length;
-            layerRows.forEach(r => r.depth = depth);
 
             if (appendRows) {
                 let missingCount: number;
@@ -321,12 +322,22 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
 
                 while(index < lastIndex && missingCount > 0) {
-                    rows.push(this.getLoadingRow('_loading_' + index  as any, index, depth));
+                    const row = this.getLoadingRow('_loading_' + index  as any, index, parents);
+                    rows.push(row);
+                    layerRows.push(row);
                     index++;
                     addedCount++;
                     missingCount--;
                 }
             }
+
+            const isAnyChildren = layerRows.some(r => r.isFoldable);
+            /*
+                ? layerRows.some(r => r.isFoldable)
+                : (parents.length === 0 && this.props.getChildCount != null); // if there's no rows - guess that there will be children on 1st layer, if getChildCount is passed
+                */
+            const indent = isAnyChildren ? (parents.length + 1) : parents.length;
+            layerRows.forEach(r => r.indent = indent);
 
             return stats;
         }
@@ -441,9 +452,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // We don't run rebuild rows on scrolling. We rather wait for the next load to happen.
             // So there can be a case when we haven't updated rows (to add more loading rows), and view is scrolled down
             // We need to add more loading rows in such case.
+
+            const lastRow = this.rows[this.rows.length - 1];
+
             while (rows.length < count && (from + rows.length) < listProps.rowsCount) {
                 const index = from + rows.length;
-                rows.push(this.getLoadingRow('_loading_' + index as any, index));
+                const row = this.getLoadingRow('_loading_' + index as any, index);
+                row.indent = lastRow.indent;
+                row.path = lastRow.path;
+                row.depth = lastRow.depth;
+                rows.push(row);
             }
         }
 

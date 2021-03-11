@@ -1,7 +1,10 @@
 import { i18n } from "./i18n";
 
 export let baseDate = new Date(2000, 1, 1);
-export let msPerDay = 24 /*hour*/ * 60 /*min*/ * 60 /*sec*/ * 1000 /*ms*/;
+export let msPerMinute = 60 /*sec*/ * 1000 /*ms*/;
+export let msPerHour = 60 /*min*/ * msPerMinute;
+export let msPerDay = 24 /*hour*/ * msPerHour;
+export let msPerYear = 365 * msPerDay;
 
 export function addMs(date: Date, ms: number) {
     return new Date(date.getTime() + ms);
@@ -70,26 +73,42 @@ export enum Scales {
     Month,
     Week,
     Day,
+    Hour,
+    Minute
 }
 
 export let scaleSteps: Scales[] = [];
 
+/** Pre-defined scales in px/millisecond.
+ * Scales are picked by hand to make scale and grid fit fine, and transitions between different variants occurs in between of this scales */
+// the logic under expressions below is: we take required pixels per scale unit (year, month,...), and divide it by milliseconds in this period.
+// In term of units, this is: (px/duration)/(ms/duration) = (px*duration)/(ms*duration) = px/ms
 export let scales = {
-    year: 2.3148148148148148e-9,
-    month: 1.4157196863058943e-8,
-    week: 7.875925925925926e-8,
-    day: 2.71738085369666e-7,
-    hour: 1.041666666666667e-5,
+    year: 70 / msPerYear,
+    yearWide: 200 / msPerYear,
+    month: 40 / (30 * msPerDay),
+    monthWide: 110 / (30 * msPerDay),
+    week: 50 / (7 * msPerDay),
+    weekWide: 80 / (7 * msPerDay),
+    day: 24 / msPerDay,
+    dayWide: 300 / msPerDay,
+    hour: 37 / msPerHour,//ok
+    hourWide: 300 / msPerHour,
+    minute: 60 / msPerMinute,
+    minuteWide: 120 / msPerMinute,
 };
 
 scaleSteps = [
     scales.year,
-    6.004033472453708e-9,
+    scales.yearWide,
     scales.month,
-    4.0431348369849744e-8,
+    scales.monthWide,
     scales.week,
-    1.3888888888888888e-7,
+    scales.weekWide,
     scales.day,
-    3.472222222222222e-6,
+    scales.dayWide,
     scales.hour,
+    scales.hourWide,
+    scales.minute,
+    //scales.minuteWide
 ];

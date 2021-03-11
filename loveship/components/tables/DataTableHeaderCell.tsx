@@ -105,6 +105,8 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     css.cell, css['size-' + (this.props.size || '36')],
                     this.props.isFirstColumn && css[`padding-left-${this.props.size === '30' ? 18 : 24}`],
                     this.props.isLastColumn && css['padding-right-24'],
+                    this.props.allowColumnsResizing && css.resizable,
+                    props.isDraggable && css.draggable,
                     props.isDragGhost && css.ghost,
                     props.isDraggedOut && css.isDraggedOut,
                     props.isDndInProgress && css['dnd-marker-' + props.position],

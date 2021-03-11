@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "3.48.0-beta.1",
+  "version": "4.0.0-beta.4",
   "description": "EPAM UUI",
   "author": "EPAM",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "publish": "npm publish ./build --access public"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@types/classnames": "2.2.6",
@@ -52,5 +52,8 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "publishConfig": {
+    "directory": "build"
+  }
 }

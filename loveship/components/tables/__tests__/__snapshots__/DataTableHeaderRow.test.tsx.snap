@@ -43,7 +43,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
               >
                 ID
               </div>
@@ -71,10 +71,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
         <div
           className="flexCell -clickable cell size-24"
@@ -98,7 +94,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
               >
                 Level
               </div>
@@ -126,10 +122,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
         <div
           className="flexCell -clickable cell size-24 padding-right-24"
@@ -153,7 +145,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell upperCase container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
               >
                 DATE
               </div>
@@ -181,10 +173,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
       </div>
     </div>
@@ -241,7 +229,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
               >
                 ID
               </div>
@@ -269,10 +257,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
         <div
           className="flexCell -clickable cell size-36"
@@ -296,7 +280,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
               >
                 Level
               </div>
@@ -324,10 +308,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
         <div
           className="flexCell -clickable cell size-36 padding-right-24"
@@ -351,7 +331,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               className="iconCell align-undefined"
             >
               <div
-                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
               >
                 DATE
               </div>
@@ -379,10 +359,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               </div>
             </div>
           </div>
-          <div
-            className="resizeMark"
-            onMouseDown={[Function]}
-          />
         </div>
       </div>
     </div>
