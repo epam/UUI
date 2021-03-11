@@ -83,7 +83,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                     </DropdownContainer> }
                 onValueChange={ (opened) => this.setState({ ...this.state, isOpen: opened }) }
                 value={ this.state.isOpen }
-                modifiers={ {offset: {offset: '0,6px'}} }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
         );
     }

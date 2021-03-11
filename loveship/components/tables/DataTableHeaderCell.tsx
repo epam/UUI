@@ -60,7 +60,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 renderContent={ (!this.state.isDropdownOpen && this.props.column.info) ? () => this.props.column.info : null }
                 color='white'
                 cx={ css.cellTooltip }
-                offset={ '-12, 12' }
+                offset={ [-12, 12] }
             >
                 { captionContent }
             </Tooltip>
@@ -81,7 +81,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                         { this.props.renderFilter() }
                     </Panel>
                 ) }
-                modifiers={ { offset: { offset: '-12, 0' } } }
+                modifiers={ [{ name: 'offset', options: { offset: [-12, 0] } }] }
                 value={ this.state.isDropdownOpen }
                 onValueChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
             />;

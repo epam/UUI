@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { findDOMNode } from 'react-dom';
+import { Placement } from '@popperjs/core';
 import { UuiContexts, uuiContextTypes, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly } from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
-import { Placement } from 'popper.js';
-import { i18n } from "../../i18n";
-import { findDOMNode } from 'react-dom';
+import { i18n } from '../../i18n';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & {
     editMode?: 'dropdown' | 'modal';

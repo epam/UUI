@@ -1,23 +1,24 @@
 import * as React from 'react';
 import * as reactDom from 'react-dom';
 import cx from 'classnames';
-import * as css from './Tooltip.scss';
-import {Manager, Reference, Popper} from 'react-popper';
-import PopperJS, {Boundary} from "popper.js";
+import * as PropTypes from 'prop-types';
+import { Placement, Boundary } from '@popperjs/core';
+import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
+import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest } from '@epam/uui';
+import * as css from './Tooltip.scss';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
-import * as PropTypes from 'prop-types';
 
 export interface TooltipProps extends IHasCX, IHasChildren {
     content?: any;
     renderContent?(): any;
-    placement?: PopperJS.Placement;
+    placement?: Placement;
     trigger?: 'click' | 'press' | 'hover';
     portalTarget?: HTMLElement;
-    offset?: string;
+    offset?: Options['offset'];
     children?: React.ReactNode;
-    boundaryElement?: Boundary | Element;
+    boundaryElement?: Boundary;
 }
 
 export interface TooltipState {
@@ -129,6 +130,25 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
         </div>;
     }
 
+    private renderChildren = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
+        if (isReferenceHidden && this.state.isOpen) {
+            setTimeout(() => { this.setState({ isOpen: false }); }, 0);
+            return null;
+        }
+        return (
+            <div
+                ref={ ref }
+                style={ { ...style, zIndex: this.layer?.zIndex } }
+                className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
+                data-placement={ placement }
+                data-popper-reference-hidden={ isReferenceHidden }
+            >
+                { this.renderTooltip() }
+                <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
+            </div>
+        );
+    }
+
     render() {
         let hasTooltip = !!this.props.content || !!this.props.renderContent;
         return (
@@ -138,20 +158,15 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
                 </Reference>
                 { hasTooltip && this.state.isOpen && <Portal target={ this.props.portalTarget }>
                     <Popper
-                        modifiers={ { preventOverflow: { boundariesElement: this.props.boundaryElement || 'window' }, offset: { offset: this.props.offset || '0,12', enabled: true }, computeStyle: { gpuAcceleration: false }  } }
                         placement={ this.props.placement || 'top' }
+                        modifiers={ [
+                            { name: 'preventOverflow', options: { boundary: this.props.boundaryElement } },
+                            { name: 'offset', options: { offset: this.props.offset || [0, 12] } },
+                            { name: 'computeStyles', options: { gpuAcceleration: false } },
+                            { name: 'hide', enabled: true },
+                        ] }
                     >
-                        { ({ ref, style, placement, arrowProps }) => (
-                            <div
-                                ref={ ref }
-                                style={ { ...style, zIndex: this.layer?.zIndex } }
-                                className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
-                                data-placement={ placement }
-                            >
-                                { this.renderTooltip() }
-                                <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
-                            </div>
-                        ) }
+                        { this.renderChildren }
                     </Popper>
                 </Portal> }
             </Manager>
