@@ -44,7 +44,7 @@ Array [
                 className="iconCell align-undefined"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
                 >
                   ID
                 </div>
@@ -72,10 +72,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className="resizeMark"
-              onMouseDown={[Function]}
-            />
           </div>
           <div
             className="flexCell -clickable cell size-36"
@@ -99,7 +95,7 @@ Array [
                 className="iconCell align-undefined"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
                 >
                   Level
                 </div>
@@ -127,10 +123,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className="resizeMark"
-              onMouseDown={[Function]}
-            />
           </div>
           <div
             className="flexCell -clickable cell size-36 padding-right-24"
@@ -154,7 +146,7 @@ Array [
                 className="iconCell align-undefined"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption overflowedCell font-size-14 container"
+                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
                 >
                   DATE
                 </div>
@@ -182,10 +174,6 @@ Array [
                 </div>
               </div>
             </div>
-            <div
-              className="resizeMark"
-              onMouseDown={[Function]}
-            />
           </div>
         </div>
       </div>
