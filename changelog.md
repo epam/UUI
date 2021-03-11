@@ -1,4 +1,4 @@
-# 3.xx.xx - 01.01.2021
+# 4.0.0-beta.0 - 09.03.2021 (changelog WIP)
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
@@ -61,6 +61,11 @@
     const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
     const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
   ```
+* [Tables]: Added columns resizing and reordering possibility:
+    * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
+    * Columns config was moved to the DataTable value.
+    * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
+  
 
 
 # 3.47.4 - 23.02.2021

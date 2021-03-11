@@ -103,12 +103,14 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 { ...props }
                 { ...this.props.column }
                 cx={ cx(
+                    uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.cell, css['size-' + (this.props.size || '36')],
                     this.props.isFirstColumn && css[`padding-left-24`],
                     this.props.isLastColumn && css['padding-right-24'],
                     this.props.column.cx,
-                    uuiDataTableHeaderCell.uuiTableHeaderCell,
+                    this.props.allowColumnsResizing && css.resizable,
+                    props.isDraggable && css.draggable,
                     props.isDragGhost && css.ghost,
                     props.isDraggedOut && css.isDraggedOut,
                     props.isDndInProgress && css['dnd-marker-' + props.position],

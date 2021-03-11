@@ -19,6 +19,7 @@
 
         &:hover {
             background: $night200;
+            box-shadow: inset 0 0 0 1px $night300;
 
             .sort-icon {
                 fill: $night600;
@@ -119,12 +120,22 @@
         font-size: 14px;
     }
 
+    &.resizable {
+        &:hover {
+            box-shadow: inset 0 0 0 1px $night300;
+        }
+    }
+
     .resize-mark {
         position: absolute;
         width: 12px;
         right: 0;
         height: 100%;
         cursor: col-resize;
+    }
+
+    &.draggable {
+        cursor: pointer;
     }
 
     &.ghost {

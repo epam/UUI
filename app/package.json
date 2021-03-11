@@ -1,28 +1,28 @@
 {
   "name": "@epam/app",
-  "version": "3.48.0-beta.1",
+  "version": "4.0.0-beta.4",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
   "typings": "index.d.ts",
+  "private": true,
   "scripts": {
     "start": "node ../uui-build/scripts/start",
     "build": "node ../uui-build/scripts/build",
     "build-dev": "node ../uui-build/scripts/build-dev",
-    "server": "node ../server/app.js",
-    "publish": "echo Not Published"
+    "server": "node ../server/app.js"
   },
   "dependencies": {
-    "@epam/assets": "3.48.0-beta.1",
-    "@epam/loveship": "3.48.0-beta.1",
-    "@epam/promo": "3.48.0-beta.1",
-    "@epam/uui": "3.48.0-beta.1",
-    "@epam/uui-components": "3.48.0-beta.1",
-    "@epam/uui-db": "3.48.0-beta.1",
-    "@epam/uui-editor": "3.48.0-beta.1",
-    "@epam/uui-timeline": "3.48.0-beta.1",
+    "@epam/assets": "^4.0.0-beta.4",
     "@epam/internal": "0.0.1",
+    "@epam/loveship": "^4.0.0-beta.4",
+    "@epam/promo": "^4.0.0-beta.4",
+    "@epam/uui": "^4.0.0-beta.4",
+    "@epam/uui-components": "^4.0.0-beta.4",
+    "@epam/uui-db": "^4.0.0-beta.4",
+    "@epam/uui-editor": "^4.0.0-beta.4",
+    "@epam/uui-timeline": "^4.0.0-beta.4",
     "@types/history": "4.7.6",
     "@types/jest": "25.2.3",
     "@types/node": "14.0.5",
@@ -52,7 +52,7 @@
     "slate": "0.47.9"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "3.48.0-beta.1"
+    "@epam/uui-docs": "^4.0.0-beta.4"
   },
   "browserslist": {
     "production": [
@@ -71,5 +71,5 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "36d14b47ae01d68fd0b7a8ad27e9eef178d2184f"
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
 }
