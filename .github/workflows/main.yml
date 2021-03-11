@@ -39,9 +39,9 @@ jobs:
     - name: build
       run: | 
         yarn
-        cd server && yarn
         yarn build
-        yarn generate-components-api 
+        yarn generate-components-api
+        cd server && yarn
     - name: test  
       run: yarn test
         
