@@ -15,8 +15,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-  
+  build-and-test:
+    
     runs-on: ubuntu-latest
     container: node:14
   
@@ -32,7 +32,7 @@ jobs:
         path: |
           node_modules
           ./*/node_modules
-        key: v1-npm-deps-${{ hashFiles('**/package-lock.json') }}
+        key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
         restore-keys: v1-npm-deps-
       
 
