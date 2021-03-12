@@ -180,24 +180,27 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         );
     }
 
-    private renderChildren = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
-        if (isReferenceHidden && this.state.opened) {
+    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
+        const setRef = (node: HTMLElement) => {
+            (ref as React.RefCallback<any>)(node);
+            this.bodyNode = node;
+            if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
+                const { x, y, height, width } = this.bodyNode.getBoundingClientRect() as DOMRect;
+                if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
+                    this.setState({ bodyBoundingRect : { y, height, width, x } });
+                }
+            }
+        };
+
+        if (isReferenceHidden && (this.state.opened || this.props.value)) {
+            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => { this.handleOpenedChange(false); }, 0);
             return null;
         }
         return (
             <div
                 className='uui-popper'
-                ref={ node => {
-                    (ref as React.RefCallback<any>)(node);
-                    this.bodyNode = node;
-                    if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
-                        const { x, y, height, width } = this.bodyNode.getBoundingClientRect() as DOMRect;
-                        if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                            this.setState({ bodyBoundingRect : { y, height, width, x } });
-                        }
-                    }
-                } }
+                ref={ setRef }
                 style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
                 data-placement={ placement }
             >
@@ -275,7 +278,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         strategy={ 'fixed' }
                         modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }
                     >
-                        { this.renderChildren }
+                        { this.renderDropdownBody }
                     </Popper>
                 </Portal> }
             </Manager>

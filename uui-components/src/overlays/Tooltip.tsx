@@ -130,8 +130,9 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
         </div>;
     }
 
-    private renderChildren = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
+    private renderTooltipBody = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
         if (isReferenceHidden && this.state.isOpen) {
+            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => { this.setState({ isOpen: false }); }, 0);
             return null;
         }
@@ -166,7 +167,7 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
                             { name: 'hide', enabled: true },
                         ] }
                     >
-                        { this.renderChildren }
+                        { this.renderTooltipBody }
                     </Popper>
                 </Portal> }
             </Manager>
