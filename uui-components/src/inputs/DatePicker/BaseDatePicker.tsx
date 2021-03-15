@@ -134,7 +134,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
                     !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
                 onValueChange={ (opened) => !this.props.isReadonly && this.onToggle(opened) }
                 value={ this.state.isOpen }
-                modifiers={ {offset: {offset: '0,6px'}} }
+                modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
             />
         );
     }

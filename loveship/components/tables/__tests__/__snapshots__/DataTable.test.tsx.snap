@@ -38,10 +38,9 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
-                className="iconCell align-undefined"
+                className="iconCell"
               >
                 <div
                   className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
@@ -89,10 +88,9 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
-                className="iconCell align-undefined"
+                className="iconCell"
               >
                 <div
                   className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
@@ -140,10 +138,9 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
-                className="iconCell align-undefined"
+                className="iconCell"
               >
                 <div
                   className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
