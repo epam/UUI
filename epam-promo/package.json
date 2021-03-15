@@ -1,6 +1,6 @@
 {
   "name": "@epam/promo",
-  "version": "4.0.0-beta.5",
+  "version": "4.0.0-beta.6",
   "description": "EPAM UUI4 components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@epam/assets": "^4.0.0-beta.5",
-    "@epam/uui": "^4.0.0-beta.5",
-    "@epam/uui-components": "^4.0.0-beta.5",
+    "@epam/uui": "^4.0.0-beta.6",
+    "@epam/uui-components": "^4.0.0-beta.6",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
@@ -38,7 +38,7 @@
     "react-dom": ">=16.0.0"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "^4.0.0-beta.5"
+    "@epam/uui-docs": "^4.0.0-beta.6"
   },
   "repository": {
     "type": "git",
