@@ -40,7 +40,7 @@ async function loadNodeRec<TItem, TId, TFilter>(
     parentLoadAll: boolean,
 ) {
     if (parentLoadAll) {
-        requiredRowsCount = 100500;
+        requiredRowsCount = Number.MAX_SAFE_INTEGER;
     }
 
     let node: LazyTreeList<TItem, TId> = inputNode
