@@ -65,7 +65,8 @@
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
     * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
-  
+* [Popper.js]: updated to v.2.x, added 'hide' modifier to [Tooltip] & [Dropdown]: 
+    * [Breaking Change]: In Popper 2 this is now an array of objects (modifiers), instead of an object where each property was the modifier name. [More information.](https://popper.js.org/docs/v2/migration-guide/)
 
 
 # 3.47.4 - 23.02.2021

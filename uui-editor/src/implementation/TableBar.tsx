@@ -77,10 +77,10 @@ export class TableBar extends React.Component<TableProps, any> {
 
         return (
             <Portal>
-                 { this.isTableCell() && this.props.isVisible && <Popper referenceElement={ this.virtualReferenceElement() } placement='bottom' modifiers={ { offset: { offset: '0, 12px' } } }>
+                 { this.isTableCell() && this.props.isVisible && <Popper referenceElement={ this.virtualReferenceElement() } placement='bottom' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
                     { (props) => {
                         return (
-                            <div ref={ (node) => { this.tablebar = node; props.ref(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'uui-rte-tablebar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
+                            <div ref={ (node) => { this.tablebar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'uui-rte-tablebar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props, 'before'); } } icon={ insertColumnBefore }/>
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props); } } icon={ insertColumnAfter }/>
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedColumn(this.props); } } icon={ removeColumn }/>
