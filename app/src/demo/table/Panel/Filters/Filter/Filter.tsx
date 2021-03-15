@@ -5,7 +5,7 @@ import arrowDown from "@epam/assets/icons/common/navigation-chevron-down-18.svg"
 import { ITableFilter } from "../../../types";
 import { PickerList } from "../../../../../../../loveship";
 
-const Filter: React.FC<ITableFilter> = ({ title, dataSource, type }) => {
+const Filter: React.FC<ITableFilter> = ({ title, dataSource, selectionMode }) => {
     const [isOpened, setIsOpened] = useState(false);
     const [value, setValue] = useState(null);
 
@@ -22,7 +22,7 @@ const Filter: React.FC<ITableFilter> = ({ title, dataSource, type }) => {
                 <div>
                     <PickerList
                         dataSource={ dataSource } 
-                        selectionMode={ type } 
+                        selectionMode={ selectionMode } 
                         value={ value } 
                         onValueChange={ setValue }
                         valueType="id" 

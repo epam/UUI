@@ -11,7 +11,7 @@ interface ITableFilter<> {
     title: string;
     key: string;
     field?: string;
-    type: 'single' | 'multi';
+    selectionMode: 'single' | 'multi';
     dataSource: IDataSource<any, any, any>;
 }
 
