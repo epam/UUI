@@ -1,12 +1,16 @@
 import React from "react";
-import { columns } from "../../data";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
+import { ITableFilter } from "../../types";
 
-const Filters: React.FC = () => {
+interface IFiltersProps {
+    filters: ITableFilter[];
+}
+
+const Filters: React.FC<IFiltersProps> = ({ filters }) => {
     return (
         <Accordion title="Filters" mode="inline" padding="18">
-            { columns.map(item => {
+            { filters.map(item => {
                 return <Filter { ...item }/>;
             }) }
         </Accordion>
