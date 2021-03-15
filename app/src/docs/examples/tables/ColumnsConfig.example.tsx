@@ -86,7 +86,7 @@ export class ColumnsConfigurationDataTableExample extends React.Component<any, C
 
     handleTableStateChange = (newState: DataTableState) => {
         // Set columns config to localStorage
-        svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig);
+        svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig || {});
 
         this.setState({ tableState: newState });
     }
