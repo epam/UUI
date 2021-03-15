@@ -61,6 +61,7 @@ export class ColumnHeaderDropdown extends React.Component<ColumnHeaderDropdownPr
                     { this.props.renderFilter() }
                 </Panel>
             ) }
+            modifiers={ [{ name: 'offset', options: { offset: [0, 1] } }] }
             value={ this.props.isOpen }
             onValueChange={ this.props.onOpenChange }
         />;
