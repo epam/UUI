@@ -5,31 +5,11 @@ import { PersonGroup } from '@epam/uui-docs';
 import { FlexRow, FlexCell, SearchInput, Text, PickerInput, DataTable, DataTableRow, IconButton } from '@epam/promo';
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
 
-import { svc } from '../../services';
-import { filters, presets } from "./data";
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { getColumns } from './columns';
+import { filters, presets, api } from "./data";
+import { PersonTableRecord, PersonTableRecordId } from './types';
 import { Panel } from "./Panel";
 import { Presets } from "./Presets";
-
-export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
-    let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
-
-    let ids = clientIds && clientIds.map(clientId => clientId[1]) as any[];
-
-    if (groupBy && !ctx.parent) {
-        return svc.api.demo.personGroups({
-            ...rq,
-            filter: { groupBy },
-            search: null,
-            itemsRequest: { filter, search: rq.search },
-            ids,
-        } as any);
-    } else {
-        const parentFilter = ctx.parent && { [groupBy + 'Id']: ctx.parent.id };
-        return svc.api.demo.persons({ ...rq, filter: { ...filter, ...parentFilter }, ids });
-    }
-};
+import { getColumns } from "./columns";
 
 interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;
@@ -79,9 +59,9 @@ export const DemoTable: React.FC = () => {
             { isPanelOpened && <Panel filters={ filters } close={ closePanel }/> }
 
             <div className={ css.container }>
-                <FlexRow>
+                <FlexRow background="white" borderBottom>
                     { !isPanelOpened && (
-                        <div className={ css.icon_container }>
+                        <div className={ css.iconContainer }>
                             <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
                         </div>
                     ) }

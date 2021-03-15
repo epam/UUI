@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag} from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable} from '@epam/uui';
+import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
+import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
 import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { svc } from '../../services';
 import { ITableFilter, PersonTableRecordId } from './types';
@@ -9,33 +9,44 @@ import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
 export function getColumns(filters: ITableFilter[]) {
-    function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
-        const dataSource = new LazyDataSource({ api });
+    // function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
+    const makeFilterRenderCallback = <TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(filterKey: TField) => {
+        // const dataSource = new LazyDataSource({ api });
+        const filter = filters.find(f => f.key === filterKey);
+        console.log("KEY", filterKey, filter, filters);
 
         const Filter = (props: IEditable<any>) => {
             return <ColumnPickerFilter
-                dataSource={ dataSource }
-                selectionMode='multi'
+                dataSource={ filter.dataSource }
+                selectionMode={ filter.selectionMode }
                 valueType='id'
                 emptyValue={ null }
-                getName={ i => i.name || "Not Specified" }
+                getName={ i => (i as any)?.name || "Not Specified" }
                 showSearch
                 { ...props }
             />;
         };
 
-        return (filterLens: ILens<any>) =>
-            <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
-    }
+        return (filterLens: ILens<any>) => {
+            const props = filterLens
+                .onChange((_, value) => normalizeDataQueryFilter(value))
+                .prop(filter.key)
+                .prop('in')
+                .toProps();
+            console.log("PROPS", props);
+            
+            return <Filter { ...props } />;
+        };
+    };
 
-    const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);
-    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
-    const renderCountryFilter = makeFilterRenderCallback('countryId', svc.api.demo.countries);
-    const renderCityFilter = makeFilterRenderCallback('cityId', svc.api.demo.cities);
-    const renderOfficeFilter = makeFilterRenderCallback('officeId', svc.api.demo.offices);
-    const renderStatusFilter = makeFilterRenderCallback('profileStatusId', svc.api.demo.statuses);
-    const renderManagerFilter = makeFilterRenderCallback('managerId', svc.api.demo.managers);
-
+    const renderDepartmentFilter = makeFilterRenderCallback('departmentId');
+    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId');
+    const renderCountryFilter = makeFilterRenderCallback('countryId');
+    const renderCityFilter = makeFilterRenderCallback('cityId');
+    const renderOfficeFilter = makeFilterRenderCallback('officeId');
+    const renderStatusFilter = makeFilterRenderCallback('profileStatusId');
+    const renderManagerFilter = makeFilterRenderCallback('managerId');
+    
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
