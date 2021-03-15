@@ -1,34 +1,33 @@
 import React from "react";
 import css from "./Panel.scss";
-import { IDataSource } from "@epam/uui";
+import { FlexRow, IconButton, Text } from "@epam/promo";
+import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
 
+import { ITableFilter } from "../types";
 import { Grouping } from "./Grouping";
 import { Presets } from "./Presets";
 import { Columns } from "./Columns";
 import { Filters } from "./Filters";
 
-interface ITableFilter<> {
-    title: string;
-    key: string;
-    field: string;
-    type: 'single' | 'multi';
-    dataSource: IDataSource<any, any, any>;
-}
-
 interface IPanelProps {
-    isOpened: boolean;
+    close: () => void;
     filters: ITableFilter[];
 }
 
-const Panel: React.FC<IPanelProps> = ({ isOpened }) => {
-    if (!isOpened) return null;
-
+const Panel: React.FC<IPanelProps> = ({ close, filters }) => {
     return (
         <div className={ css.container }>
-            <Presets/>
-            <Filters/>
-            <Columns/>
-            <Grouping/>
+            <FlexRow cx={ css.views } padding="18">
+                <Text fontSize="18" font="sans-semibold">Views</Text>
+                <IconButton icon={ closeIcon } color="gray50" onClick={ close }/>
+            </FlexRow>
+
+            <div>
+                <Presets/>
+                <Filters filters={ filters }/>
+                <Columns/>
+                <Grouping/>
+            </div>
         </div>
     );
 };

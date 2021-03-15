@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
+import {Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag} from '@epam/promo';
+import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable} from '@epam/uui';
 import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { svc } from '../../services';
-import { PersonTableRecordId } from './types';
+import { ITableFilter, PersonTableRecordId } from './types';
 import { SidebarPanel } from "./SidebarPanel";
-import * as css from './Table.scss';
+import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns() {
+export function getColumns(filters: ITableFilter[]) {
     function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
         const dataSource = new LazyDataSource({ api });
 
@@ -24,7 +24,8 @@ export function getColumns() {
             />;
         };
 
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
+        return (filterLens: ILens<any>) =>
+            <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
     }
 
     const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);
@@ -52,7 +53,7 @@ export function getColumns() {
                     cx={ css.status }
                     fill='transparent'
                     color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
-                    caption={ p.profileStatus } />
+                    caption={ p.profileStatus }/>
             </FlexRow>,
             width: 140,
             isSortable: true,
@@ -90,7 +91,7 @@ export function getColumns() {
         {
             key: 'managerName',
             caption: "Manager",
-            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#' />,
+            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#'/>,
             width: 150,
             isSortable: true,
             renderFilter: renderManagerFilter,
@@ -161,11 +162,22 @@ export function getColumns() {
         },
     ];
 
+    // const testColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = filters.map(filter => ([
+    //     {
+    //         key: filter.key,
+    //         caption: filter.title,
+    //         render: p => <Text>{ p.name }</Text>,
+    //         width: 200,
+    //         fix: 'left',
+    //         isSortable: true,
+    //     },
+    // ]));
+
     const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
             caption: "Name",
-            render: p => <FlexRow><Text>{ p.name }</Text><Tag cx={ css.counter } count={ p.count } /></FlexRow>,
+            render: p => <FlexRow><Text>{ p.name }</Text><Tag cx={ css.counter } count={ p.count }/></FlexRow>,
             grow: 1,
         },
     ];

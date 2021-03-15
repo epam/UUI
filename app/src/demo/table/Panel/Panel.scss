@@ -5,3 +5,10 @@
     background-color: #fff;
     border-right: 1px solid $gray30;
 }
+
+.views {
+    width: calc(288px - 36px);
+    height: 54px;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray30;
+}
