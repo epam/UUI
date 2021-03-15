@@ -17,7 +17,6 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 >
   <div
     className="tooltipWrapper"
-    onClick={null}
   >
     <div
       className="iconCell"

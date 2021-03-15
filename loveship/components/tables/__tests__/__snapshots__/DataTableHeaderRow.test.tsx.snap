@@ -37,7 +37,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"
@@ -88,7 +87,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"
@@ -139,7 +137,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"
@@ -223,7 +220,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"
@@ -274,7 +270,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"
@@ -325,7 +320,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         >
           <div
             className="tooltipWrapper"
-            onClick={null}
           >
             <div
               className="iconCell"

@@ -38,7 +38,6 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
                 className="iconCell"
@@ -89,7 +88,6 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
                 className="iconCell"
@@ -140,7 +138,6 @@ Array [
           >
             <div
               className="tooltipWrapper"
-              onClick={null}
             >
               <div
                 className="iconCell"
