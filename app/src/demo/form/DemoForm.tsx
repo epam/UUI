@@ -203,7 +203,7 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
             <>
                 <FlexRow >
                     <RichTextView><h3>Primary Info</h3></RichTextView>
-                    <Tooltip trigger='hover' offset='0,3' content='You have no permission to edit this information'>
+                    <Tooltip trigger='hover' offset={ [0, 3] } content='You have no permission to edit this information'>
                         <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
                     </Tooltip>
                 </FlexRow>

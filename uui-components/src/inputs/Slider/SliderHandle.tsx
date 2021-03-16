@@ -78,7 +78,7 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                 <Reference>
                     { (targetProps) =>
                         <div
-                            ref={ (SliderHandle) => { this.sliderHandle = SliderHandle; targetProps.ref(SliderHandle); } }
+                            ref={ (SliderHandle) => { this.sliderHandle = SliderHandle; (targetProps.ref as React.RefCallback<any>)(SliderHandle); } }
                             className={ cx(uuiSlider.handle, this.props.cx) }
                             style={ { transform: `translateX(${this.props.offset || 0}px)` } }
                             onMouseDown={ this.handleMouseDown }

@@ -17,7 +17,7 @@ export interface TimelineControllerOptions {
 interface ScaleState {
     minPxPerDay?: number;
     maxPxPerDay?: number;
-    visibilty: number;
+    visibility: number;
 }
 
 export class TimelineController {
@@ -248,10 +248,10 @@ export class TimelineController {
             this.scalesVisibility[key] = {
                 minPxPerDay,
                 maxPxPerDay,
-                visibilty: this.isScaleVisible(minPxPerDay, maxPxPerDay),
+                visibility: this.isScaleVisible(minPxPerDay, maxPxPerDay),
             };
         }
-        return this.scalesVisibility[key].visibilty;
+        return this.scalesVisibility[key].visibility;
     }
 
     public updateScalesVisibility(dt: number, animate: boolean) {
@@ -264,17 +264,17 @@ export class TimelineController {
                 // If we are far from visible range - increase animation speed
                 const doubleBoundsVisible = this.isScaleVisible(scale.minPxPerDay / 2, scale.maxPxPerDay * 2);
                 const speed = doubleBoundsVisible ? 0.02 : 1;
-                scale.visibilty = this.interpolate(scale.visibilty, currentVisibility, dt, speed);
-                if (scale.visibilty < sigma) {
-                    scale.visibilty = 0;
+                scale.visibility = this.interpolate(scale.visibility, currentVisibility, dt, speed);
+                if (scale.visibility < sigma) {
+                    scale.visibility = 0;
                 }
-                if (scale.visibilty > (1 - sigma)) {
-                    scale.visibilty = 1;
+                if (scale.visibility > (1 - sigma)) {
+                    scale.visibility = 1;
                 }
             } else {
-                scale.visibilty = currentVisibility;
+                scale.visibility = currentVisibility;
             }
-            let delta = Math.abs(currentVisibility - scale.visibilty);
+            let delta = Math.abs(currentVisibility - scale.visibility);
             if (delta > maxDelta) {
                 maxDelta = delta;
             }

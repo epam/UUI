@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, DataTableMods, DataTable, ColumnPickerFilter, Panel, IconButton } from '@epam/promo';
+import { Text, DataTable, ColumnPickerFilter, Panel, IconButton } from '@epam/promo';
 import { DataSourceState, DataColumnProps, LazyDataSource, ILens } from '@epam/uui';
 import {DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter} from "@epam/loveship";
 import { City, Country } from '@epam/uui-docs';
@@ -9,14 +9,12 @@ import { Dropdown } from "@epam/uui-components";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
 
-export interface CitiesTableProps extends DataTableMods {
-}
 
 interface CitiesTableState {
     tableState: DataSourceState;
 }
 
-export class CitiesTable extends React.Component<CitiesTableProps, CitiesTableState> {
+export class CitiesTable extends React.Component<any, CitiesTableState> {
     state: CitiesTableState = {
         tableState: {},
     };
@@ -130,7 +128,7 @@ export class CitiesTable extends React.Component<CitiesTableProps, CitiesTableSt
             <Panel shadow cx={ css.container }>
                 <DataTable
                     value={ this.state.tableState }
-                    onValueChange={ (newVal) => this.setState({tableState: newVal}) }
+                    onValueChange={ this.handleTableStateChange }
                     // Spread ListProps and provide getVisibleRows function from view to DataTable component.
                     // getRows function will be called every time when table will need more rows.
                     { ...view.getListProps() }

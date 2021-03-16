@@ -55,7 +55,7 @@ export const placeholderPlugin = (params: PlaceholderPluginParams) => {
                 /> }
                 renderBody={ () => renderDropdownBody(props.editor) }
                 placement='top-start'
-                modifiers={ { offset: { offset: '0 3px' } } }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
             />
         );
     };

@@ -59,10 +59,10 @@ export class Toolbar extends React.Component<ToolbarProps, any> {
 
         return (
             <Portal>
-                { isTextSelected(this.props.editor) && <Popper referenceElement={ this.virtualReferenceElement() } placement='top' modifiers={ {offset: {offset: '0, 12px'}} }>
+                { isTextSelected(this.props.editor) && <Popper referenceElement={ this.virtualReferenceElement() } placement='top' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
                     { (props) => {
                         return (
-                            <div ref={ (node) => { this.toolbar = node; props.ref(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ css.container }  style={ { ...props.style, zIndex: this.layer.zIndex } } >
+                            <div ref={ (node) => { this.toolbar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ css.container }  style={ { ...props.style, zIndex: this.layer.zIndex } } >
                                 { flatten(this.props.plugins).map((plugin: any) => plugin.toolbarButtons && plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))) }
                             </div>
                         );
