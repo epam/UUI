@@ -43,9 +43,13 @@
     .manager-cell {
         font-family: $font-sans;
     }
+
+    .sidebar-panel-wrapper {
+        display: block;
+    }
 }
 
-.icon_container {
+.icon-container {
     width: 48px;
     height: 48px;
     display: flex;

@@ -7,15 +7,11 @@ interface IPresetsProps {
 
 const Presets: React.FC<IPresetsProps> = ({presets}) => {
     return (
-        <FlexRow padding="18" vPadding="18">
+        <FlexRow spacing='6' size='48' padding='18' >
             { presets.map(preset => {
                 const fill = preset.isActive ? "solid" : "white";
 
-                return (
-                    <div>
-                        <Button caption={ preset.name } fill={ fill }/>
-                    </div>
-                );
+                return <Button key={ preset.id } size='24' caption={ preset.name } fill={ fill }/>;
             }) }
         </FlexRow>
     );

@@ -4,11 +4,10 @@ import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, no
 import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { svc } from '../../services';
 import { ITableFilter, PersonTableRecordId } from './types';
-import { SidebarPanel } from "./SidebarPanel";
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns(filters: ITableFilter[]) {
+export function getColumns(filters: ITableFilter[], setActiveRowId: (id: number) => void) {
     function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
         const dataSource = new LazyDataSource({ api });
 
@@ -150,15 +149,12 @@ export function getColumns(filters: ITableFilter[]) {
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => svc.uuiModals.show((props) =>
-                    <SidebarPanel
-                        data={ p }
-                        modalProps={ props }
-                    />) }
+                onClick={ () => setActiveRowId(p.id) }
             />,
             grow: 0, shrink: 0, width: 54,
             alignSelf: 'center',
             fix: 'right',
+
         },
     ];
 
