@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
 import css from './DemoTable.scss';
-import { DataSourceState, useLens, IEditable, ArrayDataSource, LazyDataSource, DataRowProps, LazyDataSourceApi, DataRowOptions } from '@epam/uui';
-import { PersonGroup } from '@epam/uui-docs';
-import { FlexRow, FlexCell, SearchInput, Text, PickerInput, DataTable, DataTableRow, IconButton } from '@epam/promo';
+import { DataSourceState, useLens, IEditable, LazyDataSource, DataRowProps, LazyDataSourceApi, DataRowOptions } from '@epam/uui';
+import { Person, PersonGroup } from '@epam/uui-docs';
+import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
 
 import { svc } from '../../services';
@@ -11,6 +11,7 @@ import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './typ
 import { getColumns } from './columns';
 import { Panel } from "./Panel";
 import { Presets } from "./Presets";
+import { SidebarPanel } from "./SidebarPanel";
 
 export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
@@ -35,6 +36,8 @@ interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;
 }
 
+// function getRowId = cB => cB;
+
 export const DemoTable: React.FC = () => {
     const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
         topIndex: 0,
@@ -42,6 +45,8 @@ export const DemoTable: React.FC = () => {
         sorting: [{ field: 'name' }],
         isFolded: true,
     }));
+    const [activeRowId, setActiveRowId] = useState<number | null>(null);
+
     const [isPanelOpened, setIsPanelOpened] = useState(false);
     const openPanel = useCallback(() => setIsPanelOpened(true), []);
     const closePanel = useCallback(() => setIsPanelOpened(false), []);
@@ -61,7 +66,7 @@ export const DemoTable: React.FC = () => {
 
     const tableLens = useLens(useLens(editable, b => b), b => b.onChange((o, n) => ({ ...n, topIndex: 0 })));
 
-    const columnsSet = React.useMemo(() => getColumns(filters), []);
+    const columnsSet = React.useMemo(() => getColumns(filters, setActiveRowId), []);
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
         let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
@@ -74,14 +79,20 @@ export const DemoTable: React.FC = () => {
         cascadeSelection: true,
     });
 
+    const renderActiveRowDataSidebarPanel = () => {
+
+        const data = dataSource.getById(['Person', activeRowId]) as Person;
+        return <SidebarPanel data={ data } onClose={ () => setActiveRowId(null) } />;
+    };
+
     return (
         <FlexRow alignItems="top">
             { isPanelOpened && <Panel filters={ filters } close={ closePanel }/> }
 
             <div className={ css.container }>
-                <FlexRow>
+                <FlexRow background='white' borderBottom >
                     { !isPanelOpened && (
-                        <div className={ css.icon_container }>
+                        <div className={ css.iconContainer }>
                             <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
                         </div>
                     ) }
@@ -98,6 +109,9 @@ export const DemoTable: React.FC = () => {
                     { ...tableLens }
                     { ...personsDataView.getListProps() }
                 />
+            </div>
+            <div className={ css.sidebarPanelWrapper }>
+                { activeRowId && renderActiveRowDataSidebarPanel() }
             </div>
         </FlexRow>
     );
