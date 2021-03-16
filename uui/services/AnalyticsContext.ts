@@ -34,15 +34,15 @@ export class AnalyticsContext extends BaseContext {
 
     public sendEvent(event: AnalyticsEvent | null | undefined) {
         if (!event) return;
-        
+
         this.sendToGA('event', event.name, this.getParameters(event));
         this.sendEventToAmplitude(event);
     }
 
     public sendPageView(path: string) {
-        this.sendToGA('config', this.gaCode, {page_path: path});
+        this.sendToGA('config', this.gaCode, {page_path: path, anonymize_ip: true});
     }
-    
+
     public sendApiTiming(event: AnalyticsEvent & {parameters: object}) {
         this.sendToGA('event', event.name, event.parameters);
     }
@@ -56,7 +56,7 @@ export class AnalyticsContext extends BaseContext {
         if (!event) return;
         this.ampCode && this.ampClient.logEvent(event.name, this.getParameters(event));
     }
-    
+
     private initGA() {
         if (!this.gaCode) return;
 
