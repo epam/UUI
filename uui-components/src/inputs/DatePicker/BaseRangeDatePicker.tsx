@@ -1,6 +1,6 @@
 import * as React from 'react';
 import moment from 'moment';
-import { Placement } from 'popper.js';
+import { Placement } from '@popperjs/core';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../..';
 import { IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts,
     IDropdownToggler } from '@epam/uui';
@@ -196,7 +196,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
                 renderBody={ (props: DropdownBodyProps) => !this.props.isDisabled && this.renderBody(props) }
                 onValueChange={ (opened) => { !this.props.isReadonly && this.toggleOpening(opened); } }
                 value={ this.state.isOpen }
-                modifiers={ { offset: { offset: '0,6px' } } }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }
             />
         );

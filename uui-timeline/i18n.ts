@@ -1,6 +1,7 @@
 export const i18n = {
     timelineNav: {
         Today: 'Today',
+        Minutes: 'Minutes',
         Hours: 'Hours',
         Days: 'Days',
         Weeks: 'Weeks',

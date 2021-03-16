@@ -29,6 +29,11 @@ export class TablesDoc extends BaseDocsBlock {
                     title='Tree Table'
                     path='./examples/tables/TreeTable.example.tsx'
                 />
+
+                <DocExample
+                    title='Columns Configuration'
+                    path='./examples/tables/ColumnsConfig.example.tsx'
+                />
             </>
         );
     }

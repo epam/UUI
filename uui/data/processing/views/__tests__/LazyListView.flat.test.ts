@@ -146,8 +146,11 @@ describe('LazyListView - flat list test', () => {
     it('handles concurrent filter updates', async () => {
         let ds = flatDataSource;
         let view = ds.getView(value, onValueChange, {});
+        view.getVisibleRows();
+
+        // immediately set another filter and query again
         value = { ...value, filter: { id: { gte: 200 } } };
-        view = ds.getView(value, onValueChange, {});
+        view = ds.getView(value, onValueChange, { getRowOptions: r => ({ checkbox: { isVisible: true } })});
 
         expectViewToLookLike(view, [
             { isLoading: true },
@@ -160,6 +163,18 @@ describe('LazyListView - flat list test', () => {
 
         expectViewToLookLike(view, [
             { id: 200 },
+            { id: 300 },
+            { id: 310 },
+        ], 5);
+
+        const rows = view.getVisibleRows();
+        rows[0].onCheck(rows[0]);
+        await delay();
+
+        view = ds.getView(value, onValueChange, { getRowOptions: r => ({ checkbox: { isVisible: true } })});
+
+        expectViewToLookLike(view, [
+            { id: 200, isChecked: true },
             { id: 300 },
             { id: 310 },
         ], 5);

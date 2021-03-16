@@ -8,7 +8,7 @@ export interface BaseTimelineCanvasComponentProps {
     timelineController: TimelineController;
 }
 
-export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}> 
+export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}>
     extends React.Component<TProps, TState> {
     canvas: HTMLCanvasElement | null;
     protected canvasHeight = 60;
@@ -23,18 +23,26 @@ export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCan
     }
 
     componentWillUnmount() {
-        this.props.timelineController.unsubscribe(this.handleRenderCanvas); 
+        this.props.timelineController.unsubscribe(this.handleRenderCanvas);
     }
 
-    handleRenderCanvas = (t: TimelineTransform) => this.renderCanvas(this.canvas!.getContext('2d')!, t);
+    handleRenderCanvas = (t: TimelineTransform) => {
+        const ctx = this.canvas!.getContext('2d')!;
+        ctx.save();
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+        this.renderCanvas(ctx, t);
+        ctx.restore();
+    };
 
     protected abstract renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 
     protected renderCanvasElement(props?: any): JSX.Element {
+        const width = this.props.timelineController.currentViewport.widthPx;
         return <canvas
             className={ cx(this.props.className, props && props.className) }
-            width={ this.props.timelineController.currentViewport.widthPx }
-            height={ this.canvasHeight }
+            style={{ width, height: this.canvasHeight }}
+            width={ width * devicePixelRatio }
+            height={ this.canvasHeight * devicePixelRatio }
             ref={ c => { props && props.ref && props.ref(c); this.canvas = c; } }
             { ...props }
         />;

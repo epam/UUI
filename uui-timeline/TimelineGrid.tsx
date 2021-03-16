@@ -29,9 +29,24 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps,
         }
     }
 
-    private renderHours(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
-        t.getVisibleHours().map(w => {
+    private renderMinutes(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
+        t.getVisibleMinutes().map(w => {
             this.renderLine(ctx, w.left);
+        });
+    }
+
+    private renderQuoterHours(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
+        t.getVisibleQuoterHours().map(w => {
+            this.renderLine(ctx, w.left);
+        });
+    }
+
+    private renderHours(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
+        const pxPerHour = t.pxPerMs * msPerDay / 24;
+        const width = pxPerHour > 100 ? 2 : 1;
+
+        t.getVisibleHours().map(w => {
+            this.renderLine(ctx, w.left, width);
         });
     }
 
@@ -56,7 +71,7 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps,
         });
     }
 
-    private renderMonthes(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
+    private renderMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
         t.getVisibleMonths().map(w => {
             this.renderLine(ctx, w.left);
         });
@@ -82,6 +97,14 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps,
 
         const pxPerDay = t.pxPerMs * msPerDay;
 
+        if (pxPerDay >= 40000) {
+            this.renderMinutes(ctx, t);
+        }
+
+        if (pxPerDay >= 1600) {
+            this.renderQuoterHours(ctx, t);
+        }
+
         if (pxPerDay >= 190) {
             this.renderHours(ctx, t);
         }
@@ -99,7 +122,7 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps,
         }
 
         if (pxPerDay > 0.50) {
-            this.renderMonthes(ctx, t);
+            this.renderMonths(ctx, t);
         }
 
         this.renderYears(ctx, t);
