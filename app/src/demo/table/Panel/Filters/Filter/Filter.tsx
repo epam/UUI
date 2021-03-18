@@ -1,13 +1,29 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import css from "./Filter.scss";
-import { CheckboxGroup, IconContainer } from "@epam/promo";
+import { IconContainer } from "@epam/promo";
+import { DataQueryFilter } from "@epam/uui";
 import arrowDown from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 import { ITableFilter } from "../../../types";
 import { PickerList } from "../../../../../../../loveship";
 
-const Filter: React.FC<ITableFilter> = ({ title, dataSource, selectionMode }) => {
+export interface IFilterProps extends ITableFilter {
+    id: string;
+    onValueChange: (filter: DataQueryFilter<any>) => void;
+}
+
+const Filter: React.FC<IFilterProps> = ({ id, title, dataSource, selectionMode, onValueChange }) => {
     const [isOpened, setIsOpened] = useState(false);
-    const [value, setValue] = useState(null);
+    const [localValue, setLocalValue] = useState(undefined);
+
+    const handleValue = useCallback((value: number[]) => {
+        setLocalValue(value);
+        const dataQueryFilter = {
+            [id]: {
+                in: value,
+            },
+        };
+        onValueChange(dataQueryFilter);
+    }, [id, onValueChange]);
 
     const toggle = () => setIsOpened(!isOpened);
 
@@ -21,11 +37,11 @@ const Filter: React.FC<ITableFilter> = ({ title, dataSource, selectionMode }) =>
             { isOpened && (
                 <div>
                     <PickerList
-                        dataSource={ dataSource } 
-                        selectionMode={ selectionMode } 
-                        value={ value } 
-                        onValueChange={ setValue }
-                        valueType="id" 
+                        dataSource={ dataSource }
+                        selectionMode={ selectionMode }
+                        value={ localValue }
+                        onValueChange={ handleValue }
+                        valueType="id"
                     />
                 </div>
             ) }
