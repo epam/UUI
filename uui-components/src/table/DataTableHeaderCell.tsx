@@ -42,7 +42,9 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
 
         document.addEventListener('mousemove', this.onResize);
         document.addEventListener('mouseup', this.onResizeEnd);
-        e.stopPropagation(); // to prevent dnd handlers while resizing
+
+        e.preventDefault();
+        e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     }
 
     onResizeEnd = () => {

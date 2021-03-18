@@ -151,4 +151,17 @@ describe('LazyListView - can work with id like [string, number]', () => {
             { id: ['child', 2], isChecked: false },
         ], 3);
     });
+
+    it('should receive item by id', async () => {
+        let ds = treeDataSource;
+        let view = ds.getView(value, onValueChanged, {});
+
+        await delay();
+
+        let firstRow = view.getVisibleRows()[0];
+
+        const item = view.getById(firstRow.id, 0);
+
+        expect(item.value).toEqual(firstRow.value);
+    });
 });

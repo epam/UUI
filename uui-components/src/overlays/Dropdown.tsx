@@ -1,12 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Manager, Reference, Popper, ReferenceChildrenProps } from 'react-popper';
-import { Portal } from './Portal';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest } from '@epam/uui';
-import * as PopperJS from 'popper.js';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
+import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
 import * as PropTypes from 'prop-types';
-import { Ref } from "react";
-import { PopperTargetWrapper } from "./PopperTargetWrapper";
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest } from '@epam/uui';
+import { Portal } from './Portal';
+import { PopperTargetWrapper } from './PopperTargetWrapper';
 
 export interface DropdownState {
     opened: boolean;
@@ -21,17 +20,17 @@ export interface DropdownBodyProps {
     scheduleUpdate: () => void;
 }
 
-export type DropdownPlacement = PopperJS.Placement;
+export type DropdownPlacement = Placement;
 
 export interface DropdownProps extends Partial<IEditable<boolean>> {
-    renderTarget: (props: IDropdownToggler & {ref?: Ref<any>}) => React.ReactNode;
+    renderTarget: (props: IDropdownToggler & { ref?: React.Ref<any> }) => React.ReactNode;
     renderBody: (props: DropdownBodyProps & any) => React.ReactNode;
     onClose?: () => any;
     isNotUnfoldable?: boolean;
     stopCloseSelectors?: string[];
     zIndex?: number;
     placement?: DropdownPlacement;
-    modifiers?: PopperJS.Modifiers;
+    modifiers?: StrictModifiers[];
     /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */
 
     openOnClick?: boolean; // default: true
@@ -41,7 +40,7 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     closeOnMouseLeave?: 'toggler' | 'boundary' | false;
 
     portalTarget?: HTMLElement;
-    boundaryElement?: PopperJS.Boundary | Element;
+    boundaryElement?: Boundary;
 }
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -70,7 +69,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     public componentDidMount() {
         window.addEventListener('dragstart', this.clickOutsideHandler);
-        window.addEventListener('scroll', this.clickOutsideHandler, true);
 
         if (this.props.openOnHover && !this.props.openOnClick) {
             this.targetNode?.addEventListener('mouseenter', this.handleMouseEnter);
@@ -86,7 +84,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     public componentWillUnmount() {
         window.removeEventListener('dragstart', this.clickOutsideHandler);
-        window.removeEventListener('scroll', this.clickOutsideHandler, true);
         window.removeEventListener('click', this.clickOutsideHandler, true);
 
         this.context.uuiLayout?.releaseLayer(this.layer);
@@ -167,7 +164,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: Element) => {
             this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            targetProps.ref(this.targetNode);
+            (targetProps.ref as React.RefCallback<any>)(this.targetNode);
         };
 
         return (
@@ -183,17 +180,42 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         );
     }
 
+    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
+        const setRef = (node: HTMLElement) => {
+            (ref as React.RefCallback<any>)(node);
+            this.bodyNode = node;
+            if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
+                const { x, y, height, width } = this.bodyNode.getBoundingClientRect() as DOMRect;
+                if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
+                    this.setState({ bodyBoundingRect : { y, height, width, x } });
+                }
+            }
+        };
+
+        if (isReferenceHidden && (this.state.opened || this.props.value)) {
+            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
+            setTimeout(() => { this.handleOpenedChange(false); }, 0);
+            return null;
+        }
+        return (
+            <div
+                className='uui-popper'
+                ref={ setRef }
+                style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
+                data-placement={ placement }
+            >
+                { this.props.renderBody({
+                    onClose: this.onClose,
+                    togglerWidth: this.togglerWidth,
+                    togglerHeight: this.togglerHeight,
+                    scheduleUpdate: update,
+                }) }
+            </div>
+        );
+    }
+
     private isInteractedOutside = (e: Event) => {
         if (!this.isOpened()) {
-            return false;
-        }
-
-        // Opening the dropdown often cause Search control inside to auto-focus
-        // That's (for not investigated reason) causes onScroll event on window,
-        //   which in turn cause the dropdown to close immediately after opening
-        // This hack prevents this
-        // This hack also fixes scroll event on mobile when focus on input
-        if (e.type === 'scroll' && ((new Date()).getTime() - this.lastOpenedMs) < 1000) {
             return false;
         }
 
@@ -227,6 +249,19 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     public render() {
         const shouldShowBody = this.isOpened() && !this.props.isNotUnfoldable;
+        const defaultModifiers = [
+            {
+                name: 'preventOverflow',
+                options: {
+                    rootBoundary: 'viewport',
+                    boundary: this.props.boundaryElement,
+                },
+            },
+            {
+                name: 'hide',
+                enabled: true,
+            },
+        ];
 
         if (shouldShowBody) {
             this.updateTogglerSize();
@@ -240,43 +275,13 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                 { shouldShowBody && <Portal target={ this.props.portalTarget }>
                     <Popper
                         placement={ this.props.placement || 'bottom-start' }
-                        positionFixed={ true }
-                        modifiers={ {
-                            ...this.props.modifiers,
-                            preventOverflow: {
-                                boundariesElement: this.props.boundaryElement || 'viewport',
-                                ...((this.props.modifiers || {}).preventOverflow || {}),
-                            },
-                        } }
+                        strategy={ 'fixed' }
+                        modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }
                     >
-                        { ({ ref, style, placement, scheduleUpdate }) =>
-                            <div
-                                className='uui-popper'
-                                ref={ node => {
-                                    ref(node);
-                                    this.bodyNode = node;
-                                    if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
-                                        const { x, y, height, width } = this.bodyNode.getBoundingClientRect() as DOMRect;
-                                        if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                                            this.setState({ bodyBoundingRect : { y, height, width, x } });
-                                        }
-                                    }
-                                } }
-                                style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                                data-placement={ placement }
-                            >
-                                { this.props.renderBody({
-                                    onClose: this.onClose,
-                                    togglerWidth: this.togglerWidth,
-                                    togglerHeight: this.togglerHeight,
-                                    scheduleUpdate,
-                                }) }
-                            </div>
-                        }
+                        { this.renderDropdownBody }
                     </Popper>
                 </Portal> }
             </Manager>
         );
     }
-
 }

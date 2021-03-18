@@ -23,6 +23,7 @@ import * as defaultIcon from '../../icons/design_platform.svg';
 import * as linkIcon from '../../icons/action-external_link-18.svg';
 import * as vacationIcon from '../../icons/vacation.svg';
 import * as menuIcon from '../../icons/menu.svg';
+import * as deskIcon from '../../icons/desk.svg';
 import * as talkIcon from '../../icons/talk-logo.svg';
 import * as telescopeIcon from '@epam/assets/icons/common/communication-telescope-24.svg';
 
@@ -52,7 +53,8 @@ export const projectsList: Array<{ projectName: string, projectCode: string, ico
     { projectName: 'EPM-PBI', projectCode: 'EPM-PBI', icon: defaultIcon, url: undefined },
     { projectName: 'Black Book Web', projectCode: 'EPM-BBW', icon: defaultIcon, url: 'https://blackbook.epam.com/home' },
     { projectName: 'EPM-TALK', projectCode: 'EPM-TALK', icon: talkIcon, url: 'https://telescope.epam.com/who/?tab=wall' },
-    { projectName: 'Global Menu', projectCode: '', icon: menuIcon, url: 'https://menu.epam.com/app' },
+    { projectName: 'Global Menu', projectCode: 'EPM-HIVE', icon: menuIcon, url: 'https://menu.epam.com/app' },
+    { projectName: 'Desk', projectCode: 'EPM-OSM', icon: deskIcon, url: 'https://desk.epam.com/app-react/home' },
 ];
 
 export class ProjectsDoc extends React.Component {

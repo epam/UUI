@@ -38,6 +38,7 @@ export class TimelineNav extends React.Component<TimelineNavProps, {}> {
         const maxScale = this.props.timelineController.options.maxScale;
 
         let shortcuts = [
+            { text: i18n.timelineNav.Minutes, scale: scales.minute },
             { text: i18n.timelineNav.Hours, scale: scales.hour },
             { text: i18n.timelineNav.Days, scale: scales.day },
             { text: i18n.timelineNav.Weeks, scale: scales.week },

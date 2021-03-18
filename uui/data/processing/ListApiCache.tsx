@@ -47,7 +47,7 @@ interface ListRecord<TItem> {
  * The ListApiCache adds a caching and request batching layer on top of the list API.
  */
 export class ListApiCache<TItem, TId, TFilter> {
-    itemsById: LazyLoadedMap<TId, TItem>;
+    itemsById: LazyLoadedMap<string, TItem>;
     itemLists: Map<any, ListRecord<TItem>> = new Map();
 
     api: LazyDataSourceApi<TItem, TId, TFilter>;
@@ -69,7 +69,8 @@ export class ListApiCache<TItem, TId, TFilter> {
      * @param fetchIfAbsent Pass false to avoid auto-fetching missing item.
      */
     public byId(id: TId, fetchIfAbsent: boolean = true) {
-        return this.itemsById.get(id, fetchIfAbsent);
+        const key = this.idToKey(id);
+        return this.itemsById.get(key, fetchIfAbsent);
     }
 
     /**
@@ -99,6 +100,14 @@ export class ListApiCache<TItem, TId, TFilter> {
             exactCount: listRecord.exactCount,
             knownCount: listRecord.minCount,
         };
+    }
+
+    private idToKey(id: TId): string {
+        return JSON.stringify(id);
+    }
+
+    private keyToId(key: string): TId {
+        return JSON.parse(key);
     }
 
     private getItemListMap(options?: LazyDataSourceApiRequestOptions<TItem, TFilter>) {
@@ -180,19 +189,22 @@ export class ListApiCache<TItem, TId, TFilter> {
                     }
                 }
 
-                response.items.forEach(item => this.itemsById.set(this.getId(item), item));
+                response.items.forEach(item => this.itemsById.set(this.idToKey(this.getId(item)), item));
 
                 return pairs;
             });
     }
 
     public setItem(item: TItem) {
-        this.itemsById.set(this.getId(item), item);
+        const id = this.getId(item);
+        const key = this.idToKey(id);
+        this.itemsById.set(key, item);
     }
 
-    private loadByIds(ids: TId[]) {
+    private loadByIds(keys: string[]) {
+        const ids = keys.map(i => this.keyToId(i));
         return this.api({ ids }).then(response => {
-            return response.items.map(item => [this.getId(item), item] as [TId, TItem]);
+            return response.items.map(item => [this.idToKey(this.getId(item)), item] as [string, TItem]);
         });
     }
 }

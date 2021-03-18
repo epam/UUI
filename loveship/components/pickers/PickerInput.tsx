@@ -139,7 +139,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
                 placement={ this.props.dropdownPlacement }
-                modifiers={ { offset: { offset: '0,6px' } } }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
         );
     }

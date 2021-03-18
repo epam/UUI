@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
-  className="flexCell cell size-36 padding-left-24 uui-table-header-cell"
+  className="flexCell uui-table-header-cell cell size-36 padding-left-24"
   onClick={[Function]}
   style={
     Object {
@@ -17,13 +17,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 >
   <div
     className="tooltipWrapper"
-    onClick={null}
   >
     <div
       className="iconCell align-undefined uui-table-header-caption-wrapper"
     >
       <div
-        className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption overflowedCell font-size-14 uui-table-header-caption container"
+        className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
       >
         Test
       </div>

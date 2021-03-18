@@ -31,13 +31,12 @@ Array [
   </div>,
   <div
     className="uui-popper"
+    data-placement="bottom-start"
     style={
       Object {
-        "left": 0,
-        "opacity": 0,
-        "pointerEvents": "none",
-        "position": "absolute",
-        "top": 0,
+        "left": "0",
+        "position": "fixed",
+        "top": "0",
         "zIndex": undefined,
       }
     }

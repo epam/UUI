@@ -76,10 +76,10 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
 
         return (
             <Portal>
-                { this.props.selectedCells && this.props.selectedCells.length > 1 && <Popper referenceElement={ this.virtualReferenceElement() } placement='top' modifiers={ { offset: { offset: '0, 12px' } } }>
+                { this.props.selectedCells && this.props.selectedCells.length > 1 && <Popper referenceElement={ this.virtualReferenceElement() } placement='top' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
                     { (props) => {
                         return (
-                            <div ref={ (node) => { this.tableBar = node; props.ref(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'merge-cells-bar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
+                            <div ref={ (node) => { this.tableBar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'merge-cells-bar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
                                 <ToolbarButton isActive={ false } icon={ mergeIcon } onClick={ () => { (this.props.editor as any).mergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } />
                                 { this.isSomeMerged(this.props.selectedCells) && <ToolbarButton isActive={ false } icon={ unmergeIcon } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } /> }
                             </div>

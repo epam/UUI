@@ -385,7 +385,7 @@ describe('LazyListView', () => {
         ]);
     });
 
-    it('Cascade selection - handles quick (simultineous) clicks', async () => {
+    it('Cascade selection - handles quick (simultaneous) clicks', async () => {
         let ds = treeDataSource;
         let view: LazyListView<TestItem, number> = null;
         value.visibleCount = 10;
