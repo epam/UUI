@@ -20,11 +20,11 @@ export const DemoTable: React.FC = () => {
         sorting: [{ field: 'name' }],
         isFolded: true,
     }));
-    const [activeRowId, setActiveRowId] = useState<Person["uid"] | null>(null);
-    const [filters] = useState(getFilters());
-    const [columnsSet] = useState(getColumns(filters, setActiveRowId));
 
     const [isPanelOpened, setIsPanelOpened] = useState(false);
+    const openPanel = useCallback(() => setIsPanelOpened(true), []);
+    const closePanel = useCallback(() => setIsPanelOpened(false), []);
+
     const [infoPanelId, setInfoPanelId] = useState<number | null>(null);
     const [isInfoPanelOpened, setInfoPanelOpened] = useState<boolean>(false);
 
@@ -41,9 +41,8 @@ export const DemoTable: React.FC = () => {
             });
     }, []);
 
-    const [isPanelOpened, setIsPanelOpened] = useState<boolean>(false);
-    const openPanel = useCallback(() => setIsPanelOpened(true), []);
-    const closePanel = useCallback(() => setIsPanelOpened(false), []);
+    const [filters] = useState(getFilters());
+    const [columnsSet] = useState(getColumns(filters, openInfoPanel));
 
     let dataSource = useMemo(() => new LazyDataSource({
         api,
@@ -55,10 +54,6 @@ export const DemoTable: React.FC = () => {
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
     };
-
-    const tableLens = useLens(useLens(editable, b => b), b => b.onChange((o, n) => ({ ...n, topIndex: 0 })));
-
-    const columnsSet = React.useMemo(() => getColumns(filters, openInfoPanel), []);
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
         let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
@@ -73,53 +68,25 @@ export const DemoTable: React.FC = () => {
 
     const renderActiveRowDataSidebarPanel = () => {
         const data = dataSource.getById(['Person', infoPanelId]) as Person;
-        return <SidebarPanel cxSb={ 'right-sidebar' } data={ data } onClose={ closeInfoPanel } />;
+        return <SidebarPanel cxSb={ 'right-sidebar' } data={ data } onClose={ closeInfoPanel }/>;
     };
 
     return (
         <FlexRow alignItems="top">
-            { isPanelOpened && (
-                <Panel
-                    filters={ filters }
-                    close={ closePanel }
-                    value={ value }
-                    onValueChange={ setValue }
-                />
-            ) }
-
-            <div className={ css.container }>
-                <FlexRow background="white" borderBottom>
-                    { !isPanelOpened && (
-                        <div className={ css.iconContainer }>
-                            <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
-                        </div>
-                    ) }
-                    <Presets presets={ presets }/>
-                </FlexRow>
-
-                <DataTable
-                    headerTextCase='upper'
-                    getRows={ () => personsDataView.getVisibleRows() }
-                    columns={ columnsSet.personColumns }
-                    renderRow={ renderRow }
-                    selectAll={ { value: false, isDisabled: true, onValueChange: null } }
-                    showColumnsConfig
-                    value={ value }
-                    onValueChange={ setValue }
-                    { ...personsDataView.getListProps() }
-                />
-            </div>
-            <TransitionGroup className={ css.wrapper } >
-                { isPanelOpened &&
+            <TransitionGroup className={ css.wrapper }>
+                { isPanelOpened && (
                     <CSSTransition classNames={ 'left-sidebar' } timeout={ 500 }>
-                        <Panel filters={ filters } close={ closePanel }/>
+                        <Panel
+                            filters={ filters }
+                            close={ closePanel }
+                            value={ value }
+                            onValueChange={ setValue }
+                        />
                     </CSSTransition>
-                }
-                {/*<div className={ cx(css.filterSidebarPanelWrapper, isPanelOpened ? 'show' : 'hide') }>*/}
-                {/*    <Panel filters={ filters } close={ closePanel }/>*/}
-                {/*</div>*/}
+                ) }
+
                 <div className={ css.container }>
-                    <FlexRow background='white' borderBottom >
+                    <FlexRow background="white" borderBottom>
                         { !isPanelOpened && (
                             <div className={ css.iconContainer }>
                                 <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
@@ -127,6 +94,7 @@ export const DemoTable: React.FC = () => {
                         ) }
                         <Presets presets={ presets }/>
                     </FlexRow>
+
                     <DataTable
                         headerTextCase='upper'
                         getRows={ () => personsDataView.getVisibleRows() }
@@ -134,15 +102,17 @@ export const DemoTable: React.FC = () => {
                         renderRow={ renderRow }
                         selectAll={ { value: false, isDisabled: true, onValueChange: null } }
                         showColumnsConfig
-                        { ...tableLens }
+                        value={ value }
+                        onValueChange={ setValue }
                         { ...personsDataView.getListProps() }
                     />
                 </div>
-                {/*{ isInfoPanelOpened &&*/}
-                {/*    <CSSTransition classNames={ 'right-sidebar' } timeout={ 500 }>*/}
-                {/*        { infoPanelId && renderActiveRowDataSidebarPanel() }*/}
-                {/*    </CSSTransition>*/}
-                {/*}*/}
+                
+                {/*{ isInfoPanelOpened &&*/ }
+                {/*    <CSSTransition classNames={ 'right-sidebar' } timeout={ 500 }>*/ }
+                {/*        { infoPanelId && renderActiveRowDataSidebarPanel() }*/ }
+                {/*    </CSSTransition>*/ }
+                {/*}*/ }
                 <div className={ cx(css.infoSidebarPanelWrapper, isInfoPanelOpened ? 'show' : 'hide') }>
                     { infoPanelId && renderActiveRowDataSidebarPanel() }
                 </div>
