@@ -8,12 +8,10 @@ import { SidebarPanel } from "./SidebarPanel";
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns(filters: ITableFilter[]) {
+export function getColumns(filters: ITableFilter[], setActiveRowId: (id: string) => void) {
     // function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
-    const makeFilterRenderCallback = <TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(filterKey: TField) => {
-        // const dataSource = new LazyDataSource({ api });
+    const makeFilterRenderCallback = <TField extends keyof Person>(filterKey: TField) => {
         const filter = filters.find(f => f.key === filterKey);
-        console.log("KEY", filterKey, filter, filters);
 
         const Filter = (props: IEditable<any>) => {
             return <ColumnPickerFilter
@@ -33,8 +31,7 @@ export function getColumns(filters: ITableFilter[]) {
                 .prop(filter.key)
                 .prop('in')
                 .toProps();
-            console.log("PROPS", props);
-            
+
             return <Filter { ...props } />;
         };
     };
@@ -46,7 +43,7 @@ export function getColumns(filters: ITableFilter[]) {
     const renderOfficeFilter = makeFilterRenderCallback('officeId');
     const renderStatusFilter = makeFilterRenderCallback('profileStatusId');
     const renderManagerFilter = makeFilterRenderCallback('managerId');
-    
+
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
@@ -161,11 +158,7 @@ export function getColumns(filters: ITableFilter[]) {
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => svc.uuiModals.show((props) =>
-                    <SidebarPanel
-                        data={ p }
-                        modalProps={ props }
-                    />) }
+                onClick={ () => setActiveRowId(p.uid) }
             />,
             grow: 0, shrink: 0, width: 54,
             alignSelf: 'center',

@@ -1,4 +1,4 @@
-import { DataQueryFilter, IDataSource } from '@epam/uui';
+import { DataQueryFilter, DataSourceState, IDataSource } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 
 type PersonTableRecord = Person | PersonGroup;
@@ -15,4 +15,8 @@ interface ITableFilter<> {
     dataSource: IDataSource<any, any, any>;
 }
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter };
+interface PersonsTableState extends DataSourceState {
+    isFolded?: boolean;
+}
+
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState };
