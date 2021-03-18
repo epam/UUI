@@ -20,6 +20,6 @@ const ColorButton = (editorProps: { editor: any }) => {
         /> }
         renderBody={ () => <ColorBar editor={ editorProps.editor } /> }
         placement='top-start'
-        modifiers={ { offset: { offset: '0,3px' } } }
+        modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
     />;
 };

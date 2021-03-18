@@ -62,7 +62,7 @@ const HeaderButton = (editorProps: { editor: any }) => {
         /> }
         renderBody={ (props) => <HeaderBar editor={ editorProps.editor } { ...props } /> }
         placement='top-start'
-        modifiers={ { offset: { offset: '0 3px' } } }
+        modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
     />;
 };
 

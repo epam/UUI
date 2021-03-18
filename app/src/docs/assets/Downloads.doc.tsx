@@ -76,7 +76,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                         <Text size='30' fontSize='24' font='museo-sans' >Font Pack</Text>
                         {
                             isUUI4Skin
-                            ? <Tooltip content='For internal use only' offset='-1' >
+                            ? <Tooltip content='For internal use only' offset={ [0, -1] } >
                                 <LinkButton
                                     icon={ lockIcon }
                                     caption='Download'

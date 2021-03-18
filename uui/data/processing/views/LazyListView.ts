@@ -38,6 +38,12 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     filter?: TFilter;
 }
 
+interface LoadResult<TItem, TId> {
+    isUpdated: boolean;
+    isOutdated: boolean;
+    tree: LazyTreeList<TItem, TId>;
+}
+
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
@@ -121,13 +127,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
             this.loadMissing(completeReset)
-                .then((isUpdated) => {
-                    if (isUpdated) {
+                .then(({ isUpdated, isOutdated }) => {
+                    if (isUpdated && !isOutdated) {
                         this.rebuildRows();
                         this._forceUpdate();
                     }
-                })
-                .catch(() => {}); // ignore 'request changed errors' here. They are needed for selection cascading.
+                });
         }
     }
 
@@ -165,11 +170,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Loads node. Returns promise to a loaded node.
 
-    private inProgressPromise: Promise<any> = Promise.resolve();
+    private inProgressPromise: Promise<LoadResult<TItem, TId>> = null;
 
-    private loadMissing(abortInProgress: boolean, options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<any> {
-        if (abortInProgress) {
-            this.inProgressPromise = Promise.resolve();
+    private loadMissing(abortInProgress: boolean, options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId>> {
+        // Make tree updates sequential, by executing all consequent calls after previous promise completed
+
+        if (this.inProgressPromise === null || abortInProgress) {
+            this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: this.tree });
         }
 
         this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options))
@@ -177,7 +184,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<boolean> {
+    private async loadMissingImpl(options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId>> {
         const loadingTree = this.tree;
 
         const newTreePromise = loadLazyTree(
@@ -196,16 +203,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const newTree = await newTreePromise;
 
         // If this.tree is changed during this load, than there was reset occurred (new value arrived)
-        // We need to drop this result, and reject the promise to stop further processing
-        if (this.tree != loadingTree) {
-            throw new Error("Tree loading aborted - state changed during loading");
-        }
-
+        // We need to tell caller to reject this result
+        const isOutdated = this.tree != loadingTree;
         const isUpdated = this.tree !== newTree;
 
-        this.tree = newTree;
+        if (!isOutdated) {
+            this.tree = newTree;
+        }
 
-        return isUpdated;
+        return { isUpdated, isOutdated, tree: newTree };
     }
 
     // Extracts a flat list of currently visible rows from the tree
@@ -379,17 +385,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
-        let tree = this.tree;
-
-        if (this.props.cascadeSelection) {
-            await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
-            tree = this.tree;
-        }
-
-        let checked = this.value && this.value.checked || [];
         let childKeys: string[] = [];
 
         if (this.props.cascadeSelection) {
+            var result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
+            let tree = result.tree;
+
             const appendChildIds = (list: LazyTreeList<TItem, TId>) => {
                 for (let n = 0; n < list.items.length; n++) {
                     let node = list.items[n];
@@ -423,6 +424,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             // const allSiblingsChecked = nodeInfo.list.items.every(i => checkedSet.has(i.id));
             // const noSiblingsChecked = nodeInfo.list.items.some(i => !checkedSet.has(i.id));
         }
+
+        // this.value might be updated while children were loaded for cascading
+        // So this.value.checked shouldn't be used before this point
+        let checked = this.value && this.value.checked || [];
 
         if (isChecked) {
             const checkedKeysSet = new Set(checked.map(c => this.idToKey(c)));
