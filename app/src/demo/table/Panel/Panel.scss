@@ -1,14 +1,32 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 
 .container {
+    overflow: hidden;
+    height: calc(100vh - 121px);
     width: 288px;
     background-color: #fff;
-    border-right: 1px solid $gray30;
-}
+    will-change: margin, transform;
+    //border-right: 1px solid $gray40;
 
-.views {
-    width: calc(288px - 36px);
-    height: 54px;
-    justify-content: space-between;
-    border-bottom: 1px solid $gray30;
+    &:global(.left-sidebar-enter) {
+        transform: translateX(-100%);
+        margin-right: -288px;
+    }
+
+    &:global(.left-sidebar-enter-active) {
+        transform: translateX(0);
+        margin-right: 0;
+        transition: transform 500ms, margin-right 500ms;
+    }
+
+    &:global(.left-sidebar-exit) {
+        transform: translateX(0);
+        margin-right: 0;
+    }
+
+    &:global(.left-sidebar-exit-active) {
+        transform: translateX(-100%);
+        margin-right: -288px;
+        transition: transform 500ms, margin-right 500ms;
+    }
 }
