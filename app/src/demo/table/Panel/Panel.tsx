@@ -8,7 +8,7 @@ import { Grouping } from "./Grouping";
 import { Presets } from "./Presets";
 import { Columns } from "./Columns";
 import { Filters } from "./Filters";
-import { FlexSpacer } from "../../../../../uui-components";
+import { FlexSpacer } from "@epam/uui-components";
 
 interface IPanelProps {
     close: () => void;
