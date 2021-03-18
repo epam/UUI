@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
-import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
-import { svc } from '../../services';
+import { DataQueryFilter, DataColumnProps, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
+import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns(filters: ITableFilter[], setActiveRowId: (id: number) => void) {
+export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
     const makeFilterRenderCallback = <TField extends keyof Person>(filterKey: TField) => {
         const filter = filters.find(f => f.key === filterKey);
 
@@ -156,24 +155,13 @@ export function getColumns(filters: ITableFilter[], setActiveRowId: (id: number)
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => setActiveRowId(p.id) }
+                onClick={ () => setInfoPanelId(p.id) }
             />,
             grow: 0, shrink: 0, width: 54,
             alignSelf: 'center',
             fix: 'right',
         },
     ];
-
-    // const testColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = filters.map(filter => ([
-    //     {
-    //         key: filter.key,
-    //         caption: filter.title,
-    //         render: p => <Text>{ p.name }</Text>,
-    //         width: 200,
-    //         fix: 'left',
-    //         isSortable: true,
-    //     },
-    // ]));
 
     const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
         {
