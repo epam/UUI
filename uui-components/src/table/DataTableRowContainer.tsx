@@ -42,7 +42,6 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
             if (this.props.columns) {
                 idx = this.props.columns.indexOf(column);
             }
-            // console.log(n, column, this.props.renderCell(column, idx));
             cells.push(this.props.renderCell(column, idx));
         }
         return cells;

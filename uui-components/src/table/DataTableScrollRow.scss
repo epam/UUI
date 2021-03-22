@@ -10,7 +10,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 10px;
+        height: 12px;
         background: none;
     }
 }
@@ -18,6 +18,11 @@
 :global(.uui-table-scroll-bar) {
     height: 10px;
     pointer-events: all;
+
+    :global(.uui-thumb) {
+        position: relative;
+        display: block;
+    }
 }
   
 .cell-placeholder {
