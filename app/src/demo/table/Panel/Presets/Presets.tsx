@@ -27,7 +27,7 @@ const Presets: React.FC = () => {
             renderAdditionalItems={ renderAddPresetIcon }
         >
             { presets.map(preset => (
-                <div>
+                <div key={ preset.id }>
                     { preset.name }
                 </div>
             )) }

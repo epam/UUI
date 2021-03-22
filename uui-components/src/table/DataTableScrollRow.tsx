@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import {ScrollManager, DataColumnProps, IHasCX} from '@epam/uui';
+import { ScrollManager, DataColumnProps, IHasCX } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
@@ -36,6 +36,8 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
                     node = node && node.children[0] as HTMLElement;
                     node && this.props.scrollManager && this.props.scrollManager.attachScrollNode(node);
                 } }
+                renderThumbHorizontal={ () => <div className='uui-thumb' /> }
+                onUpdate={ v => console.log(v) }
             >
                 { content }
             </ScrollBars>

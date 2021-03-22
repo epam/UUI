@@ -2,8 +2,6 @@
 @use '~@epam/promo/assets/styles/fonts' as *;
 
 .wrapper {
-    display: flex;
-    flex: 1 1 0;
     overflow: hidden;
 }
 
@@ -13,9 +11,6 @@
     flex: 1 1 0;
     height: calc(100vh - 121px);
     transition: all 500ms;
-    z-index: 1;
-    border-left: 1px solid $gray40;
-    border-right: 1px solid $gray40;
 
     .counter {
         &:global(.uui-button-box) {
@@ -73,26 +68,24 @@
     }
 }
 
-//.filter-sidebar-panel-wrapper {
-//    width: 288px;
-//    margin-right: -288px;
-//    transition: all 500ms;
-//
-//    &:global(.show) {
-//        animation: show-filter-panel 500ms;
-//        animation-fill-mode: forwards;
-//    }
-//
-//    &:global(.hide) {
-//        animation: hide-filter-panel 500ms ease;
-//        animation-fill-mode: forwards;
-//    }
-//}
+.filter-sidebar-panel-wrapper {
+    width: 288px;
+    margin-right: -288px;
+
+    &:global(.show) {
+        animation: show-filter-panel 500ms;
+        animation-fill-mode: forwards;
+    }
+
+    &:global(.hide) {
+        animation: hide-filter-panel 500ms;
+        animation-fill-mode: forwards;
+    }
+}
 
 .info-sidebar-panel-wrapper {
     width: 360px;
     margin-left: -360px;
-    transition: all 500ms;
 
     &:global(.show) {
         animation: show-info-panel 500ms;
@@ -100,7 +93,7 @@
     }
 
     &:global(.hide) {
-        animation: hide-info-panel 500ms ease;
+        animation: hide-info-panel 500ms;
         animation-fill-mode: forwards;
     }
 }
@@ -129,26 +122,26 @@
     }
 }
 
-//@keyframes show-filter-panel {
-//    0% {
-//        transform: translate3d(-100%, 0, 0);
-//        margin-right: -288px;
-//    }
-//
-//    100% {
-//        transform: translate3d(0, 0, 0);
-//        margin-right: 0;
-//    }
-//}
-//
-//@keyframes hide-filter-panel {
-//    0% {
-//        transform: translate3d(0, 0, 0);
-//        margin-right: 0;
-//    }
-//
-//    100% {
-//        transform: translate3d(-100%, 0, 0);
-//        margin-right: -288px;
-//    }
-//}
+@keyframes show-filter-panel {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+        margin-right: -288px;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        margin-right: 0;
+    }
+}
+
+@keyframes hide-filter-panel {
+    0% {
+        transform: translate3d(0, 0, 0);
+        margin-right: 0;
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        margin-right: -288px;
+    }
+}

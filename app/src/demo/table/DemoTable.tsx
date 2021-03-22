@@ -21,9 +21,14 @@ export const DemoTable: React.FC = () => {
         isFolded: true,
     }));
 
-    const [isPanelOpened, setIsPanelOpened] = useState(false);
-    const openPanel = useCallback(() => setIsPanelOpened(true), []);
-    const closePanel = useCallback(() => setIsPanelOpened(false), []);
+    const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
+    const openPanel = useCallback(() => setIsFilterPanelOpened(true), []);
+    const closePanel = useCallback(() => {
+        Promise.resolve(false)
+            .then((value) => {
+                setTimeout(() => setIsFilterPanelOpened(value), 500);
+            });
+    }, []);
 
     const [infoPanelId, setInfoPanelId] = useState<number | null>(null);
     const [isInfoPanelOpened, setInfoPanelOpened] = useState<boolean>(false);
@@ -53,6 +58,12 @@ export const DemoTable: React.FC = () => {
 
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
+        onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+            if (infoPanelId === rowProps.id[1]) {
+                closeInfoPanel();
+            }
+            openInfoPanel(rowProps.id[1]);
+        },
     };
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
@@ -68,55 +79,43 @@ export const DemoTable: React.FC = () => {
 
     const renderActiveRowDataSidebarPanel = () => {
         const data = dataSource.getById(['Person', infoPanelId]) as Person;
-        return <SidebarPanel cxSb={ 'right-sidebar' } data={ data } onClose={ closeInfoPanel }/>;
+        return <SidebarPanel data={ data } onClose={ closeInfoPanel } />;
     };
 
     return (
-        <FlexRow alignItems="top">
-            <TransitionGroup className={ css.wrapper }>
-                { isPanelOpened && (
-                    <CSSTransition classNames={ 'left-sidebar' } timeout={ 500 }>
-                        <Panel
-                            filters={ filters }
-                            close={ closePanel }
-                            value={ value }
-                            onValueChange={ setValue }
-                        />
-                    </CSSTransition>
-                ) }
-
-                <div className={ css.container }>
-                    <FlexRow background="white" borderBottom>
-                        { !isPanelOpened && (
-                            <div className={ css.iconContainer }>
-                                <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
-                            </div>
-                        ) }
-                        <Presets presets={ presets }/>
-                    </FlexRow>
-
-                    <DataTable
-                        headerTextCase='upper'
-                        getRows={ () => personsDataView.getVisibleRows() }
-                        columns={ columnsSet.personColumns }
-                        renderRow={ renderRow }
-                        selectAll={ { value: false, isDisabled: true, onValueChange: null } }
-                        showColumnsConfig
-                        value={ value }
-                        onValueChange={ setValue }
-                        { ...personsDataView.getListProps() }
-                    />
-                </div>
-                
-                {/*{ isInfoPanelOpened &&*/ }
-                {/*    <CSSTransition classNames={ 'right-sidebar' } timeout={ 500 }>*/ }
-                {/*        { infoPanelId && renderActiveRowDataSidebarPanel() }*/ }
-                {/*    </CSSTransition>*/ }
-                {/*}*/ }
-                <div className={ cx(css.infoSidebarPanelWrapper, isInfoPanelOpened ? 'show' : 'hide') }>
-                    { infoPanelId && renderActiveRowDataSidebarPanel() }
-                </div>
-            </TransitionGroup>
+        <FlexRow cx={ css.wrapper } alignItems="top">
+            { isFilterPanelOpened && <div className={ cx(css.filterSidebarPanelWrapper, isFilterPanelOpened ? 'show' : 'hide') }>
+                <Panel
+                    filters={ filters }
+                    close={ closePanel }
+                    value={ value }
+                    onValueChange={ setValue }
+                />
+            </div> }
+            <div className={ css.container }>
+                <FlexRow background='white' borderBottom >
+                    { !isFilterPanelOpened && (
+                        <div className={ css.iconContainer }>
+                            <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
+                        </div>
+                    ) }
+                    <Presets presets={ presets }/>
+                </FlexRow>
+                <DataTable
+                    headerTextCase='upper'
+                    getRows={ () => personsDataView.getVisibleRows() }
+                    columns={ columnsSet.personColumns }
+                    renderRow={ renderRow }
+                    selectAll={ { value: false, isDisabled: true, onValueChange: null } }
+                    showColumnsConfig
+                    value={ value }
+                    onValueChange={ setValue }
+                    { ...personsDataView.getListProps() }
+                />
+            </div>
+            { infoPanelId && <div className={ cx(css.infoSidebarPanelWrapper, isInfoPanelOpened ? 'show' : 'hide') }>
+                { infoPanelId && renderActiveRowDataSidebarPanel() }
+            </div> }
         </FlexRow>
     );
 };
