@@ -123,10 +123,23 @@ export class ScrollManager {
     });
 
     attachNode(node: HTMLElement) {
+        // passive option detection - https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
+        let passiveSupported = false;
+
+        try {
+            const options = Object.defineProperty({}, "passive", {
+                get: function () {
+                    passiveSupported = true;
+                },
+            });
+
+            window.addEventListener("test", null, options);
+        } catch (err) {}
+
         this.subscribers.push({ node });
         this.resizeObserver.observe(node);
         this.setAttachedNodeScroll(node);
-        node.addEventListener('wheel', (e: any) => this.handleOnWheel(e, node));
+        node.addEventListener('wheel', (e: any) => this.handleOnWheel(e, node), passiveSupported ? { passive: true } : false);
     }
 
     detachNode(node: HTMLElement) {
