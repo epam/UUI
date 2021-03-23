@@ -12,7 +12,7 @@ export class AnalyticsContext extends BaseContext {
     public readonly gaCode?: string;
     public readonly ampCode?: string;
     private readonly router: IRouterContext;
-    private ampClient: AmplitudeClient;
+    public ampClient: AmplitudeClient;
 
     constructor(options: AnalyticsContextOptions) {
         super();
