@@ -6,6 +6,14 @@ jest.mock("react-dom", () => ({
     findDOMNode: jest.fn(),
 }));
 
+class ResizeObserverMock {
+    observe = () => jest.fn();
+    unobserve = () => jest.fn();
+    disconnect = () => jest.fn();
+}
+
+global.ResizeObserver = ResizeObserverMock;
+
 describe("DataTableCell", () => {
     it("should be rendered correctly", () => {
         const tree = renderer
