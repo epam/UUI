@@ -6,7 +6,6 @@
     height: calc(100vh - 121px);
     width: 360px;
     border-left: 1px solid $gray40;
-    //will-change: margin, opacity, transform;
 
     .status {
         &:global(.uui-button-box) {
