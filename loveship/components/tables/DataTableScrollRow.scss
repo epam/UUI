@@ -1,4 +1,26 @@
+@use  '../../assets/styles/scss/loveship-colors' as *;
+
 .cell {
     box-sizing: border-box;
     padding: 0 12px;
+}
+
+:global(.uui-table-scroll-row-container) {
+
+    :global(.uui-thumb) {
+        background: $night400;
+        height: 3px;
+        border-radius: 1.5px;
+
+        &:hover {
+            height: 6px;
+            border-radius: 3px;
+        }
+
+        &:active {
+            height: 6px;
+            border-radius: 3px;
+            background: $night600;
+        }
+    }
 }

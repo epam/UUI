@@ -1,3 +1,5 @@
+@use '../../assets/styles/scss/loveship-colors' as *;
+
 .root {
     :global(.uui-thumb) {
         cursor: pointer;
@@ -14,7 +16,20 @@
         }
 
         :global(.uui-thumb) {
-            background: rgba(0, 0, 0, 0.2);
+            background: $night400;
+            width: 3px;
+            border-radius: 1.5px;
+
+            &:hover {
+                width: 6px;
+                border-radius: 3px;
+            }
+
+            &:active {
+                width: 6px;
+                border-radius: 3px;
+                background: $night600;
+            }
         }
     }
 
@@ -32,7 +47,20 @@
         }
 
         :global(.uui-thumb) {
-            background: rgba(0, 0, 0, 0.2);
+            background: $night400;
+            width: 3px;
+            border-radius: 1.5px;
+
+            &:hover {
+                width: 6px;
+                border-radius: 3px;
+            }
+
+            &:active {
+                width: 6px;
+                border-radius: 3px;
+                background: $night600;
+            }
         }
     }
 }
