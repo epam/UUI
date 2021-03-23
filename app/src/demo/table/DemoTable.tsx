@@ -1,17 +1,18 @@
-import React, { useCallback, useMemo, useState } from "react";
-import css from './DemoTable.scss';
+import React, { useCallback, useMemo, useState } from 'react';
 import { LazyDataSource, DataRowProps, DataRowOptions, cx } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
-import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
-import { getFilters, presets, api } from "./data";
-import { getColumns } from "./columns";
 import { PersonsTableState, PersonTableRecord, PersonTableRecordId } from './types';
-import { Panel } from "./Panel";
-import { Presets } from "./Presets";
-import { SidebarPanel } from "./SidebarPanel";
+import { getFilters, presets, api } from './data';
+import { getColumns } from './columns';
+import { Panel } from './Panel';
+import { Presets } from './Presets';
+import { InfoSidebarPanel } from './InfoSidebarPanel';
+
+import filterIcon from '@epam/assets/icons/common/content-filter_list-24.svg';
+import css from './DemoTable.scss';
+
+
 
 export const DemoTable: React.FC = () => {
     const [value, setValue] = useState<PersonsTableState>(() => ({
@@ -21,12 +22,20 @@ export const DemoTable: React.FC = () => {
         isFolded: true,
     }));
 
-    const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
-    const openPanel = useCallback(() => setIsFilterPanelOpened(true), []);
+    const [isFilterPanelOpened, setIsFilterPanelOpened] = useState<boolean>(false);
+    const [filterPanelStyleModifier, setFilterPanelStyleModifier] = useState<'show' | 'hide'>('hide');
+    const [isFilterButtonVisible, setIsFilterButtonVisible] = useState<boolean>(true);
+    const openPanel = useCallback(() => {
+        setIsFilterPanelOpened(true);
+        setIsFilterButtonVisible(false);
+        setFilterPanelStyleModifier('show');
+    }, []);
     const closePanel = useCallback(() => {
-        Promise.resolve(false)
-            .then((value) => {
-                setTimeout(() => setIsFilterPanelOpened(value), 500);
+        Promise.resolve()
+            .then(() => setFilterPanelStyleModifier('hide'))
+            .then(() => setIsFilterButtonVisible(true))
+            .then(() => {
+                setTimeout(() => setIsFilterPanelOpened(false), 500);
             });
     }, []);
 
@@ -77,14 +86,14 @@ export const DemoTable: React.FC = () => {
         cascadeSelection: true,
     });
 
-    const renderActiveRowDataSidebarPanel = () => {
+    const renderInfoSidebarPanel = () => {
         const data = dataSource.getById(['Person', infoPanelId]) as Person;
-        return <SidebarPanel data={ data } onClose={ closeInfoPanel } />;
+        return <InfoSidebarPanel data={ data } onClose={ closeInfoPanel } />;
     };
 
     return (
         <FlexRow cx={ css.wrapper } alignItems="top">
-            { isFilterPanelOpened && <div className={ cx(css.filterSidebarPanelWrapper, isFilterPanelOpened ? 'show' : 'hide') }>
+            { isFilterPanelOpened && <div className={ cx(css.filterSidebarPanelWrapper, filterPanelStyleModifier) }>
                 <Panel
                     filters={ filters }
                     close={ closePanel }
@@ -94,7 +103,7 @@ export const DemoTable: React.FC = () => {
             </div> }
             <div className={ css.container }>
                 <FlexRow background='white' borderBottom >
-                    { !isFilterPanelOpened && (
+                    { isFilterButtonVisible && (
                         <div className={ css.iconContainer }>
                             <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openPanel }/>
                         </div>
@@ -114,7 +123,7 @@ export const DemoTable: React.FC = () => {
                 />
             </div>
             { infoPanelId && <div className={ cx(css.infoSidebarPanelWrapper, isInfoPanelOpened ? 'show' : 'hide') }>
-                { infoPanelId && renderActiveRowDataSidebarPanel() }
+                { renderInfoSidebarPanel() }
             </div> }
         </FlexRow>
     );
