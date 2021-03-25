@@ -24,14 +24,7 @@ License: MIT
 
 ## Getting started
 
-We recommend to use [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application.
-
-After creating an app, you need to add uui packages:
-```
-yarn add @epam/assets @epam/loveship @epam/promo @epam/uui
-```
-
-UUI need application to be wrapped with ContextProvider class to properly function. You can use this file as a template: https://github.com/epam/UUI/blob/main/app/src/index.tsx
+We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
 
 ## Development
 
