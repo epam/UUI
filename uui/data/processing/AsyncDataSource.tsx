@@ -4,16 +4,13 @@ import { LoadingListView } from './views/LoadingListView';
 import { DataSourceState } from './types';
 import { IDataSourceView } from './views/types';
 
-export interface AsyncDataSourceApiRequest<TFilter = {}> {
-    filter?: TFilter;
-}
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {
-    api(request?: AsyncDataSourceApiRequest<TFilter>): Promise<TItem[]>;
+    api(): Promise<TItem[]>;
 }
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
-    api: (request?: AsyncDataSourceApiRequest<TFilter>) => Promise<TItem[]> = null;
+    api: () => Promise<TItem[]> = null;
 
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
         super({
