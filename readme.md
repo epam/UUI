@@ -22,6 +22,16 @@ License: MIT
 
 - Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
+## Install 
+
+```
+yarn add @epam/uui @epam/components @epam/loveship
+
+# or
+
+npm install @epam/uui @epam/components @epam/loveship
+```
+
 ## Getting started
 
 We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
