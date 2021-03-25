@@ -28,7 +28,6 @@
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.transform": "4.6.6",
     "@types/lodash.zip": "4.2.6",
-    "@types/react": "16.4.14",
     "@types/shallowequal": "^1.1.1",
     "immutable": "3.8.2",
     "lodash.countby": "4.6.0",
