@@ -61,7 +61,7 @@ exports[`ScrollBars should render with default props 1`] = `
     }
   >
     <div
-      className="uui-thumb"
+      className="uui-thumb-horizontal"
     />
   </div>
   <div
@@ -78,7 +78,7 @@ exports[`ScrollBars should render with default props 1`] = `
     }
   >
     <div
-      className="uui-thumb"
+      className="uui-thumb-vertical"
     />
   </div>
 </div>

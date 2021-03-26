@@ -97,7 +97,7 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-thumb"
+          className="uui-thumb-horizontal"
         />
       </div>
       <div
