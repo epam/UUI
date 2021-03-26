@@ -1,23 +1,18 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { DataQueryFilter, normalizeDataQueryFilter } from "@epam/uui";
+import { IEditable } from "@epam/uui";
 import { ITableFilter, PersonsTableState } from "../../types";
 
-interface IFiltersProps {
+interface IFiltersProps extends IEditable<PersonsTableState> {
     filters: ITableFilter[];
-    value: PersonsTableState;
-    onValueChange: (newState: PersonsTableState) => void;
 }
 
-const Filters: React.FC<IFiltersProps> = ({ filters, value, onValueChange }) => {
-    const handleChange = useCallback((filter: DataQueryFilter<any>) => {
+const FiltersBlockComponent: React.FC<IFiltersProps> = ({ filters, value, onValueChange }) => {
+    const handleChange = useCallback((filter: { [key: string]: any[] }) => {
         onValueChange({
             ...value,
-            filter: normalizeDataQueryFilter({
-                ...value.filter,
-                ...filter,
-            }),
+            filter,
         });
     }, [value, onValueChange]);
 
@@ -27,8 +22,9 @@ const Filters: React.FC<IFiltersProps> = ({ filters, value, onValueChange }) => 
                 return (
                     <Filter
                         { ...filter }
-                        id={ filter.key }
+                        value={ value.filter }
                         onValueChange={ handleChange }
+                        key={ filter.id }
                     />
                 );
             }) }
@@ -36,4 +32,4 @@ const Filters: React.FC<IFiltersProps> = ({ filters, value, onValueChange }) => 
     );
 };
 
-export default React.memo(Filters);
+export const FiltersBlock = React.memo(FiltersBlockComponent);

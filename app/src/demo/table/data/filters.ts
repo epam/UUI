@@ -5,43 +5,43 @@ import { ITableFilter } from "../types";
 export const getFilters = (): ITableFilter[] => {
     return [
         {
-            key: "profileStatusId",
+            id: "profileStatusId",
             title: "Profile Status",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
         },
         {
-            key: "jobTitleId",
+            id: "jobTitleId",
             title: "Title",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
         },
         {
-            key: "departmentId",
+            id: "departmentId",
             title: "Department",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
         },
         {
-            key: "officeId",
+            id: "officeId",
             title: "Office",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.offices }),
         },
         {
-            key: "managerId",
+            id: "managerId",
             title: "Manager",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.managers }),
         },
         {
-            key: "countryId",
+            id: "countryId",
             title: "Country",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
         },
         {
-            key: "cityId",
+            id: "cityId",
             title: "City",
             selectionMode: "multi",
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),

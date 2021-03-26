@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Accordion, CheckboxGroup } from "@epam/promo";
 import { items } from "../../data";
 
-const Columns: React.FC = () => {
+const ColumnsBlock: React.FC = () => {
     const [value, setValue] = useState(null);
 
     return (
@@ -12,4 +12,4 @@ const Columns: React.FC = () => {
     );
 };
 
-export default React.memo(Columns);
+export default React.memo(ColumnsBlock);

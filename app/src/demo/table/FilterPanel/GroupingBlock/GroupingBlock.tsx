@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Accordion, RadioGroup } from "@epam/promo";
 import { items } from "../../data";
 
-const Grouping: React.FC = () => {
+const GroupingBlock: React.FC = () => {
     const [value, setValue] = useState(null);
 
     return (
@@ -12,4 +12,4 @@ const Grouping: React.FC = () => {
     );
 };
 
-export default React.memo(Grouping);
+export default React.memo(GroupingBlock);

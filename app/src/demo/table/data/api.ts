@@ -1,6 +1,16 @@
-import { LazyDataSourceApi } from "@epam/uui";
+import { LazyDataSourceApi, normalizeDataQueryFilter } from "@epam/uui";
 import { svc } from "../../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "../types";
+
+const mapFilter = <TFilter extends PersonTableFilter>(filter: TFilter): { [TKey in keyof TFilter]: { in: TFilter[TKey] } } => {
+    return Object.keys(filter).reduce((acc, key) => {
+        acc[key] = normalizeDataQueryFilter({
+            in: filter[key],
+        });
+
+        return acc;
+    }, {} as any);
+};
 
 export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
@@ -17,6 +27,7 @@ export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, Pers
         } as any);
     } else {
         const parentFilter = ctx.parent && { [groupBy + 'Id']: ctx.parent.id };
-        return svc.api.demo.persons({ ...rq, filter: { ...filter, ...parentFilter }, ids });
+        const mappedFilter = mapFilter(filter);
+        return svc.api.demo.persons({ ...rq, filter: { ...mappedFilter, ...parentFilter }, ids });
     }
 };

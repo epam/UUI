@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
+import { DataQueryFilter, DataColumnProps, ILens, IEditable } from '@epam/uui';
 import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
@@ -8,14 +8,13 @@ import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
 export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
     const makeFilterRenderCallback = <TField extends keyof Person>(filterKey: TField) => {
-        const filter = filters.find(f => f.key === filterKey);
+        const filter = filters.find(f => f.id === filterKey);
 
         const Filter = (props: IEditable<any>) => {
             return <ColumnPickerFilter
                 dataSource={ filter.dataSource }
                 selectionMode={ filter.selectionMode }
                 valueType='id'
-                emptyValue={ null }
                 getName={ i => (i as any)?.name || "Not Specified" }
                 showSearch
                 { ...props }
@@ -24,9 +23,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
 
         return (filterLens: ILens<any>) => {
             const props = filterLens
-                .onChange((_, value) => normalizeDataQueryFilter(value))
-                .prop(filter.key)
-                .prop('in')
+                .prop(filter.id)
                 .toProps();
 
             return <Filter { ...props } />;
@@ -126,7 +123,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             render: p => <Text>{ p.hireDate ? 'Employee' : 'Student' }</Text>,
             width: 150,
         },
-        {
+        { //
             key: 'birthDate',
             caption: "Birth Date",
             render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
@@ -134,7 +131,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             isSortable: true,
             isHiddenByDefault: true,
         },
-        {
+        { //
             key: 'relatedNPR',
             caption: "Related NPR",
             render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import css from './DemoTable.scss';
-import { LazyDataSource, DataRowProps, DataRowOptions, cx } from '@epam/uui';
+import { LazyDataSource, DataRowProps, DataRowOptions, cx, Link } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
@@ -9,17 +9,39 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { getFilters, presets, api } from "./data";
 import { getColumns } from "./columns";
 import { PersonsTableState, PersonTableRecord, PersonTableRecordId } from './types';
-import { Panel } from "./Panel";
+import { FilterPanel } from "./FilterPanel";
 import { Presets } from "./Presets";
 import { SidebarPanel } from "./SidebarPanel";
+import { svc } from "../../services";
 
 export const DemoTable: React.FC = () => {
-    const [value, setValue] = useState<PersonsTableState>(() => ({
-        topIndex: 0,
-        visibleCount: 100,
-        sorting: [{ field: 'name' }],
-        isFolded: true,
-    }));
+    const [value, setValue] = useState<PersonsTableState>(() => {
+        const filter = svc.uuiRouter.getCurrentLink().query.filter;
+        const value = {
+            topIndex: 0,
+            visibleCount: 100,
+            sorting: [{ field: 'name' }],
+            filter: filter ? JSON.parse(decodeURIComponent(filter)) : undefined,
+            isFolded: true,
+        };
+        if (!value.filter) delete value.filter;
+        return value;
+    });
+
+    const onValueChange = useCallback((value: PersonsTableState) => {
+        setValue(value);
+        
+        const newQuery = {
+            ...svc.uuiRouter.getCurrentLink().query,
+            filter: encodeURIComponent(JSON.stringify(value.filter)),
+        };
+        
+        const newLink: Link = {
+            pathname: location.pathname,
+            query: newQuery,
+        };
+        svc.history.push(newLink);
+    }, []);
 
     const [isPanelOpened, setIsPanelOpened] = useState(false);
     const openPanel = useCallback(() => setIsPanelOpened(true), []);
@@ -44,7 +66,7 @@ export const DemoTable: React.FC = () => {
     const [filters] = useState(getFilters());
     const [columnsSet] = useState(getColumns(filters, openInfoPanel));
 
-    let dataSource = useMemo(() => new LazyDataSource({
+    const dataSource = useMemo(() => new LazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
         getChildCount: (item: PersonTableRecord) =>
@@ -76,11 +98,11 @@ export const DemoTable: React.FC = () => {
             <TransitionGroup className={ css.wrapper }>
                 { isPanelOpened && (
                     <CSSTransition classNames={ 'left-sidebar' } timeout={ 500 }>
-                        <Panel
+                        <FilterPanel
                             filters={ filters }
                             close={ closePanel }
                             value={ value }
-                            onValueChange={ setValue }
+                            onValueChange={ onValueChange }
                         />
                     </CSSTransition>
                 ) }
@@ -103,11 +125,11 @@ export const DemoTable: React.FC = () => {
                         selectAll={ { value: false, isDisabled: true, onValueChange: null } }
                         showColumnsConfig
                         value={ value }
-                        onValueChange={ setValue }
+                        onValueChange={ onValueChange }
                         { ...personsDataView.getListProps() }
                     />
                 </div>
-                
+
                 {/*{ isInfoPanelOpened &&*/ }
                 {/*    <CSSTransition classNames={ 'right-sidebar' } timeout={ 500 }>*/ }
                 {/*        { infoPanelId && renderActiveRowDataSidebarPanel() }*/ }
