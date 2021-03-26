@@ -72,10 +72,6 @@
             :global(.uui-icon) {
                 fill: var(--errored-color);
             }
-
-            :global(.uui-input-label) {
-                color: var(--errored-color);
-            }
         }
     }
 
@@ -161,19 +157,13 @@
         }
     }
 
-    &:global(.uui-readonly),
-    &:global(.uui-readonly):global(.uui-checked),
-    &:global(.uui-readonly):hover,
-    &:global(.uui-readonly):focus {
+    &:global(.uui-readonly) {
         :global(.uui-input-label) {
             color: var(--caption-color);
         }
     }
 
-    &:global(.uui-disabled),
-    &:global(.uui-disabled):global(.uui-checked),
-    &:global(.uui-disabled):hover,
-    &:global(.uui-disabled):focus {
+    &:global(.uui-disabled) {
         :global(.uui-input-label),  {
             color: var(--caption-color-disabled);
         }
