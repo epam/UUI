@@ -8,6 +8,20 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
     className="container uui-table-row-container uui-table-scroll-row container align-items-center"
   >
     <div
+      className="cellPlaceholder"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "96px",
+          "flexGrow": 0,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    />
+    <div
       className="uui-table-scroll-bar"
       style={
         Object {
@@ -45,9 +59,9 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
-                "flexShrink": 0,
+                "flexBasis": "200px",
+                "flexGrow": 1,
+                "flexShrink": undefined,
                 "minWidth": 0,
                 "textAlign": undefined,
               }
@@ -59,10 +73,10 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
-                "flexShrink": 0,
-                "minWidth": 0,
+                "flexBasis": "150px",
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "minWidth": "200px",
                 "textAlign": undefined,
               }
             }
@@ -73,8 +87,8 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
+                "flexBasis": "120px",
+                "flexGrow": 1,
                 "flexShrink": 0,
                 "minWidth": 0,
                 "textAlign": undefined,

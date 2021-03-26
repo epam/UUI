@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {testData} from "@epam/uui";
+import {dataSource} from "./dataMocks";
 import {PickerModal} from "../PickerModal";
 
 jest.mock("react-dom", () => ({
@@ -13,7 +13,7 @@ describe("PickerModal", () => {
             .create(<PickerModal
                 key='test'
                 valueType='id'
-                dataSource={ testData.dataSource }
+                dataSource={ dataSource }
                 success={ jest.fn() }
                 abort={ jest.fn() }
                 zIndex={ 1 }

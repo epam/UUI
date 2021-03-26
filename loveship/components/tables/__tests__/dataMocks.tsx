@@ -1,4 +1,5 @@
-import {ArrayDataSource} from "../data";
+import { ArrayDataSource, DataColumnProps } from "@epam/uui";
+import React from "react";
 
 const personDemoData = [
     {
@@ -136,3 +137,42 @@ const personDemoData = [
 export const dataSource = new ArrayDataSource({
     items: personDemoData,
 });
+
+export const demoColumns: DataColumnProps<any>[] = [
+    {
+        key: "id",
+        caption: "ID",
+        render: product => <div>{ product.id }</div>,
+        isSortable: true,
+        isAlwaysVisible: true,
+        fix: "left",
+        grow: 0,
+        width: 96,
+    },
+    {
+        key: "name",
+        caption: "name",
+        render: product => <div>{ product.id }</div>,
+        isSortable: true,
+        isAlwaysVisible: true,
+        grow: 1,
+        width: 200,
+    },
+    {
+        key: "level",
+        caption: "Level",
+        render: product => <div>{ product.jobTitle }</div>,
+        isSortable: true,
+        width: 150,
+        minWidth: 200,
+    },
+    {
+        key: "date",
+        caption: "DATE",
+        render: product => <div>{ product.birthDate }</div>,
+        isSortable: true,
+        grow: 1,
+        shrink: 0,
+        width: 120,
+    },
+];

@@ -5,6 +5,74 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   className="container uui-table-row-container root uui-table-header-row container align-items-center"
 >
   <div
+    className="flexCell -clickable cell size-24 padding-left-24 resizable"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "96px",
+        "flexGrow": 0,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="container root size-12 theme-light color-sky checkbox -clickable"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="uui-checkbox"
+      />
+    </div>
+    <div
+      className="tooltipWrapper"
+    >
+      <div
+        className="iconCell"
+      >
+        <div
+          className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
+        >
+          ID
+        </div>
+        <div
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#sort.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="resizeMark"
+      onMouseDown={[Function]}
+    />
+  </div>
+  <div
     className="scrollableColumnsWrapper"
     style={
       Object {
@@ -22,14 +90,19 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         className="container align-items-center"
       >
         <div
-          className="flexCell -clickable cell size-24 padding-left-24"
+          className="flexCell -clickable cell size-24 resizable draggable"
           onClick={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
-              "flexShrink": 0,
+              "flexBasis": "200px",
+              "flexGrow": 1,
+              "flexShrink": undefined,
               "minWidth": 0,
               "textAlign": undefined,
             }
@@ -44,10 +117,10 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption upperCase container"
               >
-                ID
+                name
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -63,24 +136,33 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     width={12}
                   >
                     <use
-                      xlinkHref="#sort.svg"
+                      xlinkHref="#sort_asc-12.svg"
                     />
                   </svg>
                 </div>
               </div>
             </div>
           </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
         </div>
         <div
-          className="flexCell -clickable cell size-24"
+          className="flexCell -clickable cell size-24 resizable draggable"
           onClick={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
-              "flexShrink": 0,
-              "minWidth": 0,
+              "flexBasis": "150px",
+              "flexGrow": undefined,
+              "flexShrink": undefined,
+              "minWidth": "200px",
               "textAlign": undefined,
             }
           }
@@ -120,15 +202,24 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               </div>
             </div>
           </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
         </div>
         <div
-          className="flexCell -clickable cell size-24 padding-right-24"
+          className="flexCell -clickable cell size-24 padding-right-24 resizable draggable"
           onClick={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
+              "flexBasis": "120px",
+              "flexGrow": 1,
               "flexShrink": 0,
               "minWidth": 0,
               "textAlign": undefined,
@@ -170,6 +261,10 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               </div>
             </div>
           </div>
+          <div
+            className="resizeMark"
+            onMouseDown={[Function]}
+          />
         </div>
       </div>
     </div>
@@ -188,6 +283,56 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   className="container uui-table-row-container root uui-table-header-row container align-items-center"
 >
   <div
+    className="flexCell -clickable cell size-36 padding-left-24"
+    onClick={[Function]}
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "96px",
+        "flexGrow": 0,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
+      }
+    }
+  >
+    <div
+      className="tooltipWrapper"
+    >
+      <div
+        className="iconCell"
+      >
+        <div
+          className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
+        >
+          ID
+        </div>
+        <div
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+          >
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
+            >
+              <use
+                xlinkHref="#sort.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
     className="scrollableColumnsWrapper"
     style={
       Object {
@@ -205,14 +350,14 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         className="container align-items-center"
       >
         <div
-          className="flexCell -clickable cell size-36 padding-left-24"
+          className="flexCell -clickable cell size-36"
           onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
-              "flexShrink": 0,
+              "flexBasis": "200px",
+              "flexGrow": 1,
+              "flexShrink": undefined,
               "minWidth": 0,
               "textAlign": undefined,
             }
@@ -227,10 +372,10 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               <div
                 className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
               >
-                ID
+                name
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -246,7 +391,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     width={12}
                   >
                     <use
-                      xlinkHref="#sort.svg"
+                      xlinkHref="#sort_asc-12.svg"
                     />
                   </svg>
                 </div>
@@ -260,10 +405,10 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
-              "flexShrink": 0,
-              "minWidth": 0,
+              "flexBasis": "150px",
+              "flexGrow": undefined,
+              "flexShrink": undefined,
+              "minWidth": "200px",
               "textAlign": undefined,
             }
           }
@@ -310,8 +455,8 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           style={
             Object {
               "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
+              "flexBasis": "120px",
+              "flexGrow": 1,
               "flexShrink": 0,
               "minWidth": 0,
               "textAlign": undefined,

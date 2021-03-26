@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {testData} from "@epam/uui";
+import { demoColumns, dataSource } from "./dataMocks";
 import {DataTable} from "../DataTable";
 
 jest.mock("react-dom", () => ({
@@ -17,25 +17,14 @@ global.ResizeObserver = ResizeObserverMock;
 
 describe("DataTable", () => {
     it("should be rendered correctly", () => {
+        const view = dataSource.getView({topIndex: 0, visibleCount: 20}, () => {});
+
         const tree = renderer
             .create(
                 <DataTable
-                    { ...testData.dataSourceView.getListProps() }
-                    columns={ testData.dataColumns }
-                    getRows={ testData.dataSourceView.getVisibleRows }
-                    value={ {} }
-                    onValueChange={ jest.fn() }
-                />)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    
-    it("should be rendered correctly with empty columns and rows", () => {
-        const tree = renderer
-            .create(
-                <DataTable
-                    columns={ [] }
-                    getRows={ () => [] }
+                    { ...view.getListProps() }
+                    columns={ demoColumns }
+                    getRows={ view.getVisibleRows }
                     value={ {} }
                     onValueChange={ jest.fn() }
                 />)
