@@ -1,4 +1,5 @@
 import { uuiMarkers } from '../constants';
+
 export interface ScrollPosition {
     x: number;
     y: number;
@@ -10,10 +11,14 @@ export class ScrollManager {
         x: 0,
     };
 
+    private scrollWidth?: number;
+    private clientWidth?: number;
+    private offsetLeft?: number;
+
     private markersStatus = {
         displayLeft: false,
         displayRight: false,
-        isValid: false,
+        isUpdated: false,
     };
 
     subscribers: { node: HTMLElement }[] = [];
@@ -28,19 +33,27 @@ export class ScrollManager {
 
         this.scrollPosition = scrollPosition;
         if (xScrollChanged) {
-            this.markersStatus.isValid = false;
-            this.subscribers.forEach(s => this.updateNodeScroll(s.node));
+            this.markersStatus.isUpdated = false;
+            this.subscribers.forEach(s => this.updateAttachedNodeNodeScroll(s.node));
             this.scrollNodes.forEach(s => this.updateScrollingNodeScroll(s.node));
         }
     }
 
     updateMarkersStatus(node: HTMLElement) {
-        if (!this.markersStatus.isValid) {
-            const { clientWidth, scrollWidth, offsetLeft } = node;
+        const { clientWidth, scrollWidth, offsetLeft } = node;
+
+        if (clientWidth !== this.clientWidth || offsetLeft !== this.offsetLeft) {
+            this.markersStatus.isUpdated = false;
+        }
+
+        if (!this.markersStatus.isUpdated) {
+            this.clientWidth = clientWidth;
+            this.scrollWidth = scrollWidth;
+            this.offsetLeft = offsetLeft;
             this.markersStatus = {
-                displayLeft: offsetLeft != 0,
-                displayRight: -offsetLeft + clientWidth != scrollWidth,
-                isValid: true,
+                displayLeft: offsetLeft !== 0,
+                displayRight: -offsetLeft + clientWidth < scrollWidth,
+                isUpdated: true,
             };
         }
     }
@@ -50,11 +63,10 @@ export class ScrollManager {
             node.style.left = `-${this.scrollPosition.x}px`;
         }
 
-        this.updateMarkersStatus(node);
-        this.setMarkers(node);
+        this.updateMarkers(node);
     }
 
-    updateNodeScroll(node: HTMLElement) {
+    updateAttachedNodeNodeScroll(node: HTMLElement) {
         node.style.left = `-${this.scrollPosition.x}px`;
         this.updateMarkers(node);
     }
@@ -66,7 +78,7 @@ export class ScrollManager {
 
     setScrollingNodeScroll(node: HTMLElement) {
         node.scrollLeft = this.scrollPosition.x;
-        this.setMarkers(node);
+        this.updateMarkers(node);
     }
 
     updateMarkers(node: HTMLElement) {
@@ -85,22 +97,6 @@ export class ScrollManager {
         }
     }
 
-    setMarkers(node: HTMLElement) {
-        this.updateMarkersStatus(node);
-
-        if (this.markersStatus.displayLeft) {
-            node.classList.add(uuiMarkers.scrolledLeft);
-        }
-
-        if (this.markersStatus.displayRight) {
-            node.classList.add(uuiMarkers.scrolledRight);
-        }
-    }
-
-    updateYScroll(y: number) {
-        this.updateScrollPosition({...this.scrollPosition, y });
-    }
-
     updateXScroll(x: number) {
         this.updateScrollPosition({...this.scrollPosition, x });
     }
@@ -116,17 +112,27 @@ export class ScrollManager {
         }
     }
 
+    resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const contentRect = entry.contentRect;
+
+            if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {
+                entries.forEach(element => this.updateMarkers(element.target as HTMLElement));
+            }
+        }
+    });
+
     attachNode(node: HTMLElement) {
-        this.subscribers.push({
-            node,
-        });
+        this.subscribers.push({ node });
+        this.resizeObserver.observe(node);
         this.setAttachedNodeScroll(node);
-        node.addEventListener('wheel', (e: any) => { this.handleOnWheel(e, node); });
+        node.addEventListener('wheel', (e: any) => this.handleOnWheel(e, node));
     }
 
     detachNode(node: HTMLElement) {
         const subscriber = this.subscribers.find(s => s.node === node);
         if (subscriber) {
+            this.resizeObserver.unobserve(subscriber.node);
             this.subscribers = this.subscribers.filter(s => s !== subscriber);
         }
     }
@@ -135,6 +141,7 @@ export class ScrollManager {
         const scrollHandler = (e: any) => this.updateXScroll(e.target.scrollLeft);
         node.addEventListener('scroll', scrollHandler);
 
+        this.resizeObserver.observe(node);
         this.setScrollingNodeScroll(node);
 
         this.scrollNodes.push({

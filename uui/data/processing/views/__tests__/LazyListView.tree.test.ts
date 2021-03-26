@@ -435,7 +435,6 @@ describe('LazyListView', () => {
         ]);
     });
 
-
     it('Select All', async () => {
         const getView = () => ds.getView(
             value,
@@ -619,5 +618,89 @@ describe('LazyListView', () => {
             { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
             { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
         ], 10);
+    });
+
+
+    it('Correctly fold inner children in hierarchy', async () => {
+        const testData: TestItem[] = [
+            { id: 100, },
+            { id: 110, parentId: 100 }, // we add a lot of row here, to prevent loading some rows on initial load
+            { id: 111, parentId: 110 },
+            { id: 112, parentId: 110 },
+            { id: 113, parentId: 110 },
+            { id: 114, parentId: 110 },
+            { id: 115, parentId: 110 },
+            { id: 116, parentId: 110 },
+            { id: 120, parentId: 100 },
+            { id: 121, parentId: 120 }, // these children won't be loaded.
+            { id: 122, parentId: 120 }, // there was bug that non-loaded children was still produce loading rows
+            { id: 123, parentId: 120 }, // as there were missing check that parent is folded
+            { id: 124, parentId: 120 },
+            { id: 125, parentId: 120 },
+            { id: 200, },
+            { id: 300, },
+            { id: 400, },
+            { id: 500, },
+            { id: 600, },
+            { id: 700, },
+            { id: 800 },
+            { id: 900 },
+        ];
+
+        testData.forEach(i => { i.childrenCount = testData.filter(x => x.parentId == i.id).length; });
+
+        let value: DataSourceState = { visibleCount: 5 };
+        let onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+
+        const testApi = jest.fn(
+            (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq))
+        );
+
+        let ds = new LazyDataSource({
+            api: (rq, ctx) => ctx.parent
+                ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+                : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+            getChildCount: (i) => i.childrenCount,
+        });
+
+        const getView = () => ds.getView(
+            value,
+            onValueChanged,
+            {
+                cascadeSelection: true,
+                getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: i => false,
+            });
+
+        let view = getView();
+        view.getListProps(); // trigger loading
+        await delay();
+
+        // fold row #100
+        let rows = view.getVisibleRows();
+        rows[0].onFold(rows[0]);
+        view = getView();
+        rows = view.getVisibleRows();
+
+        expect(rows).toEqual([
+            { id: 100 },
+            { id: 200 },
+            { id: 300 },
+            { id: 400 },
+            { id: 500 },
+        ].map(r => expect.objectContaining(r)));
+
+        await delay();
+
+        rows = view.getVisibleRows();
+        view = getView();
+
+        expect(rows).toEqual([
+            { id: 100 },
+            { id: 200 },
+            { id: 300 },
+            { id: 400 },
+            { id: 500 },
+        ].map(r => expect.objectContaining(r)));
     });
 });

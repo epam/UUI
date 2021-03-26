@@ -11,103 +11,64 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Please check out our ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
+            "text": "Before starting, it is recommended to learn ",
+            "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "https://git.epam.com/epm-tmc/ui-template"
+              "url": "https://reactjs.org/"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "template application.",
+                "text": "React",
                 "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "Source code available",
+            "text": " and ",
             "marks": []
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "https://github.com/epam/UUI"
+              "url": "http://babeljs.io/docs/learn-es2015/"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "on GitHub",
+                "text": "ES2015",
                 "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": "",
+            "text": " first, and correctly install and configure ",
             "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://nodejs.org/"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Node.js",
+                "marks": []
+              }
+            ]
+          },
           {
             "object": "text",
-            "text": "It's an conventional CRA (create-react-app) application, with few demo pages, and UUI attached.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The best way to start, is to either just clone it, or to use it's code as a guide how to initialize UUI correctly.",
+            "text": " v8 or above.",
             "marks": []
           }
         ]

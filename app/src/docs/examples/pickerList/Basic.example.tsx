@@ -14,7 +14,7 @@ export class BasicPickerListExample extends React.Component<any, BasicPickerList
     };
 
     locationsDataSource = new AsyncDataSource({
-        api: (req) => svc.api.demo.countries(req).then(res => res.items),
+        api: () => svc.api.demo.countries({}).then(res => res.items),
     });
 
     render() {
