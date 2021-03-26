@@ -38,8 +38,8 @@ class ModalWithFormExample extends React.Component<IModal<Person>> {
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     });
 
-    renderForm = (props: RenderFormProps<Person>) => {
-        let lens = props.lens;
+    renderForm = (formProps: RenderFormProps<Person>) => {
+        let lens = formProps.lens;
 
         return <>
             <Panel>
@@ -86,7 +86,7 @@ class ModalWithFormExample extends React.Component<IModal<Person>> {
             <ModalFooter borderTop >
                 <FlexSpacer />
                 <Button color='gray50' fill='white' onClick={ () => this.handleLeave().then(this.props.abort) } caption='Cancel' />
-                <Button color='green' caption='Confirm' onClick={ () => props.save() } />
+                <Button color='green' caption='Confirm' onClick={ () => formProps.save() } />
             </ModalFooter>
         </>;
     }
