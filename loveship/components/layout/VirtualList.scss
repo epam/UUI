@@ -1,11 +1,7 @@
-@use '../../assets/styles/scss/loveship-colors' as *;
+@use '../../assets/styles/scss/prettifyScrollBar' as *;
 
 .root {
-    :global(.uui-thumb) {
-        cursor: pointer;
-        border-radius: 3px;
-        width: 6px;
-    }
+    @include prettifyCustomScroll();
 
     &.shadow-dark {
         :global(.uui-scroll-shadow-top) {
@@ -13,23 +9,6 @@
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
             opacity: 0;
             transition: opacity 200ms;
-        }
-
-        :global(.uui-thumb) {
-            background: $night400;
-            width: 3px;
-            border-radius: 1.5px;
-
-            &:hover {
-                width: 6px;
-                border-radius: 3px;
-            }
-
-            &:active {
-                width: 6px;
-                border-radius: 3px;
-                background: $night600;
-            }
         }
     }
 
@@ -44,23 +23,6 @@
         :global(.uui-scroll-shadow-bottom) {
             height: 15px;
             background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-        }
-
-        :global(.uui-thumb) {
-            background: $night400;
-            width: 3px;
-            border-radius: 1.5px;
-
-            &:hover {
-                width: 6px;
-                border-radius: 3px;
-            }
-
-            &:active {
-                width: 6px;
-                border-radius: 3px;
-                background: $night600;
-            }
         }
     }
 }

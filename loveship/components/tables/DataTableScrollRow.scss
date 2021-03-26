@@ -1,4 +1,4 @@
-@use  '../../assets/styles/scss/loveship-colors' as *;
+@use  '../../assets/styles/scss/prettifyScrollBar' as *;
 
 .cell {
     box-sizing: border-box;
@@ -6,21 +6,5 @@
 }
 
 :global(.uui-table-scroll-row-container) {
-
-    :global(.uui-thumb) {
-        background: $night400;
-        height: 3px;
-        border-radius: 1.5px;
-
-        &:hover {
-            height: 6px;
-            border-radius: 3px;
-        }
-
-        &:active {
-            height: 6px;
-            border-radius: 3px;
-            background: $night600;
-        }
-    }
+    @include prettifyCustomScroll();
 }
