@@ -1,16 +1,7 @@
-@use '../../assets/styles/scss/loveship-colors' as *;
+@use '../../assets/styles/scss/prettifyScrollBar' as *;
 
 .root {
-    :global(.uui-thumb) {
-        width: 3px;
-        height: inherit;
-        border-radius: 1.5px;
-
-        &:hover {
-            width: 6px;
-            border-radius: 3px;
-        }
-    }
+    @include prettifyCustomScroll();
 }
 
 .theme-dark {
@@ -21,16 +12,6 @@
     &:global(.uui-shadow-bottom)::after {
         background: linear-gradient(to top, rgba(44, 47, 60, 0.5) 0%, rgba(44, 47, 60, 0) 100%);
     }
-
-    :global(.uui-thumb) {
-        background: $night400;
-
-        &:active {
-            width: 6px;
-            border-radius: 3px;
-            background: $night600;
-        }
-    }
 }
 
 .theme-light {
@@ -40,15 +21,5 @@
 
     &:global(.uui-shadow-bottom)::after {
         background: linear-gradient(to top, rgba(44, 47, 60, 0.15) 0%, rgba(44, 47, 60, 0) 100%);
-    }
-
-    :global(.uui-thumb) {
-        background: $night400;
-
-        &:active {
-            width: 6px;
-            border-radius: 3px;
-            background: $night600;
-        }
     }
 }

@@ -49,7 +49,7 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
                     node && this.resizeObserver && this.resizeObserver.observe(node);
                     this.clientWidth = node && node.clientWidth;
                 } }
-                renderThumbHorizontal={ () => <div className='uui-thumb' /> }
+                renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
             >
                 { content }
             </ScrollBars>

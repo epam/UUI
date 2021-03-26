@@ -164,8 +164,8 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
                     renderView={ this.renderView.bind(this) }
                     ref={ el => this.updateRefs(el) }
                     autoHeightMax={ 100500 }
-                    renderThumbHorizontal={ () => <div className='uui-thumb'/> }
-                    renderThumbVertical={ () => <div className='uui-thumb'/> }
+                    renderThumbHorizontal={ () => <div className='uui-thumb-horizontal'/> }
+                    renderThumbVertical={ () => <div className='uui-thumb-vertical'/> }
                 >
                     <div className={ css.container2 } style={ { height: this.estimatedHeight } }>
                         { this.renderRows() }
