@@ -55,9 +55,9 @@ export class ScrollBars extends React.Component<ScrollbarProps, any> {
         );
     }
 
-    renderThumbVertical = () => <div className="uui-thumb"/>;
+    renderThumbVertical = () => <div className="uui-thumb-vertical"/>;
 
-    renderThumbHorizontal = () => <div className="uui-thumb"/>;
+    renderThumbHorizontal = () => <div className="uui-thumb-horizontal"/>;
 
     render() {
         let { renderView, style, ...restProps } = this.props;
@@ -72,8 +72,8 @@ export class ScrollBars extends React.Component<ScrollbarProps, any> {
                     this.props.hasBottomShadow && "uui-shadow-bottom",
                 ) }
                 renderView={ renderView || this.renderView }
-                renderThumbVertical={ this.renderThumbVertical }
                 renderThumbHorizontal={ this.renderThumbHorizontal }
+                renderThumbVertical={ this.renderThumbVertical }
                 style={ { ...{ display: 'flex' }, ...style } }
                 onScroll={ e => {
                     this.handleUpdateScroll();
