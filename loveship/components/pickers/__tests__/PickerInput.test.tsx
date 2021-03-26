@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {testData} from "@epam/uui";
+import {dataSource} from "./dataMocks";
 import {PickerInput} from "../PickerInput";
 
 jest.mock("react-dom", () => ({
@@ -14,7 +14,7 @@ describe("PickerInput", () => {
                 value={ null }
                 onValueChange={ jest.fn() }
                 selectionMode='single'
-                dataSource={ testData.dataSource }
+                dataSource={ dataSource }
                 disableClear
                 searchPosition='input'
             />)
@@ -28,8 +28,8 @@ describe("PickerInput", () => {
                 value={ [1, 2] }
                 onValueChange={ jest.fn() }
                 selectionMode='multi'
-                dataSource={ testData.dataSource }
-                size='48'
+                dataSource={ dataSource }
+                size='24'
                 maxItems={ 20 }
                 editMode='modal'
                 valueType='id'
@@ -43,7 +43,6 @@ describe("PickerInput", () => {
                 renderNotFound={ ({search, onClose = jest.fn()}) => <div onClick={ onClose }>{ `No found ${search}` }</div> }
                 renderFooter={ props => <div>{ props }</div> }
                 cascadeSelection
-                dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
             />)
             .toJSON();
