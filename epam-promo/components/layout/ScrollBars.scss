@@ -1,16 +1,7 @@
-@use '../../assets/styles/colors.scss' as *;
+@use '../../assets/styles/prettifyScrollBar' as *;
 
 .root {
-    :global(.uui-thumb) {
-        width: 3px;
-        height: inherit;
-        border-radius: 1.5px;
-
-        &:hover {
-            width: 6px;
-            border-radius: 3px;
-        }
-    }
+    @include prettifyCustomScroll();
 }
 
 .theme-dark {
@@ -21,20 +12,6 @@
     &:global(.uui-shadow-bottom)::after {
         background: linear-gradient(to top, rgba(44, 47, 60, 0.5) 0%, rgba(44, 47, 60, 0) 100%);
     }
-
-    :global(.uui-thumb) {
-        background: rgba(255, 255, 255, 0.15);
-    }
-
-    :global(.uui-thumb) {
-        background: $gray40;
-
-        &:active {
-            width: 6px;
-            border-radius: 3px;
-            background: $gray60;
-        }
-    }
 }
 
 .theme-light {
@@ -44,15 +21,5 @@
 
     &:global(.uui-shadow-bottom)::after {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 54%);
-    }
-
-    :global(.uui-thumb) {
-        background: $gray40;
-
-        &:active {
-            width: 6px;
-            border-radius: 3px;
-            background: $gray60;
-        }
     }
 }
