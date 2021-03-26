@@ -1,11 +1,11 @@
 import React, { ReactEventHandler, useCallback } from "react";
-import css from "./Presets.scss";
+import css from "./PresetsBlock.scss";
 import { Accordion, IconContainer } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
 import plusIcon from "@epam/assets/icons/common/content-add-outline-18.svg";
 import { presets } from "../../data";
 
-const Presets: React.FC = () => {
+const PresetsBlock: React.FC = () => {
     const addPreset: ReactEventHandler<HTMLDivElement> = useCallback(event => {
         event.stopPropagation();
     }, []);
@@ -35,4 +35,4 @@ const Presets: React.FC = () => {
     );
 };
 
-export default React.memo(Presets);
+export default React.memo(PresetsBlock);
