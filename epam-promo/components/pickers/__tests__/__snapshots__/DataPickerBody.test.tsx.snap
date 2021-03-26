@@ -469,7 +469,7 @@ Array [
           }
         >
           <div
-            className="uui-thumb"
+            className="uui-thumb-horizontal"
           />
         </div>
         <div
@@ -486,7 +486,7 @@ Array [
           }
         >
           <div
-            className="uui-thumb"
+            className="uui-thumb-vertical"
           />
         </div>
       </div>

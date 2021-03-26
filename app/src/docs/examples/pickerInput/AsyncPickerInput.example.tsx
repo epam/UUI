@@ -14,7 +14,7 @@ export class AsyncPickerInputExample extends React.Component<any, AsyncPickerInp
     };
 
     locationsDataSource = new AsyncDataSource({
-        api: (req) => svc.api.demo.locations(req).then(res => res.items),
+        api: () => svc.api.demo.locations({}).then(res => res.items),
     });
 
     render() {

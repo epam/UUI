@@ -12,7 +12,7 @@ export class AnalyticsContext extends BaseContext {
     public readonly gaCode?: string;
     public readonly ampCode?: string;
     private readonly router: IRouterContext;
-    private ampClient: AmplitudeClient;
+    public ampClient: AmplitudeClient;
 
     constructor(options: AnalyticsContextOptions) {
         super();
@@ -72,7 +72,7 @@ export class AnalyticsContext extends BaseContext {
         if (!this.ampCode) return;
 
         this.ampClient = getInstance();
-        this.ampClient.init(this.ampCode);
+        this.ampClient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
     }
 
     private sendToGA(...args: any[]) {

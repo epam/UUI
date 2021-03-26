@@ -27,8 +27,13 @@ export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
     search?: string;
 }
 
+export interface LazyDataSourceApiRequestRange {
+    from: number;
+    count?: number;
+}
+
 export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
-    range?: { from: number, count: number };
+    range?: LazyDataSourceApiRequestRange;
     ids?: TId[];
 }
 

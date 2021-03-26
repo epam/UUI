@@ -14,8 +14,8 @@ export type DataQueryFilterCondition<TEntity, TField> = TField
      //| { $or: DbQueryPatternCondition<TEntity, TField>[] };
 
 export interface DataQueryRange {
-    from: number;
-    count: number;
+    from?: number;
+    count?: number;
 }
 
 export interface DataQuery<T> {
