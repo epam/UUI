@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {getDefaultColumnsConfig, testData} from "@epam/uui";
+import { getDefaultColumnsConfig } from "@epam/uui";
+import { demoColumns } from "./dataMocks";
 import {ColumnsConfigurationModal} from "../ColumnsConfigurationModal";
 
 describe("ColumnsConfigurationModal", () => {
@@ -11,8 +12,8 @@ describe("ColumnsConfigurationModal", () => {
                 zIndex={ 1 }
                 abort={ jest.fn() }
                 success={ jest.fn() }
-                columns={ testData.dataColumns }
-                columnsConfig={ getDefaultColumnsConfig(testData.dataColumns) }
+                columns={ demoColumns }
+                columnsConfig={ getDefaultColumnsConfig(demoColumns) }
                 isActive
             />)
             .toJSON();

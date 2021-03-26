@@ -1,4 +1,10 @@
+@use  '../../assets/styles/scss/prettifyScrollBar' as *;
+
 .cell {
     box-sizing: border-box;
     padding: 0 12px;
+}
+
+:global(.uui-table-scroll-row-container) {
+    @include prettifyCustomScroll();
 }
