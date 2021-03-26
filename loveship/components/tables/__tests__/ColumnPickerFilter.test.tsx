@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {testData} from "@epam/uui";
+import {dataSource} from "./dataMocks";
 import {ColumnPickerFilter} from "../ColumnPickerFilter";
 
 jest.mock("react-dom", () => ({
@@ -12,7 +12,7 @@ describe("ColumnPickerFilter", () => {
         const tree = renderer
             .create(<ColumnPickerFilter
                 selectionMode='single'
-                dataSource={ testData.dataSource }
+                dataSource={ dataSource }
                 value={ null }
                 onValueChange={ jest.fn() }
             />)
@@ -24,7 +24,7 @@ describe("ColumnPickerFilter", () => {
         const tree = renderer
             .create(<ColumnPickerFilter
                 selectionMode='single'
-                dataSource={ testData.dataSource }
+                dataSource={ dataSource }
                 value={ null }
                 onValueChange={ jest.fn() }
                 valueType='id'
