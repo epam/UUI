@@ -60,7 +60,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-thumb"
+      className="uui-thumb-horizontal"
     />
   </div>
   <div
@@ -77,7 +77,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-thumb"
+      className="uui-thumb-vertical"
     />
   </div>
 </div>
