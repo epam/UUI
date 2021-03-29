@@ -1,39 +1,42 @@
 import * as React from 'react';
 import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens, IEditable } from '@epam/uui';
-import { City, Department, JobTitle, Status, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
-import { svc } from '../../services';
-import { PersonTableRecordId } from './types';
-import { SidebarPanel } from "./SidebarPanel";
+import { DataQueryFilter, DataColumnProps, ILens, IEditable } from '@epam/uui';
+import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
+import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns() {
-    function makeFilterRenderCallback<TField extends keyof Person, TId extends number | string, TEntity extends Department | JobTitle | Country | City | Office | Status | Manager>(fieldName: TField, api: LazyDataSourceApi<TEntity, TId, TEntity>) {
-        const dataSource = new LazyDataSource({ api });
+export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
+    const makeFilterRenderCallback = <TField extends keyof Person>(filterKey: TField) => {
+        const filter = filters.find(f => f.id === filterKey);
 
         const Filter = (props: IEditable<any>) => {
             return <ColumnPickerFilter
-                dataSource={ dataSource }
-                selectionMode='multi'
+                dataSource={ filter.dataSource }
+                selectionMode={ filter.selectionMode }
                 valueType='id'
-                emptyValue={ null }
-                getName={ i => i.name || "Not Specified" }
+                getName={ i => (i as any)?.name || "Not Specified" }
                 showSearch
                 { ...props }
             />;
         };
 
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
-    }
+        return (filterLens: ILens<any>) => {
+            const props = filterLens
+                .prop(filter.id)
+                .toProps();
 
-    const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);
-    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
-    const renderCountryFilter = makeFilterRenderCallback('countryId', svc.api.demo.countries);
-    const renderCityFilter = makeFilterRenderCallback('cityId', svc.api.demo.cities);
-    const renderOfficeFilter = makeFilterRenderCallback('officeId', svc.api.demo.offices);
-    const renderStatusFilter = makeFilterRenderCallback('profileStatusId', svc.api.demo.statuses);
-    const renderManagerFilter = makeFilterRenderCallback('managerId', svc.api.demo.managers);
+            return <Filter { ...props } />;
+        };
+    };
+
+    const renderDepartmentFilter = makeFilterRenderCallback('departmentId');
+    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId');
+    const renderCountryFilter = makeFilterRenderCallback('countryId');
+    const renderCityFilter = makeFilterRenderCallback('cityId');
+    const renderOfficeFilter = makeFilterRenderCallback('officeId');
+    const renderStatusFilter = makeFilterRenderCallback('profileStatusId');
+    const renderManagerFilter = makeFilterRenderCallback('managerId');
 
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
@@ -41,7 +44,6 @@ export function getColumns() {
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
             width: 200,
-            minWidth: 100,
             fix: 'left',
             isSortable: true,
         },
@@ -53,10 +55,11 @@ export function getColumns() {
                     cx={ css.status }
                     fill='transparent'
                     color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
-                    caption={ p.profileStatus } />
+                    caption={ p.profileStatus }/>
             </FlexRow>,
+            grow: 0,
+            shrink: 0,
             width: 140,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderStatusFilter,
             isFilterActive: f => !!f.profileStatusId,
@@ -65,8 +68,9 @@ export function getColumns() {
             key: 'jobTitle',
             caption: "Title",
             render: r => <Text>{ r.jobTitle }</Text>,
-            width: 250,
-            minWidth: 150,
+            grow: 0,
+            shrink: 0,
+            width: 200,
             isSortable: true,
             renderFilter: renderJobTitlesFilter,
             isFilterActive: f => !!f.jobTitleId,
@@ -75,8 +79,9 @@ export function getColumns() {
             key: 'departmentName',
             caption: "Department",
             render: p => <Text>{ p.departmentName }</Text>,
-            width: 250,
-            minWidth: 150,
+            grow: 0,
+            shrink: 0,
+            width: 200,
             isSortable: true,
             renderFilter: renderDepartmentFilter,
             isFilterActive: f => !!f.departmentId,
@@ -86,8 +91,9 @@ export function getColumns() {
             key: 'officeAddress',
             caption: "Office",
             render: p => <Text cx={ css.office }>{ p.officeAddress }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderOfficeFilter,
             isFilterActive: f => !!f.officeId,
@@ -95,9 +101,10 @@ export function getColumns() {
         {
             key: 'managerName',
             caption: "Manager",
-            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#' />,
+            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#'/>,
+            grow: 0,
+            shrink: 0,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderManagerFilter,
             isFilterActive: f => !!f.managerId,
@@ -106,8 +113,9 @@ export function getColumns() {
             key: 'countryName',
             caption: 'Country',
             render: p => <Text>{ p.countryName }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderCountryFilter,
             isFilterActive: f => !!f.countryId,
@@ -116,8 +124,9 @@ export function getColumns() {
             key: 'cityName',
             caption: 'City',
             render: p => <Text>{ p.cityName }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 150,
-            minWidth: 100,
             isSortable: true,
             renderFilter: renderCityFilter,
             isFilterActive: f => !!f.cityId,
@@ -126,24 +135,27 @@ export function getColumns() {
             key: 'profileType',
             caption: 'Profile Type',
             render: p => <Text>{ p.hireDate ? 'Employee' : 'Student' }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 150,
-            minWidth: 100,
         },
-        {
+        { //
             key: 'birthDate',
             caption: "Birth Date",
             render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 120,
-            minWidth: 80,
             isSortable: true,
             isHiddenByDefault: true,
         },
-        {
+        { //
             key: 'relatedNPR',
             caption: "Related NPR",
             render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,
+            grow: 0,
+            shrink: 0,
             width: 120,
-            minWidth: 80,
             isSortable: true,
             isHiddenByDefault: true,
         },
@@ -151,8 +163,9 @@ export function getColumns() {
             key: 'titleLevel',
             caption: 'Track & Level',
             render: p => <Text>{ p.titleLevel }</Text>,
-            width: 150,
-            minWidth: 120,
+            grow: 0,
+            shrink: 0,
+            width: 100,
             isSortable: true,
             isHiddenByDefault: true,
         },
@@ -161,13 +174,9 @@ export function getColumns() {
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => svc.uuiModals.show((props) =>
-                    <SidebarPanel
-                        data={ p }
-                        modalProps={ props }
-                    />) }
+                onClick={ () => setInfoPanelId(p.id) }
             />,
-            grow: 0, shrink: 0, width: 54,
+            width: 54,
             alignSelf: 'center',
             fix: 'right',
         },
@@ -177,7 +186,7 @@ export function getColumns() {
         {
             key: 'name',
             caption: "Name",
-            render: p => <FlexRow><Text>{ p.name }</Text><Tag cx={ css.counter } count={ p.count } /></FlexRow>,
+            render: p => <FlexRow><Text>{ p.name }</Text><Tag cx={ css.counter } count={ p.count }/></FlexRow>,
             grow: 1,
         },
     ];

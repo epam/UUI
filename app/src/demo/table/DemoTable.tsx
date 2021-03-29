@@ -1,47 +1,86 @@
-import * as React from 'react';
-import { DataSourceState, useLens, IEditable, ArrayDataSource, LazyDataSource, DataRowProps, LazyDataSourceApi, DataRowOptions } from '@epam/uui';
-import { PersonGroup } from '@epam/uui-docs';
-import { FlexRow, FlexCell, SearchInput, Text, PickerInput, DataTable, DataTableRow } from '@epam/promo';
-import { svc } from '../../services';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { getColumns } from './columns';
-import * as css from './DemoTable.scss';
+import React, { useCallback, useMemo, useState } from "react";
+import css from './DemoTable.scss';
+import { LazyDataSource, DataRowProps, DataRowOptions, cx, Link } from '@epam/uui';
+import { Person, PersonGroup } from '@epam/uui-docs';
+import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
+import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
 
-export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
-    let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
+import { svc } from "../../services";
+import { getFilters, presets, api } from "./data";
+import { getColumns } from "./columns";
+import { PersonsTableState, PersonTableRecord, PersonTableRecordId } from './types';
+import { FilterPanel } from "./FilterPanel";
+import { Presets } from "./Presets";
+import { InfoSidebarPanel } from './InfoSidebarPanel';
 
-    let ids = clientIds && clientIds.map(clientId => clientId[1]) as any[];
+export const DemoTable: React.FC = () => {
+    const [value, setValue] = useState<PersonsTableState>(() => {
+        const filter = svc.uuiRouter.getCurrentLink().query.filter;
+        const value = {
+            topIndex: 0,
+            visibleCount: 40,
+            sorting: [{ field: 'name' }],
+            filter: filter ? JSON.parse(decodeURIComponent(filter)) : undefined,
+            isFolded: true,
+        };
+        if (!value.filter) delete value.filter;
+        return value;
+    });
 
-    if (groupBy && !ctx.parent) {
-        return svc.api.demo.personGroups({ ...rq, filter: { groupBy }, search: null, itemsRequest: { filter, search: rq.search }, ids } as any);
-    } else {
-        const parentFilter = ctx.parent && { [groupBy + 'Id']: ctx.parent.id };
-        return svc.api.demo.persons({ ...rq, filter: { ...filter, ...parentFilter }, ids });
-    }
-};
+    const onValueChange = useCallback((value: PersonsTableState) => {
+        setValue(value);
 
-interface PersonsTableState extends DataSourceState {
-    isFolded?: boolean;
-}
+        const newQuery = {
+            ...svc.uuiRouter.getCurrentLink().query,
+            filter: encodeURIComponent(JSON.stringify(value.filter)),
+        };
 
-export const DemoTable: React.FC<{}> = (props) => {
-    const groupings = React.useMemo(() => [
-        { id: 'jobTitle', name: "Job Title" },
-        { id: 'department', name: "Department" },
-    ], []);
+        const newLink: Link = {
+            pathname: location.pathname,
+            query: newQuery,
+        };
+        svc.history.push(newLink);
+    }, []);
 
-    const groupingDataSource = React.useMemo(() => new ArrayDataSource({ items: groupings }), []);
+    const [isFilterPanelOpened, setIsFilterPanelOpened] = useState<boolean>(false);
+    const [filterPanelStyleModifier, setFilterPanelStyleModifier] = useState<'show' | 'hide'>('hide');
+    const [isFilterButtonVisible, setIsFilterButtonVisible] = useState<boolean>(true);
 
-    const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
-        topIndex: 0,
-        visibleCount: 100,
-        sorting: [{ field: 'name' }],
-        isFolded: true,
-    }));
+    const openFilterPanel = useCallback(() => {
+        setIsFilterPanelOpened(true);
+        setIsFilterButtonVisible(false);
+        setFilterPanelStyleModifier('show');
+    }, []);
 
-    const editable: IEditable<DataSourceState> = { value, onValueChange };
+    const closeFilterPanel = useCallback(() => {
+        Promise.resolve()
+            .then(() => setFilterPanelStyleModifier('hide'))
+            .then(() => setIsFilterButtonVisible(true))
+            .then(() => {
+                setTimeout(() => setIsFilterPanelOpened(false), 500);
+            });
+    }, []);
 
-    let dataSource = React.useMemo(() => new LazyDataSource({
+    const [infoPanelId, setInfoPanelId] = useState<number | null>(null);
+    const [isInfoPanelOpened, setInfoPanelOpened] = useState<boolean>(false);
+
+    const openInfoPanel = useCallback((id) => {
+        setInfoPanelId(id);
+        setInfoPanelOpened(true);
+    }, []);
+
+    const closeInfoPanel = useCallback(() => {
+        Promise.resolve(false)
+            .then(value => setInfoPanelOpened(value))
+            .then(() => {
+                setTimeout(() => setInfoPanelId(null), 500);
+            });
+    }, []);
+
+    const filters = useMemo(getFilters, []);
+    const [columnsSet] = useState(getColumns(filters, openInfoPanel));
+
+    const dataSource = useMemo(() => new LazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
         getChildCount: (item: PersonTableRecord) =>
@@ -50,46 +89,67 @@ export const DemoTable: React.FC<{}> = (props) => {
 
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
+        onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+            if (infoPanelId === rowProps.id[1]) {
+                closeInfoPanel();
+            }
+            openInfoPanel(rowProps.id[1]);
+        },
     };
-
-    const tableLens = useLens(useLens(editable, b => b), b => b.onChange((o , n) => ({ ...n, topIndex: 0 })));
-
-    const columnsSet = React.useMemo(() => getColumns(), []);
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
         let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.rowKey } { ...props } size='36' columns={ columns } />;
+        return <DataTableRow key={ props.rowKey } { ...props } size='36' columns={ columns }/>;
     };
 
-    const personsDataView = dataSource.useView(value, onValueChange, {
+    const personsDataView = dataSource.useView(value, setValue, {
         rowOptions,
         isFoldedByDefault: () => value.isFolded,
         cascadeSelection: true,
     });
 
-    return <div className={ css.container }>
-        <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
-            <FlexCell width={ 200 }>
-                <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Text size='30'>Group By:</Text>
-            </FlexCell>
-            <FlexCell width={ 130 }>
-                <PickerInput { ...useLens(editable, b => b.prop('filter').prop('groupBy')) } dataSource={ groupingDataSource } selectionMode='single' valueType='id' size='30' />
-            </FlexCell>
+    const renderInfoSidebarPanel = () => {
+        const data = dataSource.getById(['Person', infoPanelId]) as Person;
+        return <InfoSidebarPanel data={ data } onClose={ closeInfoPanel }/>;
+    };
+
+    return (
+        <FlexRow cx={ css.wrapper } alignItems="top">
+            { isFilterPanelOpened && (
+                <div className={ cx(css.filterSidebarPanelWrapper, filterPanelStyleModifier) }>
+                    <FilterPanel
+                        filters={ filters }
+                        close={ closeFilterPanel }
+                        value={ value }
+                        onValueChange={ onValueChange }
+                    />
+                </div>
+            ) }
+            <div className={ css.container }>
+                <FlexRow background='white' borderBottom>
+                    { isFilterButtonVisible && (
+                        <div className={ css.iconContainer }>
+                            <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openFilterPanel }/>
+                        </div>
+                    ) }
+                </FlexRow>
+                <DataTable
+                    headerTextCase='upper'
+                    getRows={ personsDataView.getVisibleRows }
+                    columns={ columnsSet.personColumns }
+                    renderRow={ renderRow }
+                    selectAll={ { value: false, isDisabled: true, onValueChange: null } }
+                    showColumnsConfig
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    { ...personsDataView.getListProps() }
+                />
+            </div>
+            { infoPanelId && (
+                <div className={ cx(css.infoSidebarPanelWrapper, isInfoPanelOpened ? 'show' : 'hide') }>
+                    { renderInfoSidebarPanel() }
+                </div>
+            ) }
         </FlexRow>
-        <DataTable
-            headerTextCase='upper'
-            getRows={ () => personsDataView.getVisibleRows() }
-            columns={ columnsSet.personColumns }
-            renderRow={ renderRow }
-            selectAll={ { value: false, isDisabled: true, onValueChange: null } }
-            showColumnsConfig
-            allowColumnsResizing={ true }
-            allowColumnsReordering={ true }
-            { ...tableLens }
-            { ...personsDataView.getListProps() }
-       />
-    </div>;
+    );
 };
