@@ -132,7 +132,6 @@ export const DemoTable: React.FC = () => {
                             <IconButton icon={ filterIcon } color="gray50" cx={ [css.icon] } onClick={ openFilterPanel }/>
                         </div>
                     ) }
-                    <Presets presets={ presets }/>
                 </FlexRow>
                 <DataTable
                     headerTextCase='upper'
