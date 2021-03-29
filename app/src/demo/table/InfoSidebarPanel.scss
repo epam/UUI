@@ -1,0 +1,24 @@
+@use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/promo/assets/styles/colors' as *;
+
+.wrapper {
+    display: flex;
+    height: calc(100vh - 121px);
+    width: 360px;
+    border-left: 1px solid $gray40;
+
+    .status {
+        &:global(.uui-button-box) {
+            padding-left: 0;
+
+            :global(.uui-caption) {
+                font-family: $font-sans;
+            }
+        }
+    }
+
+    .no-wrap {
+        white-space: nowrap;
+    }
+}
+

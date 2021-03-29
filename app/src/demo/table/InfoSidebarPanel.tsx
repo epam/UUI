@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text } from '@epam/promo';
 import { Person } from '@epam/uui-docs';
-import * as css from './SidebarPanel.scss';
+import * as css from './InfoSidebarPanel.scss';
 import * as  crossIcon from '@epam/assets/icons/common/navigation-close-24.svg';
-import { cx } from "@epam/uui";
 
 interface SidebarPanelProps {
     data: Person;
     onClose?: () => void;
-    cxSb?: string;
 }
 
-export const SidebarPanel: React.FC<SidebarPanelProps> = ({ data, onClose, cxSb }) => {
+export const InfoSidebarPanel: React.FC<SidebarPanelProps> = ({ data, onClose }) => {
 
     const renderInfoRow = (title: string, value: any) => {
         return <FlexRow padding='24' >
@@ -24,7 +22,7 @@ export const SidebarPanel: React.FC<SidebarPanelProps> = ({ data, onClose, cxSb 
         </FlexRow>;
     };
 
-    return <Panel cx={ cx(css.wrapper, cxSb) } background='white'>
+    return <Panel cx={ css.wrapper } background='white'>
         <FlexRow borderBottom padding='24' >
             <Text size="48" font='sans-semibold'>Detailed Information</Text>
             <FlexSpacer />
