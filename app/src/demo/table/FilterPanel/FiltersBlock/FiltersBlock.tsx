@@ -12,7 +12,10 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ filters, value, onValu
     const handleChange = useCallback((filter: { [key: string]: any[] }) => {
         onValueChange({
             ...value,
-            filter,
+            filter: {
+                ...value.filter,
+                ...filter,
+            },
         });
     }, [value, onValueChange]);
 
