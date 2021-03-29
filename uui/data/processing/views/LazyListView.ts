@@ -291,7 +291,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             // stats.isAllChecked = false;
                             // stats.hasMoreRows = true;
 
-                            if (!row.isFolded) {
+                            if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < reportedChildCount && index < lastIndex; m++) {
                                     const row = this.getLoadingRow('_loading_' + index  as any, index, parentsWithRow);
                                     row.indent = parentsWithRow.length;

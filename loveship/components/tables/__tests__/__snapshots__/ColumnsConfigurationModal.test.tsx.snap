@@ -179,6 +179,54 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     className="dragHandle container uui-drag-handle"
                   />
                   <div
+                    className="container root size-18 theme-light color-sky uui-disabled"
+                    onKeyDown={[Function]}
+                  >
+                    <div
+                      className="uui-checkbox uui-checked"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#checkbox-checked.svg"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      name
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="dragElement"
+              onMouseDown={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              onMouseUp={[Function]}
+            >
+              <div
+                className="dndItem"
+              >
+                <div
+                  className="root size-36 background-white spacing-6 container align-items-center"
+                >
+                  <div
+                    className="dragHandle container uui-drag-handle"
+                  />
+                  <div
                     className="container root size-18 theme-light color-sky -clickable"
                     onClick={[Function]}
                     onKeyDown={[Function]}
@@ -277,7 +325,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-thumb"
+            className="uui-thumb-horizontal"
           />
         </div>
         <div
@@ -294,7 +342,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-thumb"
+            className="uui-thumb-vertical"
           />
         </div>
       </div>

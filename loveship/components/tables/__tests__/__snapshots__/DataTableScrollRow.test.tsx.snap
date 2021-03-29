@@ -8,14 +8,26 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
     className="container uui-table-row-container uui-table-scroll-row container align-items-center"
   >
     <div
+      className="cellPlaceholder"
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "96px",
+          "flexGrow": 0,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    />
+    <div
       className="uui-table-scroll-bar"
       style={
         Object {
           "flexGrow": 100,
           "flexShrink": 1,
-          "height": "auto",
-          "maxHeight": 200,
-          "minHeight": 0,
+          "height": "100%",
           "minWidth": 0,
           "overflow": "hidden",
           "position": "relative",
@@ -27,16 +39,14 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
-            "bottom": undefined,
-            "left": undefined,
+            "bottom": 0,
+            "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
-            "maxHeight": 200,
-            "minHeight": 0,
             "overflow": "scroll",
-            "position": "relative",
-            "right": undefined,
-            "top": undefined,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
       >
@@ -49,9 +59,9 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
-                "flexShrink": 0,
+                "flexBasis": "200px",
+                "flexGrow": 1,
+                "flexShrink": undefined,
                 "minWidth": 0,
                 "textAlign": undefined,
               }
@@ -63,10 +73,10 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
-                "flexShrink": 0,
-                "minWidth": 0,
+                "flexBasis": "150px",
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "minWidth": "200px",
                 "textAlign": undefined,
               }
             }
@@ -77,8 +87,8 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
             style={
               Object {
                 "alignSelf": undefined,
-                "flexBasis": "96px",
-                "flexGrow": 0,
+                "flexBasis": "120px",
+                "flexGrow": 1,
                 "flexShrink": 0,
                 "minWidth": 0,
                 "textAlign": undefined,
@@ -101,16 +111,7 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         }
       >
         <div
-          style={
-            Object {
-              "backgroundColor": "rgba(0,0,0,.2)",
-              "borderRadius": "inherit",
-              "cursor": "pointer",
-              "display": "block",
-              "height": "100%",
-              "position": "relative",
-            }
-          }
+          className="uui-thumb-horizontal"
         />
       </div>
       <div

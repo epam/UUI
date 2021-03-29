@@ -1,11 +1,11 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
+import ScrollBars from 'react-custom-scrollbars';
 import { ScrollManager, DataColumnProps, IHasCX } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
-import * as ReactDOM from 'react-dom';
-import ScrollBars from 'react-custom-scrollbars';
 
 export interface DataTableScrollRowProps extends IHasCX {
     columns?: DataColumnProps<any, any>[];
@@ -24,10 +24,21 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
         return <FlexCell  cx={ [css.cellPlaceholder, this.props.cellClass] } { ...column } key={ column.key } />;
     }
 
+    private clientWidth?: number;
+
+    resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const contentRect = entry.contentRect;
+
+            if (contentRect.width !== this.clientWidth) {
+                this.forceUpdate();
+            }
+        }
+    });
+
     wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties) {
         return (
             <ScrollBars
-                autoHeight
                 className={ uuiDataTableScrollRow.uuiTableScrollBar }
                 hideTracksWhenNotNeeded
                 style={ style }
@@ -35,9 +46,10 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
                     let node = ReactDOM.findDOMNode(scrollBars) as HTMLElement;
                     node = node && node.children[0] as HTMLElement;
                     node && this.props.scrollManager && this.props.scrollManager.attachScrollNode(node);
+                    node && this.resizeObserver && this.resizeObserver.observe(node);
+                    this.clientWidth = node && node.clientWidth;
                 } }
-                renderThumbHorizontal={ () => <div className='uui-thumb' /> }
-                onUpdate={ v => console.log(v) }
+                renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
             >
                 { content }
             </ScrollBars>

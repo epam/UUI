@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "4.0.0-beta.6",
+  "version": "4.0.0-beta.9",
   "description": "EPAM UUI",
   "author": "EPAM",
   "license": "MIT",
@@ -22,9 +22,6 @@
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.trimend": "4.5.6",
     "@types/query-string": "6.1.0",
-    "@types/react": "16.9.35",
-    "@types/react-dom": "16.9.8",
-    "@types/resize-observer-browser": "0.1.5",
     "amplitude-js": "7.4.1",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
