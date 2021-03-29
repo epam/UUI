@@ -75,11 +75,11 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
 
     renderToolbar(props: DropdownBodyProps) {
         return (
-            <div className={ css.imageToolbar }>
+            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
                 <ToolbarButton isActive={ this.isAlign('align-left') } icon={ alignLeft } onClick={ () => this.toggleBlockAlignment('align-left', props) } />
                 <ToolbarButton isActive={ this.isAlign('align-center') } icon={ alignCenter } onClick={ () => this.toggleBlockAlignment('align-center', props) } />
                 <ToolbarButton isActive={ this.isAlign('align-right') } icon={ alignRight } onClick={ () => this.toggleBlockAlignment('align-right', props) } />
-                <ToolbarButton isActive={ this.props.node.data.get('imageSize').width === this.getImageMaxWidth() } icon={ fullWidth } onClick={ () => this.setMaxWidth() } />
+                <ToolbarButton isActive={ this.props.node.data.get('imageSize')?.width === this.getImageMaxWidth() } icon={ fullWidth } onClick={ () => this.setMaxWidth() } />
             </div>
         );
     }
@@ -95,6 +95,7 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
             onLoad={ (e: any) => {
                 const sizes = this.props.node.data.get('imageSize');
                 this.setSize(sizes || this.getDefaultSizes(e.target.naturalWidth, e.target.naturalHeight));
+                this.forceUpdate();
             } }
         />
             <div className={ cx(css.leftTopDot, css.dot) } /><div className={ cx(css.rightTopDot, css.dot) } /><div className={ cx(css.leftBotDot, css.dot) } /><div className={ cx(css.rightBotDot, css.dot) } />
@@ -133,9 +134,8 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
                 }
                 }
                 renderBody={ (props) => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
-                value={ this.state.isOpened }
+                value={ this.props.isFocused }
                 placement='top'
-                onValueChange={ (nV) => this.setState({ isOpened: nV }) }
             />
         ) : null;
     }
