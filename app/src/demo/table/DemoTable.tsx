@@ -18,7 +18,7 @@ export const DemoTable: React.FC = () => {
         const filter = svc.uuiRouter.getCurrentLink().query.filter;
         const value = {
             topIndex: 0,
-            visibleCount: 100,
+            visibleCount: 40,
             sorting: [{ field: 'name' }],
             filter: filter ? JSON.parse(decodeURIComponent(filter)) : undefined,
             isFolded: true,
@@ -29,7 +29,6 @@ export const DemoTable: React.FC = () => {
 
     const onValueChange = useCallback((value: PersonsTableState) => {
         setValue(value);
-        console.log(value.filter);
 
         const newQuery = {
             ...svc.uuiRouter.getCurrentLink().query,
@@ -46,13 +45,13 @@ export const DemoTable: React.FC = () => {
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState<boolean>(false);
     const [filterPanelStyleModifier, setFilterPanelStyleModifier] = useState<'show' | 'hide'>('hide');
     const [isFilterButtonVisible, setIsFilterButtonVisible] = useState<boolean>(true);
-    
+
     const openFilterPanel = useCallback(() => {
         setIsFilterPanelOpened(true);
         setIsFilterButtonVisible(false);
         setFilterPanelStyleModifier('show');
     }, []);
-    
+
     const closeFilterPanel = useCallback(() => {
         Promise.resolve()
             .then(() => setFilterPanelStyleModifier('hide'))
@@ -78,7 +77,7 @@ export const DemoTable: React.FC = () => {
             });
     }, []);
 
-    const [filters] = useState(getFilters());
+    const filters = useMemo(getFilters, []);
     const [columnsSet] = useState(getColumns(filters, openInfoPanel));
 
     const dataSource = useMemo(() => new LazyDataSource({
@@ -137,7 +136,7 @@ export const DemoTable: React.FC = () => {
                 </FlexRow>
                 <DataTable
                     headerTextCase='upper'
-                    getRows={ () => personsDataView.getVisibleRows() }
+                    getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
                     selectAll={ { value: false, isDisabled: true, onValueChange: null } }
