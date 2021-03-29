@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {testData} from "@epam/uui";
+import {dataSource} from "./dataMocks";
 import {DataPickerBody} from "../DataPickerBody";
 import {DataPickerRow} from "../DataPickerRow";
 
@@ -17,18 +17,20 @@ describe("DataPickerBody", () => {
     };
 
     it("should be rendered correctly", () => {
+        const view = dataSource.getView({topIndex: 0, visibleCount: 10, focusedIndex: 1}, () => {});
+
         const tree = renderer
             .create(<DataPickerBody
                 value={ value }
                 onValueChange={ onValueChange }
-                rows={ testData.dataSourceView.getVisibleRows() }
+                rows={ view.getVisibleRows() }
                 search={ search }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    const rows = testData.dataSource.props.items.map(props => (
+    const rows = dataSource.props.items.map(props => (
         <DataPickerRow
             key={ props.id }
             renderItem={ item => <div>{ item }</div> }

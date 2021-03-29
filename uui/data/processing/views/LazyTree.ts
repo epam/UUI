@@ -1,4 +1,4 @@
-import { DataSourceState, LazyDataSourceApi } from '../types';
+import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestRange } from '../types';
 
 export interface LazyTreeParams<TItem, TId, TFilter> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
@@ -39,21 +39,27 @@ async function loadNodeRec<TItem, TId, TFilter>(
     requiredRowsCount: number,
     parentLoadAll: boolean,
 ) {
-    if (parentLoadAll) {
-        requiredRowsCount = Number.MAX_SAFE_INTEGER;
-    }
-
     let node: LazyTreeList<TItem, TId> = inputNode
         ? { ...inputNode, items: [ ...inputNode.items ] }
         : { items: [] };
 
     let isChanged = false;
 
+    let loadAll = false;
+    if (parentLoadAll) {
+        loadAll = true;
+        requiredRowsCount = Number.MAX_SAFE_INTEGER;
+    }
+
     let missingCount = requiredRowsCount - node.items.length;
 
     let availableCount = node.count != null ? (node.count - node.items.length) : missingCount;
 
-    const range = { from: node.items.length, count: missingCount };
+    const range: LazyDataSourceApiRequestRange = { from: node.items.length };
+
+    if (!loadAll) {
+        range.count = missingCount;
+    }
 
     if (missingCount > 0 && availableCount > 0) {
 
@@ -79,7 +85,7 @@ async function loadNodeRec<TItem, TId, TFilter>(
 
         if (response.count !== null && response.count !== undefined) {
             node.count = response.count;
-        } else if (response.items.length < range.count) {
+        } else if (response.items.length < missingCount) {
             node.count = from + response.items.length;
         }
 
