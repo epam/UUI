@@ -139,7 +139,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
     }
 
     onBlur = (e: any, editor: any, next: any) => {
-        if (e.relatedTarget && e.relatedTarget.offsetParent.classList.contains('slate-prevent-blur')) {
+        if (e.relatedTarget && e.relatedTarget.parentNode.classList.contains('slate-prevent-blur')) {
             return e.preventDefault();
         }
         next();
