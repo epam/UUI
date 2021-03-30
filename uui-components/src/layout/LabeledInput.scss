@@ -8,7 +8,7 @@
         }
     }
 
-    .optionalFieldWrapper {
+    .optional-field-wrapper {
         flex-grow: 1;
         text-align: right;
         text-overflow: ellipsis;
@@ -17,5 +17,10 @@
     :global(.uui-label-left) {
         display: flex;
         align-items: center;
+    }
+
+    .right-children-position {
+        flex-basis: 0;
+        flex-grow: 1;
     }
 }

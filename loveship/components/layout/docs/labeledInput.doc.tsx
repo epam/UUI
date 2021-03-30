@@ -17,6 +17,7 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
         { name: "Slider", value: <Slider min={ 0 } max={ 100 } value={ 50 } onValueChange={ null } step={ 5 }/> },
     ] })
     .prop('info', { examples: [{ value: 'This tooltip can be helpful' }] })
+    .prop('isRequired', { examples: [true] })
     .prop('validationMessage', { examples: [{ value: 'This field is mandatory', isDefault: true}]})
     .withContexts(DefaultContext, ResizableContext, FormContext, GridContext);
 

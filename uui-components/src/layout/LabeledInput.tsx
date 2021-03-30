@@ -41,7 +41,9 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                             }
                         </div>
                     }
-                    { this.props.children }
+                    <div className={ this.props.labelPosition === 'left' ? css.rightChildrenPosition : undefined }>
+                        { this.props.children }
+                    </div>
                 </div>
                 { this.props.isInvalid && <div className={ uuiElement.invalidMessage }>{ this.props.validationMessage }</div> }
             </div>
