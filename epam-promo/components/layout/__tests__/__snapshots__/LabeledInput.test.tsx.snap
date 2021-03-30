@@ -7,19 +7,21 @@ exports[`LabeledInput should be rendered correctly 1`] = `
   <div
     className="uui-label-top"
   >
-    <div
-      className="container uui-input-box -clickable root size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
-    >
-      <input
-        className="uui-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+    <div>
+      <div
+        className="container uui-input-box -clickable root size-36"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        tabIndex={-1}
+      >
+        <input
+          className="uui-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -48,18 +50,22 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
       </svg>
     </div>
     <div
-      className="container uui-input-box -clickable root size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
+      className="rightChildrenPosition"
     >
-      <input
-        className="uui-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+      <div
+        className="container uui-input-box -clickable root size-36"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        tabIndex={-1}
+      >
+        <input
+          className="uui-input"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div
