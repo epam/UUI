@@ -2,56 +2,54 @@
 
 exports[`RadioInput should be rendered correctly 1`] = `
 <div
-  className="container root size-18 color-sky theme-light"
+  className="container uui-checked root size-18 color-sky theme-light"
   onClick={[Function]}
   onKeyDown={[Function]}
   tabIndex={0}
 >
   <div
-    className="uui-radioinput uui-checked"
+    className="uui-radioinput"
+  />
+  <div
+    className="container uui-icon uui-enabled circle"
   >
-    <div
-      className="container uui-icon uui-enabled"
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#radio-point.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#radio-point.svg"
+      />
+    </svg>
   </div>
 </div>
 `;
 
 exports[`RadioInput should be rendered correctly with new props 1`] = `
 <div
-  className="container root size-12 color-sun theme-dark"
+  className="container uui-checked root size-12 color-sun theme-dark"
   onClick={[Function]}
   onKeyDown={[Function]}
   tabIndex={0}
 >
   <div
-    className="uui-radioinput uui-checked"
+    className="uui-radioinput"
+  />
+  <div
+    className="container uui-icon uui-enabled circle"
   >
-    <div
-      className="container uui-icon uui-enabled"
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#radio-point.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#radio-point.svg"
+      />
+    </svg>
   </div>
   <div
     className="uui-input-label"
