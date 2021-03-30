@@ -2,11 +2,18 @@
     display: flex;
     cursor: pointer;
     align-items: center;
+    position: relative;
 
     :global(.uui-radioinput) {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+    }
+
+    .circle {
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 }
