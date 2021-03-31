@@ -12,6 +12,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
     className="uui-input line-height-24 font-size-14 v-padding-5"
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="hh:mm A"
     type="text"
     value="01:01 AM"
   />
@@ -46,6 +47,7 @@ exports[`TimePicker should be rendered correctly with extra props 1`] = `
     disabled={true}
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="HH:mm"
     type="text"
     value="01:01"
   />
