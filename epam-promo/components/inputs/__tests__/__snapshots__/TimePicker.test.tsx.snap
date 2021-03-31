@@ -12,8 +12,9 @@ exports[`TimePicker should be rendered correctly 1`] = `
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="hh:mm A"
     type="text"
-    value="Invalid date"
+    value=""
   />
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
@@ -46,6 +47,7 @@ exports[`TimePicker should be rendered correctly 2`] = `
     disabled={true}
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="HH:mm"
     type="text"
     value="01:05"
   />
