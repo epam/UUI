@@ -25,27 +25,32 @@ export class AppHeader extends React.Component {
             <>
                 <BurgerButton 
                     caption='Home' 
-                    link={ { pathname: '/' } } 
+                    link={ { pathname: '/' } }
+                    clickAnalyticsEvent={ () => this.sendEvent('Welcome') }
                 />
                 <BurgerButton
                     caption='Documents'
                     link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
                     isLinkActive={ (pathName === 'documents' && !category) }
+                    clickAnalyticsEvent={ () => this.sendEvent('Documents') }
                 />
                 <BurgerButton
                     caption='Assets'
                     link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
                     isLinkActive={ (pathName === '/documents' && category === 'assets') }
+                    clickAnalyticsEvent={ () => this.sendEvent('Assets') }
                 />
                 <BurgerButton
                     caption='Components'
                     link={ { pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } } }
                     isLinkActive={ (pathName === '/documents' && category === 'components') }
+                    clickAnalyticsEvent={ () => this.sendEvent('Components') }
                 />
                 <BurgerButton 
                     caption='Demo' 
                     link={ { pathname: '/demo' } }
                     isLinkActive={ (pathName === '/demo') }
+                    clickAnalyticsEvent={ () => this.sendEvent('Demo') }
                 />
             </>
         );
@@ -55,7 +60,7 @@ export class AppHeader extends React.Component {
         const category = svc.uuiRouter.getCurrentLink().query.category;
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
         return (
-            <MainMenu cx={ css.root } renderBurger={ this.renderBurger } logoLink={ { pathname: '/' } }  appLogoUrl='/static/logo.svg' logoWidth={ 168 } >
+            <MainMenu cx={ css.root } renderBurger={ this.renderBurger } logoLink={ { pathname: '/' } } onLogoClick={ () => this.sendEvent('Welcome') } appLogoUrl='/static/logo.svg' logoWidth={ 168 } >
                 <MainMenuButton
                     caption="Documents"
                     priority={ 3 }

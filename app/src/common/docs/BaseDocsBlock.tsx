@@ -5,6 +5,7 @@ import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabBut
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from "../../services";
 import * as css from './BaseDocsBlock.scss';
+import { analyticsEvents } from "../../analyticsEvents";
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';
@@ -54,6 +55,9 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 });
             });
         }
+
+        const { category, id } = svc.uuiRouter.getCurrentLink().query;
+        svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
 
         this.state = {
             tableState: {},

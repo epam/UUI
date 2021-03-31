@@ -7,8 +7,8 @@ import { projectsList } from '../docs/other/Projects.doc';
 import * as css from './ProjectsBlock.scss';
 
 export class ProjectsBlock extends React.Component {
-    private sendEvent = (link: string) => {
-        svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
+    private sendEvent = (productName: string) => {
+        svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(productName));
     }
     
     render() {
@@ -34,7 +34,12 @@ export class ProjectsBlock extends React.Component {
                                                     <Text cx={ css.projectCaption } >{ project.projectName }</Text>
                                                 </a>
                                             )) }
-                                            <Anchor key='allProjects'  cx={ css.project } link={ { pathname: '/documents', query: { id: 'projects' } } } >
+                                            <Anchor
+                                                key='allProjects'
+                                                cx={ css.project }
+                                                link={ { pathname: '/documents', query: { id: 'projects' } } }
+                                                onClick={ () => this.sendEvent('All') }
+                                            >
                                                 <div className={ css.iconWrapper } >
                                                     <Text font='museo-sans' cx={ css.overflowProjects } >{ projectsList.length }</Text>
                                                 </div>
