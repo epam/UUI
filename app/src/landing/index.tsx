@@ -7,7 +7,6 @@ export * from './ExploreBlock';
 export * from './ContactsBlock';
 export * from './ReleasesBlock';
 export * from './ReleasesCell';
-export * from './ReleasesModal';
 export * from './TechnologiesBlock';
 export * from './AskDevelopersBlock';
 export * from './ProjectsBlock';

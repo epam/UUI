@@ -9,6 +9,18 @@ import * as linkIcon from '../icons/action-external_link.svg';
 import { analyticsEvents } from "../analyticsEvents";
 
 export class DemoPage extends React.Component {
+    constructor(props: any) {
+        super(props);
+
+        const { id } = svc.uuiRouter.getCurrentLink().query;
+        svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(id));
+    }
+
+    componentDidUpdate() {
+        const { id } = svc.uuiRouter.getCurrentLink().query;
+        svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(id));
+    }
+
     getQuery(query: string): string {
         return svc.uuiRouter.getCurrentLink().query[query];
     }
@@ -54,7 +66,7 @@ export class DemoPage extends React.Component {
                     );
                 }) }
                 <FlexSpacer />
-                <LinkButton icon={ linkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } />
+                <LinkButton icon={ linkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } clickAnalyticsEvent={ analyticsEvents.demo.scenarioGit(source) } />
             </FlexRow>
         );
     }
