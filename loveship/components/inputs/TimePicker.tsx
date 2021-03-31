@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditMode, SizeMod } from '../types';
 import moment from 'moment';
-import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly } from '@epam/uui';
+import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from '@epam/uui';
 import { TextInput } from './TextInput';
 import { DropdownContainer, Dropdown } from '../overlays';
 import { TimePickerBody } from './TimePickerBody';
@@ -9,14 +9,17 @@ import * as css from './TimePicker.scss';
 
 interface TimePickerState {
     isOpen: boolean;
-    value: string;
+    value: string | null;
 }
 
 const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['format']) => {
+    if (value === null) {
+        return null;
+    }
     return moment(value).format(format === 24 ? "HH:mm" : "hh:mm A");
 };
 
-export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, EditMode {
+export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, EditMode, IHasPlaceholder {
     minutesStep?: number;
     format?: 12 | 24;
 }
@@ -38,12 +41,15 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     }
 
     onClear = () => {
-        this.props.onValueChange({ hours: 0, minutes: 0 });
+        this.props.onValueChange(null);
     }
 
     handleInputChange = (newValue: string) => {
-        const value = moment(newValue, this.getFormat(), true);
-        if (moment(newValue, this.getFormat(), true).isValid()) {
+        if (this.getFormat() === "hh:mm A" && newValue.length < 8) {
+            this.setState({ ...this.state, value: newValue });
+        } else if (moment(newValue, this.getFormat(), true).isValid()) {
+            const value = moment(newValue, this.getFormat(), true);
+
             this.props.onValueChange({ hours: value.hours(), minutes: value.minutes() });
             this.setState({ ...this.state, value: newValue });
         } else {
@@ -52,7 +58,10 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     }
 
     handleBlur = () => {
-        if (!moment(this.state.value, this.getFormat(), true).isValid()) {
+        if (this.state.value === '') {
+            this.props.onValueChange(null);
+            this.setState({ ...this.state, value: null });
+        } else if (!moment(this.state.value, this.getFormat(), true).isValid()) {
             this.props.onValueChange(this.props.value);
             this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
         }
@@ -75,11 +84,12 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                         onBlur={ this.handleBlur }
                         mode={ this.props.mode }
                         isDropdown={ false }
+                        placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
                     />
                 }
                 renderBody={ () =>
                      !this.props.isDisabled && !this.props.isReadonly && <DropdownContainer>
-                        <TimePickerBody { ...this.props } value={ this.props.value }/>
+                        <TimePickerBody { ...this.props } value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }/>
                     </DropdownContainer> }
                 onValueChange={ (opened) => this.setState({ ...this.state, isOpen: opened }) }
                 value={ this.state.isOpen }
