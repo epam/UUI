@@ -52,7 +52,7 @@ export class ReleasesBlock extends React.Component<{}, LandingReleasesState> {
                                                         size='48'
                                                         caption='Load older versions'
                                                         link={ { pathname: '/documents', query: { id: 'releaseNotes' } } }
-                                                        clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes('Older') }
+                                                        clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes() }
                                                     />
                                                 </>
                                             }
