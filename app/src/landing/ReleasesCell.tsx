@@ -73,7 +73,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
                             size='36'
                             caption='Show more'
                             link={ { pathname: '/documents', query: { id: `releaseNotes`, release: header.split(' ')[1] } } }
-                            clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes(header) }
+                            clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes() }
                         />
                     </div>
                     : null

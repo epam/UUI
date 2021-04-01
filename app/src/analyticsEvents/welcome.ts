@@ -19,9 +19,8 @@ export const welcomeAnalyticsEvents = {
         name: 'welcome_ask_developer_event',
         prm_direction: direction,
     }),
-    releaseNotes: (version: string) => ({
+    releaseNotes: () => ({
         name: 'welcome_release_notes_event',
-        prm_version: version,
     }),
     team: (teammate: string) => ({
         name: 'welcome_team_event',
