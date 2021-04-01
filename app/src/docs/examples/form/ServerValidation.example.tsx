@@ -1,17 +1,7 @@
 import * as React from 'react';
 import {Metadata, RenderFormProps, INotification, FormSaveResponse} from "@epam/uui";
 import {svc} from "../../../services";
-import {
-    FlexCell,
-    FlexRow,
-    FlexSpacer,
-    Text,
-    Button,
-    LabeledInput,
-    TextInput,
-    SuccessNotification,
-    Form,
-} from "@epam/promo";
+import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, Form } from "@epam/promo";
 
 interface Login {
     email: string;
@@ -31,21 +21,14 @@ interface ServerResponseExample<T> {
 }
 
 export class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
-    constructor(props: {}) {
-        super(props);
-        
-        this.state = {
-            login: {
-                email: "Ivan_Ivanov@epam.com",
-                password: "",
-            },
-        };
-        
-        this.onSave = this.onSave.bind(this);
-        this.onSuccess = this.onSuccess.bind(this);
-    }
+    state = {
+        login: {
+            email: "Ivan_Ivanov@epam.com",
+            password: "",
+        },
+    };
 
-    private getMetaData(): Metadata<Login> {
+    private getMetaData = (): Metadata<Login> => {
         return {
             props: {
                 email: {isRequired: true},
@@ -54,7 +37,7 @@ export class ServerValidationExample extends React.PureComponent<{}, BasicFormEx
         };
     }
 
-    private renderForm(props: RenderFormProps<Login>) {
+    private renderForm = (props: RenderFormProps<Login>) => {
         let lens = props.lens;
 
         return (
@@ -92,10 +75,10 @@ export class ServerValidationExample extends React.PureComponent<{}, BasicFormEx
         );
     }
 
-    private async onSave(formState: Login) {
+    private onSave = async (formState: Login) => {
         const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
         if (!response.error) return response as FormSaveResponse<Login>;
-        
+
         // Prefer to return the ICanBeInvalid structure from the server directly, and pass it to the Form as is. Here, we demonstrate how to handle the case when it's not possible. In such cases, you can convert your server-specific errors to the ICanBeInvalid interface on client.
         if (response.error.name === "user-exists") {
             return {
@@ -112,7 +95,7 @@ export class ServerValidationExample extends React.PureComponent<{}, BasicFormEx
         }
     }
 
-    private onSuccess(formState: Login) {
+    private onSuccess = (formState: Login) => {
         return svc.uuiNotifications.show(this.renderNotification);
     }
 

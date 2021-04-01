@@ -65,8 +65,14 @@
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
     * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
-* [Popper.js]: updated to v.2.x, added 'hide' modifier to [Tooltip] & [Dropdown]: 
-    * [Breaking Change]: In Popper 2 this is now an array of objects (modifiers), instead of an object where each property was the modifier name. [More information.](https://popper.js.org/docs/v2/migration-guide/)
+    
+* [Tooltip] & [Dropdown]: Popper.js updated to v.2.x, added 'hide' modifier to hide body when target scrolled outside view 
+      * [Breaking Change]: In Popper 2 modifiers is now an array of objects, instead of an object where each property was the modifier name in the previous version. [More information.](https://popper.js.org/docs/v2/migration-guide/)
+  
+* [Form]: Added server validation mechanism. If you need to get form validation state from server-side, your onSave api should return object like `{ validation?: ICanBeInvalid }`
+
+
+**What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
 * [TimePicker]: added handling of invalid values, added placeholder
 
