@@ -5,7 +5,7 @@ import cx from 'classnames';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, FlexSpacer } from '../layout/FlexItems';
+import { Panel, FlexSpacer, FlexCell } from '../layout/FlexItems';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
@@ -40,6 +40,24 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             </Text>
         );
     }
+    //
+    // renderFlattenItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
+    //     const size = this.props.size ? this.props.size : '36';
+    //     function getPath(item: any) {
+    //         return item ? 'Need/path' : null;
+    //     }
+    //
+    //     return (
+    //         <FlexCell width='auto' cx={ cx(css.flattenItem, css[`size-${ size }`]) } >
+    //             <Text lineHeight={ size === '42' ? '24' : '18' } size={ size } cx={ css.text } color={ rowProps.isDisabled ? 'gray60' : 'gray80' }>
+    //                 { rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(item) }
+    //             </Text>
+    //             <Text lineHeight={ size === '42' ? '24' : '18' } color='gray60' cx={ css.text } >
+    //                 { rowProps.isLoading ? <TextPlaceholder wordsCount={ 1 } /> : getPath(item) }
+    //             </Text>
+    //         </FlexCell>
+    //     );
+    // }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
