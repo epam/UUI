@@ -1,4 +1,3 @@
-
 export const initialValue = {
     "object": "value",
     "document": {
