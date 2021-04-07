@@ -46,8 +46,6 @@
   "resolutions": {
     "@types/chai": "4.1.1",
     "prop-types": "15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
     "moment": "2.19.3",
     "lodash": "4.17.20",
     "mixin-deep": "2.0.1",
