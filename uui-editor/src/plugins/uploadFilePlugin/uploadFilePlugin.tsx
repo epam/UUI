@@ -16,7 +16,7 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
         if (range) {
             editor.select(range);
         }
-        editor.setBlocks('loader');
+        editor.insertBlock('loader');
         const loaderKey = editor.value.anchorBlock.key;
         options.uploadFile(file, (process) => { })
             .then((res: FileUploadResponse) => {
@@ -25,7 +25,8 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
                     src: res.path,
                     fileName: res.name,
                 }, type ? type : res.type);
-                range ? editor.setBlocksAtRange(range as Range, block) : editor.setNodeByKey(`${loaderKey}`, block);
+                editor.removeNodeByKey(loaderKey);
+                range ? editor.setBlocksAtRange(range as Range, block) : editor.insertBlock(block);
             });
     };
 
