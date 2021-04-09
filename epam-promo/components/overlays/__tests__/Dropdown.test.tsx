@@ -12,7 +12,7 @@ describe('Dropdown', () => {
         const tree = renderer
             .create(<Dropdown
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
-                renderBody={ props => jest.fn(props) }
+                renderBody={ props => jest.fn() }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe('Dropdown', () => {
         const tree = renderer
             .create(<Dropdown
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
-                renderBody={ props => jest.fn(props) }
+                renderBody={ props => jest.fn() }
                 onClose={ jest.fn }
                 stopCloseSelectors={ ['test-selector'] }
             />)
