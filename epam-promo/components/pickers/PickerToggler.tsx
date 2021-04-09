@@ -76,7 +76,7 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
                 getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
                 cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
                 dropdownIcon={ systemIcons[this.props.size || defaultSize].foldingArrow }
-                onClear={ this.props.onClear ? this.handleClear : undefined }
+                onClear={ this.handleClear }
             />
         );
     }
