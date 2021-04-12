@@ -60,7 +60,8 @@ export const PersonsTableDemo = (props: {}) => {
                 ? 1
                 : 10
             : null,
-    }), []);
+        fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
+    }), [value.filter?.groupBy]);
 
     const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions: { checkbox: { isVisible: true } },
