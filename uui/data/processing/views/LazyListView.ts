@@ -4,7 +4,7 @@ import { DataSourceListProps, IDataSourceView } from './types';
 import isEqual from 'lodash.isequal';
 import {BaseListView, BaseListViewProps } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
+import { LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
 
 export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
@@ -36,6 +36,13 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * Prefer to use filter in the DataSourceState for end-user editable filters.
      */
     filter?: TFilter;
+
+    /** Defines how to fetch children:
+     * sequential (default) - fetch children for each parent one-by-one. Makes minimal over-querying, at cost of some speed.
+     * parallel - fetch children for several parents simultaneously. Can make a lot of over-querying for deep trees.
+     *      Recommended for 2 level trees (grouping), as it makes no over-querying in this case, and is faster than sequential strategy.
+     */
+    fetchStrategy?: LazyTreeFetchStrategy;
 }
 
 interface LoadResult<TItem, TId> {
