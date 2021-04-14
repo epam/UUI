@@ -25,10 +25,10 @@
     "react-custom-scrollbars": "4.2.1"
   },
   "devDependencies": {
-    "@types/react-test-renderer": "16.9.3",
+    "@types/react-test-renderer": "17.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "17.0.2"
   },
   "peerDependencies": {
     "prop-types": "*",
