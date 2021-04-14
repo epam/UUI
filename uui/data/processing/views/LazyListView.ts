@@ -45,6 +45,18 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      *      Recommended for 2 level trees (grouping), as it makes no over-querying in this case, and is faster than sequential strategy.
      */
     fetchStrategy?: LazyTreeFetchStrategy;
+
+    /**
+     * Falls back to plain list from tree, if there's search.
+     * Default is true.
+     *
+     * If enabled, and search is active:
+     * - API will be called with parentId and parent undefined
+     * - getChildCount is ignore, all nodes are assumed to have no children
+     *
+     * See more here: https://github.com/epam/UUI/issues/8
+     */
+    flattenSearchResults?: boolean;
 }
 
 interface LoadResult<TItem, TId> {
@@ -228,6 +240,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const rows: DataRowProps<TItem, TId>[] = [];
         let index = 0;
         let lastIndex = this.value.topIndex + this.value.visibleCount;
+        const flatten = this.value.search && this.props.flattenSearchResults !== false;
 
         const iterateNode = (
             node: LazyTreeList<TItem, TId>,
@@ -274,7 +287,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 row.isFoldable = false;
                 row.isLastChild = (n == node.items.length - 1) && (node.count == node.items.length);
 
-                if (this.props.getChildCount) {
+                if (!flatten && this.props.getChildCount) {
                     const reportedChildCount = this.props.getChildCount(item);
 
                     if (reportedChildCount > 0

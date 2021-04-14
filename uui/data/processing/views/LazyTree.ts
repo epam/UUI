@@ -1,4 +1,4 @@
-import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestRange } from '../types';
+import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../types';
 
 export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mode
 
@@ -11,6 +11,7 @@ export interface LazyTreeParams<TItem, TId, TFilter> {
     fetchStrategy?: LazyTreeFetchStrategy;
     loadAll?: boolean;
     loadAllChildren?(item: LazyTreeItem<TItem, TId>): boolean;
+    flattenSearchResults?: boolean;
 }
 
 export interface LazyTreeList<TItem, TId> {
@@ -47,6 +48,8 @@ async function loadNodeRec<TItem, TId, TFilter>(
         ? { ...inputNode, items: [ ...inputNode.items ] }
         : { items: [] };
 
+    const flatten = value.search && params.flattenSearchResults !== false;
+
     // The function should return the same node, if it haven't changed.
     // I found no good way to do this in pure style, so we just track if there was any change, and return the same node if there's none
     let isChanged = false;
@@ -73,15 +76,24 @@ async function loadNodeRec<TItem, TId, TFilter>(
 
         let filter = { ...params.filter, ...value.filter };
 
+        let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
+
+        if (!flatten) {
+            if (parent != null) {
+                requestContext.parentId = parent.id;
+                requestContext.parent = parent.item;
+            } else {
+                requestContext.parentId = null;
+                requestContext.parent = null;
+            }
+        } // in flatten mode, we don't set parent and parentId even for root - as we don't want to limit results to top-level nodes only
+
         const response = await params.api({
             sorting: value.sorting,
             search: value.search,
             filter,
             range,
-        }, {
-            parentId: !!parent ? parent.id : null,
-            parent: !!parent ? parent.item : null,
-        });
+        }, requestContext);
 
         const from = (response.from == null) ? range.from : response.from;
 
@@ -100,7 +112,7 @@ async function loadNodeRec<TItem, TId, TFilter>(
         isChanged = true;
     }
 
-    if (params.getChildCount) {
+    if (!flatten && params.getChildCount) {
         // Load children
 
         const childrenPromises: Promise<any>[] = [];
