@@ -6,9 +6,11 @@ import {BaseListView, BaseListViewProps } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
 import { LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
 
+export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
+
 export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
-     * An function to retrieve the data, asynchronously.
+     * A function to retrieve the data, asynchronously.
      * This function usually performs a REST API call.
      * API is used to retrieve lists of items.
      * It is expected to:

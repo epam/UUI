@@ -15,7 +15,7 @@ export function LazyTreePicker() {
             let flatten = !!search;
 
             if (!flatten) {
-                filter = { ...filter, parentId: (ctx.parentId || { isNull: true }) };
+                filter = { ...filter, parentId: ctx.parentId };
             }
 
             const result = await svc.api.demo.locations({ filter, search, range });
