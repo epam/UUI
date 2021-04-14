@@ -79,8 +79,8 @@ async function loadNodeRec<TItem, TId, TFilter>(
             filter,
             range,
         }, {
-            parentId: parent?.id,
-            parent: parent?.item,
+            parentId: !!parent ? parent.id : null,
+            parent: !!parent ? parent.item : null,
         });
 
         const from = (response.from == null) ? range.from : response.from;
