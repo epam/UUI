@@ -52,7 +52,7 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId,
         return dsState.selectedId;
     }
     applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
-        const id = props.valueType === 'entity' ? (value && value.id) : value;
+        const id = props.valueType === 'entity' ? dataSource && dataSource.getId(value) : value;
 
         if (value && props.valueType === 'entity') {
             dataSource && dataSource.setItem(value);

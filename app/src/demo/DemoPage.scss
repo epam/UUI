@@ -30,26 +30,7 @@
                 height: 242px;
                 flex-wrap: wrap;
                 transition: 1s;
-
-                &.form-card {
-                    background: url('/static/images/DemoForms.png') no-repeat center;
-                    background-size: 100%;
-                }
-
-                &.dnd-card {
-                    background: url('/static/images/DemoDnD.png') no-repeat center;
-                    background-size: 100%;
-                }
-
-                &.timeline-card {
-                    background: url('/static/images/DemoTimeline.png') no-repeat center;
-                    background-size: 100%;
-                }
-
-                &.table-card {
-                    background: url('/static/images/DemoTable.png') no-repeat center;
-                    background-size: 100%;
-                }
+                background-size: 100%;
 
                 &:hover {
                     background-size: 150%;
