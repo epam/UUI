@@ -1,3 +1,4 @@
+
 <p align="center">
   <a href="https://uui.epam.com">
     <img width="400" src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg">
@@ -6,7 +7,7 @@
 
 React-based components and accelerators library built by EPAM Systems.
 
-License: MIT
+License: Creative commons.
 
 ## Features
 
