@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { Button, Panel, Text, FlexRow } from "@epam/promo";
+import { IDropdownToggler } from "@epam/uui";
 
 export function BasicDropdownExample() {
     const [value, onValueChange] = useState(null);
@@ -21,8 +22,8 @@ export function BasicDropdownExample() {
     return (
         <>
             <Dropdown
-                renderBody={ () => renderDropdownBody() }
-                renderTarget={ (props: any) => <Button caption='Click to open' { ...props } /> }
+                renderBody={ renderDropdownBody }
+                renderTarget={ (props: IDropdownToggler) => <Button caption='Click to open' { ...props } /> }
                 value={ value }
                 onValueChange={ onValueChange }
             />

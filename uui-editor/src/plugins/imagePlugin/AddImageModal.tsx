@@ -2,11 +2,12 @@ import * as React from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui';
 import * as css from './AddImageModal.scss';
+import { Editor } from 'slate-react';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;
 
 interface AddImageModalProps extends IModal<any> {
-    editor: any;
+    editor: Editor;
 }
 
 export class AddImageModal extends React.Component<AddImageModalProps> {
@@ -26,20 +27,20 @@ export class AddImageModal extends React.Component<AddImageModalProps> {
                         </LabeledInput>
                     </FlexRow>
                     <ModalFooter borderTop >
-                        { this.props.editor.handleUploadFile && <UploadFileToggler
+                        { (this.props.editor as any).handleUploadFile && <UploadFileToggler
                             render={ (props) => <Button { ...props } caption='Select file' /> }
                             onFilesAdded={ (files) => this.setState({ files: files, imageURL: files[0].name }) }
                             accept='image/*'
                         /> }
                         <FlexSpacer />
                         <Button type='cancel' caption='Cancel' onClick={ () => this.props.abort() } />
-                        <Button type='success' caption='Ok' onClick={ () => {
+                        <Button type='success' caption='Ok' isDisabled={ !this.state.imageURL } onClick={ () => {
                             if (this.state.files) {
                                 this.state.files.map((file: File) => {
-                                    this.props.editor.handleUploadFile(file);
+                                    (this.props.editor as any).handleUploadFile(file);
                                 });
                             } else {
-                                this.props.editor.setBlocks({ data: { src: prependHttp(this.state.imageURL, { https: true }) }, type: 'image' });
+                                this.props.editor.insertBlock({ data: { src: prependHttp(this.state.imageURL, { https: true }) }, type: 'image' });
                             }
                             this.props.success(true);
                         } }

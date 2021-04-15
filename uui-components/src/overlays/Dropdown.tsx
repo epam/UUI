@@ -23,8 +23,8 @@ export interface DropdownBodyProps {
 export type DropdownPlacement = Placement;
 
 export interface DropdownProps extends Partial<IEditable<boolean>> {
-    renderTarget: (props: IDropdownToggler & { ref?: React.Ref<any> }) => React.ReactNode;
-    renderBody: (props: DropdownBodyProps & any) => React.ReactNode;
+    renderTarget: (props: IDropdownToggler) => React.ReactNode;
+    renderBody: (props: DropdownBodyProps) => React.ReactNode;
     onClose?: () => any;
     isNotUnfoldable?: boolean;
     stopCloseSelectors?: string[];
