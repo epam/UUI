@@ -81,7 +81,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
         });
         
         const scrollingCells = (
-            <FlexRow>
+            <FlexRow alignItems='top' >
                 { this.renderCells(scrollableColumns) }
             </FlexRow>
         );
@@ -114,6 +114,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
                     rawProps={ this.props.rawProps }
+                    alignItems='top'
                 >
                     { rowContent }
                 </FlexRow>
