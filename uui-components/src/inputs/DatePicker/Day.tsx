@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, IEditable } from '@epam/uui';
+import { cx, IEditable, uuiMarkers } from '@epam/uui';
 import moment from 'moment';
 import { uuiDaySelection } from './Calendar';
 
@@ -25,6 +25,7 @@ export class Day extends React.Component<DayProps, any> {
                 onClick={ isPassedFilter ? (() => this.props.onValueChange(this.props.value)) : undefined }
                 className={ cx(
                     isPassedFilter && uuiDaySelection.clickable,
+                    isPassedFilter && uuiMarkers.clickable,
                     isCurrent && uuiDaySelection.currentDay,
                     this.props.isSelected && uuiDaySelection.selectedDay,
                     this.props.filter && !this.props.filter(this.props.value) && uuiDaySelection.filteredDay,
