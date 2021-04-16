@@ -16,5 +16,6 @@ const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditable
         ], type: 'string' })
     .prop('onAccept', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onCancel')] })
+    .prop('mode', { examples: ['cell'] })
     .withContexts(DefaultContext, FormContext);
 export = SearchInputDoc;

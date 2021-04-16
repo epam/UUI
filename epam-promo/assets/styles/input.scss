@@ -1,36 +1,57 @@
 @use './colors' as *;
 
 @mixin disabled-input() {
-    @include input-colors($gray5, $gray50, $gray30);
-    cursor: default;
-    pointer-events: none;
-
-    &:hover, &:active, &:focus {
+    &.mode-form {
         @include input-colors($gray5, $gray50, $gray30);
-        box-shadow: none;
+        cursor: default;
+        pointer-events: none;
+
+        &:hover, &:active, &:focus {
+            @include input-colors($gray5, $gray50, $gray30);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $gray50;
+        }
     }
 
-    &::placeholder {
-        color: $gray50;
+    &.mode-cell {
+        @include input-colors(transparent, $gray50, transparent);
+        cursor: default;
+        pointer-events: none;
+
+        &:hover, &:active, &:focus {
+            @include input-colors(transparent, $gray50, transparent);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: $gray50;
+        }
     }
 }
 
 @mixin readonly-input() {
-    &.mode-form,
+    &.mode-form {
+        background-color: $gray5;
+        border-color: $gray30;
+        pointer-events: none;
+
+        &:hover {
+            border-color: $gray30;
+        }
+    }
+
     &.mode-cell {
-        background: $gray30;
-    }
-
-    &.mode-form:hover {
-        border-color: $gray40;
-    }
-
-    &.mode-inline:hover {
+        background-color: transparent;
         border-color: transparent;
-    }
+        pointer-events: none;
 
-    &.mode-cell:hover {
-        border-color: transparent;
+        &:hover {
+            background-color: transparent;
+            border-color: transparent;
+        }
     }
 }
 

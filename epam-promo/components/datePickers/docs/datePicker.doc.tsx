@@ -43,6 +43,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
             },
         ],
     })
+    .prop('mode', { examples: ['cell'] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = DatePickerDoc;
