@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
-    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+    className="container uui-table-row-container root uui-table-header-row container align-items-top"
   >
     <div
       className="flexCell -clickable cell size-36 padding-left-24"
@@ -70,7 +70,7 @@ Array [
         className="scrollableColumnsContainer"
       >
         <div
-          className="container align-items-center"
+          className="container align-items-top"
         >
           <div
             className="flexCell -clickable cell size-36"
@@ -286,7 +286,7 @@ Array [
               }
             >
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -321,7 +321,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -388,7 +388,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -423,7 +423,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -490,7 +490,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -525,7 +525,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -592,7 +592,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -627,7 +627,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -694,7 +694,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -729,7 +729,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -796,7 +796,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -831,7 +831,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -898,7 +898,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -933,7 +933,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -1000,7 +1000,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -1035,7 +1035,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -1102,7 +1102,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -1137,7 +1137,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -1204,7 +1204,7 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24"
@@ -1239,7 +1239,7 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
                         className="flexCell cell size-36 padding-12"
@@ -1355,7 +1355,7 @@ Array [
     className="uui-table-scroll-row-container cellClass"
   >
     <div
-      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+      className="container uui-table-row-container uui-table-scroll-row container align-items-top"
     >
       <div
         className="cellPlaceholder"
@@ -1401,7 +1401,7 @@ Array [
           }
         >
           <div
-            className="container align-items-center"
+            className="container align-items-top"
           >
             <div
               className="cellPlaceholder"
