@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
-    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+    className="container uui-table-row-container root uui-table-header-row container align-items-top"
   >
     <div
       className="scrollableColumnsWrapper"
@@ -20,7 +20,7 @@ Array [
         className="scrollableColumnsContainer"
       >
         <div
-          className="container align-items-center"
+          className="container align-items-top"
         />
       </div>
       <div
@@ -133,7 +133,7 @@ Array [
     className="uui-table-scroll-row-container cellClass"
   >
     <div
-      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+      className="container uui-table-row-container uui-table-scroll-row container align-items-top"
     >
       <div
         className="uui-table-scroll-bar"
@@ -165,7 +165,7 @@ Array [
           }
         >
           <div
-            className="container align-items-center"
+            className="container align-items-top"
           />
         </div>
         <div

@@ -2,7 +2,7 @@
 
 exports[`DataTableRow should be rendered correctly 1`] = `
 <div
-  className="container uui-table-row-container uui-table-row root border-gray30 size-30 container align-items-center"
+  className="container uui-table-row-container uui-table-row root border-gray30 size-30 container align-items-top"
 >
   <div
     className="scrollableColumnsWrapper"
@@ -19,7 +19,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-center"
+        className="container align-items-top"
       >
         <div
           className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24"
