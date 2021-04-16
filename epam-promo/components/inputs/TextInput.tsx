@@ -4,10 +4,12 @@ import * as css from './TextInput.scss';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
+import { EditMode, Mode } from '../types';
 
 const defaultSize = '36';
+const defaultMode = Mode.FORM;
 
-export interface TextInputMods {
+export interface TextInputMods extends EditMode {
     size?: types.ControlSize;
 }
 
@@ -15,6 +17,7 @@ export function applyTextInputMods(mods: TextInputMods) {
     return [
         css.root,
         css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

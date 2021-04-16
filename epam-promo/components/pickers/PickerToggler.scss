@@ -25,17 +25,59 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     width: 100%;
     fill: $gray60;
     box-sizing: border-box;
-    background-color: $white;
-    border-color: $gray40;
     border-style: solid;
 
-    &:hover {
-        border-color: $gray60;
+    &.mode-form {
+        background-color: $white;
+        border-color: $gray40;
+
+        &:hover {
+            border-color: $gray60;
+        }
+
+        &:global(.uui-focus) {
+            border-color: $blue;
+            outline: none;
+        }
     }
 
-    &:global(.uui-focus) {
-        border-color: $blue;
-        outline: none;
+    &.mode-cell {
+        background-color: transparent;
+        border-color: transparent;
+
+        &:hover {
+            background-color: white;
+            border-color: $gray40;
+        }
+
+        &:global(.uui-focus) {
+            background-color: white;
+            border-color: $blue;
+            outline: none;
+        }
+    }
+
+    &:global(.uui-invalid) {
+        &.mode-form, &.mode-cell {
+            border-color: $red;
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+        fill: $gray50;
+
+        :global(.uui-input) {
+            cursor: default;
+
+            &::placeholder {
+                color: $gray50;
+            }
+        }
     }
 
     :global(.uui-input) {
@@ -109,27 +151,6 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.size-42 {
         @include picker-toggler-vertical-layout(42px, 1px);
         min-width: 42px;
-    }
-
-    &:global(.uui-disabled) {
-        @include disabled-input();
-        fill: $gray50;
-
-        :global(.uui-input) {
-            cursor: default;
-
-            &::placeholder {
-                color: $gray60;
-            }
-        }
-    }
-
-    &:global(.uui-readonly) {
-        @include readonly-input();
-    }
-
-    &:global(.uui-invalid) {
-        border-color: $red;
     }
 
     :global(.uui-icon):global(.-clickable) {

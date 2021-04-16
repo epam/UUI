@@ -4,8 +4,10 @@ import * as textInputCss from './TextInput.scss';
 import { withMods } from '@epam/uui';
 import { NumericInput as uuiNumericInput, NumericInputProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
+import { Mode } from '../types';
 
 const defaultSize = '36';
+const defaultMode = Mode.FORM;
 
 export interface NumericInputMods extends types.SizeMod {
 }
@@ -16,6 +18,7 @@ export function applyNumericInputMods(mods: NumericInputMods) {
         css.root,
         css['size-' + (mods.size || defaultSize)],
         textInputCss['size-' + (mods.size || defaultSize)],
+        textInputCss['mode-form'],
     ];
 }
 

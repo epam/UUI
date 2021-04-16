@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { DataRowProps, IEditableDebouncer } from '@epam/uui';
-import * as css from './PickerInput.scss';
 import cx from 'classnames';
+import { DataRowProps, IEditableDebouncer } from '@epam/uui';
+import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
-import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, FlexSpacer, FlexCell } from '../layout/FlexItems';
+import { Panel, FlexSpacer } from '../layout/FlexItems';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
-import { SizeMod } from '../types';
+import { EditMode, SizeMod, Mode } from '../types';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
+import * as css from './PickerInput.scss';
 
-export type PickerInputProps =  SizeMod & {};
+export type PickerInputProps =  SizeMod & EditMode & {};
 
 const pickerHeight = 300;
 const pickerWidth = 350;
@@ -106,6 +106,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size as PickerTogglerMods['size'],
+            mode: this.props.mode ? this.props.mode : Mode.FORM,
         };
     }
 

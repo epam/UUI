@@ -61,6 +61,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                 value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
+    .prop('mode', { examples: ['cell'] })
     .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
 
 export = PickerInputDoc;

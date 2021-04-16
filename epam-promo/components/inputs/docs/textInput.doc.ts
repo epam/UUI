@@ -16,6 +16,7 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('onAccept', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onCancel')] })
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
+    .prop('mode', { examples: ['cell'] })
     .withContexts(DefaultContext, FormContext);
 
 export = TextInputDoc;
