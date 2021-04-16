@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
     className="flexCell -clickable cell size-24 padding-left-24 resizable"
@@ -87,7 +87,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-center"
+        className="container align-items-top"
       >
         <div
           className="flexCell -clickable cell size-24 resizable draggable"
@@ -280,7 +280,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 
 exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
     className="flexCell -clickable cell size-36 padding-left-24"
@@ -347,7 +347,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-center"
+        className="container align-items-top"
       >
         <div
           className="flexCell -clickable cell size-36"

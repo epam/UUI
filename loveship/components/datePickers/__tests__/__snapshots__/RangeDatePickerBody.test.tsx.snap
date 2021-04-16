@@ -150,7 +150,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -165,7 +165,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -180,7 +180,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -195,7 +195,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -210,7 +210,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -227,7 +227,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -242,7 +242,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -257,7 +257,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -272,7 +272,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -287,7 +287,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -302,7 +302,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -317,7 +317,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -334,7 +334,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -349,7 +349,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -364,7 +364,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -379,7 +379,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -394,7 +394,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -409,7 +409,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -424,7 +424,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -441,7 +441,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -456,7 +456,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -471,7 +471,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -486,7 +486,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -501,7 +501,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -516,7 +516,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -531,7 +531,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -548,7 +548,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -563,7 +563,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -578,7 +578,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -593,7 +593,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -608,7 +608,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -754,7 +754,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -769,7 +769,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -786,7 +786,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -801,7 +801,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -816,7 +816,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -831,7 +831,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -846,7 +846,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -861,7 +861,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -876,7 +876,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -893,7 +893,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -908,7 +908,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -923,7 +923,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -938,7 +938,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -953,7 +953,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -968,7 +968,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -983,7 +983,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -1000,7 +1000,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1015,7 +1015,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1030,7 +1030,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1045,7 +1045,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1060,7 +1060,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1075,7 +1075,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -1090,7 +1090,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
@@ -1107,7 +1107,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1122,7 +1122,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1137,7 +1137,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1152,7 +1152,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1167,7 +1167,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                           onClick={[Function]}
                         >
                           <div
@@ -1182,7 +1182,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         tabIndex={0}
                       >
                         <div
-                          className="uui-calendar-clickable-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                          className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                           onClick={[Function]}
                         >
                           <div
