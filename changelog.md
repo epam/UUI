@@ -82,6 +82,8 @@
 * [DatePicker]: fixed handling of invalid value input when filter is active
 * [Tooltip]: remove pointer-events: none; from tooltip content container
 * [RadioInput]: fixed RadioInput point position when zoom is active
+* [TextInput] & [SearchInput]: fixed losing focus after click on 'cancel' icon
+* [PickerInput]: fixed triggering of a click on an element in which a picker is attached when clicking on the footer in the body
 
 
 # 3.47.4 - 23.02.2021
