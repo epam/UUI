@@ -2,7 +2,7 @@ import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
 import { TextInput, TextInputMods } from '../TextInput';
 import { iEditable, iHasPlaceholder, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc } from '../../../docs';
-import { DefaultContext, FormContext } from '../../../docs';
+import { DefaultContext, FormContext, TableContext } from '../../../docs';
 
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput as React.ComponentClass<any> })
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
@@ -17,6 +17,6 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('onCancel', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onCancel')] })
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
     .prop('mode', { examples: ['cell'] })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, TableContext);
 
 export = TextInputDoc;

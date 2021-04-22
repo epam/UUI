@@ -8,6 +8,7 @@ import * as types from '../types';
 import * as css from './PickerToggler.scss';
 
 const defaultSize = '36';
+const defaultMode = 'form';
 
 export interface PickerTogglerMods extends types.EditMode {
     size?: '24' | '30' | '36' | '42' | '48';
@@ -17,6 +18,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         css.root,
         css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
@@ -76,7 +78,7 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
                 getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
                 cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
                 dropdownIcon={ systemIcons[this.props.size || defaultSize].foldingArrow }
-                onClear={ this.props?.mode !== types.Mode.CELL && this.handleClear }
+                onClear={ this.handleClear }
             />
         );
     }

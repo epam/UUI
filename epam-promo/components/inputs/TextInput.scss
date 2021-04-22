@@ -53,6 +53,10 @@
         background-color: transparent;
         border-color: transparent;
 
+        :global(.uui-icon):first-child {
+            padding-left: 6px;
+        }
+
         :global(.-clickable) {
             fill: transparent;
         }
