@@ -23,13 +23,27 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     padding-left: 5px;
     padding-right: 5px;
     width: 100%;
-    fill: $gray60;
     box-sizing: border-box;
     border-style: solid;
 
     &.mode-form {
         background-color: $white;
         border-color: $gray40;
+        fill: $gray60;
+
+        :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+            &:global(.uui-enabled) {
+                fill: $gray60;
+
+                &:hover {
+                    fill: $gray70;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                fill: $gray50;
+            }
+        }
 
         &:hover {
             border-color: $gray60;
@@ -45,9 +59,35 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         background-color: transparent;
         border-color: transparent;
 
+        :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+            cursor: pointer;
+
+            &:global(.uui-enabled) {
+                fill: transparent;
+            }
+
+            &:global(.uui-disabled) {
+                fill: transparent;
+            }
+        }
+
         &:hover {
             background-color: white;
             border-color: $gray40;
+
+            :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+                &:global(.uui-enabled) {
+                    fill: $gray60;
+
+                    &:hover {
+                        fill: $gray70;
+                    }
+                }
+
+                &:global(.uui-disabled) {
+                    fill: transparent;
+                }
+            }
         }
 
         &:global(.uui-focus) {
@@ -151,22 +191,5 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.size-42 {
         @include picker-toggler-vertical-layout(42px, 1px);
         min-width: 42px;
-    }
-
-    :global(.uui-icon):global(.-clickable) {
-        cursor: pointer;
-
-        &:global(.uui-enabled) {
-            fill: $gray60;
-
-            &:hover {
-                fill: $gray70;
-            }
-        }
-
-        &:global(.uui-disabled) {
-            fill: $gray50;
-            cursor: default;
-        }
     }
 }
