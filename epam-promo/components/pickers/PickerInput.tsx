@@ -11,6 +11,7 @@ import { Text, TextPlaceholder } from '../typography';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
+import { PickerItem } from './PickerItem';
 import { i18n } from '../../i18n';
 import * as css from './PickerInput.scss';
 
@@ -34,30 +35,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return (
-            <Text size={ this.props.editMode === 'modal' ? '36' : this.props.size } color={ rowProps.isDisabled ? 'gray60' : 'gray80' }>
-                { rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(item) }
-            </Text>
-        );
+        return <PickerItem title={ this.getName(item) } { ...rowProps } />;
     }
-    //
-    // renderFlattenItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-    //     const size = this.props.size ? this.props.size : '36';
-    //     function getPath(item: any) {
-    //         return item ? 'Need/path' : null;
-    //     }
-    //
-    //     return (
-    //         <FlexCell width='auto' cx={ cx(css.flattenItem, css[`size-${ size }`]) } >
-    //             <Text lineHeight={ size === '42' ? '24' : '18' } size={ size } cx={ css.text } color={ rowProps.isDisabled ? 'gray60' : 'gray80' }>
-    //                 { rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(item) }
-    //             </Text>
-    //             <Text lineHeight={ size === '42' ? '24' : '18' } color='gray60' cx={ css.text } >
-    //                 { rowProps.isLoading ? <TextPlaceholder wordsCount={ 1 } /> : getPath(item) }
-    //             </Text>
-    //         </FlexCell>
-    //     );
-    // }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
@@ -111,7 +90,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     render() {
         const rows = this.getRows();
-        const renderedDataRows = rows.map((props: any) => this.renderRow(props));
+        const renderedDataRows = rows.map((props: any) => this.renderRow({ ...props, size: this.props.size }));
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         let maxHeight = this.props.dropdownHeight || pickerHeight;

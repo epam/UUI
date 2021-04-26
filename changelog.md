@@ -75,6 +75,9 @@
 * [AnalyticsContext]: add includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false options for amplitude
 * [TimePicker]: added handling of invalid values, added placeholder
 * [SlateRTE]: show image toolbar on image isFocused
+* [PickerInput][Promo]: added PickerItem component, added size 48 to prop 'size'
+* [DataPickerRow][Promo]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [DataTableCell][Promo]: added prop alignAddons to align checkbox & folding arrows to the top or center
   
 **What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
@@ -83,7 +86,7 @@
 * [Tooltip]: remove pointer-events: none; from tooltip content container
 * [RadioInput]: fixed RadioInput point position when zoom is active
 * [TextInput] & [SearchInput]: fixed losing focus after click on 'cancel' icon
-* [PickerInput]: fixed triggering of a click on an element in which a picker is attached when clicking on the footer in the body
+* [PickerInput]: fixed triggering of a click on an element in which a picker is attached when clicking on the footer in the body, fixed incorrect work of the size props in general
 
 
 # 3.47.4 - 23.02.2021
