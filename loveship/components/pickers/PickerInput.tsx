@@ -1,18 +1,18 @@
 import React from 'react';
-import { DataRowProps, IEditableDebouncer } from '@epam/uui';
-import * as css from './PickerInput.scss';
 import cx from 'classnames';
+import { DataRowProps, IEditableDebouncer, uuiMarkers } from '@epam/uui';
+import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
-import {Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps} from '@epam/uui-components';
 import { Panel, FlexSpacer } from '../layout/FlexItems';
 import { PickerInputMods, PickerToggler } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
-import { SizeMod, EditMode } from "../types";
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
-import { i18n } from "../../i18n";
+import { SizeMod, EditMode } from '../types';
+import { i18n } from '../../i18n';
+import * as css from './PickerInput.scss';
 
 export type PickerInputProps = SizeMod & EditMode & {
 };
@@ -65,7 +65,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const hasSelection = view.getSelectedRows().length > 0;
         const isNotDisabled = hasSelection && !this.isSingleSelect();
 
-        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size }`]) }>
+        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size }`], uuiMarkers.clickable) }>
             <Switch
                 size={ this.props.size === '24' ? '12' : '18' }
                 value={ this.state.showSelected }

@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
     className="scrollableColumnsWrapper"
@@ -19,7 +19,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-center"
+        className="container align-items-top"
       />
     </div>
     <div
@@ -34,7 +34,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 
 exports[`DataTableHeaderRow should be rendered correctly 2`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
     className="scrollableColumnsWrapper"
@@ -51,7 +51,7 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-center"
+        className="container align-items-top"
       />
     </div>
     <div

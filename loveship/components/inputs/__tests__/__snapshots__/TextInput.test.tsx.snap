@@ -48,7 +48,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-    onClick={[MockFunction]}
+    onClick={[Function]}
   >
     <svg
       className=""

@@ -5,7 +5,7 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
   className="uui-table-scroll-row-container cellClass"
 >
   <div
-    className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+    className="container uui-table-row-container uui-table-scroll-row container align-items-top"
   >
     <div
       className="cellPlaceholder"
@@ -51,7 +51,7 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         }
       >
         <div
-          className="container align-items-center"
+          className="container align-items-top"
         >
           <div
             className="cellPlaceholder"
