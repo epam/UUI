@@ -177,7 +177,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -207,7 +207,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -237,7 +237,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -267,7 +267,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -297,7 +297,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -327,7 +327,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -357,7 +357,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -387,7 +387,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -417,7 +417,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -447,7 +447,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -477,7 +477,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -780,7 +780,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -830,7 +830,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -880,7 +880,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -930,7 +930,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -980,7 +980,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1030,7 +1030,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1080,7 +1080,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1130,7 +1130,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1180,7 +1180,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1230,7 +1230,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -1280,7 +1280,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24"
+                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {

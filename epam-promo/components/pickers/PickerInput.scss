@@ -25,36 +25,17 @@
 }
 
 .footer-size-42 {
-    min-height: 36px;
+    min-height: 42px;
 
     :global(.uui-caption) {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
-//
-//.flatten-item {
-//    &.size-24 {
-//        padding-top: 3px;
-//        padding-bottom: 3px;
-//    }
-//
-//    &.size-30 {
-//        padding-top: 6px;
-//        padding-bottom: 6px;
-//    }
-//
-//    &.size-36 {
-//        padding-top: 9px;
-//        padding-bottom: 9px;
-//    }
-//
-//    &.size-42 {
-//        padding-top: 9px;
-//        padding-bottom: 9px;
-//    }
-//
-//    .text {
-//        padding-top: 0;
-//        padding-bottom: 0;
-//    }
-//}
+
+.footer-size-48 {
+    min-height: 48px;
+
+    :global(.uui-caption) {
+        font-size: 16px;
+    }
+}

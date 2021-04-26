@@ -26,6 +26,7 @@ export interface DataTableCellMods {
     padding?: '0' | '12' | '24';
     isFirstColumn?: boolean;
     isLastColumn?: boolean;
+    alignActions?: 'top' | 'center';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {
