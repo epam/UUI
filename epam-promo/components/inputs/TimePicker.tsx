@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from '@epam/uui';
-import { EditMode, SizeMod, Mode } from '../types';
+import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer, Dropdown } from '../overlays';
 import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import * as css from './TimePicker.scss';
 
-const defaultMode = Mode.FORM;
+const defaultMode = EditMode.FORM;
 
 interface TimePickerState {
     isOpen: boolean;
@@ -21,7 +21,7 @@ const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['form
     return moment(value).format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
 
-export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, IHasPlaceholder, EditMode {
+export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, IHasPlaceholder, IHasEditMode {
     minutesStep?: number;
     format?: 12 | 24;
 }
