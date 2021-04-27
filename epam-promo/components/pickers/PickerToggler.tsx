@@ -1,15 +1,16 @@
 import * as React from 'react';
-import * as types from '../types';
-import * as css from './PickerToggler.scss';
-import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui';
+import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
+import * as types from '../types';
+import * as css from './PickerToggler.scss';
 
 const defaultSize = '36';
+const defaultMode = 'form';
 
-export interface PickerTogglerMods {
+export interface PickerTogglerMods extends types.IHasEditMode {
     size?: '24' | '30' | '36' | '42' | '48';
 }
 
@@ -17,6 +18,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         css.root,
         css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
@@ -71,7 +73,7 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
         return (
             <UuiPickerToggler
                 { ...this.props }
-                cx={ [applyPickerTogglerMods(this.props), this.props.cx] }
+                cx={ [applyPickerTogglerMods(this.props), this.props.cx, css['mode-' + (this.props.mode || types.EditMode.FORM)]] }
                 renderItem={ !!this.props.renderItem ? this.props.renderItem : this.renderItem }
                 getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
                 cancelIcon={ systemIcons[this.props.size || defaultSize].clear }

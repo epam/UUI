@@ -1,5 +1,5 @@
 @use  '../../assets/styles/index.scss' as *;
-@import '../../assets/styles/colorvars/inputs/numericInput-colorvars.scss';
+@use '../../assets/styles/colorvars/inputs/numericInput-colorvars.scss' as *;
 
 .root {
     @include numeric-input-color();

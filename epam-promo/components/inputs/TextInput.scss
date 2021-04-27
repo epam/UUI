@@ -1,24 +1,13 @@
 @use  '../../assets/styles/index.scss' as *;
-@import '../../assets/styles/colorvars/inputs/textInput-colorvars.scss';
+@use '../../assets/styles/colorvars/inputs/textInput-colorvars.scss' as *;
 
 .root {
     @include text-input-color();
-    color: var(--text-color);
     fill: var(--icon-color);
-    background-color: var(--background-color);
-    border-color: var(--border-color);
     border-style: solid;
     box-sizing: border-box;
     padding-left: 5px;
     padding-right: 5px;
-
-    :global(.-clickable) {
-        fill: var(--icon-color-clickable);
-
-        &:hover {
-            fill: var(--icon-color-clickable-hovered);
-        }
-    }
 
     :global(.uui-input) {
         color: var(--text-color);
@@ -39,20 +28,84 @@
         }
     }
 
-    //Colors
-    &:hover {
-        border-color: var(--border-color-hovered);
+    &.mode-form {
+        background-color: var(--background-color);
+        border-color: var(--border-color);
+
+        :global(.-clickable) {
+            fill: var(--icon-color-clickable);
+
+            &:hover {
+                fill: var(--icon-color-clickable-hovered);
+            }
+        }
+
+        &:hover {
+            border-color: var(--border-color-hovered);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--border-color-active);
+        }
     }
 
-    &:global(.uui-focus) {
-        border-color: var(--border-color-active);
+    &.mode-cell {
+        background-color: transparent;
+        border-color: transparent;
+
+        :global(.uui-icon):first-child {
+            padding-left: 6px;
+        }
+
+        :global(.-clickable) {
+            fill: transparent;
+        }
+
+        &:hover {
+            background-color: white;
+            border-color: var(--border-color);
+
+            :global(.-clickable) {
+                fill: var(--icon-color-clickable);
+
+                &:hover {
+                    fill: var(--icon-color-clickable-hovered);
+                }
+            }
+        }
+
+        &:global(.uui-focus) {
+            background-color: white;
+            border-color: var(--border-color-active);
+        }
+    }
+
+    &:global(.uui-invalid) {
+        &.mode-form, &.mode-cell {
+            background-color: white;
+            border-color: var(--border-color-errored);
+        }
+    }
+
+    &:global(.uui-readonly) {
+        color: var(--text-color);
+        fill: var(--icon-color);
+        pointer-events: none;
+
+        &.mode-form {
+            background-color: var(--background-color-readonly);
+            border-color: var(--border-color-readonly);
+        }
+
+        &.mode-cell {
+            background-color: transparent;
+            border-color: transparent;
+        }
     }
 
     &:global(.uui-disabled) {
-        background-color: var(--background-color-disabled);
         color: var(--text-color-disabled);
         fill: var(--icon-color-disabled);
-        border-color: var(--border-color-disabled);
         pointer-events: none;
 
         :global(.uui-input) {
@@ -62,18 +115,16 @@
                 color: var(--placeholder-color-disabled);
             }
         }
-    }
 
-    &:global(.uui-readonly) {
-        background-color: var(--background-color-readonly);
-        color: var(--text-color);
-        fill: var(--icon-color);
-        border-color: var(--border-color-readonly);
-        pointer-events: none;
-    }
+        &.mode-form {
+            background-color: var(--background-color-disabled);
+            border-color: var(--border-color-disabled);
+        }
 
-    &:global(.uui-invalid) {
-        border-color: var(--border-color-errored);;
+        &.mode-cell {
+            background-color: transparent;
+            border-color: transparent;
+        }
     }
 
     //Sizes
