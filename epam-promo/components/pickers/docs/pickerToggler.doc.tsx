@@ -2,12 +2,12 @@ import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerTogglerProps } from '@epam/uui-components';
 import { iEditable, isDisabledDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, GridContext, FormContext, IHasEditModeDoc } from '../../../docs';
 import { PickerToggler, PickerTogglerMods } from '../PickerToggler';
 
 const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTogglerMods>({ name: 'PickerToggler', component: PickerToggler as React.ComponentClass<any> })
     .prop('size', { examples: ['24', '30', '36', '42'], defaultValue: '36' })
-    .implements([isDisabledDoc, isReadonlyDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, iEditable] as any)
+    .implements([isDisabledDoc, isReadonlyDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, iEditable, IHasEditModeDoc] as any)
     .prop('selection', { examples: [
         { name:'Tags', value: [{ value: '.Net' }, { value: 'JS' }, { value: 'React' }], isDefault: true },
         { name:'Names', value: [{ value: 'Alvaro De Matos Miranda Filho' }, { value: 'Janaina Barreiro Gambaro Bueno' }, { value: 'Mindaugas Krapauskas' }, { value: 'Patrick Magenheimer' }] },

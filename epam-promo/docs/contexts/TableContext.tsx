@@ -43,7 +43,8 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
             {
                 key: 'demo_first',
                 caption: 'Demo',
-                render: item => <DemoComponent { ...props } mode='cell' >{ item.id }</DemoComponent>,
+                render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
+                renderCell: propsCell => <DataTableCell padding='12' isFirstColumn={ true } { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
                 grow: 0, shrink: 0, width: 200,
@@ -58,7 +59,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
             {
                 key: 'demo_second',
                 caption: 'Demo',
-                render: item => <DemoComponent  { ...props }  mode='cell' >{ item.id }</DemoComponent>,
+                render: item => <DemoComponent  { ...props }>{ item.id }</DemoComponent>,
                 renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
@@ -73,7 +74,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
             {
                 key: 'demo_third',
                 caption: 'Demo',
-                render: item => <DemoComponent { ...props } mode='cell' >{ item.id }</DemoComponent>,
+                render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
                 renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
@@ -83,11 +84,6 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
 
         return (
             <>
-                <FlexRow padding='24' vPadding='24'>
-                    <RichTextView>
-                        <code>Don't be confused: In the context of this demo, the prop 'mode' is switched to cell mode and cannot be edited</code>
-                    </RichTextView>
-                </FlexRow>
                 <Panel margin='24' >
                     <DataTable
                         { ...view.getListProps() }

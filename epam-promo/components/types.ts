@@ -45,11 +45,11 @@ export interface RowSizeMod {
     size?: RowSize;
 }
 
-export interface EditMode {
+export interface IHasEditMode {
     mode?: 'form' | 'cell';
 }
 
-export enum Mode {
+export enum EditMode {
     FORM = 'form',
     CELL = 'cell',
 }
