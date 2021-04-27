@@ -1,6 +1,6 @@
 import * as React from "react";
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor } from '@epam/uui';
+import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers } from '@epam/uui';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
@@ -39,6 +39,7 @@ export class DataTableRow<TItem, TId> extends React.Component<DataTableRowProps<
                 cx={ [
                     params.classNames,
                     this.props.isSelected && uuiMod.selected,
+                    params.isDraggable && uuiMarkers.draggable,
                     uuiDataTableRow.uuiTableRow,
                     this.props.cx,
                     this.props.isFocused && uuiMod.focus,
