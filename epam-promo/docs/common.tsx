@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IHasIcon, Icon } from '@epam/uui';
+import { IHasIcon, Icon, IHasPlaceholder } from '@epam/uui';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors } from '../components';
+import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors, IHasEditMode } from '../components';
 import { getIconList } from '@epam/assets/icons/helpers';
 import { IconPicker } from './editors';
 import { TextSettings } from "../helpers/textLayout";
@@ -35,5 +35,8 @@ export const iconWithInfoDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
 export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('iconPosition', { examples: ['left', 'right'], defaultValue: 'left' })
     .prop('onIconClick', { examples: ctx => [ctx.getCallback('onIconClick')] });
+
+export const IHasEditModeDoc = new DocBuilder<IHasEditMode>({ name: 'mode' })
+    .prop('mode', { examples: ['form', 'cell'], defaultValue: 'form' });
 
 export * from '@epam/uui-docs';

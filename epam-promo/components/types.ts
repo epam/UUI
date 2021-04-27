@@ -44,3 +44,12 @@ export interface FontMod {
 export interface RowSizeMod {
     size?: RowSize;
 }
+
+export interface IHasEditMode {
+    mode?: 'form' | 'cell';
+}
+
+export enum EditMode {
+    FORM = 'form',
+    CELL = 'cell',
+}

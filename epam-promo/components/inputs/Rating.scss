@@ -1,5 +1,5 @@
 @use  '../../assets/styles/index' as *;
-@import '../../assets/styles/colorvars/inputs/rating-colorvars.scss';
+@use '../../assets/styles/colorvars/inputs/rating-colorvars.scss' as *;
 
 .root {
     @include rating-color();
