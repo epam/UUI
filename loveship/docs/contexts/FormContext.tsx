@@ -82,7 +82,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                     </FlexCell>
                 </FlexRow>
 
-                <FlexRow type='form' >
+                <FlexRow alignItems='top' type='form' >
                     <FlexCell grow={ 1 }>
                         <LabeledInput size={ size } label='Country' { ...validationProps }>
                             <ControlWrapper size={ size }>
@@ -98,7 +98,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         </LabeledInput>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow type='form' >
+                <FlexRow alignItems='top' type='form' >
                     <FlexCell grow={ 1 }>
                         <LabeledInput size={ size } label='Demo Component' { ...validationProps }>
                             <ControlWrapper size={ size }>

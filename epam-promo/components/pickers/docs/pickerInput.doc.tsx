@@ -27,7 +27,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
-    .prop('minBodyWidth', { examples: [100, 150, 200, 250, 300, 350, 400], defaultValue: 350 })
+    .prop('minBodyWidth', { examples: [100, 150, 200, 250, 300, 360, 400], defaultValue: 360 })
     .prop('dropdownHeight', { examples: [100, 200, 300], defaultValue: 300 })
     .prop('renderToggler', { examples: [
             {

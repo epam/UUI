@@ -20,7 +20,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        className="text font-sans-semibold color-night700 line-height-24 font-size-16 v-padding-12 container"
       >
         Title
       </div>
@@ -151,7 +151,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Discard
         </div>
@@ -164,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Save
         </div>
@@ -194,7 +194,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
       className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        className="text font-sans-semibold color-night700 line-height-24 font-size-16 v-padding-12 container"
       >
         Title
       </div>
@@ -333,7 +333,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Save
         </div>

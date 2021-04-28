@@ -10,7 +10,7 @@ import { systemIcons } from '../icons/icons';
 const defaultSize = '36';
 
 export interface TextInputMods extends types.EditMode, TextSettings {
-    size?: types.ControlSize | '60' | '42';
+    size?: types.ControlSize | '60';
 }
 
 export function applyTextInputMods(mods: TextInputMods) {

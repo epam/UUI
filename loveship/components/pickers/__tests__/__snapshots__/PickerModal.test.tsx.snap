@@ -20,7 +20,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        className="text font-sans-semibold color-night700 line-height-24 font-size-16 v-padding-12 container"
       >
         Please select
       </div>
@@ -104,7 +104,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
           <input
             autoFocus={true}
-            className="uui-input line-height-24 font-size-14 v-padding-5"
+            className="uui-input line-height-18 font-size-14 v-padding-8"
             onChange={[Function]}
             onKeyDown={[Function]}
             placeholder="Type text for quick search"
@@ -177,7 +177,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -194,7 +194,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Ken Sánchez
                       </div>
@@ -209,7 +209,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -226,7 +226,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Terri Duffy
                       </div>
@@ -241,7 +241,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -258,7 +258,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Roberto Tamburello
                       </div>
@@ -273,7 +273,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -290,7 +290,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Rob Walters
                       </div>
@@ -305,7 +305,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -322,7 +322,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Gail Erickson
                       </div>
@@ -337,7 +337,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -354,7 +354,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Jossef Goldberg
                       </div>
@@ -369,7 +369,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -386,7 +386,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Dylan Miller
                       </div>
@@ -401,7 +401,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -418,7 +418,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Diane Margheim
                       </div>
@@ -433,7 +433,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -450,7 +450,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Gigi Matthew
                       </div>
@@ -465,7 +465,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   onClick={[Function]}
                 >
                   <div
-                    className="flexCell cell size-36 padding-24 padding-left-24"
+                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
                     style={
                       Object {
@@ -482,7 +482,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 container"
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                       >
                         Michael Raheem
                       </div>
@@ -552,7 +552,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Cancel
         </div>
@@ -565,7 +565,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Select
         </div>

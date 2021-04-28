@@ -11,9 +11,10 @@ import { Tag, TagSize } from '../widgets';
 const defaultSize = '36';
 
 const mapSize = {
-    '48': '36',
+    '48': '42',
+    '42': '36',
     '36': '30',
-    '30' : '24',
+    '30': '24',
     '24': '18',
     'none': 'none',
 };

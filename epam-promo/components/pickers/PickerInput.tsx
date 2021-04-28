@@ -7,7 +7,6 @@ import { PickerModal } from './PickerModal';
 import { Panel, FlexSpacer } from '../layout/FlexItems';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../typography';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
@@ -18,7 +17,7 @@ import * as css from './PickerInput.scss';
 export type PickerInputProps =  SizeMod & {};
 
 const pickerHeight = 300;
-const pickerWidth = 350;
+const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
 
@@ -63,10 +62,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const view = this.getView();
         const hasSelection = view.getSelectedRows().length > 0;
         const isNotDisabled = hasSelection && !this.isSingleSelect();
+        const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
 
         return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || 36 }`], uuiMarkers.clickable) }>
             <Switch
-                size={ this.props.size === '24' ? '12' : '18' }
+                size={ switchSize }
                 value={ this.state.showSelected }
                 isDisabled={ !isNotDisabled }
                 onValueChange={ (nV) => this.setState({ showSelected: nV }) }

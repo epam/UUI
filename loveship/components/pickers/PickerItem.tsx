@@ -29,13 +29,13 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
         return (
             <FlexCell width='auto' cx={ cx(css.root) } >
-                <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${ itemSize }`] }  spacing='12'>
+                <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${ itemSize }`] } alignItems='center' spacing='12'>
                     { avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } /> }
                     <FlexCell width='auto'>
-                        { title && <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'gray60' : 'gray80' }>
+                        { title && <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'night600' : 'night800' }>
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : title }
                         </Text> }
-                        { subtitle && <Text size={ itemSize } color='gray60' cx={ css.text } >
+                        { subtitle && <Text size={ itemSize } color='night600' cx={ css.text } >
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : subtitle }
                         </Text> }
                     </FlexCell>
