@@ -1,5 +1,5 @@
-@use "../../assets/styles/index" as *;
-@import '../../assets/styles/colorvars/inputs/timePicker-colorvars.scss';
+@use '../../assets/styles/index' as *;
+@use '../../assets/styles/colorvars/inputs/timePicker-colorvars.scss' as *;
 
 .root {
     @include time-picker-color();

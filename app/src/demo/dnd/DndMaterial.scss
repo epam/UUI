@@ -1,7 +1,9 @@
 @use '~@epam/promo/assets/styles/colors' as *;
+@use  '~@epam/assets/scss/dnd' as *;
 @use './mixins' as *;
 
 .drag-element {
+    @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
     margin: 0 24px;
@@ -13,8 +15,6 @@
     &:hover .drag-handle {
         visibility: visible;
     }
-
-    @include cursor-style;
 
     .icon-wrapper {
         padding: 12px 24px;

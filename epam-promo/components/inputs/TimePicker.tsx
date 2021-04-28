@@ -1,11 +1,13 @@
-import React from "react";
-import moment from "moment";
-import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from "@epam/uui";
-import { SizeMod } from "../types";
-import { DropdownContainer, Dropdown } from "../overlays";
-import { TextInput } from "./TextInput";
-import { TimePickerBody } from "./TimePickerBody";
-import * as css from "./TimePicker.scss";
+import React from 'react';
+import moment from 'moment';
+import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from '@epam/uui';
+import { IHasEditMode, SizeMod, EditMode } from '../types';
+import { DropdownContainer, Dropdown } from '../overlays';
+import { TextInput } from './TextInput';
+import { TimePickerBody } from './TimePickerBody';
+import * as css from './TimePicker.scss';
+
+const defaultMode = EditMode.FORM;
 
 interface TimePickerState {
     isOpen: boolean;
@@ -16,10 +18,10 @@ const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['form
     if (value === null) {
         return null;
     }
-    return moment(value).format(format === 24 ? "HH:mm" : "hh:mm A");
+    return moment(value).format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
 
-export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, IHasPlaceholder {
+export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, IHasPlaceholder, IHasEditMode {
     minutesStep?: number;
     format?: 12 | 24;
 }
@@ -73,7 +75,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                 renderTarget={ (props) => (
                     <TextInput
                         { ...props }
-                        size={ this.props.size || "36" }
+                        size={ this.props.size || '36' }
                         isDisabled={ this.props.isDisabled }
                         isReadonly={ this.props.isReadonly }
                         isInvalid={ this.props.isInvalid }
@@ -84,6 +86,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                         onBlur={ this.handleBlur }
                         isDropdown={ false }
                         placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
+                        mode={ this.props.mode || defaultMode }
                     />
                 ) }
                 renderBody={ () =>

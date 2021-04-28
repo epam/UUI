@@ -9,12 +9,12 @@ import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
-import { SizeMod } from '../types';
+import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { PickerItem } from './PickerItem';
 import { i18n } from '../../i18n';
 import * as css from './PickerInput.scss';
 
-export type PickerInputProps =  SizeMod & {};
+export type PickerInputProps =  SizeMod & IHasEditMode & {};
 
 const pickerHeight = 300;
 const pickerWidth = 360;
@@ -85,6 +85,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size as PickerTogglerMods['size'],
+            mode: this.props.mode ? this.props.mode : EditMode.FORM,
         };
     }
 
