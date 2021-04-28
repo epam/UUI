@@ -2,12 +2,14 @@ import * as React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
 import * as types from '../types';
+import { IHasEditMode, EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './TextInput.scss';
 
 const defaultSize = '36';
+const defaultMode = EditMode.FORM;
 
-export interface TextInputMods {
+export interface TextInputMods extends IHasEditMode {
     size?: types.ControlSize;
 }
 
@@ -15,6 +17,7 @@ export function applyTextInputMods(mods: TextInputMods) {
     return [
         css.root,
         css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
@@ -32,7 +35,7 @@ export class SearchInput extends React.Component<TextInputProps & TextInputMods 
         // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
         const textInputProps = {...this.props};
         delete textInputProps.getValueChangeAnalyticsEvent;
-        
+
         return <IEditableDebouncer
             { ...this.props }
             render={ (iEditable =>

@@ -1,4 +1,5 @@
 @use '../../assets/styles/scss/index'  as *;
+@use  '~@epam/assets/scss/dnd' as *;
 
 .root {
     :global(.uui-table-loading-row) {
@@ -17,7 +18,7 @@
         }
 
         &:global(.-draggable) {
-            cursor: pointer;
+            @include dnd-cursor-style();
         }
 
         &:global(.uui-dragged-out) {

@@ -1,5 +1,5 @@
 @use  '../../assets/styles/index.scss' as *;
-@import '../../assets/styles/colorvars/inputs/switch-colorvars.scss';
+@use '../../assets/styles/colorvars/inputs/switch-colorvars.scss' as *;
 
 @mixin control-switch-size($size-name, $size) {
     &.size-#{$size-name} {
