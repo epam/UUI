@@ -7,7 +7,7 @@ import { PickerModal } from './PickerModal';
 import { Panel, FlexSpacer } from '../layout/FlexItems';
 import { PickerInputMods, PickerToggler } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../typography';
+import { PickerItem } from './PickerItem';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
 import { SizeMod, EditMode } from '../types';
@@ -18,7 +18,7 @@ export type PickerInputProps = SizeMod & EditMode & {
 };
 
 const pickerHeight = 300;
-const pickerWidth = 350;
+const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
@@ -34,9 +34,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return (
-            <Text size={ this.props.editMode === 'modal' ? '36' : this.props.size } color={ rowProps.isDisabled ? 'night500' : 'night700' }>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(item) }</Text>
-        );
+        return <PickerItem title={ this.getName(item) } { ...rowProps } />;
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
@@ -64,10 +62,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const view = this.getView();
         const hasSelection = view.getSelectedRows().length > 0;
         const isNotDisabled = hasSelection && !this.isSingleSelect();
+        const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
 
-        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size }`], uuiMarkers.clickable) }>
+        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || '36' }`], uuiMarkers.clickable) }>
             <Switch
-                size={ this.props.size === '24' ? '12' : '18' }
+                size={ switchSize }
                 value={ this.state.showSelected }
                 isDisabled={ !isNotDisabled }
                 onValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }) }
@@ -75,7 +74,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             />
             <FlexSpacer />
             { view.selectAll && <LinkButton
-                size={ +this.props.size < 36 ? '24' : '30' }
+                size={ this.props.size || '36' }
                 caption={ hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
                 onClick={ () => view.selectAll.onValueChange(!hasSelection) }
             /> }
@@ -92,7 +91,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     render() {
         const view = this.getView();
         const rows = this.getRows();
-        const renderedDataRows = rows.map((props: any) => this.renderRow(props));
+        const renderedDataRows = rows.map((props: any) => this.renderRow({ ...props, size: this.props.size }));
         const renderTarget = this.props.renderToggler || ((props) => <PickerToggler ref={ this.togglerRef } { ...props } />);
 
         let maxHeight = this.props.dropdownHeight || pickerHeight;

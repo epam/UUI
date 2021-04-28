@@ -1,5 +1,5 @@
 @use  '../../assets/styles/index.scss' as *;
-@import '../../assets/styles/colorvars/inputs/textInput-colorvars.scss';
+@use '../../assets/styles/colorvars/inputs/textInput-colorvars.scss' as *;
 
 .root {
     @include text-input-color();

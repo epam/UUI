@@ -65,7 +65,7 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
                 isDefault: true,
             },
         ] })
-    .prop('size', { examples: ['24', '36', '48'], defaultValue: '36' })
+    .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .prop('topShadow', { examples: [true] })
     .prop('borderBottom', { examples: [true, 'gray40'] })
     .prop('margin', { examples: ['12', '24'] })

@@ -2,10 +2,10 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IDropdownToggler, uuiMod } from '@epam/uui';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
-import * as css from './RangeDatePicker.scss';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';
-import { i18n } from "../../i18n";
+import { i18n } from '../../i18n';
+import * as css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;

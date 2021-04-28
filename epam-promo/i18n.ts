@@ -13,7 +13,7 @@ export const i18n = {
     },
     pickerInput: {
         showOnlySelectedLabel: 'Show only selected',
-        clearSelectionButton: 'CLEAR SELECTION',
+        clearSelectionButton: 'CLEAR ALL',
         selectAllButton: 'SELECT ALL',
     },
     notificationCard: {

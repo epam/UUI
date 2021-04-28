@@ -10,13 +10,13 @@ const defaultTextSettings  = {
     18: { lineHeight: 12, fontSize: 10 },
     24: { lineHeight: 18, fontSize: 12 },
     30: { lineHeight: 18, fontSize: 14 },
-    36: { lineHeight: 24, fontSize: 14 },
+    36: { lineHeight: 18, fontSize: 14 },
     42: { lineHeight: 24, fontSize: 16 },
-    48: { lineHeight: 24, fontSize: 18 },
+    48: { lineHeight: 24, fontSize: 16 },
     60: { lineHeight: 30, fontSize: 24 },
 };
 
-export function getTextClasses(props: TextSettings & { size: '60' | '42' | ControlSize | '18' }, border: boolean) {
+export function getTextClasses(props: TextSettings & { size: '18' | ControlSize | '60' }, border: boolean) {
 
     if (props.size === 'none') {
         return [

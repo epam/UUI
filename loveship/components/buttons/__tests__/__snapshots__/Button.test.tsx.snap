@@ -24,7 +24,7 @@ exports[`Button should be rendered correctly with props 1`] = `
     10
   </div>
   <div
-    className="uui-caption line-height-24 font-size-14 v-padding-5"
+    className="uui-caption line-height-18 font-size-14 v-padding-8"
   >
     Click me
   </div>

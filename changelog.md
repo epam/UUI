@@ -75,9 +75,14 @@
 * [AnalyticsContext]: add includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false options for amplitude
 * [TimePicker]: added handling of invalid values, added placeholder
 * [SlateRTE]: show image toolbar on image isFocused
-* [PickerInput][Promo]: added PickerItem component, added size 48 to prop 'size'
-* [DataPickerRow][Promo]: added prop alignAddons to align checkbox & folding arrows to the top or center
-* [DataTableCell][Promo]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [PickerInput]: added PickerItem component, added size 48 to prop 'size', refactored footers according design, changed default prop 'minBodyWidth' to 360
+* [DataPickerRow]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [PickerToggler][Loveship]: added size 42 to prop 'size'
+* [RangeDatePicker]: added size 42 to prop 'size'
+* [FlexRow]: added size 30, 42 to prop 'size'
+  [Tag][Loveship]: added size 42 to prop 'size'
+  [i18n]: phrase 'CLEAR SELECTION' changed to 'CLEAR ALL'
   
 **What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
@@ -87,7 +92,8 @@
 * [RadioInput]: fixed RadioInput point position when zoom is active
 * [TextInput] & [SearchInput]: fixed losing focus after click on 'cancel' icon
 * [PickerInput]: fixed triggering of a click on an element in which a picker is attached when clicking on the footer in the body, fixed incorrect work of the size props in general
-
+* fixed line-heights & font-sizes according design
+* fixed some types
 
 # 3.47.4 - 23.02.2021
 
