@@ -12,7 +12,10 @@ export type ItemsForRender = {
 };
 
 export class DataTableCell extends React.Component<DataTableCellProps<any, any> & DataTableCellMods, {}> {
-    getFirstCellPadding = () => {
+    getCellPadding = () => {
+        if (this.props.padding) {
+            return +this.props.padding;
+        }
         return +this.props.size < 30 ? 18 : 24;
     }
 
@@ -23,7 +26,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
             : this.props.column.render(this.props.rowProps.value, this.props.rowProps);
 
 
-        let reusablePadding = this.props.reusePadding === 'false' ? 0 : this.getFirstCellPadding(); // how much padding we can reuse for addon widgets.
+        let reusablePadding = this.props.reusePadding === 'false' ? 0 : this.getCellPadding(); // how much padding we can reuse for addon widgets. !Temporary left value from old design!
         const addonWidgets = []; // addon components, like checkbox, label, and folding arrow
 
         if (this.props.isFirstColumn) { // process addon widgets
@@ -95,7 +98,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         // If we add any addons, we need to place them, as well as user-defined content in a flexbox.
         // To keep user's layout in clock context (not in flex), we wrap it in a div that spans over whole available space.
         if (addonWidgets.length > 0) {
-            cellContent = <div key='w' className={ cx(css.wrappedContent, css[`padding-${ this.props.padding || '12' }`]) }>{ cellContent }</div>;
+            cellContent = <div key='w' className={ css.wrappedContent }>{ cellContent }</div>;
         }
 
         return (
@@ -104,7 +107,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                 addonWidgets.length > 0 && css.wrapper,
                 css['size-' + (this.props.size || '36')],
                 css[`padding-${ this.props.padding || '12' }`],
-                this.props.isFirstColumn && css[`padding-left-${ this.getFirstCellPadding() }`],
+                this.props.isFirstColumn && css[`padding-left-${ this.getCellPadding() }`],
                 this.props.isLastColumn && css['padding-right-24'],
                 this.props.column.cx,
             ) }>
