@@ -9,6 +9,7 @@ import { systemIcons } from '../icons/icons';
 import { Tag, TagSize } from '../widgets';
 
 const defaultSize = '36';
+const defaultMode = 'form';
 
 const mapSize = {
     '48': '42',
@@ -28,7 +29,7 @@ function applyPickerTogglerMods(mods: PickerInputMods) {
         colorStyle.colorSky,
         css.root,
         css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || 'form')],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
