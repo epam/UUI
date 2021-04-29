@@ -1,5 +1,5 @@
-@use '~@epam/assets/scss/control-size' as *;
-@use '~@epam/assets/scss/text-size' as *;
+@use 'control-size' as *;
+@use 'text-size' as *;
 
 @mixin control-box-layout($size, $borderWidth) {
     @include control-size($size, $borderWidth);

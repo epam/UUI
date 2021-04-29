@@ -21,7 +21,7 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
                 </Panel>;
         }
 
-        return <ModalBlocker blockerShadow="dark" { ...this.props }>
+        return <ModalBlocker blockerShadow='dark' { ...this.props }>
         <ModalWindow width={ this.props.width || '420' }>
             <ModalHeader borderBottom title={ this.props.caption } onClose={ () => this.props.abort() } background='white' />
             <ScrollBars>

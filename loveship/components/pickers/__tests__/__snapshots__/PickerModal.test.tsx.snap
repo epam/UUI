@@ -20,7 +20,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-16 v-padding-12 container"
+        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -58,7 +58,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               width={12}
             >
               <use
-                xlinkHref="#modal-close-cross.svg"
+                xlinkHref="#navigation-close-24.svg"
               />
             </svg>
           </div>

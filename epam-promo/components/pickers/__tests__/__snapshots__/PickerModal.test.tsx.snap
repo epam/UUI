@@ -20,7 +20,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
     >
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-16 v-padding-12 container"
+        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>
@@ -605,7 +605,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
     >
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-16 v-padding-12 container"
+        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
       >
         Please select
       </div>

@@ -1,11 +1,11 @@
 import React from 'react';
-import * as  crossIcon from '../icons/modal-close-cross.svg';
-import * as css from './Modals.scss';
 import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalHeaderCoreProps, ModalBlockerProps } from '@epam/uui';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
+import * as  crossIcon from '../icons/navigation-close-24.svg';
+import * as css from './Modals.scss';
 
 export interface ModalBlockerMods {
     blockerShadow?: 'light' | 'dark' | 'none';
@@ -36,7 +36,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps, any> {
         return (
             <FlexRow background={ this.props.background || 'none' } padding={ this.props.padding || '24' } vPadding='12' borderBottom={ this.props.borderBottom ? 'night400' : undefined }
                 cx={ [css.modalHeader, this.props.cx] }>
-                { this.props.title && <Text size="48" font='sans-semibold'>{ this.props.title }</Text> }
+                { this.props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ this.props.title }</Text> }
                 { this.props.children }
                 <FlexSpacer />
                 { this.props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ crossIcon } onClick={ this.props.onClose } /></FlexCell> }
