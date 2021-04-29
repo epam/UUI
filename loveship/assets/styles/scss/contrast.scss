@@ -1,0 +1,37 @@
+@function pow($base, $exponent) {
+    $result: 1;
+    @for $_ from 1 through $exponent {
+        $result: $result * $base;
+    }
+
+    @return $result;
+}
+
+@function de-gamma($n) {
+    @if $n <= 0.03928 {
+        @return $n / 12.92;
+    } @else {
+        @return pow((($n + 0.055) / 1.055), 2);
+    }
+}
+
+@function brightness($c) {
+    $rlin: de-gamma(red($c) / 255);
+    $glin: de-gamma(green($c) / 255);
+    $blin: de-gamma(blue($c) / 255);
+    @return (0.2126 * $rlin + 0.7152 * $glin + 0.0722 * $blin) * 100;
+}
+
+@function contrast($color, $dark: #000000, $light: #FFFFFF) {
+    @if $color == null {
+        @return null;
+    }
+
+    @else {
+        $color-brightness: brightness($color);
+        $light-text-brightness: brightness($light);
+        $dark-text-brightness: brightness($dark);
+
+        @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+    }
+}
