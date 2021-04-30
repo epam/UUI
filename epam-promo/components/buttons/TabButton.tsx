@@ -16,7 +16,7 @@ function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
         css['size-' + (mods.size || '48')],
         mods.withNotify && css.uuiNotification,
         styles.tabButtonColor,
-        ...getIconClass(mods)
+        ...getIconClass(mods),
     ];
 }
 

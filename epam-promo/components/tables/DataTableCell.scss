@@ -9,39 +9,41 @@
         align-items: flex-start;
     }
 
-    &.size-24 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 6px;
+    &.align-widgets-top {
+        &.size-24, &.size-30 {
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 6px;
+            }
+        }
+
+        &.size-36 {
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 9px;
+            }
+        }
+
+        &.size-42 {
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 12px;
+            }
+        }
+
+        &.size-48 {
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 15px;
+            }
+        }
+
+        &.size-60 {
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 21px;
+            }
         }
     }
 
-    &.size-30 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 6px;
-        }
-    }
-
-    &.size-36 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 9px;
-        }
-    }
-
-    &.size-42 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 12px;
-        }
-    }
-
-    &.size-48 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 15px;
-        }
-    }
-
-    &.size-60 {
-        :global(.uui-checkbox), .folding-arrow {
-            margin-top: 21px;
+    &.align-widgets-center {
+        .after-paddings {
+            align-self: center;
         }
     }
 

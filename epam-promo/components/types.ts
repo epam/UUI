@@ -10,8 +10,8 @@ export const allSizes: ControlSize[] = ['24', '30', '36', '42', '48'];
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';
 export const allTextSizes: TextSize[] = ['18', '24', '30', '36', '48'];
 
-export type RowSize = '24' | '36' | '48';
-export const allRowSizes: RowSize[] = ['24', '36', '48'];
+export type RowSize = null | '24' | '30' | '36' | '42' | '48';
+export const allRowSizes: RowSize[] = [null, '24', '30', '36', '42', '48'];
 
 export type EpamPrimaryColor = 'blue' | 'green' | 'amber' | 'red';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = ['blue', 'green', 'amber', 'red'];

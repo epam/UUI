@@ -9,7 +9,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-24 font-size-14 v-padding-5"
+    className="uui-input line-height-18 font-size-14 v-padding-8"
     max={10}
     min={1}
     onChange={[Function]}

@@ -27,7 +27,7 @@ export const i18n = {
         searchPlaceholder: 'Type text for quick search',
         cancelButton: 'Cancel',
         selectButton: 'Select',
-        clearSelectionButton: 'CLEAR SELECTION',
+        clearSelectionButton: 'CLEAR ALL',
         selectAllButton: 'SELECT ALL',
     },
     pickerFilterHeader: {
@@ -36,7 +36,7 @@ export const i18n = {
     },
     pickerInput: {
         showOnlySelectedLabel: 'Show only selected',
-        clearSelectionButton: 'CLEAR SELECTION',
+        clearSelectionButton: 'CLEAR ALL',
         selectAllButton: 'SELECT ALL',
     },
     tables: {

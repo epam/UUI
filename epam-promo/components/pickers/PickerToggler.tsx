@@ -8,7 +8,7 @@ import * as types from '../types';
 import * as css from './PickerToggler.scss';
 
 const defaultSize = '36';
-const defaultMode = 'form';
+const defaultMode = types.EditMode.FORM;
 
 export interface PickerTogglerMods extends types.IHasEditMode {
     size?: '24' | '30' | '36' | '42' | '48';
@@ -73,7 +73,7 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
         return (
             <UuiPickerToggler
                 { ...this.props }
-                cx={ [applyPickerTogglerMods(this.props), this.props.cx, css['mode-' + (this.props.mode || types.EditMode.FORM)]] }
+                cx={ [applyPickerTogglerMods(this.props), this.props.cx] }
                 renderItem={ !!this.props.renderItem ? this.props.renderItem : this.renderItem }
                 getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
                 cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
