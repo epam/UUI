@@ -22,7 +22,7 @@ const pickerWidth = 360;
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
 
     toggleModalOpening(opened: boolean) {
-        this.context.uuiModals.show<TId | TId[]>(props => <PickerModal<TItem, TId>
+        this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...this.props }
             { ...props }
             caption={ this.getPlaceholder() }
@@ -33,8 +33,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         />).then(newSelection => this.handleSelectionValueChange(newSelection));
     }
 
+    getRowSize() {
+        return this.props.editMode === 'modal' ? '36' : this.props.size;
+    }
+
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } { ...rowProps } />;
+        return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
@@ -47,7 +51,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 borderBottom='none'
-                size={ this.props.editMode === 'modal' ? '36' : this.props.size }
+                size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />
@@ -91,7 +95,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     render() {
         const rows = this.getRows();
-        const renderedDataRows = rows.map((props: any) => this.renderRow({ ...props, size: this.props.size }));
+        const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         let maxHeight = this.props.dropdownHeight || pickerHeight;
