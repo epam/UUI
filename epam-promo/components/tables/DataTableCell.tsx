@@ -110,6 +110,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                 this.props.isFirstColumn && css[`padding-left-${ this.getCellPadding() }`],
                 this.props.isLastColumn && css['padding-right-24'],
                 this.props.column.cx,
+                css[`align-widgets-${ this.props.alignActions || 'top' }`],
             ) }>
                 { addonWidgets }
                 { cellContent }

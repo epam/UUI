@@ -1,9 +1,9 @@
 @function vpadding($size, $border-width) {
     @if ($size == 18px or $size == 24px) {
         @return (3px - $border-width);
-    } @else if ($size == 30px or $size == 36px) {
+    } @else if ($size == 30px) {
         @return (6px - $border-width);
-    } @else if ($size == 42px) {
+    } @else if ($size == 36px or $size == 42px) {
         @return (9px - $border-width);
     } @else if ($size == 48px) {
         @return (12px - $border-width);
@@ -23,14 +23,14 @@
         line-height: 18px;
         font-size: 14px;
     } @else if ($size == 36px) {
-        line-height: 24px;
+        line-height: 18px;
         font-size: 14px;
     } @else if ($size == 42px) {
         line-height: 24px;
         font-size: 16px;
     } @else if ($size == 48px) {
         line-height: 24px;
-        font-size: 18px;
+        font-size: 16px;
     }
     padding-top: vpadding($size, $border-width);
     padding-bottom: vpadding($size, $border-width);

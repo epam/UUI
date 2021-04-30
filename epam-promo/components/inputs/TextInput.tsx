@@ -1,10 +1,10 @@
 import * as React from 'react';
-import * as types from '../types';
-import * as css from './TextInput.scss';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
+import * as types from '../types';
 import { IHasEditMode, EditMode } from '../types';
+import { systemIcons } from '../../icons/icons';
+import * as css from './TextInput.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;

@@ -4,3 +4,4 @@ export * from './PickerInput';
 export * from './PickerList';
 export * from './PickerModal';
 export * from './PickerToggler';
+export * from './PickerItem';

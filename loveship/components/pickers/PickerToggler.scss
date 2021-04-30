@@ -10,7 +10,7 @@
         @include text-size($size - 6px);
 
         @if ($size == 24px) {
-            line-height: 14px;
+            line-height: 18px;
             font-size: 12px;
         } @else if ($size == 30px) {
             line-height: 18px;
@@ -18,9 +18,12 @@
         } @else if ($size == 36px) {
             line-height: 18px;
             font-size: 14px;
+        } @else if ($size == 42px) {
+            line-height: 24px;
+            font-size: 16px;
         } @else if ($size == 48px) {
             line-height: 24px;
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 
@@ -81,6 +84,7 @@
     &.size-24 { @include picker-toggler-vertical-layout(24px, 1px); }
     &.size-30 { @include picker-toggler-vertical-layout(30px, 1px); }
     &.size-36 { @include picker-toggler-vertical-layout(36px, 1px); }
+    &.size-42 { @include picker-toggler-vertical-layout(42px, 1px); }
     &.size-48 { @include picker-toggler-vertical-layout(48px, 1px); }
 
     &.mode-form {

@@ -4,14 +4,14 @@ export const allBorderStyles: ControlShape[] = ['square', 'round'];
 export type FillStyle = 'solid' | 'white' | 'light' | 'none';
 export const allFillStyles: FillStyle[] = ['solid', 'white', 'light', 'none'];
 
-export type ControlSize = 'none' | '24' | '30' | '36' | '48';
-export const allSizes: ControlSize[] = ['24', "30", "36", "48"];
+export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
+export const allSizes: ControlSize[] = ['24', '30', '36', '42', '48'];
 
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
-export const allTextSizes: TextSize[] = ['48', '36', '30', '24', '18'];
+export const allTextSizes: TextSize[] = ['18', '24', '30', '36', '42', '48'];
 
-export type RowSize = '24' | '36' | '48';
-export const allRowSizes: RowSize[] = ['24', '36', '48'];
+export type RowSize = '24' | '30' | '36' | '42' | '48';
+export const allRowSizes: RowSize[] = ['24', '30', '36', '42', '48'];
 
 export type EpamPrimaryColor = 'sky' | 'grass' | 'sun' | 'fire';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = ['sky', 'grass', 'sun', 'fire'];

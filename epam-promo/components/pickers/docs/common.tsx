@@ -6,6 +6,7 @@ import { TextPlaceholder, Text } from '../../typography';
 import { DataPickerRow } from '../DataPickerRow';
 import { demoData, Location, City, Language, LanguageLevel } from '@epam/uui-docs';
 import * as css from './DataPickerRowDoc.scss';
+import { PickerItem } from '../PickerItem';
 
 export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
     {
@@ -62,23 +63,10 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
         { name: 'UserPickerRow', value: (props: DataRowProps<any, any>) => <DataPickerRow
             { ...props }
             key={ props.rowKey }
-            size='48'
+            alignActions={ 'center' }
             padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-            renderItem={ item =>
-                <div style={ { display: 'flex', padding: '6px 0'} }>
-                    <Avatar size='36' img={ props.isLoading ?
-                        'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg'
-                        : item.avatarUrl
-                    } />
-                    <div style={ { marginLeft: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'center' } }>
-                        <Text size='30' cx={ css.userName }>
-                            { props.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : item.name }
-                        </Text>
-                        <Text size='24' color='gray60' cx={ css.userTitle }>
-                            { props.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : item.jobTitle }
-                        </Text>
-                    </div>
-                </div>
+            renderItem={ (item, rowProps) =>
+                <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } />
             }
         />},
         {

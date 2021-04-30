@@ -9,7 +9,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-24 font-size-14 v-padding-5"
+    className="uui-input line-height-18 font-size-14 v-padding-8"
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="hh:mm A"
@@ -43,7 +43,7 @@ exports[`TimePicker should be rendered correctly with extra props 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-24 font-size-14 v-padding-5"
+    className="uui-input line-height-18 font-size-14 v-padding-8"
     disabled={true}
     onChange={[Function]}
     onKeyDown={[Function]}
