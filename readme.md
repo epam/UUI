@@ -6,6 +6,8 @@
 
 React-based components and accelerators library built by EPAM Systems.
 
+Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
+
 License: MIT
 
 ## Features
@@ -31,6 +33,15 @@ yarn add @epam/uui @epam/components @epam/loveship
 ## Getting started
 
 We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
+
+```sh
+npx create-react-app my-app --template @epam/uui
+
+# or
+
+yarn create react-app my-app --template @epam/uui
+```
+
 
 ## Development
 
