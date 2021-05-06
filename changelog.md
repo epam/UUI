@@ -77,6 +77,7 @@
 * [SlateRTE]: show image toolbar on image isFocused
 * [PickerInput]: added PickerItem component, added 48 size, refactored footers according design, changed default prop 'minBodyWidth' to 360
 * [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [Badge]: added size 48
   
 **What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
@@ -92,6 +93,8 @@
 * [PickerInput]: fix removing 'N items selected' tag when disableClear=true
 * [Accordion]: fixed style according design Siarhei_Dzeraviannik 3/30/21, 12:46 PM
 * [RTE]: fixed image/pfd/video block inserting into text paragraph, when it delete all text and return it back when image was deleted
+* [Badge]: added sizes 24, 30, 36, 42, 48, added fill transparent & semitransparent
+* fixed contrast colors in loveship variables
 * fixed line-heights & font-sizes according design
 * fixed some typings
 

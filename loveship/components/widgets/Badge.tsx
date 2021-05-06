@@ -1,26 +1,47 @@
+import { withMods } from '@epam/uui';
+import { Button, ButtonProps } from '@epam/uui-components';
+import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
-import * as css from './Badge.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as buttonCss from '../buttons/Button.scss';
-import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import * as css from './Badge.scss';
+
+const defaultSize = '18';
+
+const mapSizeToIconSize = {
+    '48': '48',
+    '42': '48',
+    '36': '36',
+    '30': '30',
+    '24': '30',
+    '18': '18',
+    '12': '18',
+};
 
 export interface BadgeMods extends types.ColorMod, types.FontMod {
     shape?: types.ControlShape;
-    fill?: types.FillStyle;
-    size?: '12' | '18';
+    fill?: types.FillStyle  | 'semitransparent' | 'transparent';
+    size?: '12' | '18' | '24' | '30' | '36' | '42' | '48';
 }
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
         buttonCss.root,
-        buttonCss['font-' + (mods.font || 'sans-semibold')],
-        css['style-' + (mods.shape || 'square')],
-        css['size-' + (mods.size || '18')],
+        css['font-' + (mods.font || 'sans')],
+        css['style-' + (mods.shape || 'round')],
+        css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
         styles['color-' + (mods.color || 'sky')],
         css.root,
     ];
 }
 
-export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods);
+export const Badge = withMods<ButtonProps, BadgeMods>(
+    Button,
+    applyBadgeMods,
+    (props) => ({
+        dropdownIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].foldingArrow,
+        clearIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].clear,
+        countPosition: 'left',
+    }),
+);
