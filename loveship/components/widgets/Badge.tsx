@@ -28,7 +28,7 @@ export function applyBadgeMods(mods: BadgeMods) {
     return [
         buttonCss.root,
         css['font-' + (mods.font || 'sans')],
-        css['style-' + (mods.shape || 'round')],
+        css['style-' + (mods.shape || 'square')],
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
         styles['color-' + (mods.color || 'sky')],
