@@ -11,38 +11,48 @@
 
     &.align-widgets-top {
         &.size-24, &.size-30 {
-            :global(.uui-checkbox), .folding-arrow {
-                margin-top: 6px;
+            .after-paddings, .before-paddings {
+                :global(.uui-checkbox), .folding-arrow {
+                    margin-top: 6px;
+                }
             }
         }
 
         &.size-36 {
-            :global(.uui-checkbox), .folding-arrow {
-                margin-top: 9px;
+            .after-paddings, .before-paddings {
+                :global(.uui-checkbox), .folding-arrow {
+                    margin-top: 9px;
+                }
             }
         }
 
         &.size-42 {
-            :global(.uui-checkbox), .folding-arrow {
-                margin-top: 12px;
+            .after-paddings, .before-paddings {
+                :global(.uui-checkbox), .folding-arrow {
+                    margin-top: 12px;
+                }
             }
         }
 
         &.size-48 {
-            :global(.uui-checkbox), .folding-arrow {
-                margin-top: 15px;
+            .after-paddings, .before-paddings {
+                :global(.uui-checkbox), .folding-arrow {
+                    margin-top: 15px;
+                }
             }
         }
 
         &.size-60 {
-            :global(.uui-checkbox), .folding-arrow {
-                margin-top: 21px;
+            .after-paddings, .before-paddings {
+                :global(.uui-checkbox), .folding-arrow {
+                    margin-top: 21px;
+                }
             }
         }
     }
 
     &.align-widgets-center {
-        .after-paddings {
+        .after-paddings, .before-paddings {
             align-self: center;
         }
     }
