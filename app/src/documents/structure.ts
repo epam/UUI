@@ -5,7 +5,7 @@ import {
     TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
     GettingStartedForDesignersDoc, ChangeManagementProcessDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
-    FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc,
+    FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc,
 } from "../docs";
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -80,6 +80,7 @@ export const items: DocItem[] = [
     ...componentsStructure,
     { id: 'advanced', name: 'Advanced' },
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
+    { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
     { id: 'contexts', name: 'Contexts' },
     { id: 'contextProvider', name: 'Context Provider', component: ContextProviderDoc, parentId: 'contexts' },
     { id: 'apiContext', name: 'Api Context and Error Handling', component: ApiContextDoc, parentId: 'contexts' },

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../common';
+import { EditableDocContent, BaseDocsBlock } from '../../common';
 
 export class InternationalizationDoc extends BaseDocsBlock {
     title = 'Internationalization';
