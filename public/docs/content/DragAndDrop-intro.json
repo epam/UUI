@@ -1,0 +1,83 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI provide powerful mechanism for building reordered lists (vertical, horizontal, movement between lists, nested lists and so on). ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can find complex Drag and Drop demo ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/demo?id=dnd"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "here",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-warning",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You need to wrap you application into UUI ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?category=contexts&id=contextProvider"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "ContextProvider",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " for DnD proper work.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

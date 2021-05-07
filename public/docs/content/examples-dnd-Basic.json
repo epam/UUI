@@ -1,0 +1,365 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The main component which you need to use for DnD - ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DragActor",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". DragActor wraps your own ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "render",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and provide necessary ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "eventHandlers",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and params for Drag and Drop. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "DragActor can play role of drop destination or drag source or both. You can configure it by ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "srcData",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dstData",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props. If you pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "srcData",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props — it's mean that this Actor can be dragged. If you pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dstData",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop - it's mean that this Actor can accept drop. If you pass both — Actor can be dragged and accept drop at the same time.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI DnD uses data, not the views, as the source of truth. When you drag something across the screen, we don't say that a component, or a DOM node is being dragged. Instead, we say that some JS object is being dragged. So ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "srcData",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " — it's this object which will be dragged.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "When drag started DragActor recalculate ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DndActorRenderParams",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and call ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "render",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback with new values. So you can change your component base on this props. For example, when component is in drag, we use the same DragActor ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "render",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function to render drag ghost, and pass  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isDragGhost={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " params inside ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "render",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", so based on this param you can define some styles for ghost.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "canAcceptDrop",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  prop to define it which position DragActor can accept drop - top, bottom, left, right or inside. This prop will be called when some item dragged into this DragActor, this item will be passed as an argument.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "When your drop item on DragActor and it's accept drop in this position — ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onDrop",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback will be called. In this callback you need to reorder your items based on ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropParams",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We recommend to use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getOrderBetween",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " helper to receive new order between two items. This helper return string value between two string, it's avoid problem with JS floating point number.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
