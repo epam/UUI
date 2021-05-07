@@ -61,6 +61,9 @@
     const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
     const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
   ```
+  
+* [Form]: Added server validation mechanism. If you need to get form validation state from server-side, your onSave api should return object like `{ validation?: ICanBeInvalid }`
+
 * [Tables]: Added columns resizing and reordering possibility:
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
