@@ -394,7 +394,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
         let childKeys: string[] = [];
 
-        if (this.props.cascadeSelection) {
+        if (this.props.cascadeSelection || isRoot) {
             var result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
             let tree = result.tree;
 
