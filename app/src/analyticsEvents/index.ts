@@ -1,7 +1,7 @@
-import {headerAnalyticsEvents} from "./header";
-import {welcomeAnalyticsEvents} from "./welcome";
-import {documentAnalyticsEvents} from "./document";
-import {demoAnalyticsEvents} from "./demo";
+import { headerAnalyticsEvents } from './header';
+import { welcomeAnalyticsEvents } from './welcome';
+import { documentAnalyticsEvents } from './document';
+import { demoAnalyticsEvents } from './demo';
 
 export const analyticsEvents = {
     header: headerAnalyticsEvents,

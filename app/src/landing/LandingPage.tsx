@@ -3,8 +3,15 @@ import { HeroBlock, StartedBlock, QuoteBlock, ContactsBlock, TechnologiesBlock, 
     AskDevelopersBlock, ReleasesBlock, InfoBlock, TeamBlock } from './';
 import { AppFooter, AppHeader, Page } from '../common';
 import { FlexCell } from '@epam/promo';
+import { analyticsEvents } from "../analyticsEvents";
+import { svc } from "../services";
 
 export class LandingPage extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props);
+
+        svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.pv());
+    }
     render() {
         return (
             <Page renderHeader={ () => <AppHeader /> } renderFooter={ () => <AppFooter /> } >

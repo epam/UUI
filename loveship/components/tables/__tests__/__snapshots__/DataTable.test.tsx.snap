@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
-    className="container uui-table-row-container root uui-table-header-row container align-items-center"
+    className="container uui-table-row-container root uui-table-header-row container align-items-top"
   >
     <div
       className="flexCell -clickable cell size-36 padding-left-24"
@@ -26,7 +26,7 @@ Array [
           className="iconCell"
         >
           <div
-            className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
           >
             ID
           </div>
@@ -70,7 +70,7 @@ Array [
         className="scrollableColumnsContainer"
       >
         <div
-          className="container align-items-center"
+          className="container align-items-top"
         >
           <div
             className="flexCell -clickable cell size-36"
@@ -93,7 +93,7 @@ Array [
                 className="iconCell"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   name
                 </div>
@@ -143,7 +143,7 @@ Array [
                 className="iconCell"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   Level
                 </div>
@@ -193,7 +193,7 @@ Array [
                 className="iconCell"
               >
                 <div
-                  className="text font-sans color-night700 line-height-24 font-size-14 v-padding-6 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   DATE
                 </div>
@@ -286,10 +286,10 @@ Array [
               }
             >
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -321,10 +321,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -342,7 +342,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -360,7 +360,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -388,10 +388,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -423,10 +423,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -444,7 +444,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -462,7 +462,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -490,10 +490,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -525,10 +525,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -546,7 +546,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -564,7 +564,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -592,10 +592,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -627,10 +627,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -648,7 +648,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -666,7 +666,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -694,10 +694,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -729,10 +729,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -750,7 +750,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -768,7 +768,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -796,10 +796,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -831,10 +831,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -852,7 +852,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -870,7 +870,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -898,10 +898,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -933,10 +933,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -954,7 +954,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -972,7 +972,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1000,10 +1000,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -1035,10 +1035,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1056,7 +1056,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1074,7 +1074,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1102,10 +1102,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -1137,10 +1137,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1158,7 +1158,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1176,7 +1176,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1204,10 +1204,10 @@ Array [
                 </div>
               </div>
               <div
-                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+                className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24"
+                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -1239,10 +1239,10 @@ Array [
                     className="scrollableColumnsContainer"
                   >
                     <div
-                      className="container align-items-center"
+                      className="container align-items-top"
                     >
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1260,7 +1260,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12"
+                        className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1278,7 +1278,7 @@ Array [
                         </div>
                       </div>
                       <div
-                        className="flexCell cell size-36 padding-12 padding-right-24"
+                        className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
                         style={
                           Object {
@@ -1355,7 +1355,7 @@ Array [
     className="uui-table-scroll-row-container cellClass"
   >
     <div
-      className="container uui-table-row-container uui-table-scroll-row container align-items-center"
+      className="container uui-table-row-container uui-table-scroll-row container align-items-top"
     >
       <div
         className="cellPlaceholder"
@@ -1401,7 +1401,7 @@ Array [
           }
         >
           <div
-            className="container align-items-center"
+            className="container align-items-top"
           >
             <div
               className="cellPlaceholder"

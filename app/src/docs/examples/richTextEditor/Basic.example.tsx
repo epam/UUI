@@ -19,7 +19,7 @@ interface SlateEditorBasicExampleState {
 
 export class SlateEditorBasicExample extends React.Component<any, SlateEditorBasicExampleState> {
     state: SlateEditorBasicExampleState = {
-        value: initialValue,
+        value: Value.fromJSON(initialValue),
         isReadonly: false,
         mode: 'form',
         fontSize: '14',

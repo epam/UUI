@@ -13,6 +13,7 @@ import { DataTableCell } from '../tables';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>, DataTableRowMods {
     renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
+    alignActions?: 'top' | 'center';
 }
 
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
@@ -74,6 +75,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 isLastColumn={ false }
                 column={ this.column }
                 rowProps={ this.props }
+                alignActions={ this.props.alignActions || 'top' }
             />
         </FlexRow>;
     }

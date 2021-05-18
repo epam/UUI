@@ -58,7 +58,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
               width={12}
             >
               <use
-                xlinkHref="#modal-close-cross.svg"
+                xlinkHref="#navigation-close-24.svg"
               />
             </svg>
           </div>
@@ -151,7 +151,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Discard
         </div>
@@ -164,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Save
         </div>
@@ -232,7 +232,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
               width={12}
             >
               <use
-                xlinkHref="#modal-close-cross.svg"
+                xlinkHref="#navigation-close-24.svg"
               />
             </svg>
           </div>
@@ -333,7 +333,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         tabIndex={0}
       >
         <div
-          className="uui-caption line-height-24 font-size-14 v-padding-5"
+          className="uui-caption line-height-18 font-size-14 v-padding-8"
         >
           Save
         </div>

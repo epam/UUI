@@ -19,10 +19,6 @@
     :global(.uui-caption) {
         @include text-size($size, $borderWidth);
 
-        @if ($size == 30px) {
-            font-size: 12px;
-        }
-
         @if ($size == 42px or $size == 48px) {
             font-size: 14px;
         }

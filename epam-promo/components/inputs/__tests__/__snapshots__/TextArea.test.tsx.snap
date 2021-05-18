@@ -2,7 +2,7 @@
 
 exports[`TextArea should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box root size-36"
+  className="container uui-input-box root size-36 mode-form"
 >
   <textarea
     className="-clickable noAutoSize uui-input"
@@ -16,7 +16,7 @@ exports[`TextArea should be rendered correctly 1`] = `
 
 exports[`TextArea should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box root size-36"
+  className="container uui-input-box root size-36 mode-form"
 >
   <textarea
     className="-clickable noAutoSize uui-input"

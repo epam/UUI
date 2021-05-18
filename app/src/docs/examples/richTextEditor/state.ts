@@ -1,6 +1,5 @@
-import { KeyUtils, Value } from "slate";
 
-export const initialValue = Value.fromJSON({
+export const initialValue = {
     "object": "value",
     "document": {
         "object": "document",
@@ -1354,4 +1353,4 @@ export const initialValue = Value.fromJSON({
             }
         ]
     }
-} as any);
+} as any;

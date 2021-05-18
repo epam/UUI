@@ -16,6 +16,7 @@ export function applyNumericInputMods(mods: NumericInputMods) {
         css.root,
         css['size-' + (mods.size || defaultSize)],
         textInputCss['size-' + (mods.size || defaultSize)],
+        textInputCss['mode-form'],
     ];
 }
 

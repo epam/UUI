@@ -14,6 +14,7 @@ export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>
     padding?: '12' | '24';
     size?: 'none' | '24' | '30' | '36' | '42' | '48' | '60';
     borderBottom?: 'none' | 'gray20';
+    alignActions?: 'top' | 'center';
 }
 
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
@@ -85,6 +86,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 isLastColumn={ false }
                 column={ this.column }
                 rowProps={ this.props }
+                alignActions={ this.props.alignActions || 'top' }
             />
         </FlexRow>;
     }

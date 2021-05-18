@@ -1,28 +1,28 @@
 import * as React from 'react';
-import { DataRowProps, IEditableDebouncer } from '@epam/uui';
-import * as css from './PickerInput.scss';
 import cx from 'classnames';
+import { DataRowProps, IEditableDebouncer, uuiMarkers } from '@epam/uui';
+import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
-import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { Panel, FlexSpacer } from '../layout/FlexItems';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../typography';
-import { SizeMod } from '../types';
 import { Switch } from '../inputs';
 import { LinkButton } from '../buttons';
+import { EditMode, IHasEditMode, SizeMod } from '../types';
+import { PickerItem } from './PickerItem';
 import { i18n } from '../../i18n';
+import * as css from './PickerInput.scss';
 
-export type PickerInputProps =  SizeMod & {};
+export type PickerInputProps =  SizeMod & IHasEditMode & {};
 
 const pickerHeight = 300;
-const pickerWidth = 350;
+const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
 
     toggleModalOpening(opened: boolean) {
-        this.context.uuiModals.show<TId | TId[]>(props => <PickerModal<TItem, TId>
+        this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...this.props }
             { ...props }
             caption={ this.getPlaceholder() }
@@ -33,12 +33,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         />).then(newSelection => this.handleSelectionValueChange(newSelection));
     }
 
+    getRowSize() {
+        return this.props.editMode === 'modal' ? '36' : this.props.size;
+    }
+
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return (
-            <Text size={ this.props.editMode === 'modal' ? '36' : this.props.size } color={ rowProps.isDisabled ? 'gray60' : 'gray80' }>
-                { rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(item) }
-            </Text>
-        );
+        return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
@@ -51,7 +51,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 borderBottom='none'
-                size={ this.props.editMode === 'modal' ? '36' : this.props.size }
+                size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />
@@ -66,10 +66,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const view = this.getView();
         const hasSelection = view.getSelectedRows().length > 0;
         const isNotDisabled = hasSelection && !this.isSingleSelect();
+        const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
 
-        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || 36 }`]) }>
+        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || 36 }`], uuiMarkers.clickable) }>
             <Switch
-                size={ this.props.size === '24' ? '12' : '18' }
+                size={ switchSize }
                 value={ this.state.showSelected }
                 isDisabled={ !isNotDisabled }
                 onValueChange={ (nV) => this.setState({ showSelected: nV }) }
@@ -88,12 +89,13 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size as PickerTogglerMods['size'],
+            mode: this.props.mode ? this.props.mode : EditMode.FORM,
         };
     }
 
     render() {
         const rows = this.getRows();
-        const renderedDataRows = rows.map((props: any) => this.renderRow(props));
+        const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         let maxHeight = this.props.dropdownHeight || pickerHeight;

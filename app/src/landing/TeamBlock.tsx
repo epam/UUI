@@ -20,7 +20,13 @@ export class TeamBlock extends React.Component {
                                     <FlexRow size='36' cx={ css.headerWrapper } >
                                         <Text font='museo-sans' cx={ css.header } >Team</Text>
                                         <FlexSpacer />
-                                        <LinkButton size={ containerWidth > 768 ? '48' : '30' } icon={ containerWidth <= 768 ? linkIcon : undefined } caption={ containerWidth > 768 && 'View All Members' } link={ { pathname: '/documents', query: { id: 'team' } } } />
+                                        <LinkButton
+                                            size={ containerWidth > 768 ? '48' : '30' }
+                                            icon={ containerWidth <= 768 ? linkIcon : undefined }
+                                            caption={ containerWidth > 768 && 'View All Members' }
+                                            link={ { pathname: '/documents', query: { id: 'team' } } }
+                                            clickAnalyticsEvent={ analyticsEvents.welcome.team('All') }
+                                        />
                                     </FlexRow>
                                     <div className={ css.teamsCards } >
                                         { team.map(({ name, position, src, link, isDefault }, index) => {

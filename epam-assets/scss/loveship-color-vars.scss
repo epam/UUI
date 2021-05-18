@@ -1,5 +1,5 @@
 @use './loveship-colors' as colors;
-@use '~@epam/assets/scss/contrast' as *;
+@use './contrast' as *;
 
 // Colors
 .color-sky {

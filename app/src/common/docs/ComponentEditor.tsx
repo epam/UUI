@@ -149,7 +149,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     renderPropEditor(prop: PropDoc<any, any>) {
         const onExampleClick = (newValue: string) => this.setState({ ...this.state, selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } });
 
-        const getPropsDataSource = (items: any[]) => new ArrayDataSource({items: items});
+        const getPropsDataSource = (items: any[]) => new ArrayDataSource({items: items, getId: i => i.value});
 
         if (prop.renderEditor) {
             return prop.renderEditor(
@@ -170,8 +170,8 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 dataSource={ getPropsDataSource(prop.examples as any) }
                                 selectionMode='single'
                                 value={ this.state.selectedProps[prop.name] }
-                                onValueChange={ (newValue: any) => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue.value } }) }
-                                valueType='entity'
+                                onValueChange={ (newValue: any) => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
+                                valueType='id'
                                 entityName={ prop.name }
                                 placeholder={ this.state.selectedProps[prop.name] && this.state.selectedProps[prop.name] }
                             />

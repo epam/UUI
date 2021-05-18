@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui';
-import {Anchor, FlexRow, FlexSpacer, LinkButton, ScrollBars, TabButton, Text} from '@epam/promo';
+import { Anchor, FlexRow, FlexSpacer, LinkButton, ScrollBars, TabButton, Text } from '@epam/promo';
 import { AppHeader, Page } from '../common';
 import { svc } from '../services';
 import { demoItems } from './structure';
@@ -9,6 +8,18 @@ import * as linkIcon from '../icons/action-external_link.svg';
 import { analyticsEvents } from "../analyticsEvents";
 
 export class DemoPage extends React.Component {
+    constructor(props: any) {
+        super(props);
+
+        const { id } = svc.uuiRouter.getCurrentLink().query;
+        svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(id));
+    }
+
+    componentDidUpdate() {
+        const { id } = svc.uuiRouter.getCurrentLink().query;
+        svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(id));
+    }
+
     getQuery(query: string): string {
         return svc.uuiRouter.getCurrentLink().query[query];
     }
@@ -17,7 +28,7 @@ export class DemoPage extends React.Component {
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.scenarioSelect(name));
     }
 
-    renderNavPage() {
+    renderDemoNavigationPage() {
         return (
             <div className={ css.navPage } >
                 <div className={ css.navTitle }>Demo</div>
@@ -25,7 +36,7 @@ export class DemoPage extends React.Component {
                     {
                         demoItems.map((item) => (
                             <Anchor key={ item.id } link={ { pathname: '/demo', query: { id: item.id } } } onClick={ () => this.sendEvent(item.name) } >
-                                <div className={ cx(css.navCard, css[`${ item.id }-card`]) } >
+                                <div className={ css.navCard } style={ { backgroundImage: `url(${item.previewImage})` } } >
                                     <Text font='sans-semibold' lineHeight='30' fontSize='24' cx={ css.navCaption } >{ item.name }</Text>
                                 </div>
                             </Anchor>
@@ -54,21 +65,29 @@ export class DemoPage extends React.Component {
                     );
                 }) }
                 <FlexSpacer />
-                <LinkButton icon={ linkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } />
+                <LinkButton icon={ linkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } clickAnalyticsEvent={ analyticsEvents.demo.scenarioGit(source) } />
             </FlexRow>
+        );
+    }
+
+    renderDemoComponent() {
+        const selectedDemoId = this.getQuery('id');
+        const demo = demoItems.find(i => i.id === selectedDemoId);
+
+        return (
+            <>
+                { this.renderSecondaryMenu(demo.source) }
+                <ScrollBars> { React.createElement(demo.component) } </ScrollBars>
+            </>
         );
     }
 
     render() {
         const selectedDemoId = this.getQuery('id');
-        const demo = demoItems.find(i => i.id === selectedDemoId);
 
         return (
             <Page contentCx={ css.root } renderHeader={ () => <AppHeader /> }>
-                { selectedDemoId && this.renderSecondaryMenu(demo.source) }
-                { selectedDemoId !== 'table'
-                    ? <ScrollBars children={ this.getQuery('id') ? React.createElement(demo.component) : this.renderNavPage() } />
-                    : React.createElement(demo.component) }
+                { selectedDemoId ? this.renderDemoComponent() : this.renderDemoNavigationPage() }
             </Page>
         );
     }

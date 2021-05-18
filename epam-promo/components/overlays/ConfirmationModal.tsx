@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IModal } from '@epam/uui';
-import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, Button, ModalFooter, Panel, ScrollBars} from '../';
+import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, Button, ModalFooter, Panel, ScrollBars } from '../';
 import { i18n } from '../../i18n';
 
 export interface ConfirmationModalWindowProps extends IModal<any> {
@@ -20,7 +20,7 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
                 </Panel>;
         }
 
-        return <ModalBlocker blockerShadow="dark" { ...this.props }>
+        return <ModalBlocker blockerShadow='dark' { ...this.props }>
         <ModalWindow width='420'>
             <ModalHeader borderBottom title={ this.props.caption } onClose={ () => this.props.abort() } background='white' />
             <ScrollBars>

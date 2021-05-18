@@ -1,0 +1,9 @@
+@mixin dnd-cursor-style {
+    &:hover {
+        cursor: grab;
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+}

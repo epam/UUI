@@ -25,16 +25,13 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     render() {
         return (
             <div
-                className={ cx(css.container,  this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx) }
+                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx) }
                 onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
                 onKeyDown={ (e) => (!this.props.isDisabled && !this.props.isReadonly) && handleSpaceKey(e, this.handleChange) }
                 tabIndex={ 0 }
             >
-                <div
-                    className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }
-                >
-                    { this.props.value && <IconContainer icon={ this.props.icon } /> }
-                </div>
+                <div className={ uuiElement.radioInput } />
+                { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 { (this.props.renderLabel || this.props.label) && <div className={ uuiElement.inputLabel } >{ this.props.renderLabel ? this.props.renderLabel() : this.props.label }</div> }
             </div>
         );

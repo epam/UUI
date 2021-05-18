@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { DropdownContainer, DatePickerBody, SizeMod, TextInput } from '../';
-import { cx, IDropdownToggler } from '@epam/uui';
-import * as css from './DatePicker.scss';
 import moment from 'moment';
+import { cx, IDropdownToggler } from '@epam/uui';
 import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
+import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
+import * as css from './DatePicker.scss';
 
-export interface DatePickerProps extends BaseDatePickerProps, SizeMod {
+const defaultMode = EditMode.FORM;
+
+export interface DatePickerProps extends BaseDatePickerProps, SizeMod, IHasEditMode {
     format: string;
     filter?(day: moment.Moment): boolean;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
@@ -33,6 +35,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
                 onBlur={ this.handleBlur }
+                mode={ this.props.mode || defaultMode }
             />
         );
     }

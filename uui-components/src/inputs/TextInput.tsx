@@ -1,8 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as css from './TextInput.scss';
 import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, uuiContextTypes, UuiContexts } from '@epam/uui';
 import { IconContainer } from '../layout';
+import * as css from './TextInput.scss';
 
 export interface TextInputProps extends TextInputCoreProps {
     acceptIcon?: Icon;
@@ -65,6 +65,11 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
         this.props.onClick && this.props.onClick(e);
     }
 
+    handleCancel = (e: React.SyntheticEvent<HTMLDivElement, Event>) => {
+        this.props.onCancel();
+        this.focus();
+    }
+
     render() {
         let icon = this.props.icon && <IconContainer icon={ this.props.icon } onClick={ this.props.onIconClick }/>;
 
@@ -112,7 +117,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                     cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                     isDisabled={ this.props.isDisabled }
                     icon={ this.props.cancelIcon }
-                    onClick={ this.props.onCancel }
+                    onClick={ this.handleCancel }
                 /> }
                 { this.props.iconPosition === 'right' && icon }
                 { this.props.isDropdown && <IconContainer

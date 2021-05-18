@@ -11,8 +11,8 @@ const EMAIL = 'SupportEPM-UUI@epam.com';
 const GIT_LINK = 'https://github.com/epam/UUI/issues';
 
 export class ContactsBlock extends React.Component {
-    private emailClickEvent = analyticsEvents.welcome.contact('Email');
-    private backlogClickEvent = analyticsEvents.welcome.openBacklog();
+    private emailClickEvent = analyticsEvents.welcome.email();
+    private submitIssueClickEvent = analyticsEvents.welcome.submitIssue();
     
     render() {
         return (
@@ -34,7 +34,7 @@ export class ContactsBlock extends React.Component {
                                                     <IconContainer icon={ gitIcon } cx={ css.cardIcon } />
                                                     <div className={ css.cardTextContent } >
                                                         <Text font='sans' fontSize='16' lineHeight='24' >Missing a feature or have an issue?</Text>
-                                                        <LinkButton size='24' caption='Submit an Issue' target='_blank' href={ GIT_LINK } cx={ css.linkButton } clickAnalyticsEvent={ this.backlogClickEvent }/>
+                                                        <LinkButton size='24' caption='Submit an Issue' target='_blank' href={ GIT_LINK } cx={ css.linkButton } clickAnalyticsEvent={ this.submitIssueClickEvent }/>
                                                     </div>
                                                 </>
                                                 : <Anchor href={ GIT_LINK } target='_blank' >
