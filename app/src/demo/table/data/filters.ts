@@ -7,44 +7,50 @@ export const getFilters = (): ITableFilter[] => {
         {
             id: "profileStatusId",
             title: "Profile Status",
-            selectionMode: "multi",
+            type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
         },
         {
             id: "jobTitleId",
             title: "Title",
-            selectionMode: "multi",
+            type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
         },
         {
             id: "departmentId",
             title: "Department",
-            selectionMode: "multi",
+            type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
         },
         {
             id: "officeId",
             title: "Office",
-            selectionMode: "multi",
+            type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.offices }),
         },
         {
             id: "managerId",
             title: "Manager",
-            selectionMode: "multi",
+            type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.managers }),
         },
         {
             id: "countryId",
             title: "Country",
-            selectionMode: "multi",
+            type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
         },
         {
             id: "cityId",
             title: "City",
-            selectionMode: "multi",
+            type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
+        },
+        {
+            id: "birthDate",
+            title: "Birth Date",
+            type: "rangeDatePicker",
+            dataSource: new LazyDataSource({ api: svc.api.demo.birthDates }),
         },
     ];
 };
