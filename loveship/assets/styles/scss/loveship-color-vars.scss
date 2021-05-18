@@ -1,5 +1,5 @@
 @use './loveship-colors' as colors;
-@use '~@epam/assets/scss/contrast' as *;
+@use './contrast' as *;
 
 // Colors
 .color-sky {
@@ -8,7 +8,7 @@
     --uui-color-700: #009ECC;
     --uui-color-800: #008ABD;
     --uui-color-900: #0079AD;
-    --uui-contrast-color-700: #{contrast(#009ECC, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#009ECC, colors.$night800, white)};
 }
 
 .color-grass {
@@ -17,7 +17,7 @@
     --uui-color-700: #67A300;
     --uui-color-800: #558A00;
     --uui-color-900: #428024;
-    --uui-contrast-color-700: #{contrast(#67A300, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#67A300, colors.$night800, white)};
 }
 
 .color-sun {
@@ -26,7 +26,7 @@
     --uui-color-700: #FCAA00;
     --uui-color-800: #F67E00;
     --uui-color-900: #E64C00;
-    --uui-contrast-color-700: #{contrast(#FCAA00, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#FCAA00, colors.$night800, white)};
 }
 
 .color-fire {
@@ -35,7 +35,7 @@
     --uui-color-700: #FA4B4B;
     --uui-color-800: #CC2929;
     --uui-color-900: #B32424;
-    --uui-contrast-color-700: #{contrast(#FA4B4B, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#FA4B4B, colors.$night800, white)};
 }
 
 .color-carbon {
@@ -44,7 +44,7 @@
     --uui-color-700: #3D404D;
     --uui-color-800: #272933;
     --uui-color-900: #17181F;
-    --uui-contrast-color-700: #{contrast(#3D404D, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#3D404D, colors.$night800, white)};
 }
 
 .color-night {
@@ -53,7 +53,7 @@
     --uui-color-700: #474A59;
     --uui-color-800: #303240;
     --uui-color-900: #1D1E26;
-    --uui-contrast-color-700: #{contrast(#474A59, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#474A59, colors.$night800, white)};
 }
 
 .color-cobalt {
@@ -62,7 +62,7 @@
     --uui-color-700: #0E74E2;
     --uui-color-800: #0453C7;
     --uui-color-900: #003399;
-    --uui-contrast-color-700: #{contrast(#0E74E2, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#0E74E2, colors.$night800, white)};
 }
 
 .color-lavanda {
@@ -71,7 +71,7 @@
     --uui-color-700: #2E3A9D;
     --uui-color-800: #21288D;
     --uui-color-900: #191980;
-    --uui-contrast-color-700: #{contrast(#2E3A9D, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#2E3A9D, colors.$night800, white)};
 }
 
 .color-fuchsia {
@@ -80,7 +80,7 @@
     --uui-color-700: #CD0053;
     --uui-color-800: #B00052;
     --uui-color-900: #94004C;
-    --uui-contrast-color-700: #{contrast(#CD0053, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(#CD0053, colors.$night800, white)};
 }
 
 .color-white {
@@ -89,7 +89,7 @@
     --uui-color-700: #{colors.$white};
     --uui-color-800: #{darken(colors.$white, 10%)};
     --uui-color-900: #{darken(colors.$white, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$white, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$white, colors.$night800, white)};
 }
 
 .color-night50 {
@@ -98,7 +98,7 @@
     --uui-color-700: #{colors.$night50};
     --uui-color-800: #{darken(colors.$night50, 10%)};
     --uui-color-900: #{darken(colors.$night50, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night50, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night50, colors.$night800, white)};
 }
 
 .color-night100 {
@@ -107,7 +107,7 @@
     --uui-color-700: #{colors.$night100};
     --uui-color-800: #{darken(colors.$night100, 10%)};
     --uui-color-900: #{darken(colors.$night100, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night100, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night100, colors.$night800, white)};
 }
 
 .color-night200 {
@@ -116,7 +116,7 @@
     --uui-color-700: #{colors.$night200};
     --uui-color-800: #{darken(colors.$night200, 10%)};
     --uui-color-900: #{darken(colors.$night200, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night200, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night200, colors.$night800, white)};
 }
 
 .color-night300 {
@@ -125,7 +125,7 @@
     --uui-color-700: #{colors.$night300};
     --uui-color-800: #{darken(colors.$night300, 10%)};
     --uui-color-900: #{darken(colors.$night300, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night300, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night300, colors.$night800, white)};
 }
 
 .color-night400 {
@@ -134,7 +134,7 @@
     --uui-color-700: #{colors.$night400};
     --uui-color-800: #{darken(colors.$night400, 10%)};
     --uui-color-900: #{darken(colors.$night400, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night400, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night400, colors.$night800, white)};
 }
 
 .color-night500 {
@@ -143,7 +143,7 @@
     --uui-color-700: #{colors.$night500};
     --uui-color-800: #{darken(colors.$night500, 10%)};
     --uui-color-900: #{darken(colors.$night500, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night500, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night500, colors.$night800, white)};
 }
 
 .color-night600 {
@@ -152,7 +152,7 @@
     --uui-color-700: #{colors.$night600};
     --uui-color-800: #{darken(colors.$night600, 10%)};
     --uui-color-900: #{darken(colors.$night600, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night600, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night600, colors.$night800, white)};
 }
 
 .color-night700 {
@@ -161,7 +161,7 @@
     --uui-color-700: #{colors.$night700};
     --uui-color-800: #{darken(colors.$night700, 10%)};
     --uui-color-900: #{darken(colors.$night700, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night700, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night700, colors.$night800, white)};
 }
 
 .color-night800 {
@@ -170,7 +170,7 @@
     --uui-color-700: #{colors.$night800};
     --uui-color-800: #{darken(colors.$night800, 10%)};
     --uui-color-900: #{darken(colors.$night800, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night700, colors.$night800, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night800, colors.$night800, white)};
 }
 
 .color-night900 {
@@ -179,5 +179,5 @@
     --uui-color-700: #{colors.$night900};
     --uui-color-800: #{darken(colors.$night900, 10%)};
     --uui-color-900: #{darken(colors.$night900, 20%)};
-    --uui-contrast-color-700: #{contrast(colors.$night900, colors.$night700, white)};
+    --uui-contrast-color-700: #{contrast(colors.$night900, colors.$night800, white)};
 }

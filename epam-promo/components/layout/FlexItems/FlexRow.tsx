@@ -16,7 +16,7 @@ export interface RowMods extends types.RowSizeMod {
 export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow, props => {
     return [
         css.root,
-        css['size-' + (props.size || '36')],
+        props.size !== null && css['size-' + (props.size || '36')],
         css['background-' + (props.background || 'none')],
         props.padding && css['padding-' + props.padding],
         props.vPadding && css['vPadding-' + props.vPadding],

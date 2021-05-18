@@ -1,15 +1,16 @@
 import * as React from 'react';
-import * as types from '../types';
-import * as css from './PickerToggler.scss';
-import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui';
+import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
+import * as types from '../types';
+import * as css from './PickerToggler.scss';
 
 const defaultSize = '36';
+const defaultMode = types.EditMode.FORM;
 
-export interface PickerTogglerMods {
+export interface PickerTogglerMods extends types.IHasEditMode {
     size?: '24' | '30' | '36' | '42' | '48';
 }
 
@@ -17,6 +18,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         css.root,
         css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

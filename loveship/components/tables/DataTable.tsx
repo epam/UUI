@@ -36,6 +36,10 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
         return getColumnsConfig(this.props.columns, this.props.value.columnsConfig);
     }
 
+    getDefaultColumnsConfig() {
+        return getColumnsConfig(this.props.columns, {});
+    }
+
     getRows() {
         const renderRow = this.props.renderRow || this.renderRow;
 
@@ -60,6 +64,8 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     { ...modalProps }
                     columns={ this.props.columns }
                     columnsConfig={ this.getColumnsConfig() }
+                    defaultConfig={ this.getDefaultColumnsConfig() }
+
                 />
             )).then(this.setColumnsConfig);
     }

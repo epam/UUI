@@ -6,7 +6,7 @@ interface DataTableRenderProps {
     renderCellContent: (props: HeaderCellContentProps) => React.ReactElement;
 }
 
-export interface HeaderCellContentProps extends DndActorRenderParams {
+export interface HeaderCellContentProps extends DndActorRenderParams, React.PropsWithRef<any> {
     onResizeStart: (e: React.MouseEvent) => void;
     onResizeEnd: (e: React.MouseEvent) => void;
     onResize: (e: MouseEvent) => void;
@@ -81,8 +81,9 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
             onResizeEnd: this.onResizeEnd,
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
+            ref: this.cellRef,
             ...dndProps,
-        });
+        } as any);
     }
 
 
@@ -95,7 +96,6 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
                     canAcceptDrop={ this.canAcceptDrop }
                     onDrop={ this.props.onDrop }
                     render={ this.renderCellContent }
-                    ref={ this.cellRef }
                 />
             );
         } else {

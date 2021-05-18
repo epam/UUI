@@ -81,7 +81,8 @@ export function getColumns(dbRef: DemoDbRef) {
             key: 'name',
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
-            grow: 1,
+            fix: 'left',
+            width: 250,
         },
     ];
 

@@ -92,9 +92,8 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler & { ref?: React.Ref<any> }) => {
         return <FlexCell
-            ref={ dropdownProps && dropdownProps.ref }
-            { ...props }
             { ...this.props.column }
+            ref={ (node) => { props.ref.current = node; } }
             cx={ cx(
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,

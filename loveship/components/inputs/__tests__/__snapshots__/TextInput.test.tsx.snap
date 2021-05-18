@@ -8,7 +8,7 @@ exports[`TextInput should be rendered correctly 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-24 font-size-14 v-padding-5"
+    className="uui-input line-height-18 font-size-14 v-padding-8"
     onChange={[Function]}
     onKeyDown={[Function]}
     type="text"

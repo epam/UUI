@@ -31,7 +31,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         const addonWidgets = []; // addon components, like checkbox, label, and folding arrow
 
         if (this.props.isFirstColumn) { // process addon widgets
-            const additionalItemSize = +this.props.size < 36 ? '12' : '18';
+            const additionalItemSize = +this.props.size < 30 ? '12' : '18';
             let allAddons: ItemsForRender[] = [];
 
             if (this.props.labelColor || row.dnd) {
@@ -105,7 +105,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         }
 
         return (
-            <FlexCell { ...this.props.column } cx={ [
+            <FlexCell { ...this.props.column } cx={ cx(
                 css.cell,
                 addonWidgets.length > 0 && css.wrapper,
                 css['size-' + (this.props.size || '36')],
@@ -113,7 +113,8 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                 this.props.isFirstColumn && css[`padding-left-${this.getCellPadding()}`],
                 this.props.isLastColumn && css[`padding-right-${this.getCellPadding()}`],
                 this.props.column.cx,
-            ] }>
+                css[`align-widgets-${ this.props.alignActions || 'top' }`],
+            ) }>
                 { addonWidgets }
                 { cellContent }
             </FlexCell>

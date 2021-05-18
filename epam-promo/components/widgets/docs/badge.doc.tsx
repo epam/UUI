@@ -18,7 +18,7 @@ const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', compon
         ], type: 'string' })
     .prop('count', { examples: [0, 1, 5, 88, 123], defaultValue: 123 })
     .prop('fill', { examples: ['solid', 'semitransparent', 'transparent'], defaultValue: 'solid' })
-    .prop('size', { examples : ['18', '24', '30', '36', '42'], defaultValue: '36' })
+    .prop('size', { examples: ['18', '24', '30', '36', '42', '48'], defaultValue: '36' })
     .withContexts(DefaultContext, FormContext, ResizableContext,  GridContext);
 
 export = badgeDoc;
