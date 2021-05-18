@@ -24,6 +24,7 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),
         schedules: () => processRequest('/api/schedules', 'POST') as Promise<models.PersonSchedule[]>,
         personDetails: personDetailsApi,
+        birthDates: lazyApi('birthDates'),
     };
 }
 

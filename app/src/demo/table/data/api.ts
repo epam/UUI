@@ -5,7 +5,7 @@ import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "../ty
 const mapFilter = <TFilter extends PersonTableFilter>(filter: TFilter): { [TKey in keyof TFilter]: { in: TFilter[TKey] } } => {
     return Object.keys(filter).reduce((acc, key) => {
         acc[key] = normalizeDataQueryFilter({
-            in: filter[key],
+            in: Array.isArray(filter[key]) ? filter[key] : [filter[key]],
         });
 
         return acc;

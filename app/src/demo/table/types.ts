@@ -1,4 +1,4 @@
-import { DataSourceState, IDataSource } from '@epam/uui';
+import { ColumnsConfig, DataSourceState, DataTableState, IDataSource } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 
 type PersonTableRecord = Person | PersonGroup;
@@ -8,16 +8,26 @@ type PersonTableRecordId = [PersonTableRecord['__typename'], string | number];
 // type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
 type PersonTableFilter = { [key: string]: any, groupBy?: string };
 
-interface ITableFilter<> {
+interface ITableFilter {
     title: string;
     id: string;
     field?: string;
-    selectionMode: 'single' | 'multi';
+    type: 'singlePicker' | 'multiPicker' | 'datePicker' | 'rangeDatePicker';
     dataSource: IDataSource<any, any, any>;
 }
 
-interface PersonsTableState extends DataSourceState {
+interface PersonsTableState extends DataTableState {
     isFolded?: boolean;
 }
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState };
+interface ITablePreset {
+    name: string;
+    id: number | null;
+    filter: PersonTableFilter;
+    isReadonly?: boolean;
+    columnsConfig: ColumnsConfig;
+}
+
+type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
+
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets };
