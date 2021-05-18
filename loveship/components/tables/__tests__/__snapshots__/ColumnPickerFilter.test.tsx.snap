@@ -64,7 +64,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -96,7 +96,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -128,7 +128,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -160,7 +160,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -192,7 +192,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -224,7 +224,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -256,7 +256,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -288,7 +288,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -320,7 +320,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -352,7 +352,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -491,7 +491,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -523,7 +523,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -555,7 +555,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -587,7 +587,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -619,7 +619,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -651,7 +651,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -683,7 +683,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -715,7 +715,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -747,7 +747,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {
@@ -779,7 +779,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               onClick={[Function]}
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12"
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
                 style={
                   Object {

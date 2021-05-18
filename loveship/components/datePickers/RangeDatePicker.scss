@@ -46,6 +46,10 @@
         @include control-box-layout(34px, 0);
     }
 
+    &.size-42 {
+        @include control-box-layout(40px, 0);
+    }
+
     &.size-48 {
         @include control-box-layout(46px, 0);
     }

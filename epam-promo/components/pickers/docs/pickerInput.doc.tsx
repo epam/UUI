@@ -1,18 +1,18 @@
 import * as React from 'react';
+import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
 import { SearchInput } from '../../inputs';
 import { iEditable, isDisabledDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
-import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
-import {FlexCell} from "../../layout/FlexItems";
-import {Text} from "../../typography";
+import { FlexCell } from '../../layout/FlexItems';
+import { Text } from '../../typography';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
-    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc] as any)
-    .prop('size', { examples: ['24', '30', '36', '42'], defaultValue: '36' })
+    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc] as any)
+    .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .prop('value', { examples: [
             { name: '1', value: 1 },
             { name: '[1, 2]', value: [1, 2] },
@@ -27,7 +27,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
-    .prop('minBodyWidth', { examples: [100, 150, 200, 250, 300, 350, 400], defaultValue: 350 })
+    .prop('minBodyWidth', { examples: [100, 150, 200, 250, 300, 360, 400], defaultValue: 360 })
     .prop('dropdownHeight', { examples: [100, 200, 300], defaultValue: 300 })
     .prop('renderToggler', { examples: [
             {
@@ -61,6 +61,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                 value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
 export = PickerInputDoc;

@@ -2,7 +2,7 @@
 
 exports[`TimePicker should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 dateInput"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -12,8 +12,9 @@ exports[`TimePicker should be rendered correctly 1`] = `
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="hh:mm A"
     type="text"
-    value="Invalid date"
+    value=""
   />
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
@@ -35,7 +36,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
 
 exports[`TimePicker should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box uui-disabled root size-36 dateInput"
+  className="container uui-input-box uui-disabled root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -46,6 +47,7 @@ exports[`TimePicker should be rendered correctly 2`] = `
     disabled={true}
     onChange={[Function]}
     onKeyDown={[Function]}
+    placeholder="HH:mm"
     type="text"
     value="01:05"
   />

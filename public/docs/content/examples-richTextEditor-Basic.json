@@ -113,7 +113,67 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.",
+            "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.\n",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "When you manipulate with server-side use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Value.toJSON(value)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Value.fromJSON(value)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " functions from ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "slate",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " package, to convert slate state to JSON model and vice versa.",
             "marks": []
           }
         ]

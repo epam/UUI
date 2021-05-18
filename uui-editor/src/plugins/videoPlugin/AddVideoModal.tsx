@@ -22,7 +22,7 @@ export class AddVideoModal extends React.Component<AddVideoModalProps> {
         const src = getVideoSrc(this.state.src);
 
         const block = ((this.props.editor) as any).createBlock({ src: src }, 'iframe');
-        this.props.editor.setBlocks(block) ;
+        this.props.editor.insertBlock(block) ;
         this.props.success(true);
     }
 
@@ -39,7 +39,7 @@ export class AddVideoModal extends React.Component<AddVideoModalProps> {
                     <ModalFooter borderTop >
                         <FlexSpacer />
                         <Button type='cancel' caption='Cancel' onClick={ () => this.props.abort() } />
-                        <Button type='success' caption='Ok' onClick={ this.createVideoBlock }
+                        <Button type='success' caption='Ok' isDisabled={ !this.state.src } onClick={ this.createVideoBlock }
                         />
                     </ModalFooter>
                 </ModalWindow>

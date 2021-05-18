@@ -107,6 +107,27 @@
         }
     }
 
+    &.size-42 {
+        @include control-box-layout(42px, 1px);
+        height: 42px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 24px;
+            font-size: 16px;
+        }
+
+        :global(.uui-count) {
+            min-height: 24px;
+            line-height: 24px;
+
+            &:not(:first-child) {
+                margin-left: 6px;
+            }
+        }
+    }
+
     &.fill-solid {
         @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
     }

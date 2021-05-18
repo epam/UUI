@@ -51,7 +51,7 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
         reason: 'BattleTestedSolution',
     };
 
-    handleChangeReason = (reason: any) => {
+    handleChangeReason = (reason: BenefitsBlockState['reason']) => {
         this.setState({
             reason: reason,
         });

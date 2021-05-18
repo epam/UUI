@@ -6,7 +6,7 @@ import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as buttonCss from '../buttons/Button.scss';
 import * as css from './Tag.scss';
 
-export type TagSize = '18' | '24' | '30' | '36';
+export type TagSize = '18' | '24' | '30' | '36' | '42';
 
 export interface TagMods extends types.ColorMod, types.FontMod {
     fill?: types.FillStyle;

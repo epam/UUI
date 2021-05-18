@@ -24,7 +24,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root font-sans text-color-gray80 line-height-24 font-size-14 v-padding-6 container"
+      className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
     >
       No records found
     </div>
@@ -67,7 +67,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable root size-48 search"
+        className="container uui-input-box -clickable root size-48 mode-form search"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
@@ -159,7 +159,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -186,7 +186,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -213,7 +213,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -240,7 +240,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -267,7 +267,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -294,7 +294,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -321,7 +321,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -348,7 +348,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -375,7 +375,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -402,7 +402,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -429,7 +429,7 @@ Array [
                 className="pickerRow container align-items-center"
               >
                 <div
-                  className="flexCell cell size-36 padding-24 padding-left-24"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {

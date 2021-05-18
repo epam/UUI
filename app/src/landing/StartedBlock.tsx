@@ -3,12 +3,12 @@ import { Button, FlexRow, IconContainer, RichTextView, Text } from '@epam/promo'
 import * as css from './StartedBlock.scss';
 import * as crystalIcon from '../icons/crystal.svg';
 import * as reactIcon from '../icons/react_small.svg';
-import { UUI4 } from "../common";
-import {analyticsEvents} from "../analyticsEvents";
+import { UUI4 } from '../common';
+import { analyticsEvents } from '../analyticsEvents';
 
 export class StartedBlock extends React.Component {
-    private forDevelopersEvent = analyticsEvents.welcome.gettingStarted("For developers");
-    private forDesignersEvent = analyticsEvents.welcome.gettingStarted("For designers");
+    private forDevelopersEvent = analyticsEvents.welcome.gettingStarted('For developers');
+    private forDesignersEvent = analyticsEvents.welcome.gettingStarted('For designers');
 
     render() {
         return (

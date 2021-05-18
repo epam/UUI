@@ -9,7 +9,7 @@ exports[`Dropdown should be rendered correctly 1`] = `
   tabIndex={0}
 >
   <div
-    className="uui-caption line-height-24 font-size-14 v-padding-5"
+    className="uui-caption line-height-18 font-size-14 v-padding-8"
   >
     Test
   </div>
@@ -39,7 +39,7 @@ exports[`Dropdown should be rendered correctly with extra props 1`] = `
   tabIndex={0}
 >
   <div
-    className="uui-caption line-height-24 font-size-14 v-padding-5"
+    className="uui-caption line-height-18 font-size-14 v-padding-8"
   >
     test
   </div>

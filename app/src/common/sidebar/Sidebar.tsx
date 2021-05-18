@@ -5,7 +5,7 @@ import { Tree, TreeNodeProps } from '@epam/uui-components';
 import { SidebarButton } from './SidebarButton';
 import { Link } from "@epam/uui";
 import {svc} from "../../services";
-import {analyticsEvents} from "../../analyticsEvents";
+import { analyticsEvents } from "../../analyticsEvents";
 
 export interface SidebarProps {
     value: string;

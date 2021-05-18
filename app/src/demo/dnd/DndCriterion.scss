@@ -1,6 +1,8 @@
 @use './mixins' as *;
+@use  '~@epam/assets/scss/dnd' as *;
 
 .drag-element {
+    @include dnd-cursor-style();
     position: relative;
     width: max-content;
     margin: 1px 6px;
@@ -12,8 +14,6 @@
     &:hover .drag-handle {
         visibility: visible;
     }
-
-    @include cursor-style;
 
     &:global(.uui-dragged-out) {
         @include drag-out;

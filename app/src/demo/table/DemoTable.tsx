@@ -130,6 +130,7 @@ export const DemoTable: React.FC = () => {
                     showColumnsConfig
                     value={ value }
                     onValueChange={ onValueChange }
+                    allowColumnsResizing={ true }
                     { ...personsDataView.getListProps() }
                 />
             </div>

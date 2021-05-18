@@ -1,14 +1,14 @@
 export const welcomeAnalyticsEvents = {
     gettingStarted: (role: string) => ({
-        name: "welcome_getting_started_event",
+        name: 'welcome_getting_started_event',
         prm_role: role,
     }),
     whyToUse: (tab: string) => ({
-        name: "welcome_why_to_use_event",
+        name: 'welcome_why_to_use_event',
         prm_tab: tab,
     }),
     exploreAndDownload: (link: string) => ({
-        name: "welcome_explore_and_download_event",
+        name: 'welcome_explore_and_download_event',
         prm_link: link,
     }),
     trusted: (product: string) => ({
@@ -16,26 +16,23 @@ export const welcomeAnalyticsEvents = {
         prm_product: product,
     }),
     askDeveloper: (direction: string) => ({
-        name: "welcome_ask_developer_event",
+        name: 'welcome_ask_developer_event',
         prm_direction: direction,
     }),
-    releaseNotes: (version: string) => ({
-        name: "welcome_release_notes_event",
-        prm_version: version,
+    releaseNotes: () => ({
+        name: 'welcome_release_notes_event',
     }),
     team: (teammate: string) => ({
-        name: "welcome_team_event",
+        name: 'welcome_team_event',
         prm_teammate: teammate,
     }),
-    contact: (tool: string) => ({
-        name: "welcome_contact_event",
-        prm_tool: tool,
+    email: () => ({
+        name: 'welcome_email_event',
     }),
-    openBacklog: () => ({
-        name: "welcome_open_backlog_event",
+    submitIssue: () => ({
+        name: 'welcome_submit_issue_event',
     }),
-    clickToolFooter: (tool: string) => ({
-        name: "welcome_click_tool_footer_event",
-        prm_tool: tool,
+    pv: () => ({
+        name: 'welcome_pv',
     }),
 } as const;

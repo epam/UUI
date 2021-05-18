@@ -18,6 +18,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     onBlur?(e: React.SyntheticEvent<HTMLElement>): void;
     disableSearch?: boolean;
+    disableClear?: boolean;
     minCharsToSearch?: number;
 }
 
@@ -74,7 +75,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         this.props.onKeyDown && this.props.onKeyDown(e);
     }
 
-    handleClick = (e: React.SyntheticEvent<HTMLElement>) => {
+    handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         this.props.onClear && this.props.onClear();
         e.stopPropagation();
     }
@@ -156,11 +157,11 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     { this.props.iconPosition === 'right' && icon }
                 </div>
                 <div  className={ cx(css.actions) }>
-                    { this.props.onClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
+                    { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
                         cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                         isDisabled={ this.props.isDisabled }
                         icon={ this.props.cancelIcon }
-                        onClick={ this.handleClick }
+                        onClick={ this.handleCrossIconClick }
                     /> }
                     { this.props.isDropdown && <IconContainer icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }/> }
                 </div>

@@ -5,7 +5,7 @@ import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../';
 import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc } from '../../../docs';
-import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
+import { FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc } from '../../../docs';
 import * as point from '../../../icons/radio-point.svg';
 
 
@@ -17,7 +17,7 @@ const getCustomDay = (day: moment.Moment) => {
 };
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
-    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc] as any)
+    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc] as any)
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', { examples: ['DD/MM/YYYY', 'MMM D, YYYY'], defaultValue: 'MMM D, YYYY' })
@@ -43,6 +43,6 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
             },
         ],
     })
-    .withContexts(DefaultContext, FormContext, ResizableContext);
+    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 
 export = DatePickerDoc;

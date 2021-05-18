@@ -1,4 +1,4 @@
-# 4.0.0-beta.0 - 09.03.2021 (changelog WIP)
+# 4.0.0 - 07.05.2021
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
@@ -52,7 +52,7 @@
 
   Both Lazy and ArrayDataSources supports these new props.
 
-* Forms validation - better cross-fields dependencies.
+* [Forms] Forms validation - better cross-fields dependencies.
   'validate' function in Metadata now receives all parent objects in path as argument.
   Each validator receives N arguments - first is the value itself, then it's container, and down to the root object.
   You can use this to make validation dependencies between items. For example:
@@ -61,13 +61,44 @@
     const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
     const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
   ```
+  
+* [Form]: Added server validation mechanism. If you need to get form validation state from server-side, your onSave api should return object like `{ validation?: ICanBeInvalid }`
+
 * [Tables]: Added columns resizing and reordering possibility:
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
     * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
-* [Popper.js]: updated to v.2.x, added 'hide' modifier to [Tooltip] & [Dropdown]: 
-    * [Breaking Change]: In Popper 2 this is now an array of objects (modifiers), instead of an object where each property was the modifier name. [More information.](https://popper.js.org/docs/v2/migration-guide/)
+    
+* [Tooltip] & [Dropdown]: Popper.js updated to v.2.x, added 'hide' modifier to hide body when target scrolled outside view
+    * [Breaking Change]: In Popper 2 modifiers is now an array of objects, instead of an object where each property was the modifier name in the previous version. [More information.](https://popper.js.org/docs/v2/migration-guide/)
 
+* [Promo]: Added 'cell' mode for components which can be placed in table row
+* [Accordion]: Added "padding" and "renderAdditionalItems" props
+* [AnalyticContext]: add ip anonymization for google analytic
+* [AnalyticsContext]: add includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false options for amplitude
+* [TimePicker]: added handling of invalid values, added placeholder
+* [SlateRTE]: show image toolbar on image isFocused
+* [PickerInput]: added PickerItem component, added 48 size, refactored footers according design, changed default prop 'minBodyWidth' to 360
+* [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
+* [Badge]: added transparent and semitransparent fill; Added more sizes;
+  
+**What’s Fixed**
+* [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
+* [ErrorHandler]: reset api error when router is changed
+* [DatePicker]: fixed handling of invalid value input when filter is active
+* [Tooltip]: remove pointer-events: none; from tooltip content container
+* [RadioInput]: fixed RadioInput point position when zoom is active
+* [TextInput] & [SearchInput]: fixed losing focus after click on 'cancel' icon
+* [PickerInput]: set clickable modifier on picker body
+* [DatePicker]: set clickable modifier on datePicker body
+* [Table]: fixed alignment in the table row from the center to top
+* [PickerInput]: fixed PickerInput behavior in entity mode and with custom id
+* [PickerInput]: fix removing 'N items selected' tag when disableClear=true
+* [Accordion]: fixed style according design Siarhei_Dzeraviannik 3/30/21, 12:46 PM
+* [RTE]: fixed image/pfd/video block inserting into text paragraph, when it delete all text and return it back when image was deleted
+* fixed contrast colors in loveship variables
+* fixed line-heights & font-sizes according design
+* fixed some typings
 
 # 3.47.4 - 23.02.2021
 
