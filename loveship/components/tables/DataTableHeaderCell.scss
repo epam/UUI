@@ -157,9 +157,17 @@
 
     &.dnd-marker-left {
         box-shadow: inset 2px 0 0 0 $sky;
+
+        &:global(.-clickable), &:local(.resizable) {
+            box-shadow: inset 2px 0 0 0 $sky;
+        }
     }
 
     &.dnd-marker-right {
         box-shadow: inset -2px 0 0 0 $sky;
+
+        &:global(.-clickable), &:local(.resizable) {
+            box-shadow: inset -2px 0 0 0 $sky;
+        }
     }
 }

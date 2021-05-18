@@ -1,11 +1,13 @@
 @use './mixins' as *;
+@use  '~@epam/assets/scss/dnd' as *;
 
 .drag-element {
+    @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
 
     .dnd-item:hover {
-        box-shadow: 0 6px 12px 0 rgba(29,30,38,0.10), 0 3px 6px 0 rgba(29,30,38,0.10);
+        box-shadow: 0 6px 12px 0 rgba(29, 30, 38, 0.1), 0 3px 6px 0 rgba(29, 30, 38, 0.1);
     }
 
     .title {
@@ -23,8 +25,6 @@
     .materials-section {
         margin-bottom: 18px;
     }
-
-    @include cursor-style;
 
     .grab-area {
         position: relative;

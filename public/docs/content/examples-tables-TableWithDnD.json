@@ -1,0 +1,77 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI tables have row Drag&Drop functionality. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To turn on rows DnD — pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dnd",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " params to ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getRowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  callback. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can find simplest DnD state management example below. Notice that in real word this logic may be more complicated, and you can write this logic in more optimized way.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

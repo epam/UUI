@@ -2,7 +2,7 @@
 
 exports[`Badge should be rendered correctly 1`] = `
 <div
-  className="container uui-button-box uui-enabled root font-sans-semibold style-square size-18 fill-solid color-sky root"
+  className="container uui-button-box uui-enabled root font-sans style-square size-18 fill-solid color-sky root"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -12,7 +12,7 @@ exports[`Badge should be rendered correctly 1`] = `
 
 exports[`Badge should be rendered correctly with props 1`] = `
 <div
-  className="container uui-button-box uui-enabled -clickable root font-sans-semibold style-square size-12 fill-light color-sky root"
+  className="container uui-button-box uui-enabled -clickable root font-sans style-square size-12 fill-light color-sky root"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -46,6 +46,17 @@ exports[`Badge should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
     onClick={[MockFunction]}
-  />
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
+    >
+      <use
+        xlinkHref="#btn-cross-12.svg"
+      />
+    </svg>
+  </div>
 </div>
 `;

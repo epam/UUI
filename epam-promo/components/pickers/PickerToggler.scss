@@ -23,19 +23,101 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     padding-left: 5px;
     padding-right: 5px;
     width: 100%;
-    fill: $gray60;
     box-sizing: border-box;
-    background-color: $white;
-    border-color: $gray40;
     border-style: solid;
 
-    &:hover {
-        border-color: $gray60;
+    &.mode-form {
+        background-color: $white;
+        border-color: $gray40;
+        fill: $gray60;
+
+        :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+            &:global(.uui-enabled) {
+                fill: $gray60;
+
+                &:hover {
+                    fill: $gray70;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                fill: $gray50;
+            }
+        }
+
+        &:hover {
+            border-color: $gray60;
+        }
+
+        &:global(.uui-focus) {
+            border-color: $blue;
+            outline: none;
+        }
     }
 
-    &:global(.uui-focus) {
-        border-color: $blue;
-        outline: none;
+    &.mode-cell {
+        background-color: transparent;
+        border-color: transparent;
+
+        :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+            cursor: pointer;
+
+            &:global(.uui-enabled) {
+                fill: transparent;
+            }
+
+            &:global(.uui-disabled) {
+                fill: transparent;
+            }
+        }
+
+        &:hover {
+            background-color: white;
+            border-color: $gray40;
+
+            :global(.uui-icon):global(.-clickable), :global(.uui-icon) {
+                &:global(.uui-enabled) {
+                    fill: $gray60;
+
+                    &:hover {
+                        fill: $gray70;
+                    }
+                }
+
+                &:global(.uui-disabled) {
+                    fill: transparent;
+                }
+            }
+        }
+
+        &:global(.uui-focus) {
+            background-color: white;
+            border-color: $blue;
+            outline: none;
+        }
+    }
+
+    &:global(.uui-invalid) {
+        &.mode-form, &.mode-cell {
+            border-color: $red;
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+    }
+
+    &:global(.uui-disabled) {
+        @include disabled-input();
+        fill: $gray50;
+
+        :global(.uui-input) {
+            cursor: default;
+
+            &::placeholder {
+                color: $gray50;
+            }
+        }
     }
 
     :global(.uui-input) {
@@ -111,41 +193,8 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         min-width: 42px;
     }
 
-    &:global(.uui-disabled) {
-        @include disabled-input();
-        fill: $gray50;
-
-        :global(.uui-input) {
-            cursor: default;
-
-            &::placeholder {
-                color: $gray60;
-            }
-        }
-    }
-
-    &:global(.uui-readonly) {
-        @include readonly-input();
-    }
-
-    &:global(.uui-invalid) {
-        border-color: $red;
-    }
-
-    :global(.uui-icon):global(.-clickable) {
-        cursor: pointer;
-
-        &:global(.uui-enabled) {
-            fill: $gray60;
-
-            &:hover {
-                fill: $gray70;
-            }
-        }
-
-        &:global(.uui-disabled) {
-            fill: $gray50;
-            cursor: default;
-        }
+    &.size-48 {
+        @include picker-toggler-vertical-layout(48px, 1px);
+        min-width: 48px;
     }
 }

@@ -409,7 +409,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
         let childKeys: string[] = [];
 
-        if (this.props.cascadeSelection) {
+        if (this.props.cascadeSelection || isRoot) {
             var result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
             let tree = result.tree;
 
@@ -500,15 +500,19 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let rowsCount: number;
         let totalCount: number;
+        let exactRowsCount: number;
         let lastVisibleIndex = this.value.topIndex + this.value.visibleCount;
 
         if (!this.props.getChildCount && this.tree.count) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
             rowsCount = this.tree.count;
+            exactRowsCount = this.tree.count;
             totalCount = this.tree.count;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
+            exactRowsCount = this.rows.length;
+            totalCount = this.tree.recursiveCount;
         }  else {
             // We definitely have more rows to show below the last visible row. Let's tell that we have at least one more than is visible.
             rowsCount = Math.max(this.rows.length, lastVisibleIndex + 1);
@@ -517,7 +521,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return {
             rowsCount,
             knownRowsCount: this.rows.length,
-//            exactRowsCount: this.rows.length,
+            exactRowsCount: this.rows.length,
             totalCount,
             selectAll: this.selectAll,
         };

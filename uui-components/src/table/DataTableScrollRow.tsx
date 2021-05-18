@@ -36,6 +36,10 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
         }
     });
 
+    componentWillUnmount() {
+        this.resizeObserver.disconnect();
+    }
+
     wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties) {
         return (
             <ScrollBars
@@ -50,6 +54,7 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
                     this.clientWidth = node && node.clientWidth;
                 } }
                 renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
+
             >
                 { content }
             </ScrollBars>

@@ -1,19 +1,21 @@
 import React from 'react';
 import * as types from '../types';
-import * as css from './PickerToggler.scss';
 import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../icons/icons';
 import { Tag, TagSize } from '../widgets';
+import * as css from './PickerToggler.scss';
 
 const defaultSize = '36';
+const defaultMode = 'form';
 
 const mapSize = {
-    '48': '36',
+    '48': '42',
+    '42': '36',
     '36': '30',
-    '30' : '24',
+    '30': '24',
     '24': '18',
     'none': 'none',
 };
@@ -27,7 +29,7 @@ function applyPickerTogglerMods(mods: PickerInputMods) {
         colorStyle.colorSky,
         css.root,
         css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || 'form')],
+        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

@@ -217,6 +217,7 @@ export interface FeatureClass {
     id: string;
     name: string;
     description?: string;
+    order?: string;
 }
 
 export interface LanguageLevel {

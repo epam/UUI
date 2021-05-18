@@ -2,7 +2,7 @@
 
 exports[`Text should be rendered correctly 1`] = `
 <div
-  className="root font-sans text-color-gray80 line-height-24 font-size-14 v-padding-6 container"
+  className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
 >
   Test
 </div>

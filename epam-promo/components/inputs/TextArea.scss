@@ -7,8 +7,6 @@
     :global(.uui-input) {
         color: var(--text-color);
         fill: var(--icon-color);
-        background-color: var(--background-color);
-        border-color: var(--border-color);
         border-style: solid;
         font-family: $font-sans;
         box-sizing: border-box;
@@ -28,35 +26,80 @@
             opacity: 1;
         }
 
-        &:hover {
-            border-color: var(--border-color-hovered);
-        }
-
-        &:global(.uui-focus) {
-            border-color: var(--border-color-active);
-        }
-
-        &:global(.uui-invalid) {
-            border-color: var(--border-color-errored);;
-        }
-
         &:global(.uui-readonly) {
-            background-color: var(--background-color-readonly);
             color: var(--text-color);
             fill: var(--icon-color);
-            border-color: var(--border-color-readonly);
             pointer-events: none;
         }
 
         &:global(.uui-disabled) {
-            background-color: var(--background-color-disabled);
             color: var(--text-color-disabled);
             fill: var(--icon-color-disabled);
-            border-color: var(--border-color-disabled);
             pointer-events: none;
 
             &::placeholder {
                 color: var(--placeholder-color-disabled);
+            }
+        }
+    }
+
+    &.mode-form {
+        :global(.uui-input) {
+            background-color: var(--background-color);
+            border-color: var(--border-color);
+
+            &:hover {
+                border-color: var(--border-color-hovered);
+            }
+
+            &:global(.uui-focus) {
+                border-color: var(--border-color-active);
+            }
+
+            &:global(.uui-invalid) {
+                border-color: var(--border-color-errored);;
+            }
+
+            &:global(.uui-readonly) {
+                background-color: var(--background-color-readonly);
+                border-color: var(--border-color-readonly);
+            }
+
+            &:global(.uui-disabled) {
+                background-color: var(--background-color-disabled);
+                border-color: var(--border-color-disabled);
+            }
+        }
+    }
+
+    &.mode-cell {
+        :global(.uui-input) {
+            background-color: transparent;
+            border-color: transparent;
+
+            &:hover {
+                background-color: white;
+                border-color: var(--border-color);
+            }
+
+            &:global(.uui-focus) {
+                background-color: white;
+                border-color: var(--border-color-active);
+            }
+
+            &:global(.uui-invalid) {
+                background-color: white;
+                border-color: var(--border-color-errored);;
+            }
+
+            &:global(.uui-readonly) {
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+            &:global(.uui-disabled) {
+                background-color: transparent;
+                border-color: transparent;
             }
         }
     }

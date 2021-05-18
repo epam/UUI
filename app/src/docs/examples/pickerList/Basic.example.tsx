@@ -29,6 +29,7 @@ export class BasicPickerListExample extends React.Component<any, BasicPickerList
                     valueType='id'
                     maxDefaultItems={ 5 }
                     maxTotalItems={ 10 }
+                    sorting={ { field: 'name', direction: 'asc' } }
                 />
             </div>
         );
