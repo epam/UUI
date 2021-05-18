@@ -64,6 +64,7 @@
         "multifilter",
         "opentype",
         "overfetch",
+        "prefetch",
         "relogin",
         "resizable",
         "scrollable",
