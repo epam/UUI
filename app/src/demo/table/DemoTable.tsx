@@ -33,7 +33,7 @@ export const DemoTable: React.FC = () => {
     const [presets, setPresets] = useState<ITablePreset[]>(JSON.parse(localStorage.getItem("presets")) ?? []);
     const onPresetsChange = (presets: ITablePreset[]) => {
         setPresets(presets);
-        localStorage.setItem("presets", JSON.stringify(presets));
+        localStorage.setItem("presets", JSON.stringify(presets));     // userSettingsContext
     };
 
     useEffect(() => {

@@ -1,56 +1,13 @@
 import * as React from 'react';
-import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag, DatePicker, RangeDatePicker } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, ILens, IEditable } from '@epam/uui';
+import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
+import { DataQueryFilter, DataColumnProps } from '@epam/uui';
 import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
-import ColumnDatePicker from "./ColumnDatePicker";
 import { addFiltersToColumns } from "./helpers";
 
 export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
-    const makeFilterRenderCallback = (filterKey: string) => {
-        const filter = filters.find(f => f.id === filterKey);
-
-        const Filter = (props: IEditable<any>) => {
-            switch (filter.type) {
-                case "singlePicker":
-                    return (
-                        <ColumnPickerFilter
-                            dataSource={ filter.dataSource }
-                            selectionMode="single"
-                            valueType="id"
-                            getName={ i => i?.name || "Not Specified" }
-                            showSearch
-                            { ...props }
-                        />
-                    );
-                case "multiPicker":
-                    return (
-                        <ColumnPickerFilter
-                            dataSource={ filter.dataSource }
-                            selectionMode="multi"
-                            valueType="id"
-                            getName={ i => i?.name || "Not Specified" }
-                            showSearch
-                            { ...props }
-                        />
-                    );
-                case "datePicker":
-                    return <DatePicker format="DD/MM/YYYY" { ...props }/>;
-                case "rangeDatePicker":
-                    return <RangeDatePicker { ...props }/>;
-            }
-        };
-
-        return (filterLens: ILens<any>) => {
-            if (!filter) return null;
-
-            const props = filterLens.prop(filter.id).toProps();
-            return <Filter { ...props } />;
-        };
-    };
-
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
@@ -59,7 +16,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             width: 200,
             fix: 'left',
             isSortable: true,
-        }, 
+        },
         {
             key: 'profileStatus',
             caption: 'Profile Status',
@@ -205,7 +162,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
     ];
 
     return {
-        personColumns: addFiltersToColumns(personColumns, filters, makeFilterRenderCallback),
+        personColumns: addFiltersToColumns(personColumns, filters),
         groupColumns,
     };
 }
