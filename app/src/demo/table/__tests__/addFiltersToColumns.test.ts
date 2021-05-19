@@ -48,7 +48,7 @@ describe('addFiltersToColumns', () => {
     ];
 
     it('should add filters to columns', () => {
-        const result = addFiltersToColumns(columns, filters, jest.fn());
+        const result = addFiltersToColumns(columns, filters);
         const filterIds = filters.map(f => f.id);
 
         const columnsWithFilters = result.filter(column => filterIds.includes(column.filterId));

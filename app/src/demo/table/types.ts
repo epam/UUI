@@ -8,10 +8,12 @@ type PersonTableRecordId = [PersonTableRecord['__typename'], string | number];
 // type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
 type PersonTableFilter = { [key: string]: any, groupBy?: string };
 
+// field: string; вместо id
+// filterKey(key): string;
 interface ITableFilter {
     title: string;
-    id: string;
-    field?: string;
+    id: string; // key
+    field?: string; // columnKey
     type: 'singlePicker' | 'multiPicker' | 'datePicker' | 'rangeDatePicker';
     dataSource: IDataSource<any, any, any>;
 }
