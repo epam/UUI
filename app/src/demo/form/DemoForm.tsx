@@ -14,6 +14,8 @@ import * as mailIcon from '@epam/assets/icons/common/communication-mail-18.svg';
 import * as addIcon from '@epam/assets/icons/common/action-add-18.svg';
 import * as clearIcon from '@epam/assets/icons/common/navigation-close-24.svg';
 import * as css from './DemoForm.scss';
+import IMask from 'imask';
+import { IMaskInput } from 'react-imask';
 
 interface DemoFormState {
     person: PersonDetails;
@@ -26,6 +28,8 @@ const tShirtSizes = [
     { id: 4, caption: 'L' },
     { id: 5, caption: 'XL' },
 ];
+
+export let instanceMask: IMask.Masked<any> = null;
 
 export class DemoForm extends React.Component<{}, DemoFormState> {
     state: DemoFormState = {
@@ -167,6 +171,7 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
 
     renderContactsSection = (lens: ILens<PersonDetails>) => {
         const contactsLens = lens.prop('contacts');
+
         return (
             <>
                 <RichTextView><h3>Contacts</h3></RichTextView>
@@ -177,7 +182,27 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                             <TextInput
                                 { ...contactsLens.prop('phoneNumber').toProps() }
                                 icon={ phoneIcon }
-                                placeholder='+000(00)000-00-00'
+                                placeholder='+375(29)111-11-11'
+                                renderInput={
+                                    ({ value, onChange, ...restProps }) =>
+                                        <IMaskInput
+                                            { ...restProps }
+                                            onAccept={ (value, mask: IMask.Masked<any>, e: InputEvent) => {
+                                                instanceMask = mask;
+                                                return onChange(value);
+                                            } }
+                                            value={ value as string }
+                                            mask={ '+375(NN)000-00-00' }
+                                            overwrite={ true }
+                                            lazy={ false }
+                                            blocks={ {
+                                                NN: {
+                                                    mask: IMask.MaskedEnum,
+                                                    enum: ['25', '29', '33', '44'],
+                                                },
+                                            } }
+                                        />
+                                }
                             />
                         </LabeledInput>
                     </FlexCell>
@@ -529,8 +554,9 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                         { this.renderMilitaryServiceSection(lens) }
                         { this.renderOtherInfoSection(lens) }
                         <div className={ css.divider }> </div>
-                        <FlexRow>
+                        <FlexRow spacing='12'>
                             <FlexSpacer />
+                            <Button caption='Validate' color='blue' onClick={ props.validate } />
                             <Button caption='Save' color='green' onClick={ props.save } />
                         </FlexRow>
                     </FlexCell>
