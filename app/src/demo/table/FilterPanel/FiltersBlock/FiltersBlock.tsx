@@ -18,6 +18,8 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ filters, value, onValu
             },
         });
     }, [value, onValueChange]);
+    
+    console.log("FiltersBlockComponent", value);
 
     return (
         <Accordion title="Filters" mode="inline" padding="18">

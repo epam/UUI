@@ -15,12 +15,10 @@ import { ColumnsBlock } from "./ColumnsBlock";
 interface IFilterPanelProps extends IEditable<PersonsTableState> {
     close: () => void;
     filters: ITableFilter[];
-    presets: ITablePreset[];
-    onPresetsChange: (presets: ITablePreset[]) => void;
     columns: DataColumnProps<any>[];
 }
 
-const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onValueChange, presets, onPresetsChange, columns }) => {
+const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onValueChange, columns }) => {
     return (
         <div className={ css.container }>
             <FlexRow borderBottom size="48" padding="18">
@@ -30,16 +28,14 @@ const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onVal
             </FlexRow>
             <ScrollBars>
                 <PresetsBlock
-                    presets={ presets }
-                    onPresetsChange={ onPresetsChange }
                     value={ value }
                     onValueChange={ onValueChange }
                     columns={ columns }
                 />
                 <FiltersBlock
-                    filters={ filters }
                     value={ value }
                     onValueChange={ onValueChange }
+                    filters={ filters }
                 />
                 <ColumnsBlock
                     value={ value }

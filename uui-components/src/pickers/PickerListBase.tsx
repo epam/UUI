@@ -167,6 +167,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         }
 
         const dataSourceState = this.getDataSourceState();
+        console.log("dataSourceState", dataSourceState);
 
         // TBD: What if user doesn't want to sort selection? E.g. he has manually sorted Enum, or already passed ordered ids in defaultIds
         const sorting = dataSourceState.sorting && dataSourceState.sorting[0];
