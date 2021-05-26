@@ -34,7 +34,8 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
             .then((value: any) => {
                 this.appendLastSelected([...this.getSelectedIdsArray(value)]);
                 (this.props.onValueChange as any)(value);
-            });
+            })
+            .catch(() => null);
     }
 
     defaultRenderToggler = (props: IClickable) => <LinkButton
