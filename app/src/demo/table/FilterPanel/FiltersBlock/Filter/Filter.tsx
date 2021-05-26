@@ -12,6 +12,7 @@ interface IFilterProps<T> extends ITableFilter, IEditable<{ [key: string]: (T | 
 const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
     const { id, value, onValueChange, title, dataSource, type } = props;
     const [isOpened, setIsOpened] = useState(false);
+    console.log("VALUE", value, dataSource);
 
     const handleChange = useCallback((value: (T | T[])) => {
         onValueChange({ [id]: value });
@@ -20,6 +21,8 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
     const toggle = () => setIsOpened(!isOpened);
 
     const renderPicker = () => {
+        console.log("renderPicker", value, value?.[id]);
+        
         switch (type) {
             case "singlePicker":
                 return (

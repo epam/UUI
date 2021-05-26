@@ -1,20 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
 import css from './DemoTable.scss';
-import isEqual from "lodash.isequal";
 import { LazyDataSource, DataRowProps, DataRowOptions, cx, getColumnsConfig } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
 
-import { svc } from "../../services";
 import { getFilters, api } from "./data";
 import { getColumns } from "./columns";
-import { ITablePreset, PersonTableRecord, PersonTableRecordId } from './types';
-import { useFilterPanelOptions, useInfoPanelOptions, useTableValue } from "./hooks";
+import { PersonTableRecord, PersonTableRecordId } from './types';
+import { useFilterPanelOptions, useInfoPanelOptions, useTableState } from "./hooks";
 import { FilterPanel } from "./FilterPanel";
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { Presets } from "./Presets";
-import { parseFilterUrl } from "./helpers";
 
 export const DemoTable: React.FC = () => {
     const filterPanelOptions = useFilterPanelOptions();
@@ -23,35 +20,19 @@ export const DemoTable: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(() => getColumns(filters, infoPanelOptions.openPanel), []);
 
-    const [value, onValueChange, setValue] = useTableValue({
-        topIndex: 0,
-        visibleCount: 40,
-        sorting: [{ field: 'name' }],
-        isFolded: true,
-        columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
+    const { value, onValueChange } = useTableState({
+        value: {
+            topIndex: 0,
+            visibleCount: 40,
+            sorting: [{ field: 'name' }],
+            isFolded: true,
+            columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
+            presets: JSON.parse(localStorage.getItem("presets")) ?? [],
+        },
+        onValueChange: newValue => localStorage.setItem("presets", JSON.stringify(newValue.presets)),
+        columns: columnsSet.personColumns,
     });
-    const [presets, setPresets] = useState<ITablePreset[]>(JSON.parse(localStorage.getItem("presets")) ?? []);
-    const onPresetsChange = (presets: ITablePreset[]) => {
-        setPresets(presets);
-        localStorage.setItem("presets", JSON.stringify(presets));     // userSettingsContext
-    };
-
-    useEffect(() => {
-        const filter = parseFilterUrl();
-        const hasFilterChanged = !isEqual(filter, value.filter);
-
-        const presetId = +svc.uuiRouter.getCurrentLink().query.presetId;
-        const activePreset = presets.find(p => p.id === presetId);
-        const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, value.columnsConfig);
-        
-        if (!hasFilterChanged && !hasColumnsConfigChanged) return;
-        
-        setValue({
-            ...value,
-            filter,
-            columnsConfig: activePreset?.columnsConfig ?? getColumnsConfig(columnsSet.personColumns, {}),
-        });
-    }, [location.search]);
+    console.log("Demo table", value);
 
     const dataSource = useMemo(() => new LazyDataSource({
         api,
@@ -75,7 +56,7 @@ export const DemoTable: React.FC = () => {
         return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns }/>;
     };
 
-    const personsDataView = dataSource.useView(value, onValueChange, {
+    const personsDataView = dataSource.useView(value, onValueChange as any, {
         rowOptions,
         isFoldedByDefault: () => value.isFolded,
         cascadeSelection: true,
@@ -92,8 +73,6 @@ export const DemoTable: React.FC = () => {
                 <div className={ cx(css.filterSidebarPanelWrapper, filterPanelOptions.panelStyleModifier) }>
                     <FilterPanel
                         filters={ filters }
-                        presets={ presets }
-                        onPresetsChange={ onPresetsChange }
                         value={ value }
                         onValueChange={ onValueChange }
                         columns={ columnsSet.personColumns }
@@ -114,8 +93,6 @@ export const DemoTable: React.FC = () => {
                         </div>
                     ) }
                     <Presets
-                        presets={ presets }
-                        onPresetsChange={ onPresetsChange }
                         value={ value }
                         onValueChange={ onValueChange }
                         columns={ columnsSet.personColumns }

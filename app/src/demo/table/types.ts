@@ -20,6 +20,7 @@ interface ITableFilter {
 
 interface PersonsTableState extends DataTableState {
     isFolded?: boolean;
+    presets?: ITablePreset[];
 }
 
 interface ITablePreset {

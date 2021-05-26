@@ -10,26 +10,23 @@ import { constants } from "../data";
 import { useChoosePreset, useCreateNewPreset } from "../hooks";
 
 interface IPresetsProps extends IEditable<PersonsTableState> {
-    presets: ITablePreset[];
-    onPresetsChange: (presets: ITablePreset[]) => void;
     columns: DataColumnProps<any>[];
 }
 
-const Presets: React.FC<IPresetsProps> = ({ presets, onPresetsChange, value, onValueChange, columns }) => {
+const Presets: React.FC<IPresetsProps> = ({ value, onValueChange, columns }) => {
     const newPresetTitle = "New preset";
 
     const choosePreset = useChoosePreset(value, onValueChange);
 
     const createNewPreset = useCreateNewPreset({
-        presets,
-        onPresetsChange,
         choosePreset,
         value,
+        onValueChange,
     });
     const saveNewPreset = useCallback(() => createNewPreset(newPresetTitle), [createNewPreset]);
 
     const duplicatePreset = useCallback((preset: ITablePreset) => {
-        const maxId = Math.max.apply(null, presets.map(p => p.id));
+        const maxId = Math.max.apply(null, value.presets.map(p => p.id));
 
         const newPreset: ITablePreset = {
             id: maxId + 1,
@@ -39,41 +36,54 @@ const Presets: React.FC<IPresetsProps> = ({ presets, onPresetsChange, value, onV
             isReadonly: false,
         };
 
-        onPresetsChange([...presets, newPreset]);
+        // onValueChange({
+        //     ...value,
+        //     presets: [...value.presets, newPreset],
+        // });
         choosePreset(newPreset);
 
         onValueChange({
             ...value,
             filter: newPreset.filter,
             columnsConfig: newPreset.columnsConfig,
+            presets: [...value.presets, newPreset],
         });
-    }, [presets, onPresetsChange, value, onValueChange]);
+    }, [value, onValueChange]);
 
     const deletePreset = useCallback((preset: ITablePreset) => {
-        const newPresets = presets.filter(p => p.id !== preset.id);
-        onPresetsChange(newPresets);
-    }, [presets, onPresetsChange]);
+        const newPresets = value.presets.filter(p => p.id !== preset.id);
+        onValueChange({
+            ...value,
+            presets: newPresets,
+        });
+    }, [value, onValueChange]);
 
     const renamePreset = useCallback((newPreset: ITablePreset) => {
-        const newPresets = presets.map(p => p.id === newPreset.id ? newPreset : p);
-        onPresetsChange(newPresets);
-    }, [presets, onPresetsChange]);
+        const newPresets = value.presets.map(p => p.id === newPreset.id ? newPreset : p);
+        onValueChange({
+            ...value,
+            presets: newPresets,
+        });
+    }, [value, onValueChange]);
 
     const updatePreset = useCallback((preset: ITablePreset) => {
-        const newPresets = [...presets];
+        const newPresets = [...value.presets];
         const newPreset = {
             ...preset,
             filter: value.filter,
             columnsConfig: value.columnsConfig,
         };
         newPresets.splice(newPresets.findIndex(p => p.id === preset.id), 1, newPreset);
-        onPresetsChange(newPresets);
-    }, [presets, onPresetsChange, value.filter, value.columnsConfig]);
+        onValueChange({
+            ...value,
+            presets: newPresets,
+        });
+    }, [value, onValueChange]);
 
     const activePresetId = +svc.uuiRouter.getCurrentLink().query?.presetId;
     const isDefaultActive = useMemo(() => isDefaultPresetActive(value, columns), [value, columns]);
 
-    const activePreset = presets.find(p => p.id === activePresetId);
+    const activePreset = value.presets.find(p => p.id === activePresetId);
     const hasActivePresetChanged = useMemo(() => {
         return !isDefaultActive && hasPresetChanged(activePreset, value.columnsConfig);
     }, [isDefaultActive, activePreset, value.columnsConfig, value.filter]);
@@ -88,7 +98,7 @@ const Presets: React.FC<IPresetsProps> = ({ presets, onPresetsChange, value, onV
                 fill={ isDefaultActive ? "solid" : "white" }
                 onClick={ isDefaultActive ? null : resetToDefault }
             />
-            { presets.map(preset => (
+            { value.presets.map(preset => (
                 <Preset
                     preset={ preset }
                     isActive={ preset.id === activePresetId }

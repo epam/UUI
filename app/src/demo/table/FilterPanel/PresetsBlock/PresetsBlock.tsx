@@ -11,12 +11,10 @@ import { constants } from "../../data";
 import { useChoosePreset, useCreateNewPreset } from "../../hooks";
 
 interface IPresetsBlockProps extends IEditable<PersonsTableState> {
-    presets: ITablePreset[];
-    onPresetsChange: (presets: ITablePreset[]) => void;
     columns: DataColumnProps<any>[];
 }
 
-const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, onPresetsChange, value, onValueChange, columns }) => {
+const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, columns }) => {
     const [isOpened, setIsOpened] = useState(false);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -30,10 +28,9 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, onPresetsChange, 
     }, []);
     
     const createNewPreset = useCreateNewPreset({
-        presets, 
-        onPresetsChange,
         choosePreset,
         value,
+        onValueChange,
     });
 
     const saveNewPreset = useCallback(() => {
@@ -46,7 +43,7 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, onPresetsChange, 
 
         setIsAddingPreset(false);
         setInputValue("");
-    }, [inputValue, presets, value.filter, choosePreset]);
+    }, [inputValue, value, onValueChange, choosePreset]);
 
     const renderAddPresetIcon = useCallback(() => {
         return (
@@ -81,7 +78,7 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, onPresetsChange, 
                     size="36"
                     cx={ css.button }
                 />
-                { presets.map(preset => {
+                { value.presets.map(preset => {
                     const isActive = preset.id === activePresetId;
                     const hasChanged = isActive && hasPresetChanged(preset, value.columnsConfig);
                     return (
