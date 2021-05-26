@@ -30,7 +30,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             renderRow={ this.renderRow }
             selectionMode={ this.props.selectionMode as any }
             valueType={ this.props.valueType as any }
-        />).then(newSelection => this.handleSelectionValueChange(newSelection));
+        />)
+            .then(newSelection => this.handleSelectionValueChange(newSelection))
+            .catch(() => null);
     }
 
     getRowSize() {

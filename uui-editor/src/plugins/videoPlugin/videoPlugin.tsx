@@ -17,7 +17,8 @@ export const videoPlugin = () => {
 
 const VideoButton = (props: { editor: Editor }, context: UuiContexts) => {
     return <ToolbarButton
-        onClick={ () => context.uuiModals.show<string>(modalProps => <AddVideoModal { ...modalProps } editor={ props.editor } />) }
+        onClick={ () => context.uuiModals.show<string>(modalProps => <AddVideoModal { ...modalProps } editor={ props.editor } />)
+            .catch(() => null) }
         icon={ videoIcon }
         isDisabled={ isTextSelected(props.editor) }
     />;

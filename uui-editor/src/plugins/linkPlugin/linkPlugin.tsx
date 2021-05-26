@@ -30,7 +30,8 @@ export const linkPlugin = () => {
 };
 
 export const LinkButton = (props: { editor: any }, context: UuiContexts) => {
-    return <ToolbarButton isActive={ (props.editor as any).hasLink() } icon={ linkIcon } onClick={ () => context.uuiModals.show<string>(modalProps => <AddLinkModal { ...modalProps } editor={ props.editor } />) } />;
+    return <ToolbarButton isActive={ (props.editor as any).hasLink() } icon={ linkIcon } onClick={ () => context.uuiModals.show<string>(modalProps => <AddLinkModal { ...modalProps } editor={ props.editor } />)
+        .catch(() => null) } />;
 };
 LinkButton.contextTypes = uuiContextTypes;
 
