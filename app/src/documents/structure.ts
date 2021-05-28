@@ -5,7 +5,7 @@ import {
     TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
     GettingStartedForDesignersDoc, ChangeManagementProcessDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
-    FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc,
+    FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
 } from "../docs";
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -66,6 +66,7 @@ const componentsStructure = sortBy([
     { id: 'richTextEditor', name: 'Rich Text Editor', component: RichTextEditorDoc, parentId: 'components' },
     { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
     { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
+    { id: 'virtualList', name: 'VirtualList', component: VirtualListDoc, parentId: 'components' },
 
 ], ['name']);
 

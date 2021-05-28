@@ -160,7 +160,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               className="container2"
               style={
                 Object {
-                  "height": null,
+                  "minHeight": null,
                 }
               }
             >
@@ -168,7 +168,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 className="container3"
                 style={
                   Object {
-                    "top": 0,
+                    "marginTop": 0,
                   }
                 }
               >
@@ -763,7 +763,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
               className="container2"
               style={
                 Object {
-                  "height": null,
+                  "minHeight": null,
                 }
               }
             >
@@ -771,7 +771,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 className="container3"
                 style={
                   Object {
-                    "top": 0,
+                    "marginTop": 0,
                   }
                 }
               >

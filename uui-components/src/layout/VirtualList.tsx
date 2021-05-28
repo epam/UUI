@@ -105,7 +105,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
 
-        return <div className={ css.container3 } style={ { top: topY } }>
+        return <div className={ css.container3 } style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }
@@ -135,7 +135,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         let estimatedHeight = lastOffset;
 
         if (this.estimatedHeight != estimatedHeight) {
-            this.container2.style.setProperty('height', `${estimatedHeight}px`);
+            this.container2.style.setProperty('min-height', `${estimatedHeight}px`);
         }
 
         this.estimatedHeight = estimatedHeight;
@@ -167,7 +167,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
                     renderThumbHorizontal={ () => <div className='uui-thumb-horizontal'/> }
                     renderThumbVertical={ () => <div className='uui-thumb-vertical'/> }
                 >
-                    <div className={ css.container2 } style={ { height: this.estimatedHeight } }>
+                    <div className={ css.container2 } style={ { minHeight: this.estimatedHeight } }>
                         { this.renderRows() }
                     </div>
                 </ScrollBars>
