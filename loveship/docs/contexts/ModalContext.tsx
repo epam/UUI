@@ -13,7 +13,9 @@ export class ModalContext extends React.Component<DemoComponentProps, any> {
         const { DemoComponent, props } = this.props;
         this.context.uuiModals.show(modalProps =>
                 <DemoComponent { ...props } { ...modalProps }/>,
-            ).then(result => this.setState({ result }));
+            )
+            .then(result => this.setState({ result }))
+            .catch(() => null);
     }
 
     render() {
