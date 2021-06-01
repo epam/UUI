@@ -72,7 +72,7 @@ Array [
             className="container2"
             style={
               Object {
-                "height": null,
+                "minHeight": null,
               }
             }
           >
@@ -80,7 +80,7 @@ Array [
               className="container3"
               style={
                 Object {
-                  "top": 0,
+                  "marginTop": 0,
                 }
               }
             />

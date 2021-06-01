@@ -1,7 +1,15 @@
+# next release
+
+**What’s New**
+
+**What’s Fixed**
+* updated react-measure package
+
 # 4.0.0 - 07.05.2021
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
+  
   Quick start:
     - pass the ```getChildCount(item): number``` prop. It should return an either:
 
