@@ -67,7 +67,9 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     defaultConfig={ this.getDefaultColumnsConfig() }
 
                 />
-            )).then(this.setColumnsConfig);
+            ))
+            .then(this.setColumnsConfig)
+            .catch(() => null);
     }
 
     renderNoResultsBlock = () => {
