@@ -20,7 +20,7 @@
     "@types/lodash.range": "3.2.6",
     "@types/query-string": "6.1.0",
     "@types/react-custom-scrollbars": "4.0.3",
-    "@types/react-measure": "^2.0.6",
+    "@types/react-measure": "2.0.6",
     "@types/react-transition-group": "2.0.6",
     "@types/resize-observer-browser": "0.1.5",
     "classnames": "2.2.6",
