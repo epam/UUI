@@ -11,7 +11,6 @@ declare module '*.svg' {
 
 declare module "tether-tooltip";
 declare module "jsurl";
-declare module "react-measure";
 declare module "inline-style-transformer";
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
