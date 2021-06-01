@@ -45,7 +45,8 @@ export const imagePlugin = () => {
 
 export const ImageButton = (props: { editor: Editor }, context: UuiContexts) => {
     return <ToolbarButton
-        onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />) }
+        onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />)
+            .catch(() => null) }
         icon={ imageIcon }
         isDisabled={ isTextSelected(props.editor) }
     />;
