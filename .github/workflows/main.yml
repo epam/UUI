@@ -63,24 +63,23 @@ jobs:
         with:
           node-version: '14.x'
           
-      - name: Restore node_modules
-        id: cache-node-modules
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            ./*/node_modules
-            app
-            public
-            server
-            changelog.md
-            package.json
-          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+#      - name: Restore node_modules
+#        id: cache-node-modules
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            node_modules
+#            ./*/node_modules
+#            app
+#            public
+#            server
+#            changelog.md
+#            package.json
+#          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
           
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-        
+        uses: docker/setup-qemu-action@v1  
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
