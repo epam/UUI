@@ -27,12 +27,10 @@ export const DemoTable: React.FC = () => {
             sorting: [{ field: 'name' }],
             isFolded: true,
             columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
-            presets: JSON.parse(localStorage.getItem("presets")) ?? [],
         },
-        onValueChange: newValue => localStorage.setItem("presets", JSON.stringify(newValue.presets)),
-        columns: columnsSet.personColumns,
+        loadPresets: () => JSON.parse(localStorage.getItem("presets")) ?? [],
+        onPresetsSave: newPresets => localStorage.setItem("presets", JSON.stringify(newPresets)),
     });
-    console.log("Demo table", value);
 
     const dataSource = useMemo(() => new LazyDataSource({
         api,

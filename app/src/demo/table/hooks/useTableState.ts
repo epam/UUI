@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import isEqual from "lodash.isequal";
-import { DataColumnProps, getColumnsConfig } from "@epam/uui";
+import { ColumnsConfig } from "@epam/uui";
 import { svc } from "../../../services";
 import { ITablePreset, PersonsTableState } from "../types";
 import { normalizeFilter, parseFilterUrl } from "../helpers";
 
 export const useTableState = <T extends ITableState>(initialState: IInitialState<T>) => {
-    console.log(initialState);
     const [value, setValue] = useState<PersonsTableState>({
         filter: parseFilterUrl(),
-        presets: [],
         ...initialState.value,
+        presets: initialState.loadPresets(),
     });
 
     const onValueChange = useCallback((value: T) => {
-        console.log("onValueChange", value);
         const newValue = { ...value, filter: normalizeFilter(value.filter) };
         setValue(newValue);
 
@@ -29,6 +27,7 @@ export const useTableState = <T extends ITableState>(initialState: IInitialState
         });
 
         initialState.onValueChange?.(value);
+        initialState.onPresetsSave?.(value.presets);
     }, []);
 
     useEffect(() => {
@@ -44,7 +43,7 @@ export const useTableState = <T extends ITableState>(initialState: IInitialState
         setValue({
             ...value,
             filter,
-            columnsConfig: activePreset?.columnsConfig ?? getColumnsConfig(initialState.columns, {}),
+            columnsConfig: activePreset?.columnsConfig ?? initialState.value.columnsConfig,
         });
     }, [location.search]);
 
@@ -52,9 +51,10 @@ export const useTableState = <T extends ITableState>(initialState: IInitialState
 };
 
 interface IInitialState<T> {
-    columns: DataColumnProps<any>[];
     value: T;
+    loadPresets: () => ITablePreset[];
     onValueChange?: (newValue: T) => void;
+    onPresetsSave?: (newPresets: ITablePreset[]) => void;
 }
 
-type ITableState = { filter?: any } & Record<string, any>;
+type ITableState = { filter?: any, columnsConfig: ColumnsConfig } & Record<string, any>;

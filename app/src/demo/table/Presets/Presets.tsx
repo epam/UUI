@@ -23,7 +23,7 @@ const Presets: React.FC<IPresetsProps> = ({ value, onValueChange, columns }) => 
         value,
         onValueChange,
     });
-    const saveNewPreset = useCallback(() => createNewPreset(newPresetTitle), [createNewPreset]);
+    const saveNewPreset = useCallback(() => createNewPreset(newPresetTitle), [createNewPreset, newPresetTitle]);
 
     const duplicatePreset = useCallback((preset: ITablePreset) => {
         const maxId = Math.max.apply(null, value.presets.map(p => p.id));
@@ -109,6 +109,8 @@ const Presets: React.FC<IPresetsProps> = ({ value, onValueChange, columns }) => 
                     renamePreset={ renamePreset }
                     updatePreset={ updatePreset }
                     key={ preset.id }
+                    value={ value }
+                    onValueChange={ onValueChange }
                 />
             )) }
 
