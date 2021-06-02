@@ -21,7 +21,7 @@
     "@types/query-string": "6.1.0",
     "@types/react-custom-scrollbars": "4.0.3",
     "@types/react-measure": "2.0.6",
-    "@types/react-transition-group": "2.0.6",
+    "@types/react-transition-group": "4.4.1",
     "@types/resize-observer-browser": "0.1.5",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
@@ -33,7 +33,7 @@
     "react-custom-scrollbars": "4.2.1",
     "react-measure": "2.5.2",
     "react-popper": "2.2.4",
-    "react-transition-group": "2.2.1"
+    "react-transition-group": "4.4.2"
   },
   "peerDependencies": {
     "prop-types": "*",
