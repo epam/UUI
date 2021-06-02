@@ -46,7 +46,7 @@ jobs:
       run: yarn test
       
   docker:
-    needs: build
+    needs: build-and-test
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ui
