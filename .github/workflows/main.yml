@@ -71,8 +71,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
         
-      - name: Build and push
-        id: docker_build
+      - name: ls
         run: ls -la
         
       - name: Build and push
