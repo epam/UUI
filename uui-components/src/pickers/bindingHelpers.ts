@@ -28,7 +28,6 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
     }
 
     applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
-        console.log("applyValueToDataSourceState", props, dsState);
         value = Array.isArray(value) && value || [];
         if (props.valueType === 'entity') {
             value = value.map((entity: any) => { dataSource && dataSource.setItem(entity); return dataSource && dataSource.getId(entity); });

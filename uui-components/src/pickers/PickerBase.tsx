@@ -136,7 +136,6 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     getDataSourceState = () => {
-        console.log("getDataSourceState", this.props);
         return applyValueToDataSourceState(this.props, this.state.dataSourceState, this.props.value, this.props.dataSource);
     }
 

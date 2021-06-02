@@ -15,7 +15,7 @@ interface IPresetsBlockProps extends IEditable<PersonsTableState> {
 }
 
 const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, columns }) => {
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, setIsOpened] = useState(true);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");
 
