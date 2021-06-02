@@ -32,6 +32,11 @@ jobs:
         path: |
           node_modules
           ./*/node_modules
+          app
+          public
+          server
+          changelog.md
+          package.json
         key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
         restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
       
