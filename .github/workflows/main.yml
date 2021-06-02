@@ -46,7 +46,7 @@ jobs:
       run: yarn test
       
   docker:
-        
+    needs: build-and-test
     runs-on: ubuntu-latest
     container: node:14
   
