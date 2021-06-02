@@ -71,6 +71,7 @@ jobs:
             changelog.md
             package.json
           key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
           
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -89,6 +90,7 @@ jobs:
       - name: Build and push
         id: docker_build
         run: |
+          ls 
           docker build -t ${{ secrets.REGISTRY_URL }}/$IMAGE_NAME:$GITHUB_SHA .
           docker push ${{ secrets.REGISTRY_URL }}/$IMAGE_NAME:$GITHUB_SHA
         
