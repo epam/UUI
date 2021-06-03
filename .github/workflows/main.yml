@@ -37,8 +37,7 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-        
+          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}        
       
       - name: build
         run: | 
@@ -48,6 +47,18 @@ jobs:
           cd server && yarn
       - name: test  
         run: yarn test
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: npm-artifact-$GITHUB_SHA
+          path: |
+            node_modules
+            ./*/node_modules
+            app
+            public
+            server
+            changelog.md
+            package.json
       
   docker:
     needs: build-and-test
@@ -60,18 +71,9 @@ jobs:
       - name: Check Out Repo 
         uses: actions/checkout@v2
       
-      - uses: actions/cache@v2
+      - uses: actions/download-artifact@v2
         with:
-          path: |
-            node_modules
-            ./*/node_modules
-            app
-            public
-            server
-            changelog.md
-            package.json
-          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: v1-npm-deps-
+          name: npm-artifact-$GITHUB_SHA
       
       - name: Login to registry
         uses: docker/login-action@v1 
