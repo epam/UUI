@@ -27,7 +27,7 @@ export const UuiContextProvider = <TApi, TAppContext>(props: ContextProviderProp
             props.onInitCompleted(uuiContexts.current);
             setIsLoaded(true);
         });
-    });
+    }, []);
 
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
     (uuiContexts.current.uuiErrors as any).discardError();
