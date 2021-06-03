@@ -22,33 +22,33 @@ jobs:
   
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+          
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ./*/node_modules
+            app
+            public
+            server
+            changelog.md
+            package.json
+          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
         
-    - uses: actions/cache@v2
-      with:
-        path: |
-          node_modules
-          ./*/node_modules
-          app
-          public
-          server
-          changelog.md
-          package.json
-        key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
       
-
-    - name: build
-      run: | 
-        yarn
-        yarn build
-        yarn generate-components-api
-        cd server && yarn
-    - name: test  
-      run: yarn test
+      - name: build
+        run: | 
+          yarn
+          yarn build
+          yarn generate-components-api
+          cd server && yarn
+      - name: test  
+        run: yarn test
       
   docker:
     needs: build-and-test
@@ -60,6 +60,19 @@ jobs:
     steps:
       - name: Check Out Repo 
         uses: actions/checkout@v2
+      
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ./*/node_modules
+            app
+            public
+            server
+            changelog.md
+            package.json
+          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
       
       - name: Login to registry
         uses: docker/login-action@v1 
