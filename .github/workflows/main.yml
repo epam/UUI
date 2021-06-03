@@ -37,8 +37,7 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-npm-deps-${{ GITHUB_SHA }}
-          restore-keys: v1-npm-deps-${{ GITHUB_SHA }}
+          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
         
       
       - name: build
@@ -71,8 +70,8 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-npm-deps-${{ GITHUB_SHA }}
-          restore-keys: v1-npm-deps-${{ GITHUB_SHA }}
+          key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: v1-npm-deps-
       
       - name: Login to registry
         uses: docker/login-action@v1 
