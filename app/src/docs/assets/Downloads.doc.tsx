@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as css from './DownloadsDoc.scss';
 import { Button, FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
 import { cx } from '@epam/uui';
-import { BaseDocsBlock, UUI4 } from '../../common/docs';
+import { BaseDocsBlock, UUI4 } from '../../common';
+import { getQuery } from '../../helpers';
 import * as linkIcon from '../../icons/action-external_link-18.svg';
 import * as fontIcon from '../../icons/fonts_icon.svg';
 import * as logotypeIcon from '../../icons/design_platform_icon.svg';
@@ -40,7 +41,7 @@ export class DownloadsDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        const isUUI4Skin = this.getQuery('skin') === UUI4;
+        const isUUI4Skin = getQuery('skin') === UUI4;
         return (
             <>
                 <FlexRow alignItems='top' cx={ css.headerRow } >
