@@ -37,8 +37,8 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-npm-deps-$GITHUB_SHA
-          restore-keys: v1-npm-deps-$GITHUB_SHA
+          key: v1-npm-deps-${{ GITHUB_SHA }}
+          restore-keys: v1-npm-deps-${{ GITHUB_SHA }}
         
       
       - name: build
@@ -71,8 +71,8 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-npm-deps-$GITHUB_SHA
-          restore-keys: v1-npm-deps-$GITHUB_SHA
+          key: v1-npm-deps-${{ GITHUB_SHA }}
+          restore-keys: v1-npm-deps-${{ GITHUB_SHA }}
       
       - name: Login to registry
         uses: docker/login-action@v1 
