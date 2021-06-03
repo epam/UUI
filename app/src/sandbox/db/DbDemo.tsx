@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { DbContext } from '@epam/uui-db';
-import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button } from '@epam/loveship';
-import * as css from './DbDemo.scss';
 import { DataSourceState, useLens, IEditable, LazyDataSource, LazyDataSourceApi, DataQueryFilter } from '@epam/uui';
+import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
+import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button } from '@epam/loveship';
+import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
+import * as css from './DbDemo.scss';
 
 export const DbDemoImpl = () => {
     const dbRef = useDemoDbRef();
@@ -19,8 +19,8 @@ export const DbDemoImpl = () => {
                 ...rq,
                 filter: { groupBy: 'jobTitle' },
                 search: null,
-                itemsRequest: { filter: rq.filter, search: rq.search }
-            } as any)
+                itemsRequest: { filter: rq.filter, search: rq.search },
+            } as any);
         } else {
             const result = await svc.api.demo.persons({ ...rq, filter: { ...rq.filter, jobTitleId: ctx.parentId } });
             dbRef.commitFetch({ persons: result.items });
@@ -29,7 +29,7 @@ export const DbDemoImpl = () => {
         }
     }, []);
 
-    const [ value, onValueChange ] = React.useState<DataSourceState>(() => ({
+    const [value, onValueChange] = React.useState<DataSourceState>(() => ({
         topIndex: 0,
         visibleCount: 30,
         sorting: [{ field: 'name' }],

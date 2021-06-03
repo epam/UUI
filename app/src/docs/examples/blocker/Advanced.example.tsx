@@ -8,7 +8,7 @@ export function AdvancedExample() {
     const renderForm = () => {
         return (
             <FlexCell minWidth={ 520 } cx={ css.form } >
-                <FlexRow padding='24' vPadding='24'>
+                <FlexRow spacing='12' padding='24' vPadding='24'>
                     <LabeledInput>
                         <LabeledInput label='Name' >
                             <TextInput value={ 'Alex' }  onValueChange={ undefined }/>
@@ -20,7 +20,7 @@ export function AdvancedExample() {
                         </LabeledInput>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow padding='24' vPadding='24'>
+                <FlexRow spacing='12' padding='24' vPadding='24'>
                     <LabeledInput>
                         <LabeledInput label='Age' >
                             <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
@@ -32,7 +32,7 @@ export function AdvancedExample() {
                         </LabeledInput>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow padding='24' vPadding='24'>
+                <FlexRow spacing='12' padding='24' vPadding='24'>
                     <FlexSpacer/>
                     <Button color='green' caption='Submit'/>
                     <Button color='blue' fill='none'  caption='Cancel'/>
