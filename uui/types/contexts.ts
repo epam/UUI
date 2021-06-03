@@ -2,6 +2,7 @@ import { Link, LayoutLayer } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
 import { FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4 } from "../services";
+import { AmplitudeClient } from "amplitude-js";
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -135,6 +136,7 @@ export interface IApiContext extends IBaseContext {
 export interface IAnalyticsContext {
     sendEvent(event?: AnalyticsEvent): void;
     sendPageView(path: string): void;
+    ampClient: AmplitudeClient;
 }
 
 export interface UuiContexts {
