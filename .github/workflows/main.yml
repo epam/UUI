@@ -34,7 +34,9 @@ jobs:
       - name: Cache yarn dependencies
         uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: |
+            node_modules
+            */*/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn
@@ -68,8 +70,8 @@ jobs:
         run: |
           ls -ln
           echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          echo "${{ steps.yarn-cache-dir-path.outputs.dir }}"
           echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
+          ls -d */*/node_modules
        
         
       - name: test  
@@ -93,7 +95,9 @@ jobs:
       - name: Cache yarn dependencies
         uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: |
+            node_modules
+            */*/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn
@@ -120,8 +124,8 @@ jobs:
         run: |
           ls -ln
           echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          echo "${{ steps.yarn-cache-dir-path.outputs.dir }}"
           echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
+          ls -d */*/node_modules
       
       - name: Login to registry
         uses: docker/login-action@v1 
