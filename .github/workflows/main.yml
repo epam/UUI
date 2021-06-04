@@ -55,7 +55,7 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-app-deps
+          key: v1-app-deps-${{ hashFiles('**/package.json') }}
       
       - name: build
         run: | 
@@ -64,8 +64,13 @@ jobs:
           yarn generate-components-api
           cd server && yarn
           
-      - name: ls
-        run: ls -la
+      - name: check cache key
+        run: |
+          ls -ln
+          echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+          echo "${{ steps.yarn-cache-dir-path.outputs.dir }}"
+          echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
+       
         
       - name: test  
         run: yarn test
@@ -89,7 +94,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn
 
@@ -109,8 +114,14 @@ jobs:
             server
             changelog.md
             package.json
-          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          restore-keys: v1-app-deps
+          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          
+      - name: check cache key
+        run: |
+          ls -ln
+          echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+          echo "${{ steps.yarn-cache-dir-path.outputs.dir }}"
+          echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
       
       - name: Login to registry
         uses: docker/login-action@v1 
