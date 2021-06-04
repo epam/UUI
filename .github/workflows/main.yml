@@ -37,15 +37,15 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn
 
-      - name: Cache npm dependencies
-        uses: actions/cache@v2
-        with:
-          path: '~/.npm'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-   
+      # - name: Cache npm dependencies
+        # uses: actions/cache@v2
+        # with:
+          # path: '~/.npm'
+          # key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          # restore-keys: |
+            # ${{ runner.os }}-node-   
             
       - uses: actions/cache@v2
         with:
@@ -55,7 +55,7 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          key: v1-app-deps
       
       - name: build
         run: | 
@@ -63,6 +63,10 @@ jobs:
           yarn build
           yarn generate-components-api
           cd server && yarn
+          
+      - name: ls
+        run: ls -la
+        
       - name: test  
         run: yarn test
         
@@ -85,17 +89,17 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn
 
-      - name: Cache npm dependencies
-        uses: actions/cache@v2
-        with:
-          path: '~/.npm'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-   
+      # - name: Cache npm dependencies
+        # uses: actions/cache@v2
+        # with:
+          # path: '~/.npm'
+          # key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          # restore-keys: |
+            # ${{ runner.os }}-node-   
             
       - uses: actions/cache@v2
         with:
@@ -105,7 +109,8 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          restore-keys: v1-app-deps
       
       - name: Login to registry
         uses: docker/login-action@v1 
