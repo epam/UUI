@@ -6,6 +6,7 @@
 * updated react-measure package
 * updated react-transition-group package
 * updated draft-js package
+* [uui-timeline]: removed deprecated method createFactory
 
 # 4.0.0 - 07.05.2021
 
