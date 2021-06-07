@@ -43,10 +43,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
 
-      - name: Install dependencies
-        if: steps.cache1.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
-        
+       
 # */*/node_modules
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -56,20 +53,19 @@ jobs:
           # restore-keys: |
             # ${{ runner.os }}-node-   
             
-      - uses: actions/cache@v2
-        with:
-          path: |
-            app
-            public
-            server
-            changelog.md
-            package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            v1-app-deps-
+      # - uses: actions/cache@v2
+        # with:
+          # path: |
+            # app
+            # public
+            # server
+            # changelog.md
+            # package.json
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          # restore-keys: |
+            # v1-app-deps-
 
-           
-      - name: build
+      - name: build app
         run: | 
           yarn
           yarn build
@@ -111,10 +107,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
-        if: steps.cache1.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
-
 #            */*/node_modules
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -124,17 +116,17 @@ jobs:
           # restore-keys: |
             # ${{ runner.os }}-node-   
             
-      - uses: actions/cache@v2
-        with:
-          path: |
-            app
-            public
-            server
-            changelog.md
-            package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            v1-app-deps-
+      # - uses: actions/cache@v2
+        # with:
+          # path: |
+            # app
+            # public
+            # server
+            # changelog.md
+            # package.json
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          # restore-keys: |
+            # v1-app-deps-
             
       - name: check cache key
         run: |
