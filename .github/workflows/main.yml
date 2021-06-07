@@ -37,10 +37,9 @@ jobs:
           path: |
             node_modules
             */*/node_modules
-          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          key: cache-yarn
-          # restore-keys: |
-            # ${{ runner.os }}-yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -58,9 +57,10 @@ jobs:
             server
             changelog.md
             package.json
-          key: cache-app
-          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-      
+          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            v1-app-deps-
+            
       - name: build
         run: | 
           yarn
@@ -73,8 +73,7 @@ jobs:
           ls -ln
           echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
-          ls -d */*/node_modules
-       
+     
         
       - name: test  
         run: yarn test
@@ -100,10 +99,9 @@ jobs:
           path: |
             node_modules
             */*/node_modules
-          key: cache-yarn
-          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          # restore-keys: |
-            # ${{ runner.os }}-yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -121,9 +119,10 @@ jobs:
             server
             changelog.md
             package.json
-          key: cache-app
-          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          
+          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            v1-app-deps-
+            
       - name: check cache key
         run: |
           ls -ln
