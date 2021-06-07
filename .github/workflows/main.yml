@@ -30,7 +30,8 @@ jobs:
       # - name: Get yarn cache directory path
         # id: yarn-cache-dir-path
         # run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
+        # check commit 
+        
       - name: Cache yarn dependencies
         uses: actions/cache@v2
         with:
