@@ -34,14 +34,20 @@ jobs:
         
       - name: Cache yarn dependencies
         uses: actions/cache@v2
+        id: cache1
         with:
           path: |
             node_modules
-            */*/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+
+      - name: Install dependencies
+        if: steps.cache1.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+        
+# */*/node_modules
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
         # with:
@@ -61,7 +67,8 @@ jobs:
           key: v1-app-deps-${{ hashFiles('**/package.json') }}
           restore-keys: |
             v1-app-deps-
-            
+
+           
       - name: build
         run: | 
           yarn
@@ -95,15 +102,20 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Cache yarn dependencies
+        id: cache1
         uses: actions/cache@v2
         with:
           path: |
             node_modules
-            */*/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Install dependencies
+        if: steps.cache1.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+
+#            */*/node_modules
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
         # with:
