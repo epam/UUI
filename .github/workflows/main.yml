@@ -27,9 +27,9 @@ jobs:
         with:
           node-version: '14.x'
           
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      # - name: Get yarn cache directory path
+        # id: yarn-cache-dir-path
+        # run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - name: Cache yarn dependencies
         uses: actions/cache@v2
@@ -37,9 +37,10 @@ jobs:
           path: |
             node_modules
             */*/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
+          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: cache-yarn
+          # restore-keys: |
+            # ${{ runner.os }}-yarn
 
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -57,7 +58,8 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          key: cache-app
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
       
       - name: build
         run: | 
@@ -98,9 +100,10 @@ jobs:
           path: |
             node_modules
             */*/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
+          key: cache-yarn
+          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          # restore-keys: |
+            # ${{ runner.os }}-yarn
 
       # - name: Cache npm dependencies
         # uses: actions/cache@v2
@@ -118,14 +121,15 @@ jobs:
             server
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          key: cache-app
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
           
       - name: check cache key
         run: |
           ls -ln
           echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
-          ls -d */*/node_modules
+
       
       - name: Login to registry
         uses: docker/login-action@v1 
