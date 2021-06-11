@@ -52,16 +52,27 @@ jobs:
           # key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           # restore-keys: |
             # ${{ runner.os }}-node-   
-            
-      - uses: actions/cache@v2
+
+      - uses: actions/upload-artifact@v2
         with:
+          name: my-artifact
           path: |
             app/
             public/
             server/
             changelog.md
             package.json
-          key: test1
+      
+            
+      # - uses: actions/cache@v2
+        # with:
+          # path: |
+            # app/
+            # public/
+            # server/
+            # changelog.md
+            # package.json
+          # key: test1
           # key: v1-app-deps-${{ hashFiles('**/package.json') }}
           # restore-keys: |
             # v1-app-deps-
@@ -117,30 +128,37 @@ jobs:
           # restore-keys: |
             # ${{ runner.os }}-node-   
             
-      - uses: actions/cache@v2
-        with:
-          path: |
-            app/
-            public/
-            server/
-            changelog.md
-            package.json
-          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          key: test1
+      # - uses: actions/cache@v2
+        # with:
+          # path: |
+            # app/
+            # public/
+            # server/
+            # changelog.md
+            # package.json
+          # # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          # key: test1
           # restore-keys: |
             # v1-app-deps-
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      
             
       - name: check cache key
         run: |
-          ls -ln
+          ls -l app/
+          ls -l server/
           echo $GITHUB_SHA
 # echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
 # echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
 
-      - name: install dependencies
-        run: | 
-          cd app && yarn 
-          cd ../server && yarn
+      # - name: install dependencies
+        # run: | 
+          # cd app && yarn 
+          # cd ../server && yarn
+          
       - name: Login to registry
         uses: docker/login-action@v1 
         with:
