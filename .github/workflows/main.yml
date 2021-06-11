@@ -79,15 +79,15 @@ jobs:
       - name: test  
         run: yarn test
         
-      - uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: |
-            app/
-            public/
-            server/
-            changelog.md
-            package.json
+      # - uses: actions/upload-artifact@v2
+        # with:
+          # name: my-artifact
+          # path: |
+            # app/
+            # public/
+            # server/
+            # changelog.md
+            # package.json
         
   docker:
     needs: build-and-test
@@ -136,10 +136,15 @@ jobs:
           # restore-keys: |
             # v1-app-deps-
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
-      
+      # - uses: actions/download-artifact@v2
+        # with:
+          # name: my-artifact
+      - name: build app
+        run: | 
+          yarn
+          yarn build
+          yarn generate-components-api
+          cd server && yarn      
             
       - name: check cache key
         run: |
