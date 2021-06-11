@@ -61,9 +61,10 @@ jobs:
             server/
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            v1-app-deps-
+          key: $GITHUB_SHA
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          # restore-keys: |
+            # v1-app-deps-
 
       - name: build app
         run: | 
@@ -124,15 +125,17 @@ jobs:
             server/
             changelog.md
             package.json
-          key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            v1-app-deps-
+          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
+          key: $GITHUB_SHA
+          # restore-keys: |
+            # v1-app-deps-
             
       - name: check cache key
         run: |
           ls -ln
-          echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
+          echo $GITHUB_SHA
+# echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
+# echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
 
       - name: install dependencies
         run: | 
