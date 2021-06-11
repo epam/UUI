@@ -6,6 +6,7 @@ COPY public public
 COPY server server
 COPY changelog.md changelog.md
 COPY package.json package.json
+RUN ls app
 #RUN cd app && yarn && cd ../server && yarn
 
 ENTRYPOINT ["yarn"]

@@ -53,16 +53,7 @@ jobs:
           # restore-keys: |
             # ${{ runner.os }}-node-   
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: |
-            app/
-            public/
-            server/
-            changelog.md
-            package.json
-      
+    
             
       # - uses: actions/cache@v2
         # with:
@@ -83,16 +74,20 @@ jobs:
           yarn build
           yarn generate-components-api
           cd server && yarn
-          
-      - name: check cache key
-        run: |
-          ls -ln
-          echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-          echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
-     
+           
         
       - name: test  
         run: yarn test
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: |
+            app/
+            public/
+            server/
+            changelog.md
+            package.json
         
   docker:
     needs: build-and-test
