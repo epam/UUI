@@ -61,7 +61,7 @@ jobs:
             server/
             changelog.md
             package.json
-          key: $GITHUB_SHA
+          key: test1
           # key: v1-app-deps-${{ hashFiles('**/package.json') }}
           # restore-keys: |
             # v1-app-deps-
@@ -126,7 +126,7 @@ jobs:
             changelog.md
             package.json
           # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          key: $GITHUB_SHA
+          key: test1
           # restore-keys: |
             # v1-app-deps-
             
