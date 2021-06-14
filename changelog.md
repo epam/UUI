@@ -1,6 +1,7 @@
 # next release
 
 **What’s New**
+* added new docs for designers
 
 **What’s Fixed**
 * updated react-measure package
