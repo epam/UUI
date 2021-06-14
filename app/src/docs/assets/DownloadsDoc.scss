@@ -8,9 +8,9 @@
 }
 
 .header-row {
-    padding-bottom: 30px;
+    padding-bottom: 24px;
     border-bottom: 1px solid $gray40;
-    margin-bottom: 30px;
+    margin-bottom: 48px;
 
     .content-block {
         margin-right: 24px;
@@ -21,11 +21,23 @@
     }
 }
 
+.library-block {
+    flex-wrap: wrap;
+
+    & > div {
+        margin-bottom: 24px;
+    }
+
+    .library-link-title:global(.uui-caption) {
+        font-size: 14px;
+    }
+}
+
 .downloads-row {
+    margin-top: 24px;
+
     .downloads-column {
         display: flex;
-        flex-direction: column;
-        align-items: center;
 
         :global(.uui-caption) {
             font-size: 16px;
@@ -35,10 +47,9 @@
     .downloads-oval {
         display: flex;
         justify-content: center;
-        height: 78px;
-        width: 78px;
+        height: 72px;
+        width: 72px;
         border-radius: 50%;
-        margin: 0 auto 12px;
     }
 
     .font-pack-background {
@@ -56,7 +67,8 @@
     .color-palette-background {
         background: conic-gradient(from 90deg, #008ACE 0%, #88CC00 29%, #FFC000 64%, #E54322 100%);
     }
+
+    .assets-link-caption:global(.uui-caption) {
+        font-size: 14px;
+    }
 }
-
-
-
