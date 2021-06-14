@@ -36,14 +36,6 @@
 .downloads-row {
     margin-top: 24px;
 
-    .downloads-column {
-        display: flex;
-
-        :global(.uui-caption) {
-            font-size: 16px;
-        }
-    }
-
     .downloads-oval {
         display: flex;
         justify-content: center;
@@ -62,10 +54,6 @@
 
     .icon-set-background {
         background-color: $purple-lightest;
-    }
-
-    .color-palette-background {
-        background: conic-gradient(from 90deg, #008ACE 0%, #88CC00 29%, #FFC000 64%, #E54322 100%);
     }
 
     .assets-link-caption:global(.uui-caption) {
