@@ -1,5 +1,5 @@
-@import 'loveship-colors.less';
-@import 'fonts.less';
+@import (reference) 'loveship-colors';
+@import (reference) 'fonts';
 
 .overflow-ellipsis() {
     overflow: hidden;
@@ -109,16 +109,9 @@
     }
 
     li {
+        margin-left: 18px;
         // padding-top: 3px;
         // padding-bottom: 3px;
-    }
-
-    ul li {
-        margin-left: 18px;
-    }
-
-    ol li {
-        margin-left: 14px;
     }
 
     pre {
