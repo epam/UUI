@@ -6,12 +6,156 @@
     "nodes": [
       {
         "object": "block",
-        "type": "uui-richTextEditor-header-3",
+        "type": "uui-richTextEditor-header-2",
         "data": {},
         "nodes": [
           {
             "object": "text",
             "text": "How to install design library",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Figma",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-Assets?node-id=137%3A2"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Open",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " Assets Library",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-Components?node-id=280%3A85528"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Open",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " Components Library",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Enable libraries in your project:",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/Figma Install UUI4.png",
+          "imageSize": {
+            "width": 547,
+            "height": 706
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Sketch",
             "marks": []
           }
         ]
@@ -271,13 +415,19 @@
       },
       {
         "object": "block",
-        "type": "uui-richTextEditor-header-3",
+        "type": "paragraph",
         "data": {},
         "nodes": [
           {
             "object": "text",
             "text": "Being up to date",
-            "marks": []
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
           }
         ]
       },
