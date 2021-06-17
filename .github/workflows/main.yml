@@ -80,5 +80,5 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/ui:$GITHUB_SHA        
+          tags: ${{ secrets.REGISTRY_URL }}/ui:0.1       
         
