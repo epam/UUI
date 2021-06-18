@@ -1,0 +1,2468 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Loaders are devided into",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "2 main groups",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "- loaders themself and skeletons. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Inside this groups there are also different types of elements. On the sheme below you can find the division.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Loaders",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Types",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "There are three visually distinct types of progress indicators:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "spinner, waver, progress bar",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". Only one type should represent each kind of activity in an app. For example, if a refresh action displays a spinner indicator on one screen, that same action shouldn’t use a waver indicator elsewhere.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD1.png",
+          "imageSize": {
+            "width": 934,
+            "height": 613.3266666666667
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "When the process of loading is completed and for users it’s visually not viewable, that the process has changed something, like sending contact form it’s better to show notification, that the process was successful, after the loader has disappeared.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-style": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "normal",
+                    "letter-spacing": "normal",
+                    "orphans": "auto",
+                    "text-align": "start",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "auto",
+                    "word-spacing": "0px",
+                    "-webkit-text-size-adjust": "auto",
+                    "-webkit-text-stroke-width": "0px",
+                    "text-decoration": "none",
+                    "caret-color": "rgb(0, 0, 0)",
+                    "color": "rgb(0, 0, 0)"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "table",
+            "data": {
+              "cellSizes": [
+                397,
+                536
+              ]
+            },
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Determinate indicators",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Indeterminate indicators",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Determinate indicators show how long a process will take. They should be used when the process with a known duration.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Indeterminate indicators express an unknown amount of wait time. They should be used when website performs an unquantifiable task, such as loading or synchronizing complex data or if it’s not necessary to indicate how long an activity will take.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Use it when the process with well-defined duration.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Use it to communicate the status of a background operation or when space is constrained.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Always report progress accurately.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "When possible, switch from an indeterminate progress bar to a determinate progress bar.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Hide in",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "di",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "cator after it’s completely filled.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Don’t transition from a spinner to a progress bar.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "If it’s helpful, include a label to indicator to add context.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Keep indeterminate progress indicators moving so people know something is happening.",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "font-style": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "normal",
+                                    "letter-spacing": "normal",
+                                    "orphans": "auto",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "normal",
+                                    "widows": "auto",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-size-adjust": "auto",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "text-decoration": "none",
+                                    "caret-color": "rgb(0, 0, 0)",
+                                    "color": "rgb(0, 0, 0)"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Spinner",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD2.png",
+          "imageSize": {
+            "width": 800,
+            "height": 300
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Behavior",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Spinner displays progress by animating an indicator along an invisible circular track in a clockwise direction. They can be applied directly to a surface, such as a button or card.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Integrating with actions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "A spinner can be integrated into a button or actionable icon to express a connection between an interaction and a specific item. They are typically used to express when an interaction, such as clicking a button again, isn’t available.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "They should be used for short, indeterminate activities",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(between",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "2-5 seconds). Longer activities may require alternate methods of communication, such as snackbars or notifications.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In cases, when spinner was used to submit something or sent, for example after sending contact form, after spinner has worked, sending was completed and spinner disappeared, it’s good to show some notification that the process was successful.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Waver",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD3.png",
+          "imageSize": {
+            "width": 800,
+            "height": 300
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Behavior",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Waver displays progress by animating an indicator that the points gradually rise and fall. They are not as used as spinners, but can be used",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "for specific cases",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", when the spinner doesn’t work well, for example while a person is typing in chat. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Integrating with actions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "They should be used for short, indeterminate activities",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(between",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "2-5 seconds). Longer activities may require alternate methods of communication, such as snackbars or notifications.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "If for some element in some place, for example a card, if you  have already used a spinner, we can’t use waver in other places.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Progress bar",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD4.png",
+          "imageSize": {
+            "width": 934,
+            "height": 412.51666666666665
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Behavior",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Progress bar display progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "When a lot of elements are loading together it’s better to use skeletons. Progress bars can be used for loading some specific element.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Types",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Progress bar support both determinate and indeterminate operations.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Determinate operations display the indicator increasing in width from 0 to 100% of the track, in sync with the process’s progress.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Indeterminate operations display the indicator continually growing and shrinking along the track until the process is complete.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For better overview of how to use different types of indicator review section",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“determined",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "and Indetermined”",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Determined progress bar is also divided into simple, percent, stripped and indicator. Simple, percent and stripped progress bar could be used equally depending on what you think will look better.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Indicator CAN ONLY BE USED FOR SHOWING UPLOADING OF PAGE. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Size of elements",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "There are 3 possible size of loaders to use: large, medium, small.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD5.png",
+          "imageSize": {
+            "width": 934,
+            "height": 412.51666666666665
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The main rule of using appropriate size of element is that their size should be",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "visually proportional",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "to the element for which it is used.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "So large elements should be basically used for some big elements, such as the whole page or big section.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Medium elements should be used for smaller sections or elements, like cards. But if you have already used a large loader size for a similar type of component, you should choose only one of them and use it everywhere in the system.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Small size elements should logically be used for small components, such as buttons. Use the size option when you need to increase or decrease the visual weight of the loader.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD6.1.png",
+          "imageSize": {
+            "width": 800,
+            "height": 576
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD6.2.png",
+          "imageSize": {
+            "width": 800,
+            "height": 576
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Sceletons",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Types",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "There are four types of skeletons: item, text block, person, card. Skeleton page is used with other skeleton loading components to provide a low fidelity representation of the user interface",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(UI)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "before content appears on the page.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD7.png",
+          "imageSize": {
+            "width": 934,
+            "height": 1438.36
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Behaviour",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "On launch, core structural elements – such as the status bar, app bar, and bottom sheet – are displayed without content until the app has loaded. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Placeholder elements, with subtle animation, should be displayed in locations where content will load. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Use also indicator while loading the page. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Placeholder elements should remain positioned where content will load to avoid unexpected shifts in positioning.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Best practices",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Try to match the number of lines of the text block to the content being loaded so it gives an accurate representation.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Show static content that never changes on a page and",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "use skeleton loading for dynamic content",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ". Skeleton text block can sometimes be used to represent non-typographic content such as forms. Don’t use placeholder content that will change when the page fully loads.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD8.1.png",
+          "imageSize": {
+            "width": 934,
+            "height": 551.0600000000001
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD8.2.png",
+          "imageSize": {
+            "width": 934,
+            "height": 551.0600000000001
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD9.1.png",
+          "imageSize": {
+            "width": 934,
+            "height": 971.36
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD9.2.png",
+          "imageSize": {
+            "width": 934,
+            "height": 971.36
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
