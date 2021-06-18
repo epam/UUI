@@ -79,6 +79,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
         this.isUpdatePending = true;
 
+        if (!isEqual(newValue.checked, this.value?.checked)) {
+            this.updateCheckedLookup(newValue.checked);
+        }
+
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
         this.value = { topIndex: 0, ...newValue };
