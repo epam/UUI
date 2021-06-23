@@ -274,8 +274,8 @@
             "type": "table",
             "data": {
               "cellSizes": [
-                397,
-                536
+                467,
+                464
               ]
             },
             "nodes": [
@@ -1168,6 +1168,26 @@
           {
             "object": "text",
             "text": "In cases, when spinner was used to submit something or sent, for example after sending contact form, after spinner has worked, sending was completed and spinner disappeared, it’s good to show some notification that the process was successful.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
             "marks": [
               {
                 "object": "mark",
