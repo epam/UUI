@@ -18,7 +18,7 @@
             }
         }
 
-        &.size-30 {
+        &.size-36 {
             .after-paddings, .before-paddings {
                 :global(.uui-checkbox), .folding-arrow {
                     margin-top: 9px;
@@ -26,10 +26,10 @@
             }
         }
 
-        &.size-36 {
+        &.size-42 {
             .after-paddings, .before-paddings {
                 :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 9px;
+                    margin-top: 12px;
                 }
             }
         }

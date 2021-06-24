@@ -1,6 +1,6 @@
 import * as React from 'react';
 import isEqual from 'lodash.isequal';
-import { IEditable, ILens, Metadata, FormState, ICanBeInvalid, UuiContexts, uuiContextTypes } from '../../';
+import { IEditable, ILens, Metadata, FormState, ICanBeInvalid, UuiContexts, UuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import {validate, validateServerErrorState, mergeValidation} from "../validation";
 
@@ -43,8 +43,7 @@ export interface FormComponentState<T> extends FormState<T> {
 }
 
 export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>> {
-
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     lock: object | null;
     isUnmounted: boolean;
@@ -97,6 +96,21 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         }
     }
     
+    componentDidUpdate(prevProps: Readonly<FormProps<T>>, prevState: Readonly<FormComponentState<T>>) {
+        if (prevProps.value !== this.props.value) {
+            if (prevState.isChanged && prevProps.beforeLeave) {
+                prevProps.beforeLeave && this.context.uuiLocks.withLock(this.handleLeave)
+                    .then((lock: object) => {
+                        this.lock = lock;
+
+                        this.resetForm({ form: this.props.value });
+                    });
+            }  else {
+                this.resetForm({ form: this.props.value, formHistory: [this.props.value] });
+            }
+        }
+    }
+
     getMergedValidationState() {
         const serverValidation = validateServerErrorState(
             this.state.form,
@@ -105,25 +119,6 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         );
         return mergeValidation(this.state.validationState, serverValidation);
     }
-
-    //TODO: rework componentWillReceiveProps to getDerivedStateFromProps
-
-    // static getDerivedStateFromProps(nextProps: FormProps<any>, state: FormComponentState<any>) {
-    //     const prevProps = state.prevProps;
-
-    //     if (nextProps.value != prevProps.value) {
-    //         return { prevProps: nextProps, form: nextProps.value };
-    //     } else {
-    //         return null;
-    //     }
-    // }
-
-    // componentDidUpdate() {
-    //     debugger;
-    //     if (this.state.prevProps.value != this.state.form) {
-    //         this.setState({ form: this.state.prevProps.value });
-    //     }
-    // }
 
     getUnsavedChanges(): T {
         const unsavedChanges: T = this.context.uuiUserSettings.get<T>(this.props.settingsKey);
@@ -175,21 +170,6 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
 
                 return Promise.resolve();
             });
-    }
-
-    componentWillReceiveProps(nextProps: FormProps<T>) {
-        if (this.props.value !== nextProps.value) {
-            if (this.state.isChanged && this.props.beforeLeave) {
-                this.props.beforeLeave && this.context.uuiLocks.withLock(this.handleLeave)
-                    .then((lock: object) => {
-                        this.lock = lock;
-
-                        this.resetForm({ form: nextProps.value });
-                    });
-            }  else {
-                this.resetForm({ form: nextProps.value, formHistory: [nextProps.value] });
-            }
-        }
     }
 
     releaseLock() {
