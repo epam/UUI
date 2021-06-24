@@ -24,7 +24,7 @@ License: MIT
 
 - Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
-## Install 
+## Install
 
 ```
 yarn add @epam/uui @epam/components @epam/loveship
@@ -45,11 +45,24 @@ yarn create react-app my-app --template @epam/uui
 
 ## Development
 
-To start locally
+To start locally.
+
+1. Clone github repository:
 
 ```
 git clone git@github.com:epam/UUI.git
-cd uui
+```
+
+2. Before starting the App you need to start the server. To do this you must go to the `server` folder and run yarn:
+
+```
+cd ./server
+yarn
+```
+3. Go back to the `UUI` folder and run the App:
+
+```
+cd ../
 yarn
 yarn start
 ```
