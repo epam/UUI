@@ -106,8 +106,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         let selectedRows = view.getSelectedRows();
-        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear } = this.props;
-
+        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
+        const searchPosition = this.getSearchPosition();
+        const forcedDisabledClear = Boolean(searchPosition === "body" && !selectedRows.length)
+        const disableClear = forcedDisabledClear || propDisableClear;
         return {
             isSingleLine,
             maxItems,
@@ -125,8 +127,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: this.getSearchPosition() !== 'input',
-            disableClear,
+            disableSearch: searchPosition !== 'input',
+            disableClear: disableClear,
             ref: this.togglerRef,
         };
     }
