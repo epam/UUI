@@ -1,41 +1,46 @@
-import * as React from 'react';
+import React from 'react';
+import { act } from "react-dom/test-utils";
+import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { IEditable } from '../../types/props';
-
-const delay = () => new Promise(resolve => setTimeout(resolve, 1));
+import { mountWithContextAsync, mountWrappedComponentAsync } from "../testHelpers";
 
 describe('IEditableDebouncer', () => {
-    beforeEach(() => {
-    });
-
-    afterEach(() => {
-    });
-
-    it('should call onValueChanged synchronously, if disableDebounce = true', () => {
-        const outerOnValueChange = jest.fn(() => {});
+    it('should call onValueChanged synchronously, if disableDebounce = true', async () => {
+        const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        const component = shallow(<IEditableDebouncer
-            value={ 1 }
-            onValueChange={ outerOnValueChange }
-            render={ (props) => { lastRenderProps = props; return null; } }
-            disableDebounce={ true }
-        />);
-        lastRenderProps.onValueChange(2);
+        await mountWithContextAsync(
+            <IEditableDebouncer
+                value={ 1 }
+                onValueChange={ outerOnValueChange }
+                render={ (props) => {
+                    lastRenderProps = props;
+                    return null;
+                } }
+                disableDebounce={ true }
+            />,
+        );
+
+        act(() => lastRenderProps.onValueChange(2));
         expect(lastRenderProps.value).toBe(2);
         expect(outerOnValueChange).toBeCalledWith(2);
     });
 
-    it('should call onValueChanged delayed', done => {
-        const outerOnValueChange = jest.fn(() => {});
+    it('should call onValueChanged delayed', async done => {
+        const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        const component = shallow(<IEditableDebouncer
-            value={ 1 }
-            onValueChange={ outerOnValueChange }
-            render={ (props) => { lastRenderProps = props; return null; } }
-            debounceDelay={ 5 }
-        />);
-        lastRenderProps.onValueChange(2);
+        await mountWithContextAsync(
+            <IEditableDebouncer
+                value={ 1 }
+                onValueChange={ outerOnValueChange }
+                render={ (props) => {
+                    lastRenderProps = props;
+                    return null;
+                } }
+                debounceDelay={ 5 }
+            />,
+        );
+
+        act(() => lastRenderProps.onValueChange(2));
 
         expect(lastRenderProps.value).toBe(2);
         expect(outerOnValueChange).not.toBeCalled();
@@ -52,16 +57,22 @@ describe('IEditableDebouncer', () => {
         }, 10);
     });
 
-    it('should change inner value immediately if outer value is changed outside', () => {
-        const outerOnValueChange = jest.fn(() => {});
+    it('should change inner value immediately if outer value is changed outside', async () => {
+        const outerOnValueChange = jest.fn(() => {
+        });
         let lastRenderProps: IEditable<number> = null;
-        const component = shallow(<IEditableDebouncer
-            value={ 1 }
-            onValueChange={ outerOnValueChange }
-            render={ (props) => { lastRenderProps = props; return null; } }
-            debounceDelay={ 5 }
-        />);
-        lastRenderProps.onValueChange(3);
+
+        const component = await mountWrappedComponentAsync(IEditableDebouncer, {
+            value: 1,
+            onValueChange: outerOnValueChange,
+            render: (props: IEditable<number>): null => {
+                lastRenderProps = props;
+                return null;
+            },
+            debounceDelay: 5,
+        });
+
+        act(() => lastRenderProps.onValueChange(3));
         component.setProps({ value: 2 });
         expect(lastRenderProps.value).toBe(2);
     });

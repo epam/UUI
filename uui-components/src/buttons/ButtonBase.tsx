@@ -1,12 +1,12 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { ButtonBaseCoreProps, UuiContexts, uuiContextTypes, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers } from '@epam/uui';
+import { ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps {
 }
 
 export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {

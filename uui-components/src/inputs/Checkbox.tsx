@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import * as css from './Checkbox.scss';
-import {  Icon, uuiMod, uuiElement, uuiMarkers, handleSpaceKey, isClickableChildClicked, CheckboxCoreProps, uuiContextTypes, UuiContexts } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, uuiMarkers, handleSpaceKey, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui';
 import { IconContainer } from '../layout';
 
 export interface CheckboxProps extends CheckboxCoreProps {
@@ -11,7 +11,7 @@ export interface CheckboxProps extends CheckboxCoreProps {
 }
 
 export class Checkbox extends React.Component<CheckboxProps, any> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleChange = (e: React.SyntheticEvent<HTMLDivElement>) => {

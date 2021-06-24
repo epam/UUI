@@ -4,7 +4,7 @@ import { Editor as CoreEditor, KeyUtils, SchemaProperties, Value, Block, Text as
 import * as css from './SlateEditor.scss';
 import cx from 'classnames';
 import * as style from '@epam/assets/scss/promo/typography.scss';
-import { IEditable, UuiContexts, uuiContextTypes, uuiMod, IHasCX } from '@epam/uui';
+import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext } from '@epam/uui';
 import {Toolbar} from "./implementation/Toolbar";
 import {Sidebar} from './implementation/Sidebar';
 import SoftBreak from "slate-soft-break";
@@ -86,7 +86,7 @@ interface SlateEditorState {
 
 export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorState> {
     editor: Editor;
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     serializer = getSerializer(this.props.plugins);
 

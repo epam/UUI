@@ -5,10 +5,8 @@ import * as ReactDOM from "react-dom";
 import {Editor, Plugins} from 'slate-react';
 import { Popper } from 'react-popper';
 import flatten from 'lodash.flatten';
-import {LayoutContext, LayoutLayer} from "@epam/uui";
-import * as PropTypes from "prop-types";
+import { LayoutContext, LayoutLayer, UuiContext } from "@epam/uui";
 import { isTextSelected } from '../helpers';
-import { ToolbarButtonProps } from './ToolbarButton';
 
 interface ToolbarProps {
     editor: Editor;
@@ -16,9 +14,7 @@ interface ToolbarProps {
 }
 
 export class Toolbar extends React.Component<ToolbarProps, any> {
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    static contextType = UuiContext;
 
     toolbar: HTMLElement | null;
     private layer: LayoutLayer = null;
