@@ -27,46 +27,6 @@ jobs:
         with:
           node-version: '14.x'
           
-      # - name: Get yarn cache directory path
-        # id: yarn-cache-dir-path
-        # run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-        # check commit 
-        
-      # - name: Cache yarn dependencies
-        # uses: actions/cache@v2
-        # id: cache1
-        # with:
-          # path: |
-            # node_modules
-          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          # restore-keys: |
-            # ${{ runner.os }}-yarn-
-
-
-       
-# */*/node_modules
-      # - name: Cache npm dependencies
-        # uses: actions/cache@v2
-        # with:
-          # path: '~/.npm'
-          # key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          # restore-keys: |
-            # ${{ runner.os }}-node-   
-
-    
-            
-      # - uses: actions/cache@v2
-        # with:
-          # path: |
-            # app/
-            # public/
-            # server/
-            # changelog.md
-            # package.json
-          # key: test1
-          # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          # restore-keys: |
-            # v1-app-deps-
 
       - name: build app
         run: | 
@@ -74,21 +34,10 @@ jobs:
           yarn build
           yarn generate-components-api
           cd server && yarn
-           
-        
+         
       - name: test  
-        run: yarn test
-        
-      # - uses: actions/upload-artifact@v2
-        # with:
-          # name: my-artifact
-          # path: |
-            # app/
-            # public/
-            # server/
-            # changelog.md
-            # package.json
-        
+        run: yarn test      
+       
   docker:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -100,45 +49,6 @@ jobs:
       - name: Check Out Repo 
         uses: actions/checkout@v2
       
-      # - name: Get yarn cache directory path
-        # id: yarn-cache-dir-path
-        # run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      # - name: Cache yarn dependencies
-        # id: cache1
-        # uses: actions/cache@v2
-        # with:
-          # path: |
-            # node_modules
-          # key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          # restore-keys: |
-            # ${{ runner.os }}-yarn-
-
-#            */*/node_modules
-      # - name: Cache npm dependencies
-        # uses: actions/cache@v2
-        # with:
-          # path: '~/.npm'
-          # key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          # restore-keys: |
-            # ${{ runner.os }}-node-   
-            
-      # - uses: actions/cache@v2
-        # with:
-          # path: |
-            # app/
-            # public/
-            # server/
-            # changelog.md
-            # package.json
-          # # key: v1-app-deps-${{ hashFiles('**/package.json') }}
-          # key: test1
-          # restore-keys: |
-            # v1-app-deps-
-
-      # - uses: actions/download-artifact@v2
-        # with:
-          # name: my-artifact
       - name: build app
         run: | 
           yarn
@@ -151,13 +61,6 @@ jobs:
           ls -l app/
           ls -l server/
           echo $GITHUB_SHA
-# echo "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
-# echo "v1-app-deps-${{ hashFiles('**/package.json') }}"
-
-      # - name: install dependencies
-        # run: | 
-          # cd app && yarn 
-          # cd ../server && yarn
           
       - name: Login to registry
         uses: docker/login-action@v1 
@@ -165,13 +68,21 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-        
+       
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ secrets.REGISTRY_URL }}/ui
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=sha
+            
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-        
-      - name: ls
-        run: ls -la
-        
+              
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -179,7 +90,8 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/ui:0.0.2223
+          tags: ${{ steps.meta.outputs.tags }}
+          #${{ secrets.REGISTRY_URL }}/ui:cicd_test
           
         
         
