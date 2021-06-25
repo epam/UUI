@@ -92,10 +92,16 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           #${{ secrets.REGISTRY_URL }}/ui:cicd_test
-          
-        
-        
-        
-        
+              
+       
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm ls 
+          kubeconfig: ${{ secrets.KUBECONFIG }}
         
         
