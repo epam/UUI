@@ -98,6 +98,13 @@ jobs:
     needs: docker
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Check outputs
+        run: echo ${{ steps.vars.outputs.sha_short }}    
+
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
         with:
