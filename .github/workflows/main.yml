@@ -5,21 +5,33 @@ name: CI
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ cicd_test ]
-  pull_request:
-    branches: [ main ]
+  # push:
+    # branches: [ cicd_test ]
+  # pull_request:
+    # branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-test:
-    
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Tags: ${{ github.event.inputs.tags }}" 
+
+  build-and-test:  
     runs-on: ubuntu-latest
     container: node:14
-  
 
     steps:
       - uses: actions/checkout@v2
@@ -123,7 +135,7 @@ jobs:
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm ls -n default
+          exec: helm ls 
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
 #          exec: helm history ${{ secrets.APP_NAME }}        
