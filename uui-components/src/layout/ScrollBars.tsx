@@ -60,7 +60,8 @@ export class ScrollBars extends React.Component<ScrollbarProps, any> {
     renderThumbHorizontal = () => <div className="uui-thumb-horizontal"/>;
 
     render() {
-        let { renderView, style, ...restProps } = this.props;
+        let { renderView, style, hasBottomShadow, hasTopShadow, ...restProps } = this.props;
+        
         return (
             <CustomScrollBars.default
                 { ...restProps }
@@ -68,8 +69,8 @@ export class ScrollBars extends React.Component<ScrollbarProps, any> {
                     css.root,
                     this.props.cx,
                     this.props.className,
-                    this.props.hasTopShadow && "uui-shadow-top",
-                    this.props.hasBottomShadow && "uui-shadow-bottom",
+                    hasTopShadow && "uui-shadow-top",
+                    hasBottomShadow && "uui-shadow-bottom",
                 ) }
                 renderView={ renderView || this.renderView }
                 renderThumbHorizontal={ this.renderThumbHorizontal }

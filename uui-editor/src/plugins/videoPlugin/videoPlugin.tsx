@@ -1,6 +1,6 @@
 import { Editor } from "slate-react";
 import * as React from "react";
-import { UuiContexts, uuiContextTypes } from '@epam/uui';
+import { useUuiContext } from '@epam/uui';
 import { AddVideoModal } from "./AddVideoModal";
 import * as videoIcon from "../../icons/video.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -15,7 +15,9 @@ export const videoPlugin = () => {
     };
 };
 
-const VideoButton = (props: { editor: Editor }, context: UuiContexts) => {
+const VideoButton = (props: { editor: Editor }) => {
+    const context = useUuiContext();
+    
     return <ToolbarButton
         onClick={ () => context.uuiModals.show<string>(modalProps => <AddVideoModal { ...modalProps } editor={ props.editor } />)
             .catch(() => null) }
@@ -23,5 +25,3 @@ const VideoButton = (props: { editor: Editor }, context: UuiContexts) => {
         isDisabled={ isTextSelected(props.editor) }
     />;
 };
-
-VideoButton.contextTypes = uuiContextTypes;

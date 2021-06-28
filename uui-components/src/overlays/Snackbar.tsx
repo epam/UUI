@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Icon, IHasCX, NotificationOperation, NotificationContext } from '@epam/uui';
+import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext } from '@epam/uui';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
 import * as css from './Snackbar.scss';
-import { object } from 'prop-types';
 
 const itemsOffset = 12;
 const offset = 30;
@@ -51,9 +50,7 @@ const uuiSnackbar = {
 };
 
 export class Snackbar extends React.Component<SnackbarProps> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
+    static contextType = UuiContext;
 
     context: {uuiNotifications: NotificationContext};
 

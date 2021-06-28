@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { mouseCoords } from '../../helpers/mouseCoords';
-import { uuiContextTypes, UuiContexts, DndContextState } from '../../types/contexts';
+import { UuiContexts, DndContextState } from '../../types/contexts';
 import { LayoutLayer } from '../../types/objects';
+import { UuiContext } from "../UuiContext";
 
 export interface DragGhostProps {
 }
@@ -12,11 +13,22 @@ interface DragGhostState extends DndContextState {
 }
 
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     private layer: LayoutLayer = null;
     state: DragGhostState = {
         isDragging: false,
+    };
+
+    constructor(props: DragGhostProps, context: UuiContexts) {
+        super(props, context);
+        context.uuiDnD.subscribe(this.contextUpdateHandler);
+    }
+
+    onMouseMove = (e: MouseEvent) => {
+        if (this.state.isDragging) {
+            this.setState({ ...this.state, mouseX: e.clientX, mouseY: e.clientY });
+        }
     };
 
     contextUpdateHandler = (state: DndContextState) => {
@@ -28,18 +40,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         }
 
         this.setState({ ...state, mouseX: mouseCoords.mousePageX, mouseY: mouseCoords.mousePageY });
-    }
-
-    constructor(props: DragGhostProps, context: any) {
-        super(props, context);
-        this.context.uuiDnD.subscribe(this.contextUpdateHandler);
-    }
-
-    onMouseMove = (e: MouseEvent) => {
-        if (this.state.isDragging) {
-            this.setState({ ...this.state, mouseX: e.clientX, mouseY: e.clientY });
-        }
-    }
+    };
 
     componentDidMount() {
         window.addEventListener('mousemove', this.onMouseMove);
@@ -62,16 +63,20 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
             return null;
         }
 
-        return <div style={ {
-            position: 'fixed',
-            width: this.state.ghostWidth,
-            left: this.state.mouseX + this.state.ghostOffsetX,
-            top: this.state.mouseY + this.state.ghostOffsetY,
-            pointerEvents: 'none',
-            zIndex: this.layer.zIndex,
-        } }
+        return (
+            <div style={ {
+                position: 'fixed',
+                width: this.state.ghostWidth,
+                left: this.state.mouseX + this.state.ghostOffsetX,
+                top: this.state.mouseY + this.state.ghostOffsetY,
+                pointerEvents: 'none',
+                zIndex: this.layer.zIndex,
+            } }
             >
-            { this.state.renderGhost() }
-        </div>;
+                { this.state.renderGhost() }
+            </div>
+        );
     }
 }
+
+DragGhost.contextType = UuiContext;

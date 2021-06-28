@@ -1,6 +1,8 @@
-import * as React from 'react';
-import {IHasCX, CX, IEditable, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "../types";
+import React from 'react';
+import { IEditable, IAnalyticableOnChange } from "../types";
 import debounce from 'lodash.debounce';
+import { useUuiContext } from "../services";
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * IEditableDebouncer component options.
@@ -24,55 +26,52 @@ export interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebou
 
 const defaultDelay = 500;
 
+
+const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
+    const [state, setState] = useState({ value: props.value });
+    const lastSentValue = useRef(props.value);
+    const context = useUuiContext();
+    
+    useEffect(() => {
+        if (props.value !== lastSentValue.current) setState({value: props.value});
+    }, [props.value]);
+    
+    const debouncedOnValueChange = useMemo(() => {
+        return debounce(
+            value => {
+                lastSentValue.current = value;
+                props.onValueChange(value);
+
+                if (props.getValueChangeAnalyticsEvent) {
+                    const event = props.getValueChangeAnalyticsEvent(value, props.value);
+                    context.uuiAnalytics.sendEvent(event);
+                }
+            },
+            props.debounceDelay != null ? props.debounceDelay : defaultDelay,
+            { leading: false, trailing: true },
+        );
+    }, [props.onValueChange, props.getValueChangeAnalyticsEvent, props.debounceDelay, props.value]);
+    
+    const handleValueChange = useCallback((newValue: T) => {
+        setState({ value: newValue });
+        if (props.disableDebounce) {
+            props.onValueChange(newValue);
+        } else {
+            debouncedOnValueChange(newValue);
+        }
+    }, [props.disableDebounce, props.onValueChange, debouncedOnValueChange]);
+
+    const propsToRender: IEditable<T> = useMemo(() => ({
+        value: state.value,
+        onValueChange: handleValueChange,
+    }), [state.value, handleValueChange]);
+
+    return props.render?.(propsToRender) as ReactElement;
+};
+
 /**
  * Wrap other IEditable components into the IEditableDebouncer to debounce onValueChange calls.
  * Useful for search inputs, or any other components that cause expensive computations on change.
  * Wrapped component still behaves as controlled component, and will react to external value changes immediately.
  */
-export class IEditableDebouncer<T> extends React.Component<IEditableDebouncerProps<T>, { value: T }> {
-    public static contextTypes = uuiContextTypes;
-    public context: UuiContexts;
-    
-    lastSentValue: T = this.props.value;
-
-    state = {
-        value: this.props.value,
-    };
-
-    componentWillReceiveProps(nextProps: IEditable<T>) {
-        if (nextProps.value !== this.lastSentValue) {
-            this.setState({ value: nextProps.value });
-        }
-    }
-
-    debouncedOnValueChange = debounce(
-        value => {
-            this.lastSentValue = value;
-            this.props.onValueChange(value);
-            
-            if (this.props.getValueChangeAnalyticsEvent) {
-                const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
-                this.context.uuiAnalytics.sendEvent(event);
-            }
-        },
-        this.props.debounceDelay != null ? this.props.debounceDelay : defaultDelay,
-        { leading: false, trailing: true },
-    );
-
-    handleValueChange = (newValue: T) => {
-        this.setState({ value: newValue });
-        if (this.props.disableDebounce) {
-            this.props.onValueChange(newValue);
-        } else {
-            this.debouncedOnValueChange(newValue);
-        }
-    }
-
-    render() {
-        const props: IEditable<T> = {
-            value: this.state.value,
-            onValueChange: this.handleValueChange,
-        };
-        return this.props.render && this.props.render(props);
-    }
-}
+export const IEditableDebouncer = React.memo(IEditableDebouncerImpl) as typeof IEditableDebouncerImpl;

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import * as css from './Anchor.scss';
-import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps } from '@epam/uui';
+import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui';
 import cx from 'classnames';
 import {
     IHasCX,
     ICanRedirect,
     IHasChildren,
-    uuiContextTypes,
     UuiContexts,
     IDisableable,
     IClickable,
@@ -18,7 +17,7 @@ export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisabl
 }
 
 export class Anchor extends ButtonBase<AnchorProps> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
