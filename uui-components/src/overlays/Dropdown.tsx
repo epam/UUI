@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
 import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
-import * as PropTypes from 'prop-types';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest } from '@epam/uui';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 
@@ -56,9 +55,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         closeDropdownTimerId: null,
     };
 
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    static contextType = UuiContext;
 
     private readonly layer: LayoutLayer | null = null;
 
