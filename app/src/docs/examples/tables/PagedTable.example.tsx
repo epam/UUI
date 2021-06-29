@@ -35,13 +35,13 @@ export function PagedTable() {
             ...rq,
             filter: { departmentId: 13 }, // to get less results and non round-numbered number of people
             page: state.page - 1, // server counts from 0, UI - from 1
-            pageSize: state.pageSize
+            pageSize: state.pageSize,
         });
         setState(s => ({ ...s, totalCount: result.totalCount }));
         return result;
     }, [state.page, state.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, any>({ api });
+    const dataSource = useLazyDataSource<Person, number, any>({ api }, [state.page]);
 
     const view = dataSource.useView(state, setState, {});
 
