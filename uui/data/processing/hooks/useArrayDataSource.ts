@@ -1,10 +1,6 @@
-import { useMemo } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from '../ArrayDataSource';
+import { useMemoWithDestructor } from "../../../helpers/useMemoWithDestructor";
 
-export function useArrayDataSource<TItem, TId, TFilter>(params: ArrayDataSourceProps<TItem, TId, TFilter>) {
-    const dataSource = useMemo(() => new ArrayDataSource({
-        ...params,
-    }), Object.keys(params).map(key => (params as any)[key]));
-
-    return dataSource;
+export function useArrayDataSource<TItem, TId, TFilter>(params: ArrayDataSourceProps<TItem, TId, TFilter>, deps: any[]) {
+    return useMemoWithDestructor(() => new ArrayDataSource({ ...params }), (dataSource) => dataSource.destroy, deps);
 }

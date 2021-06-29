@@ -9,7 +9,7 @@ export function ArrayDataTableExample() {
 
     const dataSource = useArrayDataSource<FeatureClass, number, any>({
         items: demoData.featureClasses,
-    });
+    }, []);
 
     const view = dataSource.useView(value, onValueChange, {});
 

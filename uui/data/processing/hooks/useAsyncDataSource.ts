@@ -1,11 +1,6 @@
-import { useMemo } from 'react';
 import { AsyncDataSource, AsyncDataSourceProps } from '../AsyncDataSource';
-import { useReducer } from 'react';
+import { useMemoWithDestructor } from "../../../helpers/useMemoWithDestructor";
 
-export function useAsyncDataSource<TItem, TId, TFilter >(params: AsyncDataSourceProps<TItem, TId, TFilter>) {
-    const dataSource = useMemo(() => new AsyncDataSource({
-        ...params,
-    }), []);
-
-    return dataSource;
+export function useAsyncDataSource<TItem, TId, TFilter >(params: AsyncDataSourceProps<TItem, TId, TFilter>, deps: any[]) {
+    return useMemoWithDestructor(() => new AsyncDataSource({ ...params }), (dataSource) => dataSource.destroy, deps);
 }

@@ -13,7 +13,7 @@ export function EditModePickerExample() {
 
     const dataSource = useLazyDataSource({
         api: loadPersons,
-    });
+    }, []);
 
     return (
         <div>

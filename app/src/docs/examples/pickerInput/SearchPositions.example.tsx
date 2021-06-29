@@ -13,7 +13,7 @@ export function SearchPositionsExample() {
 
     const dataSource = useLazyDataSource({
         api: loadPersons,
-    });
+    }, []);
 
     return (
         <FlexRow spacing='12' >
