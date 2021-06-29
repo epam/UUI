@@ -350,6 +350,19 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
       >
         <div
+          className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        >
+          <div
+            className="uui-caption line-height-18 font-size-14 v-padding-9"
+          >
+            Reset to Default
+          </div>
+        </div>
+        <div
           className="flexSpacer"
         />
         <div
