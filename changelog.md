@@ -2,6 +2,7 @@
 
 **What’s New**
 * added new docs for designers
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
 
 **What’s Fixed**
 * updated react-measure package
