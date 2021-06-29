@@ -4,9 +4,10 @@ import {
     NotificationContextDoc, DropdownDoc, MainMenuDoc, ModalsDoc, BadgeDoc, TablesDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc,
     TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
-    GettingStartedForDesignersDoc, ChangeManagementProcessDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
+    GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
     FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
-} from "../docs";
+    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc,
+} from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -76,7 +77,12 @@ export const items: DocItem[] = [
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
     { id: 'forDesigners', name: 'For Designers' },
     { id: 'gettingStartedForDesigners', name: 'Getting Started', component: GettingStartedForDesignersDoc, parentId: 'forDesigners' },
-    { id: 'changeManagementProcessDoc', name: 'Change Management Process', component: ChangeManagementProcessDoc, parentId: 'forDesigners' },
+    { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },
+    { id: 'emptyStates', name: 'Empty States', component: EmptyStatesDoc, parentId: 'guidelines' },
+    { id: 'layouts', name: 'Layouts', component: LayoutsDoc, parentId: 'guidelines' },
+    { id: 'loaders', name: 'Loaders', component: LoadersDoc, parentId: 'guidelines' },
+    { id: 'validation', name: 'Validation', component: ValidationDoc, parentId: 'guidelines' },
+    { id: 'visualExamples', name: 'Visual Examples', component: VisualExamplesDoc, parentId: 'forDesigners' },
     { id: 'components', name: 'Components' },
     ...componentsStructure,
     { id: 'advanced', name: 'Advanced' },

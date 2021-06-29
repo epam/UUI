@@ -1,6 +1,6 @@
 import { ICanBeReadonly, IClickable, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange } from "../props";
 
-export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IEditable<string>, IHasPlaceholder,
+export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IEditable<string | undefined>, IHasPlaceholder,
     IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string> {
     onCancel?(): void;
     onAccept?(): void;

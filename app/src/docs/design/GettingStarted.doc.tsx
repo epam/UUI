@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
 import { EditableDocContent, BaseDocsBlock, UUI3 } from '../../common';
+import { getQuery } from '../../helpers';
 import * as css from '../assets/DownloadsDoc.scss';
 
 export class GettingStartedForDesignersDoc extends BaseDocsBlock {
@@ -27,7 +28,7 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                { this.getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent() }
+                { getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent() }
             </>
         );
     }
