@@ -244,7 +244,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const rows: DataRowProps<TItem, TId>[] = [];
         let index = 0;
         let lastIndex = this.value.topIndex + this.value.visibleCount;
-        const flatten = this.value.search && this.props.flattenSearchResults !== false;
+        const flatten = this.value.search && this.props.flattenSearchResults;
 
         const iterateNode = (
             node: LazyTreeList<TItem, TId>,

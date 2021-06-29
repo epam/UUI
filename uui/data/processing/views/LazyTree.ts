@@ -48,7 +48,7 @@ async function loadNodeRec<TItem, TId, TFilter>(
         ? { ...inputNode, items: [ ...inputNode.items ] }
         : { items: [] };
 
-    const flatten = value.search && params.flattenSearchResults !== false;
+    const flatten = value.search && params.flattenSearchResults;
 
     // The function should return the same node, if it haven't changed.
     // I found no good way to do this in pure style, so we just track if there was any change, and return the same node if there's none
