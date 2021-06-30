@@ -13,6 +13,8 @@ on:
   
   workflow_dispatch:
 
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -109,16 +111,15 @@ jobs:
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')   
           export HELM_EXPERIMENTAL_OCI=1
           echo $tag 
+          echo "::set-env name=tag::$tag"
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           helm chart pull ${{ secrets.HELM_REGISTRY }}
           helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
           ls -la ui
 
-      - name: lint
-        uses: WyriHaximus/github-action-helm3@v2
-        with:
-          exec: helm lint ui
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: check env tag
+        run: |
+          echo $tag
 
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
