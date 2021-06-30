@@ -124,7 +124,7 @@ jobs:
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm history APP_NAME
+          exec: helm history ${{ secrets.APP_NAME }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
 #          exec: helm history ${{ secrets.APP_NAME }}        
