@@ -46,6 +46,20 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
     }
 
+    componentDidUpdate = (_prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
+        const { search } = this.state.dataSourceState;
+        const isSearchingStarted = !prevState.dataSourceState.search && search
+        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected
+        if (isSearchingStarted && prevState.showSelected) {
+            this.setState({
+                showSelected: false
+            })
+        }
+        if (search && isSwitchIsBeingTurnedOn) {
+            this.handleTogglerSearchChange("", true)
+        }
+    }
+
     getInitialState() {
         let base = super.getInitialState();
         return {
@@ -160,8 +174,16 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, e);
     }
 
-    handleTogglerSearchChange = (value: string) => {
-        this.setState({ ...this.state, dataSourceState: { ...this.state.dataSourceState, focusedIndex: -1, search: value }, opened: value.length > 0 });
+    handleTogglerSearchChange = (value: string, opened?: boolean) => {
+        this.setState({
+            ...this.state,
+            dataSourceState: {
+                ...this.state.dataSourceState,
+                focusedIndex: -1,
+                search: value
+            },
+            opened: value.length > 0 || opened
+        });
     }
 
     getRows() {
