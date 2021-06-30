@@ -108,7 +108,6 @@ jobs:
         run: |
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')   
           export HELM_EXPERIMENTAL_OCI=1
-          echo "::set-env name=HELM_EXPERIMENTAL_OCI::$HELM_EXPERIMENTAL_OCI"
           echo $tag 
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           helm chart pull ${{ secrets.HELM_REGISTRY }}
