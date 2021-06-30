@@ -8,7 +8,7 @@
 * [PickerInput]: pass onFocus and onBlur in props
 
 **What’s Fixed**
-* Update packages and fixed some warnings
+* Update packages and fixed warnings
 * [LinkButton]: fix hover styles for disabled button
 * [PickerInput]: fix the switching of opening / closing a portal with a list when clicking on PickerInput when there is a search value so that you can copy or correct the search value
 * [PickerInput]: fix clear icon in PickerInput when searchPosition is 'body' and there are no selected items.
@@ -21,7 +21,6 @@
 * [VirtualList]: Fixed issue with dynamic items heights
 * [PickerList]: fixed sorting direction
 * [LazyDataSource]: exactRowsCount is now returned when known
-* [Button]: disable possibility select value of Button caption
 
 # 4.0.0 - 07.05.2021
 
