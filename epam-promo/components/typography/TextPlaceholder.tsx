@@ -9,25 +9,29 @@ export interface TextPlaceholderProps {
 }
 
 export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (props) => {
-    const pattern = '0';
-    let text = React.useMemo(() => {
+    const pattern = `&nbsp;`;
+    const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
             let lengthWord = Math.floor(Math.random() * 10 + 8);
             words.push(pattern.repeat(lengthWord));
         }
-        return words.join(' ')
+        return words;
     }, [props.wordsCount]);
 
     return (
-        <span
-            className={ cx([
-                css.loadingWord,
-                css['text-placeholder-color-' + (props.color || 'gray40')],
-                !props.isNotAnimated && css.animatedLoading,
-            ]) }
-        >
-            { text }
-        </span>
+        <div className={css.container}>{
+            text.map((it:string, index:number)=> (
+                <span
+                    key={index}
+                    className={ cx([
+                        css.loadingWord,
+                        css['text-placeholder-color-' + (props.color || 'gray40')],
+                        !props.isNotAnimated && css.animatedLoading,
+                    ]) }
+                    dangerouslySetInnerHTML={{__html: it}}
+                />
+            ))}
+        </div>
     );
 }

@@ -6,13 +6,21 @@
     100% { background-position: 0 0; }
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .loading-word {
     user-select: none;
     font-family: $font-redacted;
     letter-spacing: -1px;
-    word-spacing: 6px;
+    margin: 0 3px 3px 0;
     color: var(--color);
     vertical-align: 1px; // to fix vertical over-sizing of line
+    &:last-child {
+        margin-right: 0;
+    }
 
     &.animated-loading {
         color: transparent;
