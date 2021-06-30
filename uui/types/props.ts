@@ -18,6 +18,10 @@ export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonl
     value: T;
     onValueChange(newValue: T): void;
 }
+/** Conponent value can be formatted. NumericInput is a basic example */
+export interface ICanBeFormatted<T> {
+    formatter?(value: T): T;
+}
 
 /** Component supports click action */
 export interface IClickable {
