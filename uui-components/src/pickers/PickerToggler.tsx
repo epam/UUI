@@ -17,6 +17,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     pickerMode: 'single' | 'multi';
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     onBlur?(e: React.SyntheticEvent<HTMLElement>): void;
+    onFocus?(e?: React.SyntheticEvent<HTMLElement>): void;
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
@@ -48,7 +49,9 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => this.props.onValueChange && this.props.onValueChange(e.target.value);
 
-    handleFocus = () => {
+
+    handleFocus = (e?: React.SyntheticEvent<HTMLElement>) => {
+        this.props.onFocus && this.props.onFocus(e);
         const input = this.toggleContainer?.querySelector('input');
         input && input.focus();
         this.setState({ inFocus: true });

@@ -18,6 +18,8 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     minCharsToSearch?: number;
     dropdownHeight?: number;
     autoFocus?: boolean;
+    onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
+    onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -106,7 +108,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         let selectedRows = view.getSelectedRows();
-        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear } = this.props;
+        const { onFocus, onBlur, isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
+        const searchPosition = this.getSearchPosition();
+        const forcedDisabledClear = Boolean(searchPosition === "body" && !selectedRows.length)
+        const disableClear = forcedDisabledClear || propDisableClear;
 
         return {
             isSingleLine,
@@ -118,6 +123,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isReadonly,
             isDisabled,
             autoFocus,
+            onFocus,
+            onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
@@ -125,8 +132,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: this.getSearchPosition() !== 'input',
-            disableClear,
+            disableSearch: searchPosition !== 'input',
+            disableClear: disableClear,
             ref: this.togglerRef,
         };
     }

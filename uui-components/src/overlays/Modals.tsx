@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { uuiContextTypes, UuiContexts, ModalContext } from '@epam/uui';
+import { UuiContexts, UuiContext } from '@epam/uui';
 
 export class Modals extends React.Component {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
 
     constructor(props: any, context: UuiContexts) {
         super(props, context);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { UuiContexts, uuiContextTypes, ApiRecoveryReason, INotification, UuiError, UuiErrorInfo, IHasCX } from '@epam/uui';
+import { UuiContexts, uuiContextTypes, ApiRecoveryReason, INotification, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';
@@ -94,7 +94,7 @@ export const recoveryWordings: Record<ApiRecoveryReason, { title: string, text: 
 const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
 
 export class ErrorHandler extends React.Component<ErrorPageProps> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     public context: UuiContexts;
     public state: { jsError: Error, jsErrorInfo: React.ErrorInfo } = { jsError: null, jsErrorInfo: null };
 

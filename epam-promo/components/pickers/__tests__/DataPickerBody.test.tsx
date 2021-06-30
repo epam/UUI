@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataPickerBody } from '../DataPickerBody';
 import renderer from 'react-test-renderer';
-import { ArrayDataSource } from '@epam/uui';
+import { ArrayDataSource, renderWithContextAsync } from '@epam/uui';
 import { DataPickerRow } from '../DataPickerRow';
 
 jest.mock('react-dom', () => ({
@@ -27,9 +27,9 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DataPickerBody
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <DataPickerBody
                 value={ null }
                 onValueChange={ jest.fn }
                 rows={ mockDataSource.props.items }
@@ -37,14 +37,14 @@ describe('DataPickerBody', () => {
                     value: null,
                     onValueChange: jest.fn,
                 } }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DataPickerBody
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <DataPickerBody
                 value={ null }
                 onValueChange={ jest.fn }
                 rows={ [] }
@@ -53,25 +53,25 @@ describe('DataPickerBody', () => {
                     onValueChange: jest.fn,
                 } }
                 renderNotFound={ () => <div>Not found</div> }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DataPickerBody
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <DataPickerBody
                 value={ null }
                 onValueChange={ jest.fn }
-                editMode='modal'
+                editMode="modal"
                 search={ {
                     value: null,
                     onValueChange: jest.fn,
                 } }
-                showSearch='auto'
+                showSearch="auto"
                 showSelectedRows
                 maxHeight={ 800 }
-                searchSize='48'
+                searchSize="48"
                 rows={
                     mockDataSource.props.items.map((props) =>
                         <DataPickerRow
@@ -86,8 +86,8 @@ describe('DataPickerBody', () => {
                 rowsCount={ 7 }
                 totalCount={ 11 }
                 scheduleUpdate={ jest.fn }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
