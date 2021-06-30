@@ -4,7 +4,10 @@ import * as css from './NumericInput.scss';
 import {IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
 import {IconContainer} from '../layout';
 
-export interface NumericInputProps extends IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number> {
+export interface ICanBeFormatted<T> {
+    formatter?(value: T): T;
+}
+export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number> {
     max: number;
     min: number;
     upIcon?: Icon;
@@ -66,6 +69,9 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             this.setState({value: ''});
         } else {
             value = this.getValidatedValue(+this.state.value);
+            if (this.props.formatter) {
+                value = this.props.formatter(value);
+            }
             this.props.onValueChange(value);
             this.setState({value: value.toString()});
         }
