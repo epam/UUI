@@ -1,24 +1,26 @@
-# next release
+# 4.1.0 - 30.06.2021
 
 **What’s New**
-* added new docs for designers
 * [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
 * [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
 * removed legacy lifecycle methods
 * [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.
+* [PickerInput]: pass onFocus and onBlur in props
 
 **What’s Fixed**
-* updated react-measure package
-* updated react-transition-group package
-* updated draft-js package
-* [uui-timeline]: removed deprecated method createFactory
+* Update packages and fixed some warnings
 * [LinkButton]: fix hover styles for disabled button
 * [PickerInput]: fix the switching of opening / closing a portal with a list when clicking on PickerInput when there is a search value so that you can copy or correct the search value
 * [PickerInput]: fix clear icon in PickerInput when searchPosition is 'body' and there are no selected items.
-* [PickerInput]: fix pass onFocus and onBlur in props
 * [PickerInput] fix: incorrect search behavior in 'show only selected' mode
-* [TextPlacehoder]: fix displaying 0000 if the Redacted font is not loaded yet
+* [TextPlaceholder]: fix displaying 0000 if the Redacted font is not loaded yet
 * [DataTable]: add 'Reset to default' button in ColumnsConfigurationModal for the loveship
+* [TextInput]: add 'undefined' to input IEditable interface
+* [LazyListView]: update checked lookup when value.checked is changed
+* [AnaltyticsContext]: add missed type for public property
+* [VirtualList]: Fixed issue with dynamic items heights
+* [PickerList]: fixed sorting direction
+* [LazyDataSource]: exactRowsCount is now returned when known
 
 # 4.0.0 - 07.05.2021
 
