@@ -5,29 +5,15 @@ name: CI
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-    # branches: [ cicd_test ]
-  # pull_request:
-    # branches: [ main ]
+  push:
+    branches: [ cicd_test ]
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags' 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  printInputs:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Log level: ${{ github.event.inputs.logLevel }}"
-        echo "Tags: ${{ github.event.inputs.tags }}" 
 
   build-and-test:  
     runs-on: ubuntu-latest
@@ -68,12 +54,7 @@ jobs:
           yarn generate-components-api
           cd server && yarn      
             
-      - name: check cache key
-        run: |
-          ls -l app/
-          ls -l server/
-          echo $GITHUB_SHA
-          
+         
       - name: Login to registry
         uses: docker/login-action@v1 
         with:
@@ -103,7 +84,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          #${{ secrets.REGISTRY_URL }}/ui:cicd_test
               
        
   deploy:
@@ -117,7 +97,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.REGISTRY_URL }}/ui
+            ${{ secrets.REGISTRY_URL }}/uui
           # generate Docker tags based on the following events/attributes
           tags: |
             type=sha    
@@ -135,7 +115,7 @@ jobs:
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm ls 
+          exec: helm chart list 
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
 #          exec: helm history ${{ secrets.APP_NAME }}        
