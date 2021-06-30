@@ -13,7 +13,7 @@ export function LazyPersonsMultiPicker() {
 
     const dataSource = useLazyDataSource({
         api: loadPersons,
-    });
+    }, []);
 
     return (
         <FlexRow>

@@ -28,7 +28,7 @@ const getLocationTree = cached('locations', async () => {
     const countries = await getData('countries');
 
     let list = [];
-    list = list.concat(continents.map(c => ({ id: 'c-' + c.id, type: 'continent', name: c.name })));
+    list = list.concat(continents.map(c => ({ id: 'c-' + c.id, type: 'continent', name: c.name, parentId: null })));
     list = list.concat(cities.map(c => ({ ...c, id: c.id, name: c.name, type: 'city', parentId: c.country })));
     list = list.concat(countries.map(c => ({ id: c.id, name: c.name, type: 'country', parentId: 'c-' + c.continent })));
     list.forEach(l => { l.__typename = "Location"; });

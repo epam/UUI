@@ -13,7 +13,7 @@ export function ValueTypeExamplePicker() {
 
     const dataSource = useLazyDataSource({
         api: loadPersons,
-    });
+    }, []);
 
     return (
         <div>

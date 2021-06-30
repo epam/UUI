@@ -23,6 +23,10 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         this.views.delete(onValueChange);
     }
 
+    public destroy() {
+        this.views.clear();
+    }
+
     public getId = (item: TItem) => {
         if (item == null) {
             return null;
