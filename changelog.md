@@ -21,6 +21,7 @@
 * [VirtualList]: Fixed issue with dynamic items heights
 * [PickerList]: fixed sorting direction
 * [LazyDataSource]: exactRowsCount is now returned when known
+* [Button]: disable possibility select value of Button caption
 
 # 4.0.0 - 07.05.2021
 
