@@ -24,6 +24,10 @@ export class NumericInputDoc extends BaseDocsBlock {
                     title='Size'
                     path='./examples/numericInput/Size.example.tsx'
                 />
+                <DocExample
+                    title='With formatter'
+                    path='./examples/numericInput/Formatter.example.tsx'
+                />
             </>
         );
     }
