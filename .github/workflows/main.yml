@@ -104,20 +104,30 @@ jobs:
           tags: |
             type=sha    
       
-      - name: check env
+      - name: Prep helm chart
         run: |
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')   
           export HELM_EXPERIMENTAL_OCI=1
+          echo "::set-env name=HELM_EXPERIMENTAL_OCI::$HELM_EXPERIMENTAL_OCI"
           echo $tag 
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           helm chart pull ${{ secrets.HELM_REGISTRY }}
           helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
           ls -la ui
+          export name1=ui-production
+          echo "::set-env name=name1::$name1"
 
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm ls
+          exec: helm chart list
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm history $name1
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
 #          exec: helm history ${{ secrets.APP_NAME }}        
