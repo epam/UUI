@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PickerBase, PickerBaseProps, PickerBaseState } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui';
-import { DataPickerBody, DataPickerRow } from '../pickers';
+import { DataPickerInputBody, DataPickerRow } from '../pickers';
 import { Text, TextPlaceholder } from '../typography';
 
 export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
@@ -32,7 +32,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         const dataRows = view.getVisibleRows();
         const rows = dataRows.map(this.renderRow);
 
-        return <DataPickerBody
+        return <DataPickerInputBody
             { ...view.getListProps() }
             value={ this.getDataSourceState() }
             onValueChange={ this.handleDataSourceValueChange }
@@ -41,6 +41,12 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
             rows={ rows }
             search={ this.lens.prop('dataSourceState').prop('search').toProps() }
             showSearch={ this.props.showSearch }
+            size={ this.props.size }
+            hasSelection={ dataRows.length > 0 }
+            clearSelection={ this.clearSelection }
+            switchValue={ this.state.showSelected }
+            onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
+            selectAll={ view.selectAll }
         />;
     }
 }

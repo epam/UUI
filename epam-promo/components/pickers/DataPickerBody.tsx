@@ -56,7 +56,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
         }
 
         return <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
-           <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+            <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
         </FlexCell>;
     }
 

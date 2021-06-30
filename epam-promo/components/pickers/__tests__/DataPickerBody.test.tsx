@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataPickerBody } from '../DataPickerBody';
+import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import renderer from 'react-test-renderer';
 import { ArrayDataSource, renderWithContextAsync } from '@epam/uui';
 import { DataPickerRow } from '../DataPickerRow';
@@ -27,31 +27,35 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
+    const requiredProps: DataPickerBodyProps<any, any> = {
+        value: null,
+        onValueChange: jest.fn(),
+        rows: mockDataSource.props.items,
+        search: {
+            value: null,
+            onValueChange: jest.fn(),
+        },
+        // isSingleSelect: false,
+        // hasSelection: false,
+        // clearSelection: jest.fn(),
+        // switchValue: false,
+        // onSwitchValueChange: jest.fn(),
+        // selectAll: {
+        //     value: false,
+        //     onValueChange: jest.fn(),
+        // },
+    };
+
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
-                rows={ mockDataSource.props.items }
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
-            />,
-        );
+        const tree = await renderWithContextAsync(<DataPickerBody { ...requiredProps }/>);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
+                { ...requiredProps }
                 rows={ [] }
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
                 renderNotFound={ () => <div>Not found</div> }
             />,
         );
@@ -61,13 +65,8 @@ describe('DataPickerBody', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
+                { ...requiredProps }
                 editMode="modal"
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
                 showSearch="auto"
                 showSelectedRows
                 maxHeight={ 800 }
