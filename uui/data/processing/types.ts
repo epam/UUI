@@ -51,14 +51,14 @@ export interface LazyDataSourceApiResponse<TItem> {
 }
 
 export interface LazyDataSourceApiRequestContext<TItem, TId> {
-    parentId: TId;
-    parent: TItem;
+    parentId?: TId;
+    parent?: TItem;
 }
 
 export type LazyDataSourceApi<TItem, TId, TFilter> =
     (
         request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
-        details?: LazyDataSourceApiRequestContext<TItem, TId>,
+        context?: LazyDataSourceApiRequestContext<TItem, TId>,
     ) => Promise<LazyDataSourceApiResponse<TItem>>;
 
 export interface IEntityStore<TEntity, TId> {

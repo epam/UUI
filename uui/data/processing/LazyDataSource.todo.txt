@@ -18,6 +18,8 @@ Editable table demo
 
 .reload() method
 
+call clearCache() on picker close
+
 OPTIONAL
 
 Better loading UX
@@ -97,7 +99,7 @@ b) an 'batchChildrenLoads' flag, and pass parentIds in requestOptions (2nd argum
 
 Reset selection on changing filter
 - investigate problems on demo
-- we don't change the filter, use code does it. Should be implemented at user-side?
+- we don't change the filter, user code does it. Should be implemented at user-side?
 
 
 Smart Selection Cascading
@@ -119,8 +121,8 @@ Item By ID store
 - allow to put an external implementation?
 
 Make lazy tree sync/async
-- in some cases, we can complete tree load operation synchroniously.
-  But JS Promise-based algorytm would execute continuation on the next tick in any case
+- in some cases, we can complete tree load operation synchronously.
+  But JS Promise-based algorithm would execute continuation on the next tick in any case
 - we can build a Promise-like Monad to allow sync execution
 - this would allow us to re-use LazyListView for ArrayDataSource
 
@@ -141,6 +143,8 @@ Iterate loading algorithm to remove showing intermediate states when childCount 
 Rework ArrayDataSource to re-use LazyListView.
 
 
+
+
 DONE:
 
 Don't load items until getVisibleRows is called
@@ -158,12 +162,12 @@ Fix bug:
   - parent is unchecked (expected intermediate)
 
 Rework loading state machine
-- handle concurent checking-induced and value-change loads
+- handle concurrent checking-induced and value-change loads
 
 
 Select all
 
-Test complex IDs, like [entitytype, number]
+Test complex IDs, like [entityType, number]
 - use in demo
 
 Selection cascading

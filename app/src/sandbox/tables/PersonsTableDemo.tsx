@@ -11,7 +11,9 @@ const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTable
 
     let ids = clientIds && clientIds.map(clientId => clientId[1]) as any[];
 
-    if (groupBy == 'location') {
+    if (request.search) {
+        return svc.api.demo.persons({ ...rq, filter, ids });
+    } else if (groupBy == 'location') {
         if (!ctx.parent) {
             return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }}, ids });
         } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
