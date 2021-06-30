@@ -1,4 +1,5 @@
 export * from './DataPickerBody';
+export * from './DataPickerInputBody';
 export * from './DataPickerRow';
 export * from './PickerInput';
 export * from './PickerModal';

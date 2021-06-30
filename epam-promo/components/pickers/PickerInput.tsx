@@ -1,18 +1,13 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { DataRowProps, IEditableDebouncer, uuiMarkers } from '@epam/uui';
+import { DataRowProps, IEditableDebouncer } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { DataPickerBody } from './DataPickerBody';
+import { DataPickerInputBody } from './DataPickerInputBody';
 import { PickerModal } from './PickerModal';
-import { Panel, FlexSpacer } from '../layout/FlexItems';
+import { Panel } from '../layout/FlexItems';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
-import { Switch } from '../inputs';
-import { LinkButton } from '../buttons';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { PickerItem } from './PickerItem';
-import { i18n } from '../../i18n';
-import * as css from './PickerInput.scss';
 
 export type PickerInputProps =  SizeMod & IHasEditMode & {};
 
@@ -60,33 +55,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         );
     }
 
-    renderFooter() {
-        if (this.isSingleSelect()) {
-            return;
-        }
-
-        const view = this.getView();
-        const hasSelection = view.getSelectedRows().length > 0;
-        const isNotDisabled = hasSelection && !this.isSingleSelect();
-        const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
-
-        return <div className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || 36 }`], uuiMarkers.clickable) }>
-            <Switch
-                size={ switchSize }
-                value={ this.state.showSelected }
-                isDisabled={ !isNotDisabled }
-                onValueChange={ (nV) => this.setState({ showSelected: nV }) }
-                label={ i18n.pickerInput.showOnlySelectedLabel }
-            />
-            <FlexSpacer />
-            { view.selectAll && <LinkButton
-                size={ +this.props.size < 36 ? '30' : '36' }
-                caption={ hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
-                onClick={ hasSelection ? () => this.clearSelection() : () => view.selectAll.onValueChange(true) }
-            /> }
-        </div>;
-    }
-
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> & PickerTogglerMods {
         return {
             ...super.getTogglerProps(rows),
@@ -102,6 +70,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         let maxHeight = this.props.dropdownHeight || pickerHeight;
         let minBodyWidth = this.props.minBodyWidth || pickerWidth;
+        const view = this.getView();
 
         return (
             <Dropdown
@@ -113,7 +82,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                     />
                 }
                 renderBody={ (props: DropdownBodyProps) => <Panel shadow style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }>
-                    <DataPickerBody
+                    <DataPickerInputBody
                         { ...this.getListProps() }
                         value={ this.getDataSourceState() }
                         onValueChange={ this.handleDataSourceValueChange }
@@ -130,8 +99,14 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         scheduleUpdate={ props.scheduleUpdate }
                         searchSize={ this.props.size }
                         editMode={ 'dropdown' }
+                        isSingleSelect={ this.isSingleSelect() }
+                        size={ this.props.size }
+                        hasSelection={ view.getSelectedRows().length > 0 }
+                        clearSelection={ this.clearSelection }
+                        switchValue={ this.state.showSelected }
+                        onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
+                        selectAll={ view.selectAll }
                     />
-                    { this.renderFooter() }
                 </Panel> }
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
