@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -16,22 +16,22 @@
   "dependencies": {
     "@epam/assets": "4.0.0",
     "@epam/internal": "0.0.1",
-    "@epam/loveship": "4.0.0",
-    "@epam/promo": "4.0.0",
-    "@epam/uui": "4.0.0",
-    "@epam/uui-components": "4.0.0",
-    "@epam/uui-db": "4.0.0",
-    "@epam/uui-editor": "4.0.0",
-    "@epam/uui-timeline": "4.0.0",
+    "@epam/loveship": "4.1.0",
+    "@epam/promo": "4.1.0",
+    "@epam/uui": "4.1.0",
+    "@epam/uui-components": "4.1.0",
+    "@epam/uui-db": "4.1.0",
+    "@epam/uui-editor": "4.1.0",
+    "@epam/uui-timeline": "4.1.0",
     "@types/history": "4.7.6",
     "@types/jest": "25.2.3",
     "@types/node": "14.0.5",
     "@types/prismjs": "1.16.1",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
+    "@types/react-measure": "2.0.6",
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "5.1.5",
-    "@types/react-measure": "2.0.6",
     "classnames": "2.2.6",
     "history": "4.10.1",
     "lodash.assign": "4.2.0",
@@ -54,7 +54,7 @@
     "typescript": "4.1.5"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.0.0"
+    "@epam/uui-docs": "4.1.0"
   },
   "browserslist": {
     "production": [
