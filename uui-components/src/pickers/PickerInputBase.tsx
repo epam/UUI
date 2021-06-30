@@ -24,6 +24,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
+    inFocus: boolean;
 }
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
@@ -65,6 +66,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return {
             ...base,
             opened: false,
+            inFocus: false,
             dataSourceState: {
                 ...base.dataSourceState,
                 visibleCount: initialRowsVisible,
@@ -77,14 +79,35 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
+            const { dataSourceState, inFocus } = this.state;
+            const searchPosition = this.getSearchPosition();
+            if (inFocus && dataSourceState.search && searchPosition === "input") return;
             this.toggleDropdownOpening(opened);
         }
     }
 
-    toggleDropdownOpening(opened: boolean) {
-        this.setState({ opened, dataSourceState: { ...this.state.dataSourceState, topIndex: 0, visibleCount: initialRowsVisible, focusedIndex: 0, search: '' } });
+    toggleDropdownOpening = (opened: boolean) => {
+        this.setState({
+            opened,
+            dataSourceState: {
+                ...this.state.dataSourceState,
+                topIndex: 0,
+                visibleCount: initialRowsVisible,
+                focusedIndex: 0,
+                search: ''
+            }
+        });
     }
 
+    onFocus = (e: React.SyntheticEvent<HTMLElement>) => {
+        this.props.onFocus && this.props.onFocus(e);
+        this.setState({inFocus: true});
+    }
+
+    onBlur = (e: React.SyntheticEvent<HTMLElement>) => {
+        this.props.onBlur && this.props.onBlur(e);
+        this.setState({inFocus: false});
+    }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.setState({opened: false});
@@ -122,7 +145,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         let selectedRows = view.getSelectedRows();
-        const { onFocus, onBlur, isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
+        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === "body" && !selectedRows.length)
         const disableClear = forcedDisabledClear || propDisableClear;
@@ -137,8 +160,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isReadonly,
             isDisabled,
             autoFocus,
-            onFocus,
-            onBlur,
+            onFocus: this.onFocus,
+            onBlur: this.onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
@@ -149,6 +172,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             ref: this.togglerRef,
+            toggleDropdownOpening: this.toggleDropdownOpening,
         };
     }
 
