@@ -3,6 +3,7 @@ import cx from 'classnames';
 import * as css from './NumericInput.scss';
 import {IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
 import {IconContainer} from '../layout';
+import { getCalculatedValue } from "../../../uui/helpers/numericInputCalculations";
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
@@ -84,13 +85,15 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleIncreaseValue = () => {
-        const value = this.getValidatedValue(+this.state.value + (this.props.step || 1));
+        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr"})
+        const value = this.getValidatedValue(increasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});
     }
 
     handleDecreaseValue = () => {
-        const value = this.getValidatedValue(+this.state.value - (this.props.step || 1));
+        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr"})
+        const value = this.getValidatedValue(decreasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});
     }
