@@ -24,6 +24,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     }
 
     public destroy() {
+        this.views.forEach(view => view.destroy());
         this.views.clear();
     }
 
