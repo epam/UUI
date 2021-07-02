@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as css from './Switch.scss';
 import cx from 'classnames';
-import {uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext } from "@epam/uui";
 
 export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean> {
 }
 
 export class Switch extends React.Component<SwitchProps, any> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     
     toggle = () => {

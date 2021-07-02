@@ -107,6 +107,21 @@ router.post('/persons', async (req, res) => {
     res.json(result);
 });
 
+router.post('/persons-paged', async (req, res) => {
+    const data = await helpers.getPersons();
+    const filteredAndSorted = filterAndSort({ ...req.body, range: null }, data.persons, 'Person');
+
+    const pageSize = req.body.pageSize || 10;
+    const pageNo = req.body.page || 0;
+    const page = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
+
+    const result = filterAndSort({ range: req.body.range }, page, 'Person'); // apply range
+
+    result.totalCount = filteredAndSorted.items.length;
+    result.pageCount = Math.ceil(result.totalCount / pageSize);
+    res.json(result);
+});
+
 router.post('/personGroups', async (req, res) => {
     const data = await helpers.getPersons();
     const result = group(req.body, data.persons, 'PersonGroup');

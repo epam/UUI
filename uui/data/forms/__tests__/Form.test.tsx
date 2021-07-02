@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { Form, RenderFormProps, FormProps, FormSaveResponse } from '../Form';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { LockContext, Metadata, ILens, delay } from '../../..';
+import { ReactWrapper } from 'enzyme';
+import { LockContext, Metadata, ILens, delay, mountWithContextAsync, testSvc } from '../../..';
 import { UserSettingsContext } from '../../../services/UserSettingsContext';
-
-const testContext = {
-    uuiLocks: new LockContext({} as any),
-};
 
 interface IFoo {
     dummy: string;
     tummy?: string;
 }
 
-export const flushPromises = () => new Promise(resolve => setImmediate(resolve));
-
 describe("Form", () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
+    let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
     let testContext: {
         uuiLocks: LockContext,
         uuiUserSettings: UserSettingsContext,
@@ -26,9 +20,11 @@ describe("Form", () => {
     let onSuccessSpy = jest.fn();
     let onErrorSpy = jest.fn();
 
+    const getForm = (wrapper: ReactWrapper): Form<any> => wrapper.find(Form).instance() as Form<any>;
+
     beforeEach(() => {
         testContext = {
-            uuiLocks: new LockContext({block: jest.fn().mockImplementation(() => jest.fn())} as any),
+            uuiLocks: new LockContext({ block: jest.fn().mockImplementation(() => jest.fn()) } as any),
             uuiUserSettings: new UserSettingsContext(),
         };
         fooMetadata = {
@@ -46,17 +42,23 @@ describe("Form", () => {
         wrapper && wrapper.unmount();
     });
 
-    it('should call renderFunc with an object which has property isChanged == false', () => {
+    it('should call renderFunc with an object which has property isChanged == false', async () => {
         const renderForm = (props: RenderFormProps<number>): React.ReactNode => null;
         const renderFormSpy = jest.fn(renderForm);
 
-        wrapper = shallow(<Form<number> renderForm={ renderFormSpy } value={ 1 } onSave={ () => Promise.resolve() } />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<number>
+                renderForm={ renderFormSpy }
+                value={ 1 }
+                onSave={ () => Promise.resolve() }
+            />,
+        );
 
         expect(renderFormSpy).toHaveBeenCalledTimes(1);
         expect(renderFormSpy.mock.calls[0][0].isChanged).toBe(false);
     });
 
-    it('should set this.state.isChanged to true whenever lens is changed', () => {
+    it('should set this.state.isChanged to true whenever lens is changed', async () => {
         let formProps: RenderFormProps<IFoo> = null;
 
         const renderForm = (props: RenderFormProps<IFoo>): React.ReactNode => {
@@ -64,17 +66,19 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "" } }
-            onSave={ () => Promise.resolve() }
-            getMetadata={ () => fooMetadata }
-            beforeLeave={ () => Promise.resolve(true) }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form
+                renderForm={ renderForm }
+                value={ { dummy: "" } }
+                onSave={ () => Promise.resolve() }
+                getMetadata={ () => fooMetadata }
+                beforeLeave={ () => Promise.resolve(true) }
+            />,
+        );
 
         formProps.lens.prop("dummy").set("hello");
-        expect(wrapper.state('isChanged')).toBe(true);
-        expect(wrapper.state('form')).toEqual({ dummy: "hello" });
+        expect(getForm(wrapper).state.isChanged).toBe(true);
+        expect(getForm(wrapper).state.form).toEqual({ dummy: "hello" });
     });
 
     it('should set invalid value to empty isRequired field and valid to filled field', async () => {
@@ -87,24 +91,26 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "" } }
-            onSave={ () => Promise.resolve() }
-            getMetadata={ () => fooMetadata }
-            beforeLeave={ () => Promise.resolve(true) }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "" } }
+                onSave={ () => Promise.resolve() }
+                getMetadata={ () => fooMetadata }
+                beforeLeave={ () => Promise.resolve(true) }
+            />,
+        );
 
         handleSave();
 
-        expect(wrapper.state('validationState')).toHaveProperty('isInvalid', true);
+        expect(getForm(wrapper).state.validationState).toHaveProperty('isInvalid', true);
         lens.prop("dummy").set("hello");
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
 
         handleSave();
 
-        expect(wrapper.state('form')).toEqual({ dummy: "hello" });
-        expect(wrapper.state('validationState')).toHaveProperty('isInvalid', false);
+        expect(getForm(wrapper).state.form).toEqual({ dummy: "hello" });
+        expect(getForm(wrapper).state.validationState).toHaveProperty('isInvalid', false);
     });
 
     it('should start checking validation until get back to the valid state', async () => {
@@ -115,13 +121,15 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Checking the validation state handling
         // Initially the form is considered valid, even that 'dummy' is not set
@@ -145,11 +153,12 @@ describe("Form", () => {
         expect(formProps.lens.prop("dummy").toProps().isInvalid).toBe(false);
 
         wrapper.unmount();
+        wrapper = null;
         await delay();
     });
 
 
-    it('should do nothing, if props.value is not changed', () => {
+    it('should do nothing, if props.value is not changed', async () => {
         let formProps: RenderFormProps<IFoo> = null;
         let beforeLeaveMock = jest.fn(() => Promise.resolve(false));
         let saveMock = jest.fn(() => Promise.resolve(false));
@@ -167,7 +176,7 @@ describe("Form", () => {
             getMetadata: () => fooMetadata,
         };
 
-        wrapper = shallow(<Form<IFoo> { ...props } />, { context: testContext });
+        wrapper = await mountWithContextAsync(<Form<IFoo> { ...props } />);
 
         // Just re-render component with the same props. Nothing should happen.
         wrapper.setProps({ props });
@@ -176,17 +185,17 @@ describe("Form", () => {
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
 
         // Then, we re-render, with the exactly same props. Nothing should happen.
         wrapper.setProps({ props });
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
 
         expect(beforeLeaveMock).not.toBeCalled();
         expect(saveMock).not.toBeCalled();
     });
 
-    it('should form be invalid with 2 invalid fields, 1 invalid field, valid with correct fields', () => {
+    it('should form be invalid with 2 invalid fields, 1 invalid field, valid with correct fields', async () => {
         let formProps: RenderFormProps<IFoo> = null;
 
         const renderForm = (props: RenderFormProps<IFoo>): React.ReactNode => {
@@ -201,13 +210,15 @@ describe("Form", () => {
             },
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "", tummy: "" } }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "", tummy: "" } }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         expect(formProps.isInvalid).toBe(false);
         formProps.save();
@@ -240,19 +251,19 @@ describe("Form", () => {
             getMetadata: () => fooMetadata,
         };
 
-        wrapper = shallow(<Form<IFoo> { ...props } />, { context: testContext });
+        wrapper = await mountWithContextAsync(<Form<IFoo> { ...props } />);
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
-        await testContext.uuiLocks.acquire(() => Promise.resolve());
+        expect(getForm(wrapper).state.isChanged).toBe(true);
+        await testSvc.uuiLocks.acquire(() => Promise.resolve());
 
         expect(formProps.isInvalid).toBe(false);
         expect(beforeLeaveMock).toHaveBeenCalled();
         expect(saveMock).toHaveBeenCalled();
     });
 
-    it('should undo get previous value, redo - next value', () => {
+    it('should undo get previous value, redo - next value', async () => {
         let formProps: RenderFormProps<IFoo> = null;
 
         const renderForm = (props: RenderFormProps<IFoo>): React.ReactNode => {
@@ -260,25 +271,27 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
         formProps.undo();
         expect(formProps.value.dummy).toBe('test');
         formProps.redo();
         expect(formProps.value.dummy).toBe('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
     });
 
-    it('should revert load last passed value', () => {
+    it('should revert load last passed value', async () => {
         let formProps: RenderFormProps<IFoo> = null;
 
         const renderForm = (props: RenderFormProps<IFoo>): React.ReactNode => {
@@ -286,17 +299,19 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
         formProps.lens.prop('dummy').set('hello');
         formProps.revert();
         expect(formProps.value.dummy).toBe('test');
@@ -310,20 +325,22 @@ describe("Form", () => {
             return null;
         };
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
-        expect(wrapper.state('isChanged')).toBe(true);
-        expect(testContext.uuiLocks.getCurrentLock()).not.toBe(null);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
+        expect(testSvc.uuiLocks.getCurrentLock()).not.toBe(null);
         await formProps.save();
-        expect(testContext.uuiLocks.getCurrentLock()).toBe(null);
+        expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
     });
 
     it('should call beforeLeave func after component unmount', async () => {
@@ -343,20 +360,19 @@ describe("Form", () => {
             getMetadata: () => fooMetadata,
         };
 
-        wrapper = shallow(<Form<IFoo>
-            { ...props }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(<Form<IFoo>{ ...props }/>);
 
         formProps.lens.prop("dummy").set("hi");
-        expect(wrapper.state("isChanged")).toBe(true);
+        expect(getForm(wrapper).state.isChanged).toBe(true);
 
         await delay();
 
         wrapper.unmount();
+        wrapper = null;
         expect(beforeLeaveMock).toHaveBeenCalled();
     });
 
-    it("should store unsaved data to local storage", () => {
+    it("should store unsaved data to local storage", async () => {
         let formProps: RenderFormProps<IFoo> = null;
 
         const renderForm = (props: RenderFormProps<IFoo>): React.ReactNode => {
@@ -366,14 +382,16 @@ describe("Form", () => {
 
         const settingKey = 'form-test';
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            settingsKey={ settingKey }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                settingsKey={ settingKey }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
@@ -392,16 +410,18 @@ describe("Form", () => {
 
         const settingKey = 'form-test';
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            settingsKey={ settingKey }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            onSuccess={ onSuccessSpy }
-            onError={ onErrorSpy }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                settingsKey={ settingKey }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                onSuccess={ onSuccessSpy }
+                onError={ onErrorSpy }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         // Ok. Now we'll change to form
         formProps.lens.prop('dummy').set('hi');
@@ -415,17 +435,19 @@ describe("Form", () => {
     });
 
     it('should call onError handler on rejected onSave promise', async () => {
-        wrapper = shallow<Form<IFoo>>(<Form<IFoo>
-            renderForm={ () => null }
-            value={ { dummy: "test" } }
-            onSave={ () => Promise.reject() }
-            beforeLeave={ () => Promise.resolve(false) }
-            onSuccess={ onSuccessSpy }
-            onError={ onErrorSpy }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ () => null }
+                value={ { dummy: "test" } }
+                onSave={ () => Promise.reject() }
+                beforeLeave={ () => Promise.resolve(false) }
+                onSuccess={ onSuccessSpy }
+                onError={ onErrorSpy }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
-        const instance = wrapper.instance() as Form<IFoo>;
+        const instance = wrapper.find(Form).instance() as Form<IFoo>;
 
         await instance.handleSave();
         expect(onErrorSpy).toBeCalledTimes(1);
@@ -442,31 +464,33 @@ describe("Form", () => {
 
         const settingKey = 'form-test';
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            settingsKey={ settingKey }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                settingsKey={ settingKey }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
         formProps.lens.prop('dummy').set('hi');
 
         wrapper.unmount();
 
-        wrapper = shallow(<Form<IFoo>
-            renderForm={ renderForm }
-            value={ { dummy: "test" } }
-            settingsKey={ settingKey }
-            onSave={ () => Promise.resolve() }
-            beforeLeave={ () => Promise.resolve(false) }
-            loadUnsavedChanges={ () => Promise.resolve() }
-            getMetadata={ () => fooMetadata }
-        />, { context: testContext });
+        wrapper = await mountWithContextAsync(
+            <Form<IFoo>
+                renderForm={ renderForm }
+                value={ { dummy: "test" } }
+                settingsKey={ settingKey }
+                onSave={ () => Promise.resolve() }
+                beforeLeave={ () => Promise.resolve(false) }
+                loadUnsavedChanges={ () => Promise.resolve() }
+                getMetadata={ () => fooMetadata }
+            />,
+        );
 
-        await delay();
-        
         expect(formProps.lens.prop("dummy").get()).toBe("hi");
     });
 
@@ -512,28 +536,32 @@ describe("Form", () => {
                 },
             };
 
-            wrapper = shallow(<Form<IAdvancedFoo>
-                renderForm={ renderForm }
-                value={ {dummy: "test", deep: {inner: ""}} }
-                onSave={ () => Promise.resolve() }
-                onSuccess={ () => "" }
-                getMetadata={ () => fooMetadata }
-                beforeLeave={ () => Promise.resolve(false) }
-            />, {context: testContext});
+            wrapper = await mountWithContextAsync(
+                <Form<IAdvancedFoo>
+                    renderForm={ renderForm }
+                    value={ { dummy: "test", deep: { inner: "" } } }
+                    onSave={ () => Promise.resolve() }
+                    onSuccess={ () => "" }
+                    getMetadata={ () => fooMetadata }
+                    beforeLeave={ () => Promise.resolve(false) }
+                />,
+            );
 
             await handleSave();
 
-            expect(wrapper.state("validationState")).toHaveProperty("isInvalid", false);
+            expect(getForm(wrapper).state.validationState).toHaveProperty("isInvalid", false);
 
             wrapper.unmount();
 
-            wrapper = shallow(<Form<IAdvancedFoo>
-                renderForm={ renderForm }
-                value={ {dummy: "test", deep: {inner: ""}} }
-                onSave={ () => Promise.resolve(serverResponse) }
-                onSuccess={ () => "" }
-                getMetadata={ () => fooMetadata }
-            />, {context: testContext});
+            wrapper = await mountWithContextAsync(
+                <Form<IAdvancedFoo>
+                    renderForm={ renderForm }
+                    value={ { dummy: "test", deep: { inner: "" } } }
+                    onSave={ () => Promise.resolve(serverResponse) }
+                    onSuccess={ () => "" }
+                    getMetadata={ () => fooMetadata }
+                />,
+            );
 
             await handleSave();
 
@@ -575,14 +603,16 @@ describe("Form", () => {
                     : Promise.resolve();
             };
 
-            wrapper = shallow(<Form<IAdvancedFoo>
-                renderForm={ renderForm }
-                value={ {dummy: "test", deep: {inner: "error"}} }
-                onSave={ onSave }
-                onSuccess={ () => "" }
-                getMetadata={ () => fooMetadata }
-                beforeLeave={ () => Promise.resolve(false) }
-            />, {context: testContext});
+            wrapper = await mountWithContextAsync(
+                <Form<IAdvancedFoo>
+                    renderForm={ renderForm }
+                    value={ { dummy: "test", deep: { inner: "error" } } }
+                    onSave={ onSave }
+                    onSuccess={ () => "" }
+                    getMetadata={ () => fooMetadata }
+                    beforeLeave={ () => Promise.resolve(false) }
+                />,
+            );
 
             await handleSave();
 
@@ -643,14 +673,16 @@ describe("Form", () => {
                 return Promise.resolve(serverResponse);
             };
 
-            wrapper = shallow(<Form<IAdvancedFoo>
-                renderForm={ renderForm }
-                value={ {dummy: "test", deep: {inner: "error1"}, deep2: {inner2: "error2"}} }
-                onSave={ onSave }
-                onSuccess={ () => "" }
-                getMetadata={ () => fooMetadata }
-                beforeLeave={ () => Promise.resolve(false) }
-            />, {context: testContext});
+            wrapper = await mountWithContextAsync(
+                <Form<IAdvancedFoo>
+                    renderForm={ renderForm }
+                    value={ { dummy: "test", deep: { inner: "error1" }, deep2: { inner2: "error2" } } }
+                    onSave={ onSave }
+                    onSuccess={ () => "" }
+                    getMetadata={ () => fooMetadata }
+                    beforeLeave={ () => Promise.resolve(false) }
+                />,
+            );
 
             await handleSave();
 
@@ -679,7 +711,7 @@ describe("Form", () => {
             inner2 = lens.prop("deep2").prop("inner2").toProps();
 
             expect(props).toHaveProperty("isInvalid", true);
-            
+
             expect(deep).toHaveProperty("isInvalid", false);
             expect(inner).toHaveProperty("isInvalid", false);
             expect(inner.validationMessage).toBe(undefined);

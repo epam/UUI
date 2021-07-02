@@ -9,7 +9,7 @@ const textPlaceholderDoc = new DocBuilder<TextPlaceholderProps>({ name: 'TextPla
     .prop('color', {
         examples: ['gray10', 'gray40'],
         renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        defaultValue: 'gray10',
+        defaultValue: 'gray40',
     })
     .prop('isNotAnimated', { examples: [true, false] })
     .withContexts(DefaultContext, FormContext);

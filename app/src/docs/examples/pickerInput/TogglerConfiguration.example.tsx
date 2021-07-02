@@ -14,7 +14,7 @@ export function PickerTogglerConfigurationExample() {
 
     const dataSource = useLazyDataSource({
         api: loadCities,
-    });
+    }, []);
 
     return (
         <FlexCell width={ 460 } cx={ css.container }>

@@ -2,15 +2,14 @@ import { EditorState, AtomicBlockUtils } from 'draft-js';
 import EditorUtils from 'draft-js-plugins-utils';
 import { IconButton } from '@epam/loveship';
 import * as React from 'react';
-import { UuiContexts, uuiContextTypes, prependHttp } from '@epam/uui';
+import { UuiContexts, prependHttp, UuiContext } from '@epam/uui';
 import { DraftButtonProps } from '../../../types';
 import { getSelectionText } from '../../../utils';
 import { ImageModalState, showImageModal } from '../modals/ImageModal';
 import * as photoIcon from '../../../icons/insert_photo.svg';
 
 export class ImageButton extends React.Component<DraftButtonProps> {
-
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {

@@ -1,8 +1,8 @@
 import { Link, LayoutLayer } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import { FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4 } from "../services";
 import { AmplitudeClient } from "amplitude-js";
+import { FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock } from "../services";
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -30,7 +30,8 @@ export interface ILockContext  {
     acquire(tryRelease: () => Promise<any>): Promise<object>;
     release(lock: object): void;
     withLock(action: () => Promise<any>): Promise<object>;
-}
+    getCurrentLock: () => Lock | null;
+} 
 
 export interface IRouterContext {
     getCurrentLink(): Link;
