@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IClickable, IDropdownToggler, IDisableable, IBasicPickerToggler, ICanBeInvalid, ICanRedirect, IHasLabel, IEditable, IHasPlaceholder, ICanBeReadonly } from '@epam/uui';
 import { DocBuilder } from '../DocBuilder';
+import { ICanBeFormatted } from "@epam/uui-components"// "../../../uui-components/src/inputs/NumericInput";
 
 export const onClickDoc = new DocBuilder<IClickable>({ name: 'onClick' })
     .prop('onClick', { examples: ctx => [ctx.getCallback('onClick')] });
@@ -46,6 +47,9 @@ export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' })
 
 export const iEditable = new DocBuilder<IEditable<any>>({ name: 'onValueChange' })
     .prop('onValueChange', { examples: ctx => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }', isDefault: true }], isRequired: true });
+
+export const iFormatter = new DocBuilder<ICanBeFormatted<any>>({ name: 'formatter' })
+    .prop('formatter', { examples: ctx => [{ value: ctx.getChangeHandler('formatter'), name: '(value) => { ... }', isDefault: false }], isRequired: false });
 
 export const iHasPlaceholder = new DocBuilder<IHasPlaceholder>({ name: 'placeholder' })
     .prop('placeholder', { examples: ['Select country', 'Type text'], type: 'string' });

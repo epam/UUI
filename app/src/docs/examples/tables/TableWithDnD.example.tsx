@@ -11,7 +11,7 @@ export function TableWithDnDExample() {
 
     const dataSource = useArrayDataSource<FeatureClass, number, any>({
         items: items,
-    });
+    }, []);
 
     const view = dataSource.useView(value, onValueChange, {
         getRowOptions: (i, index) => {

@@ -54,10 +54,11 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
         }
     }
 
-    componentWillReceiveProps(nextProps: RichTextEditorProps) {
-        if (this.currentValue !== nextProps.value) {
-            this.currentValue = nextProps.value;
-            this.editorState = this.getStateFromProps(nextProps);
+    componentDidUpdate(prevProps: Readonly<RichTextEditorProps>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.currentValue !== this.props.value) {
+            this.currentValue = this.props.value;
+            this.editorState = this.getStateFromProps(this.props);
+            this.forceUpdate();
         }
     }
 

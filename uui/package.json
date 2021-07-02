@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "EPAM UUI",
   "author": "EPAM",
   "license": "MIT",
@@ -39,7 +39,8 @@
   "devDependencies": {
     "@types/amplitude-js": "^7.0.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0"
+    "enzyme-adapter-react-16": "^1.10.0",
+    "react-test-renderer": "16.13.1"
   },
   "peerDependencies": {
     "prop-types": "*",

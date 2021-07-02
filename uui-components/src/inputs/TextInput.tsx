@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, uuiContextTypes, UuiContexts } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './TextInput.scss';
 
@@ -21,7 +21,7 @@ interface TextInputState {
 }
 
 export class TextInput extends React.Component<TextInputProps, TextInputState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     state = {

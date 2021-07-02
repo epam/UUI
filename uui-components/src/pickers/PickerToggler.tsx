@@ -17,6 +17,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     pickerMode: 'single' | 'multi';
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     onBlur?(e: React.SyntheticEvent<HTMLElement>): void;
+    onFocus?(e?: React.SyntheticEvent<HTMLElement>): void;
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
@@ -48,7 +49,9 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => this.props.onValueChange && this.props.onValueChange(e.target.value);
 
-    handleFocus = () => {
+
+    handleFocus = (e?: React.SyntheticEvent<HTMLElement>) => {
+        this.props.onFocus && this.props.onFocus(e);
         const input = this.toggleContainer?.querySelector('input');
         input && input.focus();
         this.setState({ inFocus: true });
@@ -56,7 +59,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleBlur = (e: React.SyntheticEvent<HTMLElement>) => {
         this.props.onBlur && this.props.onBlur(e);
-
         this.setState({ inFocus: false });
         const input = this.toggleContainer?.querySelector('input');
         input && input.blur();
@@ -77,6 +79,11 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         this.props.onClear && this.props.onClear();
+        e.stopPropagation();
+    }
+
+    handleDropdownIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
+        this.props.toggleDropdownOpening && this.props.toggleDropdownOpening(!this.props.isOpen);
         e.stopPropagation();
     }
 
@@ -163,7 +170,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                         icon={ this.props.cancelIcon }
                         onClick={ this.handleCrossIconClick }
                     /> }
-                    { this.props.isDropdown && <IconContainer icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }/> }
+                    { this.props.isDropdown && <IconContainer onClick={this.handleDropdownIconClick} icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }/> }
                 </div>
             </div>
         );

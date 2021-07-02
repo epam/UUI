@@ -13,7 +13,7 @@ export function ButtonAsToggler() {
 
     const dataSource = useLazyDataSource({
         api: personsApi,
-    });
+    }, []);
 
     return (
         <FlexRow spacing='12' >

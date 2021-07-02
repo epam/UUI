@@ -1,19 +1,32 @@
-# next release
+# 4.1.0 - 30.06.2021
 
 **What’s New**
-* added new docs for designers
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
+* [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
+* removed legacy lifecycle methods
+* [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.
+* [PickerInput]: pass onFocus and onBlur in props
 
 **What’s Fixed**
-* updated react-measure package
-* updated react-transition-group package
-* updated draft-js package
-* [uui-timeline]: removed deprecated method createFactory
+* Update packages and fixed warnings
+* [LinkButton]: fix hover styles for disabled button
+* [PickerInput]: fix the switching of opening / closing a portal with a list when clicking on PickerInput when there is a search value so that you can copy or correct the search value
+* [PickerInput]: fix clear icon in PickerInput when searchPosition is 'body' and there are no selected items.
+* [PickerInput] fix: incorrect search behavior in 'show only selected' mode
+* [TextPlaceholder]: fix displaying 0000 if the Redacted font is not loaded yet
+* [DataTable]: add 'Reset to default' button in ColumnsConfigurationModal for the loveship
+* [TextInput]: add 'undefined' to input IEditable interface
+* [LazyListView]: update checked lookup when value.checked is changed
+* [AnaltyticsContext]: add missed type for public property
+* [VirtualList]: Fixed issue with dynamic items heights
+* [PickerList]: fixed sorting direction
+* [LazyDataSource]: exactRowsCount is now returned when known
 
 # 4.0.0 - 07.05.2021
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
-  
+
   Quick start:
     - pass the ```getChildCount(item): number``` prop. It should return an either:
 
@@ -73,14 +86,14 @@
     const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
     const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
   ```
-  
+
 * [Form]: Added server validation mechanism. If you need to get form validation state from server-side, your onSave api should return object like `{ validation?: ICanBeInvalid }`
 
 * [Tables]: Added columns resizing and reordering possibility:
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
     * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
-    
+
 * [Tooltip] & [Dropdown]: Popper.js updated to v.2.x, added 'hide' modifier to hide body when target scrolled outside view
     * [Breaking Change]: In Popper 2 modifiers is now an array of objects, instead of an object where each property was the modifier name in the previous version. [More information.](https://popper.js.org/docs/v2/migration-guide/)
 
@@ -93,7 +106,7 @@
 * [PickerInput]: added PickerItem component, added 48 size, refactored footers according design, changed default prop 'minBodyWidth' to 360
 * [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
 * [Badge]: added transparent and semitransparent fill; Added more sizes;
-  
+
 **What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
 * [ErrorHandler]: reset api error when router is changed
