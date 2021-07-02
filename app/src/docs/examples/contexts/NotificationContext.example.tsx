@@ -21,8 +21,9 @@ export class NotificationContextExample extends React.Component<{}> {
     handleSuccess = () => {
         this.context.uuiNotifications.show((props: INotification) =>
             <SuccessNotification { ...props } >
-                <Text size="36" font='sans' fontSize='14'>Success notification</Text>
-            </SuccessNotification>, { position: this.state.direction, duration: 'forever' });
+                <Text size='36' font='sans' fontSize='14'>Success notification</Text>
+            </SuccessNotification>, { position: this.state.direction, duration: 'forever' })
+            .catch(() => null);
     }
 
     handleWarning = () => {
@@ -37,14 +38,16 @@ export class NotificationContextExample extends React.Component<{}> {
                     action: props.onClose,
                 }]
             }>
-                <Text size="36" font='sans' fontSize='14'>Warning notification with some buttons</Text>
+                <Text size='36' font='sans' fontSize='14'>Warning notification with some buttons</Text>
             </WarningNotification>, { duration: 5, position: this.state.direction })
             .then(() => {
                 this.context.uuiNotifications.show((props: INotification) =>
                     <SuccessNotification { ...props } >
-                        <Text size="36" font='sans' fontSize='14'>It`s Ok!</Text>
-                    </SuccessNotification>, { duration: 2, position: this.state.direction });
-            });
+                        <Text size='36' font='sans' fontSize='14'>It`s Ok!</Text>
+                    </SuccessNotification>, { duration: 2, position: this.state.direction })
+                    .catch(() => null);
+            })
+            .catch(() => null);
     }
 
     handleError = () => {
@@ -55,8 +58,9 @@ export class NotificationContextExample extends React.Component<{}> {
                     action: props.onClose,
                 }]
             }>
-                <Text size="36" font='sans' fontSize='14'>Error notification with looooooooong looooooong text about lorem ispum dolor</Text>
-            </ErrorNotification>, { position: this.state.direction });
+                <Text size='36' font='sans' fontSize='14'>Error notification with looooooooong looooooong text about lorem ispum dolor</Text>
+            </ErrorNotification>, { position: this.state.direction })
+            .catch(() => null);
     }
 
     handleSnackWithRichText = () => {
@@ -66,22 +70,23 @@ export class NotificationContextExample extends React.Component<{}> {
                     <h3>Title</h3>
                     <p><u>Some description</u>. If you want, <strong>you can</strong> redirect to <a href='https://www.google.com/'>Google</a></p>
                 </RichTextView>
-            </NotificationCard>, { duration: 'forever', position: this.state.direction });
+            </NotificationCard>, { duration: 'forever', position: this.state.direction })
+            .catch(() => null);
     }
 
 
     customNotificationHandler = () => {
         this.context.uuiNotifications.show((props: INotification) =>
             <Panel style={ { width: '420px', background: 'white' } } shadow>
-                <ModalHeader title="Custom notification" onClose={ props.onClose } />
-                <FlexRow padding='24' background="none" spacing='12' >
+                <ModalHeader title='Custom notification' onClose={ props.onClose } />
+                <FlexRow padding='24' background='none' spacing='12' >
                     <LabeledInput size='36' label='Promotion Cycle' >
-                        <TextInput value="" size='36' onValueChange={ (newVal) => { } } />
+                        <TextInput value='' size='36' onValueChange={ (newVal) => { } } />
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow padding='24' background="none" spacing='12' >
+                <FlexRow padding='24' background='none' spacing='12' >
                     <LabeledInput size='36' label='Discipline' >
-                        <TextInput value="" size='36' onValueChange={ (newVal) => { } } />
+                        <TextInput value='' size='36' onValueChange={ (newVal) => { } } />
                     </LabeledInput>
                 </FlexRow>
                 <FlexSpacer />
@@ -91,7 +96,8 @@ export class NotificationContextExample extends React.Component<{}> {
                     <Button color='green' caption='Confirm' onClick={ props.onSuccess } />
                 </FlexRow>
             </Panel>, { position: this.state.direction, duration: 'forever' })
-            .then(this.handleSuccess);
+            .then(this.handleSuccess)
+            .catch(() => null);
     }
 
     render() {

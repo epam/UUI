@@ -1,7 +1,19 @@
+# next release
+
+**What’s New**
+* added new docs for designers
+
+**What’s Fixed**
+* updated react-measure package
+* updated react-transition-group package
+* updated draft-js package
+* [uui-timeline]: removed deprecated method createFactory
+
 # 4.0.0 - 07.05.2021
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
+  
   Quick start:
     - pass the ```getChildCount(item): number``` prop. It should return an either:
 

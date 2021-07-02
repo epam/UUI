@@ -6,6 +6,5 @@ declare module '*.svg' {
 
 declare module "tether-tooltip";
 declare module "jsurl";
-declare module "react-measure";
 declare module "query-string";
 declare module "inline-style-transformer";

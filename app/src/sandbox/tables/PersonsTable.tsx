@@ -15,7 +15,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
 
     const renderRow = (props: DataRowProps<PersonTableRecord, number>) => {
         let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow { ...props } columns={ columns } />;
+        return <DataTableRow key={ props.id } { ...props } columns={ columns } />;
     };
 
     return (

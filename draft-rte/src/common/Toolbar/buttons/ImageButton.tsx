@@ -81,7 +81,8 @@ export class ImageButton extends React.Component<DraftButtonProps> {
                     color={ this.isImageSelected() ? 'sky' : 'night600' }
                     onClick={ () => {
                         showImageModal(this.context, modalInitialState)
-                            .then(data => { this.handleClick(data.src, data.alt, data.width, data.height); });
+                            .then(data => { this.handleClick(data.src, data.alt, data.width, data.height); })
+                            .catch(() => null);
                     } }
                 />
             </div>

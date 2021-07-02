@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
+import { BaseDocsBlock, UUI3 } from '../../common';
+import { getQuery } from '../../helpers';
 import * as css from './DownloadsDoc.scss';
-import { BaseDocsBlock, UUI3 } from '../../common/docs';
 
 import { PromoColorsDoc } from './promo/PromoColors.doc';
 import { LoveshipColorsDoc as LoveshipColorsDoc } from './loveship/LoveshipColors.doc';
@@ -22,7 +23,7 @@ export class ColorsPageDoc extends BaseDocsBlock {
     renderContent(): React.ReactNode {
         return (
             <>
-                { this.getQuery('skin') === UUI3 ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc) }
+                { getQuery('skin') === UUI3 ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc) }
             </>
         );
     }

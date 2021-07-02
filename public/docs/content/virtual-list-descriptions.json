@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "VirtualList provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion, and the height of the whole container.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Internally, we use this component in DataTable and PickerInputBody to display arbitrary sized lists of DataTableRows.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "As height of an item is unknown until it's rendered, items which are not yet rendered are estimated to have and average height of the items that was rendered.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "VirtualList track some of it's state (topIndex, visibleCount) externally. User have to provide IEdiable<VirtualListState> implementation via props. It's save to use it to scroll the list top or to particular item.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can also estimate initial visibleCount, to avoid initial re-render. VisibleCount will be updated automatically if VirtualList will detect that there's room for more items.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

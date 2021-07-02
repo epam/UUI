@@ -12,9 +12,12 @@ interface LandingReleasesState {
 }
 
 export class ReleasesBlock extends React.Component<{}, LandingReleasesState> {
-    constructor(props: Readonly<{containerRef: any}>) {
-        super(props);
+    state: LandingReleasesState = {
+        markdown: null,
+        isLoaded: false,
+    };
 
+    componentDidMount() {
         svc.api.getChangelog()
             .then(response => response)
             .then(data => {
@@ -23,11 +26,6 @@ export class ReleasesBlock extends React.Component<{}, LandingReleasesState> {
                     isLoaded: true,
                 });
             });
-
-        this.state = {
-            markdown: null,
-            isLoaded: false,
-        };
     }
 
     render() {

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {AppHeader, Page, Sidebar, UUI4} from '../common';
 import { TreeNodeProps } from '@epam/uui-components';
+import { FlexRow } from '@epam/promo';
+import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
-import { DbDemo } from "./db/DbDemo";
-import { ComplexForm } from "./forms/ComplexForm";
-import { FlexRow } from "@epam/promo";
+import { getQuery } from '../helpers';
+import { ComplexForm } from './forms/ComplexForm';
+import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 
@@ -15,47 +16,34 @@ const items = [
     { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
 ];
 
-export class SandboxPage extends React.Component {
-    constructor(props: any) {
-        super(props);
-        if (!this.getQuery('id')) {
-            svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
-        }
+const itemsIds = items.map(i => i.id);
+
+export const SandboxPage = () => {
+    if (!itemsIds.includes(getQuery('id'))) {
+        svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
     }
 
-    componentWillUpdate(nextProps: Readonly<{}>, nextState: Readonly<{}>, nextContext: any) {
-        if (!this.getQuery('id')) {
-            svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
-        }
-    }
-
-    onChange = (val: TreeNodeProps) => {
+    const onChange = (val: TreeNodeProps) => {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: val.id } });
-    }
+    };
 
-    getQuery(query: string): string {
-        return svc.uuiRouter.getCurrentLink().query[query];
-    }
+    const selectedExampleId = getQuery('id');
+    const example = items.find(i => i.id === selectedExampleId);
 
-    render() {
-        const selectedExampleId = this.getQuery('id');
-        const example = items.find(i => i.id === selectedExampleId);
-
-        return (
-            <Page renderHeader={ () => <AppHeader /> } >
-                <FlexRow alignItems='stretch'>
-                    <Sidebar
-                        value={ selectedExampleId }
-                        onValueChange={ this.onChange }
-                        getItemLink={ (item) => !item.isDropdown && {
-                            pathname: 'sandbox',
-                            query: { id: item.id },
-                        } }
-                        items={ items }
-                    />
-                    { React.createElement(example.component) }
-                </FlexRow>
-            </Page>
-        );
-    }
-}
+    return (
+        <Page renderHeader={ () => <AppHeader /> } >
+            <FlexRow alignItems='stretch'>
+                <Sidebar
+                    value={ selectedExampleId }
+                    onValueChange={ onChange }
+                    getItemLink={ (item) => !item.isDropdown && {
+                        pathname: 'sandbox',
+                        query: { id: item.id },
+                    } }
+                    items={ items }
+                />
+                { React.createElement(example.component) }
+            </FlexRow>
+        </Page>
+    );
+};
