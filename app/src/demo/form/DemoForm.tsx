@@ -29,7 +29,7 @@ const tShirtSizes = [
     { id: 5, caption: 'XL' },
 ];
 
-export let instanceMask: IMask.Masked<any> = null;
+export let instanceMask: IMask.InputMask<IMask.AnyMaskedOptions> = null;
 
 export class DemoForm extends React.Component<{}, DemoFormState> {
     state: DemoFormState = {
@@ -187,9 +187,9 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                                     ({ value, onChange, ...restProps }) =>
                                         <IMaskInput
                                             { ...restProps }
-                                            onAccept={ (value, mask: IMask.Masked<any>, e: InputEvent) => {
+                                            onAccept={ (value, mask, e) => {
                                                 instanceMask = mask;
-                                                return onChange(value);
+                                                return onChange(e);
                                             } }
                                             value={ value as string }
                                             mask={ '+375(NN)000-00-00' }
