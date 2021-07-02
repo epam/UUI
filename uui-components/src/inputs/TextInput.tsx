@@ -4,9 +4,11 @@ import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContex
 import { IconContainer } from '../layout';
 import * as css from './TextInput.scss';
 
-export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
-    onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
-};
+
+const ENTER = 'Enter';
+const ESCAPE = 'Escape';
+
+export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export interface TextInputProps extends TextInputCoreProps {
     acceptIcon?: Icon;
@@ -31,29 +33,20 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
     inputElement: Element | null = null;
     inputContainer: Element | null = null;
 
-    handleChange = (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        if (typeof e === 'string') {
-            this.props.onValueChange(e);
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.props.onValueChange(e.target.value);
 
-            if (this.props.getValueChangeAnalyticsEvent) {
-                const event = this.props.getValueChangeAnalyticsEvent(e, this.props.value);
-                this.context.uuiAnalytics.sendEvent(event);
-            }
-        } else {
-            this.props.onValueChange(e.target.value);
-
-            if (this.props.getValueChangeAnalyticsEvent) {
-                const event = this.props.getValueChangeAnalyticsEvent(e.target.value, this.props.value);
-                this.context.uuiAnalytics.sendEvent(event);
-            }
+        if (this.props.getValueChangeAnalyticsEvent) {
+            const event = this.props.getValueChangeAnalyticsEvent(e.target.value, this.props.value);
+            this.context.uuiAnalytics.sendEvent(event);
         }
     }
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         this.props.onKeyDown && this.props.onKeyDown(e);
-        if (e.keyCode === 13) {
+        if (e.key === ENTER) {
             this.props.onAccept && this.props.onAccept();
-        } else if (e.keyCode === 27) {
+        } else if (e.key === ESCAPE) {
             this.props.onCancel && this.props.onCancel();
         }
     }
@@ -79,9 +72,27 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
         this.props.onClick && this.props.onClick(e);
     }
 
-    handleCancel = (e: React.SyntheticEvent<HTMLDivElement, Event>) => {
+    handleCancel = () => {
         this.props.onCancel();
         this.focus();
+    }
+
+    private getInputProps = () => {
+        return {
+            type: this.props.type || "text",
+            className: cx(uuiElement.input, this.props.inputCx),
+            disabled: this.props.isDisabled,
+            placeholder: this.props.placeholder,
+            value: this.props.value,
+            readOnly: this.props.isReadonly,
+            onKeyDown: this.handleKeyDown,
+            onChange: this.handleChange,
+            autoFocus: this.props.autoFocus,
+            ref: (ref: HTMLInputElement | null) => this.inputElement = ref,
+            autoComplete: this.props.autoComplete,
+            name: this.props.name,
+            maxLength: this.props.maxLength,
+        };
     }
 
     render() {
@@ -106,39 +117,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                  tabIndex={ -1 }
             >
                 { this.props.iconPosition !== 'right' && icon }
-                {
-                    this.props.renderInput
-                        ? this.props.renderInput({
-                            type: this.props.type || "text",
-                            className: cx(uuiElement.input, this.props.inputCx),
-                            disabled: this.props.isDisabled,
-                            placeholder: this.props.placeholder,
-                            value: this.props.value,
-                            readOnly: this.props.isReadonly,
-                            onKeyDown: this.handleKeyDown,
-                            onChange: this.handleChange,
-                            autoFocus: this.props.autoFocus,
-                            ref: ref => this.inputElement = ref,
-                            autoComplete: this.props.autoComplete,
-                            name: this.props.name,
-                            maxLength: this.props.maxLength,
-                        })
-                        : <input
-                            type={ this.props.type || "text" }
-                            className={ cx(uuiElement.input, this.props.inputCx) }
-                            disabled={ this.props.isDisabled }
-                            placeholder={ this.props.placeholder }
-                            value={ this.props.value || '' }
-                            readOnly={ this.props.isReadonly }
-                            onKeyDown={ this.handleKeyDown }
-                            onChange={ this.handleChange }
-                            autoFocus={ this.props.autoFocus }
-                            ref={ ref => this.inputElement = ref }
-                            autoComplete={ this.props.autoComplete }
-                            name={ this.props.name }
-                            maxLength={ this.props.maxLength }
-                        />
-                }
+                { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
                 { this.props.onAccept && <IconContainer
                     cx={ cx('uui-icon-accept', (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                     isDisabled={ this.props.isDisabled || !this.props.value }

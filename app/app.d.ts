@@ -21,8 +21,8 @@ declare module "react-imask" {
         blocks: { [key: string]: any };
         value: string;
         unmask?: boolean;
-        onAccept?: (value: string, mask: IMask.Masked<any>, e: InputEvent) => void;
-        onComplete?: (value: string, mask: IMask.Masked<any>, e: InputEvent) => void;
+        onAccept?: (value: string, mask: IMask.InputMask<IMask.AnyMaskedOptions>, e: React.ChangeEvent<HTMLInputElement>) => void;
+        onComplete?: (value: string, mask: IMask.InputMask<IMask.AnyMaskedOptions>, e: React.ChangeEvent<HTMLInputElement>) => void;
     };
 
     /**
