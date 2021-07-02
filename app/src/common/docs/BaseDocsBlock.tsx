@@ -3,9 +3,10 @@ import path from 'path';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui';
 import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
-import { svc } from "../../services";
+import { svc } from '../../services';
+import { getQuery } from '../../helpers';
+import { analyticsEvents } from '../../analyticsEvents';
 import * as css from './BaseDocsBlock.scss';
-import { analyticsEvents } from "../../analyticsEvents";
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';
@@ -110,7 +111,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderMultiSwitch() {
-        return <MultiSwitch size='36' items={ items } value={ this.getQuery('skin') || UUI4 } onValueChange={ (newValue: UUI3 | UUI4) => this.handleChangeSkin(newValue) } />;
+        return <MultiSwitch size='36' items={ items } value={ getQuery('skin') || UUI4 } onValueChange={ (newValue: UUI3 | UUI4) => this.handleChangeSkin(newValue) } />;
     }
 
     renderTabsNav() {
@@ -119,17 +120,17 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 <TabButton
                     size='60'
                     caption='Documentation'
-                    isLinkActive={ this.getQuery('mode') === 'doc' }
+                    isLinkActive={ getQuery('mode') === 'doc' }
                     onClick={ () => this.handleChangeMode('doc') }
                 />
                 <TabButton
                     size='60'
                     caption='Property Explorer'
-                    isLinkActive={ this.getQuery('mode') === 'propsEditor' }
+                    isLinkActive={ getQuery('mode') === 'propsEditor' }
                     onClick={ () => this.handleChangeMode('propsEditor') }
                 />
                 <FlexSpacer />
-                { this.getQuery('mode') !== 'doc' && this.renderMultiSwitch() }
+                { getQuery('mode') !== 'doc' && this.renderMultiSwitch() }
             </FlexRow>
         );
     }
@@ -139,19 +140,19 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             return svc.uuiRouter.redirect({
                 pathname: '/documents',
                 query: {
-                    category: this.getQuery('category'),
-                    id: this.getQuery('id'),
-                    mode: this.getQuery('doc'),
-                    skin: this.getQuery('skin'),
+                    category: getQuery('category'),
+                    id: getQuery('id'),
+                    mode: getQuery('doc'),
+                    skin: getQuery('skin'),
                 },
             });
         }
-        if (!this.getPropsDocPath()[this.getQuery('skin') as UUI3 | UUI4]) {
+        if (!this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4]) {
             return this.renderNotSupportPropExplorer();
         }
         return <ComponentEditor
-            key={ this.getPropsDocPath()[this.getQuery('skin') as UUI3 | UUI4] }
-            propsDocPath={ this.getPropsDocPath()[this.getQuery('skin') as UUI3 | UUI4] }
+            key={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
+            propsDocPath={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
             title={ this.title }
         />;
     }
@@ -184,17 +185,13 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     pathname: '/documents',
                     query: {
                         category: 'components',
-                        id: this.getQuery('id'),
+                        id: getQuery('id'),
                         mode: 'doc',
-                        skin: this.getQuery('skin'),
+                        skin: getQuery('skin'),
                     },
                 }) } />
             </div>
         );
-    }
-
-    getQuery(query: string): string {
-        return svc.uuiRouter.getCurrentLink().query[query];
     }
 
     handleChangeSkin(skin: UUI3 | UUI4) {
@@ -202,8 +199,8 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             pathname: '/documents',
             query: {
                 category: 'components',
-                id: this.getQuery('id'),
-                mode: this.getQuery('mode'),
+                id: getQuery('id'),
+                mode: getQuery('mode'),
                 skin: skin,
             },
         });
@@ -214,9 +211,9 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             pathname: '/documents',
             query: {
                 category: 'components',
-                id: this.getQuery('id'),
+                id: getQuery('id'),
                 mode: mode,
-                skin: this.getQuery('skin'),
+                skin: getQuery('skin'),
             },
         });
     }
@@ -225,7 +222,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return (
             <div className={ css.container } >
                 { this.getPropsDocPath() && this.renderTabsNav() }
-                { this.getQuery('mode') === 'propsEditor' ? this.renderPropEditor() : this.renderDoc() }
+                { getQuery('mode') === 'propsEditor' ? this.renderPropEditor() : this.renderDoc() }
             </div>
         );
     }

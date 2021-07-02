@@ -112,5 +112,3 @@ export class TimelineNav extends React.Component<TimelineNavProps, {}> {
         );
     }
 }
-
-export const timelineNav = React.createFactory(TimelineNav);

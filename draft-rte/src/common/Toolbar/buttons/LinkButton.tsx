@@ -86,7 +86,8 @@ export class LinkButton extends React.Component<DraftButtonProps> {
                     color={ this.isLinkSelected() ? 'sky' : 'night600' }
                     onClick={ () => {
                         showLinkModal(this.context, modalInitialState)
-                            .then(data => { this.handleClick(data.href, data.displayText, data.isRemove); });
+                            .then(data => { this.handleClick(data.href, data.displayText, data.isRemove); })
+                            .catch(() => null);
                     } }
                     icon={ linkIcon }
                 />
