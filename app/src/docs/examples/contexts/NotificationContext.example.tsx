@@ -1,25 +1,20 @@
 import * as React from 'react';
 import { Panel, FlexRow, Button, Text, FlexSpacer, PickerInput, ModalHeader, LabeledInput, TextInput, WarningNotification, SuccessNotification,
     ErrorNotification, NotificationCard, RichTextView } from '@epam/promo';
-import { ArrayDataSource, INotificationContext, INotification } from '@epam/uui';
-import { object } from 'prop-types';
+import { ArrayDataSource, INotification } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
+import { svc } from '../../../services';
 
 export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
 }
 
 export class NotificationContextExample extends React.Component<{}> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
-
-    context: { uuiNotifications: INotificationContext };
 
     state: PositionType = { direction: 'bot-left' };
 
     handleSuccess = () => {
-        this.context.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show((props: INotification) =>
             <SuccessNotification { ...props } >
                 <Text size='36' font='sans' fontSize='14'>Success notification</Text>
             </SuccessNotification>, { position: this.state.direction, duration: 'forever' })
@@ -27,7 +22,7 @@ export class NotificationContextExample extends React.Component<{}> {
     }
 
     handleWarning = () => {
-        this.context.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show((props: INotification) =>
             <WarningNotification { ...props } actions={
                 [{
                     name: 'Ok',
@@ -41,7 +36,7 @@ export class NotificationContextExample extends React.Component<{}> {
                 <Text size='36' font='sans' fontSize='14'>Warning notification with some buttons</Text>
             </WarningNotification>, { duration: 5, position: this.state.direction })
             .then(() => {
-                this.context.uuiNotifications.show((props: INotification) =>
+                svc.uuiNotifications.show((props: INotification) =>
                     <SuccessNotification { ...props } >
                         <Text size='36' font='sans' fontSize='14'>It`s Ok!</Text>
                     </SuccessNotification>, { duration: 2, position: this.state.direction })
@@ -51,7 +46,7 @@ export class NotificationContextExample extends React.Component<{}> {
     }
 
     handleError = () => {
-        this.context.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show((props: INotification) =>
             <ErrorNotification { ...props } actions={
                 [{
                     name: 'Cancel',
@@ -64,7 +59,7 @@ export class NotificationContextExample extends React.Component<{}> {
     }
 
     handleSnackWithRichText = () => {
-        this.context.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show((props: INotification) =>
             <NotificationCard { ...props } color='gray60'>
                 <RichTextView>
                     <h3>Title</h3>
@@ -76,7 +71,7 @@ export class NotificationContextExample extends React.Component<{}> {
 
 
     customNotificationHandler = () => {
-        this.context.uuiNotifications.show((props: INotification) =>
+        svc.uuiNotifications.show((props: INotification) =>
             <Panel style={ { width: '420px', background: 'white' } } shadow>
                 <ModalHeader title='Custom notification' onClose={ props.onClose } />
                 <FlexRow padding='24' background='none' spacing='12' >
