@@ -29,7 +29,7 @@
               "test-utils"
             ]
         }
-      
+
     },
     "exclude": [
         "node_modules",
@@ -38,6 +38,7 @@
         "**/build",
         "webpack",
         "jest",
+        "__tests__",
         "*/**/globals.d.ts"
     ]
 }
