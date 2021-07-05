@@ -1,3 +1,12 @@
+# 4.1.1 - 05.07.2021
+
+**What’s Fixed**
+fix bug when enzyme includes in result build bundle
+fix UUI context multiple creation
+[NumericInput]: fix calculation with floating point numbers
+[Typography]: fix global margin and padding for tags and elements
+
+
 # 4.1.0 - 30.06.2021
 
 **What’s New**
