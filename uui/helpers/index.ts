@@ -21,3 +21,4 @@ export * from './applyColumnsConfig';
 export * from './getDefaultColumnsConfig';
 export * from './formatBytes';
 export * from './testHelpers';
+export * from './numericInputCalculations';
