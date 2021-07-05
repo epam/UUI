@@ -5,6 +5,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
     getSelectedRows(): DataRowProps<TItem, TId>[];
+    destroy(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
 };

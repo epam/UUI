@@ -16,6 +16,7 @@
         min-width: 0;
         text-align: center;
         flex: 1 1 auto;
+        user-select: none;
     }
 
     &:global(.-clickable):focus {
