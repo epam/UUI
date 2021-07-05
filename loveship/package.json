@@ -1,6 +1,6 @@
 {
   "name": "@epam/loveship",
-  "version": "4.1.1",
+  "version": "4.1.0",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@epam/assets": "4.0.0",
-    "@epam/uui": "4.1.1",
-    "@epam/uui-components": "4.1.1",
+    "@epam/uui": "4.1.0",
+    "@epam/uui-components": "4.1.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
@@ -36,7 +36,7 @@
     "react-dom": ">=16.0.0"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.1.1"
+    "@epam/uui-docs": "4.1.0"
   },
   "repository": {
     "type": "git",
