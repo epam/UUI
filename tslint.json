@@ -35,7 +35,7 @@
     "object-literal-shorthand": false,
     "import-name": false,
     "jsx-boolean-value": false,
-    "no-implicit-dependencies": [true, "dev", "optional"],
+    "no-implicit-dependencies": [true, "dev", ["@epam/test-utils"]],
     "no-else-after-return": false,
     "quotemark": false,
     "no-submodule-imports": false,
