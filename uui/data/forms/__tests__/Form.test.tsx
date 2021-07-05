@@ -56,6 +56,7 @@ describe("Form", () => {
         );
 
         expect(renderFormSpy).toHaveBeenCalledTimes(1);
+        // @ts-ignore
         expect(renderFormSpy.mock.calls[0][0].isChanged).toBe(false);
     });
 
