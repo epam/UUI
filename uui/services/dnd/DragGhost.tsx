@@ -2,7 +2,7 @@ import * as React from 'react';
 import { mouseCoords } from '../../helpers/mouseCoords';
 import { UuiContexts, DndContextState } from '../../types/contexts';
 import { LayoutLayer } from '../../types/objects';
-import { UuiContext } from "../UuiContext";
+import { UuiContext } from "../ContextProvider";
 
 export interface DragGhostProps {
 }
