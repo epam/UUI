@@ -20,4 +20,3 @@ export * from './closest';
 export * from './applyColumnsConfig';
 export * from './getDefaultColumnsConfig';
 export * from './formatBytes';
-export * from './testHelpers';

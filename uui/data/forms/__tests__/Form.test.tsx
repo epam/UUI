@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { Form, RenderFormProps, FormProps, FormSaveResponse } from '../Form';
+import React from 'react';
 import { ReactWrapper } from 'enzyme';
-import { LockContext, Metadata, ILens, delay, mountWithContextAsync, testSvc } from '../../..';
+import { delay, mountWithContextAsync, testSvc } from "@epam/test-utils";
+import { LockContext, Metadata, ILens } from '../../..';
 import { UserSettingsContext } from '../../../services/UserSettingsContext';
+import { Form, RenderFormProps, FormProps, FormSaveResponse } from '../Form';
 
 interface IFoo {
     dummy: string;
@@ -43,7 +44,7 @@ describe("Form", () => {
     });
 
     it('should call renderFunc with an object which has property isChanged == false', async () => {
-        const renderForm = (props: RenderFormProps<number>): React.ReactNode => null;
+        const renderForm = (): React.ReactNode => null;
         const renderFormSpy = jest.fn(renderForm);
 
         wrapper = await mountWithContextAsync(
