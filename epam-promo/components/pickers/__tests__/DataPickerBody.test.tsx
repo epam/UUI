@@ -1,7 +1,7 @@
 import React from 'react';
+import { ArrayDataSource } from '@epam/uui';
+import { renderWithContextAsync } from "@epam/test-utils";
 import { DataPickerBody } from '../DataPickerBody';
-import renderer from 'react-test-renderer';
-import { ArrayDataSource, renderWithContextAsync } from '@epam/uui';
 import { DataPickerRow } from '../DataPickerRow';
 
 jest.mock('react-dom', () => ({
