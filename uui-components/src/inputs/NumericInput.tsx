@@ -1,9 +1,9 @@
 import * as React from 'react';
 import cx from 'classnames';
 import * as css from './NumericInput.scss';
-import {IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
-import {IconContainer} from '../layout';
-import { getCalculatedValue } from "../../../uui/helpers/numericInputCalculations";
+import { IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts } from '@epam/uui';
+import { IconContainer } from '../layout';
+import { getCalculatedValue } from '@epam/uui';
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
@@ -85,14 +85,14 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleIncreaseValue = () => {
-        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr"})
+        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr"});
         const value = this.getValidatedValue(increasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});
     }
 
     handleDecreaseValue = () => {
-        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr"})
+        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr"});
         const value = this.getValidatedValue(decreasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});

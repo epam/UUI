@@ -1,9 +1,9 @@
 import { Metadata } from '@epam/uui';
 import { PersonDetails } from './types';
+import { instanceMask } from './DemoForm';
 
 const fullNameRegExp = /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/;
 const emailRegExp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const phoneNumberRegExp = /^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/;
 
 export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetails> => ({
     props: {
@@ -39,7 +39,7 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 phoneNumber: {
                     isRequired: true,
                     validators: [
-                        (value: string) => [!phoneNumberRegExp.exec(value)?.length && 'Phone number is not valid!'],
+                        () => [!instanceMask.masked.isComplete && 'Phone number is not valid!'],
                     ],
                 },
             },
