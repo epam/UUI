@@ -1,9 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import * as css from './NumericInput.scss';
-import {IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
+import { getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
 import {IconContainer} from '../layout';
-import { getCalculatedValue } from "../../../uui/helpers/numericInputCalculations";
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
