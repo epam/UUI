@@ -22,7 +22,14 @@
             "dom",
             "es6",
             "esnext.asynciterable" /* added to support graphql package. Recheck if needed later. Yakov Zh, 12/9/2018 */
-        ]
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@epam/test-utils": [
+              "test-utils"
+            ]
+        }
+
     },
     "exclude": [
         "node_modules",
@@ -31,6 +38,7 @@
         "**/build",
         "webpack",
         "jest",
+        "__tests__",
         "*/**/globals.d.ts"
     ]
 }
