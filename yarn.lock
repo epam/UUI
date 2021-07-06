@@ -1257,6 +1257,13 @@
     is-absolute "^1.0.0"
     is-negated-glob "^1.0.0"
 
+"@epam/assets@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.0.0.tgz#c380ce01003deb04b234e1fc0e7f24fe1155e04d"
+  integrity sha512-4fFxnHRXPFjuxMjDnumjKoI40nZgX8x8CvstUxbqtDu/TfKysVx3uN/5BhM50XsUfQsIaA+myElnDz0y9uhirQ==
+  dependencies:
+    normalize.css "^7.0.0"
+
 "@epam/internal@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.1.tgz#742bbc31ef813264007346365aaf312c7b335a40"
@@ -8111,6 +8118,16 @@ image-to-data-uri@^1.0.0:
   resolved "https://registry.yarnpkg.com/image-to-data-uri/-/image-to-data-uri-1.1.0.tgz#23f9d7f17b6562ca6a8145e9779c9a166b829f6e"
   integrity sha1-I/nX8XtlYspqgUXpd5yaFmuCn24=
 
+imask@6.0.7:
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.0.7.tgz#20a626a80e277231d7d5c27cf45d816c035b748e"
+  integrity sha512-zyiKRSzuocb2adasVSz0ku9xxejDRs5wME7Dt5Uk1l83HGBFUP7A8y8Z6TytLCtCiS/A1aArlCTqLcOkoVNbNQ==
+
+imask@^6.0.7:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.1.0.tgz#8dcf4c44c51c4297f691349b925b7d5b21edff1c"
+  integrity sha512-IuElVZpc7iuGw+CXfwoUZYpGdoD5H7cGo3S93gZPgjTTWfY5XAXCFL3g3b/ZJBZ18RG2dFF2kxAuuFlXMjq7oQ==
+
 immer@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
@@ -13128,6 +13145,14 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
+react-imask@6.0.7:
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-6.0.7.tgz#75560735607fc79b9065c1d6b25ce676c5e6c94e"
+  integrity sha512-2/E8dAiPH4v1AeadEL1xnWG+CfoG4VQYmAGymltWaNBPEDtnCY6H0TKgvRJJOhE+JkYQfjw5KPesrrvNBz0g/A==
+  dependencies:
+    imask "^6.0.7"
+    prop-types "^15.7.2"
+
 react-immutable-proptypes@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.2.0.tgz#cce96d68cc3c18e89617cbf3092d08e35126af4a"
@@ -16912,11 +16937,6 @@ yargs@^14.2.2:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^15.0.1"
-
-yarn@^1.22.10:
-  version "1.22.10"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
-  integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
 
 yn@3.1.1:
   version "3.1.1"

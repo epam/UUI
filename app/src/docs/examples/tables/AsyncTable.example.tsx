@@ -12,7 +12,7 @@ export function ProductTable() {
         // Provide api which returns Promise with items for table. If you want to pass just array of items, look to the ArrayDataSource
         api: () => svc.api.demo.products({}).then(r => r.items),
         getId: p => p.ProductID, // Default: p => p.id
-    });
+    }, []);
 
     const view = dataSource.useView(value, onValueChange, {
         getRowOptions: (item: Product) => ({

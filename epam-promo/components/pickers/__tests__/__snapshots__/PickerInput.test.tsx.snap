@@ -24,7 +24,8 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled -clickable"
+      onClick={[Function]}
     >
       <svg
         className=""
@@ -125,7 +126,8 @@ exports[`PickerInput should be rendered correctly 2`] = `
       </svg>
     </div>
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled -clickable"
+      onClick={[Function]}
     >
       <svg
         className=""

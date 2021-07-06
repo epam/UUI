@@ -15,37 +15,32 @@
         font-family: $font-sans-bold;
     }
 
-    h3, h4, h5, h6 {
-        font-family: $font-sans-semibold;
-    }
-
-    h4, h5, h6 {
-        margin: 12px 0;
-        line-height: 24px;
-    }
-
     :global(.hero-header) {
         margin: 30px 0;
         font-size: 72px;
         line-height: 72px;
     }
 
+    h3, h4, h5, h6 {
+        font-family: $font-sans-semibold;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0.5em;
+        margin-top: 1.2em;
+        line-height: 1.35em;
+    }
+
     h1 {
-        margin: 24px 0;
         font-size: 42px;
-        line-height: 48px;
     }
 
     h2 {
-        margin: 18px 0;
         font-size: 30px;
-        line-height: 36px;
     }
 
     h3 {
-        margin: 12px 0;
         font-size: 24px;
-        line-height: 30px;
     }
 
     h4 {
@@ -82,8 +77,7 @@
     }
 
     code {
-        margin: 0 4px;
-        padding: 2px 4px;
+        padding: 0.125em 0.25em;
         color: $night50;
         background-color: $night700;
         border-radius: 3px;
@@ -94,27 +88,17 @@
 }
 
 @mixin typography-block() {
-    p {
-        margin: 12px 0;
-    }
-
     ol, ul {
         padding: 0;
-
-        ol, ul {
-            margin-left: 18px;
-        }
     }
 
     li {
-        margin-left: 18px;
-        // padding-top: 3px;
-        // padding-bottom: 3px;
+        margin-left: 1.25em;
+        line-height: 1.5;
     }
 
     pre {
-        margin: 12px 0;
-        padding: 12px 18px;
+        padding: 1.25em;
         color: $night50;
         background-color: $night700;
         border-radius: 3px;
@@ -123,32 +107,36 @@
         word-wrap: normal;
     }
 
+    img {
+        max-width: 100%;
+    }
+
     figure {
-        margin: 12px 0;
+        margin: 0;
+
+        figcaption {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-align: center;
+        }
+    }
+
+    p {
+        margin: 0.5em 0;
+        line-height: 1.5;
     }
 }
 
 @mixin typography-12() {
     font-size: 12px;
-    line-height: 18px;
-
-    b, strong {
-        color: $night900;
-    }
-
-    p {
-        margin: 6px 0;
-    }
 }
 
 @mixin typography-14() {
     font-size: 14px;
-    line-height: 24px;
 }
 
 @mixin typography-16() {
     font-size: 16px;
-    line-height: 24px;
 }
 
 :local(.typography-header) {

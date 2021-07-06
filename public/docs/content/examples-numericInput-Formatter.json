@@ -1,0 +1,34 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI supports ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "transfer of formatter function. The function responds to the onBlur action. In this example, the function of rounding to 2 decimal places was passed to the formatter.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

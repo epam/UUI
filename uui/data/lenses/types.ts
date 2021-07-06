@@ -6,7 +6,7 @@ export interface ILens<TFocused> {
     get(): TFocused;
     set(value: TFocused): void;
     update(fn: (current: TFocused) => TFocused): void;   
-    prop<K extends keyof TFocused>(name: K): ILens<TFocused[K]>;
+    prop<K extends keyof TFocused>(name: K): ILens<NonNullable<TFocused[K]>>;
     index(index: number): ILens<ArrayElement<TFocused>>;
     onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): ILens<TFocused>;
     default(value: TFocused): ILens<TFocused>;

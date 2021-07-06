@@ -9,9 +9,13 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+    types: [ closed ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -93,3 +97,35 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}      
         
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    
+    steps:  
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ secrets.REGISTRY_URL }}/uui
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=sha   
+            
+      - name: Preparation helm chart
+        run: |
+          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')   
+          export HELM_EXPERIMENTAL_OCI=1
+          echo $tag 
+          echo "::set-env name=tag::$tag"
+          echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
+          helm chart pull ${{ secrets.HELM_REGISTRY }}
+          helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
+
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm upgrade --install ${{ secrets.APP_NAME }} -f ${{ secrets.HELM_VALUES }} --set image.tag=$tag --atomic ui/ --namespace ${{ secrets.APP_NAME }}
+          kubeconfig: ${{ secrets.KUBECONFIG }}

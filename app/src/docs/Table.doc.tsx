@@ -39,6 +39,11 @@ export class TablesDoc extends BaseDocsBlock {
                     title='Table with rows Drag&Drop'
                     path='./examples/tables/TableWithDnD.example.tsx'
                 />
+
+                <DocExample
+                    title='Table with paging'
+                    path='./examples/tables/PagedTable.example.tsx'
+                />
             </>
         );
     }
