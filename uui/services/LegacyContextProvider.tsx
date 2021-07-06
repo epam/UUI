@@ -1,28 +1,18 @@
 import * as React from 'react';
-import { IHasChildren, CommonContexts, uuiContextTypes } from '../types';
+import { CommonContexts, uuiContextTypes } from '../types';
 import { DragGhost } from "./dnd";
 import * as PropTypes from 'prop-types';
-import { ISkin } from '../services/SkinContext';
-import { IHistory4 } from './routing/HistoryAdaptedRouter';
-import { getUuiContexts } from "./UuiContext";
+import { ContextProviderProps } from "./ContextProvider";
 
-export interface ContextProviderProps<TApi, TAppContext> extends IHasChildren {
-    apiServerUrl?: string;
-    gaCode?: string;
-    ampCode?: string;
-    loadAppContext?: (api: TApi) => Promise<TAppContext>;
-    apiDefinition?: (processRequest: (request: string, requestMethod: string) => any) => TApi;
-    onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
-    history?: IHistory4;
-    skinContext?: ISkin;
-    enableLegacyContext?: boolean;
+interface LegacyContextProviderProps<TApi, TAppContext> extends ContextProviderProps<TApi, TAppContext> {
+    uuiContexts: CommonContexts<any, any>;
 }
 
 interface ContextProviderState {
     isLoaded: boolean;
 }
 
-export class LegacyContextProvider<TApi, TAppContext> extends React.Component<ContextProviderProps<TApi, TAppContext>, ContextProviderState> {
+export class LegacyContextProvider<TApi, TAppContext> extends React.Component<LegacyContextProviderProps<TApi, TAppContext>, ContextProviderState> {
 
     static contextTypes = {
         uuiRouter: PropTypes.object,
@@ -33,9 +23,9 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Co
 
     state = {isLoaded: false};
 
-    constructor(props: ContextProviderProps<TApi, TAppContext>, context: any) {
+    constructor(props: LegacyContextProviderProps<TApi, TAppContext>, context: any) {
         super(props, context);
-        this.uuiContexts = getUuiContexts(props);
+        this.uuiContexts = props.uuiContexts;
 
         const loadAppContext = props?.loadAppContext || (() => Promise.resolve({} as TAppContext));
 

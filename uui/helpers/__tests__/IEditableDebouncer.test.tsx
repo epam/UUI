@@ -1,8 +1,8 @@
 import React from 'react';
 import { act } from "react-dom/test-utils";
+import { mountWithContextAsync, mountWrappedComponentAsync } from "@epam/test-utils";
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
-import { mountWithContextAsync, mountWrappedComponentAsync } from "../testHelpers";
 
 describe('IEditableDebouncer', () => {
     it('should call onValueChanged synchronously, if disableDebounce = true', async () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithContextAsync } from "@epam/uui";
+import { renderWithContextAsync } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { PickerModal } from "../PickerModal";
 

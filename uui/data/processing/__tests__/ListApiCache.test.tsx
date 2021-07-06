@@ -1,6 +1,6 @@
-import { delay } from "../../../helpers";
 import { ListApiCache, ListApiSettings } from '../ListApiCache';
 import { LazyDataSourceApiRequest, LazyDataSourceApiResponse } from '../types';
+import { delay } from "@epam/test-utils";
 
 interface TestItem {
     id: number;

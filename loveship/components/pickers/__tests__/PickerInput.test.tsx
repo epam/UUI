@@ -1,7 +1,7 @@
 import React from "react";
+import { renderWithContextAsync } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { PickerInput } from "../PickerInput";
-import { renderWithContextAsync } from "@epam/uui";
 
 jest.mock("react-dom", () => ({
     findDOMNode: jest.fn(),

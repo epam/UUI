@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Table example, where data is loading using ArrayDataSource -  just getting items from array.",
+            "text": "Table with paging example",
             "marks": []
           }
         ]

@@ -40,9 +40,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.updateViews();
     }
 
-    public getView = (
-        value: DataSourceState<any, TId>,
-        onValueChange: (val: DataSourceState<any, TId>) => any,
+    public getView = <TState extends DataSourceState<any, TId>>(
+        value: TState,
+        onValueChange: (value: TState) => any,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> => {
         const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;
@@ -62,9 +62,9 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         }
     }
 
-    useView(
-        value: DataSourceState<any, TId>,
-        onValueChange: (val: DataSourceState<any, TId>) => any,
+    useView<TState extends DataSourceState<any, TId>>(
+        value: TState,
+        onValueChange: (value: TState) => any,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>
     ): LazyListView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);

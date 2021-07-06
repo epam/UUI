@@ -22,7 +22,7 @@ export function LanguagesMultiPicker() {
     // Create DataSource outside the Picker, by calling useArrayDataSource hook
     const dataSource = useArrayDataSource({
         items: languageLevels,
-    });
+    }, []);
 
     return (
         <FlexCell width={ 600 }>

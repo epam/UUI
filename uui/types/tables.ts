@@ -11,7 +11,7 @@ export interface VirtualListState {
     visibleCount?: number;
 }
 
-export interface DataTableState extends DataSourceState {
+export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
 }
 
