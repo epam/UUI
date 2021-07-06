@@ -1,30 +1,25 @@
-import {AmplitudeClient, getInstance} from "amplitude-js";
 import {BaseContext} from './BaseContext';
-import {AnalyticsEvent, IRouterContext} from '../types';
+import {AnalyticsEvent, IRouterContext, IAnalyticsListener} from '../types';
 
 interface AnalyticsContextOptions {
     gaCode?: string;
-    ampCode?: string;
     router: IRouterContext;
 }
 
 export class AnalyticsContext extends BaseContext {
     public readonly gaCode?: string;
-    public readonly ampCode?: string;
     private readonly router: IRouterContext;
-    public ampClient: AmplitudeClient;
+    public listener: IAnalyticsListener;
 
     constructor(options: AnalyticsContextOptions) {
         super();
 
-        if (!options.gaCode && !options.ampCode) return;
+        if (!options.gaCode && !this.listener) return;
 
         this.gaCode = options.gaCode;
-        this.ampCode = options.ampCode;
         this.router = options.router;
 
         this.initGA();
-        this.initAmp();
 
         this.sendToGA('js', new Date());
         this.sendPageView(window.location.pathname);
@@ -36,7 +31,7 @@ export class AnalyticsContext extends BaseContext {
         if (!event) return;
 
         this.sendToGA('event', event.name, this.getParameters(event));
-        this.sendEventToAmplitude(event);
+        if (this.listener) this.listener.sendEvent(event, this.getParameters(event));
     }
 
     public sendPageView(path: string) {
@@ -52,9 +47,8 @@ export class AnalyticsContext extends BaseContext {
         this.sendToGA('event', event.name, this.getParameters(event));
     }
 
-    public sendEventToAmplitude(event: AnalyticsEvent | null | undefined) {
-        if (!event) return;
-        this.ampCode && this.ampClient.logEvent(event.name, this.getParameters(event));
+    public addListener(listener: IAnalyticsListener) {
+        this.listener = listener;
     }
 
     private initGA() {
@@ -66,13 +60,6 @@ export class AnalyticsContext extends BaseContext {
         gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${this.gaCode}`;
         gtagScript.async = true;
         document.head.appendChild(gtagScript);
-    }
-
-    private initAmp() {
-        if (!this.ampCode) return;
-
-        this.ampClient = getInstance();
-        this.ampClient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
     }
 
     private sendToGA(...args: any[]) {

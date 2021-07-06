@@ -15,7 +15,6 @@ export class UuiEnhancedApp extends React.Component {
                 onInitCompleted={ (context) => { Object.assign(svc, context); } }
                 history={ history }
                 gaCode={ 'Code of our Google Analytics account' }
-                ampCode={ 'Code of our Amplitude account' }
                 skinContext={ promoSkinContext } /* It's needed for some packages correct work, for example - @epam/uui-editor*/
             >
                 <ErrorHandler>

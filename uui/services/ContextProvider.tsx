@@ -16,7 +16,6 @@ import { ISkin, uuiSkin } from "./SkinContext";
 export interface ContextProviderProps<TApi, TAppContext> extends IHasChildren {
     apiServerUrl?: string;
     gaCode?: string;
-    ampCode?: string;
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
     apiDefinition?: (processRequest: (request: string, requestMethod: string) => any) => TApi;
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
@@ -90,8 +89,7 @@ export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TA
 
     const uuiAnalytics = new AnalyticsContext({
         gaCode: props.gaCode,
-        ampCode: props.ampCode,
-        router: uuiRouter,
+        router: uuiRouter
     });
     const uuiLocks = new LockContext(uuiRouter);
     const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
