@@ -139,8 +139,11 @@ export interface IAnalyticsContext {
 }
 
 export interface IAnalyticsListener {
-    name?: string;
-    sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType?: string): void;
+    sendEvent(
+        event: AnalyticsEvent,
+        parameters: Omit<AnalyticsEvent, "name">,
+        eventType?: "event" | "pageView"
+        ): void;
 }
 
 export interface UuiContexts {

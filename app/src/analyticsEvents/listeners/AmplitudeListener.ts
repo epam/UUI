@@ -1,14 +1,19 @@
 import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui";
-import { AmplitudeClient } from "amplitude-js"
+import { AmplitudeClient, getInstance } from "amplitude-js"
 
-export class AmplitudeListener<TClient extends AmplitudeClient> implements IAnalyticsListener {
+export class AmplitudeListener implements IAnalyticsListener {
+    public ampCode: string;
+    public client: AmplitudeClient;
 
-    public client: TClient;
-    public name?: string;
+    constructor(ampCode: string) {
+        this.ampCode = ampCode;
+        this.client = this.getAmplitudeClient();
+    }
 
-    constructor(client: TClient, name: string) {
-        this.client = client;
-        this.name = name;
+    private getAmplitudeClient():AmplitudeClient {
+        const ampclient = getInstance();
+        ampclient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
+        return ampclient;
     }
 
     public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">) {
