@@ -6,13 +6,19 @@ import { AmplitudeClient, getInstance} from "amplitude-js";
 import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui";
 
 /**An example of creation AmplitudeClientListener */
-class AmplitudeListener<TClient extends AmplitudeClient> implements IAnalyticsListener {
-    public client: TClient;
-    public name?: string;
+class AmplitudeListener implements IAnalyticsListener {
+    public ampCode: string;
+    public client: AmplitudeClient;
 
-    constructor(client: TClient, name: string) {
-        this.client = client;
-        this.name = name;
+    constructor(ampCode: string) {
+        this.ampCode = ampCode;
+        this.client = this.getAmplitudeClient();
+    }
+
+    private getAmplitudeClient():AmplitudeClient {
+        const ampclient = getInstance();
+        ampclient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
+        return ampclient;
     }
 
     public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">) {
@@ -29,17 +35,9 @@ export const AnalyticsContextBase: React.FC = () => {
         Object.assign(svc, context);
 
         /**Here you can create AmplitudeClient and add it to the listener*/
-        const ampClient = getAmpClient("Your amplitude secret key");
-        const listener = new AmplitudeListener<AmplitudeClient>(ampClient, "Your client name");
+        const listener = new AmplitudeListener("Your amplitude secret key");
         context.uuiAnalytics.addListener(listener);
     }, []);
-
-    /**An example of creation AmplitudeClient*/
-    const getAmpClient = useCallback((ampCode: string) =>  {
-        const ampclient = getInstance();
-        ampclient.init(ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
-        return ampclient;
-    }, [])
 
     return (
         <ContextProvider loadAppContext={ loadAppContext }
