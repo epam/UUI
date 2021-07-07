@@ -7,7 +7,6 @@ import { Snackbar, Modals } from '@epam/uui-components';
 import '@epam/internal/styles.css';
 import { ErrorHandler } from '@epam/loveship';
 import { skinContext as promoSkinContext } from '@epam/promo';
-import { getInstance, AmplitudeClient} from "amplitude-js";
 import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
 import './index.scss';
@@ -27,15 +26,8 @@ export class UuiEnhancedApp extends React.Component {
 
     onInitCompleted = (context: any, ampCode: string) => {
         Object.assign(svc, context);
-        const ampClient = this.getAmpClient(ampCode);
-        const listener = new AmplitudeListener<AmplitudeClient>(ampClient, "UUIAmplitude");
+        const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    };
-
-    getAmpClient = (ampCode: string) =>  {
-        const ampclient = getInstance();
-        ampclient.init(ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
-        return ampclient;
     };
 
     render() {

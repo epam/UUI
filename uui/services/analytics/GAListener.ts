@@ -2,13 +2,10 @@ import { AnalyticsEvent, IAnalyticsListener, IRouterContext } from "../../types/
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;
-    private readonly router: IRouterContext;
-    public name: string;
 
-    constructor(gaCode:string, router: IRouterContext, name: string ) {
+    constructor(gaCode:string ) {
         this.gaCode = gaCode;
-        this.router = router;
-        this.name = name;
+
         this.init();
     }
 
@@ -16,7 +13,6 @@ export class GAListener implements IAnalyticsListener {
         this.addGaScript();
         this.sendToGA('js', new Date());
         this.sendPageView(window.location.pathname);
-        this.listenRouter();
     }
 
     private addGaScript() {
@@ -29,21 +25,19 @@ export class GAListener implements IAnalyticsListener {
     }
 
     public sendEvent(event:AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType: string) {
-        this.sendToGA(eventType || "event", event.name, parameters)
+        switch (eventType) {
+            case "pageView":
+                this.sendPageView(event.path);
+                break;
+
+            default:
+                this.sendToGA("event", event.name, parameters)
+                break;
+        }
     }
 
-    public sendToGA(...args: any[]) {
-        this.gaCode && (window as any).dataLayer.push(arguments);
-    }
-
-    private listenRouter() {
-        let currentLocation = window.location.pathname;
-        this.router && this.router.listen((location) => {
-            if (currentLocation !== location.pathname) {
-                currentLocation = location.pathname;
-                this.sendPageView(location.pathname);
-            }
-        });
+    private sendToGA(...args: any[]) {
+        (window as any).dataLayer.push(arguments);
     }
 
     private sendPageView(path: string) {
