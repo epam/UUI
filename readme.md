@@ -27,7 +27,9 @@ License: MIT
 ## Install
 
 ```
-yarn add @epam/uui @epam/components @epam/loveship
+yarn add @epam/uui @epam/uui-components @epam/loveship
+or
+npm i @epam/uui @epam/uui-components @epam/loveship
 ```
 
 ## Getting started
