@@ -24,13 +24,6 @@ License: MIT
 
 - Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
-## Install
-
-```
-yarn add @epam/uui @epam/uui-components @epam/loveship
-or
-npm i @epam/uui @epam/uui-components @epam/loveship
-```
 
 ## Getting started
 
@@ -43,6 +36,8 @@ npx create-react-app my-app --template @epam/uui
 
 yarn create react-app my-app --template @epam/uui
 ```
+
+To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
 
 
 ## Development
