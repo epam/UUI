@@ -10,7 +10,7 @@ module.exports = {
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
         "react-app-polyfill/jsdom",
-        "<rootDir>/test-utils/helpers.tsx"
+        // "<rootDir>/test-utils/helpers.tsx"
     ],
     "setupFilesAfterEnv": ["./setupTests.js"],
     "testMatch": [
@@ -39,7 +39,7 @@ module.exports = {
     "moduleNameMapper": {
         "^react-native$": "react-native-web",
         "^.+\\.(sass|scss|less)$": "<rootDir>/uui-build/config/jest/cssModuleTransform.js",
-        "@epam/test-utils": "<rootDir>/test-utils"
+        // "@epam/test-utils": "<rootDir>/test-utils"
     },
     "moduleFileExtensions": [
         "web.js",

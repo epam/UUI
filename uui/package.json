@@ -40,7 +40,8 @@
     "@types/amplitude-js": "^7.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "@epam/test-utils": "1.0.0"
   },
   "peerDependencies": {
     "prop-types": "*",
