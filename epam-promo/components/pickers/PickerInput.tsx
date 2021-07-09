@@ -106,6 +106,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         switchValue={ this.state.showSelected }
                         onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
                         selectAll={ view.selectAll }
+                        title={ this.props.entityName }
+                        close={ () => this.toggleBodyOpening(false) }
                     />
                 </Panel> }
                 value={ this.shouldShowBody() }
