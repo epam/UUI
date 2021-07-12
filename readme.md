@@ -42,6 +42,7 @@ npx create-react-app my-app --template @epam/uui
 yarn create react-app my-app --template @epam/uui
 ```
 
+As an option, you can get started by using a template on [Codesandbox](https://codesandbox.io/s/uui-w4i61) with already pre-configured environment.
 
 ## Development
 
