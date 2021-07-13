@@ -7,6 +7,7 @@ import { Snackbar, Modals } from '@epam/uui-components';
 import '@epam/internal/styles.css';
 import { ErrorHandler } from '@epam/loveship';
 import { skinContext as promoSkinContext } from '@epam/promo';
+import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
 import './index.scss';
 import App from './App';
@@ -22,16 +23,23 @@ const history = qhistory(
 );
 
 export class UuiEnhancedApp extends React.Component {
+
+    onInitCompleted = (context: any, ampCode: string) => {
+        Object.assign(svc, context);
+        const listener = new AmplitudeListener(ampCode);
+        context.uuiAnalytics.addListener(listener);
+    };
+
     render() {
         const isProduction = /uui.epam.com/.test(location.hostname);
+        const ampCode = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
         return (
             <ContextProvider
                 apiDefinition={ getApi }
-                onInitCompleted={ (context) => { Object.assign(svc, context); } }
+                onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
                 history={ history }
                 gaCode='UA-132675234-1'
-                ampCode={ isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1' }
                 skinContext={ promoSkinContext }
             >
                 <ErrorHandler>
