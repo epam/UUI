@@ -8,7 +8,7 @@ React-based components and accelerators library built by EPAM Systems.
 
 Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
 
-Alternatively, you can get started by using a pre-configured template on Codesandbox
+Additionally, you can try our a pre-configured template on Codesandbox
     <a href="https://codesandbox.io/s/uui-w4i61" style="position: relative; top: 10px; left: 5px;">
         <img
             width="30"
