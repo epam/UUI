@@ -8,6 +8,16 @@ React-based components and accelerators library built by EPAM Systems.
 
 Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
 
+Additionally, you can try our a pre-configured template on Codesandbox
+    <a href="https://codesandbox.io/s/uui-w4i61" style="position: relative; top: 10px; left: 5px;">
+        <img
+            width="30"
+            height="30"
+            alt="Codesandbox"
+            src="https://camo.githubusercontent.com/ccf186cd931b6a61cf49bd0a3aeacb2d73be7e91210453571bdcf9f5b1057173/687474703a2f2f63646e2e656d6265642e6c792f70726f7669646572732f6c6f676f732f636f646573616e64626f782e706e67"
+        />
+    </a>
+
 License: MIT
 
 ## Features
@@ -38,7 +48,6 @@ yarn create react-app my-app --template @epam/uui
 ```
 
 To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
-
 
 ## Development
 
