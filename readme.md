@@ -34,11 +34,6 @@ License: MIT
 
 - Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
-## Install
-
-```
-yarn add @epam/uui @epam/components @epam/loveship
-```
 
 ## Getting started
 
