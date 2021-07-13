@@ -9,6 +9,8 @@ import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 
+import css from "./SandboxPage.scss";
+
 const items = [
     { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
     { id: 'dbDemo', name: 'DB demo', component: DbDemo },
@@ -31,8 +33,8 @@ export const SandboxPage = () => {
     const example = items.find(i => i.id === selectedExampleId);
 
     return (
-        <Page renderHeader={ () => <AppHeader /> } >
-            <FlexRow alignItems='stretch'>
+        <Page renderHeader={ () => <AppHeader /> } contentCx={ css.root }>
+            <FlexRow alignItems="stretch" cx={ css.root }>
                 <Sidebar
                     value={ selectedExampleId }
                     onValueChange={ onChange }
