@@ -47,6 +47,8 @@ npx create-react-app my-app --template @epam/uui
 yarn create react-app my-app --template @epam/uui
 ```
 
+To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
+
 ## Development
 
 To start locally.
