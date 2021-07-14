@@ -26,7 +26,6 @@ export const DocumentsPage = () => {
     const selectedDocId = getQuery('id');
     const doc = items.find(i => i.id === selectedDocId);
 
-
     useEffect(() => {
         Promise.all( [
             'index.html',
