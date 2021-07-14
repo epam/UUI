@@ -1,6 +1,6 @@
 export function getCodesandboxConfig(
     content: string,
-    stylesheet: string,
+    stylesheets: { [key: string]: { isBinary: false, content: string } },
     initialFiles: { [key: string]: string }
 ) {
     return {
@@ -8,12 +8,7 @@ export function getCodesandboxConfig(
             isBinary: false,
             content,
         },
-        ...(stylesheet && {
-            'BasicExample.scss': {
-                content: stylesheet,
-                isBinary: false,
-            },
-        }),
+        ...stylesheets,
         'index.tsx': {
             isBinary: false,
             content: initialFiles.indexTSX

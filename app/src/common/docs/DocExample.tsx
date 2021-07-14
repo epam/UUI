@@ -4,6 +4,7 @@ import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import * as css from './DocExample.scss';
 import { getParameters } from 'codesandbox/lib/api/define';
+import { join } from 'path';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
 import { getCodesandboxConfig } from 'app/src/data/codesandbox/getCodesandboxConfig';
@@ -20,7 +21,7 @@ interface DocExampleState {
     component?: any;
     code?: string;
     raw?: string;
-    stylesheet?: any;
+    stylesheets?: { [key: string]: { isBinary: false, content: string } };
 }
 
 const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
@@ -33,14 +34,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             this.setState({ component: module.default });
         });
 
-        Promise.all([
-            svc.api.getCode({ path: this.props.path }).then(r => this.setState({ code: r.highlighted, raw: r.raw })),
-            svc.api.getCode({ path: this.getComponentStyleSheet(this.props.path) }).then(s => s && this.setState({ stylesheet: s.raw }))
-        ]);
+        svc.api.getCode({ path: this.props.path }).then(r => {
+            this.setState({ code: r.highlighted, raw: r.raw });
+            return r.raw;
+        }).then(raw => this.getComponentStyleSheet(raw));
     }
 
     state: DocExampleState = {
         showCode: false,
+        stylesheets: {},
     };
 
     getDescriptionFileName() {
@@ -50,12 +52,27 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             .replace(/^-/, '');
     }
 
-    getComponentStyleSheet(path: string) {
-        const pathElements = path.split('/');
-        return pathElements
-            .splice(0, pathElements.length - 1)
-            .concat('BasicExample.scss')
-            .join('/');
+    getComponentStyleSheet(raw: string) {
+        const extension = '.scss';
+        const thereAreStylesheets = raw.match(new RegExp(`\\w+(?=${extension})`));
+        if (thereAreStylesheets !== null) {
+            const stylesheetMatches = thereAreStylesheets.map(entry => entry.concat(extension));
+            stylesheetMatches.forEach(match => {
+                const path = this.props.path.split('/').slice(0, -1).concat(match).join('/');
+                svc.api.getCode({ path }).then(stylesheet => {
+                    this.setState(prevState => ({
+                        ...prevState,
+                        stylesheets: {
+                            ...prevState.stylesheets,
+                            [match]: {
+                                content: stylesheet.raw,
+                                isBinary: false,
+                            }
+                        }
+                    }));
+                });
+            });
+        }
     }
 
     getCodesandboxLink(): string | null {
@@ -67,7 +84,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             url.searchParams.set('parameters', getParameters({
                 files: getCodesandboxConfig(
                     this.state.raw,
-                    this.state.stylesheet,
+                    this.state.stylesheets,
                     svc.uuiApp.codesandboxFiles
                 )
             }));
