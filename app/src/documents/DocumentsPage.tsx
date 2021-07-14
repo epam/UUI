@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
@@ -6,6 +6,7 @@ import { svc } from '../services';
 import { UUI4 } from '../common';
 import { items } from './structure';
 import { getQuery } from '../helpers';
+import { join } from 'path';
 
 const itemsIds = items.map(i => i.id);
 
@@ -24,6 +25,30 @@ export const DocumentsPage = () => {
 
     const selectedDocId = getQuery('id');
     const doc = items.find(i => i.id === selectedDocId);
+
+
+    useEffect(() => {
+        const getCodesandboxFile = (file: string) => join('..', 'data', 'codesandbox', file);
+        const codesandboxFiles: string[] = [
+            'index.html',
+            'services.ts',
+            'index.tsx',
+            'package.json',
+            'tsConfig.json'
+        ];
+
+        Promise.all(codesandboxFiles.map(codesandboxFile => {
+            return svc.api.getCode({ path: getCodesandboxFile(codesandboxFile) })
+        }))
+            .then(data => data.map(file => file.raw))
+            .then(([ indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON ]) => {
+                Object.assign(svc, {
+                    uuiApp: {
+                        codesandboxFiles: { indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON }
+                    }
+                });
+            });
+    }, []);
 
     return (
         <Page renderHeader={ () => <AppHeader /> } >

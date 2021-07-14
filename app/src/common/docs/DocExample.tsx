@@ -6,7 +6,7 @@ import * as css from './DocExample.scss';
 import { getParameters } from 'codesandbox/lib/api/define';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
-import { CodeSandboxConfig } from 'app/src/data/codesandboxConfig';
+import { getCodesandboxConfig } from 'app/src/data/codesandbox/getCodesandboxConfig';
 
 interface DocExampleProps {
     path: string;
@@ -44,7 +44,6 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     };
 
     getDescriptionFileName() {
-        console.log(this.props.path);
         return this.props.path
             .replace(new RegExp(/\.example.tsx|\./g), '')
             .replace(/\//g, '-')
@@ -59,25 +58,21 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             .join('/');
     }
 
-    getCodesandboxLink(): string {
-        const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
-        url.searchParams.set('parameters', getParameters({
-            ...CodeSandboxConfig,
-            files: {
-                ...CodeSandboxConfig.files,
-                'Example.tsx': {
-                    content: this.state.raw,
-                    isBinary: false,
-                },
-                ...(this.state.stylesheet && {
-                    'BasicExample.scss': {
-                        content: this.state.stylesheet,
-                        isBinary: false,
-                    },
-                }),
-            }
-        }));
-        return url.toString();
+    getCodesandboxLink(): string | null {
+        if (
+            svc.uuiApp?.codesandboxFiles &&
+            Object.values(svc.uuiApp.codesandboxFiles).every(value => value)
+        ) {
+            const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
+            url.searchParams.set('parameters', getParameters({
+                files: getCodesandboxConfig(
+                    this.state.raw,
+                    this.state.stylesheet,
+                    svc.uuiApp.codesandboxFiles
+                )
+            }));
+            return url.toString();
+        } else return null;
     }
 
     renderCode() {
@@ -96,13 +91,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         onValueChange={ (val) => this.setState({showCode: val}) }
                         label='View code'
                     />
-                    <LinkButton
-                        icon={CodesandboxIcon}
-                        iconPosition='right'
-                        target="_blank"
-                        caption="Open in Codesandbox"
-                        href={this.getCodesandboxLink()}
-                    />
+                    {this.getCodesandboxLink() && (
+                        <LinkButton
+                            icon={CodesandboxIcon}
+                            iconPosition='right'
+                            target="_blank"
+                            caption="Open in Codesandbox"
+                            href={this.getCodesandboxLink()}
+                        />
+                    )}
                 </FlexRow>
                 { this.state.showCode && this.renderCode() }
             </>
