@@ -39,15 +39,21 @@ export const DocumentsPage = () => {
 
         Promise.all(codesandboxFiles.map(codesandboxFile => {
             return svc.api.getCode({ path: getCodesandboxFile(codesandboxFile) })
-        }))
-            .then(data => data.map(file => file.raw))
-            .then(([ indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON ]) => {
+        })).then(data => data.map(file => file.raw)).then(
+            ([ indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON ]) => {
                 Object.assign(svc, {
                     uuiApp: {
                         codesandboxFiles: { indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON }
                     }
                 });
+            }
+        );
+
+        return () => {
+            Object.assign(svc, {
+                uuiApp: { codesandboxFiles: {} }
             });
+        }
     }, []);
 
     return (
