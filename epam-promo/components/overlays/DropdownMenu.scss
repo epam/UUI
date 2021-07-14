@@ -1,0 +1,194 @@
+@use  '../../assets/styles/index' as *;
+
+@mixin icon-sizes($size, $font-size, $line-height) {
+    $vpadding: ($line-height - $size) / 2;
+
+    :global(.uui-checkbox) {
+        width: $size;
+        height: $size;
+        margin: $vpadding 0;
+    }
+
+    :global(.uui-input-label) {
+        font-size: $font-size;
+        line-height: $line-height;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: $size;
+        }
+    }
+}
+
+@mixin fillColor($color) {
+    color: $color;
+    fill: $color;
+}
+
+@mixin withPseudoClass {
+    content: '';
+    display: inline-flex;
+    height: 1px;
+    background-color: $gray30;
+    width: 100%;
+}
+
+.bodyRoot {
+    @include icon-layout(36px);
+    @include panel-shadow();
+    font-family: $font-sans;
+    font-size: 0.9em;
+    padding: 0.5em 0;
+
+    &.theme-light {
+        background-color: $white;
+        fill: $gray50;
+        color: $gray90;
+    }
+
+    &.theme-dark {
+        background-color: $gray80;
+        fill: $gray30;
+        color: $gray30;
+
+        .itemRoot {
+            &:global(.-clickable:not(.uui-disabled)) {
+                &:hover {
+                    background-color: $gray70;
+                    fill: $gray20;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                background-color: transparent;
+                color: $gray60;
+                fill: $gray60;
+            }
+
+            &:global(.uui-selected) {
+                &:not(:global(.withSelectedType)) {
+                    @include fillColor(lighten($blue, 10%));
+
+                    &:hover {
+                        @include fillColor(lighten($blue, 20%)!important);
+                    }
+                }
+
+                .iconCheck {
+                    @include fillColor(lighten($blue, 10%));
+                }
+            }
+
+            :global(.uui-switch-body) {
+                color: $gray40;
+
+                &:not(:hover) {
+                    border-color: $gray60;
+                }
+            }
+        }
+    }
+}
+
+.groupTitle:not(:empty) {
+    padding: 0.5em 1em;
+    line-height: 1.5;
+    opacity: 0.7;
+    cursor: default;
+}
+
+.groupRoot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    :global(.uui-horizontal-direction) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+
+        .itemRoot {
+            width: fit-content;
+        }
+    }
+
+    &:first-child {
+        &::before {
+            display: none;
+        }
+    }
+
+    &:last-child {
+        &::after {
+            display: none;
+        }
+    }
+
+    &::before, &::after {
+        @include withPseudoClass;
+    }
+
+    &::before {
+        margin: -1px 0 0.5em;
+    }
+
+    &::after {
+        margin: 0.5em 0 -1px;
+    }
+}
+
+.submenuRootItem {
+    .iconAfter {
+        transform: rotate(-90deg);
+    }
+}
+
+.iconCheck {
+    @include fillColor(transparent);
+}
+
+.itemRoot {
+    @include icon-layout(36px);
+    padding: 0.5em 1em;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:global(.uui-selected) {
+        &:not(:global(.withSelectedType)) {
+            @include fillColor($blue);
+
+            &:hover {
+                @include fillColor($blue!important);
+            }
+        }
+
+        .iconCheck {
+            @include fillColor($blue);
+        }
+    }
+
+    &:global(.-clickable:not(.uui-disabled)) {
+        &:hover {
+            background-color: $gray30;
+            fill: $gray70;
+            cursor: pointer;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        color: $gray40;
+        fill: $gray30;
+
+        &:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+    }
+
+    &>*:not(:last-child) {
+        margin: 0 0.5em 0 0;
+    }
+
+}
