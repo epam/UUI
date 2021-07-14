@@ -11,6 +11,7 @@ node_modules
 
 # Visual Studio stuff
 .vs
+.vscode/**
 
 dist
 
@@ -25,3 +26,4 @@ _ReSharper.Caches
 *.log
 .DS_Store
 coverage
+.vscode/settings.json

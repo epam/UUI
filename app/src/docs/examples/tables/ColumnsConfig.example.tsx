@@ -13,7 +13,7 @@ interface CitiesTableState {
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
-export class ColumnsConfigurationDataTableExample extends React.Component<any, CitiesTableState> {
+export default class ColumnsConfigurationDataTableExample extends React.Component<any, CitiesTableState> {
     state: CitiesTableState = {
         tableState: {
             // Get columns config from localStorage

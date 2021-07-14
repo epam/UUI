@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {FlexCell, Switch} from '@epam/promo';
 import * as css from './BasicExample.scss';
 
-export function BasicExample() {
+export default function BasicExample() {
     const [value, onValueChange] = useState(false);
 
     return (

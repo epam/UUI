@@ -4,7 +4,7 @@ import { useState } from 'react';
 import * as css from './BasicExample.scss';
 import { SliderRating } from '@epam/loveship';
 
-export function BasicExample() {
+export default function BasicExample() {
     const [value, onValueChange] = useState(null);
 
     return (

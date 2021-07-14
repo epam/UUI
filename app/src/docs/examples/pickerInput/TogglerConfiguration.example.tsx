@@ -5,7 +5,7 @@ import { svc } from "../../../services";
 import { City } from '@epam/uui-docs';
 import * as css from './TogglerConfiguration.example.scss';
 
-export function PickerTogglerConfigurationExample() {
+export default function PickerTogglerConfigurationExample() {
     const [value, onValueChange] = useState<string[]>(["225284", "2747351", "3119841", "3119746"]);
 
     const loadCities = useCallback((request: LazyDataSourceApiRequest<City, string>) => {

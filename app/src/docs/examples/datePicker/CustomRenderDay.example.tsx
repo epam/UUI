@@ -11,7 +11,7 @@ const getCustomDay = (day: moment.Moment) => {
     </>;
 };
 
-export const DatePickerCustomDayExample = () => {
+export default function DatePickerCustomDayExample() {
     const [value, onValueChange] = useState('');
 
     return (

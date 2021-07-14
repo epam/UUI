@@ -28,7 +28,7 @@ const renderUserRow = (props: DataRowProps<Person, number>) => (
     />
 );
 
-export function LazyPersonsMultiPickerWithCustomUserRow() {
+export default function LazyPersonsMultiPickerWithCustomUserRow() {
     const [value, onValueChange] = useState<number[]>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

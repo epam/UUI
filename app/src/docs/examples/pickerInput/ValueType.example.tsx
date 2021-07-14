@@ -4,7 +4,7 @@ import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
 import { svc } from "../../../services";
 import { Person } from '@epam/uui-docs';
 
-export function ValueTypeExamplePicker() {
+export default function ValueTypeExamplePicker() {
     const [value, onValueChange] = useState<Person[]>([]);
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

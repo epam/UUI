@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextInput } from '@epam/promo';
 import { useState } from 'react';
 
-export function SizeExample() {
+export default function SizeExample() {
     const [value, onValueChange] = useState(null);
 
     return (

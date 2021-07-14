@@ -4,7 +4,7 @@ import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-2
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 
-export class MainMenuBasicExample extends React.Component {
+export default class MainMenuBasicExample extends React.Component {
     renderBurger = () => (
         <>
             <BurgerButton caption="Training Catalog" />

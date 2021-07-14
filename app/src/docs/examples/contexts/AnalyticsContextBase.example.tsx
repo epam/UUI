@@ -2,7 +2,7 @@ import * as React from "react";
 import {useCallback} from "react";
 import {ContextProvider} from "@epam/uui";
 
-export const AnalyticsContextBase: React.FC = () => {
+export default function AnalyticsContextBase() {
     const loadAppContext = useCallback((api: any) => Promise.resolve(), []);
     const onInitCompleted = useCallback(() => Promise.resolve(), []);
 

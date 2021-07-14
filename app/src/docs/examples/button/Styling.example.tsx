@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, Button } from '@epam/promo';
 
-export function StyledButtonsExample() {
+export default function StyledButtonsExample() {
     return (
         <div>
             <FlexRow vPadding='12' spacing='12' >

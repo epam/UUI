@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FlexCell, FlexRow, TextArea } from '@epam/promo';
+import { FlexCell, TextArea } from '@epam/promo';
 import { useState } from 'react';
 import css from './BasicExample.scss';
 
-export function AdvancedExample() {
+export default function AdvancedExample() {
     const [value, onValueChange] = useState(null);
 
     return (

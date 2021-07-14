@@ -25,7 +25,7 @@ const componentAsDemoContent = <>
     </FlexRow>
 </>;
 
-export function BasicAccordionExample() {
+export default function BasicAccordionExample() {
     return (
         <FlexCell width='100%' cx={ css.container }>
             <Accordion title='Accordion block mode' mode='block' >

@@ -5,7 +5,7 @@ const simpleDemoContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing el
     ' ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi' +
     ' ut aliquip ex ea commodo consequat.';
 
-export function HandleStateByYourselfExample() {
+export default function HandleStateByYourselfExample() {
     const [value, onValueChange] = useState(true);
 
     return (

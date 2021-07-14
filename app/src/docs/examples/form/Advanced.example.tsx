@@ -21,7 +21,7 @@ interface AdvancedFormExampleState {
     person: Person;
 }
 
-export class AdvancedFormExample extends React.Component<any, any> {
+export default class AdvancedFormExample extends React.Component<any, any> {
     state: AdvancedFormExampleState = {
         person: {},
     };

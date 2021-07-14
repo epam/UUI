@@ -3,7 +3,7 @@ import { Tag } from '@epam/promo';
 import * as myIcon from '@epam/assets/icons/common/action-account-18.svg';
 import { useState } from 'react';
 
-export function BasicExample() {
+export default function BasicExample() {
     const [value, onValueChange] = useState<number>(123);
 
     return (

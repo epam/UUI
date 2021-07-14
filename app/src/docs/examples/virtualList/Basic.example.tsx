@@ -1,5 +1,4 @@
-import React from 'react';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { IconButton, FlexRow, Panel, Text, TextPlaceholder, VirtualList } from '@epam/promo';
 import { VirtualListState } from '@epam/uui';
 import * as unfoldedIcon from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
@@ -27,7 +26,7 @@ for(let n = 0; n < 1000; n++) {
     someData.push(n + 1);
 }
 
-export const VirtualListExample: FC<{}> = () => {
+export default function VirtualListExample() {
     const [state, setState] = useState<VirtualListState>({ topIndex: 0, visibleCount: 10 });
 
     // Extract the visible part: starting from the state.topIndex, and only state.visibleCount of items

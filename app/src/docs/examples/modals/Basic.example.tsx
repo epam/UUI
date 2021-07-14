@@ -4,7 +4,7 @@ import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpace
 import { loremIpsum } from '../../../helpers/loremIpsum';
 import { svc } from '../../../services';
 
-export class BasicModalExampleToggler extends React.Component<any, any> {
+export default class BasicModalExampleToggler extends React.Component<any, any> {
     render() {
         return (
             <Button

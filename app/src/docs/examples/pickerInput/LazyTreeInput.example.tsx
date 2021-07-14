@@ -4,7 +4,7 @@ import {DataQueryFilter, LazyDataSourceApiRequest, useLazyDataSource} from '@epa
 import { svc } from "../../../services";
 import { Location } from '@epam/uui-docs';
 
-export function LazyTreePicker() {
+export default function LazyTreePicker() {
     const [value, onValueChange] = useState<string[]>();
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({

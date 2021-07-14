@@ -9,7 +9,7 @@ import { Avatar } from '@epam/loveship';
 
 const imgPath = 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <Panel margin='24' style={ { width: '400px' } } background='white' shadow>

@@ -12,7 +12,7 @@ interface LanguageLevelsArraySinglePickerState {
     items: LanguageLevel[];
 }
 
-export class LanguageLevelsArraySinglePicker extends React.Component<any, LanguageLevelsArraySinglePickerState> {
+export default class LanguageLevelsArraySinglePicker extends React.Component<any, LanguageLevelsArraySinglePickerState> {
     state: LanguageLevelsArraySinglePickerState = {
         pickerValue: null,
         items: fullLevelsList,

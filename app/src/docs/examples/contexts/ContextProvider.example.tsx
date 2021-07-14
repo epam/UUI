@@ -7,7 +7,7 @@ import { createBrowserHistory } from 'history';
 import { skinContext as promoSkinContext } from "@epam/promo";
 const history = createBrowserHistory();
 
-export class UuiEnhancedApp extends React.Component {
+export default class UuiEnhancedApp extends React.Component {
     render() {
         return (
             <ContextProvider

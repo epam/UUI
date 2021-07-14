@@ -28,7 +28,7 @@ class ModalWithDisabledClickOutsideAndCross extends React.Component<IModal<strin
     }
 }
 
-export class DisableClickOutsideAndCrossExampleToggler extends React.Component<any, any> {
+export default class DisableClickOutsideAndCrossExampleToggler extends React.Component<any, any> {
     render() {
         return (
             <Button

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { Button, Panel, Text, FlexRow } from "@epam/promo";
 
-export function CloseOpenModifiersExample() {
+export default function CloseOpenModifiersExample() {
     const renderDropdownBody = () => {
         return (
             <Panel background='white' shadow={ true }>

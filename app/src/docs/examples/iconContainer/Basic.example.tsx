@@ -3,7 +3,7 @@ import { IconContainer } from '@epam/promo';
 import * as eyeIcon24 from '@epam/assets/icons/common/action-eye-24.svg';
 import * as accountIcon24 from '@epam/assets/icons/common/action-account-24.svg';
 
-export function BasicIconContainerExample() {
+export default function BasicIconContainerExample() {
     return (
         <>
             <IconContainer icon={ accountIcon24 } onClick={ () => null } />

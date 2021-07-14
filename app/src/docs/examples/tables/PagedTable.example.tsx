@@ -27,7 +27,7 @@ const columns: DataColumnProps<Person>[] = [
     },
 ];
 
-export function PagedTable() {
+export default function PagedTable() {
     const [state, setState] = useState<PagedTableState>({ page: 1, visibleCount: 15, totalCount: 0, pageSize: 100 });
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {

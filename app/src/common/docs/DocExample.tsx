@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Switch, FlexRow, IconButton } from '@epam/promo';
+import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
-import path from 'path';
 import * as css from './DocExample.scss';
+import { getParameters } from 'codesandbox/lib/api/define';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
-
+import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
+import { CodeSandboxConfig } from 'app/src/data/codesandboxConfig';
 
 interface DocExampleProps {
     path: string;
@@ -17,24 +18,25 @@ interface DocExampleProps {
 interface DocExampleState {
     showCode: boolean;
     component?: any;
-    code?: any;
+    code?: string;
+    raw?: string;
+    stylesheet?: any;
 }
 
-declare var require: any;
 const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
     constructor(props: DocExampleProps) {
         super(props);
 
-        requireContext(`${this.props.path}`).then((module: any) => {
-            const componentExports = Object.keys(module).filter(key =>
-                module[key] instanceof React.Component || (key[0] == key[0].toUpperCase() && typeof module[key] === 'function'),
-            );
-            this.setState({ component: module[componentExports[0]] });
+        requireContext(this.props.path).then((module: any) => {
+            this.setState({ component: module.default });
         });
 
-        svc.api.getCode({ path: this.props.path }).then(r => this.setState({ code: r.highlighted }));
+        Promise.all([
+            svc.api.getCode({ path: this.props.path }).then(r => this.setState({ code: r.highlighted, raw: r.raw })),
+            svc.api.getCode({ path: this.getComponentStyleSheet(this.props.path) }).then(s => s && this.setState({ stylesheet: s.raw }))
+        ]);
     }
 
     state: DocExampleState = {
@@ -42,10 +44,40 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     };
 
     getDescriptionFileName() {
+        console.log(this.props.path);
         return this.props.path
             .replace(new RegExp(/\.example.tsx|\./g), '')
             .replace(/\//g, '-')
             .replace(/^-/, '');
+    }
+
+    getComponentStyleSheet(path: string) {
+        const pathElements = path.split('/');
+        return pathElements
+            .splice(0, pathElements.length - 1)
+            .concat('BasicExample.scss')
+            .join('/');
+    }
+
+    getCodesandboxLink(): string {
+        const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
+        url.searchParams.set('parameters', getParameters({
+            ...CodeSandboxConfig,
+            files: {
+                ...CodeSandboxConfig.files,
+                'Example.tsx': {
+                    content: this.state.raw,
+                    isBinary: false,
+                },
+                ...(this.state.stylesheet && {
+                    'BasicExample.scss': {
+                        content: this.state.stylesheet,
+                        isBinary: false,
+                    },
+                }),
+            }
+        }));
+        return url.toString();
     }
 
     renderCode() {
@@ -58,8 +90,19 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
                     { this.state.component && React.createElement(this.state.component) }
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12'>
-                    <Switch value={ this.state.showCode } onValueChange={ (val) => this.setState({showCode: val}) } label='View code'/>
+                <FlexRow padding='12' vPadding='12' spacing='18'>
+                    <Switch
+                        value={ this.state.showCode }
+                        onValueChange={ (val) => this.setState({showCode: val}) }
+                        label='View code'
+                    />
+                    <LinkButton
+                        icon={CodesandboxIcon}
+                        iconPosition='right'
+                        target="_blank"
+                        caption="Open in Codesandbox"
+                        href={this.getCodesandboxLink()}
+                    />
                 </FlexRow>
                 { this.state.showCode && this.renderCode() }
             </>

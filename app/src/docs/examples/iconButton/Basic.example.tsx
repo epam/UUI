@@ -4,7 +4,7 @@ import * as configIcon12 from '@epam/assets/icons/common/action-settings-12.svg'
 import * as eyeIcon18 from '@epam/assets/icons/common/action-eye-18.svg';
 import * as accountIcon24 from '@epam/assets/icons/common/action-account-24.svg';
 
-export function BasicIconButtonExample() {
+export default function BasicIconButtonExample() {
     return (
         <>
             <IconButton icon={ accountIcon24 } onClick={ () => null } />

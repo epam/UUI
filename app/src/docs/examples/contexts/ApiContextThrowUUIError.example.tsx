@@ -6,7 +6,7 @@ import { svc } from '../../../services';
 /**
  * While UUI handles server errors automatically, often you need to trigger errors from your code, and customize their appearance.
  */
-export function ErrorsExample() {
+export default function ErrorsExample() {
     const [state, setState] = React.useState(0);
 
     switch (state) {

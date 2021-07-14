@@ -5,7 +5,7 @@ import { Product } from '@epam/uui-docs';
 import { svc } from "../../../services";
 import * as css from './TablesExamples.scss';
 
-export function ProductTable() {
+export default function ProductTable() {
     const [value, onValueChange] = useState({});
 
     const dataSource = useAsyncDataSource<Product, number, any>({

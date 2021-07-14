@@ -45,7 +45,7 @@ const items = [
     },
 ];
 
-export class DndMaterial extends React.Component {
+export default class DndMaterial extends React.Component {
     state = {
         items: items,
     };

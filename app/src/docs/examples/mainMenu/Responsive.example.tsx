@@ -10,7 +10,7 @@ interface MainMenuResponsiveExampleState {
     burgerSearchQuery: string;
 }
 
-export class MainMenuResponsiveExample extends React.Component<any, MainMenuResponsiveExampleState> {
+export default class MainMenuResponsiveExample extends React.Component<any, MainMenuResponsiveExampleState> {
     state = {
         width: 100,
         burgerSearchQuery: '',

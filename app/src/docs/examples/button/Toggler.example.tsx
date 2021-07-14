@@ -6,7 +6,7 @@ import { Person } from "@epam/uui-docs";
 import { svc } from "../../../services";
 
 
-export function ButtonAsToggler() {
+export default function ButtonAsToggler() {
     const [value, onValueChange] = useState<number[]>();
 
     const personsApi = useCallback((request: LazyDataSourceApiRequest<Person, number>) => svc.api.demo.persons(request), []);
