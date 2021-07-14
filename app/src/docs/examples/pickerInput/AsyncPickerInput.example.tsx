@@ -8,7 +8,7 @@ interface AsyncPickerInputState {
     locations: string[];
 }
 
-export class AsyncPickerInputExample extends React.Component<any, AsyncPickerInputState> {
+export default class AsyncPickerInputExample extends React.Component<any, AsyncPickerInputState> {
     state: AsyncPickerInputState = {
         locations: null,
     };

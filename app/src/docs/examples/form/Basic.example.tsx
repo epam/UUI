@@ -16,7 +16,7 @@ interface BasicFormExampleState {
     person: Person;
 }
 
-export class BasicFormExample extends React.Component<any, any> {
+export default class BasicFormExample extends React.Component<any, any> {
     state: BasicFormExampleState = {
         person: {},
     };

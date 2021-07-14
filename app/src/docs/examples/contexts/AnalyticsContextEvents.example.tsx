@@ -4,7 +4,7 @@ import {Button, Switch} from "@epam/promo";
 import {AnalyticsEvent} from "@epam/uui";
 import {svc} from "../../../services";
 
-export const AnalyticsContextEvents: React.FC = () => {
+export default function AnalyticsContextEvents() {
     const [switchValue, setSwitchValue] = useState(false);
 
     const clickAnalyticsEvent: AnalyticsEvent = useMemo(() => ({

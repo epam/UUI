@@ -4,7 +4,7 @@ import * as myIcon from '@epam/assets/icons/common/action-eye-18.svg';
 import * as css from './SizeExample.scss';
 import { useState } from 'react';
 
-export function AdvancedBadgeExample() {
+export default function AdvancedBadgeExample() {
     const [value, onValueChange] = useState<number>(10);
 
     return (

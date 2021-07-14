@@ -20,7 +20,7 @@ interface ServerResponseExample<T> {
     };
 }
 
-export class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
+export default class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
     state = {
         login: {
             email: "Ivan_Ivanov@epam.com",

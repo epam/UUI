@@ -13,7 +13,7 @@ interface FileUploadExampleState {
     attachments: AttachmentType[];
 }
 
-export class FileUploadExample extends React.Component<any, FileUploadExampleState> {
+export default class FileUploadExample extends React.Component<any, FileUploadExampleState> {
     state: FileUploadExampleState = {
         attachments: [],
     };

@@ -6,7 +6,7 @@ import cx from 'classnames';
 // tslint:disable-next-line:no-import
 import * as css from '@epam/promo/assets/styles/typography.scss';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <RichTextView>

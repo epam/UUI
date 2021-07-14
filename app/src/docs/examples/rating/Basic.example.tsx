@@ -3,7 +3,7 @@ import { FlexCell, Rating } from '@epam/promo';
 import { useState } from 'react';
 import * as css from './BasicExample.scss';
 
-export function BasicExample() {
+export default function BasicExample() {
     const [value, onValueChange] = useState(0);
 
     return (

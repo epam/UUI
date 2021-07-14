@@ -9,7 +9,7 @@ interface AsyncPickerInputState {
     productsIds: number[];
 }
 
-export class GetRowOptionsExample extends React.Component<any, AsyncPickerInputState> {
+export default class GetRowOptionsExample extends React.Component<any, AsyncPickerInputState> {
     state: AsyncPickerInputState = {
         productID: null,
         productsIds: null,

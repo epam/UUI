@@ -4,7 +4,7 @@ import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui-componen
 import moment from 'moment';
 import * as css from './PresetsAndFooter.scss';
 
-export const DatePickerBaseExample = () => {
+export default function DatePickerBaseExample() {
     const [value, onValueChange] = useState({from: null, to: null});
 
     return (

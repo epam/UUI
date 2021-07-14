@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@epam/promo';
 
-export function SizeExample() {
+export default function SizeExample() {
     return (
         <>
             <Button color='blue' size='48' caption='Caption' />

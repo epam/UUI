@@ -8,7 +8,7 @@ interface BasicPickerListExampleState {
     countries: string[];
 }
 
-export class BasicPickerListExample extends React.Component<any, BasicPickerListExampleState> {
+export default class BasicPickerListExample extends React.Component<any, BasicPickerListExampleState> {
     state: BasicPickerListExampleState = {
         countries: null,
     };

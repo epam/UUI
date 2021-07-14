@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Badge } from '@epam/promo';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <Badge color='blue' fill='solid' caption='Status' />

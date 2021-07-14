@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FlexCell, Paginator } from '@epam/promo';
 import css from './BasicExample.scss';
 
-export function BasicAccordionExample() {
+export default function BasicAccordionExample() {
     const [value1, onValueChange1] = useState<number>(1);
     const [value2, onValueChange2] = useState<number>(5);
 

@@ -14,7 +14,7 @@ interface CitiesTableState {
     tableState: DataSourceState;
 }
 
-export class CitiesTable extends React.Component<any, CitiesTableState> {
+export default class CitiesTable extends React.Component<any, CitiesTableState> {
     state: CitiesTableState = {
         tableState: {},
     };

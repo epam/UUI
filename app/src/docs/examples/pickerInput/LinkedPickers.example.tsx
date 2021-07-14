@@ -9,7 +9,7 @@ interface LocationLinkedPickersState {
     cities: string[];
 }
 
-export class ArrayLinkedPickers extends React.Component<any, LocationLinkedPickersState> {
+export default class ArrayLinkedPickers extends React.Component<any, LocationLinkedPickersState> {
     state: LocationLinkedPickersState = {
         country: null,
         cities: null,

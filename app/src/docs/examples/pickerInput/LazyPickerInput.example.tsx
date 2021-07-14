@@ -4,7 +4,7 @@ import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
 import { svc } from "../../../services";
 import { Person } from '@epam/uui-docs';
 
-export function LazyPersonsMultiPicker() {
+export default function LazyPersonsMultiPicker() {
     const [value, onValueChange] = useState<number[]>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

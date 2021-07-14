@@ -17,7 +17,7 @@ interface SlateEditorBasicExampleState {
     name: string;
 }
 
-export class SlateEditorBasicExample extends React.Component<any, SlateEditorBasicExampleState> {
+export default class SlateEditorBasicExample extends React.Component<any, SlateEditorBasicExampleState> {
     state: SlateEditorBasicExampleState = {
         value: Value.fromJSON(initialValue),
         isReadonly: false,

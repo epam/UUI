@@ -9,7 +9,7 @@ export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
 }
 
-export class NotificationContextExample extends React.Component<{}> {
+export default class NotificationContextExample extends React.Component<{}> {
 
     state: PositionType = { direction: 'bot-left' };
 

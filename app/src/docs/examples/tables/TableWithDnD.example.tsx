@@ -5,7 +5,7 @@ import { demoData, FeatureClass} from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 import sortBy from 'lodash.sortby';
 
-export function TableWithDnDExample() {
+export default function TableWithDnDExample() {
     const [value, onValueChange] = useState<DataTableState>({});
     const [items, setItems] = useState(demoData.featureClasses);
 

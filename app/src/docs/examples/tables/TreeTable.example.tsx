@@ -12,9 +12,9 @@ interface LocationsTableState {
     tableState: DataSourceState;
 }
 
-export class TreeTableExample extends React.Component<LocationsTableProps, LocationsTableState> {
-    constructor(props: LocationsTableProps, context: any) {
-        super(props, context);
+export default class TreeTableExample extends React.Component<LocationsTableProps, LocationsTableState> {
+    constructor(props: LocationsTableProps) {
+        super(props);
     }
 
     state: LocationsTableState = {

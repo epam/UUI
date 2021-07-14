@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { LinkButton, Button, Text, FlexRow } from "@epam/promo";
+import { LinkButton, Text, FlexRow } from "@epam/promo";
 import { svc } from "../../../services";
 
-export class ApiContextBaseExample extends React.Component {
+export default class ApiContextBaseExample extends React.Component {
     render() {
         return (
             <div>

@@ -116,7 +116,7 @@ class ModalWithFormExample extends React.Component<IModal<Person>> {
     }
 }
 
-export class ModalWithFormExampleToggler extends React.Component<any, any> {
+export default class ModalWithFormExampleToggler extends React.Component<any, any> {
     render() {
         return (
             <Button

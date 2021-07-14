@@ -4,7 +4,7 @@ import { svc } from '../../../services';
 import { BasicModalExample } from '../modals/Basic.example';
 
 
-export class ModalContextExample extends React.Component {
+export default class ModalContextExample extends React.Component {
     render() {
         return (
             <Button

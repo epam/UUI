@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Avatar, FlexRow } from '@epam/promo';
 
-export function BasicExample() {
+export default function BasicExample() {
 
     return (
         <FlexRow spacing='6'>
