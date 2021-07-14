@@ -28,17 +28,14 @@ export const DocumentsPage = () => {
 
 
     useEffect(() => {
-        const getCodesandboxFile = (file: string) => join('..', 'data', 'codesandbox', file);
-        const codesandboxFiles: string[] = [
+        Promise.all( [
             'index.html',
             'services.ts',
             'index.tsx',
             'package.json',
             'tsConfig.json'
-        ];
-
-        Promise.all(codesandboxFiles.map(codesandboxFile => {
-            return svc.api.getCode({ path: getCodesandboxFile(codesandboxFile) })
+        ].map(codesandboxFile => {
+            return svc.api.getCode({ path: join('..', 'data', 'codesandbox', codesandboxFile) })
         })).then(data => data.map(file => file.raw)).then(
             ([ indexHTML, servicesTS, indexTSX, packageJSON, tsConfigJSON ]) => {
                 Object.assign(svc, {
