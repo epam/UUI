@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { City, Country, svc } from "@epam/uui-docs";
-import { AsyncDataSource, LazyDataSource} from "@epam/uui";
+import { City, Country } from "@epam/uui-docs";
+import { AsyncDataSource, LazyDataSource, useUuiContext} from "@epam/uui";
 import { FlexCell, LabeledInput, PickerInput } from "@epam/promo";
 
 export default function ArrayLinkedPickers() {
+    const svc = useUuiContext();
     const [country, setCountry] = useState<Country>(null);
     const [cities, setCities] = useState<string[]>(null);
 
     const countryDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({}).then(r => r.items),
+        api: () => svc.api.demo.countries({}).then((r: any) => r.items),
     });
 
     const citiesDataSource = new LazyDataSource({

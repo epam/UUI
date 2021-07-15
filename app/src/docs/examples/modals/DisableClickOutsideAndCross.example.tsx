@@ -1,6 +1,6 @@
 import React from 'react';
-import { IModal } from '@epam/uui';
-import { svc, loremIpsum } from '@epam/uui-docs';
+import { IModal, useUuiContext } from '@epam/uui';
+import { demoData } from '@epam/uui-docs';
 import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button } from '@epam/promo';
 
 function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
@@ -11,7 +11,7 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
                     <ModalHeader title="Simple modal example " />
                     <ScrollBars hasTopShadow hasBottomShadow >
                         <FlexRow padding='24' vPadding='12' >
-                            <Text size='36'> { loremIpsum } { loremIpsum } { loremIpsum } </Text>
+                            <Text size='36'> { demoData.loremIpsum } </Text>
                         </FlexRow>
                     </ScrollBars>
                     <ModalFooter>
@@ -26,10 +26,11 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
 }
 
 export default function DisableClickOutsideAndCrossExampleToggler() {
+    const { uuiModals } = useUuiContext();
     return (
         <Button
             caption='Show modal'
-            onClick={ () => svc.uuiModals.show((props) => <ModalWithDisabledClickOutsideAndCross { ...props }/>) }
+            onClick={ () => uuiModals.show((props) => <ModalWithDisabledClickOutsideAndCross { ...props }/>) }
         />
     );
 }

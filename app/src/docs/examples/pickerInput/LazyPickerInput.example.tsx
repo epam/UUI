@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import {FlexRow, PickerInput} from '@epam/promo';
-import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { Person, svc } from '@epam/uui-docs';
+import { FlexRow, PickerInput } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 export default function LazyPersonsMultiPicker() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

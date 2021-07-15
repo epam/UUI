@@ -1,9 +1,10 @@
 import React from 'react';
-import { IModal } from '@epam/uui';
-import { svc, loremIpsum } from '@epam/uui-docs';
+import { IModal, useUuiContext } from '@epam/uui';
+import { demoData } from '@epam/uui-docs';
 import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button } from '@epam/promo';
 
 export default function BasicModalExampleToggler() {
+    const svc = useUuiContext();
     return (
         <Button
             caption='Show modal'
@@ -20,7 +21,7 @@ export function BasicModalExample(modalProps: IModal<string>) {
                     <ModalHeader title="Simple modal example " onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow >
                         <FlexRow padding='24'>
-                            <Text size='36'> { loremIpsum } { loremIpsum } { loremIpsum } </Text>
+                            <Text size='36'> { demoData.loremIpsum.repeat(3) } </Text>
                         </FlexRow>
                     </ScrollBars>
                     <ModalFooter>

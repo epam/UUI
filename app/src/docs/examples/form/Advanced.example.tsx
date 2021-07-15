@@ -1,7 +1,6 @@
 import React, { useState, ReactNode } from 'react';
-import { Metadata, AsyncDataSource, RenderFormProps, INotification, LazyDataSource } from "@epam/uui";
+import { Metadata, AsyncDataSource, RenderFormProps, INotification, LazyDataSource, useUuiContext } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
-import { svc } from '@epam/uui-docs';
 import * as undoIcon from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import * as redoIcon from '@epam/assets/icons/common/content-edit_redo-18.svg';
 
@@ -17,6 +16,7 @@ type Person = {
 };
 
 export default function AdvancedFormExample() {
+    const svc = useUuiContext();
     const [person] = useState<Person>({});
 
     const getMetaData = (state: Person): Metadata<Person> => {
@@ -43,7 +43,7 @@ export default function AdvancedFormExample() {
     }
 
     const countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     });
 
     const citiesDataSource = new LazyDataSource({ api: (req) => svc.api.demo.cities(req) });

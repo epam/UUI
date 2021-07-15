@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Metadata, AsyncDataSource, RenderFormProps, INotification } from "@epam/uui";
-import { svc } from '@epam/uui-docs';
+import { Metadata, AsyncDataSource, RenderFormProps, INotification, useUuiContext } from "@epam/uui";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput,
     PickerInput, SuccessNotification, ErrorNotification, Form,
@@ -14,6 +13,7 @@ interface Person {
 }
 
 export default function BasicFormExample() {
+    const svc = useUuiContext();
     const [person] = useState<Person>({});
 
     const getMetaData = (state: Person): Metadata<Person> => {
@@ -28,7 +28,7 @@ export default function BasicFormExample() {
     }
 
     const countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     });
 
     const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (

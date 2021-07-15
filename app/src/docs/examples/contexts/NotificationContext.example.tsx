@@ -4,19 +4,18 @@ import {
     TextInput, WarningNotification, SuccessNotification,
     ErrorNotification, NotificationCard, RichTextView
 } from '@epam/promo';
-import { ArrayDataSource, INotification } from '@epam/uui';
+import { ArrayDataSource, INotification, useUuiContext } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
-import { svc } from '@epam/uui-docs';
-
 export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
 }
 
 export default function NotificationContextExample() {
+    const { uuiNotifications } = useUuiContext();
     const [positionType, setPositionType] = useState<PositionType>({ direction: 'bot-left' });
 
     const handleSuccess = () => {
-        svc.uuiNotifications.show((props: INotification) =>
+        uuiNotifications.show((props: INotification) =>
             <SuccessNotification { ...props } >
                 <Text size='36' font='sans' fontSize='14'>Success notification</Text>
             </SuccessNotification>, { position: positionType.direction, duration: 'forever' })
@@ -24,7 +23,7 @@ export default function NotificationContextExample() {
     }
 
     const handleWarning = () => {
-        svc.uuiNotifications.show((props: INotification) =>
+        uuiNotifications.show((props: INotification) =>
             <WarningNotification { ...props } actions={
                 [{
                     name: 'Ok',
@@ -38,30 +37,27 @@ export default function NotificationContextExample() {
                 <Text size='36' font='sans' fontSize='14'>Warning notification with some buttons</Text>
             </WarningNotification>, { duration: 5, position: positionType.direction })
             .then(() => {
-                svc.uuiNotifications.show((props: INotification) =>
+                uuiNotifications.show((props: INotification) =>
                     <SuccessNotification { ...props } >
                         <Text size='36' font='sans' fontSize='14'>It`s Ok!</Text>
                     </SuccessNotification>, { duration: 2, position: positionType.direction })
                     .catch(() => null);
-            })
-            .catch(() => null);
+            }).catch(() => null);
     }
 
     const handleError = () => {
-        svc.uuiNotifications.show((props: INotification) =>
-            <ErrorNotification { ...props } actions={
-                [{
+        uuiNotifications.show((props: INotification) =>
+            <ErrorNotification { ...props } actions={ [{
                     name: 'Cancel',
                     action: props.onClose,
                 }]
             }>
                 <Text size='36' font='sans' fontSize='14'>Error notification with looooooooong looooooong text about lorem ispum dolor</Text>
-            </ErrorNotification>, { position: positionType.direction })
-            .catch(() => null);
+            </ErrorNotification>, { position: positionType.direction }).catch(() => null);
     }
 
     const handleSnackWithRichText = () => {
-        svc.uuiNotifications.show((props: INotification): ReactNode =>
+        uuiNotifications.show((props: INotification): ReactNode =>
             <NotificationCard { ...props } color='gray60'>
                 <RichTextView>
                     <h3>Title</h3>
@@ -72,7 +68,7 @@ export default function NotificationContextExample() {
 
 
     const customNotificationHandler = () => {
-        svc.uuiNotifications.show((props: INotification): ReactNode =>
+        uuiNotifications.show((props: INotification): ReactNode =>
             <Panel style={ { width: '420px', background: 'white' } } shadow>
                 <ModalHeader title='Custom notification' onClose={ props.onClose } />
                 <FlexRow padding='24' background='none' spacing='12' >

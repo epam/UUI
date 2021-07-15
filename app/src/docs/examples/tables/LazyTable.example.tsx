@@ -1,14 +1,15 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Text, DataTable, ColumnPickerFilter, Panel, IconButton } from '@epam/promo';
-import { DataSourceState, DataColumnProps, LazyDataSource, ILens } from '@epam/uui';
+import { DataSourceState, DataColumnProps, LazyDataSource, ILens, useUuiContext } from '@epam/uui';
 import {DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter} from "@epam/loveship";
-import { City, Country, svc } from '@epam/uui-docs';
+import { City, Country } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
 import { Dropdown } from "@epam/uui-components";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
 
 export default function CitiesTable(props: unknown) {
+    const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>([]);
 
     // If you need some filters for your table, you need to create Picker which will change 'filter' field in DataSourceState object. And than pass it to the column renderFilter option.

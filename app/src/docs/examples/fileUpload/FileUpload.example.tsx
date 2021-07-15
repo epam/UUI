@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
-import { FileUploadResponse } from '@epam/uui';
+import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import * as css from './FileUpload.example.scss';
-import { svc } from '@epam/uui-docs';
 
 type AttachmentType = FileUploadResponse & {
     progress?: number;
 };
 
 export default function FileUploadExample() {
+    const { uuiApi } = useUuiContext();
     const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
     const trackProgress = (progress: number, id: number): void => {
@@ -38,7 +38,7 @@ export default function FileUploadExample() {
                 progress: 0,
             }));
 
-            svc.uuiApi.uploadFile('/uploadFileMock', file, {
+            uuiApi.uploadFile('/uploadFileMock', file, {
                 onProgress: (progress) => trackProgress(progress, tempId)
             }).then(res => updateAttachment({ ...res, progress: 100 }, tempId));
         });

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Location, svc } from "@epam/uui-docs";
-import { AsyncDataSource } from "@epam/uui";
+import { Location } from "@epam/uui-docs";
+import { AsyncDataSource, useUuiContext } from "@epam/uui";
 import { PickerInput } from "@epam/promo";
 
 export default function AsyncPickerInputExample() {
+    const svc = useUuiContext();
     const [locations, setLocations] = useState<string[]>(null);
 
     const locationsDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.locations({}).then(res => res.items),
+        api: () => svc.api.demo.locations({}).then((res: any) => res.items),
     });
 
     return (

@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Text,  DataTable, Panel, IconButton } from '@epam/promo';
-import { DataTableState, DataColumnProps, LazyDataSource } from '@epam/uui';
-import { City, svc } from '@epam/uui-docs';
+import { DataTableState, DataColumnProps, LazyDataSource, useUuiContext } from '@epam/uui';
+import { City } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
 export default function ColumnsConfigurationDataTableExample(props: unknown) {
+    const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataTableState>({
         // Get columns config from localStorage
         columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY)

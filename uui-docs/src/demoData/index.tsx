@@ -3,7 +3,8 @@ import { languageLevels } from './languageLevels';
 import { personDetails } from './personDetails';
 import { personDemoData } from './demoTableData';
 import { universities } from './universities';
-import { slateInitialValue } from './slateInitialValue'
+import { loremIpsum } from './loremIpsum';
+import { slateInitialValue } from './slateInitialValue';
 
 export const demoData = {
     featureClasses,
@@ -11,5 +12,6 @@ export const demoData = {
     personDetails,
     personDemoData,
     universities,
-    slateInitialValue
+    loremIpsum,
+    slateInitialValue,
 };

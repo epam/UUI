@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FlexRow, PickerInput, TextPlaceholder, DataPickerRow } from '@epam/promo';
-import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource } from '@epam/uui';
-import { Person, svc } from '@epam/uui-docs';
+import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 import { Avatar } from "@epam/uui-components";
 import * as css from './CustomUserRow.example.scss';
 
@@ -28,6 +28,7 @@ const renderUserRow = (props: DataRowProps<Person, number>) => (
 );
 
 export default function LazyPersonsMultiPickerWithCustomUserRow() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

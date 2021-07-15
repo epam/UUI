@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Product, svc } from "@epam/uui-docs";
-import { AsyncDataSource } from "@epam/uui";
+import { Product } from "@epam/uui-docs";
+import { AsyncDataSource, useUuiContext } from "@epam/uui";
 import { FlexCell, FlexRow, PickerInput } from "@epam/promo";
 
 export default function GetRowOptionsExample() {
+    const svc = useUuiContext();
     const [productID, setProductID] = useState<number>(null);
     const [productsIDs, setProductsIDs] = useState<number[]>(null);
 
     const productsDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.products({}).then(r => r.items),
+        api: () => svc.api.demo.products({}).then((r: any) => r.items),
         getId: item => item.ProductID,
     });
 

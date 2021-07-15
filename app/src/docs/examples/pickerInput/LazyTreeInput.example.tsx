@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {FlexRow, PickerInput} from '@epam/promo';
-import {DataQueryFilter, useLazyDataSource} from '@epam/uui';
-import { Location, svc } from '@epam/uui-docs';
+import {DataQueryFilter, useLazyDataSource, useUuiContext} from '@epam/uui';
+import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>();
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
