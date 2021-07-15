@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { PickerInput} from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource } from '@epam/uui';
-import { Person, svc } from '@epam/uui-docs';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 export default function EditModePickerExample() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>([]);
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {

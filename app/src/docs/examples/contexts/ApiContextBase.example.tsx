@@ -1,8 +1,10 @@
 import React from 'react';
 import { LinkButton, Text, FlexRow } from "@epam/promo";
-import { svc } from '@epam/uui-docs';
+import { useUuiContext } from '@epam/uui';
 
 export default function ApiContextBaseExample() {
+    const svc = useUuiContext();
+
     return (
         <div>
             <Text>Examples of error pages (reload page to recover):</Text>

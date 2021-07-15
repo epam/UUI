@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Button, Switch } from "@epam/promo";
-import { AnalyticsEvent } from "@epam/uui";
-import { svc } from '@epam/uui-docs';
+import { AnalyticsEvent, useUuiContext } from "@epam/uui";
 
 export default function AnalyticsContextEvents() {
+    const svc = useUuiContext();
     const [switchValue, setSwitchValue] = useState<boolean>(false);
 
     const clickAnalyticsEvent: AnalyticsEvent = useMemo(() => ({

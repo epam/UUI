@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, FlexRow, FlexSpacer, Panel, Text, LinkButton, IconButton, Badge, Avatar } from '@epam/promo';
-import { loremIpsum } from '@epam/uui-docs';
+import { demoData } from '@epam/uui-docs';
 import * as TickIcon from '@epam/assets/icons/common/notification-done-18.svg';
 import * as PencilIcon from '@epam/assets/icons/common/content-edit-18.svg';
 import * as OnlineIcon from '@epam/assets/icons/common/content-filtration-18.svg';
@@ -38,7 +38,7 @@ export default function BasicExample() {
                 </FlexRow>
                 <FlexRow padding='12' vPadding='12' borderBottom>
                     <FlexCell width='100%'>
-                        <Text size='36' font='sans' color='gray60' >{ loremIpsum }</Text>
+                        <Text size='36' font='sans' color='gray60' >{ demoData.loremIpsum }</Text>
                     </FlexCell>
                 </FlexRow>
                 <FlexRow padding='12' spacing='6'>

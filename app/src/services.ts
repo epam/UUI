@@ -4,7 +4,7 @@ import { getApi } from './data';
 const tApi = getApi(null);
 type Api = typeof tApi;
 
-export interface SandboxServices extends CommonContexts<Api, any> {
+export interface SandboxServices extends CommonContexts<Api, null> {
     codesandboxFiles: { [key: string]: string },
 }
 

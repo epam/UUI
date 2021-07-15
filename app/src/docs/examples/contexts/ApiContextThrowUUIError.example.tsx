@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { LinkButton } from '@epam/loveship';
-import { UuiError } from '@epam/uui';
-import { svc } from '@epam/uui-docs';
+import { useUuiContext, UuiError } from '@epam/uui';
 
 /**
  * While UUI handles server errors automatically, often you need to trigger errors from your code, and customize their appearance.
  */
 export default function ErrorsExample() {
+    const { uuiErrors } = useUuiContext();
     const [state, setState] = useState<number>(0);
 
     switch (state) {
@@ -36,7 +36,7 @@ export default function ErrorsExample() {
                 onClick={ () => {
                     // Errors in callbacks can't be caught automatically by React.
                     // In such cases, you can set error state manually via uuiError context
-                    svc.uuiErrors.reportError(new UuiError({ status: 404 }));
+                    uuiErrors.reportError(new UuiError({ status: 404 }));
                 } }
             />
         </div>

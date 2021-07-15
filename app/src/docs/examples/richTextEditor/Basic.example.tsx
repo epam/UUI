@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Value } from 'slate';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
+import { useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
     toDoListPlugin, baseMarksPlugin,
@@ -8,13 +9,14 @@ import {
     tablePlugin, quotePlugin, colorPlugin,
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin
 } from '@epam/uui-editor';
-import { svc, demoData } from '@epam/uui-docs';
+import { demoData } from '@epam/uui-docs';
 import * as css from './SlateEditorBasicExample.scss';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';
 
 export default function SlateEditorBasicExample() {
+    const svc = useUuiContext();
     const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
     const [isReadonly, setIsReadonly] = useState<boolean>(false);
     const [mode, setMode] = useState<EditorMode>('form');

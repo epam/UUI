@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { IModal, INotification, Metadata, RenderFormProps, AsyncDataSource } from '@epam/uui';
-import { svc } from '@epam/uui-docs';
+import { IModal, INotification, Metadata, RenderFormProps, AsyncDataSource, useUuiContext } from '@epam/uui';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
     Button, ScrollBars, ModalFooter, SuccessNotification,
@@ -15,21 +14,20 @@ interface Person {
 }
 
 function ModalWithFormExample(modalProps: IModal<Person>) {
+    const svc = useUuiContext();
     const [person] = useState<Person>({});
 
-    const getMetaData = (state: Person): Metadata<Person> => {
-        return {
-            props: {
-                firstName: { isRequired: true },
-                lastName: { isRequired: true },
-                countryId: { isRequired: true },
-                sex: { isRequired: true },
-            },
-        };
-    }
+    const getMetaData = (state: Person): Metadata<Person> => ({
+        props: {
+            firstName: { isRequired: true },
+            lastName: { isRequired: true },
+            countryId: { isRequired: true },
+            sex: { isRequired: true },
+        },
+    });
 
     const countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     });
 
     const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
@@ -105,6 +103,8 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
 }
 
 export default function ModalWithFormExampleToggler() {
+    const svc = useUuiContext();
+
     return (
         <Button
             caption='Show modal'

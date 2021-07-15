@@ -1,11 +1,12 @@
 import React from "react";
-import { ContextProvider } from "@epam/uui";
+import { ContextProvider, useUuiContext } from "@epam/uui";
 import { Modals, Snackbar } from "@epam/uui-components";
 import { ErrorHandler } from '@epam/loveship';
 import { skinContext as promoSkinContext } from "@epam/promo";
-import { svc } from '@epam/uui-docs';
 
 export default function UuiEnhancedApp() {
+    const svc = useUuiContext();
+
     return (
         <ContextProvider
             loadAppContext={(api) => Promise.resolve({})}

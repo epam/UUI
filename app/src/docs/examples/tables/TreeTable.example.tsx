@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Location, svc } from '@epam/uui-docs';
-import { DataSourceState, AsyncDataSource, DataColumnProps } from '@epam/uui';
+import { Location } from '@epam/uui-docs';
+import { DataSourceState, AsyncDataSource, DataColumnProps, useUuiContext } from '@epam/uui';
 import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
 import * as css from './TablesExamples.scss';
 
 export default function TreeTableExample({
     size
 }: DataTableMods) {
+    const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>({
         sorting: [{ field: 'name', direction: 'asc' }],
     });
@@ -57,10 +58,10 @@ export default function TreeTableExample({
     ], []);
 
     const locationsDS = new AsyncDataSource<Location>({
-        api: () => svc.api.demo.locations({}).then(r => r.items),
+        api: () => svc.api.demo.locations({}).then((r: any) => r.items),
     });
 
-    const handleTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
+    const handleTableStateChange = (newState: DataSourceState) => setTableState(newState);
 
     useEffect(() => {
         return () => locationsDS.unsubscribeView(handleTableStateChange);
