@@ -61,7 +61,10 @@
         font-family: $font-sans;
         color: var(--caption-color);
         cursor: pointer;
-        margin-left: 11px;
+
+        &:not(:empty) {
+            margin-left: 0.5em;
+        }
     }
 
     //Colors
