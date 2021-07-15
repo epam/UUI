@@ -4,10 +4,9 @@ import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import * as css from './DocExample.scss';
 import { getParameters } from 'codesandbox/lib/api/define';
-import { join } from 'path';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
-import { getCodesandboxConfig } from 'app/src/data/codesandbox/getCodesandboxConfig';
+import { getCodesandboxConfig } from '@epam/app/src/data/codesandbox/getCodesandboxConfig';
 
 interface DocExampleProps {
     path: string;
