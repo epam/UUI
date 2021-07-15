@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IconButton } from '@epam/promo';
 import * as configIcon12 from '@epam/assets/icons/common/action-settings-12.svg';
 import * as eyeIcon18 from '@epam/assets/icons/common/action-eye-18.svg';

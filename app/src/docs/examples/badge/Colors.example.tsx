@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexRow, Badge, FlexCell } from '@epam/promo';
 import * as css from './SizeExample.scss';
 

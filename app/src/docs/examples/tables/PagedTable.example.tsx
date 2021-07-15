@@ -1,8 +1,7 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { DataTable, Panel, Text, Paginator, FlexRow } from "@epam/promo";
 import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest } from '@epam/uui';
-import { Person } from '@epam/uui-docs';
-import { svc } from "../../../services";
+import { Person, svc } from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 import { FlexSpacer } from '@epam/uui-components';
 
@@ -41,7 +40,7 @@ export default function PagedTable() {
         return result;
     }, [state.page, state.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, any>({ api }, [state.page]);
+    const dataSource = useLazyDataSource<Person, number, unknown>({ api }, [state.page]);
 
     const view = dataSource.useView(state, setState, {});
 

@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Tag } from '@epam/promo';
 import * as myIcon from '@epam/assets/icons/common/action-account-18.svg';
-import { useState } from 'react';
 
 export default function BasicExample() {
-    const [value, onValueChange] = useState<number>(123);
+    const [value] = useState<number>(123);
 
     return (
         <>

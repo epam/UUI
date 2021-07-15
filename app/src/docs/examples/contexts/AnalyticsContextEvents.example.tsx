@@ -1,18 +1,16 @@
-import * as React from "react";
-import {useCallback, useMemo, useState} from "react";
-import {Button, Switch} from "@epam/promo";
-import {AnalyticsEvent} from "@epam/uui";
-import {svc} from "../../../services";
+import React, { useCallback, useMemo, useState } from "react";
+import { Button, Switch } from "@epam/promo";
+import { AnalyticsEvent } from "@epam/uui";
+import { svc } from '@epam/uui-docs';
 
 export default function AnalyticsContextEvents() {
-    const [switchValue, setSwitchValue] = useState(false);
+    const [switchValue, setSwitchValue] = useState<boolean>(false);
 
     const clickAnalyticsEvent: AnalyticsEvent = useMemo(() => ({
         name: "click",
         category: "docs",
         label: "static_event",
     }), []);
-
 
     const getValueChangeAnalyticsEvent = useCallback((newValue: boolean, oldValue: boolean): AnalyticsEvent => ({
         name: "switch",

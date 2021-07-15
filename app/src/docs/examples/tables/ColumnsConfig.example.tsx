@@ -1,27 +1,19 @@
-import * as React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Text,  DataTable, Panel, IconButton } from '@epam/promo';
 import { DataTableState, DataColumnProps, LazyDataSource } from '@epam/uui';
-import { City } from '@epam/uui-docs';
-import { svc } from '../../../services';
+import { City, svc } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
-
-interface CitiesTableState {
-    tableState: DataTableState;
-}
-
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
-export default class ColumnsConfigurationDataTableExample extends React.Component<any, CitiesTableState> {
-    state: CitiesTableState = {
-        tableState: {
-            // Get columns config from localStorage
-            columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY),
-        },
-    };
+export default function ColumnsConfigurationDataTableExample(props: unknown) {
+    const [tableState, setTableState] = useState<DataTableState>({
+        // Get columns config from localStorage
+        columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY)
+    });
 
-    citiesColumns: DataColumnProps<City>[] = [
+    const citiesColumns: DataColumnProps<City>[] = useMemo(() => [
         {
             key: 'id',
             caption: 'ID',
@@ -74,46 +66,37 @@ export default class ColumnsConfigurationDataTableExample extends React.Componen
             width: 54,
             fix: 'right',
         },
-    ];
+    ], []);
 
-    componentWillUnmount(): void {
-        this.citiesDS.unsubscribeView(this.handleTableStateChange);
-    }
+    const citiesDS = new LazyDataSource({ api: svc.api.demo.cities });
 
-    citiesDS = new LazyDataSource({
-        api: svc.api.demo.cities,
-    });
+    useEffect(() => {
+        return () => citiesDS.unsubscribeView(handleTableStateChange);
+    }, []);
 
-    handleTableStateChange = (newState: DataTableState) => {
+    const handleTableStateChange = (newState: DataTableState): void => {
         // Set columns config to localStorage
         svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig || {});
-
-        this.setState({ tableState: newState });
+        setTableState(newState);
     }
 
-    render() {
-        const view = this.citiesDS.getView(this.state.tableState, this.handleTableStateChange, {
-            getRowOptions: (item: City) => ({
-                checkbox: { isVisible: true },
-            }),
-        });
-        return (
-            <Panel shadow cx={ css.container }>
-                <DataTable
-                    value={ this.state.tableState }
-                    onValueChange={ this.handleTableStateChange }
-                    getRows={ view.getVisibleRows }
-                    columns={ this.citiesColumns }
-                    headerTextCase='upper'
+    const view = citiesDS.getView(tableState, handleTableStateChange, {
+        getRowOptions: (item: City) => ({ checkbox: { isVisible: true } })
+    });
 
-                    showColumnsConfig={ true }
-                    allowColumnsReordering={ true }
-                    allowColumnsResizing={ true }
-
-                    { ...view.getListProps() }
-                    { ...this.props }
-                />
-            </Panel>
-        );
-    }
+    return (
+        <Panel shadow cx={ css.container }>
+            <DataTable
+                value={ tableState }
+                onValueChange={ handleTableStateChange }
+                getRows={ view.getVisibleRows }
+                columns={ citiesColumns }
+                headerTextCase='upper'
+                showColumnsConfig={ true }
+                allowColumnsReordering={ true }
+                allowColumnsResizing={ true }
+                { ...view.getListProps() }
+            />
+        </Panel>
+    );
 }

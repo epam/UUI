@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexCell, TextArea } from '@epam/promo';
 import { useState } from 'react';
 import css from './BasicExample.scss';

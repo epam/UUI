@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { DatePicker, FlexRow } from '@epam/promo';
 import { IconContainer, Day } from '@epam/uui-components';
-import * as point from '../../../icons/radio-point.svg';
+import * as point from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: moment.Moment) => {
     return <>

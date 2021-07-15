@@ -1,32 +1,25 @@
-import * as React from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Metadata, AsyncDataSource, RenderFormProps, INotification, LazyDataSource } from "@epam/uui";
-import { svc } from "../../../services";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
+import { svc } from '@epam/uui-docs';
 import * as undoIcon from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import * as redoIcon from '@epam/assets/icons/common/content-edit_redo-18.svg';
 
-interface Person {
+type Person = {
     firstName?: string;
     lastName?: string;
+    email?: string;
+    sex?: string;
     location?: {
         cityIds: string[],
         countryId?: string;
     };
-    email?: string;
-    sex?: string;
+};
 
-}
+export default function AdvancedFormExample() {
+    const [person] = useState<Person>({});
 
-interface AdvancedFormExampleState {
-    person: Person;
-}
-
-export default class AdvancedFormExample extends React.Component<any, any> {
-    state: AdvancedFormExampleState = {
-        person: {},
-    };
-
-    getMetaData = (state: Person): Metadata<Person> => {
+    const getMetaData = (state: Person): Metadata<Person> => {
         return {
             props: {
                 firstName: { isRequired: true },
@@ -49,117 +42,105 @@ export default class AdvancedFormExample extends React.Component<any, any> {
         };
     }
 
-    countriesDataSource = new AsyncDataSource({
+    const countriesDataSource = new AsyncDataSource({
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     });
 
-    citiesDataSource = new LazyDataSource({
-        api: (req) => svc.api.demo.cities(req),
-    });
+    const citiesDataSource = new LazyDataSource({ api: (req) => svc.api.demo.cities(req) });
 
-    renderForm = (props: RenderFormProps<Person>) => {
-        let lens = props.lens;
+    const renderForm = ({ lens, canRedo, canUndo, canRevert, undo, redo, revert, save }: RenderFormProps<Person>): ReactNode => (
+        <FlexCell width='100%'>
+            <FlexRow vPadding='12' spacing='12' >
+                <Button caption='Revert changes' onClick={ revert } isDisabled={ !canRevert } fill='white' />
+                <FlexSpacer />
+                <Button icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } fill='light' />
+                <Button icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } fill='light' />
 
-        return (
-            <FlexCell width='100%'>
-                <FlexRow vPadding='12' spacing='12' >
-                    <Button caption='Revert changes' onClick={ props.revert } isDisabled={ !props.canRevert } fill='white' />
-                    <FlexSpacer />
-                    <Button icon={ undoIcon } onClick={ props.undo } isDisabled={ !props.canUndo } fill='light' />
-                    <Button icon={ redoIcon } onClick={ props.redo } isDisabled={ !props.canRedo } fill='light' />
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() } >
+                        <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
+                        <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Country' { ...lens.prop('location').prop('countryId').toProps() } >
+                        <PickerInput
+                            { ...lens.prop('location').prop('countryId').toProps() }
+                            selectionMode='single'
+                            valueType='id'
+                            dataSource={ countriesDataSource }
+                        />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='City' { ...lens.prop('location').prop('cityIds').toProps() } >
+                        <PickerInput
+                            { ...lens.prop('location').prop('cityIds').toProps() }
+                            selectionMode='multi'
+                            valueType='id'
+                            dataSource={ citiesDataSource }
+                        />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
+                        <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
+                        <RadioGroup
+                            items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
+                            { ...lens.prop('sex').toProps() }
+                            direction='horizontal'
+                        />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexSpacer />
+                <Button caption='Save' onClick={ save } color='green' />
+            </FlexRow>
+        </FlexCell>
+    );
 
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() } >
-                            <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
-                            <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Country' { ...lens.prop('location').prop('countryId').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('location').prop('countryId').toProps() }
-                                selectionMode='single'
-                                valueType='id'
-                                dataSource={ this.countriesDataSource }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='City' { ...lens.prop('location').prop('cityIds').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('location').prop('cityIds').toProps() }
-                                selectionMode='multi'
-                                valueType='id'
-                                dataSource={ this.citiesDataSource }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
-                            <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
-                            <RadioGroup
-                                items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
-                                { ...lens.prop('sex').toProps() }
-                                direction='horizontal'
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexSpacer />
-                    <Button caption='Save' onClick={ props.save } color='green' />
-                </FlexRow>
-            </FlexCell>
-        );
-    }
+    const renderSuccessNotification = (props: INotification): ReactNode => (
+        <SuccessNotification { ...props }>
+            <Text>Form saved</Text>
+        </SuccessNotification>
+    );
 
-    renderSuccessNotification(props: INotification) {
-        return (
-            <SuccessNotification { ...props }>
-                <Text>Form saved</Text>
-            </SuccessNotification>
-        );
-    }
+    const renderErrorNotification = (props: INotification): ReactNode => (
+        <ErrorNotification { ...props }>
+            <Text>Error on save</Text>
+        </ErrorNotification>
+    );
 
-    renderErrorNotification(props: INotification) {
-        return (
-            <ErrorNotification { ...props }>
-                <Text>Error on save</Text>
-            </ErrorNotification>
-        );
-    }
-
-    render() {
-        return (
-            <Form<Person>
-                value={ this.state.person }
-                onSave={ person =>  Promise.resolve() /*place your save api call here*/ }
-                onSuccess={ result => svc.uuiNotifications.show(this.renderSuccessNotification) }
-                onError={ error => svc.uuiNotifications.show(this.renderErrorNotification) }
-                renderForm={ this.renderForm }
-                getMetadata={ this.getMetaData }
-                settingsKey='advanced-form-example'
-            />
-        );
-    }
+    return (
+        <Form<Person>
+            value={person}
+            onSave={person => Promise.resolve() /*place your save api call here*/ }
+            onSuccess={result => svc.uuiNotifications.show(renderSuccessNotification) }
+            onError={error => svc.uuiNotifications.show(renderErrorNotification)}
+            renderForm={renderForm}
+            getMetadata={getMetaData}
+            settingsKey='advanced-form-example'
+        />
+    );
 }

@@ -6,7 +6,7 @@ const simpleDemoContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing el
     ' ut aliquip ex ea commodo consequat.';
 
 export default function HandleStateByYourselfExample() {
-    const [value, onValueChange] = useState(true);
+    const [value, onValueChange] = useState<boolean>(true);
 
     return (
         <FlexCell width='100%'>

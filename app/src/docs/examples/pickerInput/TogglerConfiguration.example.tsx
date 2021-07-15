@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import {FlexCell, PickerInput, Button, FlexRow, PickerToggler, Badge} from '@epam/promo';
-import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { svc } from "../../../services";
-import { City } from '@epam/uui-docs';
+import { FlexCell, PickerInput, Button, FlexRow } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource } from '@epam/uui';
+import { City, svc } from '@epam/uui-docs';
 import * as css from './TogglerConfiguration.example.scss';
 
 export default function PickerTogglerConfigurationExample() {

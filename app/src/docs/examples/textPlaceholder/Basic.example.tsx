@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexCell, TextPlaceholder } from '@epam/promo';
 import * as css from './BasicExample.scss';
 

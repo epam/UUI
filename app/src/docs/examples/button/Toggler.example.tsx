@@ -1,19 +1,17 @@
-import React, {useCallback, useState} from "react";
+import React, { useCallback, useState } from "react";
 import { Button, FlexRow, Panel, Tooltip, PickerInput } from '@epam/promo';
 import { Dropdown } from '@epam/uui-components';
 import { useLazyDataSource, LazyDataSourceApiRequest } from '@epam/uui';
-import { Person } from "@epam/uui-docs";
-import { svc } from "../../../services";
-
+import { Person, svc } from "@epam/uui-docs";
 
 export default function ButtonAsToggler() {
     const [value, onValueChange] = useState<number[]>();
 
-    const personsApi = useCallback((request: LazyDataSourceApiRequest<Person, number>) => svc.api.demo.persons(request), []);
-
-    const dataSource = useLazyDataSource({
-        api: personsApi,
+    const personsApi = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
+        return svc.api.demo.persons(request);
     }, []);
+
+    const dataSource = useLazyDataSource({ api: personsApi }, []);
 
     return (
         <FlexRow spacing='12' >
