@@ -1,55 +1,45 @@
-import {City, Country} from "@epam/uui-docs";
-import * as React from "react";
-import {AsyncDataSource, LazyDataSource} from "@epam/uui";
-import {svc} from "../../../services";
-import {FlexCell, LabeledInput, PickerInput} from "@epam/promo";
+import React, { useState } from "react";
+import { City, Country, svc } from "@epam/uui-docs";
+import { AsyncDataSource, LazyDataSource} from "@epam/uui";
+import { FlexCell, LabeledInput, PickerInput } from "@epam/promo";
 
-interface LocationLinkedPickersState {
-    country: Country;
-    cities: string[];
-}
+export default function ArrayLinkedPickers() {
+    const [country, setCountry] = useState<Country>(null);
+    const [cities, setCities] = useState<string[]>(null);
 
-export default class ArrayLinkedPickers extends React.Component<any, LocationLinkedPickersState> {
-    state: LocationLinkedPickersState = {
-        country: null,
-        cities: null,
-    };
-
-    countryDataSource = new AsyncDataSource({
+    const countryDataSource = new AsyncDataSource({
         api: () => svc.api.demo.countries({}).then(r => r.items),
     });
 
-    citiesDataSource = new LazyDataSource({
+    const citiesDataSource = new LazyDataSource({
         api: (req) => svc.api.demo.cities(req),
     });
 
-    render() {
-        return (
-            <FlexCell width={ 300 }>
-                <LabeledInput label='Select country'>
-                    <PickerInput<Country, string>
-                        dataSource={ this.countryDataSource }
-                        value={ this.state.country }
-                        onValueChange={ (newVal: Country) => this.setState({country: newVal, cities: null}) }
-                        entityName='Country'
-                        selectionMode='single'
-                        valueType='entity'
-                    />
-                </LabeledInput>
+    return (
+        <FlexCell width={ 300 }>
+            <LabeledInput label='Select country'>
+                <PickerInput<Country, string>
+                    dataSource={ countryDataSource }
+                    value={ country }
+                    onValueChange={ setCountry }
+                    entityName='Country'
+                    selectionMode='single'
+                    valueType='entity'
+                />
+            </LabeledInput>
 
-                <LabeledInput label={ this.state.country ? `Select city from ${this.state.country.name}` : 'Select city' }>
-                    <PickerInput<City, string>
-                        dataSource={ this.citiesDataSource }
-                        value={ this.state.cities }
-                        onValueChange={ (newVal: string[]) => this.setState({cities: newVal}) }
-                        isDisabled={ !this.state.country }
-                        entityName='City'
-                        selectionMode='multi'
-                        valueType='id'
-                        filter={ { country: this.state.country?.id } } // Your filter object, which will be send to the server
-                    />
-                </LabeledInput>
-            </FlexCell>
-        );
-    }
+            <LabeledInput label={ country ? `Select city from ${country.name}` : 'Select city' }>
+                <PickerInput<City, string>
+                    dataSource={ citiesDataSource }
+                    value={ cities }
+                    onValueChange={ setCities }
+                    isDisabled={ !country }
+                    entityName='City'
+                    selectionMode='multi'
+                    valueType='id'
+                    filter={ { country: country.id } } // Your filter object, which will be send to the server
+                />
+            </LabeledInput>
+        </FlexCell>
+    );
 }

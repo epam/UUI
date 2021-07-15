@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { AvatarStack, FlexCell } from '@epam/promo';
 import * as css from './BasicExample.scss';
 
-const avatarsArray = Array(10).fill('').map((i, index) => `https://avatars.dicebear.com/api/human/avatar12${index}.svg?background=%23EBEDF5&radius=50`);
+const avatarsArray = Array(10).fill('').map((_, index) => `https://avatars.dicebear.com/api/human/avatar12${index}.svg?background=%23EBEDF5&radius=50`);
 
 export default function BasicExample() {
     return (

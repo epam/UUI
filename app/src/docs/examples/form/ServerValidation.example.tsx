@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {Metadata, RenderFormProps, INotification, FormSaveResponse} from "@epam/uui";
-import {svc} from "../../../services";
+import React from 'react';
+import { Metadata, RenderFormProps, INotification, FormSaveResponse } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, Form } from "@epam/promo";
+import { svc } from '@epam/uui-docs';
 
 interface Login {
     email: string;

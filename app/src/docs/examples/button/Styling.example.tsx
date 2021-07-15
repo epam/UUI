@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexRow, Button } from '@epam/promo';
 
 export default function StyledButtonsExample() {

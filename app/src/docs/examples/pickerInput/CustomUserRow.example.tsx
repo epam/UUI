@@ -1,8 +1,7 @@
-import React, {useCallback, useState} from 'react';
-import { FlexRow, PickerInput, Text, TextPlaceholder, DataPickerRow } from '@epam/promo';
-import {DataRowProps, LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { svc } from "../../../services";
-import { Person } from '@epam/uui-docs';
+import React, { useCallback, useState } from 'react';
+import { FlexRow, PickerInput, TextPlaceholder, DataPickerRow } from '@epam/promo';
+import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource } from '@epam/uui';
+import { Person, svc } from '@epam/uui-docs';
 import { Avatar } from "@epam/uui-components";
 import * as css from './CustomUserRow.example.scss';
 

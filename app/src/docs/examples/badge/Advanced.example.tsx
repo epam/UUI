@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Badge, FlexCell, FlexRow } from '@epam/promo';
 import * as myIcon from '@epam/assets/icons/common/action-eye-18.svg';
 import * as css from './SizeExample.scss';
-import { useState } from 'react';
 
 export default function AdvancedBadgeExample() {
-    const [value, onValueChange] = useState<number>(10);
+    const [value] = useState<number>(10);
 
     return (
         <FlexCell width='auto' cx={ css.container } >

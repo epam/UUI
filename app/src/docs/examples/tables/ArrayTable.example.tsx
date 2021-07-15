@@ -7,7 +7,7 @@ import * as css from './TablesExamples.scss';
 export default function ArrayDataTableExample() {
     const [value, onValueChange] = useState({});
 
-    const dataSource = useArrayDataSource<FeatureClass, number, any>({
+    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
         items: demoData.featureClasses,
     }, []);
 

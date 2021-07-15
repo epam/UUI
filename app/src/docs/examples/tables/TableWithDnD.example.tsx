@@ -9,7 +9,7 @@ export default function TableWithDnDExample() {
     const [value, onValueChange] = useState<DataTableState>({});
     const [items, setItems] = useState(demoData.featureClasses);
 
-    const dataSource = useArrayDataSource<FeatureClass, number, any>({
+    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
         items: items,
     }, []);
 

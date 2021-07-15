@@ -53,11 +53,9 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     }
 
     getComponentStyleSheet(raw: string) {
-        const extension = '.scss';
-        const thereAreStylesheets = raw.match(new RegExp(`\\w+(?=${extension})`));
+       const thereAreStylesheets = raw.match(new RegExp(`\\w+.scss`));
         if (thereAreStylesheets !== null) {
-            const stylesheetMatches = thereAreStylesheets.map(entry => entry.concat(extension));
-            stylesheetMatches.forEach(match => {
+            thereAreStylesheets.forEach(match => {
                 const path = this.props.path.split('/').slice(0, -1).concat(match).join('/');
                 svc.api.getCode({ path }).then(stylesheet => {
                     this.setState(prevState => ({

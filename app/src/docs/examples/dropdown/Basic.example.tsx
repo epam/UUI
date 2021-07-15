@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { Button, Panel, Text, FlexRow } from "@epam/promo";
+import { IDropdownToggler } from '@epam/uui';
 
 export default function BasicDropdownExample() {
     const renderDropdownBody = () => {
@@ -20,12 +21,12 @@ export default function BasicDropdownExample() {
         <>
             <Dropdown
                 renderBody={ () => renderDropdownBody() }
-                renderTarget={ (props: any) => <Button caption='Click to open' { ...props } /> }
+                renderTarget={ (props: IDropdownToggler) => <Button caption='Click to open' { ...props } /> }
             />
 
             <Dropdown
                 renderBody={ () => renderDropdownBody() }
-                renderTarget={ (props: any) => <Button caption='Hover to open' { ...props } /> }
+                renderTarget={ (props: IDropdownToggler) => <Button caption='Hover to open' { ...props } /> }
                 openOnHover={ true }
                 closeOnMouseLeave='toggler'
             />

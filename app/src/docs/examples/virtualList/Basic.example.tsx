@@ -22,7 +22,7 @@ const MyListItem: FC<{ index: number }> = (props) => {
 
 // Generate some data. In real app, this would be some data items retrieved from server.
 const someData: number[] = [];
-for(let n = 0; n < 1000; n++) {
+for (let n = 0; n < 1000; n++) {
     someData.push(n + 1);
 }
 

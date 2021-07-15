@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LinkButton } from '@epam/loveship';
 import { UuiError } from '@epam/uui';
-import { svc } from '../../../services';
+import { svc } from '@epam/uui-docs';
 
 /**
  * While UUI handles server errors automatically, often you need to trigger errors from your code, and customize their appearance.
  */
 export default function ErrorsExample() {
-    const [state, setState] = React.useState(0);
+    const [state, setState] = useState<number>(0);
 
     switch (state) {
         // JavaScript errors during rendering are caught automatically, in ErrorHandler.componentDidThrow
         // You can throw plain JS Errors, which would result standard 500 screen.
-        case 1: throw new Error("Test"); break;
+        case 1: throw new Error("Test");
 
         // Also, you can throw UuiError, which allows to customize the Error page type via status
         case 2: throw new UuiError({ status: 403 });

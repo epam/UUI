@@ -14,12 +14,18 @@
     "@epam/promo": "4.1.1",
     "@epam/uui": "4.1.1",
     "@epam/uui-components": "4.1.1",
-    "@types/react": "17.0.14",
-    "@types/react-dom": "17.0.9",
+    "@epam/uui-timeline": "4.1.1",
+    "@epam/uui-editor": "4.1.1",
+    "lodash.sortby": "4.7.0",
+    "react-imask": "6.0.7",
+    "react-markdown": "4.3.1",
+    "react-measure": "2.5.2",
+    "moment": "2.19.3",
     "history": "4.9.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-scripts": "4.0.0"
+    "react-scripts": "4.0.0",
+    "slate": "0.47.9"
   },
   "devDependencies": {
     "@types/react": "17.0.0",

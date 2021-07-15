@@ -1,74 +1,60 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
-import { svc } from '../../../services';
 import { FileUploadResponse } from '@epam/uui';
 import * as css from './FileUpload.example.scss';
-
+import { svc } from '@epam/uui-docs';
 
 type AttachmentType = FileUploadResponse & {
     progress?: number;
 };
 
-interface FileUploadExampleState {
-    attachments: AttachmentType[];
-}
+export default function FileUploadExample() {
+    const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
-export default class FileUploadExample extends React.Component<any, FileUploadExampleState> {
-    state: FileUploadExampleState = {
-        attachments: [],
-    };
-
-    trackProgress(progress: number, id: number) {
-        const attachments = this.state.attachments;
+    const trackProgress = (progress: number, id: number): void => {
         const file = attachments.find(i => i.id === id);
         file.progress = progress;
-        this.updateAttachment(file, file.id);
+        updateAttachment(file, file.id);
     }
 
-    updateAttachment(newFile: any, id: number) {
-        const attachments = this.state.attachments;
-        this.setState({ attachments: attachments.map(i => i.id === id ? newFile : i) });
+    const updateAttachment = (newFile: AttachmentType, id: number): void => {
+        setAttachments(attachments.map(i => i.id === id ? newFile : i));
     }
 
-    removeAttachment(index: number) {
-        const attachments = this.state.attachments;
-        this.setState({ attachments: attachments.filter((item, i) => i !== index) });
+    const removeAttachment = (index: number): void => {
+        setAttachments(attachments.filter((item, i) => i !== index));
     }
 
-    uploadFile = (files: File[]): void => {
+    const uploadFile = (files: File[]): void => {
         let tempIdCounter = 0;
-        const attachments = this.state.attachments;
 
         files.map(file => {
             const tempId = --tempIdCounter;
-            attachments.push({
+
+            setAttachments(attachments.concat({
                 id: tempId,
                 name: file.name,
                 size: file.size,
                 progress: 0,
-            });
-            svc.uuiApi.uploadFile('/uploadFileMock', file, {onProgress: (progress) => this.trackProgress(progress, tempId)}).then(res => {
-                this.updateAttachment({ ...res, progress: 100 }, tempId);
-            });
+            }));
+
+            svc.uuiApi.uploadFile('/uploadFileMock', file, {
+                onProgress: (progress) => trackProgress(progress, tempId)
+            }).then(res => updateAttachment({ ...res, progress: 100 }, tempId));
         });
-
-        this.setState({ attachments });
     }
 
-    render() {
-        const attachments = this.state.attachments;
-        return (
-            <div className={ css.container }>
-                <DropSpot onUploadFiles={ this.uploadFile } />
-                <div className={ css.attachmentBlock }>
-                    { attachments?.map((i, index) =>
-                        <FileCard
-                            key={ index }
-                            file={ i }
-                            onClick={ () => this.removeAttachment(index) }
-                        />) }
-                </div>
+    return (
+        <div className={ css.container }>
+            <DropSpot onUploadFiles={ uploadFile } />
+            <div className={ css.attachmentBlock }>
+                { attachments?.map((i, index) =>
+                    <FileCard
+                        key={ index }
+                        file={ i }
+                        onClick={ () => removeAttachment(index) }
+                    />) }
             </div>
-        );
-    }
+        </div>
+    );
 }

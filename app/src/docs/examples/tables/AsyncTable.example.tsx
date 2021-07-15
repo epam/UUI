@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { DataTable, Panel, Text } from "@epam/promo";
 import { DataColumnProps, useAsyncDataSource } from '@epam/uui';
-import { Product } from '@epam/uui-docs';
-import { svc } from "../../../services";
+import { Product, svc } from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 
 export default function ProductTable() {
     const [value, onValueChange] = useState({});
 
-    const dataSource = useAsyncDataSource<Product, number, any>({
+    const dataSource = useAsyncDataSource<Product, number, unknown>({
         // Provide api which returns Promise with items for table. If you want to pass just array of items, look to the ArrayDataSource
         api: () => svc.api.demo.products({}).then(r => r.items),
         getId: p => p.ProductID, // Default: p => p.id

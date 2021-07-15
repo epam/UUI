@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as css from './DndMaterial.scss';
-import { DndActor, IEditable, IDndActor, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui';
+import React, { useMemo, useState } from 'react';
+import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui';
 import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
+import sortBy from "lodash.sortby";
 import { DragHandle } from '@epam/uui-components';
 import * as fileIcon from '@epam/assets/icons/common/file-file-24.svg';
-import sortBy from "lodash.sortby";
+import * as css from './DndMaterial.scss';
 
 export interface MaterialItem {
     id: number;
@@ -18,66 +18,59 @@ export interface DndMaterialProps extends IEditable<MaterialItem> {
     nextMaterial: MaterialItem;
 }
 
-const items = [
-    {
-        id: 1,
-        name: 'File_Name_1.suffix',
-        description: 'Additional information 1',
-        order: 'a',
-    },
-    {
-        id: 2,
-        name: 'File_Name_2.suffix',
-        description: 'Additional information 2',
-        order: 'b',
-    },
-    {
-        id: 3,
-        name: 'File_Name_3.suffix',
-        description: 'Additional information 3',
-        order: 'c',
-    },
-    {
-        id: 4,
-        name: 'File_Name_4.suffix',
-        description: 'Additional information 4',
-        order: 'd',
-    },
-];
+export default function DndMaterial() {
+    const [items, setItems] = useState<MaterialItem[]>([
+        {
+            id: 1,
+            name: 'File_Name_1.suffix',
+            description: 'Additional information 1',
+            order: 'a',
+        },
+        {
+            id: 2,
+            name: 'File_Name_2.suffix',
+            description: 'Additional information 2',
+            order: 'b',
+        },
+        {
+            id: 3,
+            name: 'File_Name_3.suffix',
+            description: 'Additional information 3',
+            order: 'c',
+        },
+        {
+            id: 4,
+            name: 'File_Name_4.suffix',
+            description: 'Additional information 4',
+            order: 'd',
+        },
+    ]);
 
-export default class DndMaterial extends React.Component {
-    state = {
-        items: items,
-    };
+    const canAcceptDrop = (srcData: DropParams<MaterialItem, MaterialItem>) => ({
+        top: true,
+        bottom: true,
+    });
 
-    canAcceptDrop = (srcData: DropParams<MaterialItem, MaterialItem>) => {
-        return {
-            top: true,
-            bottom: true,
-        };
-    }
+    const updateItem = (item: MaterialItem) => setItems(items.map(i => i.id === item.id ? item : i));
 
-    updateItem(item: MaterialItem) {
-        this.setState({ items: this.state.items.map(i => i.id === item.id ? item : i) });
-    }
-
-    handleOnDrop = (params: DropParams<MaterialItem, MaterialItem>, prevItem: MaterialItem, nextItem: MaterialItem) => {
+    const handleOnDrop = (params: DropParams<MaterialItem, MaterialItem>, prevItem: MaterialItem, nextItem: MaterialItem) => {
         const { srcData, dstData, position } = params;
 
-        let newOrder = position === 'bottom'
-            ? getOrderBetween(dstData.order, nextItem?.order)
-            : getOrderBetween(prevItem?.order, dstData.order);
-
-        this.updateItem({ ...srcData, order: newOrder });
+        updateItem({
+            ...srcData,
+            order: position === 'bottom'
+                ? getOrderBetween(dstData.order, nextItem?.order)
+                : getOrderBetween(prevItem?.order, dstData.order)
+        });
     }
 
-    renderMaterial(item: MaterialItem, prevItem: MaterialItem, nextItem: MaterialItem) {
-        return <DndActor
+    const renderMaterial = (item: MaterialItem, prevItem: MaterialItem, nextItem: MaterialItem) => (
+        <DndActor
             key={ item.id }
             srcData={ item }
             dstData={ item }
-            canAcceptDrop={ this.canAcceptDrop }
-            onDrop={ (params) => this.handleOnDrop(params, prevItem, nextItem) }
+            canAcceptDrop={ canAcceptDrop }
+            onDrop={ (params) => handleOnDrop(params, prevItem, nextItem) }
             render={ (params: DndActorRenderParams) => {
                 return (
                     <div { ...params.eventHandlers } className={ cx(css.dragElement, params.isDraggedOut && uuiDndState.draggedOut, params.isDropAccepted && uuiDndState.dropAccepted) }>
@@ -97,16 +90,14 @@ export default class DndMaterial extends React.Component {
                     </div>
                 );
             } }
-        />;
-    }
+        />
+    );
 
-    render() {
-        const sortedItems = sortBy(this.state.items, ['order']);
+    const sortedItems = useMemo(() => sortBy(items, ['order']), [items]);
 
-        return (
-            <FlexCell grow={ 1 }>
-                { sortedItems.map((i, index) => this.renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1])) }
-            </FlexCell>
-        );
-    }
+    return (
+        <FlexCell grow={ 1 }>
+            { sortedItems.map((i, index) => renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1])) }
+        </FlexCell>
+    );
 }

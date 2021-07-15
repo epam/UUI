@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@epam/promo';
 import * as myIcon from '@epam/assets/icons/common/action-eye-18.svg';
 

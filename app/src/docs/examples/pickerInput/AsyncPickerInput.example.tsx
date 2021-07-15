@@ -1,34 +1,25 @@
-import { Location } from "@epam/uui-docs";
-import * as React from "react";
+import React, { useState } from "react";
+import { Location, svc } from "@epam/uui-docs";
 import { AsyncDataSource } from "@epam/uui";
-import { svc } from "../../../services";
 import { PickerInput } from "@epam/promo";
 
-interface AsyncPickerInputState {
-    locations: string[];
-}
+export default function AsyncPickerInputExample() {
+    const [locations, setLocations] = useState<string[]>(null);
 
-export default class AsyncPickerInputExample extends React.Component<any, AsyncPickerInputState> {
-    state: AsyncPickerInputState = {
-        locations: null,
-    };
-
-    locationsDataSource = new AsyncDataSource({
+    const locationsDataSource = new AsyncDataSource({
         api: () => svc.api.demo.locations({}).then(res => res.items),
     });
 
-    render() {
-        return (
-            <div>
-                <PickerInput<Location, string>
-                    dataSource={ this.locationsDataSource }
-                    value={ this.state.locations }
-                    onValueChange={ (newVal: string[]) => this.setState({ locations: newVal }) }
-                    entityName='location'
-                    selectionMode='multi'
-                    valueType='id'
-                />
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <PickerInput<Location, string>
+                dataSource={ locationsDataSource }
+                value={ locations }
+                onValueChange={ setLocations }
+                entityName='location'
+                selectionMode='multi'
+                valueType='id'
+            />
+        </div>
+    );
+};

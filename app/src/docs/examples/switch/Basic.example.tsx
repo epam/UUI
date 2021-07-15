@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {useState} from 'react';
+import React, { useState } from 'react';
 import {FlexCell, Switch} from '@epam/promo';
 import * as css from './BasicExample.scss';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Blocker, Button, DatePicker, FlexCell, FlexRow, FlexSpacer, LabeledInput, NumericInput, TextInput } from '@epam/promo';
 import css from './BasicExample.scss';
 
