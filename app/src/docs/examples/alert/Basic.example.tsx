@@ -2,7 +2,8 @@ import React from 'react';
 import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/promo';
 import * as css from './BasicExample.scss';
 import * as accountIcon from '@epam/assets/icons/common/action-account-24.svg';
-export function BasicAlertExample() {
+
+export default function BasicAlertExample() {
     return (
         <FlexCell cx={ css.container } grow={ 1 }>
             <SuccessAlert> <Text size="24" fontSize='14'> Success notification </Text> </SuccessAlert>

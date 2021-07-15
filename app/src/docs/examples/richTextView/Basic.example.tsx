@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { Anchor, ControlWrapper, FlexRow, LabeledInput, LinkButton, RichTextView, TextInput } from '@epam/promo';
 import { Svg } from '@epam/uui-components';
+import { cx } from '@epam/uui';
 import * as calendar from '@epam/assets/icons/common/action-calendar-18.svg';
-import cx from 'classnames';
 // tslint:disable-next-line:no-import
 import * as css from '@epam/promo/assets/styles/typography.scss';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <RichTextView>
@@ -95,7 +95,7 @@ export function BasicExample() {
                     <LinkButton caption="ADD"></LinkButton>
                 </FlexRow>
                 <h4>{ "<Pre>" }</h4>
-                <pre>{ `import * as React from 'react';
+                <pre>{ `import React from 'react';
 import * as css from './MyComponent.scss';
 
 export const MyComponent = <div className={ css.myHeader }>` }</pre>

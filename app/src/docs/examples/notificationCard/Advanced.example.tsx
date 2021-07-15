@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexCell, NotificationCard, Text } from '@epam/promo';
 import css from './BasicExample.scss';
 import * as accountIcon24 from '@epam/assets/icons/common/action-account-24.svg';
 
-export function AdvancedExample() {
+export default function AdvancedExample() {
     const actions = [
         { name: 'Ok', action: () => {} },
         { name: 'Cancel', action: () => {} },

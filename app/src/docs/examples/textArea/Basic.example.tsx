@@ -3,7 +3,7 @@ import { FlexCell, TextArea } from '@epam/promo';
 import * as css from './BasicExample.scss';
 
 
-export function BasicTextAreaExample() {
+export default function BasicTextAreaExample() {
     const [value, onValueChange] = useState(null);
 
     return (

@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DatePicker, FlexRow, LinkButton } from '@epam/promo';
 import * as css from './FormatDateExample.scss';
 
-export const DatePickerFormatDateExample = () => {
+export default function DatePickerFormatDateExample() {
     const [value, onValueChange] = useState('');
 
     return (

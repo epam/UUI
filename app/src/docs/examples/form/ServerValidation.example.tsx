@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {Metadata, RenderFormProps, INotification, FormSaveResponse} from "@epam/uui";
-import {svc} from "../../../services";
+import React from 'react';
+import { Metadata, RenderFormProps, INotification, FormSaveResponse } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, Form } from "@epam/promo";
+import { svc } from '@epam/uui-docs';
 
 interface Login {
     email: string;
@@ -20,7 +20,7 @@ interface ServerResponseExample<T> {
     };
 }
 
-export class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
+export default class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
     state = {
         login: {
             email: "Ivan_Ivanov@epam.com",

@@ -4,10 +4,10 @@ import { DataColumnProps, useArrayDataSource } from '@epam/uui';
 import { demoData, FeatureClass} from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 
-export function ArrayDataTableExample() {
+export default function ArrayDataTableExample() {
     const [value, onValueChange] = useState({});
 
-    const dataSource = useArrayDataSource<FeatureClass, number, any>({
+    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
         items: demoData.featureClasses,
     }, []);
 

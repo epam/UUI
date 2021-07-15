@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { FlexCell, Text } from '@epam/promo';
+import React from 'react';
+import { Text } from '@epam/promo';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <div>
             <Text>Simple default text string</Text>

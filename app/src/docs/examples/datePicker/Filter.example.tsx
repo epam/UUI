@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { DatePicker, FlexRow } from '@epam/promo';
 
-export const DatePickerFilterExample = () => {
+export default function DatePickerFilterExample() {
     const [value, onValueChange] = useState('');
 
     return (

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button, NumericInput } from '@epam/promo';
 import { useState } from 'react';
 

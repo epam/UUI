@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button } from '@epam/promo';
 
 
-export function ButtonWithLink() {
+export default function ButtonWithLink() {
     return (
         <>
             <Button caption='SPA Link' link={ {pathname: '/'} } />

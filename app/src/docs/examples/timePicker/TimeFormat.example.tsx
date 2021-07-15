@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FlexRow, TimePicker } from '@epam/loveship';
 
-export const TimePickerTimeFormatExample = () => {
+export  default function TimePickerTimeFormatExample() {
     const [value, onValueChange] = useState({ hours: null, minutes: null });
 
     return (

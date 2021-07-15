@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { FlexRow, Badge, FlexCell } from '@epam/promo';
 import * as css from './SizeExample.scss';
 
-export function ColorsBadgeExample() {
+export default function ColorsBadgeExample() {
     return (
         <FlexCell width='auto' cx={ css.container } >
             <FlexRow spacing='12' >
