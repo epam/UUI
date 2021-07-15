@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as css from './DropdownMenu.scss';
 import {  withMods, uuiMod, IHasDirection, IHasChildren, directionMode, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, Icon, IClickable } from '@epam/uui';
-import { FlexRow, IconContainer, Dropdown, DropdownContainerProps, FlexSpacer, DropdownContainer } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { systemIcons } from '@epam/promo/icons/icons';
 import cx from "classnames";
-import { Switch } from '@epam/promo';
 
 const icons = systemIcons["36"];
 
@@ -15,9 +14,9 @@ export interface IDropdownMenuItemMods {
 export interface IDropdownMenuItemProps extends ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable {
     iconBefore?: Icon;
     iconAfter?: Icon;
-    selectableType?: "check" | "switch"
     isSelected?: boolean;
-    onSelectChange?: (val: boolean) => void;
+    onClick?: (event: any) => void;
+    renderItem?: (props: IDropdownMenuItemProps) => React.ReactElement<any, any>;
 }
 
 export const DropdownMenuBody = withMods<VPanelProps, IDropdownMenuItemMods>(
@@ -40,55 +39,74 @@ export const MenuItem = (props: IDropdownMenuItemProps) => {
         iconBefore,
         iconAfter,
         caption,
-        selectableType,
         isDisabled,
         isSelected,
+        link,
+        href,
+        target,
         onClick,
-        onSelectChange
+        renderItem
     } = props;
 
     const handleClick = (event: React.SyntheticEvent<any, any>) => {
-        if (isDisabled) return;
-        onClick && onClick(event);
-        props.hasOwnProperty("isSelected") && handleSelectChange(!isSelected)
+        if (isDisabled || !onClick) return;
+        onClick(event)
         context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent)
     }
 
-    const handleSelectChange = (value: boolean) => {
-        if (isDisabled || !onSelectChange) return;
-        onSelectChange(value);
-    }
+    if (renderItem) {
+        return (
+            renderItem(props)
+        )
+    };
 
-    const getSelectableNode = () => {
-        switch (selectableType) {
-            case "switch":
-                return <Switch value={ isSelected }  onValueChange={ handleSelectChange }/>
-
-            case "check":
-                return isSelected && <IconContainer icon={ icons.accept } cx={css.iconCheck} />
-
-            default:
-                return;
+    const getMenuItemChildren = () => {
+            const children = [];
+            iconBefore && children.push(<IconContainer key="iconBefore" icon={ iconBefore } cx={css.iconBefore}/>)
+            children.push(<Text cx={ css.caption } key="caption">{caption}</Text>)
+            if (iconAfter) {
+                children.push(<FlexSpacer key="flexSpacer"/>)
+                children.push(<IconContainer key="iconAfter" icon={ iconAfter } cx={css.iconAfter}/>)
+            }
+            return children;
         }
-    }
 
     return (
-        <FlexRow
-            cx={cx(
-                props.cx,
-                css.itemRoot,
-                isDisabled && uuiMod.disabled,
-                isSelected && uuiMod.selected,
-                selectableType && 'withSelectedType'
-            )}
-            onClick={handleClick}
-        >
-            { iconBefore && <IconContainer icon={ iconBefore } cx={css.iconBefore}/>}
-            {caption}
-            <FlexSpacer />
-            { iconAfter && <IconContainer icon={ iconAfter } cx={css.iconAfter}/> }
-            { getSelectableNode() }
-        </FlexRow>
+            link || href ?
+                <Anchor
+                    cx={
+                        cx(
+                            css.link,
+                            props.cx,
+                            css.itemRoot,
+                            isDisabled && uuiMod.disabled,
+                            isSelected && uuiMod.selected
+                        )
+                    }
+                    link={ link }
+                    href={ href }
+                    onClick={ handleClick }
+                    isDisabled={ isDisabled }
+                    target={ target || "_blank"}
+                >
+                    {...getMenuItemChildren()}
+                </Anchor>
+                :
+                <FlexRow
+                    cx={
+                        cx(
+                            props.cx,
+                            css.itemRoot,
+                            isDisabled && uuiMod.disabled,
+                            isSelected && uuiMod.selected
+                        )
+                    }
+                    onClick={handleClick}
+                >
+                    { ...getMenuItemChildren() }
+                </FlexRow>
+
+
     )
 }
 

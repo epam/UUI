@@ -34,6 +34,20 @@
     width: 100%;
 }
 
+@mixin withSelected {
+    &:global(.uui-selected) {
+        @include fillColor($blue);
+
+        &:hover {
+            @include fillColor($blue!important);
+        }
+
+        .iconCheck {
+            @include fillColor($blue);
+        }
+    }
+}
+
 .bodyRoot {
     @include icon-layout(36px);
     @include panel-shadow();
@@ -150,24 +164,33 @@
 
 .itemRoot {
     @include icon-layout(36px);
+    @include withSelected;
     padding: 0.5em 1em;
     line-height: 1.5;
     box-sizing: border-box;
     width: 100%;
 
-    &:global(.uui-selected) {
-        &:not(:global(.withSelectedType)) {
-            @include fillColor($blue);
-
-            &:hover {
-                @include fillColor($blue!important);
-            }
-        }
-
-        .iconCheck {
-            @include fillColor($blue);
-        }
+    &.link {
+        @include withSelected;
+        display: flex;
+        align-items: center;
+        fill: #ACAFBF;
+        color: #1D1E26;
     }
+
+    // &:global(.uui-selected) {
+    //     &:not(:global(.withSelectedType)) {
+    //         @include fillColor($blue);
+
+    //         &:hover {
+    //             @include fillColor($blue!important);
+    //         }
+    //     }
+
+    //     .iconCheck {
+    //         @include fillColor($blue);
+    //     }
+    // }
 
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover {

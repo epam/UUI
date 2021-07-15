@@ -3,10 +3,20 @@ import { Dropdown } from '@epam/uui-components';
 import { Button,
     DropdownMenuBody,
     MenuItem,
-    MenuItemsGroup, SubMenu } from '@epam/promo';
+    MenuItemsGroup, SubMenu, IDropdownMenuItemProps, FlexSpacer, Switch } from '@epam/promo';
 import { systemIcons } from '@epam/promo/icons/icons';
 
 const { calendar: btnBefore, info: btnAfter } = systemIcons["36"];
+
+const getCustomItem = (props: IDropdownMenuItemProps) => {
+    return (
+    <div className={props.cx}  style={{ display: "flex", width: "100%", padding: "0.5em 1em", boxSizing: "border-box"}}>
+        <span >{props.caption}</span>
+        <FlexSpacer />
+        <Switch value={props.isSelected} onValueChange={props.onClick}/>
+    </div>
+    )
+}
 
 export function BasicDropdownExample() {
     const renderDropdownBody = () => {
@@ -18,115 +28,113 @@ export function BasicDropdownExample() {
             value: selected ? "selected" : "unselected"
         }
 
-        return (
-            <DropdownMenuBody style={{maxWidth: "250px"}} >
-                <MenuItem
-                    iconBefore={btnBefore}
-                    iconAfter={btnAfter}
-                    selectableType="switch"
-                    isSelected={selected}
-                    onSelectChange={setSelected}
-                    caption="Menu Item1"
-                    onClick={()=> console.log("Item click1")}
-                />
-                <MenuItem
-                    caption="Disabled Menu Item"
-                    isDisabled={true}
-                    onClick={()=> console.log("Item click2")}
-                />
-                <SubMenu
-                    caption="Menu Item with SubMenu"
-                    selectableType="switch"
-                    isSelected={selected}
-                    onSelectChange={setSelected}
-                    >
-                    <MenuItem
-                        caption="Asd ds sfdf sadf sd"
-                        onClick={()=> console.log("Item click1")}
-                    />
-                    <MenuItem
-                        caption="Bd sd sd sddddsdsfdsd  sd"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                    <MenuItem
-                        caption="Cds sd"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                    <MenuItemsGroup>
-                        <MenuItem
-                            iconAfter={btnAfter}
-                            selectableType="check"
-                            isSelected={selected}
-                            onSelectChange={setSelected}
-                            caption="With checkbox"
-                            onClick={()=> console.log("Item click1")}
-                        />
-                        <SubMenu
-                            caption="One More SubMenu"
-                        >
-                            <MenuItem
-                                iconAfter={btnAfter}
-                                caption="Menu Item1"
-                                onClick={()=> console.log("Item click1")}
-                            />
-                        </SubMenu>
+                const handleCLick = (_event: React.SyntheticEvent<any, any>) => {
+                    setSelected(!selected)
+                }
+
+                return (
+                    <DropdownMenuBody style={{maxWidth: "250px"}} >
                         <MenuItem
                             iconBefore={btnBefore}
-                            caption="Menu Item2"
-                            onClick={()=> console.log("Item click2")}
+                            iconAfter={btnAfter}
+                            isSelected={selected}
+                            caption="Menu Item1"
+                            href="https://www.epam.com/"
+                            onClick={handleCLick}
+                            clickAnalyticsEvent={clickAnalyticsEvent}
                         />
-                    </MenuItemsGroup>
-                </SubMenu>
-                <MenuItemsGroup>
-                    <MenuItem
-                        iconAfter={btnAfter}
-                        caption="Menu Item1 selected"
-                        onSelectChange={setSelected}
-                        isSelected={selected}
-                        onClick={()=> console.log("Item click1")}
-                    />
-                    <MenuItem
-                        iconBefore={btnBefore}
-                        selectableType="check"
-                        isSelected={selected}
-                        onSelectChange={setSelected}
-                        caption="Group Menu Item2"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                </MenuItemsGroup>
-                <MenuItem
-                        iconAfter={btnAfter}
-                        caption="Menu Item1 very long long long long long long long long"
-                        onClick={()=> console.log("Item click1")}
-                    />
-                    <MenuItem
-                        iconBefore={btnBefore}
-                        caption="Menu Item2"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                <MenuItemsGroup direction="horizontal" title="With horizontal direction">
-                    <MenuItem
-                        caption="A"
-                        onClick={()=> console.log("Item click1")}
-                    />
-                    <MenuItem
-                        caption="B"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                    <MenuItem
-                        caption="C"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                </MenuItemsGroup>
-                <MenuItemsGroup title="Group title">
-                    <MenuItem
-                        iconBefore={btnBefore}
-                        caption="Menu Item2"
-                        onClick={()=> console.log("Item click2")}
-                    />
-                </MenuItemsGroup>
-            </DropdownMenuBody>
-        );
+                        <MenuItem
+                            caption="Disabled Menu Item"
+                            isDisabled={true}
+                            onClick={handleCLick}
+                        />
+                        <SubMenu
+                            caption="Menu Item with SubMenu"
+                            >
+                            <MenuItem
+                                caption="Asd ds sfdf sadf sd"
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                caption="Bd sd sd sddddsdsfdsd  sd"
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                caption="Cds sd"
+                                onClick={handleCLick}
+                            />
+                            <MenuItemsGroup>
+                                <MenuItem
+                                    iconAfter={btnAfter}
+                                    isSelected={selected}
+                                    caption="With checkbox"
+                                    onClick={handleCLick}
+                                />
+                                <SubMenu
+                                    caption="One More SubMenu"
+                                >
+                                    <MenuItem
+                                        iconAfter={btnAfter}
+                                        caption="Menu Item1"
+                                        onClick={handleCLick}
+                                    />
+                                </SubMenu>
+                                <MenuItem
+                                    iconBefore={btnBefore}
+                                    caption="Menu Item2"
+                                    onClick={handleCLick}
+                                />
+                            </MenuItemsGroup>
+                        </SubMenu>
+                        <MenuItemsGroup>
+                            <MenuItem
+                                iconAfter={btnAfter}
+                                caption="Menu Item1 selected"
+                                isSelected={selected}
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                iconBefore={btnBefore}
+                                isSelected={selected}
+                                caption="Group Menu Item2"
+                                onClick={handleCLick}
+                            />
+                        </MenuItemsGroup>
+                        <MenuItem
+                                iconAfter={btnAfter}
+                                caption="Menu Item1 very long long long long long long long long"
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                iconBefore={btnBefore}
+                                caption="Menu Item2"
+                                onClick={handleCLick}
+                            />
+                        <MenuItemsGroup direction="horizontal" title="With horizontal direction">
+                            <MenuItem
+                                caption="A"
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                caption="B"
+                                onClick={handleCLick}
+                            />
+                            <MenuItem
+                                caption="C"
+                                onClick={handleCLick}
+                            />
+                        </MenuItemsGroup>
+                        <MenuItemsGroup title="Group title">
+                            <MenuItem
+                                cx="customItem"
+                                onClick={handleCLick}
+                                caption="Custom Item"
+                                isSelected={selected}
+                                renderItem={getCustomItem}
+                            />
+                        </MenuItemsGroup>
+                    </DropdownMenuBody>
+                );
     };
 
     return (
