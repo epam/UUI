@@ -4,8 +4,10 @@ import { personDetailsApi } from './personDetails';
 
 export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
     function lazyApi<TEntity, TId>(name: string) {
-        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest('/api/' + name, 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
+        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(ORIGIN.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
     }
+
+    const ORIGIN = process.env.PUBLIC_URL || '';
 
     return {
         cities: lazyApi<models.City, string>('cities'),
@@ -19,12 +21,12 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),
         personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number, pageSize: number }) =>
-            processRequest('/api/persons-paged', 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person> & { totalCount: number }>,
+            processRequest(ORIGIN.concat('/api/persons-paged'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person> & { totalCount: number }>,
         personGroups: (rq: LazyDataSourceApiRequest<models.PersonGroup, number, DataQueryFilter<models.PersonGroup>>) =>
-            processRequest('/api/personGroups', 'POST', rq) as Promise<LazyDataSourceApiResponse<models.PersonGroup>>,
+            processRequest(ORIGIN.concat('/api/personGroups'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.PersonGroup>>,
         departments: lazyApi<models.Department, number>('departments'),
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),
-        schedules: () => processRequest('/api/schedules', 'POST') as Promise<models.PersonSchedule[]>,
+        schedules: () => processRequest(ORIGIN.concat('/api/schedules'), 'POST') as Promise<models.PersonSchedule[]>,
         personDetails: personDetailsApi,
     };
 }

@@ -12,25 +12,26 @@ export interface GetCodeResponse {
 }
 
 export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
+    const ORIGIN = process.env.PUBLIC_URL || '';
     return {
         demo: getDemoApi(processRequest),
         success: {
-            validateForm: <T>(formState: T) => processRequest('api/success/validate-form', 'POST', formState),
+            validateForm: <T>(formState: T) => processRequest(ORIGIN.concat('api/success/validate-form'), 'POST', formState),
         },
         errors: {
-            status: (status: number) => processRequest(`api/error/status/${status}`, 'POST'),
-            setServerStatus: (status: number) => processRequest(`api//error/set-server-status/${status}`, 'POST'),
-            mock: () => processRequest(`api//error/mock`, 'GET'),
-            authLost: () => processRequest(`api//error/auth-lost`, 'POST'),
+            status: (status: number) => processRequest(ORIGIN.concat(`api/error/status/${status}`), 'POST'),
+            setServerStatus: (status: number) => processRequest(ORIGIN.concat(`api//error/set-server-status/${status}`), 'POST'),
+            mock: () => processRequest(ORIGIN.concat(`api//error/mock`), 'GET'),
+            authLost: () => processRequest(ORIGIN.concat(`api//error/auth-lost`), 'POST'),
         },
-        getChangelog: function (): Promise<any> {
-            return processRequest('/api/get-changelog', 'GET');
+        getChangelog(): Promise<any> {
+            return processRequest(ORIGIN.concat('/api/get-changelog'), 'GET');
         },
-        getCode: function (rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(`/api/get-code`, 'POST', rq);
+        getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
+            return processRequest(ORIGIN.concat(`/api/get-code`), 'POST', rq);
         },
-        getProps: function (): Promise<any> {
-            return processRequest(`/api/get-props/`, 'GET');
+        getProps(): Promise<any> {
+            return processRequest(ORIGIN.concat(`/api/get-props/`), 'GET');
         },
     };
 }
