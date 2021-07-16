@@ -3,11 +3,11 @@ import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse } 
 import { personDetailsApi } from './personDetails';
 
 export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
+    const ORIGIN = process.env.PUBLIC_URL || '';
+
     function lazyApi<TEntity, TId>(name: string) {
         return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(ORIGIN.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
     }
-
-    const ORIGIN = process.env.PUBLIC_URL || '';
 
     return {
         cities: lazyApi<models.City, string>('cities'),
