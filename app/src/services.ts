@@ -3,8 +3,8 @@ import { getApi } from './data';
 
 type Api = ReturnType<typeof getApi>;
 
-type SandboxServices = CommonContexts<Api, {
+type SandboxServices = Partial<CommonContexts<Api, {
     codesandboxFiles: { [key: string]: string }
-}>;
+}>>;
 
-export const svc = {} as SandboxServices;
+export const svc: SandboxServices = {};

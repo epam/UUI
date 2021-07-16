@@ -1,4 +1,4 @@
-import { CommonContexts } from "@epam/uui";
+import type { CommonContexts, UuiContexts } from "@epam/uui";
 import { getDemoApi } from "@epam/uui-docs";
 
 export interface GetCodeParams {
@@ -37,4 +37,7 @@ export function getApi(processRequest: (request: string, requestMethod: string, 
     };
 };
 
-export const svc: CommonContexts<any, any> = {} as any;
+type TApi = ReturnType<typeof getApi>;
+type CodesandboxContext = Partial<CommonContexts<TApi, UuiContexts>>;
+
+export const svc: CodesandboxContext = {};
