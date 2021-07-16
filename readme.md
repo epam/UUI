@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://uui.epam.com">
+  <a href="https://uui.epam.com" target="_blank">
     <img width="400" src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg">
   </a>
 </p>
@@ -8,12 +8,14 @@ React-based components and accelerators library built by EPAM Systems.
 
 Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
 
-Additionally, you can try our a pre-configured template on Codesandbox
-    <a href="https://codesandbox.io/s/uui-w4i61" style="position: relative; top: 10px; left: 5px;">
+Additionally, you can try our pre-configured template on
+    <a href="https://codesandbox.io/s/uui-w4i61" target="_blank">
+        Codesandbox
         <img
-            width="30"
-            height="30"
+            width="24"
+            height="24"
             alt="Codesandbox"
+            align="center"
             src="https://camo.githubusercontent.com/ccf186cd931b6a61cf49bd0a3aeacb2d73be7e91210453571bdcf9f5b1057173/687474703a2f2f63646e2e656d6265642e6c792f70726f7669646572732f6c6f676f732f636f646573616e64626f782e706e67"
         />
     </a>
