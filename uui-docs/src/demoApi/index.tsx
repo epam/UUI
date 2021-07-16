@@ -31,5 +31,4 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
     };
 }
 
-const tApi = getDemoApi(null);
-export type IDemoApi = typeof tApi;
+export type IDemoApi = ReturnType<typeof getDemoApi>;
