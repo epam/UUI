@@ -6,7 +6,7 @@ import * as css from './DocExample.scss';
 import { getParameters } from 'codesandbox/lib/api/define';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
-import { getCodesandboxConfig } from '@epam/app/src/data/codesandbox/getCodesandboxConfig';
+import { getCodesandboxConfig, FilesRecord } from '@epam/app/src/data/codesandbox/getCodesandboxConfig';
 
 interface DocExampleProps {
     path: string;
@@ -20,7 +20,7 @@ interface DocExampleState {
     component?: any;
     code?: string;
     raw?: string;
-    stylesheets?: { [key: string]: { isBinary: false, content: string } };
+    stylesheets?: FilesRecord;
 }
 
 const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
@@ -44,15 +44,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         stylesheets: {},
     };
 
-    getDescriptionFileName() {
+    private getDescriptionFileName(): string {
         return this.props.path
             .replace(new RegExp(/\.example.tsx|\./g), '')
             .replace(/\//g, '-')
             .replace(/^-/, '');
     }
 
-    getComponentStyleSheet(raw: string) {
-        //Match .example.scss or .scss
+    private getComponentStyleSheet(raw: string): void {
+        // Match .example.scss or .scss
         const matcher = /\w+(?:.example)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
@@ -63,10 +63,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         ...prevState,
                         stylesheets: {
                             ...prevState.stylesheets,
-                            [match]: {
-                                content: stylesheet.raw,
-                                isBinary: false,
-                            }
+                            [match]: { content: stylesheet.raw, isBinary: false }
                         }
                     }));
                 });
@@ -74,7 +71,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         }
     }
 
-    getCodesandboxLink(): string | null {
+    private getCodesandboxLink(): string | null {
         if (
             svc.uuiApp?.codesandboxFiles &&
             Object.values(svc.uuiApp.codesandboxFiles).every(value => value)
@@ -91,11 +88,11 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         } else return null;
     }
 
-    renderCode() {
+    private renderCode(): React.ReactNode {
         return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
     }
 
-    renderPreview() {
+    private renderPreview() {
         return (
             <>
                 <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
@@ -123,6 +120,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className={ css.container }>
                 {

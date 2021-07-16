@@ -27,7 +27,7 @@ export const DocumentsPage = () => {
     const doc = items.find(i => i.id === selectedDocId);
 
     useEffect(() => {
-        Promise.all( [
+        Promise.all([
             'index.html',
             'services.ts',
             'index.tsx',

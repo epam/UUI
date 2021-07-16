@@ -1,14 +1,16 @@
+export type FilesRecord = { [key: string]: { isBinary: boolean, content: string } };
+
 export function getCodesandboxConfig(
     content: string,
-    stylesheets: { [key: string]: { isBinary: false, content: string } },
-    initialFiles: { [key: string]: string }
+    stylesheets: FilesRecord,
+    initialFiles: Record<string, string>,
 ) {
     return {
+        ...stylesheets,
         'Example.tsx': {
             isBinary: false,
             content,
         },
-        ...stylesheets,
         'index.tsx': {
             isBinary: false,
             content: initialFiles.indexTSX
