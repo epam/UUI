@@ -3,10 +3,10 @@ import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import * as css from './DocExample.scss';
-import { getParameters } from 'codesandbox/lib/api/define';
+import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
+import { CodesandboxService } from '../../data/codesandbox/service';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
-import { getCodesandboxConfig, FilesRecord } from '@epam/app/src/data/codesandbox/getCodesandboxConfig';
 
 interface DocExampleProps {
     path: string;
@@ -26,8 +26,12 @@ interface DocExampleState {
 const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
+    codesandboxService: CodesandboxService;
+
     constructor(props: DocExampleProps) {
         super(props);
+
+        this.codesandboxService = new CodesandboxService(svc);
 
         requireContext(this.props.path).then((module: any) => {
             this.setState({ component: module.default });
@@ -57,6 +61,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
             stylesheets.forEach(match => {
+                // Compose path from match and current directory path
                 const path = this.props.path.split('/').slice(0, -1).concat(match).join('/');
                 svc.api.getCode({ path }).then(stylesheet => {
                     this.setState(prevState => ({
@@ -71,28 +76,14 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         }
     }
 
-    private getCodesandboxLink(): string | null {
-        if (
-            svc.uuiApp?.codesandboxFiles &&
-            Object.values(svc.uuiApp.codesandboxFiles).every(value => value)
-        ) {
-            const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
-            url.searchParams.set('parameters', getParameters({
-                files: getCodesandboxConfig(
-                    this.state.raw,
-                    this.state.stylesheets,
-                    svc.uuiApp.codesandboxFiles
-                )
-            }));
-            return url.toString();
-        } else return null;
-    }
-
     private renderCode(): React.ReactNode {
         return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
     }
 
     private renderPreview() {
+        const { raw, stylesheets } = this.state;
+        const codesandboxLink = this.codesandboxService.getCodesandboxLink(raw, stylesheets);
+
         return (
             <>
                 <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
@@ -101,16 +92,16 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow padding='12' vPadding='12' spacing='18'>
                     <Switch
                         value={ this.state.showCode }
-                        onValueChange={ (val) => this.setState({showCode: val}) }
+                        onValueChange={ (val) => this.setState({ showCode: val }) }
                         label='View code'
                     />
-                    {this.getCodesandboxLink() && (
+                    {codesandboxLink && (
                         <LinkButton
                             icon={CodesandboxIcon}
                             iconPosition='right'
                             target="_blank"
                             caption="Open in Codesandbox"
-                            href={this.getCodesandboxLink()}
+                            href={codesandboxLink}
                         />
                     )}
                 </FlexRow>
@@ -120,7 +111,6 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className={ css.container }>
                 {

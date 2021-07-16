@@ -1,10 +1,8 @@
-import { CommonContexts } from '@epam/uui';
-import { getApi } from './data';
+import { CommonContexts, UuiContexts } from '@epam/uui';
+import type { TApi } from './data';
+import type { CodesandboxContext } from './data/codesandbox/service';
 
-type Api = ReturnType<typeof getApi>;
+export type BasicExampleServices = CommonContexts<TApi, UuiContexts>;
+type EnhancedExampleServices = BasicExampleServices & CodesandboxContext;
 
-type SandboxServices = Partial<CommonContexts<Api, {
-    codesandboxFiles: { [key: string]: string }
-}>>;
-
-export const svc: SandboxServices = {};
+export const svc: Partial<EnhancedExampleServices> = {};
