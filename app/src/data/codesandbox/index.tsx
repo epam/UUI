@@ -7,8 +7,7 @@ import "@epam/promo/styles.css";
 import Example from "./Example";
 import { svc, getApi } from './services';
 
-const tApi = getApi(null);
-type TApi = typeof tApi;
+type TApi = ReturnType<typeof getApi>;
 
 const rootElement = document.getElementById("root");
 
