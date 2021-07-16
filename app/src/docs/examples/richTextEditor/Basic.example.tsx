@@ -23,7 +23,7 @@ export default function SlateEditorBasicExample() {
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
-        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        return svc.uuiApi.uploadFile(process.env.PUBLIC_URL.concat('/uploadFileMock'), file, {
             onProgress,
         });
     }

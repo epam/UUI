@@ -11,14 +11,14 @@ export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
     const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
+    const updateAttachment = (newFile: AttachmentType, id: number): void => {
+        setAttachments(attachments.map(i => i.id === id ? newFile : i));
+    }
+
     const trackProgress = (progress: number, id: number): void => {
         const file = attachments.find(i => i.id === id);
         file.progress = progress;
         updateAttachment(file, file.id);
-    }
-
-    const updateAttachment = (newFile: AttachmentType, id: number): void => {
-        setAttachments(attachments.map(i => i.id === id ? newFile : i));
     }
 
     const removeAttachment = (index: number): void => {
@@ -38,7 +38,7 @@ export default function FileUploadExample() {
                 progress: 0,
             }));
 
-            uuiApi.uploadFile('/uploadFileMock', file, {
+            uuiApi.uploadFile(process.env.PUBLIC_URL.concat('/uploadFileMock'), file, {
                 onProgress: (progress) => trackProgress(progress, tempId)
             }).then(res => updateAttachment({ ...res, progress: 100 }, tempId));
         });
