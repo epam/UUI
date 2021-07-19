@@ -1,82 +1,32 @@
-import {AmplitudeClient, getInstance} from "amplitude-js";
 import {BaseContext} from './BaseContext';
-import {AnalyticsEvent, IRouterContext} from '../types';
+import {AnalyticsEvent, IRouterContext, IAnalyticsListener} from '../types';
+import { GAListener } from './analytics/GAListener';
 
 interface AnalyticsContextOptions {
     gaCode?: string;
-    ampCode?: string;
     router: IRouterContext;
 }
 
 export class AnalyticsContext extends BaseContext {
     public readonly gaCode?: string;
-    public readonly ampCode?: string;
     private readonly router: IRouterContext;
-    public ampClient: AmplitudeClient;
+    public listeners: IAnalyticsListener[] = [];
 
     constructor(options: AnalyticsContextOptions) {
         super();
 
-        if (!options.gaCode && !options.ampCode) return;
+        if (!options.gaCode && !this.listeners.length) return;
 
         this.gaCode = options.gaCode;
-        this.ampCode = options.ampCode;
         this.router = options.router;
 
-        this.initGA();
-        this.initAmp();
-
-        this.sendToGA('js', new Date());
-        this.sendPageView(window.location.pathname);
-
-        this.listenRouter();
+        this.listenRouter()
+        if (this.gaCode) this.initGA();
     }
 
-    public sendEvent(event: AnalyticsEvent | null | undefined) {
+    public sendEvent(event: AnalyticsEvent | null | undefined, eventType: "event" | "pageView" | "apiTiming" = "event") {
         if (!event) return;
-
-        this.sendToGA('event', event.name, this.getParameters(event));
-        this.sendEventToAmplitude(event);
-    }
-
-    public sendPageView(path: string) {
-        this.sendToGA('config', this.gaCode, {page_path: path, anonymize_ip: true});
-    }
-
-    public sendApiTiming(event: AnalyticsEvent & {parameters: object}) {
-        this.sendToGA('event', event.name, event.parameters);
-    }
-
-    public sendEventToGA(event: AnalyticsEvent | null | undefined) {
-        if (!event) return;
-        this.sendToGA('event', event.name, this.getParameters(event));
-    }
-
-    public sendEventToAmplitude(event: AnalyticsEvent | null | undefined) {
-        if (!event) return;
-        this.ampCode && this.ampClient.logEvent(event.name, this.getParameters(event));
-    }
-
-    private initGA() {
-        if (!this.gaCode) return;
-
-        (window as any).dataLayer = (window as any).dataLayer || [];
-
-        const gtagScript = document.createElement('script');
-        gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${this.gaCode}`;
-        gtagScript.async = true;
-        document.head.appendChild(gtagScript);
-    }
-
-    private initAmp() {
-        if (!this.ampCode) return;
-
-        this.ampClient = getInstance();
-        this.ampClient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
-    }
-
-    private sendToGA(...args: any[]) {
-        this.gaCode && (window as any).dataLayer.push(arguments);
+        if (this.listeners.length) this.listeners.forEach(listener => listener.sendEvent(event, this.getParameters(event), eventType));
     }
 
     private listenRouter() {
@@ -84,9 +34,18 @@ export class AnalyticsContext extends BaseContext {
         this.router && this.router.listen((location) => {
             if (currentLocation !== location.pathname) {
                 currentLocation = location.pathname;
-                this.sendPageView(location.pathname);
+                this.sendEvent({path: location.pathname, name: "pageView"}, "pageView");
             }
         });
+    }
+
+    public addListener(listener: IAnalyticsListener) {
+        this.listeners.push(listener);
+    }
+
+    private initGA() {
+        const gaClient = new GAListener(this.gaCode);
+        this.addListener(gaClient);
     }
 
     private getParameters(options: AnalyticsEvent) {
