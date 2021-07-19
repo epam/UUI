@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataTable, Panel, Text } from "@epam/promo";
 import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui';
 import { demoData, FeatureClass} from '@epam/uui-docs';
@@ -14,33 +14,31 @@ export default function TableWithDnDExample() {
     }, []);
 
     const view = dataSource.useView(value, onValueChange, {
-        getRowOptions: (i, index) => {
-            return {
-                dnd: {
-                    srcData: i,
-                    dstData: i,
-                    onDrop: data => {
-                        const arrIndex = index - 1;
+        getRowOptions: (i, index) => ({
+            dnd: {
+                srcData: i,
+                dstData: i,
+                onDrop: data => {
+                    const arrIndex = index - 1;
 
-                        let newOrder = data.position === 'top'
-                            ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
-                            : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
+                    let newOrder = data.position === 'top'
+                        ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
+                        : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
 
-                        const result = items.map(i => i === data.srcData ? { ...data.srcData, order: newOrder} : i);
-                        const sortedResult = sortBy(result, i => i.order);
+                    const result = items.map(i => i === data.srcData ? { ...data.srcData, order: newOrder} : i);
+                    const sortedResult = sortBy(result, i => i.order);
 
-                        setItems(sortedResult);
-                    },
-                    canAcceptDrop: i => ({
-                        top: true,
-                        bottom: true,
-                    }),
+                    setItems(sortedResult);
                 },
-            };
-        },
+                canAcceptDrop: i => ({
+                    top: true,
+                    bottom: true,
+                }),
+            },
+        }),
     });
 
-    const productColumns: DataColumnProps<FeatureClass>[] = [
+    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
         {
             key: 'id',
             caption: 'Id',
@@ -60,7 +58,7 @@ export default function TableWithDnDExample() {
             render: item => <Text color='gray80'>{ item.description }</Text>,
             grow: 1, shrink: 0, width: 300,
         },
-    ];
+    ], []);
 
     return (
         <Panel shadow cx={ css.container }>

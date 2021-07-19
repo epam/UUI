@@ -12,9 +12,7 @@ export default function PickerTogglerConfigurationExample() {
         return svc.api.demo.cities(request);
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api: loadCities,
-    }, []);
+    const dataSource = useLazyDataSource({ api: loadCities }, []);
 
     return (
         <FlexCell width={ 460 } cx={ css.container }>

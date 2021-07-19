@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Text,  DataTable, Panel, IconButton } from '@epam/promo';
-import { DataTableState, DataColumnProps, LazyDataSource, useUuiContext } from '@epam/uui';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo';
+import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
-export default function ColumnsConfigurationDataTableExample(props: unknown) {
+export default function ColumnsConfigurationDataTableExample(props: DataTableMods) {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataTableState>({
         // Get columns config from localStorage
-        columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY)
+        columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY),
     });
 
     const citiesColumns: DataColumnProps<City>[] = useMemo(() => [
@@ -69,20 +69,24 @@ export default function ColumnsConfigurationDataTableExample(props: unknown) {
         },
     ], []);
 
-    const citiesDS = new LazyDataSource({ api: svc.api.demo.cities });
-
-    useEffect(() => {
-        return () => citiesDS.unsubscribeView(handleTableStateChange);
+    const citiesDS = useLazyDataSource<City, string, unknown>({
+        api: svc.api.demo.cities,
     }, []);
 
-    const handleTableStateChange = (newState: DataTableState): void => {
+    const handleTableStateChange = useCallback((newState: DataTableState) => {
         // Set columns config to localStorage
         svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig || {});
         setTableState(newState);
-    }
+    }, []);
 
-    const view = citiesDS.getView(tableState, handleTableStateChange, {
-        getRowOptions: (item: City) => ({ checkbox: { isVisible: true } })
+    useEffect(() => {
+        return () => {
+            citiesDS.unsubscribeView(handleTableStateChange);
+        };
+    }, []);
+
+    const view = citiesDS.useView(tableState, handleTableStateChange, {
+        getRowOptions: useCallback(() => ({ checkbox: { isVisible: true } }), []),
     });
 
     return (
@@ -97,7 +101,8 @@ export default function ColumnsConfigurationDataTableExample(props: unknown) {
                 allowColumnsReordering={ true }
                 allowColumnsResizing={ true }
                 { ...view.getListProps() }
+                { ...props }
             />
         </Panel>
     );
-}
+};

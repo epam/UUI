@@ -9,39 +9,41 @@ type AttachmentType = FileUploadResponse & {
 
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
+    const ORIGIN = process.env.PUBLIC_URL || '';
     const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
-    const updateAttachment = (newFile: AttachmentType, id: number): void => {
-        setAttachments(attachments.map(i => i.id === id ? newFile : i));
+    const updateAttachment = (newFile: AttachmentType): void => {
+        setAttachments(attachments.map(file => file.id === newFile.id ? newFile : file));
     }
 
-    const trackProgress = (progress: number, id: number): void => {
-        const file = attachments.find(i => i.id === id);
-        file.progress = progress;
-        updateAttachment(file, file.id);
+    const trackProgress = (progress: number, tempId: number): void => {
+        const file: AttachmentType = attachments.find(file => file.id === tempId);
+        updateAttachment({ ...file, progress });
     }
 
     const removeAttachment = (index: number): void => {
-        setAttachments(attachments.filter((item, i) => i !== index));
+        setAttachments(attachments.filter((_, i) => i !== index));
     }
 
     const uploadFile = (files: File[]): void => {
         let tempIdCounter = 0;
 
-        files.map(file => {
+        Promise.all(files.map(file => {
             const tempId = --tempIdCounter;
 
-            setAttachments(attachments.concat({
-                id: tempId,
-                name: file.name,
-                size: file.size,
-                progress: 0,
-            }));
+            setAttachments([
+                ...attachments, {
+                    id: tempId,
+                    name: file.name,
+                    size: file.size,
+                    progress: 0,
+                }
+            ]);
 
-            uuiApi.uploadFile(process.env.PUBLIC_URL.concat('/uploadFileMock'), file, {
+            uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: (progress) => trackProgress(progress, tempId)
-            }).then(res => updateAttachment({ ...res, progress: 100 }, tempId));
-        });
+            }).then(res => updateAttachment({ ...res, progress: 100 }));
+        }));
     }
 
     return (
