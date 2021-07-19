@@ -13,7 +13,7 @@ export interface GetCodeResponse {
 }
 
 export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
-    const ORIGIN = process.env.PUBLIC_URL || '';
+    const ORIGIN = process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL || '';
 
     return {
         demo: getDemoApi(processRequest),
