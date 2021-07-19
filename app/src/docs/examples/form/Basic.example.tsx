@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Metadata, AsyncDataSource, RenderFormProps, INotification, useUuiContext } from "@epam/uui";
+import { Metadata, RenderFormProps, INotification, useUuiContext, useAsyncDataSource } from "@epam/uui";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput,
     PickerInput, SuccessNotification, ErrorNotification, Form,
@@ -16,20 +16,18 @@ export default function BasicFormExample() {
     const svc = useUuiContext();
     const [person] = useState<Person>({});
 
-    const getMetaData = (state: Person): Metadata<Person> => {
-        return {
-            props: {
-                firstName: { isRequired: true },
-                lastName: { isRequired: true },
-                countryId: { isRequired: false },
-                sex: { isRequired: true },
-            },
-        };
-    }
-
-    const countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+    const getMetaData = (state: Person): Metadata<Person> =>({
+        props: {
+            firstName: { isRequired: true },
+            lastName: { isRequired: true },
+            countryId: { isRequired: false },
+            sex: { isRequired: true },
+        },
     });
+
+    const countriesDataSource = useAsyncDataSource({
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+    }, []);
 
     const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
         <FlexCell width='100%'>

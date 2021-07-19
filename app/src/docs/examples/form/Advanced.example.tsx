@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import { Metadata, AsyncDataSource, RenderFormProps, INotification, LazyDataSource, useUuiContext } from "@epam/uui";
+import { Metadata, RenderFormProps, INotification, useUuiContext, useAsyncDataSource, useLazyDataSource } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
 import * as undoIcon from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import * as redoIcon from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -19,34 +19,34 @@ export default function AdvancedFormExample() {
     const svc = useUuiContext();
     const [person] = useState<Person>({});
 
-    const getMetaData = (state: Person): Metadata<Person> => {
-        return {
-            props: {
-                firstName: { isRequired: true },
-                lastName: { isRequired: true },
-                location: {
-                    props: {
-                        countryId: { isRequired: true },
-                        cityIds: { isDisabled: !state.location?.countryId },
-                    },
+    const getMetaData = (state: Person): Metadata<Person> => ({
+        props: {
+            firstName: { isRequired: true },
+            lastName: { isRequired: true },
+            location: {
+                props: {
+                    countryId: { isRequired: true },
+                    cityIds: { isDisabled: !state.location?.countryId },
                 },
-                email: {
-                    validators: [
-                        (val) => {
-                            return !(val && val.includes('@')) && ['Please enter correct email'];
-                        },
-                    ],
-                },
-                sex: { isRequired: true },
             },
-        };
-    }
-
-    const countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+            email: {
+                validators: [
+                    (val) => {
+                        return !(val && val.includes('@')) && ['Please enter correct email'];
+                    },
+                ],
+            },
+            sex: { isRequired: true },
+        },
     });
 
-    const citiesDataSource = new LazyDataSource({ api: (req) => svc.api.demo.cities(req) });
+    const countriesDataSource = useAsyncDataSource({
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+    }, []);
+
+    const citiesDataSource = useLazyDataSource({
+        api: (req) => svc.api.demo.cities(req)
+    }, []);
 
     const renderForm = ({ lens, canRedo, canUndo, canRevert, undo, redo, revert, save }: RenderFormProps<Person>): ReactNode => (
         <FlexCell width='100%'>

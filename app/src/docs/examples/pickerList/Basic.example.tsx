@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Country } from "@epam/uui-docs";
-import { AsyncDataSource, useUuiContext } from "@epam/uui";
+import { useAsyncDataSource, useUuiContext } from "@epam/uui";
 import { PickerList } from "@epam/loveship";
 
 export default function BasicPickerListExample() {
     const svc = useUuiContext();
     const [countries, setCountries] = useState<string[]>(null);
 
-    const locationsDataSource = useMemo(() => new AsyncDataSource({
+    const locationsDataSource = useAsyncDataSource<Country, string, unknown>({
         api: () => svc.api.demo.countries({}).then((res: any) => res.items),
-    }), []);
+    }, []);
 
     return (
         <PickerList<Country, string>
