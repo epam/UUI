@@ -16,7 +16,6 @@
     "@epam/uui-components": "4.1.1",
     "@epam/uui-timeline": "4.1.1",
     "@epam/uui-editor": "4.1.1",
-    "@epam/uui-build": "4.0.0-beta.11",
     "lodash.sortby": "4.7.0",
     "react-imask": "6.0.7",
     "react-markdown": "4.3.1",
@@ -36,8 +35,8 @@
     "typescript-plugin-css-modules": "1.2.1"
   },
   "scripts": {
-    "start": "node @epam/uui-build/scripts/start",
-    "build": "node @epam/uui-build/scripts/build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
