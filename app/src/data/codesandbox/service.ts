@@ -9,7 +9,6 @@ const CodesandboxFiles: Record<string, string> = {
     'package.json': join('..', 'data', 'codesandbox', 'package.json'),
     'tsConfig.json': join('..', 'data', 'codesandbox', 'tsConfig.json'),
     'apiDefinitions.ts': join('..', 'data', 'apiDefinition.ts'),
-    'sandbox.config.json': join('..', 'data', 'codesandbox', 'sandbox.config.json'),
 };
 
 export type CodesandboxFilesRecord = { codesandboxFiles: Record<string, string> };
@@ -36,8 +35,7 @@ export class CodesandboxService {
                         indexTSX,
                         packageJSON,
                         tsConfigJSON,
-                        api,
-                        sandboxConfigJSON
+                        api
                     }
                 });
 
@@ -58,9 +56,22 @@ export class CodesandboxService {
         ) {
             const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
             url.searchParams.set('parameters', getParameters({
-                files: getCodesandboxConfig(code, stylesheets, this.context.uuiApp.codesandboxFiles)
+                files: getCodesandboxConfig(this.processIcons(code), stylesheets, this.context.uuiApp.codesandboxFiles)
             }));
             return url.toString();
         } else return null;
+    }
+
+    private processIcons(code?: string, separator: string = '\r\n'): string {
+        if (!code) return;
+        const lines = code.split(separator);
+        const iconFiles = lines.filter(line => line.includes('.svg'));
+        if (iconFiles.length > 0) {
+            return lines.map(line => {
+                if (iconFiles.includes(line)) {
+                    return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
+                } else return line;
+            }).join(separator);
+        } else return code;
     }
 }

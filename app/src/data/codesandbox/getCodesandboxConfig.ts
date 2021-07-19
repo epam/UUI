@@ -1,4 +1,4 @@
-import type { CodesandboxFilesRecord } from './service';
+import { CodesandboxFilesRecord, CodesandboxService } from './service';
 
 export type FilesRecord = Record<string, { isBinary: boolean, content: string }>;
 
@@ -15,10 +15,6 @@ export const getCodesandboxConfig = (
     'index.tsx': {
         isBinary: false,
         content: initialFiles.indexTSX
-    },
-    'sandbox.config.json': {
-        isBinary: false,
-        content: initialFiles.sandboxConfigJSON,
     },
     'package.json': {
         isBinary: false,
