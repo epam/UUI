@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Location } from '@epam/uui-docs';
-import { DataSourceState, AsyncDataSource, DataColumnProps, useUuiContext } from '@epam/uui';
+import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
 import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
 import * as css from './TablesExamples.scss';
 
@@ -57,18 +57,22 @@ export default function TreeTableExample({
         },
     ], []);
 
-    const locationsDS = new AsyncDataSource<Location>({
-        api: () => svc.api.demo.locations({}).then((r: any) => r.items),
-    });
+    const handleTableStateChange = useCallback((newState: DataSourceState) => {
+        setTableState(newState)
+    }, []);
 
-    const handleTableStateChange = (newState: DataSourceState) => setTableState(newState);
+    const locationsDS = useAsyncDataSource<Location, string, unknown>({
+        api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
+    }, []);
 
     useEffect(() => {
-        return () => locationsDS.unsubscribeView(handleTableStateChange);
+        return () => {
+            locationsDS.unsubscribeView(handleTableStateChange);
+        };
     }, []);
 
     // handleTableStateChange function should not be re-created on each render, as it would cause performance issues.
-    const view = locationsDS.getView(tableState, handleTableStateChange, {
+    const view = locationsDS.useView(tableState, handleTableStateChange, {
         getSearchFields: item => [item.name],
         sortBy: (item, sorting) => {
             switch (sorting.field) {
@@ -78,10 +82,10 @@ export default function TreeTableExample({
                 case 'population': return item.population;
             }
         },
+        cascadeSelection: true,
         getRowOptions: item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }),
-        cascadeSelection: true,
     });
 
     return (
@@ -90,7 +94,7 @@ export default function TreeTableExample({
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }
                 value={ tableState }
-                onValueChange={ setTableState }
+                onValueChange={ (newVal) => setTableState(newVal) }
                 columns={ locationColumns }
                 size={ size }
                 headerTextCase='upper'

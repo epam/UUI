@@ -1,0 +1,9 @@
+{
+  "infiniteLoopProtection": "true",
+  "hardReloadOnChange": false,
+  "template": "create-react-app",
+  "container": {
+    "node": "14",
+    "startScript": "start"
+  }
+}

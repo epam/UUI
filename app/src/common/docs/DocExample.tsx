@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
-import * as css from './DocExample.scss';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { CodesandboxService } from '../../data/codesandbox/service';
+import * as css from './DocExample.scss';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
 
@@ -40,7 +40,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         svc.api.getCode({ path: this.props.path }).then(r => {
             this.setState({ code: r.highlighted, raw: r.raw });
             return r.raw;
-        }).then(raw => this.getComponentStyleSheet(raw));
+        }).then(raw => this.getComponentStylesheet(raw));
     }
 
     state: DocExampleState = {
@@ -55,14 +55,14 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             .replace(/^-/, '');
     }
 
-    private getComponentStyleSheet(raw: string): void {
+    private getComponentStylesheet(raw: string): void {
         // Match .example.scss or .scss
-        const matcher = /\w+(?:.example)?.scss/;
+        const matcher = /\.\/\w+(?:.example)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
             stylesheets.forEach(match => {
                 // Compose path from match and current directory path
-                const path = this.props.path.split('/').slice(0, -1).concat(match).join('/');
+                const path = this.props.path.split('/').slice(0, -1).concat(match.split('/')[1]).join('/');
                 svc.api.getCode({ path }).then(stylesheet => {
                     this.setState(prevState => ({
                         ...prevState,
@@ -89,7 +89,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
                     { this.state.component && React.createElement(this.state.component) }
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12' spacing='18'>
+                <FlexRow padding='12' vPadding='12' cx={ css.containerFooter }>
                     <Switch
                         value={ this.state.showCode }
                         onValueChange={ (val) => this.setState({ showCode: val }) }
@@ -113,12 +113,12 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     render() {
         return (
             <div className={ css.container }>
-                {
-                    this.props.title && <FlexRow cx={ css.titleRow }>
+                {this.props.title && (
+                    <FlexRow cx={ css.titleRow }>
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
                         <IconButton cx={ css.anchor } icon={ anchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
                     </FlexRow>
-                }
+                )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
 
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>

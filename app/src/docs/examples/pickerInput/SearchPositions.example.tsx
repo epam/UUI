@@ -11,9 +11,7 @@ export default function SearchPositionsExample() {
         return svc.api.demo.persons(request);
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api: loadPersons,
-    }, []);
+    const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
         <FlexRow spacing='12' >

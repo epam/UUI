@@ -1,10 +1,10 @@
-import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, DataTable, ColumnPickerFilter, Panel, IconButton } from '@epam/promo';
-import { DataSourceState, DataColumnProps, LazyDataSource, ILens, useUuiContext } from '@epam/uui';
-import {DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter} from "@epam/loveship";
+import { DataSourceState, DataColumnProps, ILens, useUuiContext, useLazyDataSource } from '@epam/uui';
+import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 import { City, Country } from '@epam/uui-docs';
-import * as css from "./TablesExamples.scss";
 import { Dropdown } from "@epam/uui-components";
+import * as css from "./TablesExamples.scss";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
 
@@ -14,11 +14,11 @@ export default function CitiesTable(props: unknown) {
 
     // If you need some filters for your table, you need to create Picker which will change 'filter' field in DataSourceState object. And than pass it to the column renderFilter option.
     // Look to the Pickers examples for more details about Picker configuration.
-    const countriesDS = new LazyDataSource<Country, string, unknown>({
+    const countriesDS = useLazyDataSource<Country, string, unknown>({
         api: (req) => svc.api.demo.countries(req),
-    });
+    }, []);
 
-    const handleRenderCountryPickerFilter = (filterLens: ILens<{ country: { $in: string[] } }>): ReactNode => (
+    const handleRenderCountryPickerFilter = useCallback((filterLens: ILens<{ country: { $in: string[] } }>): ReactNode => (
         <ColumnPickerFilter<Country, string>
             dataSource={ countriesDS }
             getName={ val => val.name }
@@ -27,7 +27,7 @@ export default function CitiesTable(props: unknown) {
             emptyValue={ null }
             { ...filterLens.prop('country').prop('$in').toProps() }
         />
-    );
+    ), []);
 
     const renderMenu = (): ReactNode => (
         <DropdownMenuBody color='white'>
@@ -80,7 +80,7 @@ export default function CitiesTable(props: unknown) {
         },
         {
             key: 'actions',
-            render: (value) => (
+            render: () => (
                 <Dropdown
                     renderTarget={ props => <IconButton icon={ moreIcon } color='gray60' { ...props } /> }
                     renderBody={ renderMenu }
@@ -94,29 +94,26 @@ export default function CitiesTable(props: unknown) {
 
     // Create DataSource instance for your table.
     // For more details go to the DataSources example
-    const citiesDS = new LazyDataSource({ api: svc.api.demo.cities });
-
-    // handleTableStateChange function should not be re-created on each render, as it would cause performance issues.
-    const handleTableStateChange = (newState: DataSourceState) => setTableState(newState);
+    const citiesDS = useLazyDataSource({ api: svc.api.demo.cities }, []);
 
     // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
     // Pass this.handleTableStateChange function which you provided to getView as a second argument
     useEffect(() => {
-        return () => citiesDS.unsubscribeView(handleTableStateChange);
+        return () => citiesDS.unsubscribeView(setTableState);
     }, []);
 
     // Create View according to your tableState and options
-    const view = citiesDS.getView(tableState, handleTableStateChange, {
-        getRowOptions: (item: City) => ({
+    const view = citiesDS.useView(tableState, setTableState, {
+        getRowOptions: useCallback((item: City) => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
-        }),
+        }), []),
     });
 
     return (
         <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
-                onValueChange={ handleTableStateChange }
+                onValueChange={ setTableState }
                 // Spread ListProps and provide getVisibleRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }

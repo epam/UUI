@@ -6,7 +6,7 @@ export const getCodesandboxConfig = (
     content: string,
     stylesheets: FilesRecord,
     initialFiles: CodesandboxFilesRecord['codesandboxFiles'],
-) => ({
+    ) => ({
     ...stylesheets,
     'Example.tsx': {
         isBinary: false,
@@ -16,9 +16,9 @@ export const getCodesandboxConfig = (
         isBinary: false,
         content: initialFiles.indexTSX
     },
-    'services.ts': {
+    'sandbox.config.json': {
         isBinary: false,
-        content: initialFiles.servicesTS,
+        content: initialFiles.sandboxConfigJSON,
     },
     'package.json': {
         isBinary: false,

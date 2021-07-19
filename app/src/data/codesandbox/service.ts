@@ -9,6 +9,7 @@ const CodesandboxFiles: Record<string, string> = {
     'package.json': join('..', 'data', 'codesandbox', 'package.json'),
     'tsConfig.json': join('..', 'data', 'codesandbox', 'tsConfig.json'),
     'apiDefinitions.ts': join('..', 'data', 'apiDefinition.ts'),
+    'sandbox.config.json': join('..', 'data', 'codesandbox', 'sandbox.config.json'),
 };
 
 export type CodesandboxFilesRecord = { codesandboxFiles: Record<string, string> };
@@ -28,14 +29,15 @@ export class CodesandboxService {
         return Promise.all(Object.keys(CodesandboxFiles).map(name => {
             return this.context.api.getCode({ path: CodesandboxFiles[name] })
         })).then(data => data.map(file => file.raw)).then(
-            ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api ]) => {
+            ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api, sandboxConfigJSON ]) => {
                 Object.assign(this.context.uuiApp, {
                     codesandboxFiles: {
                         indexHTML,
                         indexTSX,
                         packageJSON,
                         tsConfigJSON,
-                        api
+                        api,
+                        sandboxConfigJSON
                     }
                 });
 

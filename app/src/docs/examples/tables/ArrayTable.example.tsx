@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataTable, Panel, Text } from "@epam/promo";
 import { DataColumnProps, useArrayDataSource } from '@epam/uui';
-import { demoData, FeatureClass} from '@epam/uui-docs';
+import { demoData, FeatureClass } from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 
 export default function ArrayDataTableExample() {
@@ -13,7 +13,7 @@ export default function ArrayDataTableExample() {
 
     const view = dataSource.useView(value, onValueChange, {});
 
-    const productColumns: DataColumnProps<FeatureClass>[] = [
+    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
         {
             key: 'id',
             caption: 'Id',
@@ -33,7 +33,7 @@ export default function ArrayDataTableExample() {
             render: item => <Text color='gray80'>{ item.description }</Text>,
             grow: 1, shrink: 0, width: 300,
         },
-    ];
+    ], []);
 
     return (
         <Panel shadow cx={ css.container }>
