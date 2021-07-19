@@ -15,13 +15,14 @@ class AmplitudeListener implements IAnalyticsListener {
         this.client = this.getAmplitudeClient();
     }
 
-    private getAmplitudeClient():AmplitudeClient {
+    private getAmplitudeClient(): AmplitudeClient {
         const ampclient = getInstance();
         ampclient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
         return ampclient;
     }
 
-    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">) {
+    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType: string) {
+        if (eventType !== "event") return;
         this.client.logEvent(event.name, parameters);
     }
 }
