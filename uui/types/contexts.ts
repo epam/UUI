@@ -142,7 +142,7 @@ export interface IAnalyticsListener {
     sendEvent(
         event: AnalyticsEvent,
         parameters: Omit<AnalyticsEvent, "name">,
-        eventType?: "event" | "pageView"
+        eventType?: "event" | "pageView" | "apiTiming"
         ): void;
 }
 

@@ -24,13 +24,9 @@ export class AnalyticsContext extends BaseContext {
         if (this.gaCode) this.initGA();
     }
 
-    public sendEvent(event: AnalyticsEvent | null | undefined, eventType: "event" | "pageView" = "event") {
+    public sendEvent(event: AnalyticsEvent | null | undefined, eventType: "event" | "pageView" | "apiTiming" = "event") {
         if (!event) return;
         if (this.listeners.length) this.listeners.forEach(listener => listener.sendEvent(event, this.getParameters(event), eventType));
-    }
-
-    public sendApiTiming(event: AnalyticsEvent & {parameters: object}) {
-        this.sendEvent(event);
     }
 
     private listenRouter() {
