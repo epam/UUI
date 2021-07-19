@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { IModal, INotification, Metadata, RenderFormProps, AsyncDataSource, useUuiContext } from '@epam/uui';
+import { IModal, INotification, Metadata, RenderFormProps, useUuiContext, useAsyncDataSource } from '@epam/uui';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
     Button, ScrollBars, ModalFooter, SuccessNotification,
@@ -26,9 +26,9 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
         },
     });
 
-    const countriesDataSource = new AsyncDataSource({
+    const countriesDataSource = useAsyncDataSource({
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
-    });
+    }, []);
 
     const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
         <>
