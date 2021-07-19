@@ -110,14 +110,14 @@ export class ApiContext extends BaseContext implements IApiContext {
         call.finishedAt = new Date();
         call.httpStatus = response.status;
         if (response.ok) {
-            this.analyticsCtx?.sendApiTiming({
+            this.analyticsCtx?.sendEvent({
                 name: 'timing_complete',
                 parameters: {
                     value: call.finishedAt.getTime() - call.startedAt.getTime(),
                     name: call.name,
                     event_category: window.location.pathname,
-                },
-            });
+                }
+            }, "apiTiming");
 
             if (response.status == 204) {
                 return this.resolveCall(call, null);
