@@ -67,7 +67,7 @@ export class CodesandboxService {
                     ),
                 })
             );
-            url.searchParams.set('file', '/Example.tsx');
+            url.searchParams.set('query', 'file=/Example.tsx')
             return url.toString();
         } else return null;
     }
