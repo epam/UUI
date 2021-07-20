@@ -6,7 +6,7 @@ import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { CodesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
-import * as CodesandboxIcon from '@epam/assets/icons/common/social-network-codesandbox-24.svg';
+import * as CodesandboxIcon from '../../icons/social-network-codesandbox-24.svg';
 
 interface DocExampleProps {
     path: string;
