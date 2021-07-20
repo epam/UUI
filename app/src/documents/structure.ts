@@ -68,7 +68,6 @@ const componentsStructure = sortBy([
     { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
     { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
     { id: 'virtualList', name: 'VirtualList', component: VirtualListDoc, parentId: 'components' },
-
 ], ['name']);
 
 export const items: DocItem[] = [

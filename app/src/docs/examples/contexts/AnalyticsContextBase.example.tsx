@@ -1,6 +1,5 @@
-import * as React from "react";
-import {useCallback} from "react";
-import {ContextProvider} from "@epam/uui";
+import React, { useCallback } from "react";
+import { ContextProvider } from "@epam/uui";
 import { svc } from "../../../services";
 import { AmplitudeClient, getInstance} from "amplitude-js";
 import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui";
@@ -27,9 +26,7 @@ class AmplitudeListener implements IAnalyticsListener {
     }
 }
 
-
-
-export const AnalyticsContextBase: React.FC = () => {
+const AnalyticsContextBase: React.FC = () => {
     const loadAppContext = useCallback((api: any) => Promise.resolve(), []);
 
     const onInitCompleted = useCallback((context) => {
@@ -41,11 +38,14 @@ export const AnalyticsContextBase: React.FC = () => {
     }, []);
 
     return (
-        <ContextProvider loadAppContext={ loadAppContext }
-                         onInitCompleted={ onInitCompleted }
-                         gaCode='Your google analytics secret key'
+        <ContextProvider
+            loadAppContext={ loadAppContext }
+            onInitCompleted={ onInitCompleted }
+            gaCode='Your google analytics secret key'
         >
             Your app component
         </ContextProvider>
     );
 };
+
+export default AnalyticsContextBase;

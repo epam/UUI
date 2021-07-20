@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FlexCell } from '@epam/promo';
-import { useState } from 'react';
-import * as css from './BasicExample.scss';
 import { SliderRating } from '@epam/loveship';
+import * as css from './BasicExample.scss';
 
-export function BasicExample() {
+export default function BasicExample() {
     const [value, onValueChange] = useState(null);
 
     return (
