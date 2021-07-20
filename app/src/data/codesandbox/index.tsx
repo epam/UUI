@@ -18,7 +18,7 @@ render(
         onInitCompleted={(context) => Object.assign(svc, context)}
         skinContext={promoSkinContext}
     >
-        <FlexRow alignItems="stretch">
+        <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
             <Example />
         </FlexRow>
     </ContextProvider>,
