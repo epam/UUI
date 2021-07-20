@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { Button, ControlGroup } from '@epam/promo';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <ControlGroup>

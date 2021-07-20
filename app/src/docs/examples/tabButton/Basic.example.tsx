@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {TabButton, FlexRow, FlexCell} from '@epam/promo';
 
 
-export function BasicTabButtonExample() {
+export default function BasicTabButtonExample() {
     const [value, onValueChange] = useState('Home');
 
     return (
