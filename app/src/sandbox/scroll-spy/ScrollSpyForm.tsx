@@ -1,9 +1,10 @@
-import React, { useRef, useState, ReactChildren, RefObject } from 'react';
+import React, { useState } from 'react';
 import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
 import * as css from './ScrollSpyForm.scss';
 import { svc } from '../../services';
+import { ScrollSpy, ScrollSpyApi } from './ScrollSpy';
 
 interface Person {
     firstName?: string;
@@ -19,37 +20,8 @@ interface Person {
     maritalStatus?: string;
 };
 
-interface ScrollSpyProps {
-    items?: string[];
-    children: any;
-}
-
-const ScrollSpy = ({ children, items }: ScrollSpyProps) => {
-    const spyRef = useRef(null);
-
-    function scrollToElement(item?: string) {
-        let element: HTMLDivElement;
-        if (!items || items.length === 0 || !Array.isArray(items) || !item) {
-            element = spyRef.current.querySelector('.uui-invalid').closest('.uui-label-top');
-        } else {
-            const selectedId = items.find(i => i === item);
-            if (selectedId) {
-                element = spyRef.current.querySelector(`#{selectedId}`);
-            }
-        };
-
-        element.scrollIntoView({ block: 'start', behavior: 'smooth' });
-    };
-
-    return (
-        <div ref={spyRef}>
-            {children(scrollToElement)}
-        </div>
-    )
-}
-
 export function ScrollSpyForm() {
-    const [person, setPerson] = useState<Person>({});
+    const [person] = useState<Person>({});
 
     const countriesDataSource = useAsyncDataSource({
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
@@ -98,7 +70,7 @@ export function ScrollSpyForm() {
         api: svc.api.demo.cities,
     }, []);
 
-    const RenderForm = ({ lens, validate, isInvalid, scrollToElement }: RenderFormProps<Person> & { scrollToElement: Function }, spyRef: RefObject<HTMLDivElement>) => (
+    const RenderForm = ({ lens, validate, isInvalid, scrollToElement }: RenderFormProps<Person> & ScrollSpyApi) => (
         <div className={ css.formContainer }>
             <FlexCell width='100%'>
                 <FlexRow vPadding='12'>
@@ -209,19 +181,16 @@ export function ScrollSpyForm() {
 
     return (
         <ScrollSpy items={ ['a', 'b', 'c' ]}>
-            {(scrollToElement: Function) => (
+            {({ scrollToElement }) => (
                 <Form<Person>
                     value={ person }
                     onSave={ person =>  Promise.resolve() /*place your save api call here*/ }
-                    onSuccess={ result => {
-                        setPerson(result);
-                        return (
-                            svc.uuiNotifications.show((notificationProps) => (
-                                <ErrorNotification { ...notificationProps }>
-                                <Text>Error on save</Text>
-                            </ErrorNotification>))
-                        );
-                    } }
+                    onSuccess={ () => (
+                        svc.uuiNotifications.show((notificationProps) => (
+                            <ErrorNotification { ...notificationProps }>
+                            <Text>Error on save</Text>
+                        </ErrorNotification>))
+                    ) }
                     onError={ () => svc.uuiNotifications.show((notificationProps) =>  (
                         <SuccessNotification { ...notificationProps }>
                             <Text>Form saved</Text>
