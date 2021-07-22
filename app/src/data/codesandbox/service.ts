@@ -75,7 +75,8 @@ export class CodesandboxService {
     private processIcons(code?: string, separator: string = '\r\n'): string {
         if (!code) return;
         const lines = code.split(separator);
-        const iconFiles = lines.filter(line => line.endsWith(`.svg";`));
+        const iconFiles = lines.filter(line => line.endsWith(`.svg';`) || line.endsWith(`.svg";`));
+        console.log({ iconFiles})
         if (iconFiles.length > 0) {
             return lines.map(line => {
                 if (iconFiles.includes(line)) {
