@@ -76,7 +76,6 @@ export class CodesandboxService {
         if (!code) return;
         const lines = code.split(separator);
         const iconFiles = lines.filter(line => line.endsWith(`.svg';`) || line.endsWith(`.svg";`));
-        console.log({ iconFiles})
         if (iconFiles.length > 0) {
             return lines.map(line => {
                 if (iconFiles.includes(line)) {
