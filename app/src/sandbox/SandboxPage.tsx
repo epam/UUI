@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { createElement } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
@@ -8,12 +8,14 @@ import { ComplexForm } from './forms/ComplexForm';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
+import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 
 const items = [
     { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
     { id: 'dbDemo', name: 'DB demo', component: DbDemo },
     { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
     { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
+    { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
 ];
 
 const itemsIds = items.map(i => i.id);
@@ -42,7 +44,7 @@ export const SandboxPage = () => {
                     } }
                     items={ items }
                 />
-                { React.createElement(example.component) }
+                { createElement(example.component) }
             </FlexRow>
         </Page>
     );
