@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
 import * as css from './ScrollSpyForm.scss';
 import { svc } from '../../services';
-import { ScrollSpy, ScrollSpyApi } from './ScrollSpy';
+import { ScrollSpy, ScrollSpyApi, useScrollSpy } from './ScrollSpy';
 
 interface Person {
     firstName?: string;
@@ -70,19 +70,18 @@ export function ScrollSpyForm() {
         api: svc.api.demo.cities,
     }, []);
 
-    const RenderForm = ({ lens, save, isInvalid, scrollToElement }: RenderFormProps<Person> & ScrollSpyApi) => {
-        useEffect(() => {
-            if (isInvalid) {
-                scrollToElement();
-            };
-        });
+    const RenderForm = ({ lens, save, isInvalid }: RenderFormProps<Person>) => {
+        const formContainer = useRef(null);
+        const { scrollToElement } = useScrollSpy({ root: formContainer });
+
+        useEffect(() => isInvalid && scrollToElement());
 
         return (
-            <div className={ css.formContainer }>
-                <FlexCell width='100%'>
+            <section ref={formContainer}>
+                <FlexCell width='100%' cx={ css.formContainer }>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
-                            <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() } >
+                            <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() }>
                                 <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
                             </LabeledInput>
                         </FlexCell>
@@ -90,7 +89,7 @@ export function ScrollSpyForm() {
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
                             <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
-                                <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
+                                <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                     </FlexRow>
@@ -115,13 +114,6 @@ export function ScrollSpyForm() {
                                     valueType='id'
                                     dataSource={ citiesDataSource }
                                 />
-                            </LabeledInput>
-                        </FlexCell>
-                    </FlexRow>
-                    <FlexRow vPadding='12'>
-                        <FlexCell grow={ 1 }>
-                            <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
-                                <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                     </FlexRow>
@@ -172,6 +164,13 @@ export function ScrollSpyForm() {
                         </FlexCell>
                     </FlexRow>
                     <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
+                                <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
                         <FlexSpacer />
                         <Button
                             color='red'
@@ -180,31 +179,27 @@ export function ScrollSpyForm() {
                         />
                     </FlexRow>
                 </FlexCell>
-            </div>
+            </section>
         );
     }
 
     return (
-        <ScrollSpy items={ ['a', 'b', 'c' ] }>
-            {({ scrollToElement }) => (
-                <Form<Person>
-                    value={ person }
-                    onSave={ person =>  Promise.resolve() /*place your save api call here*/ }
-                    onSuccess={ () => (
-                        svc.uuiNotifications.show((notificationProps) => (
-                            <ErrorNotification { ...notificationProps }>
-                            <Text>Error on save</Text>
-                        </ErrorNotification>))
-                    ) }
-                    onError={ () => svc.uuiNotifications.show((notificationProps) =>  (
-                        <SuccessNotification { ...notificationProps }>
-                            <Text>Form saved</Text>
-                        </SuccessNotification>
-                    )) }
-                    renderForm={ formProps => <RenderForm {...formProps} scrollToElement={scrollToElement} /> }
-                    getMetadata={ getMetaData }
-                />
-            )}
-        </ScrollSpy>
+        <Form<Person>
+            value={ person }
+            onSave={ person =>  Promise.resolve() /*place your save api call here*/ }
+            onSuccess={ () => (
+                svc.uuiNotifications.show((notificationProps) => (
+                    <ErrorNotification { ...notificationProps }>
+                    <Text>Error on save</Text>
+                </ErrorNotification>))
+            ) }
+            onError={ () => svc.uuiNotifications.show((notificationProps) =>  (
+                <SuccessNotification { ...notificationProps }>
+                    <Text>Form saved</Text>
+                </SuccessNotification>
+            )) }
+            renderForm={ (formProps) => <RenderForm {...formProps} /> }
+            getMetadata={ getMetaData }
+        />
     );
 }
