@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dropdown, Text } from '@epam/uui-components';
 import { Button,
     DropdownMenuBody,
-    DropdownMenuButton as MenuItem,
+    DropdownMenuButton,
     DropdownMenuSwitchButton as MenuSwitchButton,
     DropdownMenuSplitter,
     DropdownMenuHeader,
@@ -39,22 +39,6 @@ const CustomItem = (props: IDropdownMenuItemProps) => {
     );
 };
 
-const DropdownMenuButton = (props: any) => {
-    const [selected, setSelected] = useState(false);
-
-    const handleCLick = (event: React.SyntheticEvent<any, any>) => {
-        setSelected(!selected);
-    };
-
-    return (
-        <MenuItem
-            { ...props }
-            onClick={ handleCLick }
-            isSelected={ selected }
-        />
-    );
-};
-
 const DropdownMenuSwitchButton = (props: any) => {
     const [selected, setSelected] = useState(false);
 
@@ -72,6 +56,11 @@ const DropdownMenuSwitchButton = (props: any) => {
 };
 
 export default function BasicDropdownMenuExample() {
+    const [selected, setSelected] = useState(false);
+
+    const handleValueChange = (value: boolean) => {
+        setSelected(value);
+    };
 
     const renderDropdownBody = () => {
 
@@ -127,6 +116,8 @@ export default function BasicDropdownMenuExample() {
                 <DropdownMenuButton
                     icon={ icon }
                     caption="Click to select it"
+                    onClick={ handleValueChange }
+                    isSelected={ selected }
                 />
                 <DropdownMenuButton
                     icon={ icon }
