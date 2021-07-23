@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
 import * as css from './ScrollSpyForm.scss';
 import { svc } from '../../services';
-import { ScrollSpy, ScrollSpyApi, useScrollSpy } from './ScrollSpy';
+import { useScrollSpy } from './ScrollSpy';
 
 interface Person {
     firstName?: string;
@@ -71,15 +71,14 @@ export function ScrollSpyForm() {
     }, []);
 
     const RenderForm = ({ lens, save, isInvalid }: RenderFormProps<Person>) => {
-        const formContainer = useRef(null);
-        const { scrollToElement } = useScrollSpy({ root: formContainer });
+        const { scrollToElement, setRef } = useScrollSpy();
 
         useEffect(() => {
             if (isInvalid) scrollToElement();
         });
 
         return (
-            <section ref={formContainer}>
+            <section ref={setRef}>
                 <FlexCell width='100%' cx={ css.formContainer }>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>

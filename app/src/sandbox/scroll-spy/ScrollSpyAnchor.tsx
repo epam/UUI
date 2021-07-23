@@ -1,16 +1,15 @@
-import React, { useMemo, useRef } from 'react';
-import { FlexCell, FlexRow, LinkButton, ScrollBars, Text } from '@epam/promo';
+import React, { useMemo } from 'react';
+import { FlexCell, FlexRow, LinkButton, Text } from '@epam/promo';
 import * as css from './ScrollSpyAnchor.scss';
 import { useScrollSpy } from './ScrollSpy';
 
 export function ScrollSpyAnchor() {
-    const spyRef = useRef(null);
     const links = useMemo(() => [
         { id: 'a', caption: 'First' },
         { id: 'b', caption: 'Second' },
     ], []);
 
-    const { scrollToElement, currentActive } = useScrollSpy({ root: spyRef, elements: ['a', 'b'] });
+    const { scrollToElement, currentActive, setRef } = useScrollSpy(['a', 'b']);
 
     return (
         <FlexRow>
@@ -21,12 +20,12 @@ export function ScrollSpyAnchor() {
                         key={link.id}
                         onClick={() => scrollToElement(link.id)}
                         caption={link.caption}
-                        href={null}
+                        href={`#${link.id}`}
                     />
                 ))}
             </FlexCell>
             <FlexCell grow={ 5 }>
-                <section ref={spyRef}>
+                <section ref={setRef}>
                     <Text font='museo-slab' size='48' cx={ css.content } lineHeight='30'>
                         <section data-spy='a'>
                             <Text cx={css.header} color='gray90'>Section 1</Text>
