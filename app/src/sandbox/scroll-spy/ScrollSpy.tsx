@@ -1,27 +1,27 @@
-import { Component, ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
-export interface ScrollSpyApi {
+export interface IScrollSpyApi {
     scrollToElement: (item?: string) => void;
     currentActive?: string;
     setRef: (ref: HTMLElement) => void;
 }
-interface ScrollSpyProps {
+interface IScrollSpyProps {
     root?: HTMLElement;
     elements?: Readonly<string[]>;
     options?: IntersectionObserverInit;
-    children?: (api: ScrollSpyApi) => ReactNode;
+    children?: (api: IScrollSpyApi) => ReactNode;
 }
 
 export function useScrollSpy(
-    elements?: ScrollSpyProps['elements'],
-    options?: ScrollSpyProps['options']
-) : ScrollSpyApi {
+    elements?: IScrollSpyProps['elements'],
+    options?: IScrollSpyProps['options']
+) : IScrollSpyApi {
     const [ref, setRef] = useState<HTMLElement>(null);
     const [currentActive, setCurrentActive] = useState<string>(Array.isArray(elements) && elements.length > 0 && elements[0]);
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
 
     const scrollToElement = useCallback(
-        (root: ScrollSpyProps['root'], elements?: ScrollSpyProps['elements']): ((item?: string) => void) => {
+        (root: IScrollSpyProps['root'], elements?: IScrollSpyProps['elements']): ((item?: string) => void) => {
             return item => {
                 let element;
 
@@ -66,7 +66,7 @@ export function useScrollSpy(
     };
 };
 
-export function ScrollSpy({ elements, children } : ScrollSpyProps) {
+export function ScrollSpy({ elements, children } : IScrollSpyProps) {
     const { currentActive, scrollToElement,  setRef } = useScrollSpy(elements);
     return children({ scrollToElement, setRef, currentActive });
 }
