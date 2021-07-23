@@ -45,16 +45,20 @@ export function useScrollSpy(
 
     useEffect(() => {
         if (!ref || !elements || !Array.isArray(elements) || elements.length === 0) return;
-        setObservedNodes(elements.map(element => getElement(ref, element));
+        setObservedNodes(elements.map(element => getElement(ref, element)));
     }, [ref]);
 
     useEffect(() => {
         if (observedNodes.length === 0) return;
 
         const observer = new IntersectionObserver(entries => {
+            console.log({ entries });
             const intersectingElement = entries.find(entry => entry.isIntersecting) as any;
             setCurrentActive(intersectingElement?.target?.dataset?.spy);
-        }, options);
+        }, {
+            ...options,
+            root: options?.root || document.querySelector('body')
+        });
 
         observedNodes.forEach(element => element ? observer.observe(element) : null);
 
