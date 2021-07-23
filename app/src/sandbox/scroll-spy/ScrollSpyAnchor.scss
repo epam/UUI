@@ -21,3 +21,9 @@
 section[data-spy] {
     text-decoration: underline;
 }
+
+a {
+    &:global(.uui-active) {
+        text-decoration: underline;
+    }
+}

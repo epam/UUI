@@ -1,19 +1,14 @@
-import React, { MutableRefObject, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 export interface ScrollSpyApi {
     scrollToElement: (item?: string) => void;
     currentActive?: string;
-    ref?: RefObject<HTMLElement>;
+    setRef: (ref: Element) => void;
 }
 interface ScrollSpyProps {
-    root?: RefObject<Element>;
-    offset?: {
-        top: number;
-        bottom: number;
-        right: number;
-        left: number;
-    }; // rootMargin for observation
+    root?: Element;
     elements?: Readonly<string[]>;
+    options?: IntersectionObserverInit;
     children?: (api: ScrollSpyApi) => ReactNode;
 }
 
@@ -22,11 +17,11 @@ function scrollToElement(root: ScrollSpyProps['root'], elements?: ScrollSpyProps
         let element;
 
         if (!elements || elements.length === 0 || !Array.isArray(elements) || !item) {
-            element = root.current.querySelector('.uui-invalid').closest('.uui-label-top');
+            element = root.querySelector('.uui-invalid').closest('.uui-label-top');
         } else if (item && elements.includes(item)) {
-            const selectedId = elements.find(i => i === item);
-            if (selectedId) {
-                element = root.current.querySelector(`[id='${selectedId}'], [data-spy='${selectedId}'], [name='${selectedId}']`);
+            const selected = elements.find(i => i === item);
+            if (selected) {
+                element = root.querySelector(`[id='${selected}'], [data-spy='${selected}'], [name='${selected}']`);
             }
         };
 
@@ -34,52 +29,42 @@ function scrollToElement(root: ScrollSpyProps['root'], elements?: ScrollSpyProps
     };
 };
 
-export function useScrollSpy({
-    root,
-    elements = [],
-    offset = { top: 0, bottom: 0, left: 0, right: 0 }
-}: Omit<ScrollSpyProps, 'children'>): ScrollSpyApi {
-    const [currentActive, setCurrentActive] = useState<string>();
+export function useScrollSpy(
+    elements?: ScrollSpyProps['elements'],
+    options?: ScrollSpyProps['options']
+) : ScrollSpyApi {
+    const [ref, setRef] = useState<Element>(null);
+    const [currentActive, setCurrentActive] = useState<string>(Array.isArray(elements) && elements.length > 0 && elements[0]);
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
 
-    const observer: MutableRefObject<IntersectionObserver> = useRef(null);
-    const rootMargin: string = `${offset.top}px ${offset.right}px ${offset.bottom}px ${offset.left}px`;
+    useEffect(() => {
+        if (!ref || !elements || !Array.isArray(elements) || elements.length === 0) return;
+        setObservedNodes(elements.map(element => {
+            return ref.querySelector(`[id='${element}'], [data-spy='${element}'], [name='${element}']`)
+        }));
+    }, [ref]);
 
     useEffect(() => {
-        if (root.current && elements.length > 0) {
-            setObservedNodes(elements.map(element => {
-                return root.current.querySelector(`[id='${element}'], [data-spy='${element}'], [name='${element}']`)
-            }));
-        }
-    }, [root]);
+        if (observedNodes.length === 0) return;
 
-    useEffect(() => {
-        if (observedNodes.length === 0 || !root.current) return;
-        if (observer.current) observer.current.disconnect();
+        const observer = new IntersectionObserver(entries => {
+            const intersectingElement = entries.find(entry => entry.isIntersecting) as any;
+            setCurrentActive(intersectingElement?.target?.dataset?.spy);
+        }, options);
 
-        observer.current = new IntersectionObserver(entries => {
-            const intersectingElementIndex = entries.findIndex(entry => entry.intersectionRatio > 0);
-            const intersectingElement = elements.find((_, index) => index === intersectingElementIndex);
-            setCurrentActive(intersectingElement);
-        }, { root: root.current, rootMargin });
+        observedNodes.forEach(element => element ? observer.observe(element) : null);
 
-        observedNodes.forEach(element => element ? observer.current.observe(element) : null);
-
-        return () => observer.current.disconnect();
-    }, [observedNodes, root]);
+        return () => observer.disconnect();
+    }, [observedNodes]);
 
     return {
-        scrollToElement: scrollToElement(root, elements),
+        scrollToElement: scrollToElement(ref, elements),
         currentActive,
+        setRef,
     };
 };
 
 export const ScrollSpy = ({ children, elements }: ScrollSpyProps) => {
-    const spyRef = useRef(null);
-
-    return (
-        <div ref={spyRef}>
-            {children({ scrollToElement: scrollToElement(spyRef, elements), ref: spyRef })}
-        </div>
-    )
+    const [spyRef, setSpyRef] = useState<Element>(null);
+    return children({ scrollToElement: scrollToElement(spyRef, elements), setRef: setSpyRef });
 }
