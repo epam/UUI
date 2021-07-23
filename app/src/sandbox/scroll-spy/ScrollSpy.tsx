@@ -26,7 +26,7 @@ function scrollToElement(root: ScrollSpyProps['root'], elements?: ScrollSpyProps
         } else if (item && elements.includes(item)) {
             const selectedId = elements.find(i => i === item);
             if (selectedId) {
-                element = root.current.querySelector(`#{selectedId}`);
+                element = root.current.querySelector(`[id='${selectedId}'], [data-spy='${selectedId}'], [name='${selectedId}']`);
             }
         };
 
@@ -58,7 +58,6 @@ export function useScrollSpy({
         if (observer.current) observer.current.disconnect();
 
         observer.current = new IntersectionObserver(entries => {
-            console.log({ entries, observer })
             const intersectingElementIndex = entries.findIndex(entry => entry.intersectionRatio > 0);
             const intersectingElement = elements.find((_, index) => index === intersectingElementIndex);
             setCurrentActive(intersectingElement);

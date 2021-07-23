@@ -74,7 +74,9 @@ export function ScrollSpyForm() {
         const formContainer = useRef(null);
         const { scrollToElement } = useScrollSpy({ root: formContainer });
 
-        useEffect(() => isInvalid && scrollToElement());
+        useEffect(() => {
+            if (isInvalid) scrollToElement();
+        });
 
         return (
             <section ref={formContainer}>

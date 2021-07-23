@@ -1,0 +1,23 @@
+@import '~@epam/assets/scss/index';
+
+.content {
+    padding: 1rem;
+}
+
+.menu {
+    border: 1px solid $night300;
+    position: sticky;
+    top: 1.5rem;
+
+    & > * {
+        justify-content: center;
+    }
+}
+
+.header {
+    margin-bottom: 1rem;
+}
+
+section[data-spy] {
+    text-decoration: underline;
+}
