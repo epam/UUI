@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
@@ -70,117 +70,122 @@ export function ScrollSpyForm() {
         api: svc.api.demo.cities,
     }, []);
 
-    const RenderForm = ({ lens, validate, isInvalid, scrollToElement }: RenderFormProps<Person> & ScrollSpyApi) => (
-        <div className={ css.formContainer }>
-            <FlexCell width='100%'>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() } >
-                            <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
-                            <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Country' { ...lens.prop('location').prop('countryId').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('location').prop('countryId').toProps() }
-                                selectionMode='single'
-                                valueType='id'
-                                dataSource={ countriesDataSource }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='City' { ...lens.prop('location').prop('cityIds').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('location').prop('cityIds').toProps() }
-                                selectionMode='multi'
-                                valueType='id'
-                                dataSource={ citiesDataSource }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
-                            <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
-                            <RadioGroup
-                                items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
-                                { ...lens.prop('sex').toProps() }
-                                direction='horizontal'
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Birth Date' { ...lens.prop('birthDate').toProps() }>
-                            <DatePicker
-                                {...lens.prop('birthDate').toProps()}
-                                placeholder='Birth Date'
-                                format='MM-DD-YYYY'
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Mother Tongue' { ...lens.prop('motherTongue').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('motherTongue').toProps() }
-                                selectionMode='single'
-                                valueType='id'
-                                dataSource={ languagesDataSource }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Marital Status' { ...lens.prop('maritalStatus').toProps() } >
-                            <PickerInput
-                                { ...lens.prop('maritalStatus').toProps() }
-                                selectionMode='single'
-                                valueType='id'
-                                dataSource={ maritalStatus }
-                            />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexSpacer />
-                    <Button
-                        color='red'
-                        caption='Validate'
-                        onClick={ () => {
-                            validate();
-                            if (isInvalid) scrollToElement();
-                        } }
-                    />
-                </FlexRow>
-            </FlexCell>
-        </div>
-    );
+    const RenderForm = ({ lens, save, isInvalid, scrollToElement }: RenderFormProps<Person> & ScrollSpyApi) => {
+        useEffect(() => {
+            if (isInvalid) {
+                scrollToElement();
+            };
+        });
+
+        return (
+            <div className={ css.formContainer }>
+                <FlexCell width='100%'>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() } >
+                                <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
+                                <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Country' { ...lens.prop('location').prop('countryId').toProps() } >
+                                <PickerInput
+                                    { ...lens.prop('location').prop('countryId').toProps() }
+                                    selectionMode='single'
+                                    valueType='id'
+                                    dataSource={ countriesDataSource }
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='City' { ...lens.prop('location').prop('cityIds').toProps() } >
+                                <PickerInput
+                                    { ...lens.prop('location').prop('cityIds').toProps() }
+                                    selectionMode='multi'
+                                    valueType='id'
+                                    dataSource={ citiesDataSource }
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
+                                <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
+                                <RadioGroup
+                                    items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
+                                    { ...lens.prop('sex').toProps() }
+                                    direction='horizontal'
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Birth Date' { ...lens.prop('birthDate').toProps() }>
+                                <DatePicker
+                                    {...lens.prop('birthDate').toProps()}
+                                    placeholder='Birth Date'
+                                    format='MM-DD-YYYY'
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Mother Tongue' { ...lens.prop('motherTongue').toProps() } >
+                                <PickerInput
+                                    { ...lens.prop('motherTongue').toProps() }
+                                    selectionMode='single'
+                                    valueType='id'
+                                    dataSource={ languagesDataSource }
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexCell grow={ 1 }>
+                            <LabeledInput label='Marital Status' { ...lens.prop('maritalStatus').toProps() } >
+                                <PickerInput
+                                    { ...lens.prop('maritalStatus').toProps() }
+                                    selectionMode='single'
+                                    valueType='id'
+                                    dataSource={ maritalStatus }
+                                />
+                            </LabeledInput>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <FlexSpacer />
+                        <Button
+                            color='red'
+                            caption='Validate'
+                            onClick={ save }
+                        />
+                    </FlexRow>
+                </FlexCell>
+            </div>
+        );
+    }
 
     return (
-        <ScrollSpy items={ ['a', 'b', 'c' ]}>
+        <ScrollSpy items={ ['a', 'b', 'c' ] }>
             {({ scrollToElement }) => (
                 <Form<Person>
                     value={ person }
@@ -198,7 +203,6 @@ export function ScrollSpyForm() {
                     )) }
                     renderForm={ formProps => <RenderForm {...formProps} scrollToElement={scrollToElement} /> }
                     getMetadata={ getMetaData }
-                    settingsKey='advanced-form-example'
                 />
             )}
         </ScrollSpy>
