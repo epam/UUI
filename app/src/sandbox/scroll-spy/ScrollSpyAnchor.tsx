@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { FlexCell, FlexRow, LinkButton, Text } from '@epam/promo';
-import * as css from './ScrollSpyAnchor.scss';
+import * as css from './ScrollSpyReader.scss';
 import { useScrollSpy } from './ScrollSpy';
 
 export function ScrollSpyAnchor() {
