@@ -17,10 +17,10 @@ export function ScrollSpyModal() {
             <ModalBlocker blockerShadow='dark' { ...modalProps }>
                 <ModalWindow>
                     <Panel background="white">
-                        <ModalHeader title="Continue to read? " onClose={ () => modalProps.abort() } />
+                        <ModalHeader title="Continue reading? " onClose={ () => modalProps.abort() } />
                         <ScrollBars hasTopShadow hasBottomShadow >
                             <FlexRow padding='24'>
-                                <Text size='36'>We memorized the section you stopped reading at. Continue to read?</Text>
+                                <Text size='36'>Would you like to continue reading from the place you previously stopped?</Text>
                             </FlexRow>
                         </ScrollBars>
                         <ModalFooter>
