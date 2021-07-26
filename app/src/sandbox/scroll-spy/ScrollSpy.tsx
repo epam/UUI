@@ -1,10 +1,9 @@
-import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface IScrollSpyApi {
     scrollToElement: (item?: string, selector?: string) => void;
     currentActive?: string;
-    ref: HTMLElement;
-    setRef: (ref: HTMLElement) => void;
+    setRef?: (ref: HTMLElement) => void;
 }
 interface IScrollSpyProps {
     root?: HTMLElement;
@@ -70,11 +69,13 @@ export function useScrollSpy(
         scrollToElement,
         currentActive,
         setRef: (selectedRef: HTMLElement) => ref.current = selectedRef,
-        ref: ref.current,
     };
 };
 
-export function ScrollSpy({ elements, children } : IScrollSpyProps): ReactNode {
-    const { currentActive, scrollToElement, setRef, ref } = useScrollSpy(elements);
-    return children({ scrollToElement, setRef, currentActive, ref });
+export function ScrollSpyContainer({ elements, children } : IScrollSpyProps): ReactNode {
+    const { currentActive, scrollToElement, setRef } = useScrollSpy(elements);
+
+    return (
+        <section ref={setRef}>{children({ scrollToElement, currentActive })}</section>
+    );
 }
