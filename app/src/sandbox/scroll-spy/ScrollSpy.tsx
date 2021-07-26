@@ -30,24 +30,20 @@ export function useScrollSpy(
         return root.querySelector(selector || `[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
     }, [ref]);
 
-    const scrollToElement = useCallback(
-        ({ root, elements }: Pick<IScrollSpyProps, 'root' | 'elements'>): IScrollSpyApi['scrollToElement'] => {
-            return (item, selector) => {
-                let element;
+    const scrollToElement = (item: string, selector: string) => {
+        let element;
 
-                if (item && elements && elements.includes(item)) {
-                    const selected = elements.find(i => i === item);
-                    if (selected) element = getElement(root, selected);
-                } else if (!elements && !item && selector) {
-                    element = getElement(root, undefined, selector);
-                }
+        if (item && elements && elements.includes(item)) {
+            const selected = elements.find(element => element === item);
+            if (selected) element = getElement(ref.current, selected);
+        } else if (!elements && !item && selector) {
+            element = getElement(ref.current, undefined, selector);
+        }
 
-                if (element) {
-                    element.scrollIntoView({ block: 'start', behavior: 'smooth' });
-                } else return;
-            }
-        }, [ref]
-    );
+        if (element) {
+            element.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        } else return;
+    };
 
     useEffect(() => {
         if (!ref || !elements || !Array.isArray(elements) || elements.length === 0) return;
@@ -71,7 +67,7 @@ export function useScrollSpy(
     }, [observedNodes]);
 
     return {
-        scrollToElement: scrollToElement({ root: ref.current, elements }),
+        scrollToElement,
         currentActive,
         setRef: (selectedRef: HTMLElement) => ref.current = selectedRef,
         ref: ref.current,

@@ -10,7 +10,7 @@ export function ScrollSpyModal() {
         { id: 'b', caption: 'Second' },
     ], []);
 
-    const { scrollToElement, currentActive, setRef, ref } = useScrollSpy(['a', 'b']);
+    const { scrollToElement, currentActive, setRef } = useScrollSpy(['a', 'b']);
 
     const getContinuationModal = () => {
         svc.uuiModals.show(modalProps => (
@@ -41,7 +41,7 @@ export function ScrollSpyModal() {
         )).catch(() => null);
     }
 
-    useEffect(() => ref && getContinuationModal(), [ref]);
+    useEffect(getContinuationModal, []);
 
     return (
         <FlexRow>
