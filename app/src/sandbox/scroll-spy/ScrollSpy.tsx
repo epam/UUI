@@ -1,40 +1,45 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 export interface IScrollSpyApi {
-    scrollToElement: (item?: string) => void;
+    scrollToElement: (item?: string, selector?: string) => void;
     currentActive?: string;
     setRef: (ref: HTMLElement) => void;
 }
 interface IScrollSpyProps {
     root?: HTMLElement;
     elements?: Readonly<string[]>;
+    selector?: string;
+    initialActive?: string;
     options?: IntersectionObserverInit;
     children?: (api: IScrollSpyApi) => ReactNode;
 }
 
 export function useScrollSpy(
     elements?: IScrollSpyProps['elements'],
+    initialActive?: string,
     options?: IScrollSpyProps['options']
 ) : IScrollSpyApi {
     const [ref, setRef] = useState<HTMLElement>(null);
-    const [currentActive, setCurrentActive] = useState<string>(Array.isArray(elements) && elements.length > 0 && elements[0]);
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
+    const [currentActive, setCurrentActive] = useState<string>(
+        initialActive || (Array.isArray(elements) && elements.length > 0 && elements[0])
+    );
 
-    const getElement = useCallback((root: IScrollSpyProps['root'], id: string): HTMLElement => {
-        return root.querySelector(`[id='${id}'], [data-spy='${id}'], [name='${id}']`)
+    const getElement = useCallback((root: IScrollSpyProps['root'], id?: string, selector?: IScrollSpyProps['selector']): HTMLElement => {
+        return root.querySelector(selector || `[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
     }, []);
 
     const scrollToElement = useCallback(
-        (root: IScrollSpyProps['root'], elements?: IScrollSpyProps['elements']): ((item?: string) => void) => {
-            return item => {
+        ({ root, elements }: Pick<IScrollSpyProps, 'root' | 'elements'>): IScrollSpyApi['scrollToElement'] => {
+            return (item, selector) => {
                 let element;
 
-                if (!elements || elements.length === 0 || !Array.isArray(elements) || !item) {
-                    element = root.querySelector('.uui-invalid').closest('.uui-label-top');
-                } else if (item && elements.includes(item)) {
+                if (item && elements && elements.includes(item)) {
                     const selected = elements.find(i => i === item);
                     if (selected) element = getElement(root, selected);
-                };
+                } else if (!elements && !item && selector) {
+                    element = getElement(root, undefined, selector);
+                }
 
                 if (element) {
                     element.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -52,7 +57,6 @@ export function useScrollSpy(
         if (observedNodes.length === 0) return;
 
         const observer = new IntersectionObserver(entries => {
-            console.log({ entries });
             const intersectingElement = entries.find(entry => entry.isIntersecting) as any;
             setCurrentActive(intersectingElement?.target?.dataset?.spy);
         }, {
@@ -66,13 +70,13 @@ export function useScrollSpy(
     }, [observedNodes]);
 
     return {
-        scrollToElement: scrollToElement(ref, elements),
+        scrollToElement: scrollToElement({ root: ref, elements }),
         currentActive,
         setRef,
     };
 };
 
-export function ScrollSpy({ elements, children } : IScrollSpyProps) {
+export function ScrollSpy({ elements, children } : IScrollSpyProps): ReactNode {
     const { currentActive, scrollToElement,  setRef } = useScrollSpy(elements);
     return children({ scrollToElement, setRef, currentActive });
 }
