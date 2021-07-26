@@ -74,8 +74,8 @@ export function ScrollSpyForm() {
         const { scrollToElement, setRef } = useScrollSpy();
 
         useEffect(() => {
-            if (isInvalid) scrollToElement();
-        });
+            if (isInvalid) scrollToElement(null, '.uui-invalid');
+        }, [isInvalid]);
 
         return (
             <section ref={setRef}>
