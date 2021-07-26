@@ -1,8 +1,9 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface IScrollSpyApi {
     scrollToElement: (item?: string, selector?: string) => void;
     currentActive?: string;
+    ref: HTMLElement;
     setRef: (ref: HTMLElement) => void;
 }
 interface IScrollSpyProps {
@@ -19,7 +20,7 @@ export function useScrollSpy(
     initialActive?: string,
     options?: IScrollSpyProps['options']
 ) : IScrollSpyApi {
-    const [ref, setRef] = useState<HTMLElement>(null);
+    const ref: MutableRefObject<HTMLElement> = useRef();
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
     const [currentActive, setCurrentActive] = useState<string>(
         initialActive || (Array.isArray(elements) && elements.length > 0 && elements[0])
@@ -27,7 +28,7 @@ export function useScrollSpy(
 
     const getElement = useCallback((root: IScrollSpyProps['root'], id?: string, selector?: IScrollSpyProps['selector']): HTMLElement => {
         return root.querySelector(selector || `[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
-    }, []);
+    }, [ref]);
 
     const scrollToElement = useCallback(
         ({ root, elements }: Pick<IScrollSpyProps, 'root' | 'elements'>): IScrollSpyApi['scrollToElement'] => {
@@ -44,13 +45,13 @@ export function useScrollSpy(
                 if (element) {
                     element.scrollIntoView({ block: 'start', behavior: 'smooth' });
                 } else return;
-            };
-        }, []
+            }
+        }, [ref]
     );
 
     useEffect(() => {
         if (!ref || !elements || !Array.isArray(elements) || elements.length === 0) return;
-        setObservedNodes(elements.map(element => getElement(ref, element)));
+        setObservedNodes(elements.map(element => getElement(ref.current, element)));
     }, [ref]);
 
     useEffect(() => {
@@ -70,13 +71,14 @@ export function useScrollSpy(
     }, [observedNodes]);
 
     return {
-        scrollToElement: scrollToElement({ root: ref, elements }),
+        scrollToElement: scrollToElement({ root: ref.current, elements }),
         currentActive,
-        setRef,
+        setRef: (selectedRef: HTMLElement) => ref.current = selectedRef,
+        ref: ref.current,
     };
 };
 
 export function ScrollSpy({ elements, children } : IScrollSpyProps): ReactNode {
-    const { currentActive, scrollToElement,  setRef } = useScrollSpy(elements);
-    return children({ scrollToElement, setRef, currentActive });
+    const { currentActive, scrollToElement, setRef, ref } = useScrollSpy(elements);
+    return children({ scrollToElement, setRef, currentActive, ref });
 }
