@@ -16,7 +16,7 @@ interface IScrollSpyProps {
 
 export function useScrollSpy(
     elements?: IScrollSpyProps['elements'],
-    initialActive?: string,
+    initialActive?: IScrollSpyProps['initialActive'],
     options?: IScrollSpyProps['options']
 ) : IScrollSpyApi {
     const ref: MutableRefObject<HTMLElement> = useRef();
@@ -29,19 +29,21 @@ export function useScrollSpy(
         return root.querySelector(selector || `[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
     }, [ref]);
 
+    const scrollToAnchor = (item: string, elements: IScrollSpyProps['elements']) => {
+        const selected = elements.find(element => element === item);
+        if (selected) return getElement(ref.current, selected);
+    };
+
+    const scrollBySelector = (selector: IScrollSpyProps['selector']) => {
+        return getElement(ref.current, undefined, selector);
+    };
+
     const scrollToElement = (item: string, selector: string) => {
-        let element;
+        const element = item && elements && elements.includes(item) ?
+            scrollToAnchor(item, elements) :
+            scrollBySelector(selector);
 
-        if (item && elements && elements.includes(item)) {
-            const selected = elements.find(element => element === item);
-            if (selected) element = getElement(ref.current, selected);
-        } else if (!elements && !item && selector) {
-            element = getElement(ref.current, undefined, selector);
-        }
-
-        if (element) {
-            element.scrollIntoView({ block: 'start', behavior: 'smooth' });
-        } else return;
+        if (element) element.scrollIntoView({ block: 'start', behavior: 'smooth' });
     };
 
     useEffect(() => {
