@@ -19,31 +19,13 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
         history: PropTypes.object,
     };
 
-    uuiContexts: CommonContexts<TApi, TAppContext>;
-
-    state = {isLoaded: false};
-
-    constructor(props: LegacyContextProviderProps<TApi, TAppContext>, context: any) {
-        super(props, context);
-        this.uuiContexts = props.uuiContexts;
-
-        const loadAppContext = props?.loadAppContext || (() => Promise.resolve({} as TAppContext));
-
-        loadAppContext(this.uuiContexts.api).then(appCtx => {
-            this.uuiContexts.uuiApp = appCtx;
-            props.onInitCompleted(this.uuiContexts);
-            this.setState({isLoaded: true});
-        });
-
-    }
-
     render() {
         // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-        (this.uuiContexts.uuiErrors as any).discardError();
-        this.uuiContexts.uuiApi.reset();
+        (this.props.uuiContexts.uuiErrors as any).discardError();
+        this.props.uuiContexts.uuiApi.reset();
 
         //this.uuiContexts.uuiDnD.
-        const children = this.state.isLoaded ? this.props.children : '';
+        const children = this.props.children;
 
         return <>
             { children }
@@ -54,6 +36,6 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
     static childContextTypes = uuiContextTypes;
 
     getChildContext() {
-        return this.uuiContexts;
+        return this.props.uuiContexts;
     }
 }
