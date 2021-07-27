@@ -57,14 +57,6 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
         return !!link;
     }
 
-    getDataAttrs() {
-        if (!this.props.data) return;
-        return Object.keys(this.props.data).reduce((result, key) => {
-            result = { ...result, [`data-${key.toLowerCase()}`]: this.props.data[key] };
-            return result;
-        }, {});
-    }
-
     render() {
         let isAnchor = false;
         let isLinkActive = null;
@@ -94,7 +86,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             href,
             target: this.props.target,
             onKeyDown: this.handleKeyDown,
-            ...this.getDataAttrs(),
+            ...this.props.rawProps,
         },
             this.getChildren(),
         );

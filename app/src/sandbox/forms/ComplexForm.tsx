@@ -116,13 +116,13 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         return <>
             <FlexCell minWidth={ 100 }>
                 <Button
-                    data={{ testId: 'a' }}
                     onClick={ () => props.save() }
                     isDisabled={ this.state.isDisabled || !props.isChanged }
                     caption='Save'
                     color='grass'
                 />
             </FlexCell>
+            <div data-a="a"></div>
             <FlexCell minWidth={ 100 }>
                 <Button caption='Undo' color='night500' isDisabled={ !props.canUndo } onClick={ props.undo } />
             </FlexCell>
