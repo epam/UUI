@@ -41,11 +41,6 @@ export interface ICanBeReadonly {
     isReadonly?: boolean;
 }
 
-/** Component can have data-attributes */
-export interface IHaveDataAttrs {
-    data?: { [key: string]: string };
-}
-
 export interface ICanBeRequired {
     isRequired?: boolean;
 }
@@ -140,7 +135,7 @@ export interface INotification {
 }
 
 export interface IHasRawProps<T> {
-    rawProps?: T;
+    rawProps?: React.HTMLAttributes<T> & { [key: string]: any };
 }
 
 export type FlexRowProps = IHasCX
