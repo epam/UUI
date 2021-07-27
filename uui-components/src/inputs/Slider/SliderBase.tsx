@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IEditable, IDisableable } from '@epam/uui';
-import { LegacyRef, Ref } from "react";
+import { IHasCX, IEditable, IDisableable, IHasRawProps } from '@epam/uui';
 
-export interface SliderBaseProps<TSelection>  extends IHasCX, IEditable<TSelection>, IDisableable {
+export interface SliderBaseProps<TSelection>  extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<HTMLDivElement> {
     min: number;
     max: number;
     step: number;

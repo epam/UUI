@@ -1,9 +1,9 @@
 import React from 'react';
-import { cx, IEditable, uuiMarkers } from '@epam/uui';
+import { cx, IEditable, uuiMarkers, IHasRawProps } from '@epam/uui';
 import moment from 'moment';
 import { uuiDaySelection } from './Calendar';
 
-export interface DayProps extends IEditable<moment.Moment> {
+export interface DayProps extends IEditable<moment.Moment>, IHasRawProps<HTMLDivElement> {
     filter?(day: moment.Moment): boolean;
     getDayCX?: (day: moment.Moment) => any;
     renderDayNumber?: (param: any) => any;
@@ -32,7 +32,9 @@ export class Day extends React.Component<DayProps, any> {
                     ...(this.props.getDayCX ? this.props.getDayCX(this.props.value) : []),
                     uuiDaySelection.dayWrapper,
                     this.props.isHoliday && uuiDaySelection.holiday,
+                    this.props.rawProps?.className
                 ) }
+                {...this.props.rawProps}
             >
                 <div className={ uuiDaySelection.day }>
                     { this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D') }

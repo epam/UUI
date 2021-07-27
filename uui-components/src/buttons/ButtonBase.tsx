@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
+import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps {
 }
@@ -80,6 +79,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
                 (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
                 (this.props.onClick || isAnchor) && uuiMarkers.clickable,
                 this.props.cx,
+                this.props.rawProps?.className
             ),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),

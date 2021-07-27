@@ -141,7 +141,7 @@ export interface IHasRawProps<T> {
 export type FlexRowProps = IHasCX
     & IClickable
     & React.Attributes
-    & IHasRawProps<React.HTMLAttributes<HTMLDivElement>>
+    & IHasRawProps<HTMLDivElement>
     & {
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
         children?: any;
@@ -149,7 +149,7 @@ export type FlexRowProps = IHasCX
 
 export type FlexCellProps = IHasCX
     & IClickable
-    & IHasRawProps<React.HTMLAttributes<HTMLDivElement>>
+    & IHasRawProps<HTMLDivElement>
     & React.Attributes
     & {
         width?: number | 'auto' | '100%';
@@ -161,7 +161,7 @@ export type FlexCellProps = IHasCX
         children?: any;
     };
 
-export type VPanelProps = types.IHasCX & types.IHasChildren & types.IClickable & types.IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & IAnalyticableClick & {
+export type VPanelProps = types.IHasCX & types.IHasChildren & types.IClickable & types.IHasRawProps<HTMLDivElement> & IAnalyticableClick & {
     style?: React.CSSProperties;
 };
 

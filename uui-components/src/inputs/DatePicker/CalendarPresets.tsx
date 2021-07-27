@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { IHasCX } from '@epam/uui';
-import cx from 'classnames';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui';
 import * as css from './CalendarPresets.scss';
 
 export const uuiPresets = {
@@ -22,7 +21,7 @@ export type Presets = {
     },
 };
 
-export interface CalendarPresetsProps extends IHasCX {
+export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     presets: Presets;
     onPresetSet: (nV: PresetValue) => any;
 }
@@ -40,7 +39,7 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps, any> 
         });
 
         return (
-            <div className={ cx(css.container, uuiPresets.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiPresets.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
                 <div className={ uuiPresets.header }>Presets</div>
                 { presets.map(item => <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>{ item.name }</div>) }
             </div>
