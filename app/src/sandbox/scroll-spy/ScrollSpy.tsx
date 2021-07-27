@@ -1,12 +1,12 @@
-import React, { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface IScrollSpyApi {
     scrollToElement: (item?: string, selector?: string) => void;
-    currentActive?: string;
-    setRef?: (ref: HTMLElement) => void;
+    currentActive: string;
+    setRef: (ref: HTMLElement) => void;
 }
 interface IScrollSpyProps {
-    root?: HTMLElement;
+    root: HTMLElement;
     elements?: Readonly<string[]>;
     selector?: string;
     initialActive?: string;
@@ -29,22 +29,23 @@ export function useScrollSpy(
         return root.querySelector(selector || `[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
     }, [ref]);
 
-    const scrollToAnchor = (item: string, elements: IScrollSpyProps['elements']) => {
+    const scrollToAnchor = useCallback((item: string, elements: IScrollSpyProps['elements']) => {
         const selected = elements.find(element => element === item);
         if (selected) return getElement(ref.current, selected);
-    };
+    }, [ref]);
 
-    const scrollBySelector = (selector: IScrollSpyProps['selector']) => {
+    const scrollBySelector = useCallback((selector: IScrollSpyProps['selector']) => {
+        if (!selector) return;
         return getElement(ref.current, undefined, selector);
-    };
+    }, [ref]);
 
-    const scrollToElement = (item: string, selector: string) => {
+    const scrollToElement = useCallback((item: string, selector: string) => {
         const element = item && elements && elements.includes(item) ?
             scrollToAnchor(item, elements) :
             scrollBySelector(selector);
 
         if (element) element.scrollIntoView({ block: 'start', behavior: 'smooth' });
-    };
+    }, []);
 
     useEffect(() => {
         if (!ref || !elements || !Array.isArray(elements) || elements.length === 0) return;
@@ -53,7 +54,6 @@ export function useScrollSpy(
 
     useEffect(() => {
         if (observedNodes.length === 0) return;
-
         const observer = new IntersectionObserver(entries => {
             const intersectingElement = entries.find(entry => entry.isIntersecting) as any;
             setCurrentActive(intersectingElement?.target?.dataset?.spy);
@@ -76,8 +76,5 @@ export function useScrollSpy(
 
 export function ScrollSpyContainer({ elements, children } : IScrollSpyProps): ReactNode {
     const { currentActive, scrollToElement, setRef } = useScrollSpy(elements);
-
-    return (
-        <section ref={setRef}>{children({ scrollToElement, currentActive })}</section>
-    );
+    return children({ scrollToElement, currentActive, setRef });
 }
