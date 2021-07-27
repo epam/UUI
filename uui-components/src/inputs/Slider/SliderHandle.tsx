@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { uuiSlider } from './SliderBase';
-import cx from 'classnames';
-import { IHasCX, uuiElement } from '@epam/uui';
+import { IHasCX, uuiElement, cx } from '@epam/uui';
 import * as css from '../../overlays/Tooltip.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
+import { uuiSlider } from './SliderBase';
 
 interface SliderHandleProps extends IHasCX {
     onUpdate(mouseX: number): void;
@@ -56,9 +55,11 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
             this.props.handleActiveState && this.props.handleActiveState(false);
         }
     }
+
     handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: true });
     }
+
     handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: false });
     }
@@ -72,6 +73,7 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
             </div>
         );
     }
+
     render() {
         return (
             <Manager>

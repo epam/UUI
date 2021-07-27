@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as css from './Carousel.scss';
 import { FlexRow, VPanel, FlexCell, IconContainer } from "../layout";
-import cx from 'classnames';
 import range from 'lodash.range';
-import { IHasCX, Icon, uuiMod } from '@epam/uui';
+import { IHasCX, Icon, uuiMod, cx, IHasRawProps } from '@epam/uui';
 
-export interface CarouselProps extends IHasCX {
+export interface CarouselProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     items: Record<string, any>[];
     renderItem: (item: Record<string, any>) => React.ReactNode;
     divideBy: number;
@@ -50,7 +49,6 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
     }
 
     renderCarouselBar = (slidesCount: number) => {
-
         return range(slidesCount).map((x, idx) =>
             <div
                 onClick={ () => this.setState({ activeSlide: idx }) }
@@ -65,7 +63,10 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         const maxPage = slidesCount - 1;
 
         return (
-            <VPanel cx={ cx(css.container, uuiCarousel.container, this.props.cx) }>
+            <VPanel
+                cx={ cx(css.container, uuiCarousel.container, this.props.cx, this.props.rawProps?.className) }
+                rawProps={this.props.rawProps}
+            >
                 <FlexRow>
                     <div className={ uuiCarousel.bar }>
                         { this.renderCarouselBar(slidesCount) }

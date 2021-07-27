@@ -1,6 +1,6 @@
-import {ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel} from "../props";
+import { ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps } from "../props";
 
-export interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel, IHasChildren, ICanBeRequired {
+export interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel, IHasChildren, ICanBeRequired, IHasRawProps<HTMLDivElement> {
     labelPosition?: 'top' | 'left';
     info?: string;
     isOptional?: boolean;

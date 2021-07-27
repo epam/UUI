@@ -1,7 +1,6 @@
 import * as React from 'react';
 import moment from 'moment';
-import { IEditable, IHasCX, arrayToMatrix } from '@epam/uui';
-import cx from 'classnames';
+import { IEditable, IHasCX, arrayToMatrix, IHasRawProps, cx } from '@epam/uui';
 import * as css from './MonthSelection.scss';
 
 const MONTH_ROW_LENGTH = 3;
@@ -15,7 +14,7 @@ export const uuiMonthSelection = {
     currentMonth: 'uui-monthselection-current-month',
 };
 
-export interface MonthSelectionProps extends IEditable<moment.Moment>, IHasCX {
+export interface MonthSelectionProps extends IEditable<moment.Moment>, IHasCX, IHasRawProps<HTMLDivElement> {
     selectedDate: moment.Moment;
 }
 
@@ -35,7 +34,7 @@ export class MonthSelection extends React.Component<MonthSelectionProps, any> {
 
     render() {
         return (
-            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
                 <div className={ uuiMonthSelection.content }>
                     <div className={ uuiMonthSelection.monthContainer }>
                         { arrayToMatrix(moment.monthsShort(), MONTH_ROW_LENGTH).map((monthsRow, index) =>

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './LabeledInput.scss';
-import { Icon, uuiElement, labelMod, LabeledInputCoreProps } from '@epam/uui';
+import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui';
 import { TooltipProps } from '../overlays/Tooltip';
 import { Svg } from '../widgets/Svg';
 import { i18n } from '../../i18n';
@@ -23,7 +22,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
         const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
 
         return (
-            <div className={ cx(css.container, this.props.cx) }>
+            <div className={ cx(css.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
                 <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
                     { this.props.label &&
                         <div className={ uuiElement.label }>

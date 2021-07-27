@@ -1,8 +1,7 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './CheckboxGroup.scss';
 import { CheckboxProps } from '../inputs/Checkbox';
-import { ICanBeInvalid, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly } from '@epam/uui';
+import { ICanBeInvalid, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui';
 
 interface CheckboxGroupItem<TValue> {
     name: string;
@@ -10,7 +9,7 @@ interface CheckboxGroupItem<TValue> {
     renderName?: () => any;
 }
 
-export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly {
+export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
     CheckboxInput?: React.ComponentClass<CheckboxProps>;
     items: CheckboxGroupItem<TValue>[];
 }
@@ -36,7 +35,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
         const direction = this.props.direction || 'vertical';
 
         return (
-            <div className={ cx(directionMode[direction], this.props.cx, css.container) }>
+            <div className={ cx(directionMode[direction], this.props.cx, css.container, this.props.rawProps?.className) } {...this.props.rawProps}>
                 {
                     this.props.items.map(i =>
                         <CheckboxInput

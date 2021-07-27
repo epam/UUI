@@ -1,14 +1,12 @@
 import * as React from 'react';
-import cx from 'classnames';
 import moment from 'moment';
+import { IEditable, cx, arrayToMatrix } from '@epam/uui';
 import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, ViewType } from './DatePickerBodyBase';
 import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
-import * as css from './RangeDatePickerBody.scss';
 import { CalendarPresets, Presets } from './CalendarPresets';
-import { arrayToMatrix } from '@epam/uui';
-import { IEditable } from '@epam/uui';
+import * as css from './RangeDatePickerBody.scss';
 
 export function weekCount(displayedDate: moment.Moment) {
     let days: any[] = [];
@@ -269,7 +267,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) }>
+            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
                 { this.renderDatePicker() }
             </div>
         );

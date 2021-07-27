@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { IHasCX, arrayToMatrix } from '@epam/uui';
+import { IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
 import moment from 'moment';
 import { Day } from "./Day";
-import cx from 'classnames';
 import * as css from './Calendar.scss';
 import { i18n } from "../../../i18n";
 
@@ -25,7 +24,7 @@ export const uuiDaySelection = {
     holiday: 'uui-calendar-day-holiday',
 };
 
-export interface CalendarProps<TSelection> extends IHasCX {
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLDivElement> {
     value: TSelection;
     onValueChange: (day: moment.Moment) => void;
     displayedDate: moment.Moment;
@@ -120,7 +119,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
     render() {
         return (
-            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx, this.props.rawProps?.className) }  {...this.props.rawProps}>
                 <div className={ uuiDaySelection.content }>
                     <div className={ uuiDaySelection.weekdaysContainer }>
                         { moment.weekdaysShort(true).map((weekday, index) => <div className={ uuiDaySelection.weekday } key={ index }>{ weekday }</div>) }

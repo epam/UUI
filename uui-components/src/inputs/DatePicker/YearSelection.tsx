@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasCX, arrayToMatrix } from '@epam/uui';
-import cx from 'classnames';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
 import * as css from './YearSelection.scss';
 import moment from "moment";
 
@@ -15,7 +14,7 @@ export const uuiYearSelection = {
     currentYear: 'uui-yearselection-current-year',
 };
 
-export interface YearSelectionProps extends IEditable<moment.Moment>, IHasCX {
+export interface YearSelectionProps extends IEditable<moment.Moment>, IHasCX, IHasRawProps<HTMLDivElement> {
     selectedDate: moment.Moment;
 }
 
@@ -26,7 +25,7 @@ const getYears = (currentYear: number) => {
 export class YearSelection extends React.Component<YearSelectionProps, any> {
     render() {
         return (
-            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
                 <div className={ uuiYearSelection.content }>
                     <div className={ uuiYearSelection.yearContainer }>
                         { arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) =>

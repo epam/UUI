@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 import * as css from './Checkbox.scss';
 import { Icon, uuiMod, uuiElement, uuiMarkers, handleSpaceKey, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui';
 import { IconContainer } from '../layout';
@@ -33,10 +33,12 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
                     !this.props.isDisabled && uuiMarkers.clickable,
+                    this.props.rawProps?.className,
                 ) }
                 onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
                 tabIndex={ (!this.props.isDisabled && !this.props.isReadonly) ? 0 : undefined }
                 onKeyDown={ (e) => !this.props.isDisabled && !this.props.isReadonly && handleSpaceKey(e, this.handleChange) }
+                {...this.props.rawProps}
             >
                 <div
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }

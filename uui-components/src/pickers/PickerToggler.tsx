@@ -1,11 +1,10 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest } from '@epam/uui';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
 
-export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, React.PropsWithRef<any> {
+export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLDivElement>, React.PropsWithRef<any> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -148,12 +147,14 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     (!this.props.isReadonly && !this.props.isDisabled && this.props.onClick) && uuiMarkers.clickable,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     (!this.props.isReadonly && this.state.isActive) && uuiMod.active,
-                    this.props.cx)
-                }
+                    this.props.cx,
+                    this.props.rawProps?.className
+                ) }
                 tabIndex={ 0 }
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 onKeyDown={ this.handleKeyDown }
+                {...this.props.rawProps}
             >
                 <div
                     className={ cx(css.body, !this.props.isSingleLine && this.props.pickerMode !== 'single' && css.multiline) }

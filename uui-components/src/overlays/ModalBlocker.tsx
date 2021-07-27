@@ -1,13 +1,10 @@
 import * as React from 'react';
 import * as css from './ModalBlocker.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
-import { SyntheticEvent } from 'react';
 
 export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
-
     constructor(props: ModalBlockerProps) {
         super(props);
-
         window.addEventListener('keydown', this.keydownHandler);
     }
 
@@ -21,7 +18,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
         window.removeEventListener('keydown', this.keydownHandler);
     }
 
-    private handleBlockerClick = (e: SyntheticEvent<Element>) => {
+    private handleBlockerClick = (e: React.SyntheticEvent<Element>) => {
         if (!this.props.disallowClickOutside) {
             this.props.abort();
         }
@@ -29,7 +26,11 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
 
     render() {
         return (
-            <div className={ cx(css.container, this.props.cx) } style={ { zIndex: this.props.zIndex } } >
+            <div
+                className={ cx(css.container, this.props.cx, this.props.rawProps?.className) }
+                style={ { zIndex: this.props.zIndex, ...this.props.rawProps?.style } }
+                {...this.props.rawProps}
+            >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick }/>
                 { this.props.children }
             </div>

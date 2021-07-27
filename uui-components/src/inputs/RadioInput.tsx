@@ -1,10 +1,9 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './RadioInput.scss';
-import {IHasCX, IDisableable, IEditable, IHasLabel, Icon, handleSpaceKey, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, handleSpaceKey, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
 import { IconContainer } from '../layout';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLDivElement> {
     icon?: Icon;
     renderLabel?(): any;
 }
@@ -12,10 +11,10 @@ export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean
 export class RadioInput extends React.Component<RadioInputProps, any> {
     static contextTypes = uuiContextTypes;
     context: UuiContexts;
-    
+
     handleChange = () => {
         this.props.onValueChange(!this.props.value);
-        
+
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(!this.props.value, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
@@ -25,10 +24,11 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     render() {
         return (
             <div
-                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx) }
+                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx, this.props.rawProps?.className) }
                 onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
                 onKeyDown={ (e) => (!this.props.isDisabled && !this.props.isReadonly) && handleSpaceKey(e, this.handleChange) }
                 tabIndex={ 0 }
+                {...this.props.rawProps}
             >
                 <div className={ uuiElement.radioInput } />
                 { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }

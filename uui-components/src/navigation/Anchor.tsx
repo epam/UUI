@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './Anchor.scss';
 import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui';
-import cx from 'classnames';
+import { ButtonBase } from '../buttons';
 import {
     IHasCX,
     ICanRedirect,
@@ -9,12 +9,10 @@ import {
     UuiContexts,
     IDisableable,
     IClickable,
+    cx,
 } from '@epam/uui';
-import { ButtonBase } from '../buttons';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
-
-}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLElement> {}
 
 export class Anchor extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
@@ -42,13 +40,14 @@ export class Anchor extends ButtonBase<AnchorProps> {
                 (this.props.isLinkActive || isActive) && uuiMod.active,
                 uuiMarkers.clickable,
                 this.props.cx,
+                this.props.rawProps?.className
             ),
             tabIndex: 0,
             href,
             target: this.props.target,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
-            ...(this.props.rawProps as any),
+            ...this.props.rawProps,
         }, this.props.children);
     }
 }

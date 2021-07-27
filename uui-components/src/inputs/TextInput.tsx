@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext, cx } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './TextInput.scss';
 
@@ -99,22 +98,27 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
         let icon = this.props.icon && <IconContainer icon={ this.props.icon } onClick={ this.props.onIconClick }/>;
 
         return (
-            <div onClick={ this.props.onClick && this.handleClick } ref={ el => {
-                this.inputContainer = el;
-            } } className={
-                cx(
-                    css.container,
-                    uuiElement.inputBox,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.isInvalid && uuiMod.invalid,
-                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
-                    (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx,
-                ) }
-                 onFocus={ this.handleFocus }
-                 onBlur={ this.handleBlur }
-                 tabIndex={ -1 }
+            <div
+                onClick={ this.props.onClick && this.handleClick } ref={ el => {
+                    this.inputContainer = el;
+                } }
+                className={
+                    cx(
+                        css.container,
+                        uuiElement.inputBox,
+                        this.props.isDisabled && uuiMod.disabled,
+                        this.props.isReadonly && uuiMod.readonly,
+                        this.props.isInvalid && uuiMod.invalid,
+                        (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
+                        (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
+                        this.props.cx,
+                        this.props.rawProps?.className
+                    )
+                }
+                onFocus={ this.handleFocus }
+                onBlur={ this.handleBlur }
+                tabIndex={ -1 }
+                {...this.props.rawProps}
             >
                 { this.props.iconPosition !== 'right' && icon }
                 { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
