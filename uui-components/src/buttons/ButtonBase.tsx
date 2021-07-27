@@ -57,6 +57,14 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
         return !!link;
     }
 
+    getDataAttrs() {
+        if (!this.props.data) return;
+        return Object.keys(this.props.data).reduce((result, key) => {
+            result = { ...result, [`data-${key.toLowerCase()}`]: this.props.data[key] };
+            return result;
+        }, {});
+    }
+
     render() {
         let isAnchor = false;
         let isLinkActive = null;
@@ -73,19 +81,20 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
 
         return React.createElement(isAnchor ? 'a' : 'div', {
             className: cx(
-                    this.getClassName(),
-                    uuiElement.buttonBox,
-                    this.props.isDisabled && uuiMod.disabled,
-                    !this.props.isDisabled && uuiMod.enabled,
-                    (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
-                    (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                    this.props.cx,
-                ),
+                this.getClassName(),
+                uuiElement.buttonBox,
+                this.props.isDisabled && uuiMod.disabled,
+                !this.props.isDisabled && uuiMod.enabled,
+                (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
+                (this.props.onClick || isAnchor) && uuiMarkers.clickable,
+                this.props.cx,
+            ),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
             onKeyDown: this.handleKeyDown,
+            ...this.getDataAttrs(),
         },
             this.getChildren(),
         );

@@ -116,6 +116,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         return <>
             <FlexCell minWidth={ 100 }>
                 <Button
+                    data={{ testId: 'a' }}
                     onClick={ () => props.save() }
                     isDisabled={ this.state.isDisabled || !props.isChanged }
                     caption='Save'
