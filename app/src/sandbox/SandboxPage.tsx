@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React, { useMemo, createElement } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
@@ -10,18 +10,16 @@ import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 
-const items = [
-    { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
-    { id: 'dbDemo', name: 'DB demo', component: DbDemo },
-    { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
-    { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
-    { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
-];
-
-const itemsIds = items.map(i => i.id);
-
 export const SandboxPage = () => {
-    if (!itemsIds.includes(getQuery('id'))) {
+    const items = useMemo(() => [
+        { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
+        { id: 'dbDemo', name: 'DB demo', component: DbDemo },
+        { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
+        { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
+        { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo }
+    ], []);
+
+    if (!items.map(item => item.id).includes(getQuery('id'))) {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
     }
 
@@ -29,14 +27,11 @@ export const SandboxPage = () => {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: val.id } });
     };
 
-    const selectedExampleId = getQuery('id');
-    const example = items.find(i => i.id === selectedExampleId);
-
     return (
         <Page renderHeader={ () => <AppHeader /> } >
             <FlexRow alignItems='stretch'>
                 <Sidebar
-                    value={ selectedExampleId }
+                    value={ getQuery('id') }
                     onValueChange={ onChange }
                     getItemLink={ (item) => !item.isDropdown && {
                         pathname: 'sandbox',
@@ -44,7 +39,7 @@ export const SandboxPage = () => {
                     } }
                     items={ items }
                 />
-                { createElement(example.component) }
+                { createElement(items.find(item => item.id === getQuery('id')).component) }
             </FlexRow>
         </Page>
     );

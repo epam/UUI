@@ -97,7 +97,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                     <ModalFooter borderTop padding='24' vPadding='24'>
                         {
                             this.props.renderFooter
-                            ? this.props.renderFooter({ ...this.props as any, selectedRows: selectedDataRows })
+                            ? this.props.renderFooter({ ...this.props as any, view })
                             : this.renderFooter(selectedDataRows)
                         }
                     </ModalFooter>
