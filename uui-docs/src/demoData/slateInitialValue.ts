@@ -1,5 +1,5 @@
 
-export const initialValue = {
+export const slateInitialValue = {
     "object": "value",
     "document": {
         "object": "document",

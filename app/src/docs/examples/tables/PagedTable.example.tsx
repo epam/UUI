@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataTable, Panel, Text, Paginator, FlexRow } from "@epam/promo";
-import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest } from '@epam/uui';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
-import { svc } from "../../../services";
 import * as css from './TablesExamples.scss';
 import { FlexSpacer } from '@epam/uui-components';
 
@@ -12,23 +11,23 @@ export interface PagedTableState extends DataSourceState<{}> {
     totalCount?: number;
 }
 
-const columns: DataColumnProps<Person>[] = [
-    {
+export default function PagedTable() {
+    const svc = useUuiContext();
+    const [state, setState] = useState<PagedTableState>({ page: 1, visibleCount: 15, totalCount: 0, pageSize: 100 });
+
+    const columns: DataColumnProps<Person>[] = useMemo(() => [{
         key: 'name',
         caption: 'NAME',
         render: person => <Text color='gray80' font='sans-semibold'>{ person.name }</Text>,
         isSortable: true,
         grow: 1, minWidth: 224,
-    }, {
+    },
+    {
         key: 'location',
         caption: 'LOCATION',
         render: person => <Text>{ person.locationName }</Text>,
         grow: 0, shrink: 0, width: 144,
-    },
-];
-
-export function PagedTable() {
-    const [state, setState] = useState<PagedTableState>({ page: 1, visibleCount: 15, totalCount: 0, pageSize: 100 });
+    }], []);
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
         const result = await svc.api.demo.personsPaged({
@@ -41,7 +40,7 @@ export function PagedTable() {
         return result;
     }, [state.page, state.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, any>({ api }, [state.page]);
+    const dataSource = useLazyDataSource<Person, number, unknown>({ api }, [state.page]);
 
     const view = dataSource.useView(state, setState, {});
 

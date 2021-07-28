@@ -25,3 +25,4 @@ _ReSharper.Caches
 *.log
 .DS_Store
 coverage
+.vscode/settings.json
