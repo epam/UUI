@@ -64,7 +64,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
 
         return (
             <VPanel
-                cx={ cx(css.container, uuiCarousel.container, this.props.cx, this.props.rawProps?.className) }
+                cx={ cx(css.container, uuiCarousel.container, this.props.cx) }
                 rawProps={this.props.rawProps}
             >
                 <FlexRow>

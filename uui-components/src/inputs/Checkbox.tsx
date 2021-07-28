@@ -32,8 +32,7 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
-                    !this.props.isDisabled && uuiMarkers.clickable,
-                    this.props.rawProps?.className,
+                    !this.props.isDisabled && uuiMarkers.clickable
                 ) }
                 onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
                 tabIndex={ (!this.props.isDisabled && !this.props.isReadonly) ? 0 : undefined }

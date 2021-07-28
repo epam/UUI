@@ -31,8 +31,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
-                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
-                    this.props.rawProps?.className
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
                 onClick={ !this.props.isDisabled ? this.toggle : undefined }
                 tabIndex={ 0 }

@@ -27,9 +27,9 @@ export class FlexCell extends React.Component<FlexCellProps> {
 
         return (
             <div
-                className={ cx(this.props.cx, this.props.rawProps?.className) }
+                className={ cx(this.props.cx) }
                 onClick={ this.handleClick }
-                style={ { ...style, ...this.props.rawProps?.style } }
+                style={ style }
                 { ...this.props.rawProps }
             >
                 { this.props.children }

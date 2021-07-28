@@ -28,8 +28,7 @@ export class Spinner extends React.Component<SpinnerProps, any> {
                 className={ cx(
                     css.container,
                     uuiSpinner.container,
-                    this.props.cx,
-                    this.props.rawProps?.className
+                    this.props.cx
                 ) }
                 {...this.props.rawProps}
             >

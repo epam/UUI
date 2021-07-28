@@ -9,13 +9,13 @@ export class RichTextView extends React.Component<RichTextViewProps> {
     getViewByProps(content: string) {
         return <div
             dangerouslySetInnerHTML={ { __html: content } }
-            className={ cx(this.props.cx, this.props.rawProps?.className) }
+            className={ cx(this.props.cx) }
             {...this.props.rawProps}
         />;
     }
 
     getViewByChildren(content: string) {
-        return <div className={ cx(this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+        return <div className={ cx(this.props.cx) } {...this.props.rawProps}>
             { content }
         </div>;
     }

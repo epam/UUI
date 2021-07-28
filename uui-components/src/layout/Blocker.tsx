@@ -26,8 +26,8 @@ export class Blocker extends React.Component<BlockerProps, any> {
     render() {
         return (
             <div
-                className={ cx(css.container, uuiBlocker.container, this.props.cx, this.props.rawProps?.className) }
-                style={ { minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined, ...this.props.rawProps?.style } }
+                className={ cx(css.container, uuiBlocker.container, this.props.cx) }
+                style={ { minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined } }
                 {...this.props.rawProps}
             >
                 <TransitionGroup>

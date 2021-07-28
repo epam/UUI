@@ -12,8 +12,8 @@ export class DropdownContainer extends React.Component<DropdownContainerProps, a
     render() {
         return (
             <VPanel
-                cx={ cx(css.container, uuiElement.dropdownBody, this.props.cx, this.props.rawProps?.className) }
-                style={ { minWidth: this.props.width, minHeight: this.props.height, ...this.props.rawProps?.style } }
+                cx={ cx(css.container, uuiElement.dropdownBody, this.props.cx) }
+                style={ { minWidth: this.props.width, minHeight: this.props.height } }
                 rawProps={this.props.rawProps}
             >
                 { this.props.children }

@@ -104,7 +104,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
 
         return (
             <div
-                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx, this.props.rawProps?.className) }
+                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }

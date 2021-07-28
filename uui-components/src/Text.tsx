@@ -17,7 +17,7 @@ export class Text extends React.Component<TextProps> {
         return (
             <div
                 onClick={ this.props.onClick && this.onClick }
-                className={ cx(this.props.cx, css.container, this.props.rawProps?.className ) }
+                className={ cx(this.props.cx, css.container) }
                 { ...this.props.rawProps }
             >
                 { this.props.children }

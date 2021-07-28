@@ -135,7 +135,7 @@ export interface INotification {
 }
 
 export interface IHasRawProps<T> {
-    rawProps?: React.HTMLAttributes<T> & { [key: string]: any };
+    rawProps?: React.HTMLAttributes<T> & Record<string, any>;
 }
 
 export type FlexRowProps = IHasCX

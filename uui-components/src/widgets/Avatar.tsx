@@ -13,7 +13,7 @@ export class Avatar extends React.Component<AvatarProps, any> {
     render() {
         return (
             <img
-                className={ cx(css.avatar, this.props.cx, this.props.rawProps?.className) }
+                className={ cx(css.avatar, this.props.cx) }
                 width={ this.props.size }
                 height={ this.props.size }
                 src={ (this.props.isLoading || !this.props.img) ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg' : this.props.img }

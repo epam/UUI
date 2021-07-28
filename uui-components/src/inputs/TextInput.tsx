@@ -111,8 +111,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                         this.props.isInvalid && uuiMod.invalid,
                         (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                         (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                        this.props.cx,
-                        this.props.rawProps?.className
+                        this.props.cx
                     )
                 }
                 onFocus={ this.handleFocus }

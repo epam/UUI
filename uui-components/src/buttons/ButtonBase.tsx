@@ -78,8 +78,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
                 !this.props.isDisabled && uuiMod.enabled,
                 (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
                 (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                this.props.cx,
-                this.props.rawProps?.className
+                this.props.cx
             ),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),

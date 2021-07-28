@@ -15,12 +15,11 @@ export class VPanel extends React.Component<VPanelProps> {
         return (
             <div
                 onClick={ this.props.onClick && this.handleClick }
-                style={ { ...this.props.style, ...this.props.rawProps?.style } }
+                style={ this.props.style }
                 className={ cx(
                     this.props.cx,
                     css.container,
-                    this.props.onClick && uuiMarkers.clickable,
-                    this.props.rawProps?.className
+                    this.props.onClick && uuiMarkers.clickable
                 ) }
                 { ...this.props.rawProps }
             >

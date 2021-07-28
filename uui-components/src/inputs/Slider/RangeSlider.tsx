@@ -75,8 +75,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     uuiSlider.container,
                     css.root,
                     this.props.isDisabled && uuiMod.disabled,
-                    this.props.cx,
-                    this.props.rawProps?.className
+                    this.props.cx
                 ) }
                 onClick={ this.handleMouseClick }
                 {...this.props.rawProps}

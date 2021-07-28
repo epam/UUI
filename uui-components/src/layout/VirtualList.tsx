@@ -152,7 +152,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
 
     render() {
         return (
-            <div className={ cx(css.wrapper, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
+            <div className={ cx(css.wrapper, this.props.cx) } {...this.props.rawProps} >
                 <ScrollBars
                     key='s'
                     autoHeight

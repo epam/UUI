@@ -24,7 +24,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     render() {
         return (
             <div
-                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx, this.props.rawProps?.className) }
+                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx) }
                 onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
                 onKeyDown={ (e) => (!this.props.isDisabled && !this.props.isReadonly) && handleSpaceKey(e, this.handleChange) }
                 tabIndex={ 0 }
