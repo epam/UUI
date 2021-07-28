@@ -1,7 +1,7 @@
 import * as css from './Calendar.scss';
 import { Calendar as uuiCalendar, CalendarProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
-import moment from 'moment';
+import { Dayjs } from "dayjs";
 
 export function applyDateSelectionMods() {
     return [
@@ -9,4 +9,4 @@ export function applyDateSelectionMods() {
     ];
 }
 
-export const Calendar = withMods<CalendarProps<moment.Moment>, any>(uuiCalendar, applyDateSelectionMods, () => ({}));
+export const Calendar = withMods<CalendarProps<Dayjs>, any>(uuiCalendar, applyDateSelectionMods, () => ({}));

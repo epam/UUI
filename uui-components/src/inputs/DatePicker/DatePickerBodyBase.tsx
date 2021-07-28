@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import moment from 'moment';
+import { Dayjs } from 'dayjs';
 import { IEditable, IHasCX, Icon } from '@epam/uui';
 import { Presets } from './CalendarPresets';
 
@@ -14,10 +14,10 @@ export const uuiDatePickerBodyBase = {
 };
 
 export interface DatePickerBodyBaseOptions extends IHasCX {
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     changeIsOpen?(newValue: boolean): void;
     presets?: Presets;
-    renderDay?: (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => React.ReactElement<Element>;
+    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
     navIconLeft?: Icon;
     navIconRight?: Icon;
 }
@@ -25,23 +25,23 @@ export interface DatePickerBodyBaseOptions extends IHasCX {
 export interface DatePickerBodyBaseProps<TSelection> extends DatePickerBodyBaseOptions {
     value: PickerBodyValue<TSelection>;
     setSelectedDate: (newDate: TSelection) => void;
-    setDisplayedDateAndView: (displayedDate: moment.Moment, view: ViewType) => void;
+    setDisplayedDateAndView: (displayedDate: Dayjs, view: ViewType) => void;
 }
 
 export interface PickerBodyValue<TSelection> {
     selectedDate: TSelection | null;
-    displayedDate: moment.Moment;
+    displayedDate: Dayjs;
     view: ViewType;
 }
 
 export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Component<DatePickerBodyBaseProps<TSelection> & TProps> {
     abstract renderDatePicker: () => React.ReactElement<Element>;
 
-    onMonthClick = (newDate: moment.Moment) => {
+    onMonthClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'DAY_SELECTION');
     }
 
-    onYearClick = (newDate: moment.Moment) => {
+    onYearClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'MONTH_SELECTION');
     }
 
