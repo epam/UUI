@@ -1,15 +1,10 @@
-import * as React from 'react';
-import {Metadata, RenderFormProps, INotification, FormSaveResponse} from "@epam/uui";
-import {svc} from "../../../services";
+import React, { ReactNode, useState } from 'react';
+import { Metadata, RenderFormProps, INotification, FormSaveResponse, useUuiContext } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, Form } from "@epam/promo";
 
 interface Login {
     email: string;
     password: string;
-}
-
-interface BasicFormExampleState {
-    login: Login;
 }
 
 interface ServerResponseExample<T> {
@@ -20,64 +15,55 @@ interface ServerResponseExample<T> {
     };
 }
 
-export class ServerValidationExample extends React.PureComponent<{}, BasicFormExampleState> {
-    state = {
-        login: {
-            email: "Ivan_Ivanov@epam.com",
-            password: "",
+export default function ServerValidationExample() {
+    const svc = useUuiContext();
+    const [login] = useState<Login>({
+        email: "Ivan_Ivanov@epam.com",
+        password: "",
+    });
+
+    const getMetaData = (): Metadata<Login> => ({
+        props: {
+            email: { isRequired: true },
+            password: { isRequired: true },
         },
-    };
+    });
 
-    private getMetaData = (): Metadata<Login> => {
-        return {
-            props: {
-                email: {isRequired: true},
-                password: {isRequired: true},
-            },
-        };
-    }
+    const renderForm = ({ lens, save, validate }: RenderFormProps<Login>) => (
+        <FlexCell width='100%'>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
+                        <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Password' { ...lens.prop('password').toProps() }>
+                        <TextInput placeholder='Password'
+                                    type='password'
+                                    { ...lens.prop('password').toProps() }/>
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12' spacing='12'>
+                <FlexSpacer/>
+                <Button caption='Validate' onClick={ validate }/>
+                <Button caption='Save' onClick={ save } color='green'/>
+            </FlexRow>
+        </FlexCell>
+    );
 
-    private renderForm = (props: RenderFormProps<Login>) => {
-        let lens = props.lens;
+    const renderNotification = (props: INotification): ReactNode => (
+        <SuccessNotification { ...props }>
+            <Text>Form saved</Text>
+        </SuccessNotification>
+    );
 
-        return (
-            <FlexCell width='100%'>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
-                            <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12'>
-                    <FlexCell grow={ 1 }>
-                        <LabeledInput label='Password' { ...lens.prop('password').toProps() }>
-                            <TextInput placeholder='Password'
-                                       type='password'
-                                       { ...lens.prop('password').toProps() }/>
-                        </LabeledInput>
-                    </FlexCell>
-                </FlexRow>
-                <FlexRow vPadding='12' spacing='12'>
-                    <FlexSpacer/>
-                    <Button caption='Validate' onClick={ props.validate }/>
-                    <Button caption='Save' onClick={ props.save } color='green'/>
-                </FlexRow>
-            </FlexCell>
-        );
-    }
-
-    private renderNotification(props: INotification) {
-        return (
-            <SuccessNotification { ...props }>
-                <Text>Form saved</Text>
-            </SuccessNotification>
-        );
-    }
-
-    private onSave = async (formState: Login) => {
+    const onSave = async (formState: Login): Promise<FormSaveResponse<Login>> => {
         const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
-        if (!response.error) return response as FormSaveResponse<Login>;
+        if (!response.error) return response;
 
         // Prefer to return the ICanBeInvalid structure from the server directly, and pass it to the Form as is. Here, we demonstrate how to handle the case when it's not possible. In such cases, you can convert your server-specific errors to the ICanBeInvalid interface on client.
         if (response.error.name === "user-exists") {
@@ -95,19 +81,15 @@ export class ServerValidationExample extends React.PureComponent<{}, BasicFormEx
         }
     }
 
-    private onSuccess = (formState: Login) => {
-        return svc.uuiNotifications.show(this.renderNotification);
-    }
+    const onSuccess = (formState: Login): Promise<void> => svc.uuiNotifications.show(renderNotification);
 
-    public render() {
-        return (
-            <Form<Login>
-                value={ this.state.login }
-                onSave={ this.onSave }
-                onSuccess={ this.onSuccess }
-                renderForm={ this.renderForm }
-                getMetadata={ this.getMetaData }
-            />
-        );
-    }
+    return (
+        <Form<Login>
+            value={ login }
+            onSave={ onSave }
+            onSuccess={ onSuccess }
+            renderForm={ renderForm }
+            getMetadata={ getMetaData }
+        />
+    );
 }

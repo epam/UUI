@@ -1,35 +1,53 @@
-import * as React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
-import { UUI4 } from '../common';
+import { UUI4, UUI3 } from '../common';
 import { items } from './structure';
 import { getQuery } from '../helpers';
+import { CodesandboxService } from '../data/codesandbox/service';
 
-const itemsIds = items.map(i => i.id);
+type DocsQuery = {
+    id: string,
+    mode?: string,
+    skin?: UUI3 | UUI4,
+    category?: string,
+};
 
 export const DocumentsPage = () => {
-    if (!itemsIds.includes(getQuery('id'))) {
-        svc.uuiRouter.redirect({ pathname: '/documents', query: { id: items[0].id, mode: 'doc', skin: UUI4 } });
+    const sandboxService = useMemo(() => new CodesandboxService(svc), [svc]);
+
+    const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
+        pathname: '/documents',
+        query,
+    });
+
+    if (!items.map(item => item.id).includes(getQuery('id'))) {
+        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 })
     }
 
     const onChange = (val: TreeNodeProps) => {
         if (val.parentId === 'components') {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: val.id, mode: getQuery('mode') || 'doc', skin: getQuery('skin') || UUI4, category: val.parentId } });
+            redirectTo({ id: val.id, mode: getQuery('mode') || 'doc', skin: getQuery<DocsQuery['skin']>('skin') || UUI4, category: val.parentId });
         } else {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: val.id, category: val.parentId } });
+            redirectTo({ id: val.id, category: val.parentId });
         }
     };
 
-    const selectedDocId = getQuery('id');
-    const doc = items.find(i => i.id === selectedDocId);
+    useEffect(() => {
+        sandboxService.getFiles().then(files => Object.assign(svc, files));
+
+        return () => {
+            sandboxService.clearFiles().then(files => Object.assign(svc, files));
+        };
+    }, []);
 
     return (
         <Page renderHeader={ () => <AppHeader /> } >
             <FlexRow alignItems='stretch'>
                 <Sidebar
-                    value={ selectedDocId }
+                    value={ getQuery('id') }
                     onValueChange={ onChange }
                     items={ items }
                     getItemLink={ (item) => !item.isDropdown && {
@@ -42,7 +60,7 @@ export const DocumentsPage = () => {
                         },
                     } }
                 />
-                { React.createElement(doc.component) }
+                { React.createElement(items.find(item => item.id === getQuery('id')).component) }
             </FlexRow>
         </Page>
     );

@@ -6,6 +6,7 @@ import { VPanel } from '../layout/flexItems/VPanel';
 export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {
     width?: number;
     height?: number;
+    style?: React.CSSProperties;
 }
 export class DropdownContainer extends React.Component<DropdownContainerProps, any> {
     render() {

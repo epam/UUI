@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { Button, NumericInput } from '@epam/promo';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { NumericInput } from '@epam/promo';
 
-export function SizeExample() {
+export default function SizeExample() {
     const [value, onValueChange] = useState(null);
 
     return (
