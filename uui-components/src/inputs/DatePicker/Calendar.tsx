@@ -119,7 +119,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
     render() {
         return (
-            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx, this.props.rawProps?.className) }  {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx) }  {...this.props.rawProps}>
                 <div className={ uuiDaySelection.content }>
                     <div className={ uuiDaySelection.weekdaysContainer }>
                         { moment.weekdaysShort(true).map((weekday, index) => <div className={ uuiDaySelection.weekday } key={ index }>{ weekday }</div>) }

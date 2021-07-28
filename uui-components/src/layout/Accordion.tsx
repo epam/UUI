@@ -43,8 +43,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                 className={ cx(
                     uuiAccordion.toggler,
                     isAccordionOpened && uuiMod.opened,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.rawProps?.className
+                    this.props.isDisabled && uuiMod.disabled
                 ) }
                 {...this.props.rawProps}
             >

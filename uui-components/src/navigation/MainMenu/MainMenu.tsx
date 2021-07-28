@@ -295,8 +295,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                                 this.props.cx,
                                 uuiMainMenu.container,
                                 css.container,
-                                this.props.isTransparent && uuiMainMenu.transparent,
-                                this.props.rawProps?.className
+                                this.props.isTransparent && uuiMainMenu.transparent
                             ) }
                             {...this.props.rawProps}
                         >

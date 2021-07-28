@@ -147,8 +147,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     (!this.props.isReadonly && !this.props.isDisabled && this.props.onClick) && uuiMarkers.clickable,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     (!this.props.isReadonly && this.state.isActive) && uuiMod.active,
-                    this.props.cx,
-                    this.props.rawProps?.className
+                    this.props.cx
                 ) }
                 tabIndex={ 0 }
                 onFocus={ this.handleFocus }

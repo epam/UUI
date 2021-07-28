@@ -25,7 +25,7 @@ const getYears = (currentYear: number) => {
 export class YearSelection extends React.Component<YearSelectionProps, any> {
     render() {
         return (
-            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) } {...this.props.rawProps}>
                 <div className={ uuiYearSelection.content }>
                     <div className={ uuiYearSelection.yearContainer }>
                         { arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) =>

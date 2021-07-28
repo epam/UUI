@@ -115,8 +115,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx,
-                    this.props.rawProps?.className
+                    this.props.cx
                 ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }

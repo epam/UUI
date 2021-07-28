@@ -46,7 +46,7 @@ export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Compo
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } {...this.props.rawProps}>
                 { this.renderDatePicker() }
             </div>
         );

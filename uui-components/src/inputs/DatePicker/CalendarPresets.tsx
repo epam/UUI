@@ -39,7 +39,7 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps, any> 
         });
 
         return (
-            <div className={ cx(css.container, uuiPresets.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
+            <div className={ cx(css.container, uuiPresets.container, this.props.cx) } {...this.props.rawProps} >
                 <div className={ uuiPresets.header }>Presets</div>
                 { presets.map(item => <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>{ item.name }</div>) }
             </div>

@@ -22,7 +22,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
         const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
 
         return (
-            <div className={ cx(css.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
+            <div className={ cx(css.container, this.props.cx) } {...this.props.rawProps} >
                 <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
                     { this.props.label &&
                         <div className={ uuiElement.label }>

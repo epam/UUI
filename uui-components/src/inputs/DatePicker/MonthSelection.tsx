@@ -34,7 +34,7 @@ export class MonthSelection extends React.Component<MonthSelectionProps, any> {
 
     render() {
         return (
-            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps} >
+            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } {...this.props.rawProps} >
                 <div className={ uuiMonthSelection.content }>
                     <div className={ uuiMonthSelection.monthContainer }>
                         { arrayToMatrix(moment.monthsShort(), MONTH_ROW_LENGTH).map((monthsRow, index) =>

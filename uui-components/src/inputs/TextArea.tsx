@@ -64,7 +64,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render () {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } {...this.props.rawProps}>
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }

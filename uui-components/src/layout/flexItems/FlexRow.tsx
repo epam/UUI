@@ -14,8 +14,7 @@ export class FlexRow extends React.Component<FlexRowProps> {
                     this.props.cx,
                     css.container,
                     this.props.onClick && uuiMarkers.clickable,
-                    css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)],
-                    this.props.rawProps?.className,
+                    css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)]
                 ) }
                 {...this.props.rawProps}
             >

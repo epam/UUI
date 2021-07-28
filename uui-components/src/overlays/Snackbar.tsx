@@ -128,7 +128,7 @@ export class Snackbar extends React.Component<SnackbarProps> {
             .map(this.renderItemWithOffset(botCenterOffset));
 
         return (
-            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } {...this.props.rawProps}>
                 <TransitionGroup>
                     { botLeftItems }
                     { botRightItems }

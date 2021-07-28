@@ -39,8 +39,7 @@ export class Anchor extends ButtonBase<AnchorProps> {
                 this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 (this.props.isLinkActive || isActive) && uuiMod.active,
                 uuiMarkers.clickable,
-                this.props.cx,
-                this.props.rawProps?.className
+                this.props.cx
             ),
             tabIndex: 0,
             href,

@@ -31,8 +31,7 @@ export class Day extends React.Component<DayProps, any> {
                     this.props.filter && !this.props.filter(this.props.value) && uuiDaySelection.filteredDay,
                     ...(this.props.getDayCX ? this.props.getDayCX(this.props.value) : []),
                     uuiDaySelection.dayWrapper,
-                    this.props.isHoliday && uuiDaySelection.holiday,
-                    this.props.rawProps?.className
+                    this.props.isHoliday && uuiDaySelection.holiday
                 ) }
                 {...this.props.rawProps}
             >

@@ -47,7 +47,7 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
         const MAX_HOURS = this.props.format || FORMAT_12H;
 
         return (
-            <div className={ cx(uuiTimePicker.container, this.props.cx, this.props.rawProps?.className) } {...this.props.rawProps}>
+            <div className={ cx(uuiTimePicker.container, this.props.cx) } {...this.props.rawProps}>
                 <div className={ uuiTimePicker.elementContainer }>
                     <IconContainer
                         cx={ uuiTimePicker.iconUp }

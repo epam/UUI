@@ -30,8 +30,7 @@ export class Slider extends SliderBase<number, any> {
                     css.root,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.cx,
-                    this.state.isActive && uuiMod.active,
-                    this.props.rawProps?.className
+                    this.state.isActive && uuiMod.active
                 ) }
                 onClick={ e => this.props.onValueChange(this.getValue(e.clientX, valueWidth)) }
                 onMouseDown={ this.handleMouseDown }
