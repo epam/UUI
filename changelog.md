@@ -5,6 +5,7 @@ fix bug when enzyme includes in result build bundle
 fix UUI context multiple creation
 [NumericInput]: fix calculation with floating point numbers
 [Typography]: fix global margin and padding for tags and elements
+[PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
 
 # 4.1.0 - 30.06.2021
 
