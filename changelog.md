@@ -1,3 +1,20 @@
+# 4.1.2[WIP]
+
+**What's New**
+* [DropdownMenu] Implement DropdownMenu component in UUI4[Promo].
+
+  DropdownMenu allows you to create vertical menus with a nested structure that pops up on hover or click (default is on hover).
+  The main possibilities:
+
+        - render menu item with an icon in the left or right position ('left' as default).
+        - highlight menu item as selected passing 'isSelected' prop.
+        - render you own custom component as DropdownMenu item.
+        - to splite items as a group.
+
+**What’s Fixed**
+[Badge]: fix cursor pointer if badge is clickable.
+[AnalyticsContext]: Removed amplitude client from UUI and implemented AnalyticsListener to pass any analytics client from client side. The GA client has also been replaced to use the AnalyticsListener
+
 # 4.1.1 - 05.07.2021
 
 **What’s Fixed**
