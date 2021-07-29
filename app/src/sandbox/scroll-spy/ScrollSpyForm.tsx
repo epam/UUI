@@ -71,11 +71,11 @@ export function ScrollSpyForm() {
     }, []);
 
     const RenderForm = ({ lens, save, isInvalid }: RenderFormProps<Person>) => {
-        const { scrollToElement, setRef } = useScrollSpy();
+        const { scrollToElement, setRef } = useScrollSpy({});
 
         useEffect(() => {
-            if (isInvalid) scrollToElement(null, '.uui-invalid');
-        }, [isInvalid]);
+            if (isInvalid) scrollToElement();
+        });
 
         return (
             <section ref={setRef}>

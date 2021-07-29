@@ -9,7 +9,7 @@ export function ScrollSpyAnchor() {
         { id: 'b', caption: 'Second' },
     ], []);
 
-    const { scrollToElement, currentActive, setRef } = useScrollSpy(['a', 'b']);
+    const { scrollToElement, currentActive, setRef } = useScrollSpy({ elements: ['a', 'b'] });
 
     return (
         <FlexRow>
