@@ -32,6 +32,10 @@
         flex-shrink: 0;
         box-sizing: border-box;
         border: 1px solid $night400;
+
+        &:not([readonly]):not([disabled]):focus {
+            @include control-focus-effect();
+        }
     }
 
     :global(.uui-icon) {
@@ -43,7 +47,6 @@
             border: 1px solid var(--uui-color-700);
         }
     }
-
 
     :global(.uui-input-label) {
         @include typography-inline();
@@ -69,14 +72,6 @@
 
         :global(.uui-icon) {
             fill: var(--uui-color-800);
-        }
-    }
-
-    &:focus {
-        outline: none;
-
-        :global(.uui-radioinput) {
-            @include control-focus-effect();
         }
     }
 

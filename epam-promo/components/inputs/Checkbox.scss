@@ -34,7 +34,7 @@
 
 
     //Colors
-    &:hover, &:active, &:focus, &:focus-within {
+    &:hover, &:active, &:focus {
         :global(.uui-checkbox) {
             border-color: var(--border-color-hovered);
         }
@@ -58,7 +58,7 @@
             border-color: var(--border-color-disabled);
         }
 
-        &:hover, &:active, &:focus, &:focus-within {
+        &:hover, &:active, &:focus {
             :global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }

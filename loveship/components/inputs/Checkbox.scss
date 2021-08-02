@@ -56,7 +56,7 @@
         }
     }
 
-    &:hover, &:active, &:focus:not(:read-only, :disabled) {
+    &:hover, &:active, &:focus {
         :global(.uui-checkbox) {
             border-color: var(--uui-color-800);
         }

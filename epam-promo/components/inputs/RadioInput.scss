@@ -164,7 +164,7 @@
     }
 
     &:global(.uui-disabled) {
-        :global(.uui-input-label),  {
+        :global(.uui-input-label) {
             color: var(--caption-color-disabled);
         }
     }
