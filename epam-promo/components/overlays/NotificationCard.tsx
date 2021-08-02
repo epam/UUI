@@ -42,26 +42,50 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
     }
 
     render() {
-        return <div className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
-            ref={ (el) => this.notificationCardNode = el }>
-            <div className={ css.mainPath }>
-                {
-                    this.props.icon && <div className={ css.iconWrapper }>
-                        <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+        return (
+            <div
+                role="alert"
+                ref={ (el) => this.notificationCardNode = el }
+                className={ cx(
+                    css.notificationWrapper,
+                    styles[`color-${this.props.color}`],
+                    css.root,
+                    this.props.cx
+                ) }
+            >
+                <div className={ css.mainPath }>
+                    {this.props.icon && (
+                        <span className={ css.iconWrapper }>
+                            <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+                        </span>
+                    ) }
+                    <div className={ css.content }>
+                        { this.props.children }
+                        { this.props.actions && (
+                            <div className={ css.actionWrapper }>
+                                { this.props.actions.map((action: notificationAction) => (
+                                    <LinkButton
+                                        caption={ action.name }
+                                        onClick={ action.action }
+                                        key={ action.name }
+                                        cx={ css.actionLink }
+                                        size='36'
+                                    />
+                                ) ) }
+                            </div>
+                        ) }
                     </div>
-                }
-                <div className={ css.content }>
-                    { this.props.children }
-                    { this.props.actions && <div className={ css.actionWrapper }>
-                        { this.props.actions.map((action: notificationAction) => {
-                            return <LinkButton caption={ action.name } onClick={ action.action }
-                                key={ action.name } cx={ css.actionLink } size='36' />;
-                        }) }
-                    </div> }
+                    { this.props.onClose && (
+                        <IconButton
+                            icon={ crossIcon }
+                            color='gray60'
+                            onClick={ this.props.onClose }
+                            cx={ css.closeIcon }
+                        />
+                    ) }
                 </div>
-                { this.props.onClose && <IconButton icon={ crossIcon } color='gray60' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
             </div>
-        </div>;
+        );
     }
 }
 
