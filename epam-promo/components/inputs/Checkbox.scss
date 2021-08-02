@@ -34,7 +34,7 @@
 
 
     //Colors
-    &:hover, &:active, &:focus {
+    &:hover, &:active, &:focus, &:focus-within {
         :global(.uui-checkbox) {
             border-color: var(--border-color-hovered);
         }
@@ -58,7 +58,7 @@
             border-color: var(--border-color-disabled);
         }
 
-        &:hover, &:active, &:focus {
+        &:hover, &:active, &:focus, &:focus-within {
             :global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }
@@ -115,7 +115,7 @@
         @include icon-sizes(12px, 12px, 12px);
 
         :global(.uui-input-label) {
-            margin-left: 6px;
+            margin-left: 18px;
         }
     }
 }

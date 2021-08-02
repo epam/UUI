@@ -1,27 +1,26 @@
 .container {
     display: flex;
     cursor: pointer;
-    align-items: center;
-
-    &:focus {
-        outline: none;
-    }
+    position: relative;
 
     :global(.uui-checkbox) {
+        appearance: none;
+        cursor: pointer;
+        outline-offset: 0;
+        margin: 0;
         display: flex;
-        align-items: center;
-        align-self: baseline;
-        justify-content: center;
         flex-shrink: 0;
-        box-sizing: border-box;
 
         &:focus {
             outline: none;
         }
     }
 
-    :global(.uui-input-label) {
-        display: flex;
-        align-items: center;
+    span[role="label"] {
+        margin-left: 12px;
+    }
+
+    :global(.uui-icon) {
+        position: absolute;
     }
 }
