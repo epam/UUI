@@ -3,7 +3,7 @@ import { IconContainer } from '../../layout';
 import { Icon, IEditable, IHasCX } from '@epam/uui';
 import cx from 'classnames';
 import * as css from './DatePickerHeader.scss';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import { PickerBodyValue, ViewType } from './DatePickerBodyBase';
 
 export const uuiHeader = {
@@ -20,28 +20,28 @@ interface HeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
 }
 
 export class DatePickerHeader extends React.Component<HeaderProps, any> {
-    getPrevMonthFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).subtract(1, 'months');
+    getPrevMonthFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.subtract(1, 'month');
     }
 
-    getNextMonthFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).add(1, 'months');
+    getNextMonthFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.add(1, 'month');
     }
 
-    getPrevYearFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).subtract(1, 'years');
+    getPrevYearFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.subtract(1, 'year');
     }
 
-    getNextYearFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).add(1, 'years');
+    getNextYearFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.add(1, 'year');
     }
 
-    getPrevListYearFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).subtract(16, 'years');
+    getPrevListYearFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.subtract(16, 'year');
     }
 
-    getNextListYearFromCurrent = (currentDate: moment.Moment) => {
-        return moment(currentDate).add(16, 'years');
+    getNextListYearFromCurrent = (currentDate: Dayjs) => {
+        return currentDate.add(16, 'year');
     }
 
     onLeftNavigationArrow = () => {
@@ -84,7 +84,7 @@ export class DatePickerHeader extends React.Component<HeaderProps, any> {
                         className={ uuiHeader.navTitle }
                         tabIndex={ 0 }
                     >
-                        { `${this.props.value?.view !== 'MONTH_SELECTION' ? moment.months()[this.props.value?.displayedDate.month()] : ''} ${this.props.value?.displayedDate.year()}` }
+                        { `${this.props.value?.view !== 'MONTH_SELECTION' ? dayjs.months()[this.props.value?.displayedDate.month()] : ''} ${this.props.value?.displayedDate.year()}` }
                     </div>
                     <IconContainer cx={ uuiHeader.navIconRight } icon={ this.props.navIconRight } onClick={ () => this.onRightNavigationArrow() } />
                 </header>

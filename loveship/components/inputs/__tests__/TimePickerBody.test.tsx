@@ -1,17 +1,23 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {TimePickerBody} from "../TimePickerBody";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import MockDate from 'mockdate';
+import { systemIcons } from "../../icons/icons";
+const acceptIcon = systemIcons[18].accept;
 
-jest.mock("moment", () => () => ({format: () => "2020–12–09T01:02:03+00:00"}));
+beforeEach(() => {
+    MockDate.set(new Date("2020-12-09T01:02:03+00:00"));
+});
+
+afterEach(() => {
+    MockDate.reset();
+});
 
 describe("TimePickerBody", () => {
-    const value = null as any;
-    const onValueChange = jest.fn();
 
     it("should be rendered correctly", () => {
         const tree = renderer
-            .create(<TimePickerBody value={ value } onValueChange children={ onValueChange }/>)
+            .create(<TimePickerBody value={ null } onValueChange={ jest.fn } />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -19,8 +25,8 @@ describe("TimePickerBody", () => {
     it("should be rendered correctly with extra props", () => {
         const tree = renderer
             .create(<TimePickerBody
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ null }
+                onValueChange={ jest.fn }
                 format={ 12 }
                 minutesStep={ 5 }
                 addIcon={ acceptIcon }
