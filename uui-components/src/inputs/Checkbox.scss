@@ -4,11 +4,12 @@
     position: relative;
 
     :global(.uui-checkbox) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         appearance: none;
         cursor: pointer;
-        outline-offset: 0;
         margin: 0;
-        display: flex;
         flex-shrink: 0;
 
         &:focus, &:focus-visible {
