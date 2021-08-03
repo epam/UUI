@@ -1,5 +1,5 @@
 import * as React from 'react';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import { Placement } from '@popperjs/core';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../..';
 import { IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts,
@@ -8,14 +8,14 @@ import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 
 export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
     format?: string;
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
     renderFooter?(value: RangeDatePickerValue): React.ReactNode;
-    renderDay?: (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => React.ReactElement<Element>;
+    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
     presets?: Presets;
     disableClear?: boolean;
     placement?: Placement;
-    isHoliday?: (day: moment.Moment) => boolean;
+    isHoliday?: (day: Dayjs) => boolean;
 }
 
 interface RangeDatePickerState extends PickerBodyValue<RangeDatePickerValue> {
@@ -32,7 +32,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
         return {
             inputValue: defaultValue,
             selectedDate: defaultValue,
-            displayedDate: moment().startOf('day'),
+            displayedDate: dayjs().startOf('day'),
         };
     }
 
@@ -42,7 +42,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: moment(value.from, valueFormat).isValid() ? moment(value.from, valueFormat) : moment().startOf('day'),
+        displayedDate: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
     };
 };
 
@@ -82,18 +82,18 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     valueIsValid(value: string, inputType: InputType) {
-        if (moment(value, this.getFormat(), true).isValid()) {
+        if (dayjs(value, this.getFormat(), true).isValid()) {
             if (inputType === 'from') {
-                return this.state.inputValue.to ? moment(value, this.getFormat(), true).valueOf() <= moment(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.to ? dayjs(value, this.getFormat(), true).valueOf() <= dayjs(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
             } else {
-                return this.state.inputValue.from ? moment(this.state.inputValue.from, this.getFormat(), true).valueOf() <= moment(value, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.from ? dayjs(this.state.inputValue.from, this.getFormat(), true).valueOf() <= dayjs(value, this.getFormat(), true).valueOf() : true;
             }
         }
         return false;
     }
 
     handleBlur = (inputType: InputType) => {
-        if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(moment(this.props.value[inputType])))) {
+        if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
                 case 'to': this.handleValueChange({ ...this.props.value, to: null }); this.getChangeHandler('to')(null); break;
@@ -112,13 +112,13 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     getDisplayedDateOnOpening(focus: InputType) {
         if (this.state.selectedDate?.from && this.state.selectedDate?.to) {
-            return moment(this.state.selectedDate[focus]);
+            return dayjs(this.state.selectedDate[focus]);
         } else if (this.state.selectedDate?.from) {
-            return moment(this.state.selectedDate?.from);
+            return dayjs(this.state.selectedDate?.from);
         } else if (this.state.selectedDate?.to) {
-            return moment(this.state.selectedDate?.to);
+            return dayjs(this.state.selectedDate?.to);
         } else {
-            return moment();
+            return dayjs();
         }
     }
 
@@ -147,10 +147,10 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     getChangeHandler = (inputType: 'from' | 'to') => (value: string) => {
         const inputValue = { ...this.state.inputValue, [inputType]: value };
-        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(moment(value)))) {
+        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value)))) {
             this.setValue({
                 selectedDate: toValueDateRangeFormat(inputValue, this.getFormat()),
-                displayedDate: inputType === "from" ? moment(value, this.getFormat()) : this.state.displayedDate,
+                displayedDate: inputType === "from" ? dayjs(value, this.getFormat()) : this.state.displayedDate,
                 view: this.state.view,
             });
         } else {

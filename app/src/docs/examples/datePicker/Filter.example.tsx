@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import { DatePicker, FlexRow } from '@epam/promo';
 
 export default function DatePickerFilterExample() {
@@ -11,7 +11,7 @@ export default function DatePickerFilterExample() {
                 value={ value }
                 onValueChange={ onValueChange }
                 format='MMM D, YYYY'
-                filter={ (day: moment.Moment) => day.valueOf() >= moment().subtract(1, 'days').valueOf() }
+                filter={ (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf() }
             />
         </FlexRow>
     );

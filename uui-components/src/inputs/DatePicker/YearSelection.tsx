@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IEditable, IHasCX, arrayToMatrix } from '@epam/uui';
 import cx from 'classnames';
 import * as css from './YearSelection.scss';
-import moment from "moment";
+import { Dayjs } from 'dayjs';
 
 const MONTH_ROW_LENGTH = 4;
 
@@ -15,8 +15,8 @@ export const uuiYearSelection = {
     currentYear: 'uui-yearselection-current-year',
 };
 
-export interface YearSelectionProps extends IEditable<moment.Moment>, IHasCX {
-    selectedDate: moment.Moment;
+export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX {
+    selectedDate: Dayjs;
 }
 
 const getYears = (currentYear: number) => {
