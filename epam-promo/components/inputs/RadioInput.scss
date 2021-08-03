@@ -29,7 +29,6 @@
 
 .root {
     @include radio-input-color();
-    outline: none;
 
     :global(.uui-radioinput) {
         background-color: var(--background-color);
