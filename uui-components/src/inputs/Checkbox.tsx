@@ -39,6 +39,7 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
                     disabled={this.props.isDisabled}
                     readOnly={this.props.isReadonly}
+                    aria-checked={this.props.value}
                     checked={this.props.value}
                 />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
