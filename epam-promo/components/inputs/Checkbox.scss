@@ -23,33 +23,11 @@
         background-color: var(--background-color);
         border: 1px solid var(--border-color-default);
 
-        //Colors
-        &:hover, &:active, &:focus {
+        &:focus {
             border-color: var(--border-color-hovered);
 
-            &:checked {
+            :global(.uui-checked) {
                 background-color: var(--background-color-checked-hovered);
-            }
-        }
-
-        &:checked {
-            background-color: var(--background-color-checked);
-            border-color: var(--background-color-checked);
-            fill: var(--fill-color);
-        }
-
-        &:disabled {
-            cursor: default;
-            background-color: var(--background-color-disabled);
-            border-color: var(--border-color-disabled);
-
-            &:checked {
-                background-color: var(--background-color-checked-disabled);
-                border-color: var(--border-color-checked-disabled);
-            }
-
-            &:hover, &:active, &:focus {
-                border-color: var(--border-color-disabled);
             }
         }
     }
@@ -62,11 +40,59 @@
         flex-grow: 1;
     }
 
+
+    //Colors
+    &:hover, &:active {
+        :global(.uui-checkbox) {
+            border-color: var(--border-color-hovered);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--background-color-checked-hovered);
+        }
+    }
+
+    :global(.uui-checked) {
+        background-color: var(--background-color-checked);
+        border-color: var(--background-color-checked);
+        fill: var(--fill-color);
+    }
+
     &:global(.uui-disabled) {
         cursor: default;
 
+        :global(.uui-checkbox) {
+            background-color: var(--background-color-disabled);
+            border-color: var(--border-color-disabled);
+
+            &:focus {
+                border-color: var(--border-color-disabled);
+
+                :global(.uui-checked) :global(.uui-checked) {
+                    background-color: var(--background-color-checked-disabled);
+                    border-color: var(--border-color-checked-disabled);
+                }
+            }
+        }
+
+        &:hover, &:active {
+            :global(.uui-checkbox) {
+                border-color: var(--border-color-disabled);
+            }
+
+            :global(.uui-checked) :global(.uui-checked) {
+                background-color: var(--background-color-checked-disabled);
+                border-color: var(--border-color-checked-disabled);
+            }
+        }
+
         :global(.uui-input-label) {
             color: var(--text-color-disabled);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--background-color-checked-disabled);
+            border-color: var(--border-color-checked-disabled);
         }
     }
 
@@ -80,10 +106,15 @@
                 fill: var(--errored-color);
             }
 
-            &:checked {
-                fill: $white;
+            &:global(.uui-checked) {
+                fill: white;
                 background-color: var(--errored-color);
                 border-color: var(--errored-color);
+
+                &:hover, &:active {
+                    background-color: var(--errored-color);
+                    border-color: var(--errored-color);
+                }
             }
         }
 

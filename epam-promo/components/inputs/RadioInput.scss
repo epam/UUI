@@ -36,6 +36,10 @@
         align-self: baseline;
         flex-shrink: 0;
         box-sizing: border-box;
+
+        &:focus {
+            border-color: var(--border-color-hovered);
+        }
     }
 
     :global(.uui-input-label) {
@@ -51,6 +55,14 @@
     &:global(.uui-invalid) {
         :global(.uui-radioinput) {
             border-color: var(--errored-color);
+
+            &:focus {
+                border-color: var(--errored-color);
+
+                :global(.uui-icon) {
+                    fill: var(--errored-color);
+                }
+            }
         }
 
         :global(.uui-icon) {
@@ -61,9 +73,7 @@
             color: var(--errored-color);
         }
 
-        &:hover,
-        &:focus,
-        &:global(.uui-checked) {
+        &:hover, &:global(.uui-checked) {
             :global(.uui-radioinput) {
                 border-color: var(--errored-color);
             }
@@ -74,8 +84,7 @@
         }
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
         :global(.uui-radioinput) {
             border-color: var(--border-color-hovered);
         }
@@ -91,7 +100,7 @@
         }
 
         &:hover,
-        &:focus {
+        :global(.uui-radioinput):focus {
             :global(.uui-radioinput) {
                 border-color: var(--border-color-hovered);
             }
@@ -130,11 +139,18 @@
         :global(.uui-radioinput) {
             background-color: var(--background-color-disabled);
             border-color: var(--border-color-disabled);
+
+            &:focus {
+                background-color: var(--background-color-disabled);
+                border-color: var(--border-color-disabled);
+
+                :global(.uui-icon) {
+                    fill: var(--fill-color-checked-disabled);
+                }
+            }
         }
 
-        &:hover,
-        &:focus,
-        &:global(.uui-checked) {
+        &:hover, &:global(.uui-checked) {
             :global(.uui-radioinput) {
                 background-color: var(--background-color-disabled);
                 border-color: var(--border-color-disabled);
