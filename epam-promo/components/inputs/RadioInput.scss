@@ -36,15 +36,15 @@
         align-self: baseline;
         flex-shrink: 0;
         box-sizing: border-box;
+
+        &:focus {
+            border-color: var(--border-color-hovered);
+        }
     }
 
     &:hover {
         :global(.uui-radioinput) {
             border-color: var(--border-color-hovered);
-
-            &:focus {
-                border-color: var(--border-color-hovered);
-            }
         }
     }
 
@@ -105,7 +105,7 @@
             &:focus {
                 border-color: var(--border-color-hovered);
 
-                :global(.uui-icon) {
+                & + :global(.uui-icon) {
                     fill: var(--fill-color-hovered);
                 }
             }
