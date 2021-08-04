@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { DatePicker } from '..';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
 import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
 
 describe('DataPicker', () => {
@@ -63,7 +64,7 @@ describe('DataPicker', () => {
         let testValue = '2019-10-10';
         const inputFormat = 'DD-MM-YYYY';
         const inputTestValue = toCustomDateFormat(testValue, inputFormat);
-        const displayedTestDate = moment(testValue);
+        const displayedTestDate = dayjs(testValue);
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
         const setStateSpy = jest.fn((nextState) => null);
@@ -178,7 +179,7 @@ describe('DataPicker', () => {
 
         expect(value).toEqual({
             selectedDate: baseValue,
-            displayedDate: moment(baseValue, valueFormat),
+            displayedDate: dayjs(baseValue, valueFormat),
             view: 'DAY_SELECTION',
         });
     });

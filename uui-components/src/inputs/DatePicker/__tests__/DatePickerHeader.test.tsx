@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import moment from 'moment';
+import dayjs from "dayjs";
 import { DatePickerHeader } from '../..';
 
 describe('DatePickerHeader', () => {
@@ -12,7 +12,7 @@ describe('DatePickerHeader', () => {
 
     it('should change date on arrow click', () => {
         let newState: any = {};
-        let currentDay = moment().startOf('day');
+        let currentDay = dayjs().startOf('day');
         wrapper = shallow(<DatePickerHeader
             value={ {
                 view: 'DAY_SELECTION',
@@ -22,15 +22,15 @@ describe('DatePickerHeader', () => {
             onValueChange={ (nV: any) => newState = nV }
         />, {});
         (wrapper.instance() as any).onLeftNavigationArrow();
-        expect(newState.displayedDate).toEqual(moment(currentDay).subtract(1, 'months'));
+        expect(newState.displayedDate).toEqual(currentDay.subtract(1, 'month'));
         (wrapper.instance() as any).onRightNavigationArrow();
         (wrapper.instance() as any).onRightNavigationArrow();
-        expect(newState.displayedDate).toEqual(moment(currentDay).add(1, 'months'));
+        expect(newState.displayedDate).toEqual(currentDay.add(1, 'month'));
     });
 
     it('should change view on header caption click', () => {
         let state: any = { view: 'DAY_SELECTION'};
-        let currentDay = moment().startOf('day');
+        let currentDay = dayjs().startOf('day');
         wrapper = shallow(<DatePickerHeader
             value={ {
                 view: 'DAY_SELECTION',

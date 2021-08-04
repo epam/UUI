@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { DatePickerBody } from '../..';
 
 describe('DatePickerBody', () => {
@@ -17,12 +17,12 @@ describe('DatePickerBody', () => {
             value={ {
                 view: 'DAY_SELECTION',
                 selectedDate: '',
-                displayedDate: moment().startOf('day'),
+                displayedDate: dayjs().startOf('day'),
             } }
             setSelectedDate={ (nV: any) => newState = { selectedDate: nV} }
             setDisplayedDateAndView={ (displayedDate, view) => {  } }
         />, {});
-        (wrapper.instance() as any).onDayClick(moment("2017-01-22"));
+        (wrapper.instance() as any).onDayClick(dayjs("2017-01-22"));
         expect(newState.selectedDate).toEqual("2017-01-22");
     });
 });

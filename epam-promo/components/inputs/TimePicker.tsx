@@ -1,11 +1,13 @@
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from '@epam/uui';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer, Dropdown } from '../overlays';
 import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import * as css from './TimePicker.scss';
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
 
@@ -18,7 +20,7 @@ const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['form
     if (value === null) {
         return null;
     }
-    return moment(value).format(format === 24 ? 'HH:mm' : 'hh:mm A');
+    return dayjs().set(value).format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
 
 export interface TimePickerProps extends IEditable<TimePickerValue>, IDisableable, SizeMod, ICanBeReadonly, IHasPlaceholder, IHasEditMode {
@@ -49,10 +51,10 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
     handleInputChange = (newValue: string) => {
         if (this.getFormat() === "hh:mm A" && newValue.length < 8) {
             this.setState({ ...this.state, value: newValue });
-        } else if (moment(newValue, this.getFormat(), true).isValid()) {
-            const value = moment(newValue, this.getFormat(), true);
+        } else if (dayjs(newValue, this.getFormat(), true).isValid()) {
+            const value = dayjs(newValue, this.getFormat(), true);
 
-            this.props.onValueChange({ hours: value.hours(), minutes: value.minutes() });
+            this.props.onValueChange({ hours: value.hour(), minutes: value.minute() });
             this.setState({ ...this.state, value: newValue });
         } else {
             this.setState({ ...this.state, value: newValue });
@@ -63,7 +65,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
         if (this.state.value === '') {
             this.props.onValueChange(null);
             this.setState({ ...this.state, value: null });
-        } else if (!moment(this.state.value, this.getFormat(), true).isValid()) {
+        } else if (!dayjs(this.state.value, this.getFormat(), true).isValid()) {
             this.props.onValueChange(this.props.value);
             this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });
         }

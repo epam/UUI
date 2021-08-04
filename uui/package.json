@@ -22,7 +22,6 @@
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.trimend": "4.5.6",
     "@types/query-string": "6.1.0",
-    "amplitude-js": "7.4.1",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
     "jsurl": "0.1.5",
@@ -37,7 +36,6 @@
     "query-string": "^6.5.0"
   },
   "devDependencies": {
-    "@types/amplitude-js": "^7.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "react-test-renderer": "16.13.1"

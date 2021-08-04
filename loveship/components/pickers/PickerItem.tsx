@@ -1,5 +1,4 @@
 import * as React from 'react';
-import cx from 'classnames';
 import { DataRowProps } from '@epam/uui';
 import { AvatarProps } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout/FlexItems';
@@ -28,7 +27,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
 
 
         return (
-            <FlexCell width='auto' cx={ cx(css.root) } >
+            <FlexCell width='auto' cx={ css.root } >
                 <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${ itemSize }`] } alignItems='center' spacing='12'>
                     { avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } /> }
                     <FlexCell width='auto'>
