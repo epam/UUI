@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, cx, IHasCX, IEditable, TimePickerValue } from '@epam/uui';
+import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps } from '@epam/uui';
 import dayjs, { Dayjs } from "dayjs";
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
