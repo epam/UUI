@@ -27,6 +27,22 @@
 }
 
 .root {
+    &:hover, &:active {
+        :global(.uui-radioinput) {
+            border-color: var(--uui-color-700);
+        }
+    }
+
+    &:hover:global(.uui-checked) {
+        :global(.uui-radioinput) {
+            border-color: var(--uui-color-800);
+        }
+
+        :global(.uui-icon) {
+            fill: var(--uui-color-800);
+        }
+    }
+
     :global(.uui-radioinput) {
         fill: $sky;
         align-self: baseline;
@@ -59,22 +75,6 @@
         align-items: center;
     }
 
-    &:hover, &:active {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-700);
-        }
-    }
-
-    &:hover:global(.uui-checked) {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-800);
-        }
-
-        :global(.uui-icon) {
-            fill: var(--uui-color-800);
-        }
-    }
-
     // Sizes
     &.size-18 {
         @include radio-sizes(18px, 14px, 18px, 18px);
@@ -97,7 +97,6 @@
         &:global(.uui-disabled),
         &:global(.uui-readonly) {
             cursor: default;
-            pointer-events: none;
 
             :global(.uui-radioinput) {
                 cursor: default;
@@ -152,7 +151,6 @@
         &:global(.uui-disabled),
         &:global(.uui-readonly) {
             cursor: default;
-            pointer-events: none;
 
             &:hover, &:active {
                 :global(.uui-radioinput) {
