@@ -35,7 +35,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     type="radio"
                     checked={ this.props.value }
                     className={ uuiElement.radioInput }
-                    disabled={ this.props.isDisabled }
+                    disabled={ this.props.isReadonly || this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
                     aria-checked={this.props.value}
                     tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }

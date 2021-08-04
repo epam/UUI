@@ -30,6 +30,12 @@
 .root {
     @include radio-input-color();
 
+    &:hover {
+        :global(.uui-radioinput) {
+            border-color: var(--border-color-hovered);
+        }
+    }
+
     :global(.uui-radioinput) {
         background-color: var(--background-color);
         border: 1px solid var(--border-color);
@@ -38,12 +44,6 @@
         box-sizing: border-box;
 
         &:focus {
-            border-color: var(--border-color-hovered);
-        }
-    }
-
-    &:hover {
-        :global(.uui-radioinput) {
             border-color: var(--border-color-hovered);
         }
     }
@@ -59,18 +59,6 @@
     }
 
     &:global(.uui-invalid) {
-        :global(.uui-radioinput) {
-            border-color: var(--errored-color);
-
-            &:focus {
-                border-color: var(--errored-color);
-
-                :global(.uui-icon) {
-                    fill: var(--errored-color);
-                }
-            }
-        }
-
         :global(.uui-icon) {
             fill: var(--errored-color);
         }
@@ -79,7 +67,7 @@
             color: var(--errored-color);
         }
 
-        &:hover, &:global(.uui-checked) {
+        &:hover {
             :global(.uui-radioinput) {
                 border-color: var(--errored-color);
 
@@ -99,6 +87,16 @@
     }
 
     &:global(.uui-checked) {
+        &:hover {
+            :global(.uui-radioinput) {
+                border-color: var(--border-color-hovered);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--fill-color-hovered);
+            }
+        }
+
         :global(.uui-radioinput) {
             border-color: var(--border-color-checked);
 
@@ -115,29 +113,38 @@
             fill: var(--fill-color-checked);
         }
 
-        &:hover {
+        &:global(.uui-invalid) {
             :global(.uui-radioinput) {
-                border-color: var(--border-color-hovered);
+                border-color: var(--errored-color);
+
+                &:focus {
+                    border-color: var(--errored-color);
+
+                    & + :global(.uui-icon) {
+                        fill: var(--errored-color);
+                    }
+                }
             }
 
             :global(.uui-icon) {
-                fill: var(--fill-color-hovered);
+                fill: var(--errored-color);
+            }
+        }
+
+        &:global(.uui-disabled),
+        &:global(.uui-readonly) {
+            :global(.uui-radioinput) {
+                border-color: var(--border-color-checked-disabled);
             }
 
-            &:global(.uui-invalid) {
-                :global(.uui-radioinput) {
-                    border-color: var(--errored-color);
-                }
-
-                :global(.uui-icon) {
-                    fill: var(--errored-color);
-                }
+            :global(.uui-icon) {
+                fill: var(--fill-color-checked-disabled);
             }
 
-            &:global(.uui-disabled),
-            &:global(.uui-readonly) {
+            &:hover {
                 :global(.uui-radioinput) {
-                    border-color: var(--border-color-checked-disabled);
+                    background-color: var(--background-color-disabled);
+                    border-color: var(--border-color-disabled);
                 }
 
                 :global(.uui-icon) {
@@ -150,33 +157,11 @@
     &:global(.uui-disabled),
     &:global(.uui-readonly) {
         cursor: default;
-        pointer-events: none;
 
         :global(.uui-radioinput) {
             cursor: default;
             background-color: var(--background-color-disabled);
             border-color: var(--border-color-disabled);
-        }
-
-        &:hover, &:global(.uui-checked) {
-            :global(.uui-radioinput) {
-                background-color: var(--background-color-disabled);
-                border-color: var(--border-color-disabled);
-            }
-
-            :global(.uui-icon) {
-                fill: var(--fill-color-checked-disabled);
-            }
-        }
-
-        &:global(.uui-checked) {
-            :global(.uui-radioinput) {
-                border-color: var(--border-color-checked-disabled);
-            }
-
-            :global(.uui-icon) {
-                fill: var(--fill-color-checked-disabled);
-            }
         }
     }
 

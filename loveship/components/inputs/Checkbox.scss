@@ -23,13 +23,9 @@
 }
 
 .root {
-    :global(.uui-checkbox) {
-        border: 1px solid $night400;
-        border-radius: $control-border-radius;
-
-        &:focus {
+    &:hover, &:active {
+        :global(.uui-checkbox) {
             border-color: var(--uui-color-800);
-            @include control-focus-effect();
         }
     }
 
@@ -44,18 +40,22 @@
         fill: $white;
     }
 
+    :global(.uui-checkbox) {
+        border: 1px solid $night400;
+        border-radius: $control-border-radius;
+
+        &:focus {
+            border-color: var(--uui-color-800);
+            @include control-focus-effect();
+        }
+    }
+
     :global(.uui-checked) {
         background-color: var(--uui-color-700);
         border-color: var(--uui-color-700);
 
         &:hover, &:active, :global(.uui-checkbox):focus {
             background-color: var(--uui-color-800);
-            border-color: var(--uui-color-800);
-        }
-    }
-
-    &:hover, &:active {
-        :global(.uui-checkbox) {
             border-color: var(--uui-color-800);
         }
     }
@@ -81,7 +81,6 @@
 
         &:global(.uui-disabled) {
             cursor: default;
-            pointer-events: none;
 
             :global(.uui-checkbox) {
                 cursor: default;
@@ -107,7 +106,6 @@
 
         &:global(.uui-readonly) {
             cursor: default;
-            pointer-events: none;
 
             :global(.uui-checkbox) {
                 cursor: default;
@@ -135,7 +133,6 @@
 
         &:global(.uui-disabled) {
             cursor: default;
-            pointer-events: none;
 
             :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
                 @include input-colors($night600, $night500, $night500, $night600);
@@ -152,7 +149,6 @@
 
         &:global(.uui-disabled) {
             cursor: default;
-            pointer-events: none;
             background: none;
 
             :global(.uui-checkbox), :global(.uui-checkbox):global(.uui-checked) {
