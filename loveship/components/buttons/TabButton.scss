@@ -7,7 +7,7 @@ $text-size-count: 24px;
     color: $fg;
     fill: $fg;
 
-    &:hover {
+    &:hover, &:focus {
         fill: $bg;
         color: $bg;
     }
