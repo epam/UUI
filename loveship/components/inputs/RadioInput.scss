@@ -97,8 +97,10 @@
         &:global(.uui-disabled),
         &:global(.uui-readonly) {
             cursor: default;
+            pointer-events: none;
 
             :global(.uui-radioinput) {
+                cursor: default;
                 background-color: $night50;
                 border-color: $night300;
                 box-shadow: none;
@@ -154,6 +156,7 @@
 
             &:hover, &:active {
                 :global(.uui-radioinput) {
+                    cursor: default;
                     border-color: $night600;
                 }
             }

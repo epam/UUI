@@ -40,7 +40,6 @@
         flex-grow: 1;
     }
 
-
     //Colors
     &:hover, &:active {
         :global(.uui-checkbox) {
@@ -58,29 +57,23 @@
         fill: var(--fill-color);
     }
 
-    &:global(.uui-disabled) {
+    &:global(.uui-disabled),
+    &:global(.uui-readonly) {
         cursor: default;
+        pointer-events: none;
 
         :global(.uui-checkbox) {
+            cursor: default;
             background-color: var(--background-color-disabled);
             border-color: var(--border-color-disabled);
-
-            &:focus {
-                border-color: var(--border-color-disabled);
-
-                :global(.uui-checked) :global(.uui-checked) {
-                    background-color: var(--background-color-checked-disabled);
-                    border-color: var(--border-color-checked-disabled);
-                }
-            }
         }
 
-        &:hover, &:active {
+        &:hover, &:global(.uui-checked) {
             :global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }
 
-            :global(.uui-checked) :global(.uui-checked) {
+            :global(.uui-icon) {
                 background-color: var(--background-color-checked-disabled);
                 border-color: var(--border-color-checked-disabled);
             }
@@ -107,7 +100,7 @@
             }
 
             &:global(.uui-checked) {
-                fill: white;
+                fill: $white;
                 background-color: var(--errored-color);
                 border-color: var(--errored-color);
 
