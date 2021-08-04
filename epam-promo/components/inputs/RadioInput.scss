@@ -93,14 +93,21 @@
     &:global(.uui-checked) {
         :global(.uui-radioinput) {
             border-color: var(--border-color-checked);
+
+            &:focus {
+                border-color: var(--border-color-hovered);
+
+                & + :global(.uui-icon) {
+                    fill: var(--fill-color-hovered);
+                }
+            }
         }
 
         :global(.uui-icon) {
             fill: var(--fill-color-checked);
         }
 
-        &:hover,
-        :global(.uui-radioinput):focus {
+        &:hover, :global(.uui-radioinput):focus {
             :global(.uui-radioinput) {
                 border-color: var(--border-color-hovered);
             }
