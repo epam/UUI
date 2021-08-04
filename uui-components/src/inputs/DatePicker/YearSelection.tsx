@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
 import * as css from './YearSelection.scss';
-import moment from "moment";
+import { Dayjs } from 'dayjs';
 
 const MONTH_ROW_LENGTH = 4;
 
@@ -14,8 +14,8 @@ export const uuiYearSelection = {
     currentYear: 'uui-yearselection-current-year',
 };
 
-export interface YearSelectionProps extends IEditable<moment.Moment>, IHasCX, IHasRawProps<HTMLDivElement> {
-    selectedDate: moment.Moment;
+export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement> {
+    selectedDate: Dayjs;
 }
 
 const getYears = (currentYear: number) => {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, createElement } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
@@ -8,6 +8,7 @@ import { ComplexForm } from './forms/ComplexForm';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
+import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -15,6 +16,7 @@ export const SandboxPage = () => {
         { id: 'dbDemo', name: 'DB demo', component: DbDemo },
         { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
+        { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo }
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
@@ -37,7 +39,7 @@ export const SandboxPage = () => {
                     } }
                     items={ items }
                 />
-                { React.createElement(items.find(item => item.id === getQuery('id')).component) }
+                { createElement(items.find(item => item.id === getQuery('id')).component) }
             </FlexRow>
         </Page>
     );

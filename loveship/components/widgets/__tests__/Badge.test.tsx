@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Badge} from "../Badge";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { systemIcons } from "../../icons/icons";
+const acceptIcon = systemIcons[18].accept;
 
 describe("Badge", () => {
     it("should be rendered correctly", () => {
