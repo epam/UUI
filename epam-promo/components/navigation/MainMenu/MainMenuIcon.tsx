@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Icon, IClickable, IAdaptiveItem } from '@epam/uui';
-import { ButtonProps, IconContainer } from '@epam/uui-components'; 
+import { Icon, IAdaptiveItem } from '@epam/uui';
+import cx from 'classnames';
+import { ButtonProps, IconContainer } from '@epam/uui-components';
 import * as css from './MainMenuIcon.scss';
 
 export interface MainMenuIconProps extends ButtonProps, IAdaptiveItem {
@@ -8,7 +9,7 @@ export interface MainMenuIconProps extends ButtonProps, IAdaptiveItem {
 }
 
 export const MainMenuIcon = (props: MainMenuIconProps) => (
-    <div onClick={ props.onClick } className={ css.container }>
+    <div onClick={ props.onClick } className={ cx(props.cx, css.container) }>
         <IconContainer icon={ props.icon } />
     </div>
 );

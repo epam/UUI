@@ -1,8 +1,10 @@
-import * as React from 'react';
-import { IModal, INotification, Metadata, RenderFormProps, AsyncDataSource, UuiContexts, uuiContextTypes } from '@epam/uui';
-import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification,
-    Text, Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput, Form } from '@epam/promo';
-import { svc } from '../../../services';
+import React, { ReactNode, useState } from 'react';
+import { IModal, INotification, Metadata, RenderFormProps, useUuiContext, useAsyncDataSource } from '@epam/uui';
+import {
+    ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
+    Button, ScrollBars, ModalFooter, SuccessNotification,
+    Text, Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput, Form
+} from '@epam/promo';
 
 interface Person {
     firstName?: string;
@@ -11,37 +13,25 @@ interface Person {
     sex?: string;
 }
 
-interface ModalWithFormExampleState {
-    person: Person;
-}
+function ModalWithFormExample(modalProps: IModal<Person>) {
+    const svc = useUuiContext();
+    const [person] = useState<Person>({});
 
-class ModalWithFormExample extends React.Component<IModal<Person>> {
-    static contextTypes = uuiContextTypes;
-    context: UuiContexts;
-
-    state: ModalWithFormExampleState = {
-        person: {},
-    };
-
-    getMetaData = (state: Person): Metadata<Person> => {
-        return {
-            props: {
-                firstName: { isRequired: true },
-                lastName: { isRequired: true },
-                countryId: { isRequired: true },
-                sex: { isRequired: true },
-            },
-        };
-    }
-
-    countriesDataSource = new AsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+    const getMetaData = (state: Person): Metadata<Person> => ({
+        props: {
+            firstName: { isRequired: true },
+            lastName: { isRequired: true },
+            countryId: { isRequired: true },
+            sex: { isRequired: true },
+        },
     });
 
-    renderForm = (formProps: RenderFormProps<Person>) => {
-        let lens = formProps.lens;
+    const countriesDataSource = useAsyncDataSource({
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+    }, []);
 
-        return <>
+    const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
+        <>
             <Panel>
                 <FlexRow padding='24' vPadding='12'>
                     <FlexCell grow={ 1 }>
@@ -64,7 +54,7 @@ class ModalWithFormExample extends React.Component<IModal<Person>> {
                                 { ...lens.prop('countryId').toProps() }
                                 selectionMode='single'
                                 valueType='id'
-                                dataSource={ this.countriesDataSource }
+                                dataSource={ countriesDataSource }
                             />
                         </LabeledInput>
                     </FlexCell>
@@ -85,51 +75,48 @@ class ModalWithFormExample extends React.Component<IModal<Person>> {
             </Panel>
             <ModalFooter borderTop >
                 <FlexSpacer />
-                <Button color='gray50' fill='white' onClick={ () => this.handleLeave().then(this.props.abort) } caption='Cancel' />
-                <Button color='green' caption='Confirm' onClick={ () => formProps.save() } />
+                <Button color='gray50' fill='white' onClick={ () => handleLeave().then(modalProps.abort) } caption='Cancel' />
+                <Button color='green' caption='Confirm' onClick={ save } />
             </ModalFooter>
-        </>;
-    }
+        </>
+    );
 
-    handleLeave() {
-        return this.context.uuiLocks.acquire(() => Promise.resolve());
-    }
+    const handleLeave = () => svc.uuiLocks.acquire(() => Promise.resolve());
 
-    render() {
-        return (
-            <ModalBlocker { ...this.props } abort={ () => this.handleLeave().then(this.props.abort) }>
-                <ModalWindow >
-                    <ModalHeader borderBottom title="New committee" onClose={ this.props.abort } />
-                    <ScrollBars>
-                        <Form<Person>
-                            value={ this.state.person }
-                            onSave={ (person) => Promise.resolve({form: person}) }
-                            onSuccess={ (person) => this.props.success(person) }
-                            renderForm={ this.renderForm }
-                            getMetadata={ this.getMetaData }
-                        />
-                        <FlexSpacer />
-                    </ScrollBars>
-                </ModalWindow>
-            </ModalBlocker>
-        );
-    }
+    return (
+        <ModalBlocker { ...modalProps } abort={ () => handleLeave().then(modalProps.abort) }>
+            <ModalWindow >
+                <ModalHeader borderBottom title="New committee" onClose={modalProps.abort} />
+                <ScrollBars>
+                    <Form<Person>
+                        value={person}
+                        onSave={(person) => Promise.resolve({form: person}) }
+                        onSuccess={(person) => modalProps.success(person) }
+                        renderForm={renderForm}
+                        getMetadata={getMetaData}
+                    />
+                    <FlexSpacer />
+                </ScrollBars>
+            </ModalWindow>
+        </ModalBlocker>
+    );
 }
 
-export class ModalWithFormExampleToggler extends React.Component<any, any> {
-    render() {
-        return (
-            <Button
-                caption='Show modal'
-                onClick={ () => svc.uuiModals.show((props) => <ModalWithFormExample { ...props }/>).then((person) => {
-                    svc.uuiNotifications.show((props: INotification) =>
-                        <SuccessNotification { ...props } >
-                            <Text>Data has been saved!</Text>
-                            <Text>Person: { JSON.stringify(person) }</Text>
-                        </SuccessNotification>, { duration: 2 });
-                })
-                }
-            />
-        );
-    }
+export default function ModalWithFormExampleToggler() {
+    const svc = useUuiContext();
+
+    return (
+        <Button
+            caption='Show modal'
+            onClick={ () => svc.uuiModals
+                .show((props) => <ModalWithFormExample { ...props }/>)
+                .then((person: Person) => svc.uuiNotifications.show((props: INotification): ReactNode =>
+                    <SuccessNotification { ...props } >
+                        <Text>Data has been saved!</Text>
+                        <Text>Person: { JSON.stringify(person) }</Text>
+                    </SuccessNotification>, { duration: 2 })
+                )
+            }
+        />
+    );
 }

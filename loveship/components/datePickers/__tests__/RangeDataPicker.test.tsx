@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { RangeDatePicker } from '..';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { toCustomDateRangeFormat, valueFormat } from '@epam/uui-components';
 
 describe('RangeDataPicker', () => {
@@ -131,7 +131,7 @@ describe('RangeDataPicker', () => {
         expect(setValueSpy).toHaveBeenLastCalledWith({
             view: 'DAY_SELECTION',
             selectedDate: { from: '2019-09-11', to: '2019-09-15' },
-            displayedDate: moment(inputValue.from, 'MMM D, YYYY'),
+            displayedDate: dayjs(inputValue.from, 'MMM D, YYYY'),
         });
         //arrived valid value
         //
@@ -165,7 +165,7 @@ describe('RangeDataPicker', () => {
         expect(setStateSpy).toHaveBeenLastCalledWith({
             isOpen: false,
             view: 'DAY_SELECTION',
-            displayedDate: moment(baseValue.from),
+            displayedDate: dayjs(baseValue.from),
             inFocus: null,
         });
 
@@ -208,7 +208,7 @@ describe('RangeDataPicker', () => {
 
         expect(value).toEqual({
             selectedDate: baseValue,
-            displayedDate: moment(baseValue.from, valueFormat),
+            displayedDate: dayjs(baseValue.from, valueFormat),
             view: 'DAY_SELECTION',
         });
     });

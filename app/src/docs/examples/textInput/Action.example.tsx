@@ -4,7 +4,7 @@ import * as css from './BasicExample.scss';
 import customIcon from '@epam/assets/icons/common/social-network-yammer-18.svg';
 
 
-export function ActionSearchInputExample() {
+export default function ActionSearchInputExample() {
     const [value, onValueChange] = useState(null);
 
     return (

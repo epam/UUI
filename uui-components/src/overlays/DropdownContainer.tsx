@@ -7,6 +7,7 @@ import { VPanel } from '../layout/flexItems/VPanel';
 export interface DropdownContainerProps extends IHasCX, IHasChildren {
     width?: number;
     height?: number;
+    style?: React.CSSProperties;
 }
 
 export class DropdownContainer extends React.Component<DropdownContainerProps, any> {
@@ -15,7 +16,7 @@ export class DropdownContainer extends React.Component<DropdownContainerProps, a
         return (
             <VPanel
                 cx={ cx(css.container, uuiElement.dropdownBody, this.props.cx) }
-                style={ { minWidth: this.props.width, minHeight: this.props.height } }
+                style={ { ...this.props.style, minWidth: this.props.width, minHeight: this.props.height } }
             >
                 { this.props.children }
             </VPanel>

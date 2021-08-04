@@ -1,5 +1,5 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-@use  '~@epam/assets/scss/dnd' as *;
+@import '~@epam/promo/assets/styles/colors';
+@import  '~@epam/assets/scss/dnd';
 
 .drag-element {
     @include dnd-cursor-style();

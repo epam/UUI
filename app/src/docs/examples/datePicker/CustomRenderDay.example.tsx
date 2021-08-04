@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import moment from 'moment';
+import { Dayjs } from 'dayjs';
 import { DatePicker, FlexRow } from '@epam/promo';
 import { IconContainer, Day } from '@epam/uui-components';
-import * as point from '../../../icons/radio-point.svg';
+import * as point from '@epam/assets/icons/common/radio-point-10.svg';
 
-const getCustomDay = (day: moment.Moment) => {
+const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
-        { day.format('E') === '7' && <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ point } /> }
+        { day.day() === 0 && <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ point } /> }
     </>;
 };
 
-export const DatePickerCustomDayExample = () => {
+export default function DatePickerCustomDayExample() {
     const [value, onValueChange] = useState('');
 
     return (
@@ -20,7 +20,7 @@ export const DatePickerCustomDayExample = () => {
                 value={ value }
                 onValueChange={ onValueChange }
                 format='MMM D, YYYY'
-                renderDay={ (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => {
+                renderDay={ (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
                     return <Day renderDayNumber={ getCustomDay } value={ day } onValueChange={ onDayClick } isSelected={ day && day.isSame(value) } />;
                 } }
             />

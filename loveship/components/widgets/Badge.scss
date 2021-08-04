@@ -25,7 +25,7 @@
         box-shadow: none;
     }
 
-    &:hover {
+    &:hover:not(:global(.-clickable)) {
         cursor: default;
     }
 

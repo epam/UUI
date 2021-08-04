@@ -66,6 +66,18 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         }
 
         const view = this.getView();
+
+        if (this.props.renderFooter) {
+            return this.props.renderFooter({
+                ...this.props as any,
+                view: view,
+                showSelected: {
+                    value: this.state.showSelected,
+                    onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState }}),
+                },
+            });
+        }
+
         const hasSelection = view.getSelectedRows().length > 0;
         const isNotDisabled = hasSelection && !this.isSingleSelect();
         const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
@@ -93,6 +105,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             size: this.props.size,
         };
     }
+
 
     render() {
         const view = this.getView();
@@ -130,16 +143,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         scheduleUpdate={ props.scheduleUpdate }
                         searchSize={ this.props.size }
                     />
-                    { this.props.renderFooter ?
-                        this.props.renderFooter({
-                            ...this.props as any,
-                            view: view,
-                            showSelected: {
-                                value: this.state.showSelected,
-                                onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState }}),
-                            },
-                        }) : this.renderFooter()
-                    }
+                    {  this.renderFooter() }
                 </Panel> }
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
