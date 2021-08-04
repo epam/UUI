@@ -2,14 +2,14 @@ import React from 'react';
 import { DropdownContainer, DatePickerBody, SizeMod, EditMode, TextInput } from '../index';
 import { cx, IDropdownToggler } from '@epam/uui';
 import * as css from './DatePicker.scss';
-import moment from 'moment';
+import { Dayjs } from "dayjs";
 import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSettings, EditMode {
     format: string;
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     renderTarget?(props: any): React.ReactNode;
     renderFooter?(): React.ReactNode;
     iconPosition?: 'left' | 'right';
