@@ -19,9 +19,30 @@
 }
 
 .root {
+    //Colors
+    &:hover, &:active {
+        :global(.uui-checkbox) {
+            border-color: var(--border-color-hovered);
+        }
+
+        :global(.uui-checked) {
+            background-color: var(--background-color-checked-hovered);
+        }
+    }
+
     :global(.uui-checkbox) {
         background-color: var(--background-color);
         border: 1px solid var(--border-color-default);
+
+        &:focus {
+            outline: var(--border-color-hovered) auto 1px;
+            outline-offset: 3px;
+            border-color: var(--border-color-hovered);
+
+            :global(.uui-checked) {
+                background-color: var(--background-color-checked-hovered);
+            }
+        }
     }
 
     :global(.uui-input-label) {
@@ -32,38 +53,28 @@
         flex-grow: 1;
     }
 
-
-    //Colors
-    &:hover, &:active, &:focus {
-        :global(.uui-checkbox) {
-            border-color: var(--border-color-hovered);
-        }
-
-        :global(.uui-checked) {
-            background-color: var(--background-color-checked-hovered);
-        }
-    }
-
     :global(.uui-checked) {
         background-color: var(--background-color-checked);
         border-color: var(--background-color-checked);
         fill: var(--fill-color);
     }
 
-    &:global(.uui-disabled) {
+    &:global(.uui-disabled),
+    &:global(.uui-readonly) {
         cursor: default;
 
         :global(.uui-checkbox) {
+            cursor: default;
             background-color: var(--background-color-disabled);
             border-color: var(--border-color-disabled);
         }
 
-        &:hover, &:active, &:focus {
+        &:hover, &:global(.uui-checked) {
             :global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }
 
-            :global(.uui-checked) :global(.uui-checked) {
+            :global(.uui-icon) {
                 background-color: var(--background-color-checked-disabled);
                 border-color: var(--border-color-checked-disabled);
             }
@@ -84,13 +95,17 @@
             border-color: var(--errored-color);
             fill: var(--errored-color);
 
+            &:focus {
+                outline-color: var(--errored-color);
+            }
+
             &:hover, &:active {
                 border-color: var(--errored-color);
                 fill: var(--errored-color);
             }
 
             &:global(.uui-checked) {
-                fill: white;
+                fill: $white;
                 background-color: var(--errored-color);
                 border-color: var(--errored-color);
 

@@ -42,7 +42,7 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
     }
 
     render() {
-        return <div className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
+        return <div role="alert" className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
             ref={ (el) => this.notificationCardNode = el }>
             <div className={ css.mainPath }>
                 {
