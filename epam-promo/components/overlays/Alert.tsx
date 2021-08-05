@@ -27,7 +27,7 @@ export interface AlertProps extends IHasChildren, IHasCX {
 export class Alert extends React.Component<AlertProps> {
 
     render() {
-        return <div className={ cx(css.alertWrapper, styles[`color-${this.props.color || 'blue'}`], css.root, this.props.cx) }>
+        return <div role="alert" className={ cx(css.alertWrapper, styles[`color-${this.props.color || 'blue'}`], css.root, this.props.cx) }>
             <div className={ css.mainPath }>
                 { this.props.icon && <div className={ css.iconWrapper }>
                     <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />

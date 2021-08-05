@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as css from './RadioInput.scss';
-import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, handleSpaceKey, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
 import { IconContainer } from '../layout';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLDivElement> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {
     icon?: Icon;
     renderLabel?(): any;
 }
@@ -12,7 +12,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     static contextTypes = uuiContextTypes;
     context: UuiContexts;
 
-    handleChange = () => {
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onValueChange(!this.props.value);
 
         if (this.props.getValueChangeAnalyticsEvent) {
@@ -23,17 +23,32 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
 
     render() {
         return (
-            <div
-                className={ cx(css.container, this.props.value && uuiMod.checked, this.props.isDisabled && uuiMod.disabled, this.props.isReadonly && uuiMod.readonly, this.props.isInvalid && uuiMod.invalid, this.props.cx) }
-                onClick={ (!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : undefined }
-                onKeyDown={ (e) => (!this.props.isDisabled && !this.props.isReadonly) && handleSpaceKey(e, this.handleChange) }
-                tabIndex={ 0 }
-                {...this.props.rawProps}
-            >
-                <div className={ uuiElement.radioInput } />
+            <label className={ cx(
+                css.container,
+                this.props.value && uuiMod.checked,
+                this.props.isDisabled && uuiMod.disabled,
+                this.props.isReadonly && uuiMod.readonly,
+                this.props.isInvalid && uuiMod.invalid,
+                this.props.cx
+            ) }>
+                <input
+                    type="radio"
+                    checked={ this.props.value }
+                    className={ uuiElement.radioInput }
+                    disabled={ this.props.isReadonly || this.props.isDisabled }
+                    readOnly={ this.props.isReadonly }
+                    aria-checked={ this.props.value }
+                    tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
+                    onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                    { ...this.props.rawProps }
+                />
                 { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
-                { (this.props.renderLabel || this.props.label) && <div className={ uuiElement.inputLabel } >{ this.props.renderLabel ? this.props.renderLabel() : this.props.label }</div> }
-            </div>
+                { (this.props.renderLabel || this.props.label) && (
+                    <span role="label" className={ uuiElement.inputLabel }>
+                        { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
+                    </span>
+                ) }
+            </label>
         );
     }
 }
