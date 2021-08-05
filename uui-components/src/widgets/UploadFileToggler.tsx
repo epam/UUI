@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as css from './UploadFileToggler.scss';
+import { IHasRawProps } from '@epam/uui';
 
 interface UploadFileTogglerRenderParams {
     onClick(): any;
 }
 
-interface UploadFileTogglerProps {
+interface UploadFileTogglerProps extends IHasRawProps<HTMLDivElement> {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
     onFilesAdded(files: File[]): any;
     accept?: string;
@@ -25,7 +26,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps, a
         };
 
         return (
-            <div>
+            <div {...this.props.rawProps}>
                 <input
                     className={ css.fileInput }
                     ref={ (ref) => { this.fileInput = ref; } }

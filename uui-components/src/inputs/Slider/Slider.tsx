@@ -1,6 +1,5 @@
-import cx from 'classnames';
 import * as React from 'react';
-import { uuiMod } from '@epam/uui';
+import { uuiMod, cx } from '@epam/uui';
 import { SliderBase, uuiSlider } from './SliderBase';
 import * as css from './SliderBase.scss';
 import { SliderHandle } from './SliderHandle';
@@ -23,11 +22,19 @@ export class Slider extends SliderBase<number, any> {
         let normValue = this.roundToStep(this.normalize(this.props.value), this.props.step);
         let valueWidth = this.slider && this.slider.offsetWidth / (this.props.max - this.props.min) || 0;
         const filledOffset = (normValue - this.props.min) * valueWidth;
+
         return (
             <div
-                className={ cx(uuiSlider.container, css.root, this.props.isDisabled && uuiMod.disabled, this.props.cx, this.state.isActive && uuiMod.active) }
+                className={ cx(
+                    uuiSlider.container,
+                    css.root,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.cx,
+                    this.state.isActive && uuiMod.active
+                ) }
                 onClick={ e => this.props.onValueChange(this.getValue(e.clientX, valueWidth)) }
                 onMouseDown={ this.handleMouseDown }
+                {...this.props.rawProps}
             >
                 <div
                     ref={ slider => this.slider = slider }

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './NumericInput.scss';
-import { getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
+import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts } from '@epam/uui';
 import { IconContainer } from '../layout';
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
 }
-export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number> {
+export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement> {
     max: number;
     min: number;
     upIcon?: Icon;
@@ -116,12 +115,14 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx) }
+                    this.props.cx
+                ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }
                 onFocus={ this.handleFocus }
                 onKeyDown={ this.handleArrowKeyDown }
                 tabIndex={ -1 }
+                {...this.props.rawProps}
             >
                 <input
                     type="number"

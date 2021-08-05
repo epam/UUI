@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as css from './RadioInput.scss';
-import {IHasCX, IDisableable, IEditable, IHasLabel, Icon, cx, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
 import { IconContainer } from '../layout';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {
     icon?: Icon;
     renderLabel?(): any;
 }
@@ -37,9 +37,10 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     className={ uuiElement.radioInput }
                     disabled={ this.props.isReadonly || this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
-                    aria-checked={this.props.value}
+                    aria-checked={ this.props.value }
                     tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
                     onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                    { ...this.props.rawProps }
                 />
                 { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 { (this.props.renderLabel || this.props.label) && (

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes,
+import {
+    IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes,
     UuiContexts, IDropdownToggler } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
@@ -44,7 +45,7 @@ const getStateFromValue = (value: string | null, format: string) => {
 export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends React.Component<TProps, DatePickerState> {
     static contextTypes = uuiContextTypes;
     context: UuiContexts;
-    
+
     state: DatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -119,7 +120,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
             displayedDate: this.state.selectedDate ? dayjs(this.state.selectedDate) : dayjs(),
         });
     }
-    
+
     handleValueChange = (newValue: string | null) => {
         this.props.onValueChange(newValue);
 

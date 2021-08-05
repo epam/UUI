@@ -1,9 +1,8 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './BaseRating.scss';
-import { IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod } from '@epam/uui';
+import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps } from '@epam/uui';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly {
+export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;
@@ -111,6 +110,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
                 onTouchEnd={ (e) => !isReadonly && this.onTouchEnd(e) }
                 ref={ (container) => this.container = container }
+                {...this.props.rawProps}
             >
                 { this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks()) }
             </div>

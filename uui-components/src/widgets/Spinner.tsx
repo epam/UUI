@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as css from './Spinner.scss';
-import cx from 'classnames';
-import { SpinnerCoreProps } from '@epam/uui';
+import { SpinnerCoreProps, cx } from '@epam/uui';
 
 export interface SpinnerProps extends SpinnerCoreProps {}
 
@@ -17,7 +16,6 @@ const uuiSpinner: Record<string, string> = {
 };
 
 export class Spinner extends React.Component<SpinnerProps, any> {
-
     public render() {
         const dots = [];
 
@@ -26,10 +24,16 @@ export class Spinner extends React.Component<SpinnerProps, any> {
         }
 
         return (
-            <div className={ cx(css.container, uuiSpinner.container, this.props.cx) }>
+            <div
+                className={ cx(
+                    css.container,
+                    uuiSpinner.container,
+                    this.props.cx
+                ) }
+                {...this.props.rawProps}
+            >
                 <div className={ uuiSpinner.animation }>{ dots }</div>
             </div>
         );
     }
-
 }

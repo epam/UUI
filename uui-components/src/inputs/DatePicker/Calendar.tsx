@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { IHasCX, arrayToMatrix } from '@epam/uui';
+import { IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
 import { Day } from "./Day";
-import cx from 'classnames';
 import * as css from './Calendar.scss';
 import { i18n } from "../../../i18n";
 import localeData from 'dayjs/plugin/localeData';
@@ -27,7 +26,7 @@ export const uuiDaySelection = {
     holiday: 'uui-calendar-day-holiday',
 };
 
-export interface CalendarProps<TSelection> extends IHasCX {
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLDivElement> {
     value: TSelection;
     onValueChange: (day: Dayjs) => void;
     displayedDate: Dayjs;
@@ -122,7 +121,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
     render() {
         return (
-            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx) }  {...this.props.rawProps}>
                 <div className={ uuiDaySelection.content }>
                     <div className={ uuiDaySelection.weekdaysContainer }>
                         { dayjs.weekdaysShort(true).map((weekday, index) => <div className={ uuiDaySelection.weekday } key={ index }>{ weekday }</div>) }

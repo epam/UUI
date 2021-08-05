@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as reactDom from 'react-dom';
-import cx from 'classnames';
 import * as PropTypes from 'prop-types';
 import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest } from '@epam/uui';
+import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest, cx } from '@epam/uui';
 import * as css from './Tooltip.scss';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
@@ -152,6 +151,7 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
 
     render() {
         let hasTooltip = !!this.props.content || !!this.props.renderContent;
+
         return (
             <Manager>
                 <Reference>

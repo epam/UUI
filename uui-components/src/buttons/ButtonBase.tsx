@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
+import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps {
 }
@@ -73,19 +72,20 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
 
         return React.createElement(isAnchor ? 'a' : 'div', {
             className: cx(
-                    this.getClassName(),
-                    uuiElement.buttonBox,
-                    this.props.isDisabled && uuiMod.disabled,
-                    !this.props.isDisabled && uuiMod.enabled,
-                    (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
-                    (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                    this.props.cx,
-                ),
+                this.getClassName(),
+                uuiElement.buttonBox,
+                this.props.isDisabled && uuiMod.disabled,
+                !this.props.isDisabled && uuiMod.enabled,
+                (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
+                (this.props.onClick || isAnchor) && uuiMarkers.clickable,
+                this.props.cx
+            ),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
             onKeyDown: this.handleKeyDown,
+            ...this.props.rawProps,
         },
             this.getChildren(),
         );
