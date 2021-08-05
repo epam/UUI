@@ -3,20 +3,16 @@
     align-self: stretch;
     display: flex;
     position: relative;
+
+    :global(.os-content) {
+        max-width: 100%;
+    }
 }
 
 .body {
     flex: 1 1 0;
     align-self: stretch;
     display: flex;
-}
-
-.container-1 {
-    flex: 1 1 0;
-    align-self: stretch;
-    position: relative;
-    overflow: hidden;
-    overscroll-behavior-x: none;
 }
 
 .container-2 {

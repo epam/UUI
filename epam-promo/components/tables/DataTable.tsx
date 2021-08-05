@@ -2,17 +2,17 @@ import * as React from 'react';
 import {
     applyColumnsConfig, ColumnsConfig, DataRowProps, DataSourceState, Lens, ScrollManager, UuiContexts, getColumnsConfig, DataColumnProps, IEditable, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions, UuiContext,
 } from '@epam/uui';
+import { IScrollbarsPositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
-import * as CustomScrollBars from "react-custom-scrollbars";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
-    onScroll?(value: CustomScrollBars.positionValues): void;
+    onScroll?(value: IScrollbarsPositionValues): void;
     showColumnsConfig?: boolean;
 }
 

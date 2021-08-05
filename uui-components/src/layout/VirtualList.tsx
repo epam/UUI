@@ -1,20 +1,23 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
 import * as css from './VirtualList.scss';
 import { IHasCX, IEditable, VirtualListState } from '@epam/uui';
 import cx from 'classnames';
-import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars';
+import { IScrollbarsPositionValues } from './ScrollBars';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import 'overlayscrollbars/css/OverlayScrollbars.css';
+import OverlayScrollbars from "overlayscrollbars";
+import ReactDOM from 'react-dom';
 
 export interface VirtualListProps extends IHasCX, IEditable<VirtualListState> {
     rows: React.ReactNode[];
     rowsCount?: number;
     focusedIndex?: number;
-    onScroll?(value: CustomScrollBars.positionValues): void;
+    onScroll?(value: IScrollbarsPositionValues): void;
+    style?: React.CSSProperties;
+    scrollBarsOptions?: OverlayScrollbars.Options;
 }
 
-export class VirtualList extends React.Component<VirtualListProps, {}> {
-    scrollBars: ScrollBars | null;
-    container1: Element;
+export class VirtualList extends React.Component<VirtualListProps, { [key: string]: any }> {
     container2: HTMLElement;
     container3: Element;
     topShadow: HTMLElement | null;
@@ -23,15 +26,36 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
     rowHeights: number[] = [];
     rowOffsets: number[] = [];
     estimatedHeight: number = null;
-    scrollValues: CustomScrollBars.positionValues = { scrollTop: 0 } as any;
+    scrollBars: OverlayScrollbarsComponent;
+    scrollValues: IScrollbarsPositionValues = { scrollTop: 0 } ;
 
     handleUpdateScroll = () => {
-        this.scrollValues = this.scrollBars.getValues();
+        const scrollInstance = this.scrollBars?.osInstance();
+        if (!scrollInstance) return;
+        const {
+            scrollTop,
+            scrollLeft,
+            clientHeight,
+            scrollHeight,
+            scrollWidth,
+            clientWidth,
+        } = scrollInstance.getElements().viewport;
+        const { x: top, y: left } = scrollInstance.getState().overflowAmount;
+
+        this.scrollValues = {
+            scrollTop,
+            scrollLeft,
+            clientHeight,
+            scrollHeight,
+            scrollWidth,
+            clientWidth,
+            top,
+            left,
+        };
         if (this.props.onScroll) {
             this.props.onScroll(this.scrollValues);
         }
         let topIndex = 0;
-        let scrollTop = this.scrollValues.scrollTop;
         while (topIndex < this.props.rowsCount
             && this.rowOffsets[Math.min(topIndex + this.blockAlign, this.props.rowsCount)] < scrollTop
         ) {
@@ -39,7 +63,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         }
 
         let bottomIndex = topIndex;
-        let scrollBottom = scrollTop + this.scrollValues.clientHeight;
+        let scrollBottom = scrollTop + clientHeight;
         while (bottomIndex < this.props.rowsCount
             && this.rowOffsets[Math.min(bottomIndex, this.props.rowsCount)] < scrollBottom
         ) {
@@ -55,23 +79,27 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         }
 
         // Update shadows visibility
-        let showBottomShadow = this.scrollValues.scrollTop == 0
-            ? this.estimatedHeight > this.scrollValues.clientHeight
-            : (this.scrollValues.scrollHeight - this.scrollValues.clientHeight > this.scrollValues.scrollTop);
+        let showBottomShadow = scrollTop == 0
+            ? this.estimatedHeight > clientHeight
+            : (scrollHeight - clientHeight > scrollTop);
 
-        this.topShadow?.style.setProperty('opacity', this.scrollValues.scrollTop > 0 ? '1' : '0');
+        this.topShadow?.style.setProperty('opacity', scrollTop > 0 ? '1' : '0');
         this.bottomShadow?.style.setProperty('opacity', showBottomShadow ? '1' : '0');
     }
 
     updateScrollToFocus() {
+        const scrollInstance = this.scrollBars?.osInstance();
+        if (!scrollInstance) return;
+        const { scrollTop, clientHeight } = scrollInstance.getElements().viewport;
         let focusCoord = this.props.focusedIndex && this.rowOffsets[this.props.focusedIndex] || 0;
         let rowHeight = this.props.focusedIndex && this.rowHeights[this.props.focusedIndex] || 0;
-        let topElementCoord = this.scrollValues.scrollTop - rowHeight;
-        let bottomElementCoord = this.scrollValues.scrollTop + this.scrollValues.clientHeight;
+        let topElementCoord = scrollTop - rowHeight;
+        let bottomElementCoord = scrollTop + clientHeight;
 
         if (focusCoord < topElementCoord || bottomElementCoord < focusCoord) {
-            this.scrollBars.scrollTop(focusCoord - this.scrollValues.clientHeight / 2 + rowHeight / 2);
-            this.scrollValues = this.scrollBars.getValues();
+            const updatedTop = focusCoord - clientHeight / 2 + rowHeight / 2;
+            scrollInstance.scroll({ top: updatedTop });
+            this.scrollValues = { ...this.scrollValues, scrollTop: updatedTop };
         }
     }
 
@@ -93,10 +121,9 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         }
     }
 
-    updateRefs(scrollBars: ScrollBars) {
+    updateRefs(scrollBars: OverlayScrollbarsComponent) {
         this.scrollBars = scrollBars;
         const root = scrollbars && ReactDOM.findDOMNode(scrollBars) as Element;
-        this.container1 = root && root?.getElementsByClassName(css.container1)[0];
         this.container2 = root && root?.getElementsByClassName(css.container2)[0] as HTMLElement;
         this.container3 = root && root?.getElementsByClassName(css.container3)[0];
     }
@@ -111,7 +138,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
     }
 
     updateRowHeights() {
-        const nodes = this.container3?.children;
+        const nodes = this.container3.children;
         const topIndex = this.props.value?.topIndex || 0;
         for (let n = 0; n < nodes.length; n++) {
             this.rowHeights[topIndex + n] = nodes[n].getBoundingClientRect().height;
@@ -141,36 +168,31 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         this.estimatedHeight = estimatedHeight;
     }
 
-    renderView({ style, ...props }: { style: {}, props: any }) {
-
-        return (
-            <div
-                className={ css.container1 }
-                style={ { ...style } }
-                { ...props }
-            />
-        );
-    }
-
     render() {
         return (
             <div className={ cx(css.wrapper, this.props.cx) }>
-                <ScrollBars
-                    key='s'
-                    autoHeight
+                <OverlayScrollbarsComponent
+                    ref={ (el: OverlayScrollbarsComponent) => this.updateRefs(el) }
+                    options={ {
+                        paddingAbsolute: true,
+                        scrollbars: {
+                            autoHide: 'never',
+                        },
+                        callbacks: {
+                            onScroll: this.handleUpdateScroll,
+                        },
+                        ...this.props.scrollBarsOptions,
+                    } }
+                    style={ {
+                        width: "100%",
+                        ...this.props.style,
+                    } }
                     className={ css.body }
-                    onScroll={ this.handleUpdateScroll }
-                    hideTracksWhenNotNeeded
-                    renderView={ this.renderView.bind(this) }
-                    ref={ el => this.updateRefs(el) }
-                    autoHeightMax={ 100500 }
-                    renderThumbHorizontal={ () => <div className='uui-thumb-horizontal'/> }
-                    renderThumbVertical={ () => <div className='uui-thumb-vertical'/> }
                 >
                     <div className={ css.container2 } style={ { minHeight: this.estimatedHeight } }>
                         { this.renderRows() }
                     </div>
-                </ScrollBars>
+                </OverlayScrollbarsComponent>
                 <div key='st' className='uui-scroll-shadow-top' ref={ el => this.topShadow = el } />
                 <div key='sb' className='uui-scroll-shadow-bottom' ref={ el => this.bottomShadow = el } />
             </div>

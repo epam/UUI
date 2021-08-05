@@ -89,6 +89,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }
+                        style={ { height: this.props.maxHeight } }
                     />
                     : this.renderNoFound()
                 }

@@ -22,124 +22,102 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
       }
     />
     <div
-      className="uui-table-scroll-bar"
+      className="os-host"
       style={
         Object {
           "flexGrow": 100,
           "flexShrink": 1,
-          "height": "100%",
           "minWidth": 0,
-          "overflow": "hidden",
-          "position": "relative",
           "width": 0,
         }
       }
     >
       <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
       >
         <div
-          className="container align-items-top"
+          className="os-viewport"
         >
           <div
-            className="cellPlaceholder"
-            onClick={[Function]}
-            style={
-              Object {
-                "alignSelf": undefined,
-                "flexBasis": "200px",
-                "flexGrow": 1,
-                "flexShrink": undefined,
-                "minWidth": 0,
-                "textAlign": undefined,
-              }
-            }
-          />
+            className="os-content"
+          >
+            <div
+              className="container align-items-top"
+            >
+              <div
+                className="cellPlaceholder"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "200px",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              />
+              <div
+                className="cellPlaceholder"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "150px",
+                    "flexGrow": undefined,
+                    "flexShrink": undefined,
+                    "minWidth": "200px",
+                    "textAlign": undefined,
+                  }
+                }
+              />
+              <div
+                className="cellPlaceholder"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "120px",
+                    "flexGrow": 1,
+                    "flexShrink": 0,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="os-scrollbar os-scrollbar-horizontal "
+      >
+        <div
+          className="os-scrollbar-track"
+        >
           <div
-            className="cellPlaceholder"
-            onClick={[Function]}
-            style={
-              Object {
-                "alignSelf": undefined,
-                "flexBasis": "150px",
-                "flexGrow": undefined,
-                "flexShrink": undefined,
-                "minWidth": "200px",
-                "textAlign": undefined,
-              }
-            }
-          />
-          <div
-            className="cellPlaceholder"
-            onClick={[Function]}
-            style={
-              Object {
-                "alignSelf": undefined,
-                "flexBasis": "120px",
-                "flexGrow": 1,
-                "flexShrink": 0,
-                "minWidth": 0,
-                "textAlign": undefined,
-              }
-            }
+            className="os-scrollbar-handle"
           />
         </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
+        className="os-scrollbar os-scrollbar-vertical"
       >
         <div
-          className="uui-thumb-horizontal"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
-      >
-        <div
-          style={
-            Object {
-              "backgroundColor": "rgba(0,0,0,.2)",
-              "borderRadius": "inherit",
-              "cursor": "pointer",
-              "display": "block",
-              "position": "relative",
-              "width": "100%",
-            }
-          }
-        />
-      </div>
+        className="os-scrollbar-corner"
+      />
     </div>
   </div>
 </div>

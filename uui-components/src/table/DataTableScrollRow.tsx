@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
-import ScrollBars from 'react-custom-scrollbars';
 import { ScrollManager, DataColumnProps, IHasCX } from '@epam/uui';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import 'overlayscrollbars/css/OverlayScrollbars.css';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
@@ -42,22 +42,19 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
 
     wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties) {
         return (
-            <ScrollBars
+            <OverlayScrollbarsComponent
                 className={ uuiDataTableScrollRow.uuiTableScrollBar }
-                hideTracksWhenNotNeeded
                 style={ style }
-                ref={ (scrollBars: ScrollBars) => {
-                    let node = ReactDOM.findDOMNode(scrollBars) as HTMLElement;
-                    node = node && node.children[0] as HTMLElement;
-                    node && this.props.scrollManager && this.props.scrollManager.attachScrollNode(node);
-                    node && this.resizeObserver && this.resizeObserver.observe(node);
-                    this.clientWidth = node && node.clientWidth;
+                ref={ (scrollBars: OverlayScrollbarsComponent) => {
+                    let node = scrollBars?.osInstance()?.getElements().viewport;
+                    if (!node) return;
+                    this.props.scrollManager && this.props.scrollManager.attachScrollNode(node);
+                    this.resizeObserver && this.resizeObserver.observe(node);
+                    this.clientWidth = node.clientWidth;
                 } }
-                renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
-
             >
                 { content }
-            </ScrollBars>
+            </OverlayScrollbarsComponent>
         );
     }
 

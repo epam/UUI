@@ -1,4 +1,7 @@
 .root {
+    display: flex;
+    overflow: hidden !important;
+
     &:global(.uui-shadow-top)::before,
     &:global(.uui-shadow-bottom)::after {
         content: '';

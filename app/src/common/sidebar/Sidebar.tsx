@@ -52,8 +52,7 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
         return (
             <div className={ css.root } >
                 <SearchInput value={ this.state.searchValue } onValueChange={ (val) => this.setState({ searchValue: val }) } autoFocus={ true } placeholder='Search' cx={ css.search } getValueChangeAnalyticsEvent={ this.getSearchEvent } />
-                <div className={ css.tree } >
-                    <ScrollBars >
+                <ScrollBars cx={ css.tree } >
                         <Tree
                             items={ this.props.items }
                             value={ this.state.unfoldedIds }
@@ -72,7 +71,6 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
                             search={ this.state.searchValue }
                         />
                     </ScrollBars>
-                </div>
             </div>
         );
     }

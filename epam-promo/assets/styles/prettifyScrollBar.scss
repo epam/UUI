@@ -1,47 +1,39 @@
 @use 'colors' as *;
 
 @mixin prettifyCustomScroll() {
-    :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
+    :global(.os-scrollbar .os-scrollbar-track .os-scrollbar-handle) {
         background: $gray40;
-        border-radius: 1.5px;
 
         &:hover {
-            border-radius: 3px;
+            background: $gray50;
         }
 
         &:active {
-            border-radius: 3px;
             background: $gray60;
         }
     }
 
-    :global(.uui-thumb-vertical) {
-        width: 3px;
-        margin-left: 3px;
+    :global(.os-scrollbar-vertical) {
+        width: 6px;
 
         &:hover {
-            width: 6px;
-            margin-left: 0;
+            width: 10px;
         }
 
         &:active {
-            width: 6px;
-            margin-left: 0;
+            width: 10px;
         }
     }
 
-    :global(.uui-thumb-horizontal) {
-        height: 3px;
-        margin-top: 3px;
+    :global(.os-scrollbar-horizontal) {
+        height: 6px;
 
         &:hover {
-            height: 6px;
-            margin-top: 0;
+            height: 10px;
         }
 
         &:active {
-            height: 6px;
-            margin-top: 0;
+            height: 10px;
         }
     }
 }

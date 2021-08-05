@@ -13,369 +13,361 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
     className="wrapper root shadow-white"
   >
     <div
-      className="body"
+      className="os-host"
       style={
         Object {
-          "height": "auto",
-          "maxHeight": 100500,
-          "minHeight": 0,
-          "overflow": "hidden",
-          "position": "relative",
+          "height": 300,
           "width": "100%",
         }
       }
     >
       <div
-        className="container1"
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": undefined,
-            "left": undefined,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "maxHeight": 100500,
-            "minHeight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": undefined,
-            "top": undefined,
-          }
-        }
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
       >
         <div
-          className="container2"
-          style={
-            Object {
-              "minHeight": null,
-            }
-          }
+          className="os-viewport"
         >
           <div
-            className="container3"
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
+            className="os-content"
           >
             <div
-              className="pickerRow -clickable uui-focus container -clickable align-items-center"
-              onClick={[Function]}
+              className="container2"
+              style={
+                Object {
+                  "minHeight": null,
+                }
+              }
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
+                className="container3"
                 style={
                   Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
+                    "marginTop": 0,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Ken Sánchez
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Ken Sánchez
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Terri Duffy
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Terri Duffy
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Roberto Tamburello
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Roberto Tamburello
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Rob Walters
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Rob Walters
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Gail Erickson
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Gail Erickson
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Jossef Goldberg
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Jossef Goldberg
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Dylan Miller
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Dylan Miller
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Diane Margheim
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Diane Margheim
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Gigi Matthew
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Gigi Matthew
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Michael Raheem
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Michael Raheem
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -383,39 +375,30 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
+        className="os-scrollbar os-scrollbar-horizontal "
       >
         <div
-          className="uui-thumb-horizontal"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
+        className="os-scrollbar os-scrollbar-vertical"
       >
         <div
-          className="uui-thumb-vertical"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
+      <div
+        className="os-scrollbar-corner"
+      />
     </div>
     <div
       className="uui-scroll-shadow-top"
@@ -440,369 +423,361 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
     className="wrapper root shadow-white"
   >
     <div
-      className="body"
+      className="os-host"
       style={
         Object {
-          "height": "auto",
-          "maxHeight": 100500,
-          "minHeight": 0,
-          "overflow": "hidden",
-          "position": "relative",
+          "height": 300,
           "width": "100%",
         }
       }
     >
       <div
-        className="container1"
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": undefined,
-            "left": undefined,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "maxHeight": 100500,
-            "minHeight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": undefined,
-            "top": undefined,
-          }
-        }
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
       >
         <div
-          className="container2"
-          style={
-            Object {
-              "minHeight": null,
-            }
-          }
+          className="os-viewport"
         >
           <div
-            className="container3"
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
+            className="os-content"
           >
             <div
-              className="pickerRow -clickable uui-focus container -clickable align-items-center"
-              onClick={[Function]}
+              className="container2"
+              style={
+                Object {
+                  "minHeight": null,
+                }
+              }
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
+                className="container3"
                 style={
                   Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
+                    "marginTop": 0,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Ken Sánchez
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Ken Sánchez
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Terri Duffy
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Terri Duffy
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Roberto Tamburello
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Roberto Tamburello
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Rob Walters
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Rob Walters
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Gail Erickson
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Gail Erickson
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Jossef Goldberg
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Jossef Goldberg
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Dylan Miller
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Dylan Miller
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Diane Margheim
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Diane Margheim
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Gigi Matthew
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Gigi Matthew
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
-              </div>
-            </div>
-            <div
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
                 <div
-                  className="renderItem"
+                  className="pickerRow -clickable container -clickable align-items-center"
+                  onClick={[Function]}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "0",
+                        "flexGrow": 1,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
                   >
-                    Michael Raheem
+                    <div
+                      className="renderItem"
+                    >
+                      <div
+                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                      >
+                        Michael Raheem
+                      </div>
+                      <div
+                        className="flexSpacer"
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -810,39 +785,30 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
+        className="os-scrollbar os-scrollbar-horizontal "
       >
         <div
-          className="uui-thumb-horizontal"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
+        className="os-scrollbar os-scrollbar-vertical"
       >
         <div
-          className="uui-thumb-vertical"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
+      <div
+        className="os-scrollbar-corner"
+      />
     </div>
     <div
       className="uui-scroll-shadow-top"
