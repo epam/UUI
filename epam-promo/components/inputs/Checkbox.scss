@@ -35,6 +35,8 @@
         border: 1px solid var(--border-color-default);
 
         &:focus {
+            outline: var(--border-color-hovered) auto 1px;
+            outline-offset: 3px;
             border-color: var(--border-color-hovered);
 
             :global(.uui-checked) {
@@ -92,6 +94,10 @@
         :global(.uui-checkbox) {
             border-color: var(--errored-color);
             fill: var(--errored-color);
+
+            &:focus {
+                outline-color: var(--errored-color);
+            }
 
             &:hover, &:active {
                 border-color: var(--errored-color);

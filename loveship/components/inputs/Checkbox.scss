@@ -25,6 +25,7 @@
 .root {
     &:hover, &:active {
         :global(.uui-checkbox) {
+            outline: none;
             border-color: var(--uui-color-800);
         }
     }
