@@ -91,6 +91,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             autoComplete: this.props.autoComplete,
             name: this.props.name,
             maxLength: this.props.maxLength,
+            inputMode: this.props.inputMode,
         };
     }
 
