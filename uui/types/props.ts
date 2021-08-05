@@ -66,6 +66,10 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     isDropdown?: boolean;
 }
 
+export interface IHasRole<T> {
+    role?: React.HTMLAttributes<T>['role'];
+}
+
 /**
  * Component can be used as Toggler control for pickers.
  * This interface is enough for basic pickers.
