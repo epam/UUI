@@ -12,7 +12,7 @@
         margin: 0;
         flex-shrink: 0;
 
-        &:focus, &:focus-visible {
+        &:focus-visible {
             outline: none;
         }
     }
