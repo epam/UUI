@@ -5,88 +5,70 @@ exports[`VirtualList should be rendered correctly 1`] = `
   className="wrapper root"
 >
   <div
-    className="body"
+    className="os-host"
     style={
       Object {
-        "height": "auto",
-        "maxHeight": 100500,
-        "minHeight": 0,
-        "overflow": "hidden",
-        "position": "relative",
         "width": "100%",
       }
     }
   >
     <div
-      className="container1"
-      style={
-        Object {
-          "WebkitOverflowScrolling": "touch",
-          "bottom": undefined,
-          "left": undefined,
-          "marginBottom": 0,
-          "marginRight": 0,
-          "maxHeight": 100500,
-          "minHeight": 0,
-          "overflow": "scroll",
-          "position": "relative",
-          "right": undefined,
-          "top": undefined,
-        }
-      }
+      className="os-resize-observer-host"
+    />
+    <div
+      className="os-padding"
     >
       <div
-        className="container2"
-        style={
-          Object {
-            "minHeight": null,
-          }
-        }
+        className="os-viewport"
       >
         <div
-          className="container3"
-          style={
-            Object {
-              "marginTop": 0,
+          className="os-content"
+        >
+          <div
+            className="container2"
+            style={
+              Object {
+                "minHeight": null,
+              }
             }
-          }
+          >
+            <div
+              className="container3"
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="os-scrollbar os-scrollbar-horizontal "
+    >
+      <div
+        className="os-scrollbar-track"
+      >
+        <div
+          className="os-scrollbar-handle"
         />
       </div>
     </div>
     <div
-      style={
-        Object {
-          "borderRadius": 3,
-          "bottom": 2,
-          "display": "none",
-          "height": 6,
-          "left": 2,
-          "position": "absolute",
-          "right": 2,
-        }
-      }
+      className="os-scrollbar os-scrollbar-vertical"
     >
       <div
-        className="uui-thumb-horizontal"
-      />
+        className="os-scrollbar-track"
+      >
+        <div
+          className="os-scrollbar-handle"
+        />
+      </div>
     </div>
     <div
-      style={
-        Object {
-          "borderRadius": 3,
-          "bottom": 2,
-          "display": "none",
-          "position": "absolute",
-          "right": 2,
-          "top": 2,
-          "width": 6,
-        }
-      }
-    >
-      <div
-        className="uui-thumb-vertical"
-      />
-    </div>
+      className="os-scrollbar-corner"
+    />
   </div>
   <div
     className="uui-scroll-shadow-top"

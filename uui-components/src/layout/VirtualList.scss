@@ -3,20 +3,40 @@
     align-self: stretch;
     display: flex;
     position: relative;
+
+    :global(.os-content) {
+        max-width: 100%;
+    }
 }
 
 .body {
     flex: 1 1 0;
     align-self: stretch;
     display: flex;
-}
 
-.container-1 {
-    flex: 1 1 0;
-    align-self: stretch;
-    position: relative;
-    overflow: hidden;
-    overscroll-behavior-x: none;
+    &:global(.os-host .os-scrollbar-vertical) {
+        width: 6px;
+
+        &:hover {
+            width: 10px;
+        }
+
+        &:active {
+            width: 10px;
+        }
+    }
+
+    &:global(.os-host .os-scrollbar-horizontal) {
+        height: 6px;
+
+        &:hover {
+            height: 10px;
+        }
+
+        &:active {
+            height: 10px;
+        }
+    }
 }
 
 .container-2 {

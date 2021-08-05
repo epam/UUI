@@ -32,102 +32,80 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white topShadow body container align-items-center"
+    className="wrapper root shadow-dark"
   >
     <div
-      className="wrapper root shadow-dark"
+      className="os-host"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
     >
       <div
-        className="body"
-        style={
-          Object {
-            "height": "auto",
-            "maxHeight": 100500,
-            "minHeight": 0,
-            "overflow": "hidden",
-            "position": "relative",
-            "width": "100%",
-          }
-        }
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
       >
         <div
-          className="container1"
-          style={
-            Object {
-              "WebkitOverflowScrolling": "touch",
-              "bottom": undefined,
-              "left": undefined,
-              "marginBottom": 0,
-              "marginRight": 0,
-              "maxHeight": 100500,
-              "minHeight": 0,
-              "overflow": "scroll",
-              "position": "relative",
-              "right": undefined,
-              "top": undefined,
-            }
-          }
+          className="os-viewport"
         >
           <div
-            className="container2"
-            style={
-              Object {
-                "minHeight": null,
-              }
-            }
+            className="os-content"
           >
             <div
-              className="container3"
+              className="container2"
               style={
                 Object {
-                  "marginTop": 0,
+                  "minHeight": null,
                 }
               }
-            />
+            >
+              <div
+                className="container3"
+                style={
+                  Object {
+                    "marginTop": 0,
+                  }
+                }
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div
+        className="os-scrollbar os-scrollbar-horizontal "
+      >
         <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "height": 6,
-              "left": 2,
-              "position": "absolute",
-              "right": 2,
-            }
-          }
+          className="os-scrollbar-track"
         >
           <div
-            className="uui-thumb-horizontal"
-          />
-        </div>
-        <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "position": "absolute",
-              "right": 2,
-              "top": 2,
-              "width": 6,
-            }
-          }
-        >
-          <div
-            className="uui-thumb-vertical"
+            className="os-scrollbar-handle"
           />
         </div>
       </div>
       <div
-        className="uui-scroll-shadow-top"
-      />
+        className="os-scrollbar os-scrollbar-vertical"
+      >
+        <div
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
+      </div>
       <div
-        className="uui-scroll-shadow-bottom"
+        className="os-scrollbar-corner"
       />
     </div>
+    <div
+      className="uui-scroll-shadow-top"
+    />
+    <div
+      className="uui-scroll-shadow-bottom"
+    />
   </div>,
   <div
     className="uui-table-scroll-row-container cellClass"
@@ -136,81 +114,59 @@ Array [
       className="container uui-table-row-container uui-table-scroll-row container align-items-top"
     >
       <div
-        className="uui-table-scroll-bar"
+        className="os-host"
         style={
           Object {
             "flexGrow": 100,
             "flexShrink": 1,
-            "height": "100%",
             "minWidth": 0,
-            "overflow": "hidden",
-            "position": "relative",
             "width": 0,
           }
         }
       >
         <div
-          style={
-            Object {
-              "WebkitOverflowScrolling": "touch",
-              "bottom": 0,
-              "left": 0,
-              "marginBottom": 0,
-              "marginRight": 0,
-              "overflow": "scroll",
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
+          className="os-resize-observer-host"
+        />
+        <div
+          className="os-padding"
         >
           <div
-            className="container align-items-top"
-          />
+            className="os-viewport"
+          >
+            <div
+              className="os-content"
+            >
+              <div
+                className="container align-items-top"
+              />
+            </div>
+          </div>
         </div>
         <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "height": 6,
-              "left": 2,
-              "position": "absolute",
-              "right": 2,
-            }
-          }
+          className="os-scrollbar os-scrollbar-horizontal "
         >
           <div
-            className="uui-thumb-horizontal"
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
         <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "position": "absolute",
-              "right": 2,
-              "top": 2,
-              "width": 6,
-            }
-          }
+          className="os-scrollbar os-scrollbar-vertical"
         >
           <div
-            style={
-              Object {
-                "backgroundColor": "rgba(0,0,0,.2)",
-                "borderRadius": "inherit",
-                "cursor": "pointer",
-                "display": "block",
-                "position": "relative",
-                "width": "100%",
-              }
-            }
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
+        <div
+          className="os-scrollbar-corner"
+        />
       </div>
     </div>
   </div>,

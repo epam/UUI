@@ -66,7 +66,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root root theme-light"
+      className="os-host"
       cx={
         Array [
           Array [
@@ -76,66 +76,46 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           undefined,
         ]
       }
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
     >
       <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
+        className="os-resize-observer-host"
       />
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
+        className="os-padding"
       >
         <div
-          className="uui-thumb-horizontal"
-        />
+          className="os-viewport"
+        >
+          <div
+            className="os-content"
+          />
+        </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
+        className="os-scrollbar os-scrollbar-horizontal "
       >
         <div
-          className="uui-thumb-vertical"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
+      <div
+        className="os-scrollbar os-scrollbar-vertical"
+      >
+        <div
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
+      </div>
+      <div
+        className="os-scrollbar-corner"
+      />
     </div>
     <div
       className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
@@ -240,7 +220,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
       </div>
     </div>
     <div
-      className="root root theme-light"
+      className="os-host"
       cx={
         Array [
           Array [
@@ -250,74 +230,54 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           undefined,
         ]
       }
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
     >
       <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
+        className="os-resize-observer-host"
+      />
+      <div
+        className="os-padding"
       >
         <div
-          className="root margin-24 container"
+          className="os-viewport"
         >
-          <div>
-            content
+          <div
+            className="os-content"
+          >
+            <div
+              className="root margin-24 container"
+            >
+              <div>
+                content
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
+        className="os-scrollbar os-scrollbar-horizontal "
       >
         <div
-          className="uui-thumb-horizontal"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
       <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
+        className="os-scrollbar os-scrollbar-vertical"
       >
         <div
-          className="uui-thumb-vertical"
-        />
+          className="os-scrollbar-track"
+        >
+          <div
+            className="os-scrollbar-handle"
+          />
+        </div>
       </div>
+      <div
+        className="os-scrollbar-corner"
+      />
     </div>
     <div
       className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"

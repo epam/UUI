@@ -108,7 +108,7 @@ export class ScrollManager {
 
         if (this.scrollPosition.x + e.deltaX + node.clientWidth <= node.scrollWidth && this.scrollPosition.x + e.deltaX >= 0) {
             this.updateXScroll(this.scrollPosition.x + e.deltaX);
-            e.preventDefault();
+
         }
     }
 
@@ -126,7 +126,7 @@ export class ScrollManager {
         this.subscribers.push({ node });
         this.resizeObserver.observe(node);
         this.setAttachedNodeScroll(node);
-        node.addEventListener('wheel', (e: any) => this.handleOnWheel(e, node));
+        node.addEventListener('wheel', (e: any) => this.handleOnWheel(e, node), { passive: true });
     }
 
     detachNode(node: HTMLElement) {

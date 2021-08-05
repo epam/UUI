@@ -2,7 +2,7 @@
 
 exports[`ScrollBars should render with default props 1`] = `
 <div
-  className="root root theme-dark"
+  className="os-host"
   cx={
     Array [
       Array [
@@ -12,74 +12,54 @@ exports[`ScrollBars should render with default props 1`] = `
       undefined,
     ]
   }
-  style={
-    Object {
-      "display": "flex",
-      "height": "100%",
-      "overflow": "hidden",
-      "position": "relative",
-      "width": "100%",
-    }
-  }
   theme="dark"
 >
   <div
-    style={
-      Object {
-        "WebkitOverflowScrolling": "touch",
-        "bottom": 0,
-        "flex": "1 1 auto",
-        "left": 0,
-        "marginBottom": 0,
-        "marginRight": 0,
-        "overflow": "scroll",
-        "position": "relative",
-        "right": 0,
-        "top": 0,
-      }
-    }
+    className="os-resize-observer-host"
+  />
+  <div
+    className="os-padding"
   >
     <div
-      className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
-      href={null}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      tabIndex={0}
-    />
+      className="os-viewport"
+    >
+      <div
+        className="os-content"
+      >
+        <div
+          className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
+        />
+      </div>
+    </div>
   </div>
   <div
-    style={
-      Object {
-        "borderRadius": 3,
-        "bottom": 2,
-        "display": "none",
-        "height": 6,
-        "left": 2,
-        "position": "absolute",
-        "right": 2,
-      }
-    }
+    className="os-scrollbar os-scrollbar-horizontal "
   >
     <div
-      className="uui-thumb-horizontal"
-    />
+      className="os-scrollbar-track"
+    >
+      <div
+        className="os-scrollbar-handle"
+      />
+    </div>
   </div>
   <div
-    style={
-      Object {
-        "borderRadius": 3,
-        "bottom": 2,
-        "display": "none",
-        "position": "absolute",
-        "right": 2,
-        "top": 2,
-        "width": 6,
-      }
-    }
+    className="os-scrollbar os-scrollbar-vertical"
   >
     <div
-      className="uui-thumb-vertical"
-    />
+      className="os-scrollbar-track"
+    >
+      <div
+        className="os-scrollbar-handle"
+      />
+    </div>
   </div>
+  <div
+    className="os-scrollbar-corner"
+  />
 </div>
 `;

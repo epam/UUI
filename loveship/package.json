@@ -17,12 +17,10 @@
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
-    "@types/react-custom-scrollbars": "4.0.3",
     "dayjs": "^1.10.6",
     "classnames": "2.2.6",
     "lodash.isequal": "4.5.0",
-    "lodash.sortby": "4.7.0",
-    "react-custom-scrollbars": "4.2.1"
+    "lodash.sortby": "4.7.0"
   },
   "devDependencies": {
     "@types/react-test-renderer": "17.0.1",

@@ -74,7 +74,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root root theme-light"
+        className="os-host"
         cx={
           Array [
             Array [
@@ -84,226 +84,215 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             undefined,
           ]
         }
-        style={
-          Object {
-            "display": "flex",
-            "height": "100%",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": "100%",
-          }
-        }
       >
         <div
-          style={
-            Object {
-              "WebkitOverflowScrolling": "touch",
-              "bottom": 0,
-              "flex": "1 1 auto",
-              "left": 0,
-              "marginBottom": 0,
-              "marginRight": 0,
-              "overflow": "scroll",
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-            }
-          }
+          className="os-resize-observer-host"
+        />
+        <div
+          className="os-padding"
         >
           <div
-            className="checkboxContainer"
+            className="os-viewport"
           >
             <div
-              className="dragElement"
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseMove={[Function]}
-              onMouseUp={[Function]}
+              className="os-content"
             >
               <div
-                className="dndItem"
+                className="checkboxContainer"
               >
                 <div
-                  className="root size-36 background-white spacing-6 container align-items-center"
+                  className="dragElement"
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                  />
-                  <div
-                    className="container root size-18 theme-light color-sky uui-disabled"
-                    onKeyDown={[Function]}
+                    className="dndItem"
                   >
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="root size-36 background-white spacing-6 container align-items-center"
                     >
                       <div
-                        className="container uui-icon uui-enabled"
+                        className="dragHandle container uui-drag-handle"
+                      />
+                      <div
+                        className="container root size-18 theme-light color-sky uui-disabled"
+                        onKeyDown={[Function]}
                       >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
+                        <div
+                          className="uui-checkbox uui-checked"
                         >
-                          <use
-                            xlinkHref="#checkbox-checked.svg"
-                          />
-                        </svg>
+                          <div
+                            className="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              className=""
+                              height={24}
+                              viewBox="0 0 12 24"
+                              width={12}
+                            >
+                              <use
+                                xlinkHref="#checkbox-checked.svg"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div
+                          className="uui-input-label"
+                        >
+                          ID
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      ID
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className="dragElement"
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseMove={[Function]}
-              onMouseUp={[Function]}
-            >
-              <div
-                className="dndItem"
-              >
                 <div
-                  className="root size-36 background-white spacing-6 container align-items-center"
+                  className="dragElement"
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                  />
-                  <div
-                    className="container root size-18 theme-light color-sky uui-disabled"
-                    onKeyDown={[Function]}
+                    className="dndItem"
                   >
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="root size-36 background-white spacing-6 container align-items-center"
                     >
                       <div
-                        className="container uui-icon uui-enabled"
+                        className="dragHandle container uui-drag-handle"
+                      />
+                      <div
+                        className="container root size-18 theme-light color-sky uui-disabled"
+                        onKeyDown={[Function]}
                       >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
+                        <div
+                          className="uui-checkbox uui-checked"
                         >
-                          <use
-                            xlinkHref="#checkbox-checked.svg"
-                          />
-                        </svg>
+                          <div
+                            className="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              className=""
+                              height={24}
+                              viewBox="0 0 12 24"
+                              width={12}
+                            >
+                              <use
+                                xlinkHref="#checkbox-checked.svg"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div
+                          className="uui-input-label"
+                        >
+                          name
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      name
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className="dragElement"
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseMove={[Function]}
-              onMouseUp={[Function]}
-            >
-              <div
-                className="dndItem"
-              >
                 <div
-                  className="root size-36 background-white spacing-6 container align-items-center"
+                  className="dragElement"
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                  />
-                  <div
-                    className="container root size-18 theme-light color-sky -clickable"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    tabIndex={0}
+                    className="dndItem"
                   >
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="root size-36 background-white spacing-6 container align-items-center"
                     >
                       <div
-                        className="container uui-icon uui-enabled"
+                        className="dragHandle container uui-drag-handle"
+                      />
+                      <div
+                        className="container root size-18 theme-light color-sky -clickable"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        tabIndex={0}
                       >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
+                        <div
+                          className="uui-checkbox uui-checked"
                         >
-                          <use
-                            xlinkHref="#checkbox-checked.svg"
-                          />
-                        </svg>
+                          <div
+                            className="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              className=""
+                              height={24}
+                              viewBox="0 0 12 24"
+                              width={12}
+                            >
+                              <use
+                                xlinkHref="#checkbox-checked.svg"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div
+                          className="uui-input-label"
+                        >
+                          Level
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      Level
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className="dragElement"
-              onMouseDown={[Function]}
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-              onMouseMove={[Function]}
-              onMouseUp={[Function]}
-            >
-              <div
-                className="dndItem"
-              >
                 <div
-                  className="root size-36 background-white spacing-6 container align-items-center"
+                  className="dragElement"
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                  />
-                  <div
-                    className="container root size-18 theme-light color-sky -clickable"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    tabIndex={0}
+                    className="dndItem"
                   >
                     <div
-                      className="uui-checkbox uui-checked"
+                      className="root size-36 background-white spacing-6 container align-items-center"
                     >
                       <div
-                        className="container uui-icon uui-enabled"
+                        className="dragHandle container uui-drag-handle"
+                      />
+                      <div
+                        className="container root size-18 theme-light color-sky -clickable"
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        tabIndex={0}
                       >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
+                        <div
+                          className="uui-checkbox uui-checked"
                         >
-                          <use
-                            xlinkHref="#checkbox-checked.svg"
-                          />
-                        </svg>
+                          <div
+                            className="container uui-icon uui-enabled"
+                          >
+                            <svg
+                              className=""
+                              height={24}
+                              viewBox="0 0 12 24"
+                              width={12}
+                            >
+                              <use
+                                xlinkHref="#checkbox-checked.svg"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div
+                          className="uui-input-label"
+                        >
+                          DATE
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      DATE
                     </div>
                   </div>
                 </div>
@@ -312,39 +301,30 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "height": 6,
-              "left": 2,
-              "position": "absolute",
-              "right": 2,
-            }
-          }
+          className="os-scrollbar os-scrollbar-horizontal "
         >
           <div
-            className="uui-thumb-horizontal"
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
         <div
-          style={
-            Object {
-              "borderRadius": 3,
-              "bottom": 2,
-              "display": "none",
-              "position": "absolute",
-              "right": 2,
-              "top": 2,
-              "width": 6,
-            }
-          }
+          className="os-scrollbar os-scrollbar-vertical"
         >
           <div
-            className="uui-thumb-vertical"
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
+        <div
+          className="os-scrollbar-corner"
+        />
       </div>
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"

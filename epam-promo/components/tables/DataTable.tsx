@@ -2,17 +2,16 @@ import * as React from 'react';
 import {
     applyColumnsConfig, ColumnsConfig, DataRowProps, DataSourceState, Lens, ScrollManager, UuiContexts, getColumnsConfig, DataColumnProps, IEditable, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions, UuiContext,
 } from '@epam/uui';
+import { IScrollbarsPositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, VirtualList } from '../';
-import * as css from './DataTable.scss';
-import * as CustomScrollBars from "react-custom-scrollbars";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
-    onScroll?(value: CustomScrollBars.positionValues): void;
+    onScroll?(value: IScrollbarsPositionValues): void;
     showColumnsConfig?: boolean;
 }
 
@@ -83,16 +82,14 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     allowColumnsResizing={ this.props.allowColumnsResizing }
                     { ...this.lens.toProps() }
                 />
-                <FlexRow key='body' topShadow background='white' cx={ css.body }>
-                    <VirtualList
-                        { ...this.lens.toProps() }
-                        onScroll={ this.props.onScroll }
-                        rows={ this.getRows() }
-                        rowsCount={ this.props.rowsCount }
-                        focusedIndex={ this.props.value?.focusedIndex }
-                        shadow='dark'
-                    />
-                </FlexRow>
+                <VirtualList
+                    { ...this.lens.toProps() }
+                    onScroll={ this.props.onScroll }
+                    rows={ this.getRows() }
+                    rowsCount={ this.props.rowsCount }
+                    focusedIndex={ this.props.value?.focusedIndex }
+                    shadow='dark'
+                />
                 <DataTableScrollRow key='scroll' scrollManager={ this.scrollManager } columns={ this.getColumns() }/>
             </>
         );

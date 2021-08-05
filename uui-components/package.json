@@ -19,7 +19,6 @@
     "@types/lodash.orderby": "4.6.6",
     "@types/lodash.range": "3.2.6",
     "@types/query-string": "6.1.0",
-    "@types/react-custom-scrollbars": "4.0.3",
     "@types/react-measure": "2.0.6",
     "@types/react-transition-group": "4.4.1",
     "@types/resize-observer-browser": "0.1.5",
@@ -30,7 +29,8 @@
     "lodash.isequal": "4.5.0",
     "lodash.orderby": "4.6.0",
     "lodash.range": "3.2.0",
-    "react-custom-scrollbars": "4.2.1",
+    "overlayscrollbars": "^1.13.1",
+    "overlayscrollbars-react": "^0.2.3",
     "react-measure": "2.5.2",
     "react-popper": "2.2.4",
     "react-transition-group": "4.4.2"
@@ -41,6 +41,7 @@
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
+    "@types/overlayscrollbars": "^1.12.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0"
   },
