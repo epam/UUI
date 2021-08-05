@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './Switch.scss';
 import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext } from "@epam/uui";
 
-export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLDivElement> {}
+export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {}
 
 export class Switch extends React.Component<SwitchProps, any> {
     static contextType = UuiContext;
@@ -17,31 +17,29 @@ export class Switch extends React.Component<SwitchProps, any> {
         }
     }
 
-    handleKeyDown = (e: any): void => {
-        if (e.keyCode === 32) {
-            e.preventDefault();
-            this.toggle();
-        }
-    }
-
     render() {
         return (
             <div
+                role="switch"
                 className={ cx(
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
-                onClick={ !this.props.isDisabled ? this.toggle : undefined }
-                tabIndex={ 0 }
-                onKeyDown={ (e) => !this.props.isDisabled && this.handleKeyDown }
-                {...this.props.rawProps}
             >
-                <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
-                    <div className={ cx(uuiElement.switchToggler) }/>
-                </div>
-                <div className={ uuiElement.inputLabel }>{ this.props.label }</div>
+                <input
+                    type="checkbox"
+                    onChange={ this.toggle }
+                    disabled={ this.props.isDisabled }
+                    checked={ this.props.value }
+                    readOnly={ this.props.isReadonly }
+                    aria-checked={ this.props.value }
+                    className={ cx(uuiElement.switchToggler, this.props.value && uuiMod.checked) }
+                    { ...this.props.rawProps }
+                />
+                <span className={cx(uuiElement.switchBody)} />
+                <span role="label" className={ uuiElement.inputLabel }>{ this.props.label }</span>
             </div>
         );
     }
