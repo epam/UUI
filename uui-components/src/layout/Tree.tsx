@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {IHasCX, IHasChildren, IEditable, ArrayDataSource, TreeNode, getSearchFilter, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { IHasCX, IHasChildren, IEditable, ArrayDataSource, TreeNode, getSearchFilter, IAnalyticableOnChange, uuiContextTypes, UuiContexts } from "@epam/uui";
 import clone from 'lodash.clone';
 import isEqual from 'lodash.isequal';
 
@@ -30,7 +30,7 @@ interface TreeState {
 export class Tree extends React.Component<TreeProps, TreeState> {
     static contextTypes = uuiContextTypes;
     context: UuiContexts;
-    
+
     dataSource: ArrayDataSource;
 
     constructor(props: TreeProps) {
@@ -43,7 +43,7 @@ export class Tree extends React.Component<TreeProps, TreeState> {
             list: this.getListRecursive(),
         };
     }
-    
+
     public componentDidUpdate(prevProps: TreeProps) {
         if (prevProps.search !== this.props.search || !isEqual(prevProps.value, this.props.value)) {
             this.setState({list: this.getListRecursive()});
@@ -62,11 +62,11 @@ export class Tree extends React.Component<TreeProps, TreeState> {
             value.push(item.id);
             this.props.onValueChange(value);
         }
-        
+
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
-        } 
+        }
     }
 
     getListRecursive() {
@@ -85,7 +85,7 @@ export class Tree extends React.Component<TreeProps, TreeState> {
         if (item.children && item.children.length) {
             item.children.forEach(i => children.push(...this.getNodes(i, depth + 1)));
         }
-        
+
         if (!this.props.value.includes(item.id)) {
             if (applySearch && children.length > 0) {
                 this.props.onValueChange([...this.props.value, item.id]);

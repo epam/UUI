@@ -4,7 +4,7 @@ import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLDivElement> {
     scrollManager?: ScrollManager;
     columns?: DataColumnProps<any, any>[];
     renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;
@@ -79,7 +79,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 scrollableColumns.push(i);
             }
         });
-        
+
         const scrollingCells = (
             <FlexRow alignItems='top' >
                 { this.renderCells(scrollableColumns) }

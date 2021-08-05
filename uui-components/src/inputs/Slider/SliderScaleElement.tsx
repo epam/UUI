@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { cx } from '@epam/uui';
 import { uuiSlider } from './SliderBase';
-import cx from 'classnames';
 
 interface SliderScaleElementProps {
     sliderWidth: number | undefined;
@@ -39,6 +39,7 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
     render() {
         const dotOffset = this.props.offset + this.props.sliderMargin - (this.scaleDot ? (this.state.scaleDotWidth / 2) : 0);
         let numberOffset = this.calculateLabelPosition();
+
         return (
             <>
                 <div

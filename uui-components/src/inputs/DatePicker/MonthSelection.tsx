@@ -1,7 +1,6 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { IEditable, IHasCX, arrayToMatrix } from '@epam/uui';
-import cx from 'classnames';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
 import * as css from './MonthSelection.scss';
 import localeData from 'dayjs/plugin/localeData';
 dayjs.extend(localeData);
@@ -17,7 +16,7 @@ export const uuiMonthSelection = {
     currentMonth: 'uui-monthselection-current-month',
 };
 
-export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX {
+export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 
@@ -38,7 +37,7 @@ export class MonthSelection extends React.Component<MonthSelectionProps, any> {
     render() {
         const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
         return (
-            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx) }>
+            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } {...this.props.rawProps} >
                 <div className={ uuiMonthSelection.content }>
                     <div className={ uuiMonthSelection.monthContainer }>
                         { arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) =>

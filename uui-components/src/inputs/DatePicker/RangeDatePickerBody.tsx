@@ -1,15 +1,13 @@
 import * as React from 'react';
-import cx from 'classnames';
 import dayjs, { Dayjs } from "dayjs";
 import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, ViewType } from './DatePickerBodyBase';
 import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
-import * as css from './RangeDatePickerBody.scss';
 import { CalendarPresets, Presets } from './CalendarPresets';
-import { arrayToMatrix } from '@epam/uui';
-import { IEditable } from '@epam/uui';
+import { arrayToMatrix, cx, IEditable } from '@epam/uui';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import * as css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);
 
 export function weekCount(displayedDate: Dayjs) {
@@ -272,7 +270,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) }>
+            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } {...this.props.rawProps} >
                 { this.renderDatePicker() }
             </div>
         );
