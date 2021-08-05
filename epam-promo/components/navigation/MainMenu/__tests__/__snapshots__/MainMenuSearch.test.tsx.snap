@@ -56,7 +56,7 @@ exports[`MainMenuSearch should be rendered correctly 2`] = `
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
-    type="text"
+    type="primary"
     value="test"
   />
 </div>
