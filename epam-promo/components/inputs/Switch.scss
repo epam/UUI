@@ -14,8 +14,6 @@
         }
 
         :global(.uui-input-label) {
-            left: $size;
-
             @if ($size == 12px) {
                 font-size: 12px;
                 letter-spacing: 0.2px;
@@ -48,8 +46,6 @@
     }
 
     :global(.uui-switch-toggler) {
-        top: -1px;
-        left: -1px;
         box-sizing: border-box;
         background-color: var(--toggler-background-color);
         border: 1px solid var(--toggler-border-color);
