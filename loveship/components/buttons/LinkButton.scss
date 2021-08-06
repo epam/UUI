@@ -41,7 +41,7 @@
         @include button-colors(transparent, var(--uui-color-700), transparent);
 
         &:global(.-clickable) {
-            &:hover {
+            &:hover, &:focus {
                 @include button-colors(transparent, var(--uui-color-800), transparent);
             }
 
