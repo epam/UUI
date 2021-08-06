@@ -5,7 +5,7 @@ import { IconContainer } from '../layout';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {
     icon?: Icon;
-    renderLabel?(): any;
+    renderLabel?(): React.ReactNode;
 }
 
 export class RadioInput extends React.Component<RadioInputProps, any> {
