@@ -10,19 +10,19 @@ import * as arrowRightIcon_30 from '@epam/assets/icons/common/navigation-chevron
 export class Paginator extends React.Component<PaginatorProps> {
     renderPaginator(params: PaginatorParams) {
         return (
-            <div className={ css.root }>
+            <nav role="navigation" className={ css.root }>
                 <PageButton size={ params.size } icon={ (params.size === '30') ? arrowLeftIcon_30 : arrowLeftIcon_24 }  onClick={ params.goToPrev } isDisabled={ params.isFirst } fill='white' color='gray50' />
                 {
                     params.pages.map((page, index) => {
                         if (page.type === 'spacer') {
-                            return <PageButton size={ params.size } key={ index } caption={ '...' } fill='light' color='blue' />;
+                            return <PageButton size={ params.size } key={ index } caption={ '...' } fill='light' color='blue' tabIndex={ -1 } />;
                         } else {
-                            return <PageButton size={ params.size } key={ index } caption={ page.pageNumber } onClick={ () => page.onClick && page.onClick() } fill={ (page.isActive && 'white') || 'light' } color={ 'blue' } />;
+                            return <PageButton size={ params.size } key={ index } caption={ page.pageNumber } onClick={ () => page.onClick && page.onClick() } aria-current= { page.isActive } fill={ (page.isActive && 'white') || 'light' } color={ 'blue' } />;
                         }
                     })
                 }
                 <PageButton size={ params.size } icon={ (params.size === '30') ? arrowRightIcon_30 : arrowRightIcon_24 } onClick={ params.goToNext } isDisabled={ params.isLast } fill='white' color='gray50' />
-            </div>
+            </nav>
         );
     }
 
