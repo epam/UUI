@@ -124,7 +124,7 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
     private renderTooltip() {
         const content = this.props.content || (this.props.renderContent && this.props.renderContent());
 
-        return <div className={ uuiElement.tooltipBody }>
+        return <div role="tooltip" aria-hidden={ this.isTooltipExist() } className={ uuiElement.tooltipBody } >
             { content }
         </div>;
     }
@@ -149,15 +149,17 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
         );
     }
 
-    render() {
-        let hasTooltip = !!this.props.content || !!this.props.renderContent;
+    private isTooltipExist() {
+        return !!this.props.content || !!this.props.renderContent;
+    }
 
+    render() {
         return (
             <Manager>
                 <Reference>
                     { ({ref}) => <PopperTargetWrapper innerRef={ ref }>{ this.props.children }</PopperTargetWrapper> }
                 </Reference>
-                { hasTooltip && this.state.isOpen && <Portal target={ this.props.portalTarget }>
+                { this.isTooltipExist() && this.state.isOpen && <Portal target={ this.props.portalTarget }>
                     <Popper
                         placement={ this.props.placement || 'top' }
                         modifiers={ [
