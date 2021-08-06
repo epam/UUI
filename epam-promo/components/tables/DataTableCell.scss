@@ -1,5 +1,18 @@
 @use '../../assets/styles/colors' as *;
 
+@mixin checkbox-position($value) {
+    .after-paddings, .before-paddings {
+        :global(.uui-checkbox), .folding-arrow,
+        :global(.uui-checkbox) + :global(.uui-icon) {
+            margin-top: $value;
+        }
+
+        :global(.uui-icon) {
+            margin-top: $value;
+        }
+    }
+}
+
 .cell {
     position: relative;
     box-sizing: border-box;
@@ -11,43 +24,23 @@
 
     &.align-widgets-top {
         &.size-24, &.size-30 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 6px;
-                }
-            }
+           @include checkbox-position(6px);
         }
 
         &.size-36 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 9px;
-                }
-            }
+            @include checkbox-position(9px);
         }
 
         &.size-42 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 12px;
-                }
-            }
+            @include checkbox-position(12px);
         }
 
         &.size-48 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 15px;
-                }
-            }
+            @include checkbox-position(15px);
         }
 
         &.size-60 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 21px;
-                }
-            }
+            @include checkbox-position(21px);
         }
     }
 
