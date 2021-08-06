@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps {
-    'aria-selected'?: boolean;
+    'aria-selected'?: React.AriaAttributes['aria-selected'];
 }
 
 export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
