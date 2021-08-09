@@ -29,6 +29,9 @@
     display: flex;
     flex-direction: column;
     margin-top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 :global(.uui-scroll-shadow-top) {
