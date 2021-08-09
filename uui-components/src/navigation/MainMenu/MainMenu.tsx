@@ -7,7 +7,7 @@ import { BurgerProps, MainMenuLogo } from './index';
 import orderBy from 'lodash.orderby';
 import { i18n } from '../../../i18n';
 
-export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLDivElement> {}
+export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
 export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     children: any;
@@ -288,7 +288,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                     }
 
                     return (
-                        <div
+                        <nav
                             key='uuiMainMenu'
                             ref={ measureRef }
                             className={ cx(
@@ -297,11 +297,11 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                                 css.container,
                                 this.props.isTransparent && uuiMainMenu.transparent
                             ) }
-                            {...this.props.rawProps}
+                            { ...this.props.rawProps }
                         >
                             { this.renderMenuItems(itemsToRender, hiddenItems, containerWidth) }
                             { this.renderServerBadge() }
-                        </div>
+                        </nav>
                     );
                 }
                 }
