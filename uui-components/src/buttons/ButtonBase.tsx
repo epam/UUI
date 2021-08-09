@@ -9,8 +9,8 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
     static contextType = UuiContext;
     context: UuiContexts;
 
-    handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.keyCode === 32) {
+    handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement | HTMLLinkElement>) => {
+        if (e.keyCode === 32 || e.keyCode === 13) {
             this.clickHandler(e);
         }
     }
@@ -79,7 +79,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
                 !this.props.isDisabled && uuiMod.enabled,
                 (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
                 (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                this.props.cx
+                this.props.cx,
             ),
             role: isAnchor ? 'link' : (this.props.role || 'button'),
             onClick: this.clickHandler,
