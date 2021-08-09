@@ -6,4 +6,5 @@ export * from './Rating';
 export * from './Switch';
 export * from './TextArea';
 export * from './TextInput';
+export * from './TimePicker';
 export * from './Slider';
