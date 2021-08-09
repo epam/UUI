@@ -7,6 +7,7 @@ import { uuiSlider } from './SliderBase';
 
 interface SliderHandleProps extends IHasCX {
     onUpdate(mouseX: number): void;
+    onKeyDownUpdate?(type: 'right' | 'left'): void;
     handleActiveState?(isActive: boolean): void;
     tooltipContent: number;
     isActive: boolean;
@@ -64,6 +65,14 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
         this.setState({ isHovered: false });
     }
 
+    handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (e.key === 'ArrowLeft') {
+            this.props.onKeyDownUpdate('left');
+        } else if (e.key == 'ArrowRight') {
+            this.props.onKeyDownUpdate('right');
+        } else return;
+    }
+
     renderTooltip() {
         const content = this.props.tooltipContent;
 
@@ -80,11 +89,13 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                 <Reference>
                     { (targetProps) =>
                         <div
+                            tabIndex={ 0 }
                             ref={ (SliderHandle) => { this.sliderHandle = SliderHandle; (targetProps.ref as React.RefCallback<any>)(SliderHandle); } }
                             className={ cx(uuiSlider.handle, this.props.cx) }
                             style={ { transform: `translateX(${this.props.offset || 0}px)` } }
                             onMouseDown={ this.handleMouseDown }
                             onMouseUp={ this.handleMouseUp }
+                            onKeyDown={ this.handleKeyDown }
                         />
                     }
                 </Reference>
