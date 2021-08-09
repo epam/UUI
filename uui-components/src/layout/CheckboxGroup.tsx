@@ -6,10 +6,10 @@ import { ICanBeInvalid, IHasCX, IEditable, IDisableable, IHasDirection, directio
 interface CheckboxGroupItem<TValue> {
     name: string;
     id: TValue;
-    renderName?: () => any;
+    renderName?: () => React.ReactNode;
 }
 
-export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
+export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement> {
     CheckboxInput?: React.ComponentClass<CheckboxProps>;
     items: CheckboxGroupItem<TValue>[];
 }
@@ -35,7 +35,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
         const direction = this.props.direction || 'vertical';
 
         return (
-            <div className={ cx(directionMode[direction], this.props.cx, css.container) } {...this.props.rawProps}>
+            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
                 {
                     this.props.items.map(i =>
                         <CheckboxInput
@@ -49,7 +49,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
                         />,
                     )
                 }
-            </div>
+            </fieldset>
         );
     }
 }

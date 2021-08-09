@@ -7,7 +7,7 @@
     fill: var(--uui-color-700);
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             fill: var(--uui-color-800);
         }
 
