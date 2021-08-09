@@ -79,7 +79,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
                 (this.props.onClick || isAnchor) && uuiMarkers.clickable,
                 this.props.cx,
             ),
-            role: isAnchor ? 'link' : (this.props.rawProps?.role || 'button'),
+            role: isAnchor ? 'link' : 'button',
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
