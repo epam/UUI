@@ -1,0 +1,8 @@
+@use '../../assets/styles/index' as *;
+
+.root {
+    &:focus, &:focus-visible {
+        outline-color: $blue;
+        outline-offset: 2px;
+    }
+}

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { cx } from '@epam/uui';
-import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
+import { DropSpot as UuiDropSpot, DropSpotRenderParams } from '@epam/uui-components';
 import * as css from './DropSpot.scss';
+import { UploadFileToggler } from './UploadFileToggler';
 import { Anchor, FlexRow, IconContainer, Text } from '../';
 import * as shapeIcon from '../../icons/fileUpload/shape.svg';
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as css from './UploadFileToggler.scss';
-import { IHasRawProps } from '@epam/uui';
+import { IHasRawProps, IHasCX, cx } from '@epam/uui';
 
 interface UploadFileTogglerRenderParams {
     onClick(): any;
 }
 
-interface UploadFileTogglerProps extends IHasRawProps<HTMLDivElement> {
+export interface UploadFileTogglerProps extends IHasRawProps<HTMLInputElement>, IHasCX {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
     onFilesAdded(files: File[]): any;
     accept?: string;
@@ -20,23 +20,30 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps, a
         this.fileInput?.click();
     }
 
+    handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            this.onClick();
+        }
+    }
+
     render() {
         const params: UploadFileTogglerRenderParams = {
             onClick: this.onClick,
         };
 
         return (
-            <div {...this.props.rawProps}>
+            <label className={ cx(css.root, this.props.cx) } onKeyDown={ this.handleKeyDown } tabIndex={ 0 }>
                 <input
                     className={ css.fileInput }
                     ref={ (ref) => { this.fileInput = ref; } }
-                    onChange={ e => { this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));  (e.currentTarget.value as any) = null; } }
+                    onChange={ e => { this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));  e.currentTarget.value = null; } }
                     type="file"
                     multiple={ !this.props.single }
                     accept={ this.props.accept }
+                    { ...this.props.rawProps }
                 />
                 { this.props.render(params) }
-            </div>
+            </label>
         );
     }
 }
