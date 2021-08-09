@@ -4,4 +4,4 @@ import { IAdaptiveItem } from '@epam/uui';
 
 export interface FlexSpacerProps extends IAdaptiveItem {}
 
-export const FlexSpacer = (props: FlexSpacerProps) => <div { ...props } className={ css.flexSpacer } />;
+export const FlexSpacer = (props: FlexSpacerProps) => <hr role="separator" { ...props } className={ css.flexSpacer } />;
