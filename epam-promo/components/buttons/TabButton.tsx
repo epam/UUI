@@ -20,9 +20,9 @@ function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
     ];
 }
 
-export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, () => ({
+export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, props => ({
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',
-    role: 'tab',
+    rawProps: { role: 'tab', 'aria-current': props.isLinkActive }
 }));

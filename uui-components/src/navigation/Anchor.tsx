@@ -47,8 +47,8 @@ export class Anchor extends ButtonBase<AnchorProps> {
             target: this.props.target,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
+            'aria-current': this.props.isLinkActive,
             ...this.props.rawProps,
-            'aria-selected': undefined,
         }, this.props.children);
     }
 }
