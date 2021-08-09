@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, uuiMarkers } from '@epam/uui';
+import { cx, DataRowProps, uuiMarkers } from '@epam/uui';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { DataTableCellMods, DataTableCellProps } from './types';
 import { Checkbox, FlexCell, TextPlaceholder, Text } from '../';
@@ -17,6 +17,12 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
             return +this.props.padding;
         }
         return +this.props.size < 30 ? 18 : 24;
+    }
+
+    handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, row: DataRowProps<any, any>) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            row.onFold(row);
+        };
     }
 
     render() {
@@ -58,15 +64,28 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
 
             if (row.indent > 0) {
                 allAddons.push({
-                    component: <div key='fold' className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
-                        { row.isFoldable && <IconContainer
-                            key='icon'
-                            icon={ foldingArrow }
-                            cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
-                            rotate={ row.isFolded ? '90ccw' : '0' }
-                            onClick={ () => row.onFold(row) }
-                        /> }
-                    </div>,
+                    component: (
+                        <div
+                            aria-selected={ row.isSelectable && row.isSelected }
+                            aria-expanded={ !row.isFolded }
+                            key='fold'
+                            className={ css.indent }
+                            style={ { marginLeft: (row.indent - 1) * 24 } }>
+                            { row.isFoldable && <IconContainer
+                                key='icon'
+                                tabIndex={ 0 }
+                                rawProps={{ onKeyDown: e => this.handleKeyDown.call(this, e, row) }}
+                                icon={ foldingArrow }
+                                cx={ [
+                                    css.foldingArrow,
+                                    css[`folding-arrow-${additionalItemSize}`],
+                                    uuiMarkers.clickable
+                                ] }
+                                rotate={ row.isFolded ? '90ccw' : '0' }
+                                onClick={ () => row.onFold(row) }
+                            /> }
+                        </div>
+                    ),
                     widthCost: row.indent * 24,
                 });
             }
