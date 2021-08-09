@@ -171,3 +171,11 @@
         }
     }
 }
+
+.panel {
+    border-radius: 0;
+    
+    @media screen and (max-width: 720px) {
+        height: 100vh;
+    }
+}

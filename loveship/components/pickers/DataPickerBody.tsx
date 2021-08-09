@@ -1,15 +1,15 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as css from './DataPickerBody.scss';
-import * as types from '../types';
+import ReactDOM from 'react-dom';
+import isEqual from 'lodash.isequal';
+import css from './DataPickerBody.scss';
 import cx from 'classnames';
-import { SearchInput } from '../inputs';
-import { FlexRow, VirtualList } from '../layout';
 import { Lens, DataSourceState, IEditable, DataSourceListProps } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
-import { Text } from '../typography';
-import isEqual from 'lodash.isequal';
 import { i18n } from "../../i18n";
+import * as types from '../types';
+import { SearchInput } from '../inputs';
+import { FlexRow, VirtualList } from '../layout';
+import { Text } from '../typography';
 
 export type DataPickerBodyProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
     showSearch?: boolean | 'auto'
