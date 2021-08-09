@@ -12,7 +12,7 @@ export interface GlobalMenuProps extends IAdaptiveItem, IHasCX {
 export class GlobalMenu extends React.Component<GlobalMenuProps, any> {
     render() {
         return (
-            <div id='global_menu_toggle' className={ cx(css.globalMenuBtn, this.props.cx) } >
+            <div role="menuitem" id='global_menu_toggle' className={ cx(css.globalMenuBtn, this.props.cx) } >
                 <IconContainer icon={ globalMenuIcon } cx={ css.globalMenuIcon } />
             </div>
         );
