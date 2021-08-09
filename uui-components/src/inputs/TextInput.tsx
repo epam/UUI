@@ -83,7 +83,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             className: cx(uuiElement.input, this.props.inputCx),
             disabled: this.props.isDisabled,
             placeholder: this.props.placeholder,
-            value: this.props.value,
+            value: this.props.value || '',
             readOnly: this.props.isReadonly,
             onKeyDown: this.handleKeyDown,
             onChange: this.handleChange,
