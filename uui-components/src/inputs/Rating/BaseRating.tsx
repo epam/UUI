@@ -99,6 +99,14 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
 
+    onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+        if (e.key === 'ArrowLeft') {
+            this.setState({ rating: this.state.rating - (this.props.step || 1) });
+        } else if (e.key === 'ArrowRight') {
+            this.setState({ rating: this.state.rating + (this.props.step || 1) });
+        }
+    }
+
     render () {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
