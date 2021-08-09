@@ -1,12 +1,12 @@
-import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasRole, IHasRawProps } from "../props";
+import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasRawProps } from "../props";
 import { Icon } from "../objects";
 
-export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasRole<HTMLDivElement>, IHasRawProps<HTMLDivElement> {
+export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasRawProps<HTMLDivElement> {
     isLinkActive?: boolean;
     tabIndex?: number;
 }
 
-export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasicPickerToggler, IDropdownToggler, IHasPlaceholder, IHasRole<HTMLDivElement> {
+export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasicPickerToggler, IDropdownToggler, IHasPlaceholder {
     dropdownIcon?: Icon;
     dropdownIconPosition?: 'left' | 'right';
     countPosition?: 'left' | 'right';

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps {
-    'aria-selected'?: React.AriaAttributes['aria-selected'];
-}
+export interface ButtonBaseProps extends ButtonBaseCoreProps {}
 
 export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
     static contextType = UuiContext;
@@ -81,13 +79,12 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
                 (this.props.onClick || isAnchor) && uuiMarkers.clickable,
                 this.props.cx,
             ),
-            role: isAnchor ? 'link' : (this.props.role || 'button'),
+            role: isAnchor ? 'link' : (this.props.rawProps?.role || 'button'),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
             onKeyDown: this.handleKeyDown,
-            'aria-selected': this.props.role === 'tab' && !isAnchor ? this.props.isLinkActive : null,
             ...this.props.rawProps,
         },
             this.getChildren(),
