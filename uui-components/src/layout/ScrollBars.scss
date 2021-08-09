@@ -2,30 +2,6 @@
     display: flex;
     overflow: hidden !important;
 
-    :global(.os-scrollbar-vertical) {
-        width: 6px;
-
-        &:hover {
-            width: 10px;
-        }
-
-        &:active {
-            width: 10px;
-        }
-    }
-
-    :global(.os-scrollbar-horizontal) {
-        height: 6px;
-
-        &:hover {
-            height: 10px;
-        }
-
-        &:active {
-            height: 10px;
-        }
-    }
-
     &:global(.uui-shadow-top)::before,
     &:global(.uui-shadow-bottom)::after {
         content: '';

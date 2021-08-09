@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import * as css from './VirtualList.scss';
 import { IHasCX, IEditable, VirtualListState } from '@epam/uui';
 import cx from 'classnames';
@@ -6,6 +6,7 @@ import { IScrollbarsPositionValues } from './ScrollBars';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import OverlayScrollbars from "overlayscrollbars";
+import ReactDOM from 'react-dom';
 
 export interface VirtualListProps extends IHasCX, IEditable<VirtualListState> {
     rows: React.ReactNode[];
@@ -17,26 +18,19 @@ export interface VirtualListProps extends IHasCX, IEditable<VirtualListState> {
 }
 
 export class VirtualList extends React.Component<VirtualListProps, { [key: string]: any }> {
-    container2: RefObject<HTMLDivElement>;
-    container3: RefObject<HTMLDivElement>;
+    container2: HTMLElement;
+    container3: Element;
     topShadow: HTMLElement | null;
     bottomShadow: HTMLElement | null;
     blockAlign = 20;
     rowHeights: number[] = [];
     rowOffsets: number[] = [];
     estimatedHeight: number = null;
-    scrollBarsRef: RefObject<OverlayScrollbarsComponent>;
+    scrollBars: OverlayScrollbarsComponent;
     scrollValues: IScrollbarsPositionValues = { scrollTop: 0 } ;
 
-    constructor(props: any) {
-        super(props);
-        this.scrollBarsRef = React.createRef<OverlayScrollbarsComponent>();
-        this.container2 = React.createRef<HTMLDivElement>();
-        this.container3 = React.createRef<HTMLDivElement>();
-    }
-
     handleUpdateScroll = () => {
-        const scrollInstance = this.scrollBarsRef.current?.osInstance();
+        const scrollInstance = this.scrollBars?.osInstance();
         if (!scrollInstance) return;
         const {
             scrollTop,
@@ -94,7 +88,7 @@ export class VirtualList extends React.Component<VirtualListProps, { [key: strin
     }
 
     updateScrollToFocus() {
-        const scrollInstance = this.scrollBarsRef.current?.osInstance();
+        const scrollInstance = this.scrollBars?.osInstance();
         if (!scrollInstance) return;
         const { scrollTop, clientHeight } = scrollInstance.getElements().viewport;
         let focusCoord = this.props.focusedIndex && this.rowOffsets[this.props.focusedIndex] || 0;
@@ -127,17 +121,24 @@ export class VirtualList extends React.Component<VirtualListProps, { [key: strin
         }
     }
 
+    updateRefs(scrollBars: OverlayScrollbarsComponent) {
+        this.scrollBars = scrollBars;
+        const root = scrollbars && ReactDOM.findDOMNode(scrollBars) as Element;
+        this.container2 = root && root?.getElementsByClassName(css.container2)[0] as HTMLElement;
+        this.container3 = root && root?.getElementsByClassName(css.container3)[0];
+    }
+
     renderRows() {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
 
-        return <div className={ css.container3 } ref={ this.container3 } style={ { marginTop: topY } }>
+        return <div className={ css.container3 } style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }
 
     updateRowHeights() {
-        const nodes = this.container3.current?.children;
+        const nodes = this.container3.children;
         const topIndex = this.props.value?.topIndex || 0;
         for (let n = 0; n < nodes.length; n++) {
             this.rowHeights[topIndex + n] = nodes[n].getBoundingClientRect().height;
@@ -161,7 +162,7 @@ export class VirtualList extends React.Component<VirtualListProps, { [key: strin
         let estimatedHeight = lastOffset;
 
         if (this.estimatedHeight != estimatedHeight) {
-            this.container2.current?.style.setProperty('min-height', `${estimatedHeight}px`);
+            this.container2.style.setProperty('min-height', `${estimatedHeight}px`);
         }
 
         this.estimatedHeight = estimatedHeight;
@@ -171,7 +172,7 @@ export class VirtualList extends React.Component<VirtualListProps, { [key: strin
         return (
             <div className={ cx(css.wrapper, this.props.cx) }>
                 <OverlayScrollbarsComponent
-                    ref={ this.scrollBarsRef }
+                    ref={ (el: OverlayScrollbarsComponent) => this.updateRefs(el) }
                     options={ {
                         paddingAbsolute: true,
                         scrollbars: {
@@ -188,7 +189,7 @@ export class VirtualList extends React.Component<VirtualListProps, { [key: strin
                     } }
                     className={ css.body }
                 >
-                    <div className={ css.container2 } ref={ this.container2 } style={ { minHeight: this.estimatedHeight } }>
+                    <div className={ css.container2 } style={ { minHeight: this.estimatedHeight } }>
                         { this.renderRows() }
                     </div>
                 </OverlayScrollbarsComponent>

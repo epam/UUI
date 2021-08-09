@@ -2962,13 +2962,6 @@
   resolved "https://registry.yarnpkg.com/@types/query-string/-/query-string-6.1.0.tgz#5f721f9503bdf517d474c66cf4423da5dd2d5698"
   integrity sha512-6QxF7V3SkdyBRJ81GheWL9Nzr7uDrCZH0hkxdorNcXeBOeAPN5AUf1n9dpecaBOzxJAckWP4nIOeY1YxlhuMTQ==
 
-"@types/react-custom-scrollbars@4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react-custom-scrollbars/-/react-custom-scrollbars-4.0.3.tgz#f1b7e0a0237285599e3b3933f6bc18aaa355e51f"
-  integrity sha512-QR2oYInCuUBpUig0sq7cLbJV4pv0Ve1I6rGKLTSWPANj3V9Ge6Zr+BzFOpmR2mSj62d+JHwC7SOmEgm+Awit/w==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-dom@17.0.3":
   version "17.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.3.tgz#7fdf37b8af9d6d40127137865bb3fff8871d7ee1"

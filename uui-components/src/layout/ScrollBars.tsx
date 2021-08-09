@@ -1,6 +1,6 @@
 import { OverlayScrollbarsComponent, OverlayScrollbarsComponentProps } from 'overlayscrollbars-react';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
-import React, { RefObject } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { IHasCX } from '@epam/uui';
 import * as css from './ScrollBars.scss';
@@ -23,12 +23,7 @@ export interface IScrollbarsPositionValues {
 }
 
 export class ScrollBars extends React.Component<ScrollbarProps, { [key: string]: any }> {
-    scrollBarsRef: RefObject<OverlayScrollbarsComponent>;
-
-    constructor(props: any) {
-        super(props);
-        this.scrollBarsRef = React.createRef<OverlayScrollbarsComponent>();
-    }
+    scrollBars: OverlayScrollbarsComponent;
 
     componentDidMount() {
         this.handleUpdateScroll();
@@ -38,10 +33,12 @@ export class ScrollBars extends React.Component<ScrollbarProps, { [key: string]:
         this.handleUpdateScroll();
     }
 
-
+    setRefs = (scrollBars: OverlayScrollbarsComponent) => {
+        this.scrollBars = scrollBars;
+    }
 
     handleUpdateScroll = () => {
-        const scrollInstance = this.scrollBarsRef.current?.osInstance();
+        const scrollInstance = this.scrollBars?.osInstance();
         if (!scrollInstance) return;
         const scrollbarsNode = scrollInstance.getElements().viewport;
         const { scrollTop, clientHeight, scrollHeight } = scrollbarsNode;
@@ -71,7 +68,7 @@ export class ScrollBars extends React.Component<ScrollbarProps, { [key: string]:
                     hasTopShadow && "uui-shadow-top",
                     hasBottomShadow && "uui-shadow-bottom",
                 ) }
-                ref={ this.scrollBarsRef }
+                ref={ this.setRefs }
                 options={ {
                     paddingAbsolute: true,
                     scrollbars: {

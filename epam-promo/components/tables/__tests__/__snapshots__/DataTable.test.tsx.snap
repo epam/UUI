@@ -32,80 +32,84 @@ Array [
     </div>
   </div>,
   <div
-    className="wrapper root shadow-dark"
+    className="root size-36 background-white topShadow body container align-items-center"
   >
     <div
-      className="os-host"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
+      className="wrapper root shadow-dark"
     >
       <div
-        className="os-resize-observer-host"
-      />
-      <div
-        className="os-padding"
+        className="os-host"
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
       >
         <div
-          className="os-viewport"
+          className="os-resize-observer-host"
+        />
+        <div
+          className="os-padding"
         >
           <div
-            className="os-content"
+            className="os-viewport"
           >
             <div
-              className="container2"
-              style={
-                Object {
-                  "minHeight": null,
-                }
-              }
+              className="os-content"
             >
               <div
-                className="container3"
+                className="container2"
                 style={
                   Object {
-                    "marginTop": 0,
+                    "minHeight": null,
                   }
                 }
-              />
+              >
+                <div
+                  className="container3"
+                  style={
+                    Object {
+                      "marginTop": 0,
+                    }
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="os-scrollbar os-scrollbar-horizontal "
-      >
         <div
-          className="os-scrollbar-track"
+          className="os-scrollbar os-scrollbar-horizontal "
         >
           <div
-            className="os-scrollbar-handle"
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
-      </div>
-      <div
-        className="os-scrollbar os-scrollbar-vertical"
-      >
         <div
-          className="os-scrollbar-track"
+          className="os-scrollbar os-scrollbar-vertical"
         >
           <div
-            className="os-scrollbar-handle"
-          />
+            className="os-scrollbar-track"
+          >
+            <div
+              className="os-scrollbar-handle"
+            />
+          </div>
         </div>
+        <div
+          className="os-scrollbar-corner"
+        />
       </div>
       <div
-        className="os-scrollbar-corner"
+        className="uui-scroll-shadow-top"
+      />
+      <div
+        className="uui-scroll-shadow-bottom"
       />
     </div>
-    <div
-      className="uui-scroll-shadow-top"
-    />
-    <div
-      className="uui-scroll-shadow-bottom"
-    />
   </div>,
   <div
     className="uui-table-scroll-row-container cellClass"

@@ -13,30 +13,6 @@
     flex: 1 1 0;
     align-self: stretch;
     display: flex;
-
-    &:global(.os-host .os-scrollbar-vertical) {
-        width: 6px;
-
-        &:hover {
-            width: 10px;
-        }
-
-        &:active {
-            width: 10px;
-        }
-    }
-
-    &:global(.os-host .os-scrollbar-horizontal) {
-        height: 6px;
-
-        &:hover {
-            height: 10px;
-        }
-
-        &:active {
-            height: 10px;
-        }
-    }
 }
 
 .container-2 {

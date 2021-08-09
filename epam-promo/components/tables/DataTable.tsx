@@ -5,6 +5,7 @@ import {
 import { IScrollbarsPositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, VirtualList } from '../';
+import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -82,14 +83,16 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     allowColumnsResizing={ this.props.allowColumnsResizing }
                     { ...this.lens.toProps() }
                 />
-                <VirtualList
-                    { ...this.lens.toProps() }
-                    onScroll={ this.props.onScroll }
-                    rows={ this.getRows() }
-                    rowsCount={ this.props.rowsCount }
-                    focusedIndex={ this.props.value?.focusedIndex }
-                    shadow='dark'
-                />
+                <FlexRow key='body' topShadow background='white' cx={ css.body }>
+                    <VirtualList
+                        { ...this.lens.toProps() }
+                        onScroll={ this.props.onScroll }
+                        rows={ this.getRows() }
+                        rowsCount={ this.props.rowsCount }
+                        focusedIndex={ this.props.value?.focusedIndex }
+                        shadow='dark'
+                    />
+                </FlexRow>
                 <DataTableScrollRow key='scroll' scrollManager={ this.scrollManager } columns={ this.getColumns() }/>
             </>
         );
