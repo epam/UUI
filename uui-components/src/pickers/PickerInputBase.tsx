@@ -87,7 +87,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleDropdownOpening = (opened: boolean) => {
-        console.log("toggleDropdownOpening");
+        if (opened) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        
         this.setState({
             opened,
             dataSourceState: {

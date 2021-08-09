@@ -1,7 +1,7 @@
 import React from 'react';
 import { PickerBase, PickerBaseProps, PickerBaseState } from '@epam/uui-components';
-import { DataRowProps } from '@epam/uui';
-import { DataPickerBody, DataPickerRow } from '../pickers';
+import { DataRowProps, isMobile } from '@epam/uui';
+import { DataPickerBody, DataPickerRow, DataPickerFooter } from '../pickers';
 import { Text, TextPlaceholder } from '../typography';
 
 export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
@@ -9,7 +9,8 @@ export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     showSearch?: boolean;
 };
 
-export interface PickerFilterState extends PickerBaseState { }
+export interface PickerFilterState extends PickerBaseState {
+}
 
 const pickerHeight = 300;
 
@@ -20,28 +21,53 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom='none'
+                borderBottom="none"
                 size={ this.props.size || '30' }
-                renderItem={ i => <Text size={ this.props.size || '30' }>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : this.getName(i) }</Text>
-            }
+                renderItem={ i => <Text size={ this.props.size || '30' }>{ rowProps.isLoading ?
+                    <TextPlaceholder wordsCount={ 2 }/> : this.getName(i) }</Text>
+                }
             />
         );
     }
 
+    getRows() {
+        const view = this.getView();
+
+        if (this.state.showSelected) {
+            const topIndex = this.state.dataSourceState.topIndex;
+            return view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount);
+        } else {
+            return view.getVisibleRows();
+        }
+    }
+
     render() {
         const view = this.getView();
-        const dataRows = view.getVisibleRows();
-        const rows = dataRows.map(this.renderRow);
+        const renderedDataRows = this.getRows().map(this.renderRow);
+        const maxHeight = isMobile() ? document.documentElement.clientHeight : pickerHeight;
 
-        return <DataPickerBody
-            { ...view.getListProps() }
-            value={ this.getDataSourceState() }
-            onValueChange={ this.handleDataSourceValueChange }
-            maxHeight={ pickerHeight }
-            showSelectedRows={ true }
-            rows={ rows }
-            search={ this.lens.prop('dataSourceState').prop('search').toProps() }
-            showSearch={ this.props.showSearch }
-        />;
+        return (
+            <>
+                <DataPickerBody
+                    { ...view.getListProps() }
+                    value={ this.getDataSourceState() }
+                    onValueChange={ this.handleDataSourceValueChange }
+                    maxHeight={ maxHeight }
+                    showSelectedRows={ true }
+                    rows={ renderedDataRows }
+                    search={ this.lens.prop('dataSourceState').prop('search').toProps() }
+                    showSearch={ this.props.showSearch }
+                />
+                <DataPickerFooter
+                    isSingleSelect={ this.isSingleSelect() }
+                    size={ this.props.size }
+                    hasSelection={ view.getSelectedRows().length > 0 }
+                    clearSelection={ this.clearSelection }
+                    switchValue={ this.state.showSelected }
+                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
+                    selectAll={ view.selectAll }
+                />
+            </>
+        );
     }
 }

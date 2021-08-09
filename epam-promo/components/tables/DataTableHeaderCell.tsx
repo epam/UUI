@@ -12,7 +12,6 @@ import * as filterIcon from '@epam/assets/icons/common/content-filtration-18.svg
 import * as dropdownIcon from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import * as openedDropdownIcon from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
 
-
 interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
 }
@@ -31,45 +30,47 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     getColumnCaption = () => {
-        let captionContent = <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
+        let captionContent = <div
+            className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
             <Text
-                key='text'
-                lineHeight='30'
-                fontSize='14'
-                size='30'
+                key="text"
+                lineHeight="30"
+                fontSize="14"
+                size="30"
                 cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }
             >
                 { this.props.column.caption }
             </Text>
-            { this.props.column.info && <div><Text key='tooltip-marker' lineHeight='30' fontSize='14' size='30'>*</Text></div> }
+            { this.props.column.info &&
+            <div><Text key="tooltip-marker" lineHeight="30" fontSize="14" size="30">*</Text></div> }
             { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection)
-                && <IconButton
-                    key='sort'
-                    cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                    color='gray50'
-                    icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
-                /> }
+            && <IconButton
+                key="sort"
+                cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
+                color="gray50"
+                icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
+            /> }
             { this.props.isFilterActive
-                && <IconButton
-                    key='filter'
-                    cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
-                    color='gray60' icon={ filterIcon }
-                /> }
+            && <IconButton
+                key="filter"
+                cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
+                color="gray60" icon={ filterIcon }
+            /> }
             { this.props.column.renderFilter
-                && <IconButton
-                    key='dropdown'
-                    cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
-                    color='gray50'
-                    icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }
-                /> }
+            && <IconButton
+                key="dropdown"
+                cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
+                color="gray50"
+                icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }
+            /> }
         </div>;
 
         return <div className={ css.tooltipWrapper }>
             <Tooltip
                 trigger="hover"
-                placement='bottom-start'
+                placement="bottom-start"
                 renderContent={ (!this.state.isDropdownOpen && this.props.column.info) ? () => this.props.column.info : null }
-                color='white'
+                color="white"
                 cx={ css.cellTooltip }
                 offset={ [-12, 12] }
             >
@@ -81,19 +82,22 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     renderHeaderCheckbox = () => {
         return this.props.selectAll
             && this.props.isFirstColumn
-            && <Checkbox size='18' { ...this.props.selectAll } cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }/>;
+            && <Checkbox size="18" { ...this.props.selectAll }
+                         cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }/>;
     }
 
     renderResizeMark(props: HeaderCellContentProps) {
         return (
-            <div onMouseDown={ props.onResizeStart } className={ css.resizeMark } />
+            <div onMouseDown={ props.onResizeStart } className={ css.resizeMark }/>
         );
     }
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler & { ref?: React.Ref<any> }) => {
         return <FlexCell
             { ...this.props.column }
-            ref={ (node) => { props.ref.current = node; } }
+            ref={ (node) => {
+                props.ref.current = node;
+            } }
             cx={ cx(
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
@@ -113,26 +117,31 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             { this.renderHeaderCheckbox() }
             { this.getColumnCaption() }
             { this.props.allowColumnsResizing && this.renderResizeMark(props) }
-        </FlexCell >;
+        </FlexCell>;
     }
 
     renderCellWithFilter = (props: HeaderCellContentProps) => {
-        return <ColumnHeaderDropdown
-            isOpen={ this.state.isDropdownOpen }
-            isSortable={ this.props.column.isSortable }
-            renderTarget={ (dropdownProps) => this.renderCellContent(props, dropdownProps) }
-            renderFilter={ this.props.renderFilter }
-            onSort={ this.props.onSort }
-            sortDirection={ this.props.sortDirection }
-            onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
-        />;
+        return (
+            <ColumnHeaderDropdown
+                isOpen={ this.state.isDropdownOpen }
+                isSortable={ this.props.column.isSortable }
+                renderTarget={ (dropdownProps) => this.renderCellContent(props, dropdownProps) }
+                renderFilter={ this.props.renderFilter }
+                onSort={ this.props.onSort }
+                sortDirection={ this.props.sortDirection }
+                onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
+                title={ this.props.caption }
+            />
+        );
     }
 
     render() {
         return (
             <UuiDataTableHeaderCell
                 { ...this.props }
-                renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent }
+                renderCellContent={ this.props.column.renderFilter 
+                    ? this.renderCellWithFilter 
+                    : this.renderCellContent }
             />
         );
     }
