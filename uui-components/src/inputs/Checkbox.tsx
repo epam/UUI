@@ -32,7 +32,9 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
-                ) }>
+                ) }
+                { ...this.props.rawProps }
+            >
                 <input
                     type="checkbox"
                     onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
@@ -41,7 +43,6 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     readOnly={ this.props.isReadonly }
                     aria-checked={ this.props.value }
                     checked={ this.props.value }
-                    { ...this.props.rawProps }
                 />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }

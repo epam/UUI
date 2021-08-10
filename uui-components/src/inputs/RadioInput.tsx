@@ -3,7 +3,7 @@ import * as css from './RadioInput.scss';
 import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
 import { IconContainer } from '../layout';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
 }
@@ -23,14 +23,17 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
 
     render() {
         return (
-            <label className={ cx(
-                css.container,
-                this.props.value && uuiMod.checked,
-                this.props.isDisabled && uuiMod.disabled,
-                this.props.isReadonly && uuiMod.readonly,
-                this.props.isInvalid && uuiMod.invalid,
-                this.props.cx
-            ) }>
+            <label
+                className={ cx(
+                    css.container,
+                    this.props.value && uuiMod.checked,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.isReadonly && uuiMod.readonly,
+                    this.props.isInvalid && uuiMod.invalid,
+                    this.props.cx
+                ) }
+                { ...this.props.rawProps }
+            >
                 <input
                     type="radio"
                     checked={ this.props.value }
@@ -40,7 +43,6 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     aria-checked={ this.props.value }
                     tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
                     onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
-                    { ...this.props.rawProps }
                 />
                 { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 { (this.props.renderLabel || this.props.label) && (
