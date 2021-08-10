@@ -1,73 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioGroup should be rendered correctly 1`] = `
-<div
+<fieldset
   className="uui-vertical-direction root container"
 >
-  <div
+  <label
     className="container root size-18"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-radioinput"
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test1
-    </div>
-  </div>
-  <div
+    </span>
+  </label>
+  <label
     className="container root size-18"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-radioinput"
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test2
-    </div>
-  </div>
-</div>
+    </span>
+  </label>
+</fieldset>
 `;
 
 exports[`RadioGroup should be rendered correctly with props 1`] = `
-<div
+<fieldset
   className="uui-horizontal-direction root container"
 >
-  <div
+  <label
     className="container uui-disabled root size-18"
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-radioinput"
+      disabled={true}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test1
-    </div>
-  </div>
-  <div
+    </span>
+  </label>
+  <label
     className="container uui-disabled root size-18"
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-radioinput"
+      disabled={true}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test2
-    </div>
-  </div>
-</div>
+    </span>
+  </label>
+</fieldset>
 `;

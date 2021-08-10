@@ -6,6 +6,7 @@ exports[`Button should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 />
 `;
@@ -16,6 +17,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
@@ -30,6 +32,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -44,6 +47,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className="flipY"
@@ -59,6 +63,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
     onClick={[MockFunction]}
+    style={Object {}}
   >
     <svg
       className=""

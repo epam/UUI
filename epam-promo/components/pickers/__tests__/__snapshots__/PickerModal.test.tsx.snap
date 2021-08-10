@@ -14,7 +14,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
+    aria-modal={true}
     className="uui-modal-window modal width-600 height-700 container"
+    role="modal"
   >
     <div
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
@@ -46,10 +48,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -90,6 +94,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -165,7 +170,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             >
               <div
+                aria-setsize={11}
                 className="container3"
+                role="list"
                 style={
                   Object {
                     "marginTop": 0,
@@ -559,6 +566,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         href={null}
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
         tabIndex={0}
       >
         <div
@@ -572,6 +580,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         href={null}
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
         tabIndex={0}
       >
         <div
@@ -599,7 +608,9 @@ exports[`PickerModal should be rendered correctly 2`] = `
     onClick={[Function]}
   />
   <div
+    aria-modal={true}
     className="uui-modal-window modal width-600 height-700 container"
+    role="modal"
   >
     <div
       className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
@@ -631,10 +642,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -675,6 +688,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -768,7 +782,9 @@ exports[`PickerModal should be rendered correctly 2`] = `
               }
             >
               <div
+                aria-setsize={11}
                 className="container3"
+                role="list"
                 style={
                   Object {
                     "marginTop": 0,
@@ -796,16 +812,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -846,16 +863,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -896,16 +914,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -946,16 +965,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -996,16 +1016,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1046,16 +1067,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1096,16 +1118,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1146,16 +1169,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1196,16 +1220,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1246,16 +1271,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1296,16 +1322,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     <div
                       className="afterPaddings"
                     >
-                      <div
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        onClick={[Function]}
-                        onKeyDown={[Function]}
-                        tabIndex={0}
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <div
+                        <input
+                          aria-checked={false}
+                          checked={false}
                           className="uui-checkbox"
+                          onChange={[Function]}
+                          type="checkbox"
                         />
-                      </div>
+                      </label>
                     </div>
                     <div
                       className="wrappedContent"
@@ -1379,6 +1406,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         href={null}
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
         tabIndex={0}
       >
         <div
@@ -1395,6 +1423,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         href={null}
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
         tabIndex={0}
       >
         <div
@@ -1408,6 +1437,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         href={null}
         onClick={[Function]}
         onKeyDown={[Function]}
+        role="button"
         tabIndex={0}
       >
         <div

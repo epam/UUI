@@ -78,6 +78,7 @@ Array [
           >
             <div
               className="container3"
+              role="list"
               style={
                 Object {
                   "marginTop": 0,

@@ -43,6 +43,7 @@ exports[`ScrollBars should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     />
   </div>

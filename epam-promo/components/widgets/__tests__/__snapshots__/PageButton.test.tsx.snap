@@ -6,6 +6,7 @@ exports[`PageButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
@@ -22,6 +23,7 @@ exports[`PageButton should be rendered correctly with props 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
