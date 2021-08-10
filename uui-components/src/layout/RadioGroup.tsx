@@ -1,16 +1,15 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './RadioGroup.scss';
 import { RadioInputProps } from '../inputs/RadioInput';
-import { IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly } from '@epam/uui';
+import { IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui';
 
 export interface RadioGroupItem<TValue> extends IDisableable {
     name?: string;
-    renderName?: () => any;
+    renderName?: () => React.ReactNode;
     id: TValue;
 }
 
-export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly {
+export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement> {
     RadioInput?: React.ComponentClass<RadioInputProps>;
     items: RadioGroupItem<TValue>[];
     radioInputProps?: any;
@@ -29,7 +28,7 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
         const direction = this.props.direction || 'vertical';
 
         return (
-            <div className={ cx(directionMode[direction], this.props.cx, css.container) }>
+            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) }  {...this.props.rawProps}>
                 {
                     RadioInput && this.props.items.map(i =>
                         <RadioInput
@@ -39,12 +38,12 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
                             isDisabled={ isDisabled || i.isDisabled }
                             isReadonly={ this.props.isReadonly }
                             isInvalid={ isInvalid }
-                            { ...this.props.radioInputProps }
                             key={ i.id }
+                            { ...this.props.radioInputProps }
                         />,
                     )
                 }
-            </div>
+            </fieldset>
         );
     }
 }

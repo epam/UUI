@@ -113,7 +113,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
 
     protected handleSelectionValueChange = (newValue: any) => {
         (this.props.onValueChange as any)(newValue);
-        
+
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);

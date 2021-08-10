@@ -1,20 +1,18 @@
 import React, { useState, useCallback } from 'react';
-import {FlexCell, PickerInput, Button, FlexRow, PickerToggler, Badge} from '@epam/promo';
-import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { svc } from "../../../services";
+import { FlexCell, PickerInput, Button, FlexRow } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import * as css from './TogglerConfiguration.example.scss';
 
-export function PickerTogglerConfigurationExample() {
+export default function PickerTogglerConfigurationExample() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>(["225284", "2747351", "3119841", "3119746"]);
 
     const loadCities = useCallback((request: LazyDataSourceApiRequest<City, string>) => {
         return svc.api.demo.cities(request);
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api: loadCities,
-    }, []);
+    const dataSource = useLazyDataSource({ api: loadCities }, []);
 
     return (
         <FlexCell width={ 460 } cx={ css.container }>

@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes,
+import {
+    IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes,
     UuiContexts, IDropdownToggler } from '@epam/uui';
-import moment from 'moment';
+import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown } from '../..';
 
 export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
     format: string;
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
-    renderDay?: (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => React.ReactElement<Element>;
-    isHoliday?: (day: moment.Moment) => boolean;
+    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
+    isHoliday?: (day: Dayjs) => boolean;
 }
 
 interface DatePickerState extends PickerBodyValue<string> {
@@ -27,7 +28,7 @@ const getStateFromValue = (value: string | null, format: string) => {
         return {
             inputValue: '',
             selectedDate: value,
-            displayedDate: moment().startOf('day'),
+            displayedDate: dayjs().startOf('day'),
         };
     }
 
@@ -37,14 +38,14 @@ const getStateFromValue = (value: string | null, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: moment(value, valueFormat).isValid() ? moment(value, valueFormat) : moment().startOf('day'),
+        displayedDate: dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
     };
 };
 
 export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends React.Component<TProps, DatePickerState> {
     static contextTypes = uuiContextTypes;
     context: UuiContexts;
-    
+
     state: DatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -71,7 +72,10 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!(moment(this.state.inputValue ? this.state.inputValue : undefined, this.getFormat(), true).isValid()) || (this.props.filter && !this.props.filter(moment(this.state.inputValue, this.getFormat())))) {
+        const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
+        const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
+
+        if (!isValidDate || !isValidFilter) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
         }
@@ -79,7 +83,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
 
     handleInputChange = (value: string) => {
         const resultValue = toValueDateFormat(value, this.getFormat());
-        if (moment(value, this.getFormat(), true).isValid() && (!this.props.filter || this.props.filter(moment(value, this.getFormat())))) {
+        if (dayjs(value, this.getFormat(), true).isValid() && (!this.props.filter || this.props.filter(dayjs(value, this.getFormat())))) {
             this.handleValueChange(resultValue);
             this.setState({ inputValue: value });
         } else {
@@ -93,7 +97,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         this.setState({ selectedDate: value, inputValue: toCustomDateFormat(value, this.getFormat()) });
     }
 
-    setDisplayedDateAndView = (displayedDate: moment.Moment, view: ViewType) => this.setState({...this.state, displayedDate: displayedDate, view: view});
+    setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({...this.state, displayedDate: displayedDate, view: view});
 
 
     handleCancel = () => {
@@ -113,10 +117,10 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         this.setState({
             isOpen: value,
             view: 'DAY_SELECTION',
-            displayedDate: this.state.selectedDate ? moment(this.state.selectedDate) : moment(),
+            displayedDate: this.state.selectedDate ? dayjs(this.state.selectedDate) : dayjs(),
         });
     }
-    
+
     handleValueChange = (newValue: string | null) => {
         this.props.onValueChange(newValue);
 

@@ -1,18 +1,15 @@
-import * as React from 'react';
-import cx from 'classnames';
-import * as css from './MainMenu.scss';
-import {CX, IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link} from '@epam/uui';
-import { ButtonProps } from '../../buttons';
+import React, { MouseEvent } from 'react';
 import Measure from 'react-measure';
+import * as css from './MainMenu.scss';
+import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx } from '@epam/uui';
+import { ButtonProps } from '../../buttons';
 import { BurgerProps, MainMenuLogo } from './index';
 import orderBy from 'lodash.orderby';
 import { i18n } from '../../../i18n';
-import {MouseEvent} from "react";
 
-export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX {
-}
+export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
-export interface MainMenuProps extends IHasCX {
+export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     children: any;
     externalGap?: number;
     appLogoUrl?: string;
@@ -291,14 +288,20 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                     }
 
                     return (
-                        <div
+                        <nav
                             key='uuiMainMenu'
                             ref={ measureRef }
-                            className={ cx(this.props.cx, uuiMainMenu.container, css.container, this.props.isTransparent && uuiMainMenu.transparent) }
+                            className={ cx(
+                                this.props.cx,
+                                uuiMainMenu.container,
+                                css.container,
+                                this.props.isTransparent && uuiMainMenu.transparent
+                            ) }
+                            { ...this.props.rawProps }
                         >
                             { this.renderMenuItems(itemsToRender, hiddenItems, containerWidth) }
                             { this.renderServerBadge() }
-                        </div>
+                        </nav>
                     );
                 }
                 }

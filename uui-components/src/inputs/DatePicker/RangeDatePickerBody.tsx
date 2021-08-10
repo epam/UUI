@@ -1,21 +1,21 @@
 import * as React from 'react';
-import cx from 'classnames';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, ViewType } from './DatePickerBodyBase';
 import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
-import * as css from './RangeDatePickerBody.scss';
 import { CalendarPresets, Presets } from './CalendarPresets';
-import { arrayToMatrix } from '@epam/uui';
-import { IEditable } from '@epam/uui';
+import { arrayToMatrix, cx, IEditable } from '@epam/uui';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import * as css from './RangeDatePickerBody.scss';
+dayjs.extend(isoWeek);
 
-export function weekCount(displayedDate: moment.Moment) {
+export function weekCount(displayedDate: Dayjs) {
     let days: any[] = [];
-    const dayOfLastWeekInPrevMonth = moment(displayedDate).subtract(1, 'months').endOf('month').day();
+    const dayOfLastWeekInPrevMonth = displayedDate.subtract(1, 'month').endOf('month').day();
     days = days.concat(new Array(dayOfLastWeekInPrevMonth).fill(undefined));
     // get days of current month
-    days = days.concat(new Array(moment(displayedDate).endOf('month').date()).fill(undefined));
+    days = days.concat(new Array(displayedDate.endOf('month').date()).fill(undefined));
     return arrayToMatrix(days, 7).length;
 }
 
@@ -31,35 +31,35 @@ export type pickerPart = 'from' | 'to';
 export const rangeDatePickerPresets: Presets = {
     today: {
         name: 'Today',
-        getRange: () => ({ from: moment().toString(), to: undefined, order: 1 }),
+        getRange: () => ({ from: dayjs().toString(), to: undefined, order: 1 }),
     },
     thisWeek: {
         name: 'This Week',
-        getRange: () => ({ from: moment().startOf('isoWeek').toString(), to: moment().endOf('isoWeek').toString(), order: 2 }),
+        getRange: () => ({ from: dayjs().startOf('isoWeek').toString(), to: dayjs().endOf('isoWeek').toString(), order: 2 }),
     },
     lastWeek: {
         name: 'Last Week',
-        getRange: () => ({ from: moment().startOf('isoWeek').subtract(1, 'week').toString(), to: moment().endOf('isoWeek').subtract(1, 'week').toString(), order: 3 }),
+        getRange: () => ({ from: dayjs().startOf('isoWeek').subtract(1, 'week').toString(), to: dayjs().endOf('isoWeek').subtract(1, 'week').toString(), order: 3 }),
     },
     thisMonth: {
         name: 'This Month',
-        getRange: () => ({ from: moment().startOf('month').toString(), to: moment().endOf('month').toString(), order: 4 }),
+        getRange: () => ({ from: dayjs().startOf('month').toString(), to: dayjs().endOf('month').toString(), order: 4 }),
     },
     lastMonth: {
         name: 'Last Month',
-        getRange: () => ({ from: moment().startOf('month').subtract(1, 'month').toString(), to: moment().subtract(1, 'month').endOf('month').toString(), order: 5 }),
+        getRange: () => ({ from: dayjs().startOf('month').subtract(1, 'month').toString(), to: dayjs().subtract(1, 'month').endOf('month').toString(), order: 5 }),
     },
     last3Month: {
         name: 'Last 3 Months',
-        getRange: () => ({ from: moment().startOf('month').subtract(3, 'month').toString(), to: moment().subtract(1, 'month').endOf('month').toString(), order: 5 }),
+        getRange: () => ({ from: dayjs().startOf('month').subtract(3, 'month').toString(), to: dayjs().subtract(1, 'month').endOf('month').toString(), order: 5 }),
     },
     thisYear: {
         name: 'This Year',
-        getRange: () => ({ from: moment().startOf('year').toString(), to: moment().endOf('year').toString(), order: 7 }),
+        getRange: () => ({ from: dayjs().startOf('year').toString(), to: dayjs().endOf('year').toString(), order: 7 }),
     },
     lastYear: {
         name: 'Last Year',
-        getRange: () => ({ from: moment().startOf('year').subtract(1, 'year').toString(), to: moment().subtract(1, 'year').endOf('year').toString(), order: 8 }),
+        getRange: () => ({ from: dayjs().startOf('year').subtract(1, 'year').toString(), to: dayjs().subtract(1, 'year').endOf('year').toString(), order: 8 }),
     },
 };
 
@@ -78,7 +78,7 @@ type InputType = 'from' | 'to';
 export interface RangeDatePickerBodyProps<T> extends DatePickerBodyBaseOptions, IEditable<PickerBodyValue<T>> {
     focusPart: InputType;
     renderFooter?(): React.ReactNode;
-    isHoliday?: (day: moment.Moment) => boolean;
+    isHoliday?: (day: Dayjs) => boolean;
 }
 
 export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProps<RangeDatePickerValue>, RangeDatePickerBodyState> {
@@ -91,10 +91,10 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         this.getContainerHeight(this.props.value.displayedDate);
     }
 
-    getDayCX = (day: moment.Moment) => {
+    getDayCX = (day: Dayjs) => {
         const dayValue = day.valueOf();
-        const fromValue = this.props.value?.selectedDate.from ? moment(this.props.value.selectedDate.from).valueOf() : null;
-        const toValue = this.props.value?.selectedDate.to ? moment(this.props.value.selectedDate.to).valueOf() : null;
+        const fromValue = this.props.value?.selectedDate.from ? dayjs(this.props.value.selectedDate.from).valueOf() : null;
+        const toValue = this.props.value?.selectedDate.to ? dayjs(this.props.value.selectedDate.to).valueOf() : null;
 
         const inRange = dayValue >= fromValue && dayValue <= toValue && fromValue !== toValue && fromValue && toValue;
         const isFirst = dayValue === fromValue;
@@ -113,9 +113,9 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
     getRange(selectedDate: string) {
         const newRange: RangeDatePickerValue = { from: null, to: null };
         const currentRange = this.props.value.selectedDate;
-        if (!this.props.filter || this.props.filter(moment(selectedDate))) {
+        if (!this.props.filter || this.props.filter(dayjs(selectedDate))) {
             if (this.props.focusPart === 'from') {
-                if (moment(selectedDate).valueOf() <= moment(currentRange.to).valueOf()) {
+                if (dayjs(selectedDate).valueOf() <= dayjs(currentRange.to).valueOf()) {
                     newRange.from = selectedDate;
                     newRange.to = currentRange.to;
                 } else {
@@ -127,7 +127,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
             if (this.props.focusPart === 'to') {
                 if (!currentRange.from) {
                     newRange.to = selectedDate;
-                } else if (moment(selectedDate).valueOf() >= moment(currentRange.from).valueOf()) {
+                } else if (dayjs(selectedDate).valueOf() >= dayjs(currentRange.from).valueOf()) {
                     newRange.from = currentRange.from;
                     newRange.to = selectedDate;
                 } else {
@@ -153,21 +153,21 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
         }
     }
 
-    setDisplayedDateAndView(displayedDate: moment.Moment, view: ViewType, part: pickerPart) {
+    setDisplayedDateAndView(displayedDate: Dayjs, view: ViewType, part: pickerPart) {
         this.setState({ activePart: part });
 
         this.props.onValueChange({
             selectedDate: this.props.value.selectedDate,
-            displayedDate: part === 'from' ? displayedDate : moment(displayedDate).subtract(1, 'months'),
+            displayedDate: part === 'from' ? displayedDate : displayedDate.subtract(1, 'month'),
             view: view,
         });
-        this.getContainerHeight(part === 'from' ? displayedDate : moment(displayedDate).subtract(1, 'months'));
+        this.getContainerHeight(part === 'from' ? displayedDate : displayedDate.subtract(1, 'month'));
     }
     // activePart для перехода в режимы выбора месяца и года, чтобы ховерить противоположную часть
 
-    getContainerHeight = (displayedDate: moment.Moment) => {
+    getContainerHeight = (displayedDate: Dayjs) => {
         let numberWeeksOfFirstMonth = weekCount(displayedDate);
-        let numberWeeksOfSecondMonth = weekCount(moment(displayedDate).add(1, 'month'));
+        let numberWeeksOfSecondMonth = weekCount(displayedDate.add(1, 'month'));
         let height;
 
         if (numberWeeksOfFirstMonth > numberWeeksOfSecondMonth) {
@@ -192,11 +192,12 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
     }
 
     getToValue = (): PickerBodyValue<string> => {
+        if (!this.props.value) return;
         return {
             ...this.props.value,
             view: this.state.activePart === 'to' ? this.props.value.view : 'DAY_SELECTION',
-            displayedDate: moment(this.props.value?.displayedDate).add(1, 'months'),
-            selectedDate: this.props.value?.selectedDate.to,
+            displayedDate: this.props.value.displayedDate.add(1, 'month'),
+            selectedDate: this.props.value.selectedDate.to,
         };
     }
 
@@ -208,8 +209,8 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
                     onPresetSet={ (presetVal) => {
                         this.props.onValueChange({
                             view: 'DAY_SELECTION',
-                            selectedDate: { from: moment(presetVal.from).format(valueFormat), to: moment(presetVal.to).format(valueFormat) },
-                            displayedDate: moment(presetVal.from),
+                            selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
+                            displayedDate: dayjs(presetVal.from),
                         });
                         this.props.changeIsOpen(false);
                     } }
@@ -269,7 +270,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) }>
+            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } {...this.props.rawProps} >
                 { this.renderDatePicker() }
             </div>
         );

@@ -1,7 +1,7 @@
-import { ICanBeReadonly, IClickable, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange } from "../props";
+import { ICanBeReadonly, IClickable, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange, IHasRawProps } from "../props";
 
 export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IEditable<string | undefined>, IHasPlaceholder,
-    IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string> {
+    IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string>, IHasRawProps<HTMLDivElement> {
     onCancel?(): void;
     onAccept?(): void;
     onKeyDown?(e?: any): void;
@@ -12,4 +12,5 @@ export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IE
     autoComplete?: string;
     name?: string;
     maxLength?: number;
+    inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];
 };

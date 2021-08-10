@@ -1,11 +1,13 @@
 import React from 'react';
-import { cx, IEditable, uuiMarkers } from '@epam/uui';
-import moment from 'moment';
+import { cx, IEditable, uuiMarkers, IHasRawProps } from '@epam/uui';
+import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection } from './Calendar';
+import isToday from "dayjs/plugin/isToday";
+dayjs.extend(isToday);
 
-export interface DayProps extends IEditable<moment.Moment> {
-    filter?(day: moment.Moment): boolean;
-    getDayCX?: (day: moment.Moment) => any;
+export interface DayProps extends IEditable<Dayjs>, IHasRawProps<HTMLDivElement>  {
+    filter?(day: Dayjs): boolean;
+    getDayCX?: (day: Dayjs) => any;
     renderDayNumber?: (param: any) => any;
     isSelected?: boolean;
     isHoliday?: boolean;
@@ -16,8 +18,7 @@ export class Day extends React.Component<DayProps, any> {
         if (!this.props.value) {
             return null;
         }
-
-        const isCurrent = this.props.value.format('L') === moment().format('L');
+        const isCurrent = this.props.value.isToday();
         const isPassedFilter = this.props.filter ? this.props.filter : true;
 
         return (
@@ -31,8 +32,9 @@ export class Day extends React.Component<DayProps, any> {
                     this.props.filter && !this.props.filter(this.props.value) && uuiDaySelection.filteredDay,
                     ...(this.props.getDayCX ? this.props.getDayCX(this.props.value) : []),
                     uuiDaySelection.dayWrapper,
-                    this.props.isHoliday && uuiDaySelection.holiday,
+                    this.props.isHoliday && uuiDaySelection.holiday
                 ) }
+                {...this.props.rawProps}
             >
                 <div className={ uuiDaySelection.day }>
                     { this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D') }

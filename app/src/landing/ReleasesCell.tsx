@@ -1,5 +1,5 @@
 import * as React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import { cx } from '@epam/uui';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
@@ -47,7 +47,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
                         <FlexRow spacing='12'>
                             <h3>{ header }</h3>
                             <div className={ css.releaseDate }>
-                                { moment(date, 'DD.MM.YYYY').isValid() && moment(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
+                                { dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
                             </div>
                         </FlexRow>
                         <ReactMarkdown source={ releaseNotes } renderers={

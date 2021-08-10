@@ -35,10 +35,12 @@ Array [
             href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
+            role="button"
             tabIndex={0}
           >
             <div
               className="container uui-icon uui-enabled"
+              style={Object {}}
             >
               <svg
                 className=""
@@ -102,10 +104,12 @@ Array [
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}
+                  role="button"
                   tabIndex={0}
                 >
                   <div
                     className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
                     <svg
                       className=""
@@ -152,10 +156,12 @@ Array [
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}
+                  role="button"
                   tabIndex={0}
                 >
                   <div
                     className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
                     <svg
                       className=""
@@ -202,10 +208,12 @@ Array [
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}
+                  role="button"
                   tabIndex={0}
                 >
                   <div
                     className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
                     <svg
                       className=""
@@ -278,7 +286,9 @@ Array [
             }
           >
             <div
+              aria-setsize={10}
               className="container3"
+              role="list"
               style={
                 Object {
                   "marginTop": 0,

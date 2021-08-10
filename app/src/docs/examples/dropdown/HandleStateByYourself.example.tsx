@@ -3,7 +3,7 @@ import { Dropdown } from '@epam/uui-components';
 import { Button, Panel, Text, FlexRow } from "@epam/promo";
 import { IDropdownToggler } from "@epam/uui";
 
-export function BasicDropdownExample() {
+export default function BasicDropdownExample() {
     const [value, onValueChange] = useState(null);
 
     const renderDropdownBody = () => {
