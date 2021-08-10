@@ -6,6 +6,7 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 />
 `;
@@ -15,6 +16,7 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
   className="container uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="link"
   tabIndex={0}
   target="_blank"
 >
@@ -25,6 +27,7 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""

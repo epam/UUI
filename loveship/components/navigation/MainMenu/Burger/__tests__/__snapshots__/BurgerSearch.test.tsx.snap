@@ -9,6 +9,7 @@ exports[`BurgerSearch should be rendered correctly 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -41,6 +42,7 @@ exports[`BurgerSearch should be rendered correctly with props 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -64,6 +66,7 @@ exports[`BurgerSearch should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
     onClick={[Function]}
+    style={Object {}}
   >
     <svg
       className=""

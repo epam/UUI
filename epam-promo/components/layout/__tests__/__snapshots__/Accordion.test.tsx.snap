@@ -18,6 +18,7 @@ exports[`Accordion should be rendered correctly 1`] = `
       </div>
       <div
         className="container uui-icon uui-enabled arrow"
+        style={Object {}}
       >
         <svg
           className=""
@@ -53,6 +54,7 @@ exports[`Accordion should be rendered correctly with props 1`] = `
       </div>
       <div
         className="container uui-icon uui-enabled arrow"
+        style={Object {}}
       >
         <svg
           className=""

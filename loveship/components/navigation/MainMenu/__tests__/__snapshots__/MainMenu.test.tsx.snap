@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenu should be rendered correctly 1`] = `
-<div
+<nav
   className="root uui-mainmenu-container container"
 >
-  <div>
+  <div
+    role="menuitem"
+  >
     <a
       className="container uui-anchor uui-disabled -clickable container"
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="link"
       tabIndex={0}
     >
       <img
@@ -26,20 +29,24 @@ exports[`MainMenu should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   />
-</div>
+</nav>
 `;
 
 exports[`MainMenu should be rendered correctly with props 1`] = `
-<div
+<nav
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
-  <div>
+  <div
+    role="menuitem"
+  >
     <a
       className="container uui-anchor uui-enabled -clickable container"
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="link"
       tabIndex={0}
     >
       <img
@@ -57,6 +64,7 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   />
   <div
@@ -73,5 +81,5 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
       Dev
     </div>
   </div>
-</div>
+</nav>
 `;
