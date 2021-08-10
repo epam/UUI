@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as css from './VirtualList.scss';
 import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps } from '@epam/uui';
-import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars';
+import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 
 export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
     rows: React.ReactNode[];
