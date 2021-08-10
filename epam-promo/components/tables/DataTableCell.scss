@@ -122,6 +122,11 @@
 .folding-arrow {
     margin: auto 0;
 
+    &:focus, &:focus-visible {
+        outline-color: $blue;
+        outline-offset: 2px;
+    }
+
     &:global(.uui-icon) {
         position: relative;
         fill: $gray60;
