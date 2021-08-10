@@ -7,6 +7,7 @@ Array [
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   >
     <div
@@ -16,6 +17,7 @@ Array [
     </div>
     <div
       className="container uui-icon uui-enabled"
+      style={Object {}}
     >
       <svg
         className="flipY"
@@ -30,6 +32,8 @@ Array [
     </div>
   </div>,
   <div
+    aria-expanded={true}
+    aria-hidden={false}
     className="uui-popper"
     data-placement="bottom-start"
     style={
@@ -72,10 +76,12 @@ Array [
             href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
+            role="button"
             tabIndex={0}
           >
             <div
               className="container uui-icon uui-enabled"
+              style={Object {}}
             >
               <svg
                 className=""
@@ -104,10 +110,12 @@ Array [
             href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
+            role="button"
             tabIndex={0}
           >
             <div
               className="container uui-icon uui-enabled"
+              style={Object {}}
             >
               <svg
                 className=""

@@ -3,6 +3,7 @@
 exports[`Alert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-blue root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -17,6 +18,7 @@ exports[`Alert should be rendered correctly 1`] = `
 exports[`Alert should be rendered correctly 2`] = `
 <div
   className="alertWrapper color-amber root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -26,6 +28,7 @@ exports[`Alert should be rendered correctly 2`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -50,6 +53,7 @@ exports[`Alert should be rendered correctly 2`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
@@ -65,10 +69,12 @@ exports[`Alert should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -89,6 +95,7 @@ exports[`Alert should be rendered correctly 2`] = `
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-red root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -98,6 +105,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -121,6 +129,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-blue root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -130,6 +139,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -153,6 +163,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-green root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -162,6 +173,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -185,6 +197,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-amber root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -194,6 +207,7 @@ exports[`WarningAlert should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
