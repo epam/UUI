@@ -93,7 +93,6 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             maxLength: this.props.maxLength,
             inputMode: this.props.inputMode,
             'aria-invalid': this.props.isInvalid,
-            ...this.props.rawProps,
         };
     }
 
@@ -117,6 +116,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 tabIndex={ -1 }
+                { ...this.props.rawProps }
             >
                 { this.props.iconPosition !== 'right' && icon }
                 { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
