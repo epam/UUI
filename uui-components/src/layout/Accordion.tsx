@@ -30,6 +30,12 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
         this.props.onValueChange ? this.props.onValueChange(!opened) : this.setState({ opened: !opened });
     }
 
+    private handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            this.toggleAccordion();
+        }
+    }
+
     isOpened = () => {
         return this.props.value !== undefined ? this.props.value : this.state.opened;
     }
@@ -39,6 +45,8 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
         return (
             <div
+                tabIndex={ !this.props.isDisabled ? 0 : -1 }
+                onKeyDown={ !this.props.isDisabled ? this.handleKeyDown : undefined }
                 onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
                 className={ cx(
                     uuiAccordion.toggler,
@@ -65,7 +73,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     }
 
     renderBody = () => (
-        <div className={ uuiAccordion.body }>
+        <div className={ uuiAccordion.body } role="region">
             { this.props.children }
         </div>
     )
@@ -74,12 +82,15 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
         const isAccordionOpened = this.isOpened();
 
         return (
-            <div className={ cx(
-                css.container,
-                isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
-                this.props.isDisabled && uuiMod.disabled,
-                this.props.cx,
-            ) }>
+            <div
+                aria-disabled={ this.props.isDisabled }
+                aria-expanded={ isAccordionOpened }
+                className={ cx(
+                    css.container,
+                    isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.cx,
+                ) }>
                 { this.renderHeader() }
                 { this.props.children && isAccordionOpened ? this.renderBody() : null }
             </div>
