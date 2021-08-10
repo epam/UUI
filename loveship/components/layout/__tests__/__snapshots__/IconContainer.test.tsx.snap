@@ -3,6 +3,7 @@
 exports[`IconContainer should be rendered correctly 1`] = `
 <div
   className="container uui-icon uui-enabled root color-night600"
+  style={Object {}}
 >
   <svg
     className=""
@@ -21,6 +22,7 @@ exports[`IconContainer should be rendered correctly with props 1`] = `
 <div
   className="container uui-icon uui-enabled -clickable root color-sun"
   onClick={[MockFunction]}
+  style={Object {}}
   tabIndex={0}
 >
   <svg
