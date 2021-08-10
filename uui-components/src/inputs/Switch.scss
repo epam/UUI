@@ -12,6 +12,7 @@
         display: flex;
         flex-shrink: 0;
         position: relative;
+        left: -1px;
 
         &:focus, &:focus-visible {
             outline: none;
