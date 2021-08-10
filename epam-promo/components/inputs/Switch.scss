@@ -23,8 +23,10 @@
             }
         }
 
-        :global(.uui-checked):global(.uui-switch-toggler) {
-            transform: translateX($size);
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX($size);
+            }
         }
     }
 }
@@ -43,33 +45,26 @@
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
+
+        &:focus-within {
+            outline: var(--background-color-checked) 2px auto;
+            outline-offset: 2px;
+        }
     }
 
     :global(.uui-switch-toggler) {
+        left: -1px;
         box-sizing: border-box;
         background-color: var(--toggler-background-color);
         border: 1px solid var(--toggler-border-color);
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:focus {
-            border-color: var(--toggler-border-color-hovered);
-
-            & + :global(.uui-switch-body) {
-                border-color: var(--border-color-hovered);
-                background-color: var(--background-color-hovered);
-            }
-        }
     }
 
     :global(.uui-input-label) {
         @include typography-inline;
         font-family: $font-sans;
         color: var(--caption-color);
-        cursor: pointer;
-
-        &:not(:empty) {
-            margin-left: 0.5em;
-        }
+        margin-left: 11px;
     }
 
     //Colors
@@ -84,55 +79,58 @@
         }
 
         :global(.uui-checked) {
-            & + :global(.uui-switch-body) {
+            &:global(.uui-switch-body) {
                 background-color: var(--background-color-checked-hovered);
                 border-color: var(--border-color-checked-hovered);
             }
 
-            &:global(.uui-switch-toggler) {
+            :global(.uui-switch-toggler) {
                 border-color: var(--toggler-border-color-checked-hovered);
             }
         }
     }
 
     :global(.uui-checked) {
-        & + :global(.uui-switch-body), &:focus + :global(.uui-switch-body) {
+        &:global(.uui-switch-body) {
             background-color: var(--background-color-checked);
             border: 1px solid var(--border-color-checked);
-        }
 
-        &:global(.uui-switch-toggler),  &:global(.uui-switch-toggler):focus {
-            border: 1px solid var(--toggler-border-color-checked);
+            :global(.uui-switch-toggler) {
+                border: 1px solid var(--toggler-border-color-checked);
+            }
         }
     }
 
     &:global(.uui-disabled) {
-        cursor: default;
-
         :global(.uui-input-label) {
             color: var(--caption-color-disabled);
+        }
+
+        &,
+        :global(.uui-switch-toggler),
+        :global(.uui-switch-body),
+        :global(.uui-input-label) {
             cursor: default;
         }
 
         :global(.uui-switch-body) {
             background-color: var(--background-color-disabled);
             border: 1px solid var(--border-color-disabled);
-            cursor: default;
         }
 
-        :global(.uui-switch-toggler) {
-            cursor: default;
+        & :global(.uui-switch-toggler),
+        &:hover :global(.uui-switch-toggler) {
             background-color: var(--toggler-background-color-disabled);
             border-color: var(--toggler-border-color-disabled);
         }
 
         :global(.uui-checked) {
-            & + :global(.uui-switch-body) {
+            &:global(.uui-switch-body) {
                 background-color: var(--background-color-checked-disabled);
                 border: 1px solid var(--border-color-checked-disabled);
             }
 
-            &:global(.uui-switch-toggler) {
+            :global(.uui-switch-toggler) {
                 background-color: var(--toggler-background-color-disabled);
                 border-color: var(--toggler-border-color-checked-disabled);
             }

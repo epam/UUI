@@ -1,4 +1,4 @@
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss/index' as *;
 
 @mixin control-switch-size($size-name, $size) {
     &.size-#{$size-name} {
@@ -22,8 +22,10 @@
             }
         }
 
-        :global(.uui-checked):global(.uui-switch-toggler) {
-            transform: translateX($size);
+        :global(.uui-checked) {
+            :global(.uui-switch-toggler) {
+                transform: translateX($size);
+            }
         }
     }
 }
@@ -40,36 +42,25 @@
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
+
+        &:hover {
+            background-color: $night500;
+            border-color: $night500;
+        }
+
+        &:active {
+            background-color: $night600;
+            border-color: $night600;
+        }
+
+        &:focus-within {
+            @include control-focus-effect();
+        }
     }
 
     :global(.uui-switch-toggler) {
         background-color: $white;
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:focus + :global(.uui-switch-body) {
-            @include control-focus-effect();
-        }
-
-        &:hover {
-            & + :global(.uui-switch-body) {
-                background-color: var(--uui-color-800);
-                border-color: var(--uui-color-800);
-            }
-        }
-
-        &:active {
-            :global(.uui-switch-body) {
-                background-color: $night600;
-                border-color: $night600;
-            }
-
-            :global(.uui-checked) {
-                :global(.uui-switch-body) {
-                    background-color: var(--uui-color-900);
-                    border-color: var(--uui-color-900);
-                }
-            }
-        }
     }
 
     :global(.uui-input-label) {
@@ -79,36 +70,55 @@
     }
 
     // Colors
-    :global(.uui-checked) + :global(.uui-switch-body) {
-        background-color: var(--uui-color-700);
-        border-color: var(--uui-color-700);
+    :global(.uui-checked) {
+        &:global(.uui-switch-body) {
+            background-color: var(--uui-color-700);
+            border-color: var(--uui-color-700);
+
+            &:active {
+                background-color: var(--uui-color-900);
+                border-color: var(--uui-color-900);
+            }
+
+            &:hover {
+                background-color: var(--uui-color-800);
+                border-color: var(--uui-color-800);
+            }
+        }
     }
 
     &:global(.uui-disabled) {
-        cursor: default;
-
         :global(.uui-switch-body) {
             background-color: $night50;
             border-color: $night300;
-            cursor: default;
+
+            &:focus-within {
+                box-shadow: none;
+            }
+        }
+
+        :global(.uui-checked) {
+            &:global(.uui-switch-body) {
+                background-color: var(--uui-color-600);
+                border-color: var(--uui-color-600);
+            }
+
+            :global(.uui-switch-toggler) {
+                background-color: $night50;
+                box-shadow: none;
+            }
         }
 
         :global(.uui-switch-toggler) {
             background-color: $white;
             box-shadow: 0 0 0 1px $night300;
+        }
+
+        &,
+        :global(.uui-switch-toggler),
+        :global(.uui-switch-body),
+        :global(.uui-input-label) {
             cursor: default;
-
-            &:global(.uui-checked) + :global(.uui-switch-body) {
-                background-color: var(--uui-color-700);
-                border-color: var(--uui-color-700);
-                cursor: default;
-            }
-
-            &:hover:not(:global(.uui-checked)) + :global(.uui-switch-body) {
-                background-color: $white;
-                border-color: $night300;
-                cursor: default;
-            }
         }
     }
 
@@ -121,7 +131,6 @@
         &:global(.uui-disabled) {
             :global(.uui-input-label) {
                 color: $night500;
-                cursor: default;
             }
         }
     }
@@ -129,7 +138,6 @@
     &.theme-dark {
         :global(.uui-input-label) {
             color: $night50;
-            cursor: default;
         }
     }
 }

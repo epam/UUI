@@ -6,13 +6,13 @@
 
     :global(.uui-switch-toggler) {
         appearance: none;
-        z-index: 1;
         border-radius: 50%;
         margin: 0;
         cursor: pointer;
         display: flex;
         position: absolute;
         flex-shrink: 0;
+        position: relative;
 
         &:focus, &:focus-visible {
             outline: none;
@@ -23,6 +23,5 @@
         flex-shrink: 0;
         display: flex;
         align-items: center;
-        z-index: 0;
     }
 }

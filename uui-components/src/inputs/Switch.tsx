@@ -28,17 +28,18 @@ export class Switch extends React.Component<SwitchProps, any> {
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
             >
-                <input
-                    type="checkbox"
-                    onChange={ this.toggle }
-                    disabled={ this.props.isDisabled }
-                    checked={ this.props.value }
-                    readOnly={ this.props.isReadonly }
-                    aria-checked={ this.props.value }
-                    className={ cx(uuiElement.switchToggler, this.props.value && uuiMod.checked) }
-                    { ...this.props.rawProps }
-                />
-                <span className={cx(uuiElement.switchBody)} />
+                <div className={cx(uuiElement.switchBody, this.props.value && uuiMod.checked)}>
+                    <input
+                        type="checkbox"
+                        onChange={ this.toggle }
+                        disabled={ this.props.isDisabled }
+                        checked={ this.props.value }
+                        readOnly={ this.props.isReadonly }
+                        aria-checked={ this.props.value }
+                        className={ uuiElement.switchToggler }
+                        { ...this.props.rawProps }
+                    />
+                </div>
                 <span role="label" className={ uuiElement.inputLabel }>{ this.props.label }</span>
             </div>
         );
