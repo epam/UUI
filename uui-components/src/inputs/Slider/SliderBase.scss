@@ -10,6 +10,11 @@
         :global(.uui-slider-handle) {
             position: absolute;
             left: 0;
+
+            &:focus {
+                outline-offset: 1px;
+                outline-color: var(--uui-color-700);
+            }
         }
 
         :global(.uui-slider) {

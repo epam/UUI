@@ -1,6 +1,5 @@
-import cx from 'classnames';
 import * as React from 'react';
-import { uuiMod } from '@epam/uui';
+import { uuiMod, cx } from '@epam/uui';
 import { SliderBase, uuiSlider, SliderBaseState } from './SliderBase';
 import * as css from './SliderBase.scss';
 import { SliderHandle } from './SliderHandle';
@@ -71,7 +70,16 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
         const toHandleOffset = (normValueTo - this.props.min) * valueWidth;
 
         return (
-            <div className={ cx(uuiSlider.container, css.root, this.props.isDisabled && uuiMod.disabled, this.props.cx) } onClick={ this.handleMouseClick }>
+            <div
+                className={ cx(
+                    uuiSlider.container,
+                    css.root,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.cx
+                ) }
+                onClick={ this.handleMouseClick }
+                {...this.props.rawProps}
+            >
                 <div
                     ref={ slider => this.slider = slider }
                     className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) }

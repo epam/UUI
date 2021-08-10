@@ -1,9 +1,7 @@
 import * as React from 'react';
-import * as types from '@epam/uui';
-import cx from 'classnames';
-import { isClickableChildClicked } from '@epam/uui';
+import { isClickableChildClicked, cx, FlexCellProps } from '@epam/uui';
 
-export class FlexCell extends React.Component<types.FlexCellProps> {
+export class FlexCell extends React.Component<FlexCellProps> {
 
     handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => !isClickableChildClicked(e) && this.props.onClick && this.props.onClick(e);
 
@@ -31,8 +29,8 @@ export class FlexCell extends React.Component<types.FlexCellProps> {
             <div
                 className={ cx(this.props.cx) }
                 onClick={ this.handleClick }
+                style={ style }
                 { ...this.props.rawProps }
-                style={ { ...style, ...(this.props.rawProps && this.props.rawProps.style) } }
             >
                 { this.props.children }
            </div>

@@ -16,6 +16,7 @@ Array [
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""

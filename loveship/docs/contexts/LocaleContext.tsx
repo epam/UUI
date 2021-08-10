@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel } from '../../components/layout/FlexItems';
-import 'moment/locale/ru';
-import moment from "moment";
 import { i18n } from "../../i18n";
 
 export class LocaleContext extends React.Component<DemoComponentProps, any> {

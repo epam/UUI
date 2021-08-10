@@ -197,6 +197,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return (
             <div
                 className='uui-popper'
+                aria-hidden={ !this.isOpened() }
+                aria-expanded={ this.isOpened() }
                 ref={ setRef }
                 style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
                 data-placement={ placement }

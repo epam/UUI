@@ -1,18 +1,23 @@
 import * as React from 'react';
-import * as types from '@epam/uui';
-import cx from 'classnames';
+import { IHasCX, IHasChildren, IHasRawProps, cx } from '@epam/uui';
 
-export interface RichTextViewProps extends types.IHasCX, types.IHasChildren {
+export interface RichTextViewProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {
     htmlContent?: any;
 }
 
 export class RichTextView extends React.Component<RichTextViewProps> {
-    getViewByProps(content: any) {
-        return <div dangerouslySetInnerHTML={ { __html: content } } className={ cx(this.props.cx) }/>;
+    getViewByProps(content: string) {
+        return <div
+            dangerouslySetInnerHTML={ { __html: content } }
+            className={ cx(this.props.cx) }
+            {...this.props.rawProps}
+        />;
     }
 
-    getViewByChildren(content: any) {
-        return <div className={ cx(this.props.cx) }>{ content }</div>;
+    getViewByChildren(content: string) {
+        return <div className={ cx(this.props.cx) } {...this.props.rawProps}>
+            { content }
+        </div>;
     }
 
     render() {

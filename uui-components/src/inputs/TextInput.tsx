@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext, cx } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './TextInput.scss';
 
@@ -92,6 +91,8 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             autoComplete: this.props.autoComplete,
             name: this.props.name,
             maxLength: this.props.maxLength,
+            inputMode: this.props.inputMode,
+            'aria-invalid': this.props.isInvalid,
         };
     }
 
@@ -112,9 +113,10 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.cx,
                 ) }
-                 onFocus={ this.handleFocus }
-                 onBlur={ this.handleBlur }
-                 tabIndex={ -1 }
+                onFocus={ this.handleFocus }
+                onBlur={ this.handleBlur }
+                tabIndex={ -1 }
+                { ...this.props.rawProps }
             >
                 { this.props.iconPosition !== 'right' && icon }
                 { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }

@@ -1,4 +1,4 @@
-import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars';
+import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 import * as React from 'react';
 import { IHasCX, cx } from '@epam/uui';
 import * as css from './ScrollBars.scss';
@@ -9,9 +9,7 @@ export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps 
     hasBottomShadow?: boolean;
 }
 
-export interface PositionValues extends CustomScrollBars.positionValues {
-
-}
+export interface PositionValues extends CustomScrollBars.positionValues {}
 
 export class ScrollBars extends React.Component<ScrollbarProps, any> {
     scrollBars: Scrollbars;
@@ -61,7 +59,7 @@ export class ScrollBars extends React.Component<ScrollbarProps, any> {
 
     render() {
         let { renderView, style, hasBottomShadow, hasTopShadow, ...restProps } = this.props;
-        
+
         return (
             <CustomScrollBars.default
                 { ...restProps }

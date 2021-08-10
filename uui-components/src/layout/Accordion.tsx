@@ -1,10 +1,9 @@
 import React from 'react';
-import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable } from '@epam/uui';
+import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './Accordion.scss';
-import cx from 'classnames';
 
-export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren {
+export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement> {
     title: string;
     dropdownIcon?: Icon;
     renderAdditionalItems?: (isOpened: boolean) => React.ReactNode;
@@ -39,19 +38,22 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
         const isAccordionOpened = this.isOpened();
 
         return (
-            <div className={ cx(
-                uuiAccordion.toggler,
-                isAccordionOpened && uuiMod.opened,
-                this.props.isDisabled && uuiMod.disabled,
-            ) }
-                 onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }>
+            <div
+                onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
+                className={ cx(
+                    uuiAccordion.toggler,
+                    isAccordionOpened && uuiMod.opened,
+                    this.props.isDisabled && uuiMod.disabled
+                ) }
+                {...this.props.rawProps}
+            >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
                     <div className={ cx(uuiAccordion.title) }>
                         { this.props.title }
                     </div>
-                    
+
                     { this.props.renderAdditionalItems?.(this.state.opened) }
-                    
+
                     <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ isAccordionOpened }
@@ -67,7 +69,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
             { this.props.children }
         </div>
     )
-    
+
     render() {
         const isAccordionOpened = this.isOpened();
 

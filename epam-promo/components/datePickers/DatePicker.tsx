@@ -1,5 +1,5 @@
 import * as React from 'react';
-import moment from 'moment';
+import { Dayjs } from "dayjs";
 import { cx, IDropdownToggler } from '@epam/uui';
 import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
@@ -10,7 +10,7 @@ const defaultMode = EditMode.FORM;
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, IHasEditMode {
     format: string;
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
     renderFooter?(): React.ReactNode;
     iconPosition?: 'left' | 'right';

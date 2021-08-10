@@ -6,7 +6,7 @@ import {
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
     GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
     FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
-    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc,
+    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, DropdownMenuDoc
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -32,6 +32,7 @@ const componentsStructure = sortBy([
     { id: 'controlGroup', name: 'Control Group', component: ControlGroupDoc, parentId: 'components' },
     { id: 'datePicker', name: 'Date Picker', component: DatePickerDoc, parentId: 'components' },
     { id: 'dropdown', name: 'Dropdown', component: DropdownDoc, parentId: 'components' },
+    { id: 'dropdownMenu', name: 'DropdownMenu', component: DropdownMenuDoc, parentId: 'components' },
     { id: 'flexItems', name: 'Flex Items', component: FlexItemsDoc, parentId: 'components' },
     { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
     { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
@@ -68,7 +69,6 @@ const componentsStructure = sortBy([
     { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
     { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
     { id: 'virtualList', name: 'VirtualList', component: VirtualListDoc, parentId: 'components' },
-
 ], ['name']);
 
 export const items: DocItem[] = [

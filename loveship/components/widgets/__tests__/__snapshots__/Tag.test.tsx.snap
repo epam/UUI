@@ -6,11 +6,13 @@ exports[`Tag should render with all new props 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
     className="container uui-icon uui-enabled -clickable"
     onClick={[MockFunction]}
+    style={Object {}}
   >
     <svg
       className=""
@@ -36,6 +38,7 @@ exports[`Tag should render with all new props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
     onClick={[MockFunction]}
+    style={Object {}}
   >
     <svg
       className=""
@@ -57,6 +60,7 @@ exports[`Tag should render with default props 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 />
 `;

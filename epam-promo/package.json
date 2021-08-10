@@ -19,10 +19,10 @@
     "@types/lodash.sortby": "4.7.6",
     "@types/react-custom-scrollbars": "4.0.3",
     "classnames": "2.2.6",
+    "dayjs": "^1.10.6",
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
-    "moment": "2.19.3",
-    "react-custom-scrollbars": "4.2.1",
+    "react-custom-scrollbars-2": "^4.4.0",
     "react-popper": "2.2.5"
   },
   "devDependencies": {
@@ -30,7 +30,8 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
-    "react-test-renderer": "17.0.2"
+    "react-test-renderer": "17.0.2",
+    "mockdate":  "^3.0.5"
   },
   "peerDependencies": {
     "prop-types": "*",

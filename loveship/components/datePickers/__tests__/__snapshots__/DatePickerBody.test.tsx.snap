@@ -16,6 +16,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
           onClick={[Function]}
+          style={Object {}}
         >
           <svg
             className=""
@@ -38,6 +39,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
           onClick={[Function]}
+          style={Object {}}
         >
           <svg
             className=""
