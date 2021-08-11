@@ -35,22 +35,24 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                 ) }
                 { ...this.props.rawProps }
             >
-                <input
-                    type="checkbox"
-                    onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
-                    className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
-                    disabled={ this.props.isDisabled }
-                    readOnly={ this.props.isReadonly }
-                    aria-checked={ this.props.value }
-                    checked={ this.props.value }
-                />
+                <span className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
+                    <input
+                        type="checkbox"
+                        onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
+                        aria-hidden={true}
+                        disabled={ this.props.isDisabled }
+                        readOnly={ this.props.isReadonly }
+                        aria-checked={ this.props.value }
+                        checked={ this.props.value }
+                    />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
-                    { (this.props.renderLabel || this.props.label) && (
-                        <span role="label" className={ uuiElement.inputLabel }>
-                            { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                        </span>
-                    ) }
+                </span>
+                { (this.props.renderLabel || this.props.label) && (
+                    <span role="label" className={ uuiElement.inputLabel }>
+                        { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
+                    </span>
+                ) }
             </label>
         );
     }
