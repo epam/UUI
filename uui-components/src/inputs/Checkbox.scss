@@ -1,7 +1,6 @@
 .container {
     display: flex;
     cursor: pointer;
-    position: relative;
 
     :global(.uui-checkbox) {
         display: flex;
@@ -10,11 +9,11 @@
         cursor: pointer;
         flex-shrink: 0;
 
-        & > input[type="checkbox"] {
+        input[type="checkbox"] {
             appearance: none;
             margin: 0;
 
-            &:focus-visible {
+            &:focus, &:focus-visible {
                 outline: none;
             }
         }
