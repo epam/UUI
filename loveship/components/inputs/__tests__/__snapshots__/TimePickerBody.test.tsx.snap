@@ -32,6 +32,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={12}
         min={0}
         onChange={[Function]}
@@ -100,6 +101,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
@@ -226,6 +228,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={12}
         min={1}
         onChange={[Function]}
@@ -294,6 +297,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
