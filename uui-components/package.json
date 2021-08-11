@@ -30,7 +30,7 @@
     "lodash.isequal": "4.5.0",
     "lodash.orderby": "4.6.0",
     "lodash.range": "3.2.0",
-    "react-custom-scrollbars": "4.2.1",
+    "react-custom-scrollbars-2": "^4.4.0",
     "react-measure": "2.5.2",
     "react-popper": "2.2.4",
     "react-transition-group": "4.4.2"

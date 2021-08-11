@@ -33,7 +33,7 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             background-color: var(--background-color-hover);
             border-color: var(--background-color-hover);
         }
@@ -56,13 +56,13 @@
 }
 
 .fill-white {
-    background-color: white;
+    background-color: $white;
     color: var(--caption-color);
     fill: var(--caption-color);
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -78,12 +78,12 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(white, var(--background-color-disabled));
+        @include button-disables-styles($white, var(--background-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(white, var(--background-color-disabled));
+            @include button-disables-styles($white, var(--background-color-disabled));
         }
     }
 }
@@ -95,7 +95,7 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -128,7 +128,7 @@
     border-color: transparent;
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             background-color: var(--background-color-light-hover);
             border-color: var(--background-color-light-hover);
         }

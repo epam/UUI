@@ -74,6 +74,7 @@ Array [
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -87,11 +88,13 @@ Array [
           </svg>
         </div>
         <input
+          aria-invalid={false}
           className="uui-input"
+          inputMode="search"
           onChange={[Function]}
           onKeyDown={[Function]}
           placeholder="Search"
-          type="text"
+          type="search"
           value=""
         />
       </div>
@@ -148,7 +151,9 @@ Array [
             }
           >
             <div
+              aria-setsize={7}
               className="container3"
+              role="list"
               style={
                 Object {
                   "marginTop": 0,

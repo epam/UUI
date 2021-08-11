@@ -13,5 +13,5 @@ export const MainMenuButton = withMods<ButtonProps, MainMenuButtonMods & IAdapti
         css.root,
         css['type-' + (mods.type || 'primary')],
     ],
-    () => ({ dropdownIcon: svgTriangle }),
+    () => ({ dropdownIcon: svgTriangle, role: 'menuitem' }),
 );

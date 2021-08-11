@@ -2,9 +2,13 @@
 
 exports[`Slider should be rendered correctly 1`] = `
 <div
+  aria-valuemax={100}
+  aria-valuemin={1}
+  aria-valuenow={50}
   className="uui-slider-container root root color-sky"
   onClick={[Function]}
   onMouseDown={[Function]}
+  role="slider"
 >
   <div
     className="uui-slider"
@@ -59,6 +63,7 @@ exports[`Slider should be rendered correctly 1`] = `
   </div>
   <div
     className="uui-slider-handle root color-sky"
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
     style={
@@ -66,15 +71,20 @@ exports[`Slider should be rendered correctly 1`] = `
         "transform": "translateX(0px)",
       }
     }
+    tabIndex={0}
   />
 </div>
 `;
 
 exports[`Slider should be rendered correctly with extra props 1`] = `
 <div
+  aria-valuemax={100}
+  aria-valuemin={1}
+  aria-valuenow={50}
   className="uui-slider-container root root color-sun"
   onClick={[Function]}
   onMouseDown={[Function]}
+  role="slider"
 >
   <div
     className="uui-slider"
@@ -129,6 +139,7 @@ exports[`Slider should be rendered correctly with extra props 1`] = `
   </div>
   <div
     className="uui-slider-handle root color-sun"
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
     style={
@@ -136,6 +147,7 @@ exports[`Slider should be rendered correctly with extra props 1`] = `
         "transform": "translateX(0px)",
       }
     }
+    tabIndex={0}
   />
 </div>
 `;
