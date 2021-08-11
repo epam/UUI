@@ -6,7 +6,7 @@ exports[`TabButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
-  role="button"
+  role="tab"
   tabIndex={0}
 />
 `;
@@ -17,7 +17,7 @@ exports[`TabButton should be rendered correctly with props 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
-  role="button"
+  role="tab"
   tabIndex={0}
 >
   <div

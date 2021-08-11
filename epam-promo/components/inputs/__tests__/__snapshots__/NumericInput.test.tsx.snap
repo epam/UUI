@@ -10,6 +10,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
 >
   <input
     className="uui-input"
+    inputMode="numeric"
     max={50}
     min={0}
     onChange={[Function]}
@@ -67,6 +68,7 @@ exports[`NumericInput should be rendered correctly 2`] = `
 >
   <input
     className="uui-input"
+    inputMode="numeric"
     max={50}
     min={0}
     onChange={[Function]}
