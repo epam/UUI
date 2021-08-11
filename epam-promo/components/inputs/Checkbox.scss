@@ -34,7 +34,7 @@
         background-color: var(--background-color);
         border: 1px solid var(--border-color-default);
 
-        &:focus {
+        &:focus-within {
             outline: var(--border-color-hovered) auto 1px;
             outline-offset: 3px;
             border-color: var(--border-color-hovered);
@@ -70,11 +70,11 @@
         }
 
         &:hover, &:global(.uui-checked) {
-            :global(.uui-checkbox) {
+            &:global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }
 
-            :global(.uui-icon) {
+            &:global(.uui-icon) {
                 background-color: var(--background-color-checked-disabled);
                 border-color: var(--border-color-checked-disabled);
             }
@@ -95,7 +95,7 @@
             border-color: var(--errored-color);
             fill: var(--errored-color);
 
-            &:focus {
+            &:focus-within {
                 outline-color: var(--errored-color);
             }
 
