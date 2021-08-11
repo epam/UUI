@@ -130,6 +130,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
                     value={ this.state.value }
+                    inputMode="numeric"
                     placeholder={ this.props.placeholder || '0' }
                     onChange={ this.handleChange }
                     min={ this.props.min || 0 }

@@ -6,6 +6,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
 >
   <div
     className="avatars avatar-right"
+    role="group"
   >
     <img
       alt="avatar"

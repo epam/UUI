@@ -20,7 +20,7 @@ export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (p
     }, [props.wordsCount]);
 
     return (
-        <div className={css.container}>{
+        <div aria-busy={true} className={css.container}>{
             text.map((it:string, index:number)=> (
                 <span
                     key={index}

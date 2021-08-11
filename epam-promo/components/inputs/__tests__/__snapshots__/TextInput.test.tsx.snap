@@ -33,6 +33,7 @@ exports[`TextInput should be rendered correctly 2`] = `
   />
   <div
     className="container uui-icon uui-disabled uui-icon-accept"
+    style={Object {}}
   >
     <svg
       className=""
@@ -48,6 +49,7 @@ exports[`TextInput should be rendered correctly 2`] = `
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
     onClick={[Function]}
+    style={Object {}}
   >
     <svg
       className=""
@@ -62,6 +64,7 @@ exports[`TextInput should be rendered correctly 2`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -76,6 +79,7 @@ exports[`TextInput should be rendered correctly 2`] = `
   </div>
   <div
     className="container uui-icon uui-enabled -clickable"
+    style={Object {}}
   >
     <svg
       className="flipY"

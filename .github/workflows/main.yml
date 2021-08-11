@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: main
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -20,17 +20,17 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-and-test:
-    
+
     runs-on: ubuntu-latest
     container: node:14
-  
+
 
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: '14.x'
-        
+
     - uses: actions/cache@v2
       with:
         path: |
@@ -38,17 +38,17 @@ jobs:
           ./*/node_modules
         key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
         restore-keys: v1-npm-deps-
-      
+
 
     - name: build
-      run: | 
+      run: |
         yarn
         yarn build
         yarn generate-components-api
         cd server && yarn
-    - name: test  
+    - name: test
       run: yarn test
-        
+
   docker:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -57,23 +57,23 @@ jobs:
       ACTIONS_STEP_DEBUG: true
       REGISTRY_URL: epmtai.azurecr.io
     steps:
-      - name: Check Out Repo 
+      - name: Check Out Repo
         uses: actions/checkout@v2
 
       - name: build app
-        run: | 
+        run: |
           yarn
           yarn build
           yarn generate-components-api
-          cd server && yarn         
-        
+          cd server && yarn
+
       - name: Login to registry
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v1
         with:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
@@ -84,10 +84,10 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=sha
-      
+
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1        
-        
+        uses: docker/setup-buildx-action@v1
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -95,14 +95,14 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}      
-        
+          tags: ${{ steps.meta.outputs.tags }}
+
   deploy:
     needs: docker
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
-    
-    steps:  
+
+    steps:
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
@@ -112,13 +112,13 @@ jobs:
             ${{ secrets.REGISTRY_URL }}/uui
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=sha   
-            
+            type=sha
+
       - name: Preparation helm chart
         run: |
-          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')   
+          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
           export HELM_EXPERIMENTAL_OCI=1
-          echo $tag 
+          echo $tag
           echo "::set-env name=tag::$tag"
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           helm chart pull ${{ secrets.HELM_REGISTRY }}
