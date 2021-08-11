@@ -66,6 +66,22 @@
         &:focus-within {
             border-color: var(--border-color-hovered);
         }
+
+        &:global(.uui-checked) {
+            border-color: var(--border-color-checked);
+
+            &:focus-within {
+                border-color: var(--border-color-hovered);
+
+                :global(.uui-icon) {
+                    fill: var(--fill-color-hovered);
+                }
+            }
+
+            :global(.uui-icon) {
+                fill: var(--fill-color-checked);
+            }
+        }
     }
 
     :global(.uui-input-label) {
@@ -124,35 +140,6 @@
         }
     }
 
-    :global(.uui-checked) {
-        &:global(.uui-radioinput) {
-            border-color: var(--border-color-checked);
-
-            &:focus-within {
-                border-color: var(--border-color-hovered);
-
-                :global(.uui-icon) {
-                    fill: var(--fill-color-hovered);
-                }
-            }
-
-            :global(.uui-icon) {
-                fill: var(--fill-color-checked);
-            }
-        }
-
-        &:global(.uui-disabled),
-        &:global(.uui-readonly) {
-            :global(.uui-radioinput) {
-                border-color: var(--border-color-checked-disabled);
-
-                :global(.uui-icon) {
-                    fill: var(--fill-color-checked-disabled);
-                }
-            }
-        }
-    }
-
     &:global(.uui-disabled),
     &:global(.uui-readonly) {
         cursor: default;
@@ -164,6 +151,15 @@
 
             :global(.uui-icon) {
                 fill: var(--fill-color-checked-disabled);
+            }
+
+
+            &:global(.uui-checked) {
+                border-color: var(--border-color-checked-disabled);
+
+                :global(.uui-icon) {
+                    fill: var(--fill-color-checked-disabled);
+                }
             }
         }
 
