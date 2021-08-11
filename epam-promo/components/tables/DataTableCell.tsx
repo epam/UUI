@@ -58,26 +58,15 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
 
             if (row.indent > 0) {
                 allAddons.push({
-                    component: (
-                        <div
-                            aria-selected={ row.isSelectable && row.isSelected }
-                            aria-expanded={ !row.isFolded }
-                            key='fold'
-                            className={ css.indent }
-                            style={ { marginLeft: (row.indent - 1) * 24 } }>
-                            { row.isFoldable && <IconContainer
-                                key='icon'
-                                icon={ foldingArrow }
-                                cx={ [
-                                    css.foldingArrow,
-                                    css[`folding-arrow-${additionalItemSize}`],
-                                    uuiMarkers.clickable
-                                ] }
-                                rotate={ row.isFolded ? '90ccw' : '0' }
-                                onClick={ () => row.onFold(row) }
-                            /> }
-                        </div>
-                    ),
+                    component: <div key='fold' className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
+                        { row.isFoldable && <IconContainer
+                            key='icon'
+                            icon={ foldingArrow }
+                            cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
+                            rotate={ row.isFolded ? '90ccw' : '0' }
+                            onClick={ () => row.onFold(row) }
+                        /> }
+                    </div>,
                     widthCost: row.indent * 24,
                 });
             }
@@ -115,11 +104,6 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         return (
             <FlexCell
                 { ...this.props.column }
-                rawProps={{
-                    role: 'listitem',
-                    'aria-checked': this.props.rowProps.isChecked,
-                    ...(this.props.rowProps.isSelectable && { 'aria-selected': this.props.rowProps.isSelected } )
-                } }
                 cx={ cx(
                     css.cell,
                     addonWidgets.length > 0 && css.wrapper,
