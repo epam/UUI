@@ -9,6 +9,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   >
     <div
@@ -32,6 +33,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -53,10 +55,12 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -86,6 +90,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -107,10 +112,12 @@ exports[`HintNotification should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -140,6 +147,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -161,10 +169,12 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -194,6 +204,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -215,10 +226,12 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -248,6 +261,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -269,10 +283,12 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""
@@ -302,6 +318,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
     >
       <div
         className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
       >
         <svg
           className=""
@@ -323,10 +340,12 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
         className="container uui-icon uui-enabled"
+        style={Object {}}
       >
         <svg
           className=""

@@ -42,6 +42,8 @@ export class SearchInput extends React.Component<TextInputProps & TextInputMods 
                     <TextInput
                         icon={ systemIcons[this.props.size || defaultSize].search }
                         onCancel={ !!this.props.value ? (() => iEditable.onValueChange('')) : undefined }
+                        type="search"
+                        inputMode="search"
                         { ...textInputProps }
                         { ...iEditable }
                     />

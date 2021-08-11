@@ -14,7 +14,9 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
+    aria-modal={true}
     className="uui-modal-window modal width-600 height-auto container"
+    role="modal"
     style={
       Object {
         "width": "600px",
@@ -54,10 +56,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
+            role="button"
             tabIndex={0}
           >
             <div
               className="container uui-icon uui-enabled"
+              style={Object {}}
             >
               <svg
                 className=""
@@ -130,34 +134,39 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   <div
                     className="dragHandle container uui-drag-handle"
                   />
-                  <div
+                  <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
-                    onKeyDown={[Function]}
                   >
-                    <div
+                    <input
+                      aria-checked={true}
+                      checked={true}
                       className="uui-checkbox uui-checked"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                      >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
-                        >
-                          <use
-                            xlinkHref="#check-18.svg"
-                          />
-                        </svg>
-                      </div>
-                    </div>
+                      disabled={true}
+                      onChange={null}
+                      type="checkbox"
+                    />
                     <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                        height={24}
+                        viewBox="0 0 12 24"
+                        width={12}
+                      >
+                        <use
+                          xlinkHref="#check-18.svg"
+                        />
+                      </svg>
+                    </div>
+                    <span
                       className="uui-input-label"
+                      role="label"
                     >
                       ID
-                    </div>
-                  </div>
+                    </span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -178,34 +187,39 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   <div
                     className="dragHandle container uui-drag-handle"
                   />
-                  <div
+                  <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
-                    onKeyDown={[Function]}
                   >
-                    <div
+                    <input
+                      aria-checked={true}
+                      checked={true}
                       className="uui-checkbox uui-checked"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                      >
-                        <svg
-                          className=""
-                          height={24}
-                          viewBox="0 0 12 24"
-                          width={12}
-                        >
-                          <use
-                            xlinkHref="#check-18.svg"
-                          />
-                        </svg>
-                      </div>
-                    </div>
+                      disabled={true}
+                      onChange={null}
+                      type="checkbox"
+                    />
                     <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                        height={24}
+                        viewBox="0 0 12 24"
+                        width={12}
+                      >
+                        <use
+                          xlinkHref="#check-18.svg"
+                        />
+                      </svg>
+                    </div>
+                    <span
                       className="uui-input-label"
+                      role="label"
                     >
                       Level
-                    </div>
-                  </div>
+                    </span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -254,6 +268,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
@@ -270,6 +285,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
@@ -283,6 +299,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
@@ -296,6 +313,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div

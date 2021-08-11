@@ -91,6 +91,8 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             autoComplete: this.props.autoComplete,
             name: this.props.name,
             maxLength: this.props.maxLength,
+            inputMode: this.props.inputMode,
+            'aria-invalid': this.props.isInvalid,
         };
     }
 
@@ -98,26 +100,23 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
         let icon = this.props.icon && <IconContainer icon={ this.props.icon } onClick={ this.props.onIconClick }/>;
 
         return (
-            <div
-                onClick={ this.props.onClick && this.handleClick } ref={ el => {
-                    this.inputContainer = el;
-                } }
-                className={
-                    cx(
-                        css.container,
-                        uuiElement.inputBox,
-                        this.props.isDisabled && uuiMod.disabled,
-                        this.props.isReadonly && uuiMod.readonly,
-                        this.props.isInvalid && uuiMod.invalid,
-                        (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
-                        (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                        this.props.cx
-                    )
-                }
+            <div onClick={ this.props.onClick && this.handleClick } ref={ el => {
+                this.inputContainer = el;
+            } } className={
+                cx(
+                    css.container,
+                    uuiElement.inputBox,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.isReadonly && uuiMod.readonly,
+                    this.props.isInvalid && uuiMod.invalid,
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
+                    (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
+                    this.props.cx,
+                ) }
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 tabIndex={ -1 }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 { this.props.iconPosition !== 'right' && icon }
                 { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
