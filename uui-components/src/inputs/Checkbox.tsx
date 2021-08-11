@@ -35,11 +35,10 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                 ) }
                 { ...this.props.rawProps }
             >
-                <span className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
+                <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
                     <input
                         type="checkbox"
                         onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
-                        aria-hidden={true}
                         disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
                         aria-checked={ this.props.value }
@@ -47,11 +46,11 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
-                </span>
+                </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <span role="label" className={ uuiElement.inputLabel }>
+                    <div role="label" className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                    </span>
+                    </div>
                 ) }
             </label>
         );

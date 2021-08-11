@@ -33,7 +33,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 ) }
                 { ...this.props.rawProps }
             >
-                <span className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
+                <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
                         type="radio"
                         checked={ this.props.value }
@@ -44,11 +44,11 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                         onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
-                </span>
+                </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <span role="label" className={ uuiElement.inputLabel }>
+                    <div role="label" className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                    </span>
+                    </div>
                 ) }
             </label>
         );

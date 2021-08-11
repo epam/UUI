@@ -4,12 +4,11 @@ exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container root size-18 theme-light color-sky"
 >
-  <span
+  <div
     className="uui-checkbox uui-checked"
   >
     <input
       aria-checked={true}
-      aria-hidden={true}
       checked={true}
       onChange={[Function]}
       type="checkbox"
@@ -29,7 +28,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
         />
       </svg>
     </div>
-  </span>
+  </div>
 </label>
 `;
 
@@ -37,12 +36,11 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
 <label
   className="container root size-12 theme-dark color-sun"
 >
-  <span
+  <div
     className="uui-checkbox uui-checked"
   >
     <input
       aria-checked={true}
-      aria-hidden={true}
       checked={true}
       onChange={[Function]}
       type="checkbox"
@@ -62,6 +60,6 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
         />
       </svg>
     </div>
-  </span>
+  </div>
 </label>
 `;
