@@ -101,9 +101,9 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
 
     onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
         if (e.key === 'ArrowLeft') {
-            this.props.onValueChange(this.state.rating - this.props.step);
+            this.setState({ rating: this.state.rating - (this.props.step || 1) });
         } else if (e.key === 'ArrowRight') {
-            this.props.onValueChange(this.state.rating + this.props.step);
+            this.setState({ rating: this.state.rating + (this.props.step || 1) });
         }
     }
 
