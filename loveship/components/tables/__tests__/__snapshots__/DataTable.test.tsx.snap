@@ -6,7 +6,7 @@ Array [
     className="container uui-table-row-container root uui-table-header-row container align-items-top"
   >
     <div
-      className="flexCell -clickable cell size-36 padding-left-24"
+      className="flexCell -clickable"
       onClick={[Function]}
       style={
         Object {
@@ -19,19 +19,17 @@ Array [
         }
       }
     >
-      <div
-        className="tooltipWrapper"
-      >
+      <div>
         <div
-          className="iconCell"
+          className=""
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
           >
             ID
           </div>
           <div
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
             onKeyDown={[Function]}
@@ -75,7 +73,7 @@ Array [
           className="container align-items-top"
         >
           <div
-            className="flexCell -clickable cell size-36"
+            className="flexCell -clickable"
             onClick={[Function]}
             style={
               Object {
@@ -88,19 +86,17 @@ Array [
               }
             }
           >
-            <div
-              className="tooltipWrapper"
-            >
+            <div>
               <div
-                className="iconCell"
+                className=""
               >
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                 >
                   name
                 </div>
                 <div
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}
@@ -127,7 +123,7 @@ Array [
             </div>
           </div>
           <div
-            className="flexCell -clickable cell size-36"
+            className="flexCell -clickable"
             onClick={[Function]}
             style={
               Object {
@@ -140,19 +136,17 @@ Array [
               }
             }
           >
-            <div
-              className="tooltipWrapper"
-            >
+            <div>
               <div
-                className="iconCell"
+                className=""
               >
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                 >
                   Level
                 </div>
                 <div
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}
@@ -179,7 +173,7 @@ Array [
             </div>
           </div>
           <div
-            className="flexCell -clickable cell size-36 padding-right-24"
+            className="flexCell -clickable"
             onClick={[Function]}
             style={
               Object {
@@ -192,19 +186,17 @@ Array [
               }
             }
           >
-            <div
-              className="tooltipWrapper"
-            >
+            <div>
               <div
-                className="iconCell"
+                className=""
               >
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                 >
                   DATE
                 </div>
                 <div
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
                   onKeyDown={[Function]}

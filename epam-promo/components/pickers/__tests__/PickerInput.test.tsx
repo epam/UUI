@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrayDataSource } from '@epam/uui';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderWithContextAsync, windowMock } from "@epam/test-utils";
 import { PickerInput } from '../PickerInput';
 
 jest.mock('react-dom', () => ({
@@ -26,6 +26,17 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerInput', () => {
+    beforeEach(() => {
+        jest.spyOn(window, "window", "get")
+            .mockImplementation(() => windowMock);
+        jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+        jest.useRealTimers();
+    });
+    
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <PickerInput
