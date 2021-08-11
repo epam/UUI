@@ -108,12 +108,14 @@ exports[`PickerModal should be rendered correctly 1`] = `
             </svg>
           </div>
           <input
+            aria-invalid={false}
             autoFocus={true}
             className="uui-input line-height-18 font-size-14 v-padding-8"
+            inputMode="search"
             onChange={[Function]}
             onKeyDown={[Function]}
             placeholder="Type text for quick search"
-            type="text"
+            type="search"
             value=""
           />
         </div>

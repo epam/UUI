@@ -88,6 +88,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
       </svg>
     </div>
     <input
+      aria-invalid={true}
       className="uui-input"
       disabled={true}
       onChange={[Function]}
@@ -109,6 +110,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
     tabIndex={-1}
   >
     <input
+      aria-invalid={true}
       className="uui-input"
       disabled={true}
       onChange={[Function]}
