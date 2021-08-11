@@ -102,6 +102,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size,
+            mode: this.props.mode,
         };
     }
 
