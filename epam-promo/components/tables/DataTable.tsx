@@ -5,7 +5,7 @@ import {
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
-import * as CustomScrollBars from "react-custom-scrollbars";
+import * as CustomScrollBars from "react-custom-scrollbars-2";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];

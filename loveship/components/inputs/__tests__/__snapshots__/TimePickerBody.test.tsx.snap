@@ -10,6 +10,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -31,6 +32,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={12}
         min={0}
         onChange={[Function]}
@@ -45,16 +47,19 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          style={Object {}}
         />
       </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -74,6 +79,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -95,6 +101,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
@@ -109,16 +116,19 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          style={Object {}}
         />
       </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -138,6 +148,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -168,6 +179,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -194,6 +206,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -215,6 +228,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={12}
         min={1}
         onChange={[Function]}
@@ -229,16 +243,19 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          style={Object {}}
         />
       </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -258,6 +275,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -279,6 +297,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     >
       <input
         className="uui-input"
+        inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
@@ -293,16 +312,19 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
           onClick={[Function]}
+          style={Object {}}
         />
         <div
           className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
           onClick={[Function]}
+          style={Object {}}
         />
       </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -322,6 +344,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -352,6 +375,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""

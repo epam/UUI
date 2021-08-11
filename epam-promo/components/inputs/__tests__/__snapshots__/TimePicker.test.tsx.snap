@@ -19,6 +19,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
     onClick={[Function]}
+    style={Object {}}
   >
     <svg
       className=""
@@ -53,6 +54,7 @@ exports[`TimePicker should be rendered correctly 2`] = `
   />
   <div
     className="container uui-icon uui-disabled uui-icon-cancel -clickable hidden"
+    style={Object {}}
   >
     <svg
       className=""
