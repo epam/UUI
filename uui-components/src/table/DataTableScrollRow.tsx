@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import ScrollBars from 'react-custom-scrollbars';
+import ScrollBars from 'react-custom-scrollbars-2';
 import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';

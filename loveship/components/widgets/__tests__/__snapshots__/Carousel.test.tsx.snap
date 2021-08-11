@@ -26,6 +26,7 @@ exports[`Carousel should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -67,6 +68,7 @@ exports[`Carousel should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-right-arrow"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -109,6 +111,7 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -150,6 +153,7 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-right-arrow"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""

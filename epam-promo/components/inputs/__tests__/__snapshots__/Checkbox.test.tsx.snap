@@ -1,27 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox should be rendered correctly 1`] = `
-<div
-  className="container root size-18 checkbox-color-blue -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+<label
+  className="container root size-18 checkbox-color-blue"
 >
-  <div
+  <input
+    aria-checked={null}
+    checked={null}
     className="uui-checkbox"
+    onChange={[Function]}
+    type="checkbox"
   />
-</div>
+</label>
 `;
 
 exports[`Checkbox should be rendered correctly 2`] = `
-<div
-  className="container root size-18 checkbox-color-blue -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+<label
+  className="container root size-18 checkbox-color-blue"
 >
-  <div
+  <input
+    aria-checked={null}
+    checked={null}
     className="uui-checkbox"
+    onChange={[Function]}
+    type="checkbox"
   />
-</div>
+</label>
 `;
