@@ -10,6 +10,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
 >
   <input
     className="uui-input line-height-18 font-size-14 v-padding-8"
+    inputMode="numeric"
     max={10}
     min={1}
     onChange={[Function]}
@@ -67,6 +68,7 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
 >
   <input
     className="uui-input line-height-18 font-size-12 v-padding-2"
+    inputMode="numeric"
     max={10}
     min={1}
     onChange={[Function]}
