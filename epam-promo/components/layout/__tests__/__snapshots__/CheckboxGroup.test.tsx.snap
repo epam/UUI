@@ -1,71 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup should be rendered correctly 1`] = `
-<div
+<fieldset
   className="uui-vertical-direction root container"
 >
-  <div
-    className="container root size-18 checkbox-color-blue -clickable"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+  <label
+    className="container root size-18 checkbox-color-blue"
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-checkbox"
+      onChange={[Function]}
+      type="checkbox"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test1
-    </div>
-  </div>
-  <div
-    className="container root size-18 checkbox-color-blue -clickable"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    </span>
+  </label>
+  <label
+    className="container root size-18 checkbox-color-blue"
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-checkbox"
+      onChange={[Function]}
+      type="checkbox"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test2
-    </div>
-  </div>
-</div>
+    </span>
+  </label>
+</fieldset>
 `;
 
 exports[`CheckboxGroup should be rendered correctly with props 1`] = `
-<div
+<fieldset
   className="uui-horizontal-direction root container"
 >
-  <div
+  <label
     className="container root size-18 checkbox-color-blue uui-disabled"
-    onKeyDown={[Function]}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-checkbox"
+      disabled={true}
+      onChange={null}
+      type="checkbox"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test1
-    </div>
-  </div>
-  <div
+    </span>
+  </label>
+  <label
     className="container root size-18 checkbox-color-blue uui-disabled"
-    onKeyDown={[Function]}
   >
-    <div
+    <input
+      aria-checked={false}
+      checked={false}
       className="uui-checkbox"
+      disabled={true}
+      onChange={null}
+      type="checkbox"
     />
-    <div
+    <span
       className="uui-input-label"
+      role="label"
     >
       Test2
-    </div>
-  </div>
-</div>
+    </span>
+  </label>
+</fieldset>
 `;

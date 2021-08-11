@@ -12,4 +12,5 @@ export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IE
     autoComplete?: string;
     name?: string;
     maxLength?: number;
+    inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];
 };

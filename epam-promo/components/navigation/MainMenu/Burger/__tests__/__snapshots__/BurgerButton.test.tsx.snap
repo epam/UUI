@@ -6,6 +6,7 @@ exports[`BurgerButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 />
 `;
@@ -16,11 +17,13 @@ exports[`BurgerButton should be rendered correctly 2`] = `
   href="#"
   onClick={[Function]}
   onKeyDown={[Function]}
+  role="link"
   tabIndex={0}
   target="_blank"
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -35,6 +38,7 @@ exports[`BurgerButton should be rendered correctly 2`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
