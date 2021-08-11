@@ -26,7 +26,6 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
             <label
                 className={ cx(
                     css.container,
-                    this.props.value && uuiMod.checked,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
@@ -34,17 +33,18 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 ) }
                 { ...this.props.rawProps }
             >
-                <input
-                    type="radio"
-                    checked={ this.props.value }
-                    className={ uuiElement.radioInput }
-                    disabled={ this.props.isReadonly || this.props.isDisabled }
-                    readOnly={ this.props.isReadonly }
-                    aria-checked={ this.props.value }
-                    tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
-                    onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
-                />
-                { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
+                <span className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
+                    <input
+                        type="radio"
+                        checked={ this.props.value }
+                        disabled={ this.props.isReadonly || this.props.isDisabled }
+                        readOnly={ this.props.isReadonly }
+                        aria-checked={ this.props.value }
+                        tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
+                        onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                    />
+                    { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
+                </span>
                 { (this.props.renderLabel || this.props.label) && (
                     <span role="label" className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
