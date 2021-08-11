@@ -4,20 +4,21 @@
     cursor: pointer;
     position: relative;
 
-    :global(.uui-switch-toggler) {
+    input[type="checkbox"] {
         appearance: none;
-        border-radius: 50%;
         margin: 0;
+
+        &:focus, &:focus-visible {
+            outline: none;
+        }
+    }
+
+    :global(.uui-switch-toggler) {
         cursor: pointer;
         display: flex;
         position: absolute;
         flex-shrink: 0;
         position: relative;
-        left: -1px;
-
-        &:focus, &:focus-visible {
-            outline: none;
-        }
     }
 
     :global(.uui-switch-body) {

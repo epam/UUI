@@ -19,7 +19,7 @@ export class Switch extends React.Component<SwitchProps, any> {
 
     render() {
         return (
-            <div
+            <label
                 role="switch"
                 className={ cx(
                     css.container,
@@ -28,7 +28,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
             >
-                <div className={cx(uuiElement.switchBody, this.props.value && uuiMod.checked)}>
+                <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
                     <input
                         type="checkbox"
                         onChange={ this.toggle }
@@ -36,12 +36,13 @@ export class Switch extends React.Component<SwitchProps, any> {
                         checked={ this.props.value }
                         readOnly={ this.props.isReadonly }
                         aria-checked={ this.props.value }
-                        className={ uuiElement.switchToggler }
+                        aria-hidden={ true }
                         { ...this.props.rawProps }
                     />
+                    <div className={ uuiElement.switchToggler } />
                 </div>
-                <span role="label" className={ uuiElement.inputLabel }>{ this.props.label }</span>
-            </div>
+                <div role="label" className={ uuiElement.inputLabel }>{ this.props.label }</div>
+            </label>
         );
     }
 }

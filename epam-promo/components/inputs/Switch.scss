@@ -1,32 +1,30 @@
 @use  '../../assets/styles/index.scss' as *;
 @use '../../assets/styles/colorvars/inputs/switch-colorvars.scss' as *;
 
-@mixin control-switch-size($size-name, $size) {
-    &.size-#{$size-name} {
-        :global(.uui-switch-body) {
-            height: $size;
-            width: $size * 2;
-        }
+@mixin control-switch-size($size) {
+    :global(.uui-switch-body) {
+        height: $size;
+        width: $size * 2;
+    }
 
+    :global(.uui-switch-toggler) {
+        height: $size;
+        width: $size;
+    }
+
+    :global(.uui-input-label) {
+        @if ($size == 12px) {
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        } @else if ($size == 18px or $size == 24px) {
+            font-size: 14px;
+            letter-spacing: 0.1px;
+        }
+    }
+
+    :global(.uui-checked) {
         :global(.uui-switch-toggler) {
-            height: $size;
-            width: $size;
-        }
-
-        :global(.uui-input-label) {
-            @if ($size == 12px) {
-                font-size: 12px;
-                letter-spacing: 0.2px;
-            } @else if ($size == 18px or $size == 24px) {
-                font-size: 14px;
-                letter-spacing: 0.1px;
-            }
-        }
-
-        :global(.uui-checked) {
-            :global(.uui-switch-toggler) {
-                transform: translateX($size);
-            }
+            transform: translateX($size);
         }
     }
 }
@@ -35,9 +33,17 @@
     @include switch-color();
 
     //Sizes
-    @include control-switch-size('12', 12px);
-    @include control-switch-size('18', 18px);
-    @include control-switch-size('24', 24px);
+    &.size-12 {
+        @include control-switch-size(12px);
+    }
+
+    &.size-18 {
+        @include control-switch-size(18px);
+    }
+
+    &.size-24 {
+        @include control-switch-size(24px);
+    }
 
     :global(.uui-switch-body) {
         background-color: var(--background-color);
@@ -53,6 +59,8 @@
     }
 
     :global(.uui-switch-toggler) {
+        left: -1px;
+        border-radius: 50%;
         box-sizing: border-box;
         background-color: var(--toggler-background-color);
         border: 1px solid var(--toggler-border-color);
