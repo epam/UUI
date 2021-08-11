@@ -4,13 +4,17 @@ exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container root size-18 checkbox-color-blue"
 >
-  <input
-    aria-checked={null}
-    checked={null}
+  <span
     className="uui-checkbox"
-    onChange={[Function]}
-    type="checkbox"
-  />
+  >
+    <input
+      aria-checked={null}
+      aria-hidden={true}
+      checked={null}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </span>
 </label>
 `;
 
@@ -18,12 +22,16 @@ exports[`Checkbox should be rendered correctly 2`] = `
 <label
   className="container root size-18 checkbox-color-blue"
 >
-  <input
-    aria-checked={null}
-    checked={null}
+  <span
     className="uui-checkbox"
-    onChange={[Function]}
-    type="checkbox"
-  />
+  >
+    <input
+      aria-checked={null}
+      aria-hidden={true}
+      checked={null}
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </span>
 </label>
 `;
