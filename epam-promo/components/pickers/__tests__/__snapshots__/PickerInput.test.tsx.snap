@@ -26,6 +26,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled -clickable"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -59,12 +60,14 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
+        style={Object {}}
       >
         <svg
           className=""
@@ -83,6 +86,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
       tabIndex={0}
     >
       <div
@@ -93,6 +97,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
+        style={Object {}}
       >
         <svg
           className=""
@@ -113,6 +118,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""
@@ -128,6 +134,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
     <div
       className="container uui-icon uui-enabled -clickable"
       onClick={[Function]}
+      style={Object {}}
     >
       <svg
         className=""

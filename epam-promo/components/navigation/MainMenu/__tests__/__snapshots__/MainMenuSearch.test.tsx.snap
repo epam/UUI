@@ -9,6 +9,7 @@ exports[`MainMenuSearch should be rendered correctly 1`] = `
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -40,6 +41,7 @@ exports[`MainMenuSearch should be rendered correctly 2`] = `
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
