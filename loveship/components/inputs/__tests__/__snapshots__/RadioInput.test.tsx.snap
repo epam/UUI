@@ -4,7 +4,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
 <label
   className="container root size-18 color-sky theme-light"
 >
-  <span
+  <div
     className="uui-radioinput uui-checked"
   >
     <input
@@ -29,7 +29,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
         />
       </svg>
     </div>
-  </span>
+  </div>
 </label>
 `;
 
@@ -37,7 +37,7 @@ exports[`RadioInput should be rendered correctly with new props 1`] = `
 <label
   className="container root size-12 color-sun theme-dark"
 >
-  <span
+  <div
     className="uui-radioinput uui-checked"
   >
     <input
@@ -62,12 +62,12 @@ exports[`RadioInput should be rendered correctly with new props 1`] = `
         />
       </svg>
     </div>
-  </span>
-  <span
+  </div>
+  <div
     className="uui-input-label"
     role="label"
   >
     open
-  </span>
+  </div>
 </label>
 `;

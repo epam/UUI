@@ -4,7 +4,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
 <label
   className="container root size-18"
 >
-  <span
+  <div
     className="uui-radioinput"
   >
     <input
@@ -14,7 +14,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
       tabIndex={0}
       type="radio"
     />
-  </span>
+  </div>
 </label>
 `;
 
@@ -22,7 +22,7 @@ exports[`RadioInput should be rendered correctly 2`] = `
 <label
   className="container root size-18"
 >
-  <span
+  <div
     className="uui-radioinput"
   >
     <input
@@ -32,12 +32,12 @@ exports[`RadioInput should be rendered correctly 2`] = `
       tabIndex={0}
       type="radio"
     />
-  </span>
-  <span
+  </div>
+  <div
     className="uui-input-label"
     role="label"
   >
     Open
-  </span>
+  </div>
 </label>
 `;
