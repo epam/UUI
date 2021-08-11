@@ -43,6 +43,7 @@ export class Anchor extends ButtonBase<AnchorProps> {
             ),
             tabIndex: 0,
             href,
+            role: 'link',
             target: this.props.target,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,

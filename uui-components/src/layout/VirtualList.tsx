@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as css from './VirtualList.scss';
 import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps } from '@epam/uui';
-import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars';
+import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 
 export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
     rows: React.ReactNode[];
@@ -104,7 +104,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
 
-        return <div className={ css.container3 } style={ { marginTop: topY } }>
+        return <div role="list" aria-setsize={ this.props.rowsCount } className={ css.container3 } style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }
