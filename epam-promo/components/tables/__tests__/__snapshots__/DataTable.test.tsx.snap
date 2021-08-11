@@ -32,7 +32,9 @@ Array [
     </div>
   </div>,
   <div
+    aria-colcount={0}
     className="root size-36 background-white topShadow body container align-items-center"
+    role="table"
   >
     <div
       className="wrapper root shadow-dark"
