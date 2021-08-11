@@ -39,7 +39,7 @@ module.exports = {
     "moduleNameMapper": {
         "^react-native$": "react-native-web",
         "^.+\\.(sass|scss|less)$": "<rootDir>/uui-build/config/jest/cssModuleTransform.js",
-        // "@epam/test-utils": "<rootDir>/test-utils"
+        "@epam/test-utils": "<rootDir>/test-utils"
     },
     "moduleFileExtensions": [
         "web.js",

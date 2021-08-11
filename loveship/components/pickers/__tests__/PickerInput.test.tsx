@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderWithContextAsync, windowMock } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { PickerInput } from "../PickerInput";
 
@@ -8,6 +8,15 @@ jest.mock("react-dom", () => ({
 }));
 
 describe("PickerInput", () => {
+    beforeEach(() => {
+        jest.spyOn(window, "window", "get")
+            .mockImplementation(() => windowMock);
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+    
     it("should be rendered correctly", async () => {
         const tree = await renderWithContextAsync(
             <PickerInput

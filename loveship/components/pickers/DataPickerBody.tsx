@@ -32,7 +32,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
     componentDidUpdate(prevProps: DataPickerBodyProps<TItem, TId>) {
         if (this.needFocusSearch) {
             let body = ReactDOM.findDOMNode(this) as HTMLElement;
-            body && body.getElementsByTagName('input')[0].focus({preventScroll: true});
+            body && body.getElementsByTagName('input')[0].focus({ preventScroll: true });
             this.needFocusSearch = false;
         }
         if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {
@@ -54,37 +54,40 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
             return this.props.renderNotFound();
         }
 
-        return <FlexCell grow={ 1 } textAlign='center'>
-           <Text>{ i18n.dataPickerBody.noResultsMessage }</Text>
+        return <FlexCell grow={ 1 } textAlign="center">
+            <Text>{ i18n.dataPickerBody.noResultsMessage }</Text>
         </FlexCell>;
     }
 
     render() {
         const value = this.props.value;
-
+        const searchClass = cx(css.searchWrapper, css[`search-size-${ this.props.searchSize }`]);
+        
         return <>
-            { this.showSearch() && <div key='search' className={ cx(css.searchWrapper, css[`search-size-${this.props.searchSize}`]) }>
-                <FlexCell grow={ 1 }>
-                    <SearchInput
-                        cx={ css.search }
-                        placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                        { ...this.searchLens.toProps() }
-                        onKeyDown={ this.props.onKeyDown }
-                        size={ this.props.searchSize || '36' }
-                    />
-                </FlexCell>
-            </div> }
+            { this.showSearch() && (
+                <div key="search" className={ searchClass }>
+                    <FlexCell grow={ 1 }>
+                        <SearchInput
+                            cx={ css.search }
+                            placeholder={ i18n.dataPickerBody.searchPlaceholder }
+                            { ...this.searchLens.toProps() }
+                            onKeyDown={ this.props.onKeyDown }
+                            size={ this.props.searchSize || '36' }
+                        />
+                    </FlexCell>
+                </div>
+            ) }
             <FlexRow
-                key='body'
+                key="body"
                 cx={ css.body }
-                rawProps={ {style: { maxHeight: this.props.maxHeight }} }
+                rawProps={ { style: { maxHeight: this.props.maxHeight } } }
                 borderBottom={ this.props.showSelectedRows && value.checked ? 'night400' : false }
-                background='white'
+                background="white"
             >
                 { this.props.rowsCount > 0
                     ? <VirtualList
                         { ...this.lens.toProps() }
-                        shadow='white'
+                        shadow="white"
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }
