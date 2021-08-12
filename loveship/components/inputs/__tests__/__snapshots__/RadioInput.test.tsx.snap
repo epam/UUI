@@ -1,17 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioInput should be rendered correctly 1`] = `
-<div
+<label
   className="container uui-checked root size-18 color-sky theme-light"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
 >
-  <div
+  <input
+    aria-checked={true}
+    checked={true}
     className="uui-radioinput"
+    onChange={[Function]}
+    tabIndex={0}
+    type="radio"
   />
   <div
     className="container uui-icon uui-enabled circle"
+    style={Object {}}
   >
     <svg
       className=""
@@ -24,21 +27,24 @@ exports[`RadioInput should be rendered correctly 1`] = `
       />
     </svg>
   </div>
-</div>
+</label>
 `;
 
 exports[`RadioInput should be rendered correctly with new props 1`] = `
-<div
+<label
   className="container uui-checked root size-12 color-sun theme-dark"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
 >
-  <div
+  <input
+    aria-checked={true}
+    checked={true}
     className="uui-radioinput"
+    onChange={[Function]}
+    tabIndex={0}
+    type="radio"
   />
   <div
     className="container uui-icon uui-enabled circle"
+    style={Object {}}
   >
     <svg
       className=""
@@ -51,10 +57,11 @@ exports[`RadioInput should be rendered correctly with new props 1`] = `
       />
     </svg>
   </div>
-  <div
+  <span
     className="uui-input-label"
+    role="label"
   >
     open
-  </div>
-</div>
+  </span>
+</label>
 `;
