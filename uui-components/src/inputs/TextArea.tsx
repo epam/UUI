@@ -24,14 +24,35 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
         inFocus: false,
     };
 
+    getParentOverflows(el: Element) {
+        const arr = [];
+
+        while (el && el.parentNode && el.parentNode instanceof Element) {
+            if (el.parentNode.scrollTop) {
+                arr.push({
+                    node: el.parentNode,
+                    scrollTop: el.parentNode.scrollTop,
+                });
+            }
+            el = el.parentNode;
+        }
+
+        return arr;
+    }
+
     updateHeight() {
         /* https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize */
         if (this.props.autoSize) {
             const node = this.textAreaRef.current;
             if (node) {
+                const overflows = this.getParentOverflows(node);
                 node.style.height = 'auto';
                 const borderWidth = node.offsetHeight - node.clientHeight;
                 node.style.height = node.scrollHeight + borderWidth + 'px';
+                overflows.forEach(el => {
+                    el.node.scrollTop = el.scrollTop;
+                });
+
             }
         }
     }
@@ -64,7 +85,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render () {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } { ...this.props.rawProps }>
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
