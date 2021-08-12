@@ -1,40 +1,46 @@
 @use '../../assets/styles/scss/index' as *;
 
-@mixin control-switch-size($size-name, $size) {
-    &.size-#{$size-name} {
-        :global(.uui-switch-body) {
-            height: $size;
-            width: $size * 2;
-        }
+@mixin control-switch-size($size, $togglerSize) {
+    :global(.uui-switch-body) {
+        height: $size;
+        width: $size * 2;
+    }
 
+    :global(.uui-switch-toggler) {
+        height: $togglerSize;
+        width: $togglerSize;
+    }
+
+    :global(.uui-input-label) {
+        @if ($size == 12px) {
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        } @else if ($size == 18px or $size == 24px) {
+            font-size: 14px;
+            letter-spacing: 0.1px;
+        }
+    }
+
+    :global(.uui-checked) {
         :global(.uui-switch-toggler) {
-            height: $size;
-            width: $size;
-        }
-
-        :global(.uui-input-label) {
-            @if ($size == 12px) {
-                font-size: 12px;
-                letter-spacing: 0.2px;
-            } @else if ($size == 18px or $size == 24px) {
-                font-size: 14px;
-                letter-spacing: 0.1px;
-            }
-        }
-
-        :global(.uui-checked) {
-            :global(.uui-switch-toggler) {
-                transform: translateX($size);
-            }
+            transform: translateX($size);
         }
     }
 }
 
 .root {
     // Sizes
-    @include control-switch-size('12', 12px);
-    @include control-switch-size('18', 18px);
-    @include control-switch-size('24', 24px);
+    &.size-12 {
+        @include control-switch-size(12px, 10px);
+    }
+
+    &.size-18 {
+        @include control-switch-size(18px, 16px);
+    }
+
+    &.size-24 {
+        @include control-switch-size(24px, 22px);
+    }
 
     :global(.uui-switch-body) {
         background-color: $night400;
@@ -59,6 +65,8 @@
     }
 
     :global(.uui-switch-toggler) {
+        left: -1px;
+        border-radius: 50%;
         background-color: $white;
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
     }
