@@ -15,6 +15,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   />
 </div>
@@ -35,6 +36,7 @@ exports[`DropdownContainer should be rendered correctly with extra props 1`] = `
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
+    role="button"
     tabIndex={0}
   />
 </div>
