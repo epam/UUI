@@ -1,22 +1,28 @@
 .container {
     display: flex;
     align-items: center;
-    outline: none;
+    cursor: pointer;
+    position: relative;
 
-    :global(.uui-switch-body) {
-        flex-shrink: 0;
-        position: relative;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
+    input[type="checkbox"] {
+        appearance: none;
+        margin: 0;
+
+        &:focus, &:focus-visible {
+            outline: none;
+        }
     }
 
     :global(.uui-switch-toggler) {
+        cursor: pointer;
+        display: flex;
         position: absolute;
-        border-radius: 50%;
+        flex-shrink: 0;
+        position: relative;
     }
 
-    :global(.uui-input-label) {
+    :global(.uui-switch-body) {
+        flex-shrink: 0;
         display: flex;
         align-items: center;
     }
