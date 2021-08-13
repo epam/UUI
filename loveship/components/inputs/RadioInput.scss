@@ -31,15 +31,15 @@
         :global(.uui-radioinput) {
             border-color: var(--uui-color-700);
         }
-    }
 
-    &:hover:global(.uui-checked) {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-800);
-        }
+        :global(.uui-checked) {
+            &:global(.uui-radioinput) {
+                border-color: var(--uui-color-800);
+            }
 
-        :global(.uui-icon) {
-            fill: var(--uui-color-800);
+            :global(.uui-icon) {
+                fill: var(--uui-color-800);
+            }
         }
     }
 
@@ -50,20 +50,18 @@
         box-sizing: border-box;
         border: 1px solid $night400;
 
-        &:focus {
+        &:focus-within {
             border-color: var(--uui-color-700);
             @include control-focus-effect();
+        }
+
+        &:global(.uui-checked) {
+            border: 1px solid var(--uui-color-700);
         }
     }
 
     :global(.uui-icon) {
         fill: var(--uui-color-700);
-    }
-
-    &:global(.uui-checked) {
-        :global(.uui-radioinput) {
-            border: 1px solid var(--uui-color-700);
-        }
     }
 
     :global(.uui-input-label) {
@@ -104,7 +102,7 @@
                 border-color: $night300;
                 box-shadow: none;
 
-                &:focus {
+                &:focus-within {
                     border-color: $night300;
                 }
             }
@@ -163,10 +161,6 @@
                 background-color: $night600;
                 border-color: $night600;
                 box-shadow: none;
-
-                &:focus {
-                    border-color: $night600;
-                }
             }
 
             :global(.uui-icon) {
