@@ -91,7 +91,6 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler & { ref?: React.Ref<any> }) => {
-        console.log({ this: this });
         return <FlexCell
             { ...this.props.column }
             ref={ (node) => { props.ref.current = node; } }
