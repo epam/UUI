@@ -18,6 +18,17 @@ export class Slider extends SliderBase<number, any> {
         return value > this.props.max ? this.props.max : value < this.props.min ? this.props.min : value;
     }
 
+    handleKeyDownUpdate(type: 'left' | 'right') {
+        const { value, step, min, max } = this.props;
+        if (type === 'left') {
+            if (value - step < min) return
+            else this.props.onValueChange(value - step);
+        } else if (type === 'right') {
+            if (value + step > max) return;
+            this.props.onValueChange(value + step);
+        }
+    }
+
     render() {
         let normValue = this.roundToStep(this.normalize(this.props.value), this.props.step);
         let valueWidth = this.slider && this.slider.offsetWidth / (this.props.max - this.props.min) || 0;
@@ -59,7 +70,7 @@ export class Slider extends SliderBase<number, any> {
                     isActive={ this.state.isActive }
                     tooltipContent={ normValue }
                     offset={ filledOffset }
-                    onKeyDownUpdate={ type => this.props.onValueChange(type === 'right' ? this.props.value + this.props.step : this.props.value - this.props.step) }
+                    onKeyDownUpdate={ type => this.handleKeyDownUpdate(type) }
                     onUpdate={ (mouseX: number) => this.props.onValueChange(this.getValue(mouseX, valueWidth)) }
                     handleActiveState={ (newValue) => this.setState({ isActive: newValue }) }
                     showTooltip={ this.props.showTooltip !== undefined ? this.props.showTooltip : true }
