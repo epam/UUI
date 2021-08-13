@@ -34,7 +34,7 @@
 
     &:global(.-clickable) {
         &:focus-visible {
-            @include control-focus-visible(3px, 3px);
+            @include control-focus(3px, 3px);
         }
 
         &:hover {
