@@ -9,7 +9,11 @@
         fill: var(--text-color);
 
         &:global(.-clickable:not(.uui-disabled)) {
-            &:hover, &:focus {
+            &:focus-visible {
+                @include control-focus();
+            }
+
+            &:hover {
                 color: var(--text-color-hover);
                 fill: var(--text-color-hover);
             }
