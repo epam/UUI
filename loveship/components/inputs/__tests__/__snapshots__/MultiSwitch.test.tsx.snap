@@ -6,11 +6,12 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
   role="group"
 >
   <div
+    aria-current={true}
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square selectedItem"
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
-    role="button"
+    role="tab"
     tabIndex={0}
   >
     <div
@@ -20,11 +21,12 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-current={false}
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-white style-square"
     href={null}
     onClick={[Function]}
     onKeyDown={[Function]}
-    role="button"
+    role="tab"
     tabIndex={0}
   >
     <div

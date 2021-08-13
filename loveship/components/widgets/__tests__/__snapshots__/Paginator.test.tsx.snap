@@ -29,6 +29,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-current={true}
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-white style-square fill-white size-24"
     href={null}
     onClick={[Function]}
@@ -104,7 +105,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={0}
+    tabIndex={-1}
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
