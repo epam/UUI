@@ -108,7 +108,10 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 props.isDndInProgress && css['dnd-marker-' + props.position],
             ) }
             onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
-            rawProps={ props.eventHandlers }
+            rawProps={ {
+                'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
+                ...props.eventHandlers
+            } }
         >
             { this.renderHeaderCheckbox() }
             { this.getColumnCaption() }
