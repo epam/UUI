@@ -46,7 +46,7 @@ export class Paginator extends React.Component<PaginatorProps> {
         const currentPage = this.props.value;
         const onClick = (value: number) => {
             this.props.onValueChange(value);
-            
+
             if (this.props.getValueChangeAnalyticsEvent) {
                 const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
                 this.context.uuiAnalytics.sendEvent(event);

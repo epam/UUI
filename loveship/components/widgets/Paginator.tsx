@@ -15,9 +15,9 @@ export class Paginator extends React.Component<PaginatorProps> {
                 {
                     params.pages.map((page, index) => {
                         if (page.type === 'spacer') {
-                            return <PageButton size={ params.size } key={ index } caption={ '...' } fill='light' color='sky' />;
+                            return <PageButton size={ params.size } key={ index } caption={ '...' } fill='light' color='sky' tabIndex={ -1 } />;
                         } else {
-                            return <PageButton size={ params.size } key={ index } caption={ page.pageNumber } onClick={ () => page.onClick() } fill={ (page.isActive && 'white') || 'light' } color={ 'sky' } />;
+                            return <PageButton size={ params.size } key={ index } caption={ page.pageNumber } onClick={ () => page.onClick() } fill={ (page.isActive && 'white') || 'light' } color={ 'sky' } rawProps={{ 'aria-current': page.isActive }} />;
                         }
                     })
                 }
