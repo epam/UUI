@@ -8,13 +8,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        appearance: none;
         cursor: pointer;
-        margin: 0;
         flex-shrink: 0;
 
-        &:focus, &:focus-visible {
-            outline: none;
+        & > input[type="radio"] {
+            margin: 0;
+            appearance: none;
+
+            &:focus, &:focus-visible {
+                outline: none;
+            }
         }
     }
 
