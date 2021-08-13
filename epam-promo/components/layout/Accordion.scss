@@ -1,18 +1,17 @@
 @use '../../assets/styles/fonts' as *;
 @use '../../assets/styles/layout-mixins' as *;
+@use '../../assets/styles/controlColors.scss' as *;
 
 $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
 $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
-
 
 .root {
     :global(.uui-accordion-toggler) {
         font-family: $font-sans-semibold;
         cursor: pointer;
 
-        &:focus {
-            outline-offset: 2px;
-            outline-color: var(--focus-color);
+        &:focus-visible {
+            @include control-focus(2px, 3px);
         }
     }
 
