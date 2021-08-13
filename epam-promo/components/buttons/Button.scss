@@ -33,7 +33,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus-visible {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-hover);
             border-color: var(--background-color-hover);
         }
@@ -48,7 +52,7 @@
         @include button-disables-styles(var(--background-color-disabled), var(--background-color-disabled));
     }
 
-    &:global(.-clickable), &:hover, &:active, &:focus {
+    &:global(.-clickable), &:hover, &:active, &:focus-visible {
         &:global(.uui-disabled) {
             @include button-disables-styles(var(--background-color-disabled), var(--background-color-disabled));
         }
@@ -62,7 +66,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus-visible {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -81,7 +89,7 @@
         @include button-disables-styles($white, var(--background-color-disabled));
     }
 
-    &:global(.-clickable), &:hover, &:active, &:focus {
+    &:global(.-clickable), &:hover, &:active, &:focus-visible {
         &:global(.uui-disabled) {
             @include button-disables-styles($white, var(--background-color-disabled));
         }
@@ -95,7 +103,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus-visible {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -128,7 +140,11 @@
     border-color: transparent;
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus-visible {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             border-color: var(--background-color-light-hover);
         }
@@ -145,7 +161,7 @@
     }
 
 
-    &:global(.-clickable), &:hover, &:active, &:focus {
+    &:global(.-clickable), &:hover, &:active, &:focus-visible {
         &:global(.uui-disabled) {
             @include button-disables-styles(transparent, transparent);
         }
