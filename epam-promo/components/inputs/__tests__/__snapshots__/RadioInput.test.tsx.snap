@@ -4,14 +4,17 @@ exports[`RadioInput should be rendered correctly 1`] = `
 <label
   className="container root size-18"
 >
-  <input
-    aria-checked={null}
-    checked={null}
+  <div
     className="uui-radioinput"
-    onChange={[Function]}
-    tabIndex={0}
-    type="radio"
-  />
+  >
+    <input
+      aria-checked={null}
+      checked={null}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
+    />
+  </div>
 </label>
 `;
 
@@ -19,19 +22,22 @@ exports[`RadioInput should be rendered correctly 2`] = `
 <label
   className="container root size-18"
 >
-  <input
-    aria-checked={null}
-    checked={null}
+  <div
     className="uui-radioinput"
-    onChange={[Function]}
-    tabIndex={0}
-    type="radio"
-  />
-  <span
+  >
+    <input
+      aria-checked={null}
+      checked={null}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
+    />
+  </div>
+  <div
     className="uui-input-label"
     role="label"
   >
     Open
-  </span>
+  </div>
 </label>
 `;
