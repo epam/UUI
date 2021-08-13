@@ -45,7 +45,6 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection)
                 && <IconButton
                     key='sort'
-                    rawProps={{ 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none' }}
                     cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
                     color='gray50'
                     icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
@@ -92,6 +91,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler & { ref?: React.Ref<any> }) => {
+        console.log({ this: this });
         return <FlexCell
             { ...this.props.column }
             ref={ (node) => { props.ref.current = node; } }
@@ -109,7 +109,10 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 props.isDndInProgress && css['dnd-marker-' + props.position],
             ) }
             onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
-            rawProps={ props.eventHandlers }
+            rawProps={ {
+                'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
+                ...props.eventHandlers
+            } }
         >
             { this.renderHeaderCheckbox() }
             { this.getColumnCaption() }
