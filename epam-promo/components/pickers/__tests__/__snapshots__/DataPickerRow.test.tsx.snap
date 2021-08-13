@@ -2,7 +2,9 @@
 
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
+  aria-posinset={1}
   className="pickerRow container align-items-center"
+  role="listitem"
 >
   <div
     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -32,8 +34,12 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
+  aria-checked={true}
+  aria-posinset={1}
+  aria-selected={true}
   className="pickerRow -clickable uui-focus container -clickable align-items-center"
   onClick={[Function]}
+  role="listitem"
 >
   <div
     className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"

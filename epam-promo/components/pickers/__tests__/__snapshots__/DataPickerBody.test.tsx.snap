@@ -153,7 +153,7 @@ Array [
             <div
               aria-setsize={7}
               className="container3"
-              role="list"
+              role="listbox"
               style={
                 Object {
                   "marginTop": 0,
@@ -161,7 +161,9 @@ Array [
               }
             >
               <div
+                aria-posinset={2}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -188,7 +190,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={3}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -215,7 +219,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={4}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -242,7 +248,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={5}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -269,7 +277,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={6}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -296,7 +306,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={7}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -323,7 +335,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={8}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -350,7 +364,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={9}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -377,7 +393,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={10}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -404,7 +422,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={11}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -431,7 +451,9 @@ Array [
                 </div>
               </div>
               <div
+                aria-posinset={12}
                 className="pickerRow container align-items-center"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
