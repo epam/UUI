@@ -2,7 +2,9 @@
 
 exports[`DataTableRow should be rendered correctly 1`] = `
 <div
+  aria-expanded={true}
   className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+  role="listitem"
 >
   <div
     className="scrollableColumnsWrapper"
