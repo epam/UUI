@@ -1,32 +1,30 @@
 @use  '../../assets/styles/index.scss' as *;
 @use '../../assets/styles/colorvars/inputs/switch-colorvars.scss' as *;
 
-@mixin control-switch-size($size-name, $size) {
-    &.size-#{$size-name} {
-        :global(.uui-switch-body) {
-            height: $size;
-            width: $size * 2;
-        }
+@mixin control-switch-size($size) {
+    :global(.uui-switch-body) {
+        height: $size;
+        width: $size * 2;
+    }
 
+    :global(.uui-switch-toggler) {
+        height: $size;
+        width: $size;
+    }
+
+    :global(.uui-input-label) {
+        @if ($size == 12px) {
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        } @else if ($size == 18px or $size == 24px) {
+            font-size: 14px;
+            letter-spacing: 0.1px;
+        }
+    }
+
+    :global(.uui-checked) {
         :global(.uui-switch-toggler) {
-            height: $size;
-            width: $size;
-        }
-
-        :global(.uui-input-label) {
-            @if ($size == 12px) {
-                font-size: 12px;
-                letter-spacing: 0.2px;
-            } @else if ($size == 18px or $size == 24px) {
-                font-size: 14px;
-                letter-spacing: 0.1px;
-            }
-        }
-
-        :global(.uui-checked) {
-            :global(.uui-switch-toggler) {
-                transform: translateX($size);
-            }
+            transform: translateX($size);
         }
     }
 }
@@ -35,9 +33,17 @@
     @include switch-color();
 
     //Sizes
-    @include control-switch-size('12', 12px);
-    @include control-switch-size('18', 18px);
-    @include control-switch-size('24', 24px);
+    &.size-12 {
+        @include control-switch-size(12px);
+    }
+
+    &.size-18 {
+        @include control-switch-size(18px);
+    }
+
+    &.size-24 {
+        @include control-switch-size(24px);
+    }
 
     :global(.uui-switch-body) {
         background-color: var(--background-color);
@@ -45,11 +51,16 @@
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
+
+        &:focus-within {
+            outline: var(--background-color-checked) 2px auto;
+            outline-offset: 2px;
+        }
     }
 
     :global(.uui-switch-toggler) {
-        top: -1px;
         left: -1px;
+        border-radius: 50%;
         box-sizing: border-box;
         background-color: var(--toggler-background-color);
         border: 1px solid var(--toggler-border-color);
@@ -60,11 +71,7 @@
         @include typography-inline;
         font-family: $font-sans;
         color: var(--caption-color);
-        cursor: pointer;
-
-        &:not(:empty) {
-            margin-left: 0.5em;
-        }
+        margin-left: 11px;
     }
 
     //Colors
@@ -72,15 +79,17 @@
         :global(.uui-switch-body) {
             background-color: var(--background-color-hovered);
             border-color: var(--border-color-hovered);
-
-            :global(.uui-switch-toggler) {
-                border-color: var(--toggler-border-color-hovered);
-            }
         }
 
-        :global(.uui-checked):global(.uui-switch-body) {
-            background-color: var(--background-color-checked-hovered);
-            border-color: var(--border-color-checked-hovered);
+        :global(.uui-switch-toggler) {
+            border-color: var(--toggler-border-color-hovered);
+        }
+
+        :global(.uui-checked) {
+            &:global(.uui-switch-body) {
+                background-color: var(--background-color-checked-hovered);
+                border-color: var(--border-color-checked-hovered);
+            }
 
             :global(.uui-switch-toggler) {
                 border-color: var(--toggler-border-color-checked-hovered);
@@ -102,23 +111,31 @@
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
             color: var(--caption-color-disabled);
+        }
+
+        &,
+        :global(.uui-switch-toggler),
+        :global(.uui-switch-body),
+        :global(.uui-input-label) {
             cursor: default;
         }
 
         :global(.uui-switch-body) {
             background-color: var(--background-color-disabled);
             border: 1px solid var(--border-color-disabled);
-            cursor: default;
-
-            :global(.uui-switch-toggler) {
-                background-color: var(--toggler-background-color-disabled);
-                border-color: var(--toggler-border-color-disabled);
-            }
         }
 
-        :global(.uui-checked):global(.uui-switch-body) {
-            background-color: var(--background-color-checked-disabled);
-            border: 1px solid var(--border-color-checked-disabled);
+        & :global(.uui-switch-toggler),
+        &:hover :global(.uui-switch-toggler) {
+            background-color: var(--toggler-background-color-disabled);
+            border-color: var(--toggler-border-color-disabled);
+        }
+
+        :global(.uui-checked) {
+            &:global(.uui-switch-body) {
+                background-color: var(--background-color-checked-disabled);
+                border: 1px solid var(--border-color-checked-disabled);
+            }
 
             :global(.uui-switch-toggler) {
                 background-color: var(--toggler-background-color-disabled);
