@@ -1,6 +1,12 @@
+@use '../../assets/styles/controlColors.scss' as *;
+
 .avatars {
     display: flex;
     padding-right: 12px;
+
+    &:focus-visible {
+        @include control-focus();
+    }
 
     img {
         margin-right: var(--overlap);
