@@ -2,66 +2,72 @@
 
 exports[`RadioInput should be rendered correctly 1`] = `
 <label
-  className="container uui-checked root size-18 color-sky theme-light"
+  className="container root size-18 color-sky theme-light"
 >
-  <input
-    aria-checked={true}
-    checked={true}
-    className="uui-radioinput"
-    onChange={[Function]}
-    tabIndex={0}
-    type="radio"
-  />
   <div
-    className="container uui-icon uui-enabled circle"
-    style={Object {}}
+    className="uui-radioinput uui-checked"
   >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
+    />
+    <div
+      className="container uui-icon uui-enabled circle"
+      style={Object {}}
     >
-      <use
-        xlinkHref="#radio-point.svg"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#radio-point.svg"
+        />
+      </svg>
+    </div>
   </div>
 </label>
 `;
 
 exports[`RadioInput should be rendered correctly with new props 1`] = `
 <label
-  className="container uui-checked root size-12 color-sun theme-dark"
+  className="container root size-12 color-sun theme-dark"
 >
-  <input
-    aria-checked={true}
-    checked={true}
-    className="uui-radioinput"
-    onChange={[Function]}
-    tabIndex={0}
-    type="radio"
-  />
   <div
-    className="container uui-icon uui-enabled circle"
-    style={Object {}}
+    className="uui-radioinput uui-checked"
   >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      tabIndex={0}
+      type="radio"
+    />
+    <div
+      className="container uui-icon uui-enabled circle"
+      style={Object {}}
     >
-      <use
-        xlinkHref="#radio-point.svg"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#radio-point.svg"
+        />
+      </svg>
+    </div>
   </div>
-  <span
+  <div
     className="uui-input-label"
     role="label"
   >
     open
-  </span>
+  </div>
 </label>
 `;
