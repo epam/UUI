@@ -63,8 +63,8 @@
         flex-shrink: 0;
         box-sizing: border-box;
 
-        &:focus-within {
-            border-color: var(--border-color-hovered);
+        &:focus-visible {
+            @include control-focus(2px, 3px);
         }
 
         &:global(.uui-checked) {
@@ -106,32 +106,32 @@
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
                 border-color: var(--errored-color);
-
-                &:focus-within {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
-
-                :global(.uui-icon) {
-                    fill: var(--errored-color);
-                }
             }
+
+            :global(.uui-icon) {
+                fill: var(--errored-color);
+            }
+        }
+    }
+
+    &:global(.uui-checked) {
+        &:hover {
+            :global(.uui-radioinput) {
+                border-color: var(--border-color-hovered);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--fill-color-hovered);
+            }
+        }
+
+        :global(.uui-radioinput) {
+            border-color: var(--border-color-checked);
         }
 
         &:hover {
             :global(.uui-radioinput) {
                 border-color: var(--errored-color);
-
-                &:focus {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
             }
 
             :global(.uui-icon) {

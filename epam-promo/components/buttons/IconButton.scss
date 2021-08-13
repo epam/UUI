@@ -6,7 +6,11 @@
     fill: var(--icon-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus-visible {
+            @include control-focus();
+        }
+
+        &:hover {
             fill: var(--icon-color-hover);
         }
 
@@ -20,7 +24,11 @@
         cursor: default;
 
         &:global(.-clickable) {
-            &:hover, &:focus {
+            &:focus-visible {
+                @include control-focus();
+            }
+
+            &:hover {
                 fill: var(--icon-color-disabled);
             }
 
