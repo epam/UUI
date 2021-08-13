@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEditable } from '@epam/uui';
+import { IEditable, IHasRawProps } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
 import cx from 'classnames';
 import { Button, ControlGroup } from '../index';
@@ -10,7 +10,7 @@ interface MultiSwitchItem<TValue> extends ButtonProps, types.ColorMod {
     id: TValue;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.ColorMod, types.SizeMod {
+export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.ColorMod, types.SizeMod, IHasRawProps<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
 }
 
@@ -18,7 +18,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
 
     render() {
         return (
-            <ControlGroup>
+            <ControlGroup { ...this.props.rawProps }>
                 {
                     this.props.items.map((item, index) => {
                         const isActive = this.props.value === item.id;
@@ -33,6 +33,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
                                 fill={ isActive ? 'solid' : 'white' }
                                 color={ item.color || this.props.color }
                                 size={ this.props.size }
+                                rawProps={{ 'aria-current': this.props.value === item.id, role: 'tab' }}
                             />
                         );
                     })
