@@ -28,7 +28,7 @@ export class AvatarStack extends React.Component<AvatarStackProps> {
 
     render() {
         return <FlexRow spacing='6'>
-            <div role="group" className={ cx(css.avatars, css['avatar-' + this.props.direction]) }>
+            <div tabIndex={0} role="group" className={ cx(css.avatars, css['avatar-' + this.props.direction]) }>
                 { this.getFirstElements() }
             </div>
             <Text size="36" color="gray80" font="sans-semibold" >

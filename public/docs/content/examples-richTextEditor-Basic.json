@@ -101,8 +101,19 @@
           },
           {
             "object": "text",
-            "text": ". You can import skinContext object from your skin package.",
+            "text": ". You can import skinContext object from your skin package.\n\nAlso it required to import css from editor package, please add the following code into you app entry file: \n",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "import '@epam/uui-editor/styles.css';",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
           }
         ]
       },
@@ -113,7 +124,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.\n",
+            "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.",
             "marks": []
           }
         ]

@@ -7,6 +7,10 @@
     // Colors
     fill: var(--fill-color);
 
+    &:focus-visible {
+        @include control-focus();
+    }
+
     :global(.uui-rating-star) {
         padding: 0 2px;
     }
