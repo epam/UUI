@@ -1,3 +1,9 @@
+@use '../../assets/styles/controlColors.scss' as *;
+
 .root {
+    &:focus-visible {
+        @include control-focus();
+    }
+
     fill: var(--fill-color);
 }

@@ -5,7 +5,11 @@
     fill: $color;
     background-color: $backgroundColor;
 
-    &:hover, &:focus {
+    &:focus-visible {
+        @include control-focus();
+    }
+
+    &:hover {
         color: $activeColor;
         fill: $activeColor;
     }
