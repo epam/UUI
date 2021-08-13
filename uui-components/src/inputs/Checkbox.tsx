@@ -32,24 +32,26 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
-                ) }>
-                <input
-                    type="checkbox"
-                    onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
-                    className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
-                    disabled={ this.props.isDisabled }
-                    readOnly={ this.props.isReadonly }
-                    aria-checked={ this.props.value }
-                    checked={ this.props.value }
-                    { ...this.props.rawProps }
-                />
+                ) }
+                { ...this.props.rawProps }
+            >
+                <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
+                    <input
+                        type="checkbox"
+                        onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
+                        disabled={ this.props.isDisabled }
+                        readOnly={ this.props.isReadonly }
+                        aria-checked={ this.props.value }
+                        checked={ this.props.value }
+                    />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
-                    { (this.props.renderLabel || this.props.label) && (
-                        <span role="label" className={ uuiElement.inputLabel }>
-                            { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                        </span>
-                    ) }
+                </div>
+                { (this.props.renderLabel || this.props.label) && (
+                    <div role="label" className={ uuiElement.inputLabel }>
+                        { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
+                    </div>
+                ) }
             </label>
         );
     }
