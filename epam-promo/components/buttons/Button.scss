@@ -33,7 +33,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-hover);
             border-color: var(--background-color-hover);
         }
@@ -62,7 +66,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -95,7 +103,11 @@
     border-color: var(--border-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             color: var(--caption-color);
             fill: var(--caption-color);
@@ -128,7 +140,11 @@
     border-color: transparent;
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:focus {
+            @include control-focus(3px, 3px);
+        }
+
+        &:hover {
             background-color: var(--background-color-light-hover);
             border-color: var(--background-color-light-hover);
         }
