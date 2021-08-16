@@ -65,7 +65,7 @@
     }
 
     :global(.uui-switch-toggler) {
-        left: -1px;
+        box-sizing: border-box;
         border-radius: 50%;
         background-color: $white;
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
