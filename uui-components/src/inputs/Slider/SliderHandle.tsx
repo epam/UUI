@@ -65,12 +65,24 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
         this.setState({ isHovered: false });
     }
 
+    handleFocus = (e: React.FocusEvent<HTMLDivElement>): void => {
+        e.preventDefault();
+        this.props.handleActiveState && this.props.handleActiveState(true);
+        this.setState({ isHovered: true });
+    }
+
+    handleBlur = (e: React.FocusEvent<HTMLDivElement>): void => {
+        e.preventDefault();
+        this.props.handleActiveState && this.props.handleActiveState(false);
+        this.setState({ isHovered: false });
+    }
+
     handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === 'ArrowLeft') {
             this.props.onKeyDownUpdate('left');
         } else if (e.key == 'ArrowRight') {
             this.props.onKeyDownUpdate('right');
-        } else return;
+        }
     }
 
     renderTooltip() {
@@ -96,6 +108,8 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                             onMouseDown={ this.handleMouseDown }
                             onMouseUp={ this.handleMouseUp }
                             onKeyDown={ this.handleKeyDown }
+                            onFocus={ this.handleFocus }
+                            onBlur={ this.handleBlur }
                         />
                     }
                 </Reference>
