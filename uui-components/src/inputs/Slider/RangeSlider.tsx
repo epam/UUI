@@ -59,6 +59,24 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
         return this.slider ? this.slider.offsetWidth / (this.props.max - this.props.min) : 0;
     }
 
+    handleKeyDown(type: 'left' | 'right', normValue: RangeSliderValue) {
+        const { step, min, max } = this.props;
+        const { from, to } = normValue;
+        const { activeHandle } = this.state;
+
+        if (type === 'left') {
+            this.props.onValueChange({
+                from: activeHandle === 'from' ? this.normalize(from - step) : from,
+                to: activeHandle === 'to' ? this.normalize(to - step) : to,
+            });
+        } else if (type === 'right') {
+            this.props.onValueChange({
+                from: activeHandle === 'from' ? this.normalize(from + step) : from,
+                to: activeHandle === 'to' ? this.normalize(to + step) : to,
+            });
+        }
+    }
+
     render() {
         let from = (this.props.value && this.props.value.from != null) ? this.props.value.from : this.props.min;
         let to = (this.props.value && this.props.value.to != null) ? this.props.value.to : this.props.max;
@@ -105,6 +123,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     offset={ fromHandleOffset }
                     tooltipContent={ normValueFrom }
                     onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
+                    onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
                 />
                 <SliderHandle
@@ -114,6 +133,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     tooltipContent={ normValueTo }
                     onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'to', valueWidth) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'to' : null }) }
+                    onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                 />
             </div>
         );
