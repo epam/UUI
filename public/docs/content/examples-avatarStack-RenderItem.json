@@ -11,12 +11,24 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic AvatarStack usage.\nProps ",
+            "text": "An example with a custom avatar.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Props ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "avatarsCount",
+            "text": "renderItem",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": " allows you to specify the number of avatars in the stack.",
+            "text": "  allows you to render a custom avatar in the stack.",
             "marks": []
           }
         ]
