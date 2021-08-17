@@ -1,12 +1,13 @@
 @use  '../../assets/styles/index' as *;
 
 .header {
-    display: flex;
+    display: none;
     justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-bottom: 1px solid $gray40;
     position: relative;
+
+    @media screen and (max-width: 720px) {
+        display: flex;
+    }
 }
 
 .size {

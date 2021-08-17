@@ -10,44 +10,44 @@ import { Text } from "../../typography";
 
 export interface SortingPanelProps {
     sortDirection: SortDirection;
+
     onSort(dir: SortDirection): void;
 }
 
-const SortingPanelImpl: React.FC<SortingPanelProps> = ({sortDirection, onSort}) => {
+const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }) => {
     const sortAsc = useCallback(() => onSort('asc'), [onSort]);
     const sortDesc = useCallback(() => onSort('desc'), [onSort]);
-    
+
     return (
         <FlexCell cx={ css.sortingPanelContainer }>
             <FlexRow cx={ css.filterSortButton } spacing="6" onClick={ sortAsc }>
-                {
-                    sortDirection === 'asc'
-                        ? <>
-                            <IconButton color="blue" icon={ sortIcon }/>
-                            <Text cx={ css.activeText } color="gray80" fontSize="14"
-                                  size="24">{ i18n.pickerFilterHeader.sortAscending }</Text>
-                        </>
-                        : <>
-                            <IconButton color="gray60" icon={ sortIcon }/>
-                            <Text cx={ css.sortText } color="gray80" fontSize="14"
-                                  size="24">{ i18n.pickerFilterHeader.sortAscending }</Text>
-                        </>
-                }
+                <IconButton
+                    color={ sortDirection === 'asc' ? "blue" : "gray60" }
+                    icon={ sortIcon }
+                />
+                <Text
+                    cx={ sortDirection === 'asc' ? css.activeText : css.sortText }
+                    color="gray80"
+                    fontSize="14"
+                    size="24"
+                >
+                    { i18n.pickerFilterHeader.sortAscending }
+                </Text>
             </FlexRow>
+            
             <FlexRow cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
-                {
-                    sortDirection === 'desc'
-                        ? <>
-                            <IconButton color="blue" icon={ sortIconDesc }/>
-                            <Text cx={ css.activeText } color="gray80" fontSize="14"
-                                  size="24">{ i18n.pickerFilterHeader.sortDescending }</Text>
-                        </>
-                        : <>
-                            <IconButton color="gray60" icon={ sortIconDesc }/>
-                            <Text cx={ css.sortText } color="gray80" fontSize="14"
-                                  size="24">{ i18n.pickerFilterHeader.sortDescending }</Text>
-                        </>
-                }
+                <IconButton
+                    color={ sortDirection === 'desc' ? "blue" : "gray60" }
+                    icon={ sortIconDesc }
+                />
+                <Text
+                    cx={ sortDirection === 'desc' ? css.activeText : css.sortText }
+                    color="gray80"
+                    fontSize="14"
+                    size="24"
+                >
+                    { i18n.pickerFilterHeader.sortDescending }
+                </Text>
             </FlexRow>
         </FlexCell>
     );

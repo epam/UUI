@@ -1,23 +1,5 @@
 @use '../../assets/styles/scss/index'  as *;
 
-.footer-wrapper {
-    background: $white;
-    padding: 0 12px;
-    display: flex;
-}
-
-.footer-size-24 {
-    min-height: 24px;
-}
-
-.footer-size-30 {
-    min-height: 30px;
-}
-
-.footer-size-36 {
-    min-height: 36px;
-}
-
 .footer-size-42 {
     min-height: 42px;
 }

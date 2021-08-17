@@ -3,9 +3,6 @@
 .header {
     display: none;
     justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-bottom: 1px solid $night400;
     position: relative;
 
     @media screen and (max-width: 720px) {

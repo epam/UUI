@@ -1,8 +1,7 @@
 import React from 'react';
 import { renderWithContextAsync } from "@epam/test-utils";
-import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
-import renderer from 'react-test-renderer';
 import { ArrayDataSource } from '@epam/uui';
+import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
 
 jest.mock('react-dom', () => ({
@@ -36,15 +35,6 @@ describe('DataPickerBody', () => {
             value: null,
             onValueChange: jest.fn(),
         },
-        // isSingleSelect: false,
-        // hasSelection: false,
-        // clearSelection: jest.fn(),
-        // switchValue: false,
-        // onSwitchValueChange: jest.fn(),
-        // selectAll: {
-        //     value: false,
-        //     onValueChange: jest.fn(),
-        // },
     };
 
     it('should be rendered correctly', async () => {

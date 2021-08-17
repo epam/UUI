@@ -8,13 +8,15 @@ jest.mock("react-dom", () => ({
 }));
 
 describe("PickerInput", () => {
+    let windowSpy: any;
+
     beforeEach(() => {
-        jest.spyOn(window, "window", "get")
+        windowSpy = jest.spyOn(window, "window", "get")
             .mockImplementation(() => windowMock);
     });
 
     afterEach(() => {
-        jest.restoreAllMocks();
+        windowSpy.mockRestore();
     });
     
     it("should be rendered correctly", async () => {

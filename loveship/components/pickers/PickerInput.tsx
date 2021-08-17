@@ -26,9 +26,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     private readonly popperModifiers: Modifier<any>[] = [
         {
             name: 'offset',
-            options: { offset: [0, 6] },
+            options: { offset: [0, 6] }
         },
-        mobilePopperModifier,
+        mobilePopperModifier
     ];
 
     toggleModalOpening(opened: boolean) {
@@ -51,7 +51,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
-    }
+    };
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
@@ -68,46 +68,41 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 renderItem={ this.renderItem }
             />
         );
-    }
-
-    renderFooter() {
-        if (this.isSingleSelect()) {
-            return;
-        }
-
-        const view = this.getView();
-        const hasSelection = view.getSelectedRows().length > 0;
-        const isNotDisabled = hasSelection && !this.isSingleSelect();
-        const switchSize = this.props.size === '24' ? '12' : (this.props.size === '42' || this.props.size === '48') ? '24' : '18';
-
-        return <div
-            className={ cx(css.footerWrapper, css[`footer-size-${ this.props.size || '36' }`], uuiMarkers.clickable) }>
-            <Switch
-                size={ switchSize }
-                value={ this.state.showSelected }
-                isDisabled={ !isNotDisabled }
-                onValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }) }
-                label={ i18n.pickerInput.showOnlySelectedLabel }
-            />
-            <FlexSpacer/>
-            { view.selectAll && <LinkButton
-                size={ this.props.size || '36' }
-                caption={ hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
-                onClick={ () => view.selectAll.onValueChange(!hasSelection) }
-            /> }
-        </div>;
-    }
+    };
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> & PickerInputMods {
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size,
-            mode: this.props.mode,
+            mode: this.props.mode
         };
+    }
+    
+    renderFooter() {
+        const view = this.getView();
+
+        return this.props.renderFooter
+            ? this.props.renderFooter({
+                ...this.props as any,
+                view: view,
+                showSelected: {
+                    value: this.state.showSelected,
+                    onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }),
+                },
+            })
+            : (
+                <DataPickerFooter
+                    switchValue={ this.state.showSelected }
+                    size={ this.props.size }
+                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }) }
+                    hasSelection={ view.getSelectedRows().length > 0 }
+                    clearSelection={ this.clearSelection }
+                    selectAll={ view.selectAll }
+                />
+            );
     }
 
     render() {
-        const view = this.getView();
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
         const renderTarget = this.props.renderToggler || ((props) => <PickerToggler
@@ -150,33 +145,14 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 maxHeight={ maxHeight }
                                 renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
                                     search: this.state.dataSourceState.search,
-                                    onClose: () => this.toggleBodyOpening(false),
+                                    onClose: () => this.toggleBodyOpening(false)
                                 })) }
                                 onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                 scheduleUpdate={ props.scheduleUpdate }
                                 searchSize={ this.props.size }
                             />
 
-                            { this.props.renderFooter
-                                ? this.props.renderFooter({
-                                    ...this.props as any,
-                                    view: view,
-                                    showSelected: {
-                                        value: this.state.showSelected,
-                                        onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }),
-                                    },
-                                })
-                                : (
-                                    <DataPickerFooter
-                                        switchValue={ this.state.showSelected }
-                                        size={ this.props.size }
-                                        onSwitchValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }) }
-                                        hasSelection={ view.getSelectedRows().length > 0 }
-                                        clearSelection={ this.clearSelection }
-                                        selectAll={ view.selectAll }
-                                    />
-                                )
-                            }
+                            { this.renderFooter() }
                         </MobileDropdownWrapper>
                     </Panel>
                 ) }

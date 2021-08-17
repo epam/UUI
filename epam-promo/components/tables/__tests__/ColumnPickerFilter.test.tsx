@@ -27,13 +27,15 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('ColumnPickerFilter', () => {
+    let windowSpy: any;
+
     beforeEach(() => {
-        jest.spyOn(window, "window", "get")
+        windowSpy = jest.spyOn(window, "window", "get")
             .mockImplementation(() => windowMock);
     });
 
     afterEach(() => {
-        jest.restoreAllMocks();
+        windowSpy.mockRestore();
     });
     
     it('should be rendered correctly', () => {
