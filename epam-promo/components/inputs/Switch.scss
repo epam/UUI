@@ -53,8 +53,7 @@
         box-sizing: border-box;
 
         &:focus-within {
-            outline: var(--background-color-checked) 2px auto;
-            outline-offset: 2px;
+            @include control-focus();
         }
     }
 
