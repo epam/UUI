@@ -26,15 +26,15 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerInput', () => {
+    let windowSpy: any;
+
     beforeEach(() => {
-        jest.spyOn(window, "window", "get")
+        windowSpy = jest.spyOn(window, "window", "get")
             .mockImplementation(() => windowMock);
-        jest.useFakeTimers();
     });
 
     afterEach(() => {
-        jest.restoreAllMocks();
-        jest.useRealTimers();
+        windowSpy.mockRestore();
     });
     
     it('should be rendered correctly', async () => {

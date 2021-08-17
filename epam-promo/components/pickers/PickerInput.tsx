@@ -74,6 +74,31 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         };
     }
 
+    renderFooter() {
+        const view = this.getView();
+
+        return this.props.renderFooter
+            ? this.props.renderFooter({
+                ...this.props as any,
+                view: view,
+                showSelected: {
+                    value: this.state.showSelected,
+                    onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }),
+                },
+            })
+            : (
+                <DataPickerFooter
+                    isSingleSelect={ this.isSingleSelect() }
+                    size={ this.props.size }
+                    hasSelection={ view.getSelectedRows().length > 0 }
+                    clearSelection={ this.clearSelection }
+                    switchValue={ this.state.showSelected }
+                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
+                    selectAll={ view.selectAll }
+                />
+            );
+    }
+
     render() {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
@@ -85,7 +110,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const minBodyWidth = isMobile()
             ? document.documentElement.clientWidth
             : (this.props.minBodyWidth || pickerWidth);
-        const view = this.getView();
 
         return (
             <Dropdown
@@ -126,15 +150,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                     editMode={ 'dropdown' }
                                 />
 
-                                <DataPickerFooter
-                                    isSingleSelect={ this.isSingleSelect() }
-                                    size={ this.props.size }
-                                    hasSelection={ view.getSelectedRows().length > 0 }
-                                    clearSelection={ this.clearSelection }
-                                    switchValue={ this.state.showSelected }
-                                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
-                                    selectAll={ view.selectAll }
-                                />
+                                { this.renderFooter() }
                             </MobileDropdownWrapper>
                         </Panel>
                     );

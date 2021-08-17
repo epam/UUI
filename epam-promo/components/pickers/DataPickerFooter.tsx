@@ -4,7 +4,7 @@ import css from "./DataPickerFooter.scss";
 import { ICheckable, isMobile, uuiMarkers } from "@epam/uui";
 import { i18n } from "../../i18n";
 import { Switch } from "../inputs";
-import { FlexCell, FlexSpacer } from "../layout";
+import { FlexCell, FlexRow, FlexSpacer } from "../layout";
 import { LinkButton } from "../buttons";
 import { SizeMod } from "../types";
 
@@ -17,18 +17,21 @@ interface DataPickerFooterProps extends SizeMod {
     selectAll?: ICheckable;
 }
 
+const switchSizes = {
+    "24": "12",
+    "36": "18",
+    "42": "24",
+    "48": "24",
+} as const;
+
 const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
     if (props.isSingleSelect) return null;
 
     const size = isMobile() ? "48" : (props.size || "36");
-    const switchSize = size === '24'
-        ? '12'
-        : (props.size === '42' || props.size === '48')
-            ? '24'
-            : '18';
+    const switchSize = switchSizes[size as keyof typeof switchSizes];
 
     return (
-        <div className={ cx(css.footerWrapper, css[`footer-size-${ size }`], uuiMarkers.clickable) }>
+        <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper, css[`footer-size-${ size }`], uuiMarkers.clickable) }>
             <Switch
                 size={ switchSize }
                 value={ props.switchValue }
@@ -54,7 +57,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
                     />
                 </FlexCell>
             ) }
-        </div>
+        </FlexRow>
     );
 };
 
