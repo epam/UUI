@@ -2,49 +2,41 @@
 
 exports[`AvatarStack should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-none spacing-6 container align-items-center"
+  className="root container align-items-center"
 >
   <div
-    className="avatars avatar-right"
+    className="avatars container avatar-right container align-items-center"
     role="group"
-    tabIndex={0}
+    style={
+      Object {
+        "--overlap": "-9px",
+      }
+    }
   >
     <img
       alt="avatar"
+      className="avatar"
       height="36"
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
-      style={
-        Object {
-          "--overlap": "-9px",
-        }
-      }
       width="36"
     />
     <img
       alt="avatar"
+      className="avatar"
       height="36"
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
-      style={
-        Object {
-          "--overlap": "-9px",
-        }
-      }
       width="36"
     />
     <img
       alt="avatar"
+      className="avatar"
       height="36"
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
-      style={
-        Object {
-          "--overlap": "-9px",
-        }
-      }
       width="36"
     />
   </div>
   <div
-    className="root font-sans-semibold text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+    className="avatarsCount"
   >
     +2
   </div>
