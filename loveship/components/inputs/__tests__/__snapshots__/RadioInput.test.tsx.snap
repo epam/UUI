@@ -2,7 +2,7 @@
 
 exports[`RadioInput should be rendered correctly 1`] = `
 <label
-  className="container root size-18 color-sky theme-light"
+  className="container root size-18 color-sky theme-light -clickable"
   role="checkbox"
 >
   <div
@@ -36,7 +36,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
 
 exports[`RadioInput should be rendered correctly with new props 1`] = `
 <label
-  className="container root size-12 color-sun theme-dark"
+  className="container root size-12 color-sun theme-dark -clickable"
   role="checkbox"
 >
   <div
