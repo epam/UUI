@@ -24,7 +24,6 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     render() {
         return (
             <label
-                role="checkbox"
                 className={ cx(
                     css.container,
                     this.props.isDisabled && uuiMod.disabled,
