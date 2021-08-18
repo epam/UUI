@@ -34,11 +34,12 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isInvalid && uuiMod.invalid,
                 ) }
                 { ...this.props.rawProps }
+                onClick={ e => e.stopPropagation()}
             >
                 <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
                     <input
                         type="checkbox"
-                        onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
+                        onChange={ this.handleChange }
                         disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
                         aria-checked={ this.props.value }
