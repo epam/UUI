@@ -24,6 +24,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
     render() {
         return (
             <label
+                role="checkbox"
                 className={ cx(
                     css.container,
                     this.props.isDisabled && uuiMod.disabled,
@@ -32,6 +33,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     this.props.cx
                 ) }
                 { ...this.props.rawProps }
+                onClick={ e => e.stopPropagation() }
             >
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input

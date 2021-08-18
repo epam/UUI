@@ -26,6 +26,7 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
     render() {
         return (
             <label
+                role="checkbox"
                 className={ cx(
                     css.container,
                     this.props.cx,
