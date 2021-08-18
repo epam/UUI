@@ -33,7 +33,6 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     this.props.cx
                 ) }
                 { ...this.props.rawProps }
-                onClick={ e => e.stopPropagation() }
             >
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
