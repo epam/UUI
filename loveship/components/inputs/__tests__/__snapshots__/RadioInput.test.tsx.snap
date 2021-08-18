@@ -3,6 +3,7 @@
 exports[`RadioInput should be rendered correctly 1`] = `
 <label
   className="container root size-18 color-sky theme-light"
+  role="checkbox"
 >
   <div
     className="uui-radioinput uui-checked"
@@ -36,6 +37,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
 exports[`RadioInput should be rendered correctly with new props 1`] = `
 <label
   className="container root size-12 color-sun theme-dark"
+  role="checkbox"
 >
   <div
     className="uui-radioinput uui-checked"

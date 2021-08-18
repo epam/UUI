@@ -3,6 +3,7 @@
 exports[`RadioInput should be rendered correctly 1`] = `
 <label
   className="container root size-18"
+  role="checkbox"
 >
   <div
     className="uui-radioinput"
@@ -21,6 +22,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
 exports[`RadioInput should be rendered correctly 2`] = `
 <label
   className="container root size-18"
+  role="checkbox"
 >
   <div
     className="uui-radioinput"
