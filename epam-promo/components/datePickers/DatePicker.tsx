@@ -29,11 +29,13 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
                 size={ this.props.size || '36' }
                 value={ this.state.inputValue }
+                rawProps={{ 'aria-haspopup': 'true' }}
                 onValueChange={ this.handleInputChange }
                 onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 mode={ this.props.mode || defaultMode }
             />

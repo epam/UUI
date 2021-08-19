@@ -71,6 +71,10 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return this.props.format || defaultFormat;
     }
 
+    handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!this.state.isOpen) this.onToggle(true);
+    }
+
     handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
         const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));

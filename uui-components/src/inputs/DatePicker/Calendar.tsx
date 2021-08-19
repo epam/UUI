@@ -115,7 +115,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
     renderDaysTable() {
         return this.getDaysMatrix(this.props.displayedDate?.startOf('day'))
             .map((week, index) => {
-                return <div key={ index }>{ week.map((day) => day) }</div>;
+                return <div role="row" key={ index }>{ week.map((day) => day) }</div>;
             });
     }
 
@@ -126,7 +126,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
                     <div className={ uuiDaySelection.weekdaysContainer }>
                         { dayjs.weekdaysShort(true).map((weekday, index) => <div className={ uuiDaySelection.weekday } key={ index }>{ weekday }</div>) }
                     </div>
-                    <div className={ uuiDaySelection.days } style={ { 'height': `${ this.state.weeksHeight }px` } }>
+                    <div role="grid" className={ uuiDaySelection.days } style={ { 'height': `${ this.state.weeksHeight }px` } }>
                         { this.renderDaysTable() }
                     </div>
                 </div>

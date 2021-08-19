@@ -2,6 +2,7 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
+  aria-haspopup="true"
   className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={[Function]}
@@ -37,6 +38,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
 
 exports[`DataPicker should be rendered correctly 2`] = `
 <div
+  aria-haspopup="true"
   className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={[Function]}

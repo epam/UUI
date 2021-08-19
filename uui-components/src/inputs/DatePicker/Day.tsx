@@ -36,7 +36,7 @@ export class Day extends React.Component<DayProps, any> {
                 ) }
                 {...this.props.rawProps}
             >
-                <div className={ uuiDaySelection.day }>
+                <div aria-selected={ this.props.isSelected } role="gridcell" className={ uuiDaySelection.day }>
                     { this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D') }
                 </div>
             </div>);
