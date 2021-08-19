@@ -2,6 +2,7 @@
 
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
+  aria-sort="none"
   className="flexCell cell size-36 padding-left-24"
   onClick={[Function]}
   style={

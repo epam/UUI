@@ -95,12 +95,15 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     this.props.cx,
                 ] }
                 onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
-                rawProps={ props.eventHandlers }
+                rawProps={ {
+                    'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
+                    ...props.eventHandlers
+                } }
             >
                 { this.renderHeaderCheckbox() }
                 { this.getColumnCaption() }
                 { this.props.allowColumnsResizing && this.renderResizeMark(props) }
-            </FlexCell >
+            </FlexCell>
         );
     }
 

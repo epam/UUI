@@ -7,6 +7,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   <div
     className="flexCell cell size-36 padding-12 padding-left-12 align-widgets-top"
     onClick={[Function]}
+    role="cell"
     style={
       Object {
         "alignSelf": undefined,
@@ -38,6 +39,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
   <div
     className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
     onClick={[Function]}
+    role="cell"
     style={
       Object {
         "alignSelf": undefined,

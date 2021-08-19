@@ -4,7 +4,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
 <div
   aria-expanded={true}
   className="container uui-table-row-container uui-table-row root border-gray30 size-30 container align-items-top"
-  role="listitem"
+  role="row"
 >
   <div
     className="scrollableColumnsWrapper"
@@ -26,6 +26,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
         <div
           className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24 align-widgets-top"
           onClick={[Function]}
+          role="cell"
           style={
             Object {
               "alignSelf": undefined,
