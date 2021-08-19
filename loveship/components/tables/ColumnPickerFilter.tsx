@@ -23,9 +23,13 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.props.size || '30' }
-                renderItem={ i => <Text size={ this.props.size || '30' }>{ rowProps.isLoading ?
-                    <TextPlaceholder wordsCount={ 2 }/> : this.getName(i) }</Text>
-                }
+                renderItem={ i => (
+                    <Text size={ this.props.size || '30' }>
+                        { rowProps.isLoading 
+                            ? <TextPlaceholder wordsCount={ 2 }/> 
+                            : this.getName(i) }
+                    </Text>
+                ) }
             />
         );
     }

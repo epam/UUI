@@ -4,16 +4,12 @@
     border-top: 1px solid $gray40;
 
     &.footer-size-42 {
-        min-height: 42px;
-
         :global(.uui-caption) {
             font-size: 16px;
         }
     }
 
     &.footer-size-48 {
-        min-height: 48px;
-
         :global(.uui-caption) {
             font-size: 16px;
         }

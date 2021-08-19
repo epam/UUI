@@ -1,13 +1,5 @@
 @use '../../assets/styles/scss/index'  as *;
 
-.footer-size-42 {
-    min-height: 42px;
-}
-
-.footer-size-48 {
-    min-height: 48px;
-
-    :global(.uui-caption) {
-        font-size: 16px;
-    }
+.footer-wrapper {
+    border-top: 1px solid $night400;
 }

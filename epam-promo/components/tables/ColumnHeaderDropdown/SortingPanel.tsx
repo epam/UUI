@@ -10,7 +10,6 @@ import { Text } from "../../typography";
 
 export interface SortingPanelProps {
     sortDirection: SortDirection;
-
     onSort(dir: SortDirection): void;
 }
 
@@ -34,7 +33,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
                     { i18n.pickerFilterHeader.sortAscending }
                 </Text>
             </FlexRow>
-            
+
             <FlexRow cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
                 <IconButton
                     color={ sortDirection === 'desc' ? "blue" : "gray60" }

@@ -48,29 +48,36 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     getColumnCaption = () => {
-        let captionContent = <div
-            className={ cx(css.iconCell, this.props.column.textAlign && css['align-' + this.props.column.textAlign]) }>
-            <Text
-                key="text"
-                cx={ cx(css.caption, this.getTextStyle()) }
-            >
-                { this.props.column.caption }
-            </Text>
-            { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
-            { this.props.isFilterActive &&
-            <LinkButton key="filter" cx={ css.icon } size="30" color="night600" icon={ filterIcon }/> }
-            { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) &&
-            <LinkButton
-                key="sort"
-                cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
-                size="24"
-                color="night400"
-                icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
-            /> }
-            { this.props.column.renderFilter &&
-            <LinkButton key="dropdown" cx={ cx(css.icon, css.dropdownIcon) } size="30" color="night600"
-                        icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }/> }
-        </div>;
+        let captionContent = (
+            <div className={ cx(css.iconCell, this.props.column.textAlign && css['align-' + this.props.column.textAlign]) }>
+                <Text
+                    key="text"
+                    cx={ cx(css.caption, this.getTextStyle()) }
+                >
+                    { this.props.column.caption }
+                </Text>
+                { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
+                { this.props.isFilterActive &&
+                <LinkButton key="filter" cx={ css.icon } size="30" color="night600" icon={ filterIcon }/> }
+                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) &&
+                <LinkButton
+                    key="sort"
+                    cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
+                    size="24"
+                    color="night400"
+                    icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
+                /> }
+                { this.props.column.renderFilter && (
+                    <LinkButton
+                        key="dropdown"
+                        cx={ cx(css.icon, css.dropdownIcon) }
+                        size="30"
+                        color="night600"
+                        icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }
+                    />
+                ) }
+            </div>
+        );
 
         return <div className={ css.tooltipWrapper }>
             <Tooltip
@@ -101,9 +108,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
         return (
             <FlexCell
                 { ...this.props.column }
-                ref={ (node) => {
-                    props.ref.current = node;
-                } }
+                ref={ (node) => { props.ref.current = node; } }
                 cx={ [
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.cell, css['size-' + (this.props.size || '36')],
@@ -146,7 +151,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             <UuiDataTableHeaderCell
                 { ...this.props }
                 renderCellContent={ this.props.column.renderFilter
-                    ? this.renderCellWithFilter 
+                    ? this.renderCellWithFilter
                     : this.renderCellContent }
             />
         );
