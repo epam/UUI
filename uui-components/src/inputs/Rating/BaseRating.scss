@@ -2,6 +2,10 @@
     position: relative;
     cursor: pointer;
 
+    &:focus, &:focus-visible {
+        outline: none;
+    }
+
     &--readonly {
         cursor: default;
     }

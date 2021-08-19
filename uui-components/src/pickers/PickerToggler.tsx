@@ -108,18 +108,23 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 return null;
             }
 
-            return <div className={ cx(
-                uuiElement.input,
-                this.props.selection.length === 0 && uuiElement.placeholder,
-                this.props.pickerMode === 'single' && css.singleInput,
-                css.toggler,
-            ) }>
+            return <div
+                aria-haspopup='listbox'
+                aria-multiselectable={ this.props.pickerMode === 'multi' }
+                className={ cx(
+                    uuiElement.input,
+                    this.props.selection.length === 0 && uuiElement.placeholder,
+                    this.props.pickerMode === 'single' && css.singleInput,
+                    css.toggler,
+                ) }>
                 { placeholder }
             </div>;
         }
 
         return <input
             type={ "text" }
+            aria-haspopup='listbox'
+            aria-multiselectable={ this.props.pickerMode === 'multi' }
             className={ cx(uuiElement.input,
                 this.props.pickerMode === 'single' && css.singleInput,
                 isActivePlaceholder && (!this.state.inFocus || this.props.isReadonly) && uuiElement.placeholder)

@@ -83,7 +83,17 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     allowColumnsResizing={ this.props.allowColumnsResizing }
                     { ...this.lens.toProps() }
                 />
-                <FlexRow key='body' topShadow background='white' cx={ css.body }>
+                <FlexRow
+                    rawProps={{
+                        role: 'table',
+                        'aria-setsize': this.props.rowsCount,
+                        'aria-rowcount': this.props.knownRowsCount,
+                        'aria-colcount': this.props.columns.length
+                    }}
+                    key='body'
+                    topShadow
+                    background='white'
+                    cx={ css.body }>
                     <VirtualList
                         { ...this.lens.toProps() }
                         onScroll={ this.props.onScroll }

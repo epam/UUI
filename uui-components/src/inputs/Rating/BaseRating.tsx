@@ -99,11 +99,31 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
 
+    onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+        const { from, to } = this.props;
+        const { rating } = this.state;
+        const step = this.props.step || 1;
+
+        if (e.key === 'ArrowLeft') {
+            if (rating - step < from) return;
+            else this.setState({ rating: rating - step });
+        } else if (e.key === 'ArrowRight') {
+            if (rating + step > to) return;
+            else this.setState({ rating: rating + step });
+        };
+    }
+
     render () {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
         return (
             <div
+                role="slider"
+                aria-valuenow={ this.props.value }
+                aria-valuemax={ this.props.to }
+                aria-valuemin={ this.props.from }
+                tabIndex={ 0 }
+                onKeyDown={ e => this.onKeyDown(e) }
                 className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }

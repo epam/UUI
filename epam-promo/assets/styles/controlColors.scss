@@ -1,6 +1,14 @@
+@use  '../../assets/styles/colors.scss' as *;
+
+
 @mixin button-colors($bg, $fg, $brd) {
     background-color: $bg;
     color: $fg;
     fill: $fg;
     border-color: $brd;
+}
+
+@mixin control-focus($width: 2px, $offset: 2px) {
+    outline: $blue auto $width;
+    outline-offset: $offset;
 }
