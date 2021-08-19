@@ -7,13 +7,16 @@ exports[`PickerListItem should render with all new props 1`] = `
   <label
     className="container uui-disabled root size-18 color-sky theme-light"
   >
-    <input
+    <div
       className="uui-radioinput"
-      disabled={true}
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
+    >
+      <input
+        aria-checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
   </label>
 </div>
 `;
@@ -25,13 +28,16 @@ exports[`PickerListItem should render with default props 1`] = `
   <label
     className="container uui-disabled root size-18 color-sky theme-light"
   >
-    <input
+    <div
       className="uui-radioinput"
-      disabled={true}
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
+    >
+      <input
+        aria-checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
   </label>
 </div>
 `;
