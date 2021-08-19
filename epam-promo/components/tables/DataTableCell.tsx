@@ -104,6 +104,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         return (
             <FlexCell
                 { ...this.props.column }
+                rawProps={{ role: 'cell' }}
                 cx={ cx(
                     css.cell,
                     addonWidgets.length > 0 && css.wrapper,

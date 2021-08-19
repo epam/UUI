@@ -52,9 +52,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
           }
         >
           <div
-            aria-setsize={10}
             className="container3"
-            role="list"
             style={
               Object {
                 "marginTop": 0,
@@ -68,6 +66,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -100,6 +99,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -132,6 +132,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -164,6 +165,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -196,6 +198,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -228,6 +231,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -260,6 +264,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -292,6 +297,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -324,6 +330,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -356,6 +363,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -481,9 +489,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
           }
         >
           <div
-            aria-setsize={10}
             className="container3"
-            role="list"
             style={
               Object {
                 "marginTop": 0,
@@ -497,6 +503,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -529,6 +536,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -561,6 +569,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -593,6 +602,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -625,6 +635,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -657,6 +668,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -689,6 +701,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -721,6 +734,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -753,6 +767,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -785,6 +800,7 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
                 onClick={[Function]}
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,

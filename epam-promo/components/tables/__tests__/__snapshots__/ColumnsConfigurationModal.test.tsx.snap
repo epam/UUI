@@ -137,35 +137,38 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
                   >
-                    <input
-                      aria-checked={true}
-                      checked={true}
-                      className="uui-checkbox uui-checked"
-                      disabled={true}
-                      onChange={null}
-                      type="checkbox"
-                    />
                     <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      className="uui-checkbox uui-checked"
                     >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
+                      <input
+                        aria-checked={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={null}
+                        type="checkbox"
+                      />
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <use
-                          xlinkHref="#check-18.svg"
-                        />
-                      </svg>
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#check-18.svg"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <span
+                    <div
                       className="uui-input-label"
                       role="label"
                     >
                       ID
-                    </span>
+                    </div>
                   </label>
                 </div>
               </div>
@@ -190,35 +193,38 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
                   >
-                    <input
-                      aria-checked={true}
-                      checked={true}
-                      className="uui-checkbox uui-checked"
-                      disabled={true}
-                      onChange={null}
-                      type="checkbox"
-                    />
                     <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
+                      className="uui-checkbox uui-checked"
                     >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
+                      <input
+                        aria-checked={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={null}
+                        type="checkbox"
+                      />
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <use
-                          xlinkHref="#check-18.svg"
-                        />
-                      </svg>
+                        <svg
+                          className=""
+                          height={24}
+                          viewBox="0 0 12 24"
+                          width={12}
+                        >
+                          <use
+                            xlinkHref="#check-18.svg"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <span
+                    <div
                       className="uui-input-label"
                       role="label"
                     >
                       Level
-                    </span>
+                    </div>
                   </label>
                 </div>
               </div>

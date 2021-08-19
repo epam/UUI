@@ -3,12 +3,14 @@
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
   aria-posinset={1}
-  className="pickerRow container align-items-center"
+  className="pickerRow container -clickable align-items-center"
+  onClick={[Function]}
   role="listitem"
 >
   <div
     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
     onClick={[Function]}
+    role="cell"
     style={
       Object {
         "alignSelf": undefined,
@@ -44,6 +46,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
   <div
     className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
     onClick={[Function]}
+    role="cell"
     style={
       Object {
         "alignSelf": undefined,

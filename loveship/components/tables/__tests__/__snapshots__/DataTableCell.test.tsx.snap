@@ -4,6 +4,7 @@ exports[`DataTableCell should be rendered correctly 1`] = `
 <div
   className="flexCell cell size-36 padding-12 align-widgets-top"
   onClick={[Function]}
+  role="cell"
   style={
     Object {
       "alignSelf": undefined,
@@ -25,6 +26,7 @@ exports[`DataTableCell should be rendered correctly with extra props 1`] = `
 <div
   className="flexCell cell size-48 padding-24 padding-right-24 align-widgets-top"
   onClick={[Function]}
+  role="cell"
   style={
     Object {
       "alignSelf": undefined,

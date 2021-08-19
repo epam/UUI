@@ -5,6 +5,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
+    aria-sort="none"
     className="flexCell -clickable cell size-24 padding-left-24 resizable"
     onClick={[Function]}
     onMouseEnter={[Function]}
@@ -96,6 +97,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         className="container align-items-top"
       >
         <div
+          aria-sort="ascending"
           className="flexCell -clickable cell size-24 resizable draggable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -157,6 +159,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           />
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable cell size-24 resizable draggable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -218,6 +221,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           />
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable cell size-24 padding-right-24 resizable draggable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -295,6 +299,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
+    aria-sort="none"
     className="flexCell -clickable cell size-36 padding-left-24"
     onClick={[Function]}
     style={
@@ -364,6 +369,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         className="container align-items-top"
       >
         <div
+          aria-sort="ascending"
           className="flexCell -clickable cell size-36"
           onClick={[Function]}
           style={
@@ -416,6 +422,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable cell size-36"
           onClick={[Function]}
           style={
@@ -468,6 +475,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable cell size-36 padding-right-24"
           onClick={[Function]}
           style={

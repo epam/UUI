@@ -172,9 +172,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             >
               <div
-                aria-setsize={10}
                 className="container3"
-                role="list"
                 style={
                   Object {
                     "marginTop": 0,
@@ -188,6 +186,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -220,6 +219,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -252,6 +252,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -284,6 +285,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -316,6 +318,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -348,6 +351,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -380,6 +384,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -412,6 +417,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -444,6 +450,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -476,6 +483,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     onClick={[Function]}
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,

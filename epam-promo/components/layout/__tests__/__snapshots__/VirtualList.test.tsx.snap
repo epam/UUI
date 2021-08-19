@@ -45,7 +45,6 @@ exports[`VirtualList should be rendered correctly 1`] = `
       >
         <div
           className="container3"
-          role="list"
           style={
             Object {
               "marginTop": 0,

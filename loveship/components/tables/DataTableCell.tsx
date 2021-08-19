@@ -105,16 +105,19 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         }
 
         return (
-            <FlexCell { ...this.props.column } cx={ cx(
-                css.cell,
-                addonWidgets.length > 0 && css.wrapper,
-                css['size-' + (this.props.size || '36')],
-                css[`padding-${this.props.padding || '12'}`],
-                this.props.isFirstColumn && css[`padding-left-${this.getCellPadding()}`],
-                this.props.isLastColumn && css[`padding-right-${this.getCellPadding()}`],
-                this.props.column.cx,
-                css[`align-widgets-${ this.props.alignActions || 'top' }`],
-            ) }>
+            <FlexCell
+                { ...this.props.column }
+                rawProps={{ role: 'cell' }}
+                cx={ cx(
+                    css.cell,
+                    addonWidgets.length > 0 && css.wrapper,
+                    css['size-' + (this.props.size || '36')],
+                    css[`padding-${this.props.padding || '12'}`],
+                    this.props.isFirstColumn && css[`padding-left-${this.getCellPadding()}`],
+                    this.props.isLastColumn && css[`padding-right-${this.getCellPadding()}`],
+                    this.props.column.cx,
+                    css[`align-widgets-${ this.props.alignActions || 'top' }`],
+                ) }>
                 { addonWidgets }
                 { cellContent }
             </FlexCell>

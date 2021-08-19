@@ -37,9 +37,8 @@ export class DataTableRow<TItem, TId> extends React.Component<DataTableRowProps<
                 onClick={ clickHandler && (() => clickHandler(this.props)) }
                 rawProps={ {
                     ...params.eventHandlers,
-                    role: 'listitem',
+                    role: 'row',
                     'aria-expanded': !this.props.isFolded,
-                    'aria-checked': this.props.isChecked,
                     ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected } )
                 } }
                 cx={ [
