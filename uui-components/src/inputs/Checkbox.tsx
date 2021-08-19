@@ -41,14 +41,14 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                         onChange={(!this.props.isDisabled && !this.props.isReadonly) ? this.handleChange : null}
                         disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
-                        aria-checked={ this.props.value }
                         checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
                 </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <div role="label" className={ uuiElement.inputLabel }>
+                    <div className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
                     </div>
                 ) }

@@ -7,36 +7,40 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   <label
     className="container root size-18 checkbox-color-blue"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test1
-    </span>
+    </div>
   </label>
   <label
     className="container root size-18 checkbox-color-blue"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;
@@ -48,38 +52,42 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   <label
     className="container root size-18 checkbox-color-blue uui-disabled"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      disabled={true}
-      onChange={null}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        disabled={true}
+        onChange={null}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test1
-    </span>
+    </div>
   </label>
   <label
     className="container root size-18 checkbox-color-blue uui-disabled"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      disabled={true}
-      onChange={null}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        disabled={true}
+        onChange={null}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;

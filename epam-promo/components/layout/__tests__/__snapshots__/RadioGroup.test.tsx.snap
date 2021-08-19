@@ -7,38 +7,40 @@ exports[`RadioGroup should be rendered correctly 1`] = `
   <label
     className="container root size-18"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-radioinput"
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test1
-    </span>
+    </div>
   </label>
   <label
     className="container root size-18"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-radioinput"
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;
@@ -50,40 +52,42 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
   <label
     className="container uui-disabled root size-18"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-radioinput"
-      disabled={true}
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test1
-    </span>
+    </div>
   </label>
   <label
     className="container uui-disabled root size-18"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-radioinput"
-      disabled={true}
-      onChange={[Function]}
-      tabIndex={0}
-      type="radio"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       Test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;
