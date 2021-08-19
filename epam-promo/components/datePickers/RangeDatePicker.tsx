@@ -56,26 +56,28 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
-                    onClick={ () => this.toggleOpening(!this.state.isOpen, 'from') }
+                    onClick={ !this.state.isOpen ? () => this.toggleOpening(!this.state.isOpen, 'from') : null }
                     onValueChange={ handleFromChange }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
+                    onFocus={ () => this.handleFocus('from') }
                     onBlur={ (e) => this.handleBlur('from') }
                     isDropdown={ false }
                 />
-                <div className={ css.separator } />
+                <div className={ css.separator } tabIndex={ -1 } />
                 <TextInput
                     cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     size={ this.props.size || '36' }
                     value={ this.state.inputValue.to }
-                    onClick={ () => this.toggleOpening(!this.state.isOpen, 'to') }
+                    onClick={ !this.state.isOpen ? () => this.toggleOpening(!this.state.isOpen, 'to') : null }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                     onValueChange={ handleToChange }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
+                    onFocus={ () => this.handleFocus('to') }
                     onBlur={ (e) => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */

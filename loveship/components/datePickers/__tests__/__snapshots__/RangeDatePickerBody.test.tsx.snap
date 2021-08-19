@@ -132,13 +132,16 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </div>
                   <div
                     className="uui-calendar-days"
+                    role="grid"
                     style={
                       Object {
                         "height": "180px",
                       }
                     }
                   >
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -156,7 +159,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             1
                           </div>
@@ -171,7 +176,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             2
                           </div>
@@ -186,7 +193,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             3
                           </div>
@@ -201,7 +210,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             4
                           </div>
@@ -216,14 +227,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             5
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -233,7 +248,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             6
                           </div>
@@ -248,7 +265,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             7
                           </div>
@@ -263,7 +282,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             8
                           </div>
@@ -278,7 +299,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             9
                           </div>
@@ -293,7 +316,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             10
                           </div>
@@ -308,7 +333,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             11
                           </div>
@@ -323,14 +350,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             12
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -340,7 +371,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             13
                           </div>
@@ -355,7 +388,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             14
                           </div>
@@ -370,7 +405,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             15
                           </div>
@@ -385,7 +422,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             16
                           </div>
@@ -400,7 +439,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             17
                           </div>
@@ -415,7 +456,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             18
                           </div>
@@ -430,14 +473,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             19
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -447,7 +494,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             20
                           </div>
@@ -462,7 +511,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             21
                           </div>
@@ -477,7 +528,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             22
                           </div>
@@ -492,7 +545,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             23
                           </div>
@@ -507,7 +562,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             24
                           </div>
@@ -522,7 +579,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             25
                           </div>
@@ -537,14 +596,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             26
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -554,7 +617,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             27
                           </div>
@@ -569,7 +634,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             28
                           </div>
@@ -584,7 +651,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             29
                           </div>
@@ -599,7 +668,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             30
                           </div>
@@ -614,7 +685,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             31
                           </div>
@@ -726,13 +799,16 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </div>
                   <div
                     className="uui-calendar-days"
+                    role="grid"
                     style={
                       Object {
                         "height": "180px",
                       }
                     }
                   >
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -762,7 +838,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             1
                           </div>
@@ -777,14 +855,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             2
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -794,7 +876,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             3
                           </div>
@@ -809,7 +893,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             4
                           </div>
@@ -824,7 +910,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             5
                           </div>
@@ -839,7 +927,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             6
                           </div>
@@ -854,7 +944,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             7
                           </div>
@@ -869,7 +961,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             8
                           </div>
@@ -884,14 +978,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             9
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -901,7 +999,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             10
                           </div>
@@ -916,7 +1016,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             11
                           </div>
@@ -931,7 +1033,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             12
                           </div>
@@ -946,7 +1050,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             13
                           </div>
@@ -961,7 +1067,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             14
                           </div>
@@ -976,7 +1084,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             15
                           </div>
@@ -991,14 +1101,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             16
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -1008,7 +1122,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             17
                           </div>
@@ -1023,7 +1139,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             18
                           </div>
@@ -1038,7 +1156,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             19
                           </div>
@@ -1053,7 +1173,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             20
                           </div>
@@ -1068,7 +1190,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             21
                           </div>
@@ -1083,7 +1207,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             22
                           </div>
@@ -1098,14 +1224,18 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             23
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      role="row"
+                    >
                       <div
                         className="uui-calendar-day-cell"
                         tabIndex={0}
@@ -1115,7 +1245,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             24
                           </div>
@@ -1130,7 +1262,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             25
                           </div>
@@ -1145,7 +1279,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             26
                           </div>
@@ -1160,7 +1296,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             27
                           </div>
@@ -1175,7 +1313,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             28
                           </div>
@@ -1190,7 +1330,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           onClick={[Function]}
                         >
                           <div
+                            aria-selected={false}
                             className="uui-calendar-day"
+                            role="gridcell"
                           >
                             29
                           </div>

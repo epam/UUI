@@ -39,6 +39,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
   </div>
   <div
     className="separator"
+    tabIndex={-1}
   />
   <div
     className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
@@ -101,6 +102,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
   </div>
   <div
     className="separator"
+    tabIndex={-1}
   />
   <div
     className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
