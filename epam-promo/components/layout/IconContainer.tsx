@@ -17,4 +17,5 @@ export function applyIconContainerMods(mods: IconContainerMods) {
 export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
     uuiIconContainer,
     applyIconContainerMods,
+    () => ({ tabIndex: 0 })
 );

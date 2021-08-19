@@ -280,7 +280,7 @@ Array [
             <div
               aria-setsize={10}
               className="container3"
-              role="list"
+              role="listbox"
               style={
                 Object {
                   "marginTop": 0,
@@ -288,7 +288,10 @@ Array [
               }
             >
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -390,7 +393,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -492,7 +498,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -594,7 +603,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -696,7 +708,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -798,7 +813,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -900,7 +918,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -1002,7 +1023,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -1104,7 +1128,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -1206,7 +1233,10 @@ Array [
                 </div>
               </div>
               <div
+                aria-checked={false}
+                aria-expanded={false}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
+                role="listitem"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"

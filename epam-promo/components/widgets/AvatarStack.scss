@@ -1,18 +1,21 @@
-.avatars {
-    display: flex;
-    padding-right: 12px;
+@use  '../../assets/styles/colors' as *;
+@use '../../assets/styles/fonts' as *;
 
-    img {
-        margin-right: var(--overlap);
-        border-radius: 50%;
-        border: 1px solid white;
+.root {
+    :global(.avatars) {
+        padding-right: 12px;
+
+        &>* {
+            border-radius: 50%;
+            border: 1px solid white;
+        }
     }
-}
 
-.avatar-right {
-    flex-direction: row-reverse;
-}
-
-.avatar-left {
-    flex-direction: row;
+    :global(.avatarsCount) {
+        color: $gray80;
+        margin-left: 3px;
+        line-height: 1;
+        font-family: $font-sans-semibold;
+        font-size: 14px;
+    }
 }

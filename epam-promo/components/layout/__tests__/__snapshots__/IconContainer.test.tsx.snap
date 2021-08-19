@@ -4,6 +4,7 @@ exports[`IconContainer should be rendered correctly 1`] = `
 <div
   className="container uui-icon uui-enabled root icon-container-color-gray60"
   style={Object {}}
+  tabIndex={0}
 >
   <svg
     className=""

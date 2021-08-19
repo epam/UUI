@@ -1,43 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should be rendered correctly 1`] = `
-<div
+<label
   className="container root size-18 -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+  role="switch"
 >
   <div
     className="uui-switch-body"
   >
+    <input
+      aria-checked={null}
+      aria-hidden={true}
+      checked={null}
+      onChange={[Function]}
+      type="checkbox"
+    />
     <div
       className="uui-switch-toggler"
     />
   </div>
   <div
     className="uui-input-label"
+    role="label"
   />
-</div>
+</label>
 `;
 
 exports[`Switch should be rendered correctly 2`] = `
-<div
+<label
   className="container root size-18 -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+  role="switch"
 >
   <div
     className="uui-switch-body"
   >
+    <input
+      aria-checked={null}
+      aria-hidden={true}
+      checked={null}
+      onChange={[Function]}
+      type="checkbox"
+    />
     <div
       className="uui-switch-toggler"
     />
   </div>
   <div
     className="uui-input-label"
+    role="label"
   >
     Open
   </div>
-</div>
+</label>
 `;

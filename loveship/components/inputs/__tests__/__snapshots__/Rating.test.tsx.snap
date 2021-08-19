@@ -2,11 +2,17 @@
 
 exports[`Rating should be rendered correctly 1`] = `
 <div
+  aria-valuemax={5}
+  aria-valuemin={1}
+  aria-valuenow={2}
   className="container root color-sun size-18"
+  onKeyDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
+  role="slider"
+  tabIndex={0}
 >
   <div
     className="container"
@@ -220,11 +226,17 @@ exports[`Rating should be rendered correctly 1`] = `
 
 exports[`Rating should be rendered correctly with props 1`] = `
 <div
+  aria-valuemax={5}
+  aria-valuemin={1}
+  aria-valuenow={2}
   className="container root color-sky size-24"
+  onKeyDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
+  role="slider"
+  tabIndex={0}
 >
   <div
     className="container"
