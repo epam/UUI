@@ -31,7 +31,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
     const switchSize = switchSizes[size as keyof typeof switchSizes];
 
     return (
-        <FlexRow padding="12" background="white" cx={ cx(css[`footer-size-${ size }`], uuiMarkers.clickable) }>
+        <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
             <Switch
                 size={ switchSize }
                 value={ props.switchValue }
@@ -45,7 +45,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
             { props.selectAll && (
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        size={ +size < 36 ? '30' : '36' }
+                        size={ size }
                         caption={ props.hasSelection
                             ? i18n.pickerInput.clearSelectionButton
                             : i18n.pickerInput.selectAllButton

@@ -26,9 +26,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     private readonly popperModifiers: Modifier<any>[] = [
         {
             name: 'offset',
-            options: { offset: [0, 6] }
+            options: { offset: [0, 6] },
         },
-        mobilePopperModifier
+        mobilePopperModifier,
     ];
 
     toggleModalOpening(opened: boolean) {
@@ -51,7 +51,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
-    };
+    }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
@@ -68,16 +68,16 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 renderItem={ this.renderItem }
             />
         );
-    };
+    }
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> & PickerInputMods {
         return {
             ...super.getTogglerProps(rows),
             size: this.props.size,
-            mode: this.props.mode
+            mode: this.props.mode,
         };
     }
-    
+
     renderFooter() {
         const view = this.getView();
 
@@ -105,8 +105,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     render() {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
-        const renderTarget = this.props.renderToggler || ((props) => <PickerToggler
-            ref={ this.togglerRef } { ...props } />);
+        const renderTarget = this.props.renderToggler || ((props) => (
+            <PickerToggler ref={ this.togglerRef } { ...props } />)
+        );
 
         const maxHeight = isMobile()
             ? document.documentElement.clientHeight
@@ -145,7 +146,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 maxHeight={ maxHeight }
                                 renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
                                     search: this.state.dataSourceState.search,
-                                    onClose: () => this.toggleBodyOpening(false)
+                                    onClose: () => this.toggleBodyOpening(false),
                                 })) }
                                 onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                 scheduleUpdate={ props.scheduleUpdate }

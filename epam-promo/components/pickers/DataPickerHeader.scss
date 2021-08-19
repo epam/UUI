@@ -10,28 +10,6 @@
     }
 }
 
-.size {
-    &-24 {
-        min-height: 24px;
-    }
-
-    &-30 {
-        min-height: 30px;
-    }
-
-    &-36 {
-        min-height: 36px;
-    }
-
-    &-42 {
-        min-height: 42px;
-    }
-
-    &-48 {
-        min-height: 48px;
-    }
-}
-
 .close {
     height: 100%;
     position: absolute;
@@ -39,24 +17,5 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-
-    &-size-24 {
-        right: 12px;
-    }
-
-    &-size-30 {
-        right: 15px;
-    }
-
-    &-size-36 {
-        right: 18px;
-    }
-
-    &-size-42 {
-        right: 21px;
-    }
-
-    &-size-48 {
-        right: 24px;
-    }
+    right: 24px;
 }

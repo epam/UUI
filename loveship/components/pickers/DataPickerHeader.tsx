@@ -1,6 +1,5 @@
 import React from "react";
 import css from "./DataPickerHeader.scss";
-import cx from "classnames";
 import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
 import { Text } from "../typography";
 import { isMobile } from "@epam/uui";
@@ -15,16 +14,15 @@ interface DataPickerHeaderProps {
 const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = props => {
     if (!isMobile()) return null;
 
-    const size = "48";
     const title = props.title ? props.title.charAt(0).toUpperCase() + props.title.slice(1) : "";
     
     return (
-        <FlexRow alignItems="center" background="white" borderBottom="night400" cx={ cx(css.header, css[`size-${ size }`]) }>
+        <FlexRow alignItems="center" size="48" background="white" borderBottom="night400" cx={ css.header }>
             <Text font="sans-semibold">{ title }</Text>
             <IconButton
                 icon={ closeIcon }
                 onClick={ () => props.close?.() }
-                cx={ cx(css.close, css[`close-size-${ size }`]) }
+                cx={ css.close }
             />
         </FlexRow>
     );

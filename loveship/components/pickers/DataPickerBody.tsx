@@ -81,7 +81,6 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                 key="body"
                 cx={ css.body }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
-                borderBottom={ this.props.showSelectedRows && value.checked ? 'night400' : false }
                 background="white"
             >
                 { this.props.rowsCount > 0

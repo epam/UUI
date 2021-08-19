@@ -23,8 +23,14 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.props.size || '30' }
-                renderItem={ i => <Text size={ this.props.size || '30' }>{ rowProps.isLoading ?
-                    <TextPlaceholder wordsCount={ 2 }/> : this.getName(i) }</Text> }
+                renderItem={ i => (
+                    <Text size={ this.props.size || '30' }>
+                        { rowProps.isLoading
+                            ? <TextPlaceholder wordsCount={ 2 }/>
+                            : this.getName(i)
+                        }
+                    </Text>
+                ) }
                 padding="12"
             />
         );
@@ -45,7 +51,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         const view = this.getView();
         const renderedDataRows = this.getRows().map(this.renderRow);
         const maxHeight = isMobile() ? document.documentElement.clientHeight : pickerHeight;
-        
+
         return (
             <>
                 <DataPickerBody

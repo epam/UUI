@@ -45,7 +45,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
             { props.selectAll && (
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        size={ +size < 36 ? '30' : '36' }
+                        size={ size }
                         caption={ props.hasSelection
                             ? i18n.pickerInput.clearSelectionButton
                             : i18n.pickerInput.selectAllButton
