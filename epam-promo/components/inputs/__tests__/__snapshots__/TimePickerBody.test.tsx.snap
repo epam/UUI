@@ -39,7 +39,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="4"
+        value="3"
       />
       <div
         className="uui-numeric-input-button-group"
@@ -235,7 +235,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="4"
+        value="3"
       />
       <div
         className="uui-numeric-input-button-group"

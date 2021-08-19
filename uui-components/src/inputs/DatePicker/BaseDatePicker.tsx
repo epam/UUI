@@ -19,6 +19,7 @@ export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, I
 
 interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
+    inFocus: boolean;
     inputValue: string | null;
 }
 
@@ -48,6 +49,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
 
     state: DatePickerState = {
         isOpen: false,
+        inFocus: false,
         view: 'DAY_SELECTION',
         ...getStateFromValue(this.props.value, this.props.format),
     };
@@ -72,13 +74,13 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!this.state.isOpen) this.onToggle(true);
+        this.setState({ ...this.state, inFocus: !this.state.inFocus, isOpen: !this.state.isOpen });
     }
 
     handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ ...this.state, isOpen: !this.state.isOpen, inFocus: !this.state.inFocus });
         const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
         const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
-
         if (!isValidDate || !isValidFilter) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
@@ -141,7 +143,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
                 renderBody={ (props) =>
                     !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
                 onValueChange={ (opened) => !this.props.isReadonly && this.onToggle(opened) }
-                value={ this.state.isOpen }
+                value={ this.state.isOpen || this.state.inFocus }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
             />
         );
