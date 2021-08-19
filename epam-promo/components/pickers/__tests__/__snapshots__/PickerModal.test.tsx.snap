@@ -174,7 +174,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               <div
                 aria-setsize={11}
                 className="container3"
-                role="list"
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -182,8 +182,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
+                  aria-checked={false}
+                  aria-posinset={0}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -212,8 +216,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={1}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -242,8 +250,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={2}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -272,8 +284,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={3}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -302,8 +318,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={4}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -332,8 +352,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={5}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -362,8 +386,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={6}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -392,8 +420,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={7}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -422,8 +454,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={8}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -452,8 +488,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={9}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -482,8 +522,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={10}
+                  aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -716,14 +760,19 @@ exports[`PickerModal should be rendered correctly 2`] = `
           />
         </div>
       </div>
-      <div
+      <label
         className="container root size-18 switch uui-disabled"
-        onKeyDown={[Function]}
-        tabIndex={0}
       >
         <div
           className="uui-switch-body"
         >
+          <input
+            aria-checked={false}
+            disabled={true}
+            onChange={[Function]}
+            role="switch"
+            type="checkbox"
+          />
           <div
             className="uui-switch-toggler"
           />
@@ -733,7 +782,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         >
           Show only selected
         </div>
-      </div>
+      </label>
     </div>
     <div
       className="root size-36 background-white body modal container align-items-center"
@@ -788,7 +837,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
               <div
                 aria-setsize={11}
                 className="container3"
-                role="list"
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -796,8 +845,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 }
               >
                 <div
+                  aria-checked={false}
+                  aria-posinset={0}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -819,13 +871,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -847,8 +902,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={1}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -870,13 +928,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -898,8 +959,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={2}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -921,13 +985,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -949,8 +1016,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={3}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -972,13 +1042,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1000,8 +1073,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={4}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1023,13 +1099,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1051,8 +1130,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={5}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1074,13 +1156,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1102,8 +1187,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={6}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1125,13 +1213,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1153,8 +1244,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={7}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1176,13 +1270,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1204,8 +1301,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={8}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1227,13 +1327,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1255,8 +1358,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={9}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1278,13 +1384,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div
@@ -1306,8 +1415,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   </div>
                 </div>
                 <div
+                  aria-checked={false}
+                  aria-posinset={10}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
+                  role="listitem"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1329,13 +1441,16 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       <label
                         className="container root size-18 checkbox-color-blue checkbox"
                       >
-                        <input
-                          aria-checked={false}
-                          checked={false}
+                        <div
                           className="uui-checkbox"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
+                        >
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </div>
                       </label>
                     </div>
                     <div

@@ -7,53 +7,57 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
   <label
     className="container root size-18 theme-light color-sky uui-disabled"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      disabled={true}
-      onChange={null}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        disabled={true}
+        onChange={null}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       test1
-    </span>
+    </div>
   </label>
   <label
     className="container root size-18 theme-light color-sky uui-disabled"
   >
-    <input
-      aria-checked={true}
-      checked={true}
-      className="uui-checkbox uui-checked"
-      disabled={true}
-      onChange={null}
-      type="checkbox"
-    />
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      className="uui-checkbox uui-checked"
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
+      <input
+        aria-checked={true}
+        checked={true}
+        disabled={true}
+        onChange={null}
+        type="checkbox"
+      />
+      <div
+        className="container uui-icon uui-enabled"
+        style={Object {}}
       >
-        <use
-          xlinkHref="#checkbox-checked.svg"
-        />
-      </svg>
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#checkbox-checked.svg"
+          />
+        </svg>
+      </div>
     </div>
-    <span
+    <div
       className="uui-input-label"
-      role="label"
     >
       test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;
@@ -65,51 +69,55 @@ exports[`CheckboxGroup should render with default props 1`] = `
   <label
     className="container root size-18 theme-light color-sky"
   >
-    <input
-      aria-checked={true}
-      checked={true}
-      className="uui-checkbox uui-checked"
-      onChange={[Function]}
-      type="checkbox"
-    />
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      className="uui-checkbox uui-checked"
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
+      <input
+        aria-checked={true}
+        checked={true}
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <div
+        className="container uui-icon uui-enabled"
+        style={Object {}}
       >
-        <use
-          xlinkHref="#checkbox-checked.svg"
-        />
-      </svg>
+        <svg
+          className=""
+          height={24}
+          viewBox="0 0 12 24"
+          width={12}
+        >
+          <use
+            xlinkHref="#checkbox-checked.svg"
+          />
+        </svg>
+      </div>
     </div>
-    <span
+    <div
       className="uui-input-label"
-      role="label"
     >
       test1
-    </span>
+    </div>
   </label>
   <label
     className="container root size-18 theme-light color-sky"
   >
-    <input
-      aria-checked={false}
-      checked={false}
+    <div
       className="uui-checkbox"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <span
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </div>
+    <div
       className="uui-input-label"
-      role="label"
     >
       test2
-    </span>
+    </div>
   </label>
 </fieldset>
 `;
