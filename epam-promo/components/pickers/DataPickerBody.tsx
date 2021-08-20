@@ -5,7 +5,7 @@ import * as types from '../types';
 import cx from 'classnames';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
-import { Lens, DataSourceState, IEditable, DataSourceListProps } from '@epam/uui';
+import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
 import { Text } from '../typography';
 import isEqual from 'lodash.isequal';
@@ -62,17 +62,19 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
 
     render() {
         const value = this.props.value;
+        const searchSize = isMobile() ? "48" : (this.props.searchSize || "36");
+        const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
 
         return <>
             { this.showSearch() && (
-                <div key="search" className={ cx(css.searchWrapper, css[`search-size-${ this.props.searchSize || 36 }`]) }>
+                <div key="search" className={ searchClass }>
                     <FlexCell grow={ 1 }>
                         <SearchInput
                             cx={ css.search }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             { ...this.searchLens.toProps() }
                             onKeyDown={ this.props.onKeyDown }
-                            size={ this.props.searchSize || '36' }
+                            size={ searchSize }
                         />
                     </FlexCell>
                 </div>
