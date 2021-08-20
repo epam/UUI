@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import css from "./SortingPanel.scss";
 import sortIcon from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import sortIconDesc from '@epam/assets/icons/common/table-sort_desc-18.svg';
-import { SortDirection } from "@epam/uui";
+import { isMobile, SortDirection } from "@epam/uui";
 import { FlexCell, FlexRow } from "../../layout";
 import { IconButton } from "../../buttons";
 import { i18n } from "../../../i18n";
@@ -16,10 +16,11 @@ export interface SortingPanelProps {
 const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }) => {
     const sortAsc = useCallback(() => onSort('asc'), [onSort]);
     const sortDesc = useCallback(() => onSort('desc'), [onSort]);
+    const size = isMobile() ? "48" : undefined;
 
     return (
         <FlexCell cx={ css.sortingPanelContainer }>
-            <FlexRow cx={ css.filterSortButton } spacing="6" onClick={ sortAsc }>
+            <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortAsc }>
                 <IconButton
                     color={ sortDirection === 'asc' ? "blue" : "gray60" }
                     icon={ sortIcon }
@@ -34,7 +35,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
                 </Text>
             </FlexRow>
 
-            <FlexRow cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
+            <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
                 <IconButton
                     color={ sortDirection === 'desc' ? "blue" : "gray60" }
                     icon={ sortIconDesc }

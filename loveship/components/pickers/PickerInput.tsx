@@ -92,6 +92,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             })
             : (
                 <DataPickerFooter
+                    isSingleSelect={ this.isSingleSelect() }
                     switchValue={ this.state.showSelected }
                     size={ this.props.size }
                     onSwitchValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }) }

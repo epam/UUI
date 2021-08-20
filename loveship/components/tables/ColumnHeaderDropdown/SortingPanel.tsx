@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import css from './SortingPanel.scss';
-import { SortDirection } from '@epam/uui';
+import { isMobile, SortDirection } from '@epam/uui';
 import sortIcon from '../../icons/sort_asc-12.svg';
 import sortIconDesc from '../../icons/sort_desc-12.svg';
 import sortActive from '../../icons/tick-24.svg';
@@ -16,10 +16,11 @@ export interface SortingPanelProps {
 const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
     const sortAsc = useCallback(() => props.onSort('asc'), [props.onSort]);
     const sortDesc = useCallback(() => props.onSort('desc'), [props.onSort]);
+    const size = isMobile() ? "48" : undefined;
     
     return (
         <FlexCell cx={ css.sortingPanelContainer }>
-            <FlexRow>
+            <FlexRow size={ size }>
                 <LinkButton
                     size="24"
                     fontSize="14"
@@ -39,7 +40,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
                 ) }
             </FlexRow>
 
-            <FlexRow>
+            <FlexRow size={ size }>
                 <LinkButton
                     size="24"
                     fontSize="14"
