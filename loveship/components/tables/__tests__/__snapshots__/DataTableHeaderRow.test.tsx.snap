@@ -23,7 +23,8 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     }
   >
     <label
-      className="container root size-12 theme-light color-sky checkbox"
+      className="container root size-12 theme-light color-sky checkbox -clickable"
+      role="checkbox"
     >
       <div
         className="uui-checkbox"

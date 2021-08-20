@@ -6,6 +6,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
 >
   <label
     className="container root size-18 theme-light color-sky uui-disabled"
+    role="checkbox"
   >
     <div
       className="uui-checkbox"
@@ -14,7 +15,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
         aria-checked={false}
         checked={false}
         disabled={true}
-        onChange={null}
+        onChange={[Function]}
         type="checkbox"
       />
     </div>
@@ -26,6 +27,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
   </label>
   <label
     className="container root size-18 theme-light color-sky uui-disabled"
+    role="checkbox"
   >
     <div
       className="uui-checkbox uui-checked"
@@ -34,7 +36,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
         aria-checked={true}
         checked={true}
         disabled={true}
-        onChange={null}
+        onChange={[Function]}
         type="checkbox"
       />
       <div
@@ -67,7 +69,8 @@ exports[`CheckboxGroup should render with default props 1`] = `
   className="uui-vertical-direction root container"
 >
   <label
-    className="container root size-18 theme-light color-sky"
+    className="container root size-18 theme-light color-sky -clickable"
+    role="checkbox"
   >
     <div
       className="uui-checkbox uui-checked"
@@ -101,7 +104,8 @@ exports[`CheckboxGroup should render with default props 1`] = `
     </div>
   </label>
   <label
-    className="container root size-18 theme-light color-sky"
+    className="container root size-18 theme-light color-sky -clickable"
+    role="checkbox"
   >
     <div
       className="uui-checkbox"
