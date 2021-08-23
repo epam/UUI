@@ -10,6 +10,7 @@
         - highlight menu item as selected passing 'isSelected' prop.
         - render you own custom component as DropdownMenu item.
         - to splite items as a group.
+* [AvatarStack]: add possibility render custom avatar by the prop renderItem
 
 **What’s Fixed**
 * [Badge]: fix cursor pointer if badge is clickable.
@@ -20,6 +21,7 @@
 * [VirtualList]: replace legacy react-custom-scrollbars by react-custom-scrollbars-2
 * [PickerInput]: fix pass the mode prop to PickerToggler so that apply correct style according to the mode
 * [Button]: fix the text color for the button so that the text and border color are the same color
+* [TextArea]: fix scrolling jump after typing when received autosize prop
 # 4.1.1 - 05.07.2021
 
 **What’s Fixed**
