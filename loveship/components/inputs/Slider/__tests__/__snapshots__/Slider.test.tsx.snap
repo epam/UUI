@@ -63,6 +63,8 @@ exports[`Slider should be rendered correctly 1`] = `
   </div>
   <div
     className="uui-slider-handle root color-sky"
+    onBlur={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
@@ -139,6 +141,8 @@ exports[`Slider should be rendered correctly with extra props 1`] = `
   </div>
   <div
     className="uui-slider-handle root color-sun"
+    onBlur={[Function]}
+    onFocus={[Function]}
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
