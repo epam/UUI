@@ -17,14 +17,16 @@ const pickerHeight = 300;
 
 export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
+        const size = isMobile() ? "48" : (this.props.size || '30');
+        
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 borderBottom="none"
-                size={ this.props.size || '30' }
+                size={ size }
                 renderItem={ i => (
-                    <Text size={ this.props.size || '30' }>
+                    <Text size={ size }>
                         { rowProps.isLoading
                             ? <TextPlaceholder wordsCount={ 2 }/>
                             : this.getName(i)
