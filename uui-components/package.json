@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.1.1",
+    "@epam/uui": "4.2.0",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
@@ -23,9 +23,9 @@
     "@types/react-measure": "2.0.6",
     "@types/react-transition-group": "4.4.1",
     "@types/resize-observer-browser": "0.1.5",
-    "dayjs": "^1.10.6",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
+    "dayjs": "^1.10.6",
     "lodash.clone": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.orderby": "4.6.0",
