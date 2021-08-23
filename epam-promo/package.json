@@ -22,7 +22,8 @@
     "dayjs": "^1.10.6",
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
-    "react-custom-scrollbars-2": "^4.4.0"
+    "react-custom-scrollbars-2": "^4.4.0",
+    "react-popper": "2.2.5"
   },
   "devDependencies": {
     "@types/react-test-renderer": "17.0.1",

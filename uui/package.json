@@ -33,7 +33,8 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "query-string": "^6.5.0"
+    "query-string": "^6.5.0",
+    "react-popper": "2.2.5"
   },
   "devDependencies": {
     "enzyme": "^3.9.0",

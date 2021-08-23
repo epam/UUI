@@ -5,7 +5,7 @@ import { FlexRowProps, uuiMarkers, isClickableChildClicked, cx } from '@epam/uui
 export class FlexRow extends React.Component<FlexRowProps> {
 
     handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => !isClickableChildClicked(e) && this.props?.onClick ? this.props.onClick(e) : undefined;
-
+    
     render() {
         return (
             <div

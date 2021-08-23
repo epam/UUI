@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] = `
+exports[`SortingPanel should be rendered correctly with asc direction 1`] = `
 <div
-  className="flexCell sortingPanelContainer"
+  className="flexCell"
   onClick={[Function]}
   style={
     Object {
@@ -19,7 +19,7 @@ exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] 
     className="root size-36 background-none spacing-6 container align-items-center"
   >
     <div
-      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -51,7 +51,7 @@ exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] 
       className="flexSpacer"
     />
     <div
-      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon sortActive"
+      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -79,7 +79,7 @@ exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] 
     className="root size-36 background-none spacing-6 container align-items-center"
   >
     <div
-      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -114,9 +114,9 @@ exports[`ColumnPickerHeader should be rendered correctly with asc direction 1`] 
 </div>
 `;
 
-exports[`ColumnPickerHeader should be rendered correctly with desc direction 1`] = `
+exports[`SortingPanel should be rendered correctly with desc direction 1`] = `
 <div
-  className="flexCell sortingPanelContainer"
+  className="flexCell"
   onClick={[Function]}
   style={
     Object {
@@ -133,7 +133,7 @@ exports[`ColumnPickerHeader should be rendered correctly with desc direction 1`]
     className="root size-36 background-none spacing-6 container align-items-center"
   >
     <div
-      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -169,7 +169,7 @@ exports[`ColumnPickerHeader should be rendered correctly with desc direction 1`]
     className="root size-36 background-none spacing-6 container align-items-center"
   >
     <div
-      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon filterSortButton"
+      className="container uui-button-box uui-enabled -clickable root size-24 color-night600 font-sans uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -201,7 +201,7 @@ exports[`ColumnPickerHeader should be rendered correctly with desc direction 1`]
       className="flexSpacer"
     />
     <div
-      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon sortActive"
+      className="container uui-button-box uui-enabled root size-30 color-sky font-sans-semibold uui-has-left-icon uui-no-right-icon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
