@@ -35,6 +35,10 @@
 .sorting-panel-container {
     padding: 6px 0;
     border-bottom: 1px solid $gray40;
+    
+    @media screen and (max-width: 720px) {
+        padding: 0;
+    }
 }
 
 .sort-active {

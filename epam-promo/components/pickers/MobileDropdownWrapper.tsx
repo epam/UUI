@@ -26,7 +26,7 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = prop
                     caption="DONE"
                     onClick={ () => props.close?.() }
                     cx={ css.done }
-                    size={ props.size }
+                    size="48" 
                 />
             ) }
         </>
