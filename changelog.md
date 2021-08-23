@@ -16,6 +16,8 @@
 * [AnalyticsContext]: Removed amplitude client from UUI and implemented AnalyticsListener to pass any analytics client from client side. The GA client has also been replaced to use the AnalyticsListener
 * [PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
 * Replace usage Moment by Dayjs
+* Added mobile version
+* [ColumnPickerFilter]: added mobile version
 * [MainMenuSearch]: fix passing 'onAccept' prop from MainMenuSearch to TextInput
 * [VirtualList]: replace legacy react-custom-scrollbars by react-custom-scrollbars-2
 * [PickerInput]: fix pass the mode prop to PickerToggler so that apply correct style according to the mode
