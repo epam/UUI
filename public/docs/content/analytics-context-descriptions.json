@@ -30,26 +30,7 @@
           },
           {
             "object": "text",
-            "text": " or/and ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://amplitude.com/"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Amplitude",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". ",
+            "text": " or any other analytic system. ",
             "marks": []
           }
         ]
@@ -137,7 +118,42 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For Amplitude(and GA also) we provide manual event tracking for user actions like clicks, input changes and etc.",
+            "text": "Also we provide manual event tracking for user actions like clicks, input changes and etc. You can configure it via corresponding props in components, for example - ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "clickAnalyticsEvent",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " on ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?category=components&id=button"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Button",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
             "marks": []
           }
         ]
