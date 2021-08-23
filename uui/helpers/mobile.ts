@@ -1,6 +1,6 @@
 import { Modifier } from "react-popper";
 
-export const isMobile = () => window.matchMedia("screen and (max-width: 720px)").matches;
+export const isMobile = () => window.matchMedia ? window.matchMedia("screen and (max-width: 720px)").matches : undefined;
 
 export const mobilePopperModifier: Modifier<any> = {
     name: 'computeStyles',

@@ -13,6 +13,8 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     className="body"
   >
     <input
+      aria-haspopup="listbox"
+      aria-multiselectable={false}
       className="uui-input singleInput"
       onChange={[Function]}
       type="text"
@@ -63,6 +65,8 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       </div>
     </div>
     <input
+      aria-haspopup="listbox"
+      aria-multiselectable={true}
       className="uui-input"
       onChange={[Function]}
       type="text"
