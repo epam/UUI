@@ -8,7 +8,7 @@ export interface RowMods extends types.RowSizeMod {
     topShadow?: boolean;
     borderBottom?: boolean | 'gray40';
     padding?: '6' | '12' | '18' | '24';
-    vPadding?: '12' | '18' | '24' | '48';
+    vPadding?: '12' | '18' | '24' | '36' | '48';
     spacing?: '6' | '12' | '18';
     margin?: '12' | '24';
 }
