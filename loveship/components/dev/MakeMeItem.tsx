@@ -10,6 +10,8 @@ export interface MakeMeUser {
     externalId: number | string;
     name: string;
     avatarUrl: string;
+    jobTitle?: string;
+    email?: string;
 }
 
 export interface MakeMeItemProps {
@@ -49,6 +51,8 @@ export class MakeMeItem extends React.Component<MakeMeItemProps> {
                         } />
                         <div className={ css.text }>
                             <Text size='30'> { props.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : item.name } </Text>
+                            <Text size='24'> { props.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : item.jobTitle } </Text>
+                            <Text size='24'> { props.isLoading ? <TextPlaceholder wordsCount={ 2 }/> : item.email } </Text>
                         </div>
                     </div>
                 }
