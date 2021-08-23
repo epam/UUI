@@ -1,6 +1,6 @@
 {
   "name": "@epam/loveship",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@epam/assets": "4.0.0",
-    "@epam/uui": "4.1.1",
-    "@epam/uui-components": "4.1.1",
+    "@epam/uui": "4.2.0",
+    "@epam/uui-components": "4.2.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
     "@types/react-custom-scrollbars": "4.0.3",
-    "dayjs": "^1.10.6",
     "classnames": "2.2.6",
+    "dayjs": "^1.10.6",
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
     "react-custom-scrollbars-2": "^4.4.0",
@@ -29,8 +29,8 @@
     "@types/react-test-renderer": "17.0.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
-    "react-test-renderer": "17.0.2",
-    "mockdate":  "^3.0.5"
+    "mockdate": "^3.0.5",
+    "react-test-renderer": "17.0.2"
   },
   "peerDependencies": {
     "prop-types": "*",
@@ -38,7 +38,7 @@
     "react-dom": ">=16.0.0"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.1.1"
+    "@epam/uui-docs": "4.2.0"
   },
   "repository": {
     "type": "git",
