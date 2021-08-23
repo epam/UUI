@@ -118,7 +118,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
             rawProps={ {
                 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
-                ...props.eventHandlers
+                ...props.eventHandlers,
             } }
         >
             { this.renderHeaderCheckbox() }
@@ -137,7 +137,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 onSort={ this.props.onSort }
                 sortDirection={ this.props.sortDirection }
                 onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
-                title={ this.props.caption }
+                title={ this.props.column.caption as string }
             />
         );
     }

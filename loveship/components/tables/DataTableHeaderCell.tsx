@@ -141,7 +141,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 onSort={ this.props.onSort }
                 sortDirection={ this.props.sortDirection }
                 onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
-                title={ this.props.caption }
+                title={ this.props.column.caption as string }
             />
         );
     }
