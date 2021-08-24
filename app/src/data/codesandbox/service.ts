@@ -7,7 +7,7 @@ const CodesandboxFiles: Record<string, string> = {
     'index.html': join('..', 'data', 'codesandbox', 'index.html'),
     'index.tsx': join('..', 'data', 'codesandbox', 'index.tsx'),
     'package.json': join('..', 'data', 'codesandbox', 'package.json'),
-    'tsConfig.json': join('..', 'data', 'codesandbox', 'tsConfig.json'),
+    'tsconfig.json': join('..', 'data', 'codesandbox', 'tsconfig.json'),
     'apiDefinitions.ts': join('..', 'data', 'apiDefinition.ts'),
     '.env': join('..', 'data', 'codesandbox', '.env'),
 };
