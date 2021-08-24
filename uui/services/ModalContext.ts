@@ -67,9 +67,11 @@ export class ModalContext extends BaseContext implements IModalContext {
         parameters?: TParameters,
     ): Promise<TResult> {
         const layer = this.layoutCtx.getLayer();
+        console.log("TEST");
         return new Promise((resolve, reject) => {
             const modalProps: ModalComponentProps<TParameters, TResult> = {
                 success: r => {
+                    console.log("Success");
                     this.operations.pop();
                     this.showBodyScroll();
                     this.layoutCtx.releaseLayer(layer);
@@ -77,6 +79,7 @@ export class ModalContext extends BaseContext implements IModalContext {
                     this.update({});
                 },
                 abort: () => {
+                    console.log("Success");
                     this.operations.pop();
                     this.showBodyScroll();
                     this.layoutCtx.releaseLayer(layer);
