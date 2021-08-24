@@ -20,7 +20,7 @@ export class AnalyticsContext extends BaseContext {
         this.gaCode = options.gaCode;
         this.router = options.router;
 
-        this.listenRouter()
+        this.listenRouter();
         if (this.gaCode) this.initGA();
     }
 
