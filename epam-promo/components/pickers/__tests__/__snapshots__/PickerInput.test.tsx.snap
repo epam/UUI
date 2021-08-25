@@ -7,7 +7,6 @@ exports[`PickerInput should be rendered correctly 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="body"
@@ -17,6 +16,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -51,7 +51,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="body multiline"

@@ -7,7 +7,6 @@ exports[`PickerToggler should be rendered correctly 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="body"
@@ -16,6 +15,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
       aria-haspopup="listbox"
       className="uui-input singleInput"
       onChange={[Function]}
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -33,7 +33,6 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="body multiline"
@@ -68,6 +67,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       aria-multiselectable={true}
       className="uui-input"
       onChange={[Function]}
+      tabIndex={0}
       type="text"
       value=""
     />
