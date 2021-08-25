@@ -4,9 +4,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
 <nav
   className="root uui-mainmenu-container container"
 >
-  <div
-    role="menuitem"
-  >
+  <div>
     <a
       className="container uui-anchor uui-disabled -clickable container"
       onClick={[Function]}
@@ -15,6 +13,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
       tabIndex={0}
     >
       <img
+        alt="Main Menu Logo"
         className="logo"
         style={
           Object {
@@ -39,9 +38,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
 <nav
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
-  <div
-    role="menuitem"
-  >
+  <div>
     <a
       className="container uui-anchor uui-enabled -clickable container"
       onClick={[Function]}
@@ -50,6 +47,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
       tabIndex={0}
     >
       <img
+        alt="Main Menu Logo"
         className="logo"
         style={
           Object {
