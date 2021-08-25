@@ -5,6 +5,7 @@ import {  mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
 import { isChildHasClass } from '../../helpers';
+import { UuiContext } from "../ContextProvider";
 
 export type DndActorProps<TSrcData, TDstData> = IDndActor<TSrcData, TDstData> & {
     render(props: DndActorRenderParams): React.ReactNode;
@@ -38,7 +39,7 @@ const initialState: DndActorState = {
 
 export class DndActor<TSrcData = any, TDstData = any>
     extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     state = initialState;
 
