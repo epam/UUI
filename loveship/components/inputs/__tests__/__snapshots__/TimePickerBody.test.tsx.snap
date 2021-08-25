@@ -39,7 +39,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="4"
+        value="12"
       />
       <div
         className="uui-numeric-input-button-group"
@@ -108,7 +108,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="2"
+        value="30"
       />
       <div
         className="uui-numeric-input-button-group"
@@ -173,7 +173,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         onKeyDown={[Function]}
         readOnly={true}
         type="text"
-        value="AM"
+        value="PM"
       />
     </div>
     <div
@@ -235,7 +235,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="4"
+        value="12"
       />
       <div
         className="uui-numeric-input-button-group"
@@ -304,7 +304,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
         placeholder="0"
         step={1}
         type="number"
-        value="2"
+        value="30"
       />
       <div
         className="uui-numeric-input-button-group"
@@ -369,7 +369,7 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
         onKeyDown={[Function]}
         readOnly={true}
         type="text"
-        value="AM"
+        value="PM"
       />
     </div>
     <div

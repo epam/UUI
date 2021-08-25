@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="flexCell cell size-36 padding-left-24"
+  className="flexCell"
   onClick={[Function]}
   style={
     Object {
@@ -16,14 +16,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     }
   }
 >
-  <div
-    className="tooltipWrapper"
-  >
+  <div>
     <div
-      className="iconCell"
+      className=""
     >
       <div
-        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
       >
         Test
       </div>

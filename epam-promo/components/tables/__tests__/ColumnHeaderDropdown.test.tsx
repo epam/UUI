@@ -1,7 +1,8 @@
 import React from 'react';
-import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 import renderer from 'react-test-renderer';
+import { windowMock } from "@epam/test-utils";
 import { Button } from '../../buttons';
+import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 
 jest.mock('react-dom', () => ({
     createPortal: jest.fn((element, node) => element),
@@ -9,6 +10,15 @@ jest.mock('react-dom', () => ({
 }));
 
 describe('ColumnHeaderDropdown', () => {
+    beforeEach(() => {
+        jest.spyOn(window, "window", "get")
+            .mockImplementation(() => windowMock);
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+    
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<ColumnHeaderDropdown

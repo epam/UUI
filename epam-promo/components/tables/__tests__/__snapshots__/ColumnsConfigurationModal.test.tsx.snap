@@ -136,6 +136,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   />
                   <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
+                    role="checkbox"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -144,7 +145,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         aria-checked={true}
                         checked={true}
                         disabled={true}
-                        onChange={null}
+                        onChange={[Function]}
                         type="checkbox"
                       />
                       <div
@@ -192,6 +193,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   />
                   <label
                     className="container root size-18 checkbox-color-blue uui-disabled"
+                    role="checkbox"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -200,7 +202,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         aria-checked={true}
                         checked={true}
                         disabled={true}
-                        onChange={null}
+                        onChange={[Function]}
                         type="checkbox"
                       />
                       <div

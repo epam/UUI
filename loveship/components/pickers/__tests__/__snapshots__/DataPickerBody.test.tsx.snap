@@ -2,7 +2,7 @@
 
 exports[`DataPickerBody should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 background-white spacing-6 container align-items-center"
   style={
     Object {
       "maxHeight": undefined,
@@ -34,7 +34,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 
 exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 background-white spacing-6 container align-items-center"
   style={
     Object {
       "maxHeight": undefined,
@@ -67,7 +67,7 @@ exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
 exports[`DataPickerBody should be rendered correctly with extra props 1`] = `
 Array [
   <div
-    className="searchWrapper search-size-24"
+    className=""
   >
     <div
       className=""
@@ -84,7 +84,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable colorSky root size-24 mode-form search"
+        className="container uui-input-box -clickable colorSky root size-24 mode-form"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
@@ -118,7 +118,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white spacing-6 body container align-items-center"
+    className="root size-36 background-white spacing-6 container align-items-center"
     style={
       Object {
         "maxHeight": 200,
