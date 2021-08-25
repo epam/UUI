@@ -13,6 +13,8 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="body"
   >
     <input
+      aria-haspopup="listbox"
+      aria-multiselectable={false}
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "

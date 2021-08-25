@@ -68,7 +68,7 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
     );
 };
 
-export const useUuiContext = () => {
+export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<TApi, TAppContext> {
     const context = useContext(UuiContext);
     if (!Object.keys(context).length) {
         throw new Error("useUuiContext must be called within UuiContextProvider");
