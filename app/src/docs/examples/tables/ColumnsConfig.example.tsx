@@ -90,7 +90,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{ role: 'table' }}>
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }

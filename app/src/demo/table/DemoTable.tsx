@@ -125,7 +125,7 @@ export const DemoTable: React.FC = () => {
                     />
                 </div>
             ) }
-            <div className={ css.container }>
+            <div className={ css.container } role="table">
                 <FlexRow background='white' borderBottom>
                     { isFilterButtonVisible && (
                         <div className={ css.iconContainer }>

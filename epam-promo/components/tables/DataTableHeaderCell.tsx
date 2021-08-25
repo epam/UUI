@@ -36,6 +36,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     key="text"
                     lineHeight="30"
                     fontSize="14"
+                    rawProps={{ role: 'columnheader' }}
                     size="30"
                     cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }
                 >

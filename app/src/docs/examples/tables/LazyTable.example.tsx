@@ -110,7 +110,7 @@ export default function CitiesTable(props: unknown) {
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{ role: 'table' }}>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }

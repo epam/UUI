@@ -36,7 +36,7 @@ export default function ArrayDataTableExample() {
     ], []);
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{ role: 'table' }}>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

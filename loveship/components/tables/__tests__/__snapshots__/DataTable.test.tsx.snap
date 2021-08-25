@@ -4,6 +4,7 @@ exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
     className="container uui-table-row-container root uui-table-header-row container align-items-top"
+    role="row"
   >
     <div
       aria-sort="none"
@@ -26,6 +27,7 @@ Array [
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            role="columnheader"
           >
             ID
           </div>
@@ -94,6 +96,7 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                  role="columnheader"
                 >
                   name
                 </div>
@@ -145,6 +148,7 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                  role="columnheader"
                 >
                   Level
                 </div>
@@ -196,6 +200,7 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                  role="columnheader"
                 >
                   DATE
                 </div>
