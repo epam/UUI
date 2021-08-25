@@ -172,7 +172,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             >
               <div
-                aria-setsize={11}
                 className="container3"
                 role="listbox"
                 style={
@@ -187,7 +186,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -221,7 +220,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -255,7 +254,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -289,7 +288,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -323,7 +322,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -357,7 +356,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -391,7 +390,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -425,7 +424,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -459,7 +458,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -493,7 +492,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -527,7 +526,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   aria-selected={false}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -836,7 +835,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
               }
             >
               <div
-                aria-setsize={11}
                 className="container3"
                 role="listbox"
                 style={
@@ -850,7 +848,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={0}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -908,7 +906,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={1}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -966,7 +964,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={2}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1024,7 +1022,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={3}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1082,7 +1080,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={4}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1140,7 +1138,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={5}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1198,7 +1196,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={6}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1256,7 +1254,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={7}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1314,7 +1312,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={8}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1372,7 +1370,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={9}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1430,7 +1428,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   aria-posinset={10}
                   className="pickerRow -clickable container -clickable align-items-center"
                   onClick={[Function]}
-                  role="listitem"
+                  role="option"
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"

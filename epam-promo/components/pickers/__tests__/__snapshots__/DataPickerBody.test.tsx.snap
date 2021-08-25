@@ -151,7 +151,6 @@ Array [
             }
           >
             <div
-              aria-setsize={7}
               className="container3"
               role="listbox"
               style={
@@ -164,7 +163,7 @@ Array [
                 aria-posinset={2}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -194,7 +193,7 @@ Array [
                 aria-posinset={3}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -224,7 +223,7 @@ Array [
                 aria-posinset={4}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -254,7 +253,7 @@ Array [
                 aria-posinset={5}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -284,7 +283,7 @@ Array [
                 aria-posinset={6}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -314,7 +313,7 @@ Array [
                 aria-posinset={7}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -344,7 +343,7 @@ Array [
                 aria-posinset={8}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -374,7 +373,7 @@ Array [
                 aria-posinset={9}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -404,7 +403,7 @@ Array [
                 aria-posinset={10}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -434,7 +433,7 @@ Array [
                 aria-posinset={11}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -464,7 +463,7 @@ Array [
                 aria-posinset={12}
                 className="pickerRow container -clickable align-items-center"
                 onClick={[Function]}
-                role="listitem"
+                role="option"
               >
                 <div
                   className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
