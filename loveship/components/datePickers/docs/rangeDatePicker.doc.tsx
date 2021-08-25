@@ -46,7 +46,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('renderDay', { examples: ctx => [{
             name: 'Render custom day',
-            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
+            value: (day: any, onDayClick: (day: Dayjs) => void) => {
                 return <Day renderDayNumber={ getCustomDay }
                             value={ day }
                             onValueChange={ onDayClick }

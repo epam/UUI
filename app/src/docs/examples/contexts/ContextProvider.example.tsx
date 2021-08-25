@@ -1,15 +1,14 @@
 import React from "react";
-import { ContextProvider, useUuiContext } from "@epam/uui";
+import { ContextProvider } from "@epam/uui";
 import { Modals, Snackbar } from "@epam/uui-components";
 import { ErrorHandler } from '@epam/loveship';
 import { skinContext as promoSkinContext } from "@epam/promo";
 import { createBrowserHistory } from "history";
+import { svc } from '../../../services';
 
 const history = createBrowserHistory();
 
 export default function UuiEnhancedApp() {
-    const svc = useUuiContext();
-
     return (
         <ContextProvider
         loadAppContext={ (api) => Promise.resolve({}) }

@@ -5,7 +5,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
-    className="flexCell -clickable cell size-24 padding-left-24 resizable"
+    className="flexCell -clickable"
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
@@ -23,7 +23,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     }
   >
     <label
-      className="container root size-12 theme-light color-sky checkbox -clickable"
+      className="container root size-12 theme-light color-sky -clickable"
       role="checkbox"
     >
       <div
@@ -37,19 +37,17 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         />
       </div>
     </label>
-    <div
-      className="tooltipWrapper"
-    >
+    <div>
       <div
-        className="iconCell"
+        className=""
       >
         <div
-          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
         >
           ID
         </div>
         <div
-          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -75,7 +73,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       </div>
     </div>
     <div
-      className="resizeMark"
       onMouseDown={[Function]}
     />
   </div>
@@ -97,7 +94,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         className="container align-items-top"
       >
         <div
-          className="flexCell -clickable cell size-24 resizable draggable"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
@@ -115,19 +112,17 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 name
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -153,12 +148,11 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
         <div
-          className="flexCell -clickable cell size-24 resizable draggable"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
@@ -176,19 +170,17 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 Level
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -214,12 +206,11 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
         <div
-          className="flexCell -clickable cell size-24 padding-right-24 resizable draggable"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
@@ -237,19 +228,17 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 DATE
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -275,7 +264,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
@@ -296,7 +284,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
 >
   <div
-    className="flexCell -clickable cell size-36 padding-left-24"
+    className="flexCell -clickable"
     onClick={[Function]}
     style={
       Object {
@@ -309,19 +297,17 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
       }
     }
   >
-    <div
-      className="tooltipWrapper"
-    >
+    <div>
       <div
-        className="iconCell"
+        className=""
       >
         <div
-          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
         >
           ID
         </div>
         <div
-          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -365,7 +351,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         className="container align-items-top"
       >
         <div
-          className="flexCell -clickable cell size-36"
+          className="flexCell -clickable"
           onClick={[Function]}
           style={
             Object {
@@ -378,19 +364,17 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 name
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -417,7 +401,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
         </div>
         <div
-          className="flexCell -clickable cell size-36"
+          className="flexCell -clickable"
           onClick={[Function]}
           style={
             Object {
@@ -430,19 +414,17 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 Level
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -469,7 +451,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
         </div>
         <div
-          className="flexCell -clickable cell size-36 padding-right-24"
+          className="flexCell -clickable"
           onClick={[Function]}
           style={
             Object {
@@ -482,19 +464,17 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 DATE
               </div>
               <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
                 onKeyDown={[Function]}
