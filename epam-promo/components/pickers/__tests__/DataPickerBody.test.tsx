@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArrayDataSource } from '@epam/uui';
 import { renderWithContextAsync } from "@epam/test-utils";
-import { DataPickerBody } from '../DataPickerBody';
+import { ArrayDataSource } from '@epam/uui';
+import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
 
 jest.mock('react-dom', () => ({
@@ -27,31 +27,26 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
+    const requiredProps: DataPickerBodyProps<any, any> = {
+        value: null,
+        onValueChange: jest.fn(),
+        rows: mockDataSource.props.items,
+        search: {
+            value: null,
+            onValueChange: jest.fn(),
+        },
+    };
+
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
-                rows={ mockDataSource.props.items }
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
-            />,
-        );
+        const tree = await renderWithContextAsync(<DataPickerBody { ...requiredProps }/>);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
+                { ...requiredProps }
                 rows={ [] }
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
                 renderNotFound={ () => <div>Not found</div> }
             />,
         );
@@ -61,13 +56,8 @@ describe('DataPickerBody', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <DataPickerBody
-                value={ null }
-                onValueChange={ jest.fn }
+                { ...requiredProps }
                 editMode="modal"
-                search={ {
-                    value: null,
-                    onValueChange: jest.fn,
-                } }
                 showSearch="auto"
                 showSelectedRows
                 maxHeight={ 800 }

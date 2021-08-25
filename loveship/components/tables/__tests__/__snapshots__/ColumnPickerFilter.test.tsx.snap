@@ -2,7 +2,7 @@
 
 exports[`ColumnPickerFilter should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 background-white spacing-6 container align-items-center"
   style={
     Object {
       "maxHeight": 300,
@@ -439,7 +439,7 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
 
 exports[`ColumnPickerFilter should be rendered correctly 2`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 background-white spacing-6 container align-items-center"
   style={
     Object {
       "maxHeight": 300,

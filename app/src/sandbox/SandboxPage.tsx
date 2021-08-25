@@ -16,7 +16,7 @@ export const SandboxPage = () => {
         { id: 'dbDemo', name: 'DB demo', component: DbDemo },
         { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
-        { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo }
+        { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {

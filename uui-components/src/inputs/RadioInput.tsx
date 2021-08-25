@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './RadioInput.scss';
-import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts, uuiMarkers } from "@epam/uui";
 import { IconContainer } from '../layout';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
@@ -29,7 +29,8 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
                     this.props.isInvalid && uuiMod.invalid,
-                    this.props.cx
+                    this.props.cx,
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
                 { ...this.props.rawProps }
             >
