@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
@@ -29,7 +29,7 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     stopCloseSelectors?: string[];
     zIndex?: number;
     placement?: DropdownPlacement;
-    modifiers?: StrictModifiers[];
+    modifiers?: Modifier<any>[];
     /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */
 
     openOnClick?: boolean; // default: true

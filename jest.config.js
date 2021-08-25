@@ -10,7 +10,7 @@ module.exports = {
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
         "react-app-polyfill/jsdom",
-        "<rootDir>/test-utils/helpers.tsx"
+        // "<rootDir>/test-utils/helpers.tsx"
     ],
     "setupFilesAfterEnv": ["./setupTests.js"],
     "testMatch": [
