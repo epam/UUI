@@ -8,6 +8,7 @@ export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, I
     rows: React.ReactNode[];
     rowsCount?: number;
     focusedIndex?: number;
+    role?:  React.HTMLAttributes<HTMLDivElement>['role'];
     onScroll?(value: CustomScrollBars.positionValues): void;
 }
 
@@ -104,7 +105,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
 
-        return <div role='listbox' aria-setsize={ this.props.rowsCount } className={ css.container3 } style={ { marginTop: topY } }>
+        return <div role={ this.props.role } className={ css.container3 } style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }

@@ -63,7 +63,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
         const value = this.props.value;
         const searchSize = isMobile() ? "48" : (this.props.searchSize || "36");
         const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
-        
+
         return <>
             { this.showSearch() && (
                 <div key="search" className={ searchClass }>
@@ -88,6 +88,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                     ? <VirtualList
                         { ...this.lens.toProps() }
                         shadow="white"
+                        role="listbox"
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }

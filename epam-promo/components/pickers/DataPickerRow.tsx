@@ -72,7 +72,8 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         return <FlexRow
             onClick={ () => clickHandler && clickHandler(this.props)}
             rawProps={ {
-                role: 'listitem',
+                role: 'option',
+                'aria-setsize': this.props.columns?.length == undefined ? undefined : this.props.columns.length + 1,
                 'aria-posinset': this.props.index,
                 'aria-checked': this.props.isChecked,
                 ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
