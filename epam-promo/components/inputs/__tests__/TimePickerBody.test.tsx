@@ -17,7 +17,7 @@ describe('TimePickerBody', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<TimePickerBody
-                value={ null }
+                value={ { hours: 12, minutes: 30 } }
                 onValueChange={ jest.fn }
             />)
             .toJSON();
@@ -27,7 +27,7 @@ describe('TimePickerBody', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<TimePickerBody
-                value={ null }
+                value={ { hours: 12, minutes: 30 } }
                 onValueChange={ jest.fn }
                 format={ 12 }
                 minutesStep={ 5 }

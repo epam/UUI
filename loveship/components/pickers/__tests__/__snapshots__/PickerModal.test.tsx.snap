@@ -122,7 +122,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root size-36 background-white spacing-6 body container align-items-center"
+      className="root size-36 background-white spacing-6 container align-items-center"
       style={
         Object {
           "maxHeight": undefined,
@@ -174,7 +174,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               <div
                 aria-setsize={10}
                 className="container3"
-                role="list"
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
