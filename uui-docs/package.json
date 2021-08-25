@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-docs",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "EPAM UUI Documentation infrastructure",
   "author": "EPAM",
   "license": "MIT",
@@ -11,8 +11,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.1.1",
-    "@epam/uui-components": "4.1.1",
+    "@epam/uui": "4.2.0",
+    "@epam/uui-components": "4.2.0",
     "@types/classnames": "2.2.6",
     "classnames": "^2.2.6"
   },

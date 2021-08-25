@@ -8,7 +8,7 @@ export interface RowMods extends types.RowSizeMod {
     topShadow?: boolean;
     borderBottom?: boolean | 'night50' | 'night400' | 'night700' | 'night300';
     padding?: '6' | '12' | '18' | '24';
-    vPadding?: '12' | '18' | '24';
+    vPadding?: '12' | '18' | '24' | '36' | '48';
     spacing?: '6' | '12' | '18' | null;
     type?: 'form' | 'panel';
     margin?: '12' | '24';

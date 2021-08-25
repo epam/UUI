@@ -1,6 +1,10 @@
-# 4.1.2[WIP]
+# 4.2.0 - 23.08.2021
 
 **What's New**
+* Improved accessibility and keyboard support for a lot of components
+* Replace Moment by Dayjs
+* Added mobile view for Pickers
+* [AnalyticsContext] [Breaking Change]: Removed amplitude client from UUI and implemented IAnalyticsListener to pass any analytics client from client side. If you use Amplitude into your project, now you need to create IAnalyticsListener and add it to the Analytic Context. See the example [here](https://uui.epam.com/documents?category=contexts&id=analyticsContext);
 * [DropdownMenu] Implement DropdownMenu component in UUI4[Promo].
 
   DropdownMenu allows you to create vertical menus with a nested structure that pops up on hover or click (default is on hover).
@@ -10,16 +14,20 @@
         - highlight menu item as selected passing 'isSelected' prop.
         - render you own custom component as DropdownMenu item.
         - to splite items as a group.
+* [AvatarStack]: add possibility render custom avatar by the prop renderItem
+* [FlexRow]: add more sizes for vPadding prop
+
 
 **What’s Fixed**
 * [Badge]: fix cursor pointer if badge is clickable.
-* [AnalyticsContext]: Removed amplitude client from UUI and implemented AnalyticsListener to pass any analytics client from client side. The GA client has also been replaced to use the AnalyticsListener
 * [PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
-* Replace usage Moment by Dayjs
 * [MainMenuSearch]: fix passing 'onAccept' prop from MainMenuSearch to TextInput
 * [VirtualList]: replace legacy react-custom-scrollbars by react-custom-scrollbars-2
 * [PickerInput]: fix pass the mode prop to PickerToggler so that apply correct style according to the mode
 * [Button]: fix the text color for the button so that the text and border color are the same color
+* [TextArea]: fix scrolling jump after typing when received autosize prop
+* [VirtualList]: fix the width for container
+
 # 4.1.1 - 05.07.2021
 
 **What’s Fixed**

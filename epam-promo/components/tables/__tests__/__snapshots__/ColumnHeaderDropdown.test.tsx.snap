@@ -54,7 +54,7 @@ Array [
       }
     >
       <div
-        className="flexCell sortingPanelContainer"
+        className="flexCell"
         onClick={[Function]}
         style={
           Object {
@@ -68,7 +68,7 @@ Array [
         }
       >
         <div
-          className="root size-36 background-none spacing-6 filterSortButton container -clickable align-items-center"
+          className="root size-36 background-none spacing-6 container -clickable align-items-center"
           onClick={[Function]}
         >
           <div
@@ -96,13 +96,13 @@ Array [
             </div>
           </div>
           <div
-            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 activeText container"
+            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
           >
             Sort Ascending
           </div>
         </div>
         <div
-          className="root size-36 background-none spacing-6 filterSortButton container -clickable align-items-center"
+          className="root size-36 background-none spacing-6 container -clickable align-items-center"
           onClick={[Function]}
         >
           <div
@@ -130,7 +130,7 @@ Array [
             </div>
           </div>
           <div
-            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 sortText container"
+            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
           >
             Sort Descending
           </div>
