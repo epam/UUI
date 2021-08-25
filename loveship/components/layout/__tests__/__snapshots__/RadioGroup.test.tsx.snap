@@ -6,7 +6,6 @@ exports[`RadioGroup should be rendered correctly 1`] = `
 >
   <label
     className="container root size-18 color-sky theme-light -clickable"
-    role="checkbox"
   >
     <div
       className="uui-radioinput"
@@ -28,7 +27,6 @@ exports[`RadioGroup should be rendered correctly 1`] = `
   </label>
   <label
     className="container root size-18 color-sky theme-light -clickable"
-    role="checkbox"
   >
     <div
       className="uui-radioinput"
@@ -57,7 +55,6 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
 >
   <label
     className="container uui-disabled root size-18 color-sky theme-light"
-    role="checkbox"
   >
     <div
       className="uui-radioinput"
@@ -80,7 +77,6 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
   </label>
   <label
     className="container uui-disabled root size-18 color-sky theme-light"
-    role="checkbox"
   >
     <div
       className="uui-radioinput"

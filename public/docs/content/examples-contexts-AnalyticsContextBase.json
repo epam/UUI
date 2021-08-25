@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For turn on analytics, all what you need — it wrap your application into UUI ",
+            "text": "For turn on analytics, you need to wrap your application into UUI ",
             "marks": []
           },
           {
@@ -84,12 +84,12 @@
           },
           {
             "object": "text",
-            "text": " or/and ",
+            "text": " prop for google analytics support. \nOr implement your own ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "ampCode",
+            "text": "IAnalyticsListener",
             "marks": [
               {
                 "object": "mark",
@@ -100,7 +100,38 @@
           },
           {
             "object": "text",
-            "text": " props. This codes you can find in your analytics settings.",
+            "text": " and add it to the analytic context. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It this example we shows how to create listener for ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://amplitude.com/"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Amplitude",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]
