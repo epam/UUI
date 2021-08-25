@@ -2,7 +2,9 @@ import * as React from 'react';
 import { cx, uuiMarkers } from '@epam/uui';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { DataTableCellMods, DataTableCellProps } from './types';
-import { Checkbox, FlexCell, TextPlaceholder, Text } from '../';
+import { TextPlaceholder, Text } from '../typography';
+import { FlexCell } from '../layout';
+import { Checkbox } from '../inputs';
 import * as css from './DataTableCell.scss';
 import * as foldingArrow from '../../icons/tree_folding_arrow.svg';
 

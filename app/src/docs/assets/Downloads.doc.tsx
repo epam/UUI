@@ -18,14 +18,14 @@ const libraries = {
         {
             title: 'UUI3 Library',
             additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library/?url=https://www.dropbox.com/s/gsa7wssbtgwwao9/UUI3.xml?dl=1',
+            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FLight%2FUUI3.xml',
             image: sketch,
             libraryType: 'sketch',
         },
         {
             title: 'UUI3 Library(Dark)',
             additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library/?url=https://www.dropbox.com/s/vu32swyr7xkbuy7/UUI3%5BDark%5D.xml?dl=1',
+            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FDark%2FUUI3%255BDark%255D.xml',
             image: sketch,
             libraryType: 'sketch',
         },
@@ -48,7 +48,7 @@ const libraries = {
         {
             title: 'UUI4 Library',
             additionalInfo: 'Requires Sketch 70 or greater',
-            link: 'sketch://add-library/?url=https://www.dropbox.com/s/2wbk4h3syb2vgvy/UUI4.xml?dl=1',
+            link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25204.0%2FUUI4.xml',
             image: sketch,
             libraryType: 'sketch',
         },
