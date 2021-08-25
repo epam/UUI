@@ -24,6 +24,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     >
       <div
         className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
+        role="columnheader"
       >
         Test
       </div>

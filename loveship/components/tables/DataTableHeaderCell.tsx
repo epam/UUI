@@ -52,6 +52,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             <div className={ cx(css.iconCell, this.props.column.textAlign && css['align-' + this.props.column.textAlign]) }>
                 <Text
                     key="text"
+                    rawProps={{ role: 'columnheader' }}
                     cx={ cx(css.caption, this.getTextStyle()) }
                 >
                     { this.props.column.caption }

@@ -71,7 +71,7 @@ export const PersonsTableDemo = (props: {}) => {
         cascadeSelection: true,
     });
 
-    return <div className={ css.container }>
+    return <div className={ css.container } role="table">
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
             <FlexCell width={ 200 }>
                 <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
