@@ -81,11 +81,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         e.stopPropagation();
     }
 
-    handleDropdownIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
-        this.props.toggleDropdownOpening && this.props.toggleDropdownOpening(!this.props.isOpen);
-        e.stopPropagation();
-    }
-
     renderItems() {
         let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
         if (this.props.selection && this.props.selection.length > maxItems) {
@@ -137,12 +132,17 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         />;
     }
 
+    togglerPickerOpened = () => {
+        if (this.state.inFocus && this.props.value && !this.props.disableSearch) return;
+        this.props.onClick();
+    }
+
     render() {
         const icon = this.props.icon && <IconContainer icon={ this.props.icon } onClick={ this.props.onIconClick } />;
 
         return (
             <div
-                onClick={ () => { this.props.onClick && !this.props.isReadonly && this.props.onClick(); this.handleFocus(); } }
+                onClick={ () => { this.props.onClick && !this.props.isReadonly && this.togglerPickerOpened(); this.handleFocus(); } }
                 ref={ el => { this.toggleContainer = el; } }
                 className={ cx(css.container,
                     uuiElement.inputBox,
@@ -152,7 +152,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     (!this.props.isReadonly && !this.props.isDisabled && this.props.onClick) && uuiMarkers.clickable,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     (!this.props.isReadonly && this.state.isActive) && uuiMod.active,
-                    this.props.cx
+                    this.props.cx,
                 ) }
                 tabIndex={ 0 }
                 onFocus={ this.handleFocus }
@@ -175,7 +175,12 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                         icon={ this.props.cancelIcon }
                         onClick={ this.handleCrossIconClick }
                     /> }
-                    { this.props.isDropdown && <IconContainer onClick={this.handleDropdownIconClick} icon={ this.props.dropdownIcon } flipY={ this.props.isOpen } cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }/> }
+                    { this.props.isDropdown && <IconContainer
+                        onClick={ (e) => { this.props.onClick(); e.stopPropagation(); }  }
+                        icon={ this.props.dropdownIcon }
+                        flipY={ this.props.isOpen }
+                        cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }
+                    /> }
                 </div>
             </div>
         );
