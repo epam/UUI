@@ -11,6 +11,8 @@
 
         input[type="checkbox"] {
             appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
             margin: 0;
 
             &:focus, &:focus-visible {
