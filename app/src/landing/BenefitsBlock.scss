@@ -41,6 +41,7 @@
                         display: flex;
                         height: 60px;
                         width: 408px;
+                        list-style-type: none;
                         padding-left: 12px;
                         border-left: 6px solid transparent;
                         box-sizing: border-box;
@@ -55,6 +56,10 @@
                             align-self: center;
                         }
                     }
+                }
+
+                .pointWrapper {
+                    list-style-type: none;
                 }
 
                 .point {
