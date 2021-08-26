@@ -63,7 +63,7 @@ export class CodesandboxService {
         } else return null;
     }
 
-    private processCodeContent(code?: string): string {
+    private processCodeContent(code: string): string {
         if (!code) return;
         const separator = '\r\n'
         const lines = code.split(separator);
