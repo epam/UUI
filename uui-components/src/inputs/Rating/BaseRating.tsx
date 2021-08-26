@@ -119,7 +119,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         return (
             <div
                 role="slider"
-                aria-valuenow={ this.props.value }
+                aria-valuenow={ this.props.value || 0 }
                 aria-valuemax={ this.props.to }
                 aria-valuemin={ this.props.from }
                 tabIndex={ 0 }
