@@ -27,7 +27,7 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
 
     renderStaticImage = () => {
         return (
-            <img alt='image' src='/static/images/hero_image.png' width='100%' />
+            <img alt='Hero Image' src='/static/images/hero_image.png' width='100%' />
         );
     }
 
@@ -99,7 +99,7 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                             <div className={ css.layout } ref={ measureRef } >
                                 <FlexRow  cx={ css.hero }>
                                     <div className={ css.heroText }>
-                                        <Text font='museo-slab' cx={ css.heroHeader } >Unified UI</Text>
+                                        <Text rawProps={{ role: 'heading', 'aria-level': 1 }} font='museo-slab' cx={ css.heroHeader } >Unified UI</Text>
                                         <Text font='sans' fontSize='24' cx={ css.heroSecondary } >Digital Platform UX/UI accelerator used to build all EPAM internal products in one effective & consistent way.</Text>
                                         <Text font='sans' fontSize='24' cx={ css.heroSecondary } >No more need to build user interface from scratch every time. Just use "lego blocks" to assemble new pages in a quick way for any current or new EPAM product.</Text>
                                     </div>

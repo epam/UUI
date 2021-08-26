@@ -13,7 +13,7 @@ export interface SliderProps extends IAnalyticableOnChange<number> {
 export class Slider extends React.Component<SliderProps> {
     public static contextTypes = uuiContextTypes;
     public context: UuiContexts;
-    
+
     constructor(props: SliderProps) {
         super(props);
     }
@@ -22,7 +22,7 @@ export class Slider extends React.Component<SliderProps> {
 
     handlePreviousClick = () => {
         this.setState({ activeSlide: this.state.activeSlide - 1 });
-        
+
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(this.state.activeSlide - 1, this.state.activeSlide);
             this.context.uuiAnalytics.sendEvent(event);
@@ -43,8 +43,8 @@ export class Slider extends React.Component<SliderProps> {
         return (
             <div className={ css.slider } >
                 <div className={ css.controls } >
-                    <IconButton color='blue' isDisabled={ this.state.activeSlide === 0 } icon={ arrowPrev } onClick={ this.handlePreviousClick } />
-                    <IconButton color='blue' isDisabled={ this.state.activeSlide === this.props.slides.length - 1 } icon={ arrowNext } onClick={ this.handleNextClick } />
+                    <IconButton rawProps={{ "aria-label": "Backward" }} color='blue' isDisabled={ this.state.activeSlide === 0 } icon={ arrowPrev } onClick={ this.handlePreviousClick } />
+                    <IconButton rawProps={{ "aria-label": "Forward" }} color='blue' isDisabled={ this.state.activeSlide === this.props.slides.length - 1 } icon={ arrowNext } onClick={ this.handleNextClick } />
                 </div>
                 <Slide { ...slides[this.state.activeSlide] } />
             </div>

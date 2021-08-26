@@ -66,21 +66,27 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                         <Text font='museo-sans' cx={ css.header } >Why to Use</Text>
                         <div className={ css.content } >
                             <div className={ css.actionsWrapper }>
-                                <div className={ css.actionsContainer }>
-                                    {
-                                        Object.keys(benefits).map((reason: any) => {
-                                            return <div key={ reason } onClick={ () => this.handleChangeReason(reason) } className={ cx(css.reason, this.state.reason === reason && css.reasonActive) }>
-                                                <Text cx={ css.reasonCaption } font='museo-sans' color={ this.state.reason === reason ? 'gray80' : 'gray60' } fontSize='24' lineHeight='30' >{ benefits[reason].caption }</Text>
-                                            </div>;
-                                        })
-                                    }
-                                </div>
+                                <ul role="tablist" className={ css.actionsContainer }>
+                                    { Object.keys(benefits).map((reason: any) => (
+                                        <li
+                                            role="tab"
+                                            aria-controls={ this.state.reason }
+                                            aria-current={ this.state.reason === reason }
+                                            key={ reason }
+                                            onClick={ () => this.handleChangeReason(reason) }
+                                            className={ cx(css.reason, this.state.reason === reason && css.reasonActive) }>
+                                            <Text cx={ css.reasonCaption } font='museo-sans' color={ this.state.reason === reason ? 'gray80' : 'gray60' } fontSize='24' lineHeight='30' >{ benefits[reason].caption }</Text>
+                                        </li>
+                                    )) }
+                                </ul>
                             </div>
-                            <div>
-                                {
-                                    benefits[this.state.reason].points.map((point: any, index: number) => <Text key={ index } font='sans' fontSize='24' cx={ css.point } >{ point }</Text>)
-                                }
-                            </div>
+                            <ul id={ this.state.reason }>
+                                {benefits[this.state.reason].points.map((point: string, index: number) => (
+                                    <li className={ css.pointWrapper } >
+                                        <Text key={ index } font='sans' fontSize='24' cx={ css.point }>{ point }</Text>
+                                    </li>
+                                ) )}
+                            </ul>
                         </div>
                     </div>
                 </FlexRow>
