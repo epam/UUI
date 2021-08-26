@@ -15,10 +15,11 @@ export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawP
 export class MainMenuLogo extends React.Component<MainMenuLogoProps, any> {
     render() {
         return (
-            <div role="menuitem" onContextMenu={ this.props.onContextMenu } onClick={ this.props.onClick } {...this.props.rawProps}>
+            <div onContextMenu={ this.props.onContextMenu } onClick={ this.props.onClick } {...this.props.rawProps}>
                 <Anchor cx={ css.container } link={ this.props.link } href={ this.props.href } isDisabled={ !this.props.href && !this.props.link }>
                     <img
                         className={ css.logo }
+                        alt='Main Menu Logo'
                         src={ this.props.logoUrl ? this.props.logoUrl : undefined }
                         style={ { backgroundColor: this.props.logoBgColor } }
                     />
