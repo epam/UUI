@@ -18,7 +18,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
 
     render() {
         return (
-            <ControlGroup { ...this.props.rawProps }>
+            <ControlGroup rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
                 {
                     this.props.items.map((item, index) => {
                         const isActive = this.props.value === item.id;

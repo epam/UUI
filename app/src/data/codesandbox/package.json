@@ -9,13 +9,13 @@
   ],
   "main": "index.tsx",
   "dependencies": {
-    "@epam/assets": "4.1.1",
-    "@epam/loveship": "4.1.1",
-    "@epam/promo": "4.1.1",
-    "@epam/uui": "4.1.1",
-    "@epam/uui-components": "4.1.1",
-    "@epam/uui-timeline": "4.1.1",
-    "@epam/uui-editor": "4.1.1",
+    "@epam/assets": "latest",
+    "@epam/loveship": "latest",
+    "@epam/promo": "latest",
+    "@epam/uui": "latest",
+    "@epam/uui-components": "latest",
+    "@epam/uui-timeline": "latest",
+    "@epam/uui-editor": "latest",
     "lodash.sortby": "4.7.0",
     "react-imask": "6.0.7",
     "react-markdown": "4.3.1",
@@ -27,7 +27,8 @@
     "react-scripts": "4.0.0",
     "react-popper": "2.2.4",
     "@popperjs/core": "2.9.0",
-    "slate": "0.47.9"
+    "slate": "0.47.9",
+    "tslib": "2.3.1"
   },
   "devDependencies": {
     "@types/react": "17.0.0",
