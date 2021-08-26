@@ -19,18 +19,12 @@ export type CodesandboxContext = Partial<BasicExampleServices & {
 }>;
 
 export class CodesandboxService {
-    private context: CodesandboxContext;
-
-    constructor(context: CodesandboxContext) {
-        this.context = context;
-    }
-
-    public getFiles(): Promise<CodesandboxFilesRecord> {
+    public getFiles(context: CodesandboxContext): Promise<void> {
         return Promise.all(Object.keys(CodesandboxFiles).map(name => {
-            return this.context.api.getCode({ path: CodesandboxFiles[name] })
+            return context.api.getCode({ path: CodesandboxFiles[name] })
         })).then(data => data.map(file => file.raw)).then(
             ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api, env ]) => {
-                Object.assign(this.context.uuiApp, {
+                Object.assign(context.uuiApp, {
                     codesandboxFiles: {
                         indexHTML,
                         indexTSX,
@@ -40,30 +34,27 @@ export class CodesandboxService {
                         env
                     }
                 });
-
-                return this.context.uuiApp;
             }
         );
     }
 
-    public clearFiles(): Promise<CodesandboxFilesRecord> {
-        Object.assign(this.context.uuiApp, { codesandboxFiles: {} });
-        return Promise.resolve(this.context.uuiApp);
+    public clearFiles(context: CodesandboxContext): void {
+        Object.assign(context.uuiApp, { codesandboxFiles: {} });
     }
 
-    public getCodesandboxLink(code: string, stylesheets?: FilesRecord): string | null {
+    public getCodesandboxLink(context: CodesandboxContext, code: string, stylesheets?: FilesRecord): string | null {
         if (
-            this.context.uuiApp?.codesandboxFiles &&
-            Object.values(this.context.uuiApp.codesandboxFiles).every(value => value)
+            context.uuiApp?.codesandboxFiles &&
+            Object.values(context.uuiApp.codesandboxFiles).every(value => value)
         ) {
             const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
             url.searchParams.set(
                 'parameters',
                 getParameters({
                     files: getCodesandboxConfig(
-                        this.processIcons(code),
-                        stylesheets,
-                        this.context.uuiApp.codesandboxFiles
+                        this.processCodeContent(code),
+                        this.processStylesheets(stylesheets),
+                        context.uuiApp.codesandboxFiles
                     ),
                 })
             );
@@ -72,16 +63,30 @@ export class CodesandboxService {
         } else return null;
     }
 
-    private processIcons(code?: string, separator: string = '\r\n'): string {
+    private processCodeContent(code?: string): string {
         if (!code) return;
+        const separator = '\r\n'
         const lines = code.split(separator);
         const iconFiles = lines.filter(line => line.endsWith(`.svg';`) || line.endsWith(`.svg";`));
-        if (iconFiles.length > 0) {
+        const stylesheetFiles = lines.filter(line => line.endsWith(`.scss';`));
+        if (iconFiles.length > 0 || stylesheetFiles.length > 0) {
             return lines.map(line => {
                 if (iconFiles.includes(line)) {
                     return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
+                } else if (stylesheetFiles.includes(line)) {
+                    return line.replace(/.scss/, '.module.scss');
                 } else return line;
             }).join(separator);
         } else return code;
+    }
+
+    private processStylesheets(stylesheets: FilesRecord): FilesRecord {
+        if (Object.keys(stylesheets).length === 0) return {};
+        const processedStylesheets = {};
+        for (const [path, stylesheet] of Object.entries(stylesheets)) {
+            const [file, extension] = path.split('.');
+            Object.assign(processedStylesheets, { [`${file}.module.${extension}`]: stylesheet });
+        }
+        return processedStylesheets;
     }
 }
