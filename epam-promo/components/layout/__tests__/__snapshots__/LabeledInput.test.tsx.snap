@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LabeledInput should be rendered correctly 1`] = `
-<div
+<label
   className="container root size-36"
 >
   <div
@@ -24,11 +24,11 @@ exports[`LabeledInput should be rendered correctly 1`] = `
       </div>
     </div>
   </div>
-</div>
+</label>
 `;
 
 exports[`LabeledInput should be rendered correctly with props 1`] = `
-<div
+<label
   className="container root size-36"
 >
   <div
@@ -36,7 +36,6 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
   >
     <div
       className="uui-label"
-      role="label"
     >
       Test label
       <svg
@@ -71,8 +70,9 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
   </div>
   <div
     className="uui-invalid-message"
+    role="alert"
   >
     Test invalid message
   </div>
-</div>
+</label>
 `;
