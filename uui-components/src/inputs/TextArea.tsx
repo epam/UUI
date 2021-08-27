@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './TextArea.scss';
 import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, CX, IHasRawProps, cx } from '@epam/uui';
 
-export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
+export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLLabelElement> {
     rows?: number;
     autoSize?: boolean;
     onBlur?(e?: any): void;
@@ -85,10 +85,11 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render () {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } { ...this.props.rawProps }>
+            <label className={ cx(css.container, uuiElement.inputBox, this.props.cx) } { ...this.props.rawProps }>
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
+                    aria-required={ this.props.isRequired }
                     className={ cx(
                         !this.props.isDisabled && uuiMarkers.clickable,
                         (this.props.autoSize || this.props.isDisabled || this.props.isReadonly) ? css.autoSize : css.noAutoSize,
@@ -120,7 +121,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                         {
                             `${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}` }
                     </div> }
-            </div>
+            </label>
         );
     }
 }
