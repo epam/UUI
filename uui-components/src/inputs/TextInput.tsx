@@ -93,6 +93,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             maxLength: this.props.maxLength,
             inputMode: this.props.inputMode,
             'aria-invalid': this.props.isInvalid,
+            'aria-required': this.props.isRequired
         };
     }
 
@@ -119,7 +120,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                 { ...this.props.rawProps }
             >
                 { this.props.iconPosition !== 'right' && icon }
-                { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
+                { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input aria-required={ this.props.isRequired } { ...this.getInputProps() }/> }
                 { this.props.onAccept && <IconContainer
                     cx={ cx('uui-icon-accept', (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                     isDisabled={ this.props.isDisabled || !this.props.value }
