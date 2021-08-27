@@ -6,7 +6,7 @@ import {
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
     GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
     FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
-    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, DropdownMenuDoc
+    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -69,6 +69,7 @@ const componentsStructure = sortBy([
     { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
     { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
     { id: 'virtualList', name: 'VirtualList', component: VirtualListDoc, parentId: 'components' },
+    { id: 'progressBar', name: 'ProgressBar', component: ProgressBarDoc, parentId: 'components' },
 ], ['name']);
 
 export const items: DocItem[] = [

@@ -1,0 +1,45 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default ProgressBar is rendering with a progress label like '20%'.  But you can set your custom label using label prop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To show ProgressBar with striped animation please set striped prop. The striped progress bar has no label.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "ProgressBar can be in 3 size: 12, 18 and 24px. By default - 12px.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
