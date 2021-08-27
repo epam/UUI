@@ -70,9 +70,11 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                                     { Object.keys(benefits).map((reason: any) => (
                                         <li
                                             role="tab"
+                                            tabIndex={ 0 }
                                             aria-controls={ this.state.reason }
                                             aria-current={ this.state.reason === reason }
                                             key={ reason }
+                                            onKeyDown={ ({ key }) => (key === ' ' || key === 'Enter') && this.handleChangeReason(reason) }
                                             onClick={ () => this.handleChangeReason(reason) }
                                             className={ cx(css.reason, this.state.reason === reason && css.reasonActive) }>
                                             <Text cx={ css.reasonCaption } font='museo-sans' color={ this.state.reason === reason ? 'gray80' : 'gray60' } fontSize='24' lineHeight='30' >{ benefits[reason].caption }</Text>

@@ -1,5 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 @use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/promo/assets/styles/controlColors' as *;
 
 .layout {
     margin: 0 auto;
@@ -46,6 +47,10 @@
                         border-left: 6px solid transparent;
                         box-sizing: border-box;
                         cursor: pointer;
+
+                        &:focus-visible {
+                            @include control-focus();
+                        }
 
                         &-active {
                             border-left: 6px solid $blue;
