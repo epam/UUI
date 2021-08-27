@@ -58,12 +58,16 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
         }
     }
 
-    handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ ...this.state, inFocus: !this.state.inFocus, isOpen: !this.state.isOpen });
+    onToggle = (value: boolean) => {
+        this.setState({ ...this.state, isOpen: value });
+    }
+
+    handleFocus = () => {
+        this.onToggle(true);
     }
 
     handleBlur = () => {
-        this.setState({ ...this.state, isOpen: !this.state.isOpen, inFocus: !this.state.inFocus });
+        this.onToggle(false);
         if (this.state.value === '') {
             this.props.onValueChange(null);
             this.setState({ ...this.state, value: null });
@@ -99,8 +103,8 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                      !this.props.isDisabled && !this.props.isReadonly && <DropdownContainer>
                         <TimePickerBody { ...this.props } value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }/>
                     </DropdownContainer> }
-                onValueChange={ (opened) => this.setState({ ...this.state, isOpen: opened }) }
-                value={ this.state.isOpen || this.state.inFocus }
+                onValueChange={ (this.state.isOpen || this.props.isReadonly) ? null : this.onToggle }
+                value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
         );

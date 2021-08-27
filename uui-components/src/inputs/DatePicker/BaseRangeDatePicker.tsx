@@ -76,9 +76,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleWrapperBlur = () => {
-        if (!this.state.isOpen && this.state.inFocus) {
-            this.setState({ inFocus: null });
-        }
+        this.toggleOpening(false);
     }
 
     valueIsValid(value: string, inputType: InputType) {
@@ -93,12 +91,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleFocus = (inputType: InputType) => {
-        if (!this.state.isOpen) {
-            this.toggleOpening(true, inputType);
-        }
+        this.toggleOpening(true, inputType);
     }
 
     handleBlur = (inputType: InputType) => {
+        this.toggleOpening(false);
         if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             this.toggleOpening(false, inputType);
             switch (inputType) {
@@ -201,7 +198,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
                 renderBody={ (props: DropdownBodyProps) => !this.props.isDisabled && this.renderBody(props) }
-                onValueChange={ (opened) => { !this.props.isReadonly && this.toggleOpening(opened); } }
+                onValueChange={ !this.props.isReadonly ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }

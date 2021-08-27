@@ -73,12 +73,12 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return this.props.format || defaultFormat;
     }
 
-    handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ ...this.state, inFocus: !this.state.inFocus, isOpen: !this.state.isOpen });
+    handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        this.onToggle(true);
     }
 
-    handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ ...this.state, isOpen: !this.state.isOpen, inFocus: !this.state.inFocus });
+    handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        this.onToggle(false);
         const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
         const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
         if (!isValidDate || !isValidFilter) {
@@ -140,10 +140,9 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return (
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props) =>
-                    !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
-                onValueChange={ (opened) => !this.props.isReadonly && this.onToggle(opened) }
-                value={ this.state.isOpen || this.state.inFocus }
+                renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
+                onValueChange={ (this.state.isOpen || this.props.isReadonly) ? null : this.onToggle }
+                value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
             />
         );

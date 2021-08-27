@@ -7,6 +7,7 @@ import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import * as css from './TimePicker.scss';
 import customParseFormat from "dayjs/plugin/customParseFormat";
+
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
@@ -61,7 +62,16 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
         }
     }
 
+    handleFocus = () => {
+        this.onToggle(true);
+    }
+
+    onToggle = (value: boolean) => {
+        this.setState({ ...this.state, isOpen: value });
+    }
+
     handleBlur = () => {
+        this.onToggle(true);
         if (this.state.value === '') {
             this.props.onValueChange(null);
             this.setState({ ...this.state, value: null });
@@ -85,6 +95,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                         value={ this.state.value }
                         onValueChange={ this.handleInputChange }
                         onCancel={ this.onClear }
+                        onFocus={ this.handleFocus }
                         onBlur={ this.handleBlur }
                         isDropdown={ false }
                         placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
@@ -99,9 +110,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                         </DropdownContainer>
                     )
                 }
-                onValueChange={ (opened) =>
-                    this.setState({ ...this.state, isOpen: opened })
-                }
+                onValueChange={ (this.state.isOpen || this.props.isReadonly) ? null : this.onToggle }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
