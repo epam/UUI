@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, uuiContextTypes, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly } from '@epam/uui';
+import { UuiContexts, uuiContextTypes, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -82,10 +82,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleDropdownOpening = (opened: boolean) => {
-        if (opened) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
+        if (isMobile()) {
+            document.body.style.overflow = opened ? "hidden" : "";
         }
 
         this.setState({
