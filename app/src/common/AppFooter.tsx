@@ -10,7 +10,7 @@ export class AppFooter extends React.Component {
         return (
             <div className={ css.layout } >
                 <FlexRow cx={ css.footer } >
-                    <Anchor rawProps={{ rel: 'noreferrer noopener', "aria-label": "EPAM" }} href={ EPAM_LINK } target='_blank' >
+                    <Anchor rawProps={{ tabIndex: -1, rel: 'noreferrer noopener', "aria-label": "EPAM" }} href={ EPAM_LINK } target='_blank' >
                         <IconContainer icon={ epamIcon } />
                     </Anchor>
                     <Text color='gray60' font='sans' fontSize='14' lineHeight='24' cx={ css.copyright } >© 2020 EPAM Systems. All Rights reserved</Text>

@@ -23,7 +23,7 @@
     }
 
     &:global(.-clickable) {
-        &:hover {
+        &:focus, &:hover {
             :global(.uui-caption) {
                 color: $blue;
             }
