@@ -83,6 +83,7 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
                         isDisabled={ this.props.isDisabled }
                         isReadonly={ this.props.isReadonly }
                         isInvalid={ this.props.isInvalid }
+                        isRequired={ this.props.isRequired }
                         cx={ css.dateInput }
                         value={ this.state.value }
                         onValueChange={ this.handleInputChange }

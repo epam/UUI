@@ -58,6 +58,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     size={ this.props.size || '36' }
                     lineHeight={ this.props.lineHeight }
                     fontSize={ this.props.fontSize }
+                    isRequired={ this.props.isRequired }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
                     onClick={ () => this.toggleOpening(!this.state.isOpen, 'from') }
@@ -82,6 +83,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onValueChange={ handleToChange }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
+                    isRequired={ this.props.isRequired }
                     isReadonly={ this.props.isReadonly }
                     onBlur={ (e) => this.handleBlur('to') }
                     isDropdown={ false }
