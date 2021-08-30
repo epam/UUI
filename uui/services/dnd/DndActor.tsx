@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { IDndActor, UuiContexts, uuiContextTypes, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState } from '../../types';
+import { IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState } from '../../types';
 import {  mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';

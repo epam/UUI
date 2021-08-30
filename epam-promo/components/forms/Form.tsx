@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Form as UuiForm, FormProps, uuiContextTypes, UuiContexts, INotification } from '@epam/uui';
+import { Form as UuiForm, FormProps, UuiContext, UuiContexts, INotification } from '@epam/uui';
 import { Text, RichTextView, WarningNotification } from '..';
 import { ConfirmationModal  } from '../overlays/ConfirmationModal';
 import { i18n } from '../../i18n';
 
 export class Form<T> extends React.Component<FormProps<T>> {
 
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     beforeLeave = (): Promise<boolean> => {
