@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { uuiContextTypes, UuiContexts } from '@epam/uui';
+import { UuiContext, UuiContexts } from '@epam/uui';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, Button, LabeledInput, TextArea, FlexRow } from '../../components';
 
 export class ModalContext extends React.Component<DemoComponentProps, any> {
     public static displayName = "Modal";
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     state = { result: '' };
 
