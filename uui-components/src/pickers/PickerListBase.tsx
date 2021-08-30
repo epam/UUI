@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PickerBase, PickerBaseProps, PickerBaseState } from './PickerBase';
-import { DataTableProps, UuiContexts, uuiContextTypes, DataRowProps } from '@epam/uui';
+import { UuiContexts, DataRowProps, UuiContext } from '@epam/uui';
 import { i18n } from "../../i18n";
 
 export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
@@ -40,7 +40,7 @@ interface LastUsedRec<TId> {
 }
 
 export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;
     state: PickerListState<TId> = {

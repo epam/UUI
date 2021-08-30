@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, Lens, ScrollManager, DataColumnProps, uuiContextTypes, UuiContexts, ColumnsConfig } from '@epam/uui';
+import { DataSourceState, Lens, ScrollManager, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig } from '@epam/uui';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, DataTableScrollRow, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
@@ -38,7 +38,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
 
     lens = Lens.onState<DataTableCardState>(this);
     scrollManager = new ScrollManager();
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     public static displayName = "Table";
