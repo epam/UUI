@@ -14,37 +14,636 @@ exports[`PickerModal should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
-    aria-modal={true}
-    className="uui-modal-window modal width-600 height-700 container"
-    role="modal"
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={1}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
   >
     <div
-      className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+      aria-modal={true}
+      className="uui-modal-window modal width-600 height-700 container"
+      role="modal"
     >
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+        className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
       >
-        Please select
+        <div
+          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+        >
+          Please select
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+            href={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#navigation-close-24.svg"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
+        className="flexCell subHeaderWrapper"
         onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
-            "flexBasis": "auto",
+            "flexBasis": "0",
             "flexGrow": undefined,
-            "flexShrink": 0,
+            "flexShrink": undefined,
             "minWidth": 0,
             "textAlign": undefined,
           }
         }
       >
         <div
-          className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          className="root size-36 background-none vPadding-24 container align-items-center"
+        >
+          <div
+            className="container uui-input-box -clickable root size-36 mode-form"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            tabIndex={-1}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#search-18.svg"
+                />
+              </svg>
+            </div>
+            <input
+              aria-invalid={false}
+              autoFocus={true}
+              className="uui-input"
+              inputMode="search"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Type text for quick search"
+              type="search"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="root size-36 background-white body modal container align-items-center"
+        style={
+          Object {
+            "maxHeight": undefined,
+          }
+        }
+      >
+        <div
+          className="wrapper root"
+        >
+          <div
+            className="body"
+            style={
+              Object {
+                "height": "auto",
+                "maxHeight": 100500,
+                "minHeight": 0,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+          >
+            <div
+              className="container1"
+              style={
+                Object {
+                  "WebkitOverflowScrolling": "touch",
+                  "bottom": undefined,
+                  "left": undefined,
+                  "marginBottom": 0,
+                  "marginRight": 0,
+                  "maxHeight": 100500,
+                  "minHeight": 0,
+                  "overflow": "scroll",
+                  "position": "relative",
+                  "right": undefined,
+                  "top": undefined,
+                }
+              }
+            >
+              <div
+                className="container2"
+                style={
+                  Object {
+                    "minHeight": null,
+                  }
+                }
+              >
+                <div
+                  aria-setsize={11}
+                  className="container3"
+                  role="listbox"
+                  style={
+                    Object {
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  <div
+                    aria-checked={false}
+                    aria-posinset={0}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={1}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={2}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={3}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={4}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={5}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={6}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={7}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={8}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={9}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={10}
+                    aria-selected={false}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "bottom": 2,
+                  "display": "none",
+                  "height": 6,
+                  "left": 2,
+                  "position": "absolute",
+                  "right": 2,
+                }
+              }
+            >
+              <div
+                className="uui-thumb-horizontal"
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "bottom": 2,
+                  "display": "none",
+                  "position": "absolute",
+                  "right": 2,
+                  "top": 2,
+                  "width": 6,
+                }
+              }
+            >
+              <div
+                className="uui-thumb-vertical"
+              />
+            </div>
+          </div>
+          <div
+            className="uui-scroll-shadow-top"
+          />
+          <div
+            className="uui-scroll-shadow-bottom"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+      >
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -52,591 +651,43 @@ exports[`PickerModal should be rendered correctly 1`] = `
           tabIndex={0}
         >
           <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+            className="uui-caption"
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#navigation-close-24.svg"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="flexCell subHeaderWrapper"
-      onClick={[Function]}
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "0",
-          "flexGrow": undefined,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
-    >
-      <div
-        className="root size-36 background-none vPadding-24 container align-items-center"
-      >
-        <div
-          className="container uui-input-box -clickable root size-36 mode-form"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          tabIndex={-1}
-        >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
-          >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#search-18.svg"
-              />
-            </svg>
-          </div>
-          <input
-            aria-invalid={false}
-            autoFocus={true}
-            className="uui-input"
-            inputMode="search"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Type text for quick search"
-            type="search"
-            value=""
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className="root size-36 background-white body modal container align-items-center"
-      style={
-        Object {
-          "maxHeight": undefined,
-        }
-      }
-    >
-      <div
-        className="wrapper root"
-      >
-        <div
-          className="body"
-          style={
-            Object {
-              "height": "auto",
-              "maxHeight": 100500,
-              "minHeight": 0,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": "100%",
-            }
-          }
-        >
-          <div
-            className="container1"
-            style={
-              Object {
-                "WebkitOverflowScrolling": "touch",
-                "bottom": undefined,
-                "left": undefined,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "maxHeight": 100500,
-                "minHeight": 0,
-                "overflow": "scroll",
-                "position": "relative",
-                "right": undefined,
-                "top": undefined,
-              }
-            }
-          >
-            <div
-              className="container2"
-              style={
-                Object {
-                  "minHeight": null,
-                }
-              }
-            >
-              <div
-                aria-setsize={11}
-                className="container3"
-                role="listbox"
-                style={
-                  Object {
-                    "marginTop": 0,
-                  }
-                }
-              >
-                <div
-                  aria-checked={false}
-                  aria-posinset={0}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={1}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={2}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={3}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={4}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={5}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={6}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={7}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={8}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={9}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={10}
-                  aria-selected={false}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="renderItem"
-                    >
-                      <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            style={
-              Object {
-                "borderRadius": 3,
-                "bottom": 2,
-                "display": "none",
-                "height": 6,
-                "left": 2,
-                "position": "absolute",
-                "right": 2,
-              }
-            }
-          >
-            <div
-              className="uui-thumb-horizontal"
-            />
-          </div>
-          <div
-            style={
-              Object {
-                "borderRadius": 3,
-                "bottom": 2,
-                "display": "none",
-                "position": "absolute",
-                "right": 2,
-                "top": 2,
-                "width": 6,
-              }
-            }
-          >
-            <div
-              className="uui-thumb-vertical"
-            />
+            Cancel
           </div>
         </div>
         <div
-          className="uui-scroll-shadow-top"
-        />
-        <div
-          className="uui-scroll-shadow-bottom"
-        />
-      </div>
-    </div>
-    <div
-      className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
-    >
-      <div
-        className="flexSpacer"
-      />
-      <div
-        className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption"
+          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          Cancel
-        </div>
-      </div>
-      <div
-        className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption"
-        >
-          Select
+          <div
+            className="uui-caption"
+          >
+            Select
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
 </div>
 `;
 
@@ -654,37 +705,921 @@ exports[`PickerModal should be rendered correctly 2`] = `
     onClick={[Function]}
   />
   <div
-    aria-modal={true}
-    className="uui-modal-window modal width-600 height-700 container"
-    role="modal"
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={1}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
   >
     <div
-      className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+      aria-modal={true}
+      className="uui-modal-window modal width-600 height-700 container"
+      role="modal"
     >
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+        className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
       >
-        Please select
+        <div
+          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+        >
+          Please select
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <div
+            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+            href={null}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#navigation-close-24.svg"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
+        className="flexCell subHeaderWrapper"
         onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
-            "flexBasis": "auto",
+            "flexBasis": "0",
             "flexGrow": undefined,
-            "flexShrink": 0,
+            "flexShrink": undefined,
             "minWidth": 0,
             "textAlign": undefined,
           }
         }
       >
         <div
-          className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          className="root size-36 background-none vPadding-24 container align-items-center"
+        >
+          <div
+            className="container uui-input-box -clickable root size-36 mode-form"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            tabIndex={-1}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#search-18.svg"
+                />
+              </svg>
+            </div>
+            <input
+              aria-invalid={false}
+              autoFocus={true}
+              className="uui-input"
+              inputMode="search"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Type text for quick search"
+              type="search"
+              value=""
+            />
+          </div>
+        </div>
+        <label
+          className="container root size-18 switch uui-disabled"
+          role="switch"
+        >
+          <div
+            className="uui-switch-body"
+          >
+            <input
+              aria-hidden={true}
+              disabled={true}
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <div
+              className="uui-switch-toggler"
+            />
+          </div>
+          <div
+            className="uui-input-label"
+            role="label"
+          >
+            Show only selected
+          </div>
+        </label>
+      </div>
+      <div
+        className="root size-36 background-white body modal container align-items-center"
+        style={
+          Object {
+            "maxHeight": undefined,
+          }
+        }
+      >
+        <div
+          className="wrapper root"
+        >
+          <div
+            className="body"
+            style={
+              Object {
+                "height": "auto",
+                "maxHeight": 100500,
+                "minHeight": 0,
+                "overflow": "hidden",
+                "position": "relative",
+                "width": "100%",
+              }
+            }
+          >
+            <div
+              className="container1"
+              style={
+                Object {
+                  "WebkitOverflowScrolling": "touch",
+                  "bottom": undefined,
+                  "left": undefined,
+                  "marginBottom": 0,
+                  "marginRight": 0,
+                  "maxHeight": 100500,
+                  "minHeight": 0,
+                  "overflow": "scroll",
+                  "position": "relative",
+                  "right": undefined,
+                  "top": undefined,
+                }
+              }
+            >
+              <div
+                className="container2"
+                style={
+                  Object {
+                    "minHeight": null,
+                  }
+                }
+              >
+                <div
+                  aria-setsize={11}
+                  className="container3"
+                  role="listbox"
+                  style={
+                    Object {
+                      "marginTop": 0,
+                    }
+                  }
+                >
+                  <div
+                    aria-checked={false}
+                    aria-posinset={0}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            C2
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={1}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            C1+
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={2}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            C1
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={3}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            B2+
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={4}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            B2
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={5}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            B1+
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={6}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            B1
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={7}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            A2+
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={8}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            A2
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={9}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            A1+
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-checked={false}
+                    aria-posinset={10}
+                    className="pickerRow -clickable container -clickable align-items-center"
+                    onClick={[Function]}
+                    role="listitem"
+                  >
+                    <div
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "0",
+                          "flexGrow": 1,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="afterPaddings"
+                      >
+                        <label
+                          className="container root size-18 checkbox-color-blue checkbox -clickable"
+                          role="checkbox"
+                        >
+                          <div
+                            className="uui-checkbox"
+                          >
+                            <input
+                              aria-checked={false}
+                              checked={false}
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="wrappedContent"
+                      >
+                        <div
+                          className="renderItem"
+                        >
+                          <div
+                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                          >
+                            A1
+                          </div>
+                          <div
+                            className="flexSpacer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "bottom": 2,
+                  "display": "none",
+                  "height": 6,
+                  "left": 2,
+                  "position": "absolute",
+                  "right": 2,
+                }
+              }
+            >
+              <div
+                className="uui-thumb-horizontal"
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "bottom": 2,
+                  "display": "none",
+                  "position": "absolute",
+                  "right": 2,
+                  "top": 2,
+                  "width": 6,
+                }
+              }
+            >
+              <div
+                className="uui-thumb-vertical"
+              />
+            </div>
+          </div>
+          <div
+            className="uui-scroll-shadow-top"
+          />
+          <div
+            className="uui-scroll-shadow-bottom"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+      >
+        <div
+          className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -692,892 +1627,59 @@ exports[`PickerModal should be rendered correctly 2`] = `
           tabIndex={0}
         >
           <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+            className="uui-caption"
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#navigation-close-24.svg"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="flexCell subHeaderWrapper"
-      onClick={[Function]}
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "0",
-          "flexGrow": undefined,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
-    >
-      <div
-        className="root size-36 background-none vPadding-24 container align-items-center"
-      >
-        <div
-          className="container uui-input-box -clickable root size-36 mode-form"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          tabIndex={-1}
-        >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
-          >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#search-18.svg"
-              />
-            </svg>
-          </div>
-          <input
-            aria-invalid={false}
-            autoFocus={true}
-            className="uui-input"
-            inputMode="search"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Type text for quick search"
-            type="search"
-            value=""
-          />
-        </div>
-      </div>
-      <label
-        className="container root size-18 switch uui-disabled"
-        role="switch"
-      >
-        <div
-          className="uui-switch-body"
-        >
-          <input
-            aria-hidden={true}
-            disabled={true}
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <div
-            className="uui-switch-toggler"
-          />
-        </div>
-        <div
-          className="uui-input-label"
-          role="label"
-        >
-          Show only selected
-        </div>
-      </label>
-    </div>
-    <div
-      className="root size-36 background-white body modal container align-items-center"
-      style={
-        Object {
-          "maxHeight": undefined,
-        }
-      }
-    >
-      <div
-        className="wrapper root"
-      >
-        <div
-          className="body"
-          style={
-            Object {
-              "height": "auto",
-              "maxHeight": 100500,
-              "minHeight": 0,
-              "overflow": "hidden",
-              "position": "relative",
-              "width": "100%",
-            }
-          }
-        >
-          <div
-            className="container1"
-            style={
-              Object {
-                "WebkitOverflowScrolling": "touch",
-                "bottom": undefined,
-                "left": undefined,
-                "marginBottom": 0,
-                "marginRight": 0,
-                "maxHeight": 100500,
-                "minHeight": 0,
-                "overflow": "scroll",
-                "position": "relative",
-                "right": undefined,
-                "top": undefined,
-              }
-            }
-          >
-            <div
-              className="container2"
-              style={
-                Object {
-                  "minHeight": null,
-                }
-              }
-            >
-              <div
-                aria-setsize={11}
-                className="container3"
-                role="listbox"
-                style={
-                  Object {
-                    "marginTop": 0,
-                  }
-                }
-              >
-                <div
-                  aria-checked={false}
-                  aria-posinset={0}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={1}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={2}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          C1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={3}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B2+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={4}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={5}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={6}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          B1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={7}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A2+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={8}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A2
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={9}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A1+
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  aria-checked={false}
-                  aria-posinset={10}
-                  className="pickerRow -clickable container -clickable align-items-center"
-                  onClick={[Function]}
-                  role="listitem"
-                >
-                  <div
-                    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "0",
-                        "flexGrow": 1,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="afterPaddings"
-                    >
-                      <label
-                        className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        role="checkbox"
-                      >
-                        <div
-                          className="uui-checkbox"
-                        >
-                          <input
-                            aria-checked={false}
-                            checked={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                    <div
-                      className="wrappedContent"
-                    >
-                      <div
-                        className="renderItem"
-                      >
-                        <div
-                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                        >
-                          A1
-                        </div>
-                        <div
-                          className="flexSpacer"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            style={
-              Object {
-                "borderRadius": 3,
-                "bottom": 2,
-                "display": "none",
-                "height": 6,
-                "left": 2,
-                "position": "absolute",
-                "right": 2,
-              }
-            }
-          >
-            <div
-              className="uui-thumb-horizontal"
-            />
-          </div>
-          <div
-            style={
-              Object {
-                "borderRadius": 3,
-                "bottom": 2,
-                "display": "none",
-                "position": "absolute",
-                "right": 2,
-                "top": 2,
-                "width": 6,
-              }
-            }
-          >
-            <div
-              className="uui-thumb-vertical"
-            />
+            SELECT ALL
           </div>
         </div>
         <div
-          className="uui-scroll-shadow-top"
+          className="flexSpacer"
         />
         <div
-          className="uui-scroll-shadow-bottom"
-        />
-      </div>
-    </div>
-    <div
-      className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
-    >
-      <div
-        className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption"
+          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          SELECT ALL
+          <div
+            className="uui-caption"
+          >
+            Cancel
+          </div>
         </div>
-      </div>
-      <div
-        className="flexSpacer"
-      />
-      <div
-        className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
         <div
-          className="uui-caption"
+          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          href={null}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          Cancel
-        </div>
-      </div>
-      <div
-        className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption"
-        >
-          Select
+          <div
+            className="uui-caption"
+          >
+            Select
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
 </div>
 `;
