@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { CommonContexts } from '../types';
+import { CommonContexts, uuiContextTypes } from '../types';
 import { DragGhost } from "./dnd";
 import * as PropTypes from 'prop-types';
-import { ContextProviderProps, UuiContext } from "./ContextProvider";
+import { ContextProviderProps } from "./ContextProvider";
 
 interface LegacyContextProviderProps<TApi, TAppContext> extends ContextProviderProps<TApi, TAppContext> {
     uuiContexts: CommonContexts<any, any>;
@@ -33,7 +33,7 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
         </>;
     }
 
-    static contextType = UuiContext;
+    static childContextTypes = uuiContextTypes;
 
     getChildContext() {
         return this.props.uuiContexts;

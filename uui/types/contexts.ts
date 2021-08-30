@@ -174,3 +174,20 @@ export type AnalyticsEvent = {
     name: string;
     [key: string]: any;
 } | null;
+
+export const uuiContextTypes = {
+    uuiAnalytics: PropTypes.object,
+    uuiErrors: PropTypes.object,
+    uuiApi: PropTypes.object,
+    uuiModals: PropTypes.object,
+    uuiNotifications: PropTypes.object,
+    api: PropTypes.object,
+    uuiUserSettings: PropTypes.object,
+    uuiDnD: PropTypes.object,
+    uuiApp: PropTypes.object,
+    uuiRouter: PropTypes.object,
+    uuiLayout: PropTypes.object,
+    uuiLocks: PropTypes.object,
+    history: PropTypes.object,
+    uuiSkin: PropTypes.object,
+};
