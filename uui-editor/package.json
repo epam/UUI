@@ -12,7 +12,7 @@
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
     "@convertkit/slate-lists": "0.2.2",
-    "@epam/assets": "4.0.0",
+    "@epam/assets": "4.2.1",
     "@epam/uui": "4.2.1",
     "@epam/uui-components": "4.2.1",
     "@mercuriya/slate-linkify": "0.1.2",
