@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, uuiContextTypes, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly } from '@epam/uui';
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -24,13 +24,12 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
-    inFocus: boolean;
 }
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
 export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     togglerRef = React.createRef<any>();
     context: UuiContexts;
 
@@ -47,7 +46,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
     }
 
-    componentDidUpdate = (_prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
+    componentDidUpdate = (prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
         const { search } = this.state.dataSourceState;
         const isSearchingStarted = !prevState.dataSourceState.search && search;
         const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
@@ -66,7 +65,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return {
             ...base,
             opened: false,
-            inFocus: false,
             dataSourceState: {
                 ...base.dataSourceState,
                 visibleCount: initialRowsVisible,
@@ -79,20 +77,15 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
-            const { dataSourceState, inFocus } = this.state;
-            const searchPosition = this.getSearchPosition();
-            if (inFocus && dataSourceState.search && searchPosition === "input") return;
             this.toggleDropdownOpening(opened);
         }
     }
 
     toggleDropdownOpening = (opened: boolean) => {
-        if (opened) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
+        if (isMobile()) {
+            document.body.style.overflow = opened ? "hidden" : "";
         }
-        
+
         this.setState({
             opened,
             dataSourceState: {
@@ -107,12 +100,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     onFocus = (e: React.SyntheticEvent<HTMLElement>) => {
         this.props.onFocus && this.props.onFocus(e);
-        this.setState({ inFocus: true });
     }
 
     onBlur = (e: React.SyntheticEvent<HTMLElement>) => {
         this.props.onBlur && this.props.onBlur(e);
-        this.setState({ inFocus: false });
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {

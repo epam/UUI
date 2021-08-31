@@ -4,7 +4,7 @@ exports[`Rating should be rendered correctly 1`] = `
 <div
   aria-valuemax={5}
   aria-valuemin={1}
-  aria-valuenow={null}
+  aria-valuenow={0}
   className="container root size-18"
   onKeyDown={[Function]}
   onMouseLeave={[Function]}
@@ -228,7 +228,7 @@ exports[`Rating should be rendered correctly 2`] = `
 <div
   aria-valuemax={5}
   aria-valuemin={1}
-  aria-valuenow={null}
+  aria-valuenow={0}
   className="container root size-18"
   onKeyDown={[Function]}
   onMouseLeave={[Function]}

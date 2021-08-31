@@ -45,16 +45,15 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
     uuiContexts.uuiApi.reset();
 
 
-    const children = isLoaded ? props.children : '';
+    const children = isLoaded ? props.children : "";
     const enableLegacyContexts = props.enableLegacyContext ?? true;
 
     return (
         <UuiContext.Provider value={ uuiContexts }>
             { enableLegacyContexts
                 ? (
-                    <LegacyContextProvider { ...props } uuiContexts={ uuiContexts } >
+                    <LegacyContextProvider { ...props } uuiContexts={ uuiContexts }>
                         { children }
-                        <DragGhost/>
                     </LegacyContextProvider>
                 )
                 : (
@@ -74,7 +73,7 @@ export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<T
         throw new Error("useUuiContext must be called within UuiContextProvider");
     }
     return context;
-};
+}
 
 export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
     const history = props.history;
@@ -89,7 +88,7 @@ export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TA
 
     const uuiAnalytics = new AnalyticsContext({
         gaCode: props.gaCode,
-        router: uuiRouter
+        router: uuiRouter,
     });
     const uuiLocks = new LockContext(uuiRouter);
     const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);

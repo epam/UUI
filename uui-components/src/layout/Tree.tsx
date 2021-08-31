@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { IHasCX, IHasChildren, IEditable, ArrayDataSource, TreeNode, getSearchFilter, IAnalyticableOnChange, uuiContextTypes, UuiContexts } from "@epam/uui";
+import {
+    IHasCX,
+    IHasChildren,
+    IEditable,
+    ArrayDataSource,
+    TreeNode,
+    getSearchFilter,
+    IAnalyticableOnChange,
+    UuiContexts,
+    UuiContext,
+} from "@epam/uui";
 import clone from 'lodash.clone';
 import isEqual from 'lodash.isequal';
 
@@ -28,7 +38,7 @@ interface TreeState {
 }
 
 export class Tree extends React.Component<TreeProps, TreeState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     dataSource: ArrayDataSource;

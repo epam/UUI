@@ -1,4 +1,5 @@
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 import * as css from './ModalBlocker.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
 
@@ -32,7 +33,9 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
                 {...this.props.rawProps}
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick }/>
-                { this.props.children }
+                <FocusLock autoFocus={ false } returnFocus>
+                    { this.props.children }
+                </FocusLock>
             </div>
         );
     }
