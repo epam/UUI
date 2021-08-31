@@ -4,7 +4,6 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
 <div
   className="globalMenuBtn"
   id="global_menu_toggle"
-  role="menuitem"
 >
   <div
     className="container uui-icon uui-enabled globalMenuIcon"

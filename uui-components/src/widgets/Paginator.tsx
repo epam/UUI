@@ -1,6 +1,6 @@
 import * as React from 'react';
 import range from 'lodash.range';
-import {IAnalyticableOnChange, IEditable, UuiContexts, uuiContextTypes} from "@epam/uui";
+import { IAnalyticableOnChange, IEditable, UuiContext, UuiContexts } from "@epam/uui";
 
 export interface PaginatorParams {
     size: '24' | '30';
@@ -28,7 +28,7 @@ const FIRST_PAGE = 1;
 const SIMPLE_PAGINATION_ITEMS = 7;
 
 export class Paginator extends React.Component<PaginatorProps> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     // size = this.props.size || '36';
 

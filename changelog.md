@@ -1,4 +1,4 @@
-# 4.1.2 - 23.08.2021
+# 4.2.0 - 23.08.2021
 
 **What's New**
 * Improved accessibility and keyboard support for a lot of components
