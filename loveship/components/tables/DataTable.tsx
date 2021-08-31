@@ -1,6 +1,21 @@
 import React from 'react';
-import {applyColumnsConfig, ColumnsConfig, cx, DataRowProps, DataSourceState, Lens, ScrollManager,
-    getColumnsConfig, UuiContexts, uuiContextTypes, IEditable, DataTableState, DataSourceListProps, DataColumnProps, DataTableColumnsConfigOptions} from '@epam/uui';
+import {
+    applyColumnsConfig,
+    ColumnsConfig,
+    cx,
+    DataRowProps,
+    DataSourceState,
+    Lens,
+    ScrollManager,
+    getColumnsConfig,
+    UuiContexts,
+    IEditable,
+    DataTableState,
+    DataSourceListProps,
+    DataColumnProps,
+    DataTableColumnsConfigOptions,
+    UuiContext,
+} from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, IconButton, VirtualList, Text } from '../';
 import * as css from './DataTable.scss';
@@ -18,7 +33,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 
 export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<TItem, TId> & DataTableMods> {
 
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     scrollManager = new ScrollManager();
