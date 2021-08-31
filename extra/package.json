@@ -10,7 +10,7 @@
     "build": "node ../uui-build/scripts/buildModule"
   },
   "dependencies": {
-    "@epam/assets": "4.0.0",
+    "@epam/assets": "4.2.1",
     "@epam/loveship": "4.2.1",
     "@epam/uui": "4.2.1",
     "@epam/uui-components": "4.2.1",

@@ -14,7 +14,7 @@
     "server": "node ../server/app.js"
   },
   "dependencies": {
-    "@epam/assets": "4.0.0",
+    "@epam/assets": "4.2.1",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "4.2.1",
     "@epam/promo": "4.2.1",
