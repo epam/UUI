@@ -1,5 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { CommonContexts, UuiContexts } from "@epam/uui";
+import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui";
 
 export interface GetCodeParams {
     path: string;
@@ -12,28 +12,26 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
-    const ORIGIN = process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL || '';
-
+export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any) {
     return {
         demo: getDemoApi(processRequest),
         success: {
-            validateForm: <T>(formState: T) => processRequest(ORIGIN.concat('api/success/validate-form'), 'POST', formState),
+            validateForm: <T>(formState: T) => processRequest('api/success/validate-form', 'POST', formState),
         },
         errors: {
-            status: (status: number) => processRequest(ORIGIN.concat(`api/error/status/${status}`), 'POST'),
-            setServerStatus: (status: number) => processRequest(ORIGIN.concat(`api//error/set-server-status/${status}`), 'POST'),
-            mock: () => processRequest(ORIGIN.concat(`api//error/mock`), 'GET'),
+            status: (status: number) => processRequest(`api/error/status/${status}`, 'POST'),
+            setServerStatus: (status: number) => processRequest(`api//error/set-server-status/${status}`, 'POST'),
+            mock: () => processRequest(`api//error/mock`, 'GET'),
             authLost: () => processRequest(`api//error/auth-lost`, 'POST'),
         },
         getChangelog(): Promise<any> {
             return processRequest('/api/get-changelog', 'GET');
         },
         getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(ORIGIN.concat(`/api/get-code`), 'POST', rq);
+            return processRequest(`/api/get-code`, 'POST', rq);
         },
         getProps(): Promise<any> {
-            return processRequest(ORIGIN.concat(`/api/get-props/`), 'GET');
+            return processRequest(`/api/get-props/`, 'GET');
         },
     };
 }

@@ -17,14 +17,13 @@ type EditorMode = 'form' | 'inline';
 
 export default function SlateEditorBasicExample() {
     const svc = useUuiContext();
-    const ORIGIN = process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL || '';
     const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
     const [isReadonly, setIsReadonly] = useState<boolean>(false);
     const [mode, setMode] = useState<EditorMode>('form');
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
-        return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
+        return svc.uuiApi.uploadFile('/uploadFileMock', file, {
             onProgress,
         });
     }

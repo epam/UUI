@@ -1,9 +1,9 @@
 import * as models from '../models';
-import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse } from '@epam/uui';
+import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions } from '@epam/uui';
 import { personDetailsApi } from './personDetails';
 
-export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
-    const ORIGIN = process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL || '';
+export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any) {
+    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
 
     function lazyApi<TEntity, TId>(name: string) {
         return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(ORIGIN.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
