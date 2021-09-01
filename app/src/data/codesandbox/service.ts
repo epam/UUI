@@ -67,7 +67,6 @@ export class CodesandboxService {
                     ),
                 })
             );
-            console.log(this.processIcons(code));
             url.searchParams.set('query', 'file=/Example.tsx')
             return url.toString();
         } else return null;
