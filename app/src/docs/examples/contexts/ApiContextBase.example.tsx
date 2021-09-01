@@ -4,7 +4,7 @@ import { useUuiContext } from '@epam/uui';
 
 export default function ApiContextBaseExample() {
     const svc = useUuiContext();
-    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
+    const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
 
     return (
         <div>
