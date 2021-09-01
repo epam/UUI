@@ -2,11 +2,9 @@ import * as models from '../models';
 import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions } from '@epam/uui';
 import { personDetailsApi } from './personDetails';
 
-export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any) {
-    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
-
+export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {
     function lazyApi<TEntity, TId>(name: string) {
-        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(ORIGIN.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
+        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(origin.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
     }
 
     return {
@@ -21,12 +19,12 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),
         personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number, pageSize: number }) =>
-            processRequest(ORIGIN.concat('/api/persons-paged'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person> & { totalCount: number }>,
+            processRequest(origin.concat('/api/persons-paged'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person> & { totalCount: number }>,
         personGroups: (rq: LazyDataSourceApiRequest<models.PersonGroup, number, DataQueryFilter<models.PersonGroup>>) =>
-            processRequest(ORIGIN.concat('/api/personGroups'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.PersonGroup>>,
+            processRequest(origin.concat('/api/personGroups'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.PersonGroup>>,
         departments: lazyApi<models.Department, number>('departments'),
         jobTitles: lazyApi<models.JobTitle, number>('jobTitles'),
-        schedules: () => processRequest(ORIGIN.concat('/api/schedules'), 'POST') as Promise<models.PersonSchedule[]>,
+        schedules: () => processRequest(origin.concat('/api/schedules'), 'POST') as Promise<models.PersonSchedule[]>,
         personDetails: personDetailsApi,
     };
 }
