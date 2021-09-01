@@ -33,7 +33,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
                 {...this.props.rawProps}
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick }/>
-                <FocusLock autoFocus={ false } returnFocus>
+                <FocusLock className={ css.focusScrollDisable } autoFocus={ false } returnFocus>
                     { this.props.children }
                 </FocusLock>
             </div>
