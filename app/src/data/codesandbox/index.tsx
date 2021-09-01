@@ -11,10 +11,11 @@ import { svc, getApi } from './api';
 type TApi = ReturnType<typeof getApi>;
 
 const rootElement = document.getElementById("root");
+const origin = process.env.REACT_APP_PUBLIC_URL;
 
 render(
     <ContextProvider<TApi, UuiContexts>
-        apiDefinition={getApi}
+        apiDefinition={ processRequest => getApi(processRequest, origin) }
         onInitCompleted={(context) => Object.assign(svc, context)}
         skinContext={promoSkinContext}
     >
