@@ -67,12 +67,13 @@ export class CodesandboxService {
                     ),
                 })
             );
+            console.log(this.processIcons(code));
             url.searchParams.set('query', 'file=/Example.tsx')
             return url.toString();
         } else return null;
     }
 
-    private processIcons(code?: string, separator: string = '\r\n'): string {
+    private processIcons(code?: string, separator: string = process.env.NODE_ENV === 'development' ? '\r\n' : '\n'): string {
         if (!code) return;
         const lines = code.split(separator);
         const iconFiles = lines.filter(line => line.endsWith(`.svg';`) || line.endsWith(`.svg";`));
