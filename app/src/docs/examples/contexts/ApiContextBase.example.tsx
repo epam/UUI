@@ -4,18 +4,19 @@ import { useUuiContext } from '@epam/uui';
 
 export default function ApiContextBaseExample() {
     const svc = useUuiContext();
+    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
 
     return (
         <div>
             <Text>Examples of error pages (reload page to recover):</Text>
-            <LinkButton onClick={ () => svc.uuiApi.processRequest(`api/error/status/${400}`, 'POST') } caption='400' />
+            <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${400}`), 'POST') } caption='400' />
 
-            <LinkButton onClick={ () => svc.uuiApi.processRequest(`api/error/status/${404}`, 'POST') } caption='404' />
+            <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${404}`), 'POST') } caption='404' />
 
-            <LinkButton onClick={ () => svc.uuiApi.processRequest(`api/error/status/${403}`, 'POST', null, { errorHandling: 'notification' }) } caption='403 (notification)' />
+            <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${403}`), 'POST', null, { errorHandling: 'notification' }) } caption='403 (notification)' />
 
             <LinkButton
-                onClick={ () => svc.uuiApi.processRequest(`api/error/status/${405}`, 'POST', null, { errorHandling: 'manual' }).catch(() => alert('Error occurred')) }
+                onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${405}`), 'POST', null, { errorHandling: 'manual' }).catch(() => alert('Error occurred')) }
                 caption='405 (manual)'
             />
 

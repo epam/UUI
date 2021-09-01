@@ -9,6 +9,7 @@ type AttachmentType = FileUploadResponse & {
 
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
+    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
     const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
     const updateAttachment = (newFile: AttachmentType): void => {
@@ -39,7 +40,7 @@ export default function FileUploadExample() {
                 }
             ]);
 
-            uuiApi.uploadFile('/uploadFileMock', file, {
+            uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: (progress) => trackProgress(progress, tempId)
             }).then(res => updateAttachment({ ...res, progress: 100 }));
         }));
