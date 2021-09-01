@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './Slider.scss';
 import { Slide, SlideProps } from './';
 import { IconButton } from '@epam/promo';
-import { IAnalyticableOnChange, UuiContexts, uuiContextTypes } from "@epam/uui";
+import { IAnalyticableOnChange, UuiContext, UuiContexts } from "@epam/uui";
 import * as arrowPrev from '../../icons/navigation-left.svg';
 import * as arrowNext from '../../icons/navigation-right.svg';
 
@@ -11,7 +11,7 @@ export interface SliderProps extends IAnalyticableOnChange<number> {
 }
 
 export class Slider extends React.Component<SliderProps> {
-    public static contextTypes = uuiContextTypes;
+    public static contextType = UuiContext;
     public context: UuiContexts;
     
     constructor(props: SliderProps) {
