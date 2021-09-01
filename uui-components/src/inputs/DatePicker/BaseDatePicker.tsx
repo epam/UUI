@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
-    IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes,
-    UuiContexts, IDropdownToggler } from '@epam/uui';
+    IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
+} from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
@@ -43,7 +43,7 @@ const getStateFromValue = (value: string | null, format: string) => {
 };
 
 export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends React.Component<TProps, DatePickerState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     state: DatePickerState = {

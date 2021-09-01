@@ -1,6 +1,13 @@
 import React from 'react';
 import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
-import { UuiContexts, uuiContextTypes, DataRowProps, IClickable, IHasCaption, IHasPlaceholder } from '@epam/uui';
+import {
+    UuiContexts,
+    DataRowProps,
+    IClickable,
+    IHasCaption,
+    IHasPlaceholder,
+    UuiContext,
+} from '@epam/uui';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
@@ -14,7 +21,7 @@ export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModa
 };
 
 export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RenderBlockProps } from 'slate-react';
 import cx from 'classnames';
-import { uuiMod, Lens, uuiContextTypes, UuiContexts, uuiSkin} from '@epam/uui';
+import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import { getReadableFileSizeString } from '../../helpers';
 import * as css from './AttachmentBlock.scss';
@@ -24,7 +24,7 @@ interface AttachmentBlockState {
 const { FlexRow, FlexCell, TextInput } = uuiSkin;
 
 export class AttachmentBlock extends React.Component<RenderBlockProps, AttachmentBlockState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     state: AttachmentBlockState = {
