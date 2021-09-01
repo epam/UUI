@@ -14,11 +14,4 @@
         width: 100%;
         z-index: -1;
     }
-
-    .focusScrollResize {
-        @media (max-width: 640px) {
-            width: 100%;
-            height: 100%;
-        }
-    }
 }
