@@ -2,8 +2,10 @@ import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { Placement } from '@popperjs/core';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../..';
-import { IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts,
-    IDropdownToggler } from '@epam/uui';
+import {
+    IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
+    IDropdownToggler, UuiContext,
+} from '@epam/uui';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 
 export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
@@ -47,7 +49,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
 };
 
 export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProps> extends React.Component<TProps, RangeDatePickerState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
     
     state: RangeDatePickerState = {
