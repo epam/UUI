@@ -2,7 +2,7 @@ import { RenderBlockProps, Editor } from "slate-react";
 import * as React from "react";
 import { ImageBlock } from "./ImageBlock";
 import * as css from './ImageBlock.scss';
-import {UuiContexts, uuiContextTypes} from "@epam/uui";
+import { useUuiContext, UuiContext, UuiContexts } from "@epam/uui";
 import {AddImageModal} from "./AddImageModal";
 import * as imageIcon from "../../icons/image.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -43,7 +43,8 @@ export const imagePlugin = () => {
     };
 };
 
-export const ImageButton = (props: { editor: Editor }, context: UuiContexts) => {
+export const ImageButton = (props: { editor: Editor }) => {
+    const context = useUuiContext();
     return <ToolbarButton
         onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />)
             .catch(() => null) }
@@ -51,7 +52,6 @@ export const ImageButton = (props: { editor: Editor }, context: UuiContexts) => 
         isDisabled={ isTextSelected(props.editor) }
     />;
 };
-ImageButton.contextTypes = uuiContextTypes;
 
 const imageDesializer = (el: any, next: any) => {
     if (el.tagName.toLowerCase() === 'img') {

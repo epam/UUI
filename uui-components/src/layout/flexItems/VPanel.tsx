@@ -1,9 +1,16 @@
 import * as React from 'react';
 import * as css from './VPanel.scss';
-import { isClickableChildClicked, uuiMarkers, VPanelProps, UuiContexts, uuiContextTypes, cx } from '@epam/uui';
+import {
+    isClickableChildClicked,
+    uuiMarkers,
+    VPanelProps,
+    UuiContexts,
+    cx,
+    UuiContext,
+} from '@epam/uui';
 
 export class VPanel extends React.Component<VPanelProps> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => {
