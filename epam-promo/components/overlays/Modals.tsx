@@ -30,6 +30,13 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalW
 export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
 export class ModalHeader extends React.Component<ModalHeaderProps, any> {
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'visible';
+    }
 
     render() {
         return (
