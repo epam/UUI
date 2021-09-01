@@ -65,10 +65,10 @@ export class CodesandboxService {
 
     private processCodeContent(code: string): string {
         if (!code) return;
-        const separator = '\r\n'
+        const separator = '\n';
         const lines = code.split(separator);
-        const iconFiles = lines.filter(line => line.endsWith(`.svg';`) || line.endsWith(`.svg";`));
-        const stylesheetFiles = lines.filter(line => line.endsWith(`.scss';`));
+        const iconFiles = lines.filter(line => line.includes(`.svg';`) || line.includes(`.svg";`));
+        const stylesheetFiles = lines.filter(line => line.includes(`.scss';`));
         if (iconFiles.length > 0 || stylesheetFiles.length > 0) {
             return lines.map(line => {
                 if (iconFiles.includes(line)) {
