@@ -1,3 +1,13 @@
+# 4.2.1 - 31.08.2021
+
+**What's New**
+* [PickerInput]: improve adaptation for mobiles
+* [Modals]: lock focus inside modal window
+
+**What’s Fixed**
+* fix styles issues with some components in Safari
+
+
 # 4.2.0 - 23.08.2021
 
 **What's New**
