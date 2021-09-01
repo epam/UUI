@@ -17,7 +17,7 @@ type EditorMode = 'form' | 'inline';
 
 export default function SlateEditorBasicExample() {
     const svc = useUuiContext();
-    const ORIGIN = process.env.NODE_ENV === 'development' ? '' : 'https://uui.epam.com';
+    const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
     const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
     const [isReadonly, setIsReadonly] = useState<boolean>(false);
     const [mode, setMode] = useState<EditorMode>('form');
