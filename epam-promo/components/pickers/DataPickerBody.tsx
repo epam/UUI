@@ -29,11 +29,10 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
     searchLens = this.lens.prop('search');
     needFocusSearch: boolean = this.showSearch();
 
-
     componentDidUpdate(prevProps: DataPickerBodyProps<TItem, TId>) {
         if (this.needFocusSearch) {
             let body = ReactDOM.findDOMNode(this) as HTMLElement;
-            body && body.getElementsByTagName('input')[0]?.focus({ preventScroll: true });
+            body && body.querySelector('input')?.focus({ preventScroll: true });
             this.needFocusSearch = false;
         }
         if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {

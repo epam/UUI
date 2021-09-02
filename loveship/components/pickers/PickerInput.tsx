@@ -1,17 +1,13 @@
 import React from 'react';
-import cx from 'classnames';
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers } from '@epam/uui';
+import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
-import { Panel, FlexSpacer } from '../layout/FlexItems';
+import { Panel } from '../layout/FlexItems';
 import { PickerInputMods, PickerToggler } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { PickerItem } from './PickerItem';
-import { Switch } from '../inputs';
-import { LinkButton } from '../buttons';
 import { SizeMod, EditMode } from '../types';
-import { i18n } from '../../i18n';
 import * as css from './PickerInput.scss';
 import { DataPickerFooter } from "./DataPickerFooter";
 import { Modifier } from "react-popper";
@@ -106,9 +102,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     render() {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
-        const renderTarget = this.props.renderToggler || ((props) => (
-            <PickerToggler ref={ this.togglerRef } { ...props } />)
-        );
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler
+            { ...props }
+            onFocus={ () => this.toggleBodyOpening(true) }
+            onBlur={ e => e.preventDefault() }
+        />);
 
         const maxHeight = isMobile()
             ? document.documentElement.clientHeight
