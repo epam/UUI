@@ -308,12 +308,14 @@
                 }
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": "\n",
-            "marks": []
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
           {
             "object": "text",
             "text": "Recommendations:",
@@ -324,124 +326,192 @@
                 "data": {
                   "style": {}
                 }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "•   Starter content is best for websites that store content, or create templated content",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
               },
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Starter content is best for websites that store content, or create templated content",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "(such",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "as notes or documents).",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": "(such",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Use content that has broad appeal and demonstrates primary features.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": " ",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Give users the ability to delete and replace starter content.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": "as notes or documents).",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "•   Use content that has broad appeal and demonstrates primary features.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "•   Give users the ability to delete and replace starter content.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "•   If possible, provide content that's personalized.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "If possible, provide content that's personalized.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -819,29 +889,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES4.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES 4.png",
           "imageSize": {
             "width": 934,
-            "height": 700.5
-          },
-          "align": null
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES4.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 700.5
+            "height": 583.75
           }
         },
         "nodes": [
@@ -856,28 +907,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES5.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES 5.png",
           "imageSize": {
             "width": 934,
-            "height": 700.5
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES5.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 700.5
+            "height": 583.75
           }
         },
         "nodes": [
