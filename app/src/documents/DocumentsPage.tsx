@@ -16,7 +16,7 @@ type DocsQuery = {
 };
 
 export const DocumentsPage = () => {
-    const sandboxService = useMemo(() => new CodesandboxService(svc), [svc]);
+    const sandboxService = useMemo(() => new CodesandboxService(), []);
 
     const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
         pathname: '/documents',
@@ -36,11 +36,8 @@ export const DocumentsPage = () => {
     };
 
     useEffect(() => {
-        sandboxService.getFiles().then(files => Object.assign(svc, files));
-
-        return () => {
-            sandboxService.clearFiles().then(files => Object.assign(svc, files));
-        };
+        sandboxService.getFiles(svc);
+        return () => sandboxService.clearFiles(svc);
     }, []);
 
     return (

@@ -2029,28 +2029,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD6.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD 6.png",
           "imageSize": {
-            "width": 800,
-            "height": 576
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD6.2.png",
-          "imageSize": {
-            "width": 800,
-            "height": 576
+            "width": 934,
+            "height": 280.2
           }
         },
         "nodes": [
@@ -2195,7 +2177,8 @@
           "imageSize": {
             "width": 934,
             "height": 1438.36
-          }
+          },
+          "align": null
         },
         "nodes": [
           {
@@ -2436,7 +2419,7 @@
           "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD8.2.png",
           "imageSize": {
             "width": 934,
-            "height": 551.0600000000001
+            "height": 551
           }
         },
         "nodes": [
@@ -2451,28 +2434,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD9.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD 9.png",
           "imageSize": {
             "width": 934,
-            "height": 971.36
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/LOD9.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 971.36
+            "height": 607.1
           }
         },
         "nodes": [
