@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can customize the format of the displayed date via ",
+            "text": "You can close dropdown by some action from body, for this use ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "format",
+            "text": "props.onClose",
             "marks": [
               {
                 "object": "mark",
@@ -27,36 +27,12 @@
           },
           {
             "object": "text",
-            "text": " prop, for example (\"DD-MM-YYYY\" - \"03-09-2020\",  \"DD/MM/YYYY\" - \"03/09/2020\"). ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "note-error",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Important: not to be confused with the property value format, here we use the ISO 8601 format \"YYYY-MM-DD\" - \"2020-09-03\"",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "By ",
+            "text": "  which passed as parameters in ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "renderFooter",
+            "text": "renderBody",
             "marks": [
               {
                 "object": "mark",
@@ -67,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " prop you can add custom footer to DatePicker body",
+            "text": " callback.",
             "marks": []
           }
         ]
