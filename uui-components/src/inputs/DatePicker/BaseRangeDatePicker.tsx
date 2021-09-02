@@ -51,7 +51,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
 export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProps> extends React.Component<TProps, RangeDatePickerState> {
     static contextType = UuiContext;
     context: UuiContexts;
-    
+
     state: RangeDatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -78,6 +78,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleWrapperBlur = () => {
+        this.toggleOpening(false);
         if (!this.state.isOpen && this.state.inFocus) {
             this.setState({ inFocus: null });
         }
@@ -94,7 +95,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return false;
     }
 
-    handleBlur = (inputType: InputType) => {
+    handleFocus = (e: React.FocusEvent<HTMLInputElement>, inputType: InputType) => {
+        this.toggleOpening(true, inputType);
+    }
+
+    handleBlur = (e: React.FocusEvent<HTMLInputElement>, inputType: InputType) => {
         if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
@@ -131,7 +136,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
             displayedDate: this.getDisplayedDateOnOpening(focus),
             inFocus: value ? focus : null,
         });
-        
+
         // if (this.props.getValueChangeAnalyticsEvent) {
         //     const event = this.props.getValueChangeAnalyticsEvent(value, this.state.isOpen);
         //     this.context.uuiAnalytics.sendEvent(event);
