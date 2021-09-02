@@ -23,8 +23,7 @@ export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
     const setRef = useCallback((selectedRef: HTMLElement) => ref.current = selectedRef, [ref]);
 
     const getElement = useCallback((id?: string): HTMLElement => {
-        if (!ref.current) return;
-        return ref.current.querySelector(`[id='${id}'], [data-spy='${id}'], [name='${id}'], [class='${id}']`)
+        return ref.current?.querySelector(`[data-spy=${id}]`);
     }, [ref]);
 
     const scrollToElement = useCallback((item?: string) => {
@@ -36,7 +35,7 @@ export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
 
     useEffect(() => {
         if (!ref || !props.elements || !Array.isArray(props.elements) || props.elements.length === 0) return;
-        setObservedNodes(props.elements.map(element => getElement(element)));
+        setObservedNodes(props.elements.map(getElement));
     }, [ref]);
 
     useEffect(() => {
@@ -44,10 +43,10 @@ export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
 
         const observer = new IntersectionObserver(entries => {
             const intersectingElement = entries.find(entry => entry.isIntersecting);
-            setCurrentActive((intersectingElement?.target as HTMLElement).dataset?.spy);
+            setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
         }, {
             ...props.options,
-            root: props.options?.root || document.querySelector('body')
+            root: props?.options?.root || document.querySelector('body')
         });
 
         observedNodes.forEach(element => element ? observer.observe(element) : null);
