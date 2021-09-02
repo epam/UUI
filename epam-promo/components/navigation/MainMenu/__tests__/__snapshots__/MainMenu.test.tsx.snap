@@ -11,17 +11,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
       onKeyDown={[Function]}
       role="link"
       tabIndex={0}
-    >
-      <img
-        alt="Main Menu Logo"
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
-    </a>
+    />
   </div>
   <div
     className="container uui-button-box uui-enabled root type-primary"
@@ -46,15 +36,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
       role="link"
       tabIndex={0}
     >
-      <img
-        alt="Main Menu Logo"
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
+      
     </a>
   </div>
   <div
