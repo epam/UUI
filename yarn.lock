@@ -1293,13 +1293,6 @@
     is-absolute "^1.0.0"
     is-negated-glob "^1.0.0"
 
-"@epam/assets@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.0.0.tgz#c380ce01003deb04b234e1fc0e7f24fe1155e04d"
-  integrity sha512-4fFxnHRXPFjuxMjDnumjKoI40nZgX8x8CvstUxbqtDu/TfKysVx3uN/5BhM50XsUfQsIaA+myElnDz0y9uhirQ==
-  dependencies:
-    normalize.css "^7.0.0"
-
 "@epam/internal@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.1.tgz#742bbc31ef813264007346365aaf312c7b335a40"
