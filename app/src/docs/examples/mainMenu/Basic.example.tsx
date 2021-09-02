@@ -18,7 +18,6 @@ export default function MainMenuBasicExample() {
     return (
         <FlexCell grow={ 1 }>
             <MainMenu
-                appLogoUrl="/static/images/app-logos/learn_logo.svg"
                 logoHref='https://learn.epam.com/'
                 renderBurger={ renderBurger }
             >
