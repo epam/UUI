@@ -27,6 +27,7 @@ export default function BasicProgressBarExample() {
             <ProgressBar cx={ css.bar } progress={ progress } hideLabel />
             <ProgressBar cx={ css.bar } progress={ progress } size='18'/>
             <ProgressBar cx={ css.bar } progress={ progress } size='24' striped />
+            <ProgressBar progress={ progress } label={ `${parseInt(`${progress / 10}`, 10)} / 10` } />
         </Panel>
     );
 }
