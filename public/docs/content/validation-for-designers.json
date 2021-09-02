@@ -768,29 +768,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL1.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 1.png",
           "imageSize": {
             "width": 934,
-            "height": 420.29999999999995
-          },
-          "align": null
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL1.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 420.29999999999995
+            "height": 262.6875
           }
         },
         "nodes": [
@@ -865,28 +846,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL2.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 2.png",
           "imageSize": {
             "width": 934,
-            "height": 420.29999999999995
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL2.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 420.29999999999995
+            "height": 262.6875
           }
         },
         "nodes": [
@@ -1047,28 +1010,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL3.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 3.png",
           "imageSize": {
             "width": 934,
-            "height": 1572.2333333333333
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL3.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 1572.2333333333333
+            "height": 982.6458333333334
           }
         },
         "nodes": [
@@ -1275,28 +1220,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL4.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 4.png",
           "imageSize": {
             "width": 934,
-            "height": 420.29999999999995
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL4.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 420.29999999999995
+            "height": 262.6875
           }
         },
         "nodes": [
@@ -2413,28 +2340,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL11.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 11.png",
           "imageSize": {
-            "width": 800,
-            "height": 576
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL11.2.png",
-          "imageSize": {
-            "width": 800,
-            "height": 576
+            "width": 934,
+            "height": 280.2
           }
         },
         "nodes": [
@@ -2502,7 +2411,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "What went wrong and possibly why.",
+                    "text": "What went wrong and possibly why",
                     "marks": [
                       {
                         "object": "mark",
@@ -2529,7 +2438,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "What’s the next step the user should take to fix the error.",
+                    "text": "What’s the next step the user should take to fix the error",
                     "marks": [
                       {
                         "object": "mark",
@@ -2553,11 +2462,6 @@
         "nodes": [
           {
             "object": "text",
-            "text": "\n",
-            "marks": []
-          },
-          {
-            "object": "text",
             "text": "Avoid using technical jargon.",
             "marks": [
               {
@@ -2566,6 +2470,11 @@
                 "data": {
                   "style": {}
                 }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
               }
             ]
           }
@@ -2699,28 +2608,10 @@
         "object": "block",
         "type": "image",
         "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL12.1.png",
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 12.png",
           "imageSize": {
             "width": 934,
-            "height": 448.32
-          }
-        },
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "image",
-        "data": {
-          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL12.2.png",
-          "imageSize": {
-            "width": 934,
-            "height": 448.32
+            "height": 280.2
           }
         },
         "nodes": [
