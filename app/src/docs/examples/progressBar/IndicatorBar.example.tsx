@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IndicatorBar, Panel } from '@epam/promo';
+import * as css from './BasicExample.scss';
 
 export default function CustomLabelProgressBarExample() {
     const [progress, setProgress] = useState(0);
@@ -21,8 +22,9 @@ export default function CustomLabelProgressBarExample() {
         };
     }, []);
     return (
-        <Panel style={ { flexBasis: '100%' } } >
+        <Panel style={ { flexBasis: '100%' } } cx={ css.root }>
             <IndicatorBar progress={ progress } />
+            <IndicatorBar />
         </Panel>
     );
 }

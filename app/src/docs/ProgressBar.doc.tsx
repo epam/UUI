@@ -14,10 +14,6 @@ export class ProgressBarDoc extends BaseDocsBlock {
                     path='./examples/progressBar/Basic.example.tsx'
                 />
                 <DocExample
-                    title='ProgressBar with custom label'
-                    path='./examples/progressBar/CustomLabel.example.tsx'
-                />
-                <DocExample
                     title='IndeterminateBar example'
                     path='./examples/progressBar/IndeterminateBar.example.tsx'
                 />
