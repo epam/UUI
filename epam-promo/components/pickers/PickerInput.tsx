@@ -42,10 +42,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        return isMobile() 
-            ? "48" 
-            : this.props.editMode === 'modal' 
-                ? '36' 
+        return isMobile()
+            ? "48"
+            : this.props.editMode === 'modal'
+                ? '36'
                 : this.props.size;
     }
 
@@ -106,7 +106,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     render() {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler
+            { ...props }
+            onFocus={ () => this.toggleBodyOpening(true) }
+            onBlur={ e => e.preventDefault() }
+        />);
 
         const maxHeight = isMobile()
             ? document.documentElement.clientHeight
