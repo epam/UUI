@@ -35,7 +35,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
         const direction = this.props.direction || 'vertical';
 
         return (
-            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
+            <fieldset aria-required={ this.props.isRequired } className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
                 {
                     this.props.items.map(i =>
                         <CheckboxInput
