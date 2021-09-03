@@ -39,7 +39,6 @@ export class DataTableRow<TItem, TId> extends React.Component<DataTableRowProps<
                     ...params.eventHandlers,
                     role: 'listitem',
                     'aria-expanded': !this.props.isFolded,
-                    'aria-checked': this.props.isChecked,
                     ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected } )
                 } }
                 cx={ [

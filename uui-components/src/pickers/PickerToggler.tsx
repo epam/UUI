@@ -99,7 +99,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
             return <div
                 aria-haspopup='listbox'
-                aria-multiselectable={ this.props.pickerMode === 'multi' }
                 className={ cx(
                     uuiElement.input,
                     this.props.selection.length === 0 && uuiElement.placeholder,
@@ -114,7 +113,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             type='text'
             tabIndex={ -1 }
             aria-haspopup='listbox'
-            aria-multiselectable={ this.props.pickerMode === 'multi' }
             className={ cx(uuiElement.input,
                 this.props.pickerMode === 'single' && css.singleInput,
                 isActivePlaceholder && (!this.state.inFocus || this.props.isReadonly) && uuiElement.placeholder)

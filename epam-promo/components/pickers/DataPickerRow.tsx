@@ -74,7 +74,6 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
             rawProps={ {
                 role: 'listitem',
                 'aria-posinset': this.props.index,
-                'aria-checked': this.props.isChecked,
                 ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
                 ...this.props.rawProps,
             } }
