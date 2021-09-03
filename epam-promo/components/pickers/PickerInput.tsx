@@ -64,6 +64,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.getRowSize() }
+                rawProps={{ "aria-selected": rowProps.isSelectable && rowProps.isSelected, role: 'option' }}
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />
@@ -152,6 +153,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                         search: this.state.dataSourceState.search,
                                         onClose: () => this.toggleBodyOpening(false),
                                     })) }
+                                    rawProps={{
+                                        "aria-multiselectable": this.props.selectionMode === 'multi' ? true : null,
+                                        "aria-orientation": 'vertical',
+                                    }}
                                     onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                     scheduleUpdate={ props.scheduleUpdate }
                                     searchSize={ this.props.size }

@@ -86,7 +86,6 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                 <FlexRow
                     rawProps={{
                         role: 'table',
-                        'aria-setsize': this.props.rowsCount,
                         'aria-rowcount': this.props.knownRowsCount,
                         'aria-colcount': this.props.columns.length
                     }}

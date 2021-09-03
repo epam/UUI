@@ -114,7 +114,16 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     allowColumnsResizing={ this.props.allowColumnsResizing }
                     { ...this.lens.toProps() }
                 />
-                <FlexRow key='body' topShadow background='white' cx={ css.body }>
+                <FlexRow
+                    key='body'
+                    topShadow
+                    background='white'
+                    cx={ css.body }
+                    rawProps={{
+                        role: 'table',
+                        'aria-rowcount': this.props.knownRowsCount,
+                        'aria-colcount': this.props.columns.length
+                    }}>
                     { this.props.exactRowsCount !== 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }
