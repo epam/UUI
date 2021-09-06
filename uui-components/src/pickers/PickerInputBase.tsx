@@ -132,7 +132,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         const searchPosition = this.props.searchPosition || 'input';
         const opened = this.state.opened && !this.props.isDisabled;
 
-        if (this.props.minCharsToSearch && this.props.editMode !== 'modal' && searchPosition === 'input') {
+        if (this.props.minCharsToSearch && this.props.editMode !== 'modal' && searchPosition === 'input' && !this.state.showSelected) {
             const isEnoughSearchLength = this.state.dataSourceState.search ? this.state.dataSourceState.search.length >= this.props.minCharsToSearch : false;
             return isEnoughSearchLength && opened;
         }
