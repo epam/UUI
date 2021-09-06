@@ -24,6 +24,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
+    inFocus: boolean;
 }
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
@@ -70,6 +71,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 visibleCount: initialRowsVisible,
             },
             showSelected: false,
+            inFocus: false,
         };
     }
 
@@ -79,6 +81,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         } else {
             this.toggleDropdownOpening(opened);
         }
+    }
+
+    handleTogglerFocus = (inFocus: boolean) => {
+        this.setState({ ...this.state, inFocus });
     }
 
     toggleDropdownOpening = (opened: boolean) => {
@@ -157,6 +163,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isReadonly,
             isDisabled,
             autoFocus,
+            inFocus: this.state.inFocus,
             onFocus: this.onFocus,
             onBlur: this.onBlur,
             onClear: this.handleClearSelection,
