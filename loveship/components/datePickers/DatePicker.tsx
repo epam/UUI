@@ -20,7 +20,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
         return (
             <TextInput
                 { ...props }
-                onClick={null}
+                onClick={ null }
                 isDropdown={ false }
                 cx={ cx(this.props.cx, css.dateInput) }
                 icon={ systemIcons[this.props.size || '36'].calendar }

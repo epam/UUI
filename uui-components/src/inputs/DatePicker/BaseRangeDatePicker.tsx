@@ -4,7 +4,7 @@ import { Placement } from '@popperjs/core';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../..';
 import {
     IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
-    IDropdownToggler, UuiContext,
+    IDropdownToggler, UuiContext, isChildFocusable
 } from '@epam/uui';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 
@@ -77,7 +77,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return this.props.format || defaultFormat;
     }
 
-    handleWrapperBlur = () => {
+    handleWrapperBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+        if (isChildFocusable(e)) return;
         this.toggleOpening(false);
         if (!this.state.isOpen && this.state.inFocus) {
             this.setState({ inFocus: null });
@@ -200,8 +201,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return (
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props: DropdownBodyProps) => !this.props.isDisabled && this.renderBody(props) }
-                onValueChange={ (opened) => { !this.props.isReadonly && this.toggleOpening(opened); } }
+                renderBody={ (props: DropdownBodyProps) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }

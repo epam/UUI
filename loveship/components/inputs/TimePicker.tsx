@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditMode, SizeMod } from '../types';
 import dayjs from 'dayjs';
-import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder } from '@epam/uui';
+import { IEditable, IDisableable, TimePickerValue, ICanBeReadonly, IHasPlaceholder, isChildFocusable, uuiMarkers } from '@epam/uui';
 import { TextInput } from './TextInput';
 import { DropdownContainer, Dropdown } from '../overlays';
 import { TimePickerBody } from './TimePickerBody';
@@ -64,7 +64,8 @@ export class TimePicker extends React.Component<TimePickerProps, TimePickerState
         this.onToggle(true);
     }
 
-    handleBlur = () => {
+    handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (isChildFocusable(e)) return;
         this.onToggle(false);
 
         if (this.state.value === '') {
