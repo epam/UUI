@@ -107,17 +107,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             { ...props }
             onClick={ null }
             onFocus={ () => {
-                if (!this.state.opened) {
-                    this.handleTogglerFocus(true);
-                    this.toggleBodyOpening(true);
-                } else return;
+                if (this.state.opened) return;
+                else Promise.resolve(this.toggleBodyOpening(true)).then(() => this.handleTogglerFocus(true));
             } }
             onBlur={ e => {
                 if (isChildFocusable(e)) return;
-                else {
-                    this.toggleBodyOpening(false);
-                    !this.state.opened && this.handleTogglerFocus(false);
-                }
+                else Promise.resolve(this.toggleBodyOpening(false)).then(() => this.handleTogglerFocus(false));
             } }
         />);
 

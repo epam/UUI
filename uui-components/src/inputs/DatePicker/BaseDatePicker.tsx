@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
     IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
+    isChildFocusable,
 } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
@@ -74,6 +75,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (isChildFocusable(e)) return;
         this.onToggle(false);
         const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
         const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
@@ -137,7 +139,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
                 renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
-                onValueChange={ !this.props.isDisabled && !this.props.isReadonly && !this.state.isOpen ? this.onToggle : null }
+                onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
             />
