@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier } from '@epam/uui';
+import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, isChildFocusable, uuiMarkers } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
@@ -105,8 +105,20 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
         const renderTarget = this.props.renderToggler || (props => <PickerToggler
             { ...props }
-            onFocus={ () => this.toggleBodyOpening(true) }
-            onBlur={ e => e.preventDefault() }
+            onClick={ null }
+            onFocus={ () => {
+                if (!this.state.opened) {
+                    this.handleTogglerFocus(true);
+                    this.toggleBodyOpening(true);
+                } else return;
+            } }
+            onBlur={ e => {
+                if (isChildFocusable(e)) return;
+                else {
+                    this.toggleBodyOpening(false);
+                    !this.state.opened && this.handleTogglerFocus(false);
+                }
+            } }
         />);
 
         const maxHeight = isMobile()
@@ -129,7 +141,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                     <Panel
                         shadow
                         style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                        cx={ css.panel }
+                        cx={ [css.panel, uuiMarkers.lockFocus] }
                     >
                         <MobileDropdownWrapper
                             title={ this.props.entityName }
