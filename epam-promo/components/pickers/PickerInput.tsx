@@ -110,7 +110,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const renderTarget = this.props.renderToggler || (props => <PickerToggler
             { ...props }
             onClick={ null }
-            onFocus={ () => {
+            onFocus={ e => {
+                console.log({ e });
                 if (this.state.opened) return;
                 this.toggleBodyOpening(true);
             } }
