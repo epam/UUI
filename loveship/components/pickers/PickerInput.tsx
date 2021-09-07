@@ -105,9 +105,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
         const renderTarget = this.props.renderToggler || (props => <PickerToggler
             { ...props }
-            onClick={ null }
+            onClick={ () => this.toggleBodyOpening(!this.state.opened) }
             onFocus={ e => {
-                if (this.state.opened) e.preventDefault();
+                if (props.isOpen === this.state.opened) e.preventDefault();
                 else this.toggleBodyOpening(true);
             } }
             onBlur={ e => {
