@@ -60,8 +60,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ e => this.handleFocus(e, 'from') }
-                    onBlur={ e => this.handleBlur(e, 'from') }
+                    onFocus={ () => this.handleFocus('from') }
+                    onBlur={ () => this.handleBlur('from') }
                     isDropdown={ false }
                 />
                 <div className={ css.separator } />
@@ -75,8 +75,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ e => this.handleFocus(e, 'to') }
-                    onBlur={ e => this.handleBlur(e, 'to') }
+                    onFocus={ () => this.handleFocus('to') }
+                    onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
                 />

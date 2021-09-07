@@ -52,7 +52,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
           }
         >
           <div
-            aria-setsize={11}
             className="container3"
             role="listbox"
             style={
@@ -62,7 +61,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
             }
           >
             <div
-              aria-checked={false}
               aria-posinset={0}
               aria-selected={false}
               className="pickerRow -clickable uui-focus container -clickable align-items-center"
@@ -96,7 +94,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={1}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -130,7 +127,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={2}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -164,7 +160,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={3}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -198,7 +193,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={4}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -232,7 +226,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={5}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -266,7 +259,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={6}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -300,7 +292,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={7}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -334,7 +325,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={8}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -368,7 +358,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={9}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -402,7 +391,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={10}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -535,7 +523,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
           }
         >
           <div
-            aria-setsize={11}
             className="container3"
             role="listbox"
             style={
@@ -545,7 +532,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
             }
           >
             <div
-              aria-checked={false}
               aria-posinset={0}
               aria-selected={false}
               className="pickerRow -clickable uui-focus container -clickable align-items-center"
@@ -579,7 +565,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={1}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -613,7 +598,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={2}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -647,7 +631,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={3}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -681,7 +664,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={4}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -715,7 +697,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={5}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -749,7 +730,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={6}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -783,7 +763,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={7}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -817,7 +796,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={8}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -851,7 +829,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={9}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
@@ -885,7 +862,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-checked={false}
               aria-posinset={10}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"

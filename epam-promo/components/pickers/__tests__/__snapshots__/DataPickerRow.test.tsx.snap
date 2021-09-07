@@ -35,7 +35,6 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
-  aria-checked={true}
   aria-posinset={1}
   aria-selected={true}
   className="pickerRow -clickable uui-focus container -clickable align-items-center"

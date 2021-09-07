@@ -16,6 +16,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
     onChange={[Function]}
     placeholder="0"
     step={1}
+    tabIndex={0}
     type="number"
     value="5"
   />
@@ -74,6 +75,7 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
     onChange={[Function]}
     placeholder="0"
     step={1}
+    tabIndex={0}
     type="number"
     value="5"
   />

@@ -207,7 +207,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  aria-setsize={11}
                   className="container3"
                   role="listbox"
                   style={
@@ -217,7 +216,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    aria-checked={false}
                     aria-posinset={0}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -251,7 +249,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={1}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -285,7 +282,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={2}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -319,7 +315,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={3}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -353,7 +348,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={4}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -387,7 +381,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={5}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -421,7 +414,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={6}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -455,7 +447,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={7}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -489,7 +480,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={8}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -523,7 +513,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={9}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -557,7 +546,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={10}
                     aria-selected={false}
                     className="pickerRow -clickable container -clickable align-items-center"
@@ -921,7 +909,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 }
               >
                 <div
-                  aria-setsize={11}
                   className="container3"
                   role="listbox"
                   style={
@@ -931,7 +918,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    aria-checked={false}
                     aria-posinset={0}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -989,7 +975,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={1}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1047,7 +1032,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={2}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1105,7 +1089,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={3}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1163,7 +1146,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={4}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1221,7 +1203,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={5}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1279,7 +1260,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={6}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1337,7 +1317,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={7}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1395,7 +1374,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={8}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1453,7 +1431,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={9}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
@@ -1511,7 +1488,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={10}
                     className="pickerRow -clickable container -clickable align-items-center"
                     onClick={[Function]}
