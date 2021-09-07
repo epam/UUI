@@ -1,7 +1,7 @@
 import { join } from "path";
 import { getParameters } from 'codesandbox/lib/api/define';
+import { BasicExampleServices } from "../../services";
 import { FilesRecord, getCodesandboxConfig } from "./getCodesandboxConfig";
-import { svc } from "../../services";
 
 const CodesandboxFiles: Record<string, string> = {
     'index.html': join('..', 'data', 'codesandbox', 'index.html'),
@@ -12,38 +12,41 @@ const CodesandboxFiles: Record<string, string> = {
     '.env': join('..', 'data', 'codesandbox', '.env'),
 };
 
-export type CodesandboxFilesRecord = Record<string, string>
+export type CodesandboxFilesRecord = { codesandboxFiles: Record<string, string> };
 
-class CodesandboxService {
-    files: CodesandboxFilesRecord;
+export type CodesandboxContext = Partial<BasicExampleServices & {
+    uuiApp: BasicExampleServices['uuiApp'] & CodesandboxFilesRecord
+}>;
 
-    constructor() {
-        this.files = {};
-    }
-
-    public getFiles(): Promise<void> {
+export class CodesandboxService {
+    public getFiles(context: CodesandboxContext): Promise<void> {
         return Promise.all(Object.keys(CodesandboxFiles).map(name => {
-            return svc.api.getCode({ path: CodesandboxFiles[name] })
+            return context.api.getCode({ path: CodesandboxFiles[name] })
         })).then(data => data.map(file => file.raw)).then(
             ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api, env ]) => {
-                Object.assign(this.files, {
-                    indexHTML,
-                    indexTSX,
-                    packageJSON,
-                    tsConfigJSON,
-                    api,
-                    env
+                Object.assign(context.uuiApp, {
+                    codesandboxFiles: {
+                        indexHTML,
+                        indexTSX,
+                        packageJSON,
+                        tsConfigJSON,
+                        api,
+                        env
+                    }
                 });
             }
         );
     }
 
-    public clearFiles(): void {
-        Object.assign(this.files, {});
+    public clearFiles(context: CodesandboxContext): void {
+        Object.assign(context.uuiApp, { codesandboxFiles: {} });
     }
 
-    public getCodesandboxLink(code: string, stylesheets?: FilesRecord): string | null {
-        if (Object.values(this.files).every(value => value)) {
+    public getCodesandboxLink(context: CodesandboxContext, code: string, stylesheets?: FilesRecord): string | null {
+        if (
+            context.uuiApp?.codesandboxFiles &&
+            Object.values(context.uuiApp.codesandboxFiles).every(value => value)
+        ) {
             const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
             url.searchParams.set(
                 'parameters',
@@ -51,7 +54,7 @@ class CodesandboxService {
                     files: getCodesandboxConfig(
                         this.processCodeContent(code),
                         this.processStylesheets(stylesheets),
-                        this.files
+                        context.uuiApp.codesandboxFiles
                     ),
                 })
             );
@@ -71,7 +74,7 @@ class CodesandboxService {
                 if (iconFiles.includes(line)) {
                     return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
                 } else if (stylesheetFiles.includes(line)) {
-                    return line.replace(/(.example)?.scss/, '.module.scss');
+                    return line.replace(/.scss/, '.module.scss');
                 } else return line;
             }).join(separator);
         } else return code;
@@ -87,5 +90,3 @@ class CodesandboxService {
         return processedStylesheets;
     }
 }
-
-export const codesandboxService = new CodesandboxService();

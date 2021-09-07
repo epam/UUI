@@ -5,7 +5,7 @@ export type FilesRecord = Record<string, { isBinary: boolean, content: string }>
 export const getCodesandboxConfig = (
     content: string,
     stylesheets: FilesRecord,
-    initialFiles: CodesandboxFilesRecord,
+    initialFiles: CodesandboxFilesRecord['codesandboxFiles'],
 ) => ({
     ...stylesheets,
     'Example.tsx': {
