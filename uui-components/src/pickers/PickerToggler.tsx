@@ -102,17 +102,18 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 return null;
             }
 
-            return <div
+            return <input
+                readOnly
                 aria-haspopup='listbox'
                 tabIndex={ -1 }
+                placeholder={ placeholder }
                 className={ cx(
                     uuiElement.input,
                     this.props.selection.length === 0 && uuiElement.placeholder,
                     this.props.pickerMode === 'single' && css.singleInput,
                     css.toggler,
-                ) }>
-                { placeholder }
-            </div>;
+                ) }
+            />
         }
 
         return <input
