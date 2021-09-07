@@ -854,6 +854,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             <input
               aria-checked={false}
+              aria-disabled={true}
               disabled={true}
               onChange={[Function]}
               role="switch"

@@ -13,6 +13,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
     >
       <input
         aria-checked={false}
+        aria-disabled={true}
         checked={false}
         disabled={true}
         onChange={[Function]}
@@ -34,6 +35,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
     >
       <input
         aria-checked={true}
+        aria-disabled={true}
         checked={true}
         disabled={true}
         onChange={[Function]}

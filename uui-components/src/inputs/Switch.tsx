@@ -32,10 +32,13 @@ export class Switch extends React.Component<SwitchProps, any> {
                         type="checkbox"
                         role="switch"
                         onChange={ this.toggle }
+                        readOnly={ this.props.isReadonly }
                         disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled }
                         checked={ this.props.value }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
-                        readOnly={ this.props.isReadonly }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired }
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
