@@ -178,6 +178,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -234,6 +235,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -290,6 +292,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={false}
                           checked={true}
                           disabled={false}
                           onChange={[Function]}
@@ -346,6 +349,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={false}
                           checked={true}
                           disabled={false}
                           onChange={[Function]}
