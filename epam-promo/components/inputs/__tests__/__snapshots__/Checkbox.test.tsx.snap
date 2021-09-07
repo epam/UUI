@@ -9,7 +9,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
     className="uui-checkbox"
   >
     <input
-      aria-checked={null}
+      aria-checked={false}
       checked={null}
       onChange={[Function]}
       type="checkbox"
@@ -27,7 +27,7 @@ exports[`Checkbox should be rendered correctly 2`] = `
     className="uui-checkbox"
   >
     <input
-      aria-checked={null}
+      aria-checked={false}
       checked={null}
       onChange={[Function]}
       type="checkbox"
