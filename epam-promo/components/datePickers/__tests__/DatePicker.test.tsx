@@ -41,6 +41,26 @@ describe('DataPicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
+    it(`should open picker on field focus`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on field blur`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
     it('should change input value after change props', () => {
         wrapper = shallow(<DatePicker
             format="MMM D, YYYY"

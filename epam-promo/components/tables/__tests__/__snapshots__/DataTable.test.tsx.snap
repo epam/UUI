@@ -80,7 +80,6 @@ Array [
           >
             <div
               className="container3"
-              role="listbox"
               style={
                 Object {
                   "marginTop": 0,

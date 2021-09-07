@@ -207,7 +207,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  aria-setsize={10}
                   className="container3"
                   role="listbox"
                   style={

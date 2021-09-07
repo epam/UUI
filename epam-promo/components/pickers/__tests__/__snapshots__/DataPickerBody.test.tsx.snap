@@ -151,7 +151,6 @@ Array [
             }
           >
             <div
-              aria-setsize={7}
               className="container3"
               role="listbox"
               style={

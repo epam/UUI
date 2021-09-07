@@ -17,7 +17,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     onBlur?(e: React.FocusEvent<HTMLElement>): void;
     onFocus?(e?: React.FocusEvent<HTMLElement>): void;
-    setRef: (ref: HTMLElement) => void;
+    setRef?: (ref: HTMLElement) => void;
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
@@ -152,7 +152,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 onClick={ !this.props.isReadonly && !this.props.isDisabled ? this.togglerPickerOpened : null }
                 ref={ el => {
                     this.toggleContainer = el;
-                    this.props.setRef(el);
+                    this.props.setRef && this.props.setRef(el);
                 } }
                 className={ cx(css.container,
                     uuiElement.inputBox,
