@@ -3,7 +3,7 @@ import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
-import { CodesandboxService } from '../../data/codesandbox/service';
+import { codesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
 import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
 import * as CodesandboxIcon from '../../icons/social-network-codesandbox-24.svg';
@@ -26,12 +26,8 @@ interface DocExampleState {
 const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
-    codesandboxService: CodesandboxService;
-
     constructor(props: DocExampleProps) {
         super(props);
-
-        this.codesandboxService = new CodesandboxService();
 
         requireContext(this.props.path).then((module: any) => {
             this.setState({ component: module.default });
@@ -84,7 +80,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private renderPreview() {
         const { raw, stylesheets } = this.state;
-        const codesandboxLink = this.codesandboxService.getCodesandboxLink(svc, raw, stylesheets);
+        const codesandboxLink = codesandboxService.getCodesandboxLink(raw, stylesheets);
 
         return (
             <>
