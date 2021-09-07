@@ -27,7 +27,7 @@ export const IconContainer = (props: ControlIconProps) => {
                 props.rawProps?.className
             ) }
             onClick={ isClickable ? props.onClick : undefined }
-            tabIndex={ props.tabIndex }
+            tabIndex={ isClickable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
             {...props.rawProps}
         >

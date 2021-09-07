@@ -34,7 +34,7 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             role="button"
-            tabIndex={0}
+            tabIndex={null}
           >
             <div
               className="container uui-icon uui-enabled"
@@ -101,7 +101,7 @@ Array [
                   onClick={[Function]}
                   onKeyDown={[Function]}
                   role="button"
-                  tabIndex={0}
+                  tabIndex={null}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -151,7 +151,7 @@ Array [
                   onClick={[Function]}
                   onKeyDown={[Function]}
                   role="button"
-                  tabIndex={0}
+                  tabIndex={null}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -201,7 +201,7 @@ Array [
                   onClick={[Function]}
                   onKeyDown={[Function]}
                   role="button"
-                  tabIndex={0}
+                  tabIndex={null}
                 >
                   <div
                     className="container uui-icon uui-enabled"
