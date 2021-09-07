@@ -62,7 +62,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     handleFocus = (e?: React.FocusEvent<HTMLDivElement>) => {
-        this.props.onFocus && this.props.onFocus();
+        this.props.onFocus && this.props.onFocus(e);
         this.updateFocus(true);
     }
 
@@ -105,7 +105,11 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             return <input
                 readOnly
                 aria-haspopup='listbox'
+                aria-expanded={ this.props.isOpen }
                 tabIndex={ -1 }
+                aria-required={ this.props.isRequired }
+                aria-disabled={ this.props.isDisabled }
+                aria-readonly={ true }
                 placeholder={ placeholder }
                 className={ cx(
                     uuiElement.input,
@@ -120,6 +124,9 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             type='text'
             tabIndex={ -1 }
             aria-haspopup='listbox'
+            aria-required={ this.props.isRequired }
+            aria-disabled={ this.props.isDisabled }
+            aria-readonly={ this.props.isReadonly }
             className={ cx(uuiElement.input,
                 this.props.pickerMode === 'single' && css.singleInput,
                 isActivePlaceholder && (!this.state.inFocus || this.props.isReadonly) && uuiElement.placeholder)
