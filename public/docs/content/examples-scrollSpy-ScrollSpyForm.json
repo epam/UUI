@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "An example of how Scroll Spy can be integrated to a basic form. This one shows how the form is getting scrolled to the top invalid element once \"Validate\" is clicked.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

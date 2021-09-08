@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
+import { useScrollSpy } from '@epam/uui-components';
 import { FlexSpacer, Button, FlexCell, FlexRow, LinkButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Panel, ScrollBars, Text } from '@epam/promo';
 import * as css from './ScrollSpyReader.scss';
-import { useScrollSpy } from './ScrollSpy';
 import { svc } from '../../services';
 
 export function ScrollSpyModal() {

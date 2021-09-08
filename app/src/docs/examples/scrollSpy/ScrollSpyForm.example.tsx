@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
-import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
+import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
-import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
-import * as css from './ScrollSpyForm.scss';
-import { svc } from '../../services';
+import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
 
 
 interface Person {
@@ -21,11 +19,12 @@ interface Person {
     maritalStatus?: string;
 };
 
-export function ScrollSpyForm() {
+export default function ScrollSpyForm() {
     const [person] = useState<Person>({});
+    const svc = useUuiContext();
 
     const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     }, []);
 
     const languagesDataSource = useArrayDataSource({
@@ -80,7 +79,7 @@ export function ScrollSpyForm() {
 
         return (
             <section ref={setRef}>
-                <FlexCell width='100%' cx={ css.formContainer }>
+                <FlexCell width='100%'>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
                             <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() }>
@@ -172,14 +171,13 @@ export function ScrollSpyForm() {
                             </LabeledInput>
                         </FlexCell>
                     </FlexRow>
-                    <FlexRow vPadding='12'>
-                        <FlexSpacer />
+                    <FlexCell alignSelf='start'>
                         <Button
                             color='red'
                             caption='Validate'
                             onClick={ save }
                         />
-                    </FlexRow>
+                    </FlexCell>
                 </FlexCell>
             </section>
         );
