@@ -50,12 +50,13 @@ describe('DataPicker', () => {
         let baseValue = '2019-10-47';
         let newState: any = { inputValue: baseValue, value: baseValue };
         wrapper = shallow(<DatePicker
-            value={ baseValue }
+            value={ null }
             onValueChange={ (nV: any) => newState.value = nV }
             format='MMM D, YYYY'
         />, {});
-
-        (wrapper.instance() as any).handleBlur('from');
+        const instance = (wrapper.instance() as any);
+        instance.handleInputChange(baseValue);
+        instance.handleBlur('from');
         expect(newState.value).toEqual(null);
 
     });

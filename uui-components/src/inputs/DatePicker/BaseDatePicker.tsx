@@ -3,9 +3,13 @@ import {
     IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
 } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import utc from 'dayjs/plugin/utc';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown } from '../..';
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
     format: string;
@@ -71,11 +75,15 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return this.props.format || defaultFormat;
     }
 
-    handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
-        const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
+    getIsValidDate = (value: string) => {
+        const parsedDate = dayjs.utc(value, this.getFormat(), true);
+        const isValidDate = parsedDate.isValid();
+        if (!isValidDate) return false;
+        return this.props.filter ? this.props.filter(parsedDate) : true;
+    }
 
-        if (!isValidDate || !isValidFilter) {
+    handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
         }
@@ -83,7 +91,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
 
     handleInputChange = (value: string) => {
         const resultValue = toValueDateFormat(value, this.getFormat());
-        if (dayjs(value, this.getFormat(), true).isValid() && (!this.props.filter || this.props.filter(dayjs(value, this.getFormat())))) {
+        if (this.getIsValidDate(value)) {
             this.handleValueChange(resultValue);
             this.setState({ inputValue: value });
         } else {
