@@ -3,9 +3,11 @@ import {
     IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
 } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown } from '../..';
+dayjs.extend(customParseFormat);
 
 export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
     format: string;
@@ -72,9 +74,10 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // if (!this.state.inputValue) return;
         const isValidDate = dayjs(this.state.inputValue, this.getFormat(), true).isValid();
-        const isValidFilter = this.props.filter && !this.props.filter(dayjs(this.state.inputValue, this.getFormat()));
-
+        const isValidFilter = this.props.filter ? this.props.filter(dayjs(this.state.inputValue, this.getFormat())) : true;
+console.log(this.state.inputValue, isValidDate);
         if (!isValidDate || !isValidFilter) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
