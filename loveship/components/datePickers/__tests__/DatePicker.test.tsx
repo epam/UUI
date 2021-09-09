@@ -54,8 +54,9 @@ describe('DataPicker', () => {
             onValueChange={ (nV: any) => newState.value = nV }
             format='MMM D, YYYY'
         />, {});
-
-        (wrapper.instance() as any).handleBlur('from');
+        const instance = (wrapper.instance() as any);
+        instance.handleInputChange(baseValue);
+        instance.handleBlur('from');
         expect(newState.value).toEqual(null);
 
     });
