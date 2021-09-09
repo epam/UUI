@@ -37,7 +37,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             },
         ],
     })
-    .prop('format', { examples: ['DD-MM-YYYY', 'DD/MM/YYYY'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', {
         examples: [
             {
