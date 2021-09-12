@@ -111,7 +111,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             { ...props }
             onClick={ () => this.toggleBodyOpening(!this.state.opened) }
             onFocus={ e => {
-                if (props.isOpen === this.state.opened) e.preventDefault();
+                if (this.state.opened) e.preventDefault();
                 else this.toggleBodyOpening(true);
             } }
             onBlur={ e => {
