@@ -149,7 +149,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         return (
             <div
-                onClick={ !this.props.isReadonly && !this.props.isDisabled ? this.togglerPickerOpened : null }
+                onMouseDown={ !this.props.isReadonly && !this.props.isDisabled ? this.togglerPickerOpened : null }
                 ref={ el => {
                     this.toggleContainer = el;
                     this.props.setRef && this.props.setRef(el);
@@ -185,7 +185,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                         onClick={ this.handleCrossIconClick }
                     /> }
                     { this.props.isDropdown && <IconContainer
-                        onClick={ !this.props.isReadonly && !this.props.isDisabled ? (e) => {
+                        onMouseDown={ !this.props.isReadonly && !this.props.isDisabled ? (e) => {
                             e.stopPropagation();
                             this.togglerPickerOpened();
                         } : null }
