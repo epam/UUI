@@ -8,12 +8,14 @@ import { getIconClass } from './helper';
 export interface TabButtonMods {
     size?: '36' | '48' | '60';
     withNotify?: boolean;
+    direction?: "vertical" | "horizontal";
 }
 
 function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
     return [
         css.root,
         css['size-' + (mods.size || '48')],
+        css['direction-' + (mods.direction || "horizontal")],
         mods.withNotify && css.uuiNotification,
         styles.tabButtonColor,
         ...getIconClass(mods),
@@ -24,5 +26,5 @@ export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabBu
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',
-    rawProps: { role: 'tab', ...props.rawProps }
+    rawProps: { role: 'tab', ...props.rawProps },
 }));
