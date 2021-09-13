@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To make main menu responsible, provide ",
+            "text": "By default ProgressBar is rendering with a progress label like '20%'.  But you can set your custom label using ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "priority",
+            "text": "label",
             "marks": [
               {
                 "object": "mark",
@@ -27,23 +27,7 @@
           },
           {
             "object": "text",
-            "text": "  and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "estimatedWidth",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props for main menu items.",
+            "text": " prop.",
             "marks": []
           }
         ]
@@ -55,7 +39,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "priority",
+            "text": "To show ProgressBar with striped animation please set ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "striped",
             "marks": [
               {
                 "object": "mark",
@@ -66,7 +55,7 @@
           },
           {
             "object": "text",
-            "text": " — define in what order items will be collapsed to 'More' button. ",
+            "text": " prop. The striped progress bar has no label.",
             "marks": []
           }
         ]
@@ -78,30 +67,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "estimatedWidth",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " — approximate width of item, which will be used to define fit this item in menu width or not. ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
+            "text": "ProgressBar can be in 3 size: 12, 18 and 24px. By default - 12px.",
             "marks": []
           }
         ]

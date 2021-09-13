@@ -30,6 +30,11 @@ export class DropdownDoc extends BaseDocsBlock {
                     title='Handle dropdown state by yourself'
                     path='./examples/dropdown/HandleStateByYourself.example.tsx'
                 />
+
+                <DocExample
+                    title='Close dropdown from body'
+                    path='./examples/dropdown/CloseFromBody.example.tsx'
+                />
             </>
         );
     }
