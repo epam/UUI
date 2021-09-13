@@ -30,7 +30,7 @@
 .root {
     @include radio-input-color();
 
-    &:hover {
+    &:hover, &:focus-within {
         :global(.uui-radioinput) {
             border-color: var(--border-color-hovered);
 
@@ -63,20 +63,8 @@
         flex-shrink: 0;
         box-sizing: border-box;
 
-        &:focus-within {
-            @include control-focus();
-        }
-
         &:global(.uui-checked) {
             border-color: var(--border-color-checked);
-
-            &:focus-within {
-                border-color: var(--border-color-hovered);
-
-                :global(.uui-icon) {
-                    fill: var(--fill-color-hovered);
-                }
-            }
 
             :global(.uui-icon) {
                 fill: var(--fill-color-checked);
@@ -107,31 +95,15 @@
             &:global(.uui-radioinput) {
                 border-color: var(--errored-color);
 
-                &:focus-within {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
-
                 :global(.uui-icon) {
                     fill: var(--errored-color);
                 }
             }
         }
 
-        &:hover {
+        &:hover, &:focus-within {
             :global(.uui-radioinput) {
                 border-color: var(--errored-color);
-
-                &:focus {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
             }
 
             :global(.uui-icon) {
