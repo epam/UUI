@@ -37,6 +37,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                         readOnly={ this.props.isReadonly }
                         aria-checked={ this.props.value }
                         aria-hidden={ true }
+                        tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : -1 }
                         { ...this.props.rawProps }
                     />
                     <div className={ uuiElement.switchToggler } />
