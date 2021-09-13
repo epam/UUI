@@ -62,7 +62,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <div role="label" className={ uuiElement.inputLabel }>
+                    <div className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
                     </div>
                 ) }
