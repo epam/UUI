@@ -143,32 +143,32 @@
                 color: $night500;
             }
         }
+    }
 
-        &:global(.uui-invalid) {
-            :global(.uui-checkbox) {
+    &:global(.uui-invalid) {
+        :global(.uui-checkbox) {
+            border-color: $fire;
+            fill: $fire;
+
+            &:hover, &:active {
                 border-color: $fire;
                 fill: $fire;
+            }
+
+            &:global(.uui-checked) {
+                fill: $white;
+                background-color: $fire;
+                border-color: $fire;
 
                 &:hover, &:active {
-                    border-color: $fire;
-                    fill: $fire;
-                }
-
-                :global(.uui-checkbox):global(.uui-checked) {
-                    fill: $white;
                     background-color: $fire;
                     border-color: $fire;
-
-                    &:hover, &:active {
-                        background-color: $fire;
-                        border-color: $fire;
-                    }
                 }
             }
+        }
 
-            :global(.uui-input-label) {
-                color: $fire;
-            }
+        :global(.uui-input-label) {
+            color: $fire;
         }
     }
 }
