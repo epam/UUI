@@ -848,15 +848,15 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </div>
         <label
           className="container root size-18 switch uui-disabled"
-          role="switch"
         >
           <div
             className="uui-switch-body"
           >
             <input
-              aria-hidden={true}
+              aria-checked={false}
               disabled={true}
               onChange={[Function]}
+              role="switch"
               type="checkbox"
             />
             <div
@@ -865,7 +865,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
           <div
             className="uui-input-label"
-            role="label"
           >
             Show only selected
           </div>

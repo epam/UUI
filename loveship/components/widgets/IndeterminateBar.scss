@@ -1,0 +1,38 @@
+@use '../../assets/styles/scss/loveship-colors' as *;
+
+.root {
+    position: relative;
+    background-color: $night300;
+
+    .bar {
+        background-color: $sky;
+        width: 33%;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        animation: progressBar-indeterminate 2s linear 0.15s infinite;
+    }
+}
+
+
+@keyframes progressBar-indeterminate {
+    0% {
+        left: -33%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.size-12 {
+    height: 12px;
+}
+
+.size-18 {
+    height: 18px;
+}
+
+.size-24 {
+    height: 24px;
+}

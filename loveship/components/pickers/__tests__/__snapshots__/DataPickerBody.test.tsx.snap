@@ -84,7 +84,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable colorSky root size-24 mode-form"
+        className="container uui-input-box -clickable colorSky root size-48 mode-form"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
@@ -100,13 +100,13 @@ Array [
             width={12}
           >
             <use
-              xlinkHref="#search-12.svg"
+              xlinkHref="#search-24.svg"
             />
           </svg>
         </div>
         <input
           aria-invalid={false}
-          className="uui-input line-height-18 font-size-12 v-padding-2"
+          className="uui-input line-height-24 font-size-16 v-padding-11"
           inputMode="search"
           onChange={[Function]}
           onKeyDown={[Function]}
