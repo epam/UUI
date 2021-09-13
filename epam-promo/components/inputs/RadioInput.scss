@@ -103,9 +103,12 @@
             color: var(--errored-color);
         }
 
+        :global(.uui-radioinput) {
+            border-color: var(--errored-color);
+        }
+
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
-                border-color: var(--errored-color);
 
                 &:focus-within {
                     border-color: var(--errored-color);
