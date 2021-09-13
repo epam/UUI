@@ -31,7 +31,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     constructor(props: DocExampleProps) {
         super(props);
 
-        this.codesandboxService = new CodesandboxService(svc);
+        this.codesandboxService = new CodesandboxService();
 
         requireContext(this.props.path).then((module: any) => {
             this.setState({ component: module.default });
@@ -62,13 +62,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         if (stylesheets !== null) {
             stylesheets.forEach(match => {
                 // Compose path from match and current directory path
-                const path = this.props.path.split('/').slice(0, -1).concat(match.split('/')[1]).join('/');
+                const [, filePath] = match.split('/');
+                const dirPath = this.props.path.split('/').slice(0, -1);
+                const path = dirPath.concat(filePath).join('/');
                 svc.api.getCode({ path }).then(stylesheet => {
                     this.setState(prevState => ({
                         ...prevState,
                         stylesheets: {
                             ...prevState.stylesheets,
-                            [match]: { content: stylesheet.raw, isBinary: false }
+                            [filePath]: { content: stylesheet.raw, isBinary: false }
                         }
                     }));
                 });
@@ -82,7 +84,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private renderPreview() {
         const { raw, stylesheets } = this.state;
-        const codesandboxLink = this.codesandboxService.getCodesandboxLink(raw, stylesheets);
+        const codesandboxLink = this.codesandboxService.getCodesandboxLink(svc, raw, stylesheets);
 
         return (
             <>
