@@ -1,45 +1,14 @@
+import { RouterMock } from "@epam/test-utils";
 import { AnalyticsContext } from "../AnalyticsContext";
-import { HistoryAdaptedRouter } from "../routing";
-
-class RouterMock {
-    listeners = [];
-    
-    constructor() {
-        this.listen = this.listen.bind(this);
-    }
-    
-    listen(listener: Function) {
-        console.log("pushed listener");
-        this.listeners.push(listener);
-    }
-    
-    emit() {
-        console.log("EMIT");
-        this.listeners.forEach(l => l());
-    }
-}
 
 describe("AnalyticsContext", () => {
-    // let context: AnalyticsContext;
-    //
-    // beforeEach(() => {
-    //     context = new AnalyticsContext({} as any);
-    // });
-    let windowSpy: any;
-    let href = "/";
     beforeEach(() => {
-        windowSpy = jest.spyOn(window, "window", "get")
-            .mockImplementation(() => ({
-                location: {
-                    href,
-                },
-            } as any));
+        (window as any).dataLayer = [];
     });
-
     afterEach(() => {
-        windowSpy.mockRestore();
+        delete (window as any).dataLayer;
     });
-
+    
     it("should call listeners", () => {
         const context = new AnalyticsContext({} as any);
 
@@ -74,18 +43,15 @@ describe("AnalyticsContext", () => {
 
     it("should listen router", () => {
         const router = new RouterMock();
-        const listener = {
-            sendEvent: jest.fn(),
-        };
         const context = new AnalyticsContext({
-            router
+            router,
+            gaCode: "asd",
         } as any);
+        const sendEventSpy = jest.spyOn(context, "sendEvent");
 
-        // context.addListener(listener);
-        expect(router.listeners.length === 1);
-        
-        // router.emit();
+        expect(router.listeners.length).toBe(1);
 
-        // expect(listener).toBeCalledTimes(1);
+        router.listeners[0]();
+        expect(sendEventSpy).toBeCalledTimes(1);
     });
 });

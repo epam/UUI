@@ -30,11 +30,11 @@ export class AnalyticsContext extends BaseContext {
     }
 
     private listenRouter() {
-        let currentLocation = window.location.pathname;
+        let currentLocation = window?.location?.pathname;
         this.router && this.router.listen((location) => {
-            if (currentLocation !== location.pathname) {
-                currentLocation = location.pathname;
-                this.sendEvent({path: location.pathname, name: "pageView"}, "pageView");
+            if (currentLocation !== location?.pathname) {
+                currentLocation = location?.pathname;
+                this.sendEvent({path: location?.pathname, name: "pageView"}, "pageView");
             }
         });
     }
