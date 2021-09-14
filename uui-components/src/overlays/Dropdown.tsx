@@ -155,7 +155,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private onClose = () => {
-        this.props.onClose ? this.props.onClose() : this.setState({ opened: false });
+        this.props.onClose ? this.props.onClose() : this.handleOpenedChange(false);
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {

@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest, cx } from '@epam/uui';
+import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest, cx, UuiContext } from '@epam/uui';
 import * as css from './Tooltip.scss';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
@@ -25,9 +25,7 @@ export interface TooltipState {
 }
 
 export class Tooltip extends React.Component<TooltipProps, TooltipState> {
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    public static contextType = UuiContext;
 
     private readonly layer: LayoutLayer | null = null;
     private node: any = null;
