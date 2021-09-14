@@ -6,6 +6,8 @@ import { TextInput } from './TextInput';
 import { DropdownContainer, Dropdown } from '../overlays';
 import { TimePickerBody } from './TimePickerBody';
 import * as css from './TimePicker.scss';
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 interface TimePickerState {
     isOpen: boolean;
