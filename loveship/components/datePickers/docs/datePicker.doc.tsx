@@ -19,7 +19,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     .implements([iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc] as any)
     .prop('value', { examples: ['2017-12-30'] })
     .prop('placeholder', { examples: ['Enter start date'] })
-    .prop('format', { examples: ['DD/MM/YYYY', 'MMM D, YYYY'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', { examples: [
         {
             name: 'Filter before current day',

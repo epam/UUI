@@ -1,0 +1,33 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "An example of determinate IndicatorBar. If no progress is set - IndicatorBar will be animated as indeterminate.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "IndicatorBar has a fixed height of 2px.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

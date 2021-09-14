@@ -20,7 +20,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test1
     </div>
@@ -41,7 +40,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test2
     </div>
@@ -70,7 +68,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test1
     </div>
@@ -92,7 +89,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test2
     </div>

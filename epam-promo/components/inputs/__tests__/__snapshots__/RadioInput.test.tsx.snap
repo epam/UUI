@@ -11,7 +11,6 @@ exports[`RadioInput should be rendered correctly 1`] = `
       aria-checked={null}
       checked={null}
       onChange={[Function]}
-      tabIndex={0}
       type="radio"
     />
   </div>
@@ -29,13 +28,11 @@ exports[`RadioInput should be rendered correctly 2`] = `
       aria-checked={null}
       checked={null}
       onChange={[Function]}
-      tabIndex={0}
       type="radio"
     />
   </div>
   <div
     className="uui-input-label"
-    role="label"
   >
     Open
   </div>
