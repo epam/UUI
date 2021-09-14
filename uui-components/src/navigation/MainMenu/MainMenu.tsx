@@ -232,6 +232,11 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                     };
 
                     let menuItems = [appLogoItem, ...childrenItems];
+
+                    if (!this.props.appLogoUrl) {
+                        menuItems.shift();
+                    }
+
                     if (this.props.customerLogoUrl) {
                         menuItems.unshift(customerLogoItem);
                     }
