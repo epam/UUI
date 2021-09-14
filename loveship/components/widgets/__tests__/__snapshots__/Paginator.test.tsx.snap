@@ -105,7 +105,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={-1}
+    tabIndex={null}
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
