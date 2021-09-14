@@ -957,7 +957,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1015,7 +1014,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1073,7 +1071,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1131,7 +1128,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1189,7 +1185,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1247,7 +1242,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1305,7 +1299,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1363,7 +1356,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1421,7 +1413,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1479,7 +1470,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
@@ -1537,7 +1527,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       >
                         <label
                           className="container root size-18 checkbox-color-blue checkbox -clickable"
-                          role="checkbox"
                         >
                           <div
                             className="uui-checkbox"
