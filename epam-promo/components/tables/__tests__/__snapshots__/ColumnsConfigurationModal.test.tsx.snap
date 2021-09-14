@@ -171,7 +171,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -228,7 +227,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
