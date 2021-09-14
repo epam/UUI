@@ -1,5 +1,5 @@
 import React from 'react';
-import { INotification, Icon, IHasChildren, IHasCX, NotificationContext } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
@@ -9,7 +9,6 @@ import * as errorIcon from '../icons/notification-error-fill-24.svg';
 import * as hintIcon from '../icons/notification-help-fill-24.svg';
 import * as crossIcon from '../icons/snackbar/cross.svg';
 import * as css from './NotificationCard.scss';
-import { object } from 'prop-types';
 import cx from 'classnames';
 import { EpamColor, LinkButton } from '..';
 import { i18n } from '../../i18n';
@@ -30,7 +29,7 @@ export interface NotificationCardProps extends DefaultNotificationProps {
 
 export class NotificationCard extends React.Component<NotificationCardProps> {
     notificationCardNode: HTMLElement = null;
-    
+
     constructor(props: NotificationCardProps) {
         super(props);
         this.refNode = this.refNode.bind(this);
@@ -45,7 +44,7 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
         this.notificationCardNode.removeEventListener('mouseenter', this.props.clearTimer);
         this.notificationCardNode.removeEventListener('mouseleave', this.props.refreshTimer);
     }
-    
+
     refNode (el: HTMLDivElement) {
         this.notificationCardNode = el;
     }
@@ -78,11 +77,8 @@ export const HintNotification = (props: DefaultNotificationProps) => <Notificati
 export const ErrorNotification = (props: DefaultNotificationProps) => <NotificationCard icon={ errorIcon } color='fire' { ...props } cx={ cx(props.cx, css.typeError) } />;
 
 export class ClearNotification extends React.Component<{}> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
-
-    context: { uuiNotifications: NotificationContext };
+    public static contextType = UuiContext;
+    public context: UuiContexts;
 
     render() {
         return <div className={ cx(css.notificationWrapper, css.clearButton) }><LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton } onClick={ () => this.context.uuiNotifications.clearAll() } /></div>;
