@@ -10,10 +10,10 @@ export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {
 
 export const MainMenuSearch = (props: MainMenuSearchProps) => (
     <TextInput
-        cx={ cx(css.searchInput, props.cx) }
         iconPosition='left'
         icon={ lensIcon }
         cancelIcon={ props.value?.length > 0 && cancelIcon }
         { ...props }
+        cx={ cx(css.searchInput, props.cx) }
     />
 );

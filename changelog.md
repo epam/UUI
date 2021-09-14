@@ -1,3 +1,10 @@
+# 4.2.2[WIP]
+
+**What's New**
+* [ProgressBar]: implemented a new component to make possibility display a determinate progress bar with different sizes striped animation
+* [IndeterminateBar]: implemented a new component to make possibility display indeterminate progress with different sizes.
+* [IndicatorBar]: implemented a new component to use as the top indicator of page loading. Has a fixed size and can be determinate or indeterminate.
+
 # 4.2.1 - 31.08.2021
 
 **What's New**
@@ -6,7 +13,6 @@
 
 **What’s Fixed**
 * fix styles issues with some components in Safari
-
 
 # 4.2.0 - 23.08.2021
 
