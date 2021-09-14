@@ -31,8 +31,9 @@ export class Switch extends React.Component<SwitchProps, any> {
                     <input
                         type="checkbox"
                         role="switch"
-                        onChange={ this.toggle }
+                        onChange={ !this.props.isReadonly ? this.toggle : null }
                         readOnly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled }
                         checked={ this.props.value }
