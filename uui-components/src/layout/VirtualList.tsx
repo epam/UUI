@@ -103,8 +103,12 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
     renderRows() {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
+        const firstChildRole = (this.container3?.firstChild as HTMLElement)?.getAttribute('role');
 
-        return <div className={ css.container3 } style={ { marginTop: topY } }>
+        return <div
+            role={ firstChildRole === 'listitem' ? 'list' : firstChildRole === 'row' ? 'rowgroup' : undefined }
+            className={ css.container3 }
+            style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }
