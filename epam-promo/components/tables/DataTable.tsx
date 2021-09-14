@@ -88,11 +88,7 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     topShadow
                     background='white'
                     cx={ css.body }
-                    rawProps={{
-                        role: 'table',
-                        "aria-rowcount": this.props.rowsCount,
-                        "aria-colcount": this.props.columns.length
-                    } }>
+                >
                     <VirtualList
                         { ...this.lens.toProps() }
                         onScroll={ this.props.onScroll }
