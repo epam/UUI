@@ -242,10 +242,7 @@ Array [
     </div>
   </div>,
   <div
-    aria-colcount={4}
-    aria-rowcount={10}
     className="root size-36 background-white topShadow spacing-6 body container align-items-center"
-    role="table"
   >
     <div
       className="wrapper root shadow-dark"
