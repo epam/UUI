@@ -7,6 +7,8 @@ import {
     IDropdownToggler, UuiContext, isChildFocusable
 } from '@epam/uui';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
     format?: string;
