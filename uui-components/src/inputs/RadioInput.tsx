@@ -55,8 +55,8 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                         checked={ this.props.value }
                         disabled={ this.props.isReadonly || this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
-                        onChange={ this.handleChange }
-                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        aria-checked={ this.props.value }
+                        onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
