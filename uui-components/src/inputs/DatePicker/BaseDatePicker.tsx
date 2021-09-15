@@ -56,8 +56,8 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         ...getStateFromValue(this.props.value, this.props.format),
     };
 
-    abstract renderInput(props: IDropdownToggler): React.ReactElement<any, any>;
-    abstract renderBody(): React.ReactElement<any, any> ;
+    abstract renderInput(props: IDropdownToggler): React.ReactNode;
+    abstract renderBody(): React.ReactNode;
 
     static getDerivedStateFromProps(props: any, state: DatePickerState): DatePickerState | null {
         if (props.value !== state.selectedDate) {
