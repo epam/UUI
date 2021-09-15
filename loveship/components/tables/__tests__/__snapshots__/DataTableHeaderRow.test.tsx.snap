@@ -52,7 +52,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
-          tabIndex={0}
+          tabIndex={null}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -127,7 +127,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -185,7 +185,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -243,7 +243,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -312,7 +312,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           role="button"
-          tabIndex={0}
+          tabIndex={null}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -379,7 +379,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -429,7 +429,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -479,7 +479,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"

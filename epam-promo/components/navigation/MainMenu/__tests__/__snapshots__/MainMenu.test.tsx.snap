@@ -29,7 +29,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={0}
+    tabIndex={null}
   />
 </nav>
 `;
@@ -63,7 +63,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={0}
+    tabIndex={null}
   />
   <div
     className="uui-mainmenu-server-badge"
