@@ -44,7 +44,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
     }
 
     getTabIndex(): number {
-        if (this.props.isDisabled) {
+        if (this.props.isDisabled || !this.props.onClick) {
             return null;
         }
 
