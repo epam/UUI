@@ -11,7 +11,6 @@ exports[`PickerListItem should render with all new props 1`] = `
       className="uui-radioinput"
     >
       <input
-        aria-checked={false}
         disabled={true}
         onChange={[Function]}
         type="radio"
@@ -32,7 +31,6 @@ exports[`PickerListItem should render with default props 1`] = `
       className="uui-radioinput"
     >
       <input
-        aria-checked={false}
         disabled={true}
         onChange={[Function]}
         type="radio"

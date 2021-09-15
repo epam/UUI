@@ -2,6 +2,10 @@
     display: flex;
     cursor: pointer;
 
+    &:focus-within {
+        outline: none;
+    }
+
     :global(.uui-checkbox) {
         display: flex;
         align-items: center;
@@ -18,8 +22,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
 
-
-            &:focus, &:focus-visible {
+            &:focus {
                 outline: none;
             }
         }
