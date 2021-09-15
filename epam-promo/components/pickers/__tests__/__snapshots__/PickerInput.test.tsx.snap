@@ -28,7 +28,6 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <div
       className="container uui-icon uui-enabled"
       style={Object {}}
-      tabIndex={-1}
     >
       <svg
         className=""
@@ -63,7 +62,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={-1}
+      tabIndex={null}
     >
       
       <div
@@ -89,7 +88,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={-1}
+      tabIndex={null}
     >
       <div
         className="uui-caption"
@@ -137,7 +136,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
     <div
       className="container uui-icon uui-enabled"
       style={Object {}}
-      tabIndex={-1}
     >
       <svg
         className=""
