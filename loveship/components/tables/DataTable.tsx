@@ -118,12 +118,7 @@ export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<
                     key='body'
                     topShadow
                     background='white'
-                    cx={ css.body }
-                    rawProps={{
-                        role: 'table',
-                        'aria-rowcount': this.props.knownRowsCount,
-                        'aria-colcount': this.props.columns.length
-                    }}>
+                    cx={ css.body }>
                     { this.props.exactRowsCount !== 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }
