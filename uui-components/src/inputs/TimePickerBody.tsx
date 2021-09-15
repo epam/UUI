@@ -61,7 +61,6 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                         onValueChange={ this.onHoursChange }
                         value={ +dayjs().set(this.props.value).format(MAX_HOURS === FORMAT_12H ? 'hh' : 'HH') }
                         min={ MIN_HOURS }
-                        tabIndex={ -1 }
                         max={ MAX_HOURS }
                     />
                     <IconContainer
@@ -81,7 +80,6 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                         onValueChange={ this.onMinutesChange }
                         value={ +dayjs().set(this.props.value).format('m') }
                         min={ MIN_MINUTES }
-                        tabIndex={ -1 }
                         max={ MAX_MINUTES }
                     />
                     <IconContainer
