@@ -44,6 +44,7 @@ exports[`TimePicker should be rendered correctly with extra props 1`] = `
   tabIndex={-1}
 >
   <input
+    aria-disabled={true}
     className="uui-input line-height-18 font-size-14 v-padding-8"
     disabled={true}
     onChange={[Function]}
