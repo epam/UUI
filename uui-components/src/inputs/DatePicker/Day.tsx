@@ -19,7 +19,7 @@ export class Day extends React.Component<DayProps, any> {
             return null;
         }
         const isCurrent = this.props.value.isToday();
-        const isPassedFilter = this.props.filter ? this.props.filter : true;
+        const isPassedFilter = this.props.filter ? this.props.filter(this.props.value) : true;
 
         return (
             <div

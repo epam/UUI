@@ -19,6 +19,9 @@ export default function BasicTextInputExample() {
             <LabeledInput label='With validation' isInvalid={ !value } validationMessage='This field is mandatory' >
                 <TextInput value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder='Please type text' />
             </LabeledInput>
+            <LabeledInput label='With optional label' isOptional={ true } >
+                <TextInput value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder='Please type text' />
+            </LabeledInput>
         </FlexCell>
     );
 }

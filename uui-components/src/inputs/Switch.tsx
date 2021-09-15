@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './Switch.scss';
 import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext } from "@epam/uui";
 
-export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLInputElement> {}
+export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {}
 
 export class Switch extends React.Component<SwitchProps, any> {
     static contextType = UuiContext;
@@ -20,7 +20,6 @@ export class Switch extends React.Component<SwitchProps, any> {
     render() {
         return (
             <label
-                role="switch"
                 className={ cx(
                     css.container,
                     this.props.cx,
@@ -31,17 +30,16 @@ export class Switch extends React.Component<SwitchProps, any> {
                 <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
                     <input
                         type="checkbox"
+                        role="switch"
                         onChange={ this.toggle }
                         disabled={ this.props.isDisabled }
                         checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
                         readOnly={ this.props.isReadonly }
-                        aria-checked={ this.props.value }
-                        aria-hidden={ true }
-                        { ...this.props.rawProps }
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
-                <div role="label" className={ uuiElement.inputLabel }>{ this.props.label }</div>
+                <div className={ uuiElement.inputLabel }>{ this.props.label }</div>
             </label>
         );
     }

@@ -18,6 +18,7 @@ export function ScrollSpyAnchor() {
                     <LinkButton
                         isLinkActive={currentActive === link.id}
                         key={link.id}
+                        cx={ css.spyLink }
                         onClick={() => scrollToElement(link.id)}
                         caption={link.caption}
                         href={`#${link.id}`}

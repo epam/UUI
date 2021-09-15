@@ -1,5 +1,5 @@
 import React from 'react';
-import { UuiContexts, uuiContextTypes, ApiRecoveryReason, INotification, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui';
+import { UuiContexts, ApiRecoveryReason, INotification, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';

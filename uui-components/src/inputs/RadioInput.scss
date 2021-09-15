@@ -4,6 +4,10 @@
     align-items: center;
     position: relative;
 
+    &:focus-within {
+        outline: none;
+    }
+
     :global(.uui-radioinput) {
         display: flex;
         align-items: center;
@@ -11,11 +15,16 @@
         cursor: pointer;
         flex-shrink: 0;
 
-        & > input[type="radio"] {
+        input[type="radio"] {
             margin: 0;
+            border: none;
+            width: 0;
+            height: 0;
             appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
 
-            &:focus, &:focus-visible {
+            &:focus {
                 outline: none;
             }
         }
