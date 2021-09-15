@@ -2,7 +2,7 @@
     position: relative;
     cursor: pointer;
 
-    &:focus, &:focus-visible {
+    &:focus {
         outline: none;
     }
 
