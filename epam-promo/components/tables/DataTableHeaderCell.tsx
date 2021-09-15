@@ -36,7 +36,6 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     key="text"
                     lineHeight="30"
                     fontSize="14"
-                    rawProps={{ role: 'columnheader' }}
                     size="30"
                     cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }
                 >
@@ -118,6 +117,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             ) }
             onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
             rawProps={ {
+                role: 'columnheader',
                 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
                 ...props.eventHandlers,
             } }

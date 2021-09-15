@@ -106,7 +106,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         const firstChildRole = (this.container3?.firstChild as HTMLElement)?.getAttribute('role');
 
         return <div
-            role={ firstChildRole === 'listitem' ? 'list' : firstChildRole === 'row' ? 'rowgroup' : undefined }
+            role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }
             className={ css.container3 }
             style={ { marginTop: topY } }>
             { this.props.rows }
