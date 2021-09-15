@@ -37,6 +37,11 @@ $text-size-count: 24px;
     align-items: center;
     font-family: $font-sans-semibold;
     font-weight: normal;
+    border-bottom: 3px solid transparent;
+
+    &:global(.uui-active) {
+        border-color: var(--text-color-active);
+    }
 
     &:global(.uui-disabled) {
         @include tab-button-color(var(--text-color-disabled), var(--text-color-disabled), transparent);
@@ -84,23 +89,5 @@ $text-size-count: 24px;
 
     &.size-60 {
         height: 60px;
-    }
-
-    &.direction {
-        &-horizontal {
-            border-bottom: 3px solid transparent;
-
-            &:global(.uui-active) {
-                border-color: var(--text-color-active);
-            }
-        }
-
-        &-vertical {
-            border-left: 3px solid transparent;
-
-            &:global(.uui-active) {
-                border-color: var(--text-color-active);
-            }
-        }
     }
 }

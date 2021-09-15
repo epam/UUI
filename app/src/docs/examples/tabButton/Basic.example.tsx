@@ -13,7 +13,6 @@ export default function BasicTabButtonExample() {
                     isLinkActive={ value === 'Main' }
                     onClick={ () => onValueChange('Main') }
                     size='36'
-                    direction="vertical"
                 />
                 <TabButton
                     caption='Home'

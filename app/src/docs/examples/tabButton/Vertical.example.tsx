@@ -1,40 +1,36 @@
 import React, { useState } from "react";
-import { FlexCell, TabButton } from "@epam/promo";
+import { FlexCell, VerticalTabButton } from "@epam/promo";
 
 const VerticalTabButtonExample: React.FC = () => {
     const [value, onValueChange] = useState("Home");
 
     return (
         <FlexCell grow={ 1 }>
-            <TabButton
+            <VerticalTabButton
                 caption={ "Main" }
                 isLinkActive={ value === "Main" }
                 onClick={ () => onValueChange("Main") }
                 size="36"
-                direction="vertical"
             />
-            <TabButton
+            <VerticalTabButton
                 caption="Home"
                 isLinkActive={ value === "Home" }
                 onClick={ () => onValueChange("Home") }
                 size="36"
-                direction="vertical"
             />
-            <TabButton
+            <VerticalTabButton
                 caption={ "Tools" }
                 isLinkActive={ value === "Tools" }
                 onClick={ () => onValueChange("Tools") }
                 count={ 18 }
                 size="36"
-                direction="vertical"
             />
-            <TabButton
+            <VerticalTabButton
                 caption={ "Options" }
                 isLinkActive={ value === "Options" }
                 onClick={ () => onValueChange("Options") }
                 withNotify={ true }
                 size="36"
-                direction="vertical"
             />
         </FlexCell>
     );
