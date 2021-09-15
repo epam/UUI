@@ -89,7 +89,7 @@ export default function TreeTableExample({
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{ role: 'treegrid' }}>
             <DataTable
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }

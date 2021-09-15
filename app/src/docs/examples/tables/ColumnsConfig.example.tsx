@@ -90,7 +90,11 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{
+            role: 'table',
+            'aria-rowcount': view.getListProps().rowsCount,
+            'aria-colcount': citiesColumns.length
+        }}>
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }

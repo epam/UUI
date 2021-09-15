@@ -117,6 +117,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             ) }
             onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
             rawProps={ {
+                role: 'columnheader',
                 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
                 ...props.eventHandlers,
             } }
