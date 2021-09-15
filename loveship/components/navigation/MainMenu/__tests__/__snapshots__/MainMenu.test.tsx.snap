@@ -4,25 +4,6 @@ exports[`MainMenu should be rendered correctly 1`] = `
 <nav
   className="root uui-mainmenu-container container"
 >
-  <div>
-    <a
-      className="container uui-anchor uui-disabled -clickable container"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="link"
-      tabIndex={0}
-    >
-      <img
-        alt="Main Menu Logo"
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
-    </a>
-  </div>
   <div
     className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
     href={null}
@@ -38,25 +19,6 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
 <nav
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
-  <div>
-    <a
-      className="container uui-anchor uui-enabled -clickable container"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="link"
-      tabIndex={0}
-    >
-      <img
-        alt="Main Menu Logo"
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
-    </a>
-  </div>
   <div
     className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
     href={null}
