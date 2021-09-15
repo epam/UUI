@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
 import { FileUploadResponse, useUuiContext } from '@epam/uui';
-import * as css from './FileUpload.example.scss';
+import * as css from './FileUpload.scss';
 
 type AttachmentType = FileUploadResponse & {
     progress?: number;
@@ -9,7 +9,7 @@ type AttachmentType = FileUploadResponse & {
 
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
-    const ORIGIN = process.env.PUBLIC_URL || process.env.REACT_APP_PUBLIC_URL || '';
+    const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
     const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
     const updateAttachment = (newFile: AttachmentType): void => {

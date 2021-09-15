@@ -20,7 +20,7 @@
     text-decoration: underline;
 }
 
-a {
+.spyLink {
     &:global(.uui-active) {
         text-decoration: underline;
     }

@@ -18,6 +18,7 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
     ] })
     .prop('info', { examples: [{ value: 'This tooltip can be helpful' }] })
     .prop('isRequired', { examples: [true] })
+    .prop('isOptional', { examples: [true] })
     .prop('validationMessage', { examples: [{ value: 'This field is mandatory', isDefault: true}]})
     .withContexts(DefaultContext, ResizableContext, FormContext, GridContext);
 

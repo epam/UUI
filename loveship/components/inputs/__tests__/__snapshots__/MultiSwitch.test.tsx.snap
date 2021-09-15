@@ -3,7 +3,7 @@
 exports[`MultiSwitch should be rendered correctly 1`] = `
 <div
   className="container root"
-  role="group"
+  role="tablist"
 >
   <div
     aria-current={true}
