@@ -231,10 +231,10 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                         type: 'burger',
                     };
 
-                    let menuItems = [appLogoItem, ...childrenItems];
+                    let menuItems = [...childrenItems];
 
-                    if (!this.props.appLogoUrl) {
-                        menuItems.shift();
+                    if (this.props.appLogoUrl) {
+                        menuItems.unshift(appLogoItem);
                     }
 
                     if (this.props.customerLogoUrl) {
