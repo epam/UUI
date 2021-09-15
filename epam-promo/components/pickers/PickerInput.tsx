@@ -107,18 +107,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     render() {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler
-            { ...props }
-            onClick={ () => this.toggleBodyOpening(!this.state.opened) }
-            onFocus={ e => {
-                if (this.state.opened) e.preventDefault();
-                else this.toggleBodyOpening(true);
-            } }
-            onBlur={ e => {
-                if (isChildFocusable(e)) e.preventDefault();
-                else this.toggleBodyOpening(false);
-            } }
-        />);
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         const maxHeight = isMobile()
             ? document.documentElement.clientHeight
@@ -141,6 +130,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         <Panel
                             shadow
                             style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
+                            rawProps={{ tabIndex: 0 }}
                             cx={ [css.panel, uuiMarkers.lockFocus] }
                         >
                             <MobileDropdownWrapper

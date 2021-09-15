@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile } from "@epam/uui";
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, isChildFocusable } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -98,12 +98,22 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    onFocus = (e: React.SyntheticEvent<HTMLElement>) => {
-        this.props.onFocus && this.props.onFocus(e);
+    onFocus = (e: React.FocusEvent<HTMLElement>) => {
+        if (this.props.onFocus) {
+            this.props.onFocus(e);
+        } else {
+            if (this.state.opened) e.preventDefault();
+            else this.toggleBodyOpening(true);
+        }
     }
 
-    onBlur = (e: React.SyntheticEvent<HTMLElement>) => {
-        this.props.onBlur && this.props.onBlur(e);
+    onBlur = (e: React.FocusEvent<HTMLElement>) => {
+        if (this.props.onBlur) {
+            this.props.onBlur && this.props.onBlur(e);
+        } else {
+            if (isChildFocusable(e)) e.preventDefault();
+            else this.toggleBodyOpening(false);
+        }
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
