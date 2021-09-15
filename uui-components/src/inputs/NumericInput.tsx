@@ -30,7 +30,6 @@ export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICa
     downIcon?: Icon;
     step?: number;
     inputCx?: CX;
-    tabIndex?: number;
 }
 
 export interface NumericInputState {
@@ -149,7 +148,6 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     readOnly={ this.props.isReadonly }
                     value={ this.state.value }
                     inputMode="numeric"
-                    tabIndex={ this.props.tabIndex == undefined ? 0 : this.props.tabIndex }
                     placeholder={ this.props.placeholder || '0' }
                     onChange={ this.handleChange }
                     min={ this.props.min || 0 }
