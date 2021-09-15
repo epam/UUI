@@ -4,10 +4,13 @@ exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
     className="container uui-table-row-container root uui-table-header-row container align-items-top"
+    role="row"
   >
     <div
+      aria-sort="none"
       className="flexCell -clickable"
       onClick={[Function]}
+      role="columnheader"
       style={
         Object {
           "alignSelf": undefined,
@@ -73,8 +76,10 @@ Array [
           className="container align-items-top"
         >
           <div
+            aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -123,8 +128,10 @@ Array [
             </div>
           </div>
           <div
+            aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -173,8 +180,10 @@ Array [
             </div>
           </div>
           <div
+            aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -233,10 +242,7 @@ Array [
     </div>
   </div>,
   <div
-    aria-colcount={4}
-    aria-rowcount={10}
     className="root size-36 background-white topShadow spacing-6 body container align-items-center"
-    role="table"
   >
     <div
       className="wrapper root shadow-dark"
@@ -289,13 +295,14 @@ Array [
               }
             >
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -331,6 +338,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -349,6 +357,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -367,6 +376,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -393,13 +403,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -435,6 +446,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -453,6 +465,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -471,6 +484,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -497,13 +511,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -539,6 +554,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -557,6 +573,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -575,6 +592,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -601,13 +619,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -643,6 +662,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -661,6 +681,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -679,6 +700,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -705,13 +727,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -747,6 +770,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -765,6 +789,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -783,6 +808,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -809,13 +835,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -851,6 +878,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -869,6 +897,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -887,6 +916,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -913,13 +943,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -955,6 +986,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -973,6 +1005,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -991,6 +1024,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1017,13 +1051,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -1059,6 +1094,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1077,6 +1113,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1095,6 +1132,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1121,13 +1159,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -1163,6 +1202,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1181,6 +1221,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1199,6 +1240,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1225,13 +1267,14 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
-                role="listitem"
+                role="row"
               >
                 <div
                   className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
                   onClick={[Function]}
+                  role="cell"
                   style={
                     Object {
                       "alignSelf": undefined,
@@ -1267,6 +1310,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1285,6 +1329,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,
@@ -1303,6 +1348,7 @@ Array [
                       <div
                         className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
                         onClick={[Function]}
+                        role="cell"
                         style={
                           Object {
                             "alignSelf": undefined,

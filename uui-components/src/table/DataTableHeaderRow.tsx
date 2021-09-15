@@ -68,6 +68,7 @@ export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowPro
                 scrollManager={ this.props.scrollManager }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
+                rawProps={{ role: 'row' }}
                 renderConfigButton={ this.props.onConfigButtonClick && this.props.renderConfigButton }
             />
         );

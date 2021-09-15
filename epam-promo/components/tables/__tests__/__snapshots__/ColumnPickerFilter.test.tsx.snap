@@ -53,7 +53,6 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
         >
           <div
             className="container3"
-            role="listbox"
             style={
               Object {
                 "marginTop": 0,
@@ -61,11 +60,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
             }
           >
             <div
-              aria-posinset={0}
+              aria-checked={false}
+              aria-posinset={1}
               aria-selected={false}
               className="pickerRow -clickable uui-focus container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -94,44 +94,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              aria-posinset={1}
-              aria-selected={false}
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-              role="listitem"
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div
-                  className="renderItem"
-                >
-                  <div
-                    className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-6 container"
-                  />
-                  <div
-                    className="flexSpacer"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
+              aria-checked={false}
               aria-posinset={2}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -160,11 +128,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={3}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -193,11 +162,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={4}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -226,11 +196,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={5}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -259,11 +230,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={6}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -292,11 +264,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={7}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -325,11 +298,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={8}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -358,11 +332,12 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={9}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -391,11 +366,46 @@ exports[`ColumnPickerFilter should be rendered correctly 1`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={10}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
+            >
+              <div
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="renderItem"
+                >
+                  <div
+                    className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-6 container"
+                  />
+                  <div
+                    className="flexSpacer"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-checked={false}
+              aria-posinset={11}
+              aria-selected={false}
+              className="pickerRow -clickable container -clickable align-items-center"
+              onClick={[Function]}
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -524,7 +534,6 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
         >
           <div
             className="container3"
-            role="listbox"
             style={
               Object {
                 "marginTop": 0,
@@ -532,11 +541,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
             }
           >
             <div
-              aria-posinset={0}
+              aria-checked={false}
+              aria-posinset={1}
               aria-selected={false}
               className="pickerRow -clickable uui-focus container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -565,44 +575,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              aria-posinset={1}
-              aria-selected={false}
-              className="pickerRow -clickable container -clickable align-items-center"
-              onClick={[Function]}
-              role="listitem"
-            >
-              <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div
-                  className="renderItem"
-                >
-                  <div
-                    className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-6 container"
-                  />
-                  <div
-                    className="flexSpacer"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
+              aria-checked={false}
               aria-posinset={2}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -631,11 +609,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={3}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -664,11 +643,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={4}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -697,11 +677,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={5}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -730,11 +711,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={6}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -763,11 +745,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={7}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -796,11 +779,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={8}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -829,11 +813,12 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={9}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -862,11 +847,46 @@ exports[`ColumnPickerFilter should be rendered correctly 2`] = `
               </div>
             </div>
             <div
+              aria-checked={false}
               aria-posinset={10}
               aria-selected={false}
               className="pickerRow -clickable container -clickable align-items-center"
               onClick={[Function]}
-              role="listitem"
+              role="option"
+            >
+              <div
+                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="renderItem"
+                >
+                  <div
+                    className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-6 container"
+                  />
+                  <div
+                    className="flexSpacer"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-checked={false}
+              aria-posinset={11}
+              aria-selected={false}
+              className="pickerRow -clickable container -clickable align-items-center"
+              onClick={[Function]}
+              role="option"
             >
               <div
                 className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
