@@ -8,14 +8,12 @@ import { getIconClass } from './helper';
 export interface TabButtonMods {
     size?: '36' | '48' | '60';
     withNotify?: boolean;
-    direction?: "vertical" | "horizontal";
 }
 
 function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
     return [
         css.root,
         css['size-' + (mods.size || '48')],
-        css['direction-' + (mods.direction || "horizontal")],
         mods.withNotify && css.uuiNotification,
         styles.tabButtonColor,
         ...getIconClass(mods),
