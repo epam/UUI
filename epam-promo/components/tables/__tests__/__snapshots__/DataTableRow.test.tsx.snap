@@ -2,7 +2,6 @@
 
 exports[`DataTableRow should be rendered correctly 1`] = `
 <div
-  aria-expanded={true}
   className="container uui-table-row-container uui-table-row root border-gray30 size-30 container align-items-top"
   role="row"
 >

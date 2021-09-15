@@ -5,6 +5,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   aria-sort="none"
   className="flexCell uui-table-header-cell cell size-36 padding-left-24"
   onClick={[Function]}
+  role="columnheader"
   style={
     Object {
       "alignSelf": undefined,
@@ -24,7 +25,6 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     >
       <div
         className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
-        role="columnheader"
       >
         Test
       </div>

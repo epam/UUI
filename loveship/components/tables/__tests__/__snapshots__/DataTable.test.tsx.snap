@@ -10,6 +10,7 @@ Array [
       aria-sort="none"
       className="flexCell -clickable"
       onClick={[Function]}
+      role="columnheader"
       style={
         Object {
           "alignSelf": undefined,
@@ -27,7 +28,6 @@ Array [
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-            role="columnheader"
           >
             ID
           </div>
@@ -79,6 +79,7 @@ Array [
             aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -96,7 +97,6 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  role="columnheader"
                 >
                   name
                 </div>
@@ -131,6 +131,7 @@ Array [
             aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -148,7 +149,6 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  role="columnheader"
                 >
                   Level
                 </div>
@@ -183,6 +183,7 @@ Array [
             aria-sort="none"
             className="flexCell -clickable"
             onClick={[Function]}
+            role="columnheader"
             style={
               Object {
                 "alignSelf": undefined,
@@ -200,7 +201,6 @@ Array [
               >
                 <div
                   className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  role="columnheader"
                 >
                   DATE
                 </div>
@@ -295,7 +295,7 @@ Array [
               }
             >
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -403,7 +403,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -511,7 +511,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -619,7 +619,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -727,7 +727,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -835,7 +835,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -943,7 +943,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -1051,7 +1051,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -1159,7 +1159,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >
@@ -1267,7 +1267,7 @@ Array [
                 </div>
               </div>
               <div
-                aria-expanded={false}
+                aria-expanded={true}
                 className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-top"
                 role="row"
               >

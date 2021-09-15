@@ -13,6 +13,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     onMouseLeave={[Function]}
     onMouseMove={[Function]}
     onMouseUp={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -45,7 +46,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       >
         <div
           className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-          role="columnheader"
         >
           ID
         </div>
@@ -105,6 +105,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -122,7 +123,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 name
               </div>
@@ -165,6 +165,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -182,7 +183,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 Level
               </div>
@@ -225,6 +225,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -242,7 +243,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 DATE
               </div>
@@ -297,6 +297,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     aria-sort="none"
     className="flexCell -clickable"
     onClick={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -314,7 +315,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
       >
         <div
           className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-          role="columnheader"
         >
           ID
         </div>
@@ -366,6 +366,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           aria-sort="ascending"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -383,7 +384,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 name
               </div>
@@ -418,6 +418,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -435,7 +436,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 Level
               </div>
@@ -470,6 +470,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -487,7 +488,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <div
                 className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                role="columnheader"
               >
                 DATE
               </div>
