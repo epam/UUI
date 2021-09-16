@@ -1,7 +1,7 @@
 import React from 'react';
 import css from "./PickerInput.scss";
 import { Modifier } from "react-popper";
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers, isChildFocusable } from '@epam/uui';
+import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout/FlexItems';
@@ -34,8 +34,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
             renderRow={ this.renderRow }
-            selectionMode={ this.props.selectionMode as any }
-            valueType={ this.props.valueType as any }
+            selectionMode={ this.props.selectionMode }
+            valueType={ this.props.valueType }
         />)
             .then(newSelection => this.handleSelectionValueChange(newSelection))
             .catch(() => null);
@@ -130,7 +130,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         <Panel
                             shadow
                             style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                            rawProps={{ tabIndex: 0 }}
+                            rawProps={{ tabIndex: -1 }}
                             cx={ [css.panel, uuiMarkers.lockFocus] }
                         >
                             <MobileDropdownWrapper
