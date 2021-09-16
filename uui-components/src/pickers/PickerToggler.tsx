@@ -50,12 +50,12 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         this.props.onValueChange && this.props.onValueChange(e.target.value);
     };
 
-    handleFocus = (e?: React.FocusEvent<HTMLDivElement>) => {
+    handleFocus = (e?: React.FocusEvent<HTMLInputElement>) => {
         this.props.onFocus && this.props.onFocus(e);
         this.updateFocus(true);
     }
 
-    handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         this.props.onBlur && this.props.onBlur(e);
         this.updateFocus(false);
     }
@@ -155,8 +155,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         return (
             <div
-                onMouseDown={ !this.props.isReadonly && !this.props.isDisabled ? this.togglerPickerOpened : null }
-                ref={ el => { this.toggleContainer = el; } }
+                ref={ el => this.toggleContainer = el }
                 className={ cx(css.container,
                     uuiElement.inputBox,
                     this.props.isDisabled && uuiMod.disabled,
@@ -185,7 +184,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                         onClick={ this.handleCrossIconClick }
                     /> }
                     { this.props.isDropdown && <IconContainer
-                        onMouseDown={ !this.props.isReadonly && !this.props.isDisabled ? (e) => {
+                        onClick={ !this.props.isReadonly && !this.props.isDisabled ? (e) => {
                             e.stopPropagation();
                             this.togglerPickerOpened();
                         } : null }

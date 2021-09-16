@@ -30,7 +30,7 @@ const initialRowsVisible = 20; /* estimated, with some reserve to allow start sc
 
 export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
     static contextType = UuiContext;
-    togglerRef= React.createRef<HTMLElement>();
+    togglerRef = React.createRef<HTMLElement>();
     context: UuiContexts;
 
     abstract toggleModalOpening(opened: boolean): void;
@@ -74,6 +74,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleBodyOpening = (opened: boolean) => {
+        if (this.state.opened === opened) return;
+
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
@@ -99,18 +101,16 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        if (this.props.onFocus) {
-            this.props.onFocus(e);
-        } else {
+        if (this.props.onFocus) this.props.onFocus(e);
+        else {
             if (this.state.opened) e.preventDefault();
             else this.toggleBodyOpening(true);
         }
     }
 
     onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        if (this.props.onBlur) {
-            this.props.onBlur && this.props.onBlur(e);
-        } else {
+        if (this.props.onBlur) this.props.onBlur(e);
+        else {
             if (isChildFocusable(e)) e.preventDefault();
             else this.toggleBodyOpening(false);
         }
@@ -193,7 +193,9 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input').focus();
+            const input = (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input');
+            const tagButton = (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector("[role='button']");
+            (input || tagButton as HTMLElement).focus();
         }
 
         handleDataSourceKeyboard({

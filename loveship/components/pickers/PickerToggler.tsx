@@ -54,12 +54,12 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any, any> 
             key={ row.rowKey }
             caption={ caption }
             color="night300"
+            rawProps={{ tabIndex: 0 }}
             size={ this.props.size ? tagSize : '30' }
             onClear={ e => {
                 row.onCheck && row.onCheck(row);
                 e.stopPropagation();
             } }
-            tabIndex={ -1 }
         />;
     }
 

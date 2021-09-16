@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './PickerModal.scss';
-import { DataRowProps, Lens} from '@epam/uui';
+import { DataRowProps, Lens, uuiMarkers } from '@epam/uui';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
@@ -20,8 +20,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                 borderBottom='none'
                 padding='24'
                 size='36'
-                renderItem={ i => <Text size='36'>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(i) }</Text>
-                }
+                renderItem={ i => <Text size='36'>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(i) }</Text>}
             />
         );
     }
@@ -50,7 +49,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         const rows = dataRows.map(props => this.renderRow(props));
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props } >
+            <ModalBlocker returnFocus={ false } blockerShadow='dark' { ...this.props } >
                 <ModalWindow width='600' height='700'>
                     <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort()  } />
                     <FlexCell cx={ css.subHeaderWrapper }>
@@ -112,7 +111,6 @@ export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TI
     lens = Lens.onState<any>(this);
 
     render() {
-
         return <PickerModalImpl
             { ...this.props }
             { ...this.lens.prop('selection').toProps() }
