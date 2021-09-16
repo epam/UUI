@@ -89,7 +89,6 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                         { ...this.lens.toProps() }
                         shadow={ false }
                         rows={ this.props.rows }
-                        role='listbox'
                         rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }
