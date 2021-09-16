@@ -109,7 +109,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
             return <input
                 readOnly
-                tabIndex={ -1 }
+                tabIndex={ 0 }
                 aria-haspopup={ true }
                 aria-expanded={ this.props.isOpen }
                 aria-required={ this.props.isRequired }
@@ -127,7 +127,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         return <input
             type='text'
-            tabIndex={ -1 }
+            tabIndex={ 0 }
             aria-haspopup={ true }
             aria-required={ this.props.isRequired }
             aria-disabled={ this.props.isDisabled }
@@ -155,8 +155,8 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         return (
             <div
                 onMouseDown={ !this.props.isDisabled && !this.props.isReadonly ? this.togglerPickerOpened : null }
-                tabIndex={ 0 }
                 ref={ el => this.toggleContainer = el }
+                tabIndex={ -1 }
                 className={ cx(css.container,
                     uuiElement.inputBox,
                     this.props.isDisabled && uuiMod.disabled,
@@ -168,8 +168,8 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     this.props.cx,
                 ) }
                 onKeyDown={ this.handleKeyDown }
-                onFocus={ !this.props.isDisabled && !this.props.isReadonly && this.props.editMode !== 'modal' && this.handleFocus }
-                onBlur={ !this.props.isDisabled && !this.props.isReadonly && this.props.editMode !== 'modal' && this.handleBlur }
+                onFocus={ !this.props.isDisabled && !this.props.isReadonly && this.props.editMode !== 'modal' ? this.handleFocus : null }
+                onBlur={ !this.props.isDisabled && !this.props.isReadonly && this.props.editMode !== 'modal' ? this.handleBlur : null }
                 { ...this.props.rawProps }
             >
                 <div className={ cx(css.body, !this.props.isSingleLine && this.props.pickerMode !== 'single' && css.multiline) }>
