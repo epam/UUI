@@ -54,13 +54,11 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     handleFocus = (e?: React.FocusEvent<HTMLInputElement>) => {
         this.props.onFocus && this.props.onFocus(e);
         this.updateFocus(true);
-        this.toggleContainer?.querySelector('input').focus();
     }
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         this.props.onBlur && this.props.onBlur(e);
         this.updateFocus(false);
-        this.toggleContainer?.querySelector('input').blur();
     }
 
     handleActive = (e: Event) => {
