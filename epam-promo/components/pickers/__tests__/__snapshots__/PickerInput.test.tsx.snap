@@ -58,7 +58,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={0}
+      tabIndex={null}
     >
       
       <div
@@ -84,7 +84,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={0}
+      tabIndex={null}
     >
       <div
         className="uui-caption"
