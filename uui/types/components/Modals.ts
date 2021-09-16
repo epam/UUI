@@ -3,9 +3,7 @@ import { IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps } from '../prop
 
 export interface ModalWindowProps extends VPanelProps {}
 
-export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {
-    returnFocus?: boolean;
-}
+export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {}
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX {
     onClose?: () => any;

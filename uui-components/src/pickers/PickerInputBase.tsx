@@ -180,6 +180,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
+            editMode: this.props.editMode
         };
     }
 
@@ -193,9 +194,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            const input = (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input');
-            const tagButton = (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector("[role='button']");
-            (input || tagButton as HTMLElement).focus();
+            (findDOMNode(this.togglerRef.current) as HTMLElement).focus();
         }
 
         handleDataSourceKeyboard({
