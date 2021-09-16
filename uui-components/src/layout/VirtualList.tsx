@@ -9,7 +9,6 @@ export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, I
     rowsCount?: number;
     focusedIndex?: number;
     onScroll?(value: CustomScrollBars.positionValues): void;
-    role?: React.HTMLAttributes<HTMLDivElement>['role'];
 }
 
 export class VirtualList extends React.Component<VirtualListProps, {}> {

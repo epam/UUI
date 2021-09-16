@@ -99,7 +99,6 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                             cx={ uuiTimePicker.input }
                             onValueChange={ () => {} }
                             isReadonly={ true }
-                            tabIndex={ -1 }
                             value={ dayjs().set(this.props.value).format('A') }
                         />
                         <IconContainer
