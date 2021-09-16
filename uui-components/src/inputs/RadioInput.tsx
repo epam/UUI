@@ -52,11 +52,15 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
                         type="radio"
-                        checked={ this.props.value }
-                        disabled={ this.props.isReadonly || this.props.isDisabled }
+                        onChange={ !this.props.isReadonly ? this.handleChange : null }
+                        disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
-                        aria-checked={ this.props.value }
-                        onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                        aria-readonly={ this.props.isReadonly }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired }
+                        checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
