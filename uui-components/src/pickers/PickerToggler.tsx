@@ -116,6 +116,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 placeholder={ placeholder }
                 className={ cx(
                     uuiElement.input,
+                    uuiMarkers.focusable,
                     this.props.selection.length === 0 && uuiElement.placeholder,
                     this.props.pickerMode === 'single' && css.singleInput,
                     css.toggler,
@@ -131,6 +132,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             aria-disabled={ this.props.isDisabled }
             aria-readonly={ this.props.isReadonly }
             className={ cx(uuiElement.input,
+                uuiMarkers.focusable,
                 this.props.pickerMode === 'single' && css.singleInput,
                 isActivePlaceholder && (!this.state.inFocus || this.props.isReadonly) && uuiElement.placeholder)
             }

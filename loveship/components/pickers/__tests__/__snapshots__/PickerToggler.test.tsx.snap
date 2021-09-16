@@ -14,7 +14,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
   >
     <input
       aria-haspopup={true}
-      className="uui-input singleInput"
+      className="uui-input -focusable singleInput"
       onChange={[Function]}
       tabIndex={0}
       type="text"
@@ -66,7 +66,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
     </div>
     <input
       aria-haspopup={true}
-      className="uui-input"
+      className="uui-input -focusable"
       onChange={[Function]}
       tabIndex={0}
       type="text"
