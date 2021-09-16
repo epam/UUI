@@ -157,7 +157,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                     onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                     scheduleUpdate={ props.scheduleUpdate }
                                     searchSize={ this.props.size }
-                                    editMode={ 'dropdown' }
+                                    editMode='dropdown'
                                 />
 
                                 { this.renderFooter() }
