@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, isChildFocusable } from "@epam/uui";
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, isChildFocusable, uuiMarkers } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -194,7 +194,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input').focus();
+            ((findDOMNode(this.togglerRef.current) as HTMLElement).querySelector(`.${uuiMarkers.focusable}`) as HTMLElement).focus();
         }
 
         handleDataSourceKeyboard({

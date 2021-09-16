@@ -14,7 +14,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
   >
     <input
       aria-haspopup={true}
-      className="uui-input singleInput"
+      className="uui-input -focusable singleInput"
       onChange={[Function]}
       placeholder="Please select "
       tabIndex={0}
