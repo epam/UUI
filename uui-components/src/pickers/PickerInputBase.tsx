@@ -194,7 +194,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            (findDOMNode(this.togglerRef.current) as HTMLElement).focus();
+            (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input').focus();
         }
 
         handleDataSourceKeyboard({
