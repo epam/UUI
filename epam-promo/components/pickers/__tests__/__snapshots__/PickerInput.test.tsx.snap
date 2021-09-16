@@ -3,7 +3,11 @@
 exports[`PickerInput should be rendered correctly 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
+  onMouseDown={[Function]}
+  tabIndex={0}
 >
   <div
     className="body"
@@ -11,11 +15,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
       placeholder="Please select "
-      tabIndex={0}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -47,7 +49,11 @@ exports[`PickerInput should be rendered correctly 1`] = `
 exports[`PickerInput should be rendered correctly 2`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
+  onBlur={false}
+  onFocus={false}
   onKeyDown={[Function]}
+  onMouseDown={[Function]}
+  tabIndex={0}
 >
   <div
     className="body multiline"
