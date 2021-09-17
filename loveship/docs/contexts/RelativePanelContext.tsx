@@ -18,27 +18,19 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, an
         return (
             <React.Fragment>
                 <FlexRow type='form'>
-                    <LabeledInput>
-                        <LabeledInput label='Name' >
-                            <TextInput value={ 'Alex' }  onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Name' >
+                        <TextInput value={ 'Alex' }  onValueChange={ null }/>
                     </LabeledInput>
-                    <LabeledInput>
-                        <LabeledInput label='Country' >
-                            <TextInput value={ 'Belarus' }  onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Country' >
+                        <TextInput value={ 'Belarus' }  onValueChange={ null }/>
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow type='form'>
-                    <LabeledInput>
-                        <LabeledInput label='Age' >
-                            <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Age' >
+                        <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
                     </LabeledInput>
-                    <LabeledInput>
-                        <LabeledInput label='Country' >
-                            <DatePicker format={ 'DD/MM/YYYY' } value={ '20/11/2042' }  onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Country' >
+                        <DatePicker format={ 'DD/MM/YYYY' } value={ '20/11/2042' }  onValueChange={ null }/>
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow type='form'>
