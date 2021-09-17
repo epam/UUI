@@ -15,13 +15,17 @@ export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, 
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
 }
 
-const DropdownMenuContainer = (props: VPanelProps) => (
-    <FocusLock as="menu" returnFocus>
+export interface IDropdownMenuContainer extends VPanelProps {
+    onClose?: (e: React.KeyboardEvent<HTMLElement>) => void;
+}
+
+const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) => (
+    <FocusLock as="menu" returnFocus lockProps={{ onKeyDown: onClose }}>
         <DropdownContainer { ...props } />
     </FocusLock>
 );
 
-export const DropdownMenuBody = withMods<VPanelProps>(
+export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
     ({ style }) => ({ style }),

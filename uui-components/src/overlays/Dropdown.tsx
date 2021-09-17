@@ -187,7 +187,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
-                    onKeyDown: this.props.keyToOpen && this.props.keyToClose ? this.handleKeyDown : undefined
+                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : undefined
                 })
             }
             </PopperTargetWrapper>
@@ -225,7 +225,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     togglerWidth: this.togglerWidth,
                     togglerHeight: this.togglerHeight,
                     scheduleUpdate: update,
-                    onKeyDown: this.handleKeyDown,
+                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : null,
                 }) }
             </div>
         );
