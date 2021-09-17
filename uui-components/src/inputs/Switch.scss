@@ -4,6 +4,10 @@
     cursor: pointer;
     position: relative;
 
+    &:focus-within {
+        outline: none;
+    }
+
     input[type="checkbox"] {
         margin: 0;
         border: none;
@@ -13,7 +17,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
 
-        &:focus, &:focus-visible {
+        &:focus {
             outline: none;
         }
     }
