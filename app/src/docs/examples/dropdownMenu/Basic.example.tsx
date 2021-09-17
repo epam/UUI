@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { uuiMod, cx } from "@epam/uui";
 import { Dropdown, Text, DropdownBodyProps } from '@epam/uui-components';
 import {
@@ -18,6 +18,8 @@ import * as icon from '@epam/assets/icons/common/action-eye-18.svg';
 const CustomItem = (props: IDropdownMenuItemProps) => {
     return (
         <div
+            role="menuitem"
+            tabIndex={ 0 }
             className={ cx(props.cx, props.isDisabled && uuiMod.disabled) }
             style={ {
                 justifyContent: "space-between",
@@ -50,6 +52,7 @@ const DropdownMenuSwitchButton = (props: any) => {
 
 export default function BasicDropdownMenuExample() {
     const [selected, setSelected] = useState(false);
+    const menuRef = useRef();
 
     const DropdownBody = ({ onClose }: DropdownBodyProps) => {
         const clickAnalyticsEvent = {
@@ -59,7 +62,7 @@ export default function BasicDropdownMenuExample() {
         };
 
         return (
-            <DropdownMenuBody onClose={ onClose } style={ { maxWidth: "250px" } } >
+            <DropdownMenuBody ref={menuRef} onClose={ onClose } style={ { maxWidth: "250px" } } >
                 <DropdownMenuButton icon={ icon } caption="Menu Item with extra link" href="https://www.epam.com/" clickAnalyticsEvent={ clickAnalyticsEvent } />
                 <DropdownMenuButton caption="Disabled Menu Item"  isDisabled={ true } />
                 <DropdownSubMenu caption="Menu Item with SubMenu">
