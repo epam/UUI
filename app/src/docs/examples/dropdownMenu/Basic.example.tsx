@@ -51,7 +51,7 @@ const DropdownMenuSwitchButton = (props: any) => {
 export default function BasicDropdownMenuExample() {
     const [selected, setSelected] = useState(false);
 
-    const DropdownBody = ({ onKeyDown: onClose }: DropdownBodyProps) => {
+    const DropdownBody = ({ onClose }: DropdownBodyProps) => {
         const clickAnalyticsEvent = {
             name: "DropdownMenu Item click",
             category: "docs",
@@ -93,7 +93,7 @@ export default function BasicDropdownMenuExample() {
     return (
         <Dropdown
             renderBody={ props => <DropdownBody { ...props } /> }
-            renderTarget={ (props) => <Button caption='Click to open' { ...props } /> }
+            renderTarget={ props => <Button caption='Click to open' { ...props } /> }
             keyToClose="Escape"
         />
     );
