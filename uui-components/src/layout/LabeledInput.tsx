@@ -22,7 +22,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
         const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
 
         return (
-            <div className={ cx(css.container, this.props.cx) } {...this.props.rawProps} >
+            <label className={ cx(css.container, this.props.cx) } { ...this.props.rawProps } >
                 <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
                     { this.props.label &&
                         <div className={ uuiElement.label }>
@@ -44,8 +44,12 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                         { this.props.children }
                     </div>
                 </div>
-                { this.props.isInvalid && <div className={ uuiElement.invalidMessage }>{ this.props.validationMessage }</div> }
-            </div>
+                { this.props.isInvalid && (
+                    <div role="alert" className={ uuiElement.invalidMessage }>
+                        { this.props.validationMessage }
+                    </div>
+                 ) }
+            </label>
         );
     }
 }

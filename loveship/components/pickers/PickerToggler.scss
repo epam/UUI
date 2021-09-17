@@ -7,23 +7,20 @@
     }
 
     :global(.uui-input) {
-        @include text-size($size - 6px);
+        @include text-size($size);
 
         @if ($size == 24px) {
-            line-height: 18px;
-            font-size: 12px;
+            padding-top: 0;
+            padding-bottom: 0;
         } @else if ($size == 30px) {
-            line-height: 18px;
-            font-size: 14px;
-        } @else if ($size == 36px) {
-            line-height: 18px;
-            font-size: 14px;
-        } @else if ($size == 42px) {
-            line-height: 24px;
-            font-size: 16px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        } @else if ($size == 36px or $size == 42px) {
+            padding-top: 6px;
+            padding-bottom: 6px;
         } @else if ($size == 48px) {
-            line-height: 24px;
-            font-size: 16px;
+            padding-top: 9px;
+            padding-bottom: 9px;
         }
     }
 

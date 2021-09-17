@@ -3,7 +3,6 @@
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container root size-18 checkbox-color-blue -clickable"
-  role="checkbox"
 >
   <div
     className="uui-checkbox"
@@ -21,7 +20,6 @@ exports[`Checkbox should be rendered correctly 1`] = `
 exports[`Checkbox should be rendered correctly 2`] = `
 <label
   className="container root size-18 checkbox-color-blue -clickable"
-  role="checkbox"
 >
   <div
     className="uui-checkbox"
