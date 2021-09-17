@@ -18,10 +18,7 @@ import * as icon from '@epam/assets/icons/common/action-eye-18.svg';
 const CustomItem = (props: IDropdownMenuItemProps) => {
     return (
         <div
-            className={ cx(
-                props.cx,
-                props.isDisabled && uuiMod.disabled,
-            ) }
+            className={ cx(props.cx, props.isDisabled && uuiMod.disabled) }
             style={ {
                 justifyContent: "space-between",
                 display: "flex",
