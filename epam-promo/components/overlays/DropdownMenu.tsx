@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
+import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
-import {  withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
+import { cx, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
-import cx from "classnames";
 
 const icons = systemIcons["36"];
 
@@ -12,14 +12,19 @@ export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, 
     isSelected?: boolean;
 }
 
+const DropdownMenuContainer = (props: VPanelProps) => (
+    <FocusLock as="menu" returnFocus>
+        <DropdownContainer { ...props } />
+    </FocusLock>
+);
+
 export const DropdownMenuBody = withMods<VPanelProps>(
-    DropdownContainer,
+    DropdownMenuContainer,
     () => [css.bodyRoot],
     (props) => ({ style: props.style }),
 );
 
 export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
-
     const context = useContext(UuiContext);
 
     const {
@@ -44,18 +49,16 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         const isIconBefore = Boolean(icon && iconPosition !== "right");
         const isIconAfter = Boolean(icon && iconPosition === "right");
 
-        const iconElement = <IconContainer icon={ icon } cx={ iconPosition === "right" ? css.iconAfter : css.iconBefore }/>;
+        const iconElement = <IconContainer icon={ icon } cx={ iconPosition === "right" ? css.iconAfter : css.iconBefore } />;
 
-        return(
+        return (
             <>
                 { isIconBefore && iconElement }
                 { <Text cx={ css.caption }>{ caption }</Text> }
-                { isIconAfter && (
-                    <>
-                        <FlexSpacer />
-                        { iconElement }
-                    </>)
-                }
+                { isIconAfter && <>
+                    <FlexSpacer />
+                    { iconElement }
+                </> }
             </>
         );
     };
@@ -69,29 +72,21 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         isSelected && uuiMod.selected,
     );
 
-    return (isAnchor ?
-                <Anchor
-                    cx={
-                        cx(
-                            css.link,
-                            itemClassNames,
-                        )
-                    }
-                    link={ link }
-                    href={ href }
-                    onClick={ handleClick }
-                    isDisabled={ isDisabled }
-                    target={ target || "_blank" }
-                >
-                    { getMenuButtonContent() }
-                </Anchor>
-                :
-                <FlexRow
-                    cx={ itemClassNames }
-                    onClick={ handleClick }
-                >
-                    { getMenuButtonContent() }
-                </FlexRow>
+    return isAnchor ? (
+        <Anchor
+            cx={ cx(css.link, itemClassNames) }
+            link={ link }
+            href={ href }
+            onClick={ handleClick }
+            isDisabled={ isDisabled }
+            target={ target || "_blank" }
+        >
+            { getMenuButtonContent() }
+        </Anchor>
+    ) : (
+        <FlexRow rawProps={{ tabIndex: isDisabled ? - 1 : 0 }} cx={ itemClassNames } onClick={ handleClick }>
+            { getMenuButtonContent() }
+        </FlexRow>
     );
 };
 
@@ -118,7 +113,6 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export const DropdownSubMenu = (props: IDropdownSubMenu) => {
-
     const menuItem = (
         <DropdownMenuButton
             cx={ cx(css.submenuRootItem) }
@@ -126,16 +120,22 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             iconPosition="right"
             { ... props }
         />
-        );
-    const dropdownBody = (<DropdownMenuBody { ...props }>{ props.children }</DropdownMenuBody>);
+    );
+
+    const dropdownBody = (
+        <DropdownMenuBody { ...props }>
+            { props.children }
+        </DropdownMenuBody>
+    );
+
     return (
-            <Dropdown
-                openOnHover={ props.openOnHover || true }
-                closeOnMouseLeave="boundary"
-                placement="right-start"
-                renderBody={ () => dropdownBody }
-                renderTarget={ () => menuItem }
-            />
+        <Dropdown
+            openOnHover={ props.openOnHover || true }
+            closeOnMouseLeave="boundary"
+            placement="right-start"
+            renderBody={ () => dropdownBody }
+            renderTarget={ () => menuItem }
+        />
     );
 };
 
@@ -159,22 +159,21 @@ export const DropdownMenuSwitchButton = (props: IDropdownMenuSwitchButton) => {
         if (isDisabled || !onValueChange) return;
         onValueChange(value);
         context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
-
     };
 
     return (
-            <FlexRow
-                cx={ cx(
-                    props.cx,
-                    css.itemRoot,
-                    isDisabled && uuiMod.disabled,
-                ) }
-                onClick={ () => onHandleValueChange(!isSelected) }
-            >
-                { icon && <IconContainer icon={ icon } cx={ css.iconBefore }/> }
-                <Text cx={ css.caption }>{ caption }</Text>
-                <FlexSpacer />
-                <Switch value={ isSelected } onValueChange={ onHandleValueChange }/>
-            </FlexRow>
+        <FlexRow
+            cx={ cx(
+                props.cx,
+                css.itemRoot,
+                isDisabled && uuiMod.disabled,
+            ) }
+            onClick={ () => onHandleValueChange(!isSelected) }
+        >
+            { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
+            <Text cx={ css.caption }>{ caption }</Text>
+            <FlexSpacer />
+            <Switch value={ isSelected } onValueChange={ onHandleValueChange } />
+        </FlexRow>
     );
 };
