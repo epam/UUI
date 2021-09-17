@@ -60,7 +60,6 @@ declare module 'get-video-id';
 declare module 'slate-uui-table-plugin';
 declare module 'markdown-draft-js';
 declare module 'react-breakpoints';
-declare module 'react-broadcast';
 declare module '@braintree/sanitize-url';
 declare module 'htmlclean';
 

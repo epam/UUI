@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as css from './Table.scss';
-import { Subscriber } from 'react-broadcast';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
+import { SelectedCells } from './Table';
 
 export class TableHeaderCell extends React.Component<any> {
-
     render() {
         const { attributes, children, node } = this.props;
 
@@ -13,8 +12,8 @@ export class TableHeaderCell extends React.Component<any> {
         }
 
         return (
-            <Subscriber channel='uui-rte-table'>
-                { (selectedCells: any) => {
+            <SelectedCells.Consumer>
+                { selectedCells => {
                     let isCellFocused = selectedCells.includes(this.props.node.nodes.toArray()[0]) && selectedCells.length > 1;
                     let cellStyles = {
                         height: node.data.get('rowSpan') ?  `${24 * node.data.get('rowSpan')}px` : null,
@@ -26,7 +25,7 @@ export class TableHeaderCell extends React.Component<any> {
                         <div className={ cx(css.resizingBorder, 'uui-richTextEditor-resize-border') } />
                     </th>;
                 } }
-            </Subscriber>
+            </SelectedCells.Consumer>
         );
     }
 }

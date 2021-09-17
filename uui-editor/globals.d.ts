@@ -19,7 +19,6 @@ declare module 'slate-drop-or-paste-images';
 declare module 'slate-html-serializer';
 declare module 'get-video-id';
 declare module 're-resizable';
-declare module 'react-broadcast';
 
 // inherited definitions, required for module build
 declare module "jsurl";

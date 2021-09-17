@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as css from './Table.scss';
 import * as ReactDOM from "react-dom";
-import { Broadcast } from 'react-broadcast';
 import { mouseCoords } from '@epam/uui';
 import { RenderBlockProps } from 'slate-react';
 import { MergeCellBar } from '../../implementation/MergeCellBar';
@@ -34,6 +33,8 @@ interface TableState {
 const MIN_CELL_WIDTH = 60;
 const DEFAULT_CELL_WIDTH = 200;
 const DEFAULT_COLUMNS = [DEFAULT_CELL_WIDTH, DEFAULT_CELL_WIDTH];
+
+export const SelectedCells = React.createContext(null);
 
 export class Table extends React.Component<RenderBlockProps, TableState> {
     state: TableState = {
@@ -289,7 +290,7 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
 
     render() {
         return <div className={ css.tableWrapper } ref={ (el) => this.tableWrapperNode = el }>
-            <Broadcast value={ this.state.selectedCells } channel='uui-rte-table'>
+            <SelectedCells.Provider value={ this.state.selectedCells }>
                 <table className={ css.table } style={ {width: `${this.getTableWidth()}px`} } ref={ (el) => this.tableNode = el }>
                     <colgroup>
                         { (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).map((size: number, index: number) => {
@@ -301,7 +302,7 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
                         { this.props.children }
                     </tbody>
                 </table>
-            </Broadcast>
+            </SelectedCells.Provider>
             <MergeCellBar editor={ this.props.editor } selectedCells={ this.state.selectedCells } clearSelection={ () => this.setState({ selectedCells: [] }) } />
             <TableBar editor={ this.props.editor } isVisible={ this.state.selectedCells.length == 1 && this.props.isFocused } />
         </div>;
