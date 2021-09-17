@@ -45,9 +45,9 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
         return (
             <div
-                tabIndex={ !this.props.isDisabled ? 0 : -1 }
                 onKeyDown={ !this.props.isDisabled ? this.handleKeyDown : undefined }
                 onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
+                tabIndex={ !this.props.isDisabled ? 0 : -1 }
                 className={ cx(
                     uuiAccordion.toggler,
                     isAccordionOpened && uuiMod.opened,

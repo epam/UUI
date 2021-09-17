@@ -171,13 +171,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -227,13 +227,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -283,13 +283,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky -clickable"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={false}
                           checked={true}
                           disabled={false}
                           onChange={[Function]}
@@ -339,13 +339,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky -clickable"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={false}
                           checked={true}
                           disabled={false}
                           onChange={[Function]}
