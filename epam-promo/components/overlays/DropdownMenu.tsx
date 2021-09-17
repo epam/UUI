@@ -7,6 +7,7 @@ import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
 
 const icons = systemIcons["36"];
+const ESCAPE = 'Escape';
 const BACK_ARROW = 'ArrowLeft';
 const FORWARD_ARROW = 'ArrowRight';
 
@@ -20,7 +21,10 @@ export interface IDropdownMenuContainer extends VPanelProps {
 }
 
 const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) => (
-    <FocusLock as="menu" returnFocus lockProps={{ onKeyDown: onClose }}>
+    <FocusLock
+        as="menu"
+        returnFocus
+        lockProps={{ onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => e.key === ESCAPE ? onClose(e) : null }}>
         <DropdownContainer { ...props } />
     </FocusLock>
 );
