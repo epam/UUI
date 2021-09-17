@@ -45,6 +45,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
                             isDisabled={ isDisabled }
                             isReadonly={ this.props.isReadonly }
                             isInvalid={ isInvalid }
+                            isRequired={ this.props.isRequired }
                             key={ i.id.toString() }
                         />,
                     )

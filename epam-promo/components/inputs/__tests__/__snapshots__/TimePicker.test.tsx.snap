@@ -44,6 +44,7 @@ exports[`TimePicker should be rendered correctly 2`] = `
   tabIndex={-1}
 >
   <input
+    aria-disabled={true}
     className="uui-input"
     disabled={true}
     onChange={[Function]}

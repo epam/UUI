@@ -10,7 +10,7 @@ exports[`ControlWrapper should rendered correctly 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={0}
+    tabIndex={null}
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -24,7 +24,7 @@ exports[`ControlWrapper should rendered correctly 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
-    tabIndex={0}
+    tabIndex={null}
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"
