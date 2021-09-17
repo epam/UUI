@@ -89,6 +89,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
+                    aria-required={ this.props.isRequired }
                     className={ cx(
                         !this.props.isDisabled && uuiMarkers.clickable,
                         (this.props.autoSize || this.props.isDisabled || this.props.isReadonly) ? css.autoSize : css.noAutoSize,

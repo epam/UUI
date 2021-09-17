@@ -1,7 +1,7 @@
 import { join } from "path";
 import { getParameters } from 'codesandbox/lib/api/define';
-import { BasicExampleServices } from "../../services";
 import { FilesRecord, getCodesandboxConfig } from "./getCodesandboxConfig";
+import { svc } from "../../services";
 
 const CodesandboxFiles: Record<string, string> = {
     'index.html': join('..', 'data', 'codesandbox', 'index.html'),
@@ -12,41 +12,38 @@ const CodesandboxFiles: Record<string, string> = {
     '.env': join('..', 'data', 'codesandbox', '.env'),
 };
 
-export type CodesandboxFilesRecord = { codesandboxFiles: Record<string, string> };
+export type CodesandboxFilesRecord = Record<string, string>
 
-export type CodesandboxContext = Partial<BasicExampleServices & {
-    uuiApp: BasicExampleServices['uuiApp'] & CodesandboxFilesRecord
-}>;
+class CodesandboxService {
+    files: CodesandboxFilesRecord;
 
-export class CodesandboxService {
-    public getFiles(context: CodesandboxContext): Promise<void> {
+    constructor() {
+        this.files = {};
+    }
+
+    public getFiles(): Promise<void> {
         return Promise.all(Object.keys(CodesandboxFiles).map(name => {
-            return context.api.getCode({ path: CodesandboxFiles[name] })
+            return svc.api.getCode({ path: CodesandboxFiles[name] })
         })).then(data => data.map(file => file.raw)).then(
             ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api, env ]) => {
-                Object.assign(context.uuiApp, {
-                    codesandboxFiles: {
-                        indexHTML,
-                        indexTSX,
-                        packageJSON,
-                        tsConfigJSON,
-                        api,
-                        env
-                    }
+                Object.assign(this.files, {
+                    indexHTML,
+                    indexTSX,
+                    packageJSON,
+                    tsConfigJSON,
+                    api,
+                    env
                 });
             }
         );
     }
 
-    public clearFiles(context: CodesandboxContext): void {
-        Object.assign(context.uuiApp, { codesandboxFiles: {} });
+    public clearFiles(): void {
+        Object.assign(this.files, {});
     }
 
-    public getCodesandboxLink(context: CodesandboxContext, code: string, stylesheets?: FilesRecord): string | null {
-        if (
-            context.uuiApp?.codesandboxFiles &&
-            Object.values(context.uuiApp.codesandboxFiles).every(value => value)
-        ) {
+    public getCodesandboxLink(code: string, stylesheets?: FilesRecord): string | null {
+        if (Object.values(this.files).every(value => value)) {
             const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
             url.searchParams.set(
                 'parameters',
@@ -54,7 +51,7 @@ export class CodesandboxService {
                     files: getCodesandboxConfig(
                         this.processCodeContent(code),
                         this.processStylesheets(stylesheets),
-                        context.uuiApp.codesandboxFiles
+                        this.files
                     ),
                 })
             );
@@ -68,13 +65,13 @@ export class CodesandboxService {
         const separator = '\n';
         const lines = code.split(separator);
         const iconFiles = lines.filter(line => line.includes(`.svg';`) || line.includes(`.svg";`));
-        const stylesheetFiles = lines.filter(line => line.includes(`.scss';`));
+        const stylesheetFiles = lines.filter(line => line.includes(`.scss';`) || line.includes(`.scss";`));
         if (iconFiles.length > 0 || stylesheetFiles.length > 0) {
             return lines.map(line => {
                 if (iconFiles.includes(line)) {
                     return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
                 } else if (stylesheetFiles.includes(line)) {
-                    return line.replace(/.scss/, '.module.scss');
+                    return line.replace(/(.example)?.scss/, '.module.scss');
                 } else return line;
             }).join(separator);
         } else return code;
@@ -90,3 +87,5 @@ export class CodesandboxService {
         return processedStylesheets;
     }
 }
+
+export const codesandboxService = new CodesandboxService();

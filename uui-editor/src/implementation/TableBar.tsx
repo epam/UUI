@@ -12,9 +12,8 @@ import * as unmergeCellsIcon from '../icons/table-un-merge.svg';
 import * as removeTable from '../icons/table-table_remove-24.svg';
 import { Editor } from 'slate-react';
 import { Popper } from 'react-popper';
-import { LayoutContext, LayoutLayer } from "@epam/uui";
+import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
 import cx from 'classnames';
-import * as PropTypes from "prop-types";
 import { ToolbarButton } from './ToolbarButton';
 
 interface TableProps {
@@ -23,16 +22,14 @@ interface TableProps {
 }
 
 export class TableBar extends React.Component<TableProps, any> {
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    public static contextType = UuiContext;
+    public context: UuiContexts;
 
     tablebar: HTMLElement;
     private layer: LayoutLayer = null;
-    public context: { uuiLayout: LayoutContext };
 
 
-    constructor(props: TableProps, context: { uuiLayout: LayoutContext }) {
+    constructor(props: TableProps, context: UuiContexts) {
         super(props);
         this.layer = context.uuiLayout && context.uuiLayout.getLayer();
     }
@@ -42,6 +39,9 @@ export class TableBar extends React.Component<TableProps, any> {
     }
 
     virtualReferenceElement() {
+        if (!this.tablebar) {
+            return;
+        }
         const toolbar: HTMLElement = ReactDOM.findDOMNode(this.tablebar) as any;
         return {
             getBoundingClientRect: () => {

@@ -79,7 +79,6 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             href={ href }
             onClick={ handleClick }
             isDisabled={ isDisabled }
-            target={ target || "_blank" }
         >
             { getMenuButtonContent() }
         </Anchor>
