@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { uuiMod, cx } from "@epam/uui";
-import { Dropdown, Text } from '@epam/uui-components';
+import { Dropdown, Text, DropdownBodyProps } from '@epam/uui-components';
 import {
     Button,
     DropdownMenuBody,
@@ -51,7 +51,7 @@ const DropdownMenuSwitchButton = (props: any) => {
 export default function BasicDropdownMenuExample() {
     const [selected, setSelected] = useState(false);
 
-    const renderDropdownBody = () => {
+    const DropdownBody = ({ onKeyDown: onClose }: DropdownBodyProps) => {
         const clickAnalyticsEvent = {
             name: "DropdownMenu Item click",
             category: "docs",
@@ -59,7 +59,7 @@ export default function BasicDropdownMenuExample() {
         };
 
         return (
-            <DropdownMenuBody style={ { maxWidth: "250px" } } >
+            <DropdownMenuBody onClose={ onClose } style={ { maxWidth: "250px" } } >
                 <DropdownMenuButton icon={ icon } caption="Menu Item with extra link" href="https://www.epam.com/" clickAnalyticsEvent={ clickAnalyticsEvent } />
                 <DropdownMenuButton caption="Disabled Menu Item"  isDisabled={ true } />
                 <DropdownSubMenu caption="Menu Item with SubMenu">
@@ -92,8 +92,9 @@ export default function BasicDropdownMenuExample() {
 
     return (
         <Dropdown
-            renderBody={ renderDropdownBody }
+            renderBody={ props => <DropdownBody { ...props } /> }
             renderTarget={ (props) => <Button caption='Click to open' { ...props } /> }
+            keyToClose="Escape"
         />
     );
 }
