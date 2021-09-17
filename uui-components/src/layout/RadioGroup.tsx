@@ -28,7 +28,7 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
         const direction = this.props.direction || 'vertical';
 
         return (
-            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) }  {...this.props.rawProps}>
+            <fieldset aria-required={ this.props.isRequired } className={ cx(directionMode[direction], this.props.cx, css.container) }  {...this.props.rawProps}>
                 {
                     RadioInput && this.props.items.map(i =>
                         <RadioInput

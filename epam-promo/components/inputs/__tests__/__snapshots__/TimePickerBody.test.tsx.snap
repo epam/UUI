@@ -168,6 +168,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       tabIndex={-1}
     >
       <input
+        aria-readonly={true}
         className="uui-input"
         onChange={[Function]}
         onKeyDown={[Function]}
@@ -364,6 +365,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
       tabIndex={-1}
     >
       <input
+        aria-readonly={true}
         className="uui-input"
         onChange={[Function]}
         onKeyDown={[Function]}
