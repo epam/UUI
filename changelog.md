@@ -1,9 +1,29 @@
-# 4.2.2[WIP]
+# 4.2.3 - 17.09.2021
+
+**What’s Fixed**
+* [Table]: fix row checkbox selection if row is link
+
+# 4.2.2 - 17.09.2021
 
 **What's New**
 * [ProgressBar]: implemented a new component to make possibility display a determinate progress bar with different sizes striped animation
 * [IndeterminateBar]: implemented a new component to make possibility display indeterminate progress with different sizes.
 * [IndicatorBar]: implemented a new component to use as the top indicator of page loading. Has a fixed size and can be determinate or indeterminate.
+
+**What’s Fixed**
+* [PickerInput]: fix size of PickerToggler in size-24 loveship skin
+* [MainMenu]: Do not render logo if url is not provided
+* [DatePicker]: fix validation date onBlur
+* [DatePicker]: fix calling onValueChange 2 times on date selection
+* [DropdownMenu]: fix 'style' prop from DropdownMenuContainer
+* [MainMenuSearch]: fix 'cx' prop
+* [RadioInput]: fix applying border color for invalid RadionInput in promo skin
+* [Table]: fix row checkbox selection if row is link
+* [CheckBox]: fix invalid style
+* [DropdownMenuButton]: remove default value for target prop
+* [Dropdown]: fix onClose handler if you manage dropdown state by yourself
+* [Modals]: fix modal blocker container adjustment on mobile view
+
 
 # 4.2.1 - 31.08.2021
 
