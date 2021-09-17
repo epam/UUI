@@ -35,7 +35,7 @@
     &:global(.uui-selected) {
         @include fillColor($blue);
 
-        &:hover {
+        &:hover, &:focus {
             @include fillColor($blue!important);
         }
 
@@ -50,6 +50,10 @@
     line-height: 1.5;
     box-sizing: border-box;
     width: 100%;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .bodyRoot {
@@ -103,9 +107,8 @@
         align-items: center;
     }
 
-
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover {
+        &:hover, &:focus {
             background-color: $gray30;
             fill: $gray80;
             cursor: pointer;
@@ -115,14 +118,13 @@
     &:global(.uui-disabled) {
         @include fillColor($gray50);
 
-        &:hover {
+        &:hover, &:focus {
             background-color: transparent;
             cursor: default;
         }
     }
 
-    &>*:not(:last-child) {
+    & > *:not(:last-child) {
         margin: 0 0.5em 0 0;
     }
-
 }
