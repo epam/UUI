@@ -26,6 +26,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
+                { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
                     <input
@@ -40,6 +41,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired }
+                        tabIndex={ this.props?.rawProps?.tabIndex || 0 }
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
