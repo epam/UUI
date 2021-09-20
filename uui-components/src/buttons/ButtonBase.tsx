@@ -1,7 +1,19 @@
 import * as React from 'react';
-import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext } from '@epam/uui';
+import {
+    cx,
+    ButtonBaseCoreProps,
+    UuiContexts,
+    isClickableChildClicked,
+    uuiMod,
+    uuiElement,
+    uuiMarkers,
+    UuiContext,
+    isChildHasClass,
+} from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps {}
+
+export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
 export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
     static contextType = UuiContext;
@@ -30,7 +42,11 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             }
 
             this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
-        } else {
+        } else if (
+            // NOTE: this condition it necessary here because native input elements (checkbox and radio) do not work correctly inside link
+            // https://github.com/facebook/react/issues/9023
+            !(isChildHasClass(e.target, e.currentTarget, uuiInputElements))
+        ) {
             e.preventDefault();
         }
     }
