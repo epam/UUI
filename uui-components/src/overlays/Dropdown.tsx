@@ -17,7 +17,7 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
-    onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
+    onKeyDown?(e?: KeyboardEvent): void;
 }
 
 export type DropdownPlacement = Placement;
@@ -72,6 +72,9 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
         if (this.props.openOnHover && !this.props.openOnClick) {
             this.targetNode?.addEventListener('mouseenter', this.handleMouseEnter);
+        }
+        if (this.props.keyToOpen && this.props.keyToClose) {
+            this.targetNode?.addEventListener('keydown', this.handleKeyDown)
         }
         if (this.props.closeOnMouseLeave === 'toggler') {
             this.targetNode?.addEventListener('mouseleave', this.handleMouseLeave);
@@ -132,7 +135,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.handleOpenedChange(false);
     }
 
-    handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === this.props.keyToOpen) this.handleKeyOpen();
         else if (e.key === this.props.keyToClose) this.handleKeyClose();
     }
@@ -187,7 +190,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
-                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : undefined
+                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : undefined,
                 })
             }
             </PopperTargetWrapper>
