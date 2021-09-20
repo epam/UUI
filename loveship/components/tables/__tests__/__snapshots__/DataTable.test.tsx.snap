@@ -31,7 +31,7 @@ Array [
           >
             ID
           </div>
-          <div
+          <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
@@ -54,7 +54,7 @@ Array [
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@ Array [
                 >
                   name
                 </div>
-                <div
+                <button
                   className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
@@ -123,7 +123,7 @@ Array [
                       />
                     </svg>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -152,7 +152,7 @@ Array [
                 >
                   Level
                 </div>
-                <div
+                <button
                   className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
@@ -175,7 +175,7 @@ Array [
                       />
                     </svg>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@ Array [
                 >
                   DATE
                 </div>
-                <div
+                <button
                   className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                   href={null}
                   onClick={[Function]}
@@ -227,7 +227,7 @@ Array [
                       />
                     </svg>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
           </div>

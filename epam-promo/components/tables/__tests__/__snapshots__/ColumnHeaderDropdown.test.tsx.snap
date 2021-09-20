@@ -2,7 +2,7 @@
 
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
-  <div
+  <button
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
@@ -30,7 +30,7 @@ Array [
         />
       </svg>
     </div>
-  </div>,
+  </button>,
   <div
     aria-expanded={true}
     aria-hidden={false}
@@ -71,7 +71,7 @@ Array [
           className="root size-36 background-none spacing-6 container -clickable align-items-center"
           onClick={[Function]}
         >
-          <div
+          <button
             className="root icon-color-blue uui-button-box uui-enabled"
             href={null}
             onClick={[Function]}
@@ -94,7 +94,7 @@ Array [
                 />
               </svg>
             </div>
-          </div>
+          </button>
           <div
             className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
           >
@@ -105,7 +105,7 @@ Array [
           className="root size-36 background-none spacing-6 container -clickable align-items-center"
           onClick={[Function]}
         >
-          <div
+          <button
             className="root icon-color-gray60 uui-button-box uui-enabled"
             href={null}
             onClick={[Function]}
@@ -128,7 +128,7 @@ Array [
                 />
               </svg>
             </div>
-          </div>
+          </button>
           <div
             className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
           >

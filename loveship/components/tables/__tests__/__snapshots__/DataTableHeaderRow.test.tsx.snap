@@ -48,7 +48,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         >
           ID
         </div>
-        <div
+        <button
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
@@ -71,7 +71,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
     <div
@@ -125,7 +125,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 name
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -148,7 +148,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -185,7 +185,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 Level
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -208,7 +208,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -245,7 +245,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 DATE
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -268,7 +268,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -317,7 +317,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         >
           ID
         </div>
-        <div
+        <button
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
@@ -340,7 +340,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -386,7 +386,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 name
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -409,7 +409,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -438,7 +438,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 Level
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -461,7 +461,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -490,7 +490,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 DATE
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
@@ -513,7 +513,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>

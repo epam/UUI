@@ -4,7 +4,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 <div
   className="root"
 >
-  <div
+  <button
     className="container uui-button-box uui-disabled -clickable root size-24 color-night400 fill-solid style-square fill-solid size-24"
     href={null}
     onClick={[Function]}
@@ -27,8 +27,8 @@ exports[`Paginator should be rendered correctly 1`] = `
         />
       </svg>
     </div>
-  </div>
-  <div
+  </button>
+  <button
     aria-current={true}
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-white style-square fill-white size-24"
     href={null}
@@ -42,8 +42,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       1
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -56,8 +56,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       2
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -70,8 +70,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       3
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -84,8 +84,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       4
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -98,8 +98,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       5
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -112,8 +112,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       ...
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
     href={null}
     onClick={[Function]}
@@ -126,8 +126,8 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       10
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled -clickable root size-24 color-night400 fill-white style-square fill-white size-24"
     href={null}
     onClick={[Function]}
@@ -150,6 +150,6 @@ exports[`Paginator should be rendered correctly 1`] = `
         />
       </svg>
     </div>
-  </div>
+  </button>
 </div>
 `;

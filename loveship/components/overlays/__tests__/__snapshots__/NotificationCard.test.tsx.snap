@@ -4,7 +4,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper clearButton"
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
     href={null}
     onClick={[Function]}
@@ -17,7 +17,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     >
       CLOSE ALL NOTIFICATIONS
     </div>
-  </div>
+  </button>
 </div>
 `;
 
@@ -50,7 +50,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -73,7 +73,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -107,7 +107,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -130,7 +130,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -164,7 +164,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -187,7 +187,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -221,7 +221,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -244,7 +244,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -278,7 +278,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -301,7 +301,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -335,7 +335,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
+    <button
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
@@ -358,7 +358,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;

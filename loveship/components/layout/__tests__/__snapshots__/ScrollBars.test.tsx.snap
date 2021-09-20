@@ -39,7 +39,7 @@ exports[`ScrollBars should render with default props 1`] = `
       }
     }
   >
-    <div
+    <button
       className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
       href={null}
       onClick={[Function]}
