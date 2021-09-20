@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useContext, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
 import {  IDropdownToggler, cx, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
@@ -7,63 +7,56 @@ import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
 
 const icons = systemIcons["36"];
-const ESCAPE = 'Escape';
-const BACK_ARROW = 'ArrowLeft';
-const FORWARD_ARROW = 'ArrowRight';
-const UP_ARROW = 'ArrowUp';
-const DOWN_ARROW = 'ArrowDown';
-
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable {
     isSelected?: boolean;
-    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 export interface IDropdownMenuContainer extends VPanelProps {
     onClose?: (e: React.KeyboardEvent<HTMLElement>) => void;
 }
 
-const useArrowKeysNav = <T extends HTMLElement>(ref: React.RefObject<T>): void => {
-    const [menuItems, setMenuItems] = useState<HTMLElement[]>([]);
+export enum IDropdownControlKeys {
+    ESCAPE = 'Escape',
+    BACK_ARROW = 'ArrowLeft',
+    FORWARD_ARROW = 'ArrowRight',
+    UP_ARROW = 'ArrowUp',
+    DOWN_ARROW = 'ArrowDown',
+};
+
+const DropdownMenuContainer = forwardRef<HTMLMenuElement, IDropdownMenuContainer>(({ onClose, ...props }) => {
+    const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
 
     const handleArrowKeys = (e: KeyboardEvent) => {
-        if (!ref.current || menuItems.length === 0) return;
-        if (![UP_ARROW, DOWN_ARROW].includes(e.key)) return;
+        const menuItems: HTMLElement[] = Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`));
 
-        if (e.key === UP_ARROW) {
-            e.preventDefault();
+        if (e.key === IDropdownControlKeys.UP_ARROW) {
             const nextFocusedIndex = currentlyFocused - 1;
             if (nextFocusedIndex < 0) return;
             setFocused(nextFocusedIndex);
             menuItems[nextFocusedIndex].focus();
-        } else if (e.key === DOWN_ARROW) {
-            e.preventDefault();
+        } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             const nextFocusedIndex = currentlyFocused + 1;
             if (nextFocusedIndex >= menuItems.length) return;
             setFocused(nextFocusedIndex);
             menuItems[nextFocusedIndex].focus();
-        }
+        };
     };
 
-    useEffect(() => {
-        if (!ref.current) return;
-        setMenuItems(Array.from(ref.current?.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)));
-        ref.current?.addEventListener('keydown', handleArrowKeys);
-        return () => ref.current?.removeEventListener('keydown', handleArrowKeys);
-    }, [ref.current, currentlyFocused]);
-}
-
-const DropdownMenuContainer = forwardRef(({ onClose, ...props }: IDropdownMenuContainer, ref: any) => {
-    const menuRef = useRef(ref);
-    useArrowKeysNav<HTMLMenuElement>(menuRef);
+    const handleMenuClose = (e: React.KeyboardEvent<HTMLMenuElement>) => {
+        if (e.key === IDropdownControlKeys.ESCAPE && onClose) {
+            onClose(e)
+        };
+    };
 
     return (
         <FocusLock
             as="menu"
             className={ css.menuRoot }
             returnFocus
-            ref={menuRef}
-            lockProps={{ onKeyDown: (e: React.KeyboardEvent<HTMLMenuElement>) => e.key === ESCAPE ? onClose(e) : null }}>
+            ref={ menuRef }
+            lockProps={{ onKeyDown: handleMenuClose, onKeyUp: handleArrowKeys }}>
             <DropdownContainer { ...props } />
         </FocusLock>
     )
@@ -125,7 +118,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             cx={ cx(css.link, itemClassNames) }
             link={ link }
             href={ href }
-            rawProps={{ role: 'menuitem', tabIndex: 0 }}
+            rawProps={{ role: 'menuitem', tabIndex: -1 }}
             onClick={ handleClick }
             isDisabled={ isDisabled }
         >
@@ -134,7 +127,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
     ) : (
         <FlexRow
             rawProps={{
-                tabIndex: !isDisabled ? 0 : -1,
+                tabIndex: -1,
                 role: 'menuitem',
                 onKeyDown: isDisabled ? null : e => onKeyDown && onKeyDown(e)
             }}
@@ -167,9 +160,6 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export const DropdownSubMenu = (props: IDropdownSubMenu) => {
-    const subMenuRef = useRef();
-    useArrowKeysNav(subMenuRef);
-
     const MenuItem = ({ onKeyDown }: IDropdownToggler) => (
         <DropdownMenuButton
             cx={ cx(css.submenuRootItem) }
@@ -181,7 +171,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
     );
 
     const DropdownBody = ({ onKeyDown }: DropdownBodyProps) => (
-        <DropdownMenuBody ref={subMenuRef} { ...props }>
+        <DropdownMenuBody { ...props }>
             { React.Children.map(props.children, child => React.cloneElement(
                 child, child.type.name === DropdownMenuButton.displayName ? { onKeyDown } : {})
             ) }
@@ -194,8 +184,8 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             placement="right-start"
             renderBody={ props => <DropdownBody { ...props } /> }
             renderTarget={ props => <MenuItem { ...props } /> }
-            keyToOpen={ FORWARD_ARROW }
-            keyToClose={ BACK_ARROW }
+            keyToOpen={ IDropdownControlKeys.FORWARD_ARROW }
+            keyToClose={ IDropdownControlKeys.BACK_ARROW }
         />
     );
 };
@@ -226,12 +216,12 @@ export const DropdownMenuSwitchButton = (props: IDropdownMenuSwitchButton) => {
         <FlexRow
             cx={ cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled) }
             onClick={ () => onHandleValueChange(!isSelected) }
-            rawProps={{ tabIndex: 0, role: 'menuitem' }}
+            rawProps={{ tabIndex: -1, role: 'menuitem' }}
         >
             { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
             <Text cx={ css.caption }>{ caption }</Text>
             <FlexSpacer />
-            <Switch value={ isSelected } onValueChange={ onHandleValueChange } />
+            <Switch rawProps={{ tabIndex: -1 }} value={ isSelected } onValueChange={ onHandleValueChange } />
         </FlexRow>
     );
 };
