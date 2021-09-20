@@ -33,10 +33,12 @@ Array [
     tabIndex={1}
   />,
   <menu
+    className="menuRoot"
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
+    onKeyUp={[Function]}
   >
     <div
       className="container uui-dropdown-body bodyRoot container"
@@ -53,7 +55,7 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <div
           className="caption container"
@@ -82,7 +84,7 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <div
           className="caption container"
