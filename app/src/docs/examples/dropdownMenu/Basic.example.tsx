@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { uuiMod, cx } from "@epam/uui";
 import { Dropdown, Text, DropdownBodyProps } from '@epam/uui-components';
 import {
@@ -52,7 +52,6 @@ const DropdownMenuSwitchButton = (props: any) => {
 
 export default function BasicDropdownMenuExample() {
     const [selected, setSelected] = useState(false);
-    const menuRef = useRef();
 
     const DropdownBody = ({ onClose }: DropdownBodyProps) => {
         const clickAnalyticsEvent = {
@@ -62,7 +61,7 @@ export default function BasicDropdownMenuExample() {
         };
 
         return (
-            <DropdownMenuBody ref={menuRef} onClose={ onClose } style={ { maxWidth: "250px" } } >
+            <DropdownMenuBody onClose={ onClose } style={ { maxWidth: "250px" } } >
                 <DropdownMenuButton icon={ icon } caption="Menu Item with extra link" href="https://www.epam.com/" clickAnalyticsEvent={ clickAnalyticsEvent } />
                 <DropdownMenuButton caption="Disabled Menu Item" isDisabled={ true } />
                 <DropdownSubMenu caption="Menu Item with SubMenu">

@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
 import {  IDropdownToggler, cx, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
@@ -24,12 +24,17 @@ export enum IDropdownControlKeys {
     DOWN_ARROW = 'ArrowDown',
 };
 
-const DropdownMenuContainer = forwardRef<HTMLMenuElement, IDropdownMenuContainer>(({ onClose, ...props }) => {
+const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
 
     const handleArrowKeys = (e: KeyboardEvent) => {
         const menuItems: HTMLElement[] = Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`));
+
+        if (menuItems.length > 0 && currentlyFocused === 0 && document.activeElement !== menuItems[currentlyFocused]) {
+            menuItems[currentlyFocused].focus();
+            return;
+        }
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
             const nextFocusedIndex = currentlyFocused - 1;
@@ -46,7 +51,7 @@ const DropdownMenuContainer = forwardRef<HTMLMenuElement, IDropdownMenuContainer
 
     const handleMenuClose = (e: React.KeyboardEvent<HTMLMenuElement>) => {
         if (e.key === IDropdownControlKeys.ESCAPE && onClose) {
-            onClose(e)
+            onClose(e);
         };
     };
 
@@ -60,7 +65,7 @@ const DropdownMenuContainer = forwardRef<HTMLMenuElement, IDropdownMenuContainer
             <DropdownContainer { ...props } />
         </FocusLock>
     )
-});
+};
 
 export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     DropdownMenuContainer,
@@ -160,12 +165,11 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export const DropdownSubMenu = (props: IDropdownSubMenu) => {
-    const MenuItem = ({ onKeyDown }: IDropdownToggler) => (
+    const MenuItem = (
         <DropdownMenuButton
             cx={ cx(css.submenuRootItem) }
             icon={ icons.foldingArrow }
             iconPosition="right"
-            onKeyDown={ onKeyDown }
             { ...props }
         />
     );
@@ -183,7 +187,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             openOnHover={ props.openOnHover || true }
             placement="right-start"
             renderBody={ props => <DropdownBody { ...props } /> }
-            renderTarget={ props => <MenuItem { ...props } /> }
+            renderTarget={ () => MenuItem }
             keyToOpen={ IDropdownControlKeys.FORWARD_ARROW }
             keyToClose={ IDropdownControlKeys.BACK_ARROW }
         />
