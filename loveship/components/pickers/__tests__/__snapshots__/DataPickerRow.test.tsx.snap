@@ -64,7 +64,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
       <div
         className="iconWrapper"
       >
-        <div
+        <button
           className="root color-sky uui-button-box uui-enabled"
           href={null}
           onClick={[Function]}
@@ -87,7 +87,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

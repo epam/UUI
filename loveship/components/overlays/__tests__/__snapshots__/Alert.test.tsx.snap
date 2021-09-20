@@ -46,7 +46,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
       <div
         className="actionWrapper"
       >
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-24 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLink"
           href={null}
           onClick={[Function]}
@@ -59,11 +59,11 @@ exports[`Alert should be rendered correctly with props 1`] = `
           >
             test
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
-  <div
+  <button
     className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
     href={null}
     onClick={[Function]}
@@ -86,6 +86,6 @@ exports[`Alert should be rendered correctly with props 1`] = `
         />
       </svg>
     </div>
-  </div>
+  </button>
 </div>
 `;

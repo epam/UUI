@@ -66,7 +66,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       <div
         className="iconWrapper"
       >
-        <div
+        <button
           className="root icon-color-blue uui-button-box uui-enabled"
           href={null}
           onClick={[Function]}
@@ -89,7 +89,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

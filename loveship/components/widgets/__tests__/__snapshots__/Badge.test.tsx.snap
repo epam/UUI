@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Badge should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root font-sans style-square size-18 fill-solid color-sky root"
   href={null}
   onClick={[Function]}
@@ -12,7 +12,7 @@ exports[`Badge should be rendered correctly 1`] = `
 `;
 
 exports[`Badge should be rendered correctly with props 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root font-sans style-square size-12 fill-light color-sky root"
   href={null}
   onClick={[Function]}
@@ -62,5 +62,5 @@ exports[`Badge should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;

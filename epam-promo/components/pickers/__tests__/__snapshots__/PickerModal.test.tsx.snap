@@ -78,7 +78,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             }
           }
         >
-          <div
+          <button
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
@@ -101,7 +101,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -640,7 +640,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
@@ -653,8 +653,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             Cancel
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
@@ -667,7 +667,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             Select
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -767,7 +767,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
             }
           }
         >
-          <div
+          <button
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
@@ -790,7 +790,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -1603,7 +1603,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
       >
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
@@ -1616,11 +1616,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             SELECT ALL
           </div>
-        </div>
+        </button>
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
@@ -1633,8 +1633,8 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             Cancel
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
@@ -1647,7 +1647,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             Select
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

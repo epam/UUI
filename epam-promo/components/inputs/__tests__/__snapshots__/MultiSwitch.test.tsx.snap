@@ -5,7 +5,7 @@ exports[`should be rendered correctly 1`] = `
   className="container root"
   role="tablist"
 >
-  <div
+  <button
     aria-current={true}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
@@ -19,8 +19,8 @@ exports[`should be rendered correctly 1`] = `
     >
       On
     </div>
-  </div>
-  <div
+  </button>
+  <button
     aria-current={false}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
     href={null}
@@ -34,6 +34,6 @@ exports[`should be rendered correctly 1`] = `
     >
       Off
     </div>
-  </div>
+  </button>
 </div>
 `;

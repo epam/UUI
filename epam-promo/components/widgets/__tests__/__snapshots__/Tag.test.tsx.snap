@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root tag-color size-36 root"
   href={null}
   onClick={[Function]}
@@ -12,7 +12,7 @@ exports[`Tag should be rendered correctly 1`] = `
 `;
 
 exports[`Tag should be rendered correctly with props 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root tag-color size-36 root"
   href={null}
   onClick={[Function]}
@@ -62,5 +62,5 @@ exports[`Tag should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;

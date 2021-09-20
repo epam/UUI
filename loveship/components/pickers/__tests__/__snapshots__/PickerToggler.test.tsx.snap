@@ -39,7 +39,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
   <div
     className="body multiline"
   >
-    <div
+    <button
       className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
@@ -63,7 +63,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
     <input
       aria-haspopup="listbox"
       aria-multiselectable={true}

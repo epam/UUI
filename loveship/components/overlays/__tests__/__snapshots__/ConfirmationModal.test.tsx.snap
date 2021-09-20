@@ -78,7 +78,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             }
           }
         >
-          <div
+          <button
             className="root color-night600 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
@@ -101,7 +101,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -182,7 +182,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-night400 fill-solid style-square"
           href={null}
           onClick={[Function]}
@@ -195,8 +195,8 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           >
             Discard
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
           href={null}
           onClick={[Function]}
@@ -209,7 +209,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           >
             Save
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -309,7 +309,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
             }
           }
         >
-          <div
+          <button
             className="root color-night600 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
@@ -332,7 +332,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -421,7 +421,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
           href={null}
           onClick={[Function]}
@@ -434,7 +434,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           >
             Save
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

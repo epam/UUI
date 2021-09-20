@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag should render with all new props 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root font-sans-semibold size-24 fill-white color-sky root"
   href={null}
   onClick={[Function]}
@@ -51,11 +51,11 @@ exports[`Tag should render with all new props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;
 
 exports[`Tag should render with default props 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-sky root"
   href={null}
   onClick={[Function]}

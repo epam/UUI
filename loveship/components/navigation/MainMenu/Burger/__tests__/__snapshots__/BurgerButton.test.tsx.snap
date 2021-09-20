@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BurgerButton should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root button-primary indent-0"
   href={null}
   onClick={[Function]}

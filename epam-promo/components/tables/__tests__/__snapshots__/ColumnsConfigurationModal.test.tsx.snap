@@ -86,7 +86,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             }
           >
-            <div
+            <button
               className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
               href={null}
               onClick={[Function]}
@@ -109,7 +109,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
         <div
@@ -304,7 +304,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         <div
           className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
         >
-          <div
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
@@ -317,11 +317,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Reset to Default
             </div>
-          </div>
+          </button>
           <div
             className="flexSpacer"
           />
-          <div
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLinkButton"
             href={null}
             onClick={[Function]}
@@ -334,8 +334,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               CHECK ALL
             </div>
-          </div>
-          <div
+          </button>
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLinkButton"
             href={null}
             onClick={[Function]}
@@ -348,8 +348,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               UNCHECK ALL
             </div>
-          </div>
-          <div
+          </button>
+          <button
             className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid actionButton"
             href={null}
             onClick={[Function]}
@@ -362,7 +362,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Apply
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
