@@ -1,4 +1,4 @@
-# 4.2.3 - 17.09.2021
+# 4.2.4 - 17.09.2021
 
 **What’s Fixed**
 * [Table]: fix row checkbox selection if row is link
