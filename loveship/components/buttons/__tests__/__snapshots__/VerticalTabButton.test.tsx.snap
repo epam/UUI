@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabButton should be rendered correctly 1`] = `
+exports[`VerticalTabButton should be rendered correctly 1`] = `
 <div
-  className="container uui-button-box uui-enabled root size-48 tabButtonColor uui-no-left-icon uui-no-right-icon"
+  className="container uui-button-box uui-enabled root size-48 theme-light uui-no-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -11,9 +11,9 @@ exports[`TabButton should be rendered correctly 1`] = `
 />
 `;
 
-exports[`TabButton should be rendered correctly with props 1`] = `
+exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <div
-  className="container uui-button-box uui-enabled -clickable root size-48 tabButtonColor uui-has-left-icon uui-no-right-icon"
+  className="container uui-button-box uui-enabled -clickable root size-48 theme-light uui-has-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
@@ -31,7 +31,7 @@ exports[`TabButton should be rendered correctly with props 1`] = `
       width={12}
     >
       <use
-        xlinkHref="#calendar-18.svg"
+        xlinkHref="#accept-12.svg"
       />
     </svg>
   </div>
