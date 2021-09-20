@@ -85,7 +85,7 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             href = this.props.href;
         }
 
-        return React.createElement(isAnchor ? 'a' : 'div', {
+        return React.createElement(isAnchor ? 'a' : 'button', {
             className: cx(
                 this.getClassName(),
                 uuiElement.buttonBox,

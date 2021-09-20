@@ -1,7 +1,7 @@
 import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasRawProps } from "../props";
 import { Icon } from "../objects";
 
-export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasRawProps<HTMLDivElement> {
+export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasRawProps<HTMLElement> {
     isLinkActive?: boolean;
     tabIndex?: number;
 }
