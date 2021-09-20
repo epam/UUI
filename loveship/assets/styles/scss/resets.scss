@@ -1,7 +1,15 @@
 @mixin button-reset() {
     text-decoration: none;
     outline: none;
+    border: none;
+    background: none;
     box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    align-items: unset;
+    padding: unset;
+    justify-content: unset;
     overflow: hidden;
 
     &:hover {
