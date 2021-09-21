@@ -11,7 +11,26 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI has full integration with Create-React-App build toolchain, so we strongly recommended to use it in project which was created via CRA. Otherwise you can face issues with importing styles or icons.",
+            "text": "UUI has full integration with Create-React-App build toolchain, so we strongly recommended to use it in project which was created via ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://create-react-app.dev/"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Create React App",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". Otherwise you can face issues with importing styles or icons.",
             "marks": []
           }
         ]

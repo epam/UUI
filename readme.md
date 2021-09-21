@@ -50,13 +50,14 @@ yarn create react-app my-app --template @epam/uui
 
 | Project | Status | Description |
 |---------|--------|-------------|
-| [@epam/uui-build](https://github.com/epam/UUI/tree/main/uui-build)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-build.svg)](https://www.npmjs.com/package/@epam%2Fuui-build) | Used internally to build UUI mono-repo |
-| [@epam/uui-components](https://github.com/epam/UUI/tree/main/uui-components)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-components.svg)](https://www.npmjs.com/package/@epam%2Fuui-components) | Set of healess core components |
-| [@epam/uui-db](https://github.com/epam/UUI/tree/main/uui-db)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-db.svg)](https://www.npmjs.com/package/@epam%2Fuui-db) | State-manager, allow to manage UI operations asynchronously. |
-| [@epam/uui-docs](https://github.com/epam/UUI/tree/main/uui-docs)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-docs.svg)](https://www.npmjs.com/package/@epam%2Fuui-docs) | [Slate.js](https://www.slatejs.org/)-based Rich Text Editor |
-| [@epam/uui-editor](https://github.com/epam/UUI/tree/main/uui-editor)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-editor.svg)](https://www.npmjs.com/package/@epam%2Fuui-editor) | Set of helpers to document UUI libraries. |
-| [@epam/uui-timeline](https://github.com/epam/UUI/tree/main/uui-timeline)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-timeline.svg)](https://www.npmjs.com/package/@epam%2Fuui-timeline) | UUI Timeline provides facilities to build a Ghant-chart like interfaces. |
 | [@epam/uui](https://github.com/epam/UUI/tree/main/uui)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui.svg)](https://www.npmjs.com/package/@epam%2Fuui) | Contains a core parts of the UUI library |
+| [@epam/uui-components](https://github.com/epam/UUI/tree/main/uui-components)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-components.svg)](https://www.npmjs.com/package/@epam%2Fuui-components) | Set of headless core components |
+| [@epam/loveship](https://github.com/epam/UUI/tree/main/loveship)          | [![npm version](https://badge.fury.io/js/@epam%2Floveship.svg)](https://www.npmjs.com/package/@epam%2Floveship) | styled set of components in UUI3 (Loveship) style |
+| [@epam/promo](https://github.com/epam/UUI/tree/main/epam-promo)          | [![npm version](https://badge.fury.io/js/@epam%2Fpromo.svg)](https://www.npmjs.com/package/@epam%2Fpromo) | styled set of components in UUI4 (Promo) style |
+| [@epam/assets](https://github.com/epam/UUI/tree/main/epam-assets)          | [![npm version](https://badge.fury.io/js/@epam%2Fassets.svg)](https://www.npmjs.com/package/@epam%2Fassets) |  contains icons set, fonts, scss/less global variables and common mixins |
+| [@epam/uui-editor](https://github.com/epam/UUI/tree/main/uui-editor)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-editor.svg)](https://www.npmjs.com/package/@epam%2Fuui-editor) | [Slate.js](https://www.slatejs.org/)-based Rich Text Editor |
+| [@epam/uui-db](https://github.com/epam/UUI/tree/main/uui-db)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-db.svg)](https://www.npmjs.com/package/@epam%2Fuui-db) | State-manager, allow to manage UI operations asynchronously. |
+| [@epam/uui-timeline](https://github.com/epam/UUI/tree/main/uui-timeline)          | [![npm version](https://badge.fury.io/js/@epam%2Fuui-timeline.svg)](https://www.npmjs.com/package/@epam%2Fuui-timeline) | UUI Timeline provides facilities to build a Ghant-chart like interfaces. |
 
 
 ## Development
@@ -69,7 +70,7 @@ To start locally.
 git clone git@github.com:epam/UUI.git
 ```
 
-2. Before starting the App you need to start the server. To do this you must go to the `server` folder and run yarn:
+2. Install server dependencies:
 
 ```
 cd ./server
