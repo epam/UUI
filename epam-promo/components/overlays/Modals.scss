@@ -78,6 +78,7 @@
         @media (max-width: 640px) {
             min-width: 100vw;
             max-height: 100vh;
+            width: unset !important;
             border-radius: 0;
         }
 
