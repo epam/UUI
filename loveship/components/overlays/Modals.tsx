@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalHeaderCoreProps, ModalBlockerProps } from '@epam/uui';
+import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalHeaderCoreProps, ModalBlockerProps, isMobile } from '@epam/uui';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
@@ -23,7 +23,7 @@ export interface ModalWindowMods {
 
 export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalWindow, mods => [
     css.modal,
-    css['width-' + (mods.width || '420')],
+    css['width-' + (mods.width || (isMobile() ? '300' : '420'))],
     css['height-' + (mods.height || 'auto')],
 ]);
 
