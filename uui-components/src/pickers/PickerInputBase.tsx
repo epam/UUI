@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, isChildFocusable, uuiMarkers } from "@epam/uui";
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, isChildFocusable } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -101,24 +101,25 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        if (this.props.onFocus) this.props.onFocus(e);
-        else {
-            if (this.state.opened) e.preventDefault();
-            else this.toggleBodyOpening(true);
-        }
+        this.props.onFocus && this.props.onFocus(e);
+        if (this.state.opened) e.preventDefault();
+        else this.toggleBodyOpening(true);
     }
 
     onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        if (this.props.onBlur) this.props.onBlur(e);
-        else {
-            if (isChildFocusable(e)) e.preventDefault();
-            else this.toggleBodyOpening(false);
-        }
+        this.props.onBlur && this.props.onBlur(e);
+        if (isChildFocusable(e)) e.preventDefault();
+        else this.toggleBodyOpening(false);
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.setState({ opened: false });
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
+        this.focusToggler();
+    }
+
+    focusToggler = () => {
+        (findDOMNode(this.togglerRef.current) as HTMLElement).querySelector('input').focus();
     }
 
     getSearchPosition() {
@@ -194,7 +195,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            ((findDOMNode(this.togglerRef.current) as HTMLElement).querySelector(`.${uuiMarkers.focusable}`) as HTMLElement).focus();
+            this.focusToggler();
         }
 
         handleDataSourceKeyboard({
