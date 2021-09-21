@@ -16,7 +16,7 @@ export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLA
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
-export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
+export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, {}> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -46,13 +46,9 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
         }
     }
 
-    getClassName(): any {
-        return null;
-    }
+    getClassName?(): string[];
 
-    getChildren(): any {
-        return null;
-    }
+    getChildren?(): React.ReactNode[];
 
     getTabIndex(): number {
         if (this.props.isDisabled || !this.props.onClick) {
