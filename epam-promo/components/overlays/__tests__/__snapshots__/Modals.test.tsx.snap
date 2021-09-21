@@ -50,7 +50,7 @@ exports[`Modals should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal width-420 height-auto container"
+      className="uui-modal-window modal width-300 height-auto container"
       role="modal"
     >
       <div
