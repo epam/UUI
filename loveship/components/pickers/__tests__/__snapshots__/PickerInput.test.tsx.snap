@@ -61,7 +61,6 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={null}
     >
@@ -91,7 +90,6 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={null}
     >

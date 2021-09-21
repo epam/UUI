@@ -5,7 +5,6 @@ exports[`LinkButton should be rendered correctly 1`] = `
   className="container uui-button-box uui-enabled root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 />
@@ -13,10 +12,11 @@ exports[`LinkButton should be rendered correctly 1`] = `
 
 exports[`LinkButton should be rendered correctly with props 1`] = `
 <button
+  aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-36 color-sun font-sans-semibold uui-has-left-icon uui-has-right-icon"
+  disabled={false}
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >

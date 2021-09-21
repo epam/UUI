@@ -9,7 +9,6 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -23,7 +22,6 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled button-color-green root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >

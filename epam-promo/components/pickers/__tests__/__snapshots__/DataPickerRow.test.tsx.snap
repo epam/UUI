@@ -70,7 +70,6 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="root icon-color-blue uui-button-box uui-enabled"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >

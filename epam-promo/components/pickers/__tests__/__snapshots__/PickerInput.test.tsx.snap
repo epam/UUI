@@ -61,7 +61,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
       className="container uui-button-box uui-enabled root tag-color size-42 root"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={null}
     >
@@ -87,7 +86,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
       className="container uui-button-box uui-enabled root tag-color size-42 root"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={null}
     >

@@ -8,7 +8,6 @@ exports[`MainMenu should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled root type-primary"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   />
@@ -23,7 +22,6 @@ exports[`MainMenu should be rendered correctly 2`] = `
     className="container uui-button-box uui-enabled root type-primary"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   />

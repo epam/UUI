@@ -82,7 +82,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -644,7 +643,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -658,7 +656,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -771,7 +768,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -1607,7 +1603,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -1624,7 +1619,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -1638,7 +1632,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >

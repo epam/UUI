@@ -5,7 +5,6 @@ exports[`Badge should be rendered correctly 1`] = `
   className="container uui-button-box uui-enabled root font-sans style-square size-18 fill-solid color-sky root"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 />
@@ -16,7 +15,6 @@ exports[`Badge should be rendered correctly with props 1`] = `
   className="container uui-button-box uui-enabled -clickable root font-sans style-square size-12 fill-light color-sky root"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >

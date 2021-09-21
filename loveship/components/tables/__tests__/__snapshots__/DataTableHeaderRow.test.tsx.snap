@@ -52,7 +52,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >
@@ -129,7 +128,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >
@@ -189,7 +187,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >
@@ -249,7 +246,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >
@@ -321,7 +317,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >
@@ -390,7 +385,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >
@@ -442,7 +436,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >
@@ -494,7 +487,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
                 tabIndex={null}
               >

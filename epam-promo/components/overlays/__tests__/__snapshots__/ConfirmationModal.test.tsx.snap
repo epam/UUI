@@ -82,7 +82,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -186,7 +185,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -200,7 +198,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -313,7 +310,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -425,7 +421,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -439,7 +434,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
