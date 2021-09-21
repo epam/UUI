@@ -36,6 +36,10 @@
         &:global(.uui-modal-window) {
             width: 300px;
         }
+
+        @media (max-width: 640px) {
+            width: unset;
+        }
     }
 
     &.width-420 {
@@ -52,11 +56,19 @@
         &:global(.uui-modal-window) {
             width: 600px;
         }
+
+        @media (max-width: 640px) {
+            width: unset;
+        }
     }
 
     &.width-900 {
         &:global(.uui-modal-window) {
             width: 900px;
+        }
+
+        @media (max-width: 640px) {
+            width: unset;
         }
     }
 
