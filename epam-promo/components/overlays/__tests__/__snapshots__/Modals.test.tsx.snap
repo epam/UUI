@@ -161,7 +161,6 @@ exports[`Modals should be rendered correctly 2`] = `
             className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >

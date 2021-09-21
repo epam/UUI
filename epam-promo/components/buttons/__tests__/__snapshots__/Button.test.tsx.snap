@@ -5,7 +5,6 @@ exports[`Button should be rendered correctly 1`] = `
   className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 />
@@ -13,10 +12,11 @@ exports[`Button should be rendered correctly 1`] = `
 
 exports[`Button should be rendered correctly with props 1`] = `
 <button
+  aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
+  disabled={false}
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >

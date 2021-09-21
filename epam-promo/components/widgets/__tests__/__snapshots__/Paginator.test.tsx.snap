@@ -6,10 +6,11 @@ exports[`Paginator should be rendered correctly 1`] = `
   role="navigation"
 >
   <button
+    aria-disabled={false}
     className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-24 fill-white fill-white size-24"
+    disabled={false}
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -33,7 +34,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -47,7 +47,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -61,7 +60,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -75,7 +73,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -89,7 +86,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -103,7 +99,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -117,7 +112,6 @@ exports[`Paginator should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-light fill-light size-24"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -128,10 +122,11 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
+    aria-disabled={false}
     className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-24 fill-white fill-white size-24"
+    disabled={false}
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >

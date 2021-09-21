@@ -9,21 +9,16 @@ import {
     uuiMarkers,
     UuiContext,
     isChildHasClass,
+    IHasRawProps,
 } from '@epam/uui';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps {}
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement> {}
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
 export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
     static contextType = UuiContext;
     context: UuiContexts;
-
-    handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement | HTMLLinkElement>) => {
-        if (e.keyCode === 32 || e.keyCode === 13) {
-            this.clickHandler(e);
-        }
-    }
 
     clickHandler = (e: any) => {
         if (!isClickableChildClicked(e) && !this.props.isDisabled) {
@@ -100,7 +95,8 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
-            onKeyDown: this.handleKeyDown,
+            disabled: this.props.isDisabled,
+            'aria-disabled': this.props.isDisabled as IHasRawProps<HTMLAnchorElement | HTMLButtonElement>['rawProps']['aria-disabled'],
             ...this.props.rawProps,
         },
             this.getChildren(),

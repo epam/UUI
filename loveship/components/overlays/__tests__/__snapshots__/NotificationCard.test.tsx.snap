@@ -8,7 +8,6 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -54,7 +53,6 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -111,7 +109,6 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -168,7 +165,6 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -225,7 +221,6 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -282,7 +277,6 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -339,7 +333,6 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="root color-night600 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >

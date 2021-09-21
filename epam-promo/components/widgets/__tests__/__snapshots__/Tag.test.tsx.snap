@@ -5,7 +5,6 @@ exports[`Tag should be rendered correctly 1`] = `
   className="container uui-button-box uui-enabled root tag-color size-36 root"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 />
@@ -16,7 +15,6 @@ exports[`Tag should be rendered correctly with props 1`] = `
   className="container uui-button-box uui-enabled -clickable root tag-color size-36 root"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >

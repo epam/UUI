@@ -10,7 +10,6 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square selectedItem"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="tab"
     tabIndex={0}
   >
@@ -25,7 +24,6 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
     className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-white style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="tab"
     tabIndex={0}
   >

@@ -5,7 +5,6 @@ exports[`IconButton should be rendered correctly 1`] = `
   className="root color-night600 uui-button-box uui-enabled"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 >
@@ -18,10 +17,11 @@ exports[`IconButton should be rendered correctly 1`] = `
 
 exports[`IconButton should be rendered correctly with props 1`] = `
 <button
+  aria-disabled={false}
   className="root color-sun uui-button-box uui-enabled -clickable"
+  disabled={false}
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >

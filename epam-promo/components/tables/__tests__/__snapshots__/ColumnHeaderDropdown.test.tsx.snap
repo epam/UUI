@@ -6,7 +6,6 @@ Array [
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -75,7 +74,6 @@ Array [
             className="root icon-color-blue uui-button-box uui-enabled"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={null}
           >
@@ -109,7 +107,6 @@ Array [
             className="root icon-color-gray60 uui-button-box uui-enabled"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={null}
           >

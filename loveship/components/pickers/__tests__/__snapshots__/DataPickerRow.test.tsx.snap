@@ -68,7 +68,6 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
           className="root color-sky uui-button-box uui-enabled"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >
