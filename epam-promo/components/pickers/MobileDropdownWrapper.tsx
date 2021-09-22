@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import css from "./MobileDropdownWrapper.scss";
 import { isMobile } from "@epam/uui";
 import { LinkButton } from "../buttons";
@@ -14,7 +14,20 @@ interface IMobileDropdownWrapperProps {
 
 export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = props => {
     const isVisible = isMobile();
-    
+
+    function appHeight() {
+        document.documentElement.style.setProperty('--app-mobile-height', `${window.innerHeight}px`);
+    }
+
+    useEffect(appHeight, [appHeight]);
+
+    useEffect(() => {
+        window.addEventListener('resize', appHeight);
+        return () => {
+            window.removeEventListener('resize', appHeight);
+        };
+    }, []);
+
     return (
         <>
             { isVisible && <DataPickerHeader title={ props.title } close={ props.close }/> }
@@ -26,7 +39,7 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = prop
                     caption="DONE"
                     onClick={ () => props.close?.() }
                     cx={ css.done }
-                    size="48" 
+                    size="48"
                 />
             ) }
         </>
