@@ -20,6 +20,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+    inputId?: string;
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -177,7 +178,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
-            editMode: this.props.editMode
+            editMode: this.props.editMode,
+            inputId: this.props.inputId
         };
     }
 
