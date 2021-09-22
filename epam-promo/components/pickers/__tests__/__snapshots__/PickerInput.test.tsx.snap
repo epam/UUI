@@ -4,10 +4,10 @@ exports[`PickerInput should be rendered correctly 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
   onBlur={[Function]}
+  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  onMouseDown={[Function]}
-  tabIndex={-1}
+  tabIndex={0}
 >
   <div
     className="body"
@@ -17,7 +17,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
-      tabIndex={0}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -29,7 +29,6 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled -clickable"
       onClick={[Function]}
       style={Object {}}
-      tabIndex={-1}
     >
       <svg
         className=""
@@ -49,11 +48,11 @@ exports[`PickerInput should be rendered correctly 1`] = `
 exports[`PickerInput should be rendered correctly 2`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
-  onBlur={null}
-  onFocus={null}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
   onKeyDown={[Function]}
-  onMouseDown={[Function]}
-  tabIndex={-1}
+  tabIndex={0}
 >
   <div
     className="body multiline"
@@ -139,7 +138,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
       className="container uui-icon uui-enabled -clickable"
       onClick={[Function]}
       style={Object {}}
-      tabIndex={-1}
     >
       <svg
         className=""

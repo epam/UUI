@@ -2,10 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as css from './DataPickerBody.scss';
 import * as types from '../types';
-import cx from 'classnames';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
-import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile, IHasRawProps } from '@epam/uui';
+import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile, IHasRawProps, cx } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
 import { Text } from '../typography';
 import isEqual from 'lodash.isequal';
@@ -29,10 +28,11 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
     searchLens = this.lens.prop('search');
     needFocusSearch: boolean = this.showSearch();
 
+
     componentDidUpdate(prevProps: DataPickerBodyProps<TItem, TId>) {
         if (this.needFocusSearch) {
             let body = ReactDOM.findDOMNode(this) as HTMLElement;
-            body && body.querySelector('input')?.focus({ preventScroll: true });
+            body && body.getElementsByTagName('input')[0]?.focus({ preventScroll: true });
             this.needFocusSearch = false;
         }
         if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {
