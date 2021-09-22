@@ -1,9 +1,12 @@
 import React, { ReactNode, useState } from 'react';
-import { IModal, INotification, Metadata, RenderFormProps, useUuiContext, useAsyncDataSource } from '@epam/uui';
+import {
+    IModal, INotification, Metadata, RenderFormProps,
+    useUuiContext, useAsyncDataSource,
+} from '@epam/uui';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
     Button, ScrollBars, ModalFooter, SuccessNotification,
-    Text, Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput, Form
+    Text, Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput, Form,
 } from '@epam/promo';
 
 interface Person {
@@ -16,6 +19,12 @@ interface Person {
 function ModalWithFormExample(modalProps: IModal<Person>) {
     const svc = useUuiContext();
     const [person] = useState<Person>({});
+
+    const [skillsValue, onSkillsValueChange] = useState(null);
+
+    const dataSource = useAsyncDataSource({
+        api: () => svc.api.demo.jobTitles().then((r: any) => r.items),
+    }, []);
 
     const getMetaData = (state: Person): Metadata<Person> => ({
         props: {
@@ -61,6 +70,22 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                 </FlexRow>
                 <FlexRow padding='24' vPadding='12'>
                     <FlexCell grow={ 1 }>
+                        <LabeledInput label='Job titles'>
+                            <PickerInput
+                                dataSource={ dataSource }
+                                value={ skillsValue }
+                                onValueChange={ onSkillsValueChange }
+                                entityName='job title'
+                                searchPosition='body'
+                                selectionMode='multi'
+                                valueType={ 'id' }
+                                sorting={ { field: 'name', direction: 'asc' } }
+                            />
+                        </LabeledInput>
+                    </FlexCell>
+                </FlexRow>
+                <FlexRow padding='24' vPadding='12'>
+                    <FlexCell grow={ 1 }>
                         <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
                             <ControlWrapper size='36'>
                                 <RadioGroup
@@ -85,15 +110,15 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
 
     return (
         <ModalBlocker { ...modalProps } abort={ () => handleLeave().then(modalProps.abort) }>
-            <ModalWindow >
-                <ModalHeader borderBottom title="New committee" onClose={modalProps.abort} />
+            <ModalWindow width='600'>
+                <ModalHeader borderBottom title="New committee" onClose={ modalProps.abort } />
                 <ScrollBars>
                     <Form<Person>
-                        value={person}
-                        onSave={(person) => Promise.resolve({form: person}) }
-                        onSuccess={(person) => modalProps.success(person) }
-                        renderForm={renderForm}
-                        getMetadata={getMetaData}
+                        value={ person }
+                        onSave={ (person) => Promise.resolve({form: person}) }
+                        onSuccess={ (person) => modalProps.success(person) }
+                        renderForm={ renderForm }
+                        getMetadata={ getMetaData }
                     />
                     <FlexSpacer />
                 </ScrollBars>
@@ -114,7 +139,7 @@ export default function ModalWithFormExampleToggler() {
                     <SuccessNotification { ...props } >
                         <Text>Data has been saved!</Text>
                         <Text>Person: { JSON.stringify(person) }</Text>
-                    </SuccessNotification>, { duration: 2 })
+                    </SuccessNotification>, { duration: 2 }),
                 )
             }
         />

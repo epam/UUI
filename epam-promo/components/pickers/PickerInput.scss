@@ -1,8 +1,12 @@
 @use  '../../assets/styles/index' as *;
 
+:global(:root) {
+    --app-mobile-height: 100vh;
+}
+
 .panel {
     @media screen and (max-width: 720px) {
-        height: 100vh;
+        height: var(--app-mobile-height);
     }
 }
 
