@@ -8,7 +8,6 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTM
     flipY?: boolean;
     rotate?: '0' | '90cw' | '180' | '90ccw';
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
-    onMouseDown?(e: React.MouseEvent<HTMLDivElement>): void;
     tabIndex?: number;
     style?: React.CSSProperties;
     size?: number;
@@ -27,7 +26,6 @@ export const IconContainer = (props: ControlIconProps) => {
                 props.cx,
                 props.rawProps?.className
             ) }
-            onMouseDown={ isClickable ? props.onMouseDown : undefined }
             onClick={ isClickable ? props.onClick : undefined }
             tabIndex={ isClickable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
