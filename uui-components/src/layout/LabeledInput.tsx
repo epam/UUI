@@ -25,7 +25,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
             <div className={ cx(css.container, this.props.cx) } { ...this.props.rawProps } >
                 <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
                     { this.props.label &&
-                        <label htmlFor={ this.props.id } className={ uuiElement.label }>
+                        <label htmlFor={ this.props.htmlFor } className={ uuiElement.label }>
                             { this.props.label }
                             { this.props.isRequired && <span className={ uuiLabeledInput.asterisk } >*</span> }
                             { this.props.info && Tooltip &&

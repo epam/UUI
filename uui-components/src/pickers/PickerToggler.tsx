@@ -20,6 +20,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
+    inputId?: string;
 }
 
 interface PickerTogglerState {
@@ -110,6 +111,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 readOnly
                 placeholder={ placeholder }
                 tabIndex={ -1 }
+                id={ this.props.inputId }
                 aria-haspopup={ true }
                 aria-expanded={ this.props.isOpen }
                 aria-required={ this.props.isRequired }
@@ -128,6 +130,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             type='text'
             tabIndex={ -1 }
             aria-haspopup={ true }
+            id={ this.props.inputId }
             aria-required={ this.props.isRequired }
             aria-disabled={ this.props.isDisabled }
             aria-readonly={ this.props.isReadonly }
