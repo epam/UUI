@@ -8,6 +8,7 @@ dayjs.extend(customParseFormat);
 export interface BaseTimePickerProps extends IEditable<TimePickerValue>, IDisableable, ICanBeReadonly, IHasPlaceholder {
     minutesStep?: number;
     format?: 12 | 24;
+    id?: string;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
 }
 
