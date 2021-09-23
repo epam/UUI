@@ -11,8 +11,7 @@ import {
     DropdownSubMenu,
     IDropdownMenuItemProps,
     FlexSpacer,
-    Badge,
-    IDropdownControlKeys
+    Badge
 } from '@epam/promo';
 import * as icon from '@epam/assets/icons/common/action-eye-18.svg';
 
@@ -38,7 +37,7 @@ const CustomItem = (props: IDropdownMenuItemProps) => {
     );
 };
 
-const DropdownMenuSwitchButton = (props: any) => {
+const DropdownMenuSwitchButton = (props: IDropdownMenuItemProps) => {
     const [selected, setSelected] = useState(false);
 
     return (
@@ -96,7 +95,6 @@ export default function BasicDropdownMenuExample() {
         <Dropdown
             renderBody={ props => <DropdownBody { ...props } /> }
             renderTarget={ props => <Button caption='Click to open' { ...props } /> }
-            keyToClose={ IDropdownControlKeys.ESCAPE }
         />
     );
 }
