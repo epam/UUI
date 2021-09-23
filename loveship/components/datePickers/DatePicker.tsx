@@ -14,7 +14,9 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
     renderFooter?(): React.ReactNode;
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
+    id?: string;
 }
+
 export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler) => {
         return (
@@ -22,6 +24,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 { ...props }
                 onClick={ null }
                 isDropdown={ false }
+                id={ this.props.id }
                 cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
                 icon={ systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }

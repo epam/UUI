@@ -10,6 +10,7 @@ import { DropdownContainer } from '../overlays';
 export interface TimePickerProps extends BaseTimePickerProps, SizeMod, EditMode {
     minutesStep?: number;
     format?: 12 | 24;
+    id?: string;
 }
 
 export class TimePicker extends BaseTimePicker<TimePickerProps> {
@@ -17,6 +18,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
         <TextInput
             { ...props }
             onClick={ null }
+            id={ this.props.id }
             size={ this.props.size || '36' }
             isDisabled={ this.props.isDisabled }
             isReadonly={ this.props.isReadonly }

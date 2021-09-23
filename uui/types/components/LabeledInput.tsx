@@ -4,5 +4,5 @@ export interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel,
     labelPosition?: 'top' | 'left';
     info?: string;
     isOptional?: boolean;
-    id?: string;
+    htmlFor?: string;
 }

@@ -92,6 +92,8 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             name: this.props.name,
             maxLength: this.props.maxLength,
             inputMode: this.props.inputMode,
+            tabIndex: this.props.tabIndex,
+            id: this.props.id,
             required: this.props.isRequired,
             'aria-invalid': this.props.isInvalid,
             'aria-required': this.props.isRequired,
