@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
-import { cx, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
+import { cx, IDropdownToggler, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
@@ -9,7 +9,7 @@ import { Switch } from "../inputs";
 const icons = systemIcons["36"];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable {
     isSelected?: boolean;
-    onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
+    toggleDropdownOpening?: (value: boolean) => void;
 }
 
 export interface IDropdownMenuContainer extends VPanelProps {
@@ -17,6 +17,7 @@ export interface IDropdownMenuContainer extends VPanelProps {
 }
 
 export enum IDropdownControlKeys {
+    ENTER = 'Enter',
     ESCAPE = 'Escape',
     BACK_ARROW = 'ArrowLeft',
     FORWARD_ARROW = 'ArrowRight',
@@ -85,7 +86,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         link,
         href,
         onClick,
-        onKeyDown,
+        toggleDropdownOpening,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -93,6 +94,16 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         onClick(event);
         context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
+
+    const handleOpenDropdown = (event: React.KeyboardEvent<HTMLElement>) => {
+        if (event.key === IDropdownControlKeys.FORWARD_ARROW) {
+            toggleDropdownOpening(true);
+        } else if (event.key === IDropdownControlKeys.BACK_ARROW) {
+            toggleDropdownOpening(false);
+        } else if (event.key === IDropdownControlKeys.ENTER) {
+            onClick(event);
+        }
+    }
 
     const getMenuButtonContent = () => {
         const isIconBefore = Boolean(icon && iconPosition !== "right");
@@ -134,7 +145,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             rawProps={{
                 tabIndex: -1,
                 role: 'menuitem',
-                onKeyDown: isDisabled ? null : e => onKeyDown && onKeyDown(e)
+                onKeyDown: isDisabled ? null : handleOpenDropdown
             }}
             cx={ itemClassNames }
             onClick={ handleClick }
@@ -165,19 +176,20 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export const DropdownSubMenu = (props: IDropdownSubMenu) => {
-    const MenuItem = (
+    const MenuItem = ({ toggleDropdownOpening }: IDropdownToggler) => (
         <DropdownMenuButton
             cx={ cx(css.submenuRootItem) }
             icon={ icons.foldingArrow }
             iconPosition="right"
+            toggleDropdownOpening={ toggleDropdownOpening }
             { ...props }
         />
     );
 
-    const DropdownBody = ({ onKeyDown }: DropdownBodyProps) => (
+    const DropdownBody = ({ toggleDropdownOpening }: DropdownBodyProps) => (
         <DropdownMenuBody { ...props }>
             { React.Children.map(props.children, child => React.cloneElement(
-                child, child.type.name === DropdownMenuButton.displayName ? { onKeyDown } : {})
+                child, child.type.name === DropdownMenuButton.displayName ? { toggleDropdownOpening } : {})
             ) }
         </DropdownMenuBody>
     );
@@ -187,9 +199,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             openOnHover={ props.openOnHover || true }
             placement="right-start"
             renderBody={ props => <DropdownBody { ...props } /> }
-            renderTarget={ () => MenuItem }
-            keyToOpen={ IDropdownControlKeys.FORWARD_ARROW }
-            keyToClose={ IDropdownControlKeys.BACK_ARROW }
+            renderTarget={ props => <MenuItem { ...props } /> }
         />
     );
 };
@@ -216,16 +226,22 @@ export const DropdownMenuSwitchButton = (props: IDropdownMenuSwitchButton) => {
         context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
 
+    const handleKeySelect = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === IDropdownControlKeys.ENTER) {
+            onHandleValueChange(!isSelected);
+        }
+    }
+
     return (
         <FlexRow
             cx={ cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled) }
             onClick={ () => onHandleValueChange(!isSelected) }
-            rawProps={{ tabIndex: -1, role: 'menuitem' }}
+            rawProps={{ tabIndex: -1, role: 'menuitem', onKeyDown: handleKeySelect }}
         >
             { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
             <Text cx={ css.caption }>{ caption }</Text>
             <FlexSpacer />
-            <Switch rawProps={{ tabIndex: -1 }} value={ isSelected } onValueChange={ onHandleValueChange } />
+            <Switch value={ isSelected } onValueChange={ onHandleValueChange } />
         </FlexRow>
     );
 };

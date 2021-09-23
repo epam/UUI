@@ -17,7 +17,7 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
-    onKeyDown?(e?: KeyboardEvent): void;
+    toggleDropdownOpening?: (value: boolean) => void;
 }
 
 export type DropdownPlacement = Placement;
@@ -38,8 +38,6 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     closeOnTargetClick?: boolean; // default: true
     closeOnClickOutside?: boolean; // default: true
     closeOnMouseLeave?: 'toggler' | 'boundary' | false;
-    keyToOpen?: KeyboardEvent['key'];
-    keyToClose?: KeyboardEvent['key'];
 
     portalTarget?: HTMLElement;
     boundaryElement?: Boundary;
@@ -72,9 +70,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
         if (this.props.openOnHover && !this.props.openOnClick) {
             this.targetNode?.addEventListener('mouseenter', this.handleMouseEnter);
-        }
-        if (this.props.keyToOpen && this.props.keyToClose) {
-            this.targetNode?.addEventListener('keydown', this.handleKeyDown)
         }
         if (this.props.closeOnMouseLeave === 'toggler') {
             this.targetNode?.addEventListener('mouseleave', this.handleMouseLeave);
@@ -127,19 +122,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.handleOpenedChange(false);
     }
 
-    private handleKeyOpen = () => {
-        this.handleOpenedChange(true);
-    }
-
-    private handleKeyClose = () => {
-        this.handleOpenedChange(false);
-    }
-
-    handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === this.props.keyToOpen) this.handleKeyOpen();
-        else if (e.key === this.props.keyToClose) this.handleKeyClose();
-    }
-
     isClientInArea(e: MouseEvent) {
         const areaPadding = 30;
         const { y, x, height, width } = this.state.bodyBoundingRect;
@@ -190,7 +172,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
-                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : undefined,
+                    toggleDropdownOpening: this.handleOpenedChange,
                 })
             }
             </PopperTargetWrapper>
@@ -228,7 +210,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     togglerWidth: this.togglerWidth,
                     togglerHeight: this.togglerHeight,
                     scheduleUpdate: update,
-                    onKeyDown: this.props.keyToOpen || this.props.keyToClose ? this.handleKeyDown : null,
+                    toggleDropdownOpening: this.handleOpenedChange,
                 }) }
             </div>
         );
