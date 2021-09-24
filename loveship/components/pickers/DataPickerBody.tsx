@@ -30,7 +30,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
     needFocusSearch: boolean = this.showSearch();
 
     componentDidUpdate(prevProps: DataPickerBodyProps<TItem, TId>) {
-        if (this.needFocusSearch) {
+        if (this.needFocusSearch && !isMobile()) {
             let body = ReactDOM.findDOMNode(this) as HTMLElement;
             body && body.getElementsByTagName('input')[0].focus({ preventScroll: true });
             this.needFocusSearch = false;
