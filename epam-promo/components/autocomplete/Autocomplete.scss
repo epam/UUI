@@ -1,0 +1,9 @@
+.panel {
+    @media screen and (max-width: 720px) {
+        height: 100vh;
+    }
+}
+
+.body {
+    min-height: 0!important;
+}

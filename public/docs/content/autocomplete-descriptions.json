@@ -1,0 +1,39 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Autocomplete is used as TextInput with a dropdown list ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "of options to fill",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". It's used the DataSource approach.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
