@@ -38,7 +38,6 @@ Array [
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    onKeyUp={[Function]}
   >
     <div
       className="container uui-dropdown-body bodyRoot container"
