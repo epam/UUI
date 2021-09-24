@@ -29,7 +29,7 @@ const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) =>
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
 
-    const handleArrowKeys = (e: KeyboardEvent) => {
+    const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
         const menuItems: HTMLElement[] = Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`));
 
         if (menuItems.length > 0 && currentlyFocused === 0 && document.activeElement !== menuItems[currentlyFocused]) {
@@ -47,13 +47,9 @@ const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) =>
             if (nextFocusedIndex >= menuItems.length) return;
             setFocused(nextFocusedIndex);
             menuItems[nextFocusedIndex].focus();
-        };
-    };
-
-    const handleMenuClose = (e: React.KeyboardEvent<HTMLMenuElement>) => {
-        if (e.key === IDropdownControlKeys.ESCAPE && onClose) {
+        } else if (e.key === IDropdownControlKeys.ESCAPE && onClose) {
             onClose(e);
-        };
+        }
     };
 
     return (
@@ -62,7 +58,7 @@ const DropdownMenuContainer = ({ onClose, ...props }: IDropdownMenuContainer) =>
             className={ css.menuRoot }
             returnFocus
             ref={ menuRef }
-            lockProps={{ onKeyDown: handleMenuClose, onKeyUp: handleArrowKeys }}>
+            lockProps={{ onKeyDown: handleArrowKeys }}>
             <DropdownContainer { ...props } />
         </FocusLock>
     )
@@ -86,7 +82,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         link,
         href,
         onClick,
-        toggleDropdownOpening,
+        toggleDropdownOpening
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -100,10 +96,10 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             toggleDropdownOpening(true);
         } else if (event.key === IDropdownControlKeys.BACK_ARROW) {
             toggleDropdownOpening(false);
-        } else if (event.key === IDropdownControlKeys.ENTER) {
+        } else if (event.key === IDropdownControlKeys.ENTER && onClick) {
             onClick(event);
         }
-    }
+    };
 
     const getMenuButtonContent = () => {
         const isIconBefore = Boolean(icon && iconPosition !== "right");
@@ -176,17 +172,7 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export const DropdownSubMenu = (props: IDropdownSubMenu) => {
-    const MenuItem = ({ toggleDropdownOpening }: IDropdownToggler) => (
-        <DropdownMenuButton
-            cx={ cx(css.submenuRootItem) }
-            icon={ icons.foldingArrow }
-            iconPosition="right"
-            toggleDropdownOpening={ toggleDropdownOpening }
-            { ...props }
-        />
-    );
-
-    const DropdownBody = ({ toggleDropdownOpening }: DropdownBodyProps) => (
+    const SubMenuBody = ({ toggleDropdownOpening }: DropdownBodyProps) => (
         <DropdownMenuBody { ...props }>
             { React.Children.map(props.children, child => React.cloneElement(
                 child, child.type.name === DropdownMenuButton.displayName ? { toggleDropdownOpening } : {})
@@ -197,9 +183,18 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
     return (
         <Dropdown
             openOnHover={ props.openOnHover || true }
+            closeOnMouseLeave="boundary"
             placement="right-start"
-            renderBody={ props => <DropdownBody { ...props } /> }
-            renderTarget={ props => <MenuItem { ...props } /> }
+            renderBody={ bodyProps => <SubMenuBody { ...bodyProps } /> }
+            renderTarget={ ({ toggleDropdownOpening }: IDropdownToggler)  => (
+                <DropdownMenuButton
+                    cx={ cx(css.submenuRootItem) }
+                    icon={ icons.foldingArrow }
+                    iconPosition="right"
+                    toggleDropdownOpening={ toggleDropdownOpening }
+                    { ...props }
+                />
+            ) }
         />
     );
 };

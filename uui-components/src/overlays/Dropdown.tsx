@@ -162,7 +162,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: Element) => {
             this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            (targetProps.ref as React.RefCallback<any>)(this.targetNode);
+            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
 
         return (
