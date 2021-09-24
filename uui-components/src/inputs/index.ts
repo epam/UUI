@@ -20,3 +20,4 @@ export * from './Slider/SliderBase';
 export * from './Slider/RangeSlider';
 export * from './Slider/Slider';
 export * from './TextArea';
+export * from './BaseTimePicker';

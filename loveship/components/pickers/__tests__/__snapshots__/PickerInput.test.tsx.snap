@@ -13,11 +13,11 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="body"
   >
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={false}
+      aria-haspopup={true}
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -26,8 +26,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled -clickable"
-      onClick={[Function]}
+      className="container uui-icon uui-enabled"
       style={Object {}}
     >
       <svg
@@ -125,6 +124,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       style={Object {}}
+      tabIndex={-1}
     >
       <svg
         className=""
