@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
     IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
+    isChildFocusable,
 } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -19,13 +20,13 @@ export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, I
     disableClear?: boolean;
     renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
     isHoliday?: (day: Dayjs) => boolean;
+    id?: string;
 }
 
 interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
     inputValue: string | null;
 }
-
 
 const getStateFromValue = (value: string | null, format: string) => {
     if (!value) {
@@ -56,12 +57,11 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         ...getStateFromValue(this.props.value, this.props.format),
     };
 
-    abstract renderInput(props: IDropdownToggler): React.ReactElement<any, any>;
-    abstract renderBody(): React.ReactElement<any, any> ;
+    abstract renderInput(props: IDropdownToggler): React.ReactNode;
+    abstract renderBody(): React.ReactNode;
 
     static getDerivedStateFromProps(props: any, state: DatePickerState): DatePickerState | null {
         if (props.value !== state.selectedDate) {
-
             return {
                 ...state,
                 ...getStateFromValue(props.value, props.format),
@@ -82,7 +82,13 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return this.props.filter ? this.props.filter(parsedDate) : true;
     }
 
-    handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        this.onToggle(true);
+    }
+
+    handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (isChildFocusable(e)) return;
+        this.onToggle(false);
         if (!this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
             this.setState({ inputValue: null });
@@ -106,7 +112,6 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     }
 
     setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({...this.state, displayedDate: displayedDate, view: view});
-
 
     handleCancel = () => {
         this.handleValueChange(null);
@@ -142,9 +147,8 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
         return (
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props) =>
-                    !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
-                onValueChange={ (opened) => !this.props.isReadonly && this.onToggle(opened) }
+                renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
+                onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
             />
