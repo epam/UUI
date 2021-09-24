@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps } from '@epam/uui';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps } from "@epam/uui";
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
@@ -158,7 +158,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 onKeyDown={ this.handleKeyDown }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 <div
                     className={ cx(css.body, !this.props.isSingleLine && this.props.pickerMode !== 'single' && css.multiline) }
