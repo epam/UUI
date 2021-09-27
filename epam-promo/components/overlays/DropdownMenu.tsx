@@ -2,16 +2,17 @@ import React, { useContext, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
 import { cx, IDropdownToggler, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
 
 const icons = systemIcons["36"];
-export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable, Pick<IDropdownToggler, 'isDropdown' | 'toggleDropdownOpening'> {
+export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
 }
 
-export interface IDropdownMenuContainer extends VPanelProps, Pick<DropdownBodyProps, 'onClose'> {
+export interface IDropdownMenuContainer extends VPanelProps {
+    onClose(): void;
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
 }
 
