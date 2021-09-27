@@ -13,10 +13,10 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     className="body"
   >
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={false}
+      aria-haspopup={true}
       className="uui-input singleInput"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -64,10 +64,10 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       </div>
     </button>
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={true}
+      aria-haspopup={true}
       className="uui-input"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -79,6 +79,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       style={Object {}}
+      tabIndex={-1}
     >
       <svg
         className=""
