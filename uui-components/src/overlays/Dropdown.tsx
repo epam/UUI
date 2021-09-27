@@ -18,7 +18,6 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
-    toggleDropdownOpening?: (value: boolean) => void;
 }
 
 export type DropdownPlacement = Placement;
@@ -210,8 +209,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClose: this.onClose,
                     togglerWidth: this.togglerWidth,
                     togglerHeight: this.togglerHeight,
-                    scheduleUpdate: update,
-                    toggleDropdownOpening: this.handleOpenedChange,
+                    scheduleUpdate: update
                 }) }
             </div>
         );
