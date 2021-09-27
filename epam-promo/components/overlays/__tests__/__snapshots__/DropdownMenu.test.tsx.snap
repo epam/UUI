@@ -38,23 +38,24 @@ Array [
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
+    tabIndex={-1}
   >
     <div
-      className="container uui-dropdown-body bodyRoot container"
+      className="container uui-dropdown-body bodyRoot -lock-focus container"
       style={
         Object {
-          "maxWidth": "250px",
           "minHeight": undefined,
           "minWidth": undefined,
         }
       }
+      tabIndex={-1}
     >
       <div
         className="itemRoot container -clickable align-items-center"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
-        tabIndex={-1}
+        tabIndex={0}
       >
         <div
           className="caption container"
@@ -83,7 +84,7 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
-        tabIndex={-1}
+        tabIndex={0}
       >
         <div
           className="caption container"
