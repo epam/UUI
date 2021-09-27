@@ -35,6 +35,10 @@ $text-size-count: 24px;
     font-weight: normal;
     border-bottom: 3px solid transparent;
 
+    &:global(.uui-active) {
+        border-color: var(--text-color-active);
+    }
+
     &:global(.uui-disabled) {
         @include tab-button-color(var(--text-color-disabled), var(--text-color-disabled), transparent);
     }

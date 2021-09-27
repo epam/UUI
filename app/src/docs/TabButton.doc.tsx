@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
 
 export class TabButtonDoc extends BaseDocsBlock {
@@ -10,8 +10,7 @@ export class TabButtonDoc extends BaseDocsBlock {
             [UUI4]: './epam-promo/components/buttons/docs/tabButton.doc.ts',
         };
     }
-
-
+    
     renderContent() {
         return (
             <>
