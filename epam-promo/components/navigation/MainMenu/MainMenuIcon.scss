@@ -9,6 +9,7 @@
     justify-content: center;
     flex-shrink: 0;
     cursor: pointer;
+    fill: unset;
 
     &:hover {
         background: var(--background-color-hover);
