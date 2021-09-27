@@ -9,13 +9,16 @@
     justify-content: center;
     flex-shrink: 0;
     cursor: pointer;
-    fill: unset;
 
-    &:hover {
-        background: var(--background-color-hover);
-    }
+    &:global(.-clickable) {
+        &:hover {
+            background: var(--background-color-hover);
+        }
 
-    &:active {
-        background-color: var(--background-color-active);
+        &:active {
+            background-color: var(--background-color-active);
+        }
     }
 }
+
+
