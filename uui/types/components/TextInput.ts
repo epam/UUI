@@ -13,4 +13,6 @@ export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IE
     name?: string;
     maxLength?: number;
     inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];
+    tabIndex?: number;
+    id?: string;
 };

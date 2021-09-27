@@ -20,6 +20,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+    inputId?: string;
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -30,7 +31,7 @@ const initialRowsVisible = 20; /* estimated, with some reserve to allow start sc
 
 export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
     static contextType = UuiContext;
-    togglerRef = React.createRef<any>();
+    togglerRef = React.createRef<HTMLElement>();
     context: UuiContexts;
 
     abstract toggleModalOpening(opened: boolean): void;
@@ -74,6 +75,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleBodyOpening = (opened: boolean) => {
+        if (this.state.opened === opened) return;
+
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
@@ -98,17 +101,22 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    onFocus = (e: React.SyntheticEvent<HTMLElement>) => {
+    onFocus = (e: React.FocusEvent<HTMLElement>) => {
         this.props.onFocus && this.props.onFocus(e);
     }
 
-    onBlur = (e: React.SyntheticEvent<HTMLElement>) => {
+    onBlur = (e: React.FocusEvent<HTMLElement>) => {
         this.props.onBlur && this.props.onBlur(e);
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.setState({ opened: false });
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
+        this.focusToggler();
+    }
+
+    focusToggler = () => {
+        (findDOMNode(this.togglerRef.current) as HTMLElement).focus();
     }
 
     getSearchPosition() {
@@ -170,6 +178,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
+            editMode: this.props.editMode,
+            inputId: this.props.inputId
         };
     }
 
@@ -183,7 +193,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            (findDOMNode(this.togglerRef.current) as any).focus();
+            this.focusToggler();
         }
 
         handleDataSourceKeyboard({

@@ -12,7 +12,7 @@ export function applyDatePickerBodyMods() {
 }
 
 export const DatePickerBody = withMods<DatePickerBodyProps>(
-    uuiDatePickerBody as any,
+    uuiDatePickerBody,
     applyDatePickerBodyMods,
     () => ({ navIconLeft: arrowIcon, navIconRight: arrowIcon }),
 );
