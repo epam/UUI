@@ -56,12 +56,12 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
-                    onClick={ () => this.toggleOpening(!this.state.isOpen, 'from') }
                     onValueChange={ handleFromChange }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onBlur={ (e) => this.handleBlur('from') }
+                    onFocus={ () => this.handleFocus('from') }
+                    onBlur={ () => this.handleBlur('from') }
                     isDropdown={ false }
                 />
                 <div className={ css.separator } />
@@ -70,13 +70,13 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     size={ this.props.size || '36' }
                     value={ this.state.inputValue.to }
-                    onClick={ () => this.toggleOpening(!this.state.isOpen, 'to') }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                     onValueChange={ handleToChange }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onBlur={ (e) => this.handleBlur('to') }
+                    onFocus={ () => this.handleFocus('to') }
+                    onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
                 />
