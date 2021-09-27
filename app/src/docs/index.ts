@@ -55,3 +55,4 @@ export * from './AvatarStack.doc';
 export * from './PickerList.doc';
 export * from './VirtualList.doc';
 export * from './ProgressBar.doc';
+export * from './VerticalTabButton.doc';

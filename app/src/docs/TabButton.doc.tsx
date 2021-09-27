@@ -20,10 +20,6 @@ export class TabButtonDoc extends BaseDocsBlock {
                     title='Basic'
                     path='./examples/tabButton/Basic.example.tsx'
                 />
-                <DocExample
-                    title='Vertical'
-                    path='./examples/tabButton/Vertical.example.tsx'
-                />
             </>
         );
     }

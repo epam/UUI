@@ -9,3 +9,4 @@ export * from './TabButtonContext';
 export * from './RelativePanelContext';
 export * from './PanelContext';
 export * from './PagePanelContext';
+export * from './VerticalTabButtonContext';

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { FlexCell, VerticalTabButton } from "@epam/promo";
+import React, { useState } from 'react';
+import { FlexCell, VerticalTabButton } from '@epam/promo';
 
-const VerticalTabButtonExample: React.FC = () => {
+
+export default function BasicTabButtonExample() {
     const [value, onValueChange] = useState("Home");
 
     return (
@@ -34,6 +35,4 @@ const VerticalTabButtonExample: React.FC = () => {
             />
         </FlexCell>
     );
-};
-
-export default VerticalTabButtonExample;
+}
