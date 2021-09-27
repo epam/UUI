@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
-import { cx, IDropdownToggler, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick,  IHasCX, IClickable } from '@epam/uui';
+import { cx, IDropdownToggler, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
 
 const icons = systemIcons["36"];
-export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable {
+export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IHasCaption, IDisableable, IAnalyticableClick, IClickable, Pick<IDropdownToggler, 'isDropdown' | 'toggleDropdownOpening'> {
     isSelected?: boolean;
-    isDropdownTarget?: boolean;
-    toggleDropdownOpening?: (value: boolean) => void;
 }
 
-export interface IDropdownMenuContainer extends VPanelProps {
-    onClose?: (e: React.KeyboardEvent<HTMLElement>) => void;
+export interface IDropdownMenuContainer extends VPanelProps, Pick<DropdownBodyProps, 'onClose'> {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
 }
 
@@ -50,7 +47,7 @@ const DropdownMenuContainer = ({
             menuItems[nextFocusedIndex].focus();
         } else if (e.key === closeOnKey && onClose) {
             e.stopPropagation();
-            onClose(e);
+            onClose();
         };
     };
 
@@ -85,7 +82,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         href,
         onClick,
         toggleDropdownOpening,
-        isDropdownTarget = false,
+        isDropdown
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -95,7 +92,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
     };
 
     const handleOpenDropdown = (event: React.KeyboardEvent<HTMLElement>) => {
-        if (event.key === IDropdownControlKeys.RIGHT_ARROW && isDropdownTarget) {
+        if (event.key === IDropdownControlKeys.RIGHT_ARROW && isDropdown) {
             toggleDropdownOpening(true);
         } else if (event.key === IDropdownControlKeys.ENTER && onClick) {
             onClick(event);
@@ -185,12 +182,12 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
                     onClose={ onClose }
                 />
             ) }
-            renderTarget={ ({ toggleDropdownOpening }: IDropdownToggler)  => (
+            renderTarget={ ({ toggleDropdownOpening, isDropdown }: IDropdownToggler)  => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
                     icon={ icons.foldingArrow }
                     iconPosition="right"
-                    isDropdownTarget
+                    isDropdown={ isDropdown }
                     toggleDropdownOpening={ toggleDropdownOpening }
                     { ...props }
                 />
