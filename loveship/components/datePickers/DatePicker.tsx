@@ -15,12 +15,13 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
 }
-export class DatePicker extends BaseDatePicker<DatePickerProps> {
 
+export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler) => {
         return (
             <TextInput
                 { ...props }
+                onClick={ null }
                 isDropdown={ false }
                 cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
                 icon={ systemIcons[this.props.size || '36'].calendar }
@@ -36,6 +37,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
             />
         );

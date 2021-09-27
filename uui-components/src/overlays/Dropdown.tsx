@@ -5,6 +5,7 @@ import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
+import { FreeFocusInside } from 'react-focus-lock';
 
 export interface DropdownState {
     opened: boolean;
