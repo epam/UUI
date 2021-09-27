@@ -34,16 +34,10 @@ const DropdownMenuContainer = ({
 } : IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(0);
-    const [initiallyFocused, setInitiallyFocused] = useState<boolean>(false);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
-
-    useEffect(() => {
-        if (initiallyFocused || !menuRef.current || menuItems.length <= 0 || currentlyFocused > 0) return;
-        menuItems[currentlyFocused].focus();
-        setInitiallyFocused(true);
-    }, [menuRef.current]);
 
     const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
+        const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
+
         if (e.key === IDropdownControlKeys.UP_ARROW) {
             const nextFocusedIndex = currentlyFocused - 1;
             if (nextFocusedIndex < 0) return;
@@ -65,7 +59,6 @@ const DropdownMenuContainer = ({
             as="menu"
             className={ css.menuRoot }
             returnFocus
-            autoFocus={ false }
             ref={ menuRef }
             lockProps={{ onKeyDown: handleArrowKeys, tabIndex: -1 }}>
             <DropdownContainer { ...props } rawProps={{ tabIndex: -1 }} />
