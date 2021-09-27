@@ -60,7 +60,6 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
                     row.onCheck && row.onCheck(row);
                     e.stopPropagation();
                 } }
-                tabIndex={ undefined }
             />;
     }
 
