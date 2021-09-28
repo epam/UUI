@@ -1,6 +1,7 @@
 @use '~@epam/assets/scss/index' as *;
 
 @mixin epam-menu-button() {
+    @include button-reset();
     display: flex;
     flex-shrink: 0;
     height: 60px;
@@ -73,6 +74,7 @@
         min-width: 200px;
 
         &-item {
+            @include button-reset();
             padding: 0 8px;
             fill: $gray20;
             background-color: darken($graphite, 10%);
@@ -119,6 +121,7 @@
 }
 
 .epam-global-menu {
+    @include button-reset();
     display: block;
     height: 60px;
     width: 60px;
@@ -188,6 +191,7 @@
 
     &__nav-item,
     &__dropdown {
+        @include button-reset();
         display: flex;
         align-items: center;
         flex-shrink: 0;
