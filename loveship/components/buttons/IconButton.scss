@@ -2,7 +2,6 @@
 
 .root {
     overflow: visible;
-    cursor: pointer;
     fill: var(--uui-color-700);
 
     &:global(.-clickable) {
@@ -17,7 +16,6 @@
 
     &:global(.uui-disabled) {
         fill: $night500;
-        cursor: default;
 
         &:hover {
             fill: $night500;

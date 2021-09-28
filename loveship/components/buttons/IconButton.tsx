@@ -1,27 +1,18 @@
-import * as React from 'react';
-import { ButtonBaseProps, ButtonBase } from '@epam/uui-components';
-import { IconContainer } from '@epam/uui-components';
+import { IconButton as uuiIconButton, IconButtonBaseProps } from '@epam/uui-components';
 import * as types from '../types';
 import * as css from './IconButton.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import { withMods } from '@epam/uui';
 
-export interface IconButtonProps extends ButtonBaseProps, types.ColorMod { }
+interface IconButtonMods extends types.ColorMod {};
 
-export class IconButton extends ButtonBase<IconButtonProps> {
-    constructor(props: IconButtonProps) {
-        super(props);
-    }
+export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {};
 
-    getClassName() {
-        return [
-            css.root,
-            styles['color-' + (this.props.color || 'night600')],
-        ];
-    }
-
-    getChildren() {
-        return [
-            <IconContainer key={ 'icon' } icon={ this.props.icon } />,
-        ];
-    }
+function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
+    return [
+        css.root,
+        styles['icon-color-' + (mods.color || 'night600')],
+    ]
 }
+
+export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);
