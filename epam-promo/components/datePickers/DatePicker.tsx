@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dayjs } from "dayjs";
-import { cx, IDropdownToggler } from '@epam/uui';
+import { cx, IDropdownToggler, uuiMod } from '@epam/uui';
 import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
@@ -23,7 +23,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
             <TextInput
                 { ...props }
                 isDropdown={ false }
-                cx={ cx(this.props.cx, css.dateInput) }
+                cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
                 icon={ systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }

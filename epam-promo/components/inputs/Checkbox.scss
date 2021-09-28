@@ -20,7 +20,7 @@
 
 .root {
     //Colors
-    &:hover, &:active {
+    &:hover, &:active, &:focus-within {
         :global(.uui-checkbox) {
             border-color: var(--border-color-hovered);
         }
@@ -33,10 +33,6 @@
     :global(.uui-checkbox) {
         background-color: var(--background-color);
         border: 1px solid var(--border-color-default);
-
-        &:focus-within {
-           @include control-focus(3px, 3px);
-        }
     }
 
     :global(.uui-input-label) {
@@ -63,7 +59,7 @@
             border-color: var(--border-color-disabled);
         }
 
-        &:hover, &:global(.uui-checked) {
+        &:hover, &:global(.uui-checked), &:focus-within {
             &:global(.uui-checkbox) {
                 border-color: var(--border-color-disabled);
             }
@@ -89,11 +85,7 @@
             border-color: var(--errored-color);
             fill: var(--errored-color);
 
-            &:focus-within {
-                outline-color: var(--errored-color);
-            }
-
-            &:hover, &:active {
+            &:hover, &:active, &:focus-within {
                 border-color: var(--errored-color);
                 fill: var(--errored-color);
             }
@@ -103,7 +95,7 @@
                 background-color: var(--errored-color);
                 border-color: var(--errored-color);
 
-                &:hover, &:active {
+                &:hover, &:active, &:focus-within {
                     background-color: var(--errored-color);
                     border-color: var(--errored-color);
                 }

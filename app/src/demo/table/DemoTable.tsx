@@ -125,7 +125,7 @@ export const DemoTable: React.FC = () => {
                     />
                 </div>
             ) }
-            <div className={ css.container }>
+            <div className={ css.container } role="table" aria-rowcount={ personsDataView.getListProps().rowsCount } aria-colcount={ columnsSet.personColumns.length }>
                 <FlexRow background='white' borderBottom>
                     { isFilterButtonVisible && (
                         <div className={ css.iconContainer }>

@@ -9,10 +9,6 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
     :global(.uui-accordion-toggler) {
         font-family: $font-sans-semibold;
         cursor: pointer;
-
-        &:focus-visible {
-            @include control-focus(2px, 3px);
-        }
     }
 
     :global(.uui-accordion-body) {
@@ -38,7 +34,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
                 color: var(--text-color);
             }
 
-            &:hover {
+            &:hover, &:focus {
                 box-shadow: $shadow-hovered;
             }
         }
@@ -54,7 +50,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
-                &:hover {
+                &:hover, &:focus {
                     border-color: var(--border-color);
                 }
             }
@@ -70,7 +66,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
                     color: var(--text-color-disabled);
                 }
 
-                &:hover {
+                &:hover, &:focus {
                     box-shadow: $shadow;
                 }
             }

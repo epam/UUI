@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IEditable } from '../types/props';
-import { createFactory, ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { uuiContextTypes, UuiContexts } from '../types/contexts';
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useUuiContext } from "../services";
 
 const reduxDevTools: any = null; //(window as any).__REDUX_DEVTOOLS_EXTENSION__;

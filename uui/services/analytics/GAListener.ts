@@ -1,9 +1,9 @@
-import { AnalyticsEvent, IAnalyticsListener, IRouterContext } from "../../types/contexts";
+import { AnalyticsEvent, IAnalyticsListener } from "../../types/contexts";
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;
 
-    constructor(gaCode:string ) {
+    constructor(gaCode: string) {
         this.gaCode = gaCode;
 
         this.init();

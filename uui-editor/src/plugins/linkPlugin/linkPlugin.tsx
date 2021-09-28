@@ -2,7 +2,7 @@ import { linkifyPlugin } from '@mercuriya/slate-linkify';
 import * as React from 'react';
 import * as css from './link.scss';
 import { Editor } from "slate";
-import {UuiContexts, uuiContextTypes} from "@epam/uui";
+import { useUuiContext, UuiContext, UuiContexts } from "@epam/uui";
 import * as linkIcon from "../../icons/link.svg";
 import {AddLinkModal} from "./AddLinkModal";
 import {ToolbarButton} from "../../implementation/ToolbarButton";
@@ -29,11 +29,11 @@ export const linkPlugin = () => {
     };
 };
 
-export const LinkButton = (props: { editor: any }, context: UuiContexts) => {
+export const LinkButton = (props: { editor: any }) => {
+    const context = useUuiContext();
     return <ToolbarButton isActive={ (props.editor as any).hasLink() } icon={ linkIcon } onClick={ () => context.uuiModals.show<string>(modalProps => <AddLinkModal { ...modalProps } editor={ props.editor } />)
         .catch(() => null) } />;
 };
-LinkButton.contextTypes = uuiContextTypes;
 
 const linkDesializer = (el: any, next: any) => {
     if (el.tagName.toLowerCase() === 'a') {

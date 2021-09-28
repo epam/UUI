@@ -6,7 +6,7 @@ import { svc } from '../services';
 import { UUI4, UUI3 } from '../common';
 import { items } from './structure';
 import { getQuery } from '../helpers';
-import { CodesandboxService } from '../data/codesandbox/service';
+import { codesandboxService } from '../data/codesandbox/service';
 
 type DocsQuery = {
     id: string,
@@ -16,8 +16,6 @@ type DocsQuery = {
 };
 
 export const DocumentsPage = () => {
-    const sandboxService = useMemo(() => new CodesandboxService(svc), [svc]);
-
     const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
         pathname: '/documents',
         query,
@@ -36,11 +34,8 @@ export const DocumentsPage = () => {
     };
 
     useEffect(() => {
-        sandboxService.getFiles().then(files => Object.assign(svc, files));
-
-        return () => {
-            sandboxService.clearFiles().then(files => Object.assign(svc, files));
-        };
+        codesandboxService.getFiles();
+        return () => codesandboxService.clearFiles();
     }, []);
 
     return (

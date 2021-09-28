@@ -101,7 +101,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
         </>;
 
         return (
-            this.props.link ?
+            this.props.link ? (
                 <Anchor
                     link={ this.props.link }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
@@ -109,7 +109,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 >
                     { rowContent }
                 </Anchor>
-            :
+            ) : (
                 <FlexRow
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
@@ -118,6 +118,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 >
                     { rowContent }
                 </FlexRow>
+            )
         );
     }
 }

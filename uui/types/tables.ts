@@ -60,6 +60,7 @@ export interface DataTableCellProps<TItem, TId> {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index: number;
+    role: React.HTMLAttributes<HTMLElement>['role'];
 }
 
 export interface DataRowOptions<TItem, TId> extends IDisableable {

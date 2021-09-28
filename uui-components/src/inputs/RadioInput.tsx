@@ -1,6 +1,21 @@
 import * as React from 'react';
 import * as css from './RadioInput.scss';
-import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts, uuiMarkers } from "@epam/uui";
+import {
+    IHasRawProps,
+    cx,
+    IHasCX,
+    IDisableable,
+    IEditable,
+    IHasLabel,
+    Icon,
+    uuiMod,
+    uuiElement,
+    ICanBeReadonly,
+    IAnalyticableOnChange,
+    UuiContexts,
+    uuiMarkers,
+    UuiContext,
+} from "@epam/uui";
 import { IconContainer } from '../layout';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
@@ -9,7 +24,7 @@ export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean
 }
 
 export class RadioInput extends React.Component<RadioInputProps, any> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,17 +52,20 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
                         type="radio"
-                        checked={ this.props.value }
-                        disabled={ this.props.isReadonly || this.props.isDisabled }
+                        onChange={ !this.props.isReadonly ? this.handleChange : null }
+                        disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
-                        aria-checked={ this.props.value }
-                        tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
-                        onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                        aria-readonly={ this.props.isReadonly }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired }
+                        checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <div role="label" className={ uuiElement.inputLabel }>
+                    <div className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
                     </div>
                 ) }

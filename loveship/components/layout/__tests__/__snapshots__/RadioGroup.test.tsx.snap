@@ -14,13 +14,11 @@ exports[`RadioGroup should be rendered correctly 1`] = `
         aria-checked={false}
         checked={false}
         onChange={[Function]}
-        tabIndex={0}
         type="radio"
       />
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test1
     </div>
@@ -35,13 +33,11 @@ exports[`RadioGroup should be rendered correctly 1`] = `
         aria-checked={false}
         checked={false}
         onChange={[Function]}
-        tabIndex={0}
         type="radio"
       />
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test2
     </div>
@@ -61,16 +57,15 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
     >
       <input
         aria-checked={false}
+        aria-disabled={true}
         checked={false}
         disabled={true}
         onChange={[Function]}
-        tabIndex={0}
         type="radio"
       />
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test1
     </div>
@@ -83,16 +78,15 @@ exports[`RadioGroup should be rendered correctly with props 1`] = `
     >
       <input
         aria-checked={false}
+        aria-disabled={true}
         checked={false}
         disabled={true}
         onChange={[Function]}
-        tabIndex={0}
         type="radio"
       />
     </div>
     <div
       className="uui-input-label"
-      role="label"
     >
       Test2
     </div>

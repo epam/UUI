@@ -1,6 +1,23 @@
 import * as React from 'react';
 import * as css from './NumericInput.scss';
-import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts } from '@epam/uui';
+import {
+    IHasRawProps,
+    cx,
+    getCalculatedValue,
+    IHasCX,
+    IClickable,
+    IDisableable,
+    IEditable,
+    IHasPlaceholder,
+    Icon,
+    uuiMod,
+    uuiElement,
+    CX,
+    ICanBeReadonly,
+    IAnalyticableOnChange,
+    UuiContexts,
+    UuiContext,
+} from '@epam/uui';
 import { IconContainer } from '../layout';
 
 export interface ICanBeFormatted<T> {
@@ -27,7 +44,7 @@ export const uuiNumericInput = {
 };
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     state = {
@@ -129,6 +146,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     className={ cx(uuiElement.input, this.props.inputCx) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
+                    aria-required={ this.props.isRequired }
                     value={ this.state.value }
                     inputMode="numeric"
                     placeholder={ this.props.placeholder || '0' }
