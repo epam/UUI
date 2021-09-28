@@ -1,10 +1,10 @@
-import { TabButton, TabButtonMods } from '../TabButton';
+import { VerticalTabButton, TabButtonMods } from '../';
 import { DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc } from '../../../docs';
-import { TabButtonContext } from '../../../docs';
+import { VerticalTabButtonContext } from '../../../docs';
 
-const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabButton', component: TabButton })
+const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabButton', component: VerticalTabButton })
     .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc] as any)
     .prop('caption', { examples:  [
         { value: 'Click me', isDefault: true },
@@ -15,6 +15,6 @@ const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabBut
     .prop('withNotify', { examples: ([true, false]) })
     .prop('count', { examples: [0, 1, 5, 88, 123] })
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
-    .withContexts(TabButtonContext);
+    .withContexts(VerticalTabButtonContext);
 
 export = TabButtonDoc;

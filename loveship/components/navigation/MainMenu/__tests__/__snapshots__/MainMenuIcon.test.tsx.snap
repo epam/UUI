@@ -2,7 +2,12 @@
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
 <div
-  className="container"
+  className="root color-night600 uui-button-box uui-enabled container"
+  href={null}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={null}
 >
   <div
     className="container uui-icon uui-enabled"
@@ -23,8 +28,13 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
 `;
 
 exports[`MainMenuIcon should be rendered correctly with props 1`] = `
-<div
-  className="container"
+<a
+  className="root color-night600 uui-button-box uui-enabled -clickable container"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="link"
+  tabIndex={null}
+  target="_blank"
 >
   <div
     className="container uui-icon uui-enabled"
@@ -41,5 +51,5 @@ exports[`MainMenuIcon should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</a>
 `;

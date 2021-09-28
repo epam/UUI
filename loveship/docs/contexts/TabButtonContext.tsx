@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { Panel, FlexRow, TabButtonMods, FlexSpacer, FlexCell } from '../../components';
-import * as css from './TabButtonContext.scss';
+import { Panel, FlexRow, TabButtonMods, FlexCell } from '../../components';
 
 export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, any> {
     public static displayName = "TabButtonContext";
 
     state = {
-        activeTab: '',
+        activeTab: 'Main',
     };
 
     setTab(tab: string, onClick?: () => void) {
@@ -19,7 +18,7 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel cx={ css.container } margin='24' style={ { padding: '6px', background: props.theme === 'dark' ? '#21232e' : undefined } }>
+            <Panel margin='24' style={ { padding: '6px', background: props.theme === 'dark' ? '#21232e' : undefined } }>
                 <FlexCell width='auto' >
                     <FlexRow borderBottom={ props.theme === 'dark' ? 'night700' : 'night400' } background='none' size='36' spacing={ null }>
                         <DemoComponent
@@ -27,6 +26,7 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
                             onClick={ () => this.setTab('Main', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
+                            isLinkActive={ this.state.activeTab === 'Main' }
                         />
                         <DemoComponent
                             { ...props }
@@ -34,18 +34,21 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
                             onClick={ () => this.setTab('demoTab', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
+                            isLinkActive={ this.state.activeTab === 'demoTab' }
                         />
                         <DemoComponent
                             caption={ 'Tools' }
                             onClick={ () => this.setTab('Tools', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
+                            isLinkActive={ this.state.activeTab === 'Tools' }
                         />
                         <DemoComponent
                             caption={ 'Options' }
                             onClick={ () => this.setTab('Options', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
+                            isLinkActive={ this.state.activeTab === 'Options' }
                         />
                     </FlexRow>
                 </FlexCell>
