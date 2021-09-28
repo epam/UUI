@@ -26,6 +26,7 @@
     "react-popper": "2.2.5"
   },
   "devDependencies": {
+    "@epam/uui-docs": "4.2.4",
     "@types/react-test-renderer": "17.0.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
@@ -36,9 +37,6 @@
     "prop-types": "*",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
-  },
-  "optionalDependencies": {
-    "@epam/uui-docs": "4.2.4"
   },
   "repository": {
     "type": "git",

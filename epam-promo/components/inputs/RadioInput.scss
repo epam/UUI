@@ -1,14 +1,15 @@
+@use 'sass:math';
 @use '../../assets/styles/index.scss' as *;
 @use '../../assets/styles/colorvars/inputs/radioInput-colorvars.scss' as *;
 
 
 @mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
-    $vpadding: ($line-height - $size) / 2;
+    $vpadding: math.div(($line-height - $size), 2);
 
     :global(.uui-radioinput) {
         width: $size;
         height: $size;
-        border-radius: $size / 2;
+        border-radius: math.div($size, 2);
         margin: $vpadding 0;
     }
 
