@@ -90,50 +90,12 @@
                     "object": "inline",
                     "type": "link",
                     "data": {
-                      "url": "https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-Components?node-id=280%3A85528"
+                      "url": "https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI3-(Components)?node-id=280%3A85528"
                     },
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI3-Components?node-id=280%3A85528"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "",
-                        "marks": []
-                      },
-                      {
-                        "object": "inline",
-                        "type": "link",
-                        "data": {
-                          "url": "https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-Components?node-id=280%3A85528"
-                        },
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "Open",
-                            "marks": []
-                          }
-                        ]
-                      },
-                      {
-                        "object": "text",
-                        "text": "",
+                        "text": "Open",
                         "marks": []
                       }
                     ]
