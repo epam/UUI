@@ -1,11 +1,9 @@
 @use '~@epam/promo/assets/styles/fonts.scss' as *;
 @use '~@epam/promo/assets/styles/colors.scss' as *;
-@use '~@epam/promo/assets/styles/resets.scss' as *;
 
 
 .root {
     &:global(.uui-button-box) {
-        @include button-reset();
         height: 36px;
         align-items: center;
         padding-left: 11px;

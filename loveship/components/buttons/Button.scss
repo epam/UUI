@@ -1,7 +1,6 @@
 @use '../../assets/styles/scss/index' as *;
 
 .root {
-    @include button-reset();
     font-family: $font-sans-semibold;
     font-weight: normal;
 

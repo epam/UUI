@@ -21,7 +21,6 @@ $text-size-caption: 36px;
 $text-size-count: 24px;
 
 .root {
-    @include button-reset();
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--text-color), var(--text-color-active), transparent);
     cursor: pointer;

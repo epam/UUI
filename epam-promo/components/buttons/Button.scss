@@ -1,8 +1,6 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    @include button-reset();
-
     &:global(.uui-button-box) {
         border-style: solid;
         justify-content: center;

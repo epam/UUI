@@ -1,7 +1,6 @@
 @use '../../../assets/styles/scss/index'  as *;
 
 .root {
-    @include button-reset();
     @include epam-uui-fonts();
     flex-shrink: 0;
     color: $white;

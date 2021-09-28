@@ -1,7 +1,6 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    @include button-reset();
     cursor: pointer;
     fill: var(--icon-color);
 
