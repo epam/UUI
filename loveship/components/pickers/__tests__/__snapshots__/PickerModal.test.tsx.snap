@@ -79,7 +79,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="root color-night600 uui-button-box uui-enabled -clickable"
+            className="container uui-button-box uui-enabled -clickable root color-night600"
             href={null}
             onClick={[Function]}
             role="button"
