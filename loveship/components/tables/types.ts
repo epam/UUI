@@ -4,6 +4,7 @@ import { ControlSize, EpamColor } from "..";
 export interface DataTableCellProps<TItem, TId> {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
+    role?: React.HTMLAttributes<HTMLElement>['role'];
 }
 
 interface BaseRowMods {

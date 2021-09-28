@@ -3,7 +3,7 @@ import { FlexRow, PickerInput, TextPlaceholder, DataPickerRow } from '@epam/prom
 import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { Avatar } from "@epam/uui-components";
-import * as css from './CustomUserRow.example.scss';
+import * as css from './CustomUserRow.scss';
 
 const renderUserRow = (props: DataRowProps<Person, number>) => (
     <DataPickerRow

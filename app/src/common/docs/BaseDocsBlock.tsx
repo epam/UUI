@@ -97,7 +97,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return (
             <>
                 <RichTextView><h2>Api</h2></RichTextView>
-                <div className={ css.tableBorder }>
+                <div className={ css.tableBorder } role="table" aria-colcount={ this.apiColumns.length } aria-rowcount={ view.getListProps().rowsCount }>
                     <DataTable
                         value={ this.state.tableState }
                         onValueChange={ this.onTableStateChange }

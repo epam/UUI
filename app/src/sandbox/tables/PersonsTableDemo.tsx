@@ -5,6 +5,7 @@ import { DataSourceState, useLens, IEditable, ArrayDataSource, LazyDataSource, L
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
+import { getColumns } from './columns';
 
 const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
@@ -71,7 +72,7 @@ export const PersonsTableDemo = (props: {}) => {
         cascadeSelection: true,
     });
 
-    return <div className={ css.container }>
+    return <div className={ css.container } role="table" aria-colcount={ getColumns().personColumns.length } aria-rowcount={ personsDataView.getListProps().rowsCount }>
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
             <FlexCell width={ 200 }>
                 <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />

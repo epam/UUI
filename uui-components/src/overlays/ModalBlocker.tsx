@@ -1,4 +1,5 @@
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 import * as css from './ModalBlocker.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
 
@@ -8,14 +9,19 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
         window.addEventListener('keydown', this.keydownHandler);
     }
 
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'visible';
+        window.removeEventListener('keydown', this.keydownHandler);
+    }
+
     keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
             this.props.abort();
         }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.keydownHandler);
     }
 
     private handleBlockerClick = (e: React.SyntheticEvent<Element>) => {
@@ -32,7 +38,9 @@ export class ModalBlocker extends React.Component<ModalBlockerProps, any> {
                 {...this.props.rawProps}
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick }/>
-                { this.props.children }
+                <FocusLock autoFocus={ false } returnFocus>
+                    { this.props.children }
+                </FocusLock>
             </div>
         );
     }

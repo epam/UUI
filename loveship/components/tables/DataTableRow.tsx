@@ -15,6 +15,7 @@ export const renderCell = (props: DataTableCellProps<any, any>) => {
     return <DataTableCell
         key={ props.column.key }
         size={ mods.size }
+        role="cell"
         padding={ mods.padding }
         { ...props }
         labelColor={ mods.labelColor }
