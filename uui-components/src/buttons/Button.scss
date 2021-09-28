@@ -18,4 +18,12 @@
     &:hover {
         text-decoration: none;
     }
+
+    &:global(.-clickable) {
+        cursor: pointer;
+    }
+
+    &:global(.uui-disabled) {
+        cursor: default;
+    }
 }
