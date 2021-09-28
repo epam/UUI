@@ -67,7 +67,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
         className="iconWrapper"
       >
         <button
-          className="root icon-color-blue uui-button-box uui-enabled"
+          className="container uui-button-box uui-enabled root icon-color-blue"
           href={null}
           onClick={[Function]}
           role="button"

@@ -51,7 +51,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"
@@ -108,7 +108,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"
@@ -146,7 +146,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"
@@ -203,7 +203,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"
@@ -260,7 +260,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"
@@ -317,7 +317,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="content"
     />
     <button
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
       role="button"

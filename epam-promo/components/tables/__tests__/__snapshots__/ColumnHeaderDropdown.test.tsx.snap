@@ -74,7 +74,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="root icon-color-blue uui-button-box uui-enabled"
+              className="container uui-button-box uui-enabled root icon-color-blue"
               href={null}
               onClick={[Function]}
               role="button"
@@ -107,7 +107,7 @@ Array [
             onClick={[Function]}
           >
             <button
-              className="root icon-color-gray60 uui-button-box uui-enabled"
+              className="container uui-button-box uui-enabled root icon-color-gray60"
               href={null}
               onClick={[Function]}
               role="button"
