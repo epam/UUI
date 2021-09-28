@@ -64,6 +64,7 @@ export interface IHasDirection {
 export interface IDropdownToggler extends IHasCaption, IClickable {
     isOpen?: boolean;
     isDropdown?: boolean;
+    toggleDropdownOpening?: (value: boolean) => void;
 }
 
 /**
