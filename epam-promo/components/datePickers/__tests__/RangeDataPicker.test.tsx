@@ -77,6 +77,42 @@ describe('RangeDataPicker', () => {
 
     });
 
+    it(`should open picker on 'from' field focus`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on 'from' field blur`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
+    it(`should open picker on 'to' field focus`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('to');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on 'to' field blur`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('to');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
     it('should reset invalid value onBlur', () => {
         let baseValue = { from: '2019-10-47', to: '2019-10-07' };
         const onValueChangeSpy = jest.fn((nV: any) => null);

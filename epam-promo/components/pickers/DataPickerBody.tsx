@@ -2,16 +2,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as css from './DataPickerBody.scss';
 import * as types from '../types';
-import cx from 'classnames';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
-import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile } from '@epam/uui';
+import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile, IHasRawProps, cx } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
 import { Text } from '../typography';
 import isEqual from 'lodash.isequal';
 import { i18n } from "../../i18n";
 
-export type DataPickerBodyProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
+export type DataPickerBodyProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & IHasRawProps<HTMLDivElement> & {
     showSearch?: boolean | 'auto'
     showSelectedRows?: boolean;
     maxHeight?: number;
@@ -90,6 +89,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                         { ...this.lens.toProps() }
                         shadow={ false }
                         rows={ this.props.rows }
+                        rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }
                     />

@@ -5,7 +5,7 @@ import { onClickDoc, isDisabledDoc, iCanRedirectDoc, iconDoc, isInvalidDoc } fro
 import { DefaultContext, FormContext } from '../../../docs';
 import { colors } from '../../../helpers/colorMap';
 
-const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', component: IconButton as React.ComponentClass<IconButtonProps> })
+const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', component: IconButton })
     .implements([onClickDoc, isDisabledDoc, isInvalidDoc, iCanRedirectDoc, iconDoc] as any)
     .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allIconColors })
     .withContexts(DefaultContext, FormContext);
