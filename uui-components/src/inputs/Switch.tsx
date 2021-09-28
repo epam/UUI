@@ -4,6 +4,7 @@ import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, 
 
 export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
     tabIndex?: number;
+    id?: string;
 }
 
 export class Switch extends React.Component<SwitchProps, any> {
@@ -35,14 +36,15 @@ export class Switch extends React.Component<SwitchProps, any> {
                         role="switch"
                         onChange={ !this.props.isReadonly ? this.toggle : null }
                         readOnly={ this.props.isReadonly }
-                        aria-readonly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly || undefined }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled }
                         checked={ this.props.value }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired || undefined }
                         tabIndex={ this.props.tabIndex }
-                        aria-required={ this.props.isRequired }
+                        id={ this.props.id }
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
