@@ -158,7 +158,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
             role="button"
