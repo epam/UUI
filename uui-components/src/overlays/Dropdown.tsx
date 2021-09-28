@@ -18,7 +18,6 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
-    toggleDropdownOpening?: (value: boolean) => void;
 }
 
 export type DropdownPlacement = Placement;
@@ -198,22 +197,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             return null;
         }
         return (
-            <div
-                className='uui-popper'
-                aria-hidden={ !this.isOpened() }
-                aria-expanded={ this.isOpened() }
-                ref={ setRef }
-                style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                data-placement={ placement }
-            >
-                { this.props.renderBody({
-                    onClose: this.onClose,
-                    togglerWidth: this.togglerWidth,
-                    togglerHeight: this.togglerHeight,
-                    scheduleUpdate: update,
-                    toggleDropdownOpening: this.handleOpenedChange,
-                }) }
-            </div>
+            <FreeFocusInside>
+                <div
+                    className='uui-popper'
+                    aria-hidden={ !this.isOpened() }
+                    aria-expanded={ this.isOpened() }
+                    ref={ setRef }
+                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
+                    data-placement={ placement }
+                >
+                    { this.props.renderBody({
+                        onClose: this.onClose,
+                        togglerWidth: this.togglerWidth,
+                        togglerHeight: this.togglerHeight,
+                        scheduleUpdate: update
+                    }) }
+                </div>
+            </FreeFocusInside>
         );
     }
 

@@ -1,12 +1,14 @@
 import {
-    ButtonDoc, LinkButtonDoc, PickerInputDoc, IconButtonDoc, TabButtonDoc, TextInputDoc, CheckboxDoc, RadioInputDoc, SwitchDoc, CheckboxGroupDoc,
-    RadioGroupDoc, MultiSwitchDoc, NumericInputDoc, RatingDoc, SearchInputDoc, TextAreaDoc, AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc,
-    NotificationContextDoc, DropdownDoc, MainMenuDoc, ModalsDoc, BadgeDoc, TablesDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc,
-    TextPlaceholderDoc, DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
-    LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc, FlexItemsDoc,
-    GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, InternationalizationDoc,
-    FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarDoc, AvatarStackDoc, PickerListDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc,
-    EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc,
+    ButtonDoc, LinkButtonDoc, PickerInputDoc, IconButtonDoc, TabButtonDoc, TextInputDoc, CheckboxDoc, RadioInputDoc,
+    SwitchDoc, CheckboxGroupDoc, RadioGroupDoc, MultiSwitchDoc, NumericInputDoc, RatingDoc, SearchInputDoc, TextAreaDoc,
+    AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc, NotificationContextDoc, DropdownDoc, MainMenuDoc,
+    ModalsDoc, BadgeDoc, TablesDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc,
+    DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
+    LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc,
+    ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
+    InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
+    AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
+    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -68,6 +70,7 @@ const componentsStructure = sortBy([
     { id: 'richTextEditor', name: 'Rich Text Editor', component: RichTextEditorDoc, parentId: 'components' },
     { id: 'form', name: 'Form', component: FormDoc, parentId: 'components' },
     { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
+    { id: 'verticalTabButton', name: 'Vertical Tab Button', component: VerticalTabButtonDoc, parentId: 'components' },
     { id: 'virtualList', name: 'Virtual List', component: VirtualListDoc, parentId: 'components' },
     { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
 ], ['name']);
