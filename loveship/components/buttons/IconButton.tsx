@@ -11,7 +11,7 @@ export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {};
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [
         css.root,
-        styles['icon-color-' + (mods.color || 'night600')],
+        styles['color-' + (mods.color || 'night600')],
     ]
 }
 
