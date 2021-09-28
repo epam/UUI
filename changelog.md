@@ -1,4 +1,5 @@
 # 4.2.5 - 28.09.2021
+
 **What's New**
 * rework keyboard and focus/blue functionality in pickers
 * [VerticalTabButton]: added new component for vertical tabs
