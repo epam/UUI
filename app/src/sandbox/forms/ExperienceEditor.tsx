@@ -19,7 +19,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
         items: years,
     });
 
-    renderYearPicker(label: string, editable: IEditable<string>) {
+    renderYearPicker(editable: IEditable<string>) {
         return (
             <LabeledInput { ...editable }>
                 <PickerInput<{ name: string }, string>
@@ -41,17 +41,19 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                 <LabeledInput { ...lens.prop('experienceName').toProps() }>
                     <TextInput
                         { ...lens.prop('experienceName').toProps() }
+                        placeholder='Experience'
                     />
                 </LabeledInput>
             </FlexCell>
             <FlexCell grow={ 1 }>
-                { this.renderYearPicker('Work Start', lens.prop('startRange').toProps()) }
+                { this.renderYearPicker(lens.prop('startRange').toProps()) }
             </FlexCell>
             <FlexCell grow={ 1 }>
-                { this.renderYearPicker('Work End', lens.prop('endRange').toProps()) }
+                { this.renderYearPicker(lens.prop('endRange').toProps()) }
             </FlexCell>
             <FlexCell width='auto'>
                 <LinkButton
+                    rawProps={{ "aria-label": 'Remove' }}
                     icon={ removeIcon }
                     color='night600'
                     onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
@@ -65,13 +67,19 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
         return <>
             <FlexRow padding='24'>
                 <FlexCell grow={ 1 }>
-                    <RichTextView><b>Experience</b></RichTextView>
+                    <RichTextView>
+                        <b>Experience</b>
+                    </RichTextView>
                 </FlexCell>
                 <FlexCell grow={ 1 }>
-                    <RichTextView><b>Work Start</b></RichTextView>
+                    <RichTextView>
+                        <b>Work Start</b>
+                    </RichTextView>
                 </FlexCell>
                 <FlexCell grow={ 1 }>
-                    <RichTextView><b>Work End</b></RichTextView>
+                    <RichTextView>
+                        <b>Work End</b>
+                    </RichTextView>
                 </FlexCell>
             </FlexRow>
             { value.map((item, index) => this.renderItem(item, index)) }
