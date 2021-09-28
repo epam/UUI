@@ -104,11 +104,11 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
         const personalInfoLens = lens.prop('personalInfo');
         return (
             <>
-                <RichTextView><h3 className={ css.sectionTitle }>Personal Info</h3></RichTextView>
+                <RichTextView><h2 className={ css.sectionTitle }>Personal Info</h2></RichTextView>
 
                 <FlexRow vPadding='12'>
                     <FlexCell minWidth={ 324 }>
-                        <LabeledInput htmlFor="fullName" label='Full Name'  { ...personalInfoLens.prop('fullName').toProps() }>
+                        <LabeledInput htmlFor="fullName" label='Full Name' { ...personalInfoLens.prop('fullName').toProps() }>
                             <TextInput { ...personalInfoLens.prop('fullName').toProps() } id="fullName" placeholder='Ivan Petrov' />
                         </LabeledInput>
                     </FlexCell>
@@ -400,38 +400,38 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                     return (
                         <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top'>
                             <FlexCell minWidth={ 186 }>
-                                <LabeledInput htmlFor="language" label='Language' { ...langLensItem.prop('language').toProps() } >
+                                <LabeledInput htmlFor={`language-${index}`} label='Language' { ...langLensItem.prop('language').toProps() } >
                                     <PickerInput
                                         { ...langLensItem.prop('language').toProps() }
                                         dataSource={ this.languageDataSource }
                                         selectionMode='single'
                                         valueType='id'
-                                        inputId="language"
+                                        inputId={`language-${index}`}
                                         placeholder='Select Language'
                                     />
                                 </LabeledInput>
                             </FlexCell>
                             <FlexCell minWidth={ 120 }>
-                                <LabeledInput htmlFor="speakingLevel" label='Speaking' { ...langLensItem.prop('speakingLevel').toProps() } >
+                                <LabeledInput htmlFor={`speakingLevel-${index}`} label='Speaking' { ...langLensItem.prop('speakingLevel').toProps() } >
                                     <PickerInput
                                         { ...langLensItem.prop('speakingLevel').toProps() }
                                         dataSource={ this.languageLevelsDataSource }
                                         selectionMode='single'
                                         valueType='id'
-                                        inputId="speakingLevel"
+                                        inputId={`speakingLevel-${index}`}
                                         placeholder='Select Level'
                                         getName={ item => item.level }
                                     />
                                 </LabeledInput>
                             </FlexCell>
                             <FlexCell minWidth={ 120 }>
-                                <LabeledInput htmlFor="writingLevel" label='Writing' { ...langLensItem.prop('writingLevel').toProps() } >
+                                <LabeledInput htmlFor={`writingLevel-${index}`} label='Writing' { ...langLensItem.prop('writingLevel').toProps() } >
                                     <PickerInput
                                         { ...langLensItem.prop('writingLevel').toProps() }
                                         dataSource={ this.languageLevelsDataSource }
                                         selectionMode='single'
                                         valueType='id'
-                                        inputId="writingLevel"
+                                        inputId={`writingLevel-${index}`}
                                         placeholder='Select Level'
                                         getName={ item => item.level }
                                     />
@@ -466,13 +466,13 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                         return (
                             <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top' >
                                 <FlexCell minWidth={ 324 }>
-                                    <LabeledInput htmlFor="country" label='Country' { ...visasLens.index(index).prop('country').toProps() } >
+                                    <LabeledInput htmlFor={`travelVisasCountry-${index}`} label='Country' { ...visasLens.index(index).prop('country').toProps() } >
                                         <PickerInput
                                             { ...visasLens.index(index).prop('country').toProps() }
                                             dataSource={ this.countriesDataSource }
                                             selectionMode='single'
                                             valueType='id'
-                                            inputId="country"
+                                            inputId={`travelVisasCountry-${index}`}
                                             placeholder='Select Country'
                                         />
                                     </LabeledInput>
@@ -561,7 +561,7 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
         return (
             <div className={ css.root }>
                 <FlexRow size='48'>
-                    <RichTextView><h2>My Profile</h2></RichTextView>
+                    <RichTextView><h1>My Profile</h1></RichTextView>
                     <FlexSpacer />
                 </FlexRow>
                 <Panel cx={ css.formPanel } background='white' shadow>
