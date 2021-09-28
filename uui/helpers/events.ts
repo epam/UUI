@@ -5,6 +5,10 @@ export function isClickableChildClicked(e: React.SyntheticEvent<any>): boolean {
     return isChildHasClass(e.target, e.currentTarget, [uuiMarkers.clickable]);
 }
 
+export function isChildFocusable(e: React.FocusEvent<HTMLElement>): boolean {
+    return isChildHasClass(e.relatedTarget, e.target as unknown as Node, [uuiMarkers.lockFocus]);
+}
+
 export function isChildHasClass(target: EventTarget, currentTarget: Node, classNames: string[]): boolean {
     let el = target as any;
     while (el && currentTarget != el) {
