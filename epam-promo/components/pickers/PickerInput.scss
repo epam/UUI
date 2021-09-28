@@ -2,7 +2,7 @@
 
 .panel {
     @media screen and (max-width: 720px) {
-        height: 100vh;
+        height: var(--app-mobile-height);
     }
 }
 
