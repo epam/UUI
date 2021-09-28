@@ -9,6 +9,7 @@ export interface CheckboxProps extends CheckboxCoreProps {
     indeterminateIcon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
+    id?: string;
 }
 
 export class Checkbox extends React.Component<CheckboxProps, any> {
@@ -42,14 +43,15 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                         type="checkbox"
                         onChange={ !this.props.isReadonly ? this.handleChange : null }
                         disabled={ this.props.isDisabled }
-                        aria-disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled || undefined }
                         readOnly={ this.props.isReadonly }
-                        aria-readonly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly || undefined }
                         checked={ this.props.value }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
-                        aria-required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired || undefined }
                         tabIndex={ this.props.tabIndex }
+                        id={ this.props.id }
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
