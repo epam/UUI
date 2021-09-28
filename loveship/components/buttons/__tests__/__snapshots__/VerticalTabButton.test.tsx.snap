@@ -1,28 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IconButton should be rendered correctly 1`] = `
+exports[`VerticalTabButton should be rendered correctly 1`] = `
 <div
-  className="root icon-color-gray60 uui-button-box uui-enabled"
+  className="container uui-button-box uui-enabled root size-48 theme-light uui-no-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
-  role="button"
+  role="tab"
   tabIndex={null}
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  />
-</div>
+/>
 `;
 
-exports[`IconButton should be rendered correctly with props 1`] = `
+exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <div
-  className="root icon-color- uui-button-box uui-enabled -clickable"
+  className="container uui-button-box uui-enabled -clickable root size-48 theme-light uui-has-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
   onKeyDown={[Function]}
-  role="button"
+  role="tab"
   tabIndex={0}
 >
   <div
@@ -36,7 +31,7 @@ exports[`IconButton should be rendered correctly with props 1`] = `
       width={12}
     >
       <use
-        xlinkHref="#calendar-18.svg"
+        xlinkHref="#accept-12.svg"
       />
     </svg>
   </div>
