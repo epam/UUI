@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
-import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
+import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
@@ -162,7 +162,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: Element) => {
             this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            (targetProps.ref as React.RefCallback<any>)(this.targetNode);
+            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
 
         return (
@@ -172,6 +172,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
+                    toggleDropdownOpening: this.handleOpenedChange,
                 })
             }
             </PopperTargetWrapper>
@@ -209,7 +210,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         onClose: this.onClose,
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
-                        scheduleUpdate: update,
+                        scheduleUpdate: update
                     }) }
                 </div>
             </FreeFocusInside>
