@@ -32,112 +32,116 @@ Array [
     </div>
   </div>,
   <div
-    aria-expanded={true}
-    aria-hidden={false}
-    className="uui-popper"
-    data-placement="bottom-start"
-    style={
-      Object {
-        "left": "0",
-        "position": "fixed",
-        "top": "0",
-        "zIndex": undefined,
-      }
-    }
+    data-no-focus-lock={true}
   >
     <div
-      className="root shadow background-white container"
+      aria-expanded={true}
+      aria-hidden={false}
+      className="uui-popper"
+      data-placement="bottom-start"
       style={
         Object {
-          "width": 350,
+          "left": "0",
+          "position": "fixed",
+          "top": "0",
+          "zIndex": undefined,
         }
       }
     >
       <div
-        className="flexCell"
-        onClick={[Function]}
+        className="root shadow background-white container"
         style={
           Object {
-            "alignSelf": undefined,
-            "flexBasis": "0",
-            "flexGrow": undefined,
-            "flexShrink": undefined,
-            "minWidth": 0,
-            "textAlign": undefined,
+            "width": 350,
           }
         }
       >
         <div
-          className="root size-36 background-none spacing-6 container -clickable align-items-center"
+          className="flexCell"
           onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "0",
+              "flexGrow": undefined,
+              "flexShrink": undefined,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
         >
           <div
-            className="root icon-color-blue uui-button-box uui-enabled"
-            href={null}
+            className="root size-36 background-none spacing-6 container -clickable align-items-center"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={null}
           >
             <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+              className="root icon-color- uui-button-box uui-enabled"
+              href={null}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={null}
             >
-              <svg
-                className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
+              <div
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                <use
-                  xlinkHref="#table-sort_asc-18.svg"
-                />
-              </svg>
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
+                >
+                  <use
+                    xlinkHref="#table-sort_asc-18.svg"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
+            >
+              Sort Ascending
             </div>
           </div>
           <div
-            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
-          >
-            Sort Ascending
-          </div>
-        </div>
-        <div
-          className="root size-36 background-none spacing-6 container -clickable align-items-center"
-          onClick={[Function]}
-        >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled"
-            href={null}
+            className="root size-36 background-none spacing-6 container -clickable align-items-center"
             onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={null}
           >
             <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+              className="root icon-color- uui-button-box uui-enabled"
+              href={null}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={null}
             >
-              <svg
-                className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
+              <div
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                <use
-                  xlinkHref="#table-sort_desc-18.svg"
-                />
-              </svg>
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
+                >
+                  <use
+                    xlinkHref="#table-sort_desc-18.svg"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
+            >
+              Sort Descending
             </div>
           </div>
-          <div
-            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
-          >
-            Sort Descending
-          </div>
         </div>
-      </div>
-      <div>
-        Picker
+        <div>
+          Picker
+        </div>
       </div>
     </div>
   </div>,

@@ -4,7 +4,7 @@ import { ButtonProps } from '@epam/uui-components';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc } from '../../../docs';
 import { TabButtonContext } from '../../../docs';
 
-const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabButton', component: TabButton as React.ComponentClass<any> })
+const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabButton', component: TabButton })
     .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc] as any)
     .prop('caption', { examples:  [
         { value: 'Click me', isDefault: true },
