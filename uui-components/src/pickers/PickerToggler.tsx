@@ -113,7 +113,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 tabIndex={ -1 }
                 id={ this.props.inputId }
                 aria-haspopup={ true }
-                aria-expanded={ this.props.isOpen }
                 aria-required={ this.props.isRequired }
                 aria-disabled={ this.props.isDisabled }
                 aria-readonly={ true }
