@@ -15,7 +15,7 @@ export class IconButton extends ButtonBase<IconButtonProps> {
     getClassName() {
         return [
             css.root,
-            styles['color-' + (this.props.color || 'night600')],
+            this.props.color !== null ? styles['color-' + (this.props.color || 'night600')] : null,
         ];
     }
 

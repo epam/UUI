@@ -65,7 +65,7 @@ exports[`Alert should be rendered correctly 2`] = `
       </div>
     </div>
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
