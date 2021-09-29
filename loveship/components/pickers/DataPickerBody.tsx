@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import isEqual from 'lodash.isequal';
 import css from './DataPickerBody.scss';
-import cx from 'classnames';
-import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile } from '@epam/uui';
+import { Lens, DataSourceState, IEditable, DataSourceListProps, isMobile, IHasRawProps, cx } from '@epam/uui';
 import { FlexCell } from '@epam/uui-components';
 import { i18n } from "../../i18n";
 import * as types from '../types';
@@ -11,7 +10,7 @@ import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 
-export type DataPickerBodyProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
+export type DataPickerBodyProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & IHasRawProps<HTMLDivElement> & {
     showSearch?: boolean | 'auto'
     showSelectedRows?: boolean;
     maxHeight?: number;
@@ -30,7 +29,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
     needFocusSearch: boolean = this.showSearch();
 
     componentDidUpdate(prevProps: DataPickerBodyProps<TItem, TId>) {
-        if (this.needFocusSearch) {
+        if (this.needFocusSearch && !isMobile()) {
             let body = ReactDOM.findDOMNode(this) as HTMLElement;
             body && body.getElementsByTagName('input')[0].focus({ preventScroll: true });
             this.needFocusSearch = false;
@@ -63,7 +62,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
         const value = this.props.value;
         const searchSize = isMobile() ? "48" : (this.props.searchSize || "36");
         const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
-        
+
         return <>
             { this.showSearch() && (
                 <div key="search" className={ searchClass }>
@@ -90,6 +89,7 @@ export class DataPickerBody<TItem, TId> extends React.Component<DataPickerBodyPr
                         shadow="white"
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
+                        rawProps={ this.props.rawProps }
                         focusedIndex={ value && value.focusedIndex || 0 }
                     />
                     : this.renderNoFound()

@@ -29,8 +29,8 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
         inFocus: false,
     };
 
-    inputElement: Element | null = null;
-    inputContainer: Element | null = null;
+    inputElement: HTMLInputElement | null = null;
+    inputContainer: HTMLDivElement | null = null;
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onValueChange(e.target.value);
@@ -61,7 +61,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
     }
 
     public focus() {
-        this.inputElement && (this.inputElement as any).focus();
+        this.inputElement && this.inputElement.focus();
     }
 
     handleClick = (e: any) => {
@@ -92,7 +92,13 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             name: this.props.name,
             maxLength: this.props.maxLength,
             inputMode: this.props.inputMode,
+            tabIndex: this.props.tabIndex,
+            id: this.props.id,
+            required: this.props.isRequired,
             'aria-invalid': this.props.isInvalid,
+            'aria-required': this.props.isRequired,
+            'aria-disabled': this.props.isDisabled,
+            'aria-readonly': this.props.isReadonly
         };
     }
 
@@ -119,7 +125,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
                 { ...this.props.rawProps }
             >
                 { this.props.iconPosition !== 'right' && icon }
-                { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input{ ...this.getInputProps() }/> }
+                { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input { ...this.getInputProps() }/> }
                 { this.props.onAccept && <IconContainer
                     cx={ cx('uui-icon-accept', (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                     isDisabled={ this.props.isDisabled || !this.props.value }

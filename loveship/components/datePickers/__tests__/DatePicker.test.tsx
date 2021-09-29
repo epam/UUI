@@ -46,16 +46,37 @@ describe('DataPicker', () => {
 
     });
 
+    it(`should open picker on field focus`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on field blur`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
     it('should reset invalid value onBlur', () => {
         let baseValue = '2019-10-47';
         let newState: any = { inputValue: baseValue, value: baseValue };
         wrapper = shallow(<DatePicker
-            value={ baseValue }
+            value={ null }
             onValueChange={ (nV: any) => newState.value = nV }
             format='MMM D, YYYY'
         />, {});
-
-        (wrapper.instance() as any).handleBlur('from');
+        const instance = (wrapper.instance() as any);
+        instance.handleInputChange(baseValue);
+        instance.handleBlur('from');
         expect(newState.value).toEqual(null);
 
     });

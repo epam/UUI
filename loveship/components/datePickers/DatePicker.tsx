@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropdownContainer, DatePickerBody, SizeMod, EditMode, TextInput } from '../index';
-import { cx, IDropdownToggler } from '@epam/uui';
+import { cx, IDropdownToggler, uuiMod } from '@epam/uui';
 import * as css from './DatePicker.scss';
 import { Dayjs } from "dayjs";
 import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
@@ -15,14 +15,15 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
 }
-export class DatePicker extends BaseDatePicker<DatePickerProps> {
 
+export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler) => {
         return (
             <TextInput
                 { ...props }
+                onClick={ null }
                 isDropdown={ false }
-                cx={ cx(this.props.cx, css.dateInput) }
+                cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
                 icon={ systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
@@ -36,6 +37,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
             />
         );

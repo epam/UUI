@@ -51,10 +51,6 @@
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
-
-        &:focus-within {
-            @include control-focus();
-        }
     }
 
     :global(.uui-switch-toggler) {
@@ -74,7 +70,7 @@
     }
 
     //Colors
-    &:hover {
+    &:hover, &:focus-within {
         :global(.uui-switch-body) {
             background-color: var(--background-color-hovered);
             border-color: var(--border-color-hovered);
@@ -125,7 +121,8 @@
         }
 
         & :global(.uui-switch-toggler),
-        &:hover :global(.uui-switch-toggler) {
+        &:hover :global(.uui-switch-toggler),
+        &:focus-within :global(.uui-switch-toggler) {
             background-color: var(--toggler-background-color-disabled);
             border-color: var(--toggler-border-color-disabled);
         }

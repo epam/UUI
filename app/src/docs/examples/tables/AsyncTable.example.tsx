@@ -62,7 +62,11 @@ export default function ProductTable() {
     ], []);
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{
+            role: 'table',
+            'aria-rowcount': view.getListProps().rowsCount,
+            'aria-colcount': productColumns.length
+        }}>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

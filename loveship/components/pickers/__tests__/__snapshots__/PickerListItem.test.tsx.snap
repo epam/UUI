@@ -12,6 +12,7 @@ exports[`PickerListItem should render with all new props 1`] = `
     >
       <input
         aria-checked={false}
+        aria-disabled={true}
         disabled={true}
         onChange={[Function]}
         type="radio"
@@ -33,6 +34,7 @@ exports[`PickerListItem should render with default props 1`] = `
     >
       <input
         aria-checked={false}
+        aria-disabled={true}
         disabled={true}
         onChange={[Function]}
         type="radio"

@@ -1,14 +1,15 @@
+@use 'sass:math';
 @use '../../assets/styles/index.scss' as *;
 @use '../../assets/styles/colorvars/inputs/radioInput-colorvars.scss' as *;
 
 
 @mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
-    $vpadding: ($line-height - $size) / 2;
+    $vpadding: math.div(($line-height - $size), 2);
 
     :global(.uui-radioinput) {
         width: $size;
         height: $size;
-        border-radius: $size / 2;
+        border-radius: math.div($size, 2);
         margin: $vpadding 0;
     }
 
@@ -30,7 +31,7 @@
 .root {
     @include radio-input-color();
 
-    &:hover {
+    &:hover, &:focus-within {
         :global(.uui-radioinput) {
             border-color: var(--border-color-hovered);
 
@@ -63,20 +64,8 @@
         flex-shrink: 0;
         box-sizing: border-box;
 
-        &:focus-within {
-            @include control-focus();
-        }
-
         &:global(.uui-checked) {
             border-color: var(--border-color-checked);
-
-            &:focus-within {
-                border-color: var(--border-color-hovered);
-
-                :global(.uui-icon) {
-                    fill: var(--fill-color-hovered);
-                }
-            }
 
             :global(.uui-icon) {
                 fill: var(--fill-color-checked);
@@ -103,17 +92,12 @@
             color: var(--errored-color);
         }
 
+        :global(.uui-radioinput) {
+            border-color: var(--errored-color);
+        }
+
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
-                border-color: var(--errored-color);
-
-                &:focus-within {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
 
                 :global(.uui-icon) {
                     fill: var(--errored-color);
@@ -121,17 +105,9 @@
             }
         }
 
-        &:hover {
+        &:hover, &:focus-within {
             :global(.uui-radioinput) {
                 border-color: var(--errored-color);
-
-                &:focus {
-                    border-color: var(--errored-color);
-
-                    :global(.uui-icon) {
-                        fill: var(--errored-color);
-                    }
-                }
             }
 
             :global(.uui-icon) {

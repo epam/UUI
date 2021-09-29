@@ -8,6 +8,7 @@ export interface CheckboxProps extends CheckboxCoreProps {
     icon?: Icon;
     indeterminateIcon?: Icon;
     renderLabel?(): React.ReactNode;
+    tabIndex?: number;
 }
 
 export class Checkbox extends React.Component<CheckboxProps, any> {
@@ -26,7 +27,6 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
     render() {
         return (
             <label
-                role="checkbox"
                 className={ cx(
                     css.container,
                     this.props.cx,
@@ -40,11 +40,16 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                 <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
                     <input
                         type="checkbox"
-                        onChange={ this.handleChange }
+                        onChange={ !this.props.isReadonly ? this.handleChange : null }
                         disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled }
                         readOnly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly }
                         checked={ this.props.value }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired }
+                        tabIndex={ this.props.tabIndex }
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }

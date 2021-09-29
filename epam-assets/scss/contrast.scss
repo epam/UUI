@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function pow($base, $exponent) {
     $result: 1;
     @for $_ from 1 through $exponent {
@@ -9,16 +11,16 @@
 
 @function de-gamma($n) {
     @if $n <= 0.03928 {
-        @return $n / 12.92;
+        @return math.div($n, 12.92);
     } @else {
-        @return pow((($n + 0.055) / 1.055), 2);
+        @return pow(math.div(($n + 0.055), 1.055), 2);
     }
 }
 
 @function brightness($c) {
-    $rlin: de-gamma(red($c) / 255);
-    $glin: de-gamma(green($c) / 255);
-    $blin: de-gamma(blue($c) / 255);
+    $rlin: de-gamma(math.div(red($c), 255));
+    $glin: de-gamma(math.div(green($c), 255));
+    $blin: de-gamma(math.div(blue($c), 255));
     @return (0.2126 * $rlin + 0.7152 * $glin + 0.0722 * $blin) * 100;
 }
 

@@ -54,6 +54,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
                 clearTimer: () => clearTimeout(durationTimer),
                 refreshTimer: () => {
                     if (params.duration !== 'forever') {
+                        clearTimeout(durationTimer);
                         durationTimer = setTimeout(() => {
                             notificationProps.onClose();
                         }, params.duration * 1000);

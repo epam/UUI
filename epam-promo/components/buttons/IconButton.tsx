@@ -22,7 +22,7 @@ export class IconButton extends ButtonBase<IconButtonProps> {
     getClassName() {
         return [
             css.root,
-            styles['icon-color-' + (this.props.color || 'gray60')],
+            this.props.color !== null ? styles['icon-color-' + (this.props.color || 'gray60')] : null,
         ];
     }
 

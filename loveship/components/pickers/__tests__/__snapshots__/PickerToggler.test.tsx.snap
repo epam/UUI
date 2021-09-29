@@ -13,10 +13,10 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     className="body"
   >
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={false}
+      aria-haspopup={true}
       className="uui-input singleInput"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -45,7 +45,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
-      tabIndex={0}
+      tabIndex={null}
     >
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
@@ -65,10 +65,10 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       </div>
     </div>
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={true}
+      aria-haspopup={true}
       className="uui-input"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -80,6 +80,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       style={Object {}}
+      tabIndex={-1}
     >
       <svg
         className=""
