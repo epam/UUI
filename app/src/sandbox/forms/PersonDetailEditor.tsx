@@ -237,10 +237,11 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput
                         label='Slider'
+                        htmlFor="vacationDaysSlider"
                         {...this.props.lens.prop('vacDays').toProps()}
                     >
                         <Slider min={0} max={40} step={1}
-                            rawProps={{ 'aria-label': 'Vacation Days' }}
+                            rawProps={{ 'aria-label': 'Vacation Days Slider', id: 'vacationDaysSlider' }}
                             {...this.props.lens.prop('vacDays').toProps()}
                         />
                     </LabeledInput>
