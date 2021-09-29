@@ -51,6 +51,7 @@ export const directionMode = {
 };
 
 export const uuiMarkers = {
+    lockFocus: '-lock-focus',
     clickable: '-clickable',
     draggable: '-draggable',
     scrolledLeft: '-scrolled-left',

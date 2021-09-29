@@ -1,7 +1,7 @@
 import React from 'react';
 import css from "./PickerInput.scss";
 import { Modifier } from "react-popper";
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier } from '@epam/uui';
+import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout/FlexItems';
@@ -34,18 +34,18 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
             renderRow={ this.renderRow }
-            selectionMode={ this.props.selectionMode as any }
-            valueType={ this.props.valueType as any }
+            selectionMode={ this.props.selectionMode }
+            valueType={ this.props.valueType }
         />)
             .then(newSelection => this.handleSelectionValueChange(newSelection))
             .catch(() => null);
     }
 
     getRowSize() {
-        return isMobile() 
-            ? "48" 
-            : this.props.editMode === 'modal' 
-                ? '36' 
+        return isMobile()
+            ? "48"
+            : this.props.editMode === 'modal'
+                ? '36'
                 : this.props.size;
     }
 
@@ -64,6 +64,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ this.getRowSize() }
+                rawProps={{ "aria-selected": rowProps.isSelectable && rowProps.isSelected, role: 'option' }}
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />
@@ -112,9 +113,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             ? document.documentElement.clientHeight
             : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile()
-            ? document.documentElement.clientWidth
+            ? document.documentElement.clientWidth 
             : (this.props.minBodyWidth || pickerWidth);
-
+        
         return (
             <Dropdown
                 renderTarget={ dropdownProps =>
@@ -129,7 +130,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         <Panel
                             shadow
                             style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                            cx={ css.panel }
+                            rawProps={{ tabIndex: -1 }}
+                            cx={ [css.panel, uuiMarkers.lockFocus] }
                         >
                             <MobileDropdownWrapper
                                 title={ this.props.entityName }
@@ -148,10 +150,14 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                         search: this.state.dataSourceState.search,
                                         onClose: () => this.toggleBodyOpening(false),
                                     })) }
+                                    rawProps={{
+                                        "aria-multiselectable": this.props.selectionMode === 'multi' ? true : null,
+                                        "aria-orientation": 'vertical',
+                                    }}
                                     onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                     scheduleUpdate={ props.scheduleUpdate }
                                     searchSize={ this.props.size }
-                                    editMode={ 'dropdown' }
+                                    editMode='dropdown'
                                 />
 
                                 { this.renderFooter() }

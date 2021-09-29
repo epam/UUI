@@ -11,6 +11,7 @@ export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholde
     autoFocus?: boolean;
     inputCx?: CX;
     maxLength?: number;
+    id?: string;
 }
 
 interface TextAreaState {
@@ -103,8 +104,13 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                             ? this.props.rows
                             : this.props.autoSize ? 1 : undefined
                     }
-                    disabled={ this.props.isDisabled }
+                    id={ this.props.id }
                     readOnly={ this.props.isReadonly }
+                    aria-readonly={ this.props.isReadonly }
+                    required={ this.props.isRequired }
+                    aria-required={ this.props.isRequired }
+                    disabled={ this.props.isDisabled }
+                    aria-disabled={ this.props.isDisabled }
                     onChange={ this.handleChange }
                     value={ this.props.value || "" }
                     maxLength={ this.props.maxLength }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
 import { FileUploadResponse, useUuiContext } from '@epam/uui';
-import * as css from './FileUpload.example.scss';
+import * as css from './FileUpload.scss';
 
 type AttachmentType = FileUploadResponse & {
     progress?: number;
