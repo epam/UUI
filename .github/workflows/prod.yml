@@ -120,6 +120,8 @@ jobs:
           echo $tag
           echo "::set-env name=tag::$tag"
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
+          helm --help
+          helm chart --help
           helm chart pull ${{ secrets.HELM_REGISTRY }}
           helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
 
