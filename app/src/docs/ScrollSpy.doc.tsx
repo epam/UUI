@@ -10,8 +10,8 @@ export class ScrollSpyDoc extends BaseDocsBlock {
                 <EditableDocContent fileName='scrollSpy-descriptions' />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Scroll Spy Usage within a form'
-                    path='./examples/scrollSpy/ScrollSpyForm.example.tsx'
+                    title='Scroll Spy Basic Usage'
+                    path='./examples/scrollSpy/BasicScrollSpy.example.tsx'
                 />
             </>
         );
