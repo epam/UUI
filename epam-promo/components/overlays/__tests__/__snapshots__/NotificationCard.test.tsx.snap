@@ -52,7 +52,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -110,7 +110,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -149,7 +149,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -207,7 +207,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -265,7 +265,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}
@@ -323,7 +323,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="content"
     />
     <div
-      className="root icon-color- uui-button-box uui-enabled -clickable closeIcon"
+      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
       href={null}
       onClick={[Function]}
       onKeyDown={[Function]}

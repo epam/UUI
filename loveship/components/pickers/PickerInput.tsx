@@ -42,7 +42,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        return this.props.editMode === 'modal' ? '36' : this.props.size;
+        return isMobile()
+            ? "48"
+            : this.props.editMode === 'modal'
+                ? '36'
+                : this.props.size;
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {

@@ -1,3 +1,16 @@
+# 4.2.5 - 28.09.2021
+
+**What's New**
+* rework keyboard and focus/blur functionality in pickers
+* [VerticalTabButton]: added new component for vertical tabs
+* [DropdownMenu]: added keyboard support in Promo skin
+
+**What’s Fixed**
+* [PickerInput]: improve mobile view
+* [Modals]: improve mobile view
+* [PickerInput]: fix dropdown icon click handler
+* [LabeledInput]: remove children wrapping into label tag. Added htmlFor prop for linking label and control in forms.
+
 # 4.2.4 - 17.09.2021
 
 **What’s Fixed**
