@@ -130,6 +130,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                         'aria-valuenow': this.props.value.from,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
+                        role: 'slider',
                     }}
                 />
                 <SliderHandle
@@ -145,6 +146,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                         'aria-valuenow': this.props.value.to,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
+                        role: 'slider',
                     }}
                 />
             </div>
