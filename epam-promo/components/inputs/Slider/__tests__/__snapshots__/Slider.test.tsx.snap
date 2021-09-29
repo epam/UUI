@@ -2,13 +2,9 @@
 
 exports[`Slider should be rendered correctly 1`] = `
 <div
-  aria-valuemax={50}
-  aria-valuemin={0}
-  aria-valuenow={null}
   className="uui-slider-container root root"
   onClick={[Function]}
   onMouseDown={[Function]}
-  role="slider"
 >
   <div
     className="uui-slider"
@@ -62,6 +58,9 @@ exports[`Slider should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
     className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -80,13 +79,9 @@ exports[`Slider should be rendered correctly 1`] = `
 
 exports[`Slider should be rendered correctly 2`] = `
 <div
-  aria-valuemax={50}
-  aria-valuemin={0}
-  aria-valuenow={null}
   className="uui-slider-container root root"
   onClick={[Function]}
   onMouseDown={[Function]}
-  role="slider"
 >
   <div
     className="uui-slider"
@@ -140,6 +135,9 @@ exports[`Slider should be rendered correctly 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
     className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}

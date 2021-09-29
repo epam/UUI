@@ -22,6 +22,7 @@ export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
+    id?: string;
 }
 
 export class RadioInput extends React.Component<RadioInputProps, any> {
@@ -55,14 +56,15 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                         type="radio"
                         onChange={ !this.props.isReadonly ? this.handleChange : null }
                         disabled={ this.props.isDisabled }
-                        aria-disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled || undefined }
                         readOnly={ this.props.isReadonly }
-                        aria-readonly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly || undefined }
                         required={ this.props.isRequired }
-                        aria-required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired || undefined }
                         checked={ this.props.value }
-                        tabIndex={ this.props.tabIndex }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        id={ this.props.id }
+                        tabIndex={ this.props.tabIndex }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
