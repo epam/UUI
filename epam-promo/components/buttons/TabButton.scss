@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use  '../../assets/styles/index' as *;
 
 @mixin tab-button-color($color, $activeColor, $backgroundColor) {
@@ -50,7 +51,7 @@ $text-size-count: 24px;
     &.uui-notification {
         &::after {
             content: '';
-            margin-bottom: $text-size-caption / 2;
+            margin-bottom: math.div($text-size-caption, 2);
             height: 6px;
             width: 6px;
             background: $red;
