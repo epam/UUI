@@ -58,6 +58,9 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-label="From"
+    aria-valuemax={100}
+    aria-valuemin={1}
     className="uui-slider-handle root color-sky"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -72,6 +75,9 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     tabIndex={0}
   />
   <div
+    aria-label="To"
+    aria-valuemax={100}
+    aria-valuemin={1}
     className="uui-slider-handle root color-sky"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -146,6 +152,9 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     </div>
   </div>
   <div
+    aria-label="From"
+    aria-valuemax={100}
+    aria-valuemin={1}
     className="uui-slider-handle root color-sun"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -160,6 +169,9 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     tabIndex={0}
   />
   <div
+    aria-label="To"
+    aria-valuemax={100}
+    aria-valuemin={1}
     className="uui-slider-handle root color-sun"
     onBlur={[Function]}
     onFocus={[Function]}

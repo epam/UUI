@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { IHasCX, uuiElement, cx } from '@epam/uui';
+import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui';
 import * as css from '../../overlays/Tooltip.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
 import { uuiSlider } from './SliderBase';
 
-interface SliderHandleProps extends IHasCX {
+interface SliderHandleProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     onUpdate(mouseX: number): void;
     onKeyDownUpdate?(type: 'right' | 'left'): void;
     handleActiveState?(isActive: boolean): void;
@@ -110,6 +110,7 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                             onKeyDown={ this.handleKeyDown }
                             onFocus={ this.handleFocus }
                             onBlur={ this.handleBlur }
+                            { ...this.props.rawProps }
                         />
                     }
                 </Reference>
