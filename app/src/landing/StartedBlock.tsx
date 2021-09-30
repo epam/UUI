@@ -27,6 +27,7 @@ export class StartedBlock extends React.Component {
                                       cx={ css.contentText }>{ 'Learn more about React Components, Demos, Packages & Documentation' }</Text>
                                 <FlexRow alignItems='center'>
                                     <Button
+                                        rawProps={{ 'aria-label': 'For Developers' }}
                                         caption='FOR DEVELOPERS'
                                         fill='white'
                                         size='48'
@@ -47,6 +48,7 @@ export class StartedBlock extends React.Component {
                                       cx={ css.contentText }>{ 'Learn more about Design Library, Specifications, Palettes & Typography' }</Text>
                                 <FlexRow alignItems='center'>
                                     <Button
+                                        rawProps={{ 'aria-label': 'For Designers' }}
                                         caption='FOR DESIGNERS'
                                         fill='white'
                                         size='48'

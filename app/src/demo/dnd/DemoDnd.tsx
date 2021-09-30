@@ -63,9 +63,14 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                 <Panel background='white' shadow>
                     <FlexCell minWidth={ 282 } >
                         <FlexRow padding='18' borderBottom>
-                            <Text size='48' font='sans-semibold' >Modules</Text>
+                            <Text size='48' font='sans-semibold'>Modules</Text>
                             <FlexSpacer />
-                            <IconButton icon={ addIcon } onClick={ () => {} } isDisabled />
+                            <IconButton
+                                rawProps={{ 'aria-label': 'Add one More' }}
+                                icon={ addIcon }
+                                onClick={ () => {} }
+                                isDisabled
+                            />
                         </FlexRow>
                         <FlexCell cx={ css.moduleRowsContainer } >
                             { sortedModules.map((module, index) => <DndModule
@@ -80,7 +85,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                 </Panel>
                 <FlexSpacer />
                 <FlexCell cx={ css.moduleContent } minWidth={ 894 } >
-                    <Text font='museo-sans' cx={ css.moduleHeader } >Module 3: Module Name</Text>
+                    <Text font='museo-sans' cx={ css.moduleHeader }>Module 3: Module Name</Text>
                     { sortedSections.map((section, index) => <DndSection
                         key={ section.id }
                         prevSection={ sortedSections[index - 1] }
