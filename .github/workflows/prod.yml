@@ -113,6 +113,11 @@ jobs:
           tags: |
             type=sha
 
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.0
+
       - name: Preparation helm chart
         run: |
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
@@ -120,8 +125,9 @@ jobs:
           echo $tag
           echo "::set-env name=tag::$tag"
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
-          helm pull --untar ${{ secrets.HELM_REGISTRY }}
-          ls -l
+          helm version
+          helm chart pull ${{ secrets.HELM_REGISTRY }}
+          helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
 
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v2
