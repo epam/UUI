@@ -6,3 +6,4 @@ export * from './PickerModalBase';
 export * from './PickerInputBase';
 export * from './KeyboardUtils';
 export * from './PickerToggler';
+export * from './DataPickerRow';
