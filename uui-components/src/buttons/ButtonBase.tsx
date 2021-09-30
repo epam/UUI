@@ -1,22 +1,11 @@
 import * as React from 'react';
-import {
-    cx,
-    ButtonBaseCoreProps,
-    UuiContexts,
-    isClickableChildClicked,
-    uuiMod,
-    uuiElement,
-    uuiMarkers,
-    UuiContext,
-    isChildHasClass,
-    IHasRawProps,
-} from '@epam/uui';
+import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement> {}
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
-export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, {}> {
+export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, {}> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -48,7 +37,9 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
 
     getClassName?(): string[];
 
-    getChildren?(): React.ReactNode[];
+    getChildren?(): React.ReactNode {
+        return null;
+    }
 
     getTabIndex(): number {
         if (this.props.isDisabled || !this.props.onClick) {
