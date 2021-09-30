@@ -1,8 +1,6 @@
 @use '../../assets/styles/scss/index'  as *;
 
 .root {
-    @include button-reset();
-
     // Fonts
     @include epam-uui-fonts();
 

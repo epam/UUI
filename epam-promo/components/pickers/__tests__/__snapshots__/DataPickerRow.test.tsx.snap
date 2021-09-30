@@ -66,11 +66,10 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       <div
         className="iconWrapper"
       >
-        <div
-          className="root icon-color-blue uui-button-box uui-enabled"
+        <button
+          className="container uui-button-box uui-enabled root icon-color-blue"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >
@@ -89,7 +88,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

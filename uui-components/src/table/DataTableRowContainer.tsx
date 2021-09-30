@@ -4,7 +4,7 @@ import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     scrollManager?: ScrollManager;
     columns?: DataColumnProps<any, any>[];
     renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;

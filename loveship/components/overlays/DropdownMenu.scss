@@ -129,7 +129,6 @@
         }
 
         .buttonRoot {
-            @include button-reset();
             color: $night300;
             fill: $night300;
         }
@@ -173,7 +172,6 @@
 }
 
 .buttonRoot {
-    @include button-reset();
     color: $night600;
     fill: $night500;
 

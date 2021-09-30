@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuDropdown should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >
@@ -24,15 +23,14 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;
 
 exports[`MainMenuDropdown should be rendered correctly with props 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={0}
 >
@@ -56,5 +54,5 @@ exports[`MainMenuDropdown should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;
