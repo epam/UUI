@@ -23,8 +23,8 @@ export class AppHeader extends React.Component {
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
         return (
             <>
-                <BurgerButton 
-                    caption='Home' 
+                <BurgerButton
+                    caption='Home'
                     link={ { pathname: '/' } }
                     clickAnalyticsEvent={ () => this.sendEvent('Welcome') }
                 />
@@ -46,8 +46,8 @@ export class AppHeader extends React.Component {
                     isLinkActive={ (pathName === '/documents' && category === 'components') }
                     clickAnalyticsEvent={ () => this.sendEvent('Components') }
                 />
-                <BurgerButton 
-                    caption='Demo' 
+                <BurgerButton
+                    caption='Demo'
                     link={ { pathname: '/demo' } }
                     isLinkActive={ (pathName === '/demo') }
                     clickAnalyticsEvent={ () => this.sendEvent('Demo') }

@@ -1,5 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 @use '~@epam/promo/assets/styles/fonts' as *;
+@use '~@epam/promo/assets/styles/controlColors' as *;
 
 .layout {
     margin: 0 auto;
@@ -41,10 +42,15 @@
                         display: flex;
                         height: 60px;
                         width: 408px;
+                        list-style-type: none;
                         padding-left: 12px;
                         border-left: 6px solid transparent;
                         box-sizing: border-box;
                         cursor: pointer;
+
+                        &:focus-visible {
+                            @include control-focus();
+                        }
 
                         &-active {
                             border-left: 6px solid $blue;
@@ -55,6 +61,10 @@
                             align-self: center;
                         }
                     }
+                }
+
+                .pointWrapper {
+                    list-style-type: none;
                 }
 
                 .point {

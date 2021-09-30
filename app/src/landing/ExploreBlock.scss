@@ -1,4 +1,5 @@
 @use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/controlColors' as *;
 
 .layout {
     margin: 0 auto;
@@ -38,11 +39,17 @@
             transition: 1s;
         }
 
+        .color-palette, .typography, .download, .demo, .components {
+            &:focus-visible {
+                @include control-focus();
+            }
+        }
+
         .color-palette {
             background: url('/static/images/Palette.png') no-repeat center;
             background-size: 100%;
 
-            &:hover {
+            &:hover, &:focus-visible {
                 background-size: 150%;
             }
         }
@@ -51,7 +58,7 @@
             background: url('/static/images/Typo.png') no-repeat center;
             background-size: 100%;
 
-            &:hover {
+            &:hover, &:focus-visible {
                 background-size: 150%;
             }
 
@@ -71,7 +78,7 @@
             background: url('/static/images/Assets.png') no-repeat center;
             background-size: 100%;
 
-            &:hover {
+            &:hover, &:focus-visible {
                 background-size: 150%;
             }
 
@@ -90,7 +97,7 @@
             margin-top: 24px;
             transition: 1s;
 
-            &:hover {
+            &:hover, &:focus-visible {
                 background-size: 150%;
             }
         }
@@ -141,7 +148,7 @@
             .color-palette {
                 background-size: 100% 100%;
 
-                &:hover {
+                &:hover, &:focus-visible {
                     background-size: 100% 100%;
                 }
             }
@@ -149,7 +156,7 @@
             .typography {
                 background-size: 100% 100%;
 
-                &:hover {
+                &:hover, &:focus-visible {
                     background-size: 100% 100%;
                 }
 
@@ -168,7 +175,7 @@
             .download {
                 background-size: 100% 100%;
 
-                &:hover {
+                &:hover, &:focus-visible {
                     background-size: 100% 100%;
                 }
 
@@ -192,7 +199,7 @@
                 margin-top: 18px;
                 transition: none;
 
-                &:hover {
+                &:hover, &:focus-visible {
                     background-size: 100% 100%;
                 }
             }
