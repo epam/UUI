@@ -110,6 +110,10 @@
     @include withSelected;
     @include itemRoot;
 
+    .icon {
+        justify-content: flex-start;
+    }
+
     &.link {
         @include withSelected;
         @include fillColor($gray60, $gray80);
