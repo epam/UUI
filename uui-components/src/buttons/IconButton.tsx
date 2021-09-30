@@ -12,13 +12,11 @@ export class IconButton extends ButtonBase<IconButtonBaseProps> {
 
     getClassName() {
         return [
-            css.container
+            css.container,
         ];
     }
 
     getChildren() {
-        return [
-            <IconContainer key='icon' icon={ this.props.icon } />,
-        ];
+        return <IconContainer key='icon' icon={ this.props.icon } />;
     }
 }
