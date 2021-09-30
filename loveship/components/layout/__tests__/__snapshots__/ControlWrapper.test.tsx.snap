@@ -4,11 +4,10 @@ exports[`ControlWrapper should rendered correctly 1`] = `
 <div
   className="root size-36"
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -17,12 +16,11 @@ exports[`ControlWrapper should rendered correctly 1`] = `
     >
       On
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sun fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -31,6 +29,6 @@ exports[`ControlWrapper should rendered correctly 1`] = `
     >
       Off
     </div>
-  </div>
+  </button>
 </div>
 `;

@@ -2,7 +2,6 @@
 @import '../../../assets/styles/colorvars/navigation/mainMenu/mainMenuButton-colorvars.scss';
 
 .root {
-    @include button-reset();
     @include mainMenu-button-color();
     flex-shrink: 0;
     color: var(--color);
