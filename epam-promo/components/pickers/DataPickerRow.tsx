@@ -41,7 +41,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
             </div>,
         };
 
-    renderContent() {
+    renderContent = () => {
         return <DataTableCell
             key='name'
             size={ this.props.size || '36' }
@@ -58,7 +58,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         return <UUIDataPickerRow
             { ...this.props }
             cx={ [css.pickerRow, this.props.cx] }
-            renderContent={ () => this.renderContent() }
+            renderContent={ this.renderContent }
         />;
     }
 }
