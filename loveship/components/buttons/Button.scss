@@ -1,12 +1,12 @@
 @use '../../assets/styles/scss/index' as *;
 
 .root {
-    @include button-reset();
     font-family: $font-sans-semibold;
     font-weight: normal;
 
     &:global(.uui-button-box) {
         border-style: solid;
+        min-width: inherit;
         justify-content: center;
         border-radius: $control-border-radius;
     }

@@ -5,11 +5,10 @@ exports[`ControlGroup should be rendered correctly 1`] = `
   className="container root"
   role="group"
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -18,12 +17,11 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     >
       On
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sun fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   >
@@ -32,6 +30,6 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     >
       Off
     </div>
-  </div>
+  </button>
 </div>
 `;

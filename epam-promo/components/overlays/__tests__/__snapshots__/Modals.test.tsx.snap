@@ -157,11 +157,10 @@ exports[`Modals should be rendered correctly 2`] = `
             }
           }
         >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -180,7 +179,7 @@ exports[`Modals should be rendered correctly 2`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div

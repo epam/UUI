@@ -161,11 +161,10 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
             }
           }
         >
-          <div
-            className="root color-night600 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root color-night600"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -184,7 +183,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
