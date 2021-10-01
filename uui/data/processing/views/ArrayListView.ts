@@ -124,11 +124,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                                 emptySelection.push(rowProps.id);
                             }
                         } else {
-                            checkableCount++;
-                            if (rowProps.isChecked) {
-                                checkedCount++;
-                            }
                             fullSelection.push(rowProps.id);
+                        }
+                        checkableCount++;
+                        if (rowProps.isChecked) {
+                            checkedCount++;
                         }
 
                         rowProps.isChildrenChecked = children.checkedCount > 0;
@@ -171,10 +171,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             row.isFocused = this.value.focusedIndex === index;
         });
 
-
         if (all.checkableCount > 0) {
             this.selectAll = {
-                value: all.checkedCount > 0,
+                value: all.checkedCount === fullSelection.length,
                 onValueChange: checked => this.handleCheckedChange(checked ? fullSelection : emptySelection),
                 indeterminate: 0 < all.checkedCount && all.checkedCount < all.checkableCount,
             };
