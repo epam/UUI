@@ -48,11 +48,10 @@ exports[`Alert should be rendered correctly 2`] = `
       <div
         className="actionWrapper"
       >
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-24 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLink"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -61,14 +60,13 @@ exports[`Alert should be rendered correctly 2`] = `
           >
             ACTION 1
           </div>
-        </div>
+        </button>
       </div>
     </div>
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -87,7 +85,7 @@ exports[`Alert should be rendered correctly 2`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;

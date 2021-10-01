@@ -4,11 +4,10 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper clearButton"
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -17,7 +16,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     >
       CLOSE ALL NOTIFICATIONS
     </div>
-  </div>
+  </button>
 </div>
 `;
 
@@ -51,11 +50,10 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -74,7 +72,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -109,11 +107,10 @@ exports[`HintNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -132,7 +129,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -148,11 +145,10 @@ exports[`NotificationCard should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -171,7 +167,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -206,11 +202,10 @@ exports[`NotificationCard should be rendered correctly 2`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -229,7 +224,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -264,11 +259,10 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -287,7 +281,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;
@@ -322,11 +316,10 @@ exports[`WarningNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <div
-      className="root icon-color-gray60 uui-button-box uui-enabled -clickable closeIcon"
+    <button
+      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -345,7 +338,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
   </div>
 </div>
 `;

@@ -44,6 +44,7 @@ Array [
       className="container uui-dropdown-body bodyRoot -lock-focus container"
       style={
         Object {
+          "maxWidth": "250px",
           "minHeight": undefined,
           "minWidth": undefined,
         }
@@ -95,7 +96,7 @@ Array [
           className="flexSpacer"
         />
         <div
-          className="container uui-icon uui-enabled iconAfter"
+          className="container uui-icon uui-enabled icon iconAfter"
           style={Object {}}
         >
           <svg

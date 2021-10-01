@@ -38,11 +38,10 @@ exports[`ScrollBars should be rendered correctly 1`] = `
       }
     }
   >
-    <div
+    <button
       className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
       tabIndex={null}
     />
