@@ -27,7 +27,7 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
-    const requiredProps: DataPickerBodyProps<any, any> = {
+    const requiredProps: DataPickerBodyProps = {
         value: null,
         onValueChange: jest.fn(),
         rows: mockDataSource.props.items,
@@ -59,7 +59,6 @@ describe('DataPickerBody', () => {
                 { ...requiredProps }
                 editMode="modal"
                 showSearch="auto"
-                showSelectedRows
                 maxHeight={ 800 }
                 searchSize="48"
                 rows={
