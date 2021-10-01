@@ -97,13 +97,13 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
                 />
             </FlexCell>
             <FlexCell width='auto'>
-                <LabeledInput label='Have background' labelPosition='left'>
-                    <Switch isDisabled={ this.state.isDisabled } value={ this.state.hasBackground } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal }) } />
+                <LabeledInput htmlFor='haveBackground' label='Have background' labelPosition='left'>
+                    <Switch id='haveBackground' isDisabled={ this.state.isDisabled } value={ this.state.hasBackground } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal }) } />
                 </LabeledInput>
             </FlexCell>
             <FlexCell width='auto'>
-                <LabeledInput label='View mode' labelPosition='left'>
-                    <Switch value={ !this.state.isEditMode } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal }) } />
+                <LabeledInput htmlFor="viewMode" label='View mode' labelPosition='left'>
+                    <Switch id="viewMode" value={ !this.state.isEditMode } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal }) } />
                 </LabeledInput>
             </FlexCell>
             { props.isChanged && <FlexCell width='auto'>

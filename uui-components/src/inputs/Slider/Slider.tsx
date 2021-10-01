@@ -75,6 +75,7 @@ export class Slider extends SliderBase<number, any> {
                         'aria-valuenow': this.props.value,
                         'aria-valuemin': this.props.min,
                         'aria-valuemax': this.props.max,
+                        role: 'slider',
                     }}
                 />
             </div>

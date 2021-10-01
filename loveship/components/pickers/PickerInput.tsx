@@ -1,17 +1,17 @@
 import React from 'react';
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, isChildFocusable, uuiMarkers } from '@epam/uui';
+import { Modifier } from 'react-popper';
+import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers } from '@epam/uui';
 import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
-import { Panel } from '../layout/FlexItems';
+import { Panel } from '../layout';
 import { PickerInputMods, PickerToggler } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
 import { PickerItem } from './PickerItem';
 import { SizeMod, EditMode } from '../types';
+import { DataPickerFooter } from './DataPickerFooter';
+import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import * as css from './PickerInput.scss';
-import { DataPickerFooter } from "./DataPickerFooter";
-import { Modifier } from "react-popper";
-import { MobileDropdownWrapper } from "./MobileDropdownWrapper";
 
 export type PickerInputProps = SizeMod & EditMode & {};
 
@@ -43,7 +43,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     getRowSize() {
         return isMobile()
-            ? "48"
+            ? '48'
             : this.props.editMode === 'modal'
                 ? '36'
                 : this.props.size;
@@ -62,8 +62,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                rawProps={{ "aria-selected": rowProps.isSelectable && rowProps.isSelected, role: 'option' }}
-                borderBottom="none"
+                rawProps={ { 'aria-selected': rowProps.isSelectable && rowProps.isSelected, role: 'option' } }
+                borderBottom='none'
                 size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
@@ -129,7 +129,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                     <Panel
                         shadow
                         style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                        rawProps={{ tabIndex: -1 }}
+                        rawProps={ { tabIndex: -1 } }
                         cx={ [css.panel, uuiMarkers.lockFocus] }
                     >
                         <MobileDropdownWrapper
@@ -143,16 +143,15 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                                 rows={ renderedDataRows }
                                 showSearch={ this.getSearchPosition() === 'body' }
-                                showSelectedRows={ true }
                                 maxHeight={ maxHeight }
                                 renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
                                     search: this.state.dataSourceState.search,
                                     onClose: () => this.toggleBodyOpening(false),
                                 })) }
-                                rawProps={{
-                                    "aria-multiselectable": this.props.selectionMode === 'multi' ? true : null,
-                                    "aria-orientation": 'vertical',
-                                }}
+                                rawProps={ {
+                                    'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
+                                    'aria-orientation': 'vertical',
+                                } }
                                 onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                                 scheduleUpdate={ props.scheduleUpdate }
                                 searchSize={ this.props.size }
