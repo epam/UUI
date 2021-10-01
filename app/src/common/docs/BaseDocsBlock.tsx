@@ -116,7 +116,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
+            <FlexRow rawProps={{ role: 'tablist' }} background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 <TabButton
                     size='60'
                     caption='Documentation'
@@ -162,7 +162,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderDocTitle() {
-        return <div className={ css.title }>{ this.title }</div>;
+        return <h1 className={ css.title }>{ this.title }</h1>;
     }
 
     renderDoc() {

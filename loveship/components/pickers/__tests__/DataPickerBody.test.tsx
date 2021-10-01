@@ -50,7 +50,6 @@ describe("DataPickerBody", () => {
                 rows={ rows }
                 search={ search }
                 showSearch
-                showSelectedRows
                 maxHeight={ 200 }
                 renderNotFound={ () => <div>Not found</div> }
                 editMode="dropdown"

@@ -13,7 +13,7 @@ const GIT_LINK = 'https://github.com/epam/UUI/issues';
 export class ContactsBlock extends React.Component {
     private emailClickEvent = analyticsEvents.welcome.email();
     private submitIssueClickEvent = analyticsEvents.welcome.submitIssue();
-    
+
     render() {
         return (
             <Measure bounds>
@@ -37,7 +37,7 @@ export class ContactsBlock extends React.Component {
                                                         <LinkButton size='24' caption='Submit an Issue' target='_blank' href={ GIT_LINK } cx={ css.linkButton } clickAnalyticsEvent={ this.submitIssueClickEvent }/>
                                                     </div>
                                                 </>
-                                                : <Anchor href={ GIT_LINK } target='_blank' >
+                                                : <Anchor rawProps={{ tabIndex: -1, 'aria-label': 'Github', rel: 'noreferrer noopener' }} href={ GIT_LINK } target='_blank' >
                                                     <IconContainer icon={ gitIcon } size={ containerWidth > 768 ? 180 : null } cx={ css.cardIcon } />
                                                 </Anchor>
                                             }
@@ -51,7 +51,7 @@ export class ContactsBlock extends React.Component {
                                                         <LinkButton size='24' caption='Email us' target='_blank' href={ `mailto:${ EMAIL }` } cx={ css.linkButton } clickAnalyticsEvent={ this.emailClickEvent }/>
                                                     </div>
                                                 </>
-                                                : <Anchor href={ `mailto:${ EMAIL }` } target='_blank' >
+                                                : <Anchor rawProps={{ tabIndex: -1, 'aria-label': 'Email', rel: 'noreferrer noopener' }}  href={ `mailto:${ EMAIL }` } target='_blank' >
                                                     <IconContainer icon={ mailIcon } size={ containerWidth > 768 ? 180 : null } cx={ css.cardIcon } />
                                                 </Anchor>
                                             }
