@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as css from './ComplexForm.scss';
-import {Panel, FlexRow, FlexCell, LabeledInput, TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput,
-    RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker } from '@epam/loveship';
-import {ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource} from '@epam/uui';
+import {
+    Panel, FlexRow, FlexCell, LabeledInput,
+    TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput,
+    RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker
+} from '@epam/loveship';
+import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource } from '@epam/uui';
 import { svc } from '../../services';
-import {Country, City, PersonDetails} from '@epam/uui-docs';
+import { Location, City, PersonDetails } from '@epam/uui-docs';
 import { ExperienceEditor } from './ExperienceEditor';
 
 interface PersonDetailEditorProps{
@@ -92,24 +95,26 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         <Panel>
             <FlexRow type='form'>
                 <FlexCell grow={1}>
-                    <LabeledInput label='City' {...this.props.lens.prop('countryId').toProps()} >
+                    <LabeledInput htmlFor='city' label='City' {...this.props.lens.prop('countryId').toProps()} >
                         <PickerInput<City, string>
                             {...this.props.lens.prop('city').toProps()}
                             selectionMode='multi'
                             valueType='id'
-                            dataSource={ this.lazyDs }
+                            inputId='city'
+                            dataSource={this.lazyDs}
                             getName={(c: City) => c.name}
                         />
                     </LabeledInput>
                 </FlexCell>
                 <FlexCell grow={1}>
-                    <LabeledInput label='Country' {...this.props.lens.prop('countryId').toProps()} >
+                    <LabeledInput htmlFor='country' label='Country' { ...this.props.lens.prop('countryId').toProps() } >
                        { <PickerInput
                             {...this.props.lens.prop('countries').toProps()}
                             selectionMode='multi'
                             valueType='id'
-                            dataSource={ this.asyncLocationsDs as any }
-                            getName={(c: Country) => c.name}
+                            inputId='country'
+                            dataSource={this.asyncLocationsDs}
+                            getName={(c: Location) => c.name}
                         /> }
                     </LabeledInput>
                 </FlexCell>
@@ -118,18 +123,21 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput
                         label='Middle Name'
+                        htmlFor="middleName"
                         {...this.props.lens.prop('middleName').toProps()}
                     >
                         <TextInput
                             {...this.props.lens.prop('middleName').toProps()}
+                            id="middleName"
                         />
                     </LabeledInput>
                 </FlexCell>
                 <FlexCell grow={1} minWidth={100}>
-                    <LabeledInput label='Birthday date' {...this.props.lens.prop('birthdayDate').toProps()}>
+                    <LabeledInput htmlFor='birthDate' label='Birthday date' {...this.props.lens.prop('birthdayDate').toProps()}>
                         <DatePicker
                             {...this.props.lens.prop('birthdayDate').toProps()}
-                            format={'DD-MM-YYYY'}
+                            format='DD-MM-YYYY'
+                            id='birthDate'
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -138,9 +146,11 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput
                         label='Last Name'
+                        htmlFor='lastName'
                         {...this.props.lens.prop('lastName').toProps()}
                     >
                         <TextInput
+                            id='lastName'
                             {...this.props.lens.prop('lastName').toProps()}
                         />
                     </LabeledInput>
@@ -148,9 +158,11 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput
                         label='Time'
+                        htmlFor='timeValue'
                         {...this.props.lens.prop('timeValue').toProps()}
                     >
                         <TimePicker
+                            id='timeValue'
                             {...this.props.lens.prop('timeValue').toProps()}
                         />
                     </LabeledInput>
@@ -182,17 +194,18 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput label='Rating' {...this.props.lens.prop('rating').toProps()} >
                         <ControlWrapper size='36' cx={css.control}>
-                            <Rating {...this.props.lens.prop('rating').toProps()} />
+                            <Rating {...this.props.lens.prop('rating').toProps()} rawProps={{ 'aria-label': 'Rating' }} />
                         </ControlWrapper>
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
                 <FlexCell grow={1}>
-                    <LabeledInput label='Notes' {...this.props.lens.prop('notes').toProps()}>
+                    <LabeledInput htmlFor='notes' label='Notes' {...this.props.lens.prop('notes').toProps()}>
                         <TextArea
                             {...this.props.lens.prop('notes').toProps()}
                             rows={10}
+                            id='notes'
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -201,10 +214,11 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         <Panel>
             <FlexRow type='form'>
                 <FlexCell grow={1}>
-                    <LabeledInput label='Vacation days'  {...this.props.lens.prop('vacDays').toProps()}>
+                    <LabeledInput htmlFor='vacDays' label='Vacation days' {...this.props.lens.prop('vacDays').toProps()}>
                         <NumericInput
                             {...this.props.lens.prop('vacDays').toProps()}
                             max={100}
+                            id='vacDays'
                             min={0}
                             step={1}
                         />
@@ -223,9 +237,11 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 <FlexCell grow={1}>
                     <LabeledInput
                         label='Slider'
+                        htmlFor="vacationDaysSlider"
                         {...this.props.lens.prop('vacDays').toProps()}
                     >
                         <Slider min={0} max={40} step={1}
+                            rawProps={{ 'aria-label': 'Vacation Days Slider', id: 'vacationDaysSlider' }}
                             {...this.props.lens.prop('vacDays').toProps()}
                         />
                     </LabeledInput>

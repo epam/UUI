@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
 
-export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLDivElement>, React.PropsWithRef<any> {
+export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement>, React.PropsWithRef<any> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;

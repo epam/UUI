@@ -67,6 +67,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
@@ -84,6 +85,7 @@ exports[`RangeSlider should be rendered correctly 1`] = `
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
@@ -161,6 +163,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
@@ -178,6 +181,7 @@ exports[`RangeSlider should be rendered correctly with extra props 1`] = `
     onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
