@@ -81,7 +81,10 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
-        this.props.onClear && this.props.onClear();
+        if (this.props.onClear) {
+            this.props.onClear();
+            this.props.onValueChange('');
+        }
         e.stopPropagation();
     }
 
@@ -122,7 +125,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     this.props.pickerMode === 'single' && css.singleInput,
                     css.toggler,
                 ) }
-            />
+            />;
         }
 
         return <input
