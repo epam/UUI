@@ -9,14 +9,14 @@ export class FlexRow extends React.Component<FlexRowProps> {
     render() {
         return (
             <div
-                onClick={this.props.onClick ? this.handleClick : undefined}
+                onClick={ this.props.onClick ? this.handleClick : undefined }
                 className={ cx(
                     this.props.cx,
                     css.container,
                     this.props.onClick && uuiMarkers.clickable,
-                    css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)]
+                    css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)],
                 ) }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 { this.props.children }
             </div>
