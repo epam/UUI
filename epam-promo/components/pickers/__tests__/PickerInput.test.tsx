@@ -1,7 +1,7 @@
 import React from 'react';
-import { PickerInput } from '../PickerInput';
-import renderer from 'react-test-renderer';
 import { ArrayDataSource } from '@epam/uui';
+import { renderWithContextAsync, windowMock } from "@epam/test-utils";
+import { PickerInput } from '../PickerInput';
 
 jest.mock('react-dom', () => ({
     findDOMNode: jest.fn(),
@@ -26,45 +26,57 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerInput', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<PickerInput
+    let windowSpy: any;
+
+    beforeEach(() => {
+        windowSpy = jest.spyOn(window, "window", "get")
+            .mockImplementation(() => windowMock);
+    });
+
+    afterEach(() => {
+        windowSpy.mockRestore();
+    });
+    
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <PickerInput
                 value={ null }
                 onValueChange={ jest.fn }
-                selectionMode='single'
+                selectionMode="single"
                 dataSource={ mockDataSource }
                 disableClear
-                searchPosition='input'
-            />)
-            .toJSON();
+                searchPosition="input"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<PickerInput
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <PickerInput
                 value={ [1, 2] }
                 onValueChange={ jest.fn }
-                selectionMode='multi'
+                selectionMode="multi"
                 dataSource={ mockDataSource }
-                size='48'
+                size="48"
                 maxItems={ 20 }
-                editMode='modal'
+                editMode="modal"
                 valueType={ 'id' }
                 getName={ item => item.level }
                 autoFocus
-                placeholder='Test placeholder'
+                placeholder="Test placeholder"
                 filter={ (item: any) => item.level === 'A1' }
                 sorting={ { direction: 'desc', field: 'level' } }
-                searchPosition='body'
+                searchPosition="body"
                 minBodyWidth={ 900 }
-                renderNotFound={ ({ search, onClose = jest.fn }) => <div onClick={ onClose }>{ `No found ${ search }` }</div> }
+                renderNotFound={ ({ search, onClose = jest.fn }) => <div
+                    onClick={ onClose }>{ `No found ${ search }` }</div> }
                 renderFooter={ props => <div>{ props }</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });

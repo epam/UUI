@@ -1,10 +1,9 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './IconContainer.scss';
-import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon } from '@epam/uui';
+import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps } from '@epam/uui';
 import { Svg } from '../widgets';
 
-export interface ControlIconProps extends IHasCX, IDisableable {
+export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTMLDivElement> {
     icon?: Icon;
     flipY?: boolean;
     rotate?: '0' | '90cw' | '180' | '90ccw';
@@ -25,10 +24,12 @@ export const IconContainer = (props: ControlIconProps) => {
                 props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 isClickable && uuiMarkers.clickable,
                 props.cx,
+                props.rawProps?.className
             ) }
             onClick={ isClickable ? props.onClick : undefined }
-            tabIndex={ props.tabIndex }
-            style={ props.style }
+            tabIndex={ isClickable ? props.tabIndex : undefined }
+            style={ { ...props.style, ...props.rawProps?.style } }
+            {...props.rawProps}
         >
             <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) }/>
         </div>

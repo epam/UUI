@@ -16,13 +16,13 @@ const languageLevels = [
     { "id": 12, "level": "C2" },
 ];
 
-export function LanguagesMultiPicker() {
+export default function LanguagesMultiPicker() {
     const [value, onValueChange] = useState(null);
 
     // Create DataSource outside the Picker, by calling useArrayDataSource hook
     const dataSource = useArrayDataSource({
         items: languageLevels,
-    });
+    }, []);
 
     return (
         <FlexCell width={ 600 }>

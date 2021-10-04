@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic Reader with a side-menu, having clickable links, that scroll to specified anchor id once clicked.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

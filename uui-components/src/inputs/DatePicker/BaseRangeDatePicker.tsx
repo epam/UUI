@@ -1,21 +1,25 @@
 import * as React from 'react';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import { Placement } from '@popperjs/core';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../..';
-import { IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts,
-    IDropdownToggler } from '@epam/uui';
+import {
+    IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
+    IDropdownToggler, UuiContext, isChildFocusable
+} from '@epam/uui';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
     format?: string;
-    filter?(day: moment.Moment): boolean;
+    filter?(day: Dayjs): boolean;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
     renderFooter?(value: RangeDatePickerValue): React.ReactNode;
-    renderDay?: (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => React.ReactElement<Element>;
+    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
     presets?: Presets;
     disableClear?: boolean;
     placement?: Placement;
-    isHoliday?: (day: moment.Moment) => boolean;
+    isHoliday?: (day: Dayjs) => boolean;
 }
 
 interface RangeDatePickerState extends PickerBodyValue<RangeDatePickerValue> {
@@ -32,7 +36,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
         return {
             inputValue: defaultValue,
             selectedDate: defaultValue,
-            displayedDate: moment().startOf('day'),
+            displayedDate: dayjs().startOf('day'),
         };
     }
 
@@ -42,14 +46,14 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: moment(value.from, valueFormat).isValid() ? moment(value.from, valueFormat) : moment().startOf('day'),
+        displayedDate: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
     };
 };
 
 export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProps> extends React.Component<TProps, RangeDatePickerState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
-    
+
     state: RangeDatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -75,25 +79,31 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return this.props.format || defaultFormat;
     }
 
-    handleWrapperBlur = () => {
+    handleWrapperBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+        if (isChildFocusable(e)) return;
+        this.toggleOpening(false);
         if (!this.state.isOpen && this.state.inFocus) {
             this.setState({ inFocus: null });
         }
     }
 
     valueIsValid(value: string, inputType: InputType) {
-        if (moment(value, this.getFormat(), true).isValid()) {
+        if (dayjs(value, this.getFormat(), true).isValid()) {
             if (inputType === 'from') {
-                return this.state.inputValue.to ? moment(value, this.getFormat(), true).valueOf() <= moment(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.to ? dayjs(value, this.getFormat(), true).valueOf() <= dayjs(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
             } else {
-                return this.state.inputValue.from ? moment(this.state.inputValue.from, this.getFormat(), true).valueOf() <= moment(value, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.from ? dayjs(this.state.inputValue.from, this.getFormat(), true).valueOf() <= dayjs(value, this.getFormat(), true).valueOf() : true;
             }
         }
         return false;
     }
 
+    handleFocus = (inputType: InputType) => {
+        this.toggleOpening(true, inputType);
+    }
+
     handleBlur = (inputType: InputType) => {
-        if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(moment(this.props.value[inputType])))) {
+        if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
                 case 'to': this.handleValueChange({ ...this.props.value, to: null }); this.getChangeHandler('to')(null); break;
@@ -112,13 +122,13 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     getDisplayedDateOnOpening(focus: InputType) {
         if (this.state.selectedDate?.from && this.state.selectedDate?.to) {
-            return moment(this.state.selectedDate[focus]);
+            return dayjs(this.state.selectedDate[focus]);
         } else if (this.state.selectedDate?.from) {
-            return moment(this.state.selectedDate?.from);
+            return dayjs(this.state.selectedDate?.from);
         } else if (this.state.selectedDate?.to) {
-            return moment(this.state.selectedDate?.to);
+            return dayjs(this.state.selectedDate?.to);
         } else {
-            return moment();
+            return dayjs();
         }
     }
 
@@ -129,7 +139,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
             displayedDate: this.getDisplayedDateOnOpening(focus),
             inFocus: value ? focus : null,
         });
-        
+
         // if (this.props.getValueChangeAnalyticsEvent) {
         //     const event = this.props.getValueChangeAnalyticsEvent(value, this.state.isOpen);
         //     this.context.uuiAnalytics.sendEvent(event);
@@ -147,10 +157,10 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     getChangeHandler = (inputType: 'from' | 'to') => (value: string) => {
         const inputValue = { ...this.state.inputValue, [inputType]: value };
-        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(moment(value)))) {
+        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value)))) {
             this.setValue({
                 selectedDate: toValueDateRangeFormat(inputValue, this.getFormat()),
-                displayedDate: inputType === "from" ? moment(value, this.getFormat()) : this.state.displayedDate,
+                displayedDate: inputType === "from" ? dayjs(value, this.getFormat()) : this.state.displayedDate,
                 view: this.state.view,
             });
         } else {
@@ -193,8 +203,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return (
             <Dropdown
                 renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props: DropdownBodyProps) => !this.props.isDisabled && this.renderBody(props) }
-                onValueChange={ (opened) => { !this.props.isReadonly && this.toggleOpening(opened); } }
+                renderBody={ (props: DropdownBodyProps) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                 placement={ this.props.placement }

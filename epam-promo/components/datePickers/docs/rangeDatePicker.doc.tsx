@@ -4,12 +4,14 @@ import * as css from '../RangeDatePicker.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc } from '../../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
-import moment from 'moment';
+import dayjs, { Dayjs } from "dayjs";
 import {RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer} from '@epam/uui-components';
 import { Button, Text } from '../..';
 import * as point from "../../../icons/radio-point.svg";
+import isBetween from 'dayjs/plugin/isBetween';
+dayjs.extend(isBetween);
 
-const getCustomDay = (day: moment.Moment) => {
+const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
         <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px' } }  icon={ point } />
@@ -17,8 +19,8 @@ const getCustomDay = (day: moment.Moment) => {
 };
 
 const getRangeLength = (value: RangeDatePickerValue) => {
-    return moment(value.to).isValid() && moment(value.from).isValid() && (moment(value.from).valueOf() < moment(value.to).valueOf()) ?
-        moment(value.to).diff(moment(value.from), 'days') + 1 :
+    return dayjs(value.to).isValid() && dayjs(value.from).isValid() && (dayjs(value.from).valueOf() < dayjs(value.to).valueOf()) ?
+        dayjs(value.to).diff(dayjs(value.from), 'day') + 1 :
         0;
 };
 
@@ -35,18 +37,18 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             },
         ],
     })
-    .prop('format', { examples: ['DD-MM-YYYY', 'DD/MM/YYYY'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', {
         examples: [
             {
                 name: 'Filter before current day and after 2 months',
-                value: (day: moment.Moment) => day.valueOf() >= moment().subtract(1, 'days').valueOf() && day.valueOf() < moment().add(2, 'months').valueOf(),
+                value: (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf() && day.valueOf() < dayjs().add(2, 'months').valueOf(),
             },
         ],
     })
     .prop('renderDay', { examples: ctx => [{
             name: 'Render custom day',
-            value: (day: moment.Moment, onDayClick: (day: moment.Moment) => void) => {
+            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
                 return <Day renderDayNumber={ getCustomDay }
                             value={ day }
                             onValueChange={ onDayClick }
@@ -69,7 +71,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     last3Days: {
                         name: 'Last 3 days (custom)',
                         getRange: () => {
-                            return { from: moment().subtract(3, 'day').toString(), to: moment().toString(), order: 11 };
+                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
                         },
                     },
                 },

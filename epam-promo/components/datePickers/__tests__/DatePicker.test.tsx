@@ -1,5 +1,5 @@
 import * as React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { shallow, ShallowWrapper } from 'enzyme';
 import renderer from 'react-test-renderer';
 import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
@@ -41,6 +41,26 @@ describe('DataPicker', () => {
         expect(tree).toMatchSnapshot();
     });
 
+    it(`should open picker on field focus`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on field blur`, () => {
+        wrapper = shallow(<DatePicker
+            format="MMM D, YYYY"
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
     it('should change input value after change props', () => {
         wrapper = shallow(<DatePicker
             format="MMM D, YYYY"
@@ -79,12 +99,13 @@ describe('DataPicker', () => {
         let baseValue = '2019-10-47';
         let newState: any = { inputValue: baseValue, value: baseValue };
         wrapper = shallow(<DatePicker
-            value={ baseValue }
+            value={ null }
             onValueChange={ (nV: any) => newState.value = nV }
             format="MMM D, YYYY"
         />, {});
-
-        (wrapper.instance() as any).handleBlur('from');
+        const instance = (wrapper.instance() as any);
+        instance.handleInputChange(baseValue);
+        instance.handleBlur('from');
         expect(newState.value).toEqual(null);
 
     });
@@ -93,7 +114,7 @@ describe('DataPicker', () => {
         let testValue = '2019-10-10';
         const inputFormat = 'DD-MM-YYYY';
         const inputTestValue = toCustomDateFormat(testValue, inputFormat);
-        const displayedTestDate = moment(testValue);
+        const displayedTestDate = dayjs(testValue);
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
         const setStateSpy = jest.fn((nextState) => null);
@@ -208,7 +229,7 @@ describe('DataPicker', () => {
 
         expect(value).toEqual({
             selectedDate: baseValue,
-            displayedDate: moment(baseValue, valueFormat),
+            displayedDate: dayjs(baseValue, valueFormat),
             view: 'DAY_SELECTION',
         });
     });

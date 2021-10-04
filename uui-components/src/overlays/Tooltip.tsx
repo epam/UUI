@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as reactDom from 'react-dom';
-import cx from 'classnames';
 import * as PropTypes from 'prop-types';
 import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest } from '@epam/uui';
+import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest, cx, UuiContext } from '@epam/uui';
 import * as css from './Tooltip.scss';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
@@ -26,9 +25,7 @@ export interface TooltipState {
 }
 
 export class Tooltip extends React.Component<TooltipProps, TooltipState> {
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    public static contextType = UuiContext;
 
     private readonly layer: LayoutLayer | null = null;
     private node: any = null;
@@ -125,7 +122,7 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
     private renderTooltip() {
         const content = this.props.content || (this.props.renderContent && this.props.renderContent());
 
-        return <div className={ uuiElement.tooltipBody }>
+        return <div role="tooltip" aria-hidden={ this.isTooltipExist() } className={ uuiElement.tooltipBody } >
             { content }
         </div>;
     }
@@ -150,14 +147,17 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
         );
     }
 
+    private isTooltipExist() {
+        return !!this.props.content || !!this.props.renderContent;
+    }
+
     render() {
-        let hasTooltip = !!this.props.content || !!this.props.renderContent;
         return (
             <Manager>
                 <Reference>
                     { ({ref}) => <PopperTargetWrapper innerRef={ ref }>{ this.props.children }</PopperTargetWrapper> }
                 </Reference>
-                { hasTooltip && this.state.isOpen && <Portal target={ this.props.portalTarget }>
+                { this.isTooltipExist() && this.state.isOpen && <Portal target={ this.props.portalTarget }>
                     <Popper
                         placement={ this.props.placement || 'top' }
                         modifiers={ [

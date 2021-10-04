@@ -1,4 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
+import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui";
 
 export interface GetCodeParams {
     path: string;
@@ -11,26 +12,29 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: RequestInit) => any) {
+export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {
     return {
-        demo: getDemoApi(processRequest),
+        demo: getDemoApi(processRequest, origin),
         success: {
-            validateForm: <T>(formState: T) => processRequest('api/success/validate-form', 'POST', formState),
+            validateForm: <T>(formState: T) => processRequest(origin.concat('api/success/validate-form'), 'POST', formState),
         },
         errors: {
-            status: (status: number) => processRequest(`api/error/status/${status}`, 'POST'),
-            setServerStatus: (status: number) => processRequest(`api//error/set-server-status/${status}`, 'POST'),
-            mock: () => processRequest(`api//error/mock`, 'GET'),
-            authLost: () => processRequest(`api//error/auth-lost`, 'POST'),
+            status: (status: number) => processRequest(origin.concat(`api/error/status/${status}`), 'POST'),
+            setServerStatus: (status: number) => processRequest(origin.concat(`api//error/set-server-status/${status}`), 'POST'),
+            mock: () => processRequest(origin.concat(`api//error/mock`), 'GET'),
+            authLost: () => processRequest(origin.concat(`api//error/auth-lost`), 'POST'),
         },
-        getChangelog: function (): Promise<any> {
-            return processRequest('/api/get-changelog', 'GET');
+        getChangelog(): Promise<any> {
+            return processRequest(origin.concat('/api/get-changelog'), 'GET');
         },
-        getCode: function (rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(`/api/get-code`, 'POST', rq);
+        getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
+            return processRequest(origin.concat(`/api/get-code`), 'POST', rq);
         },
-        getProps: function (): Promise<any> {
-            return processRequest(`/api/get-props/`, 'GET');
+        getProps(): Promise<any> {
+            return processRequest(origin.concat(`/api/get-props/`), 'GET');
         },
     };
 }
+
+export type TApi = ReturnType<typeof getApi>;
+export const svc: Partial<CommonContexts<TApi, UuiContexts>> = {};

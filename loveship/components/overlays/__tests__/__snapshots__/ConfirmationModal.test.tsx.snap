@@ -14,163 +14,217 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     onClick={[Function]}
   />
   <div
-    className="uui-modal-window modal width-420 height-auto container"
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={1}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
   >
     <div
-      className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+      aria-modal={true}
+      className="uui-modal-window modal width-420 height-auto container"
+      role="modal"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
       >
-        Title
+        <div
+          className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        >
+          Title
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <button
+            className="container uui-button-box uui-enabled -clickable root color-night600"
+            href={null}
+            onClick={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#navigation-close-24.svg"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
-        onClick={[Function]}
+        className="root root theme-light"
+        cx={
+          Array [
+            Array [
+              "root",
+              "theme-light",
+            ],
+            undefined,
+          ]
+        }
         style={
           Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
           }
         }
       >
         <div
-          className="root color-night600 uui-button-box uui-enabled -clickable"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
+              "flex": "1 1 auto",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+      >
+        <div
+          className="flexSpacer"
+        />
+        <button
+          className="container uui-button-box uui-enabled -clickable root size-36 color-night400 fill-solid style-square"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
-            className="container uui-icon uui-enabled"
+            className="uui-caption line-height-18 font-size-14 v-padding-8"
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#navigation-close-24.svg"
-              />
-            </svg>
+            Discard
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="root root theme-light"
-      cx={
-        Array [
-          Array [
-            "root",
-            "theme-light",
-          ],
-          undefined,
-        ]
-      }
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-vertical"
-        />
-      </div>
-    </div>
-    <div
-      className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
-    >
-      <div
-        className="flexSpacer"
-      />
-      <div
-        className="container uui-button-box uui-enabled -clickable root size-36 color-night400 fill-solid style-square"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption line-height-18 font-size-14 v-padding-8"
+        </button>
+        <button
+          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+          href={null}
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          Discard
-        </div>
-      </div>
-      <div
-        className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption line-height-18 font-size-14 v-padding-8"
-        >
-          Save
-        </div>
+          <div
+            className="uui-caption line-height-18 font-size-14 v-padding-8"
+          >
+            Save
+          </div>
+        </button>
       </div>
     </div>
   </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
 </div>
 `;
 
@@ -188,157 +242,211 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
     onClick={[Function]}
   />
   <div
-    className="uui-modal-window modal width-900 height-auto container"
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={1}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
   >
     <div
-      className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+      aria-modal={true}
+      className="uui-modal-window modal width-900 height-auto container"
+      role="modal"
     >
       <div
-        className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        className="root size-36 background-white padding-24 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
       >
-        Title
+        <div
+          className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+        >
+          Title
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <button
+            className="container uui-button-box uui-enabled -clickable root color-night600"
+            href={null}
+            onClick={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+                height={24}
+                viewBox="0 0 12 24"
+                width={12}
+              >
+                <use
+                  xlinkHref="#navigation-close-24.svg"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
-        onClick={[Function]}
+        className="root root theme-light"
+        cx={
+          Array [
+            Array [
+              "root",
+              "theme-light",
+            ],
+            undefined,
+          ]
+        }
         style={
           Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
           }
         }
       >
         <div
-          className="root color-night600 uui-button-box uui-enabled -clickable"
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
+              "flex": "1 1 auto",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <div
+            className="root margin-24 container"
+          >
+            <div>
+              content
+            </div>
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "height": 6,
+              "left": 2,
+              "position": "absolute",
+              "right": 2,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "borderRadius": 3,
+              "bottom": 2,
+              "display": "none",
+              "position": "absolute",
+              "right": 2,
+              "top": 2,
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+      >
+        <div
+          className="flexSpacer"
+        />
+        <button
+          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
+          role="button"
           tabIndex={0}
         >
           <div
-            className="container uui-icon uui-enabled"
+            className="uui-caption line-height-18 font-size-14 v-padding-8"
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#navigation-close-24.svg"
-              />
-            </svg>
+            Save
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="root root theme-light"
-      cx={
-        Array [
-          Array [
-            "root",
-            "theme-light",
-          ],
-          undefined,
-        ]
-      }
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      >
-        <div
-          className="root margin-24 container"
-        >
-          <div>
-            content
-          </div>
-        </div>
-      </div>
-      <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "height": 6,
-            "left": 2,
-            "position": "absolute",
-            "right": 2,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        style={
-          Object {
-            "borderRadius": 3,
-            "bottom": 2,
-            "display": "none",
-            "position": "absolute",
-            "right": 2,
-            "top": 2,
-            "width": 6,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-vertical"
-        />
-      </div>
-    </div>
-    <div
-      className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
-    >
-      <div
-        className="flexSpacer"
-      />
-      <div
-        className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
-        href={null}
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={0}
-      >
-        <div
-          className="uui-caption line-height-18 font-size-14 v-padding-8"
-        >
-          Save
-        </div>
+        </button>
       </div>
     </div>
   </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
 </div>
 `;

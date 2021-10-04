@@ -1,4 +1,8 @@
 .container {
+    &:focus {
+        outline: none;
+    }
+
     :global(.uui-rating-empty-star-container) {
         display: flex;
     }

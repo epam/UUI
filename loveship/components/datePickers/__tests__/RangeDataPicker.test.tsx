@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { RangeDatePicker } from '..';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { toCustomDateRangeFormat, valueFormat } from '@epam/uui-components';
 
 describe('RangeDataPicker', () => {
@@ -42,6 +42,42 @@ describe('RangeDataPicker', () => {
         expect(newState.from).toEqual(null);
         expect(newState.to).toEqual(null);
 
+    });
+
+    it(`should open picker on 'from' field focus`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on 'from' field blur`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('from');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    });
+
+    it(`should open picker on 'to' field focus`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleFocus('to');
+        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    });
+
+    it(`should close picker on 'to' field blur`, () => {
+        wrapper = shallow(<RangeDatePicker
+            value={ null }
+            onValueChange={ () => null }
+        />);
+        (wrapper.instance() as any).handleBlur('to');
+        expect((wrapper.instance().state as any).isOpen).toBe(false);
     });
 
     it('should reset invalid value onBlur', () => {
@@ -131,7 +167,7 @@ describe('RangeDataPicker', () => {
         expect(setValueSpy).toHaveBeenLastCalledWith({
             view: 'DAY_SELECTION',
             selectedDate: { from: '2019-09-11', to: '2019-09-15' },
-            displayedDate: moment(inputValue.from, 'MMM D, YYYY'),
+            displayedDate: dayjs(inputValue.from, 'MMM D, YYYY'),
         });
         //arrived valid value
         //
@@ -165,7 +201,7 @@ describe('RangeDataPicker', () => {
         expect(setStateSpy).toHaveBeenLastCalledWith({
             isOpen: false,
             view: 'DAY_SELECTION',
-            displayedDate: moment(baseValue.from),
+            displayedDate: dayjs(baseValue.from),
             inFocus: null,
         });
 
@@ -208,7 +244,7 @@ describe('RangeDataPicker', () => {
 
         expect(value).toEqual({
             selectedDate: baseValue,
-            displayedDate: moment(baseValue.from, valueFormat),
+            displayedDate: dayjs(baseValue.from, valueFormat),
             view: 'DAY_SELECTION',
         });
     });

@@ -1,60 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioInput should be rendered correctly 1`] = `
-<div
-  className="container uui-checked root size-18 color-sky theme-light"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+<label
+  className="container root size-18 color-sky theme-light -clickable"
 >
   <div
-    className="uui-radioinput"
-  />
-  <div
-    className="container uui-icon uui-enabled circle"
+    className="uui-radioinput uui-checked"
   >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="container uui-icon uui-enabled circle"
+      style={Object {}}
     >
-      <use
-        xlinkHref="#radio-point.svg"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#radio-point.svg"
+        />
+      </svg>
+    </div>
   </div>
-</div>
+</label>
 `;
 
 exports[`RadioInput should be rendered correctly with new props 1`] = `
-<div
-  className="container uui-checked root size-12 color-sun theme-dark"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+<label
+  className="container root size-12 color-sun theme-dark -clickable"
 >
   <div
-    className="uui-radioinput"
-  />
-  <div
-    className="container uui-icon uui-enabled circle"
+    className="uui-radioinput uui-checked"
   >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      type="radio"
+    />
+    <div
+      className="container uui-icon uui-enabled circle"
+      style={Object {}}
     >
-      <use
-        xlinkHref="#radio-point.svg"
-      />
-    </svg>
+      <svg
+        className=""
+        height={24}
+        viewBox="0 0 12 24"
+        width={12}
+      >
+        <use
+          xlinkHref="#radio-point.svg"
+        />
+      </svg>
+    </div>
   </div>
   <div
     className="uui-input-label"
   >
     open
   </div>
-</div>
+</label>
 `;

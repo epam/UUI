@@ -30,8 +30,8 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
         return new LensBuilder(Impl.compose(this.lens, lens));
     }
 
-    public prop<K extends keyof TFocused>(name: K): LensBuilder<TRoot, TFocused[K]> {
-        return this.compose(Impl.prop(name));
+    public prop<K extends keyof TFocused>(name: K): LensBuilder<TRoot, NonNullable<TFocused[K]>> {
+        return this.compose(Impl.prop(name)) as any;
     }
 
     public index(index: number): LensBuilder<TRoot, ArrayElement<TFocused>> {

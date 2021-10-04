@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "4.0.0",
+  "version": "4.2.5",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -14,30 +14,24 @@
     "server": "node ../server/app.js"
   },
   "dependencies": {
-    "@epam/assets": "4.0.0",
+    "@epam/assets": "4.2.5",
     "@epam/internal": "0.0.1",
-    "@epam/loveship": "4.0.0",
-    "@epam/promo": "4.0.0",
-    "@epam/uui": "4.0.0",
-    "@epam/uui-components": "4.0.0",
-    "@epam/uui-db": "4.0.0",
-    "@epam/uui-editor": "4.0.0",
-    "@epam/uui-timeline": "4.0.0",
-    "@types/history": "4.7.6",
-    "@types/jest": "25.2.3",
-    "@types/node": "14.0.5",
-    "@types/prismjs": "1.16.1",
-    "@types/react": "17.0.3",
-    "@types/react-dom": "17.0.3",
-    "@types/react-router": "5.1.7",
-    "@types/react-router-dom": "5.1.5",
+    "@epam/loveship": "4.2.5",
+    "@epam/promo": "4.2.5",
+    "@epam/uui": "4.2.5",
+    "@epam/uui-components": "4.2.5",
+    "@epam/uui-db": "4.2.5",
+    "@epam/uui-editor": "4.2.5",
+    "@epam/uui-timeline": "4.2.5",
+    "amplitude-js": "7.4.1",
     "classnames": "2.2.6",
+    "codesandbox": "2.2.3",
     "history": "4.10.1",
+    "imask": "6.0.7",
     "lodash.assign": "4.2.0",
     "lodash.clone": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
-    "memoize-one": "5.1.1",
     "moment": "2.27.0",
     "prismjs": "^1.19.0",
     "prop-types": "15.7.2",
@@ -45,15 +39,15 @@
     "query-string": "6.13.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-imask": "6.0.7",
     "react-markdown": "4.3.1",
-    "react-measure": "2.1.2",
+    "react-measure": "2.5.2",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "slate": "0.47.9",
-    "typescript": "4.1.5"
+    "slate": "0.47.9"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.0.0"
+    "@epam/uui-docs": "4.2.5"
   },
   "browserslist": {
     "production": [
@@ -72,5 +66,20 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb"
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "devDependencies": {
+    "@types/amplitude-js": "^7.0.0",
+    "@types/history": "4.7.6",
+    "@types/jest": "25.2.3",
+    "@types/node": "14.0.5",
+    "@types/prismjs": "1.16.1",
+    "@types/react": "17.0.3",
+    "@types/react-dom": "17.0.3",
+    "@types/react-measure": "2.0.6",
+    "@types/react-router": "5.1.7",
+    "@types/react-router-dom": "5.1.5",
+    "@types/webpack-env": "1.16.2",
+    "typescript": "4.1.5",
+    "webpack-bundle-analyzer": "^4.4.2"
+  }
 }

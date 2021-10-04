@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageButton should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square fill-white size-30"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+  role="button"
+  tabIndex={null}
 />
 `;
 
 exports[`PageButton should be rendered correctly with extra 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled -clickable root size-24 color-sun fill-light style-square fill-light size-24"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
@@ -23,5 +23,5 @@ exports[`PageButton should be rendered correctly with extra 1`] = `
   >
     1
   </div>
-</div>
+</button>
 `;

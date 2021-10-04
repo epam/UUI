@@ -1,12 +1,12 @@
 @use '../../assets/styles/scss/index' as *;
 
 .root {
-    @include button-reset();
     font-family: $font-sans-semibold;
     font-weight: normal;
 
     &:global(.uui-button-box) {
         border-style: solid;
+        min-width: inherit;
         justify-content: center;
         border-radius: $control-border-radius;
     }
@@ -16,6 +16,7 @@
         min-width: 0;
         text-align: center;
         flex: 1 1 auto;
+        user-select: none;
     }
 
     &:global(.-clickable):focus {
@@ -45,7 +46,7 @@
     @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             @include button-colors(var(--uui-color-800), var(--uui-contrast-color-700), var(--uui-color-800));
         }
 
@@ -70,10 +71,10 @@
 }
 
 .fill-white {
-    @include button-colors(white, var(--uui-color-700), var(--uui-color-700));
+    @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-800));
         }
 
@@ -83,11 +84,11 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-colors(white, $night500, $night300);
+        @include button-colors($white, $night500, $night300);
         cursor: default;
 
         &:hover, &:active, &:focus {
-            @include button-colors(white, $night500, $night300);
+            @include button-colors($white, $night500, $night300);
             box-shadow: none;
         }
 
@@ -101,7 +102,7 @@
     @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-800));
         }
 
@@ -129,7 +130,7 @@
     @include button-colors(transparent, var(--uui-color-700), transparent);
 
     &:global(.-clickable) {
-        &:hover {
+        &:hover, &:focus {
             @include button-colors(var(--uui-color-500), var(--uui-color-800), var(--uui-color-500));
         }
 

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import cx from 'classnames';
-import ScrollBars from 'react-custom-scrollbars';
-import { ScrollManager, DataColumnProps, IHasCX } from '@epam/uui';
+import ScrollBars from 'react-custom-scrollbars-2';
+import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
 
-export interface DataTableScrollRowProps extends IHasCX {
+export interface DataTableScrollRowProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     columns?: DataColumnProps<any, any>[];
     scrollManager?: ScrollManager;
     cellClass?: string;
@@ -63,7 +62,13 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
 
     render() {
         return (
-            <div className={ cx([uuiDataTableScrollRow.uuiTableScrollRowContainer, this.props.cx]) }>
+            <div
+                className={ cx([
+                    uuiDataTableScrollRow.uuiTableScrollRowContainer,
+                    this.props.cx
+                ]) }
+                {...this.props.rawProps}
+            >
                 <DataTableRowContainer
                     cx={ uuiDataTableScrollRow.uuiTableScrollRow }
                     scrollManager={ this.props.scrollManager }

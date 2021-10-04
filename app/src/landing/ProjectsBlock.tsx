@@ -10,7 +10,7 @@ export class ProjectsBlock extends React.Component {
     private sendEvent = (productName: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(productName));
     }
-    
+
     render() {
         const projects = projectsList.slice(0, 8);
 
@@ -27,7 +27,7 @@ export class ProjectsBlock extends React.Component {
                                         <Text font='museo-sans' cx={ css.header } >Trusted by</Text>
                                         <div className={ css.content } >
                                             { projects.map((project) => (
-                                                <a key={ project.projectName } target='_blank' className={ css.project } href={ project.url }  onClick={ () => this.sendEvent(project.projectName) }>
+                                                <a tabIndex={ -1 } key={ project.projectName } target='_blank' className={ css.project } href={ project.url }  onClick={ () => this.sendEvent(project.projectName) }>
                                                     <div className={ css.iconWrapper } >
                                                         <IconContainer icon={ project.icon } size={ containerWidth > 768 ? 96 : 78 } />
                                                     </div>
@@ -37,6 +37,7 @@ export class ProjectsBlock extends React.Component {
                                             <Anchor
                                                 key='allProjects'
                                                 cx={ css.project }
+                                                rawProps={{ tabIndex: -1 }}
                                                 link={ { pathname: '/documents', query: { id: 'projects' } } }
                                                 onClick={ () => this.sendEvent('All') }
                                             >

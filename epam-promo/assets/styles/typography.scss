@@ -33,20 +33,20 @@
 
     h4, h5, h6 {
         font-family: $font-sans-semibold;
-        margin: 12px 0;
-        line-height: 24px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0.5em;
+        margin-top: 1.2em;
+        line-height: 1.35em;
     }
 
     h1 {
-        margin: 24px 0;
         font-size: 36px;
-        line-height: 48px;
     }
 
     h2 {
-        margin: 18px 0;
         font-size: 30px;
-        line-height: 36px;
         letter-spacing: 0.1px;
 
         &:global(.promo-header) {
@@ -55,9 +55,7 @@
     }
 
     h3 {
-        margin: 12px 0;
         font-size: 24px;
-        line-height: 30px;
     }
 
     h4 {
@@ -103,11 +101,9 @@
     }
 
     code {
-        //margin: 0 4px;
-        padding: 2px 4px;
+        padding: 0.125em 0.25em;
         color: $gray80;
         background-color: $gray30;
-        //border-radius: 3px;
         font-family: $font-roboto-mono;
         white-space: pre-wrap;
         word-wrap: normal;
@@ -117,57 +113,52 @@
 @mixin typography-block() {
     ol, ul {
         padding: 0;
-
-        ol, ul {
-            margin-left: 18px;
-        }
     }
 
     li {
-        margin-left: 18px;
+        margin-left: 1.25em;
+        line-height: 1.5;
     }
 
     pre {
-        margin: 12px 0;
-        padding: 12px 18px;
+        padding: 1.25em;
         color: $gray10;
         background-color: $gray70;
-        //border-radius: 3px;
         font-family: monospace;
         white-space: pre-wrap;
         word-wrap: normal;
     }
 
+    img {
+        max-width: 100%;
+    }
+
     figure {
-        margin: 12px 0;
+        margin: 0;
+
+        figcaption {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-align: center;
+        }
+    }
+
+    p {
+        margin: 0.5em 0;
+        line-height: 1.5;
     }
 }
 
 @mixin typography-12() {
     font-size: 12px;
-    line-height: 18px;
-
-    p {
-        margin: 6px 0;
-    }
 }
 
 @mixin typography-14() {
     font-size: 14px;
-    line-height: 24px;
-
-    p {
-        margin: 12px 0;
-    }
 }
 
 @mixin typography-16() {
     font-size: 16px;
-    line-height: 24px;
-
-    p {
-        margin: 18px 0;
-    }
 }
 
 :local(.typography-header) {

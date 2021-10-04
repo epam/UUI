@@ -11,21 +11,21 @@ export const DraftRTEDemo = (props: any) => {
 
     return (
         <Panel
-            style={{ display: 'flex', width: '100%', height: 'calc(100vh - 60px)' }}
+            style={ { display: 'flex', width: '100%', height: 'calc(100vh - 60px)' } }
             background='white'
         >
             <FlexRow>
                 <RichTextEditor
                     valueType='html'
-                    structure={rteButtonStructure}
-                    value={value}
-                    onValueChange={(newValue) => {
+                    structure={ rteButtonStructure }
+                    value={ value }
+                    onValueChange={ (newValue) => {
                         setValue(newValue);
-                    }}
-                    placeholder={props.isReadonly ? '' : 'Type your text'}
-                    cx={css.DraftRTEDemo}
+                    } }
+                    placeholder={ props.isReadonly ? '' : 'Type your text' }
+                    cx={ css.DraftRTEDemo }
                 />
             </FlexRow>
         </Panel>
     );
-}
+};

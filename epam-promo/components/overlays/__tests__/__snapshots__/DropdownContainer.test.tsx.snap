@@ -2,40 +2,42 @@
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
 <div
-  className="container uui-dropdown-body root background-white container"
+  className="container uui-dropdown-body root background-white -lock-focus container"
   style={
     Object {
       "minHeight": undefined,
       "minWidth": undefined,
     }
   }
+  tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
 </div>
 `;
 
 exports[`DropdownContainer should be rendered correctly 2`] = `
 <div
-  className="container uui-dropdown-body root background-gray70 container"
+  className="container uui-dropdown-body root background-gray70 -lock-focus container"
   style={
     Object {
       "minHeight": 600,
       "minWidth": 300,
     }
   }
+  tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
 </div>
 `;

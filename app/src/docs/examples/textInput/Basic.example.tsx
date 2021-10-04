@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FlexCell, TextInput } from '@epam/promo';
-import * as css from '../searchInput/DebounceExample.scss';
+import * as css from './BasicExample.scss';
 import customIcon from '@epam/assets/icons/common/social-network-yammer-18.svg';
 
-
-export function BasicTextInputExample() {
+export default function BasicTextInputExample() {
     const [value, onValueChange] = useState(null);
     const [valueOpen, onOpenChange] = useState(null);
 

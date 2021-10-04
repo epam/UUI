@@ -1,24 +1,21 @@
 import * as React from 'react';
 import * as css from './Anchor.scss';
-import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps } from '@epam/uui';
-import cx from 'classnames';
+import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui';
+import { ButtonBase } from '../buttons';
 import {
     IHasCX,
     ICanRedirect,
     IHasChildren,
-    uuiContextTypes,
     UuiContexts,
     IDisableable,
     IClickable,
+    cx,
 } from '@epam/uui';
-import { ButtonBase } from '../buttons';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
-
-}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement> {}
 
 export class Anchor extends ButtonBase<AnchorProps> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
@@ -42,14 +39,17 @@ export class Anchor extends ButtonBase<AnchorProps> {
                 this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 (this.props.isLinkActive || isActive) && uuiMod.active,
                 uuiMarkers.clickable,
-                this.props.cx,
+                this.props.cx
             ),
             tabIndex: 0,
             href,
+            role: 'link',
             target: this.props.target,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
-            ...(this.props.rawProps as any),
+            disabled: this.props.isDisabled,
+            "aria-disabled": this.props.isDisabled,
+            ...this.props.rawProps,
         }, this.props.children);
     }
 }

@@ -2,40 +2,42 @@
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
 <div
-  className="container uui-dropdown-body root background-white container"
+  className="container uui-dropdown-body root background-white -lock-focus container"
   style={
     Object {
       "minHeight": undefined,
       "minWidth": undefined,
     }
   }
+  tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
 </div>
 `;
 
 exports[`DropdownContainer should be rendered correctly with extra props 1`] = `
 <div
-  className="container uui-dropdown-body root background-night700 container"
+  className="container uui-dropdown-body root background-night700 -lock-focus container"
   style={
     Object {
       "minHeight": 300,
       "minWidth": 200,
     }
   }
+  tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
 </div>
 `;

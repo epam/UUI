@@ -1,27 +1,20 @@
-import * as React from 'react';
-import { Text,  DataTable, Panel, IconButton } from '@epam/promo';
-import { DataTableState, DataColumnProps, LazyDataSource } from '@epam/uui';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo';
+import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
-import { svc } from '../../../services';
 import * as css from "./TablesExamples.scss";
 import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
-
-interface CitiesTableState {
-    tableState: DataTableState;
-}
-
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
-export class ColumnsConfigurationDataTableExample extends React.Component<any, CitiesTableState> {
-    state: CitiesTableState = {
-        tableState: {
-            // Get columns config from localStorage
-            columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY),
-        },
-    };
+export default function ColumnsConfigurationDataTableExample(props: DataTableMods) {
+    const svc = useUuiContext();
+    const [tableState, setTableState] = useState<DataTableState>({
+        // Get columns config from localStorage
+        columnsConfig: svc.uuiUserSettings.get(LOCAL_STORAGE_KEY),
+    });
 
-    citiesColumns: DataColumnProps<City>[] = [
+    const citiesColumns: DataColumnProps<City>[] = useMemo(() => [
         {
             key: 'id',
             caption: 'ID',
@@ -74,46 +67,46 @@ export class ColumnsConfigurationDataTableExample extends React.Component<any, C
             width: 54,
             fix: 'right',
         },
-    ];
+    ], []);
 
-    componentWillUnmount(): void {
-        this.citiesDS.unsubscribeView(this.handleTableStateChange);
-    }
-
-    citiesDS = new LazyDataSource({
+    const citiesDS = useLazyDataSource<City, string, unknown>({
         api: svc.api.demo.cities,
-    });
+    }, []);
 
-    handleTableStateChange = (newState: DataTableState) => {
+    const handleTableStateChange = useCallback((newState: DataTableState) => {
         // Set columns config to localStorage
         svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig || {});
+        setTableState(newState);
+    }, []);
 
-        this.setState({ tableState: newState });
-    }
+    useEffect(() => {
+        return () => {
+            citiesDS.unsubscribeView(handleTableStateChange);
+        };
+    }, []);
 
-    render() {
-        const view = this.citiesDS.getView(this.state.tableState, this.handleTableStateChange, {
-            getRowOptions: (item: City) => ({
-                checkbox: { isVisible: true },
-            }),
-        });
-        return (
-            <Panel shadow cx={ css.container }>
-                <DataTable
-                    value={ this.state.tableState }
-                    onValueChange={ this.handleTableStateChange }
-                    getRows={ view.getVisibleRows }
-                    columns={ this.citiesColumns }
-                    headerTextCase='upper'
+    const view = citiesDS.useView(tableState, handleTableStateChange, {
+        getRowOptions: useCallback(() => ({ checkbox: { isVisible: true } }), []),
+    });
 
-                    showColumnsConfig={ true }
-                    allowColumnsReordering={ true }
-                    allowColumnsResizing={ true }
-
-                    { ...view.getListProps() }
-                    { ...this.props }
-                />
-            </Panel>
-        );
-    }
-}
+    return (
+        <Panel shadow cx={ css.container } rawProps={{
+            role: 'table',
+            'aria-rowcount': view.getListProps().rowsCount,
+            'aria-colcount': citiesColumns.length
+        }}>
+            <DataTable
+                value={ tableState }
+                onValueChange={ handleTableStateChange }
+                getRows={ view.getVisibleRows }
+                columns={ citiesColumns }
+                headerTextCase='upper'
+                showColumnsConfig={ true }
+                allowColumnsReordering={ true }
+                allowColumnsResizing={ true }
+                { ...view.getListProps() }
+                { ...props }
+            />
+        </Panel>
+    );
+};

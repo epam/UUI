@@ -1,21 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
+  role="button"
+  tabIndex={null}
 />
 `;
 
 exports[`Button should be rendered correctly with props 1`] = `
-<div
+<button
+  aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
+  disabled={false}
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
+  role="button"
   tabIndex={0}
 >
   <div
@@ -30,6 +32,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -44,6 +47,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   </div>
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className="flipY"
@@ -59,6 +63,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
     onClick={[Function]}
+    style={Object {}}
   >
     <svg
       className=""
@@ -71,5 +76,5 @@ exports[`Button should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;

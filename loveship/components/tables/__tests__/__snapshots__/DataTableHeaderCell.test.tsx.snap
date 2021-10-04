@@ -2,8 +2,10 @@
 
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
-  className="flexCell cell size-36 padding-left-24"
+  aria-sort="none"
+  className="flexCell"
   onClick={[Function]}
+  role="columnheader"
   style={
     Object {
       "alignSelf": undefined,
@@ -15,14 +17,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     }
   }
 >
-  <div
-    className="tooltipWrapper"
-  >
+  <div>
     <div
-      className="iconCell"
+      className=""
     >
       <div
-        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
       >
         Test
       </div>

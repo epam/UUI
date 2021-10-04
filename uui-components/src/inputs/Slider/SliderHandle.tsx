@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { uuiSlider } from './SliderBase';
-import cx from 'classnames';
-import { IHasCX, uuiElement } from '@epam/uui';
+import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui';
 import * as css from '../../overlays/Tooltip.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
+import { uuiSlider } from './SliderBase';
 
-interface SliderHandleProps extends IHasCX {
+interface SliderHandleProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     onUpdate(mouseX: number): void;
+    onKeyDownUpdate?(type: 'right' | 'left'): void;
     handleActiveState?(isActive: boolean): void;
     tooltipContent: number;
     isActive: boolean;
@@ -56,11 +56,33 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
             this.props.handleActiveState && this.props.handleActiveState(false);
         }
     }
+
     handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: true });
     }
+
     handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: false });
+    }
+
+    handleFocus = (e: React.FocusEvent<HTMLDivElement>): void => {
+        e.preventDefault();
+        this.props.handleActiveState && this.props.handleActiveState(true);
+        this.setState({ isHovered: true });
+    }
+
+    handleBlur = (e: React.FocusEvent<HTMLDivElement>): void => {
+        e.preventDefault();
+        this.props.handleActiveState && this.props.handleActiveState(false);
+        this.setState({ isHovered: false });
+    }
+
+    handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (e.key === 'ArrowLeft') {
+            this.props.onKeyDownUpdate('left');
+        } else if (e.key == 'ArrowRight') {
+            this.props.onKeyDownUpdate('right');
+        }
     }
 
     renderTooltip() {
@@ -72,17 +94,23 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
             </div>
         );
     }
+
     render() {
         return (
             <Manager>
                 <Reference>
                     { (targetProps) =>
                         <div
+                            tabIndex={ 0 }
                             ref={ (SliderHandle) => { this.sliderHandle = SliderHandle; (targetProps.ref as React.RefCallback<any>)(SliderHandle); } }
                             className={ cx(uuiSlider.handle, this.props.cx) }
                             style={ { transform: `translateX(${this.props.offset || 0}px)` } }
                             onMouseDown={ this.handleMouseDown }
                             onMouseUp={ this.handleMouseUp }
+                            onKeyDown={ this.handleKeyDown }
+                            onFocus={ this.handleFocus }
+                            onBlur={ this.handleBlur }
+                            { ...this.props.rawProps }
                         />
                     }
                 </Reference>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, NotificationContext } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
 import * as successIcon from '../../icons/notification-check_circle-fill-24.svg';
 import * as warningIcon from '../../icons/notification-warning-fill-24.svg';
 import * as errorIcon from '../../icons/notification-error-fill-24.svg';
@@ -10,7 +10,6 @@ import * as styles from '../../assets/styles/colorvars/overlays/notificationCard
 import * as css from './NotificationCard.scss';
 import { IconButton } from '../buttons';
 import cx from 'classnames';
-import { object } from 'prop-types';
 import { EpamPrimaryColor, LinkButton } from '..';
 import { i18n } from '../../i18n';
 
@@ -42,7 +41,7 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
     }
 
     render() {
-        return <div className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
+        return <div role="alert" className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
             ref={ (el) => this.notificationCardNode = el }>
             <div className={ css.mainPath }>
                 {
@@ -75,11 +74,8 @@ export const ErrorNotification = (props: DefaultNotificationProps) =>
     <NotificationCard icon={ errorIcon } color='red' { ...props } cx={ cx(props.cx) } />;
 
 export class ClearNotification extends React.Component<{}> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
-
-    context: { uuiNotifications: NotificationContext };
+    public static contextType = UuiContext;
+    public context: UuiContexts;
 
     render() {
         return <div className={ cx(css.notificationWrapper, css.clearButton) }>

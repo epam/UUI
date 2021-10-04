@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as css from './TextArea.scss';
-import cx from 'classnames';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, CX } from '@epam/uui';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, CX, IHasRawProps, cx } from '@epam/uui';
 
-export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly {
+export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
     rows?: number;
     autoSize?: boolean;
     onBlur?(e?: any): void;
@@ -12,6 +11,7 @@ export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholde
     autoFocus?: boolean;
     inputCx?: CX;
     maxLength?: number;
+    id?: string;
 }
 
 interface TextAreaState {
@@ -25,14 +25,35 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
         inFocus: false,
     };
 
+    getParentOverflows(el: Element) {
+        const arr = [];
+
+        while (el && el.parentNode && el.parentNode instanceof Element) {
+            if (el.parentNode.scrollTop) {
+                arr.push({
+                    node: el.parentNode,
+                    scrollTop: el.parentNode.scrollTop,
+                });
+            }
+            el = el.parentNode;
+        }
+
+        return arr;
+    }
+
     updateHeight() {
         /* https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize */
         if (this.props.autoSize) {
             const node = this.textAreaRef.current;
             if (node) {
+                const overflows = this.getParentOverflows(node);
                 node.style.height = 'auto';
                 const borderWidth = node.offsetHeight - node.clientHeight;
                 node.style.height = node.scrollHeight + borderWidth + 'px';
+                overflows.forEach(el => {
+                    el.node.scrollTop = el.scrollTop;
+                });
+
             }
         }
     }
@@ -65,7 +86,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render () {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) }>
+            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } { ...this.props.rawProps }>
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }
@@ -83,8 +104,13 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                             ? this.props.rows
                             : this.props.autoSize ? 1 : undefined
                     }
-                    disabled={ this.props.isDisabled }
+                    id={ this.props.id }
                     readOnly={ this.props.isReadonly }
+                    aria-readonly={ this.props.isReadonly }
+                    required={ this.props.isRequired }
+                    aria-required={ this.props.isRequired }
+                    disabled={ this.props.isDisabled }
+                    aria-disabled={ this.props.isDisabled }
                     onChange={ this.handleChange }
                     value={ this.props.value || "" }
                     maxLength={ this.props.maxLength }

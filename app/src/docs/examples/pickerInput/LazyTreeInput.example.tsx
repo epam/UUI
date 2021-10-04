@@ -1,31 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import {FlexRow, PickerInput} from '@epam/promo';
-import {DataQueryFilter, LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { svc } from "../../../services";
+import {DataQueryFilter, useLazyDataSource, useUuiContext} from '@epam/uui';
 import { Location } from '@epam/uui-docs';
 
-export function LazyTreePicker() {
+export default function LazyTreePicker() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>();
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
-        api: async (request, ctx) => {
-            let { filter, search, range } = request;
-
-            // turn tree into flat list on search
-            let flatten = !!search;
-
-            if (!flatten) {
-                filter = { ...filter, parentId: (ctx.parentId || { isNull: true }) };
-            }
-
-            const result = await svc.api.demo.locations({ filter, search, range });
-
-            if (flatten) {
-                result.items.forEach(i => i.childCount = 0);
-            }
-
-            return result;
-        },
+        api: (request, ctx) => svc.api.demo.locations({ ...request, filter: { parentId: ctx.parentId} }),
         getChildCount: l => l.childCount,
     }, []);
 

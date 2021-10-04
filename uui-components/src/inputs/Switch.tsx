@@ -1,49 +1,56 @@
 import * as React from 'react';
 import * as css from './Switch.scss';
-import cx from 'classnames';
-import {uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from "@epam/uui";
+import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext } from "@epam/uui";
 
-export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean> {
+export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
+    tabIndex?: number;
+    id?: string;
 }
 
 export class Switch extends React.Component<SwitchProps, any> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
-    
+
     toggle = () => {
         this.props.onValueChange(!this.props.value);
-        
+
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(!this.props.value, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
         }
     }
 
-    handleKeyDown = (e: any): void => {
-        if (e.keyCode === 32) {
-            e.preventDefault();
-            this.toggle();
-        }
-    }
-
     render() {
         return (
-            <div
+            <label
                 className={ cx(
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
-                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
                 ) }
-                onClick={ !this.props.isDisabled ? this.toggle : undefined }
-                tabIndex={ 0 }
-                onKeyDown={ (e) => !this.props.isDisabled && this.handleKeyDown }
+                { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
-                    <div className={ cx(uuiElement.switchToggler) }/>
+                    <input
+                        type="checkbox"
+                        role="switch"
+                        onChange={ !this.props.isReadonly ? this.toggle : null }
+                        readOnly={ this.props.isReadonly }
+                        aria-readonly={ this.props.isReadonly || undefined }
+                        disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled }
+                        checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired || undefined }
+                        tabIndex={ this.props.tabIndex }
+                        id={ this.props.id }
+                    />
+                    <div className={ uuiElement.switchToggler } />
                 </div>
                 <div className={ uuiElement.inputLabel }>{ this.props.label }</div>
-            </div>
+            </label>
         );
     }
 }

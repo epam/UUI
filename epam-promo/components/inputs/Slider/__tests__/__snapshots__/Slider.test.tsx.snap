@@ -58,14 +58,22 @@ exports[`Slider should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
     className="uui-slider-handle root"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
       }
     }
+    tabIndex={0}
   />
 </div>
 `;
@@ -128,14 +136,22 @@ exports[`Slider should be rendered correctly 2`] = `
     </div>
   </div>
   <div
+    aria-valuemax={50}
+    aria-valuemin={0}
+    aria-valuenow={null}
     className="uui-slider-handle root"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
     onMouseDown={[Function]}
     onMouseUp={[Function]}
+    role="slider"
     style={
       Object {
         "transform": "translateX(0px)",
       }
     }
+    tabIndex={0}
   />
 </div>
 `;

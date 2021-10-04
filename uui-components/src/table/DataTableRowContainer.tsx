@@ -1,10 +1,10 @@
 import * as React from "react";
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps, ScrollManager, uuiMarkers, Link, uuiContextTypes, UuiContexts } from "@epam/uui";
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps, ScrollManager, uuiMarkers, Link, UuiContexts, UuiContext } from "@epam/uui";
 import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     scrollManager?: ScrollManager;
     columns?: DataColumnProps<any, any>[];
     renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;
@@ -19,7 +19,7 @@ const uuiDataTableRowContainer = {
 };
 
 export class DataTableRowContainer extends React.Component<DataTableRowContainerProps, {}> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     scrollNode: HTMLElement | null = null;
@@ -79,7 +79,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 scrollableColumns.push(i);
             }
         });
-        
+
         const scrollingCells = (
             <FlexRow alignItems='top' >
                 { this.renderCells(scrollableColumns) }
@@ -101,7 +101,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
         </>;
 
         return (
-            this.props.link ?
+            this.props.link ? (
                 <Anchor
                     link={ this.props.link }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
@@ -109,7 +109,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 >
                     { rowContent }
                 </Anchor>
-            :
+            ) : (
                 <FlexRow
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
@@ -118,6 +118,7 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                 >
                     { rowContent }
                 </FlexRow>
+            )
         );
     }
 }

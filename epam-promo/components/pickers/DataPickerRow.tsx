@@ -3,7 +3,9 @@ import * as ReactDOM from 'react-dom';
 import isEqual from 'lodash.isequal';
 import { DataRowProps, DataColumnProps, FlexRowProps, uuiMod, uuiMarkers } from '@epam/uui';
 import { FlexRow } from '@epam/uui-components';
-import { IconButton, FlexSpacer, DataTableCell } from '../';
+import { FlexSpacer } from '../layout';
+import { DataTableCell } from '../tables';
+import { IconButton } from '../buttons';
 import * as css from './DataPickerRow.scss';
 import * as tickIcon_24 from '@epam/assets/icons/common/notification-done-24.svg';
 import * as tickIcon_18 from '@epam/assets/icons/common/notification-done-18.svg';
@@ -68,8 +70,14 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     render() {
         const clickHandler = this.props.onSelect || this.props.onFold || this.props.onCheck;
         return <FlexRow
-            onClick={ clickHandler && (() => clickHandler(this.props)) }
-            rawProps={ this.props.rawProps }
+            onClick={ () => clickHandler && clickHandler(this.props)}
+            rawProps={ {
+                role: 'option',
+                'aria-posinset': this.props.index + 1,
+                'aria-checked': this.props.isChecked,
+                ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
+                ...this.props.rawProps,
+            } }
             ref={ this.rowNode }
             cx={ [
                 css.pickerRow,

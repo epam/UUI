@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as css from './VirtualList.scss';
-import { IHasCX, IEditable, VirtualListState } from '@epam/uui';
-import cx from 'classnames';
-import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars';
+import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps } from '@epam/uui';
+import ScrollBars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 
-export interface VirtualListProps extends IHasCX, IEditable<VirtualListState> {
+export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
     rows: React.ReactNode[];
     rowsCount?: number;
     focusedIndex?: number;
@@ -104,8 +103,12 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
     renderRows() {
         const topIndex = this.props.value?.topIndex || 0;
         const topY = this.rowOffsets[topIndex] || 0;
+        const firstChildRole = (this.container3?.firstChild as HTMLElement)?.getAttribute('role');
 
-        return <div className={ css.container3 } style={ { top: topY } }>
+        return <div
+            role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }
+            className={ css.container3 }
+            style={ { marginTop: topY } }>
             { this.props.rows }
         </div>;
     }
@@ -135,14 +138,13 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
         let estimatedHeight = lastOffset;
 
         if (this.estimatedHeight != estimatedHeight) {
-            this.container2.style.setProperty('height', `${estimatedHeight}px`);
+            this.container2.style.setProperty('min-height', `${estimatedHeight}px`);
         }
 
         this.estimatedHeight = estimatedHeight;
     }
 
     renderView({ style, ...props }: { style: {}, props: any }) {
-
         return (
             <div
                 className={ css.container1 }
@@ -154,7 +156,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
 
     render() {
         return (
-            <div className={ cx(css.wrapper, this.props.cx) }>
+            <div className={ cx(css.wrapper, this.props.cx) } {...this.props.rawProps} >
                 <ScrollBars
                     key='s'
                     autoHeight
@@ -167,7 +169,7 @@ export class VirtualList extends React.Component<VirtualListProps, {}> {
                     renderThumbHorizontal={ () => <div className='uui-thumb-horizontal'/> }
                     renderThumbVertical={ () => <div className='uui-thumb-vertical'/> }
                 >
-                    <div className={ css.container2 } style={ { height: this.estimatedHeight } }>
+                    <div className={ css.container2 } style={ { minHeight: this.estimatedHeight } }>
                         { this.renderRows() }
                     </div>
                 </ScrollBars>

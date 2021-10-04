@@ -2,7 +2,9 @@
 
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
+  aria-posinset={2}
   className="pickerRow container align-items-center"
+  role="option"
 >
   <div
     className="flexCell cell size-36 padding-12 padding-left-12 align-widgets-top"
@@ -32,8 +34,11 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
 <div
+  aria-posinset={2}
+  aria-selected={true}
   className="pickerRow -clickable uui-focus container -clickable align-items-center"
   onClick={[Function]}
+  role="option"
 >
   <div
     className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
@@ -59,15 +64,16 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
       <div
         className="iconWrapper"
       >
-        <div
-          className="root color-sky uui-button-box uui-enabled"
+        <button
+          className="container uui-button-box uui-enabled root color-sky"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          role="button"
+          tabIndex={null}
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -80,7 +86,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

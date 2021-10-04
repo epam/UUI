@@ -4,31 +4,31 @@ exports[`ControlWrapper should be rendered correctly 1`] = `
 <div
   className="root size-36"
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   >
     <div
       className="uui-caption"
     >
       On
     </div>
-  </div>
-  <div
+  </button>
+  <button
     className="container uui-button-box uui-enabled button-color-green root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   >
     <div
       className="uui-caption"
     >
       Off
     </div>
-  </div>
+  </button>
 </div>
 `;

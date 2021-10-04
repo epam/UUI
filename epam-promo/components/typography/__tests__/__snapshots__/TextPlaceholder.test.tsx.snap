@@ -1,17 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextPlaceholder should be rendered correctly 1`] = `
-<span
-  className="loadingWord text-placeholder-color-gray40 animatedLoading"
+<div
+  aria-busy={true}
+  className="container"
 >
-  0000000000000
-</span>
+  <span
+    className="loadingWord text-placeholder-color-gray40 animatedLoading"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`TextPlaceholder should be rendered correctly 2`] = `
-<span
-  className="loadingWord text-placeholder-color-gray40"
+<div
+  aria-busy={true}
+  className="container"
 >
-  0000000000000 0000000000000 0000000000000 0000000000000 0000000000000
-</span>
+  <span
+    className="loadingWord text-placeholder-color-gray40"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord text-placeholder-color-gray40"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord text-placeholder-color-gray40"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord text-placeholder-color-gray40"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord text-placeholder-color-gray40"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+</div>
 `;

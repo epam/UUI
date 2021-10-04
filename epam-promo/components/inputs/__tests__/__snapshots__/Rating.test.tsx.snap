@@ -2,11 +2,17 @@
 
 exports[`Rating should be rendered correctly 1`] = `
 <div
+  aria-valuemax={5}
+  aria-valuemin={1}
+  aria-valuenow={0}
   className="container root size-18"
+  onKeyDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
+  role="slider"
+  tabIndex={0}
 >
   <div
     className="container"
@@ -19,6 +25,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -37,6 +44,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -55,6 +63,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -73,6 +82,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -91,6 +101,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -118,6 +129,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -136,6 +148,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -154,6 +167,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -172,6 +186,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -190,6 +205,7 @@ exports[`Rating should be rendered correctly 1`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -210,11 +226,17 @@ exports[`Rating should be rendered correctly 1`] = `
 
 exports[`Rating should be rendered correctly 2`] = `
 <div
+  aria-valuemax={5}
+  aria-valuemin={1}
+  aria-valuenow={0}
   className="container root size-18"
+  onKeyDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
+  role="slider"
+  tabIndex={0}
 >
   <div
     className="container"
@@ -227,6 +249,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -245,6 +268,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -263,6 +287,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -281,6 +306,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -299,6 +325,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -326,6 +353,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -344,6 +372,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -362,6 +391,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -380,6 +410,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""
@@ -398,6 +429,7 @@ exports[`Rating should be rendered correctly 2`] = `
       >
         <div
           className="container uui-icon uui-enabled"
+          style={Object {}}
         >
           <svg
             className=""

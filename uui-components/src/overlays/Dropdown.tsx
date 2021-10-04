@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
-import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
-import * as PropTypes from 'prop-types';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest } from '@epam/uui';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
+import { Placement, Boundary } from '@popperjs/core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
+import { FreeFocusInside } from 'react-focus-lock';
 
 export interface DropdownState {
     opened: boolean;
@@ -30,7 +30,7 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     stopCloseSelectors?: string[];
     zIndex?: number;
     placement?: DropdownPlacement;
-    modifiers?: StrictModifiers[];
+    modifiers?: Modifier<any>[];
     /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */
 
     openOnClick?: boolean; // default: true
@@ -56,9 +56,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         closeDropdownTimerId: null,
     };
 
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    static contextType = UuiContext;
 
     private readonly layer: LayoutLayer | null = null;
 
@@ -158,13 +156,13 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private onClose = () => {
-        this.props.onClose ? this.props.onClose() : this.setState({ opened: false });
+        this.props.onClose ? this.props.onClose() : this.handleOpenedChange(false);
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: Element) => {
             this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            (targetProps.ref as React.RefCallback<any>)(this.targetNode);
+            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
 
         return (
@@ -174,6 +172,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
+                    toggleDropdownOpening: this.handleOpenedChange,
                 })
             }
             </PopperTargetWrapper>
@@ -198,19 +197,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             return null;
         }
         return (
-            <div
-                className='uui-popper'
-                ref={ setRef }
-                style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                data-placement={ placement }
-            >
-                { this.props.renderBody({
-                    onClose: this.onClose,
-                    togglerWidth: this.togglerWidth,
-                    togglerHeight: this.togglerHeight,
-                    scheduleUpdate: update,
-                }) }
-            </div>
+            <FreeFocusInside>
+                <div
+                    className='uui-popper'
+                    aria-hidden={ !this.isOpened() }
+                    aria-expanded={ this.isOpened() }
+                    ref={ setRef }
+                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
+                    data-placement={ placement }
+                >
+                    { this.props.renderBody({
+                        onClose: this.onClose,
+                        togglerWidth: this.togglerWidth,
+                        togglerHeight: this.togglerHeight,
+                        scheduleUpdate: update
+                    }) }
+                </div>
+            </FreeFocusInside>
         );
     }
 

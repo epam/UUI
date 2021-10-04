@@ -1,3 +1,3 @@
-import { IHasCX } from "../props";
+import { IHasCX, IHasRawProps } from "../props";
 
-export interface SpinnerCoreProps extends IHasCX {}
+export interface SpinnerCoreProps extends IHasCX, IHasRawProps<HTMLDivElement> {}

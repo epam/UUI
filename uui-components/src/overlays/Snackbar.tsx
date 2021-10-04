@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { Icon, IHasCX, NotificationOperation, NotificationContext } from '@epam/uui';
+import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps } from '@epam/uui';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import cx from 'classnames';
 import * as css from './Snackbar.scss';
-import { object } from 'prop-types';
 
 const itemsOffset = 12;
 const offset = 30;
 
-export interface SnackbarProps extends IHasCX {
+export interface SnackbarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     closeIcon?: Icon;
     notifications?: NotificationOperation[];
 }
@@ -51,9 +49,7 @@ const uuiSnackbar = {
 };
 
 export class Snackbar extends React.Component<SnackbarProps> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
+    static contextType = UuiContext;
 
     context: {uuiNotifications: NotificationContext};
 
@@ -132,7 +128,7 @@ export class Snackbar extends React.Component<SnackbarProps> {
             .map(this.renderItemWithOffset(botCenterOffset));
 
         return (
-            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) }>
+            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } {...this.props.rawProps}>
                 <TransitionGroup>
                     { botLeftItems }
                     { botRightItems }

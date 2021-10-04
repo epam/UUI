@@ -5,14 +5,21 @@
     100% { background-position: 0 0; }
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .loading-word {
     user-select: none;
     font-family: $font-redacted;
     letter-spacing: -1px;
-    word-spacing: 6px;
+    margin: 0 3px 3px 0;
     color: var(--uui-color-700);
     vertical-align: 1px; // to fix vertical over-sizing of line
-
+    &:last-child {
+        margin-right: 0;
+    }
     // Disable animation for Firefox, because it caused performance issues
     @supports not (-moz-animation: none) {
         &.animated-loading {

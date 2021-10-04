@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FlexRow, Tooltip } from '@epam/promo';
 
-export function TriggerConfigurationExample() {
+export default function TriggerConfigurationExample() {
     return (
         <FlexRow spacing='12' >
             <Tooltip trigger='hover' content='Some text'>

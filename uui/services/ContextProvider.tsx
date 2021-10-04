@@ -1,127 +1,125 @@
-import * as React from 'react';
-import { LayoutContext } from './LayoutContext';
-import { IHasChildren, CommonContexts, uuiContextTypes, ApiCallOptions } from '../types';
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { ApiCallOptions, CommonContexts, IHasChildren } from "../types";
+import { LegacyContextProvider } from "./LegacyContextProvider";
+import { LayoutContext } from "./LayoutContext";
+import { ModalContext } from "./ModalContext";
+import { NotificationContext } from "./NotificationContext";
+import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from "./routing";
+import { AnalyticsContext } from "./AnalyticsContext";
+import { LockContext } from "./LockContext";
+import { ErrorContext } from "./ErrorContext";
+import { ApiContext } from "./ApiContext";
+import { UserSettingsContext } from "./UserSettingsContext";
 import { DndContext, DragGhost } from "./dnd";
-import * as PropTypes from 'prop-types';
-import { StubAdaptedRouter } from './routing/StubAdaptedRouter';
-import { NotificationContext } from './NotificationContext';
-import { UserSettingsContext } from './UserSettingsContext';
-import { AnalyticsContext } from './AnalyticsContext';
-import { ErrorContext } from './ErrorContext';
-import { ApiContext } from './ApiContext';
-import { ModalContext } from './ModalContext';
-import { LockContext } from './LockContext';
-import { uuiSkin, ISkin } from '../services/SkinContext';
-import { HistoryAdaptedRouter, IHistory4 } from './routing/HistoryAdaptedRouter';
+import { ISkin, uuiSkin } from "./SkinContext";
 
 export interface ContextProviderProps<TApi, TAppContext> extends IHasChildren {
     apiServerUrl?: string;
     gaCode?: string;
-    ampCode?: string;
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
     apiDefinition?: (processRequest: (request: string, requestMethod: string) => any) => TApi;
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
     history?: IHistory4;
     skinContext?: ISkin;
+    enableLegacyContext?: boolean;
 }
 
-interface ContextProviderState {
-    isLoaded: boolean;
-}
+export const UuiContext = createContext({} as CommonContexts<any, any>);
 
-export class ContextProvider<TApi, TAppContext> extends React.Component<ContextProviderProps<TApi, TAppContext>, ContextProviderState> {
+export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const uuiContexts = useMemo<CommonContexts<TApi, TAppContext>>(() => getUuiContexts(props), []);
 
-    static contextTypes = {
-        uuiRouter: PropTypes.object,
-        history: PropTypes.object,
-    };
-
-    uuiContexts: CommonContexts<TApi, TAppContext>;
-
-    state = {isLoaded: false};
-
-    constructor(props: ContextProviderProps<TApi, TAppContext>, context: any) {
-        super(props, context);
-        let history = this.context.history || this.props.history;
-        let uuiLayout = new LayoutContext();
-        let uuiModals = new ModalContext(uuiLayout);
-
-        let uuiNotifications = new NotificationContext(uuiLayout);
-
-        let uuiRouter = context.uuiRouter; /* TBD: Deprecate legacy router */
-        if (uuiRouter == null) {
-            if (history != null) {
-                uuiRouter = new HistoryAdaptedRouter(history);
-            } else {
-                uuiRouter = new StubAdaptedRouter();
-            }
-        }
-
-        let uuiAnalytics = new AnalyticsContext({
-            gaCode: props.gaCode,
-            ampCode: props.ampCode,
-            router: uuiRouter,
-        });
-        let uuiLocks = new LockContext(uuiRouter);
-        let uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
-        let uuiApi = new ApiContext(uuiErrors, props.apiServerUrl, uuiAnalytics);
-
-
-        let rawApi = props?.apiDefinition ? props.apiDefinition(uuiApi.processRequest.bind(uuiApi)) : {} as TApi;
-        let withOptions = (options: ApiCallOptions) => props.apiDefinition(
-            (url: string, method: string, data?: any) => uuiApi.processRequest(url, method, data, options),
-        );
-        let api = {...rawApi, withOptions};
-
-        let uuiUserSettings = new UserSettingsContext();
-        let uuiDnD = new DndContext();
-
-        uuiSkin.setSkin(props.skinContext);
-
-        this.uuiContexts = {
-            history,
-            uuiAnalytics,
-            uuiErrors,
-            uuiApi,
-            api,
-            uuiLayout,
-            uuiNotifications,
-            uuiModals,
-            uuiUserSettings,
-            uuiDnD,
-            uuiRouter,
-            uuiLocks,
-            uuiApp: {} as TAppContext,
-            uuiSkin: uuiSkin,
-        };
-
+    useEffect(() => {
         const loadAppContext = props?.loadAppContext || (() => Promise.resolve({} as TAppContext));
 
-        loadAppContext(api).then(appCtx => {
-            this.uuiContexts.uuiApp = appCtx;
-            props.onInitCompleted(this.uuiContexts);
-            this.setState({isLoaded: true});
+        loadAppContext(uuiContexts.api).then(appCtx => {
+            uuiContexts.uuiApp = appCtx;
+            props.onInitCompleted(uuiContexts);
+            setIsLoaded(true);
         });
+    }, []);
 
+    // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
+    (uuiContexts.uuiErrors as any).discardError();
+    uuiContexts.uuiApi.reset();
+
+
+    const children = isLoaded ? props.children : "";
+    const enableLegacyContexts = props.enableLegacyContext ?? true;
+
+    return (
+        <UuiContext.Provider value={ uuiContexts }>
+            { enableLegacyContexts
+                ? (
+                    <LegacyContextProvider { ...props } uuiContexts={ uuiContexts }>
+                        { children }
+                    </LegacyContextProvider>
+                )
+                : (
+                    <>
+                        { children }
+                        <DragGhost/>
+                    </>
+                )
+            }
+        </UuiContext.Provider>
+    );
+};
+
+export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<TApi, TAppContext> {
+    const context = useContext(UuiContext);
+    if (!Object.keys(context).length) {
+        throw new Error("useUuiContext must be called within UuiContextProvider");
     }
+    return context;
+}
 
-    render() {
-        // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-        (this.uuiContexts.uuiErrors as any).discardError();
-        this.uuiContexts.uuiApi.reset();
+export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
+    const history = props.history;
+    const uuiLayout = new LayoutContext();
+    const uuiModals = new ModalContext(uuiLayout);
 
-        //this.uuiContexts.uuiDnD.
-        const children = this.state.isLoaded ? this.props.children : '';
+    const uuiNotifications = new NotificationContext(uuiLayout);
 
-        return <>
-            { children }
-            <DragGhost/>
-        </>;
-    }
+    const uuiRouter = !!history
+        ? new HistoryAdaptedRouter(history)
+        : new StubAdaptedRouter();
 
-    static childContextTypes = uuiContextTypes;
+    const uuiAnalytics = new AnalyticsContext({
+        gaCode: props.gaCode,
+        router: uuiRouter,
+    });
+    const uuiLocks = new LockContext(uuiRouter);
+    const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
+    const uuiApi = new ApiContext(uuiErrors, props.apiServerUrl, uuiAnalytics);
 
-    getChildContext() {
-        return this.uuiContexts;
-    }
+
+    const rawApi = props?.apiDefinition ? props.apiDefinition(uuiApi.processRequest.bind(uuiApi)) : {} as TApi;
+    const withOptions = (options: ApiCallOptions) => props.apiDefinition(
+        (url: string, method: string, data?: any) => uuiApi.processRequest(url, method, data, options),
+    );
+    const api = { ...rawApi, withOptions };
+
+    const uuiUserSettings = new UserSettingsContext();
+    const uuiDnD = new DndContext();
+
+    uuiSkin.setSkin(props.skinContext);
+
+    return {
+        history,
+        uuiAnalytics,
+        uuiErrors,
+        uuiApi,
+        api,
+        uuiLayout,
+        uuiNotifications,
+        uuiModals,
+        uuiUserSettings,
+        uuiDnD,
+        uuiRouter,
+        uuiLocks,
+        uuiApp: {} as TAppContext,
+        uuiSkin: uuiSkin,
+    };
 }

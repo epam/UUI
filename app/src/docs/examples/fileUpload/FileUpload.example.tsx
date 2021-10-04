@@ -1,74 +1,62 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
-import { svc } from '../../../services';
-import { FileUploadResponse } from '@epam/uui';
-import * as css from './FileUpload.example.scss';
-
+import { FileUploadResponse, useUuiContext } from '@epam/uui';
+import * as css from './FileUpload.scss';
 
 type AttachmentType = FileUploadResponse & {
     progress?: number;
 };
 
-interface FileUploadExampleState {
-    attachments: AttachmentType[];
-}
+export default function FileUploadExample() {
+    const { uuiApi } = useUuiContext();
+    const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
+    const [attachments, setAttachments] = useState<AttachmentType[]>([]);
 
-export class FileUploadExample extends React.Component<any, FileUploadExampleState> {
-    state: FileUploadExampleState = {
-        attachments: [],
-    };
-
-    trackProgress(progress: number, id: number) {
-        const attachments = this.state.attachments;
-        const file = attachments.find(i => i.id === id);
-        file.progress = progress;
-        this.updateAttachment(file, file.id);
+    const updateAttachment = (newFile: AttachmentType): void => {
+        setAttachments(attachments.map(file => file.id === newFile.id ? newFile : file));
     }
 
-    updateAttachment(newFile: any, id: number) {
-        const attachments = this.state.attachments;
-        this.setState({ attachments: attachments.map(i => i.id === id ? newFile : i) });
+    const trackProgress = (progress: number, tempId: number): void => {
+        const file: AttachmentType = attachments.find(file => file.id === tempId);
+        updateAttachment({ ...file, progress });
     }
 
-    removeAttachment(index: number) {
-        const attachments = this.state.attachments;
-        this.setState({ attachments: attachments.filter((item, i) => i !== index) });
+    const removeAttachment = (index: number): void => {
+        setAttachments(attachments.filter((_, i) => i !== index));
     }
 
-    uploadFile = (files: File[]): void => {
+    const uploadFile = (files: File[]): void => {
         let tempIdCounter = 0;
-        const attachments = this.state.attachments;
 
-        files.map(file => {
+        Promise.all(files.map(file => {
             const tempId = --tempIdCounter;
-            attachments.push({
-                id: tempId,
-                name: file.name,
-                size: file.size,
-                progress: 0,
-            });
-            svc.uuiApi.uploadFile('/uploadFileMock', file, {onProgress: (progress) => this.trackProgress(progress, tempId)}).then(res => {
-                this.updateAttachment({ ...res, progress: 100 }, tempId);
-            });
-        });
 
-        this.setState({ attachments });
+            setAttachments([
+                ...attachments, {
+                    id: tempId,
+                    name: file.name,
+                    size: file.size,
+                    progress: 0,
+                }
+            ]);
+
+            uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
+                onProgress: (progress) => trackProgress(progress, tempId)
+            }).then(res => updateAttachment({ ...res, progress: 100 }));
+        }));
     }
 
-    render() {
-        const attachments = this.state.attachments;
-        return (
-            <div className={ css.container }>
-                <DropSpot onUploadFiles={ this.uploadFile } />
-                <div className={ css.attachmentBlock }>
-                    { attachments?.map((i, index) =>
-                        <FileCard
-                            key={ index }
-                            file={ i }
-                            onClick={ () => this.removeAttachment(index) }
-                        />) }
-                </div>
+    return (
+        <div className={ css.container }>
+            <DropSpot onUploadFiles={ uploadFile } />
+            <div className={ css.attachmentBlock }>
+                { attachments?.map((i, index) =>
+                    <FileCard
+                        key={ index }
+                        file={ i }
+                        onClick={ () => removeAttachment(index) }
+                    />) }
             </div>
-        );
-    }
+        </div>
+    );
 }

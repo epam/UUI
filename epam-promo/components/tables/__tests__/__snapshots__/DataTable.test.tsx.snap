@@ -4,6 +4,7 @@ exports[`DataTable should be rendered correctly 1`] = `
 Array [
   <div
     className="container uui-table-row-container root uui-table-header-row container align-items-top"
+    role="row"
   >
     <div
       className="scrollableColumnsWrapper"
@@ -72,7 +73,7 @@ Array [
             className="container2"
             style={
               Object {
-                "height": null,
+                "minHeight": null,
               }
             }
           >
@@ -80,7 +81,7 @@ Array [
               className="container3"
               style={
                 Object {
-                  "top": 0,
+                  "marginTop": 0,
                 }
               }
             />

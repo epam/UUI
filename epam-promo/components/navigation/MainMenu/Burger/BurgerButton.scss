@@ -2,7 +2,6 @@
 @import '../../../../assets/styles/colorvars/navigation/mainMenu/burger/burgerButton-colorvars';
 
 .root {
-    @include button-reset();
     @include burger-button-color();
     padding: 0 48px;
     background: none;

@@ -3,14 +3,17 @@
 exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  role="row"
 >
   <div
-    className="flexCell -clickable cell size-24 padding-left-24 resizable"
+    aria-sort="none"
+    className="flexCell -clickable"
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
     onMouseMove={[Function]}
     onMouseUp={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -22,36 +25,39 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       }
     }
   >
-    <div
-      className="container root size-12 theme-light color-sky checkbox -clickable"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      tabIndex={0}
+    <label
+      className="container root size-12 theme-light color-sky -clickable"
     >
       <div
         className="uui-checkbox"
-      />
-    </div>
-    <div
-      className="tooltipWrapper"
-    >
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </div>
+    </label>
+    <div>
       <div
-        className="iconCell"
+        className=""
       >
         <div
-          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
         >
           ID
         </div>
-        <div
-          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+        <button
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          role="button"
+          tabIndex={null}
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -64,11 +70,10 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
     <div
-      className="resizeMark"
       onMouseDown={[Function]}
     />
   </div>
@@ -90,13 +95,15 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         className="container align-items-top"
       >
         <div
-          className="flexCell -clickable cell size-24 resizable draggable"
+          aria-sort="ascending"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -108,26 +115,25 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 name
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -140,22 +146,23 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
         <div
-          className="flexCell -clickable cell size-24 resizable draggable"
+          aria-sort="none"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -167,26 +174,25 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 Level
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -199,22 +205,23 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
         <div
-          className="flexCell -clickable cell size-24 padding-right-24 resizable draggable"
+          aria-sort="none"
+          className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -226,26 +233,25 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 DATE
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -258,11 +264,10 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
-            className="resizeMark"
             onMouseDown={[Function]}
           />
         </div>
@@ -281,10 +286,13 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  role="row"
 >
   <div
-    className="flexCell -clickable cell size-36 padding-left-24"
+    aria-sort="none"
+    className="flexCell -clickable"
     onClick={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -296,26 +304,25 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
       }
     }
   >
-    <div
-      className="tooltipWrapper"
-    >
+    <div>
       <div
-        className="iconCell"
+        className=""
       >
         <div
-          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
         >
           ID
         </div>
-        <div
-          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+        <button
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
+          role="button"
+          tabIndex={null}
         >
           <div
             className="container uui-icon uui-enabled"
+            style={Object {}}
           >
             <svg
               className=""
@@ -328,7 +335,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -350,8 +357,10 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         className="container align-items-top"
       >
         <div
-          className="flexCell -clickable cell size-36"
+          aria-sort="ascending"
+          className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -363,26 +372,25 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 name
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -395,13 +403,15 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
         <div
-          className="flexCell -clickable cell size-36"
+          aria-sort="none"
+          className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -413,26 +423,25 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 Level
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -445,13 +454,15 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
         <div
-          className="flexCell -clickable cell size-36 padding-right-24"
+          aria-sort="none"
+          className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -463,26 +474,25 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             }
           }
         >
-          <div
-            className="tooltipWrapper"
-          >
+          <div>
             <div
-              className="iconCell"
+              className=""
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
               >
                 DATE
               </div>
-              <div
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+              <button
+                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
-                tabIndex={0}
+                role="button"
+                tabIndex={null}
               >
                 <div
                   className="container uui-icon uui-enabled"
+                  style={Object {}}
                 >
                   <svg
                     className=""
@@ -495,7 +505,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>

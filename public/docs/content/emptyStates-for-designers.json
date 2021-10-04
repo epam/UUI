@@ -1,0 +1,926 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Empty states occur when an item’s content can’t be shown.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "This is an opportunity to provide explanation or guidance to help users progress.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Empty states can be displayed in a wide variety of components. For example, when a list doesn’t have any list items, or a search returns no results. Although these states aren’t typical, they should be designed to prevent confusion.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Empty states should clearly describe what is missing and, if it’s possible, add opportunity to add this.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Types of empty states",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Default",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use to explain a single feature before users have used it.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES1.png",
+          "imageSize": {
+            "width": 934,
+            "height": 532.38
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Default state with subduet footer context",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use to provide additional but non-critical context for a new product or feature. Can also be used to include a subdued call to action for secondary or tertiary actions.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES2.png",
+          "imageSize": {
+            "width": 934,
+            "height": 595.425
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Without image",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Try to avoid this type of empty state, but in places, where there is not enough space for image, use only text.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES3.png",
+          "imageSize": {
+            "width": 934,
+            "height": 287.205
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Starter content",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To help users new to a website or section, screens which would otherwise be empty can be populated with starter content. Starter content allows users to begin using a website right away, making it easier for them to learn about what a website has to offer.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Recommendations:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Starter content is best for websites that store content, or create templated content",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "(such",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "as notes or documents).",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Use content that has broad appeal and demonstrates primary features.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Give users the ability to delete and replace starter content.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "If possible, provide content that's personalized.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Best practices",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use an image that:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Has a neutral or humorous tone",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Is consistent with your brand",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Has consistent size and style over the system",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Include a tagline that:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Has a helpful message",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Is consistent with your brand",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Conveys the purpose of the screen, without appearing actionable",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Orient user by clearly explaining the benefit and utility of a product or feature",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Use simple and clear language",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Be encouraging and never make user feel unsuccessful or guilty because they haven’t used a product or feature",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Explain the steps user need to take to activate a product or feature",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES 4.png",
+          "imageSize": {
+            "width": 934,
+            "height": 583.75
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/ES 5.png",
+          "imageSize": {
+            "width": 934,
+            "height": 583.75
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

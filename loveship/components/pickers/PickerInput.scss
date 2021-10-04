@@ -1,32 +1,8 @@
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss/index' as *;
 
-.footer-wrapper {
-    border-top: 1px solid $night400;
-    background: $white;
-    padding: 0 12px;
-    display: flex;
-}
-
-.footer-size-24 {
-    min-height: 24px;
-}
-
-.footer-size-30 {
-    min-height: 30px;
-}
-
-.footer-size-36 {
-    min-height: 36px;
-}
-
-.footer-size-42 {
-    min-height: 42px;
-}
-
-.footer-size-48 {
-    min-height: 48px;
-
-    :global(.uui-caption) {
-        font-size: 16px;
+.panel {
+    @media screen and (max-width: 720px) {
+        height: var(--app-mobile-height);
+        border-radius: 0;
     }
 }

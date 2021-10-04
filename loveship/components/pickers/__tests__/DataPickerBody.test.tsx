@@ -1,8 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {dataSource} from "./dataMocks";
-import {DataPickerBody} from "../DataPickerBody";
-import {DataPickerRow} from "../DataPickerRow";
+import { renderWithContextAsync } from "@epam/test-utils";
+import { dataSource } from "./dataMocks";
+import { DataPickerBody } from "../DataPickerBody";
+import { DataPickerRow } from "../DataPickerRow";
 
 jest.mock("react-dom", () => ({
     findDOMNode: jest.fn(),
@@ -17,7 +18,8 @@ describe("DataPickerBody", () => {
     };
 
     it("should be rendered correctly", () => {
-        const view = dataSource.getView({topIndex: 0, visibleCount: 10, focusedIndex: 1}, () => {});
+        const view = dataSource.getView({ topIndex: 0, visibleCount: 10, focusedIndex: 1 }, () => {
+        });
 
         const tree = renderer
             .create(<DataPickerBody
@@ -40,23 +42,22 @@ describe("DataPickerBody", () => {
         />
     ));
 
-    it("should be rendered correctly with extra props", () => {
-        const tree = renderer
-            .create(<DataPickerBody
+    it("should be rendered correctly with extra props", async () => {
+        const tree = await renderWithContextAsync(
+            <DataPickerBody
                 value={ value }
                 onValueChange={ onValueChange }
                 rows={ rows }
                 search={ search }
                 showSearch
-                showSelectedRows
                 maxHeight={ 200 }
                 renderNotFound={ () => <div>Not found</div> }
-                editMode='dropdown'
+                editMode="dropdown"
                 onKeyDown={ jest.fn() }
                 scheduleUpdate={ jest.fn() }
-                searchSize='24'
-            />)
-            .toJSON();
+                searchSize="24"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 

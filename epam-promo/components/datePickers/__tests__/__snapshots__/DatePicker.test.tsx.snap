@@ -4,12 +4,13 @@ exports[`DataPicker should be rendered correctly 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
-  onClick={[Function]}
+  onClick={null}
   onFocus={[Function]}
   tabIndex={-1}
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""
@@ -38,12 +39,13 @@ exports[`DataPicker should be rendered correctly 2`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
-  onClick={[Function]}
+  onClick={null}
   onFocus={[Function]}
   tabIndex={-1}
 >
   <div
     className="container uui-icon uui-enabled"
+    style={Object {}}
   >
     <svg
       className=""

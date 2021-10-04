@@ -45,13 +45,18 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
     public selectAll?: ICheckable;
+    protected isDestroyed = false;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
 
     _forceUpdate() {
-        this.onValueChange({ ...this.value });
+        !this.isDestroyed && this.onValueChange({ ...this.value });
+    }
+
+    public destroy() {
+        this.isDestroyed = true;
     }
 
     protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {

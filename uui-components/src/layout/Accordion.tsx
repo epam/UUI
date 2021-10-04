@@ -1,10 +1,9 @@
 import React from 'react';
-import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable } from '@epam/uui';
+import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps } from '@epam/uui';
 import { IconContainer } from '../layout';
 import * as css from './Accordion.scss';
-import cx from 'classnames';
 
-export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren {
+export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement> {
     title: string;
     dropdownIcon?: Icon;
     renderAdditionalItems?: (isOpened: boolean) => React.ReactNode;
@@ -31,6 +30,12 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
         this.props.onValueChange ? this.props.onValueChange(!opened) : this.setState({ opened: !opened });
     }
 
+    private handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            this.toggleAccordion();
+        }
+    }
+
     isOpened = () => {
         return this.props.value !== undefined ? this.props.value : this.state.opened;
     }
@@ -39,19 +44,24 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
         const isAccordionOpened = this.isOpened();
 
         return (
-            <div className={ cx(
-                uuiAccordion.toggler,
-                isAccordionOpened && uuiMod.opened,
-                this.props.isDisabled && uuiMod.disabled,
-            ) }
-                 onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }>
+            <div
+                onKeyDown={ !this.props.isDisabled ? this.handleKeyDown : undefined }
+                onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
+                tabIndex={ !this.props.isDisabled ? 0 : -1 }
+                className={ cx(
+                    uuiAccordion.toggler,
+                    isAccordionOpened && uuiMod.opened,
+                    this.props.isDisabled && uuiMod.disabled
+                ) }
+                {...this.props.rawProps}
+            >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
                     <div className={ cx(uuiAccordion.title) }>
                         { this.props.title }
                     </div>
-                    
+
                     { this.props.renderAdditionalItems?.(this.state.opened) }
-                    
+
                     <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ isAccordionOpened }
@@ -63,21 +73,24 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     }
 
     renderBody = () => (
-        <div className={ uuiAccordion.body }>
+        <div className={ uuiAccordion.body } role="region">
             { this.props.children }
         </div>
     )
-    
+
     render() {
         const isAccordionOpened = this.isOpened();
 
         return (
-            <div className={ cx(
-                css.container,
-                isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
-                this.props.isDisabled && uuiMod.disabled,
-                this.props.cx,
-            ) }>
+            <div
+                aria-disabled={ this.props.isDisabled }
+                aria-expanded={ isAccordionOpened }
+                className={ cx(
+                    css.container,
+                    isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
+                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.cx,
+                ) }>
                 { this.renderHeader() }
                 { this.props.children && isAccordionOpened ? this.renderBody() : null }
             </div>

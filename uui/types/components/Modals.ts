@@ -1,9 +1,9 @@
-import {IHasChildren, IHasCX, IModal, VPanelProps} from '../props';
 import * as React from "react";
+import { IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps } from '../props';
 
 export interface ModalWindowProps extends VPanelProps {}
 
-export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren {}
+export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {}
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX {
     onClose?: () => any;

@@ -20,6 +20,10 @@ export class AvatarStackDoc extends BaseDocsBlock {
                     title='Basic'
                     path='./examples/avatarStack/Basic.example.tsx'
                 />
+                <DocExample
+                    title="With custom avatar"
+                    path='./examples/avatarStack/RenderItem.example.tsx'
+                />
             </>
         );
     }

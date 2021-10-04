@@ -1,73 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioGroup should be rendered correctly 1`] = `
-<div
+<fieldset
   className="uui-vertical-direction root container"
 >
-  <div
-    className="container root size-18 color-sky theme-light"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+  <label
+    className="container root size-18 color-sky theme-light -clickable"
   >
     <div
       className="uui-radioinput"
-    />
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
     <div
       className="uui-input-label"
     >
       Test1
     </div>
-  </div>
-  <div
-    className="container root size-18 color-sky theme-light"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+  </label>
+  <label
+    className="container root size-18 color-sky theme-light -clickable"
   >
     <div
       className="uui-radioinput"
-    />
+    >
+      <input
+        aria-checked={false}
+        checked={false}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
     <div
       className="uui-input-label"
     >
       Test2
     </div>
-  </div>
-</div>
+  </label>
+</fieldset>
 `;
 
 exports[`RadioGroup should be rendered correctly with props 1`] = `
-<div
+<fieldset
   className="uui-horizontal-direction root container"
 >
-  <div
+  <label
     className="container uui-disabled root size-18 color-sky theme-light"
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
     <div
       className="uui-radioinput"
-    />
+    >
+      <input
+        aria-checked={false}
+        aria-disabled={true}
+        checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
     <div
       className="uui-input-label"
     >
       Test1
     </div>
-  </div>
-  <div
+  </label>
+  <label
     className="container uui-disabled root size-18 color-sky theme-light"
-    onKeyDown={[Function]}
-    tabIndex={0}
   >
     <div
       className="uui-radioinput"
-    />
+    >
+      <input
+        aria-checked={false}
+        aria-disabled={true}
+        checked={false}
+        disabled={true}
+        onChange={[Function]}
+        type="radio"
+      />
+    </div>
     <div
       className="uui-input-label"
     >
       Test2
     </div>
-  </div>
-</div>
+  </label>
+</fieldset>
 `;
