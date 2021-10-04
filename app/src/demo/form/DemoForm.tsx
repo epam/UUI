@@ -511,6 +511,19 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
 
     renderMilitaryServiceSection = (lens: ILens<PersonDetails>) => {
         const militaryServiceLens = lens.prop('militaryService');
+
+        const getMilitaryInfoValidation = () => {
+            const otherMilitaryInfoLens = militaryServiceLens.prop('otherMilitaryInfo');
+            const otherMilitaryValue = otherMilitaryInfoLens.get() ?? '';
+            const { isInvalid, validationMessage } = otherMilitaryInfoLens.toProps();
+            const customValidationMessage = 'Must be less than 200 symbols';
+
+            return {
+                isInvalid: isInvalid || otherMilitaryValue.length > 200,
+                validationMessage: validationMessage || (otherMilitaryValue.length > 200 ? customValidationMessage : '')
+            }
+        }
+
         return (
             <>
                 <RichTextView><h3 className={ css.militaryServiceSection }>Military Service</h3></RichTextView>
@@ -522,11 +535,17 @@ export class DemoForm extends React.Component<{}, DemoFormState> {
                 </FlexRow>
                 <FlexRow vPadding='12' >
                     <FlexCell width='100%' >
-                        <LabeledInput htmlFor="otherMilitaryInfo" label='Other Info' { ...militaryServiceLens.prop('otherMilitaryInfo').toProps() } >
+                        <LabeledInput
+                            htmlFor="otherMilitaryInfo"
+                            label='Other Info'
+                            { ...militaryServiceLens.prop('otherMilitaryInfo').toProps() }
+                            { ...getMilitaryInfoValidation() }
+                        >
                             <TextArea
-                                { ...militaryServiceLens.prop('otherMilitaryInfo').toProps() }
                                 placeholder='Type something'
                                 id="otherMilitaryInfo"
+                                { ...militaryServiceLens.prop('otherMilitaryInfo').toProps() }
+                                { ...getMilitaryInfoValidation() }
                             />
                         </LabeledInput>
                     </FlexCell>
