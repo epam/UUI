@@ -105,7 +105,10 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 hasMilitaryId: { isRequired: false },
                 servedInTheArmy: { isRequired: false },
                 eligibleToServeTheArmy: { isRequired: false },
-                otherMilitaryInfo: { isRequired: false },
+                otherMilitaryInfo: {
+                    isRequired: false,
+                    validators: [(value: string) => [value.length > 200 && 'Too much']]
+                },
             },
         },
         otherInfo: {
