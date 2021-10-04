@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
-import { mergeValidation, useUuiContext, UuiContexts, validate as uuiValidate, validateServerErrorState } from 'uui';
+import { mergeValidation, UuiContexts, validate as uuiValidate, validateServerErrorState } from '../../index';
+import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
 import { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
@@ -127,20 +128,20 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
-        const newState = {
+        const newState: FormComponentState<T> = {
+            ...formState,
             form: response && response.form || formState.form,
             isInProgress: false,
-        } as FormComponentState<T>;
+            serverValidationState: response && response.validation || formState.serverValidationState,
+            lastSentForm: response && response.validation.isInvalid ? (response.form || formState.form) : formState.lastSentForm,
+        };
 
-        if (response && response.validation) {
-            newState.serverValidationState = response.validation;
-            newState.lastSentForm = response.validation.isInvalid ? response.form || formState.form : undefined;
-            setFormState(newState);
-        } else {
-            resetForm(newState);
-            removeUnsavedChanges();
-            props.onSuccess?.(response && response.form);
-        }
+        if (response && response.validation) return setFormState(newState);
+
+        resetForm(newState);
+        removeUnsavedChanges();
+        if (!props.onSuccess || !response) return;
+        props.onSuccess(response.form);
     }
 
     const handleValueChange = (newVal: T) => {
