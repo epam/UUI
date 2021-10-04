@@ -1,12 +1,57 @@
+import { act, cleanup, renderHook } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
+import { Metadata } from '../../..';
+
+jest.mock('../../../index', () => ({
+    useUuiContext: () => ({
+        uuiLocks: {
+            acquire: jest.fn(),
+            release: jest.fn(),
+            withLock: jest.fn()
+        },
+        uuiUserSettings: {
+            get: jest.fn(),
+            set: jest.fn()
+        },
+    })
+}));
 
 describe.only('useForm', () => {
+    beforeEach(jest.resetAllMocks);
+    afterEach(cleanup);
+
     interface IFoo {
         dummy: string;
         tummy?: string;
-    }
+    };
 
-    it('Should return isChanged as true whenever the lens is changed', () => {});
+    const testData: IFoo = { dummy: '', tummy: '' };
+    const testMetadata: Metadata<IFoo> = {
+        props: {
+            dummy: { isRequired: true }
+        }
+    };
+
+
+    it('Should return isChanged as true whenever the lens is changed', () => {
+        const { waitFor, result: { current: { isChanged, lens, value: form, onValueChange } } } = renderHook(() => useForm<IFoo>({
+            value: testData,
+            onSave: jest.fn(),
+            onError: jest.fn(),
+            getMetadata: () => testMetadata,
+        }));
+
+        act(() => {
+            lens.prop('dummy').set('hello');
+            onValueChange(lens.get());
+        });
+
+        waitFor(() => {
+            expect(isChanged).toBe(true);
+            expect(form).toStrictEqual({ dummy: 'hello' })
+        });
+    });
+
     it('Should correctly set isInvalid on form submit depending on the value', () => {});
     it('Should start validation on save and keep validation state valid values passed', () => {});
     it('Should do nothing, if value isn`t changed', () => {});
