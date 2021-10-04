@@ -36,7 +36,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
 <div
   aria-posinset={2}
   aria-selected={true}
-  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+  className="uui-focus pickerRow container -clickable align-items-center"
   onClick={[Function]}
   role="option"
 >
