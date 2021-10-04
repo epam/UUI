@@ -1,0 +1,2627 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Importance of Form Validation",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Form validation is at the center of communication during the most important processes of interaction between the web/mobile visitor and the interface. Its importance exceeds its size and perceived simplicity. Designing form validation in the right way might have a huge impact on your business",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Types of Form Validation",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Generally speaking, there are two types of form validation. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "After submit validation – when the user provides all the data and submits the form, usually by hitting the button, the information is sent to the server and validated. The response of the",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "“validator”",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "is sent back to the user’s computer and it’s visualized as either a confirmation message",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "(“everything",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "went fine!”) or a set of error messages.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Inline validation – validation messages are shown immediately after the user types in data to form fields. Usually, information is shown next to the fields and encourages the user to take immediate action.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Ideally, all validation should be",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "inline",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ": that is, as soon as the user has finished filling in a field, an indicator should appear nearby if the field contains an error. This type of error message is easily noticeable; moreover, fixing the error immediately after the field has been completed requires the least interaction cost for users: they don’t need to locate it or navigate to the field, nor do they have to switch context from a new field to return to an old field they thought they had completed successfully.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Of course, there will be situations where inline validation won’t be possible and data entered by the user will need to be sent to a server for verification.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Inline validation",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Show error after user left the field, not when he is writting, as this is annoying. Also use right place for error and show it under the text field. More rules for validation you can find in section",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"Input",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "errors\".",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "After submit validation",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "After submit validation should be typically avoided, but if in some case you need to use it, try to make it as comfortable as possible.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Make the",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"Submit\"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "button enabled, but after user click on it show error in all fields, that are written inappropriately. This will not cause the frustration, why the button is disabled and will help to see all the error.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can also use anchors and move user from one incorrect field to another after he made the text field inactive. This will help user to accurately pass all the mistakes. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "And again, for more rules about errors view",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"Input",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "errors\" section.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "General rules for text fiels",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Input size",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If input fields are sized according to their expected input they are both easier to read and to interpret for users. Your field should be big enough so that most possible field values are visible.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 1.png",
+          "imageSize": {
+            "width": 934,
+            "height": 262.6875
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Autocomplete",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Don’t ask users to write in input fields exactly, how you need to do it, when this is not necessary and you can do it by yourself.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example, when a user is writing a SSN, don’t ask them to add gaps by themself. Instead add them automatically. The same could be for phone numbers, credit cards etc.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 2.png",
+          "imageSize": {
+            "width": 934,
+            "height": 262.6875
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Text fields in mobile app",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Match the Keyboard With the Required Text Inputs.\n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "App users appreciate apps that provide an appropriate keyboard for text entry. Unlike physical keyboards, touch keyboards can be optimized for each form field the user has to fill out and the type of text field determines what kind of characters are allowed inside the field. Common input types for which you should optimize include:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Number: phone number, credit card number, PIN",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Text: proper name, username",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Mixed format: email address, street address, search query",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 3.png",
+          "imageSize": {
+            "width": 934,
+            "height": 982.6458333333334
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Ensure that this matching is implemented consistently throughout the app rather than only for certain tasks but not others.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Helper text",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Helpful information",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(or",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "accompanying text) should be used only where needed, such as to explain why credit card data is being requested or how a birth date will be used or to link to the",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“Terms",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "and conditions.” It can be a great way of eliminating confusion and possible errors that the user might face when dealing with input fields. As a rule of thumb, do not exceed 100 words of explanation.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 4.png",
+          "imageSize": {
+            "width": 934,
+            "height": 262.6875
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Labels and placeholders",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Labels tell users what information belongs in a given form field and are usually positioned outside the form field. Placeholder text, located inside a form field, is an additional hint, description, or example of the information required for a particular field. These hints typically disappear when the user types in the field.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Placeholder types",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Placeholder Text in Addition to Labels",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Using placeholder text in combination with form labels is a step in the right direction. Labels outside the form fields make the essential information visible at all times, while placeholder text inside form fields is reserved for supplementary information. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL5.png",
+          "imageSize": {
+            "width": 934,
+            "height": 294.21000000000004
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Placeholders that Replace Labels",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Some forms replace field labels with in-field placeholder text to reduce clutter on the page, or to shorten the length of the form. Even though, it make form take less space, it should be avoided, as dissapearing placeholder text strains users’ short memory.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL6.png",
+          "imageSize": {
+            "width": 934,
+            "height": 266.19
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Placeholders and labels text",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Labels text should be clear and minimalistic. Do not write a lot of text, try to keep it simple",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "(if",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "it’s possible use 3 words maximum). And in any case don’t make the label take more than 1 line. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also it’s important to show users what exactly do they need to do in this field. If it’s input field use such words for placeholder text like",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“Enter",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "your name”",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“Write",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "your email”. If it’s select or multiselect use placeholders like",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“Select",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "your country”,",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“Choose",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "your city”. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can also write examples of how the info that user need to enter should look like in placeholder.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL7.png",
+          "imageSize": {
+            "width": 934,
+            "height": 686.49
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-2",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Input errors",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The best way to design is to prevent errors. However, if user have already done an error, you should clearly show it to them, so not to prevent even more errors",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Avoid confusion",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Generally speaking there are four important elements that good form validation consists of:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Right time of informing about problems/success",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Right place for validation messages",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Right color",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Clear language",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "All these factors have one clear goal: to avoid confusion. Confusion is the arch-enemy of conversion. If you don’t want to risk a sky-rocketing drop-out rate, create validation that eliminates any risk of your customers being confused. That’s the road to a high conversion rate.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Right time",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is very comforting when users are informed at the time they commit a mistake so that they verify immediately before proceeding to the next step. This not only avoids errors in form inputs, but also helps build users confidence in what he is doing which leads to successful form completion without any apprehension.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL8.png",
+          "imageSize": {
+            "width": 934,
+            "height": 149.44
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "So, when it’s possible we need to use real-time inline validation because it immediately informs users about the correctness of provided data. This approach allows users to correct the errors they make faster without having to wait until they press the submit button to see the errors.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Right place",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The place of the validation message is as important as the right time of showing it. When you’re wondering what place to choose for your validation messages, follow this rule of thumb – always place the message in the context of action. ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In our system we show errors under text fields. It’s error should be shown close to the input field to which it is connected. Also it’s important that the distance between error text and the next input field would be big enough.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL9.png",
+          "imageSize": {
+            "width": 800,
+            "height": 420
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If there was some additional explaining text under the input field, you should replace it with error text, when error occurs.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL10.png",
+          "imageSize": {
+            "width": 934,
+            "height": 245.175
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Right color",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Color is one of the best tools to use when designing validation because it works on an instinctual level.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For errors you need to use red color, which is obvious.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 11.png",
+          "imageSize": {
+            "width": 934,
+            "height": 280.2
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Right language",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Speak the same language as your users. Your validation message should clearly state:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "What went wrong and possibly why",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "What’s the next step the user should take to fix the error",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Avoid using technical jargon.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Unknown terms or phrases will increase cognitive load for the user.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "A typical error might state that",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "“the",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "email is invalid” without telling the customer why it’s invalid. Straightforward instructions, or guidelines, make all the difference.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also try not to make errors take more than 1 line.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "image",
+        "data": {
+          "src": "http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/VAL 12.png",
+          "imageSize": {
+            "width": 934,
+            "height": 280.2
+          }
+        },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

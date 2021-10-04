@@ -1,16 +1,36 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './NumericInput.scss';
-import {IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, uuiContextTypes, UuiContexts} from '@epam/uui';
-import {IconContainer} from '../layout';
+import {
+    IHasRawProps,
+    cx,
+    getCalculatedValue,
+    IHasCX,
+    IClickable,
+    IDisableable,
+    IEditable,
+    IHasPlaceholder,
+    Icon,
+    uuiMod,
+    uuiElement,
+    CX,
+    ICanBeReadonly,
+    IAnalyticableOnChange,
+    UuiContexts,
+    UuiContext,
+} from '@epam/uui';
+import { IconContainer } from '../layout';
 
-export interface NumericInputProps extends IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number> {
+export interface ICanBeFormatted<T> {
+    formatter?(value: T): T;
+}
+export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement> {
     max: number;
     min: number;
     upIcon?: Icon;
     downIcon?: Icon;
     step?: number;
     inputCx?: CX;
+    id?: string;
 }
 
 export interface NumericInputState {
@@ -25,7 +45,7 @@ export const uuiNumericInput = {
 };
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
-    static contextTypes = uuiContextTypes;
+    static contextType = UuiContext;
     context: UuiContexts;
 
     state = {
@@ -66,6 +86,9 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             this.setState({value: ''});
         } else {
             value = this.getValidatedValue(+this.state.value);
+            if (this.props.formatter) {
+                value = this.props.formatter(value);
+            }
             this.props.onValueChange(value);
             this.setState({value: value.toString()});
         }
@@ -78,13 +101,15 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleIncreaseValue = () => {
-        const value = this.getValidatedValue(+this.state.value + (this.props.step || 1));
+        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr"});
+        const value = this.getValidatedValue(increasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});
     }
 
     handleDecreaseValue = () => {
-        const value = this.getValidatedValue(+this.state.value - (this.props.step || 1));
+        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr"});
+        const value = this.getValidatedValue(decreasedValue);
         this.props.onValueChange(value);
         this.setState({value: value.toString()});
     }
@@ -108,24 +133,29 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx) }
+                    this.props.cx
+                ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }
                 onFocus={ this.handleFocus }
                 onKeyDown={ this.handleArrowKeyDown }
                 tabIndex={ -1 }
+                {...this.props.rawProps}
             >
                 <input
                     type="number"
                     className={ cx(uuiElement.input, this.props.inputCx) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
+                    aria-required={ this.props.isRequired }
                     value={ this.state.value }
+                    inputMode="numeric"
                     placeholder={ this.props.placeholder || '0' }
                     onChange={ this.handleChange }
                     min={ this.props.min || 0 }
                     max={ this.props.max }
                     step={ this.props.step || 1 }
+                    id={ this.props.id }
                 />
                 <div className={ uuiNumericInput.buttonGroup }>
                     <IconContainer

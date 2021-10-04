@@ -1,0 +1,212 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The most common Scroll Spy usage is a reader. For Scroll Spy to recognize blocks correctly you may need to take 4 simple steps:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Provide a ref on a wrapper to a node element via ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "setRef",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " callback.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Provide a full array of ids to a components' options via ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "elements ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "prop.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Map ids to links ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "href ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "properties, starting with #. ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Add ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "data-spy",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " attribute for elements, which will be treated as anchors. E.g. By pressing on a navigation element on the example below, the page is scrolled to provided anchor.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The output of the component (either hook or higher-order-component) is a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "currentActive ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "element id, function to manually scroll to element ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scrollToElement, ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "where you can provide a desired id and get navigated there (or to the root of the wrapper when not provided). ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

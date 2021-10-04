@@ -4,7 +4,7 @@ import { svc } from '../../services';
 import { FlexCell, FlexRow, RichTextView, Spinner, Text } from '@epam/promo';
 import { getCoreProps } from '../../helpers/getCoreProps';
 import ReactMarkdown from 'react-markdown';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { ContentSection } from '../../common';
 
 interface ReleaseNotesDocState {
@@ -60,7 +60,7 @@ export class ReleaseNotesDoc extends React.Component<any, ReleaseNotesDocState> 
                 <FlexCell minWidth={ 246 } alignSelf='start' >
                     <Text font='museo-sans' fontSize='24' lineHeight='30' cx={ css.releaseHeader } >{ header }</Text>
                     <Text color='gray60' fontSize='16' lineHeight='24' cx={ css.releaseDate } >
-                        { moment(date, 'DD.MM.YYYY').isValid() && moment(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
+                        { dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
                     </Text>
                 </FlexCell>
                 <div id={ header.split(' ')[1] } className={ css.releaseContent }>

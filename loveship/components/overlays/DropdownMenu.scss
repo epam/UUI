@@ -1,7 +1,8 @@
+@use 'sass:math';
 @use '../../assets/styles/scss/index'  as *;
 
 @mixin icon-sizes($size, $font-size, $line-height) {
-    $vpadding: ($line-height - $size) / 2;
+    $vpadding: math.div(($line-height - $size), 2);
 
     :global(.uui-checkbox) {
         width: $size;
@@ -128,7 +129,6 @@
         }
 
         .buttonRoot {
-            @include button-reset();
             color: $night300;
             fill: $night300;
         }
@@ -172,7 +172,6 @@
 }
 
 .buttonRoot {
-    @include button-reset();
     color: $night600;
     fill: $night500;
 

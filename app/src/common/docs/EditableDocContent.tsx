@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Value } from 'slate';
 import { IEditableDebouncer } from '@epam/uui';
 import { Blocker } from '@epam/loveship';
-import { SlateEditor, basePlugins, uploadFilePlugin, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin,
+import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin,
-    quotePlugin, tablePlugin } from '@epam/uui-editor';
+    quotePlugin, tablePlugin,
+} from '@epam/uui-editor';
 import { svc } from '../../services';
 import * as css from './EditableDocContent.scss';
 
@@ -41,9 +42,8 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         isLoading: true,
     };
 
-    constructor(props: EditableDocContentProps) {
-        super(props);
-        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: props.fileName })
+    componentDidMount() {
+        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
             .then(res => this.setState({ content: res.content && Value.fromJSON(res.content), isLoading: !this.state.isLoading }));
     }
 

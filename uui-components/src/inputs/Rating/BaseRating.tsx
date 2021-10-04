@@ -1,9 +1,8 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './BaseRating.scss';
-import { IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod } from '@epam/uui';
+import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps } from '@epam/uui';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly {
+export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;
@@ -100,17 +99,38 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
 
+    onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+        const { from, to } = this.props;
+        const { rating } = this.state;
+        const step = this.props.step || 1;
+
+        if (e.key === 'ArrowLeft') {
+            if (rating - step < from) return;
+            else this.setState({ rating: rating - step });
+        } else if (e.key === 'ArrowRight') {
+            if (rating + step > to) return;
+            else this.setState({ rating: rating + step });
+        };
+    }
+
     render () {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
         return (
             <div
+                role="slider"
+                aria-valuenow={ this.props.value || 0 }
+                aria-valuemax={ this.props.to }
+                aria-valuemin={ this.props.from }
+                tabIndex={ 0 }
+                onKeyDown={ e => this.onKeyDown(e) }
                 className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
                 onTouchEnd={ (e) => !isReadonly && this.onTouchEnd(e) }
                 ref={ (container) => this.container = container }
+                {...this.props.rawProps}
             >
                 { this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks()) }
             </div>

@@ -12,26 +12,30 @@ export interface TextPlaceholderProps extends IHasCX {
 }
 
 export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (props) => {
-    const pattern = '0';
+    const pattern =  `&nbsp;`;
     let text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
             let lengthWord = Math.floor(Math.random() * 10 + 8);
             words.push(pattern.repeat(lengthWord));
         }
-        return words.join(' ')
+        return words;
     }, [props.wordsCount]);
 
     return (
-        <span
-            className={ cx([
-                props.cx,
-                css.loadingWord,
-                styles['color-' + (props.color || 'night100')],
-                !props.isNotAnimated && css.animatedLoading,
-            ]) }
-        >
-            { text }
-        </span>
+        <div aria-busy={ true } className={css.container}>{
+            text.map((it:string, index:number)=> (
+                <span
+                key={index}
+                className={ cx([
+                    props.cx,
+                    css.loadingWord,
+                    styles['color-' + (props.color || 'night100')],
+                    !props.isNotAnimated && css.animatedLoading,
+                ]) }
+                    dangerouslySetInnerHTML={{__html: it}}
+                />
+            ))}
+        </div>
     );
 }

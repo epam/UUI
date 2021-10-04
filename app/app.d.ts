@@ -9,9 +9,39 @@ declare module '*.svg' {
     export const viewBox: string;
 }
 
+declare module "react-imask" {
+    import IMask from "imask";
+
+    /**
+     * The props accepted by react-imask, based
+     * on the implementation of imask, with  some additions
+     */
+    export type IMaskInputProps = Partial<IMask.AnyMaskedOptions> & {
+        mask: IMask.AnyMaskedOptions['mask'];
+        blocks: { [key: string]: any };
+        value: string;
+        unmask?: boolean;
+        onAccept?: (value: string, mask: IMask.InputMask<IMask.AnyMaskedOptions>, e: React.ChangeEvent<HTMLInputElement>) => void;
+        onComplete?: (value: string, mask: IMask.InputMask<IMask.AnyMaskedOptions>, e: React.ChangeEvent<HTMLInputElement>) => void;
+    };
+
+    /**
+     * A function that decorates a react component
+     * with 'IMask' props
+     * @param Component Any React Component
+     */
+    export function IMaskMixin<T, D>(
+        Component: React.ComponentType<{ inputRef: React.Ref<D> } & T>,
+    ): React.ComponentType<T & IMaskInputProps>;
+
+    /**
+     * A basic IMask React Input
+     */
+    export const IMaskInput: React.ComponentType<IMaskInputProps>;
+}
+
 declare module "tether-tooltip";
 declare module "jsurl";
-declare module "react-measure";
 declare module "inline-style-transformer";
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';

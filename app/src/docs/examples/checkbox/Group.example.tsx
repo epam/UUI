@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { CheckboxGroup, FlexCell } from '@epam/promo';
-import { useState } from 'react';
 import * as css from './GroupExample.scss';
 
-export function GroupExample() {
+export default function GroupExample() {
     const [value, onValueChange] = useState(null);
 
     return (

@@ -1,10 +1,4 @@
-import { CommonContexts } from '@epam/uui';
-import { getApi } from './data';
+import { CommonContexts, UuiContexts } from '@epam/uui';
+import type { TApi } from './data';
 
-const tApi = getApi(null);
-type Api = typeof tApi;
-
-export interface SandboxServices extends CommonContexts<Api, any> {
-}
-
-export const svc: SandboxServices = {} as any;
+export const svc: Partial<CommonContexts<TApi, UuiContexts>> = {};

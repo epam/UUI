@@ -4,6 +4,12 @@
         align-items: center;
     }
 
+    :global(.uui-accordion-toggler) {
+        &:focus {
+            outline: none;
+        }
+    }
+
     :global(.uui-accordion-title) {
         overflow: hidden;
         text-overflow: ellipsis;

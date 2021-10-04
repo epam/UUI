@@ -11,7 +11,7 @@ export interface VirtualListState {
     visibleCount?: number;
 }
 
-export interface DataTableState extends DataSourceState {
+export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
 }
 
@@ -61,6 +61,7 @@ export interface DataTableCellProps<TItem, TId> {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index: number;
+    role: React.HTMLAttributes<HTMLElement>['role'];
 }
 
 export interface DataRowOptions<TItem, TId> extends IDisableable {

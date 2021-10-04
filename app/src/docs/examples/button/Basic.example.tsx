@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@epam/promo';
 
-export function BasicExample() {
+export default function BasicExample() {
     return (
         <>
             <Button color='blue' caption='Primary Action' onClick={ () => null } />

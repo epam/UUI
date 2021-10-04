@@ -3,9 +3,10 @@ import { Anchor, FlexRow, FlexSpacer, LinkButton, ScrollBars, TabButton, Text } 
 import { AppHeader, Page } from '../common';
 import { svc } from '../services';
 import { demoItems } from './structure';
+import { analyticsEvents } from '../analyticsEvents';
+import { getQuery } from '../helpers';
 import * as css from './DemoPage.scss';
 import * as linkIcon from '../icons/action-external_link.svg';
-import { analyticsEvents } from "../analyticsEvents";
 
 export class DemoPage extends React.Component {
     constructor(props: any) {
@@ -18,10 +19,6 @@ export class DemoPage extends React.Component {
     componentDidUpdate() {
         const { id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(id));
-    }
-
-    getQuery(query: string): string {
-        return svc.uuiRouter.getCurrentLink().query[query];
     }
 
     sendEvent = (name: string) => {
@@ -49,14 +46,14 @@ export class DemoPage extends React.Component {
 
     renderSecondaryMenu(source: string) {
         return (
-            <FlexRow background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
+            <FlexRow rawProps={{ role: 'tablist' }} background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 { demoItems.map(item => {
                     return(
                         <TabButton
                             key={ item.id }
                             size='60'
                             caption={ item.name }
-                            isLinkActive={ this.getQuery('id') === item.id }
+                            isLinkActive={ getQuery('id') === item.id }
                             onClick={ () => svc.uuiRouter.redirect({
                                 pathname: '/demo',
                                 query: { id: item.id },
@@ -71,7 +68,7 @@ export class DemoPage extends React.Component {
     }
 
     renderDemoComponent() {
-        const selectedDemoId = this.getQuery('id');
+        const selectedDemoId = getQuery('id');
         const demo = demoItems.find(i => i.id === selectedDemoId);
 
         return (
@@ -83,7 +80,7 @@ export class DemoPage extends React.Component {
     }
 
     render() {
-        const selectedDemoId = this.getQuery('id');
+        const selectedDemoId = getQuery('id');
 
         return (
             <Page contentCx={ css.root } renderHeader={ () => <AppHeader /> }>

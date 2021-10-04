@@ -1,15 +1,18 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { uuiElement, ModalWindowProps } from '@epam/uui';
+import { uuiElement, ModalWindowProps, cx } from '@epam/uui';
 import { VPanel } from '../layout';
 
 export class ModalWindow extends React.Component<ModalWindowProps, any> {
-
     render() {
         return (
             <VPanel
                 style={ this.props.style }
                 cx={ cx(uuiElement.modalWindow, this.props.cx) }
+                rawProps={{
+                    'aria-modal': true,
+                    'role': 'modal',
+                    ...this.props.rawProps,
+                }}
             >
                 { this.props.children }
             </VPanel>

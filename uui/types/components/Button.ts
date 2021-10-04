@@ -1,5 +1,5 @@
-import {IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick } from "../props";
-import {Icon} from "../objects";
+import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick } from "../props";
+import { Icon } from "../objects";
 
 export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick {
     isLinkActive?: boolean;

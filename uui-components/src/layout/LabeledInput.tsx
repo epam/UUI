@@ -1,7 +1,6 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './LabeledInput.scss';
-import { Icon, uuiElement, labelMod, LabeledInputCoreProps } from '@epam/uui';
+import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui';
 import { TooltipProps } from '../overlays/Tooltip';
 import { Svg } from '../widgets/Svg';
 import { i18n } from '../../i18n';
@@ -23,10 +22,10 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
         const isCanBeOptional = !this.props.isRequired && this.props.labelPosition !== 'left' && this.props.isOptional;
 
         return (
-            <div className={ cx(css.container, this.props.cx) }>
+            <div className={ cx(css.container, this.props.cx) } { ...this.props.rawProps } >
                 <div className={ cx(labelMod[this.props.labelPosition ? this.props.labelPosition : 'top']) }>
                     { this.props.label &&
-                        <div className={ uuiElement.label }>
+                        <label htmlFor={ this.props.htmlFor } className={ uuiElement.label }>
                             { this.props.label }
                             { this.props.isRequired && <span className={ uuiLabeledInput.asterisk } >*</span> }
                             { this.props.info && Tooltip &&
@@ -39,13 +38,17 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                                     <div className={ uuiLabeledInput.optional } >{ i18n.labeledInput.optionalFieldLabel }</div>
                                 </div>
                             }
-                        </div>
+                        </label>
                     }
                     <div className={ this.props.labelPosition === 'left' ? css.rightChildrenPosition : undefined }>
                         { this.props.children }
                     </div>
                 </div>
-                { this.props.isInvalid && <div className={ uuiElement.invalidMessage }>{ this.props.validationMessage }</div> }
+                { this.props.isInvalid && (
+                    <div role="alert" className={ uuiElement.invalidMessage }>
+                        { this.props.validationMessage }
+                    </div>
+                 ) }
             </div>
         );
     }

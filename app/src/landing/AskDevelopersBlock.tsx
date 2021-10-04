@@ -63,7 +63,7 @@ export class AskDevelopersBlock extends React.Component {
             <div className={ css.wrapper }>
                 <FlexRow spacing='12' alignItems='stretch' >
                     { slides.map(slide => (
-                            <FlexCell width={ 284 } minWidth={ 284 } cx={ css.cell }>
+                            <FlexCell key={ slide.name } width={ 284 } minWidth={ 284 } cx={ css.cell }>
                                 <Text font='museo-slab' cx={ css.quoteText } >{ slide.quote }</Text>
                                 <FlexRow alignItems='bottom' >
                                     <img alt={ slide.name } src={ slide.image } width='60' height='60' />

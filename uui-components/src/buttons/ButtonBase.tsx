@@ -1,19 +1,13 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { ButtonBaseCoreProps, UuiContexts, uuiContextTypes, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers } from '@epam/uui';
+import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps {
-}
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement> {}
 
-export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, any> {
-    static contextTypes = uuiContextTypes;
+export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
+
+export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, {}> {
+    static contextType = UuiContext;
     context: UuiContexts;
-
-    handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-        if (e.keyCode === 32) {
-            this.clickHandler(e);
-        }
-    }
 
     clickHandler = (e: any) => {
         if (!isClickableChildClicked(e) && !this.props.isDisabled) {
@@ -32,21 +26,23 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             }
 
             this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
-        } else {
+        } else if (
+            // NOTE: this condition it necessary here because native input elements (checkbox and radio) do not work correctly inside link
+            // https://github.com/facebook/react/issues/9023
+            !(isChildHasClass(e.target, e.currentTarget, uuiInputElements))
+        ) {
             e.preventDefault();
         }
     }
 
-    getClassName(): any {
-        return null;
-    }
+    getClassName?(): string[];
 
-    getChildren(): any {
+    getChildren?(): React.ReactNode {
         return null;
     }
 
     getTabIndex(): number {
-        if (this.props.isDisabled) {
+        if (this.props.isDisabled || !this.props.onClick) {
             return null;
         }
 
@@ -71,21 +67,24 @@ export class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Compo
             href = this.props.href;
         }
 
-        return React.createElement(isAnchor ? 'a' : 'div', {
+        return React.createElement(isAnchor ? 'a' : 'button', {
             className: cx(
-                    this.getClassName(),
-                    uuiElement.buttonBox,
-                    this.props.isDisabled && uuiMod.disabled,
-                    !this.props.isDisabled && uuiMod.enabled,
-                    (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
-                    (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                    this.props.cx,
-                ),
+                this.getClassName(),
+                uuiElement.buttonBox,
+                this.props.isDisabled && uuiMod.disabled,
+                !this.props.isDisabled && uuiMod.enabled,
+                (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
+                (this.props.onClick || isAnchor) && uuiMarkers.clickable,
+                this.props.cx,
+            ),
+            role: isAnchor ? 'link' : 'button',
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
-            onKeyDown: this.handleKeyDown,
+            disabled: this.props.isDisabled,
+            'aria-disabled': this.props.isDisabled as IHasRawProps<HTMLAnchorElement | HTMLButtonElement>['rawProps']['aria-disabled'],
+            ...this.props.rawProps,
         },
             this.getChildren(),
         );

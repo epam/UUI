@@ -1,7 +1,127 @@
+# 4.2.6[WIP]
+
+**What's New**
+
+**What’s Fixed**
+[ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
+
+# 4.2.5 - 28.09.2021
+
+**What's New**
+* rework keyboard and focus/blur functionality in pickers
+* [VerticalTabButton]: added new component for vertical tabs
+* [DropdownMenu]: added keyboard support in Promo skin
+
+**What’s Fixed**
+* [PickerInput]: improve mobile view
+* [Modals]: improve mobile view
+* [PickerInput]: fix dropdown icon click handler
+* [LabeledInput]: remove children wrapping into label tag. Added htmlFor prop for linking label and control in forms.
+
+# 4.2.4 - 17.09.2021
+
+**What’s Fixed**
+* [Table]: fix row checkbox selection if row is link
+
+# 4.2.2 - 17.09.2021
+
+**What's New**
+* [ProgressBar]: implemented a new component to make possibility display a determinate progress bar with different sizes striped animation
+* [IndeterminateBar]: implemented a new component to make possibility display indeterminate progress with different sizes.
+* [IndicatorBar]: implemented a new component to use as the top indicator of page loading. Has a fixed size and can be determinate or indeterminate.
+
+**What’s Fixed**
+* [PickerInput]: fix size of PickerToggler in size-24 loveship skin
+* [MainMenu]: Do not render logo if url is not provided
+* [DatePicker]: fix validation date onBlur
+* [DatePicker]: fix calling onValueChange 2 times on date selection
+* [DropdownMenu]: fix 'style' prop from DropdownMenuContainer
+* [MainMenuSearch]: fix 'cx' prop
+* [RadioInput]: fix applying border color for invalid RadionInput in promo skin
+* [Table]: fix row checkbox selection if row is link
+* [CheckBox]: fix invalid style
+* [DropdownMenuButton]: remove default value for target prop
+* [Dropdown]: fix onClose handler if you manage dropdown state by yourself
+* [Modals]: fix modal blocker container adjustment on mobile view
+
+
+# 4.2.1 - 31.08.2021
+
+**What's New**
+* [PickerInput]: improve adaptation for mobiles
+* [Modals]: lock focus inside modal window
+
+**What’s Fixed**
+* fix styles issues with some components in Safari
+
+# 4.2.0 - 23.08.2021
+
+**What's New**
+* Improved accessibility and keyboard support for a lot of components
+* Replace Moment by Dayjs
+* Added mobile view for Pickers
+* [AnalyticsContext] [Breaking Change]: Removed amplitude client from UUI and implemented IAnalyticsListener to pass any analytics client from client side. If you use Amplitude into your project, now you need to create IAnalyticsListener and add it to the Analytic Context. See the example [here](https://uui.epam.com/documents?category=contexts&id=analyticsContext);
+* [DropdownMenu] Implement DropdownMenu component in UUI4[Promo].
+
+  DropdownMenu allows you to create vertical menus with a nested structure that pops up on hover or click (default is on hover).
+  The main possibilities:
+
+        - render menu item with an icon in the left or right position ('left' as default).
+        - highlight menu item as selected passing 'isSelected' prop.
+        - render you own custom component as DropdownMenu item.
+        - to splite items as a group.
+* [AvatarStack]: add possibility render custom avatar by the prop renderItem
+* [FlexRow]: add more sizes for vPadding prop
+
+
+**What’s Fixed**
+* [Badge]: fix cursor pointer if badge is clickable.
+* [PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
+* [MainMenuSearch]: fix passing 'onAccept' prop from MainMenuSearch to TextInput
+* [VirtualList]: replace legacy react-custom-scrollbars by react-custom-scrollbars-2
+* [PickerInput]: fix pass the mode prop to PickerToggler so that apply correct style according to the mode
+* [Button]: fix the text color for the button so that the text and border color are the same color
+* [TextArea]: fix scrolling jump after typing when received autosize prop
+* [VirtualList]: fix the width for container
+
+# 4.1.1 - 05.07.2021
+
+**What’s Fixed**
+fix bug when enzyme includes in result build bundle
+fix UUI context multiple creation
+[NumericInput]: fix calculation with floating point numbers
+[Typography]: fix global margin and padding for tags and elements
+[PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
+
+# 4.1.0 - 30.06.2021
+
+**What’s New**
+* [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your datasources hooks usage and decide which deps do you need or set '[]'.
+* [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
+* removed legacy lifecycle methods
+* [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.
+* [PickerInput]: pass onFocus and onBlur in props
+
+**What’s Fixed**
+* Update packages and fixed warnings
+* [LinkButton]: fix hover styles for disabled button
+* [PickerInput]: fix the switching of opening / closing a portal with a list when clicking on PickerInput when there is a search value so that you can copy or correct the search value
+* [PickerInput]: fix clear icon in PickerInput when searchPosition is 'body' and there are no selected items.
+* [PickerInput] fix: incorrect search behavior in 'show only selected' mode
+* [TextPlaceholder]: fix displaying 0000 if the Redacted font is not loaded yet
+* [DataTable]: add 'Reset to default' button in ColumnsConfigurationModal for the loveship
+* [TextInput]: add 'undefined' to input IEditable interface
+* [LazyListView]: update checked lookup when value.checked is changed
+* [AnaltyticsContext]: add missed type for public property
+* [VirtualList]: Fixed issue with dynamic items heights
+* [PickerList]: fixed sorting direction
+* [LazyDataSource]: exactRowsCount is now returned when known
+
 # 4.0.0 - 07.05.2021
 
 **What’s New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
+
   Quick start:
     - pass the ```getChildCount(item): number``` prop. It should return an either:
 
@@ -61,14 +181,14 @@
     const nameValidator = (name, item, array) => [item.id > 100 && name.length < 2 && "Items with ID > 100 should have names longer than 2"];
     const meta = { array: { all: { props: { name: { validators: [nameValidator] }}}}};
   ```
-  
+
 * [Form]: Added server validation mechanism. If you need to get form validation state from server-side, your onSave api should return object like `{ validation?: ICanBeInvalid }`
 
 * [Tables]: Added columns resizing and reordering possibility:
     * Added 'allowColumnsReordering' and 'allowColumnsResizing' props to the DataTable and DataTableHeaderRow.
     * Columns config was moved to the DataTable value.
     * [Breaking Change]: Removed 'settingKey' prop form DataTable, if you are using it for storing your columns in localStorage — implement it manually on your side via ```svc.uuiUserSettings``` context.
-    
+
 * [Tooltip] & [Dropdown]: Popper.js updated to v.2.x, added 'hide' modifier to hide body when target scrolled outside view
     * [Breaking Change]: In Popper 2 modifiers is now an array of objects, instead of an object where each property was the modifier name in the previous version. [More information.](https://popper.js.org/docs/v2/migration-guide/)
 
@@ -81,7 +201,7 @@
 * [PickerInput]: added PickerItem component, added 48 size, refactored footers according design, changed default prop 'minBodyWidth' to 360
 * [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
 * [Badge]: added transparent and semitransparent fill; Added more sizes;
-  
+
 **What’s Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
 * [ErrorHandler]: reset api error when router is changed

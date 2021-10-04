@@ -1,19 +1,17 @@
 import React, { useState, useCallback } from 'react';
-import {FlexRow, PickerInput} from '@epam/promo';
-import {LazyDataSourceApiRequest, useLazyDataSource} from '@epam/uui';
-import { svc } from "../../../services";
+import { FlexRow, PickerInput } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
-export function LazyPersonsMultiPicker() {
+export default function LazyPersonsMultiPicker() {
+    const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
         return svc.api.demo.persons(request);
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api: loadPersons,
-    });
+    const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
         <FlexRow>

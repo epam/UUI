@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, uuiContextTypes, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly } from '@epam/uui';
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile } from "@epam/uui";
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
 import { DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
@@ -18,6 +18,9 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     minCharsToSearch?: number;
     dropdownHeight?: number;
     autoFocus?: boolean;
+    onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
+    onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+    inputId?: string;
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -27,8 +30,8 @@ interface PickerInputState extends DropdownState, PickerBaseState {
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
 export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
-    static contextTypes = uuiContextTypes;
-    togglerRef = React.createRef<any>();
+    static contextType = UuiContext;
+    togglerRef = React.createRef<HTMLElement>();
     context: UuiContexts;
 
     abstract toggleModalOpening(opened: boolean): void;
@@ -41,6 +44,20 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             };
         } else {
             return null;
+        }
+    }
+
+    componentDidUpdate = (prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
+        const { search } = this.state.dataSourceState;
+        const isSearchingStarted = !prevState.dataSourceState.search && search;
+        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
+        if (isSearchingStarted && prevState.showSelected) {
+            this.setState({
+                showSelected: false,
+            });
+        }
+        if (search && isSwitchIsBeingTurnedOn) {
+            this.handleTogglerSearchChange("", true);
         }
     }
 
@@ -58,6 +75,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleBodyOpening = (opened: boolean) => {
+        if (this.state.opened === opened) return;
+
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
@@ -65,17 +84,43 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
     }
 
-    toggleDropdownOpening(opened: boolean) {
-        this.setState({ opened, dataSourceState: { ...this.state.dataSourceState, topIndex: 0, visibleCount: initialRowsVisible, focusedIndex: 0, search: '' } });
+    toggleDropdownOpening = (opened: boolean) => {
+        if (isMobile()) {
+            document.body.style.overflow = opened ? "hidden" : "";
+        }
+
+        this.setState({
+            opened,
+            dataSourceState: {
+                ...this.state.dataSourceState,
+                topIndex: 0,
+                visibleCount: initialRowsVisible,
+                focusedIndex: 0,
+                search: '',
+            },
+        });
     }
 
+    onFocus = (e: React.FocusEvent<HTMLElement>) => {
+        this.props.onFocus && this.props.onFocus(e);
+    }
+
+    onBlur = (e: React.FocusEvent<HTMLElement>) => {
+        this.props.onBlur && this.props.onBlur(e);
+    }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
-        this.setState({opened: false});
-        this.handleDataSourceValueChange({  ...this.state.dataSourceState, search: '', selectedId: row.id });
+        this.setState({ opened: false });
+        this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
+        this.focusToggler();
+    }
+
+    focusToggler = () => {
+        (findDOMNode(this.togglerRef.current) as HTMLElement).focus();
     }
 
     getSearchPosition() {
+        if (isMobile()) return "body";
         if (!this.props.searchPosition) {
             return this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
@@ -106,7 +151,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         let selectedRows = view.getSelectedRows();
-        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear } = this.props;
+        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
+        const searchPosition = this.getSearchPosition();
+        const forcedDisabledClear = Boolean(searchPosition === "body" && !selectedRows.length);
+        const disableClear = forcedDisabledClear || propDisableClear;
 
         return {
             isSingleLine,
@@ -118,6 +166,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isReadonly,
             isDisabled,
             autoFocus,
+            onFocus: this.onFocus,
+            onBlur: this.onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
@@ -125,9 +175,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: this.getSearchPosition() !== 'input',
-            disableClear,
+            disableSearch: searchPosition !== 'input',
+            disableClear: disableClear,
             ref: this.togglerRef,
+            toggleDropdownOpening: this.toggleDropdownOpening,
+            editMode: this.props.editMode,
+            inputId: this.props.inputId
         };
     }
 
@@ -138,10 +191,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             return this.toggleDropdownOpening(!this.state.opened);
         }
 
-        if (e.key === 'Escape' && this.state.opened || e.key === 'Tab' && this.state.opened) {
+        if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            (findDOMNode(this.togglerRef.current) as any).focus();
+            this.focusToggler();
         }
 
         handleDataSourceKeyboard({
@@ -153,8 +206,16 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, e);
     }
 
-    handleTogglerSearchChange = (value: string) => {
-        this.setState({ ...this.state, dataSourceState: { ...this.state.dataSourceState, focusedIndex: -1, search: value }, opened: value.length > 0 });
+    handleTogglerSearchChange = (value: string, opened?: boolean) => {
+        this.setState({
+            ...this.state,
+            dataSourceState: {
+                ...this.state.dataSourceState,
+                focusedIndex: -1,
+                search: value,
+            },
+            opened: value.length > 0 || opened,
+        });
     }
 
     getRows() {

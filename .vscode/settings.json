@@ -6,6 +6,7 @@
         "plaintext"
     ],
     "cSpell.words": [
+        "Analyticable",
         "Coord",
         "Cruella",
         "Drag'n'Drop",
@@ -64,6 +65,7 @@
         "multifilter",
         "opentype",
         "overfetch",
+        "prefetch",
         "relogin",
         "resizable",
         "scrollable",
@@ -91,9 +93,13 @@
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "files.trimTrailingWhitespace": true,
     "editor.detectIndentation": false,
+    "stylelint.enable": true,
     "less.lint.unknownProperties": "ignore",
     "scss.lint.unknownProperties": "ignore",
     "css.lint.emptyRules": "ignore",
     "less.lint.emptyRules": "ignore",
-    "scss.lint.emptyRules": "ignore"
+    "scss.lint.emptyRules": "ignore",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true
+    }
 }

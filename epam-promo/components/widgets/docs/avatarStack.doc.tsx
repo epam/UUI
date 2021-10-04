@@ -1,6 +1,28 @@
 import { DocBuilder } from '@epam/uui-docs';
-import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
-import { AvatarStack, AvatarStackProps } from '../';
+import { DefaultContext } from '../../../docs/index';
+import { AvatarStackProps } from '@epam/uui-components';
+import { Tooltip, AvatarStack } from "../../";
+import { uuiMarkers } from "@epam/uui";
+import React from "react";
+
+const renderItem = (url: string) => {
+    const handleClick = () => {
+        console.log("handleClick");
+    };
+
+    return (
+        <Tooltip content='Some text' placement='bottom' >
+            <img
+                src={ url }
+                alt='avatar'
+                width={ 36 }
+                height={ 36 }
+                onClick={ handleClick }
+                className={ uuiMarkers.clickable }
+            />
+        </Tooltip>
+    );
+};
 
 const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', component: AvatarStack })
     .prop('urlArray', {
@@ -24,6 +46,15 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
     .prop('direction', {
         examples: [{ name: 'left', value: 'left', isDefault: true }, 'right'],
         isRequired: true,
+    })
+    .prop('renderItem', {
+        examples: [
+            {
+                value: renderItem,
+                name: '(url) => <CustomAvatarItem />',
+                isDefault: false,
+            },
+        ],
     })
     .withContexts(DefaultContext);
 

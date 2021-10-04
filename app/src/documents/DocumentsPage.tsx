@@ -1,61 +1,62 @@
-import * as React from 'react';
-import { AppHeader, Page, Sidebar } from '../common';
+import React, { useEffect, useMemo } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
-import { svc } from '../services';
-import { UUI4 } from '../common';
-import { items } from './structure';
 import { FlexRow } from '@epam/promo';
+import { AppHeader, Page, Sidebar } from '../common';
+import { svc } from '../services';
+import { UUI4, UUI3 } from '../common';
+import { items } from './structure';
+import { getQuery } from '../helpers';
+import { codesandboxService } from '../data/codesandbox/service';
 
-export class DocumentsPage extends React.Component {
-    constructor(props: any) {
-        super(props);
-        if (!this.getQuery('id')) {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: items[0].id, mode: 'doc', skin: UUI4 } });
-        }
+type DocsQuery = {
+    id: string,
+    mode?: string,
+    skin?: UUI3 | UUI4,
+    category?: string,
+};
+
+export const DocumentsPage = () => {
+    const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
+        pathname: '/documents',
+        query,
+    });
+
+    if (!items.map(item => item.id).includes(getQuery('id'))) {
+        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 })
     }
 
-    componentWillUpdate(nextProps: Readonly<{}>, nextState: Readonly<{}>, nextContext: any) {
-        if (!this.getQuery('id')) {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: items[0].id, mode: 'doc', skin: UUI4 } });
-        }
-    }
-
-    onChange = (val: TreeNodeProps) => {
+    const onChange = (val: TreeNodeProps) => {
         if (val.parentId === 'components') {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: val.id, mode: this.getQuery('mode') || 'doc', skin: this.getQuery('skin') || UUI4, category: val.parentId } });
+            redirectTo({ id: val.id, mode: getQuery('mode') || 'doc', skin: getQuery<DocsQuery['skin']>('skin') || UUI4, category: val.parentId });
         } else {
-            svc.uuiRouter.redirect({ pathname: '/documents', query: { id: val.id, category: val.parentId } });
+            redirectTo({ id: val.id, category: val.parentId });
         }
-    }
+    };
 
-    getQuery(query: string): string {
-        return svc.uuiRouter.getCurrentLink().query[query];
-    }
+    useEffect(() => {
+        codesandboxService.getFiles();
+        return () => codesandboxService.clearFiles();
+    }, []);
 
-    render() {
-        const selectedDocId = this.getQuery('id');
-        const doc = items.find(i => i.id === selectedDocId);
-
-        return (
-            <Page renderHeader={ () => <AppHeader /> } >
-                <FlexRow alignItems='stretch'>
-                    <Sidebar
-                        value={ selectedDocId }
-                        onValueChange={ this.onChange }
-                        items={ items }
-                        getItemLink={ (item) => !item.isDropdown && {
-                            pathname: 'documents',
-                            query: {
-                                id: item.id,
-                                mode: item.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
-                                skin: item.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
-                                category: item.parentId && item.parentId,
-                            },
-                        } }
-                    />
-                    { React.createElement(doc.component) }
-                </FlexRow>
-            </Page>
-        );
-    }
-}
+    return (
+        <Page renderHeader={ () => <AppHeader /> } >
+            <FlexRow alignItems='stretch'>
+                <Sidebar
+                    value={ getQuery('id') }
+                    onValueChange={ onChange }
+                    items={ items }
+                    getItemLink={ (item) => !item.isDropdown && {
+                        pathname: 'documents',
+                        query: {
+                            id: item.id,
+                            mode: item.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
+                            skin: item.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
+                            category: item.parentId && item.parentId,
+                        },
+                    } }
+                />
+                { React.createElement(items.find(item => item.id === getQuery('id')).component) }
+            </FlexRow>
+        </Page>
+    );
+};

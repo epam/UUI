@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox should be rendered correctly 1`] = `
-<div
+<label
   className="container root size-18 theme-light color-sky -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="uui-checkbox uui-checked"
   >
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      type="checkbox"
+    />
     <div
       className="container uui-icon uui-enabled"
+      style={Object {}}
     >
       <svg
         className=""
@@ -25,21 +29,25 @@ exports[`Checkbox should be rendered correctly 1`] = `
       </svg>
     </div>
   </div>
-</div>
+</label>
 `;
 
 exports[`Checkbox should be rendered correctly with new props 1`] = `
-<div
+<label
   className="container root size-12 theme-dark color-sun -clickable"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
 >
   <div
     className="uui-checkbox uui-checked"
   >
+    <input
+      aria-checked={true}
+      checked={true}
+      onChange={[Function]}
+      type="checkbox"
+    />
     <div
       className="container uui-icon uui-enabled"
+      style={Object {}}
     >
       <svg
         className=""
@@ -53,5 +61,5 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
       </svg>
     </div>
   </div>
-</div>
+</label>
 `;

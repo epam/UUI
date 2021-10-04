@@ -1,63 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenu should be rendered correctly 1`] = `
-<div
+<nav
   className="root uui-mainmenu-container container"
 >
-  <div>
-    <a
-      className="container uui-anchor uui-disabled -clickable container"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      tabIndex={0}
-    >
-      <img
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
-    </a>
-  </div>
-  <div
+  <button
     className="container uui-button-box uui-enabled root type-primary"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
-</div>
+</nav>
 `;
 
 exports[`MainMenu should be rendered correctly 2`] = `
-<div
+<nav
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
-  <div>
-    <a
-      className="container uui-anchor uui-enabled -clickable container"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      tabIndex={0}
-    >
-      <img
-        className="logo"
-        style={
-          Object {
-            "backgroundColor": undefined,
-          }
-        }
-      />
-    </a>
-  </div>
-  <div
+  <button
     className="container uui-button-box uui-enabled root type-primary"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    role="button"
+    tabIndex={null}
   />
   <div
     className="uui-mainmenu-server-badge"
@@ -73,5 +39,5 @@ exports[`MainMenu should be rendered correctly 2`] = `
       Dev
     </div>
   </div>
-</div>
+</nav>
 `;

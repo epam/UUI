@@ -21,7 +21,7 @@ export class DataTableRow<TItem, TId> extends React.Component<DataTableRowProps<
 
     renderCell = (columnProps: DataColumnProps<TItem, TId>, idx: number) => {
         const renderCellCallback = columnProps.renderCell || this.props.renderCell;
-        return renderCellCallback && renderCellCallback({ column: columnProps, rowProps: this.props, index: idx });
+        return renderCellCallback && renderCellCallback({ column: columnProps, rowProps: this.props, index: idx, role: 'cell' });
     }
 
     renderCellContent(columnProps: DataColumnProps<TItem, TId>, rowProps: DataRowProps<TItem, TId>) {
@@ -35,7 +35,12 @@ export class DataTableRow<TItem, TId> extends React.Component<DataTableRowProps<
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 onClick={ clickHandler && (() => clickHandler(this.props)) }
-                rawProps={ params.eventHandlers }
+                rawProps={ {
+                    ...params.eventHandlers,
+                    role: 'row',
+                    'aria-expanded': this.props.isFolded == undefined ? undefined : this.props.isFolded,
+                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected } )
+                } }
                 cx={ [
                     params.classNames,
                     this.props.isSelected && uuiMod.selected,

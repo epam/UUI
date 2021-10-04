@@ -1,12 +1,13 @@
+@use 'sass:math';
 @use '../../assets/styles/scss/index'  as *;
 
 @mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
-    $vpadding: ($line-height - $size) / 2;
+    $vpadding: math.div(($line-height - $size), 2);
 
     :global(.uui-radioinput) {
         width: $size;
         height: $size;
-        border-radius: $size / 2;
+        border-radius: math.div($size, 2);
         margin: $vpadding 0;
 
         :global(.uui-icon) {
@@ -26,24 +27,37 @@
 }
 
 .root {
+    &:hover, &:active, &:focus-within {
+        :global(.uui-radioinput) {
+            border-color: var(--uui-color-700);
+        }
+
+        :global(.uui-checked) {
+            &:global(.uui-radioinput) {
+                border-color: var(--uui-color-800);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--uui-color-800);
+            }
+        }
+    }
+
     :global(.uui-radioinput) {
         fill: $sky;
         align-self: baseline;
         flex-shrink: 0;
         box-sizing: border-box;
         border: 1px solid $night400;
+
+        &:global(.uui-checked) {
+            border: 1px solid var(--uui-color-700);
+        }
     }
 
     :global(.uui-icon) {
         fill: var(--uui-color-700);
     }
-
-    &:global(.uui-checked) {
-        :global(.uui-radioinput) {
-            border: 1px solid var(--uui-color-700);
-        }
-    }
-
 
     :global(.uui-input-label) {
         @include typography-inline();
@@ -52,32 +66,6 @@
         margin-left: 12px;
         display: flex;
         align-items: center;
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-700);
-        }
-    }
-
-    &:hover:global(.uui-checked) {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-800);
-        }
-
-        :global(.uui-icon) {
-            fill: var(--uui-color-800);
-        }
-    }
-
-    &:focus {
-        outline: none;
-
-        :global(.uui-radioinput) {
-            @include control-focus-effect();
-        }
     }
 
     // Sizes
@@ -104,6 +92,7 @@
             cursor: default;
 
             :global(.uui-radioinput) {
+                cursor: default;
                 background-color: $night50;
                 border-color: $night300;
                 box-shadow: none;
@@ -113,9 +102,7 @@
                 fill: var(--uui-color-600);
             }
 
-            &:hover,
-            &:active,
-            &:focus {
+            &:hover, &:active, &:focus-within {
                 :global(.uui-radioinput) {
                     border-color: $night300;
                 }
@@ -153,12 +140,10 @@
         &:global(.uui-disabled),
         &:global(.uui-readonly) {
             cursor: default;
-            pointer-events: none;
 
-            &:hover,
-            &:active,
-            &:focus {
+            &:hover, &:active, &:focus-within {
                 :global(.uui-radioinput) {
+                    cursor: default;
                     border-color: $night600;
                 }
             }
@@ -217,8 +202,7 @@
             }
         }
 
-        &:hover,
-        &:active {
+        &:hover, &:active, &:focus-within {
             :global(.uui-radioinput) {
                 border-color: darken($fire, 10%);
             }
@@ -233,4 +217,3 @@
         }
     }
 }
-

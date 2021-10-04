@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DataTable, Panel, Text } from "@epam/promo";
 import { DataColumnProps, useArrayDataSource } from '@epam/uui';
-import { demoData, FeatureClass} from '@epam/uui-docs';
+import { demoData, FeatureClass } from '@epam/uui-docs';
 import * as css from './TablesExamples.scss';
 
-export function ArrayDataTableExample() {
+export default function ArrayDataTableExample() {
     const [value, onValueChange] = useState({});
 
-    const dataSource = useArrayDataSource<FeatureClass, number, any>({
+    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
         items: demoData.featureClasses,
-    });
+    }, []);
 
     const view = dataSource.useView(value, onValueChange, {});
 
-    const productColumns: DataColumnProps<FeatureClass>[] = [
+    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
         {
             key: 'id',
             caption: 'Id',
@@ -33,10 +33,17 @@ export function ArrayDataTableExample() {
             render: item => <Text color='gray80'>{ item.description }</Text>,
             grow: 1, shrink: 0, width: 300,
         },
-    ];
+    ], []);
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel
+            shadow
+            cx={ css.container }
+            rawProps={{
+                role: 'table',
+                'aria-rowcount': view.getListProps().rowsCount,
+                'aria-colcount': productColumns.length
+            }}>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

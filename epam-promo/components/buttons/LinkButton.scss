@@ -1,15 +1,13 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    @include button-reset();
-
     &:global(.uui-button-box) {
         background-color: transparent;
         color: var(--text-color);
         fill: var(--text-color);
 
-        &:global(.-clickable) {
-            &:hover {
+        &:global(.-clickable:not(.uui-disabled)) {
+            &:hover, &:focus {
                 color: var(--text-color-hover);
                 fill: var(--text-color-hover);
             }

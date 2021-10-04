@@ -13,31 +13,23 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, an
     renderForm() {
         return (
             <React.Fragment>
-                <FlexRow padding='24' vPadding='24' >
-                    <LabeledInput>
-                        <LabeledInput label='Name' >
-                            <TextInput value={ 'Alex' }  onValueChange={ null }/>
-                        </LabeledInput>
+                <FlexRow spacing='12' padding='24' vPadding='24' >
+                    <LabeledInput label='Name' >
+                        <TextInput value={ 'Alex' }  onValueChange={ null }/>
                     </LabeledInput>
-                    <LabeledInput>
-                        <LabeledInput label='Country' >
-                            <TextInput value={ 'Belarus' }  onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Country' >
+                        <TextInput value={ 'Belarus' }  onValueChange={ null }/>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow padding='24' vPadding='24' >
-                    <LabeledInput>
-                        <LabeledInput label='Age' >
-                            <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
-                        </LabeledInput>
+                <FlexRow spacing='12' padding='24' vPadding='24' >
+                    <LabeledInput label='Age' >
+                        <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
                     </LabeledInput>
-                    <LabeledInput>
-                        <LabeledInput label='Country' >
-                            <DatePicker format={ 'DD/MM/YYYY' } value={ '20/11/2042' }  onValueChange={ null }/>
-                        </LabeledInput>
+                    <LabeledInput label='Country' >
+                        <DatePicker format={ 'DD/MM/YYYY' } value={ '2021-08-08' }  onValueChange={ null }/>
                     </LabeledInput>
                 </FlexRow>
-                <FlexRow padding='24' vPadding='24' >
+                <FlexRow spacing='12' padding='24' vPadding='24' >
                     <FlexSpacer/>
                     <Button color='green' caption='Submit'/>
                     <Button color='blue' fill='none'  caption='Cancel'/>

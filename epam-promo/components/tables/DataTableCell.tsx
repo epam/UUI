@@ -2,7 +2,9 @@ import * as React from 'react';
 import { cx, uuiMarkers } from '@epam/uui';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { DataTableCellMods, DataTableCellProps } from './types';
-import { Checkbox, FlexCell, TextPlaceholder, Text } from '../';
+import { TextPlaceholder, Text } from '../typography';
+import { FlexCell } from '../layout';
+import { Checkbox } from '../inputs';
 import * as css from './DataTableCell.scss';
 import * as foldingArrow from '../../icons/tree_folding_arrow.svg';
 
@@ -102,16 +104,19 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
         }
 
         return (
-            <FlexCell { ...this.props.column } cx={ cx(
-                css.cell,
-                addonWidgets.length > 0 && css.wrapper,
-                css['size-' + (this.props.size || '36')],
-                css[`padding-${ this.props.padding || '12' }`],
-                this.props.isFirstColumn && css[`padding-left-${ this.getCellPadding() }`],
-                this.props.isLastColumn && css['padding-right-24'],
-                this.props.column.cx,
-                css[`align-widgets-${ this.props.alignActions || 'top' }`],
-            ) }>
+            <FlexCell
+                { ...this.props.column }
+                rawProps={{ role: this.props.role }}
+                cx={ cx(
+                    css.cell,
+                    addonWidgets.length > 0 && css.wrapper,
+                    css['size-' + (this.props.size || '36')],
+                    css[`padding-${ this.props.padding || '12' }`],
+                    this.props.isFirstColumn && css[`padding-left-${ this.getCellPadding() }`],
+                    this.props.isLastColumn && css['padding-right-24'],
+                    this.props.column.cx,
+                    css[`align-widgets-${ this.props.alignActions || 'top' }`],
+                ) }>
                 { addonWidgets }
                 { cellContent }
             </FlexCell>

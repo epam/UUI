@@ -37,22 +37,22 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
             }
         }
     }
-    
+
     handleClick = (item: TreeNodeProps) => {
         item.isDropdown && item.onClick();
         const type = item.isDropdown ? 'folder' : 'document';
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument(type, item.data.name, item.parentId));
     }
-    
+
     getSearchEvent = (value: string) => {
         return analyticsEvents.document.search(value);
     }
 
     render() {
         return (
-            <div className={ css.root } >
+            <aside className={ css.root } >
                 <SearchInput value={ this.state.searchValue } onValueChange={ (val) => this.setState({ searchValue: val }) } autoFocus={ true } placeholder='Search' cx={ css.search } getValueChangeAnalyticsEvent={ this.getSearchEvent } />
-                <div className={ css.tree } >
+                <div className={ css.tree } role='tablist'>
                     <ScrollBars >
                         <Tree
                             items={ this.props.items }
@@ -73,7 +73,7 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
                         />
                     </ScrollBars>
                 </div>
-            </div>
+            </aside>
         );
     }
 }

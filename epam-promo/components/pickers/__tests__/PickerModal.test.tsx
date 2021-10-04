@@ -1,7 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { PickerModal } from '../PickerModal';
 import { ArrayDataSource } from '@epam/uui';
+import { renderWithContextAsync } from "@epam/test-utils";
+import { PickerModal } from '../PickerModal';
 
 jest.mock('react-dom', () => ({
     findDOMNode: jest.fn(),
@@ -26,40 +26,40 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerModal', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<PickerModal
-                key='test'
-                valueType='id'
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <PickerModal
+                key="test"
+                valueType="id"
                 dataSource={ mockDataSource }
                 success={ jest.fn }
                 abort={ jest.fn }
                 zIndex={ 1 }
-                selectionMode='single'
+                selectionMode="single"
                 initialValue={ null }
                 isActive
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<PickerModal
-                key='test'
-                valueType='id'
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <PickerModal
+                key="test"
+                valueType="id"
                 dataSource={ mockDataSource }
                 success={ jest.fn }
                 abort={ jest.fn }
                 zIndex={ 1 }
-                selectionMode='multi'
+                selectionMode="multi"
                 initialValue={ [] }
                 isActive
                 getName={ item => item.level }
                 filter={ (item: any) => item.level === 'A1' }
                 sorting={ { direction: 'desc', field: 'level' } }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
