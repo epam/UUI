@@ -1,9 +1,9 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import { demoColumns, dataSource } from "./dataMocks";
-import {DataTable} from "../DataTable";
+import React from 'react';
+import { renderWithContextAsync } from '@epam/test-utils';
+import { demoColumns, dataSource } from './dataMocks';
+import {DataTable} from '../DataTable';
 
-jest.mock("react-dom", () => ({
+jest.mock('react-dom', () => ({
     findDOMNode: jest.fn(),
 }));
 
@@ -15,20 +15,19 @@ class ResizeObserverMock {
 
 global.ResizeObserver = ResizeObserverMock;
 
-describe("DataTable", () => {
-    it("should be rendered correctly", () => {
+describe('DataTable', () => {
+    it('should be rendered correctly', async () => {
         const view = dataSource.getView({topIndex: 0, visibleCount: 20}, () => {});
 
-        const tree = renderer
-            .create(
+        const tree = await renderWithContextAsync(
                 <DataTable
                     { ...view.getListProps() }
                     columns={ demoColumns }
                     getRows={ view.getVisibleRows }
                     value={ {} }
                     onValueChange={ jest.fn() }
-                />)
-            .toJSON();
+                />);
+
         expect(tree).toMatchSnapshot();
     });
 });
