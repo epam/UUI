@@ -11,7 +11,7 @@ export type PickerBaseOptions<TItem, TId> = {
     getName?: (item: TItem) => string;
     renderRow?: (props: DataRowProps<TItem, TId>) => React.ReactNode;
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
-    renderNotFound?: (props: { search: string, onClose: () => void}) => React.ReactNode;
+    renderNotFound?: (props: { search: string, onClose: () => void }) => React.ReactNode;
     emptyValue?: undefined | null | [];
     sortBy?(item: TItem, sorting: SortingOption): any;
     filter?: any;
