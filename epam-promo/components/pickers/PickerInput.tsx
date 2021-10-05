@@ -1,16 +1,15 @@
 import React from 'react';
-import { Modifier } from 'react-popper';
-import { DataRowProps, IEditableDebouncer, isMobile, mobilePopperModifier, uuiMarkers } from '@epam/uui';
-import { Dropdown, DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { DataRowProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui';
+import { DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { DataPickerRow } from './DataPickerRow';
-import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { PickerItem } from './PickerItem';
 import { DataPickerBody } from './DataPickerBody';
 import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
+import { EditMode, IHasEditMode, SizeMod } from '../types';
 import css from './PickerInput.scss';
 
 export type PickerInputProps = SizeMod & IHasEditMode & {};
@@ -19,14 +18,6 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
-    private readonly popperModifiers: Modifier<any>[] = [
-        {
-            name: 'offset',
-            options: { offset: [0, 6] },
-        },
-        mobilePopperModifier,
-    ];
-
     toggleModalOpening(opened: boolean) {
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...this.props }
@@ -104,10 +95,22 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             );
     }
 
-    render() {
+    renderTarget(dropdownProps: IDropdownToggler): React.ReactNode {
+        const rows = this.getRows();
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
+
+        return (
+            <IEditableDebouncer
+                value={ this.state.dataSourceState.search }
+                onValueChange={ this.handleTogglerSearchChange }
+                render={ editableProps => renderTarget({ ...this.getTogglerProps(rows), ...dropdownProps, ...editableProps }) }
+            />
+        );
+    }
+
+    renderBody(props: DropdownBodyProps) {
         const rows = this.getRows();
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         const maxHeight = isMobile()
             ? document.documentElement.clientHeight
@@ -117,57 +120,40 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             : (this.props.minBodyWidth || pickerWidth);
         
         return (
-            <Dropdown
-                renderTarget={ dropdownProps =>
-                    <IEditableDebouncer
-                        value={ this.state.dataSourceState.search }
-                        onValueChange={ this.handleTogglerSearchChange }
-                        render={ editableProps => renderTarget({ ...this.getTogglerProps(rows), ...dropdownProps, ...editableProps }) }
+            <Panel
+                shadow
+                style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
+                rawProps={ { tabIndex: -1 } }
+                cx={ [css.panel, uuiMarkers.lockFocus] }
+            >
+                <MobileDropdownWrapper
+                    title={ this.props.entityName }
+                    close={ () => this.toggleBodyOpening(false) }
+                >
+                    <DataPickerBody
+                        { ...this.getListProps() }
+                        value={ this.getDataSourceState() }
+                        onValueChange={ this.handleDataSourceValueChange }
+                        search={ this.lens.prop('dataSourceState').prop('search').toProps() }
+                        rows={ renderedDataRows }
+                        showSearch={ this.getSearchPosition() === 'body' }
+                        maxHeight={ maxHeight }
+                        renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
+                            search: this.state.dataSourceState.search,
+                            onClose: () => this.toggleBodyOpening(false),
+                        })) }
+                        rawProps={ {
+                            'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
+                            'aria-orientation': 'vertical',
+                        } }
+                        onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
+                        scheduleUpdate={ props.scheduleUpdate }
+                        searchSize={ this.props.size }
+                        editMode='dropdown'
                     />
-                }
-                renderBody={ (props: DropdownBodyProps) => {
-                    return (
-                        <Panel
-                            shadow
-                            style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                            rawProps={ { tabIndex: -1 } }
-                            cx={ [css.panel, uuiMarkers.lockFocus] }
-                        >
-                            <MobileDropdownWrapper
-                                title={ this.props.entityName }
-                                close={ () => this.toggleBodyOpening(false) }
-                            >
-                                <DataPickerBody
-                                    { ...this.getListProps() }
-                                    value={ this.getDataSourceState() }
-                                    onValueChange={ this.handleDataSourceValueChange }
-                                    search={ this.lens.prop('dataSourceState').prop('search').toProps() }
-                                    rows={ renderedDataRows }
-                                    showSearch={ this.getSearchPosition() === 'body' }
-                                    maxHeight={ maxHeight }
-                                    renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
-                                        search: this.state.dataSourceState.search,
-                                        onClose: () => this.toggleBodyOpening(false),
-                                    })) }
-                                    rawProps={ {
-                                        'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
-                                        'aria-orientation': 'vertical',
-                                    } }
-                                    onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
-                                    scheduleUpdate={ props.scheduleUpdate }
-                                    searchSize={ this.props.size }
-                                    editMode='dropdown'
-                                />
-                                { this.renderFooter() }
-                            </MobileDropdownWrapper>
-                        </Panel>
-                    );
-                } }
-                value={ this.shouldShowBody() }
-                onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
-                placement={ this.props.dropdownPlacement }
-                modifiers={ this.popperModifiers }
-            />
+                    { this.renderFooter() }
+                </MobileDropdownWrapper>
+            </Panel>
         );
     }
 }

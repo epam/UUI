@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
-import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile } from "@epam/uui";
+import { Modifier } from 'react-popper';
+import {
+    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler,
+} from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
-import { DropdownState } from '../overlays';
+import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & {
@@ -34,7 +37,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     togglerRef = React.createRef<HTMLElement>();
     context: UuiContexts;
 
+    private readonly popperModifiers: Modifier<any>[] = [
+        {
+            name: 'offset',
+            options: { offset: [0, 6] },
+        },
+        mobilePopperModifier,
+    ];
+
     abstract toggleModalOpening(opened: boolean): void;
+    abstract renderTarget(props: IDropdownToggler): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps): React.ReactNode;
 
     static getDerivedStateFromProps(props: PickerInputBaseProps<any, any>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
@@ -57,7 +70,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             });
         }
         if (search && isSwitchIsBeingTurnedOn) {
-            this.handleTogglerSearchChange("", true);
+            this.handleTogglerSearchChange('', true);
         }
     }
 
@@ -86,7 +99,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     toggleDropdownOpening = (opened: boolean) => {
         if (isMobile()) {
-            document.body.style.overflow = opened ? "hidden" : "";
+            document.body.style.overflow = opened ? 'hidden' : '';
         }
 
         this.setState({
@@ -120,7 +133,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getSearchPosition() {
-        if (isMobile()) return "body";
+        if (isMobile()) return 'body';
         if (!this.props.searchPosition) {
             return this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
@@ -153,7 +166,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         let selectedRows = view.getSelectedRows();
         const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
         const searchPosition = this.getSearchPosition();
-        const forcedDisabledClear = Boolean(searchPosition === "body" && !selectedRows.length);
+        const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
         const disableClear = forcedDisabledClear || propDisableClear;
 
         return {
@@ -180,7 +193,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
             editMode: this.props.editMode,
-            inputId: this.props.inputId
+            inputId: this.props.inputId,
         };
     }
 
@@ -231,5 +244,18 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         } else {
             return [];
         }
+    }
+
+    render() {
+        return (
+            <Dropdown
+                renderTarget={ dropdownProps => this.renderTarget(dropdownProps) }
+                renderBody={ props => this.renderBody(props) }
+                value={ this.shouldShowBody() }
+                onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
+                placement={ this.props.dropdownPlacement }
+                modifiers={ this.popperModifiers }
+            />
+        );
     }
 }
