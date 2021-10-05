@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import css from './DemoTable.scss';
-import { LazyDataSource, DataRowProps, cx, Link } from '@epam/uui';
+import { LazyDataSource, DataRowProps, DataRowOptions, cx, Link } from '@epam/uui';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
@@ -87,23 +87,25 @@ export const DemoTable: React.FC = () => {
             item.__typename === 'PersonGroup' ? item.count : null,
     }), []);
 
+    const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
+        checkbox: { isVisible: true },
+        onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+            if (infoPanelId === rowProps.id[1]) {
+                closeInfoPanel();
+            }
+            openInfoPanel(rowProps.id[1]);
+        },
+    };
+
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
         let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
         return <DataTableRow key={ props.rowKey } { ...props } size='36' columns={ columns }/>;
     };
 
     const personsDataView = dataSource.useView(value, setValue, {
+        rowOptions,
         isFoldedByDefault: () => value.isFolded,
         cascadeSelection: true,
-        getRowOptions: () => ({
-            checkbox: { isVisible: true },
-            onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-                if (infoPanelId === rowProps.id[1]) {
-                    closeInfoPanel();
-                }
-                openInfoPanel(rowProps.id[1]);
-            },
-        }),
     });
 
     const renderInfoSidebarPanel = () => {
