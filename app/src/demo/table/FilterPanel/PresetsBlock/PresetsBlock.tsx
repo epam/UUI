@@ -4,22 +4,18 @@ import { Accordion, IconContainer, TabButton, TextInput } from "@epam/promo";
 import { DataColumnProps, IEditable } from "@epam/uui";
 import { FlexSpacer } from "@epam/uui-components";
 import plusIcon from "@epam/assets/icons/common/content-add-outline-18.svg";
-import { ITablePreset, PersonsTableState } from "../../types";
-import { svc } from "../../../../services";
-import { hasPresetChanged, isDefaultPresetActive } from "../../helpers";
-import { constants } from "../../data";
-import { useChoosePreset, useCreateNewPreset } from "../../hooks";
+import { IPresetsApi, PersonsTableState } from "../../types";
 
 interface IPresetsBlockProps extends IEditable<PersonsTableState> {
-    columns: DataColumnProps<any>[];
+    presetsApi: IPresetsApi;
 }
 
-const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, columns }) => {
+const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, presetsApi }) => {
     const [isOpened, setIsOpened] = useState(true);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");
 
-    const choosePreset = useChoosePreset(value, onValueChange);
+    // const choosePreset = useChoosePreset(value, onValueChange);
 
     const addPreset: ReactEventHandler<HTMLDivElement> = useCallback(event => {
         event.stopPropagation();
@@ -27,11 +23,11 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, colu
         setIsOpened(true);
     }, []);
     
-    const createNewPreset = useCreateNewPreset({
-        choosePreset,
-        value,
-        onValueChange,
-    });
+    // const createNewPreset = useCreateNewPreset({
+    //     choosePreset,
+    //     value,
+    //     onValueChange,
+    // });
 
     const saveNewPreset = useCallback(() => {
         if (!inputValue) {
@@ -39,11 +35,11 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, colu
             return;
         }
 
-        createNewPreset(inputValue);
+        presetsApi.createNewPreset(inputValue);
 
         setIsAddingPreset(false);
         setInputValue("");
-    }, [inputValue, value, onValueChange, choosePreset]);
+    }, [inputValue, presetsApi]);
 
     const renderAddPresetIcon = useCallback(() => {
         return (
@@ -54,9 +50,9 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, colu
         );
     }, [addPreset]);
 
-    const activePresetId = +svc.uuiRouter.getCurrentLink().query?.presetId;
-    const isDefaultActive = useMemo(() => isDefaultPresetActive(value, columns), [value, columns]);
-    const resetToDefault = useCallback(() => choosePreset(constants.defaultPreset), [choosePreset]);
+    // const activePresetId = +svc.uuiRouter.getCurrentLink().query?.presetId;
+    // const isDefaultActive = useMemo(() => isDefaultPresetActive(value, columns), [value, columns]);
+    // const resetToDefault = useCallback(() => choosePreset(constants.defaultPreset), [choosePreset]);
     
     return (
         <Accordion
@@ -72,20 +68,20 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ value, onValueChange, colu
                 <TabButton
                     key="default"
                     caption="Default"
-                    onClick={ isDefaultActive ? null : resetToDefault }
-                    isLinkActive={ isDefaultActive }
+                    onClick={ presetsApi.isDefaultPresetActive ? null : presetsApi.resetToDefault }
+                    isLinkActive={ presetsApi.isDefaultPresetActive }
                     direction="vertical"
                     size="36"
                     cx={ css.button }
                 />
                 { value.presets.map(preset => {
-                    const isActive = preset.id === activePresetId;
-                    const hasChanged = isActive && hasPresetChanged(preset, value.columnsConfig);
+                    const isActive = preset.id === presetsApi.activePresetId;
+                    const hasChanged = isActive && presetsApi.hasPresetChanged(preset);
                     return (
                         <TabButton
                             key={ preset.id }
                             caption={ preset.name + (hasChanged ? "*" : "") }
-                            onClick={ () => choosePreset(preset) }
+                            onClick={ () => presetsApi.choosePreset(preset) }
                             isLinkActive={ isActive }
                             direction="vertical"
                             size="36"

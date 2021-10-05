@@ -20,7 +20,7 @@ export const DemoTable: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(() => getColumns(filters, infoPanelOptions.openPanel), []);
 
-    const { value, onValueChange } = useTableState({
+    const { value, onValueChange, presetsApi } = useTableState({
         value: {
             topIndex: 0,
             visibleCount: 40,
@@ -30,7 +30,8 @@ export const DemoTable: React.FC = () => {
         },
         loadPresets: () => JSON.parse(localStorage.getItem("presets")) ?? [],
         onPresetsSave: newPresets => localStorage.setItem("presets", JSON.stringify(newPresets)),
-    });
+    },
+        columnsSet.personColumns);
 
     const dataSource = useMemo(() => new LazyDataSource({
         api,
@@ -72,16 +73,19 @@ export const DemoTable: React.FC = () => {
                     <FilterPanel
                         filters={ filters }
                         value={ value }
+                        presetsApi={ presetsApi }
                         onValueChange={ onValueChange }
                         columns={ columnsSet.personColumns }
                         close={ filterPanelOptions.closePanel }
                     />
                 </div>
             ) }
-            <div className={ css.container } role="table" aria-rowcount={ personsDataView.getListProps().rowsCount } aria-colcount={ columnsSet.personColumns.length }>
-                <FlexRow background='white' borderBottom>
-                    { isFilterButtonVisible && (
-            <div className={ css.container }>
+            <div 
+                className={ css.container } 
+                role="table"
+                aria-rowcount={ personsDataView.getListProps().rowsCount }
+                aria-colcount={ columnsSet.personColumns.length }
+            >
                 <FlexRow background="white" borderBottom>
                     { filterPanelOptions.isButtonVisible && (
                         <div className={ css.iconContainer }>
@@ -96,7 +100,7 @@ export const DemoTable: React.FC = () => {
                     <Presets
                         value={ value }
                         onValueChange={ onValueChange }
-                        columns={ columnsSet.personColumns }
+                        presetsApi={ presetsApi }
                     />
                 </FlexRow>
                 <DataTable

@@ -7,7 +7,6 @@ export const useCreateNewPreset = (params: ICreateNewPresetParams) => {
     const { value, onValueChange } = params;
     
     return useCallback((name: string) => {
-        console.log(name);
         const newId = value.presets.length
             ? Math.max.apply(null, value.presets.map(preset => preset.id)) + 1
             : 1;
@@ -19,11 +18,6 @@ export const useCreateNewPreset = (params: ICreateNewPresetParams) => {
             columnsConfig: value.columnsConfig,
             isReadonly: false,
         };
-
-        // onValueChange({
-        //     ...value,
-        //     presets: [...value.presets, newPreset],
-        // });
 
         const newQuery = {
             ...svc.uuiRouter.getCurrentLink().query,

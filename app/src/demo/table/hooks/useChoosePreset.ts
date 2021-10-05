@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { svc } from "../../../services";
 import { ITablePreset, PersonsTableState } from "../types";
 
-export const useChoosePreset = (value: PersonsTableState, onValueChange: (value: PersonsTableState) => void) => {
+export const useChoosePreset = <T>(value: T, onValueChange: (value: T) => void) => {
     return useCallback((preset: ITablePreset) => {
         const newQuery = {
             ...svc.uuiRouter.getCurrentLink().query,
