@@ -460,8 +460,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             !isRoot && checked.push(id);
             childKeys.filter(key => !checkedKeysSet.has(key)).forEach(key => {
                 const item = this.cache.itemsById.map.get(key);
-                const isDisabled = this.props.getRowOptions(item.value, null).checkbox?.isDisabled;
-                if (!isDisabled) {
+                const { isCheckable } = this.getRowProps(item.value, null, []);
+                if (isCheckable) {
                     checked.push(this.keyToId(key));
                 }
             });
@@ -470,8 +470,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             !isRoot && keysToUnset.add(key);
             checked = checked.filter(id => {
                 const item = this.cache.itemsById.map.get(this.idToKey(id));
-                const isDisabled = this.props.getRowOptions(item.value, null).checkbox?.isDisabled;
-                return isDisabled || !(this.idToKey(id) === key || keysToUnset.has(this.idToKey(id)));
+                const { isCheckable } = this.getRowProps(item.value, null, []);
+                return !isCheckable || !(this.idToKey(id) === key || keysToUnset.has(this.idToKey(id)));
             });
         }
         this.handleCheckedChange(checked);
