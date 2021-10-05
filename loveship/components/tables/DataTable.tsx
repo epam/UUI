@@ -25,7 +25,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
         props.onValueChange({ ...props.value, columnsConfig: config });
     };
 
-    const { sortedColumns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
+    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -44,7 +44,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             .map((row: DataRowProps<TItem, TId>) => renderItemRow({
                 ...row,
                 scrollManager: scrollManager,
-                columns: sortedColumns,
+                columns: columns,
             }));
     };
 
@@ -79,7 +79,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             <DataTableHeaderRow
                 key='header'
                 scrollManager={ scrollManager }
-                columns={ sortedColumns }
+                columns={ columns }
                 onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                 selectAll={ props.selectAll }
                 size={ props.size }
@@ -105,7 +105,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                     />
                 ) : renderNoResultsBlock() }
             </FlexRow>
-            <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ sortedColumns }/>
+            <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
         </>
     );
 };

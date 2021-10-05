@@ -1,10 +1,10 @@
 import { ColumnsConfig, DataColumnProps } from '../types';
 import { applyColumnsConfig, getColumnsConfig } from '../helpers';
 
-export const useColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], columnsConfig: ColumnsConfig) => {
-    const sortedColumns = applyColumnsConfig(columns, getColumnsConfig(columns, columnsConfig));
-    const config = getColumnsConfig(columns, columnsConfig);
-    const defaultConfig = getColumnsConfig(columns, {});
+export const useColumnsConfig = <TItem, TId>(initialColumns: DataColumnProps<TItem, TId>[], columnsConfig: ColumnsConfig) => {
+    const config = getColumnsConfig(initialColumns, columnsConfig);
+    const defaultConfig = getColumnsConfig(initialColumns, {});
+    const columns = applyColumnsConfig(initialColumns, config);
 
-    return { sortedColumns, config, defaultConfig };
+    return { columns, config, defaultConfig };
 };
