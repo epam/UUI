@@ -33,4 +33,17 @@ interface ITablePreset {
 
 type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets };
+interface IPresetsApi {
+    activePresetId: number;
+    isDefaultPresetActive: boolean;
+    choosePreset(preset: ITablePreset): void;
+    createNewPreset(name: string): void;
+    resetToDefault(): void;
+    hasPresetChanged(preset: ITablePreset): boolean;
+    duplicatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): void;
+    renamePreset(preset: ITablePreset): void;
+    updatePreset(preset: ITablePreset): void;
+}
+
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi };

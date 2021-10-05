@@ -5,7 +5,7 @@ import { FlexSpacer } from "@epam/uui-components";
 import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
 import { DataColumnProps, IEditable } from "@epam/uui";
 
-import { ITableFilter, ITablePreset, PersonsTableState } from "../types";
+import { IPresetsApi, ITableFilter, ITablePreset, PersonsTableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
@@ -16,9 +16,10 @@ interface IFilterPanelProps extends IEditable<PersonsTableState> {
     close: () => void;
     filters: ITableFilter[];
     columns: DataColumnProps<any>[];
+    presetsApi: IPresetsApi;
 }
 
-const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onValueChange, columns }) => {
+const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onValueChange, columns, presetsApi }) => {
     return (
         <div className={ css.container }>
             <FlexRow borderBottom size="48" padding="18">
@@ -30,7 +31,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onVal
                 <PresetsBlock
                     value={ value }
                     onValueChange={ onValueChange }
-                    columns={ columns }
+                    presetsApi={ presetsApi }
                 />
                 <FiltersBlock
                     value={ value }
