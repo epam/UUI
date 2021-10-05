@@ -39,7 +39,7 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 phoneNumber: {
                     isRequired: true,
                     validators: [
-                        () => [!instanceMask.masked.isComplete && 'Phone number is not valid!'],
+                        () => [!instanceMask?.masked?.isComplete && 'Phone number is not valid!'],
                     ],
                 },
             },
