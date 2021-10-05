@@ -132,20 +132,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 >
                     <DataPickerBody
                         { ...this.getListProps() }
-                        value={ this.getDataSourceState() }
-                        onValueChange={ this.handleDataSourceValueChange }
-                        search={ this.lens.prop('dataSourceState').prop('search').toProps() }
+                        { ...this.getPickerProps() }
                         rows={ renderedDataRows }
-                        showSearch={ this.getSearchPosition() === 'body' }
                         maxHeight={ maxHeight }
-                        renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
-                            search: this.state.dataSourceState.search,
-                            onClose: () => this.toggleBodyOpening(false),
-                        })) }
-                        rawProps={ {
-                            'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
-                            'aria-orientation': 'vertical',
-                        } }
                         onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
                         scheduleUpdate={ props.scheduleUpdate }
                         searchSize={ this.props.size }

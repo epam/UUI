@@ -161,6 +161,23 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return opened;
     }
 
+    getPickerProps() {
+        return  {
+            value: this.getDataSourceState(),
+            onValueChange: this.handleDataSourceValueChange,
+            search: this.lens.prop('dataSourceState').prop('search').toProps(),
+            showSearch: this.getSearchPosition() === 'body',
+            rawProps: {
+                'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
+                'aria-orientation': 'vertical',
+            } as React.HtmlHTMLAttributes<HTMLDivElement>,
+            renderNotFound: this.props.renderNotFound && (() => this.props.renderNotFound({
+                search: this.state.dataSourceState.search,
+                onClose: () => this.toggleBodyOpening(false),
+            })),
+        };
+    }
+
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         let selectedRows = view.getSelectedRows();
