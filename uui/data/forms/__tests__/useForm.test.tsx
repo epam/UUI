@@ -1,51 +1,25 @@
 import * as React from 'react';
 import { act, cleanup, renderHook } from '@testing-library/react-hooks';
 import { getUuiContexts, UuiContext } from '../../..';
+import { testSvc } from '@epam/test-utils';
 import { useForm } from '../useForm';
 
-describe.only('useForm', () => {
-    let testSvc = {};
+const wrapper = ({ children }) => (
+    <UuiContext.Provider value={ getUuiContexts({
+        onInitCompleted: svc => Object.assign(testSvc, svc)
+    }) }>
+        {children}
+    </UuiContext.Provider>
+);
 
+describe.only('useForm', () => {
     beforeEach(jest.clearAllMocks);
-    afterEach(() => {
-        cleanup();
-        testSvc = {};
-    });
+    afterEach(cleanup);
 
     interface IFoo {
         dummy: string;
         tummy?: string;
     };
-
-    const uuiLocksAcquire = jest.fn();
-    const uuiLocksRelease = jest.fn();
-    const uuiLocksWithLock = jest.fn();
-
-    const uuiUserSettingsGet = jest.fn();
-    const uuiUserSettingsSet = jest.fn();
-
-    const wrapper = ({ children }) => (
-        <UuiContext.Provider value={
-            getUuiContexts({
-                onInitCompleted: svc => Object.assign(testSvc, {
-                    ...svc,
-                    uuiLocks: {
-                        ...svc.uuiLocks,
-                        acquire: uuiLocksAcquire,
-                        release: uuiLocksRelease,
-                        withLock: uuiLocksWithLock
-                    },
-                    uuiUserSettings: {
-                        ...svc.uuiUserSettings,
-                        get: uuiUserSettingsGet,
-                        set: uuiUserSettingsSet
-                    },
-                })
-            })
-        }>
-            {children}
-        </UuiContext.Provider>
-    );
 
     const testData: IFoo = { dummy: '', tummy: '' };
     const testMetadata = { props: { dummy: { isRequired: true } } };
@@ -65,7 +39,7 @@ describe.only('useForm', () => {
     });
 
     it('Should correctly set isInvalid on form submit depending on the value', async () => {
-        const onSaveSpy: any = jest.fn(x => Promise.resolve(x));
+        const onSaveSpy = jest.fn().mockResolvedValue(undefined);
         const { result } = renderHook(() => useForm<IFoo>({
             value: testData,
             onSave: onSaveSpy,
@@ -110,9 +84,76 @@ describe.only('useForm', () => {
         expect(result.current.isInvalid).toBe(false);
     });
 
-    it('Should do nothing, if value isn`t changed', () => {});
-    it('Should return isInvalid as false for 1 and more invalid fields', () => {});
-    it('Should show the same value, if you: save => leave => come back', () => {});
+    it('Should do nothing, if value isn`t changed', () => {
+        const saveMock = jest.fn().mockResolvedValue(false);
+        const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+        const props = {
+            value: testData,
+            onSave: saveMock,
+            onError: jest.fn(),
+            beforeLeave: beforeLeaveMock,
+            getMetadata: () => testMetadata,
+            children: undefined,
+        };
+
+        const { result, rerender } = renderHook(() => useForm<IFoo>(props), { wrapper });
+
+        rerender(props);
+
+        expect(beforeLeaveMock).not.toHaveBeenCalled();
+        expect(saveMock).not.toHaveBeenCalled();
+
+        result.current.lens.prop('dummy').set('hi');
+        expect(result.current.isChanged).toBe(true);
+
+        rerender(props);
+        expect(result.current.isChanged).toBe(true);
+
+        expect(beforeLeaveMock).not.toHaveBeenCalled();
+        expect(saveMock).not.toHaveBeenCalled();
+    });
+
+    it('Should return isInvalid as false for 1 or more invalid fields', async () => {
+        const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
+        const { result, waitFor } = renderHook(() => useForm<IFoo>({
+            value: testData,
+            onSave: Promise.resolve,
+            onError: jest.fn(),
+            getMetadata: () => enhancedMetadata,
+        }), { wrapper });
+
+        expect(result.current.isInvalid).toBe(false);
+
+        await act(result.current.save);
+        waitFor(() => expect(result.current.isInvalid).toBe(true));
+
+        act(() => result.current.lens.prop('dummy').set('hello'));
+        waitFor(() => expect(result.current.isInvalid).toBe(true));
+
+        act(() => result.current.lens.prop('tummy').set('hi'));
+        waitFor(() => expect(result.current.isInvalid).toBe(false));
+    });
+
+    it('Should show the same value, if you: save => leave => come back', async () => {
+        const saveMock = jest.fn().mockResolvedValue(false);
+        const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+
+        const { result, waitFor } = renderHook(() => useForm<IFoo>({
+            value: testData,
+            onSave: saveMock,
+            beforeLeave: beforeLeaveMock,
+            onError: jest.fn(),
+            getMetadata: () => testMetadata,
+        }), { wrapper });
+
+        act(() => result.current.lens.prop('dummy').set('hi'));
+        waitFor(() => expect(result.current.isChanged).toBe(true));
+
+        expect(result.current.isInvalid).toBe(false);
+        expect(beforeLeaveMock).toHaveBeenCalled();
+        expect(saveMock).toHaveBeenCalled();
+    });
+
     it('Should undo to previous value, redo to the next value', () => {});
     it('Should revert and load last passed value', () => {});
     it('Should have a lock on the first form change, release lock on save', () => {});
