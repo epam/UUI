@@ -93,7 +93,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const handleLeave = async () => {
+    const handleLeave = () => {
         return props.beforeLeave?.().then(res => {
             if (res) return handleSave();
             removeUnsavedChanges();
@@ -117,7 +117,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         return uuiValidate(valueToValidate, metadata);
     };
 
-    const handleSave = () => () => {
+    const handleSave = async (): Promise<void> => {
         const validationState = handleValidate();
         setFormState({ ...formState, validationState });
 
