@@ -41,10 +41,7 @@ describe.only('useForm', () => {
             getMetadata: () => testMetadata,
         }));
 
-        act(() => {
-            lens.prop('dummy').set('hello');
-            onValueChange(lens.get());
-        });
+        act(() => lens.prop('dummy').set('hello'));
 
         waitFor(() => {
             expect(isChanged).toBe(true);
