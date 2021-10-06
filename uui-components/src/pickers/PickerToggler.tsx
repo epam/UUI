@@ -88,6 +88,10 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         e.stopPropagation();
     }
 
+    closeOpenedPicker = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (this.props.isOpen && this.props.pickerMode !== 'multi') this.togglerPickerOpened(e);
+    }
+
     renderItems() {
         let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
         if (this.props.selection && this.props.selection.length > maxItems) {
@@ -117,6 +121,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 id={ this.props.inputId }
                 aria-haspopup={ true }
                 aria-required={ this.props.isRequired }
+                onBlur={ this.closeOpenedPicker }
                 aria-disabled={ this.props.isDisabled }
                 aria-readonly={ true }
                 className={ cx(
@@ -133,6 +138,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             tabIndex={ -1 }
             aria-haspopup={ true }
             id={ this.props.inputId }
+            onBlur={ this.closeOpenedPicker }
             aria-required={ this.props.isRequired }
             aria-disabled={ this.props.isDisabled }
             aria-readonly={ this.props.isReadonly }
@@ -149,7 +155,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         />;
     }
 
-    togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
+    togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLInputElement>) => {
         e.preventDefault();
         if (this.state.inFocus && this.props.value && !this.props.disableSearch) return;
         this.props.onClick();
