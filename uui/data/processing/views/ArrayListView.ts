@@ -249,8 +249,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const forEachChildren = (action: (key: string) => void) => {
 
             const walkChildrenRec = (node: TreeNode<TItem, TId>) => {
-                const rowOptions = this.props.getRowOptions(node.item, null);
-                const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
+                const { isCheckable } = this.getRowProps(node.item, null, []);
                 if (isCheckable) { /* filter && isSelectable */
                     action(node.key);
                 }
