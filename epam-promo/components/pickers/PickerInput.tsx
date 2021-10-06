@@ -61,6 +61,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
+                checkbox={{ ...rowProps.checkbox, tabIndex: -1 }}
                 key={ rowProps.rowKey }
                 borderBottom='none'
                 size={ this.getRowSize() }
@@ -113,9 +114,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             ? document.documentElement.clientHeight
             : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile()
-            ? document.documentElement.clientWidth 
+            ? document.documentElement.clientWidth
             : (this.props.minBodyWidth || pickerWidth);
-        
+
         return (
             <Dropdown
                 renderTarget={ dropdownProps =>

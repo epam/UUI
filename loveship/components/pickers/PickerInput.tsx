@@ -61,6 +61,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
+                checkbox={{ ...rowProps.checkbox, tabIndex: -1 }}
                 key={ rowProps.rowKey }
                 rawProps={ { 'aria-selected': rowProps.isSelectable && rowProps.isSelected, role: 'option' } }
                 borderBottom='none'
