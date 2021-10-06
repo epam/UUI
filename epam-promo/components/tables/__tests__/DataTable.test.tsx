@@ -1,6 +1,7 @@
 import React from 'react';
+import { renderWithContextAsync } from '@epam/test-utils';
 import { DataTable } from '../DataTable';
-import renderer from 'react-test-renderer';
+
 
 jest.mock('react-dom', () => ({
     findDOMNode: jest.fn(),
@@ -15,15 +16,14 @@ class ResizeObserverMock {
 global.ResizeObserver = ResizeObserverMock;
 
 describe('DataTable', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DataTable
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(<DataTable
                 columns={ [] }
                 getRows={ () => [] }
                 value={ {} }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />);
+
         expect(tree).toMatchSnapshot();
     });
 });
