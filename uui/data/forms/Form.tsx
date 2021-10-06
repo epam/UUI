@@ -217,6 +217,11 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         }
     }
 
+    onSave = () => {
+        // We can't pass this.handleSave in renderForm, because it return Promise, but we need to return void to prevent errors about uncaught Promise reject.
+        this.handleSave().catch(() => {});
+    }
+
     handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState = {
             form: response && response.form || this.state.form,
@@ -277,7 +282,7 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         return this.props.renderForm({
             isChanged: this.state.isChanged,
             lens: this.lens,
-            save: this.handleSave,
+            save: this.onSave,
             undo: this.handleUndo,
             redo: this.handleRedo,
             revert: this.handleRevert,
