@@ -60,7 +60,7 @@ export class LockContext extends BaseContext {
         if (this.currentLock) {
             this.tryRelease().then(() => {
                 this.router.redirect(nextLocation);
-            });
+            }).catch(() => {});
         }
     }
 
