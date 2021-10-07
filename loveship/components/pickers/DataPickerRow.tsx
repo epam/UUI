@@ -36,6 +36,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
             isFirstColumn={ true }
             isLastColumn={ false }
             column={ this.column }
+            tabIndex={ -1 }
             rowProps={ this.props }
             alignActions={ this.props.alignActions || 'top' }
         />;
