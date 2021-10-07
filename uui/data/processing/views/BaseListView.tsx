@@ -183,6 +183,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             isFocused: value.focusedIndex === index,
             isChecked: !!this.checkedByKey[key],
             isSelected: value.selectedId === id,
+            isCheckable: isCheckable,
             onCheck: isCheckable && this.handleOnCheck,
             onSelect: rowOptions && rowOptions.isSelectable && this.handleOnSelect,
             onFocus: (isSelectable || isCheckable) && this.handleOnFocus,
