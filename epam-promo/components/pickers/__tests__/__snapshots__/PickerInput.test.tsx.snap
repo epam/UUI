@@ -15,6 +15,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
+      onBlur={[Function]}
       onChange={[Function]}
       placeholder="Please select "
       tabIndex={-1}
@@ -61,7 +62,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     >
       
       <div
@@ -86,7 +87,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     >
       <div
         className="uui-caption"

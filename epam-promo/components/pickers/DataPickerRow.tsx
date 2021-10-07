@@ -48,6 +48,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
             padding={ this.props.padding || '24' }
             isFirstColumn={ true }
             isLastColumn={ false }
+            tabIndex={ -1 }
             column={ this.column }
             rowProps={ this.props }
             alignActions={ this.props.alignActions || 'top' }

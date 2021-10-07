@@ -946,6 +946,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1003,6 +1004,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1060,6 +1062,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1117,6 +1120,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1174,6 +1178,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1231,6 +1236,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1288,6 +1294,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1345,6 +1352,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1402,6 +1410,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1459,6 +1468,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
@@ -1516,6 +1526,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                               aria-checked={false}
                               checked={false}
                               onChange={[Function]}
+                              tabIndex={-1}
                               type="checkbox"
                             />
                           </div>
