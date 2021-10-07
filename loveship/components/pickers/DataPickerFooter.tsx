@@ -1,7 +1,6 @@
 import React from "react";
-import cx from "classnames";
 import css from "./DataPickerFooter.scss";
-import { ICheckable, isMobile, uuiMarkers } from "@epam/uui";
+import { ICheckable, isMobile, uuiMarkers, cx } from "@epam/uui";
 import { i18n } from "../../i18n";
 import { Switch } from "../inputs";
 import { FlexCell, FlexRow, FlexSpacer } from "../layout";
@@ -30,6 +29,10 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
     const size = isMobile() ? "48" : (props.size || "36");
     const switchSize = switchSizes[size as keyof typeof switchSizes];
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
+    };
+
     return (
         <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
             <Switch
@@ -54,6 +57,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
                             ? props.clearSelection
                             : () => props.selectAll.onValueChange(true)
                         }
+                        rawProps={{ onKeyDown: handleKeyDown }}
                     />
                 </FlexCell>
             ) }
