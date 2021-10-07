@@ -41,7 +41,7 @@ export class Rating extends React.Component<RatingProps, any> {
 
         for (let i = 0; i < maxValue; i++) {
             Tooltip && emptyStars.push(
-                <Tooltip key={ "star-" + i } placement='top' content={ this.hidingTooltip(rating) }>
+                <Tooltip key={ "star-" + i } placement='top' content={ this.hidingTooltip(rating) } cx={ css.tooltip } >
                     <div className={ uuiRating.star }>
                         { <IconContainer icon={ this.props.emptyStarIcon }/> }
                     </div>
@@ -57,7 +57,7 @@ export class Rating extends React.Component<RatingProps, any> {
 
         for (let i = 0; i < maxValue; i++) {
             Tooltip && filledStars.push(
-                <Tooltip key={ i } placement='top' content={ this.hidingTooltip(rating) }>
+                <Tooltip key={ i } placement='top' content={ this.hidingTooltip(rating) } cx={ css.tooltip }>
                     <div className={ uuiRating.star }>
                         { <IconContainer icon={ this.props.filledStarIcon } /> }
                     </div>
