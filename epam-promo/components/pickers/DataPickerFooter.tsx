@@ -30,6 +30,10 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
     const size = isMobile() ? "48" : (props.size || "36");
     const switchSize = switchSizes[size as keyof typeof switchSizes];
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
+    };
+
     return (
         <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
             <Switch
@@ -54,6 +58,7 @@ const DataPickerFooterImpl: React.FC<DataPickerFooterProps> = props => {
                             ? props.clearSelection
                             : () => props.selectAll.onValueChange(true)
                         }
+                        rawProps={{ onKeyDown: handleKeyDown }}
                     />
                 </FlexCell>
             ) }
