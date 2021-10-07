@@ -48,7 +48,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                     component: <Checkbox
                         key='cb'
                         cx={ css.checkbox }
-                        tabIndex={ -1 }
+                        tabIndex={ this.props.tabIndex }
                         size={ additionalItemSize }
                         value={ row.isChecked }
                         indeterminate={ !row.isChecked && row.isChildrenChecked }
