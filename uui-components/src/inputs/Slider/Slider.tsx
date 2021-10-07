@@ -36,10 +36,6 @@ export class Slider extends SliderBase<number, any> {
 
         return (
             <div
-                role="slider"
-                aria-valuenow={ this.props.value }
-                aria-valuemax={ this.props.max }
-                aria-valuemin={ this.props.min }
                 className={ cx(
                     uuiSlider.container,
                     css.root,
@@ -74,6 +70,13 @@ export class Slider extends SliderBase<number, any> {
                     onUpdate={ (mouseX: number) => this.props.onValueChange(this.getValue(mouseX, valueWidth)) }
                     handleActiveState={ (newValue) => this.setState({ isActive: newValue }) }
                     showTooltip={ this.props.showTooltip !== undefined ? this.props.showTooltip : true }
+                    rawProps={{
+                        'aria-label': this.props.rawProps ? this.props.rawProps['aria-label'] : undefined,
+                        'aria-valuenow': this.props.value,
+                        'aria-valuemin': this.props.min,
+                        'aria-valuemax': this.props.max,
+                        role: 'slider',
+                    }}
                 />
             </div>
         );

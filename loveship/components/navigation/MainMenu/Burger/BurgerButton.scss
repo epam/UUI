@@ -1,7 +1,6 @@
 @use '../../../../assets/styles/scss/index'  as *;
 
 .root {
-    @include button-reset();
     padding: 0 54px;
     background: none;
     border: 0;

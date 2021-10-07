@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
 
-export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLDivElement>, React.PropsWithRef<any> {
+export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement>, React.PropsWithRef<any> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -81,7 +81,10 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
-        this.props.onClear && this.props.onClear();
+        if (this.props.onClear) {
+            this.props.onClear();
+            this.props.onValueChange('');
+        }
         e.stopPropagation();
     }
 
@@ -113,7 +116,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 tabIndex={ -1 }
                 id={ this.props.inputId }
                 aria-haspopup={ true }
-                aria-expanded={ this.props.isOpen }
                 aria-required={ this.props.isRequired }
                 aria-disabled={ this.props.isDisabled }
                 aria-readonly={ true }
@@ -123,7 +125,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     this.props.pickerMode === 'single' && css.singleInput,
                     css.toggler,
                 ) }
-            />
+            />;
         }
 
         return <input

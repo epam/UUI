@@ -5,12 +5,11 @@ exports[`should be rendered correctly 1`] = `
   className="container root"
   role="tablist"
 >
-  <div
+  <button
     aria-current={true}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="tab"
     tabIndex={0}
   >
@@ -19,13 +18,12 @@ exports[`should be rendered correctly 1`] = `
     >
       On
     </div>
-  </div>
-  <div
+  </button>
+  <button
     aria-current={false}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="tab"
     tabIndex={0}
   >
@@ -34,6 +32,6 @@ exports[`should be rendered correctly 1`] = `
     >
       Off
     </div>
-  </div>
+  </button>
 </div>
 `;

@@ -2,11 +2,10 @@
 
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
-  <div
+  <button
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={0}
   >
@@ -30,7 +29,7 @@ Array [
         />
       </svg>
     </div>
-  </div>,
+  </button>,
   <div
     data-no-focus-lock={true}
   >
@@ -74,11 +73,10 @@ Array [
             className="root size-36 background-none spacing-6 container -clickable align-items-center"
             onClick={[Function]}
           >
-            <div
-              className="root icon-color-blue uui-button-box uui-enabled"
+            <button
+              className="container uui-button-box uui-enabled root icon-color-blue"
               href={null}
               onClick={[Function]}
-              onKeyDown={[Function]}
               role="button"
               tabIndex={null}
             >
@@ -97,7 +95,7 @@ Array [
                   />
                 </svg>
               </div>
-            </div>
+            </button>
             <div
               className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
             >
@@ -108,11 +106,10 @@ Array [
             className="root size-36 background-none spacing-6 container -clickable align-items-center"
             onClick={[Function]}
           >
-            <div
-              className="root icon-color-gray60 uui-button-box uui-enabled"
+            <button
+              className="container uui-button-box uui-enabled root icon-color-gray60"
               href={null}
               onClick={[Function]}
-              onKeyDown={[Function]}
               role="button"
               tabIndex={null}
             >
@@ -131,7 +128,7 @@ Array [
                   />
                 </svg>
               </div>
-            </div>
+            </button>
             <div
               className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-3 container"
             >

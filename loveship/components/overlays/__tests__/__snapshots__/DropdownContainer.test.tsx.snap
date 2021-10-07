@@ -11,11 +11,10 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
   }
   tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   />
@@ -33,11 +32,10 @@ exports[`DropdownContainer should be rendered correctly with extra props 1`] = `
   }
   tabIndex={0}
 >
-  <div
+  <button
     className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
     href={null}
     onClick={[Function]}
-    onKeyDown={[Function]}
     role="button"
     tabIndex={null}
   />

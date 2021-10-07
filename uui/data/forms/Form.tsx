@@ -95,7 +95,7 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
                 .then(() => !this.isUnmounted && this.handleFormUpdate(unsavedChanges));
         }
     }
-    
+
     componentDidUpdate(prevProps: Readonly<FormProps<T>>, prevState: Readonly<FormComponentState<T>>) {
         if (prevProps.value !== this.props.value) {
             if (prevState.isChanged && prevProps.beforeLeave) {
@@ -202,25 +202,32 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         return validate(valueToValidate, metadata);
     }
 
-    handleSave: () => void = () => {
+    handleSave = () => {
         let validationState = this.handleValidate();
         this.setState({ validationState });
 
         if (!validationState.isInvalid) {
             this.setState({ isInProgress: true });
-    
+
             return this.props.onSave(this.state.form)
                 .then(this.handleSaveResponse)
                 .catch(err => this.props.onError?.(err));
+        } else {
+            return Promise.reject();
         }
     }
-    
+
+    onSave = () => {
+        // We can't pass this.handleSave in renderForm, because it return Promise, but we need to return void to prevent errors about uncaught Promise reject.
+        this.handleSave().catch(() => {});
+    }
+
     handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState = {
             form: response && response.form || this.state.form,
             isInProgress: false,
         } as FormComponentState<T>;
-        
+
         if (response && response.validation) {
             newState.serverValidationState = response.validation;
             newState.lastSentForm = response.validation.isInvalid
@@ -275,7 +282,7 @@ export class Form<T> extends React.Component<FormProps<T>, FormComponentState<T>
         return this.props.renderForm({
             isChanged: this.state.isChanged,
             lens: this.lens,
-            save: this.handleSave,
+            save: this.onSave,
             undo: this.handleUndo,
             redo: this.handleRedo,
             revert: this.handleRevert,

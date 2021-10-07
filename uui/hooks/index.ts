@@ -1,1 +1,2 @@
-export * from "./useAppMobileHeight";
+export * from './useAppMobileHeight';
+export * from './useColumnsConfig';

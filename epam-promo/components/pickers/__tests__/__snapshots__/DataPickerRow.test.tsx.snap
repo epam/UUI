@@ -3,8 +3,7 @@
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
   aria-posinset={2}
-  className="pickerRow container -clickable align-items-center"
-  onClick={[Function]}
+  className="pickerRow container align-items-center"
   role="option"
 >
   <div
@@ -35,10 +34,9 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
-  aria-checked={true}
   aria-posinset={2}
   aria-selected={true}
-  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+  className="uui-focus pickerRow container -clickable align-items-center"
   onClick={[Function]}
   role="option"
 >
@@ -66,11 +64,10 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       <div
         className="iconWrapper"
       >
-        <div
-          className="root icon-color-blue uui-button-box uui-enabled"
+        <button
+          className="container uui-button-box uui-enabled root icon-color-blue"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={null}
         >
@@ -89,7 +86,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
