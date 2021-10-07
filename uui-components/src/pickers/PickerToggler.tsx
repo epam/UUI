@@ -49,7 +49,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onValueChange && this.props.onValueChange(e.target.value);
-    };
+    }
 
     handleFocus = (e?: React.FocusEvent<HTMLInputElement>) => {
         this.props.onFocus && this.props.onFocus(e);

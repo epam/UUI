@@ -3,9 +3,10 @@ import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
-    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler,
+    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
+    IDropdownToggler, DataSourceListProps,
 } from '@epam/uui';
-import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams } from './index';
+import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
@@ -46,8 +47,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     ];
 
     abstract toggleModalOpening(opened: boolean): void;
-    abstract renderTarget(props: IDropdownToggler): React.ReactNode;
-    abstract renderBody(props: DropdownBodyProps): React.ReactNode;
+    abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Partial<PickerBodyBaseProps>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps(props: PickerInputBaseProps<any, any>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
@@ -161,7 +162,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return opened;
     }
 
-    getPickerProps() {
+    getPickerProps(rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> {
         return  {
             value: this.getDataSourceState(),
             onValueChange: this.handleDataSourceValueChange,
@@ -175,6 +176,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 search: this.state.dataSourceState.search,
                 onClose: () => this.toggleBodyOpening(false),
             })),
+            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
         };
     }
 
@@ -264,10 +266,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     render() {
+        const rows = this.getRows();
+        const togglerProps = this.getTogglerProps(rows);
+        const pickerBodyProps = {
+            ...this.getListProps(),
+            ...this.getPickerProps(rows),
+        };
+
         return (
             <Dropdown
-                renderTarget={ dropdownProps => this.renderTarget(dropdownProps) }
-                renderBody={ props => this.renderBody(props) }
+                renderTarget={ dropdownProps => this.renderTarget({ ...dropdownProps, ...togglerProps }) }
+                renderBody={ props => this.renderBody({ ...props, ...pickerBodyProps }, rows) }
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
                 placement={ this.props.dropdownPlacement }

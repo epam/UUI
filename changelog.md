@@ -1,9 +1,13 @@
-# 4.2.6[WIP]
+# 4.3.0[WIP]
 
 **What's New**
 
 **What’s Fixed**
-[ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
+* [ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
+* [PickerInput, PickerToggler, DataPickerRow, DataPickerBody]: moved part of logic to uui-components.
+* [DataTable]: refactor to FunctionalComponent, create useColumnsConfig hook.
+* [PickerToggler][Loveship][Breaking Change]: renamed interface PickerInputMods to PickerTogglerMods
+* [DataPickerFooter][Breaking Change]: changed interface DataPickerFooterProps
 
 # 4.2.5 - 28.09.2021
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { DataRowProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui';
-import { DropdownBodyProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui';
+import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
@@ -62,62 +62,37 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         );
     }
 
-    getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> & PickerTogglerMods {
+    getTogglerMods(): PickerTogglerMods {
         return {
-            ...super.getTogglerProps(rows),
             size: this.props.size as PickerTogglerMods['size'],
             mode: this.props.mode ? this.props.mode : EditMode.FORM,
         };
     }
 
     renderFooter() {
-        const view = this.getView();
+        const footerProps = this.getFooterProps();
 
         return this.props.renderFooter
-            ? this.props.renderFooter({
-                ...this.props as any,
-                view: view,
-                showSelected: {
-                    value: this.state.showSelected,
-                    onValueChange: (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState } }),
-                },
-            })
-            : (
-                <DataPickerFooter
-                    isSingleSelect={ this.isSingleSelect() }
-                    size={ this.props.size }
-                    hasSelection={ view.getSelectedRows().length > 0 }
-                    clearSelection={ this.clearSelection }
-                    switchValue={ this.state.showSelected }
-                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
-                    selectAll={ view.selectAll }
-                />
-            );
+            ? this.props.renderFooter(footerProps)
+            : <DataPickerFooter { ...footerProps } size={ this.props.size }/>;
     }
 
-    renderTarget(dropdownProps: IDropdownToggler): React.ReactNode {
-        const rows = this.getRows();
+    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode {
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         return (
             <IEditableDebouncer
                 value={ this.state.dataSourceState.search }
                 onValueChange={ this.handleTogglerSearchChange }
-                render={ editableProps => renderTarget({ ...this.getTogglerProps(rows), ...dropdownProps, ...editableProps }) }
+                render={ editableProps => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
             />
         );
     }
 
-    renderBody(props: DropdownBodyProps) {
-        const rows = this.getRows();
+    renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
         const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow(props));
-
-        const maxHeight = isMobile()
-            ? document.documentElement.clientHeight
-            : (this.props.dropdownHeight || pickerHeight);
-        const minBodyWidth = isMobile()
-            ? document.documentElement.clientWidth 
-            : (this.props.minBodyWidth || pickerWidth);
+        const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
+        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
         
         return (
             <Panel
@@ -131,16 +106,13 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                     close={ () => this.toggleBodyOpening(false) }
                 >
                     <DataPickerBody
-                        { ...this.getListProps() }
-                        { ...this.getPickerProps() }
+                        { ...props }
                         rows={ renderedDataRows }
                         maxHeight={ maxHeight }
-                        onKeyDown={ (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e) }
-                        scheduleUpdate={ props.scheduleUpdate }
                         searchSize={ this.props.size }
                         editMode='dropdown'
                     />
-                    { this.renderFooter() }
+                    { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>
             </Panel>
         );
