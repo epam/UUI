@@ -1,10 +1,12 @@
 import { DataRowProps, DataColumnProps } from "@epam/uui";
+import React from "react";
 import { ControlSize, EpamColor } from "..";
 
 export interface DataTableCellProps<TItem, TId> {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     role?: React.HTMLAttributes<HTMLElement>['role'];
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
 interface BaseRowMods {
