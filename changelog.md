@@ -1,3 +1,12 @@
+# 4.2.6[WIP]
+
+**What's New**
+
+**What’s Fixed**
+* [ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
+* [TimePicker]: fix incorrect behaviour after click onClear
+* [SliderRating]: fix too many rendered tooltips so that rendering of the SliderRation does not hangs
+
 # 4.2.5 - 28.09.2021
 
 **What's New**

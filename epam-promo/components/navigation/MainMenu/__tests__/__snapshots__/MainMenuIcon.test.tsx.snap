@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
-<div
-  className="root icon-color-gray60 uui-button-box uui-enabled container"
+<button
+  className="container uui-button-box uui-enabled root icon-color-gray60 container"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
   tabIndex={null}
 >
@@ -24,14 +23,13 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;
 
 exports[`MainMenuIcon should be rendered correctly 2`] = `
 <a
-  className="root icon-color-gray60 uui-button-box uui-enabled -clickable container"
+  className="container uui-button-box uui-enabled -clickable root icon-color-gray60 container"
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="link"
   tabIndex={null}
   target="_blank"

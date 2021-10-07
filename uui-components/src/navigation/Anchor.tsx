@@ -12,7 +12,7 @@ import {
     cx,
 } from '@epam/uui';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLElement> {}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement> {}
 
 export class Anchor extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
@@ -47,6 +47,8 @@ export class Anchor extends ButtonBase<AnchorProps> {
             target: this.props.target,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
+            disabled: this.props.isDisabled,
+            "aria-disabled": this.props.isDisabled,
             ...this.props.rawProps,
         }, this.props.children);
     }

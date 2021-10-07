@@ -78,11 +78,10 @@ exports[`PickerModal should be rendered correctly 1`] = `
             }
           }
         >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -101,7 +100,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -215,10 +214,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    aria-checked={false}
                     aria-posinset={1}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -249,10 +247,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={2}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -283,10 +280,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={3}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -317,10 +313,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={4}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -351,10 +346,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={5}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -385,10 +379,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={6}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -419,10 +412,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={7}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -453,10 +445,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={8}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -487,10 +478,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={9}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -521,10 +511,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={10}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -555,10 +544,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={11}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -640,11 +628,10 @@ exports[`PickerModal should be rendered correctly 1`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -653,12 +640,11 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             Cancel
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -667,7 +653,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           >
             Select
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -767,11 +753,10 @@ exports[`PickerModal should be rendered correctly 2`] = `
             }
           }
         >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -790,7 +775,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -930,7 +915,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={1}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -987,7 +972,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={2}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1044,7 +1029,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={3}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1101,7 +1086,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={4}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1158,7 +1143,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={5}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1215,7 +1200,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={6}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1272,7 +1257,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={7}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1329,7 +1314,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={8}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1386,7 +1371,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={9}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1443,7 +1428,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={10}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1500,7 +1485,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={11}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1603,11 +1588,10 @@ exports[`PickerModal should be rendered correctly 2`] = `
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
       >
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -1616,15 +1600,14 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             SELECT ALL
           </div>
-        </div>
+        </button>
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -1633,12 +1616,11 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             Cancel
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -1647,7 +1629,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           >
             Select
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

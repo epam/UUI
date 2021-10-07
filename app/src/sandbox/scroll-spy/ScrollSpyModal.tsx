@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
+import { useScrollSpy } from '@epam/uui-components';
 import { FlexSpacer, Button, FlexCell, FlexRow, LinkButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Panel, ScrollBars, Text } from '@epam/promo';
 import * as css from './ScrollSpyReader.scss';
-import { useScrollSpy } from './ScrollSpy';
 import { svc } from '../../services';
 
 export function ScrollSpyModal() {
@@ -30,8 +30,8 @@ export function ScrollSpyModal() {
                                 color='green'
                                 caption='Ok'
                                 onClick={ () => {
-                                    modalProps.abort();
                                     scrollToElement('b');
+                                    setTimeout(() => modalProps.abort(), 1000);
                                 } }
                             />
                         </ModalFooter>
@@ -50,6 +50,7 @@ export function ScrollSpyModal() {
                     <LinkButton
                         isLinkActive={currentActive === link.id}
                         key={link.id}
+                        cx={ css.spyLink }
                         onClick={() => scrollToElement(link.id)}
                         caption={link.caption}
                         href={`#${link.id}`}
@@ -59,10 +60,7 @@ export function ScrollSpyModal() {
             <FlexCell grow={ 5 }>
                 <section ref={setRef}>
                     <Text font='museo-slab' size='48' cx={ css.content } lineHeight='30'>
-                        <section data-spy='a'>
-                            <Text data- cx={css.header} color='gray90'>Section 1</Text>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
-                        </section>
+                        <Text rawProps={{ 'data-spy': 'a' }} cx={css.header} color='gray90'>Section 1</Text>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
@@ -70,10 +68,9 @@ export function ScrollSpyModal() {
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
-                        <section data-spy='b'>
-                            <Text cx={css.header} color='gray90'>Section 2</Text>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
-                        </section>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
+                        <Text rawProps={{ 'data-spy': 'b' }} cx={css.header} color='gray90'>Section 2</Text>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde voluptates veritatis laborum, dolores atque, quos soluta nisi delectus placeat id dolor consectetur quas optio vero possimus quae accusamus rerum quod!
                     </Text>
                 </section>
             </FlexCell>

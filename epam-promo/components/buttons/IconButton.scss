@@ -1,8 +1,6 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    @include button-reset();
-    cursor: pointer;
     fill: var(--icon-color);
 
     &:global(.-clickable) {
@@ -17,7 +15,6 @@
 
     &:global(.uui-disabled) {
         fill: var(--icon-color-disabled);
-        cursor: default;
 
         &:global(.-clickable) {
             &:hover, &:focus {

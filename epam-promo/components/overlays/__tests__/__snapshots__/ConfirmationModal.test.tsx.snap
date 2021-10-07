@@ -78,11 +78,10 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             }
           }
         >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -101,7 +100,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -182,11 +181,10 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -195,12 +193,11 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           >
             Discard
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -209,7 +206,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           >
             Save
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -309,11 +306,10 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
             }
           }
         >
-          <div
-            className="root icon-color-gray60 uui-button-box uui-enabled -clickable"
+          <button
+            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -332,7 +328,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
                 />
               </svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div
@@ -421,11 +417,10 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         <div
           className="flexSpacer"
         />
-        <div
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -434,12 +429,11 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           >
             Discard
           </div>
-        </div>
-        <div
+        </button>
+        <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
           tabIndex={0}
         >
@@ -448,7 +442,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           >
             Save
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>

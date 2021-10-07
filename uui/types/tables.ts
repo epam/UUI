@@ -132,6 +132,9 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** True if row is checked with checkbox */
     isChecked?: boolean;
 
+    /** True if row has checkbox and can be checkable */
+    isCheckable?: boolean;
+
     /** True if some of row's children are checked.
      * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
     isChildrenChecked?: boolean;

@@ -13,6 +13,12 @@ export class SidebarButton extends React.Component<SidebarButtonProps, any> {
     render() {
         return <Button
             { ...this.props }
+            rawProps={{
+                role: this.props.isDropdown ? undefined : 'tab',
+                "aria-expanded": this.props.isDropdown,
+                "aria-disabled": this.props.isDisabled,
+                "aria-current": this.props.isActive
+            }}
             cx={ cx(
                 css.root,
                 this.props.isActive && css.active,

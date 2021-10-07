@@ -61,7 +61,6 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                     value={ this.getDataSourceState() }
                     onValueChange={ this.handleDataSourceValueChange }
                     maxHeight={ maxHeight }
-                    showSelectedRows={ true }
                     rows={ renderedDataRows }
                     search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                     showSearch={ this.props.showSearch }
