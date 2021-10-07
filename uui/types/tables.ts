@@ -64,7 +64,7 @@ export interface DataTableCellProps<TItem, TId> {
 }
 
 export interface DataRowOptions<TItem, TId> extends IDisableable {
-    checkbox?: { isVisible: boolean, tabIndex?: number } & IDisableable & ICanBeInvalid;
+    checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
     isSelectable?: boolean;
     dnd?: IDndActor<any, any>;
     onClick?(rowProps: DataRowProps<TItem, TId>): void;
