@@ -35,7 +35,7 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
         return showSearch as boolean;
     }
 
-    handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         this.props.onKeyDown && this.props.onKeyDown(e);
         if (e.shiftKey && e.key === 'Tab') e.preventDefault();
     }
