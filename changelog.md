@@ -8,7 +8,6 @@
 * [SliderRating]: fix too many rendered tooltips so that rendering of the SliderRation does not hangs.
 * [PickerInput, PickerToggler, DataPickerRow, DataPickerBody]: moved part of logic to uui-components.
 * [DataTable]: refactor to FunctionalComponent, create useColumnsConfig hook.
-* [PickerToggler][Loveship][Breaking Change]: renamed interface PickerInputMods to PickerTogglerMods.
 * [DataPickerFooter][Breaking Change]: changed interface DataPickerFooterProps.
 
 # 4.2.5 - 28.09.2021

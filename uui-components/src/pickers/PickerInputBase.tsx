@@ -162,7 +162,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return opened;
     }
 
-    getPickerProps(rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> {
+    getPickerBodyProps(rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> {
         return  {
             value: this.getDataSourceState(),
             onValueChange: this.handleDataSourceValueChange,
@@ -270,7 +270,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         const togglerProps = this.getTogglerProps(rows);
         const pickerBodyProps = {
             ...this.getListProps(),
-            ...this.getPickerProps(rows),
+            ...this.getPickerBodyProps(rows),
         };
 
         return (
