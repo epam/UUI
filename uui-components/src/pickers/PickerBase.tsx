@@ -1,5 +1,8 @@
 import * as React from 'react';
-import {DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource, IModal, IEditable, IAnalyticableOnChange} from "@epam/uui";
+import {
+    DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource,
+    IEditable, IAnalyticableOnChange, DataSourceListProps,
+} from '@epam/uui';
 import { PickerBindingProps } from './bindingHelpers';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
@@ -22,9 +25,10 @@ export type PickerBaseOptions<TItem, TId> = {
     renderFooter?: (props: PickerFooterProps<TItem, TId>) => React.ReactNode;
 };
 
-export type PickerFooterProps<TItem, TId> =  IModal<any> & PickerBaseProps<TItem, TId> & {
+export type PickerFooterProps<TItem, TId> = {
     view: IDataSourceView<TItem, TId, any>;
     showSelected: IEditable<boolean>;
+    clearSelection: () => void;
 };
 
 export type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
@@ -75,7 +79,6 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         return entityName + 's';
     }
 
-
     getEntityName = (countSelected?: number) => {
         if (!this.props.entityName && !this.props.entityPluralName || (!this.props.entityName && countSelected === 1)) {
             return '';
@@ -86,7 +89,6 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
 
         return this.props.entityPluralName ? this.props.entityPluralName : this.getPluralName();
     }
-
 
     isSingleSelect = () => {
         return this.props.selectionMode == 'single';
@@ -160,8 +162,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
-
-    getListProps() {
+    getListProps(): DataSourceListProps {
         const view = this.getView();
         const listProps = view.getListProps();
         if (this.state.showSelected) {
@@ -186,5 +187,19 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             sortBy: this.props.sortBy,
             isFoldedByDefault: this.props.isFoldedByDefault,
         });
+    }
+
+    getFooterProps = (): PickerFooterProps<TItem, TId> => {
+        return {
+            view: this.getView(),
+            showSelected: {
+                value: this.state.showSelected,
+                onValueChange: (nV: boolean) => this.setState({
+                    showSelected: nV,
+                    dataSourceState: { ...this.state.dataSourceState },
+                }),
+            },
+            clearSelection: this.clearSelection,
+        };
     }
 }
