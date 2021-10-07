@@ -75,8 +75,8 @@ describe.only('useForm', () => {
         expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
         expect(result.current.isInvalid).toBe(false);
 
-        await act(result.current.save);
-        waitFor(() => expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(true));
+        act(() => result.current.save());
+        expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(true);
         expect(result.current.isInvalid).toBe(true);
 
         act(() => result.current.lens.prop('dummy').set('hello'));
@@ -115,7 +115,7 @@ describe.only('useForm', () => {
 
     it('Should return isInvalid as false for 1 or more invalid fields', async () => {
         const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
-        const { result, waitFor } = renderHook(() => useForm<IFoo>({
+        const { result } = renderHook(() => useForm<IFoo>({
             value: testData,
             onSave: Promise.resolve,
             onError: jest.fn(),
@@ -125,20 +125,19 @@ describe.only('useForm', () => {
         expect(result.current.isInvalid).toBe(false);
 
         await act(result.current.save);
-        waitFor(() => expect(result.current.isInvalid).toBe(true));
+        expect(result.current.isInvalid).toBe(true);
 
         act(() => result.current.lens.prop('dummy').set('hello'));
-        waitFor(() => expect(result.current.isInvalid).toBe(true));
-
+        expect(result.current.isInvalid).toBe(true);
         act(() => result.current.lens.prop('tummy').set('hi'));
-        waitFor(() => expect(result.current.isInvalid).toBe(false));
+        expect(result.current.isInvalid).toBe(false);
     });
 
     it('Should show the same value, if you: save => leave => come back', async () => {
         const saveMock = jest.fn().mockResolvedValue(false);
         const beforeLeaveMock = jest.fn().mockResolvedValue(false);
 
-        const { result, waitFor } = renderHook(() => useForm<IFoo>({
+        const { result } = renderHook(() => useForm<IFoo>({
             value: testData,
             onSave: saveMock,
             beforeLeave: beforeLeaveMock,
@@ -147,11 +146,12 @@ describe.only('useForm', () => {
         }), { wrapper });
 
         act(() => result.current.lens.prop('dummy').set('hi'));
-        waitFor(() => expect(result.current.isChanged).toBe(true));
 
+        expect(result.current.isChanged).toBe(true)
         expect(result.current.isInvalid).toBe(false);
-        expect(beforeLeaveMock).toHaveBeenCalled();
+        expect(beforeLeaveMock).toHaveBeenCalled()
         expect(saveMock).toHaveBeenCalled();
+        console.log(result.current)
     });
 
     it('Should undo to previous value, redo to the next value', () => {});
