@@ -10,6 +10,7 @@ import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from "./responsive/Responsive";
+import { UseFormDemo } from './use-form/UseFormDemo';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -19,6 +20,7 @@ export const SandboxPage = () => {
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },
+        { id: 'useFormDemo', name: 'UseForm', component: UseFormDemo }
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {

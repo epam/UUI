@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { mergeValidation, UuiContexts, validate as uuiValidate, validateServerErrorState } from '../../index';
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
@@ -22,7 +22,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const [formState, setFormState] = useState<FormComponentState<T>>(initialForm.current);
 
-    const lens = useRef(new LensBuilder<T, T>({
+    const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.form,
         set: (_, small: T) => {
             handleFormUpdate(small);
@@ -34,7 +34,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.form) : {},
-    }));
+    }), [props.value]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -48,15 +48,6 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 .catch(lock => context.uuiLocks.release(lock));
         };
     }, []);
-
-    useEffect(() => {
-        if (formState.isChanged && props.beforeLeave) {
-            props.beforeLeave && context.uuiLocks.withLock(handleLeave).then(receivedLock => {
-                lock.current == receivedLock;
-                resetForm({ ...formState, form: props.value });
-            });
-        } else resetForm({ ...formState, form: props.value, formHistory: [props.value] });
-    }, [props.value]);
 
     const setUnsavedChanges = (form: T) => {
         return context.uuiUserSettings.set(props.settingsKey, form);
@@ -80,7 +71,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             ...formState,
             form: newForm,
             isChanged: !isEqual(props.value, newForm),
-            validationState: validationState,
+            validationState,
             historyIndex: newHistoryIndex,
             formHistory: newFormHistory,
         });
@@ -181,7 +172,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     return {
         isChanged: formState.isChanged,
-        lens: lens.current,
+        lens,
         save: handleSave,
         undo: handleUndo,
         redo: handleRedo,
