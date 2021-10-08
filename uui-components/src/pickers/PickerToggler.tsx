@@ -169,7 +169,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         return (
             <div
-                onMouseDown={ !this.props.isDisabled && !this.props.isReadonly ? this.handleClick : null }
+                onClick={ !this.props.isDisabled && !this.props.isReadonly ? this.handleClick : null }
                 ref={ el => this.toggleContainer = el }
                 className={ cx(css.container,
                     uuiElement.inputBox,
