@@ -1,4 +1,4 @@
-# 4.2.6[WIP]
+# 4.3.0[WIP]
 
 **What's New**
 
@@ -7,6 +7,7 @@
 * [TimePicker]: fix incorrect behaviour after click onClear
 * [SliderRating]: fix too many rendered tooltips so that rendering of the SliderRation does not hang
 * [Rating, SliderRating]: fix invalid behavior of reverting back to selected value after mouse leave
+* [DataTableCell][Breaking Change]: removed labelColor prop from Loveship skin, reusePadding from Loveship & Promo skins, reworked html structure
 
 # 4.2.5 - 28.09.2021
 
