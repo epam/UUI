@@ -5,7 +5,7 @@ import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
 import { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
 
-type UseFormProps<T> = Omit<FormProps<T>, 'renderForm' | 'prevProps'>;
+export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm' | 'prevProps'>;
 
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
@@ -34,7 +34,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.form) : {},
-    }), [props.value]);
+    }), [props.value, formState.form, formState.validationState]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -49,12 +49,23 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         };
     }, []);
 
+    useEffect(() => {
+        if (formState.isChanged && props.beforeLeave) {
+            context.uuiLocks.withLock(handleLeave).then(acquiredLock => {
+                lock.current = acquiredLock;
+                resetForm({ ...formState, form: props.value });
+            });
+        }  else if (!isEqual(props.value, initialForm.current.form)) {
+            resetForm({ ...formState, form: props.value, formHistory: [props.value] });
+        }
+    }, [props.value]);
+
     const setUnsavedChanges = (form: T) => {
-        return context.uuiUserSettings.set(props.settingsKey, form);
+        context.uuiUserSettings.set(props.settingsKey, form);
     };
 
     const removeUnsavedChanges = () => {
-        return context.uuiUserSettings.set(props.settingsKey, null);
+        context.uuiUserSettings.set(props.settingsKey, null);
     };
 
     const getUnsavedChanges = (): T => {
@@ -65,13 +76,13 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         const { validationState, historyIndex, formHistory } = formState;
         const newHistoryIndex = historyIndex + 1;
         const newFormHistory = formHistory.slice(0, newHistoryIndex).concat(newForm);
-        !lock.current && getLock();
+        if (!lock.current) getLock();
         setUnsavedChanges(newForm);
         setFormState({
             ...formState,
             form: newForm,
             isChanged: !isEqual(props.value, newForm),
-            validationState,
+            validationState: validationState.isInvalid ? handleValidate(newForm) : validationState,
             historyIndex: newHistoryIndex,
             formHistory: newFormHistory,
         });
@@ -102,21 +113,24 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         setFormState({ ...initialForm.current, ...withNewState });
     };
 
-    const handleValidate = (newVal?: any) => {
+    const handleValidate = (newVal?: T) => {
         const valueToValidate = newVal || formState.form;
         const metadata = props.getMetadata ? props.getMetadata(valueToValidate) : {};
         return uuiValidate(valueToValidate, metadata);
     };
 
-    const handleSave = async (): Promise<void> => {
+    const handleSave = () => {
         const validationState = handleValidate();
         setFormState({ ...formState, validationState });
 
         if (!validationState.isInvalid) {
             setFormState({ ...formState, isInProgress: true });
-            return props.onSave(formState.form).then(handleSaveResponse).catch(err => props.onError?.(err));
-        }
-    };
+
+            return props.onSave(formState.form)
+                .then(handleSaveResponse)
+                .catch(err => props.onError?.(err));
+        } else return Promise.reject();
+    }
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: FormComponentState<T> = {
@@ -124,7 +138,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             form: response && response.form || formState.form,
             isInProgress: false,
             serverValidationState: response && response.validation || formState.serverValidationState,
-            lastSentForm: response && response.validation.isInvalid ? (response.form || formState.form) : formState.lastSentForm,
+            lastSentForm: response && response.validation?.isInvalid ? (response.form || formState.form) : formState.lastSentForm,
         };
 
         if (response && response.validation) return setFormState(newState);
