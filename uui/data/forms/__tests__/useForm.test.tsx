@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, cleanup, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook, cleanup } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
 import { ContextProvider} from '../../..';
 import { UseFormProps } from '..';
@@ -7,7 +7,6 @@ import { testSvc } from '@epam/test-utils';
 
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
-    afterEach(cleanup);
 
     interface IFoo {
         dummy: string;
@@ -37,6 +36,7 @@ describe('useForm', () => {
         return {
             result,
             rerender: () => rerender({ ...props, children: undefined }),
+            waitForNextUpdate,
             ...rest
         };
     }
@@ -64,9 +64,8 @@ describe('useForm', () => {
             getMetadata: () => testMetadata,
         });
 
-        await handleSave(result.current.save).then(() => {
-            expect(result.current.isInvalid).toBe(true)
-        });
+        await handleSave(result.current.save);
+        expect(result.current.isInvalid).toBe(true)
 
         act(() => result.current.lens.prop("dummy").set("hello"));
         expect(result.current.isInvalid).toBe(false);
@@ -137,9 +136,8 @@ describe('useForm', () => {
 
         expect(result.current.isInvalid).toBe(false);
 
-        await handleSave(result.current.save).then(() => {
-            expect(result.current.isInvalid).toBe(true);
-        });
+        await handleSave(result.current.save);
+        expect(result.current.isInvalid).toBe(true);
 
         act(() => result.current.lens.prop('dummy').set('hello'));
         expect(result.current.isInvalid).toBe(true);
@@ -188,12 +186,57 @@ describe('useForm', () => {
         expect(result.current.isChanged).toBe(true);
     });
 
-    it('Should revert and load last passed value', () => {
+    it('Should revert and load last passed value', async () => {
+        const { result } = await getHookProps({
+            value: testData,
+            onSave: Promise.resolve,
+            beforeLeave: () => Promise.resolve(false),
+            getMetadata: () => testMetadata,
+        });
 
+        act(() => result.current.lens.prop('dummy').set('hi'));
+        expect(result.current.isChanged).toBe(true);
+        expect(result.current.value.dummy).toBe('hi');
+
+        act(() => result.current.lens.prop('dummy').set('hello'));
+        expect(result.current.value.dummy).toBe('hello');
+
+        act(() => result.current.revert());
+        expect(result.current.value.dummy).toBe(testData['dummy']);
     });
 
-    it('Should have a lock on the first form change, release lock on save', () => {});
-    it('Should call beforeLeave after component unmount', () => {});
+    it('Should have a lock on the first form change, release lock on save', async () => {
+        const { result } = await getHookProps({
+            value: testData,
+            onSave: person => Promise.resolve({ form: person }),
+            beforeLeave: () => Promise.resolve(false),
+            getMetadata: () => testMetadata,
+        });
+
+        act(() => result.current.lens.prop('dummy').set('hi'));
+        expect(result.current.isChanged).toBe(true);
+        expect(testSvc.uuiLocks.getCurrentLock()).not.toBe(null);
+
+        await handleSave(result.current.save);
+        expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
+    });
+
+    it('Should call beforeLeave after component unmount', async () => {
+        const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+        const { result, unmount } = await getHookProps({
+            value: testData,
+            onSave: data => Promise.resolve({ form: data }),
+            beforeLeave: beforeLeaveMock,
+            getMetadata: () => testMetadata,
+        });
+
+        act(() => result.current.lens.prop("dummy").set("hi"));
+        expect(result.current.isChanged).toBe(true);
+
+        unmount();
+        expect(beforeLeaveMock).toHaveBeenCalled();
+    });
+
     it('Should store unsaved data to localstorage', () => {});
     it('Should clear unsaved data in localstorage after save', () => {});
     it('Should call onError if onSave promise is rejected', () => {});

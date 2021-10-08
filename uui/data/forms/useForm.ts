@@ -34,7 +34,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.form) : {},
-    }), [props.value, formState.form, formState.validationState]);
+    }), [props.value, formState.form, formState.validationState, formState.lastSentForm]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -43,21 +43,20 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
         return () => {
             if (!lock.current) return;
-            context.uuiLocks.acquire(Promise.resolve)
+            context.uuiLocks.acquire(() => Promise.resolve())
                 .then(lock => context.uuiLocks.release(lock))
                 .catch(lock => context.uuiLocks.release(lock));
         };
     }, []);
 
     useEffect(() => {
+        if (isEqual(props.value, initialForm.current.form)) return;
         if (formState.isChanged && props.beforeLeave) {
             context.uuiLocks.withLock(handleLeave).then(acquiredLock => {
                 lock.current = acquiredLock;
                 resetForm({ ...formState, form: props.value });
             });
-        }  else if (!isEqual(props.value, initialForm.current.form)) {
-            resetForm({ ...formState, form: props.value, formHistory: [props.value] });
-        }
+        }  else resetForm({ ...formState, form: props.value, formHistory: [props.value] });
     }, [props.value]);
 
     const setUnsavedChanges = (form: T) => {

@@ -26,6 +26,7 @@ export function UseFormDemo() {
     const { save, lens } = useForm<Artist>({
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: person => console.log({ person }),
+        beforeLeave: () => Promise.resolve().then(() => console.log('Goodbye')).then(),
         onError: Promise.reject,
         getMetadata: () => ({
             props: {
