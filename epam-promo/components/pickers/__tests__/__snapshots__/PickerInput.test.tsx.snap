@@ -4,9 +4,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
+  onMouseDown={[Function]}
   tabIndex={0}
 >
   <div
@@ -49,9 +49,9 @@ exports[`PickerInput should be rendered correctly 2`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
+  onMouseDown={[Function]}
   tabIndex={0}
 >
   <div
