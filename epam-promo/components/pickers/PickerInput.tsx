@@ -113,9 +113,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             ? document.documentElement.clientHeight
             : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile()
-            ? document.documentElement.clientWidth 
+            ? document.documentElement.clientWidth
             : (this.props.minBodyWidth || pickerWidth);
-        
+
         return (
             <Dropdown
                 renderTarget={ dropdownProps =>
