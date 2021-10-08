@@ -24,6 +24,10 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const switchSize = switchSizes[size as keyof typeof switchSizes];
     const hasSelection = view.getSelectedRows().length > 0;
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
+    };
+
     return (
         <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
             <Switch
@@ -48,6 +52,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                             ? clearSelection
                             : () => view.selectAll.onValueChange(true)
                         }
+                        rawProps={ { onKeyDown: handleKeyDown } }
                     />
                 </FlexCell>
             ) }
