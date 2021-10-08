@@ -55,6 +55,7 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
         return <Tag
                 key={ row.id }
                 caption={ caption }
+                tabIndex={ -1 }
                 size={ this.props.size ? this.getPickerTogglerButtonSize(this.props.size) : '30' }
                 onClear={ e => {
                     row.onCheck && row.onCheck(row);

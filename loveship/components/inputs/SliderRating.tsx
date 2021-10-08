@@ -88,7 +88,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                 </div>
                 { this.renderTooltipBox(rating) }
                 <div className={ cx(css.handler, css[`size-${size}`], !rating && css.hidden) } style={ { left: left } } ref={ (handler) => { this.handlerWidth = handler && handler.offsetWidth; } }>
-                    <Tooltip content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
+                    <Tooltip cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
                         <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) }/>
                     </Tooltip>
                 </div>
@@ -150,7 +150,7 @@ const TooltipBox = (props: TooltipBoxProps) => {
             ref={ tooltipBoxRef }
             onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }
         >
-            <Tooltip placement='top' content={ content }>
+            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
                 <div className={ css.tooltipsBoxItem } style={ {
                     left: `${left - 1}px`,
                     top: `${topPosition}px`,
@@ -158,7 +158,7 @@ const TooltipBox = (props: TooltipBoxProps) => {
                 } }
                 />
             </Tooltip>
-            <Tooltip placement='top' content={ content }>
+            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
                 <div className={ css.tooltipsBoxItem } style={ {
                     left: `${left}px`,
                     top: `${topPosition}px`,
@@ -166,7 +166,7 @@ const TooltipBox = (props: TooltipBoxProps) => {
                 } }
                 />
             </Tooltip>
-            <Tooltip placement='top' content={ content }>
+            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
                 <div className={ css.tooltipsBoxItem } style={ {
                     left: `${left + 1}px`,
                     top: `${topPosition}px`,
