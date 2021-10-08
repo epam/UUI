@@ -41,7 +41,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             cx={ css.search }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             { ...this.searchLens.toProps() }
-                            onKeyDown={ this.props.onKeyDown }
+                            onKeyDown={ this.searchKeyDown }
                             size={ searchSize }
                         />
                     </FlexCell>
