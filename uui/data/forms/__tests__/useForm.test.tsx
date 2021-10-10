@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { act, renderHook, cleanup } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
 import { ContextProvider} from '../../..';
 import { UseFormProps } from '..';
@@ -35,7 +35,7 @@ describe('useForm', () => {
         await waitForNextUpdate();
         return {
             result,
-            rerender: () => rerender({ ...props, children: undefined }),
+            rerender: (nextProps?: UseFormProps<IFoo>) => rerender({ ...props, children: undefined, ...nextProps }),
             waitForNextUpdate,
             ...rest
         };
@@ -146,10 +146,10 @@ describe('useForm', () => {
     });
 
     it('Should show the same value, if you: save => leave => come back', async () => {
-        const saveMock = jest.fn().mockImplementation(Promise.resolve);
+        const saveMock = jest.fn().mockResolvedValue({ form: {} });
         const beforeLeaveMock = jest.fn().mockResolvedValue(true);
 
-        const { result } = await getHookProps({
+        const { result, waitFor } = await getHookProps({
             value: testData,
             onSave: saveMock,
             beforeLeave: beforeLeaveMock,
@@ -161,10 +161,11 @@ describe('useForm', () => {
 
         expect(result.current.isChanged).toBe(true);
         await act(() => testSvc.uuiLocks.acquire(() => Promise.resolve()));
-
-        expect(result.current.isInvalid).toBe(false);
-        expect(beforeLeaveMock).toHaveBeenCalled();
-        expect(saveMock).toHaveBeenCalled();
+        waitFor(() => {
+            expect(result.current.isInvalid).toBe(false);
+            expect(beforeLeaveMock).toHaveBeenCalled();
+            expect(saveMock).toHaveBeenCalled();
+        })
     });
 
     it('Should undo to previous value, redo to the next value', async () => {
@@ -222,8 +223,8 @@ describe('useForm', () => {
     });
 
     it('Should call beforeLeave after component unmount', async () => {
-        const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-        const { result, unmount } = await getHookProps({
+        const beforeLeaveMock = jest.fn().mockResolvedValueOnce(true);
+        const { result, unmount, waitFor } = await getHookProps({
             value: testData,
             onSave: data => Promise.resolve({ form: data }),
             beforeLeave: beforeLeaveMock,
@@ -234,13 +235,95 @@ describe('useForm', () => {
         expect(result.current.isChanged).toBe(true);
 
         unmount();
-        expect(beforeLeaveMock).toHaveBeenCalled();
+        waitFor(() => {
+            expect(beforeLeaveMock).toHaveBeenCalled();
+        });
     });
 
-    it('Should store unsaved data to localstorage', () => {});
-    it('Should clear unsaved data in localstorage after save', () => {});
-    it('Should call onError if onSave promise is rejected', () => {});
-    it('Should restore data from local storage after leaving form without saving changes', () => {});
+    it('Should store unsaved data to localstorage', async () => {
+        const settingsKey = 'form-test';
+        const { result } = await getHookProps({
+            value: testData,
+            settingsKey,
+            onSave: Promise.resolve,
+            beforeLeave: () => Promise.resolve(false),
+            getMetadata: () => testMetadata,
+        });
+
+        act(() => result.current.lens.prop('dummy').set('hi'));
+        expect(testSvc.uuiUserSettings.get(settingsKey).dummy).toBe('hi');
+        act(() => testSvc.uuiUserSettings.set(settingsKey, null));
+    });
+
+    it('Should clear unsaved data in localstorage after save', async () => {
+        const settingsKey = 'form-test';
+        const onSuccessSpy = jest.fn();
+        const onErrorSpy = jest.fn();
+
+        const { result } = await getHookProps({
+            value: testData,
+            settingsKey,
+            onSave: data => Promise.resolve({ form: data }),
+            beforeLeave: () => Promise.resolve(false),
+            onSuccess: onSuccessSpy,
+            onError: onErrorSpy,
+            getMetadata: () => testMetadata,
+        });
+
+        act(() => result.current.lens.prop('dummy').set('hi'));
+        expect(testSvc.uuiUserSettings.get(settingsKey).dummy).toBe('hi');
+
+        await handleSave(result.current.save);
+        expect(testSvc.uuiUserSettings.get(settingsKey)).toBe(null);
+        expect(onSuccessSpy).toHaveBeenCalled();
+    });
+
+    it('Should call onError if onSave promise is rejected', async () => {
+        const onSuccessSpy = jest.fn();
+        const onErrorSpy = jest.fn();
+
+        const { result, waitFor } = await getHookProps({
+            value: testData,
+            onSave: () => Promise.reject('Failed'),
+            beforeLeave: () => Promise.resolve(false),
+            onSuccess: onSuccessSpy,
+            onError: onErrorSpy,
+            getMetadata: () => testMetadata,
+        });
+
+        await handleSave(result.current.save);
+        waitFor(() => {
+            expect(onErrorSpy).toHaveBeenCalled();
+        })
+    });
+
+    it('Should restore data from local storage after leaving form without saving changes', async () => {
+        const settingsKey = 'form-test';
+        const loadUnsavedChangesMock = jest.fn().mockImplementation(() => Promise.resolve());
+        const props = {
+            value: testData,
+            settingsKey,
+            onSave: data => Promise.resolve({ form: data }),
+            beforeLeave: () => Promise.resolve(false),
+            getMetadata: () => testMetadata,
+        };
+
+        const { result: firstRenderResult, unmount } = await getHookProps(props);
+
+        act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
+
+        unmount();
+
+        const { result: secondRenderResult, waitForNextUpdate } = await getHookProps({
+            ...props,
+            loadUnsavedChanges: loadUnsavedChangesMock,
+        });
+
+        await waitForNextUpdate();
+
+        expect(loadUnsavedChangesMock).toHaveBeenCalled();
+        expect(secondRenderResult.current.lens.prop("dummy").get()).toBe("hi");
+    });
 });
 
 describe('useForm server validation', () => {
