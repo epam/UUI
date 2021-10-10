@@ -110,7 +110,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
-        this.setState({ opened: false });
+        this.toggleDropdownOpening(false);
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
         this.focusToggler();
     }
