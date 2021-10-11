@@ -3,11 +3,17 @@
 **What's New**
 
 **What’s Fixed**
-* [ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
-* [TimePicker]: fix incorrect behaviour after click onClear
-* [SliderRating]: fix too many rendered tooltips so that rendering of the SliderRation does not hang
-* [Rating, SliderRating]: fix invalid behavior of reverting back to selected value after mouse leave
 * [DataTableCell][Breaking Change]: removed labelColor prop from Loveship skin, reusePadding from Loveship & Promo skins, reworked html structure
+
+# 4.2.6 - 07.10.2021
+
+**What’s Fixed**
+* [ArrayListView, LazyListView]: fix checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list;
+* [Form]: fix form validation after beforeLeave modal save action;
+* [TimePicker]: fix incorrect onClear behaviour;
+* [SliderRating]: improve performance; fix invalid behavior of reverting back to selected value after mouse leave;
+* [PickerInput]: close picker body when user lose focus from input;
+* [PickerInput]: fix 'body' scroll in mobile view;
 
 # 4.2.5 - 28.09.2021
 
