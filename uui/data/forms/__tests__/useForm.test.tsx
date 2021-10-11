@@ -14,7 +14,7 @@ async function handleSave(save: () => void) {
     }
 }
 
-async function getHookProps<T>(props: UseFormProps<T>) {
+async function mountHookWithContext<T>(props: UseFormProps<T>) {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
         <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
             { children }
@@ -50,7 +50,7 @@ describe('useForm', () => {
         const testData: IFoo = { dummy: '', tummy: '' };
 
         it('Should return isChanged as true whenever the lens is changed', async () => {
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 onSave: () => Promise.resolve(),
                 onError: () => Promise.resolve(),
                 value: testData,
@@ -65,7 +65,7 @@ describe('useForm', () => {
 
         it('Should correctly set isInvalid on form submit depending on the value', async () => {
             const onSaveSpy = jest.fn().mockResolvedValue(undefined);
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: onSaveSpy,
                 onError: jest.fn(),
@@ -82,7 +82,7 @@ describe('useForm', () => {
         });
 
         it('Should start validation on save and keep validation state valid values passed', async () => {
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -110,7 +110,7 @@ describe('useForm', () => {
             const saveMock = jest.fn().mockResolvedValue(false);
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
 
-            const { result, rerender } = await getHookProps<IFoo>({
+            const { result, rerender } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: saveMock,
                 onError: jest.fn(),
@@ -135,7 +135,7 @@ describe('useForm', () => {
 
         it('Should return isInvalid as false for 1 or more invalid fields', async () => {
             const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 onError: jest.fn(),
@@ -157,7 +157,7 @@ describe('useForm', () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
 
-            const { result, waitFor } = await getHookProps<IFoo>({
+            const { result, waitFor } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: saveMock,
                 beforeLeave: beforeLeaveMock,
@@ -177,7 +177,7 @@ describe('useForm', () => {
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -196,7 +196,7 @@ describe('useForm', () => {
         });
 
         it('Should revert and load last passed value', async () => {
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -215,7 +215,7 @@ describe('useForm', () => {
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: person => Promise.resolve({ form: person }),
                 beforeLeave: () => Promise.resolve(false),
@@ -232,7 +232,7 @@ describe('useForm', () => {
 
         it('Should call beforeLeave after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValueOnce(true);
-            const { result, unmount, waitFor } = await getHookProps<IFoo>({
+            const { result, unmount, waitFor } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: data => Promise.resolve({ form: data }),
                 beforeLeave: beforeLeaveMock,
@@ -250,7 +250,7 @@ describe('useForm', () => {
 
         it('Should store unsaved data to localstorage', async () => {
             const settingsKey = 'form-test';
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 settingsKey,
                 onSave: Promise.resolve,
@@ -268,7 +268,7 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result } = await getHookProps<IFoo>({
+            const { result } = await mountHookWithContext<IFoo>({
                 value: testData,
                 settingsKey,
                 onSave: data => Promise.resolve({ form: data }),
@@ -290,7 +290,7 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result, waitFor } = await getHookProps<IFoo>({
+            const { result, waitFor } = await mountHookWithContext<IFoo>({
                 value: testData,
                 onSave: () => Promise.reject('Failed'),
                 beforeLeave: () => Promise.resolve(false),
@@ -316,13 +316,13 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             };
 
-            const { result: firstRenderResult, unmount } = await getHookProps<IFoo>(props);
+            const { result: firstRenderResult, unmount } = await mountHookWithContext<IFoo>(props);
 
             act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
 
             unmount();
 
-            const { result: secondRenderResult, waitForNextUpdate } = await getHookProps<IFoo>({
+            const { result: secondRenderResult, waitForNextUpdate } = await mountHookWithContext<IFoo>({
                 ...props,
                 loadUnsavedChanges: loadUnsavedChangesMock,
             });
@@ -366,7 +366,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result: firstResult, unmount } = await getHookProps<IAdvancedFoo>({
+            const { result: firstResult, unmount } = await mountHookWithContext<IAdvancedFoo>({
                 value: testData,
                 onSave: data => Promise.resolve({ form: data }),
                 onSuccess: () => "",
@@ -379,7 +379,7 @@ describe('useForm', () => {
 
             unmount();
 
-            const { result: secondResult } = await getHookProps({
+            const { result: secondResult } = await mountHookWithContext({
                 value: testData,
                 onSave: () => Promise.resolve(serverResponse),
                 onSuccess: () => "",
@@ -412,7 +412,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result } = await getHookProps({
+            const { result } = await mountHookWithContext<IAdvancedFoo>({
                 value: { ...testData, deep: { inner: 'error' } },
                 onSave: ({ deep: { inner } }) => inner === "error"
                     ? Promise.resolve(serverResponse)
@@ -465,7 +465,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result }  = await getHookProps({
+            const { result }  = await mountHookWithContext<IAdvancedFoo>({
                 value: { ...testData, deep: { inner: 'error1' }, deep2: { inner2: 'error' } },
                 onSave: () => Promise.resolve(serverResponse),
                 onSuccess: () => "",
