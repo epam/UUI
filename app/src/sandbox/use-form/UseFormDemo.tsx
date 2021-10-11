@@ -1,6 +1,7 @@
 import React from 'react';
-import { useForm, useArrayDataSource } from '@epam/uui';
-import { Button, TextInput, PickerInput, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer } from '@epam/promo';
+import { useForm, useArrayDataSource, useUuiContext } from '@epam/uui';
+import { Button, TextInput, PickerInput, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer, SuccessNotification, ErrorNotification, Text, ModalBlocker, ModalWindow, ModalHeader, ScrollBars } from '@epam/promo';
+import { ConfirmationModal } from '@epam/loveship';
 import * as css from './UseFormDemo.module.scss';
 
 enum Styles {
@@ -16,6 +17,7 @@ interface Artist {
 }
 
 export function UseFormDemo() {
+    const svc = useUuiContext();
     const artistStyleDataSource = useArrayDataSource({
         items: Object.values(Styles).map(style => ({
             id: style.toLowerCase(),
@@ -24,10 +26,22 @@ export function UseFormDemo() {
     }, []);
 
     const { save, lens } = useForm<Artist>({
+        settingsKey: 'use-form-test',
         onSave: person => Promise.resolve({ form: person }),
-        onSuccess: person => console.log({ person }),
-        beforeLeave: () => Promise.resolve().then(() => console.log('Goodbye')).then(),
-        onError: Promise.reject,
+        onSuccess: () => {
+            svc.uuiNotifications.show(props =>
+                <SuccessNotification { ...props } >
+                    <Text size="24" font='sans' fontSize='14'>Data has been saved!</Text>
+                </SuccessNotification>, { duration: 2 })
+        },
+        beforeLeave: () => svc.uuiModals.show(props => <ConfirmationModal caption="Leave without saving progress?" { ...props } />),
+        onError: () => {
+            return svc.uuiNotifications.show(props => (
+                <ErrorNotification { ...props }>
+                    <Text>Error on save</Text>
+                </ErrorNotification>
+            ))
+        },
         getMetadata: () => ({
             props: {
                 name: { isRequired: true },
