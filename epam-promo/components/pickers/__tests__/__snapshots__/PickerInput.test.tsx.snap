@@ -11,6 +11,11 @@ exports[`PickerInput should be rendered correctly 1`] = `
 >
   <div
     className="body"
+    style={
+      Object {
+        "maxWidth": false,
+      }
+    }
   >
     <input
       aria-haspopup={true}
@@ -23,28 +28,19 @@ exports[`PickerInput should be rendered correctly 1`] = `
     />
   </div>
   <div
-    className="actions"
-    style={
-      Object {
-        "pointerEvents": "auto",
-      }
-    }
+    className="container uui-icon uui-enabled uui-icon-caret"
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#folding-arrow-18.svg"
+      />
+    </svg>
   </div>
 </div>
 `;
@@ -60,6 +56,11 @@ exports[`PickerInput should be rendered correctly 2`] = `
 >
   <div
     className="body multiline"
+    style={
+      Object {
+        "maxWidth": "80%",
+      }
+    }
   >
     <button
       className="container uui-button-box uui-enabled root tag-color size-42 root"
@@ -117,45 +118,36 @@ exports[`PickerInput should be rendered correctly 2`] = `
     </button>
   </div>
   <div
-    className="actions"
-    style={
-      Object {
-        "pointerEvents": "auto",
-      }
-    }
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[Function]}
+    style={Object {}}
+    tabIndex={-1}
   >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-      onClick={[Function]}
-      style={Object {}}
-      tabIndex={-1}
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#btn-cross-24.svg"
-        />
-      </svg>
-    </div>
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      <use
+        xlinkHref="#btn-cross-24.svg"
+      />
+    </svg>
+  </div>
+  <div
+    className="container uui-icon uui-enabled uui-icon-caret"
+    style={Object {}}
+  >
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#folding-arrow-24.svg"
+      />
+    </svg>
   </div>
 </div>
 `;

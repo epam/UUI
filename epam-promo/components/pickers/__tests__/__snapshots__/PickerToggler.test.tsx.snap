@@ -11,6 +11,11 @@ exports[`PickerToggler should be rendered correctly 1`] = `
 >
   <div
     className="body"
+    style={
+      Object {
+        "maxWidth": false,
+      }
+    }
   >
     <input
       aria-haspopup={true}
@@ -21,14 +26,6 @@ exports[`PickerToggler should be rendered correctly 1`] = `
       value=""
     />
   </div>
-  <div
-    className="actions"
-    style={
-      Object {
-        "pointerEvents": "auto",
-      }
-    }
-  />
 </div>
 `;
 
@@ -43,6 +40,11 @@ exports[`PickerToggler should be rendered correctly 2`] = `
 >
   <div
     className="body multiline"
+    style={
+      Object {
+        "maxWidth": false,
+      }
+    }
   >
     <button
       className="container uui-button-box uui-enabled root tag-color size-42 root"
@@ -78,30 +80,21 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     />
   </div>
   <div
-    className="actions"
-    style={
-      Object {
-        "pointerEvents": "auto",
-      }
-    }
+    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+    onClick={[Function]}
+    style={Object {}}
+    tabIndex={-1}
   >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-      onClick={[Function]}
-      style={Object {}}
-      tabIndex={-1}
+    <svg
+      className=""
+      height={24}
+      viewBox="0 0 12 24"
+      width={12}
     >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#btn-cross-24.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#btn-cross-24.svg"
+      />
+    </svg>
   </div>
 </div>
 `;

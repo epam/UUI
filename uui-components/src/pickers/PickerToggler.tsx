@@ -65,8 +65,8 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         this.props.onBlur && this.props.onBlur(e);
-        if (isChildFocusable(e)) return;
         this.updateFocus(false);
+        if (isChildFocusable(e)) return;
         this.toggleContainer.querySelector('input')?.blur();
         if (this.props.isOpen && this.props.searchPosition !== 'body') {
             this.props.toggleDropdownOpening(false);
@@ -182,26 +182,27 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 onKeyDown={ this.handleKeyDown }
                 { ...this.props.rawProps }
             >
-                <div className={ cx(css.body, !this.props.isSingleLine && this.props.pickerMode !== 'single' && css.multiline) }>
+                <div
+                    style={{ maxWidth: this.props.selection?.length > 1 && this.props.pickerMode === 'multi' && '80%' }}
+                    className={ cx(css.body, !this.props.isSingleLine && this.props.pickerMode !== 'single' && css.multiline)}
+                >
                     { this.props.iconPosition !== 'right' && icon }
                     { this.props.pickerMode !== 'single' && this.renderItems() }
                     { this.renderInput() }
                     { this.props.iconPosition === 'right' && icon }
                 </div>
-                <div className={ cx(css.actions) } style={{ pointerEvents: this.props.isOpen ? 'none' : 'auto' }}>
-                    { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
-                        cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
-                        isDisabled={ this.props.isDisabled }
-                        icon={ this.props.cancelIcon }
-                        tabIndex={ -1 }
-                        onClick={ this.handleCrossIconClick }
-                    /> }
-                    { this.props.isDropdown && <IconContainer
-                        icon={ this.props.dropdownIcon }
-                        flipY={ this.props.isOpen }
-                        cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }
-                    /> }
-                </div>
+                { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
+                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
+                    isDisabled={ this.props.isDisabled }
+                    icon={ this.props.cancelIcon }
+                    tabIndex={ -1 }
+                    onClick={ this.handleCrossIconClick }
+                /> }
+                { this.props.isDropdown && <IconContainer
+                    icon={ this.props.dropdownIcon }
+                    flipY={ this.props.isOpen }
+                    cx={ cx('uui-icon-caret', (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
+                /> }
             </div>
         );
     }

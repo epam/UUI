@@ -21,6 +21,21 @@
             flex: 1 1 auto;
         }
     }
+
+    :global(.uui-icon-cancel) {
+        right: 24px;
+    }
+
+    :global(.uui-icon-caret) {
+        right: 6px;
+        pointer-events: none;
+    }
+
+    :global(.uui-icon-caret), :global(.uui-icon-cancel) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .body {
@@ -33,13 +48,6 @@
     &.multiline {
         flex-wrap: wrap;
     }
-}
-
-.actions {
-    display: flex;
-    flex-shrink: 0;
-    position: absolute;
-    right: 6px;
 }
 
 .toggler {
