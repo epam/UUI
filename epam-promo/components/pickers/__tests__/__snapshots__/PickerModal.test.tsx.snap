@@ -221,7 +221,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -254,7 +254,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -287,7 +287,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -320,7 +320,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -353,7 +353,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -386,7 +386,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -419,7 +419,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -452,7 +452,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -485,7 +485,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -518,7 +518,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -551,7 +551,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     role="option"
                   >
                     <div
-                      className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
                       onClick={[Function]}
                       style={
                         Object {
@@ -933,40 +933,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -991,40 +983,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1049,40 +1033,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1107,40 +1083,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B2+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1165,40 +1133,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1223,40 +1183,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1281,40 +1233,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1339,40 +1283,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A2+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1397,40 +1333,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1455,40 +1383,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1513,40 +1433,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              tabIndex={-1}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
