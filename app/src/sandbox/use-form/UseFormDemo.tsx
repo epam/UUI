@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { useForm, useArrayDataSource, useUuiContext } from '@epam/uui';
-import { Button, TextInput, PickerInput, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer, SuccessNotification, ErrorNotification, Text, ModalBlocker, ModalWindow, ModalHeader, ScrollBars } from '@epam/promo';
+import { Button, Slider, TextInput, PickerInput, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer, SuccessNotification, ErrorNotification, Text, TextArea } from '@epam/promo';
 import { ConfirmationModal } from '@epam/loveship';
 import * as css from './UseFormDemo.module.scss';
 
@@ -14,6 +14,8 @@ enum Styles {
 interface Artist {
     name: string;
     style: Styles;
+    meaning: string;
+    rating: number;
 }
 
 export function UseFormDemo() {
@@ -29,18 +31,22 @@ export function UseFormDemo() {
         settingsKey: 'use-form-test',
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => {
-            svc.uuiNotifications.show(props =>
+            return svc.uuiNotifications.show(props =>
                 <SuccessNotification { ...props } >
                     <Text size="24" font='sans' fontSize='14'>Data has been saved!</Text>
                 </SuccessNotification>, { duration: 2 })
         },
-        beforeLeave: () => svc.uuiModals.show(props => <ConfirmationModal caption="Leave without saving progress?" { ...props } />),
+        beforeLeave: () => {
+            return svc.uuiModals.show(props => (
+                <ConfirmationModal caption="Leave without saving progress?" { ...props } />
+            ));
+        },
         onError: () => {
             return svc.uuiNotifications.show(props => (
                 <ErrorNotification { ...props }>
                     <Text>Error on save</Text>
                 </ErrorNotification>
-            ))
+            ));
         },
         getMetadata: () => ({
             props: {
@@ -48,7 +54,7 @@ export function UseFormDemo() {
                 style: { isRequired: true }
             }
         }),
-        value: { name: '', style: Styles.MODERN }
+        value: { name: '', style: Styles.MODERN, meaning: '', rating: 0 }
     });
 
     return (
@@ -71,8 +77,32 @@ export function UseFormDemo() {
                             selectionMode='single'
                             valueType='id'
                             getName={ ({ style }) => style }
-                            inputId="country"
+                            inputId="style"
                             placeholder='Select Painting Style'
+                        />
+                    </LabeledInput>
+                </FlexRow>
+                <FlexRow vPadding='12'>
+                    <LabeledInput htmlFor='meaning' label='Share your meaning with us' { ...lens.prop('meaning').toProps() }>
+                        <TextArea
+                            { ...lens.prop('meaning').toProps() }
+                            rows={ 10 }
+                            id='meaning'
+                        />
+                    </LabeledInput>
+                </FlexRow>
+                <FlexRow vPadding='12'>
+                    <LabeledInput
+                        label='Rating'
+                        htmlFor="artistRating"
+                        { ...lens.prop('rating').toProps() }
+                    >
+                        <Slider
+                            min={ 0 }
+                            max={ 10 }
+                            step={ 1 }
+                            rawProps={{ 'aria-label': 'Artist Rating', id: 'artistRating' }}
+                            { ...lens.prop('rating').toProps() }
                         />
                     </LabeledInput>
                 </FlexRow>
