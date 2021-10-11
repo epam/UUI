@@ -9,6 +9,8 @@ import * as foldingArrow from '../../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
 export class DataTableCell extends React.Component<DataTableCellProps<any, any> & DataTableCellMods, {}> {
+    hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);
+
     isDraggable = () => {
         return !!this.props.rowProps?.dnd?.srcData;
     }
@@ -58,7 +60,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                 rawProps={ { role: this.props.role } }
                 cx={ cx(
                     css.cell,
-                    this.props.isFirstColumn && css.wrapper,
+                    this.props.isFirstColumn && this.hasDepsWidgets && css.wrapper,
                     css['size-' + (this.props.size || '36')],
                     css[`padding-${ this.props.padding || '12' }`],
                     this.props.isFirstColumn && css[`padding-left-${ this.props.padding || '24' }`],
