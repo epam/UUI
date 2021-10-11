@@ -15,7 +15,6 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
-      onBlur={[Function]}
       onChange={[Function]}
       tabIndex={-1}
       type="text"
@@ -24,6 +23,11 @@ exports[`PickerToggler should be rendered correctly 1`] = `
   </div>
   <div
     className="actions"
+    style={
+      Object {
+        "pointerEvents": "auto",
+      }
+    }
   />
 </div>
 `;
@@ -67,7 +71,6 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     <input
       aria-haspopup={true}
       className="uui-input"
-      onBlur={[Function]}
       onChange={[Function]}
       tabIndex={-1}
       type="text"
@@ -76,6 +79,11 @@ exports[`PickerToggler should be rendered correctly 2`] = `
   </div>
   <div
     className="actions"
+    style={
+      Object {
+        "pointerEvents": "auto",
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"

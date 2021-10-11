@@ -65,8 +65,12 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         this.props.onBlur && this.props.onBlur(e);
+        if (isChildFocusable(e)) return;
         this.updateFocus(false);
         this.toggleContainer.querySelector('input')?.blur();
+        if (this.props.isOpen && this.props.searchPosition !== 'body') {
+            this.props.toggleDropdownOpening(false);
+        }
     }
 
     handleActive = (e: Event) => {
@@ -75,13 +79,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         }
         if (this.state.isActive && !closest((e.target as HTMLElement), this.toggleContainer)) {
             this.setState({ isActive: false });
-        }
-    }
-
-    closeOpenedPicker = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isChildFocusable(e) || e.relatedTarget === this.toggleContainer) return;
-        else if (this.props.isOpen && this.props.searchPosition !== 'body') {
-            this.props.toggleDropdownOpening(false);
         }
     }
 
@@ -129,7 +126,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 tabIndex={ -1 }
                 id={ this.props.inputId }
                 aria-haspopup={ true }
-                onBlur={ this.closeOpenedPicker }
                 aria-required={ this.props.isRequired }
                 aria-disabled={ this.props.isDisabled }
                 aria-readonly={ true }
@@ -148,7 +144,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             aria-haspopup={ true }
             id={ this.props.inputId }
             aria-required={ this.props.isRequired }
-            onBlur={ this.closeOpenedPicker }
             aria-disabled={ this.props.isDisabled }
             aria-readonly={ this.props.isReadonly }
             className={ cx(
@@ -193,7 +188,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     { this.renderInput() }
                     { this.props.iconPosition === 'right' && icon }
                 </div>
-                <div className={ cx(css.actions) }>
+                <div className={ cx(css.actions) } style={{ pointerEvents: this.props.isOpen ? 'none' : 'auto' }}>
                     { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
                         cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
                         isDisabled={ this.props.isDisabled }

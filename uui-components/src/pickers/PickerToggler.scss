@@ -6,6 +6,7 @@
         align-items: center;
         justify-content: space-between;
         outline: none;
+        position: relative;
     }
 
     :global(.uui-input) {
@@ -14,6 +15,7 @@
         border: 0;
         outline: none;
         background: none;
+        cursor: pointer;
 
         &.single-input {
             flex: 1 1 auto;
@@ -36,6 +38,8 @@
 .actions {
     display: flex;
     flex-shrink: 0;
+    position: absolute;
+    right: 6px;
 }
 
 .toggler {
