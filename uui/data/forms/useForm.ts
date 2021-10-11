@@ -5,22 +5,24 @@ import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
 import { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
 
-export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm' | 'prevProps'>;
+export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
+type UseFormState<T> = Omit<FormComponentState<T>, 'prevProps'> & { prevProps: UseFormProps<T> };
 
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
     const lock = useRef<object | null>(null);
-    const initialForm = useRef<FormComponentState<T>>({
+    const initialForm = useRef<UseFormState<T>>({
         isChanged: false,
         isInProgress: false,
         form: props.value,
         validationState: { isInvalid: false },
         serverValidationState: { isInvalid: false },
         formHistory: [props.value],
+        prevProps: props,
         historyIndex: 0
     });
 
-    const [formState, setFormState] = useState<FormComponentState<T>>(initialForm.current);
+    const [formState, setFormState] = useState<UseFormState<T>>(initialForm.current);
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.form,
@@ -50,15 +52,16 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, []);
 
     useEffect(() => {
-        if (isEqual(props.value, initialForm.current.form)) return;
-        if (formState.isChanged && props.beforeLeave) {
-            context.uuiLocks.withLock(handleLeave).then(acquiredLock => {
-                lock.current = acquiredLock;
-                resetForm({ ...formState, form: props.value });
-            });
-        }  else {
-            resetForm({ ...formState, form: props.value, formHistory: [props.value] })
-        };
+        if (!isEqual(props.value, initialForm.current.prevProps.value)) {
+            if (formState.isChanged && props.beforeLeave) {
+                context.uuiLocks.withLock(handleLeave).then(acquiredLock => {
+                    lock.current = acquiredLock;
+                    resetForm({ ...formState, form: props.value });
+                });
+            }  else {
+                resetForm({ ...formState, form: props.value, formHistory: [props.value] })
+            };
+        }
     }, [props.value]);
 
     const setUnsavedChanges = (form: T) => {
@@ -109,7 +112,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         lock.current = null;
     };
 
-    const resetForm = (withNewState: FormComponentState<T>) => {
+    const resetForm = (withNewState: UseFormState<T>) => {
         releaseLock();
         initialForm.current = { ...initialForm.current, ...withNewState };
         setFormState({ ...initialForm.current, ...withNewState });
@@ -133,7 +136,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
-        const newState: FormComponentState<T> = {
+        const newState: UseFormState<T> = {
             ...formState,
             form: response && response.form || formState.form,
             isInProgress: false,
