@@ -1,48 +1,55 @@
-import * as React from 'react';
-import { act, renderHook } from '@testing-library/react-hooks';
+import React from 'react';
+import { act, cleanup, renderHook } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
-import { ContextProvider} from '../../..';
-import { UseFormProps } from '..';
+import { ContextProvider, Metadata} from '../../..';
+import { FormSaveResponse, UseFormProps } from '..';
 import { testSvc } from '@epam/test-utils';
+
+async function handleSave(save: () => void) {
+    try {
+        return await act(save);
+    } catch (err: unknown) {
+        if (err !== undefined) throw err;
+        return err;
+    }
+}
+
+async function getHookProps<T>(props: UseFormProps<T>) {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+        <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
+            { children }
+        </ContextProvider>
+    );
+
+    const {
+        waitForNextUpdate,
+        rerender,
+        ...rest
+    } = renderHook(() => useForm<T>(props), { wrapper });
+
+    await waitForNextUpdate();
+
+    return {
+        rerender: (nextProps?: UseFormProps<T>) => rerender({ ...props, children: undefined, ...nextProps }),
+        waitForNextUpdate,
+        ...rest
+    };
+}
 
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
+    afterEach(cleanup);
 
     interface IFoo {
         dummy: string;
         tummy?: string;
     };
 
-    const handleSave = async (save: () => void) => {
-        try {
-            return await act(save);
-        } catch (err: unknown) {
-            if (err !== undefined) throw err;
-            return err;
-        }
-    }
-
     const testMetadata = { props: { dummy: { isRequired: true } } };
     const testData: IFoo = { dummy: '', tummy: '' };
 
-    const getHookProps = async (props: UseFormProps<IFoo>) => {
-        const wrapper = ({ children }) => (
-            <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc)}>
-                { children }
-            </ContextProvider>
-        );
-        const { waitForNextUpdate, rerender, result, ...rest } = renderHook(() => useForm<IFoo>(props), { wrapper });
-        await waitForNextUpdate();
-        return {
-            result,
-            rerender: (nextProps?: UseFormProps<IFoo>) => rerender({ ...props, children: undefined, ...nextProps }),
-            waitForNextUpdate,
-            ...rest
-        };
-    }
-
     it('Should return isChanged as true whenever the lens is changed', async () => {
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             onSave: () => Promise.resolve(),
             onError: () => Promise.resolve(),
             value: testData,
@@ -57,7 +64,7 @@ describe('useForm', () => {
 
     it('Should correctly set isInvalid on form submit depending on the value', async () => {
         const onSaveSpy = jest.fn().mockResolvedValue(undefined);
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: onSaveSpy,
             onError: jest.fn(),
@@ -74,7 +81,7 @@ describe('useForm', () => {
     });
 
     it('Should start validation on save and keep validation state valid values passed', async () => {
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: Promise.resolve,
             beforeLeave: () => Promise.resolve(false),
@@ -102,7 +109,7 @@ describe('useForm', () => {
         const saveMock = jest.fn().mockResolvedValue(false);
         const beforeLeaveMock = jest.fn().mockResolvedValue(false);
 
-        const { result, rerender } = await getHookProps({
+        const { result, rerender } = await getHookProps<IFoo>({
             value: testData,
             onSave: saveMock,
             onError: jest.fn(),
@@ -127,7 +134,7 @@ describe('useForm', () => {
 
     it('Should return isInvalid as false for 1 or more invalid fields', async () => {
         const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: Promise.resolve,
             onError: jest.fn(),
@@ -149,7 +156,7 @@ describe('useForm', () => {
         const saveMock = jest.fn().mockResolvedValue({ form: {} });
         const beforeLeaveMock = jest.fn().mockResolvedValue(true);
 
-        const { result, waitFor } = await getHookProps({
+        const { result, waitFor } = await getHookProps<IFoo>({
             value: testData,
             onSave: saveMock,
             beforeLeave: beforeLeaveMock,
@@ -169,7 +176,7 @@ describe('useForm', () => {
     });
 
     it('Should undo to previous value, redo to the next value', async () => {
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: Promise.resolve,
             beforeLeave: () => Promise.resolve(false),
@@ -188,7 +195,7 @@ describe('useForm', () => {
     });
 
     it('Should revert and load last passed value', async () => {
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: Promise.resolve,
             beforeLeave: () => Promise.resolve(false),
@@ -207,7 +214,7 @@ describe('useForm', () => {
     });
 
     it('Should have a lock on the first form change, release lock on save', async () => {
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             onSave: person => Promise.resolve({ form: person }),
             beforeLeave: () => Promise.resolve(false),
@@ -224,7 +231,7 @@ describe('useForm', () => {
 
     it('Should call beforeLeave after component unmount', async () => {
         const beforeLeaveMock = jest.fn().mockResolvedValueOnce(true);
-        const { result, unmount, waitFor } = await getHookProps({
+        const { result, unmount, waitFor } = await getHookProps<IFoo>({
             value: testData,
             onSave: data => Promise.resolve({ form: data }),
             beforeLeave: beforeLeaveMock,
@@ -242,7 +249,7 @@ describe('useForm', () => {
 
     it('Should store unsaved data to localstorage', async () => {
         const settingsKey = 'form-test';
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             settingsKey,
             onSave: Promise.resolve,
@@ -260,7 +267,7 @@ describe('useForm', () => {
         const onSuccessSpy = jest.fn();
         const onErrorSpy = jest.fn();
 
-        const { result } = await getHookProps({
+        const { result } = await getHookProps<IFoo>({
             value: testData,
             settingsKey,
             onSave: data => Promise.resolve({ form: data }),
@@ -282,7 +289,7 @@ describe('useForm', () => {
         const onSuccessSpy = jest.fn();
         const onErrorSpy = jest.fn();
 
-        const { result, waitFor } = await getHookProps({
+        const { result, waitFor } = await getHookProps<IFoo>({
             value: testData,
             onSave: () => Promise.reject('Failed'),
             beforeLeave: () => Promise.resolve(false),
@@ -308,13 +315,13 @@ describe('useForm', () => {
             getMetadata: () => testMetadata,
         };
 
-        const { result: firstRenderResult, unmount } = await getHookProps(props);
+        const { result: firstRenderResult, unmount } = await getHookProps<IFoo>(props);
 
         act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
 
         unmount();
 
-        const { result: secondRenderResult, waitForNextUpdate } = await getHookProps({
+        const { result: secondRenderResult, waitForNextUpdate } = await getHookProps<IFoo>({
             ...props,
             loadUnsavedChanges: loadUnsavedChangesMock,
         });
@@ -333,7 +340,156 @@ describe('useForm server validation', () => {
         deep2?: { inner2: string };
     }
 
-    it('Should correctly handle server validation', () => {});
-    it('Should keep server error notification until field is changed', () => {});
-    it('Should keep only validationProps tree with validationMessage in the end', () => {});
+    const testData: IAdvancedFoo = { dummy: "test", deep: { inner: "" } };
+    const testMetadata: Metadata<IAdvancedFoo> = { props: { dummy: { isRequired: true } } };
+
+    it('Should correctly handle server validation', async () => {
+        const serverResponse: FormSaveResponse<IAdvancedFoo> = {
+            validation: {
+                isInvalid: true,
+                validationProps: {
+                    dummy: {
+                        isInvalid: true,
+                        validationMessage: "Test error",
+                    },
+                    deep: {
+                        isInvalid: true,
+                        validationProps: {
+                            inner: {
+                                isInvalid: true,
+                                validationMessage: "Inner test error",
+                            },
+                        },
+                    },
+                },
+            },
+        };
+
+        const { result: firstResult, unmount } = await getHookProps<IAdvancedFoo>({
+            value: testData,
+            onSave: data => Promise.resolve({ form: data }),
+            onSuccess: () => "",
+            getMetadata: () => testMetadata,
+            beforeLeave: () => Promise.resolve(false),
+        });
+
+        await handleSave(firstResult.current.save);
+        expect(firstResult.current.isInvalid).toBe(false);
+
+        unmount();
+
+        const { result: secondResult } = await getHookProps({
+            value: testData,
+            onSave: () => Promise.resolve(serverResponse),
+            onSuccess: () => "",
+            getMetadata: () => testMetadata,
+        });
+
+        await handleSave(secondResult.current.save);
+        expect(secondResult.current.lens.toProps()).toHaveProperty('isInvalid', true);
+        expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
+        expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('validationMessage', serverResponse.validation.validationProps.dummy.validationMessage);
+        expect(secondResult.current.lens.prop("deep").prop("inner").toProps()).toHaveProperty('isInvalid', true);
+        expect(secondResult.current.lens.prop("deep").prop("inner").toProps()).toHaveProperty("validationMessage", serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage);
+    });
+
+    it('Should keep server error notification until field is changed', async () => {
+        const serverResponse: FormSaveResponse<IAdvancedFoo> = {
+            validation: {
+                isInvalid: true,
+                validationProps: {
+                    deep: {
+                        isInvalid: true,
+                        validationProps: {
+                            inner: {
+                                isInvalid: true,
+                                validationMessage: "Single test error",
+                            },
+                        },
+                    },
+                },
+            },
+        };
+
+        const { result } = await getHookProps({
+            value: { ...testData, deep: { inner: 'error' } },
+            onSave: ({ deep: { inner } }) => inner === "error"
+                ? Promise.resolve(serverResponse)
+                : Promise.resolve(),
+            onSuccess: () => "",
+            getMetadata:() => testMetadata,
+            beforeLeave: () => Promise.resolve(false),
+        });
+
+        await handleSave(result.current.save);
+        expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
+        expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("isInvalid", true);
+        expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("validationMessage", serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage);
+
+        act(() => result.current.lens.prop("dummy").set("changed"));
+        expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
+        expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("isInvalid", true);
+        expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("validationMessage", "Single test error");
+
+        act(() => result.current.lens.prop("deep").prop("inner").set("correct"));
+        expect(result.current.lens.toProps()).toHaveProperty('isInvalid', false);
+        expect(result.current.lens.prop('deep').toProps().isInvalid).toBe(false);
+        expect(result.current.lens.prop('deep').toProps().validationProps).toBeUndefined();
+    });
+
+    it('Should keep only validationProps tree with validationMessage in the end', async () => {
+        const serverResponse: FormSaveResponse<IAdvancedFoo> = {
+            validation: {
+                isInvalid: true,
+                validationProps: {
+                    deep: {
+                        isInvalid: true,
+                        validationProps: {
+                            inner: {
+                                isInvalid: true,
+                                validationMessage: "First inner test error",
+                            },
+                        },
+                    },
+                    deep2: {
+                        isInvalid: true,
+                        validationProps: {
+                            inner2: {
+                                isInvalid: true,
+                                validationMessage: "Second inner test error",
+                            },
+                        },
+                    },
+                },
+            },
+        };
+
+        const { result }  = await getHookProps({
+            value: { ...testData, deep: { inner: 'error1' }, deep2: { inner2: 'error' } },
+            onSave: () => Promise.resolve(serverResponse),
+            onSuccess: () => "",
+            getMetadata: () => testMetadata,
+            beforeLeave: () => Promise.resolve(false),
+        });
+
+        await handleSave(result.current.save);
+
+        expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
+        expect(result.current.lens.prop("deep").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep").prop("inner").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep").prop("inner").toProps().validationMessage).toBe(serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage);
+        expect(result.current.lens.prop("deep2").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep2").prop("inner2").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep2").prop("inner2").toProps().validationMessage).toBe(serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage);
+
+        act(() => result.current.lens.prop("deep").prop("inner").set("changed"));
+
+        expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
+        expect(result.current.lens.prop("deep").toProps().isInvalid).toBe(false);
+        expect(result.current.lens.prop("deep").prop("inner").toProps().isInvalid).toBe(false);
+        expect(result.current.lens.prop("deep").prop("inner").toProps().validationMessage).toBe(undefined);
+        expect(result.current.lens.prop("deep2").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep2").prop("inner2").toProps().isInvalid).toBe(true);
+        expect(result.current.lens.prop("deep2").prop("inner2").toProps().validationMessage).toBe(serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage);
+    });
 });
