@@ -129,7 +129,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 aria-readonly={ true }
                 className={ cx(
                     uuiElement.input,
-                    this.props.selection.length === 0 && uuiElement.placeholder,
+                    (this.props.selection.length === 0 || this.props.searchPosition === 'none') && uuiElement.placeholder,
                     this.props.pickerMode === 'single' && css.singleInput,
                     css.toggler,
                 ) }
