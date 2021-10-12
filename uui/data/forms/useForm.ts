@@ -133,7 +133,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 .then(handleSaveResponse)
                 .catch(err => props.onError?.(err));
         } else return Promise.reject();
-    }
+    };
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: UseFormState<T> = {
@@ -161,7 +161,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             historyIndex: previousIndex,
             validationState: validationState.isInvalid ? handleValidate(previousItem) : {}
         });
-    }
+    };
 
     const handleRedo = () => {
         const { formHistory, historyIndex } = formState;
