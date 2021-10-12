@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useForm, useArrayDataSource, useUuiContext } from '@epam/uui';
-import { Button, Slider, TextInput, PickerInput, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer, SuccessNotification, ErrorNotification, Text, TextArea } from '@epam/promo';
+import { Button, Slider, TextInput, PickerInput, Spinner, LabeledInput, FlexRow, Panel, FlexCell, FlexSpacer, SuccessNotification, ErrorNotification, Text, TextArea } from '@epam/promo';
 import { ConfirmationModal } from '@epam/loveship';
 import * as css from './UseFormDemo.module.scss';
 
@@ -13,7 +13,7 @@ enum Styles {
 
 interface Artist {
     name: string;
-    style: Styles;
+    style: string;
     meaning: string;
     rating: number;
 }
@@ -27,7 +27,7 @@ export function UseFormDemo() {
         })),
     }, []);
 
-    const { save, lens } = useForm<Artist>({
+    const { save, lens, isInProgress } = useForm<Artist>({
         settingsKey: 'use-form-test',
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => {
@@ -54,10 +54,10 @@ export function UseFormDemo() {
                 style: { isRequired: true }
             }
         }),
-        value: { name: '', style: Styles.MODERN, meaning: '', rating: 0 }
+        value: { name: '', style: Styles.MODERN.toLowerCase(), meaning: '', rating: 0 }
     });
 
-    return (
+    return isInProgress ? <Spinner /> : (
         <Panel background='white' shadow cx={ css.root }>
             <FlexCell width='auto'>
                 <FlexRow vPadding='12'>
@@ -108,7 +108,7 @@ export function UseFormDemo() {
                 </FlexRow>
                 <FlexRow spacing='12'>
                     <FlexSpacer />
-                    <Button onClick={ save } rawProps={{ type: 'submit' }} caption='Submit' />
+                    <Button onClick={ save } caption='Submit' />
                 </FlexRow>
             </FlexCell>
         </Panel>
