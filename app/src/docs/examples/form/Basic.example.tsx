@@ -29,7 +29,7 @@ export default function BasicFormExample() {
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     }, []);
 
-    const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
+    const renderForm = ({ lens, save }: RenderFormProps<Person>) => (
         <FlexCell width='100%'>
             <FlexRow vPadding='12'>
                 <FlexCell grow={ 1 }>
