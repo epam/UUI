@@ -65,9 +65,9 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
             <div
                 className={ cx([
                     uuiDataTableScrollRow.uuiTableScrollRowContainer,
-                    this.props.cx
+                    this.props.cx,
                 ]) }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 <DataTableRowContainer
                     cx={ uuiDataTableScrollRow.uuiTableScrollRow }
