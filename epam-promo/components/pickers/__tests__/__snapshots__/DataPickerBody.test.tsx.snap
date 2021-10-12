@@ -164,7 +164,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -193,7 +193,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -222,7 +222,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -251,7 +251,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -280,7 +280,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -309,7 +309,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -338,7 +338,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -367,7 +367,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -396,7 +396,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -425,7 +425,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {
@@ -454,7 +454,7 @@ Array [
                 role="option"
               >
                 <div
-                  className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
                   onClick={[Function]}
                   style={
                     Object {

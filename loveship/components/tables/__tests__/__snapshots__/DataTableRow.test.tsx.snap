@@ -23,7 +23,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
         className="container align-items-top"
       >
         <div
-          className="flexCell cell wrapper size-36 padding-12 padding-left-24 padding-right-24 align-widgets-top"
+          className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24 align-widgets-top"
           onClick={[Function]}
           role="cell"
           style={
