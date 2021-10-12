@@ -260,8 +260,8 @@ describe('useForm', () => {
             }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get(settingsKey).dummy).toBe('hi');
-            act(() => testSvc.uuiUserSettings.set(settingsKey, null));
+            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
+            act(() => testSvc.uuiUserSettings.set<IFoo>(settingsKey, null));
         });
 
         it('Should clear unsaved data in localstorage after save', async () => {
@@ -280,10 +280,10 @@ describe('useForm', () => {
             }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get(settingsKey).dummy).toBe('hi');
+            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
 
             await handleSave(result.current.save);
-            expect(testSvc.uuiUserSettings.get(settingsKey)).toBe(null);
+            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
             expect(onSuccessSpy).toHaveBeenCalled();
         });
 
