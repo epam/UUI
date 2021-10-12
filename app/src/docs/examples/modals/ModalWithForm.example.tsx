@@ -30,7 +30,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
     }, []);
 
-    const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
+    const renderForm = ({ lens, save }: RenderFormProps<Person>) => (
         <>
             <Panel>
                 <FlexRow padding='24' vPadding='12'>
