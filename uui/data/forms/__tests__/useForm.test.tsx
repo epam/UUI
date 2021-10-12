@@ -40,7 +40,6 @@ describe('useForm', () => {
             }));
 
             act(() => result.current.lens.prop('dummy').set('hello'));
-
             expect(result.current.isChanged).toBe(true);
             expect(result.current.value).toStrictEqual({ dummy: 'hello', tummy: '' });
         });
@@ -55,12 +54,15 @@ describe('useForm', () => {
             }));
 
             await handleSave(result.current.save);
-            expect(result.current.isInvalid).toBe(true)
+            expect(result.current.isInvalid).toBe(true);
 
             act(() => result.current.lens.prop("dummy").set("hello"));
-            expect(result.current.isInvalid).toBe(false);
+            expect(result.current.isChanged).toBe(true);
 
-            await handleSave(result.current.save).then(() => expect(onSaveSpy).toHaveBeenCalled());
+            await handleSave(result.current.save);
+            expect(result.current.value).toStrictEqual({ dummy: "hello", tummy: '' });
+            expect(onSaveSpy).toHaveBeenCalled();
+            expect(result.current.isInvalid).toBe(false);
         });
 
         it('Should start validation on save and keep validation state valid values passed', async () => {
@@ -78,13 +80,12 @@ describe('useForm', () => {
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
 
             act(() => result.current.lens.prop('dummy').set(''));
-            expect(result.current.value.dummy).toBe('');
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
 
             await handleSave(result.current.save);
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(true);
 
-            act(() => result.current.lens.prop('dummy').set('hello'));
+            act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
         });
 
@@ -156,7 +157,7 @@ describe('useForm', () => {
                 expect(result.current.isInvalid).toBe(false);
                 expect(beforeLeaveMock).toHaveBeenCalled();
                 expect(saveMock).toHaveBeenCalled();
-            })
+            });
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
