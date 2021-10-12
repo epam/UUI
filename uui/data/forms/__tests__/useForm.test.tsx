@@ -39,6 +39,7 @@ async function handleSave(save: () => void) {
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
     afterEach(cleanup);
+    afterAll(jest.resetAllMocks);
 
     describe('Client validation', () => {
         interface IFoo {
