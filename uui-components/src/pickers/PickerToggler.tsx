@@ -110,30 +110,12 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     renderInput() {
-        let isActivePlaceholder = this.props.pickerMode === 'single' && this.props.selection && !!this.props.selection[0];
-        let placeholder = isActivePlaceholder ? this.props.getName(this.props.selection[0]) : this.props.placeholder;
+        const isActivePlaceholder = this.props.pickerMode === 'single' && this.props.selection && !!this.props.selection[0];
+        const placeholder = isActivePlaceholder ? this.props.getName(this.props.selection[0]) : this.props.placeholder;
+        const value = this.props.disableSearch ? '' : this.props.value;
 
-        if (this.props.disableSearch) {
-            if (this.props.pickerMode === 'multi' && this.props.selection.length > 0) {
-                return null;
-            }
-
-            return <input
-                readOnly
-                placeholder={ placeholder }
-                tabIndex={ -1 }
-                id={ this.props.inputId }
-                aria-haspopup={ true }
-                aria-required={ this.props.isRequired }
-                aria-disabled={ this.props.isDisabled }
-                aria-readonly={ true }
-                className={ cx(
-                    uuiElement.input,
-                    (this.props.selection.length === 0 || this.props.searchPosition === 'none') && uuiElement.placeholder,
-                    this.props.pickerMode === 'single' && css.singleInput,
-                    css.toggler,
-                ) }
-            />;
+        if (this.props.disableSearch && this.props.pickerMode === 'multi' && this.props.selection.length > 0) {
+            return null;
         }
 
         return <input
@@ -151,8 +133,8 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             }
             disabled={ this.props.isDisabled }
             placeholder={ placeholder }
-            value={ this.props.value || '' }
-            readOnly={ this.props.isReadonly }
+            value={ value }
+            readOnly={ this.props.isReadonly || this.props.disableSearch }
             onChange={ this.handleChange }
         />;
     }
