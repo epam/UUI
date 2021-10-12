@@ -7,27 +7,26 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import * as css from './BaseDocsBlock.scss';
+import * as theme from './theme.scss';
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';
+export type UUII = 'UUI-Iris';
 
 export const UUI3: UUI3 = 'UUI3_loveship';
 export const UUI4: UUI4 = 'UUI4_promo';
+export const UUII: UUII = 'UUI-Iris';
 
 const items = [
-    {
-        caption: 'UUI3 [Loveship]',
-        id: UUI3,
-    },
-    {
-        caption: 'UUI4 [Promo]',
-        id: UUI4,
-    },
+    { caption: 'UUI3 [Loveship]', id: UUI3 },
+    { caption: 'UUI4 [Promo]', id: UUI4 },
+    { caption: 'UUI-Iris', id: UUII },
 ];
 
 interface DocPath {
     [UUI3]?: string;
     [UUI4]?: string;
+    [UUII]?: string;
 }
 
 interface BaseDocsBlockState {
@@ -116,7 +115,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={{ role: 'tablist' }} background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
+            <FlexRow rawProps={ { role: 'tablist' } } background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 <TabButton
                     size='60'
                     caption='Documentation'
@@ -154,6 +153,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             key={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
             propsDocPath={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
             title={ this.title }
+            cx={ getQuery('skin') === UUII && theme.theme }
         />;
     }
 
