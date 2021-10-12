@@ -48,7 +48,7 @@ export default function AdvancedFormExample() {
         api: (req) => svc.api.demo.cities(req)
     }, []);
 
-    const renderForm = ({ lens, canRedo, canUndo, canRevert, undo, redo, revert, save }: RenderFormProps<Person>): JSX.Element => (
+    const renderForm = ({ lens, canRedo, canUndo, canRevert, undo, redo, revert, save }: RenderFormProps<Person>) => (
         <FlexCell width='100%'>
             <FlexRow vPadding='12' spacing='12' >
                 <Button caption='Revert changes' onClick={ revert } isDisabled={ !canRevert } fill='white' />
