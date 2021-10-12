@@ -1,31 +1,8 @@
-import React from 'react';
-import { act, cleanup, renderHook } from '@testing-library/react-hooks';
+import { act, cleanup } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
-import { Metadata, ContextProvider } from '../../..';
+import { Metadata } from '../../..';
 import { FormSaveResponse, RenderFormProps, UseFormProps } from '..';
-import { testSvc } from '@epam/test-utils';
-
-export async function mountHookWithContext<TProps, TResult>(hook) {
-    const wrapper = ({ children }: { children?: React.ReactNode }) => (
-        <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
-            { children }
-        </ContextProvider>
-    );
-
-    const {
-        waitForNextUpdate,
-        rerender,
-        ...rest
-    } = renderHook<TProps, TResult>(hook, { wrapper });
-
-    await waitForNextUpdate();
-
-    return {
-        rerender: (props: TProps) => rerender({ ...props, children: undefined }),
-        waitForNextUpdate,
-        ...rest,
-    };
-};
+import { testSvc, mountHookWithContext } from '@epam/test-utils';
 
 async function handleSave(save: () => void) {
     try {
@@ -39,7 +16,11 @@ async function handleSave(save: () => void) {
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
     afterEach(cleanup);
-    afterAll(jest.resetAllMocks);
+    afterAll(() => {
+        jest.resetAllMocks();
+        Object.assign(testSvc, {});
+    });
+
 
     describe('Client validation', () => {
         interface IFoo {
