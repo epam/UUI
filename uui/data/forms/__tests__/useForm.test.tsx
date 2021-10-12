@@ -5,7 +5,7 @@ import { Metadata, ContextProvider } from '../../..';
 import { FormSaveResponse, RenderFormProps, UseFormProps } from '..';
 import { testSvc } from '@epam/test-utils';
 
-export async function mountHookWithContext<T, R>(hook) {
+export async function mountHookWithContext<TProps, TResult>(hook) {
     const wrapper = ({ children }: { children?: React.ReactNode }) => (
         <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
             { children }
@@ -16,12 +16,12 @@ export async function mountHookWithContext<T, R>(hook) {
         waitForNextUpdate,
         rerender,
         ...rest
-    } = renderHook<T, R>(hook, { wrapper });
+    } = renderHook<TProps, TResult>(hook, { wrapper });
 
     await waitForNextUpdate();
 
     return {
-        rerender: (props: T) => rerender({ ...props, children: undefined }),
+        rerender: (props: TProps) => rerender({ ...props, children: undefined }),
         waitForNextUpdate,
         ...rest,
     };
