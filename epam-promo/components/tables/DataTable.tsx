@@ -7,6 +7,7 @@ import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableS
 import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
 import * as CustomScrollBars from "react-custom-scrollbars-2";
+import { useState } from 'react';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -18,8 +19,8 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 }
 
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
+    const [scrollManager] = useState(new ScrollManager());
     const context = useUuiContext();
-    const scrollManager = new ScrollManager();
     const setColumnsConfig = (config: ColumnsConfig) => {
         props.onValueChange({ ...props.value, columnsConfig: config });
     };

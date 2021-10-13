@@ -15,9 +15,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
-      onBlur={[Function]}
       onChange={[Function]}
       placeholder="Please select "
+      readOnly={false}
       tabIndex={-1}
       type="text"
       value=""
