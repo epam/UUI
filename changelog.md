@@ -1,4 +1,4 @@
-# 4.2.6 - 13.10.2021
+# 4.2.7 - 13.10.2021
 
 **What's New**
 [PickerModal, PickerList]: add disallowClickOutside prop
