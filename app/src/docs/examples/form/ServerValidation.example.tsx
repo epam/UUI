@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, FormSaveResponse, useUuiContext } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification } from "@epam/promo";
 
@@ -17,11 +17,6 @@ interface ServerResponseExample<T> {
 
 export default function ServerValidationExample() {
     const svc = useUuiContext();
-
-    const [login] = useState<Login>({
-        email: "Ivan_Ivanov@epam.com",
-        password: "",
-    });
 
     async function onSave(formState: Login): Promise<FormSaveResponse<Login>> {
         const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
@@ -44,7 +39,10 @@ export default function ServerValidationExample() {
     }
 
     const { lens, save, validate } = useForm<Login>({
-        value: login,
+        value: {
+            email: "Ivan_Ivanov@epam.com",
+            password: "",
+        },
         onSave,
         onSuccess: () => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>

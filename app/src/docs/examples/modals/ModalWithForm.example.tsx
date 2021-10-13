@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React from 'react';
 import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse, useForm } from '@epam/uui';
 import { Country } from '@epam/uui-docs';
 import {
@@ -16,14 +16,13 @@ interface Person {
 
 function ModalWithFormExample(modalProps: IModal<Person>) {
     const svc = useUuiContext();
-    const [person] = useState<Person>({});
 
     const countriesDataSource = useAsyncDataSource({
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: LazyDataSourceApiResponse<Country>) => r.items),
     }, []);
 
     const { lens, save } = useForm<Person>({
-        value: person,
+        value: {},
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: person => modalProps.success(person),
         getMetadata: () => ({
@@ -104,7 +103,7 @@ export default function ModalWithFormExampleToggler() {
             caption='Show modal'
             onClick={ () => svc.uuiModals
                 .show((props) => <ModalWithFormExample { ...props }/>)
-                .then((person: Person) => svc.uuiNotifications.show((props: INotification): ReactNode =>
+                .then((person: Person) => svc.uuiNotifications.show((props: INotification) =>
                     <SuccessNotification { ...props } >
                         <Text>Data has been saved!</Text>
                         <Text>Person: { JSON.stringify(person) }</Text>
