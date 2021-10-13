@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
 import { IEditable, ILens, Metadata, FormState, ICanBeInvalid } from '../../';
 
@@ -7,7 +8,7 @@ export interface FormSaveResponse<T> {
 }
 
 export interface FormProps<T> {
-    renderForm: (props: RenderFormProps<T>) => JSX.Element;
+    renderForm: (props: RenderFormProps<T>) => ReactNode;
     getMetadata?(state: T): Metadata<T>;
     onSave(state: T): Promise<FormSaveResponse<T> | void>;
     beforeLeave?: (() => Promise<boolean>) | null;
@@ -41,5 +42,5 @@ export interface FormComponentState<T> extends FormState<T> {
 
 export function Form<T>({ renderForm, ...props }: FormProps<T>) {
     const useFormProps = useForm<T>(props);
-    return renderForm(useFormProps);
+    return <>{renderForm(useFormProps)}</>;
 };
