@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useForm } from './useForm';
 import { IEditable, ILens, Metadata, FormState, ICanBeInvalid } from '../../';
 
