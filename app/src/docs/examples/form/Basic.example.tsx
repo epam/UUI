@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Metadata, useForm, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from "@epam/uui";
 import { Country } from '@epam/uui-docs';
 import {
@@ -14,7 +14,6 @@ interface Person {
 
 export default function BasicFormExample() {
     const svc = useUuiContext();
-    const [person] = useState<Person>({});
 
     const getMetadata = (state: Person): Metadata<Person> => ({
         props: {
@@ -29,7 +28,7 @@ export default function BasicFormExample() {
     }, []);
 
     const { lens, save } = useForm<Person>({
-        value: person,
+        value: {},
         onSave: person => Promise.resolve({ form: person }) /*place your save api call here*/,
         onSuccess: result => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>

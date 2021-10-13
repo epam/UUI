@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Country } from '@epam/uui-docs';
 import { Metadata, useForm, useUuiContext, useAsyncDataSource, useLazyDataSource, LazyDataSourceApiResponse } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
@@ -17,8 +17,6 @@ type Person = {
 
 export default function AdvancedFormExample() {
     const svc = useUuiContext();
-
-    const [person] = useState<Person>({});
 
     const getMetadata = (state: Person): Metadata<Person> => ({
         props: {
@@ -41,7 +39,7 @@ export default function AdvancedFormExample() {
     });
 
     const { lens, canRedo, canUndo, canRevert, undo, redo, revert, save } = useForm<Person>({
-        value: person,
+        value: {},
         onSave: person => Promise.resolve() /*place your save api call here*/,
         onSuccess: result => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>

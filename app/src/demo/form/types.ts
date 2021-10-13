@@ -3,7 +3,6 @@ import { FileUploadResponse } from '@epam/uui';
 export interface PersonalInfo {
     fullName?: string;
     birthdayDate?: string;
-    sex?: string;
 }
 
 export interface PersonLocation {
@@ -68,11 +67,9 @@ export interface PersonDetails {
     role?: 'Admin' | 'User';
     personalInfo?: PersonalInfo;
     location?: PersonLocation;
-    contacts?: PersonContacts;
     primaryInfo?: PersonPrimaryInfo;
     education?: PersonEducation;
     languageInfo?: PersonLanguageInfo[];
     travelVisas?: PersonTravelVisas;
-    militaryService?: PersonMilitaryService;
     otherInfo?: PersonOtherInfo;
 }
