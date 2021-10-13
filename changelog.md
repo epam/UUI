@@ -1,9 +1,14 @@
-# 4.3.0[WIP]
+# 4.2.6 - 13.10.2021
 
 **What's New**
+[PickerModal, PickerList]: add disallowClickOutside prop
 
 **What’s Fixed**
-* [DataTableCell][Breaking Change]: removed labelColor prop from Loveship skin, reusePadding from Loveship & Promo skins, reworked html structure
+* [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
+* [Button]: fix tooltip on disabled button
+* [PickerToggler]: fix picker closing by clicking on toggler arrow
+* [Modals]: fix mobile view
+* [SlateEditor]: add 'null' type for value prop
 
 # 4.2.6 - 07.10.2021
 
