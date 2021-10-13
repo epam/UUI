@@ -6,7 +6,8 @@
 **What’s Fixed**
 * [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
 * [Button]: fix tooltip on disabled button
-* [PickerToggler]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix selected item color when searchPosition='none'
 * [Modals]: fix mobile view
 * [SlateEditor]: add 'null' type for value prop
 
