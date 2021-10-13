@@ -47,6 +47,7 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
             </>,
         },
     ]})
+    .prop('disallowClickOutside', { examples: [true], defaultValue: false})
     .prop('renderNotFound', { examples: ctx => [
         {
             name: 'Custom not found block',
