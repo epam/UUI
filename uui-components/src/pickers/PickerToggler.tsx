@@ -112,7 +112,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     renderInput() {
         const isActivePlaceholder = this.props.pickerMode === 'single' && this.props.selection && !!this.props.selection[0];
         const placeholder = isActivePlaceholder ? this.props.getName(this.props.selection[0]) : this.props.placeholder;
-        const value = this.props.disableSearch ? '' : this.props.value;
+        const value = this.props.disableSearch ? null : this.props.value;
 
         if (this.props.disableSearch && this.props.pickerMode === 'multi' && this.props.selection.length > 0) {
             return null;
@@ -133,7 +133,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             }
             disabled={ this.props.isDisabled }
             placeholder={ placeholder }
-            value={ value }
+            value={ value || '' }
             readOnly={ this.props.isReadonly || this.props.disableSearch }
             onChange={ this.handleChange }
         />;

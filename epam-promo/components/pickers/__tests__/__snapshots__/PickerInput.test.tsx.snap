@@ -17,6 +17,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
+      readOnly={false}
       tabIndex={-1}
       type="text"
       value=""
