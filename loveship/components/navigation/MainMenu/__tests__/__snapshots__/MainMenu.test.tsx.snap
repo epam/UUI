@@ -9,7 +9,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   />
 </nav>
 `;
@@ -23,7 +23,7 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   />
   <div
     className="uui-mainmenu-server-badge"

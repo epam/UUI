@@ -6,7 +6,7 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   role="button"
-  tabIndex={null}
+  tabIndex={-1}
 >
   <div
     className="container uui-icon uui-enabled"
@@ -31,7 +31,7 @@ exports[`MainMenuIcon should be rendered correctly with props 1`] = `
   className="container uui-button-box uui-enabled -clickable root color-night600 container"
   onClick={[Function]}
   role="link"
-  tabIndex={null}
+  tabIndex={-1}
   target="_blank"
 >
   <div
