@@ -10,8 +10,8 @@
     border-radius: 18px;
     background-color: var(--background-color);
     fill: var(--fill);
-    padding: 0 16px;
-    margin: 0 16px;
+    padding: 0 6px;
+    margin: 0 12px;
     transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
 
     :global(.uui-input) {
