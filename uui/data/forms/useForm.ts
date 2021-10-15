@@ -114,7 +114,6 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const resetForm = (withNewState: UseFormState<T>) => {
         releaseLock();
-        initialForm.current = { ...initialForm.current, ...withNewState };
         setFormState({ ...initialForm.current, ...withNewState });
     };
 
@@ -133,7 +132,16 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 .then(handleSaveResponse)
                 .catch(err => props.onError?.(err));
         } else return Promise.reject();
-    }, [formState.validationState, formState.isInProgress, props.onSave]);
+    }, [
+        formState.serverValidationState,
+        formState.validationState,
+        formState.lastSentForm,
+        formState.form,
+        formState.isInProgress,
+        props.onSave,
+        props.onError,
+        props.onSuccess
+    ]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: UseFormState<T> = {
@@ -172,8 +180,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, [formState.formHistory, formState.historyIndex, formState.form, formState.isChanged]);
 
     const validate = useCallback(() => {
-        setFormState({ ...formState, validationState: handleValidate() })
-    }, [formState.validationState]);
+        setFormState({ ...formState, validationState: handleValidate() });
+    }, [formState.form, props.getMetadata]);
 
     const handleRevert = useCallback(() => {
         resetForm({ ...formState, form: props.value });

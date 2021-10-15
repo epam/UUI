@@ -24,10 +24,15 @@ export class FormDoc extends BaseDocsBlock {
                     title='Modal with Form'
                     path='./examples/modals/ModalWithForm.example.tsx'
                 />
-                
+
                 <DocExample
                     title='Server-side validation'
                     path='./examples/form/ServerValidation.example.tsx'
+                />
+
+                <DocExample
+                    title='Legacy form example'
+                    path='./examples/form/LegacyForm.example.tsx'
                 />
             </>
         );
