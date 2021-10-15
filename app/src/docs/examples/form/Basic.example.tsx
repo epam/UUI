@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from "@epam/uui";
-import { Country } from '@epam/uui-docs';
+import type { TApi } from '../../../data';
+import { useForm, useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
     PickerInput, SuccessNotification, ErrorNotification,
@@ -13,10 +13,10 @@ interface Person {
 }
 
 export default function BasicFormExample() {
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi, UuiContexts>();
 
     const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: LazyDataSourceApiResponse<Country>) => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     }, []);
 
     const { lens, save } = useForm<Person>({
