@@ -73,3 +73,6 @@ export interface PersonDetails {
     travelVisas?: PersonTravelVisas;
     otherInfo?: PersonOtherInfo;
 }
+
+
+export type Attachment = Partial<FileUploadResponse> & { progress?: number };

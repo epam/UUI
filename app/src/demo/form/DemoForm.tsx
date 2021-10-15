@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { useForm, useArrayDataSource, useUuiContext, useLazyDataSource, FileUploadResponse, ILens, Lens, useAsyncDataSource } from '@epam/uui';
-import { demoData } from '@epam/uui-docs';
+import { useForm, useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource } from '@epam/uui';
+import { demoData, Country } from '@epam/uui-docs';
+import { svc } from '../../services';
 import {
     FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, Text,
     TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
     MultiSwitch, DropSpot, FileCard
 } from '@epam/promo';
-import { PersonDetails, PersonLanguageInfo, PersonTravelVisa } from './types';
+import type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from './types';
 import { personDetailsSchema } from './validationShema';
-import { defaultData } from './defaultData';
+import { defaultData, emptyInfo } from './defaultData';
 import * as infoIcon from '@epam/assets/icons/common/notification-help-outline-24.svg';
 import * as addIcon from '@epam/assets/icons/common/action-add-18.svg';
 import * as clearIcon from '@epam/assets/icons/common/navigation-close-24.svg';
@@ -22,13 +23,13 @@ const tShirtSizes = [
     { id: 5, caption: 'XL' },
 ];
 
-const removeLensItemHandler = (lens: ILens<any>, index: number) => {
-    return lens.set(lens.get().filter((item: any, i: number) => index !== i));
+function removeLensItemHandler<T>(lens: ILens<T[]>, index: number) {
+    return lens.set(lens.get().filter((_, i: number) => index !== i));
 };
 
-const addLensItemHandler = (lens: ILens<any>, item: any) => {
+function addLensItemHandler<T>(lens: ILens<T[]>, item: T) {
     return lens.set(lens.get().concat(item));
-};
+}
 
 const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) => (
     <>
@@ -51,13 +52,7 @@ const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
     </>
 );
 
-const Location = ({ lens }: { lens: ILens<PersonDetails['location']> }) => {
-    const svc = useUuiContext();
-
-    const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
-    }, []);
-
+const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']>, countriesDS: AsyncDataSource<Country, string, unknown> }) => {
     const citiesDataSource = useLazyDataSource({
         api: svc.api.demo.cities
     }, []);
@@ -70,7 +65,7 @@ const Location = ({ lens }: { lens: ILens<PersonDetails['location']> }) => {
                 <LabeledInput htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
                     <PickerInput
                         { ...lens.prop('country').toProps() }
-                        dataSource={ countriesDataSource }
+                        dataSource={ countriesDS }
                         selectionMode='single'
                         valueType='id'
                         inputId="country"
@@ -255,13 +250,9 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
     );
 };
 
-const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
-    const svc = useUuiContext();
-    const emptyLangInfo: PersonLanguageInfo = { language: null, writingLevel: null, speakingLevel: null };
-    const langLens = lens.prop('languageInfo').default([emptyLangInfo]);
-
+const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => {
     const languageDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.languages({}).then((r: any) => r.items),
+        api: () => svc.api.demo.languages({}).then(r => r.items),
     }, []);
 
     const languageLevelsDataSource = useArrayDataSource({
@@ -271,16 +262,16 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
     return (
         <>
             <RichTextView><h3>Languages</h3></RichTextView>
-            { langLens.get().map((value, index) => {
-                let langLensItem = langLens.index(index);
-                let isClearable = index !== 0 || value.language || value.speakingLevel || value.writingLevel;
+            { lens.get().map(({ language, speakingLevel, writingLevel }, index) => {
+                const lensItem = lens.index(index);
+                const isClearable = index !== 0 || language || speakingLevel || writingLevel;
 
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top'>
                         <FlexCell minWidth={ 186 }>
-                            <LabeledInput htmlFor={`language-${index}`} label='Language' { ...langLensItem.prop('language').toProps() } >
+                            <LabeledInput htmlFor={`language-${index}`} label='Language' { ...lensItem.prop('language').toProps() } >
                                 <PickerInput
-                                    { ...langLensItem.prop('language').toProps() }
+                                    { ...lensItem.prop('language').toProps() }
                                     dataSource={ languageDataSource }
                                     selectionMode='single'
                                     valueType='id'
@@ -290,9 +281,9 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`speakingLevel-${index}`} label='Speaking' { ...langLensItem.prop('speakingLevel').toProps() } >
+                            <LabeledInput htmlFor={`speakingLevel-${index}`} label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
                                 <PickerInput
-                                    { ...langLensItem.prop('speakingLevel').toProps() }
+                                    { ...lensItem.prop('speakingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
@@ -303,9 +294,9 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`writingLevel-${index}`} label='Writing' { ...langLensItem.prop('writingLevel').toProps() } >
+                            <LabeledInput htmlFor={`writingLevel-${index}`} label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
                                 <PickerInput
-                                    { ...langLensItem.prop('writingLevel').toProps() }
+                                    { ...lensItem.prop('writingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
@@ -316,15 +307,19 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
-                            { isClearable && <IconButton icon={ clearIcon } onClick={ () => removeLensItemHandler(langLens, index) }/> }
+                            { isClearable && (
+                              <IconButton
+                                icon={ clearIcon }
+                                onClick={ () => removeLensItemHandler<PersonLanguageInfo>(lens, index) }
+                              />
+                            ) }
                         </FlexRow>
                     </FlexRow>
                 );
-            })
-            }
+            }) }
             <FlexRow vPadding='12'>
                 <Button
-                    onClick={ () => addLensItemHandler(langLens, emptyLangInfo) }
+                    onClick={ () => addLensItemHandler<PersonLanguageInfo>(lens, emptyInfo.language) }
                     caption='Add One More'
                     icon={ addIcon }
                     fill='none'
@@ -334,21 +329,15 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails> }) => {
     );
 };
 
-const Visas = ({ lens }: { lens: ILens<PersonDetails> }) => {
-    const svc = useUuiContext();
-    const emptyVisa: PersonTravelVisa = { country: null, term: null };
-    const visasLens = lens.prop('travelVisas').prop('visas').default([emptyVisa]);
-    const scansLens = Lens.onEditable(lens.prop('travelVisas').prop('scans').toProps()).default([]);
+const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']>, countriesDS: AsyncDataSource<Country, string, unknown> }) => {
+    const visasLens = lens.prop('visas').default([emptyInfo.visa]);
+    const scansLens = Lens.onEditable(lens.prop('scans').toProps()).default([]);
 
-    const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
-    }, []);
-
-    const uploadFile = (files: File[], lens: ILens<({progress?: number} & Partial<FileUploadResponse>)[]>) => {
+    const uploadFile = (files: File[], lens: ILens<Attachment[]>) => {
         let tempIdCounter = 0;
         const attachments = lens.default([]).get();
 
-        const updateAttachment = (newFile: any, id: number) => {
+        const updateAttachment = (newFile: Attachment, id: number) => {
             lens.set(attachments.map(i => i.id === id ? newFile : i));
         };
 
@@ -388,7 +377,7 @@ const Visas = ({ lens }: { lens: ILens<PersonDetails> }) => {
                             <LabeledInput htmlFor={`travelVisasCountry-${index}`} label='Country' { ...visasLens.index(index).prop('country').toProps() } >
                                 <PickerInput
                                     { ...visasLens.index(index).prop('country').toProps() }
-                                    dataSource={ countriesDataSource }
+                                    dataSource={ countriesDS }
                                     selectionMode='single'
                                     valueType='id'
                                     inputId={`travelVisasCountry-${index}`}
@@ -402,13 +391,13 @@ const Visas = ({ lens }: { lens: ILens<PersonDetails> }) => {
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
-                            { isClearable && <IconButton icon={ clearIcon } onClick={ () => removeLensItemHandler(visasLens, index) }/> }
+                            { isClearable && <IconButton icon={ clearIcon } onClick={ () => removeLensItemHandler<PersonTravelVisa>(visasLens, index) } /> }
                         </FlexRow>
                     </FlexRow>
                 );
             }) }
             <FlexRow vPadding='12'>
-                <Button onClick={ () => addLensItemHandler(visasLens, emptyVisa) }  caption='Add One More' icon={ addIcon } fill='none' />
+                <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) }  caption='Add One More' icon={ addIcon } fill='none' />
             </FlexRow>
             <FlexRow vPadding='12' spacing='18' >
                 <FlexCell width='100%'>
@@ -422,7 +411,7 @@ const Visas = ({ lens }: { lens: ILens<PersonDetails> }) => {
                                 <FileCard
                                     key={ index }
                                     file={ i }
-                                    onClick={ () => removeLensItemHandler(scansLens, index) }
+                                    onClick={ () => removeLensItemHandler<Attachment>(scansLens, index) }
                                 />
                             ))}
                         </div>
@@ -451,8 +440,6 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 );
 
 export function DemoForm() {
-    const svc = useUuiContext();
-
     const { lens, validate, save } = useForm<PersonDetails>({
         value: defaultData,
         getMetadata: personDetailsSchema,
@@ -463,6 +450,10 @@ export function DemoForm() {
             </SuccessNotification>, { duration: 2 }),
     });
 
+    const countriesDS = useAsyncDataSource<Country, string, unknown>({
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
+    }, []);
+
     return (
         <div className={ css.root }>
             <FlexRow size='48'>
@@ -472,11 +463,11 @@ export function DemoForm() {
             <Panel cx={ css.formPanel } background='white' shadow>
                 <FlexCell width='100%'>
                     <PersonalInfo lens={ lens.prop('personalInfo') } />
-                    <Location lens={ lens.prop('location') } />
+                    <Location lens={ lens.prop('location') } countriesDS={ countriesDS } />
                     <PrimaryInfo lens={ lens.prop('primaryInfo') } />
                     <Education lens={ lens.prop('education') } />
-                    <Languages lens={ lens } />
-                    <Visas lens={ lens } />
+                    <Languages lens={ lens.prop('languageInfo').default([emptyInfo.language]) } />
+                    <Visas lens={ lens.prop('travelVisas') } countriesDS={ countriesDS } />
                     <OtherInfo lens={ lens.prop('otherInfo') } />
                     <hr className={ css.divider } />
                     <FlexRow spacing='12'>
