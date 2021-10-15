@@ -1,5 +1,5 @@
 import React from 'react';
-import { Metadata, useForm, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from "@epam/uui";
+import { useForm, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from "@epam/uui";
 import { Country } from '@epam/uui-docs';
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
@@ -15,21 +15,13 @@ interface Person {
 export default function BasicFormExample() {
     const svc = useUuiContext();
 
-    const getMetadata = (state: Person): Metadata<Person> => ({
-        props: {
-            firstName: { isRequired: true },
-            lastName: { isRequired: true },
-            countryId: { isRequired: false },
-        },
-    });
-
     const countriesDataSource = useAsyncDataSource({
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: LazyDataSourceApiResponse<Country>) => r.items),
     }, []);
 
     const { lens, save } = useForm<Person>({
         value: {},
-        onSave: person => Promise.resolve({ form: person }) /*place your save api call here*/,
+        onSave: person => Promise.resolve({ form: person }) /* place your save api call here */,
         onSuccess: result => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>
                 <Text>Form saved</Text>
@@ -40,7 +32,13 @@ export default function BasicFormExample() {
                 <Text>Error on save</Text>
             </ErrorNotification>
         )),
-        getMetadata,
+        getMetadata: () => ({
+            props: {
+                firstName: { isRequired: true },
+                lastName: { isRequired: true },
+                countryId: { isRequired: false },
+            },
+        }),
         settingsKey: 'basic-form-example',
     });
 
