@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useForm, useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource } from '@epam/uui';
+import { useForm, useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext } from '@epam/uui';
 import { demoData, Country } from '@epam/uui-docs';
-import { svc } from '../../services';
+import type { TApi } from '../../data';
 import {
     FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, Text,
     TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
@@ -53,6 +53,8 @@ const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
 );
 
 const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']>, countriesDS: AsyncDataSource<Country, string, unknown> }) => {
+    const svc = useUuiContext<TApi, UuiContexts>();
+
     const citiesDataSource = useLazyDataSource({
         api: svc.api.demo.cities
     }, []);
@@ -251,6 +253,8 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
 };
 
 const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => {
+    const svc = useUuiContext<TApi, UuiContexts>();
+
     const languageDataSource = useAsyncDataSource({
         api: () => svc.api.demo.languages({}).then(r => r.items),
     }, []);
@@ -330,6 +334,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
 };
 
 const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']>, countriesDS: AsyncDataSource<Country, string, unknown> }) => {
+    const svc = useUuiContext<TApi, UuiContexts>();
     const visasLens = lens.prop('visas').default([emptyInfo.visa]);
     const scansLens = Lens.onEditable(lens.prop('scans').toProps()).default([]);
 
@@ -440,6 +445,8 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 );
 
 export function DemoForm() {
+    const svc = useUuiContext<TApi, UuiContexts>();
+
     const { lens, validate, save } = useForm<PersonDetails>({
         value: defaultData,
         getMetadata: personDetailsSchema,

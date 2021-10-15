@@ -1,6 +1,7 @@
 import React from 'react';
-import { useForm, FormSaveResponse, useUuiContext } from "@epam/uui";
+import { useForm, FormSaveResponse, useUuiContext, UuiContexts } from "@epam/uui";
 import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification } from "@epam/promo";
+import type { TApi } from '../../../data';
 
 interface Login {
     email: string;
@@ -16,7 +17,7 @@ interface ServerResponseExample<T> {
 }
 
 export default function ServerValidationExample() {
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi, UuiContexts>();
 
     async function onSave(formState: Login): Promise<FormSaveResponse<Login>> {
         const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
