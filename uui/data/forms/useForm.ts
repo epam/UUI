@@ -132,16 +132,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 .then(handleSaveResponse)
                 .catch(err => props.onError?.(err));
         } else return Promise.reject();
-    }, [
-        formState.serverValidationState,
-        formState.validationState,
-        formState.lastSentForm,
-        formState.form,
-        formState.isInProgress,
-        props.onSave,
-        props.onError,
-        props.onSuccess
-    ]);
+    }, [formState.validationState, formState.isInProgress, props.onSave, props.onError]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: UseFormState<T> = {
