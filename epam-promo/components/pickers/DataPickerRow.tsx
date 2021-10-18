@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { DataRowProps, DataColumnProps } from '@epam/uui';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
-import { FlexSpacer } from '../layout';
+import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';
-import { IconButton } from '../buttons';
 import * as tickIcon_24 from '@epam/assets/icons/common/notification-done-24.svg';
 import * as tickIcon_18 from '@epam/assets/icons/common/notification-done-18.svg';
 import * as tickIcon_12 from '@epam/assets/icons/common/notification-done-12.svg';
@@ -36,7 +35,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 { this.props.renderItem(item, rowProps) }
                 <FlexSpacer />
                 { (rowProps.isChildrenSelected || rowProps.isSelected) && <div className={ css.iconWrapper }>
-                    <IconButton icon={ this.getIcon(this.props.size) } color={ rowProps.isChildrenSelected ? 'gray60' : 'blue' } />
+                    <IconContainer icon={ this.getIcon(this.props.size) } color={ rowProps.isChildrenSelected ? 'gray60' : 'blue' } />
                 </div> }
             </div>,
         };

@@ -124,7 +124,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
-        this.setState({ opened: false });
+        this.toggleDropdownOpening(false);
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
         this.focusToggler();
     }
@@ -134,7 +134,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getSearchPosition() {
-        if (isMobile()) return 'body';
+        if (isMobile() && this.props.searchPosition !== 'none') return "body";
         if (!this.props.searchPosition) {
             return this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {

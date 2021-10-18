@@ -3,13 +3,32 @@
 **What's New**
 
 **What’s Fixed**
-* [ArrayListView, LazyListView]: checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list.
-* [TimePicker]: fix incorrect behaviour after click onClear.
-* [SliderRating]: fix too many rendered tooltips so that rendering of the SliderRation does not hang.
-* [Rating, SliderRating]: fix invalid behavior of reverting back to selected value after mouse leave.
 * [PickerInput, PickerToggler, DataPickerRow, DataPickerBody]: moved part of logic to uui-components.
 * [DataTable]: refactor to FunctionalComponent, create useColumnsConfig hook.
 * [DataPickerFooter][Breaking Change]: changed interface DataPickerFooterProps.
+
+# 4.2.7 - 13.10.2021
+
+**What's New**
+* [PickerModal, PickerList]: add disallowClickOutside prop
+* [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
+
+**What’s Fixed**
+* [Button]: fix tooltip on disabled button
+* [PickerInput]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix selected item color when searchPosition='none'
+* [Modals]: fix mobile view
+* [SlateEditor]: add 'null' type for value prop
+
+# 4.2.6 - 07.10.2021
+
+**What’s Fixed**
+* [ArrayListView, LazyListView]: fix checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list;
+* [Form]: fix form validation after beforeLeave modal save action;
+* [TimePicker]: fix incorrect onClear behaviour;
+* [SliderRating]: improve performance; fix invalid behavior of reverting back to selected value after mouse leave;
+* [PickerInput]: close picker body when user lose focus from input;
+* [PickerInput]: fix 'body' scroll in mobile view;
 
 # 4.2.5 - 28.09.2021
 

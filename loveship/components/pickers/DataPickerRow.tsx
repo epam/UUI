@@ -2,8 +2,7 @@ import React from 'react';
 import { DataRowProps, DataColumnProps } from '@epam/uui';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { DataTableRowMods } from '../tables';
-import { IconButton } from '../buttons';
-import { FlexSpacer } from '../layout';
+import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';
 import * as tickIcon from '../icons/notification-done-18.svg';
 import * as smallSizeIcon from '../icons/notification-done-12.svg';
@@ -23,7 +22,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 { this.props.renderItem(item, rowProps) }
                 <FlexSpacer />
                 { (rowProps.isChildrenSelected || rowProps.isSelected) && <div className={ css.iconWrapper }>
-                    <IconButton icon={ this.props.size === '24' ? smallSizeIcon : tickIcon } color={ rowProps.isChildrenSelected ? 'night400' : 'sky' } />
+                    <IconContainer icon={ this.props.size === '24' ? smallSizeIcon : tickIcon } color={ rowProps.isChildrenSelected ? 'night400' : 'sky' } />
                 </div> }
             </div>,
         };

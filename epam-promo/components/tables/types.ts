@@ -24,7 +24,6 @@ export interface DataTableRowMods extends DataTableCellMods {
 
 export interface DataTableCellMods {
     size?: ControlSize | '60';
-    reusePadding?: 'auto' | 'false';
     padding?: '0' | '12' | '24';
     isFirstColumn?: boolean;
     isLastColumn?: boolean;

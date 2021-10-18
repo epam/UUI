@@ -44,7 +44,7 @@ exports[`ScrollBars should render with default props 1`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     />
   </div>
   <div
