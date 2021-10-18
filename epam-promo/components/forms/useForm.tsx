@@ -1,15 +1,16 @@
 import React from 'react';
-import { Form as UuiForm, FormProps, useUuiContext, INotification } from '@epam/uui';
-import { ConfirmationModal, Text, RichTextView, WarningNotification } from '..';
+import { useUuiContext, UseFormProps, useForm as uuiUseForm, INotification } from "@epam/uui";
+import { Text, RichTextView, WarningNotification } from '..';
+import { ConfirmationModal } from '../overlays/ConfirmationModal';
 import { i18n } from '../../i18n';
 
-export function Form<T>(props: FormProps<T>) {
+export function useForm<T>(props: UseFormProps<T>) {
     const context = useUuiContext();
 
     const beforeLeave = (): Promise<boolean> => {
-        return context.uuiModals.show<boolean>(modalProps =>
+        return context.uuiModals.show<boolean>(modalProps => (
             <ConfirmationModal caption={ i18n.form.modals.beforeLeaveMessage } { ...modalProps } />
-        );
+        ));
     };
 
     const loadUnsavedChanges = (): Promise<void> => {
@@ -21,14 +22,8 @@ export function Form<T>(props: FormProps<T>) {
                 }]
             }>
                 <RichTextView><Text size="36">{ i18n.form.notifications.unsavedChangesMessage }</Text></RichTextView>
-            </WarningNotification>, { duration: 5, position: 'bot-left' });
-    }
+            </WarningNotification>, { duration: 5, position: 'bot-left' })
+    };
 
-    return (
-        <UuiForm<T>
-            loadUnsavedChanges={ loadUnsavedChanges }
-            beforeLeave={ beforeLeave }
-            { ...props }
-        />
-    );
+    return uuiUseForm({ beforeLeave, loadUnsavedChanges, ...props });
 }
