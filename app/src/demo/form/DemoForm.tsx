@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { useForm, useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext } from '@epam/uui';
+import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext } from '@epam/uui';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
     FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, Text,
     TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
-    MultiSwitch, DropSpot, FileCard
+    MultiSwitch, DropSpot, FileCard,
+    useForm
 } from '@epam/promo';
 import type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from './types';
 import { personDetailsSchema } from './validationShema';
