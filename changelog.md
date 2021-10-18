@@ -1,9 +1,11 @@
-# 4.2.8[WIP]
+# 4.3.0[WIP]
 
 **What's New**
+* [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
+
 
 **What’s Fixed**
-* removed duplicates css at-rules from output bundle
+
 
 # 4.2.7 - 13.10.2021
 
