@@ -1,9 +1,8 @@
-# 4.3.0[WIP]
+# 4.2.8[WIP]
 
 **What's New**
 
 **What’s Fixed**
-* [DataTableCell][Breaking Change]: removed labelColor prop from Loveship skin, reusePadding from Loveship & Promo skins, reworked html structure
 * removed duplicates css at-rules from output bundle
 
 # 4.2.7 - 13.10.2021
