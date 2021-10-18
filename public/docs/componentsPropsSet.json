@@ -7875,15 +7875,11 @@
       },
       {
         "name": "size",
-        "value": "24 | 30 | 36 | 42 | 18"
+        "value": "24 | 30 | 36 | 42 | 48 | 18"
       },
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
-      },
-      {
-        "name": "font",
-        "value": "sans | sans-semibold | sans-light"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
