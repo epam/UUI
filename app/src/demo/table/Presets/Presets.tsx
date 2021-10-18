@@ -1,50 +1,46 @@
 import React, { useCallback, useMemo } from "react";
 import css from "./Presets.scss";
 import { Button, FlexRow } from "@epam/promo";
-import { IPresetsApi, ITablePreset, PersonsTableState } from "../types";
-import { DataColumnProps, IEditable } from "@epam/uui";
+import { ITableStateApi } from "../types";
 import { Preset } from "./Preset";
-import { svc } from "../../../services";
-import { constants } from "../data";
 
-interface IPresetsProps extends IEditable<PersonsTableState> {
-    presetsApi: IPresetsApi;
+interface IPresetsProps extends ITableStateApi {
 }
 
-const Presets: React.FC<IPresetsProps> = ({ value, onValueChange, presetsApi }) => {
+const Presets: React.FC<IPresetsProps> = ({ presets, filter, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset }) => {
     const newPresetTitle = "New preset";
+    const activePresetId = getActivePresetId();
 
     const saveNewPreset = useCallback(() => {
-        presetsApi.createNewPreset(newPresetTitle);
-    }, [presetsApi.createNewPreset, newPresetTitle]);
+        createNewPreset(newPresetTitle);
+    }, [createNewPreset, newPresetTitle]);
 
-    const activePreset = value.presets.find(p => p.id === presetsApi.activePresetId);
+    const activePreset = presets.find(p => p.id === activePresetId);
     const hasActivePresetChanged = useMemo(() => {
-        return !presetsApi.isDefaultPresetActive
-            && presetsApi.hasPresetChanged(activePreset);
-    }, [presetsApi.isDefaultPresetActive, activePreset, value.filter]);
+        return !isDefaultPresetActive()
+            && hasPresetChanged(activePreset);
+    }, [isDefaultPresetActive, activePreset, filter]);
 
     return (
         <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>
             <Button
                 size="24"
                 caption="Default"
-                fill={ presetsApi.isDefaultPresetActive ? "solid" : "white" }
-                onClick={ presetsApi.isDefaultPresetActive ? null : presetsApi.resetToDefault }
+                fill={ isDefaultPresetActive() ? "solid" : "white" }
+                onClick={ isDefaultPresetActive() ? null : resetToDefault }
             />
-            { value.presets.map(preset => (
+            { presets.map(preset => (
                 <Preset
                     preset={ preset }
-                    isActive={ preset.id === presetsApi.activePresetId }
-                    hasChanged={ preset.id === presetsApi.activePresetId && hasActivePresetChanged }
-                    choosePreset={ presetsApi.choosePreset }
-                    duplicatePreset={ presetsApi.duplicatePreset }
-                    deletePreset={ presetsApi.deletePreset }
-                    renamePreset={ presetsApi.renamePreset }
-                    updatePreset={ presetsApi.updatePreset }
+                    isActive={ preset.id === activePresetId }
+                    hasChanged={ preset.id === activePresetId && hasActivePresetChanged }
+                    choosePreset={ choosePreset }
+                    duplicatePreset={ duplicatePreset }
+                    deletePreset={ deletePreset }
+                    renamePreset={ renamePreset }
+                    updatePreset={ updatePreset }
+                    resetToDefault={ resetToDefault }
                     key={ preset.id }
-                    value={ value }
-                    onValueChange={ onValueChange }
                 />
             )) }
 

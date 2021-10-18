@@ -2,24 +2,18 @@ import React, { useCallback, useMemo } from "react";
 import sortBy from "lodash.sortby";
 import { Accordion } from "@epam/promo";
 import { ColumnsConfig, DataColumnProps, getColumnsConfig, IEditable } from "@epam/uui";
-import { PersonsTableState } from "../../types";
+import { ITableStateApi, PersonsTableState } from "../../types";
 import Column from "./Column";
 
-interface IColumnsBlockProps extends IEditable<PersonsTableState> {
+interface IColumnsBlockProps {
+    tableStateApi: ITableStateApi;
     columns: DataColumnProps<any>[];
 }
 
-const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ value, onValueChange, columns }) => {
+const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ tableStateApi, columns }) => {
     const columnsConfig = useMemo(() => {
-        return value.columnsConfig ?? getColumnsConfig(columns, {});
-    }, [columns, value]);
-    
-    const handleChange = useCallback((newColumnsConfig: ColumnsConfig) => {
-        onValueChange({
-            ...value,
-            columnsConfig: newColumnsConfig,
-        });
-    }, [value, onValueChange]);
+        return tableStateApi.columnsConfig ?? getColumnsConfig(columns, {});
+    }, [columns, tableStateApi.columnsConfig]);
 
     const items = useMemo(() => {
         const sortedColumns = sortBy(columns.filter(column => !!column.caption), i => {
@@ -39,7 +33,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ value, onValueChange, colu
             { items.map(item => (
                 <Column
                     value={ columnsConfig }
-                    onValueChange={ handleChange }
+                    onValueChange={ tableStateApi.onColumnsConfigChange }
                     columnInfo={ item }
                 />
             )) }

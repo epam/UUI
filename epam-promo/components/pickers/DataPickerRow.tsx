@@ -70,7 +70,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     render() {
         const clickHandler = this.props.onSelect || this.props.onFold || this.props.onCheck;
         return <FlexRow
-            onClick={ () => clickHandler && clickHandler(this.props)}
+            onClick={ () => clickHandler && clickHandler(this.props) }
             rawProps={ {
                 role: 'option',
                 'aria-posinset': this.props.index + 1,

@@ -2,22 +2,20 @@ import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
 import { IEditable } from "@epam/uui";
-import { ITableFilter, PersonsTableState } from "../../types";
+import { ITableFilter, ITableStateApi, PersonsTableState } from "../../types";
 
-interface IFiltersProps extends IEditable<PersonsTableState> {
+interface IFiltersProps  {
+    tableStateApi: ITableStateApi;
     filters: ITableFilter[];
 }
 
-const FiltersBlockComponent: React.FC<IFiltersProps> = ({ filters, value, onValueChange }) => {
-    const handleChange = useCallback((filter: { [key: string]: any[] }) => {
-        onValueChange({
-            ...value,
-            filter: {
-                ...value.filter,
-                ...filter,
-            },
+const FiltersBlockComponent: React.FC<IFiltersProps> = ({ tableStateApi, filters }) => {
+    const handleChange = useCallback((newFilter: { [key: string]: any[] }) => {
+        tableStateApi.onFilterChange({
+            ...tableStateApi.filter,
+            ...newFilter,
         });
-    }, [value, onValueChange]);
+    }, [tableStateApi.filter]);
     
     return (
         <Accordion title="Filters" mode="inline" padding="18">
@@ -25,7 +23,7 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ filters, value, onValu
                 return (
                     <Filter
                         { ...filter }
-                        value={ value.filter }
+                        value={ tableStateApi.filter }
                         onValueChange={ handleChange }
                         key={ filter.id }
                     />
