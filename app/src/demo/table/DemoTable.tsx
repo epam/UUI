@@ -1,17 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
-import css from './DemoTable.scss';
-import { LazyDataSource, DataRowProps, DataRowOptions, cx, getColumnsConfig } from '@epam/uui';
-import { Person, PersonGroup } from '@epam/uui-docs';
-import { FlexRow, DataTable, DataTableRow, IconButton } from '@epam/promo';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import css from "./DemoTable.scss";
+import { DataRowProps, DataRowOptions, cx, getColumnsConfig, DataTableState, useLazyDataSource } from "@epam/uui";
+import { Person, PersonGroup } from "@epam/uui-docs";
+import { FlexRow, DataTable, DataTableRow, IconButton } from "@epam/promo";
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
 
 import { getFilters, api } from "./data";
 import { getColumns } from "./columns";
-import { PersonTableRecord, PersonTableRecordId } from './types';
+import { PersonTableRecord, PersonTableRecordId } from "./types";
 import { useFilterPanelOptions, useInfoPanelOptions, useTableState } from "./hooks";
 import { FilterPanel } from "./FilterPanel";
-import { InfoSidebarPanel } from './InfoSidebarPanel';
+import { InfoSidebarPanel } from "./InfoSidebarPanel";
 import { Presets } from "./Presets";
+import { normalizeFilter } from "./helpers";
 
 export const DemoTable: React.FC = () => {
     const filterPanelOptions = useFilterPanelOptions();
@@ -20,25 +21,45 @@ export const DemoTable: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(() => getColumns(filters, infoPanelOptions.openPanel), []);
 
-    const { value, onValueChange, presetsApi } = useTableState({
-        value: {
-            topIndex: 0,
-            visibleCount: 40,
-            sorting: [{ field: 'name' }],
-            isFolded: true,
-            columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
-        },
+    const tableStateApi = useTableState({
+        columns: columnsSet.personColumns,
+        columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
         loadPresets: () => JSON.parse(localStorage.getItem("presets")) ?? [],
         onPresetsSave: newPresets => localStorage.setItem("presets", JSON.stringify(newPresets)),
-    },
-        columnsSet.personColumns);
+    });
 
-    const dataSource = useMemo(() => new LazyDataSource({
+    const [value, setValue] = useState<DataTableState>({
+        topIndex: 0,
+        visibleCount: 40,
+        sorting: [{ field: "name" }],
+        filter: tableStateApi.filter,
+        columnsConfig: tableStateApi.columnsConfig,
+    });
+
+    useEffect(() => {
+        setValue(prevValue => ({
+            ...prevValue,
+            filter: tableStateApi.filter,
+            columnsConfig: tableStateApi.columnsConfig,
+        }));
+    }, [tableStateApi.filter, tableStateApi.columnsConfig]);
+
+    const onValueChange = useCallback((newValue: DataTableState) => {
+        tableStateApi.onFilterChange(newValue.filter);
+        tableStateApi.onColumnsConfigChange(newValue.columnsConfig);
+        setValue({
+            ...newValue,
+            filter: normalizeFilter(newValue.filter),
+        });
+    }, []);
+
+    const dataSource = useLazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
-        getChildCount: (item: PersonTableRecord) =>
-            item.__typename === 'PersonGroup' ? item.count : null,
-    }), []);
+        getChildCount: (item: PersonTableRecord) => {
+            return item.__typename === "PersonGroup" ? item.count : null;
+        },
+    }, []);
 
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
@@ -51,37 +72,41 @@ export const DemoTable: React.FC = () => {
     };
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
+        let columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
         return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns }/>;
     };
 
-    const personsDataView = dataSource.useView(value, onValueChange as any, {
+    const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions,
-        isFoldedByDefault: () => value.isFolded,
+        isFoldedByDefault: () => true,
         cascadeSelection: true,
     });
-
+    
     const renderInfoSidebarPanel = () => {
-        const data = dataSource.getById(['Person', infoPanelOptions.panelId]) as Person;
+        const data = dataSource.getById(["Person", infoPanelOptions.panelId]) as Person;
         return <InfoSidebarPanel data={ data } onClose={ infoPanelOptions.closePanel }/>;
     };
+    
+    const selectAll = useMemo(() => ({
+        value: false,
+        isDisabled: true, 
+        onValueChange: null,
+    }), []);
 
     return (
         <FlexRow cx={ css.wrapper } alignItems="top">
             { filterPanelOptions.isPanelOpened && (
                 <div className={ cx(css.filterSidebarPanelWrapper, filterPanelOptions.panelStyleModifier) }>
                     <FilterPanel
+                        tableStateApi={ tableStateApi }
                         filters={ filters }
-                        value={ value }
-                        presetsApi={ presetsApi }
-                        onValueChange={ onValueChange }
                         columns={ columnsSet.personColumns }
                         close={ filterPanelOptions.closePanel }
                     />
                 </div>
             ) }
-            <div 
-                className={ css.container } 
+            <div
+                className={ css.container }
                 role="table"
                 aria-rowcount={ personsDataView.getListProps().rowsCount }
                 aria-colcount={ columnsSet.personColumns.length }
@@ -97,18 +122,14 @@ export const DemoTable: React.FC = () => {
                             />
                         </div>
                     ) }
-                    <Presets
-                        value={ value }
-                        onValueChange={ onValueChange }
-                        presetsApi={ presetsApi }
-                    />
+                    <Presets { ...tableStateApi }/>
                 </FlexRow>
                 <DataTable
                     headerTextCase="upper"
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
-                    selectAll={ { value: false, isDisabled: true, onValueChange: null } }
+                    selectAll={ selectAll }
                     showColumnsConfig
                     value={ value }
                     onValueChange={ onValueChange }
@@ -117,7 +138,7 @@ export const DemoTable: React.FC = () => {
                 />
             </div>
             { infoPanelOptions.panelId && (
-                <div className={ cx(css.infoSidebarPanelWrapper, infoPanelOptions.isPanelOpened ? 'show' : 'hide') }>
+                <div className={ cx(css.infoSidebarPanelWrapper, infoPanelOptions.isPanelOpened ? "show" : "hide") }>
                     { renderInfoSidebarPanel() }
                 </div>
             ) }

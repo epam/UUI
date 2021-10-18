@@ -5,21 +5,21 @@ import { FlexSpacer } from "@epam/uui-components";
 import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
 import { DataColumnProps, IEditable } from "@epam/uui";
 
-import { IPresetsApi, ITableFilter, ITablePreset, PersonsTableState } from "../types";
+import { IPresetsApi, ITableFilter, ITablePreset, ITableStateApi, PersonsTableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
 
 // import { GroupingBlock } from "./GroupingBlock";
 
-interface IFilterPanelProps extends IEditable<PersonsTableState> {
+interface IFilterPanelProps {
     close: () => void;
-    filters: ITableFilter[];
+    tableStateApi: ITableStateApi;
     columns: DataColumnProps<any>[];
-    presetsApi: IPresetsApi;
+    filters: ITableFilter[];
 }
 
-const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onValueChange, columns, presetsApi }) => {
+const FilterPanel: React.FC<IFilterPanelProps> = ({ close, tableStateApi, filters, columns }) => {
     return (
         <div className={ css.container }>
             <FlexRow borderBottom size="48" padding="18">
@@ -28,19 +28,13 @@ const FilterPanel: React.FC<IFilterPanelProps> = ({ close, filters, value, onVal
                 <IconButton icon={ closeIcon } onClick={ close }/>
             </FlexRow>
             <ScrollBars>
-                <PresetsBlock
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    presetsApi={ presetsApi }
-                />
+                <PresetsBlock { ...tableStateApi }/>
                 <FiltersBlock
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    tableStateApi={ tableStateApi }
                     filters={ filters }
                 />
                 <ColumnsBlock
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    tableStateApi={ tableStateApi }
                     columns={ columns }
                 />
                 { /*<GroupingBlock/>*/ }

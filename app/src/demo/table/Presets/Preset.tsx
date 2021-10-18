@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from "react";
 import css from "./Preset.scss";
 import { Button, ControlGroup, Dropdown, Panel, TextInput } from "@epam/promo";
-import { IDropdownToggler, IEditable } from "@epam/uui";
+import { IDropdownToggler } from "@epam/uui";
 import menuIcon from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 import { DropdownBodyProps } from "@epam/uui-components";
-import { ITablePreset, PersonsTableState } from "../types";
-import { constants } from "../data";
+import { ITablePreset } from "../types";
 import DropdownMenuItem from "./DropdownMenuItem";
-import { svc } from "../../../services";
 
-interface IPresetProps extends IEditable<PersonsTableState> {
+interface IPresetProps {
     preset: ITablePreset;
     isActive: boolean;
     hasChanged: boolean;
@@ -18,9 +16,10 @@ interface IPresetProps extends IEditable<PersonsTableState> {
     deletePreset: (preset: ITablePreset) => void;
     renamePreset: (preset: ITablePreset) => void;
     updatePreset: (preset: ITablePreset) => void;
+    resetToDefault: () => void;
 }
 
-export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset, value, onValueChange }) => {
+export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset, resetToDefault }) => {
     const [isRenaming, setIsRenaming] = useState(false);
     const [renamingValue, setRenamingValue] = useState("");
 
@@ -49,34 +48,38 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
             props.onClose();
         };
         const handleDelete = () => {
-            // deletePreset(preset);
-            const newPresets = value.presets.filter(p => p.id !== preset.id);
-            
+            deletePreset(preset);
             if (isActive) {
-                // choosePreset(constants.defaultPreset);
-                const newQuery = {
-                    ...svc.uuiRouter.getCurrentLink().query,
-                    filter: undefined,
-                };
-                delete newQuery.presetId;
-
-                onValueChange({
-                    ...value,
-                    filter: constants.defaultPreset.filter,
-                    columnsConfig: constants.defaultPreset.columnsConfig,
-                    presets: newPresets,
-                });
-
-                svc.history.push({
-                    pathname: location.pathname,
-                    query: newQuery,
-                });
-            } else {
-                onValueChange({
-                    ...value,
-                    presets: newPresets,
-                });
+                resetToDefault();
             }
+            // deletePreset(preset);
+            // const newPresets = value.presets.filter(p => p.id !== preset.id);
+            //
+            // if (isActive) {
+            //     // choosePreset(constants.defaultPreset);
+            //     const newQuery = {
+            //         ...svc.uuiRouter.getCurrentLink().query,
+            //         filter: undefined,
+            //     };
+            //     delete newQuery.presetId;
+            //
+            //     onValueChange({
+            //         ...value,
+            //         filter: constants.defaultPreset.filter,
+            //         columnsConfig: constants.defaultPreset.columnsConfig,
+            //         presets: newPresets,
+            //     });
+            //
+            //     svc.history.push({
+            //         pathname: location.pathname,
+            //         query: newQuery,
+            //     });
+            // } else {
+            //     onValueChange({
+            //         ...value,
+            //         presets: newPresets,
+            //     });
+            // }
             props.onClose();
         };
         const update = () => {

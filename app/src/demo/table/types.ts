@@ -34,8 +34,8 @@ interface ITablePreset {
 type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
 
 interface IPresetsApi {
-    activePresetId: number;
-    isDefaultPresetActive: boolean;
+    getActivePresetId(): number;
+    isDefaultPresetActive(): boolean;
     choosePreset(preset: ITablePreset): void;
     createNewPreset(name: string): void;
     resetToDefault(): void;
@@ -46,4 +46,12 @@ interface IPresetsApi {
     updatePreset(preset: ITablePreset): void;
 }
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi };
+interface ITableStateApi extends IPresetsApi {
+    filter: any;
+    onFilterChange(filter: any): void;
+    columnsConfig: ColumnsConfig;
+    onColumnsConfigChange(columnsConfig: ColumnsConfig): void;
+    presets: ITablePreset[];
+}
+
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi, ITableStateApi };
