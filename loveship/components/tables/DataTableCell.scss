@@ -11,114 +11,47 @@
 
     &.align-widgets-top {
         &.size-24, &.size-30 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 6px;
-                }
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 6px;
             }
         }
 
         &.size-36 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 9px;
-                }
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 9px;
             }
         }
 
         &.size-42 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 12px;
-                }
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 12px;
             }
         }
 
         &.size-48 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 15px;
-                }
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 15px;
             }
         }
 
         &.size-60 {
-            .after-paddings, .before-paddings {
-                :global(.uui-checkbox), .folding-arrow {
-                    margin-top: 21px;
-                }
+            :global(.uui-checkbox), .folding-arrow {
+                margin-top: 21px;
             }
         }
     }
 
     &.align-widgets-center {
-        .after-paddings, .before-paddings {
-            align-self: center;
-        }
+        align-self: center;
     }
 
     &.padding-12 { padding: 0 12px; }
     &.padding-24 { padding: 0 24px; }
 
     &.padding-left-12 { padding-left: 12px; }
-    &.padding-left-18 { padding-left: 18px; }
     &.padding-left-24 { padding-left: 24px; }
-    &.padding-left-30 { padding-left: 30px; }
-    &.padding-left-36 { padding-left: 36px; }
 
-    &.padding-right-12 { padding-right: 12px; }
-    &.padding-right-18 { padding-right: 18px; }
     &.padding-right-24 { padding-right: 24px; }
-    &.padding-right-30 { padding-right: 30px; }
-    &.padding-right-36 { padding-right: 36px; }
-
-    &.vPadding-6 {
-        .before-paddings, & {
-            padding-top: 3px;
-            padding-bottom: 3px;
-        }
-
-    }
-
-    &.vPadding-12 {
-        .before-paddings, & {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
-    }
-
-    &.vPadding-18 {
-        .before-paddings, & {
-            padding-top: 9px;
-            padding-bottom: 9px;
-        }
-    }
-
-    &.vPadding-24 {
-        .before-paddings, & {
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-    }
-
-    &.vPadding-30 {
-        .before-paddings, & {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-    }
-
-    &.vPadding-36 {
-        .before-paddings, & {
-            padding-top: 18px;
-            padding-bottom: 18px;
-        }
-    }
-}
-
-.wrapped-content {
-    flex: 1 1 0;
-    min-width: 0;
 }
 
 .drag-handle {
@@ -135,21 +68,17 @@
     }
 }
 
+.checkbox {
+    padding-right: 12px;
+}
+
 .indent {
     display: flex;
     justify-content: flex-start;
     flex-grow: 0;
     flex-shrink: 0;
-    width: 24px;
-}
-
-.label {
-    position: absolute;
-    width: 6px;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: var(--uui-color-700);
+    width: 12px;
+    padding-right: 12px;
 }
 
 .folding-arrow {
@@ -176,34 +105,5 @@
         flex: 0 0 18px;
         width: 18px;
         height: 18px;
-    }
-}
-
-.before-paddings {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-around;
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-
-    .indent {
-        justify-content: center;
-    }
-
-    .folding-arrow {
-        &:global(.uui-icon) {
-            left: 0;
-        }
-    }
-}
-
-.after-paddings {
-    display: flex;
-    justify-content: space-around;
-
-    .checkbox {
-        margin-right: 12px;
     }
 }

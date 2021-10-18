@@ -18,8 +18,6 @@ export const renderCell = (props: DataTableCellProps<any, any>) => {
         role="cell"
         padding={ mods.padding }
         { ...props }
-        labelColor={ mods.labelColor }
-        reusePadding={ mods.reusePadding || 'auto' }
         isFirstColumn={ isFirstColumn }
         isLastColumn={ isLastColumn }
     />;
