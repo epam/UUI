@@ -4,6 +4,7 @@ import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState } from 
 
 export interface PickerModalOptions<TItem, TId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
+    disallowClickOutside?: boolean;
 }
 
 export type PickerModalImplProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
