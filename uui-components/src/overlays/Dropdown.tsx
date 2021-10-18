@@ -210,7 +210,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         onClose: this.onClose,
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
-                        scheduleUpdate: update
+                        scheduleUpdate: update,
                     }) }
                 </div>
             </FreeFocusInside>
