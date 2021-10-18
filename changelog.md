@@ -1,11 +1,11 @@
 # 4.3.0[WIP]
 
 **What's New**
+* [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
+
 
 **What’s Fixed**
-* [PickerInput, PickerToggler, DataPickerRow, DataPickerBody]: moved part of logic to uui-components.
-* [DataTable]: refactor to FunctionalComponent, create useColumnsConfig hook.
-* [DataPickerFooter][Breaking Change]: changed interface DataPickerFooterProps.
+
 
 # 4.2.7 - 13.10.2021
 
