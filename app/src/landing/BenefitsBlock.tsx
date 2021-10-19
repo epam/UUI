@@ -83,11 +83,11 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                                 </ul>
                             </div>
                             <ul id={ this.state.reason }>
-                                {benefits[this.state.reason].points.map((point: string, index: number) => (
-                                    <li className={ css.pointWrapper } >
-                                        <Text key={ index } font='sans' fontSize='24' cx={ css.point }>{ point }</Text>
+                                { benefits[this.state.reason].points.map((point: string, index: number) => (
+                                    <li key={ index } className={ css.pointWrapper } >
+                                        <Text font='sans' fontSize='24' cx={ css.point }>{ point }</Text>
                                     </li>
-                                ) )}
+                                )) }
                             </ul>
                         </div>
                     </div>

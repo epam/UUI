@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { DataSourceState, IEditable, IHasCaption, IModal, Lens } from '@epam/uui';
-import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState } from './index';
+import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState, PickerFooterProps } from './index';
 
 export interface PickerModalOptions<TItem, TId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
+    renderFooter?: (props: PickerFooterProps<TItem, TId> & IModal<any>) => React.ReactNode;
+    disallowClickOutside?: boolean;
 }
 
 export type PickerModalImplProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
