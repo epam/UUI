@@ -3,7 +3,7 @@ import { mergeValidation, UuiContexts, validate as uuiValidate, validateServerEr
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
-import { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
+import type { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 type UseFormState<T> = Omit<FormComponentState<T>, 'prevProps'> & { prevProps: UseFormProps<T> };
@@ -80,7 +80,6 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         const { validationState, historyIndex, formHistory } = formState;
         const newHistoryIndex = historyIndex + 1;
         const newFormHistory = formHistory.slice(0, newHistoryIndex).concat(newForm);
-        if (!lock.current) getLock();
         setUnsavedChanges(newForm);
         setFormState({
             ...formState,
@@ -92,12 +91,11 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const getLock = () => {
-        if (!props.beforeLeave) return;
-        context.uuiLocks.acquire(handleLeave).then(acquiredLock => {
-            return lock.current ? context.uuiLocks.release(acquiredLock) : lock.current = acquiredLock
-        });
-    };
+    useEffect(() => {
+        if (!props.beforeLeave || formState.isChanged) return;
+        if (lock.current) context.uuiLocks.release(lock.current);
+        context.uuiLocks.acquire(handleLeave).then(acquiredLock => lock.current = acquiredLock);
+    }, [formState.form]);
 
     const handleLeave = () => {
         return props.beforeLeave?.().then(res => {
