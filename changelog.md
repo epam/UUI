@@ -3,9 +3,8 @@
 **What's New**
 * [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
 
-
 **What’s Fixed**
-
+* [DataTable][Promo]: added work of renderNoResultsBlock props without default behavior
 
 # 4.2.7 - 13.10.2021
 
