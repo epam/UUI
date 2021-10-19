@@ -92,7 +92,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     useEffect(() => {
-        if (!props.beforeLeave || formState.isChanged) return;
+        if (!props.beforeLeave || !formState.isChanged) return;
         if (lock.current) context.uuiLocks.release(lock.current);
         context.uuiLocks.acquire(handleLeave).then(acquiredLock => lock.current = acquiredLock);
     }, [formState.form]);
