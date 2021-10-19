@@ -36,7 +36,7 @@ Array [
             href={null}
             onClick={[Function]}
             role="button"
-            tabIndex={null}
+            tabIndex={-1}
           >
             <div
               className="container uui-icon uui-enabled"
@@ -104,7 +104,7 @@ Array [
                   href={null}
                   onClick={[Function]}
                   role="button"
-                  tabIndex={null}
+                  tabIndex={-1}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -155,7 +155,7 @@ Array [
                   href={null}
                   onClick={[Function]}
                   role="button"
-                  tabIndex={null}
+                  tabIndex={-1}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -206,7 +206,7 @@ Array [
                   href={null}
                   onClick={[Function]}
                   role="button"
-                  tabIndex={null}
+                  tabIndex={-1}
                 >
                   <div
                     className="container uui-icon uui-enabled"

@@ -6,7 +6,7 @@ exports[`TabButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   role="tab"
-  tabIndex={null}
+  tabIndex={-1}
 />
 `;
 
@@ -14,7 +14,6 @@ exports[`TabButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-48 theme-light uui-has-left-icon uui-no-right-icon"
-  disabled={false}
   href={null}
   onClick={[Function]}
   role="tab"
