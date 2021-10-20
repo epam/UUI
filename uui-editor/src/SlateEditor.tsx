@@ -77,6 +77,7 @@ interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
+    onKeyDown?: (event: KeyboardEvent, editor: CoreEditor) => void;
 }
 
 interface SlateEditorState {
@@ -106,6 +107,10 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         if (event.keyCode === 9 && !((this.editor as any).isList('unordered-list') || (this.editor as any).isList('ordered-list'))) {
             event.preventDefault();
             return;
+        }
+        
+        if (this.props.onKeyDown) {
+            this.props.onKeyDown(event, editor);   
         }
 
         return next();
