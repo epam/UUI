@@ -14,6 +14,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
   >
     <input
       aria-haspopup={true}
+      autoComplete="no"
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
