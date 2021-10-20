@@ -32,10 +32,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const { releaseLock, acquireLock, updateLock } = useLock({
-        isEnabled: !!props.beforeLeave,
-        handleLeave
-    });
+    useLock({ isEnabled: formState.isChanged, handleLeave });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.form,
@@ -55,13 +52,12 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         const unsavedChanges = getUnsavedChanges();
         if (!unsavedChanges || !props.loadUnsavedChanges) return;
         props.loadUnsavedChanges().then(() => handleFormUpdate(unsavedChanges));
-        return () => acquireLock();
     }, []);
 
     useEffect(() => {
         if (!isEqual(props.value, initialForm.current.prevProps.value)) {
             if (formState.isChanged && props.beforeLeave) {
-                updateLock().then(() => resetForm({ ...formState, form: props.value }));
+                resetForm({ ...formState, form: props.value });
             }  else {
                 resetForm({ ...formState, form: props.value, formHistory: [props.value] })
             };
@@ -96,7 +92,6 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const resetForm = (withNewState: UseFormState<T>) => {
-        releaseLock();
         setFormState({ ...initialForm.current, ...withNewState });
     };
 
@@ -120,6 +115,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: UseFormState<T> = {
             ...formState,
+            isChanged: false,
             form: response && response.form || formState.form,
             isInProgress: false,
             serverValidationState: response && response.validation || formState.serverValidationState,
