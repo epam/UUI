@@ -44,7 +44,11 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             .map((row: DataRowProps<TItem, TId>) => renderItemRow({ ...row, scrollManager: scrollManager, columns: columns }));
     };
 
+    const renderNoResultsBlock = () => {
+        // need default behavior
 
+        return props.renderNoResultsBlock ? props.renderNoResultsBlock() : undefined;
+    };
 
     const onConfigurationButtonClick = () => {
         context.uuiModals.show<ColumnsConfig>(modalProps => (
@@ -80,15 +84,17 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 background='white'
                 cx={ css.body }
             >
-                <VirtualList
-                    value={ props.value }
-                    onValueChange={ props.onValueChange }
-                    onScroll={ props.onScroll }
-                    rows={ getRows() }
-                    rowsCount={ props.rowsCount }
-                    focusedIndex={ props.value?.focusedIndex }
-                    shadow='dark'
-                />
+                { props.exactRowsCount !== 0 ? (
+                    <VirtualList
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
+                        onScroll={ props.onScroll }
+                        rows={ getRows() }
+                        rowsCount={ props.rowsCount }
+                        focusedIndex={ props.value?.focusedIndex }
+                        shadow='dark'
+                    />
+                    ) : renderNoResultsBlock() }
             </FlexRow>
             <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
         </>

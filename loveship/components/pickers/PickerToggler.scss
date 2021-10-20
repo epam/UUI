@@ -116,10 +116,18 @@
                 color: $night500;
             }
         }
+
+        :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
+            visibility: hidden;
+        }
     }
 
     &:global(.uui-readonly) {
         @include readonly-input();
+
+        :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
+            visibility: hidden;
+        }
     }
 
     &:global(.uui-invalid) {

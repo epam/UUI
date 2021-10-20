@@ -140,7 +140,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLInputElement>) => {
-        if (this.props.isDisabled && this.props.isReadonly) {
+        if (this.props.isDisabled || this.props.isReadonly) {
             return;
         }
 
@@ -180,7 +180,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 </div>
                 <div className={ cx(css.actions) }>
                     { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
-                        cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
+                        cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                         isDisabled={ this.props.isDisabled }
                         icon={ this.props.cancelIcon }
                         tabIndex={ -1 }
@@ -189,7 +189,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     { this.props.isDropdown && <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ this.props.isOpen }
-                        cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }
+                        cx={ 'uui-icon-dropdown' }
                     /> }
                 </div>
             </div>

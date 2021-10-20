@@ -6,6 +6,7 @@
 **What’s Fixed**
 * [Tag, Badge, RangeDatePicker][Loveship]: reworked styles according design, added size 48, clear icon to Tag, remove unused font prop from Tag, updated snapshots
 * [Tag, RangeDatePicker, MainMenu][Promo]: reworked styles according design, updated MainMenu examples, added size 48 to Tag
+* [DataTable][Promo]: added work of renderNoResultsBlock props without default behavior
 
 # 4.2.7 - 13.10.2021
 
