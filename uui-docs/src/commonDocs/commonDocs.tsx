@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IClickable, IDropdownToggler, IDisableable, IBasicPickerToggler, ICanBeInvalid, ICanRedirect, IHasLabel, IEditable, IHasPlaceholder, ICanBeReadonly } from '@epam/uui';
 import { DocBuilder } from '../DocBuilder';
-import { ICanBeFormatted } from "@epam/uui-components"// "../../../uui-components/src/inputs/NumericInput";
+import { ICanBeFormatted } from '@epam/uui-components';
 
 export const onClickDoc = new DocBuilder<IClickable>({ name: 'onClick' })
     .prop('onClick', { examples: ctx => [ctx.getCallback('onClick')] });

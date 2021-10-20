@@ -1,10 +1,11 @@
-import React from 'react';
-import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell } from "@epam/promo";
+import React, { useState } from 'react';
+import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
+    DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, MainMenuDropdown, MainMenuSearch } from "@epam/promo";
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
-import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, MainMenuDropdown, MainMenuSearch } from "@epam/loveship";
 import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-24.svg";
 
 export default function MainMenuCustomElementsExample() {
+    const [value, setValue] = useState('');
     const renderBurger = () => (
         <>
             <BurgerButton caption="News" />
@@ -17,7 +18,7 @@ export default function MainMenuCustomElementsExample() {
             <BurgerButton caption="Settings" />
             <BurgerButton caption="Log out" />
         </>
-    )
+    );
 
     return (
         <FlexCell grow={ 1 }>
@@ -50,10 +51,9 @@ export default function MainMenuCustomElementsExample() {
                 <MainMenuSearch
                     priority={ 11 }
                     estimatedWidth={ 200 }
-                    value={ '' }
+                    value={ value }
                     placeholder="Search here..."
-                    onValueChange={ () => null }
-                    onCancel={ () => null }
+                    onValueChange={ setValue }
                 />
                 <MainMenuIcon caption="Help" icon={ helpIcon } priority={ 11 } estimatedWidth={ 60 } />
                 <MainMenuCustomElement priority={ 11 } estimatedWidth={ 84 }>
@@ -66,10 +66,10 @@ export default function MainMenuCustomElementsExample() {
                             />
                         ) }
                         renderBody={ () => (
-                            <DropdownMenuBody color="white">
-                                <DropdownMenuButton noIcon caption="Settings" />
+                            <DropdownMenuBody onClose={ () => {} }>
+                                <DropdownMenuButton caption="Settings" />
                                 <DropdownMenuSplitter />
-                                <DropdownMenuButton noIcon caption="Log out" />
+                                <DropdownMenuButton caption="Log out" />
                             </DropdownMenuBody>
                         ) }
                         placement="bottom-end"

@@ -74,10 +74,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -94,8 +90,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "size",
@@ -242,10 +246,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -262,8 +262,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "size",
@@ -356,10 +364,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -376,8 +380,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
@@ -462,10 +474,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -482,8 +490,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
@@ -678,6 +694,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "value",
@@ -896,6 +916,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "cx",
@@ -1170,6 +1194,10 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -1202,6 +1230,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "cx",
@@ -1482,6 +1514,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -2600,6 +2636,10 @@
         "value": "single | multi"
       },
       {
+        "name": "searchPosition",
+        "value": "input | body | none"
+      },
+      {
         "name": "onKeyDown",
         "value": "(e: React.KeyboardEvent<HTMLElement>) => void"
       },
@@ -2642,6 +2682,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -2738,10 +2782,6 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       },
       {
-        "name": "reusePadding",
-        "value": "false | auto"
-      },
-      {
         "name": "padding",
         "value": "24 | 12 | 0"
       },
@@ -2834,6 +2874,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -3044,6 +3088,10 @@
         "value": "boolean"
       },
       {
+        "name": "isCheckable",
+        "value": "boolean"
+      },
+      {
         "name": "isChildrenChecked",
         "value": "boolean"
       },
@@ -3090,10 +3138,6 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
-      },
-      {
-        "name": "reusePadding",
-        "value": "false | auto"
       },
       {
         "name": "padding",
@@ -3316,10 +3360,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -3336,8 +3376,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "fill",
@@ -3494,10 +3542,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -3514,12 +3558,20 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
         "name": "size",
-        "value": "24 | 30 | 36 | 42 | 18"
+        "value": "24 | 30 | 36 | 42 | 48 | 18"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/button.doc.ts": [
@@ -3596,10 +3648,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -3616,8 +3664,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "size",
@@ -3776,10 +3832,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -3796,8 +3848,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "size",
@@ -3906,10 +3966,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -3926,8 +3982,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
@@ -4016,10 +4080,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -4036,8 +4096,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/datePickers/docs/calendar.doc.ts": [
@@ -4296,6 +4364,10 @@
         "value": "number"
       },
       {
+        "name": "id",
+        "value": "string"
+      },
+      {
         "name": "value",
         "value": "T"
       },
@@ -4524,6 +4596,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "cx",
@@ -4810,6 +4886,10 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -4908,6 +4988,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "cx",
@@ -5204,6 +5288,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -5868,6 +5956,10 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -6002,6 +6094,10 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -6084,10 +6180,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -6104,8 +6196,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "color",
@@ -6798,6 +6898,10 @@
         "value": "single | multi"
       },
       {
+        "name": "searchPosition",
+        "value": "input | body | none"
+      },
+      {
         "name": "onKeyDown",
         "value": "(e: React.KeyboardEvent<HTMLElement>) => void"
       },
@@ -6840,6 +6944,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -6926,14 +7034,6 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
-      },
-      {
-        "name": "labelColor",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
-      },
-      {
-        "name": "reusePadding",
-        "value": "false | auto"
       },
       {
         "name": "padding",
@@ -7028,6 +7128,10 @@
       {
         "name": "isDropdown",
         "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
       },
       {
         "name": "caption",
@@ -7238,6 +7342,10 @@
         "value": "boolean"
       },
       {
+        "name": "isCheckable",
+        "value": "boolean"
+      },
+      {
         "name": "isChildrenChecked",
         "value": "boolean"
       },
@@ -7288,14 +7396,6 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
-      },
-      {
-        "name": "labelColor",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
-      },
-      {
-        "name": "reusePadding",
-        "value": "false | auto"
       },
       {
         "name": "padding",
@@ -7526,10 +7626,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -7546,8 +7642,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "shape",
@@ -7738,10 +7842,6 @@
         "value": "{ [key: string]: any; name: string; }"
       },
       {
-        "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
-      },
-      {
         "name": "caption",
         "value": "any"
       },
@@ -7758,8 +7858,16 @@
         "value": "boolean"
       },
       {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       },
       {
         "name": "fill",
@@ -7767,15 +7875,11 @@
       },
       {
         "name": "size",
-        "value": "24 | 30 | 36 | 42 | 18"
+        "value": "24 | 30 | 36 | 42 | 48 | 18"
       },
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
-      },
-      {
-        "name": "font",
-        "value": "sans | sans-semibold | sans-light"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
