@@ -26,13 +26,16 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const [formState, setFormState] = useState<UseFormState<T>>(initialForm.current);
 
     const handleLeave = () => {
-        return props.beforeLeave?.().then(res => {
+        return props.beforeLeave().then(res => {
             if (res) return handleSave();
             removeUnsavedChanges();
         });
     };
 
-    useLock({ isEnabled: formState.isChanged, handleLeave });
+    useLock({
+        isEnabled: formState.isChanged,
+        handleLeave: props.beforeLeave ? handleLeave : null
+    });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.form,
@@ -56,7 +59,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     useEffect(() => {
         if (!isEqual(props.value, initialForm.current.prevProps.value)) {
-            if (formState.isChanged && props.beforeLeave) {
+            if (formState.isChanged) {
                 resetForm({ ...formState, form: props.value });
             }  else {
                 resetForm({ ...formState, form: props.value, formHistory: [props.value] })

@@ -14,6 +14,7 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
 
     useEffect(() => {
         return () => {
+            if (!handleLeaveRef.current.isEnabled) return;
             context.uuiLocks.acquire(() => Promise.resolve())
                 .then(lock => context.uuiLocks.release(lock))
                 .catch(lock => context.uuiLocks.release(lock));
