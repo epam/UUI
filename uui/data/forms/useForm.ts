@@ -1,69 +1,13 @@
-import { useRef, useState, useEffect, useMemo, useCallback, MutableRefObject } from 'react';
+import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { mergeValidation, UuiContexts, validate as uuiValidate, validateServerErrorState } from '../../index';
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
 import type { FormComponentState, FormProps, FormSaveResponse, RenderFormProps } from './Form';
+import { useLock } from './useLock';
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 type UseFormState<T> = Omit<FormComponentState<T>, 'prevProps'> & { prevProps: UseFormProps<T> };
-
-interface UseLockProps {
-  handleLeave: () => Promise<boolean>;
-  isEnabled?: boolean;
-};
-
-interface UseLockApi {
-    lock: MutableRefObject<object | null>;
-    releaseLock: () => void;
-    acquireLock: () => void;
-    updateLock: () => Promise<void>;
-};
-
-function useLock({ handleLeave, isEnabled }: UseLockProps): UseLockApi {
-  const context = useUuiContext();
-  const lock = useRef<object | null>();
-  const handleLeaveRef = useRef<UseLockProps>({ isEnabled: false, handleLeave: null });
-
-  const releaseLock = () => {
-    if (!lock.current || !isEnabled) return;
-    context.uuiLocks.release(lock.current);
-    lock.current = null;
-  };
-
-  const updateLock = () => {
-    return context.uuiLocks.withLock(handleLeave).then(acquiredLock => {
-        lock.current = acquiredLock;
-    });
-  }
-
-  handleLeaveRef.current.handleLeave = handleLeave;
-
-  if (!handleLeaveRef.current.isEnabled && isEnabled) {
-      context.uuiLocks.acquire(handleLeaveRef.current.handleLeave).then(acquiredLock => {
-          return lock.current ? context.uuiLocks.release(acquiredLock) : lock.current = acquiredLock;
-      });
-  }
-
-  if (handleLeaveRef.current.isEnabled && !isEnabled) {
-    releaseLock();
-  }
-
-  handleLeaveRef.current.isEnabled = isEnabled;
-
-  return {
-      lock,
-      releaseLock,
-      updateLock,
-      acquireLock: () => {
-        if (!lock.current) return;
-        context.uuiLocks.acquire(() => Promise.resolve())
-            .then(lock => context.uuiLocks.release(lock))
-            .catch(lock => context.uuiLocks.release(lock));
-      },
-    };
-}
-
 
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
@@ -81,12 +25,17 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const [formState, setFormState] = useState<UseFormState<T>>(initialForm.current);
 
-    const handleLeave = () => props.beforeLeave().then(res => {
-        if (res) return handleSave();
-        removeUnsavedChanges();
-    });
+    const handleLeave = () => {
+        return props.beforeLeave?.().then(res => {
+            if (res) return handleSave();
+            removeUnsavedChanges();
+        });
+    };
 
-    const { releaseLock, acquireLock, updateLock } = useLock({ isEnabled: true, handleLeave });
+    const { releaseLock, acquireLock, updateLock } = useLock({
+        isEnabled: !!props.beforeLeave,
+        handleLeave
+    });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.form,
