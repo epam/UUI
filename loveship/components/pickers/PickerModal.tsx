@@ -1,6 +1,5 @@
 import React from 'react';
-import * as css from './PickerModal.scss';
-import { DataRowProps, Lens} from '@epam/uui';
+import { DataRowProps, Lens } from '@epam/uui';
 import { PickerModalBase, PickerModalProps,  handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
@@ -10,6 +9,7 @@ import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
+import * as css from './PickerModal.scss';
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {

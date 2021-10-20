@@ -15,7 +15,6 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
-      onBlur={[Function]}
       onChange={[Function]}
       tabIndex={-1}
       type="text"
@@ -41,7 +40,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
+      className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
       role="button"
@@ -67,7 +66,6 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input"
-      onBlur={[Function]}
       onChange={[Function]}
       tabIndex={-1}
       type="text"

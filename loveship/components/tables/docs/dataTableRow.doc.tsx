@@ -1,12 +1,11 @@
 import React from 'react';
 import { DataTableRow } from '../DataTableRow';
 import { DocBuilder, demoData } from '@epam/uui-docs';
-import { DefaultContext, ResizableContext, ColorPicker } from '../../../docs';
+import { DefaultContext, ResizableContext } from '../../../docs';
 import { DataTableRowProps } from '@epam/uui-components';
 import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
-import { commonControlColors, DataTableRowMods } from '../..';
-import { colors } from '../../../helpers/colorMap';
+import { DataTableRowMods } from '../..';
 
 const DataTableRowDoc = new DocBuilder<DataTableRowProps<any, any> & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow as any })
     .implements([ColumnsHeaderRowDoc] as any)
@@ -76,13 +75,9 @@ const DataTableRowDoc = new DocBuilder<DataTableRowProps<any, any> & DataTableRo
     .prop('isLoading', {
         examples: [true],
     })
-    .prop('reusePadding', {
-        examples: [{ name: 'auto', value: 'auto', isDefault: true }, 'false'], defaultValue: 'auto',
-    })
     .prop('background', {
         examples: ['night50', 'white'],
     })
-    .prop('labelColor', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: commonControlColors })
     .withContexts(TableContext, ResizableContext, DefaultContext);
 
 export = DataTableRowDoc;

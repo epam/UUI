@@ -6,7 +6,7 @@ exports[`BurgerButton should be rendered correctly 1`] = `
   href={null}
   onClick={[Function]}
   role="button"
-  tabIndex={null}
+  tabIndex={-1}
 />
 `;
 
@@ -16,7 +16,7 @@ exports[`BurgerButton should be rendered correctly with props 1`] = `
   href="#"
   onClick={[Function]}
   role="link"
-  tabIndex={null}
+  tabIndex={-1}
   target="_blank"
 >
   <div
