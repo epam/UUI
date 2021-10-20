@@ -27,7 +27,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
