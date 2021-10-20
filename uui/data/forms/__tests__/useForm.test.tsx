@@ -102,7 +102,7 @@ describe('useForm', () => {
 
             const { result, rerender } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm(props));
 
-            act(() => rerender(props));
+            rerender(props);
 
             expect(beforeLeaveMock).not.toHaveBeenCalled();
             expect(saveMock).not.toHaveBeenCalled();
@@ -141,7 +141,7 @@ describe('useForm', () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
 
-            const { result, waitFor } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 value: testData,
                 onSave: saveMock,
                 beforeLeave: beforeLeaveMock,
@@ -150,14 +150,13 @@ describe('useForm', () => {
             }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-
             expect(result.current.isChanged).toBe(true);
+
             await act(() => testSvc.uuiLocks.acquire(() => Promise.resolve()));
-            waitFor(() => {
-                expect(result.current.isInvalid).toBe(false);
-                expect(beforeLeaveMock).toHaveBeenCalled();
-                expect(saveMock).toHaveBeenCalled();
-            });
+
+            expect(result.current.isInvalid).toBe(false);
+            expect(beforeLeaveMock).toHaveBeenCalled();
+            expect(saveMock).toHaveBeenCalled();
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
@@ -215,10 +214,10 @@ describe('useForm', () => {
         });
 
         it('Should call beforeLeave after component unmount', async () => {
-            const beforeLeaveMock = jest.fn().mockResolvedValueOnce(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
             const { result, unmount } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 value: testData,
-                onSave: data => Promise.resolve({ form: data }),
+                onSave: () => Promise.resolve(),
                 beforeLeave: beforeLeaveMock,
                 getMetadata: () => testMetadata,
             }));
@@ -272,9 +271,9 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result, waitFor } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
-                value: testData,
-                onSave: () => Promise.reject('Failed'),
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+                value: { ...testData, dummy: 'hi' },
+                onSave: () => Promise.reject(),
                 beforeLeave: () => Promise.resolve(false),
                 onSuccess: onSuccessSpy,
                 onError: onErrorSpy,
@@ -282,17 +281,15 @@ describe('useForm', () => {
             }));
 
             await handleSave(result.current.save);
-            waitFor(() => expect(onErrorSpy).toHaveBeenCalled());
+            expect(onErrorSpy).toHaveBeenCalled();
         });
 
         it('Should restore data from local storage after leaving form without saving changes', async () => {
-            const settingsKey = 'form-test';
-            const loadUnsavedChangesMock = jest.fn().mockImplementation(() => Promise.resolve());
             const props = {
                 value: testData,
-                settingsKey,
-                onSave: data => Promise.resolve({ form: data }),
-                beforeLeave: () => Promise.resolve(false),
+                settingsKey: 'form-test',
+                onSave: () => Promise.resolve(),
+                beforeLeave: null,
                 getMetadata: () => testMetadata,
             };
 
@@ -302,15 +299,12 @@ describe('useForm', () => {
 
             unmount();
 
-            const { result: secondRenderResult, waitFor } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result: secondRenderResult } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 ...props,
-                loadUnsavedChanges: loadUnsavedChangesMock,
+                loadUnsavedChanges: jest.fn().mockResolvedValueOnce(true),
             }));
 
-            waitFor(() => {
-                expect(loadUnsavedChangesMock).toHaveBeenCalled();
-                expect(secondRenderResult.current.lens.prop("dummy").get()).toBe("hi");
-            });
+            expect(secondRenderResult.current.lens.prop("dummy").get()).toBe("hi");
         });
     });
 

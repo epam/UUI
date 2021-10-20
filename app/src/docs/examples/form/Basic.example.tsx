@@ -1,9 +1,10 @@
 import React from 'react';
 import type { TApi } from '../../../data';
-import { useForm, useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
+import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
     PickerInput, SuccessNotification, ErrorNotification,
+    useForm
 } from "@epam/promo";
 
 interface Person {

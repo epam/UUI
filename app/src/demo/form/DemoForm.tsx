@@ -449,6 +449,8 @@ export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const { lens, validate, save } = useForm<PersonDetails>({
+        beforeLeave: null,
+        settingsKey: 'form-test',
         value: defaultData,
         getMetadata: personDetailsSchema,
         onSave: person => Promise.resolve({ form: person }),

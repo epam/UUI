@@ -1,6 +1,6 @@
 import React from 'react';
-import { useForm, FormSaveResponse, useUuiContext, UuiContexts } from "@epam/uui";
-import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification } from "@epam/promo";
+import { FormSaveResponse, useUuiContext, UuiContexts } from "@epam/uui";
+import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm } from "@epam/promo";
 import type { TApi } from '../../../data';
 
 interface Login {
