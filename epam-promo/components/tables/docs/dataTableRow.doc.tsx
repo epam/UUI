@@ -66,9 +66,6 @@ const DataTableRowDoc = new DocBuilder<DataTableRowProps<any, any> & DataTableRo
     .prop('isLoading', {
         examples: [true],
     })
-    .prop('reusePadding', {
-        examples: [{ name: 'auto', value: 'auto', isDefault: true }, 'false'], defaultValue: 'auto',
-    })
     .withContexts(TableContext, ResizableContext, DefaultContext);
 
 export = DataTableRowDoc;

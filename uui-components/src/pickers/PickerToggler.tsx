@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps } from "@epam/uui";
+import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps, isChildHasClass } from "@epam/uui";
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
@@ -50,7 +50,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onValueChange && this.props.onValueChange(e.target.value);
-    };
+    }
 
     handleFocus = (e?: React.FocusEvent<HTMLInputElement>) => {
         this.props.onFocus && this.props.onFocus(e);
@@ -62,6 +62,13 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         this.props.onBlur && this.props.onBlur(e);
         this.updateFocus(false);
         this.toggleContainer.querySelector('input')?.blur();
+
+        const isPickerChildTriggerBlur = isChildFocusable(e) || closest((e.relatedTarget as HTMLElement), this.toggleContainer);
+        const shouldCloseOnBlur = this.props.isOpen && this.props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
+
+        if (shouldCloseOnBlur) {
+            this.props.toggleDropdownOpening(false);
+        }
     }
 
     handleActive = (e: Event) => {
@@ -89,13 +96,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
         e.stopPropagation();
     }
 
-    closeOpenedPicker = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isChildFocusable(e)) return;
-        else if (this.props.isOpen && this.props.searchPosition !== 'body') {
-            this.togglerPickerOpened(e);
-        };
-    }
-
     renderItems() {
         let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
         if (this.props.selection && this.props.selection.length > maxItems) {
@@ -110,31 +110,12 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     renderInput() {
-        let isActivePlaceholder = this.props.pickerMode === 'single' && this.props.selection && !!this.props.selection[0];
-        let placeholder = isActivePlaceholder ? this.props.getName(this.props.selection[0]) : this.props.placeholder;
+        const isActivePlaceholder = this.props.pickerMode === 'single' && this.props.selection && !!this.props.selection[0];
+        const placeholder = isActivePlaceholder ? this.props.getName(this.props.selection[0]) : this.props.placeholder;
+        const value = this.props.disableSearch ? null : this.props.value;
 
-        if (this.props.disableSearch) {
-            if (this.props.pickerMode === 'multi' && this.props.selection.length > 0) {
-                return null;
-            }
-
-            return <input
-                readOnly
-                placeholder={ placeholder }
-                tabIndex={ -1 }
-                id={ this.props.inputId }
-                aria-haspopup={ true }
-                aria-required={ this.props.isRequired }
-                onBlur={ this.closeOpenedPicker }
-                aria-disabled={ this.props.isDisabled }
-                aria-readonly={ true }
-                className={ cx(
-                    uuiElement.input,
-                    this.props.selection.length === 0 && uuiElement.placeholder,
-                    this.props.pickerMode === 'single' && css.singleInput,
-                    css.toggler,
-                ) }
-            />;
+        if (this.props.disableSearch && this.props.pickerMode === 'multi' && this.props.selection.length > 0) {
+            return null;
         }
 
         return <input
@@ -142,7 +123,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             tabIndex={ -1 }
             aria-haspopup={ true }
             id={ this.props.inputId }
-            onBlur={ this.closeOpenedPicker }
             aria-required={ this.props.isRequired }
             aria-disabled={ this.props.isDisabled }
             aria-readonly={ this.props.isReadonly }
@@ -153,13 +133,17 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             }
             disabled={ this.props.isDisabled }
             placeholder={ placeholder }
-            value={ this.props.value || '' }
-            readOnly={ this.props.isReadonly }
+            value={ value || '' }
+            readOnly={ this.props.isReadonly || this.props.disableSearch }
             onChange={ this.handleChange }
         />;
     }
 
     togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLInputElement>) => {
+        if (this.props.isDisabled || this.props.isReadonly) {
+            return;
+        }
+
         e.preventDefault();
         if (this.state.inFocus && this.props.value && !this.props.disableSearch) return;
         this.props.onClick();
@@ -170,10 +154,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         return (
             <div
-                onClick={ !this.props.isDisabled && !this.props.isReadonly ? e => {
-                    this.togglerPickerOpened(e);
-                    this.handleFocus();
-                } : null }
+                onClick={ this.togglerPickerOpened }
                 ref={ el => this.toggleContainer = el }
                 className={ cx(css.container,
                     uuiElement.inputBox,
@@ -199,7 +180,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                 </div>
                 <div className={ cx(css.actions) }>
                     { !this.props.disableClear && (this.props.value || this.props.selection && this.props.selection.length > 0) && <IconContainer
-                        cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
+                        cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                         isDisabled={ this.props.isDisabled }
                         icon={ this.props.cancelIcon }
                         tabIndex={ -1 }
@@ -208,7 +189,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
                     { this.props.isDropdown && <IconContainer
                         icon={ this.props.dropdownIcon }
                         flipY={ this.props.isOpen }
-                        cx={ (this.props.isReadonly || this.props.isDisabled) && css.hidden }
+                        cx={ 'uui-icon-dropdown' }
                     /> }
                 </div>
             </div>

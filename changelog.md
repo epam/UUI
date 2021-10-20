@@ -1,3 +1,26 @@
+# 4.3.0[WIP]
+
+**What's New**
+* [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
+
+**What’s Fixed**
+* [Tag, Badge, RangeDatePicker][Loveship]: reworked styles according design, added size 48, clear icon to Tag, remove unused font prop from Tag, updated snapshots
+* [Tag, RangeDatePicker, MainMenu][Promo]: reworked styles according design, updated MainMenu examples, added size 48 to Tag
+* [DataTable][Promo]: added work of renderNoResultsBlock props without default behavior
+
+# 4.2.7 - 13.10.2021
+
+**What's New**
+* [PickerModal, PickerList]: add disallowClickOutside prop
+* [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
+
+**What’s Fixed**
+* [Button]: fix tooltip on disabled button
+* [PickerInput]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix selected item color when searchPosition='none'
+* [Modals]: fix mobile view
+* [SlateEditor]: add 'null' type for value prop
+
 # 4.2.6 - 07.10.2021
 
 **What’s Fixed**

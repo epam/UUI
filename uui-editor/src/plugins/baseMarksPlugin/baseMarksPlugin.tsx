@@ -22,7 +22,7 @@ export const baseMarksPlugin = () => {
             case 'uui-richTextEditor-code':
                 return <code { ...props.attributes }>{ props.children }</code>;
             case 'uui-richTextEditor-span-mark':
-                return <span { ...props.attributes } style={ props.mark.data.get('style') }>{ props.children }</span >;
+                return <span { ...props.attributes } style={ { ...props.mark.data.get('style'), 'background-color': 'none' } }>{ props.children }</span >;
 
             default:
                 return next();

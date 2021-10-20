@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     ColumnsConfig, cx, DataRowProps, ScrollManager, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
@@ -19,8 +19,8 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 }
 
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
+    const [scrollManager] = useState(new ScrollManager());
     const context = useUuiContext();
-    const scrollManager = new ScrollManager();
     const setColumnsConfig = (config: ColumnsConfig) => {
         props.onValueChange({ ...props.value, columnsConfig: config });
     };

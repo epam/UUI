@@ -1,6 +1,6 @@
 import { DataRowProps, DataColumnProps } from "@epam/uui";
 import React from "react";
-import { ControlSize, EpamColor } from "..";
+import { ControlSize } from "..";
 
 export interface DataTableCellProps<TItem, TId> {
     rowProps: DataRowProps<TItem, TId>;
@@ -27,8 +27,6 @@ export interface DataTableRowMods extends DataTableCellMods {
 
 export interface DataTableCellMods {
     size?: ControlSize | '60';
-    labelColor?: EpamColor;
-    reusePadding?: 'auto' | 'false';
     padding?: '0' | '12' | '24';
     isFirstColumn?: boolean;
     isLastColumn?: boolean;

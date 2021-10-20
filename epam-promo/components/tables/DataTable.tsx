@@ -7,6 +7,7 @@ import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableS
 import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
 import * as CustomScrollBars from "react-custom-scrollbars-2";
+import { useState } from 'react';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -18,8 +19,8 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 }
 
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
+    const [scrollManager] = useState(new ScrollManager());
     const context = useUuiContext();
-    const scrollManager = new ScrollManager();
     const setColumnsConfig = (config: ColumnsConfig) => {
         props.onValueChange({ ...props.value, columnsConfig: config });
     };
@@ -43,7 +44,11 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             .map((row: DataRowProps<TItem, TId>) => renderItemRow({ ...row, scrollManager: scrollManager, columns: columns }));
     };
 
+    const renderNoResultsBlock = () => {
+        // need default behavior
 
+        return props.renderNoResultsBlock ? props.renderNoResultsBlock() : undefined;
+    };
 
     const onConfigurationButtonClick = () => {
         context.uuiModals.show<ColumnsConfig>(modalProps => (
@@ -79,15 +84,17 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 background='white'
                 cx={ css.body }
             >
-                <VirtualList
-                    value={ props.value }
-                    onValueChange={ props.onValueChange }
-                    onScroll={ props.onScroll }
-                    rows={ getRows() }
-                    rowsCount={ props.rowsCount }
-                    focusedIndex={ props.value?.focusedIndex }
-                    shadow='dark'
-                />
+                { props.exactRowsCount !== 0 ? (
+                    <VirtualList
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
+                        onScroll={ props.onScroll }
+                        rows={ getRows() }
+                        rowsCount={ props.rowsCount }
+                        focusedIndex={ props.value?.focusedIndex }
+                        shadow='dark'
+                    />
+                    ) : renderNoResultsBlock() }
             </FlexRow>
             <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
         </>

@@ -15,9 +15,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       className="uui-input singleInput"
-      onBlur={[Function]}
       onChange={[Function]}
       placeholder="Please select "
+      readOnly={false}
       tabIndex={-1}
       type="text"
       value=""
@@ -27,7 +27,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -58,7 +58,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
+      className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
       role="button"
@@ -87,7 +87,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
+      className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
       role="button"
