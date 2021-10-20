@@ -18,10 +18,10 @@ export class MainMenuAvatar extends React.Component<MainMenuAvatarProps, {}> {
                 className={ cx(css.container, this.props.isDropdown && css.dropdown, this.props.isOpen && css.open, this.props.cx) }
                 onClick={ this.props.onClick }
             >
-                <Avatar cx={ css.photo } size='36' img={ this.props.avatarUrl }/>
+                <Avatar size='36' img={ this.props.avatarUrl }/>
                 { this.props.icon && <IconContainer icon={ this.props.icon } /> }
                 { this.props.isDropdown && (
-                    <div className={ css.dropdownIcon }>
+                    <div>
                         <IconContainer icon={ foldingArrow } flipY={ this.props.isOpen } />
                     </div>
                 ) }

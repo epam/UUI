@@ -2,11 +2,13 @@
 @use 'control-size' as *;
 
 @mixin control-box-layout($size, $borderWidth) {
-    @include control-size($size, $borderWidth);
+    min-width: $size;
+    padding-left: 5px;
+    padding-right: 5px;
 
     :global(.uui-caption), :global(.uui-input) {
-        padding-left: math.div($size, 6);
-        padding-right: math.div($size, 6);
+        padding-left: 6px;
+        padding-right: 6px;
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {
