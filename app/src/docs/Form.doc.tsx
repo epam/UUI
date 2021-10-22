@@ -31,8 +31,8 @@ export class FormDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
-                    title='Legacy form example'
-                    path='./examples/form/LegacyForm.example.tsx'
+                    title='Usage with class components'
+                    path='./examples/form/FormWIthClasses.example.tsx'
                 />
             </>
         );
