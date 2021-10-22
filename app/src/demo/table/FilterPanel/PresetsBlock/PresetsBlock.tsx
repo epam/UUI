@@ -3,9 +3,16 @@ import css from "./PresetsBlock.scss";
 import { Accordion, IconContainer, TabButton, TextInput } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
 import plusIcon from "@epam/assets/icons/common/content-add-outline-18.svg";
-import { ITableStateApi } from "../../types";
+import { IPresetsApi, ITablePreset } from "../../types";
 
-interface IPresetsBlockProps extends ITableStateApi {
+interface IPresetsBlockProps {
+    presets: ITablePreset[];
+    createNewPreset: IPresetsApi["createNewPreset"];
+    isDefaultPresetActive: IPresetsApi["isDefaultPresetActive"];
+    resetToDefault: IPresetsApi["resetToDefault"];
+    getActivePresetId: IPresetsApi["getActivePresetId"];
+    hasPresetChanged: IPresetsApi["hasPresetChanged"];
+    choosePreset: IPresetsApi["choosePreset"];
 }
 
 const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, isDefaultPresetActive, resetToDefault, getActivePresetId, hasPresetChanged, choosePreset }) => {

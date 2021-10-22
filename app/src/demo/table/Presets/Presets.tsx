@@ -1,13 +1,16 @@
 import React, { useCallback, useMemo } from "react";
 import css from "./Presets.scss";
 import { Button, FlexRow } from "@epam/promo";
-import { ITableStateApi } from "../types";
+import { IPresetsApi, ITablePreset } from "../types";
 import { Preset } from "./Preset";
+import { DataTableState } from "@epam/uui";
 
-interface IPresetsProps extends ITableStateApi {
+interface IPresetsProps extends IPresetsApi {
+    presets: ITablePreset[];
+    tableState: DataTableState;
 }
 
-const Presets: React.FC<IPresetsProps> = ({ presets, filter, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset }) => {
+const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset }) => {
     const newPresetTitle = "New preset";
     const activePresetId = getActivePresetId();
 
@@ -19,7 +22,7 @@ const Presets: React.FC<IPresetsProps> = ({ presets, filter, createNewPreset, ge
     const hasActivePresetChanged = useMemo(() => {
         return !isDefaultPresetActive()
             && hasPresetChanged(activePreset);
-    }, [isDefaultPresetActive, activePreset, filter]);
+    }, [isDefaultPresetActive, activePreset, tableState.filter]);
 
     return (
         <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>

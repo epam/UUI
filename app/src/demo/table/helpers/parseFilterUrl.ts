@@ -1,4 +1,4 @@
-export const parseFilterUrl = (): object | undefined => {
+export const parseFilterUrl = (): Record<string, any> | undefined => {
     const searchParams = new URLSearchParams(location.search);
     const filter = searchParams.get("filter");
     if (!filter || filter === "undefined" || filter === "null") return undefined;

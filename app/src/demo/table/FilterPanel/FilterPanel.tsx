@@ -3,39 +3,48 @@ import css from "./FilterPanel.scss";
 import { FlexRow, IconButton, ScrollBars, Text } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
 import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
-import { DataColumnProps, IEditable } from "@epam/uui";
+import { DataColumnProps } from "@epam/uui";
 
-import { IPresetsApi, ITableFilter, ITablePreset, ITableStateApi, PersonsTableState } from "../types";
+import { ITableFilter, ITableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
 
 // import { GroupingBlock } from "./GroupingBlock";
 
-interface IFilterPanelProps {
+interface IFilterPanelProps extends ITableState {
     close: () => void;
-    tableStateApi: ITableStateApi;
     columns: DataColumnProps<any>[];
     filters: ITableFilter[];
 }
 
-const FilterPanel: React.FC<IFilterPanelProps> = ({ close, tableStateApi, filters, columns }) => {
+const FilterPanel: React.FC<IFilterPanelProps> = props => {
     return (
         <div className={ css.container }>
             <FlexRow borderBottom size="48" padding="18">
                 <Text fontSize="18" font="sans-semibold">Views</Text>
                 <FlexSpacer/>
-                <IconButton icon={ closeIcon } onClick={ close }/>
+                <IconButton icon={ closeIcon } onClick={ props.close }/>
             </FlexRow>
             <ScrollBars>
-                <PresetsBlock { ...tableStateApi }/>
+                <PresetsBlock
+                    presets={ props.presets }
+                    createNewPreset={ props.createNewPreset }
+                    isDefaultPresetActive={ props.isDefaultPresetActive }
+                    resetToDefault={ props.resetToDefault }
+                    getActivePresetId={ props.getActivePresetId }
+                    hasPresetChanged={ props.hasPresetChanged }
+                    choosePreset={ props.choosePreset }
+                />
                 <FiltersBlock
-                    tableStateApi={ tableStateApi }
-                    filters={ filters }
+                    filter={ props.tableState.filter }
+                    onFilterChange={ props.onFilterChange }
+                    filters={ props.filters }
                 />
                 <ColumnsBlock
-                    tableStateApi={ tableStateApi }
-                    columns={ columns }
+                    columnsConfig={ props.tableState.columnsConfig }
+                    onColumnsConfigChange={ props.onColumnsConfigChange }
+                    columns={ props.columns }
                 />
                 { /*<GroupingBlock/>*/ }
             </ScrollBars>

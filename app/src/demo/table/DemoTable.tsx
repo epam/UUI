@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import css from "./DemoTable.scss";
-import { DataRowProps, DataRowOptions, cx, getColumnsConfig, DataTableState, useLazyDataSource } from "@epam/uui";
+import { DataRowProps, DataRowOptions, cx, useLazyDataSource } from "@epam/uui";
 import { Person, PersonGroup } from "@epam/uui-docs";
 import { FlexRow, DataTable, DataTableRow, IconButton } from "@epam/promo";
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
@@ -12,7 +12,6 @@ import { useFilterPanelOptions, useInfoPanelOptions, useTableState } from "./hoo
 import { FilterPanel } from "./FilterPanel";
 import { InfoSidebarPanel } from "./InfoSidebarPanel";
 import { Presets } from "./Presets";
-import { normalizeFilter } from "./helpers";
 
 export const DemoTable: React.FC = () => {
     const filterPanelOptions = useFilterPanelOptions();
@@ -23,35 +22,12 @@ export const DemoTable: React.FC = () => {
 
     const tableStateApi = useTableState({
         columns: columnsSet.personColumns,
-        columnsConfig: getColumnsConfig(columnsSet.personColumns, {}),
-        loadPresets: () => JSON.parse(localStorage.getItem("presets")) ?? [],
-        onPresetsSave: newPresets => localStorage.setItem("presets", JSON.stringify(newPresets)),
+        initialPresets: JSON.parse(localStorage.getItem("presets")) ?? [],
+        onPresetsChange: async newPresets => {
+            localStorage.setItem("presets", JSON.stringify(newPresets));
+            return Promise.resolve();
+        },
     });
-
-    const [value, setValue] = useState<DataTableState>({
-        topIndex: 0,
-        visibleCount: 40,
-        sorting: [{ field: "name" }],
-        filter: tableStateApi.filter,
-        columnsConfig: tableStateApi.columnsConfig,
-    });
-
-    useEffect(() => {
-        setValue(prevValue => ({
-            ...prevValue,
-            filter: tableStateApi.filter,
-            columnsConfig: tableStateApi.columnsConfig,
-        }));
-    }, [tableStateApi.filter, tableStateApi.columnsConfig]);
-
-    const onValueChange = useCallback((newValue: DataTableState) => {
-        tableStateApi.onFilterChange(newValue.filter);
-        tableStateApi.onColumnsConfigChange(newValue.columnsConfig);
-        setValue({
-            ...newValue,
-            filter: normalizeFilter(newValue.filter),
-        });
-    }, []);
 
     const dataSource = useLazyDataSource({
         api,
@@ -76,20 +52,20 @@ export const DemoTable: React.FC = () => {
         return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns }/>;
     };
 
-    const personsDataView = dataSource.useView(value, onValueChange, {
+    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
         rowOptions,
         isFoldedByDefault: () => true,
         cascadeSelection: true,
     });
-    
+
     const renderInfoSidebarPanel = () => {
         const data = dataSource.getById(["Person", infoPanelOptions.panelId]) as Person;
         return <InfoSidebarPanel data={ data } onClose={ infoPanelOptions.closePanel }/>;
     };
-    
+
     const selectAll = useMemo(() => ({
         value: false,
-        isDisabled: true, 
+        isDisabled: true,
         onValueChange: null,
     }), []);
 
@@ -98,7 +74,7 @@ export const DemoTable: React.FC = () => {
             { filterPanelOptions.isPanelOpened && (
                 <div className={ cx(css.filterSidebarPanelWrapper, filterPanelOptions.panelStyleModifier) }>
                     <FilterPanel
-                        tableStateApi={ tableStateApi }
+                        { ...tableStateApi }
                         filters={ filters }
                         columns={ columnsSet.personColumns }
                         close={ filterPanelOptions.closePanel }
@@ -131,8 +107,8 @@ export const DemoTable: React.FC = () => {
                     renderRow={ renderRow }
                     selectAll={ selectAll }
                     showColumnsConfig
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    value={ tableStateApi.tableState }
+                    onValueChange={ tableStateApi.onTableStateChange }
                     allowColumnsResizing={ true }
                     { ...personsDataView.getListProps() }
                 />
