@@ -2,30 +2,31 @@ import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
 import { IEditable } from "@epam/uui";
-import { ITableFilter, ITableStateApi, PersonsTableState } from "../../types";
+import { ITableFilter, ITableState, PersonsTableState } from "../../types";
 
-interface IFiltersProps  {
-    tableStateApi: ITableStateApi;
+interface IFiltersProps {
+    filter: Record<string, any>;
+    onFilterChange(newFilter: Record<string, any>): void;
     filters: ITableFilter[];
 }
 
-const FiltersBlockComponent: React.FC<IFiltersProps> = ({ tableStateApi, filters }) => {
+const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter, filters }) => {
     const handleChange = useCallback((newFilter: { [key: string]: any[] }) => {
-        tableStateApi.onFilterChange({
-            ...tableStateApi.filter,
+        onFilterChange({
+            ...filter,
             ...newFilter,
         });
-    }, [tableStateApi.filter]);
+    }, [filter]);
     
     return (
         <Accordion title="Filters" mode="inline" padding="18">
-            { filters.map(filter => {
+            { filters.map(f => {
                 return (
                     <Filter
-                        { ...filter }
-                        value={ tableStateApi.filter }
+                        { ...f }
+                        value={ filter }
                         onValueChange={ handleChange }
-                        key={ filter.id }
+                        key={ f.id }
                     />
                 );
             }) }

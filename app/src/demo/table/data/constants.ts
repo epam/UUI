@@ -1,6 +1,6 @@
 import { ITablePreset } from "../types";
 
-const defaultPreset: ITablePreset = {
+const defaultPreset: ITablePreset<any> = {
     name: "Default",
     id: null,
     filter: undefined,
