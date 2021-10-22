@@ -25,7 +25,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
     return {
         get(big) {
             if (big == null) {
-                return null;
+                return undefined;
             } else {
                 return big[name];
             }
@@ -54,7 +54,7 @@ export function index<TItem>(index: number): ILensImpl<TItem[], TItem> {
     return {
         get(big: TItem[]) {
             if (big == null) {
-                return null;
+                return undefined;
             } else {
                 return big[index];
             }

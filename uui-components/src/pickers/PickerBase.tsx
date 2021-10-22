@@ -162,6 +162,14 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
+    getSelectedRows() {
+        if (this.props.value && this.props.value !== []) {
+            const view = this.getView();
+            return view.getSelectedRows();
+        }
+        return [];
+    }
+
     getListProps(): DataSourceListProps {
         const view = this.getView();
         const listProps = view.getListProps();

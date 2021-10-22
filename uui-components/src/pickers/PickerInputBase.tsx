@@ -181,8 +181,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
-        const view = this.getView();
-        let selectedRows = view.getSelectedRows();
+        let selectedRows = this.getSelectedRows();
         const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
@@ -268,16 +267,11 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     render() {
         const rows = this.getRows();
-        const togglerProps = this.getTogglerProps(rows);
-        const pickerBodyProps = {
-            ...this.getListProps(),
-            ...this.getPickerBodyProps(rows),
-        };
 
         return (
             <Dropdown
-                renderTarget={ dropdownProps => this.renderTarget({ ...dropdownProps, ...togglerProps }) }
-                renderBody={ props => this.renderBody({ ...props, ...pickerBodyProps }, rows) }
+                renderTarget={ dropdownProps => this.renderTarget({ ...dropdownProps, ...this.getTogglerProps(rows) }) }
+                renderBody={ props => this.renderBody({ ...props, ...this.getPickerBodyProps(rows), ...this.getListProps() }, rows) }
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
                 placement={ this.props.dropdownPlacement }
