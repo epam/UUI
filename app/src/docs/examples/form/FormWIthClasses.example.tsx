@@ -8,7 +8,7 @@ interface Person {
     lastName?: string;
 };
 
-export default function LegacyFormExample() {
+export default function FormWIthClassesExample() {
     const getMetadata = () => ({
         props: {
             firstName: { isRequired: true },
