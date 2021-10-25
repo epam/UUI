@@ -9,6 +9,9 @@ export interface Link {
     pathname: string;
     query?: any;
     search?: string;
+    key?: string;
+    hash?: string;
+    state?: Record<string, any>;
 }
 
 export interface LayoutLayer {
