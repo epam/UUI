@@ -1,5 +1,6 @@
 import React, { ComponentType, ReactElement, ReactNode } from "react";
 import { mount } from "enzyme";
+import { renderHook } from '@testing-library/react-hooks';
 import { act as reactAct } from "react-dom/test-utils";
 import renderer, { act as rendererAct } from "react-test-renderer";
 import { ContextProvider, UuiContexts } from "@epam/uui";
@@ -9,6 +10,28 @@ export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
 });
 
 export const testSvc = {} as UuiContexts;
+
+export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps) => TResult) {
+    const wrapper = ({ children }: { children?: React.ReactNode }) => (
+        <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
+            { children }
+        </ContextProvider>
+    );
+
+    const {
+        waitForNextUpdate,
+        rerender,
+        ...rest
+    } = renderHook<TProps, TResult>(hook, { wrapper });
+
+    await waitForNextUpdate();
+
+    return {
+        rerender: (props: TProps) => rerender({ ...props, children: undefined }),
+        waitForNextUpdate,
+        ...rest,
+    };
+};
 
 export const mountWithContextAsync = async (children: ReactNode, enableLegacyContext = false) => {
     const wrapper = mount(
