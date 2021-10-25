@@ -1,6 +1,7 @@
-import React, { ReactNode, useState } from 'react';
-import { Metadata, RenderFormProps, INotification, FormSaveResponse, useUuiContext } from "@epam/uui";
-import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, Form } from "@epam/promo";
+import React from 'react';
+import { FormSaveResponse, useUuiContext, UuiContexts } from "@epam/uui";
+import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm } from "@epam/promo";
+import type { TApi } from '../../../data';
 
 interface Login {
     email: string;
@@ -16,52 +17,9 @@ interface ServerResponseExample<T> {
 }
 
 export default function ServerValidationExample() {
-    const svc = useUuiContext();
-    const [login] = useState<Login>({
-        email: "Ivan_Ivanov@epam.com",
-        password: "",
-    });
+    const svc = useUuiContext<TApi, UuiContexts>();
 
-    const getMetaData = (): Metadata<Login> => ({
-        props: {
-            email: { isRequired: true },
-            password: { isRequired: true },
-        },
-    });
-
-    const renderForm = ({ lens, save, validate }: RenderFormProps<Login>) => (
-        <FlexCell width='100%'>
-            <FlexRow vPadding='12'>
-                <FlexCell grow={ 1 }>
-                    <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
-                        <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
-                    </LabeledInput>
-                </FlexCell>
-            </FlexRow>
-            <FlexRow vPadding='12'>
-                <FlexCell grow={ 1 }>
-                    <LabeledInput label='Password' { ...lens.prop('password').toProps() }>
-                        <TextInput placeholder='Password'
-                                    type='password'
-                                    { ...lens.prop('password').toProps() }/>
-                    </LabeledInput>
-                </FlexCell>
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12'>
-                <FlexSpacer/>
-                <Button caption='Validate' onClick={ validate }/>
-                <Button caption='Save' onClick={ save } color='green'/>
-            </FlexRow>
-        </FlexCell>
-    );
-
-    const renderNotification = (props: INotification): ReactNode => (
-        <SuccessNotification { ...props }>
-            <Text>Form saved</Text>
-        </SuccessNotification>
-    );
-
-    const onSave = async (formState: Login): Promise<FormSaveResponse<Login>> => {
+    async function onSave(formState: Login): Promise<FormSaveResponse<Login>> {
         const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
         if (!response.error) return response;
 
@@ -81,15 +39,50 @@ export default function ServerValidationExample() {
         }
     }
 
-    const onSuccess = (formState: Login): Promise<void> => svc.uuiNotifications.show(renderNotification);
+    const { lens, save, validate } = useForm<Login>({
+        value: {
+            email: "Ivan_Ivanov@epam.com",
+            password: "",
+        },
+        onSave,
+        onSuccess: () => svc.uuiNotifications.show(props => (
+            <SuccessNotification { ...props }>
+                <Text>Form saved</Text>
+            </SuccessNotification>
+        )),
+        getMetadata: () => ({
+            props: {
+                email: { isRequired: true },
+                password: { isRequired: true },
+            },
+        }),
+    });
 
     return (
-        <Form<Login>
-            value={ login }
-            onSave={ onSave }
-            onSuccess={ onSuccess }
-            renderForm={ renderForm }
-            getMetadata={ getMetaData }
-        />
+        <FlexCell width='100%'>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Email' { ...lens.prop('email').toProps() } >
+                        <TextInput placeholder='Email' { ...lens.prop('email').toProps() } />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12'>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Password' { ...lens.prop('password').toProps() }>
+                        <TextInput
+                            placeholder='Password'
+                            type='password'
+                            { ...lens.prop('password').toProps() }
+                        />
+                    </LabeledInput>
+                </FlexCell>
+            </FlexRow>
+            <FlexRow vPadding='12' spacing='12'>
+                <FlexSpacer/>
+                <Button caption='Validate' onClick={ validate } />
+                <Button caption='Save' onClick={ save } color='green' />
+            </FlexRow>
+        </FlexCell>
     );
 }

@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For saving form data to localStorage you need to set ",
+            "text": "If you want to use form with classes, you can use ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "settingsKey",
+            "text": "Form",
             "marks": [
               {
                 "object": "mark",
@@ -27,19 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop, it will be a localStorage filed key for this form, it should be unique.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Also, ",
+            "text": " component instead of ",
             "marks": []
           },
           {
@@ -55,7 +43,23 @@
           },
           {
             "object": "text",
-            "text": " hook provides revert and undo/redo/revert functionality. Those functions are coming as a hook return result.",
+            "text": " hook. It provide the same functionality, but you need to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderForm",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop which receive form api methods as a parameter.",
             "marks": []
           }
         ]
