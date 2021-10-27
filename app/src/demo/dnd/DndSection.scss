@@ -5,6 +5,7 @@
     @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
+    touch-action: none;
 
     .dnd-item:hover {
         box-shadow: 0 6px 12px 0 rgba(29, 30, 38, 0.1), 0 3px 6px 0 rgba(29, 30, 38, 0.1);
