@@ -2693,20 +2693,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/history@*":
+"@types/history@*", "@types/history@4.7.9":
   version "4.7.9"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.9.tgz#1cfb6d60ef3822c589f18e70f8b12f9a28ce8724"
   integrity sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ==
-
-"@types/history@4.7.6":
-  version "4.7.6"
-  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.6.tgz#ed8fc802c45b8e8f54419c2d054e55c9ea344356"
-  integrity sha512-GRTZLeLJ8ia00ZH8mxMO8t0aC9M1N9bN461Z2eaRurJo6Fpa+utgCwLzI4jQHcrdzuzp5WPN9jRwpsCQ1VhJ5w==
-
-"@types/history@4.7.8":
-  version "4.7.8"
-  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.8.tgz#49348387983075705fe8f4e02fb67f7daaec4934"
-  integrity sha512-S78QIYirQcUoo6UJZx9CSP0O2ix9IaeAXwQi26Rhr/+mg7qqPy8TzaxHSUut7eGjL8WmLccT7/MXf304WjqHcA==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.3"
