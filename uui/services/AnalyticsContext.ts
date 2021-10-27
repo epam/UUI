@@ -1,6 +1,7 @@
 import {BaseContext} from './BaseContext';
 import {AnalyticsEvent, IRouterContext, IAnalyticsListener} from '../types';
 import { GAListener } from './analytics/GAListener';
+import { isClientSide } from "../helpers";
 
 interface AnalyticsContextOptions {
     gaCode?: string;
@@ -21,7 +22,7 @@ export class AnalyticsContext extends BaseContext {
         this.router = options.router;
 
         this.listenRouter();
-        if (this.gaCode) this.initGA();
+        if (this.gaCode && isClientSide) this.initGA();
     }
 
     public sendEvent(event: AnalyticsEvent | null | undefined, eventType: "event" | "pageView" | "apiTiming" = "event") {
@@ -30,7 +31,8 @@ export class AnalyticsContext extends BaseContext {
     }
 
     private listenRouter() {
-        let currentLocation = window?.location?.pathname;
+        if (!isClientSide) return;
+        let currentLocation = window.location.pathname;
         this.router && this.router.listen((location) => {
             if (currentLocation !== location?.pathname) {
                 currentLocation = location?.pathname;

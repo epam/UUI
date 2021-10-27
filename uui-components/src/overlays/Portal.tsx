@@ -15,7 +15,14 @@ export class Portal extends React.Component<PortalProps, PortalState> {
     constructor(props: PortalProps) {
         super(props);
 
-        let el = document.createElement('div');
+        this.state = {
+            el: null,
+            root: this.props.target,
+        };
+    }
+
+    componentDidMount() {
+        const el = document.createElement('div');
         // This fixes dropdown and tooltip glitch - dropdown jumps right a bit on open.
         // We don't know why is fixes the issue, but it works :)
         el.style.position = 'absolute';
@@ -23,14 +30,12 @@ export class Portal extends React.Component<PortalProps, PortalState> {
         el.style.left = '0';
         el.style.width = '100%';
 
-        this.state = {
+        const rootElement = this.props.target || document.getElementById('main') || document.getElementById('root') || document.body;
+        rootElement.appendChild(el);
+        this.setState({
             el: el,
-            root: this.props.target || document.getElementById('main') || document.getElementById('root') || document.body,
-        };
-    }
-
-    componentDidMount() {
-        this.state.root.appendChild(this.state.el);
+            root: rootElement,
+        });
     }
 
     componentWillUnmount() {
@@ -38,6 +43,8 @@ export class Portal extends React.Component<PortalProps, PortalState> {
     }
 
     render() {
+        if (!this.state.el || !this.state.root) return null;
+
         return ReactDOM.createPortal(this.props.children, this.state.el, this.props.key);
     }
 }

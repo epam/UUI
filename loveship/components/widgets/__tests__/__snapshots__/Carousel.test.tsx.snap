@@ -28,16 +28,9 @@ exports[`Carousel should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="uui-carousel-items-container"
@@ -70,16 +63,9 @@ exports[`Carousel should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>
@@ -113,16 +99,9 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="uui-carousel-items-container"
@@ -155,16 +134,9 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>

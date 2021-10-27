@@ -1,4 +1,5 @@
 import { uuiMarkers } from '../constants';
+import { isClientSide } from "../helpers";
 
 export interface ScrollPosition {
     x: number;
@@ -115,7 +116,7 @@ export class ScrollManager {
         }
     }
 
-    resizeObserver = new ResizeObserver(entries => {
+    resizeObserver = isClientSide && new ResizeObserver(entries => {
         for (let entry of entries) {
             const contentRect = entry.contentRect;
 

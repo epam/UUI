@@ -13,16 +13,9 @@ exports[`Tag should render with all new props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-12.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="uui-count"
@@ -39,16 +32,9 @@ exports[`Tag should render with all new props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#btn-cross-12.svg"
-      />
-    </svg>
+    />
   </div>
 </button>
 `;

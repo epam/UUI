@@ -13,7 +13,7 @@ function randomDelay<T>(result: T): Promise<T> {
 export const personDetailsApi = {
     load: () => {
         let details = personDetails;
-        const localStorageJson = localStorage.getItem('person-details');
+        const localStorageJson = localStorage?.getItem('person-details');
         if (localStorageJson) {
             details = JSON.parse(localStorageJson);
         }

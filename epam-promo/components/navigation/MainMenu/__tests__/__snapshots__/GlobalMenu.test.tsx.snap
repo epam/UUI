@@ -9,16 +9,9 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
     className="container uui-icon uui-enabled globalMenuIcon"
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#global_menu.svg"
-      />
-    </svg>
+    />
   </div>
 </div>
 `;

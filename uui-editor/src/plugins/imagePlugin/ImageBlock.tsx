@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import { RenderBlockProps } from 'slate-react';
 import { Resizable } from 're-resizable';
-import {uuiMod, uuiSkin} from "@epam/uui";
+import { isClientSide, uuiMod, uuiSkin } from "@epam/uui";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import * as css from './ImageBlock.scss';
@@ -27,6 +27,7 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
     };
 
     getImageMaxWidth() {
+        if (!isClientSide) return 0;
         let editorNode: any = ReactDOM.findDOMNode(this.props.editor);
         return editorNode && editorNode.getBoundingClientRect().width - 50;
     }

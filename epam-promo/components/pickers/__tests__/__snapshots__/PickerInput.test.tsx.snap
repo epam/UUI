@@ -31,16 +31,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>
@@ -71,16 +64,9 @@ exports[`PickerInput should be rendered correctly 2`] = `
         onClick={[Function]}
         style={Object {}}
       >
-        <svg
+        <SvgrURL
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#btn-cross-24.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
     <button
@@ -100,16 +86,9 @@ exports[`PickerInput should be rendered correctly 2`] = `
         onClick={[Function]}
         style={Object {}}
       >
-        <svg
+        <SvgrURL
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#btn-cross-24.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -122,31 +101,17 @@ exports[`PickerInput should be rendered correctly 2`] = `
       style={Object {}}
       tabIndex={-1}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#btn-cross-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>

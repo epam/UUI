@@ -25,15 +25,16 @@ export class Svg extends React.Component<SvgProps> {
             };
 
             svgElement = <svg viewBox={ svg.viewBox } { ...attrs } className={ this.props.cx } fill={ this.props.fillColor }>
-                            <use xlinkHref={ svg.url || ('#' + svg.id) } />
-                        </svg>;
+                <use xlinkHref={ svg.url || ('#' + svg.id) } />
+            </svg>;
         } else {
             const svgProps = {
                 className: this.props.cx,
                 fill: this.props.fillColor,
             };
 
-            svgElement = React.createElement(this.props.svg as React.SFC<any>, svgProps);
+            const IconSVG = (this.props.svg as any).default || this.props.svg;
+            svgElement = React.createElement(IconSVG as React.FC<any>, svgProps);
         }
 
         return svgElement;
