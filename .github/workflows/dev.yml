@@ -6,7 +6,7 @@ name: dev
 on:
     # Triggers the workflow on push or pull request events but only for the main branch
     push:
-        branches: [ develop ]
+        branches: [ feature/dnd_for_mobiles ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-    
+
       - uses: actions/cache@v2
         with:
           path: |
@@ -33,7 +33,7 @@ jobs:
             ./*/node_modules
           key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
           restore-keys: v1-npm-deps-
-       
+
       - name: build
         run: |
           yarn
@@ -42,7 +42,7 @@ jobs:
           cd server && yarn
       - name: test
         run: yarn test
-        
+
   docker:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -90,7 +90,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          
+
   deploy:
     needs: docker
     runs-on: ubuntu-latest
