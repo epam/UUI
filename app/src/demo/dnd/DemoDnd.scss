@@ -18,4 +18,14 @@
     .module-content {
         position: relative;
     }
+
+    @media (min-width: 1280px) {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: flex-start;
+    }
+
+    @media (max-width: 1279px) {
+        justify-content: center;
+    }
 }
