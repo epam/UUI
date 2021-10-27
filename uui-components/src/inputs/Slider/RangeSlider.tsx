@@ -127,7 +127,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
                     rawProps={{
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'From',
-                        'aria-valuenow': this.props.value.from,
+                        'aria-valuenow': this.props.value?.from,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',
@@ -143,7 +143,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     rawProps={{
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'To',
-                        'aria-valuenow': this.props.value.to,
+                        'aria-valuenow': this.props.value?.to,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',

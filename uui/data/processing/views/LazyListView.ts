@@ -100,7 +100,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-        this.value = { topIndex: 0, ...newValue };
+        this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
         this.props = props;
     }
