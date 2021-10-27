@@ -153,11 +153,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               <div
                 className="dragElement"
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseMove={[Function]}
-                onMouseUp={[Function]}
+                onPointerDown={[Function]}
+                onPointerEnter={[Function]}
+                onPointerLeave={[Function]}
+                onPointerMove={[Function]}
+                onPointerUp={[Function]}
               >
                 <div
                   className="dndItem"
@@ -209,11 +209,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </div>
               <div
                 className="dragElement"
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseMove={[Function]}
-                onMouseUp={[Function]}
+                onPointerDown={[Function]}
+                onPointerEnter={[Function]}
+                onPointerLeave={[Function]}
+                onPointerMove={[Function]}
+                onPointerUp={[Function]}
               >
                 <div
                   className="dndItem"
@@ -265,11 +265,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </div>
               <div
                 className="dragElement"
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseMove={[Function]}
-                onMouseUp={[Function]}
+                onPointerDown={[Function]}
+                onPointerEnter={[Function]}
+                onPointerLeave={[Function]}
+                onPointerMove={[Function]}
+                onPointerUp={[Function]}
               >
                 <div
                   className="dndItem"
@@ -320,11 +320,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </div>
               <div
                 className="dragElement"
-                onMouseDown={[Function]}
-                onMouseEnter={[Function]}
-                onMouseLeave={[Function]}
-                onMouseMove={[Function]}
-                onMouseUp={[Function]}
+                onPointerDown={[Function]}
+                onPointerEnter={[Function]}
+                onPointerLeave={[Function]}
+                onPointerMove={[Function]}
+                onPointerUp={[Function]}
               >
                 <div
                   className="dndItem"
