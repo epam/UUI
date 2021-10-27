@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "4.2.7",
+  "version": "4.3.0",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -14,15 +14,17 @@
     "server": "node ../server/app.js"
   },
   "dependencies": {
-    "@epam/assets": "4.2.7",
+    "@types/history": "4.7.9",
+    "@epam/assets": "4.3.0",
     "@epam/internal": "0.0.1",
-    "@epam/loveship": "4.2.7",
-    "@epam/promo": "4.2.7",
-    "@epam/uui": "4.2.7",
-    "@epam/uui-components": "4.2.7",
-    "@epam/uui-db": "4.2.7",
-    "@epam/uui-editor": "4.2.7",
-    "@epam/uui-timeline": "4.2.7",
+    "@epam/loveship": "4.3.0",
+    "@epam/promo": "4.3.0",
+    "@epam/uui": "4.3.0",
+    "@epam/uui-components": "4.3.0",
+    "@epam/uui-db": "4.3.0",
+    "@epam/uui-editor": "4.3.0",
+    "@epam/uui-timeline": "4.3.0",
+    "@epam/uui-docs": "4.3.0",
     "amplitude-js": "7.4.1",
     "classnames": "2.2.6",
     "codesandbox": "2.2.3",
@@ -47,7 +49,7 @@
     "slate": "0.47.9"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.2.7"
+    "@epam/uui-docs": "4.3.0"
   },
   "browserslist": {
     "production": [

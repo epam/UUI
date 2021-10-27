@@ -1,9 +1,9 @@
 import React from 'react';
-import { Form as UuiForm, FormProps, useUuiContext, INotification } from '@epam/uui';
+import { UseFormProps, useUuiContext, INotification, useForm as uuiUseForm } from '@epam/uui';
 import { ConfirmationModal, Text, RichTextView, WarningNotification } from '..';
 import { i18n } from '../../i18n';
 
-export function Form<T>(props: FormProps<T>) {
+export function useForm<T>(props: UseFormProps<T>) {
     const context = useUuiContext();
 
     const beforeLeave = (): Promise<boolean> => {
@@ -24,11 +24,5 @@ export function Form<T>(props: FormProps<T>) {
             </WarningNotification>, { duration: 5, position: 'bot-left' });
     }
 
-    return (
-        <UuiForm<T>
-            loadUnsavedChanges={ loadUnsavedChanges }
-            beforeLeave={ beforeLeave }
-            { ...props }
-        />
-    );
+    return uuiUseForm({ beforeLeave, loadUnsavedChanges, ...props });
 }
