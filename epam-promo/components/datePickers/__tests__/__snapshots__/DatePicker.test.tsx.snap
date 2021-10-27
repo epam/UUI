@@ -12,16 +12,9 @@ exports[`DataPicker should be rendered correctly 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#calendar-18.svg"
-      />
-    </svg>
+    />
   </div>
   <input
     className="uui-input"
@@ -47,16 +40,9 @@ exports[`DataPicker should be rendered correctly 2`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#calendar-18.svg"
-      />
-    </svg>
+    />
   </div>
   <input
     className="uui-input"

@@ -89,16 +89,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
               className="container uui-icon uui-enabled"
               style={Object {}}
             >
-              <svg
+              <SvgrURL
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#navigation-close-24.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -130,16 +123,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
               className="container uui-icon uui-enabled"
               style={Object {}}
             >
-              <svg
+              <SvgrURL
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#search-18.svg"
-                />
-              </svg>
+              />
             </div>
             <input
               aria-invalid={false}

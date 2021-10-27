@@ -11,16 +11,9 @@ exports[`SnackbarCard should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled actionIcon"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#cross.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
   <div
@@ -40,16 +33,9 @@ exports[`SnackbarCard should be rendered correctly 1`] = `
         className="container uui-icon uui-enabled"
         style={Object {}}
       >
-        <svg
+        <SvgrURL
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>

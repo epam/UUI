@@ -37,6 +37,6 @@ export interface SvgDescriptor {
     viewBox: string;
 }
 
-export type Icon = SvgDescriptor | React.SFC<any>;
+export type Icon = SvgDescriptor | React.FC<any>;
 
 

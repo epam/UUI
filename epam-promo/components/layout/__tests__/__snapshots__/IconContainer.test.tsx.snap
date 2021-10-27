@@ -5,16 +5,9 @@ exports[`IconContainer should be rendered correctly 1`] = `
   className="container uui-icon uui-enabled root icon-container-color-gray60"
   style={Object {}}
 >
-  <svg
+  <SvgrURL
     className=""
-    height={24}
-    viewBox="0 0 12 24"
-    width={12}
-  >
-    <use
-      xlinkHref="#calendar-18.svg"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -25,15 +18,8 @@ exports[`IconContainer should be rendered correctly with props 1`] = `
   style={Object {}}
   tabIndex={0}
 >
-  <svg
+  <SvgrURL
     className="flipY rotate-90ccw"
-    height={36}
-    viewBox="0 0 12 24"
-    width={36}
-  >
-    <use
-      xlinkHref="#calendar-18.svg"
-    />
-  </svg>
+  />
 </div>
 `;

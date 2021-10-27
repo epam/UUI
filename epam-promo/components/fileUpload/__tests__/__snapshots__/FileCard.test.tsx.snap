@@ -22,16 +22,9 @@ exports[`FileCard should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 xlsColor"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_excel-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"
@@ -123,16 +116,9 @@ exports[`FileCard should be rendered correctly 2`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 docColor"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_word-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"
@@ -224,16 +210,9 @@ exports[`FileCard should be rendered correctly 3`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 imgColor"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_image-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"

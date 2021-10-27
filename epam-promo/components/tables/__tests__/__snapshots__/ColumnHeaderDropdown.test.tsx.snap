@@ -18,16 +18,9 @@ Array [
       className="container uui-icon uui-enabled"
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className="flipY"
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
   </button>,
   <div
@@ -84,16 +77,9 @@ Array [
                 className="container uui-icon uui-enabled"
                 style={Object {}}
               >
-                <svg
+                <SvgrURL
                   className=""
-                  height={24}
-                  viewBox="0 0 12 24"
-                  width={12}
-                >
-                  <use
-                    xlinkHref="#table-sort_asc-18.svg"
-                  />
-                </svg>
+                />
               </div>
             </button>
             <div
@@ -117,16 +103,9 @@ Array [
                 className="container uui-icon uui-enabled"
                 style={Object {}}
               >
-                <svg
+                <SvgrURL
                   className=""
-                  height={24}
-                  viewBox="0 0 12 24"
-                  width={12}
-                >
-                  <use
-                    xlinkHref="#table-sort_desc-18.svg"
-                  />
-                </svg>
+                />
               </div>
             </button>
             <div

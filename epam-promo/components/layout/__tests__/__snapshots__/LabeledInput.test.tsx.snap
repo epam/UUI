@@ -38,16 +38,9 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
       className="uui-label"
     >
       Test label
-      <svg
+      <SvgrURL
         className="uui-labeled-input-info-icon"
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#help-fill-16.svg"
-        />
-      </svg>
+      />
     </label>
     <div
       className="rightChildrenPosition"

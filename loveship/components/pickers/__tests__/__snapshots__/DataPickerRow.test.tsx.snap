@@ -68,16 +68,9 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
           className="container uui-icon uui-enabled root color-sky"
           style={Object {}}
         >
-          <svg
+          <SvgrURL
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#notification-done-18.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>

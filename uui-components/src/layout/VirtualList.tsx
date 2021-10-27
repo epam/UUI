@@ -12,7 +12,7 @@ export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
         horizontalLeft: boolean;
         horizontalRight: boolean;
     };
-};
+}
 
 export interface VirtualListProps<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollContainer> {
     rows: ReactNode[];
@@ -30,12 +30,12 @@ export function VirtualList(props: VirtualListProps) {
         offsetY,
         handleScroll,
         estimatedHeight,
-        scrollContainerRef
+        scrollContainerRef,
     } = useVirtualList({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
-        rowsCount: props.rowsCount
+        rowsCount: props.rowsCount,
     });
 
     const { verticalRef, horizontalRef, ...scrollShadows } = useScrollShadows({ root: scrollContainerRef.current });
@@ -62,7 +62,7 @@ export function VirtualList(props: VirtualListProps) {
                     style={ { ...style, position: 'relative', flex: '1 1 auto'} }
                     className={ cx(props.cx, {
                         [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
-                        [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight
+                        [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
                     }) }
                     { ...rest }
                     { ...props.rawProps }
@@ -73,9 +73,9 @@ export function VirtualList(props: VirtualListProps) {
                 scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
             } }
         >
-            <div style={{ top: `${listOffset}px` }} ref={ verticalRef } className={ css.verticalIntersectingRect } />
+            <div style={ { top: `${listOffset}px` } } ref={ verticalRef } className={ css.verticalIntersectingRect } />
             { renderRows() }
-            <div style={{ bottom: `${listOffset}px` }} ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
+            <div style={ { bottom: `${listOffset}px` } } ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
         </ScrollBars>
     );
 }

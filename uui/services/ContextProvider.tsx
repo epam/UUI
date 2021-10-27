@@ -75,14 +75,16 @@ export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<T
     return context;
 }
 
-export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
+export function getUuiContexts<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>, router?: any) {
     const history = props.history;
     const uuiLayout = new LayoutContext();
     const uuiModals = new ModalContext(uuiLayout);
 
     const uuiNotifications = new NotificationContext(uuiLayout);
 
-    const uuiRouter = !!history
+    const uuiRouter = !!router
+        ? router
+        : !!history
         ? new HistoryAdaptedRouter(history)
         : new StubAdaptedRouter();
 

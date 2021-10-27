@@ -435,18 +435,16 @@ function getLocalIdent(
         },
         {
             test: /(\.svg$)/,
-            use: [
-              {
-                loader: require.resolve('svg-sprite-loader'),
+            use: [{
+                loader: '@svgr/webpack',
                 options: {
-                  //extract: true,
-                  esModule: false,
-                  spriteFilename: 'img/sprite.svg?v=[hash:5]',
-                  symbolId: '[name]-[hash:5]',
+                    svgoConfig: {
+                        plugins: {
+                            removeViewBox: false
+                        }
+                    }
                 }
-              },
-              //'svgo-loader'
-            ]
+            }]
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.

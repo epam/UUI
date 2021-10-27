@@ -12,16 +12,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-timepicker-input"
@@ -61,16 +54,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
   <div
@@ -81,16 +67,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-timepicker-input"
@@ -130,16 +109,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
   <div
@@ -150,16 +122,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-readonly uui-timepicker-input"
@@ -182,16 +147,9 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>
@@ -209,16 +167,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-timepicker-input"
@@ -258,16 +209,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
   <div
@@ -278,16 +222,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-timepicker-input"
@@ -327,16 +264,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
   <div
@@ -347,16 +277,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-input-box uui-readonly uui-timepicker-input"
@@ -379,16 +302,9 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <svg
+      <SvgrURL
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-24.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>

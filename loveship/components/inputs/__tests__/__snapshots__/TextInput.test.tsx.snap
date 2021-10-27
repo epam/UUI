@@ -36,62 +36,34 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-24.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
     onClick={[Function]}
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#btn-cross-24.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-12.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled -clickable"
     style={Object {}}
   >
-    <svg
+    <SvgrURL
       className="flipY"
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#folding-arrow-24.svg"
-      />
-    </svg>
+    />
   </div>
 </div>
 `;
