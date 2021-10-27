@@ -2,14 +2,14 @@ import * as React from 'react';
 import { mouseCoords } from '../../helpers/mouseCoords';
 import { UuiContexts, DndContextState } from '../../types/contexts';
 import { LayoutLayer } from '../../types/objects';
-import { UuiContext } from "../ContextProvider";
+import { UuiContext } from '../ContextProvider';
 
 export interface DragGhostProps {
 }
 
 interface DragGhostState extends DndContextState {
-    mouseX?: number;
-    mouseY?: number;
+    pointerX?: number;
+    pointerY?: number;
 }
 
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
@@ -25,11 +25,11 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         context.uuiDnD.subscribe(this.contextUpdateHandler);
     }
 
-    onMouseMove = (e: MouseEvent) => {
+    onPointerMove = (e: PointerEvent) => {
         if (this.state.isDragging) {
-            this.setState({ ...this.state, mouseX: e.clientX, mouseY: e.clientY });
+            this.setState({ ...this.state, pointerX: e.clientX, pointerY: e.clientY });
         }
-    };
+    }
 
     contextUpdateHandler = (state: DndContextState) => {
         if (state.isDragging && !this.layer) {
@@ -39,22 +39,22 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
             this.layer = null;
         }
 
-        this.setState({ ...state, mouseX: mouseCoords.mousePageX, mouseY: mouseCoords.mousePageY });
-    };
+        this.setState({ ...state, pointerX: mouseCoords.mousePageX, pointerY: mouseCoords.mousePageY });
+    }
 
     componentDidMount() {
-        window.addEventListener('mousemove', this.onMouseMove);
+        window.addEventListener('pointermove', this.onPointerMove);
     }
 
     componentWillUnmount() {
         this.layer && this.context.uuiLayout.releaseLayer(this.layer);
-        window.removeEventListener('mousemove', this.onMouseMove);
+        window.removeEventListener('pointermove', this.onPointerMove);
     }
 
-    getGhostCoords(mouseX: number, mouseY: number) {
+    getGhostCoords(pointerX: number, pointerY: number) {
         return {
-            left: mouseX + this.state.ghostOffsetX,
-            top: mouseY + this.state.ghostOffsetY,
+            left: pointerX + this.state.ghostOffsetX,
+            top: pointerY + this.state.ghostOffsetY,
         };
     }
 
@@ -67,8 +67,8 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
             <div style={ {
                 position: 'fixed',
                 width: this.state.ghostWidth,
-                left: this.state.mouseX + this.state.ghostOffsetX,
-                top: this.state.mouseY + this.state.ghostOffsetY,
+                left: this.state.pointerX + this.state.ghostOffsetX,
+                top: this.state.pointerY + this.state.ghostOffsetY,
                 pointerEvents: 'none',
                 zIndex: this.layer.zIndex,
             } }

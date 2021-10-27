@@ -6,6 +6,7 @@
     position: relative;
     width: max-content;
     margin: 1px 6px;
+    touch-action: none;
 
     .row {
         min-height: 18px;

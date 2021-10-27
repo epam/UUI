@@ -3,7 +3,6 @@ import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
 
-let topOffset = 50;
 let maxScrollSpeed = 2000; // px/second
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
@@ -19,8 +18,8 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
     constructor() {
         super();
-        window.addEventListener('mousemove', this.windowMouseMoveHandler);
-        window.addEventListener('mouseup', this.windowMouseUpHandler);
+        window.addEventListener('pointermove', this.windowPointerMoveHandler);
+        window.addEventListener('pointerup', this.windowPointerUpHandler);
     }
 
     public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode) {
@@ -67,14 +66,14 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     xScrollNode: HTMLElement = null;
     yScrollNode: HTMLElement = null;
 
-    private windowMouseMoveHandler = (e: Event) => {
+    private windowPointerMoveHandler = (e: PointerEvent) => {
         if (this.isDragging) {
             this.xScrollNode = getScrollParent(e.target as HTMLElement, 'x');
             this.yScrollNode = getScrollParent(e.target as HTMLElement, 'y');
         }
     }
 
-    private windowMouseUpHandler = (e: Event) => {
+    private windowPointerUpHandler = (e: PointerEvent) => {
         this.isDragging && this.endDrag();
     }
 

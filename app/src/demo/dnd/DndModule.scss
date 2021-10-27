@@ -5,6 +5,7 @@
     @include dnd-cursor-style();
     position: relative;
     margin: 1px 0;
+    touch-action: none;
 
     &:hover .drag-handle {
         visibility: visible;
