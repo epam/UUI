@@ -14,6 +14,7 @@
     "server": "node ../server/app.js"
   },
   "dependencies": {
+    "@types/history": "4.7.9",
     "@epam/assets": "4.3.0",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "4.3.0",

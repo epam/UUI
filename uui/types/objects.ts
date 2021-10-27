@@ -11,7 +11,7 @@ export interface Link {
     search?: string;
     key?: string;
     hash?: string;
-    state?: Record<string, any>;
+    state?: any;
 }
 
 export interface LayoutLayer {
