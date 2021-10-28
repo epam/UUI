@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you prefer or unable to use hooks within your project, you can use a legacy Form component instead. The only difference from hook props api is a  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderForm",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop, where you should pass your form component to render.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

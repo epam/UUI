@@ -1,9 +1,31 @@
-# 4.3.0[WIP]
+# 4.3.0 - 25.10.2021
 
 **What's New**
+* [Lens][BreakingChange]: now if your get value from non-exist nested object field you will receive 'undefined' instead of 'null'
+* [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
+* [Form]: introduced new useFrom() hook
+* [RouterContext]: extended Link interface by 'key', 'hash', 'state' fields
+* [SlateEditor]: added onBlur and onKeyDown props
 
 **What’s Fixed**
-* [DataTableCell][Breaking Change]: removed labelColor prop from Loveship skin, reusePadding from Loveship & Promo skins, reworked html structure
+* [SlateRTE]: don't keep source formatting background-color when paste html in editor
+* [Tag, Badge]: reworked styles according design
+* [MainMenu]: reworked styles according design in Promo skin
+* [DataTable]: added work of renderNoResultsBlock props without default behavior
+* [Accordion]: remove overflow: hidden; style from body
+
+# 4.2.7 - 13.10.2021
+
+**What's New**
+* [PickerModal, PickerList]: add disallowClickOutside prop
+* [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
+
+**What’s Fixed**
+* [Button]: fix tooltip on disabled button
+* [PickerInput]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix selected item color when searchPosition='none'
+* [Modals]: fix mobile view
+* [SlateEditor]: add 'null' type for value prop
 
 # 4.2.6 - 07.10.2021
 

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic form example with validation, undo/redo/revert actions and storing unsaved changes in localStorage.",
+            "text": "Basic form example with validation, undo/redo/revert actions and storing unsaved changes to localStorage.",
             "marks": []
           }
         ]
@@ -110,7 +110,7 @@
           },
           {
             "object": "text",
-            "text": "beforeLeave={ null }",
+            "text": "beforeLeave: null",
             "marks": [
               {
                 "object": "mark",
@@ -181,7 +181,7 @@
           },
           {
             "object": "text",
-            "text": " callback, because it does't guarantee that form was completely saved. ",
+            "text": " callback, because it doesn't guarantee that form was completely saved. ",
             "marks": []
           }
         ]

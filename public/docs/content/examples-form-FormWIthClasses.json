@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you want to use form with classes, you can use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Form",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component instead of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "useForm",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " hook. It provide the same functionality, but you need to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderForm",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop which receive form api methods as a parameter.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

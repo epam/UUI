@@ -1,35 +1,49 @@
-import React, { ReactNode, useState } from 'react';
-import { Metadata, RenderFormProps, INotification, useUuiContext, useAsyncDataSource } from "@epam/uui";
+import React from 'react';
+import type { TApi } from '../../../data';
+import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
 import {
-    FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput,
-    PickerInput, SuccessNotification, ErrorNotification, Form,
+    FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
+    PickerInput, SuccessNotification, ErrorNotification,
+    useForm
 } from "@epam/promo";
 
 interface Person {
     firstName?: string;
     lastName?: string;
     countryId?: number | string;
-    sex?: string;
 }
 
 export default function BasicFormExample() {
-    const svc = useUuiContext();
-    const [person] = useState<Person>({});
-
-    const getMetaData = (state: Person): Metadata<Person> =>({
-        props: {
-            firstName: { isRequired: true },
-            lastName: { isRequired: true },
-            countryId: { isRequired: false },
-            sex: { isRequired: true },
-        },
-    });
+    const svc = useUuiContext<TApi, UuiContexts>();
 
     const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     }, []);
 
-    const renderForm = ({ lens, save }: RenderFormProps<Person>): ReactNode => (
+    const { lens, save } = useForm<Person>({
+        value: {},
+        onSave: person => Promise.resolve({ form: person }) /* place your save api call here */,
+        onSuccess: result => svc.uuiNotifications.show(props => (
+            <SuccessNotification { ...props }>
+                <Text>Form saved</Text>
+            </SuccessNotification>
+        )),
+        onError: error => svc.uuiNotifications.show(props => (
+            <ErrorNotification { ...props }>
+                <Text>Error on save</Text>
+            </ErrorNotification>
+        )),
+        getMetadata: () => ({
+            props: {
+                firstName: { isRequired: true },
+                lastName: { isRequired: true },
+                countryId: { isRequired: false },
+            },
+        }),
+        settingsKey: 'basic-form-example',
+    });
+
+    return (
         <FlexCell width='100%'>
             <FlexRow vPadding='12'>
                 <FlexCell grow={ 1 }>
@@ -58,44 +72,9 @@ export default function BasicFormExample() {
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding='12'>
-                <FlexCell grow={ 1 }>
-                    <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
-                        <RadioGroup
-                            items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
-                            { ...lens.prop('sex').toProps() }
-                            direction='horizontal'
-                        />
-                    </LabeledInput>
-                </FlexCell>
-            </FlexRow>
-            <FlexRow vPadding='12'>
                 <FlexSpacer />
                 <Button caption='Save' onClick={ save } color='green' />
             </FlexRow>
         </FlexCell>
-    );
-
-    const renderSuccessNotification = (props: INotification): ReactNode => (
-        <SuccessNotification { ...props }>
-            <Text>Form saved</Text>
-        </SuccessNotification>
-    );
-
-    const renderErrorNotification = (props: INotification): ReactNode => (
-        <ErrorNotification { ...props }>
-            <Text>Error on save</Text>
-        </ErrorNotification>
-    );
-
-    return (
-        <Form<Person>
-            value={ person }
-            onSave={ (person) => Promise.resolve({form: person}) /*place your save api call here*/ }
-            onSuccess={ result => svc.uuiNotifications.show(renderSuccessNotification) }
-            onError={ error => svc.uuiNotifications.show(renderErrorNotification) }
-            renderForm={ renderForm }
-            getMetadata={ getMetaData }
-            settingsKey='basic-form-example'
-        />
     );
 }

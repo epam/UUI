@@ -38,8 +38,8 @@ describe('LazyListView - old tests', () => {
     });
 
     it('should set value', () => {
-        const view = dataSource.getView({ topIndex: 1, filter: {} }, () => { }, {});
-        expect(view.value).toStrictEqual({ topIndex: 1, filter: {} });
+        const view = dataSource.getView({ topIndex: 1, visibleCount: 20, filter: {} }, () => { }, {});
+        expect(view.value).toStrictEqual({ topIndex: 1, visibleCount: 20, filter: {} });
     });
 
     describe('getById', () => {

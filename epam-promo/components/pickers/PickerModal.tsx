@@ -20,7 +20,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                 borderBottom='none'
                 padding='24'
                 size='36'
-                renderItem={ i => <Text size='36'>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(i) }</Text>}
+                renderItem={ i => <Text size='36'>{ rowProps.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : this.getName(i) }</Text> }
             />
         );
     }

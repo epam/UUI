@@ -29,7 +29,7 @@
     } @else if ($size == 42px) {
         @include button-padding(12px, 6px, $borderWidth);
     } @else if ($size == 48px) {
-        @include button-padding(18px, 6px, $borderWidth);
+        @include button-padding(12px, 6px, $borderWidth);
     }
 }
 
