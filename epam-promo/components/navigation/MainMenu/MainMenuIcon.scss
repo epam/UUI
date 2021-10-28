@@ -3,8 +3,10 @@
 
 .container {
     @include mainMenu-icon-color();
-    width: 60px;
     height: 60px;
+    min-width: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
     display: flex;
     justify-content: center;
     flex-shrink: 0;

@@ -8,8 +8,7 @@
     fill: var(--fill);
 
     :global(.uui-caption), :global(.uui-input) {
-        padding-top: 22px;
-        padding-bottom: 22px;
+        padding: 22px 6px;
         line-height: 16px;
         margin-bottom: -3px;
         font-family: $font-sans-semibold;
@@ -17,8 +16,8 @@
 
     &:global(.uui-button-box), &:global(.uui-input-box) {
         min-height: 60px;
-        padding-right: 18px;
-        padding-left: 18px;
+        padding-right: 6px;
+        padding-left: 6px;
     }
 
     :global(.uui-caption) {
@@ -41,12 +40,13 @@
     }
 
     &:hover, &:focus {
-        background-color: black;
+        background-color: var(--background-color-hover_active);
         color: var(--color-hover);
         fill: var(--fill-hover);
     }
 
     &:global(.uui-active) {
+        background-color: var(--background-color-hover_active);
         border-bottom: 3px solid var(--border-color-active);
         color: var(--color-active);
         fill: var(--fill-active);

@@ -11,5 +11,5 @@ export * from './app';
 export * from './dnd';
 export * from './tables';
 export * from './datePickers';
-export * from './forms/Form';
+export * from './forms';
 export * from './dev';

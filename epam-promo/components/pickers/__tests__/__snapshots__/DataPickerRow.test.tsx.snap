@@ -7,7 +7,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   role="option"
 >
   <div
-    className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
+    className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
     onClick={[Function]}
     style={
       Object {
@@ -41,7 +41,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
   role="option"
 >
   <div
-    className="flexCell cell wrapper size-48 padding-24 padding-left-24 align-widgets-top"
+    className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
     onClick={[Function]}
     style={
       Object {
@@ -64,29 +64,21 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       <div
         className="iconWrapper"
       >
-        <button
-          className="container uui-button-box uui-enabled root icon-color-blue"
-          href={null}
-          onClick={[Function]}
-          role="button"
-          tabIndex={null}
+        <div
+          className="container uui-icon uui-enabled root icon-container-color-blue"
+          style={Object {}}
         >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#notification-done-18.svg"
-              />
-            </svg>
-          </div>
-        </button>
+            <use
+              xlinkHref="#notification-done-18.svg"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>

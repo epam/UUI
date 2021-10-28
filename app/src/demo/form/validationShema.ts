@@ -1,9 +1,7 @@
 import { Metadata } from '@epam/uui';
 import { PersonDetails } from './types';
-import { instanceMask } from './DemoForm';
 
 const fullNameRegExp = /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/;
-const emailRegExp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetails> => ({
     props: {
@@ -16,7 +14,6 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                     ],
                 },
                 birthdayDate: { isRequired: true },
-                sex: { isRequired: true },
             },
         },
         location: {
@@ -25,22 +22,6 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 city: {
                     isRequired: true,
                     isDisabled: !value.location?.country,
-                },
-            },
-        },
-        contacts: {
-            props: {
-                email: {
-                    isRequired: true,
-                    validators: [
-                        (value: string) => [!emailRegExp.exec(value)?.length && 'Email is not valid!'],
-                    ],
-                },
-                phoneNumber: {
-                    isRequired: true,
-                    validators: [
-                        () => [!instanceMask?.masked?.isComplete && 'Phone number is not valid!'],
-                    ],
                 },
             },
         },
@@ -98,14 +79,6 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                         },
                     },
                 },
-            },
-        },
-        militaryService: {
-            props: {
-                hasMilitaryId: { isRequired: false },
-                servedInTheArmy: { isRequired: false },
-                eligibleToServeTheArmy: { isRequired: false },
-                otherMilitaryInfo: { isRequired: false },
             },
         },
         otherInfo: {

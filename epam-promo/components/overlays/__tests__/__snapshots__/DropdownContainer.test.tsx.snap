@@ -16,7 +16,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   />
 </div>
 `;
@@ -37,7 +37,7 @@ exports[`DropdownContainer should be rendered correctly 2`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   />
 </div>
 `;

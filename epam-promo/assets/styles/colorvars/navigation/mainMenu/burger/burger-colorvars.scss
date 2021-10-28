@@ -1,7 +1,8 @@
 @use  '../../../../colors' as *;
 
 @mixin burger-color() {
-    --background-color: #{$gray90};
-    --background-color-hover: #{$blue-dark};
+    --background-color-hover: #{$gray90};
+    --menu-background-color: #{$gray90};
+    --menu-background-color-hover: #{$blue-dark};
     --items-background-color: #{$gray90};
 }
