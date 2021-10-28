@@ -1,15 +1,11 @@
 import React from 'react';
-import { NotificationOperation, NotificationContext } from '@epam/uui';
-import { object } from 'prop-types';
+import { NotificationOperation, UuiContext, UuiContexts } from '@epam/uui';
 import { SnackbarProps, Snackbar as UuiSnackbar } from '@epam/uui-components';
 import { ClearNotification } from '.';
 
 export class Snackbar extends React.Component<SnackbarProps> {
-    static contextTypes = {
-        uuiNotifications: object,
-    };
-
-    context: { uuiNotifications: NotificationContext };
+    public static contextType = UuiContext;
+    public context: UuiContexts;
 
     public componentDidMount() {
         this.context.uuiNotifications.subscribe(() => this.forceUpdate());

@@ -1,3 +1,82 @@
+# 4.3.0 - 25.10.2021
+
+**What's New**
+* [Lens][BreakingChange]: now if your get value from non-exist nested object field you will receive 'undefined' instead of 'null'
+* [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
+* [Form]: introduced new useFrom() hook
+* [RouterContext]: extended Link interface by 'key', 'hash', 'state' fields
+* [SlateEditor]: added onBlur and onKeyDown props
+
+**What’s Fixed**
+* [SlateRTE]: don't keep source formatting background-color when paste html in editor
+* [Tag, Badge]: reworked styles according design
+* [MainMenu]: reworked styles according design in Promo skin
+* [DataTable]: added work of renderNoResultsBlock props without default behavior
+* [Accordion]: remove overflow: hidden; style from body
+
+# 4.2.7 - 13.10.2021
+
+**What's New**
+* [PickerModal, PickerList]: add disallowClickOutside prop
+* [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
+
+**What’s Fixed**
+* [Button]: fix tooltip on disabled button
+* [PickerInput]: fix picker closing by clicking on toggler arrow
+* [PickerInput]: fix selected item color when searchPosition='none'
+* [Modals]: fix mobile view
+* [SlateEditor]: add 'null' type for value prop
+
+# 4.2.6 - 07.10.2021
+
+**What’s Fixed**
+* [ArrayListView, LazyListView]: fix checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list;
+* [Form]: fix form validation after beforeLeave modal save action;
+* [TimePicker]: fix incorrect onClear behaviour;
+* [SliderRating]: improve performance; fix invalid behavior of reverting back to selected value after mouse leave;
+* [PickerInput]: close picker body when user lose focus from input;
+* [PickerInput]: fix 'body' scroll in mobile view;
+
+# 4.2.5 - 28.09.2021
+
+**What's New**
+* rework keyboard and focus/blur functionality in pickers
+* [VerticalTabButton]: added new component for vertical tabs
+* [DropdownMenu]: added keyboard support in Promo skin
+
+**What’s Fixed**
+* [PickerInput]: improve mobile view
+* [Modals]: improve mobile view
+* [PickerInput]: fix dropdown icon click handler
+* [LabeledInput]: remove children wrapping into label tag. Added htmlFor prop for linking label and control in forms.
+
+# 4.2.4 - 17.09.2021
+
+**What’s Fixed**
+* [Table]: fix row checkbox selection if row is link
+
+# 4.2.2 - 17.09.2021
+
+**What's New**
+* [ProgressBar]: implemented a new component to make possibility display a determinate progress bar with different sizes striped animation
+* [IndeterminateBar]: implemented a new component to make possibility display indeterminate progress with different sizes.
+* [IndicatorBar]: implemented a new component to use as the top indicator of page loading. Has a fixed size and can be determinate or indeterminate.
+
+**What’s Fixed**
+* [PickerInput]: fix size of PickerToggler in size-24 loveship skin
+* [MainMenu]: Do not render logo if url is not provided
+* [DatePicker]: fix validation date onBlur
+* [DatePicker]: fix calling onValueChange 2 times on date selection
+* [DropdownMenu]: fix 'style' prop from DropdownMenuContainer
+* [MainMenuSearch]: fix 'cx' prop
+* [RadioInput]: fix applying border color for invalid RadionInput in promo skin
+* [Table]: fix row checkbox selection if row is link
+* [CheckBox]: fix invalid style
+* [DropdownMenuButton]: remove default value for target prop
+* [Dropdown]: fix onClose handler if you manage dropdown state by yourself
+* [Modals]: fix modal blocker container adjustment on mobile view
+
+
 # 4.2.1 - 31.08.2021
 
 **What's New**
@@ -6,7 +85,6 @@
 
 **What’s Fixed**
 * fix styles issues with some components in Safari
-
 
 # 4.2.0 - 23.08.2021
 

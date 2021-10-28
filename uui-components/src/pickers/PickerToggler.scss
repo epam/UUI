@@ -1,4 +1,6 @@
 .container {
+    cursor: pointer;
+
     &:global(.uui-input-box) {
         display: flex;
         align-items: center;
@@ -40,8 +42,5 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.hidden {
-    visibility: hidden;
+    cursor: pointer;
 }

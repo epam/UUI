@@ -1,4 +1,4 @@
-import { PersonDetails } from './types';
+import { PersonDetails, PersonLanguageInfo, PersonTravelVisa } from './types';
 
 export const defaultData: PersonDetails = {
     role: 'User',
@@ -13,4 +13,16 @@ export const defaultData: PersonDetails = {
         timeReporting: true,
         remoteStatus: true,
     },
+};
+
+export const emptyInfo = {
+    language: {
+        language: null,
+        writingLevel: null,
+        speakingLevel: null
+    } as PersonLanguageInfo,
+    visa: {
+        country: null,
+        term: null
+    } as PersonTravelVisa,
 };

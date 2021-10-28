@@ -13,10 +13,11 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     className="body"
   >
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={false}
+      aria-haspopup={true}
+      autoComplete="no"
       className="uui-input singleInput"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -39,13 +40,12 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
   <div
     className="body multiline"
   >
-    <div
-      className="container uui-button-box uui-enabled root font-sans-semibold size-18 fill-solid color-night300 root"
+    <button
+      className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
       href={null}
       onClick={[Function]}
-      onKeyDown={[Function]}
       role="button"
-      tabIndex={0}
+      tabIndex={-1}
     >
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
@@ -63,12 +63,13 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
           />
         </svg>
       </div>
-    </div>
+    </button>
     <input
-      aria-haspopup="listbox"
-      aria-multiselectable={true}
+      aria-haspopup={true}
+      autoComplete="no"
       className="uui-input"
       onChange={[Function]}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -80,6 +81,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
       style={Object {}}
+      tabIndex={-1}
     >
       <svg
         className=""

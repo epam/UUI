@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
-<div
-  className="container"
+<button
+  className="container uui-button-box uui-enabled root color-night600 container"
+  href={null}
+  onClick={[Function]}
+  role="button"
+  tabIndex={-1}
 >
   <div
     className="container uui-icon uui-enabled"
@@ -19,12 +23,16 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;
 
 exports[`MainMenuIcon should be rendered correctly with props 1`] = `
-<div
-  className="container"
+<a
+  className="container uui-button-box uui-enabled -clickable root color-night600 container"
+  onClick={[Function]}
+  role="link"
+  tabIndex={-1}
+  target="_blank"
 >
   <div
     className="container uui-icon uui-enabled"
@@ -41,5 +49,5 @@ exports[`MainMenuIcon should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</a>
 `;

@@ -61,19 +61,13 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                     value={ this.getDataSourceState() }
                     onValueChange={ this.handleDataSourceValueChange }
                     maxHeight={ maxHeight }
-                    showSelectedRows={ true }
                     rows={ renderedDataRows }
                     search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                     showSearch={ this.props.showSearch }
                 />
                 <DataPickerFooter
-                    isSingleSelect={ this.isSingleSelect() }
+                    { ...this.getFooterProps() }
                     size={ this.props.size }
-                    hasSelection={ view.getSelectedRows().length > 0 }
-                    clearSelection={ this.clearSelection }
-                    switchValue={ this.state.showSelected }
-                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
-                    selectAll={ view.selectAll }
                 />
             </>
         );

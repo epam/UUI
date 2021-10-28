@@ -3,14 +3,17 @@
 exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  role="row"
 >
   <div
+    aria-sort="none"
     className="flexCell -clickable"
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
     onMouseMove={[Function]}
     onMouseUp={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -24,7 +27,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <label
       className="container root size-12 theme-light color-sky -clickable"
-      role="checkbox"
     >
       <div
         className="uui-checkbox"
@@ -46,13 +48,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         >
           ID
         </div>
-        <div
+        <button
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
-          tabIndex={0}
+          tabIndex={-1}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -69,7 +70,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
     <div
@@ -94,6 +95,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         className="container align-items-top"
       >
         <div
+          aria-sort="ascending"
           className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -101,6 +103,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -121,13 +124,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 name
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -144,7 +146,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -152,6 +154,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           />
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -159,6 +162,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -179,13 +183,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 Level
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -202,7 +205,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -210,6 +213,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           />
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
           onMouseDown={[Function]}
@@ -217,6 +221,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onMouseLeave={[Function]}
           onMouseMove={[Function]}
           onMouseUp={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -237,13 +242,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
               >
                 DATE
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -260,7 +264,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
           <div
@@ -282,10 +286,13 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  role="row"
 >
   <div
+    aria-sort="none"
     className="flexCell -clickable"
     onClick={[Function]}
+    role="columnheader"
     style={
       Object {
         "alignSelf": undefined,
@@ -306,13 +313,12 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         >
           ID
         </div>
-        <div
+        <button
           className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
           href={null}
           onClick={[Function]}
-          onKeyDown={[Function]}
           role="button"
-          tabIndex={0}
+          tabIndex={-1}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -329,7 +335,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               />
             </svg>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -351,8 +357,10 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         className="container align-items-top"
       >
         <div
+          aria-sort="ascending"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -373,13 +381,12 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 name
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -396,13 +403,15 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -423,13 +432,12 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 Level
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -446,13 +454,15 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
         <div
+          aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
+          role="columnheader"
           style={
             Object {
               "alignSelf": undefined,
@@ -473,13 +483,12 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
               >
                 DATE
               </div>
-              <div
+              <button
                 className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
                 href={null}
                 onClick={[Function]}
-                onKeyDown={[Function]}
                 role="button"
-                tabIndex={0}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -496,7 +505,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                     />
                   </svg>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>

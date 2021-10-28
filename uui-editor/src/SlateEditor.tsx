@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Editor, Plugin, getEventTransfer } from 'slate-react';
-import { Editor as CoreEditor, KeyUtils, SchemaProperties, Value, Block, Text as SlateText } from 'slate';
+import { KeyUtils, SchemaProperties, Value, Block, Text as SlateText } from 'slate';
 import * as css from './SlateEditor.scss';
 import * as style from '@epam/assets/scss/promo/typography.scss';
 import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui';
@@ -69,7 +69,7 @@ export const basePlugins = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value>, IHasCX, IHasRawProps<HTMLDivElement> {
+interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<HTMLDivElement> {
     isReadonly?: boolean;
     plugins?: Plugin[];
     autoFocus?: boolean;
@@ -77,6 +77,8 @@ interface SlateEditorProps extends IEditable<Value>, IHasCX, IHasRawProps<HTMLDi
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
+    onKeyDown?: (event: KeyboardEvent, value: Editor['value'] | null) => void;
+    onBlur?: (event: FocusEvent, value: Editor['value'] | null) => void;
 }
 
 interface SlateEditorState {
@@ -93,7 +95,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         inFocus: !!this.props.autoFocus,
     };
 
-    onPaste = (event: any, editor: any, next: any) => {
+    onPaste = (event: any, editor: Editor, next: () => any) => {
         const transfer: any = getEventTransfer(event);
         if (transfer.type !== 'html') return next();
         const html = htmlclean(transfer.html);
@@ -102,11 +104,13 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         event.preventDefault();
     }
 
-    onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
+    onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
         if (event.keyCode === 9 && !((this.editor as any).isList('unordered-list') || (this.editor as any).isList('ordered-list'))) {
             event.preventDefault();
             return;
         }
+
+        this.props.onKeyDown && this.props.onKeyDown(event, editor.value);
 
         return next();
     }
@@ -137,10 +141,12 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         this.props.onValueChange(props.value);
     }
 
-    onBlur = (e: any, editor: any, next: any) => {
+    onBlur = (e: any, editor: Editor, next: () => any) => {
         if (e.relatedTarget && e.relatedTarget.closest('.slate-prevent-blur')) {
             return e.preventDefault();
         }
+
+        this.props.onBlur && this.props.onBlur(e, editor.value);
         next();
     }
 
@@ -155,7 +161,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.isReadonly && uuiMod.readonly,
                 ) }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 <Editor
                     readOnly={ this.props.isReadonly }

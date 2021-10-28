@@ -30,6 +30,7 @@ export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICa
     downIcon?: Icon;
     step?: number;
     inputCx?: CX;
+    id?: string;
 }
 
 export interface NumericInputState {
@@ -146,6 +147,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     className={ cx(uuiElement.input, this.props.inputCx) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
+                    aria-required={ this.props.isRequired }
                     value={ this.state.value }
                     inputMode="numeric"
                     placeholder={ this.props.placeholder || '0' }
@@ -153,6 +155,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     min={ this.props.min || 0 }
                     max={ this.props.max }
                     step={ this.props.step || 1 }
+                    id={ this.props.id }
                 />
                 <div className={ uuiNumericInput.buttonGroup }>
                     <IconContainer

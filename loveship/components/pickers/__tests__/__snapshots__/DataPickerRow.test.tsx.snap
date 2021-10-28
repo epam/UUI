@@ -2,7 +2,9 @@
 
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
+  aria-posinset={2}
   className="pickerRow container align-items-center"
+  role="option"
 >
   <div
     className="flexCell cell size-36 padding-12 padding-left-12 align-widgets-top"
@@ -32,8 +34,11 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
 <div
-  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+  aria-posinset={2}
+  aria-selected={true}
+  className="uui-focus pickerRow container -clickable align-items-center"
   onClick={[Function]}
+  role="option"
 >
   <div
     className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
@@ -60,28 +65,19 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
         className="iconWrapper"
       >
         <div
-          className="root color-sky uui-button-box uui-enabled"
-          href={null}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="button"
-          tabIndex={0}
+          className="container uui-icon uui-enabled root color-sky"
+          style={Object {}}
         >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#notification-done-18.svg"
-              />
-            </svg>
-          </div>
+            <use
+              xlinkHref="#notification-done-18.svg"
+            />
+          </svg>
         </div>
       </div>
     </div>

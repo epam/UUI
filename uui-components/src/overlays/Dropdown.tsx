@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
-import { StrictModifiers, Placement, Boundary } from '@popperjs/core';
+import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
+import { FreeFocusInside } from 'react-focus-lock';
 
 export interface DropdownState {
     opened: boolean;
@@ -155,13 +156,13 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private onClose = () => {
-        this.props.onClose ? this.props.onClose() : this.setState({ opened: false });
+        this.props.onClose ? this.props.onClose() : this.handleOpenedChange(false);
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: Element) => {
             this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            (targetProps.ref as React.RefCallback<any>)(this.targetNode);
+            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
 
         return (
@@ -171,6 +172,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
                     isOpen: this.isOpened(),
                     isDropdown: true,
+                    toggleDropdownOpening: this.handleOpenedChange,
                 })
             }
             </PopperTargetWrapper>
@@ -195,21 +197,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             return null;
         }
         return (
-            <div
-                className='uui-popper'
-                aria-hidden={ !this.isOpened() }
-                aria-expanded={ this.isOpened() }
-                ref={ setRef }
-                style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                data-placement={ placement }
-            >
-                { this.props.renderBody({
-                    onClose: this.onClose,
-                    togglerWidth: this.togglerWidth,
-                    togglerHeight: this.togglerHeight,
-                    scheduleUpdate: update,
-                }) }
-            </div>
+            <FreeFocusInside>
+                <div
+                    className='uui-popper'
+                    aria-hidden={ !this.isOpened() }
+                    aria-expanded={ this.isOpened() }
+                    ref={ setRef }
+                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
+                    data-placement={ placement }
+                >
+                    { this.props.renderBody({
+                        onClose: this.onClose,
+                        togglerWidth: this.togglerWidth,
+                        togglerHeight: this.togglerHeight,
+                        scheduleUpdate: update,
+                    }) }
+                </div>
+            </FreeFocusInside>
         );
     }
 

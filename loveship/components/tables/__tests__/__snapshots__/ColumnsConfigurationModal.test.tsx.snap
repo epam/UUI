@@ -86,11 +86,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             }
           >
-            <div
-              className="root color-night600 uui-button-box uui-enabled -clickable"
+            <button
+              className="container uui-button-box uui-enabled -clickable root color-night600"
               href={null}
               onClick={[Function]}
-              onKeyDown={[Function]}
               role="button"
               tabIndex={0}
             >
@@ -109,7 +108,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   />
                 </svg>
               </div>
-            </div>
+            </button>
           </div>
         </div>
         <div
@@ -171,13 +170,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -201,7 +200,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                       <div
                         className="uui-input-label"
-                        role="label"
                       >
                         ID
                       </div>
@@ -228,13 +226,13 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky uui-disabled"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
                       >
                         <input
                           aria-checked={true}
+                          aria-disabled={true}
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
@@ -258,7 +256,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                       <div
                         className="uui-input-label"
-                        role="label"
                       >
                         name
                       </div>
@@ -285,7 +282,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky -clickable"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -315,7 +311,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                       <div
                         className="uui-input-label"
-                        role="label"
                       >
                         Level
                       </div>
@@ -342,7 +337,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 theme-light color-sky -clickable"
-                      role="checkbox"
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -372,7 +366,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                       <div
                         className="uui-input-label"
-                        role="label"
                       >
                         DATE
                       </div>
@@ -420,11 +413,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         <div
           className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
         >
-          <div
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -433,15 +425,14 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Reset to Default
             </div>
-          </div>
+          </button>
           <div
             className="flexSpacer"
           />
-          <div
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -450,12 +441,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               CHECK ALL
             </div>
-          </div>
-          <div
+          </button>
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -464,12 +454,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               UNCHECK ALL
             </div>
-          </div>
-          <div
+          </button>
+          <button
             className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square actionButton"
             href={null}
             onClick={[Function]}
-            onKeyDown={[Function]}
             role="button"
             tabIndex={0}
           >
@@ -478,7 +467,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             >
               Apply
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>

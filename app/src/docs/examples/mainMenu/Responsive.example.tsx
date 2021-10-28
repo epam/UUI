@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
-import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell } from "@epam/promo";
+import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
+    BurgerGroupHeader, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider } from "@epam/promo";
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
-import { BurgerGroupHeader, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider} from "@epam/loveship";
 import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-24.svg";
 import * as pinIcon from '@epam/assets/icons/common/action-pin_on-24.svg';
 
@@ -31,7 +31,7 @@ export default function MainMenuResponsiveExample() {
             <BurgerButton caption="Settings" />
             <BurgerButton caption="Log out" />
         </>
-    )
+    );
 
     return (
         <FlexCell grow={ 1 }>
@@ -70,10 +70,10 @@ export default function MainMenuResponsiveExample() {
                                 />
                             ) }
                             renderBody={ () => (
-                                <DropdownMenuBody color="white">
-                                    <DropdownMenuButton noIcon caption="Settings" />
+                                <DropdownMenuBody onClose={ () => {} }>
+                                    <DropdownMenuButton caption="Settings" />
                                     <DropdownMenuSplitter />
-                                    <DropdownMenuButton noIcon caption="Log out" />
+                                    <DropdownMenuButton caption="Log out" />
                                 </DropdownMenuBody>
                             ) }
                             placement="bottom-end"

@@ -1,22 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabButton should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root size-48 theme-light uui-no-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="tab"
-  tabIndex={0}
+  tabIndex={-1}
 />
 `;
 
 exports[`TabButton should be rendered correctly with props 1`] = `
-<div
+<button
+  aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-48 theme-light uui-has-left-icon uui-no-right-icon"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="tab"
   tabIndex={0}
 >
@@ -35,5 +34,5 @@ exports[`TabButton should be rendered correctly with props 1`] = `
       />
     </svg>
   </div>
-</div>
+</button>
 `;

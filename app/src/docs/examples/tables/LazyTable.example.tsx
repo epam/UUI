@@ -10,7 +10,7 @@ import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
 
 export default function CitiesTable(props: unknown) {
     const svc = useUuiContext();
-    const [tableState, setTableState] = useState<DataSourceState>([]);
+    const [tableState, setTableState] = useState<DataSourceState>({});
 
     // If you need some filters for your table, you need to create Picker which will change 'filter' field in DataSourceState object. And than pass it to the column renderFilter option.
     // Look to the Pickers examples for more details about Picker configuration.
@@ -110,7 +110,11 @@ export default function CitiesTable(props: unknown) {
     });
 
     return (
-        <Panel shadow cx={ css.container }>
+        <Panel shadow cx={ css.container } rawProps={{
+            role: 'table',
+            'aria-rowcount': view.getListProps().rowsCount,
+            'aria-colcount': citiesColumns.length
+        }}>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }

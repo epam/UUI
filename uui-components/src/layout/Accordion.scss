@@ -4,18 +4,15 @@
         align-items: center;
     }
 
+    :global(.uui-accordion-toggler) {
+        &:focus {
+            outline: none;
+        }
+    }
+
     :global(.uui-accordion-title) {
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    :global(.uui-accordion-body) {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .spacer {
-        flex: 1 1 auto;
     }
 }
 

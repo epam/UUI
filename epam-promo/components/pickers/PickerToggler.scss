@@ -9,7 +9,21 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     }
 
     :global(.uui-input) {
-        @include text-size($size, 3px);
+        @include text-size($size);
+
+        @if ($size == 24px) {
+            padding-top: 0;
+            padding-bottom: 0;
+        } @else if ($size == 30px) {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        } @else if ($size == 36px or $size == 42px) {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        } @else if ($size == 48px) {
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
     }
 
     :not(:global(.uui-button-box)) > :global(.uui-icon) {
@@ -105,6 +119,10 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     &:global(.uui-readonly) {
         @include readonly-input();
+
+        :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
+            visibility: hidden;
+        }
     }
 
     &:global(.uui-disabled) {
@@ -117,6 +135,10 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
             &::placeholder {
                 color: $gray50;
             }
+        }
+
+        :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
+            visibility: hidden;
         }
     }
 

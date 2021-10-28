@@ -1,0 +1,325 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Progress bar display progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(48, 50, 64)",
+                    "font-family": "\"Sans Regular\", Arial, sans-serif",
+                    "font-size": "16px",
+                    "font-style": "normal",
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "start",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "pre-wrap",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": "rgb(245, 246, 250)",
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The progress bar supports both determinate and indeterminate operations.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Determinate operations display the indicator increasing in width from 0 to 100% of the track, in sync with the process’s progress.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Indeterminate operations display the indicator continually growing and shrinking along the track until the process is complete.",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If the progress is known please use the ProgressBar component. O",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "therwise",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " use the IndeterminateBar component.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "IndicatorBar component used to show page loading. It can be determinate or indeterminate.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

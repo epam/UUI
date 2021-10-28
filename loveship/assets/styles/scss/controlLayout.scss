@@ -1,11 +1,14 @@
+@use 'sass:math';
 @use 'control-size' as *;
 
 @mixin control-box-layout($size, $borderWidth) {
-    @include control-size($size, $borderWidth);
+    min-width: $size;
+    padding-left: 5px;
+    padding-right: 5px;
 
     :global(.uui-caption), :global(.uui-input) {
-        padding-left: $size / 6;
-        padding-right: $size / 6;
+        padding-left: 6px;
+        padding-right: 6px;
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {
@@ -15,7 +18,7 @@
 }
 
 @mixin control-horizontal-layout($size, $borderWidth) {
-    $paddingStep: ($size / 6);
+    $paddingStep: math.div($size, 6);
     @include control-size($size, $borderWidth);
 
     :global(.uui-caption), :global(.uui-input) {

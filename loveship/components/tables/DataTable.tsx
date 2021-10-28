@@ -1,20 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    applyColumnsConfig,
-    ColumnsConfig,
-    cx,
-    DataRowProps,
-    DataSourceState,
-    Lens,
-    ScrollManager,
-    getColumnsConfig,
-    UuiContexts,
-    IEditable,
-    DataTableState,
-    DataSourceListProps,
-    DataColumnProps,
-    DataTableColumnsConfigOptions,
-    UuiContext,
+    ColumnsConfig, cx, DataRowProps, ScrollManager, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
+    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
 } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, IconButton, VirtualList, Text } from '../';
@@ -31,102 +18,95 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     showColumnsConfig?: boolean;
 }
 
-export class DataTable<TItem, TId = any> extends React.Component<DataTableProps<TItem, TId> & DataTableMods> {
+export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
+    const [scrollManager] = useState(new ScrollManager());
+    const context = useUuiContext();
+    const setColumnsConfig = (config: ColumnsConfig) => {
+        props.onValueChange({ ...props.value, columnsConfig: config });
+    };
 
-    static contextType = UuiContext;
-    context: UuiContexts;
+    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
-    scrollManager = new ScrollManager();
-    lens = Lens.onEditableComponent<DataSourceState>(this);
-
-    getColumns() {
-        return applyColumnsConfig(this.props.columns, this.getColumnsConfig());
-    }
-
-    setColumnsConfig = (config: ColumnsConfig) => {
-        this.props.onValueChange({ ...this.props.value, columnsConfig: config });
-    }
-
-    getColumnsConfig() {
-        return getColumnsConfig(this.props.columns, this.props.value.columnsConfig);
-    }
-
-    getDefaultColumnsConfig() {
-        return getColumnsConfig(this.props.columns, {});
-    }
-
-    getRows() {
-        const renderRow = this.props.renderRow || this.renderRow;
-
-        return this.props.getRows()
-            .map((row: DataRowProps<TItem, TId>) => renderRow({ ...row, scrollManager: this.scrollManager, columns: this.getColumns() }));
-    }
-
-
-    renderRow = (props: DataRowProps<TItem, TId>) => (
+    const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
-            key={ props.rowKey }
-            size={ this.props.size }
-            background={ this.props.rowBackground }
-            borderBottom={ this.props.border }
-            { ...props }
+            key={ rowProps.rowKey }
+            size={ props.size }
+            background={ props.rowBackground }
+            borderBottom={ props.border }
+            { ...rowProps }
         />
-    )
+    );
 
-    onConfigurationButtonClick = () => {
-        this.context.uuiModals.show<ColumnsConfig>(modalProps => (
-                <ColumnsConfigurationModal
-                    { ...modalProps }
-                    columns={ this.props.columns }
-                    columnsConfig={ this.getColumnsConfig() }
-                    defaultConfig={ this.getDefaultColumnsConfig() }
+    const getRows = () => {
+        const renderItemRow = props.renderRow || renderRow;
 
-                />
-            ))
-            .then(this.setColumnsConfig)
+        return props.getRows()
+            .map((row: DataRowProps<TItem, TId>) => renderItemRow({
+                ...row,
+                scrollManager: scrollManager,
+                columns: columns,
+            }));
+    };
+
+    const onConfigurationButtonClick = () => {
+        context.uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ props.columns }
+                columnsConfig={ config }
+                defaultConfig={ defaultConfig }
+
+            />
+        ))
+            .then(setColumnsConfig)
             .catch(() => null);
-    }
+    };
 
-    renderNoResultsBlock = () => {
+    const renderNoResultsBlock = () => {
         const renderNoResults = () => (
             <div className={ cx(css.noResults) }>
-                <IconButton icon={ searchIcon } cx={ css.noResultsIcon } />
+                <IconButton icon={ searchIcon } cx={ css.noResultsIcon }/>
                 <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
                 <Text fontSize='14'>We can't find any item matching your request</Text>
             </div>
         );
 
-        return this.props.renderNoResultsBlock ? this.props.renderNoResultsBlock() : renderNoResults();
-    }
+        return props.renderNoResultsBlock ? props.renderNoResultsBlock() : renderNoResults();
+    };
 
-    render() {
-        return (
-            <>
-                <DataTableHeaderRow
-                    key='header'
-                    scrollManager={ this.scrollManager }
-                    columns={ this.getColumns() }
-                    onConfigButtonClick={ this.props.showColumnsConfig && this.onConfigurationButtonClick }
-                    selectAll={ this.props.selectAll }
-                    size={ this.props.size }
-                    textCase={ this.props.headerTextCase }
-                    allowColumnsReordering={ this.props.allowColumnsReordering }
-                    allowColumnsResizing={ this.props.allowColumnsResizing }
-                    { ...this.lens.toProps() }
-                />
-                <FlexRow key='body' topShadow background='white' cx={ css.body }>
-                    { this.props.exactRowsCount !== 0 ? (
-                        <VirtualList
-                            { ...this.lens.toProps() }
-                            onScroll={ this.props.onScroll }
-                            rows={ this.getRows() }
-                            rowsCount={ this.props.rowsCount }
-                            focusedIndex={ this.props.value.focusedIndex }
-                        />
-                    ) : this.renderNoResultsBlock() }
-                </FlexRow>
-                <DataTableScrollRow key='scroll' scrollManager={ this.scrollManager } columns={ this.getColumns() }/>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <DataTableHeaderRow
+                key='header'
+                scrollManager={ scrollManager }
+                columns={ columns }
+                onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                selectAll={ props.selectAll }
+                size={ props.size }
+                textCase={ props.headerTextCase }
+                allowColumnsReordering={ props.allowColumnsReordering }
+                allowColumnsResizing={ props.allowColumnsResizing }
+                value={ props.value }
+                onValueChange={ props.onValueChange }
+            />
+            <FlexRow
+                key='body'
+                topShadow
+                background='white'
+                cx={ css.body }>
+                { props.exactRowsCount !== 0 ? (
+                    <VirtualList
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
+                        onScroll={ props.onScroll }
+                        rows={ getRows() }
+                        rowsCount={ props.rowsCount }
+                        focusedIndex={ props.value?.focusedIndex }
+                    />
+                ) : renderNoResultsBlock() }
+            </FlexRow>
+            <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
+        </>
+    );
+};
+

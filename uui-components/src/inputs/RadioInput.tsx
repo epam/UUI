@@ -21,6 +21,8 @@ import { IconContainer } from '../layout';
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
+    tabIndex?: number;
+    id?: string;
 }
 
 export class RadioInput extends React.Component<RadioInputProps, any> {
@@ -52,17 +54,22 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
                         type="radio"
-                        checked={ this.props.value }
-                        disabled={ this.props.isReadonly || this.props.isDisabled }
+                        onChange={ !this.props.isReadonly ? this.handleChange : null }
+                        disabled={ this.props.isDisabled }
+                        aria-disabled={ this.props.isDisabled || undefined }
                         readOnly={ this.props.isReadonly }
-                        aria-checked={ this.props.value }
-                        tabIndex={ (!this.props.isReadonly || !this.props.isDisabled) ? 0 : undefined }
-                        onChange={ (!this.props.isReadonly || !this.props.isDisabled) ? this.handleChange : null }
+                        aria-readonly={ this.props.isReadonly || undefined }
+                        required={ this.props.isRequired }
+                        aria-required={ this.props.isRequired || undefined }
+                        checked={ this.props.value }
+                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        id={ this.props.id }
+                        tabIndex={ this.props.tabIndex }
                     />
                     { this.props.value && <IconContainer icon={ this.props.icon } cx={ css.circle } /> }
                 </div>
                 { (this.props.renderLabel || this.props.label) && (
-                    <div role="label" className={ uuiElement.inputLabel }>
+                    <div className={ uuiElement.inputLabel }>
                         { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
                     </div>
                 ) }

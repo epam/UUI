@@ -1,7 +1,8 @@
+@use 'sass:math';
 @use  '../../assets/styles/index' as *;
 
 @mixin icon-sizes($size, $font-size, $line-height) {
-    $vpadding: ($line-height - $size) / 2;
+    $vpadding: math.div(($line-height - $size), 2);
 
     :global(.uui-checkbox) {
         width: $size;
@@ -35,7 +36,7 @@
     &:global(.uui-selected) {
         @include fillColor($blue);
 
-        &:hover {
+        &:hover, &:focus {
             @include fillColor($blue!important);
         }
 
@@ -50,6 +51,19 @@
     line-height: 1.5;
     box-sizing: border-box;
     width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.menuRoot {
+    padding: 0;
+    margin: 0;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .bodyRoot {
@@ -96,16 +110,23 @@
     @include withSelected;
     @include itemRoot;
 
+    .icon {
+        justify-content: flex-start;
+    }
+
     &.link {
         @include withSelected;
         @include fillColor($gray60, $gray80);
         display: flex;
         align-items: center;
+
+        &:focus {
+            outline: none;
+        }
     }
 
-
     &:global(.-clickable:not(.uui-disabled)) {
-        &:hover {
+        &:hover, &:focus {
             background-color: $gray30;
             fill: $gray80;
             cursor: pointer;
@@ -115,14 +136,13 @@
     &:global(.uui-disabled) {
         @include fillColor($gray50);
 
-        &:hover {
+        &:hover, &:focus {
             background-color: transparent;
             cursor: default;
         }
     }
 
-    &>*:not(:last-child) {
+    & > *:not(:last-child) {
         margin: 0 0.5em 0 0;
     }
-
 }

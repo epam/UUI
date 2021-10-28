@@ -1,68 +1,132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
-<div
-  className="container uui-dropdown-body bodyRoot container"
-  style={
-    Object {
-      "minHeight": undefined,
-      "minWidth": undefined,
+Array [
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
     }
-  }
->
+    tabIndex={0}
+  />,
   <div
-    className="itemRoot container -clickable align-items-center"
-    onClick={[Function]}
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={1}
+  />,
+  <menu
+    className="menuRoot"
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={-1}
   >
     <div
-      className="caption container"
+      className="container uui-dropdown-body bodyRoot -lock-focus container"
+      style={
+        Object {
+          "maxWidth": "250px",
+          "minHeight": undefined,
+          "minWidth": undefined,
+        }
+      }
+      tabIndex={-1}
     >
-      Menu Item in Submenu
-    </div>
-  </div>
-  <div
-    className="splitterRoot"
-  >
-    <hr
-      className="splitter"
-    />
-  </div>
-  <div
-    className="headerRoot"
-  >
-    <span
-      className="header"
-    >
-      An example of DropdownMenuHeader
-    </span>
-  </div>
-  <div
-    className="submenuRootItem itemRoot container -clickable align-items-center"
-    onClick={[Function]}
-  >
-    <div
-      className="caption container"
-    >
-      One More SubMenu
-    </div>
-    <div
-      className="flexSpacer"
-    />
-    <div
-      className="container uui-icon uui-enabled iconAfter"
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
+      <div
+        className="itemRoot container -clickable align-items-center"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="menuitem"
+        tabIndex={0}
       >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
+        <div
+          className="caption container"
+        >
+          Menu Item in Submenu
+        </div>
+      </div>
+      <div
+        className="splitterRoot"
+      >
+        <hr
+          className="splitter"
         />
-      </svg>
+      </div>
+      <div
+        className="headerRoot"
+      >
+        <span
+          className="header"
+        >
+          An example of DropdownMenuHeader
+        </span>
+      </div>
+      <div
+        className="submenuRootItem itemRoot container -clickable align-items-center"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="menuitem"
+        tabIndex={0}
+      >
+        <div
+          className="caption container"
+        >
+          One More SubMenu
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="container uui-icon uui-enabled icon iconAfter"
+          style={Object {}}
+        >
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
+          >
+            <use
+              xlinkHref="#folding-arrow-18.svg"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </menu>,
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />,
+]
 `;

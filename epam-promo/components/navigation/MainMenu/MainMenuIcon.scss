@@ -3,18 +3,24 @@
 
 .container {
     @include mainMenu-icon-color();
-    width: 60px;
     height: 60px;
+    min-width: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
     display: flex;
     justify-content: center;
     flex-shrink: 0;
     cursor: pointer;
 
-    &:hover {
-        background: var(--background-color-hover);
-    }
+    &:global(.-clickable) {
+        &:hover {
+            background: var(--background-color-hover);
+        }
 
-    &:active {
-        background-color: var(--background-color-active);
+        &:active {
+            background-color: var(--background-color-active);
+        }
     }
 }
+
+

@@ -4,7 +4,7 @@ import * as css from './Toolbar.scss';
 import * as ReactDOM from "react-dom";
 import { Editor, findDOMNode } from 'slate-react';
 import { Popper } from 'react-popper';
-import { LayoutContext, LayoutLayer } from "@epam/uui";
+import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
 import * as PropTypes from "prop-types";
 import * as unmergeIcon from "../icons/table-un-merge.svg";
 import * as mergeIcon from '../icons/table-merge.svg';
@@ -18,16 +18,14 @@ interface MergeCellBarProps {
 }
 
 export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
-    static contextTypes = {
-        uuiLayout: PropTypes.object,
-    };
+    public static contextType = UuiContext;
+    public context: UuiContexts;
 
     tableBar: HTMLElement;
     private layer: LayoutLayer = null;
-    public context: { uuiLayout: LayoutContext };
 
 
-    constructor(props: MergeCellBarProps, context: { uuiLayout: LayoutContext }) {
+    constructor(props: MergeCellBarProps, context: UuiContexts) {
         super(props);
         this.layer = context.uuiLayout && context.uuiLayout.getLayer();
     }

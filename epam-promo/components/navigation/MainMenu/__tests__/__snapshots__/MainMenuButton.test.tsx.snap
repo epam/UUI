@@ -1,13 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuButton should be rendered correctly 1`] = `
-<div
+<button
   className="container uui-button-box uui-enabled root type-primary"
   href={null}
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="button"
-  tabIndex={0}
+  tabIndex={-1}
 />
 `;
 
@@ -15,9 +14,8 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
 <a
   className="container uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
-  onKeyDown={[Function]}
   role="link"
-  tabIndex={0}
+  tabIndex={-1}
   target="_blank"
 >
   <div

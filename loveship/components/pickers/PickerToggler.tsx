@@ -20,11 +20,11 @@ const mapSize = {
     'none': 'none',
 };
 
-export interface PickerInputMods extends types.EditMode {
+export interface PickerTogglerMods extends types.EditMode {
     size?: types.ControlSize;
 }
 
-function applyPickerTogglerMods(mods: PickerInputMods) {
+function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         colorStyle.colorSky,
         css.root,
@@ -33,7 +33,7 @@ function applyPickerTogglerMods(mods: PickerInputMods) {
     ];
 }
 
-export class PickerToggler extends React.Component<PickerTogglerProps<any, any> & PickerInputMods, {}> {
+export class PickerToggler extends React.Component<PickerTogglerProps<any, any> & PickerTogglerMods, {}> {
 
     renderItem = (row: DataRowProps<any, any>) => {
         const tagSize = mapSize[this.props.size] as TagSize;
@@ -54,18 +54,13 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any, any> 
             key={ row.rowKey }
             caption={ caption }
             color="night300"
+            tabIndex={ -1 }
             size={ this.props.size ? tagSize : '30' }
             onClear={ e => {
                 row.onCheck && row.onCheck(row);
                 e.stopPropagation();
             } }
-            tabIndex={ null }
         />;
-    }
-
-    handleClear = () => {
-        this.props.onClear();
-        this.props.onValueChange('');
     }
 
     render() {
@@ -78,7 +73,6 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any, any> 
                 getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
                 cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
                 dropdownIcon={ systemIcons[this.props.size || defaultSize].foldingArrow }
-                onClear={ this.handleClear }
             />
         );
     }
