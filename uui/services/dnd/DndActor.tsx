@@ -245,6 +245,8 @@ export class DndActor<TSrcData = any, TDstData = any>
                 }
             };
 
+            params.eventHandlers.onTouchStart = e => e.preventDefault(); // prevent defaults on ios
+
             params.eventHandlers.onPointerEnter = mouseMoveHandler;
             params.eventHandlers.onPointerMove = mouseMoveHandler;
             params.eventHandlers.onPointerLeave = mouseLeaveHandler;
