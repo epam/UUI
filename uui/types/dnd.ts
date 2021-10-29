@@ -47,6 +47,7 @@ export interface DndActorRenderParams {
      * As onClick event on the element will be overwritten, use DndActorProps.onClick to receive click events on the element
      */
     eventHandlers: {
+        onTouchStart?(e: React.TouchEvent): void;
         onPointerDown?(e: React.PointerEvent): void;
         onPointerEnter?(e: React.PointerEvent<any>): void;
         onPointerMove?(e: React.PointerEvent<any>): void;
