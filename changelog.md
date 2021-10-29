@@ -3,7 +3,7 @@
 **What's New**
 * [Lens][BreakingChange]: now if your get value from non-exist nested object field you will receive 'undefined' instead of 'null'
 * [DataPickerFooter][Breaking Change]: changed DataPickerFooterProps interface.
-* [Form]: introduced new useFrom() hook
+* [Form]: introduced new useForm() hook
 * [RouterContext]: extended Link interface by 'key', 'hash', 'state' fields
 * [SlateEditor]: added onBlur and onKeyDown props
 
