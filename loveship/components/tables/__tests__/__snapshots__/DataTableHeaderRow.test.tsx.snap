@@ -13,6 +13,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     onPointerLeave={[Function]}
     onPointerMove={[Function]}
     onPointerUp={[Function]}
+    onTouchStart={[Function]}
     role="columnheader"
     style={
       Object {
@@ -103,6 +104,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onPointerLeave={[Function]}
           onPointerMove={[Function]}
           onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
@@ -162,6 +164,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onPointerLeave={[Function]}
           onPointerMove={[Function]}
           onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
@@ -221,6 +224,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           onPointerLeave={[Function]}
           onPointerMove={[Function]}
           onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
