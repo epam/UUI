@@ -1,0 +1,35 @@
+{
+  "name": "@epam/uui-v",
+  "version": "4.3.0",
+  "description": "EPAM UUI-V components set",
+  "author": "EPAM",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@epam/assets": "4.3.0",
+    "@epam/uui": "4.3.0",
+    "@epam/uui-components": "4.3.0",
+    "classnames": "2.2.6"
+  },
+  "devDependencies": {
+    "@epam/uui-docs": "4.3.0"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epam/UUI"
+  },
+  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "publishConfig": {
+    "directory": "build"
+  }
+}

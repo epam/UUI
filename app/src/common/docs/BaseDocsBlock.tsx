@@ -11,22 +11,22 @@ import * as theme from './theme.scss';
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';
-export type UUII = 'UUI-Iris';
+export type UUIV = 'UUI-V';
 
 export const UUI3: UUI3 = 'UUI3_loveship';
 export const UUI4: UUI4 = 'UUI4_promo';
-export const UUII: UUII = 'UUI-Iris';
+export const UUIV: UUIV = 'UUI-V';
 
 const items = [
     { caption: 'UUI3 [Loveship]', id: UUI3 },
     { caption: 'UUI4 [Promo]', id: UUI4 },
-    { caption: 'UUI-Iris', id: UUII },
+    { caption: 'UUI-V', id: UUIV },
 ];
 
 interface DocPath {
     [UUI3]?: string;
     [UUI4]?: string;
-    [UUII]?: string;
+    [UUIV]?: string;
 }
 
 interface BaseDocsBlockState {
@@ -153,7 +153,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             key={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
             propsDocPath={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
             title={ this.title }
-            cx={ getQuery('skin') === UUII && theme.theme }
+            cx={ getQuery('skin') === UUIV && theme.promo }
         />;
     }
 

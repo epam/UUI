@@ -6,7 +6,7 @@ const regexpAssetsException = /^@epam\/assets\/\w+(\/\w+)?(\/\w+)?(\/[\w-]+\.[a-
 const regexpInternalException = /^@epam\/internal/i;
 
 const epamModules = ['epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
-    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app'];
+    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app', 'uui-v'];
 
 const getNoModuleOutsideRegExp = (url: string) => {
     let urlArr: string[] = url.split('/');

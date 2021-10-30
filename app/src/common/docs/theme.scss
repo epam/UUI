@@ -1,6 +1,58 @@
-.theme {
-    --accent-color: #22FF22;
-    --primary-color: #2222ff;
-    --secondary-color: #222222;
-    --contrast-color: #ffffff;
+@mixin defineColorsByName($colorName, $colorHex) {
+    --#{$colorName}-color: #{$colorHex};
+    --#{$colorName}-light-color: #{lighten($colorHex, 10%)};
+    --#{$colorName}-lightest-color: #{lighten($colorHex, 20%)};
+    --#{$colorName}-dark-color: #{darken($colorHex, 10%)};
+    --#{$colorName}-darkest-color: #{darken($colorHex, 20%)};
+}
+
+$white: #FFFFFF;
+$blue: #008ACE;
+$green: #88CC00;
+$amber: #FFC000;
+$red: #E54322;
+$cyan: #14CCCC;
+$orange: #E67E17;
+$purple: #AD14CC;
+$violet: #5214CC;
+
+$gray5: #FAFAFC;
+$gray10: #F5F6FA;
+$gray20: #EBEDF5;
+$gray30: #E1E3EB;
+$gray40: #CED0DB;
+$gray50: #ACAFBF;
+$gray60: #6C6F80;
+$gray70: #474A59;
+$gray80: #303240;
+$gray90: #1D1E26;
+
+.promo {
+    @include defineColorsByName('accent', $green);
+    @include defineColorsByName('primary', $blue);
+    --secondary-color: #{$gray50};
+    --secondary-light-color: #{$gray30};
+    --secondary-lightest-color: #{$gray20};
+    --secondary-dark-color: #{$gray60};
+    --secondary-darkest-color: #{$gray70};
+    @include defineColorsByName('negative', $red);
+
+    --contrast-color: #{$white};
+    --interactive-color: var(--primary-color);
+    --warning-color: #{$amber};
+    --disable-color: #{$gray30};
+    --surface-color: #{$gray5};
+    --surface-hover-color: #{$gray5};
+    --surface-dark-color: #{$gray90};
+    --surface-light-color: #{$white};
+    --divider-color: #{$gray40};
+
+
+    --control-rest-color: var(--interactive-color);
+    --control-hover-color: var(--primary-dark-color);
+    --control-active-color: var(--primary-darkest-color);
+    --control-caption-color: var(--secondary-dark-color);
+    --control-caption-disable-color: var(--secondary-color);
+
+    --icon-color: #{$gray60};
 }
