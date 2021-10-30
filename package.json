@@ -40,7 +40,8 @@
     "uui-timeline",
     "uui-editor",
     "extra",
-    "draft-rte"
+    "draft-rte",
+    "uui-v"
   ],
   "author": "",
   "license": "MIT",

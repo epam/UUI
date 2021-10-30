@@ -1,0 +1,59 @@
+.button-color-primary {
+    --background-color: var(--primary-color);
+    --background-color-hover: var(--primary-dark-color);
+    --background-color-active: var(--primary-darkest-color);
+    --background-color-light-hover: var(--primary-lightest-color);
+    --background-color-light-active: var(--primary-light-color);
+    --background-color-contrast: var(--contrast-color);
+    --border-color: var(--primary-color);
+    --border-color-hover: var(--primary-dark-color);
+    --border-color-active: var(--primary-darkest-color);
+    --background-color-disabled: var(--disable-color);
+    --caption-color: var(--primary-color);
+    --caption-color-disabled: var(--control-caption-disable-color);
+}
+
+.button-color-accent {
+    --background-color: var(--accent-color);
+    --background-color-hover: var(--accent-dark-color);
+    --background-color-active: var(--accent-darkest-color);
+    --background-color-light-hover: var(--accent-lightest-color);
+    --background-color-light-active: var(--accent-light-color);
+    --background-color-contrast: var(--contrast-color);
+    --border-color: var(--accent-color);
+    --border-color-hover: var(--accent-dark-color);
+    --border-color-active: var(--accent-darkest-color);
+    --background-color-disabled: var(--disable-color);
+    --caption-color: var(--accent-color);
+    --caption-color-disabled: var(--control-caption-disable-color);
+}
+
+.button-color-negative {
+    --background-color: var(--negative-color);
+    --background-color-hover: var(--negative-dark-color);
+    --background-color-active: var(--negative-darkest-color);
+    --background-color-light-hover: var(--negative-lightest-color);
+    --background-color-light-active: var(--negative-light-color);
+    --background-color-contrast: var(--contrast-color);
+    --border-color: var(--negative-color);
+    --border-color-hover: var(--negative-dark-color);
+    --border-color-active: var(--negative-darkest-color);
+    --background-color-disabled: var(--disable-color);
+    --caption-color: var(--negative-color);
+    --caption-color-disabled: var(--control-caption-disable-color);
+}
+
+.button-color-secondary {
+    --background-color: var(--secondary-color);
+    --background-color-hover: var(--secondary-dark-color);
+    --background-color-active: var(--secondary-darkest-color);
+    --background-color-light-hover: var(--secondary-lightest-color);
+    --background-color-light-active: var(--secondary-light-color);
+    --background-color-contrast: var(--contrast-color);
+    --border-color: var(--secondary-color);
+    --border-color-hover: var(--secondary-dark-color);
+    --border-color-active: var(--secondary-darkest-color);
+    --background-color-disabled: var(--disable-color);
+    --caption-color: var(--control-caption-color);
+    --caption-color-disabled: var(--control-caption-disable-color);
+}
