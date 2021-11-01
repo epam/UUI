@@ -8,19 +8,23 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
     className="container uui-table-row-container uui-table-scroll-row container align-items-top"
   >
     <div
-      className="cellPlaceholder"
-      onClick={[Function]}
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "96px",
-          "flexGrow": 0,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
+      className="fixedColumnsWrapper fixedColumnsWrapperLeft"
+    >
+      <div
+        className="cellPlaceholder"
+        onClick={[Function]}
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "96px",
+            "flexGrow": 0,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
         }
-      }
-    />
+      />
+    </div>
     <div
       className="uui-table-scroll-bar"
       style={
@@ -141,6 +145,9 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         />
       </div>
     </div>
+    <div
+      className="fixedColumnsWrapper fixedColumnsWrapperRight"
+    />
   </div>
 </div>
 `;

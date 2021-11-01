@@ -14,9 +14,10 @@ Array [
       className="wrapper root shadow-white"
     >
       <div
-        className="body"
+        className="root body"
         style={
           Object {
+            "display": "flex",
             "height": "auto",
             "maxHeight": 100500,
             "minHeight": 0,
@@ -27,11 +28,11 @@ Array [
         }
       >
         <div
-          className="container1"
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
               "bottom": undefined,
+              "flex": "1 1 auto",
               "left": undefined,
               "marginBottom": 0,
               "marginRight": 0,
@@ -45,15 +46,15 @@ Array [
           }
         >
           <div
-            className="container2"
+            className="listWrapperContainer"
             style={
               Object {
-                "minHeight": null,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              className="container3"
+              className="listContainer"
               style={
                 Object {
                   "marginTop": 0,
@@ -448,12 +449,6 @@ Array [
           />
         </div>
       </div>
-      <div
-        className="uui-scroll-shadow-top"
-      />
-      <div
-        className="uui-scroll-shadow-bottom"
-      />
     </div>
   </div>,
   <div
@@ -504,9 +499,10 @@ Array [
       className="wrapper root shadow-white"
     >
       <div
-        className="body"
+        className="root body"
         style={
           Object {
+            "display": "flex",
             "height": "auto",
             "maxHeight": 100500,
             "minHeight": 0,
@@ -517,11 +513,11 @@ Array [
         }
       >
         <div
-          className="container1"
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
               "bottom": undefined,
+              "flex": "1 1 auto",
               "left": undefined,
               "marginBottom": 0,
               "marginRight": 0,
@@ -535,15 +531,15 @@ Array [
           }
         >
           <div
-            className="container2"
+            className="listWrapperContainer"
             style={
               Object {
-                "minHeight": null,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              className="container3"
+              className="listContainer"
               style={
                 Object {
                   "marginTop": 0,
@@ -938,12 +934,6 @@ Array [
           />
         </div>
       </div>
-      <div
-        className="uui-scroll-shadow-top"
-      />
-      <div
-        className="uui-scroll-shadow-bottom"
-      />
     </div>
   </div>,
   <div

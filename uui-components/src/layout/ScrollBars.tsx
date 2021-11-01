@@ -27,19 +27,20 @@ export const ScrollBars = forwardRef(({
         event && props.onScroll?.(event);
 
         const scrollBars = ReactDOM.findDOMNode(bars.current) as HTMLElement;
+        if (!scrollBars) return;
         const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
         const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
         if (hasTopShadow && scrollTop > 0) {
-            scrollBars.classList.add('uui-shadow-top-visible');
+            scrollBars?.classList?.add('uui-shadow-top-visible');
         } else {
-            scrollBars.classList.remove('uui-shadow-top-visible');
+            scrollBars?.classList?.remove('uui-shadow-top-visible');
         }
 
         if (showBottomShadow) {
-            scrollBars.classList.add('uui-shadow-bottom-visible');
+            scrollBars?.classList?.add('uui-shadow-bottom-visible');
         } else {
-            scrollBars.classList.remove('uui-shadow-bottom-visible');
+            scrollBars?.classList?.remove('uui-shadow-bottom-visible');
         }
     };
 
