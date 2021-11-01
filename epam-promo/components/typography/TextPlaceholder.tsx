@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './TextPlaceholder.scss';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 
 export interface TextPlaceholderProps {
     wordsCount?: number;

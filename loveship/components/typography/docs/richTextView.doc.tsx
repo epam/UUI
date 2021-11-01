@@ -1,14 +1,13 @@
 import React from 'react';
 import { RichTextView, RichTextViewMods } from '../RichTextView';
-import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
+import { DefaultContext } from '../../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '../../layout';
 import { LinkButton } from '../../buttons';
 import { DocBuilder } from '@epam/uui-docs';
-import { RichTextViewProps } from '@epam/uui-components';
+import { cx } from '@epam/uui';
+import { Svg, RichTextViewProps } from '@epam/uui-components';
 import { Anchor, TextInput } from '../../index';
-import { Svg } from '@epam/uui-components';
 import * as calendar from '../../icons/action-calendar-18.svg';
-import cx from 'classnames';
 import * as css from '../../../assets/styles/scss/typography.scss';
 import * as style from './richTextViewDoc.scss';
 

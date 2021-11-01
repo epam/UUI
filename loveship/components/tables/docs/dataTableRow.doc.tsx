@@ -1,4 +1,3 @@
-import React from 'react';
 import { DataTableRow } from '../DataTableRow';
 import { DocBuilder, demoData } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext } from '../../../docs';
@@ -7,7 +6,7 @@ import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
 import { DataTableRowMods } from '../..';
 
-const DataTableRowDoc = new DocBuilder<DataTableRowProps<any, any> & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow as any })
+const DataTableRowDoc = new DocBuilder<DataTableRowProps<any, any> & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
     .implements([ColumnsHeaderRowDoc] as any)
     .prop('value', {
         examples: [

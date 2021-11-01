@@ -1,6 +1,6 @@
 import { CompositeDecorator, Editor, EditorState, RichUtils, DraftHandleValue, DefaultDraftBlockRenderMap, convertFromRaw, convertToRaw } from 'draft-js';
 import * as React from 'react';
-import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam/uui';
+import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly, cx } from '@epam/uui';
 import { Toolbar } from './common';
 import { linkDecorator } from './decorators';
 import * as css from './RichTextEditor.scss';
@@ -8,8 +8,6 @@ import * as style from '@epam/assets/scss/typography.scss';
 import { convertHtmlToDraftState, convertDraftStateToHtml } from './utils';
 import { ToolbarButton } from './types';
 import * as I from 'immutable';
-import { ScrollBars } from '@epam/loveship';
-import cx from 'classnames';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
 export type RichTextEditorBindingProps = (RawRichTextEditorProps | HtmlRichTextEditorProps | MarkdownRichTextEditorProps);

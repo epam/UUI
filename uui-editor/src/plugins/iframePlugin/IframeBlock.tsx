@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { RenderBlockProps } from "slate-react";
 import * as css from './iframeBlock.scss';
-import { uuiMod } from "@epam/uui";
-import cx from 'classnames';
+import { uuiMod, cx } from "@epam/uui";
 import { sanitizeUrl } from '@braintree/sanitize-url';
 
 const IFRAME_GLOBAL_CLASS = 'uui-rte-iframe';

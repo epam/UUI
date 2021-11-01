@@ -4,12 +4,11 @@ import { DefaultContext } from '../../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '../../layout';
 import { LinkButton } from '../../buttons';
 import { DocBuilder } from '@epam/uui-docs';
-import { RichTextViewProps } from '@epam/uui-components';
+import { cx } from '@epam/uui';
+import { RichTextViewProps, Svg } from '@epam/uui-components';
 import { Anchor } from '../../navigation';
-import { Svg } from '@epam/uui-components';
 import * as calendar from '@epam/assets/icons/common/action-calendar-18.svg';
 import { TextInput } from '../../inputs';
-import cx from 'classnames';
 import * as css from '../../../assets/styles/typography.scss';
 import * as style from './richTextViewDoc.scss';
 

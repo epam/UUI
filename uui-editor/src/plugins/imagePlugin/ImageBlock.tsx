@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import cx from 'classnames';
 import { RenderBlockProps } from 'slate-react';
 import { Resizable } from 're-resizable';
-import {uuiMod, uuiSkin} from "@epam/uui";
+import { uuiMod, uuiSkin, cx } from "@epam/uui";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import * as css from './ImageBlock.scss';

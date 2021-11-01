@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { IDropdownToggler, uuiMod } from '@epam/uui';
+import { IDropdownToggler, uuiMod, cx } from '@epam/uui';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';

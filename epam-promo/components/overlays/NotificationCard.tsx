@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, cx } from '@epam/uui';
 import * as successIcon from '../../icons/notification-check_circle-fill-24.svg';
 import * as warningIcon from '../../icons/notification-warning-fill-24.svg';
 import * as errorIcon from '../../icons/notification-error-fill-24.svg';
@@ -9,7 +9,6 @@ import * as crossIcon from '../../icons/snackbar/cross.svg';
 import * as styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
 import * as css from './NotificationCard.scss';
 import { IconButton } from '../buttons';
-import cx from 'classnames';
 import { EpamPrimaryColor, LinkButton } from '..';
 import { i18n } from '../../i18n';
 

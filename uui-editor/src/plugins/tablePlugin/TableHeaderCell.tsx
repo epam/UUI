@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './Table.scss';
 import { Subscriber } from 'react-broadcast';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 
 export class TableHeaderCell extends React.Component<any> {
 

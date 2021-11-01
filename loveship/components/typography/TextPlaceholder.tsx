@@ -2,8 +2,7 @@ import React from 'react';
 import * as css from './TextPlaceholder.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as types from '../types';
-import cx from 'classnames';
-import { IHasCX } from '@epam/uui';
+import { IHasCX, cx } from '@epam/uui';
 
 export interface TextPlaceholderProps extends IHasCX {
     wordsCount?: number;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, cx } from '@epam/uui';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
@@ -9,7 +9,6 @@ import * as errorIcon from '../icons/notification-error-fill-24.svg';
 import * as hintIcon from '../icons/notification-help-fill-24.svg';
 import * as crossIcon from '../icons/snackbar/cross.svg';
 import * as css from './NotificationCard.scss';
-import cx from 'classnames';
 import { EpamColor, LinkButton } from '..';
 import { i18n } from '../../i18n';
 

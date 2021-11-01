@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
-import { Icon, IEditable } from '@epam/uui';
+import { Icon, IEditable, cx } from '@epam/uui';
 import * as css from './SliderRating.scss';
 import * as lineGrayIcon from '../icons/slider-rating/line_gray_icon.svg';
 import * as lineRedIcon from '../icons/slider-rating/line_red_icon.svg';
@@ -15,7 +15,6 @@ import * as activeMarkVioletIcon from '../icons/slider-rating/active_mark_violet
 import * as naIcon from '../icons/slider-rating/na_icon.svg';
 import * as naActiveIcon from '../icons/slider-rating/na_active_icon.svg';
 import { Tooltip } from '../overlays';
-import cx from 'classnames';
 import { i18n } from "../../i18n";
 
 const defaultSize = '18';

@@ -1,14 +1,12 @@
 import React from 'react';
 import * as css from './DropdownMenu.scss';
-import {  withMods, IHasIcon,  IDropdownToggler, VPanelProps } from '@epam/uui';
+import {  withMods, IHasIcon,  IDropdownToggler, VPanelProps, cx } from '@epam/uui';
 import { Button, ButtonProps, VPanel, IconContainer, CheckboxProps,
     Checkbox, TextInput, TextInputProps } from '@epam/uui-components';
 import * as btnCross from '../icons/menu_input_cancel.svg';
 import * as btnTriangle from '../icons/folding-arrow-18.svg';
 import * as tickIcon from '../icons/tick-12.svg';
 import * as lensIcon from '../icons/search-18.svg';
-
-import cx from "classnames";
 
 export interface DropdownMenuItemMods extends IHasIcon, IDropdownToggler {
     color?: 'white' | 'night';

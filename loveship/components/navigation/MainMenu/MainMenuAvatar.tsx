@@ -1,7 +1,6 @@
 import React from 'react';
 import * as css from './MainMenuAvatar.scss';
-import cx from 'classnames';
-import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX } from '@epam/uui';
+import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX, cx } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import * as triangle from '../../icons/triangle.svg';
 import { Avatar } from '@epam/uui-components';

@@ -1,6 +1,5 @@
 import React from 'react';
-import { IHasCX } from "@epam/uui";
-import cx from 'classnames';
+import { IHasCX, cx } from "@epam/uui";
 import * as css from './ProgressBar.scss';
 
 export interface IProgressBarProps extends IHasCX {
