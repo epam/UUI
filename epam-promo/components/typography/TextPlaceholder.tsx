@@ -9,7 +9,7 @@ export interface TextPlaceholderProps {
 }
 
 export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (props) => {
-    const pattern = `&nbsp;`;
+    const pattern = `0`;
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
