@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IHasCX, CX } from '../types';
 
 export function withMods<TProps extends IHasCX, TMods = {}>(
-    component: React.ComponentClass<TProps> | React.FC<TProps>,
+    component: React.ComponentClass<TProps> | React.FC<TProps> | React.ForwardRefExoticComponent<TProps>,
     getCx: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ): React.ComponentClass<TProps & TMods> {

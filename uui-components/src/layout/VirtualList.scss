@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.container-1 {
+.viewContainer {
     flex: 1 1 0;
     align-self: stretch;
     position: relative;
@@ -20,13 +20,13 @@
     overscroll-behavior-x: none;
 }
 
-.container-2 {
+.listWrapperContainer {
     flex: 1 1 0;
     align-self: stretch;
     overflow: hidden;
 }
 
-.container-3 {
+.listContainer {
     display: flex;
     flex-direction: column;
     margin-top: 0;
