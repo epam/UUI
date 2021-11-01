@@ -7,53 +7,57 @@ Array [
     role="row"
   >
     <div
-      aria-sort="none"
-      className="flexCell -clickable"
-      onClick={[Function]}
-      role="columnheader"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "96px",
-          "flexGrow": 0,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
+      className="fixedColumnsWrapper fixedColumnsWrapperLeft"
     >
-      <div>
-        <div
-          className=""
-        >
+      <div
+        aria-sort="none"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "96px",
+            "flexGrow": 0,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
+      >
+        <div>
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-          >
-            ID
-          </div>
-          <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-            href={null}
-            onClick={[Function]}
-            role="button"
-            tabIndex={-1}
+            className=""
           >
             <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
             >
-              <svg
-                className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              ID
             </div>
-          </button>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
+            >
+              <div
+                className="container uui-icon uui-enabled"
+                style={Object {}}
+              >
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
+                >
+                  <use
+                    xlinkHref="#sort.svg"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -236,6 +240,9 @@ Array [
         className="scrollShadowRight"
       />
     </div>
+    <div
+      className="fixedColumnsWrapper fixedColumnsWrapperRight"
+    />
   </div>,
   <div
     className="root size-36 background-white topShadow spacing-6 body container align-items-center"
@@ -244,9 +251,10 @@ Array [
       className="wrapper root shadow-dark"
     >
       <div
-        className="body"
+        className="root body"
         style={
           Object {
+            "display": "flex",
             "height": "auto",
             "maxHeight": 100500,
             "minHeight": 0,
@@ -257,11 +265,11 @@ Array [
         }
       >
         <div
-          className="container1"
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
               "bottom": undefined,
+              "flex": "1 1 auto",
               "left": undefined,
               "marginBottom": 0,
               "marginRight": 0,
@@ -275,15 +283,15 @@ Array [
           }
         >
           <div
-            className="container2"
+            className="listWrapperContainer"
             style={
               Object {
-                "minHeight": null,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              className="container3"
+              className="listContainer"
               style={
                 Object {
                   "marginTop": 0,
@@ -296,22 +304,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    1
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      1
+                    </div>
                   </div>
                 </div>
                 <div
@@ -397,6 +409,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -404,22 +419,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    2
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      2
+                    </div>
                   </div>
                 </div>
                 <div
@@ -505,6 +524,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -512,22 +534,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    3
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      3
+                    </div>
                   </div>
                 </div>
                 <div
@@ -613,6 +639,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -620,22 +649,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    4
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      4
+                    </div>
                   </div>
                 </div>
                 <div
@@ -721,6 +754,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -728,22 +764,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    5
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      5
+                    </div>
                   </div>
                 </div>
                 <div
@@ -829,6 +869,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -836,22 +879,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    6
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      6
+                    </div>
                   </div>
                 </div>
                 <div
@@ -937,6 +984,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -944,22 +994,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    7
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      7
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1045,6 +1099,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -1052,22 +1109,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    8
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      8
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1153,6 +1214,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -1160,22 +1224,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    9
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      9
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1261,6 +1329,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
               <div
                 aria-expanded={true}
@@ -1268,22 +1339,26 @@ Array [
                 role="row"
               >
                 <div
-                  className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                  onClick={[Function]}
-                  role="cell"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "96px",
-                      "flexGrow": 0,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  className="fixedColumnsWrapper fixedColumnsWrapperLeft"
                 >
-                  <div>
-                    10
+                  <div
+                    className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+                    onClick={[Function]}
+                    role="cell"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "96px",
+                        "flexGrow": 0,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div>
+                      10
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1369,6 +1444,9 @@ Array [
                     className="scrollShadowRight"
                   />
                 </div>
+                <div
+                  className="fixedColumnsWrapper fixedColumnsWrapperRight"
+                />
               </div>
             </div>
           </div>
@@ -1408,12 +1486,6 @@ Array [
           />
         </div>
       </div>
-      <div
-        className="uui-scroll-shadow-top"
-      />
-      <div
-        className="uui-scroll-shadow-bottom"
-      />
     </div>
   </div>,
   <div
@@ -1423,19 +1495,23 @@ Array [
       className="container uui-table-row-container uui-table-scroll-row container align-items-top"
     >
       <div
-        className="cellPlaceholder"
-        onClick={[Function]}
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "96px",
-            "flexGrow": 0,
-            "flexShrink": undefined,
-            "minWidth": 0,
-            "textAlign": undefined,
+        className="fixedColumnsWrapper fixedColumnsWrapperLeft"
+      >
+        <div
+          className="cellPlaceholder"
+          onClick={[Function]}
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "96px",
+              "flexGrow": 0,
+              "flexShrink": undefined,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
           }
-        }
-      />
+        />
+      </div>
       <div
         className="uui-table-scroll-bar"
         style={
@@ -1556,6 +1632,9 @@ Array [
           />
         </div>
       </div>
+      <div
+        className="fixedColumnsWrapper fixedColumnsWrapperRight"
+      />
     </div>
   </div>,
 ]

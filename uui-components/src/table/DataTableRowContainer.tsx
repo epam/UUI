@@ -1,16 +1,16 @@
-import * as React from "react";
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps, ScrollManager, uuiMarkers, Link, UuiContexts, UuiContext } from "@epam/uui";
+import React, { CSSProperties, ReactNode, Component } from "react";
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps, ScrollManager, uuiMarkers, Link, cx } from "@epam/uui";
 import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+export interface DataTableRowContainerProps<TItem, TId> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     scrollManager?: ScrollManager;
-    columns?: DataColumnProps<any, any>[];
-    renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: React.ReactNode, style: React.CSSProperties, scrollRef: (node: Node) => void): React.ReactNode;
-    renderConfigButton?(): React.ReactNode;
-    overlays?: React.ReactNode;
+    columns?: DataColumnProps<TItem, TId>[];
+    renderCell?(column: DataColumnProps<TItem, TId>, idx: number): ReactNode;
+    wrapScrollingSection?(content: ReactNode, style: CSSProperties, scrollRef: (node: HTMLElement) => void): ReactNode;
+    renderConfigButton?(): ReactNode;
+    overlays?: ReactNode;
     link?: Link;
 }
 
@@ -18,13 +18,10 @@ const uuiDataTableRowContainer = {
     uuiTableRowContainer: 'uui-table-row-container',
 };
 
-export class DataTableRowContainer extends React.Component<DataTableRowContainerProps, {}> {
-    static contextType = UuiContext;
-    context: UuiContexts;
-
+export class DataTableRowContainer<TItem, TId> extends Component<DataTableRowContainerProps<TItem, TId>, {}> {
     scrollNode: HTMLElement | null = null;
 
-    attachNode(node: HTMLElement) {
+    attachNode = (node: HTMLElement) => {
         this.props.scrollManager && this.scrollNode && this.props.scrollManager.detachNode(this.scrollNode);
         this.scrollNode = node;
         node && this.props.scrollManager && this.props.scrollManager.attachNode(node);
@@ -34,71 +31,63 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
         this.props.scrollManager && this.scrollNode && this.props.scrollManager.detachNode(this.scrollNode);
     }
 
-    protected renderCells(columns: DataColumnProps<any>[]) {
-        let cells = [];
-        for (let n = 0; n < columns.length; n++) {
-            const column = columns[n];
-            let idx = 0;
-            if (this.props.columns) {
-                idx = this.props.columns.indexOf(column);
-            }
-            cells.push(this.props.renderCell(column, idx));
-        }
-        return cells;
+    protected renderCells = (columns: DataColumnProps<TItem, TId>[]) => {
+        return columns.reduce<ReactNode[]>((cells, column) => {
+            const idx = this.props.columns?.indexOf(column) || 0;
+            return cells.concat(this.props.renderCell(column, idx));
+        }, []);
     }
 
-    wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties, scrollRef: (node: Node) => void) {
-        return (
-            <div key='ss' className={ css.scrollableColumnsWrapper } style={ style }>
-                <div key='sc' className={ css.scrollableColumnsContainer } ref={ scrollRef }>
-                    { content }
-                </div>
-                <div key='sl' className={ css.scrollShadowLeft } />
-                <div key='sr' className={ css.scrollShadowRight } />
+    wrapScrollingSection = (content: ReactNode, style: CSSProperties, scrollRef: (node: HTMLElement) => void) => (
+        <div key='ss' className={ css.scrollableColumnsWrapper } style={ style }>
+            <div key='sc' className={ css.scrollableColumnsContainer } ref={ scrollRef }>
+                { content }
             </div>
-        );
-    }
+            <div key='sl' className={ css.scrollShadowLeft } />
+            <div key='sr' className={ css.scrollShadowRight } />
+        </div>
+    );
+
+    wrapFixedSection = (columns: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
+        <div className={ cx(css.fixedColumnsWrapper, {
+            [css.fixedColumnsWrapperLeft]: direction === 'left',
+            [css.fixedColumnsWrapperRight]: direction === 'right'
+        }) }>
+            { this.renderCells(columns) }
+        </div>
+    )
 
     render() {
-        const fixedLeftColumns: DataColumnProps<any, any>[] = [];
-        const fixedRightColumns: DataColumnProps<any, any>[] = [];
-        const scrollableColumns: DataColumnProps<any, any>[] = [];
-        const scrollableStyle = {
-            flexGrow: 100,
-            flexShrink: 1,
-            minWidth: 0,
-            width: 0,
-        };
+        const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
+        const fixedRightColumns: DataColumnProps<TItem, TId>[] = [];
+        const scrollableColumns: DataColumnProps<TItem, TId>[] = [];
+        const scrollableStyle: CSSProperties = { flexGrow: 100, flexShrink: 1, minWidth: 0, width: 0 };
 
-        this.props.columns && this.props.columns.forEach(i => {
-            if (i.fix === 'left') {
-                fixedLeftColumns.push(i);
-            } else if (i.fix === 'right') {
-                fixedRightColumns.push(i);
-            } else {
-                scrollableColumns.push(i);
-            }
+        this.props.columns?.forEach(col => {
+            if (col.fix === 'left') fixedLeftColumns.push(col);
+            else if (col.fix === 'right') fixedRightColumns.push(col);
+            else scrollableColumns.push(col);
         });
 
         const scrollingCells = (
-            <FlexRow alignItems='top' >
+            <FlexRow alignItems='top'>
                 { this.renderCells(scrollableColumns) }
             </FlexRow>
         );
 
-        const scrollRef = (node: Node) => this.attachNode(node as HTMLElement);
-
         const scrollingSection = this.props.wrapScrollingSection
-            ? this.props.wrapScrollingSection(scrollingCells, scrollableStyle, scrollRef)
-            : this.wrapScrollingSection(scrollingCells, scrollableStyle, scrollRef);
+            ? this.props.wrapScrollingSection(scrollingCells, scrollableStyle, this.attachNode)
+            : this.wrapScrollingSection(scrollingCells, scrollableStyle, this.attachNode);
 
-        const rowContent = <>
-            { this.renderCells(fixedLeftColumns) }
-            { scrollingSection }
-            { this.renderCells(fixedRightColumns) }
-            { this.props.overlays }
-            { this.props.renderConfigButton && this.props.renderConfigButton() }
-        </>;
+        const rowContent = (
+            <React.Fragment>
+                { this.wrapFixedSection(fixedLeftColumns, 'left') }
+                { scrollingSection }
+                { this.wrapFixedSection(fixedRightColumns, 'right') }
+                { this.props.overlays }
+                { this.props.renderConfigButton?.() }
+            </React.Fragment>
+        );
 
         return (
             this.props.link ? (

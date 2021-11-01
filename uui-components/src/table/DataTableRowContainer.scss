@@ -22,6 +22,19 @@
     min-width: 0;
 }
 
+.fixed-columns-wrapper {
+    display: contents;
+    position: sticky;
+
+    &--left {
+        left: 0;
+    }
+
+    &--right {
+        right: 0;
+    }
+}
+
 @mixin scroll-shadow($position, $direction) {
     position: absolute;
     top: 0;

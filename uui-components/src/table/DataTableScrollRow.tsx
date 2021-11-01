@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { CSSProperties, ReactNode, Component } from 'react';
 import * as ReactDOM from 'react-dom';
 import ScrollBars from 'react-custom-scrollbars-2';
 import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps } from '@epam/uui';
@@ -6,8 +6,8 @@ import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableScrollRow.scss';
 
-export interface DataTableScrollRowProps extends IHasCX, IHasRawProps<HTMLDivElement> {
-    columns?: DataColumnProps<any, any>[];
+export interface DataTableScrollRowProps<TItem = {}, TId = {}> extends IHasCX, IHasRawProps<HTMLDivElement> {
+    columns?: DataColumnProps<TItem, TId>[];
     scrollManager?: ScrollManager;
     cellClass?: string;
 }
@@ -18,17 +18,15 @@ const uuiDataTableScrollRow = {
     uuiTableScrollBar: 'uui-table-scroll-bar',
 };
 
-export class DataTableScrollRow extends React.Component<DataTableScrollRowProps, {}> {
-    renderCell(column: DataColumnProps<any, any>) {
-        return <FlexCell  cx={ [css.cellPlaceholder, this.props.cellClass] } { ...column } key={ column.key } />;
+export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRowProps<TItem, TId>, {}> {
+    renderCell = (column: DataColumnProps<TItem, TId>) => {
+        return <FlexCell cx={ [css.cellPlaceholder, this.props.cellClass] } { ...column } key={ column.key } />;
     }
 
     private clientWidth?: number;
 
     resizeObserver = new ResizeObserver(entries => {
-        for (let entry of entries) {
-            const contentRect = entry.contentRect;
-
+        for (const { contentRect } of entries) {
             if (contentRect.width !== this.clientWidth) {
                 this.forceUpdate();
             }
@@ -39,21 +37,20 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
         this.resizeObserver.disconnect();
     }
 
-    wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties) {
+    wrapScrollingSection = (content: ReactNode, style: CSSProperties) => {
         return (
             <ScrollBars
                 className={ uuiDataTableScrollRow.uuiTableScrollBar }
                 hideTracksWhenNotNeeded
                 style={ style }
-                ref={ (scrollBars: ScrollBars) => {
-                    let node = ReactDOM.findDOMNode(scrollBars) as HTMLElement;
-                    node = node && node.children[0] as HTMLElement;
-                    node && this.props.scrollManager && this.props.scrollManager.attachScrollNode(node);
-                    node && this.resizeObserver && this.resizeObserver.observe(node);
-                    this.clientWidth = node && node.clientWidth;
-                } }
                 renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
-
+                ref={ scrollBars => {
+                    const node = (ReactDOM.findDOMNode(scrollBars) as HTMLElement)?.children[0] as HTMLElement;
+                    if (!node) return;
+                    this.props.scrollManager?.attachScrollNode(node);
+                    this.resizeObserver?.observe(node);
+                    this.clientWidth = node.clientWidth;
+                } }
             >
                 { content }
             </ScrollBars>
@@ -69,12 +66,12 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
                 ]) }
                 { ...this.props.rawProps }
             >
-                <DataTableRowContainer
+                <DataTableRowContainer<TItem, TId>
                     cx={ uuiDataTableScrollRow.uuiTableScrollRow }
                     scrollManager={ this.props.scrollManager }
                     columns={ this.props.columns }
-                    renderCell={ this.renderCell.bind(this) }
-                    wrapScrollingSection={ this.wrapScrollingSection.bind(this) }
+                    renderCell={ this.renderCell }
+                    wrapScrollingSection={ this.wrapScrollingSection }
                 />
             </div>
         );

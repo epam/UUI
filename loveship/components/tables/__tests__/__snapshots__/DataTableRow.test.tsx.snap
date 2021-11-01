@@ -6,6 +6,9 @@ exports[`DataTableRow should be rendered correctly 1`] = `
   role="row"
 >
   <div
+    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
+  />
+  <div
     className="scrollableColumnsWrapper"
     style={
       Object {
@@ -48,5 +51,8 @@ exports[`DataTableRow should be rendered correctly 1`] = `
       className="scrollShadowRight"
     />
   </div>
+  <div
+    className="fixedColumnsWrapper fixedColumnsWrapperRight"
+  />
 </div>
 `;
