@@ -6,7 +6,7 @@ import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
 import { DataTableHeaderRowMods } from '..';
 
-const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps<any, any> & DataTableHeaderRowMods>({ name: 'DataTableHeaderRow', component: DataTableHeaderRow as any })
+const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps<any, any> & DataTableHeaderRowMods>({ name: 'DataTableHeaderRow', component: DataTableHeaderRow })
     .implements([ColumnsHeaderRowDoc, iEditable] as any)
     .prop('size', {
         examples: ['30', '36'],

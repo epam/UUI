@@ -1,7 +1,6 @@
 import React from 'react';
-import cx from 'classnames';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
-import {IDropdownToggler, IHasCaption, ICanRedirect, CX, IHasCX} from '@epam/uui';
+import { IDropdownToggler, IHasCaption, ICanRedirect, cx, IHasCX } from '@epam/uui';
 import * as css from './MainMenuDropdown.scss';
 import { DropdownMenuBody } from '../../overlays';
 import { MainMenuButton } from './MainMenuButton';

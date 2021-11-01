@@ -1,8 +1,7 @@
 import React from 'react';
 import css from './DataTableHeaderCell.scss';
-import cx from 'classnames';
 import { Modifier } from "react-popper";
-import { DataTableHeaderCellProps, IDropdownToggler, mobilePopperModifier, uuiMarkers } from '@epam/uui';
+import { DataTableHeaderCellProps, IDropdownToggler, mobilePopperModifier, uuiMarkers, cx } from '@epam/uui';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { LinkButton } from '../buttons';
 import { Checkbox } from '../inputs';

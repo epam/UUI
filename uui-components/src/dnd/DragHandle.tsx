@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IHasRawProps } from '@epam/uui';
-import cx from 'classnames';
+import { IHasCX, IHasRawProps, cx } from '@epam/uui';
 import * as css from './DragHandle.scss';
 
 export interface DragHandleProps extends IHasCX, IHasRawProps<HTMLDivElement> {}

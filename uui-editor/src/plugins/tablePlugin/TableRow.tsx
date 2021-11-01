@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 import * as css from './Table.scss';
 
 export class TableRow extends React.Component<any> {

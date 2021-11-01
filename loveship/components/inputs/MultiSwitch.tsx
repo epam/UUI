@@ -1,7 +1,6 @@
 import React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasRawProps, cx } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
-import cx from 'classnames';
 import { Button, ControlGroup } from '../index';
 import * as types from '../types';
 import * as css from './MultiSwitch.scss';

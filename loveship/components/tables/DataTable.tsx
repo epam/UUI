@@ -3,18 +3,18 @@ import {
     ColumnsConfig, cx, DataRowProps, ScrollManager, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
 } from '@epam/uui';
+import type { PositionValues } from "@epam/uui-components";
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
 import { FlexRow, IconButton, VirtualList, Text } from '../';
 import * as css from './DataTable.scss';
 import * as searchIcon from '../icons/search-24.svg';
-import * as CustomScrollBars from "react-custom-scrollbars-2";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
-    onScroll?(value: CustomScrollBars.positionValues): void;
+    onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
 }
 
@@ -40,12 +40,11 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
     const getRows = () => {
         const renderItemRow = props.renderRow || renderRow;
 
-        return props.getRows()
-            .map((row: DataRowProps<TItem, TId>) => renderItemRow({
-                ...row,
-                scrollManager: scrollManager,
-                columns: columns,
-            }));
+        return props.getRows().map((row: DataRowProps<TItem, TId>) => renderItemRow({
+            ...row,
+            scrollManager: scrollManager,
+            columns: columns,
+        }));
     };
 
     const onConfigurationButtonClick = () => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 import { TimelineController } from './TimelineController';
 import { TimelineTransform } from './TimelineTransform';
 

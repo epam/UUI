@@ -1,8 +1,7 @@
 import React from 'react';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, EditMode, RangeDatePickerBody } from '../index';
-import { IDropdownToggler, uuiMod } from '@epam/uui';
-import cx from 'classnames';
+import { IDropdownToggler, uuiMod, cx } from '@epam/uui';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 import { i18n } from '../../i18n';
