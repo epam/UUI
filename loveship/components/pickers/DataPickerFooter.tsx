@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import { isMobile, uuiMarkers, cx } from '@epam/uui';
+import cx from 'classnames';
+import { isMobile, uuiMarkers } from '@epam/uui';
 import { PickerFooterProps } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';

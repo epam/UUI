@@ -2,7 +2,7 @@ import React from 'react';
 import * as css from './AvatarRow.scss';
 import { Avatar } from './Avatar';
 import { AvatarProps } from '@epam/uui-components';
-import { cx } from '@epam/uui';
+import cx from 'classnames';
 
 interface AvatarRowProps { }
 

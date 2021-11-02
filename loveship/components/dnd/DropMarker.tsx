@@ -1,6 +1,7 @@
 import React from 'react';
 import * as css from './DropMarker.scss';
-import { DndActorRenderParams, cx } from '@epam/uui';
+import cx from 'classnames';
+import { DndActorRenderParams } from '@epam/uui';
 
 export interface DropMarkerProps extends DndActorRenderParams {
     enableBlocker?: boolean;

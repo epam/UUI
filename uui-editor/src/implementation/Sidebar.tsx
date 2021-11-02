@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as css from './Sidebar.scss';
 import { Editor, Plugins } from "slate-react";
-import { UuiContexts, UuiContext, cx } from '@epam/uui';
+import { UuiContexts, UuiContext } from '@epam/uui';
 import flatten from 'lodash.flatten';
+import cx from 'classnames';
 
 interface SidebarProps {
     editor: Editor;

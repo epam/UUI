@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { RenderInlineProps } from "slate-react";
 import * as css from './PlaceholderPlugin.scss';
-import { uuiMod, cx } from "@epam/uui";
+import cx from 'classnames';
+import { uuiMod } from "@epam/uui";
 
 export class PlaceholderBlock extends React.Component<RenderInlineProps> {
 

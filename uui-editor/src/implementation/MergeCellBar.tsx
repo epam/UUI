@@ -4,10 +4,12 @@ import * as css from './Toolbar.scss';
 import * as ReactDOM from "react-dom";
 import { Editor, findDOMNode } from 'slate-react';
 import { Popper } from 'react-popper';
-import { cx, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
+import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
+import * as PropTypes from "prop-types";
 import * as unmergeIcon from "../icons/table-un-merge.svg";
 import * as mergeIcon from '../icons/table-merge.svg';
 import { ToolbarButton } from './ToolbarButton';
+import cx from 'classnames';
 
 interface MergeCellBarProps {
     editor: Editor;
