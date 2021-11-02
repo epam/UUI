@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { RenderBlockProps } from "slate-react";
 import * as css from './Separator.scss';
-import { uuiMod, cx } from "@epam/uui";
+import cx from 'classnames';
+import { uuiMod } from "@epam/uui";
 
 export class Separator extends React.Component<RenderBlockProps> {
 

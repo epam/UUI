@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui';
+import cx from 'classnames';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
 import * as css from './MainMenuDropdown.scss';
 import { MainMenuButton } from './MainMenuButton';

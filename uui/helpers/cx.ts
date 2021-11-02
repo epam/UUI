@@ -1,5 +1,5 @@
 import classNames from 'classnames';
 
-export function cx(...args: ArgsType<typeof classNames>) {
+export function cx(...args: any[]) {
     return classNames(args);
 }

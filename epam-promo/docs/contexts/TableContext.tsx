@@ -17,11 +17,7 @@ interface Person {
     departmentName: string;
 }
 
-interface DemoComponentState {
-    demoState: DataSourceState
-};
-
-export class TableContext extends React.Component<DemoComponentProps, DemoComponentState> {
+export class TableContext extends React.Component<DemoComponentProps, any> {
     public static displayName = 'Table';
 
     state = {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { TimelineTransform } from './TimelineTransform';
 import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from './BaseTimelineCanvasComponent';
 import { addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM } from './helpers';
@@ -6,7 +7,7 @@ import * as styles from './TimelineScale.scss';
 
 import * as arrowLeftSvg from './arrowLeft.svg';
 import * as arrowRightSvg from './arrowRight.svg';
-import { Icon, cx } from '@epam/uui';
+import { Icon } from '@epam/uui';
 import { Svg } from '@epam/uui-components';
 
 export interface TimelineScaleProps extends BaseTimelineCanvasComponentProps {

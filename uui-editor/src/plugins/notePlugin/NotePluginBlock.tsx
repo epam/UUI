@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RenderBlockProps } from "slate-react";
 import * as css from './NotePluginBlock.scss';
-import { cx } from '@epam/uui';
+import cx from 'classnames';
 
 export interface NotePluginBlockProps extends RenderBlockProps {
     type?: 'warning' | 'error' | 'link' | 'quote';
