@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useEffect, useRef } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
 import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
 import type { IEditable } from '..';
 
@@ -9,6 +9,7 @@ interface UseVirtualApi<T> {
     handleScroll: () => void;
     listRef: MutableRefObject<T>;
     scrollbarsRef: MutableRefObject<ScrollbarsApi>;
+    scrollToIndex: (index: number) => void;
 };
 
 interface UseVirtualValue {
@@ -17,8 +18,9 @@ interface UseVirtualValue {
 };
 
 interface UseVirtualProps extends IEditable<UseVirtualValue> {
-    rowsCount?: number;
-    focusedIndex?: number;
+    rowsCount: number;
+    focusedIndex: number;
+    overscan?: number;
     onScroll?(value: Partial<PositionValues>): void;
 }
 
@@ -26,25 +28,26 @@ export function useVirtual<T extends HTMLElement>({
     onValueChange,
     value,
     rowsCount,
-    focusedIndex = 0,
-    onScroll
+    focusedIndex,
+    onScroll,
+    overscan = 20
 }: UseVirtualProps): UseVirtualApi<T> {
+    const [focused, setFocused] = useState<number>(focusedIndex);
     const list = useRef<T>();
     const scrollbars = useRef<ScrollbarsApi | null>();
-    const blockAlign = useRef(20);
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
-    const estimatedHeight = useRef(0);
+    const estimatedHeight = useRef<number>(0);
 
     const updateScrollToFocus = useCallback(() => {
-        if (!scrollbars.current) return;
+        if (!scrollbars.current || focused == undefined) return;
         const { scrollTop, clientHeight } = scrollbars.current.getValues();
-        const focusCoord = focusedIndex && rowOffsets.current[focusedIndex] || 0;
-        const rowHeight = focusedIndex && rowHeights.current[focusedIndex] || 0;
+        const focusCoord = focused && rowOffsets.current[focused] || 0;
+        const rowHeight = focused && rowHeights.current[focused] || 0;
         if (focusCoord < (scrollTop - rowHeight) || (scrollTop + clientHeight) < focusCoord) {
             scrollbars.current.scrollTop(focusCoord - clientHeight / 2 + rowHeight / 2);
         };
-    }, [rowOffsets.current, scrollbars.current, focusedIndex]);
+    }, [rowOffsets.current, scrollbars.current, focused]);
 
     const handleScroll = useCallback(() => {
         if (!scrollbars.current) return;
@@ -52,8 +55,8 @@ export function useVirtual<T extends HTMLElement>({
         const { scrollTop, clientHeight } = scrollbars.current.getValues();
 
         let topIndex = 0;
-        while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + blockAlign.current, rowsCount)] < scrollTop) {
-            topIndex += blockAlign.current;
+        while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + overscan, rowsCount)] < scrollTop) {
+            topIndex += overscan;
         }
 
         let bottomIndex = topIndex;
@@ -62,10 +65,10 @@ export function useVirtual<T extends HTMLElement>({
         }
 
         if (topIndex !== value.topIndex || (bottomIndex - topIndex) > value.visibleCount) {
-            const visibleCount = (bottomIndex - topIndex) + blockAlign.current * 2;
+            const visibleCount = (bottomIndex - topIndex) + overscan * 2;
             onValueChange({ ...value, topIndex: topIndex, visibleCount });
         }
-    }, [onValueChange, blockAlign.current, rowOffsets.current, rowsCount, value, onScroll, scrollbars.current]);
+    }, [onValueChange, overscan, rowOffsets.current, rowsCount, value, onScroll, scrollbars.current]);
 
     const updateRowHeights = useCallback(() => {
         if (!list.current) return;
@@ -92,13 +95,22 @@ export function useVirtual<T extends HTMLElement>({
         estimatedHeight.current = lastOffset;
     }, [estimatedHeight.current, rowOffsets.current, rowsCount, list.current]);
 
+    const scrollToIndex = useCallback((index: number) => {
+        if (index < 0) throw new Error('Index is less than zero');
+        if (index > rowsCount) throw new Error('Index exceeds the size of the list');
+        setFocused(index);
+        requestAnimationFrame(() => setFocused(undefined));
+    }, [focused]);
+
     useEffect(() => {
         if (process.env.JEST_WORKER_ID) return;
         updateRowHeights();
         handleScroll();
     });
 
-    useEffect(updateScrollToFocus, [focusedIndex]);
+    useEffect(() => {
+        updateScrollToFocus();
+    }, [focused]);
 
     return {
         estimatedHeight: estimatedHeight.current,
@@ -107,5 +119,6 @@ export function useVirtual<T extends HTMLElement>({
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
         scrollbarsRef: scrollbars,
         listRef: list,
+        scrollToIndex,
     };
 };
