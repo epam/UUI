@@ -77,8 +77,8 @@ export const ScrollBars = forwardRef(({
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
             renderView={ renderView }
-            renderThumbHorizontal={  horizontal ? () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> : () => <></> }
-            renderThumbVertical={ vertical ? () => <div className={ uuiScrollbars.uuiThumbVertical } /> : () => <></> }
+            renderThumbHorizontal={ horizontal ? () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> : undefined }
+            renderThumbVertical={ vertical ? () => <div className={ uuiScrollbars.uuiThumbVertical } /> : undefined }
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             ref={ bars }
