@@ -26,9 +26,10 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="uui-table-scroll-bar"
+      className="root uui-table-scroll-bar"
       style={
         Object {
+          "display": "flex",
           "flexGrow": 100,
           "flexShrink": 1,
           "height": "100%",
@@ -44,11 +45,12 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "flex": "1 1 auto",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
             "overflow": "scroll",
-            "position": "absolute",
+            "position": "relative",
             "right": 0,
             "top": 0,
           }
@@ -132,16 +134,7 @@ exports[`DataTableScrollRow should be rendered correctly 1`] = `
         }
       >
         <div
-          style={
-            Object {
-              "backgroundColor": "rgba(0,0,0,.2)",
-              "borderRadius": "inherit",
-              "cursor": "pointer",
-              "display": "block",
-              "position": "relative",
-              "width": "100%",
-            }
-          }
+          className="uui-thumb-vertical"
         />
       </div>
     </div>
