@@ -7,6 +7,8 @@ export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps 
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
     ref?: React.MutableRefObject<Scrollbars>;
+    horizontal?: boolean;
+    vertical?: boolean;
 }
 
 export interface PositionValues extends CustomScrollBars.positionValues {}
@@ -26,6 +28,8 @@ export const ScrollBars = forwardRef(({
     style,
     hasBottomShadow,
     hasTopShadow,
+    horizontal = true,
+    vertical = true,
     ...props
 }: ScrollbarProps, ref) => {
     const bars = useRef<Scrollbars>();
@@ -72,9 +76,9 @@ export const ScrollBars = forwardRef(({
                 hasTopShadow && uuiScrollbars.uuiShadowTop,
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
-            renderView={ props.renderView || renderView }
-            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
-            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
+            renderView={ renderView }
+            renderThumbHorizontal={  horizontal ? () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> : () => <></> }
+            renderThumbVertical={ vertical ? () => <div className={ uuiScrollbars.uuiThumbVertical } /> : () => <></> }
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             ref={ bars }
