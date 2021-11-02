@@ -65,6 +65,7 @@
   ],
   "devDependencies": {
     "lerna": "3.22.1",
-    "typedoc": "0.17.4"
+    "typedoc": "0.17.4",
+    "tslib": "^2.3.1"
   }
 }
