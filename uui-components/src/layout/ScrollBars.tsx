@@ -13,6 +13,15 @@ export interface PositionValues extends CustomScrollBars.positionValues {}
 
 export interface ScrollbarsApi extends Scrollbars {}
 
+enum uuiScrollbars {
+    uuiShadowTop = 'uui-shadow-top',
+    uuiShadowBottom = 'uui-shadow-bottom',
+    uuiThumbVertical = 'uui-thumb-vertical',
+    uuiThumbHorizontal = 'uui-thumb-horizontal',
+    uuiShadowTopVisible = 'uui-shadow-top-visible',
+    uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
+};
+
 export const ScrollBars = forwardRef(({
     style,
     hasBottomShadow,
@@ -32,15 +41,15 @@ export const ScrollBars = forwardRef(({
         const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
         if (hasTopShadow && scrollTop > 0) {
-            scrollBars?.classList?.add('uui-shadow-top-visible');
+            scrollBars?.classList?.add(uuiScrollbars.uuiShadowTopVisible);
         } else {
-            scrollBars?.classList?.remove('uui-shadow-top-visible');
+            scrollBars?.classList?.remove(uuiScrollbars.uuiShadowTopVisible);
         }
 
         if (showBottomShadow) {
-            scrollBars?.classList?.add('uui-shadow-bottom-visible');
+            scrollBars?.classList?.add(uuiScrollbars.uuiShadowBottomVisible);
         } else {
-            scrollBars?.classList?.remove('uui-shadow-bottom-visible');
+            scrollBars?.classList?.remove(uuiScrollbars.uuiShadowBottomVisible);
         }
     };
 
@@ -60,12 +69,12 @@ export const ScrollBars = forwardRef(({
                 css.root,
                 props.cx,
                 props.className,
-                hasTopShadow && "uui-shadow-top",
-                hasBottomShadow && "uui-shadow-bottom",
+                hasTopShadow && uuiScrollbars.uuiShadowTop,
+                hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
             renderView={ props.renderView || renderView }
-            renderThumbHorizontal={ () => <div className="uui-thumb-horizontal" /> }
-            renderThumbVertical={ () => <div className="uui-thumb-vertical"/> }
+            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
+            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             ref={ bars }
