@@ -41,8 +41,8 @@ export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRow
             className={ uuiDataTableScrollRow.uuiTableScrollBar }
             hideTracksWhenNotNeeded
             style={ style }
-            renderView={ null }
-            renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
+            vertical={ false }
+            horizontal={ true }
             ref={ (scrollBars: ScrollbarsApi) => {
                 const node = scrollBars?.container?.children[0] as HTMLElement;
                 if (!node) return;
