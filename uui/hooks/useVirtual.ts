@@ -1,6 +1,5 @@
 import { MutableRefObject, useCallback, useEffect, useRef } from "react";
-import type { PositionValues } from '@epam/uui-components';
-import type ScrollBars from 'react-custom-scrollbars-2';
+import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
 import type { IEditable } from '..';
 
 interface UseVirtualApi<T> {
@@ -9,7 +8,7 @@ interface UseVirtualApi<T> {
     offsetY: number;
     handleScroll: () => void;
     listRef: MutableRefObject<T>;
-    scrollbarsRef: MutableRefObject<ScrollBars>;
+    scrollbarsRef: MutableRefObject<ScrollbarsApi>;
 };
 
 interface UseVirtualValue {
@@ -23,15 +22,15 @@ interface UseVirtualProps extends IEditable<UseVirtualValue> {
     onScroll?(value: Partial<PositionValues>): void;
 }
 
-export function useVirtual<T>({
+export function useVirtual<T extends HTMLElement>({
     onValueChange,
     value,
     rowsCount,
     focusedIndex = 0,
     onScroll
 }: UseVirtualProps): UseVirtualApi<T> {
-    const list = useRef<T extends HTMLElement ? T : never>();
-    const scrollbars = useRef<ScrollBars | null>();
+    const list = useRef<T>();
+    const scrollbars = useRef<ScrollbarsApi | null>();
     const blockAlign = useRef(20);
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
@@ -62,9 +61,8 @@ export function useVirtual<T>({
             bottomIndex++;
         }
 
-        const minVisibleCount = (bottomIndex - topIndex);
-        if (topIndex !== value.topIndex || minVisibleCount > value.visibleCount) {
-            const visibleCount = minVisibleCount + blockAlign.current * 2;
+        if (topIndex !== value.topIndex || (bottomIndex - topIndex) > value.visibleCount) {
+            const visibleCount = (bottomIndex - topIndex) + blockAlign.current * 2;
             onValueChange({ ...value, topIndex: topIndex, visibleCount });
         }
     }, [onValueChange, blockAlign.current, rowOffsets.current, rowsCount, value, onScroll, scrollbars.current]);
