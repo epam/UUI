@@ -1,6 +1,5 @@
 import React, { CSSProperties, ReactNode, Component } from 'react';
-import * as ReactDOM from 'react-dom';
-import ScrollBars from 'react-custom-scrollbars-2';
+import { ScrollBars, ScrollbarsApi } from '../layout';
 import { ScrollManager, DataColumnProps, IHasCX, cx, IHasRawProps } from '@epam/uui';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 import { DataTableRowContainer } from './DataTableRowContainer';
@@ -19,9 +18,9 @@ const uuiDataTableScrollRow = {
 };
 
 export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRowProps<TItem, TId>, {}> {
-    renderCell = (column: DataColumnProps<TItem, TId>) => {
-        return <FlexCell cx={ [css.cellPlaceholder, this.props.cellClass] } { ...column } key={ column.key } />;
-    }
+    renderCell = (column: DataColumnProps<TItem, TId>) => (
+        <FlexCell cx={ [css.cellPlaceholder, this.props.cellClass] } { ...column } key={ column.key } />
+    );
 
     private clientWidth?: number;
 
@@ -37,25 +36,24 @@ export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRow
         this.resizeObserver.disconnect();
     }
 
-    wrapScrollingSection = (content: ReactNode, style: CSSProperties) => {
-        return (
-            <ScrollBars
-                className={ uuiDataTableScrollRow.uuiTableScrollBar }
-                hideTracksWhenNotNeeded
-                style={ style }
-                renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
-                ref={ scrollBars => {
-                    const node = (ReactDOM.findDOMNode(scrollBars) as HTMLElement)?.children[0] as HTMLElement;
-                    if (!node) return;
-                    this.props.scrollManager?.attachScrollNode(node);
-                    this.resizeObserver?.observe(node);
-                    this.clientWidth = node.clientWidth;
-                } }
-            >
-                { content }
-            </ScrollBars>
-        );
-    }
+    wrapScrollingSection = (content: ReactNode, style: CSSProperties) => (
+        <ScrollBars
+            className={ uuiDataTableScrollRow.uuiTableScrollBar }
+            hideTracksWhenNotNeeded
+            style={ style }
+            renderView={ null }
+            renderThumbHorizontal={ () => <div className='uui-thumb-horizontal' /> }
+            ref={ (scrollBars: ScrollbarsApi) => {
+                const node = scrollBars?.container?.children[0] as HTMLElement;
+                if (!node) return;
+                this.props.scrollManager?.attachScrollNode(node);
+                this.resizeObserver?.observe(node);
+                this.clientWidth = node.clientWidth;
+            } }
+        >
+            { content }
+        </ScrollBars>
+    );
 
     render() {
         return (

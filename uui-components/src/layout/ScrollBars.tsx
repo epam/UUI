@@ -2,7 +2,6 @@ import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRe
 import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 import { IHasCX, cx } from '@epam/uui';
 import * as css from './ScrollBars.scss';
-import * as ReactDOM from 'react-dom';
 
 export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps {
     hasTopShadow?: boolean;
@@ -11,6 +10,8 @@ export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps 
 }
 
 export interface PositionValues extends CustomScrollBars.positionValues {}
+
+export interface ScrollbarsApi extends Scrollbars {}
 
 export const ScrollBars = forwardRef(({
     style,
@@ -26,8 +27,7 @@ export const ScrollBars = forwardRef(({
         if (!bars.current) return;
         event && props.onScroll?.(event);
 
-        const scrollBars = ReactDOM.findDOMNode(bars.current) as HTMLElement;
-        if (!scrollBars) return;
+        const scrollBars = bars.current.container;
         const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
         const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
@@ -46,10 +46,10 @@ export const ScrollBars = forwardRef(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...props }: { style: CSSProperties, props: {} }) => (
+    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => (
         <div
             style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } }
-            { ...props }
+            { ...rest }
         />
     );
 

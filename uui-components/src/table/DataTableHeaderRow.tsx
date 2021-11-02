@@ -1,22 +1,17 @@
-import * as React from 'react';
-import {
-    DataSourceState, SortDirection, DataColumnProps, DataTableHeaderRowProps, Lens, DataTableHeaderCellProps,
-    getColumnsConfig, DropParams, getOrderBetween, UuiContext,
-} from '@epam/uui';
+import React, { Component } from 'react';
+import { DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens, getColumnsConfig, DropParams, getOrderBetween } from '@epam/uui';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
 const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',
 };
 
-export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowProps<T, any>, {}> {
-    static contextType = UuiContext;
-
+export class DataTableHeaderRow<TItem, TId> extends Component<DataTableHeaderRowProps<TItem, TId>, {}> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     sortLens = this.lens.prop('sorting');
     filterLens = this.lens.prop('filter');
 
-    onCellDrop = (params: DropParams<DataColumnProps<any>, DataColumnProps<any>>, index: number) => {
+    onCellDrop = (params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>, index: number) => {
         const columnsConfig = getColumnsConfig(this.props.columns, this.props.value.columnsConfig);
 
         const dstColumnConfig = columnsConfig[params.dstData.key];
@@ -36,10 +31,10 @@ export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowPro
         this.props.onValueChange({ ...this.props.value, columnsConfig });
     }
 
-    renderCell = (column: DataColumnProps<any, any>, idx: number) => {
-        const sorting = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
+    renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+        const { field, direction } = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
 
-        const cellProps: DataTableHeaderCellProps<T, any> = {
+        return this.props.renderCell({
             column,
             value: this.props.value,
             onValueChange: this.props.onValueChange,
@@ -47,18 +42,16 @@ export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowPro
             isFirstColumn: idx === 0,
             isLastColumn: idx === this.props.columns.length - 1,
             isFilterActive: column.isFilterActive && column.isFilterActive(this.filterLens.default({}).get(), column),
-            sortDirection: sorting.field === column.key ? (sorting.direction || 'asc') : null,
+            sortDirection: field === column.key ? (direction || 'asc') : null,
             allowColumnsReordering: this.props.allowColumnsReordering,
             allowColumnsResizing: this.props.allowColumnsResizing,
-            onSort: (dir: SortDirection) => this.props.onValueChange({
+            onSort: dir => this.props.onValueChange({
                 ...this.props.value,
-                sorting: (sorting.field !== column.key || sorting.direction !== dir) ? [{ field: column.key, direction: dir }] : [],
+                sorting: (field !== column.key || direction !== dir) ? [{ field: column.key, direction: dir }] : [],
             }),
-            onDrop: (params) => this.onCellDrop(params, idx),
+            onDrop: params => this.onCellDrop(params, idx),
             renderFilter: () => column.renderFilter(this.filterLens),
-        };
-
-        return this.props.renderCell(cellProps);
+        });
     }
 
     render() {
