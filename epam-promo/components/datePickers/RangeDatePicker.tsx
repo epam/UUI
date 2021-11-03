@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, uuiMod } from '@epam/uui';
+import { IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';
@@ -9,6 +9,10 @@ import * as css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;
+    rawProps?: {
+        from?: IHasRawProps<HTMLDivElement>,
+        to?: IHasRawProps<HTMLDivElement>
+    }
 }
 
 export type InputType = 'from' | 'to';
@@ -63,6 +67,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onFocus={ () => this.handleFocus('from') }
                     onBlur={ () => this.handleBlur('from') }
                     isDropdown={ false }
+                    rawProps={ this.props.rawProps.from.rawProps }
                 />
                 <div className={ css.separator } />
                 <TextInput
@@ -79,6 +84,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
+                    rawProps={ this.props.rawProps.to.rawProps }
                 />
             </div>
         );

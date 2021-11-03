@@ -81,7 +81,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
         return this.props.render({
             ...this.state,
-            eventHandlers: eventHandlers,
+            eventHandlers
         });
     }
 }
