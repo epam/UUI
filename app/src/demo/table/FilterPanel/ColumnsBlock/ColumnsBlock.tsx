@@ -14,7 +14,6 @@ interface IColumnsBlockProps {
 const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ columnsConfig, onColumnsConfigChange, columns }) => {
     const items = useMemo(() => {
         const sortedColumns = sortBy(columns.filter(column => !!column.caption), i => {
-            console.log(i.key, columnsConfig);
             columnsConfig[i.key]?.order;
         });
 

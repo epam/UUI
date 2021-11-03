@@ -42,7 +42,6 @@ interface IPresetsApi {
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): void;
-    renamePreset(preset: ITablePreset): void;
     updatePreset(preset: ITablePreset): void;
 }
 

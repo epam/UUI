@@ -14,12 +14,11 @@ interface IPresetProps {
     choosePreset: (preset: ITablePreset) => void;
     duplicatePreset: (preset: ITablePreset) => void;
     deletePreset: (preset: ITablePreset) => void;
-    renamePreset: (preset: ITablePreset) => void;
     updatePreset: (preset: ITablePreset) => void;
     resetToDefault: () => void;
 }
 
-export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset, resetToDefault }) => {
+export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, choosePreset, duplicatePreset, deletePreset, updatePreset, resetToDefault }) => {
     const [isRenaming, setIsRenaming] = useState(false);
     const [renamingValue, setRenamingValue] = useState("");
 
@@ -32,10 +31,10 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
                 ...preset,
                 name: renamingValue,
             };
-            renamePreset(newPreset);
+            updatePreset(newPreset);
         }
         setIsRenaming(false);
-    }, [renamingValue]);
+    }, [renamingValue, updatePreset]);
 
     const renderBody = useCallback((props: DropdownBodyProps) => {
         const handleDuplicate = () => {
