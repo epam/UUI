@@ -167,7 +167,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="wrapper root shadow-white"
         >
           <div
-            className="root body"
+            className="body"
             style={
               Object {
                 "display": "flex",

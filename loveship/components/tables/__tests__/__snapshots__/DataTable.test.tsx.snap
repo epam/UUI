@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTable should be rendered correctly 1`] = `
-Array [
+<div
+  aria-colcount={4}
+  aria-rowcount={10}
+  className="table"
+  role="table"
+>
   <div
     className="container uui-table-row-container root uui-table-header-row container align-items-top"
     role="row"
@@ -243,7 +248,7 @@ Array [
     <div
       className="fixedColumnsWrapper fixedColumnsWrapperRight"
     />
-  </div>,
+  </div>
   <div
     className="root size-36 background-white topShadow spacing-6 body container align-items-center"
   >
@@ -251,7 +256,7 @@ Array [
       className="wrapper root shadow-dark"
     >
       <div
-        className="root body"
+        className="body"
         style={
           Object {
             "display": "flex",
@@ -1487,7 +1492,7 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
+  </div>
   <div
     className="uui-table-scroll-row-container cellClass"
   >
@@ -1513,7 +1518,7 @@ Array [
         />
       </div>
       <div
-        className="root uui-table-scroll-bar"
+        className="uui-table-scroll-bar"
         style={
           Object {
             "display": "flex",
@@ -1638,6 +1643,6 @@ Array [
         className="fixedColumnsWrapper fixedColumnsWrapperRight"
       />
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
