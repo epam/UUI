@@ -74,7 +74,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
     };
 
     return (
-        <>
+        <div className={ css.table } role="table" aria-rowcount={ props.getRows().length } aria-colcount={ columns.length }>
             <DataTableHeaderRow
                 key='header'
                 scrollManager={ scrollManager }
@@ -105,7 +105,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 ) : renderNoResultsBlock() }
             </FlexRow>
             <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
-        </>
+        </div>
     );
 };
 

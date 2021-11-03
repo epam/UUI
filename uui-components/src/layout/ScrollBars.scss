@@ -21,6 +21,22 @@
         background: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
     }
 
+    &:global(.uui-scroll-shadow-top) {
+        position: absolute;
+        pointer-events: none;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    &:global(.uui-scroll-shadow-bottom) {
+        position: absolute;
+        pointer-events: none;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
     &:global(.uui-shadow-top-visible)::before {
         opacity: 1;
     }

@@ -110,11 +110,7 @@ export default function CitiesTable(props: unknown) {
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{
-            role: 'table',
-            'aria-rowcount': view.getListProps().rowsCount,
-            'aria-colcount': citiesColumns.length
-        }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ setTableState }
