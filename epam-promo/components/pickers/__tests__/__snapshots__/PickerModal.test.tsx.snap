@@ -167,7 +167,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="wrapper root"
         >
           <div
-            className="root body"
+            className="body"
             style={
               Object {
                 "display": "flex",
@@ -861,7 +861,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="wrapper root"
         >
           <div
-            className="root body"
+            className="body"
             style={
               Object {
                 "display": "flex",

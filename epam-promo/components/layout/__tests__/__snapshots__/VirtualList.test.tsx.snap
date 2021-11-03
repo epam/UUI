@@ -5,7 +5,7 @@ exports[`VirtualList should be rendered correctly 1`] = `
   className="wrapper root"
 >
   <div
-    className="root body"
+    className="body"
     style={
       Object {
         "display": "flex",

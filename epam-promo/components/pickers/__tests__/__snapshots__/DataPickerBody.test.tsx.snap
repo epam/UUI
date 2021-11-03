@@ -112,7 +112,7 @@ Array [
       className="wrapper root"
     >
       <div
-        className="root body"
+        className="body"
         style={
           Object {
             "display": "flex",
