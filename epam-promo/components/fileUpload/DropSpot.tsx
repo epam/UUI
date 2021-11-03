@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui';
+import { cx, IHasRawProps } from '@epam/uui';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import * as css from './DropSpot.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '../';
@@ -11,13 +11,14 @@ export interface DropSpotProps {
     onUploadFiles(files: File[]): any;
     accept?: string;
     single?: boolean;
+    rawProps?: IHasRawProps<HTMLDivElement>;
 }
 
 export class DropSpot extends React.Component<DropSpotProps> {
 
     renderAttachmentArea = (props: DropSpotRenderParams) => {
         return (
-            <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart) }>
+            <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart) } { ...this.props.rawProps }>
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                         <FlexRow size='24' spacing='6' >
                             <IconContainer color='blue' icon={ shapeIcon } />

@@ -4,7 +4,7 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon,
+    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps,
 } from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
@@ -25,6 +25,10 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
     inputId?: string;
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>,
+        dropdown?: IHasRawProps<HTMLDivElement>,
+    }
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -61,14 +65,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
     }
 
-    componentDidUpdate = (prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
+    componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
         const { search } = this.state.dataSourceState;
         const isSearchingStarted = !prevState.dataSourceState.search && search;
         const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
         if (isSearchingStarted && prevState.showSelected) {
-            this.setState({
-                showSelected: false,
-            });
+            this.setState({ showSelected: false });
         }
         if (search && isSwitchIsBeingTurnedOn) {
             this.handleTogglerSearchChange('', true);
@@ -76,7 +78,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getInitialState() {
-        let base = super.getInitialState();
+        const base = super.getInitialState();
         return {
             ...base,
             opened: false,
@@ -216,6 +218,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             toggleDropdownOpening: this.toggleDropdownOpening,
             editMode: this.props.editMode,
             inputId: this.props.inputId,
+            rawProps: this.props.rawProps.input.rawProps
         };
     }
 
