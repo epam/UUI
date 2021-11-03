@@ -68,7 +68,6 @@ export const ScrollBars = forwardRef(({
 
     return (
         <CustomScrollBars.default
-            { ...props }
             className={ cx(
                 css.root,
                 props.cx,
@@ -82,6 +81,7 @@ export const ScrollBars = forwardRef(({
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             ref={ bars }
+            { ...props }
         >
             { props.children }
         </CustomScrollBars.default>

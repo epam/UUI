@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps, useVirtual } from '@epam/uui';
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
 export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
-    rows: React.ReactNode[];
+    rows: ReactNode[];
     rowsCount?: number;
     focusedIndex?: number;
     onScroll?(value: PositionValues): void;
-}
+};
 
 export function VirtualList({
     onValueChange,
