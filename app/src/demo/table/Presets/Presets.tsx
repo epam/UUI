@@ -10,7 +10,7 @@ interface IPresetsProps extends IPresetsApi {
     tableState: DataTableState;
 }
 
-const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, renamePreset, updatePreset }) => {
+const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
     const newPresetTitle = "New preset";
     const activePresetId = getActivePresetId();
 
@@ -23,7 +23,7 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
         return !isDefaultPresetActive()
             && hasPresetChanged(activePreset);
     }, [isDefaultPresetActive, activePreset, tableState.filter]);
-
+    
     return (
         <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>
             <Button
@@ -40,7 +40,6 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
                     choosePreset={ choosePreset }
                     duplicatePreset={ duplicatePreset }
                     deletePreset={ deletePreset }
-                    renamePreset={ renamePreset }
                     updatePreset={ updatePreset }
                     resetToDefault={ resetToDefault }
                     key={ preset.id }
