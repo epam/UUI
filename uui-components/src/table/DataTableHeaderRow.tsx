@@ -65,7 +65,6 @@ export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowPro
         return (
             <DataTableRowContainer
                 cx={ [this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow] }
-                scrollManager={ this.props.scrollManager }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 rawProps={{ role: 'row' }}

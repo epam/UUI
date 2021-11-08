@@ -2,14 +2,13 @@ import React from 'react';
 import {
     DataSourceState,
     Lens,
-    ScrollManager,
     DataColumnProps,
     UuiContexts,
     ColumnsConfig,
     UuiContext,
 } from '@epam/uui';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { Text, DataTableRow, DataTableHeaderRow, Panel, DataTableScrollRow, FlexRow, FlexSpacer, IconButton } from '../..';
+import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import * as gearIcon from '../../icons/action-settings-18.svg';
 
@@ -45,7 +44,6 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     };
 
     lens = Lens.onState<DataTableCardState>(this);
-    scrollManager = new ScrollManager();
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -86,7 +84,6 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
             id={ index }
             rowKey={ index + '' }
             index={ index }
-            scrollManager={ this.scrollManager }
         />);
     }
 
@@ -112,7 +109,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
         if (component === DataTableRow) {
             return <>
                 <FlexRow size="48" background="white" padding="24">
-                        <Text>items</Text>
+                    <Text>items</Text>
                     <FlexSpacer />
                     <IconButton
                         icon={ gearIcon }
@@ -122,30 +119,26 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
                 <DataTableHeaderRow
                     key='header'
                     columns={ this.getVisibleColumns() }
-                    scrollManager={ this.scrollManager }
                     size={ props.size }
                     { ...this.lens.prop('tableState').toProps() }
                 />
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
             </>;
         }
         if (component === DataTableHeaderRow) {
             return <>
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
             </>;
         }
     }
 
     render() {
-        const { DemoComponent, props } = this.props;
-        const columns = this.props.props.columns;
         return (
             <Panel margin='24' shadow style={ { 'width': '50%' } }>
-                { this.getTable(DemoComponent, props) }
-                <DataTableScrollRow key='scroll' scrollManager={ this.scrollManager } columns={ columns } size={ props.size }/>
+                { this.getTable(this.props.DemoComponent, this.props.props) }
             </Panel>
         );
     }
