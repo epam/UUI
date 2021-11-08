@@ -1,3 +1,9 @@
 .body {
     flex: 1 1 auto;
 }
+
+.listContainer {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    ColumnsConfig, cx, DataRowProps, ScrollManager, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
+    ColumnsConfig, cx, DataRowProps, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
 } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
@@ -19,12 +19,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 }
 
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
-    const [scrollManager] = useState(new ScrollManager());
     const context = useUuiContext();
-    const setColumnsConfig = (config: ColumnsConfig) => {
-        props.onValueChange({ ...props.value, columnsConfig: config });
-    };
-
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
@@ -39,13 +34,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
 
     const getRows = () => {
         const renderItemRow = props.renderRow || renderRow;
-
-        return props.getRows()
-            .map((row: DataRowProps<TItem, TId>) => renderItemRow({
-                ...row,
-                scrollManager: scrollManager,
-                columns: columns,
-            }));
+        return props.getRows().map((row: DataRowProps<TItem, TId>) => renderItemRow({ ...row, columns }));
     };
 
     const onConfigurationButtonClick = () => {
@@ -58,7 +47,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
 
             />
         ))
-            .then(setColumnsConfig)
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig: config }))
             .catch(() => null);
     };
 
@@ -77,8 +66,6 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
     return (
         <>
             <DataTableHeaderRow
-                key='header'
-                scrollManager={ scrollManager }
                 columns={ columns }
                 onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                 selectAll={ props.selectAll }
@@ -90,7 +77,6 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 onValueChange={ props.onValueChange }
             />
             <FlexRow
-                key='body'
                 topShadow
                 background='white'
                 cx={ css.body }>
@@ -105,7 +91,6 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                     />
                 ) : renderNoResultsBlock() }
             </FlexRow>
-            <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns }/>
         </>
     );
 };

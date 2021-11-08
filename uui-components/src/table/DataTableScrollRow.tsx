@@ -71,7 +71,6 @@ export class DataTableScrollRow extends React.Component<DataTableScrollRowProps,
             >
                 <DataTableRowContainer
                     cx={ uuiDataTableScrollRow.uuiTableScrollRow }
-                    scrollManager={ this.props.scrollManager }
                     columns={ this.props.columns }
                     renderCell={ this.renderCell.bind(this) }
                     wrapScrollingSection={ this.wrapScrollingSection.bind(this) }
