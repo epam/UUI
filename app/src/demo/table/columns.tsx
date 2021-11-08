@@ -63,7 +63,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             isSortable: true,
             renderFilter: renderStatusFilter,
             isFilterActive: f => !!f.profileStatusId,
-            cx: 'color',
         },
         {
             key: 'jobTitle',

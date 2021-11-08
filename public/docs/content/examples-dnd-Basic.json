@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The main component which you need to use for DnD - ",
+            "text": "The main component which you need for Drag&Drop is ",
             "marks": []
           },
           {
@@ -59,7 +59,55 @@
           },
           {
             "object": "text",
-            "text": " and params for Drag and Drop. ",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "classNames",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and params for Drag and Drop. Make sure that you pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "eventHandlers",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "classNames",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to the your component for correct d&d work.",
             "marks": []
           }
         ]

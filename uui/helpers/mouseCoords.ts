@@ -26,5 +26,4 @@ if (typeof window !== 'undefined' && window.name !== 'nodejs') {
     };
 
     document.addEventListener('pointermove', getMouseCoords);
-    document.addEventListener('mousemove', getMouseCoords);
 }
