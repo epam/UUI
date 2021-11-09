@@ -7,7 +7,7 @@ import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
 import { addFiltersToColumns } from "./helpers";
 
-export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
+export function getColumns(filters: ITableFilter[]) {
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
@@ -144,7 +144,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => setInfoPanelId(p.id) }
             />,
             width: 54,
             alignSelf: 'center',
