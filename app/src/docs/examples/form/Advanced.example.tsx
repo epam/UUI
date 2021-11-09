@@ -1,6 +1,7 @@
-import React, { useState, ReactNode } from 'react';
-import { Metadata, RenderFormProps, INotification, useUuiContext, useAsyncDataSource, useLazyDataSource } from "@epam/uui";
-import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, RadioGroup, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
+import React from 'react';
+import type { TApi } from '../../../data';
+import { Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts } from "@epam/uui";
+import { useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
 import * as undoIcon from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import * as redoIcon from '@epam/assets/icons/common/content-edit_redo-18.svg';
 
@@ -8,7 +9,6 @@ type Person = {
     firstName?: string;
     lastName?: string;
     email?: string;
-    sex?: string;
     location?: {
         cityIds: string[],
         countryId?: string;
@@ -16,10 +16,9 @@ type Person = {
 };
 
 export default function AdvancedFormExample() {
-    const svc = useUuiContext();
-    const [person] = useState<Person>({});
+    const svc = useUuiContext<TApi, UuiContexts>();
 
-    const getMetaData = (state: Person): Metadata<Person> => ({
+    const getMetadata = (state: Person): Metadata<Person> => ({
         props: {
             firstName: { isRequired: true },
             lastName: { isRequired: true },
@@ -35,27 +34,42 @@ export default function AdvancedFormExample() {
                         return !(val && val.includes('@')) && ['Please enter correct email'];
                     },
                 ],
-            },
-            sex: { isRequired: true },
+            }
         },
     });
 
+    const { lens, canRedo, canUndo, canRevert, undo, redo, revert, save } = useForm<Person>({
+        value: {},
+        onSave: person => Promise.resolve() /*place your save api call here*/,
+        onSuccess: result => svc.uuiNotifications.show(props => (
+            <SuccessNotification { ...props }>
+                <Text>Form saved</Text>
+            </SuccessNotification>
+        )),
+        onError: error => svc.uuiNotifications.show(props => (
+            <ErrorNotification { ...props }>
+                <Text>Error on save</Text>
+            </ErrorNotification>
+        )),
+        getMetadata,
+        settingsKey: 'advanced-form-example'
+    });
+
     const countriesDataSource = useAsyncDataSource({
-        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: any) => r.items),
+        api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     }, []);
 
     const citiesDataSource = useLazyDataSource({
-        api: (req) => svc.api.demo.cities(req)
+        api: svc.api.demo.cities
     }, []);
 
-    const renderForm = ({ lens, canRedo, canUndo, canRevert, undo, redo, revert, save }: RenderFormProps<Person>): ReactNode => (
+    return (
         <FlexCell width='100%'>
             <FlexRow vPadding='12' spacing='12' >
                 <Button caption='Revert changes' onClick={ revert } isDisabled={ !canRevert } fill='white' />
                 <FlexSpacer />
                 <Button icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } fill='light' />
                 <Button icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } fill='light' />
-
             </FlexRow>
             <FlexRow vPadding='12'>
                 <FlexCell grow={ 1 }>
@@ -103,44 +117,9 @@ export default function AdvancedFormExample() {
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding='12'>
-                <FlexCell grow={ 1 }>
-                    <LabeledInput label='Sex' { ...lens.prop('sex').toProps() }>
-                        <RadioGroup
-                            items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
-                            { ...lens.prop('sex').toProps() }
-                            direction='horizontal'
-                        />
-                    </LabeledInput>
-                </FlexCell>
-            </FlexRow>
-            <FlexRow vPadding='12'>
                 <FlexSpacer />
                 <Button caption='Save' onClick={ save } color='green' />
             </FlexRow>
         </FlexCell>
-    );
-
-    const renderSuccessNotification = (props: INotification): ReactNode => (
-        <SuccessNotification { ...props }>
-            <Text>Form saved</Text>
-        </SuccessNotification>
-    );
-
-    const renderErrorNotification = (props: INotification): ReactNode => (
-        <ErrorNotification { ...props }>
-            <Text>Error on save</Text>
-        </ErrorNotification>
-    );
-
-    return (
-        <Form<Person>
-            value={person}
-            onSave={person => Promise.resolve() /*place your save api call here*/ }
-            onSuccess={result => svc.uuiNotifications.show(renderSuccessNotification) }
-            onError={error => svc.uuiNotifications.show(renderErrorNotification)}
-            renderForm={renderForm}
-            getMetadata={getMetaData}
-            settingsKey='advanced-form-example'
-        />
     );
 }

@@ -13,7 +13,7 @@ const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: T
             { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ], type: 'string' })
     .prop('count', { examples: [0, 1, 5, 88, 123], defaultValue: 123 })
-    .prop('size', { examples : ['18', '24', '30', '36', '42'], defaultValue: '36' })
+    .prop('size', { examples : ['18', '24', '30', '36', '42', '48'], defaultValue: '36' })
     .withContexts(DefaultContext, FormContext, ResizableContext,  GridContext);
 
 export = tagDoc;

@@ -9,10 +9,11 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     aria-sort="none"
     className="flexCell -clickable"
     onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseMove={[Function]}
-    onMouseUp={[Function]}
+    onPointerEnter={[Function]}
+    onPointerLeave={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+    onTouchStart={[Function]}
     role="columnheader"
     style={
       Object {
@@ -53,7 +54,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           href={null}
           onClick={[Function]}
           role="button"
-          tabIndex={null}
+          tabIndex={-1}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -98,11 +99,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           aria-sort="ascending"
           className="flexCell -clickable"
           onClick={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
+          onPointerDown={[Function]}
+          onPointerEnter={[Function]}
+          onPointerLeave={[Function]}
+          onPointerMove={[Function]}
+          onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
@@ -129,7 +131,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -157,11 +159,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
+          onPointerDown={[Function]}
+          onPointerEnter={[Function]}
+          onPointerLeave={[Function]}
+          onPointerMove={[Function]}
+          onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
@@ -188,7 +191,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -216,11 +219,12 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           aria-sort="none"
           className="flexCell -clickable"
           onClick={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
+          onPointerDown={[Function]}
+          onPointerEnter={[Function]}
+          onPointerLeave={[Function]}
+          onPointerMove={[Function]}
+          onPointerUp={[Function]}
+          onTouchStart={[Function]}
           role="columnheader"
           style={
             Object {
@@ -247,7 +251,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -318,7 +322,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           href={null}
           onClick={[Function]}
           role="button"
-          tabIndex={null}
+          tabIndex={-1}
         >
           <div
             className="container uui-icon uui-enabled"
@@ -386,7 +390,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -437,7 +441,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"
@@ -488,7 +492,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
                 href={null}
                 onClick={[Function]}
                 role="button"
-                tabIndex={null}
+                tabIndex={-1}
               >
                 <div
                   className="container uui-icon uui-enabled"

@@ -123,3 +123,12 @@
     bottom: 0;
     display: flex;
 }
+
+.tooltipsBoxItem {
+    position: fixed;
+    width: 1px;
+}
+
+.tooltip {
+    pointer-events: none;
+}

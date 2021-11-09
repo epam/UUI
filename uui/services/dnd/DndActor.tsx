@@ -14,24 +14,22 @@ export type DndActorProps<TSrcData, TDstData> = IDndActor<TSrcData, TDstData> & 
 const dndStartThreshold = 5;
 
 interface DndActorState {
-    mouseDownX: number;
-    mouseDownY: number;
+    pointerX: number;
+    pointerY: number;
     isMouseDown: boolean;
     isDragging: boolean;
     isMouseOver: boolean;
     position?: DropPosition;
-    pendingMouseDownTarget?: Element;
     dndContextState: DndContextState;
 }
 
 const initialState: DndActorState = {
-    mouseDownX: 0,
-    mouseDownY: 0,
+    pointerX: 0,
+    pointerY: 0,
     isMouseDown: false,
     isDragging: false,
     isMouseOver: false,
     position: null,
-    pendingMouseDownTarget: null,
     dndContextState: {
         isDragging: false,
     },
@@ -54,24 +52,23 @@ export class DndActor<TSrcData = any, TDstData = any>
 
 
     componentDidMount() {
-        window.addEventListener('mouseup', this.windowMouseUpHandler);
-        window.addEventListener('mousemove', this.windowMouseMoveHandler);
+        window.addEventListener('pointerup', this.windowPointerUpHandler);
+        window.addEventListener('pointermove', this.windowPointerMoveHandler);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('mouseup', this.windowMouseUpHandler);
-        window.removeEventListener('mousemove', this.windowMouseMoveHandler);
+        window.removeEventListener('pointerup', this.windowPointerUpHandler);
+        window.removeEventListener('pointermove', this.windowPointerMoveHandler);
         this.context.uuiDnD.unsubscribe(this.contextUpdateHandler);
     }
 
-    windowMouseUpHandler = (e: Event) => {
+    windowPointerUpHandler = (e: Event) => {
         if (this.state.isDragging || this.state.isMouseDown) {
             this.setState(s => initialState);
         }
     }
 
-    windowMouseMoveHandler = (e: MouseEvent) => {
-
+    windowPointerMoveHandler = (e: MouseEvent) => {
         if (!this.state.isMouseDown
             || e.buttons === 0 // can happen if native drag-n-drop occurs
             || this.state.isDragging
@@ -86,8 +83,8 @@ export class DndActor<TSrcData = any, TDstData = any>
         }
 
         const dist = Math.sqrt(
-            Math.pow(this.state.mouseDownX - mouseCoords.mousePageX, 2)
-            + Math.pow(this.state.mouseDownY - mouseCoords.mousePageY, 2),
+            Math.pow(this.state.pointerX - mouseCoords.mousePageX, 2)
+            + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2),
         );
 
         if (dist > dndStartThreshold) {
@@ -200,7 +197,7 @@ export class DndActor<TSrcData = any, TDstData = any>
         ].filter(Boolean);
 
         if (!!this.props.srcData) {
-            params.eventHandlers.onMouseDown = (e: React.MouseEvent<any>) => {
+            params.eventHandlers.onPointerDown = (e: React.PointerEvent<any>) => {
                 if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
                     return;
                 }
@@ -209,9 +206,8 @@ export class DndActor<TSrcData = any, TDstData = any>
                     this.setState(s => ({
                         ...initialState,
                         isMouseDown: true,
-                        mouseDownX: mouseCoords.mousePageX,
-                        mouseDownY: mouseCoords.mousePageY,
-                        pendingMouseDownTarget: e.target as any,
+                        pointerX: mouseCoords.mousePageX,
+                        pointerY: mouseCoords.mousePageY,
                     }));
 
                     if (!isChildHasClass(e.target, e.currentTarget, [uuiElement.input])) {
@@ -222,25 +218,22 @@ export class DndActor<TSrcData = any, TDstData = any>
                     }
                 }
             };
-
-            // params.eventHandlers.onClick = e => {
-            //     e.preventDefault();
-            //     e.stopPropagation();
-            // }
         }
 
         if (this.props.canAcceptDrop) {
-            const mouseLeaveHandler = (e: React.MouseEvent<any>) => {
+            const pointerLeaveHandler = (e: React.MouseEvent<any>) => {
                 if (this.context.uuiDnD.isDragging) {
                     this.setState(s => ({ ...s, isMouseOver: false, position: null }));
                 }
             };
 
-            const mouseMoveHandler = (e: React.MouseEvent<any>) => {
+            const pointerMoveHandler = (e: React.PointerEvent<any>) => {
                 if (this.context.uuiDnD.isDragging) {
                     if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
-                        return mouseLeaveHandler(e);
+                        return pointerLeaveHandler(e);
                     }
+
+                    (e.target as HTMLElement).releasePointerCapture(e.pointerId); // allows you to trigger pointer events on other nodes
 
                     const dropParams = this.getDropParams(e);
                     const positionOptions = this.props.canAcceptDrop(dropParams);
@@ -249,12 +242,14 @@ export class DndActor<TSrcData = any, TDstData = any>
                 }
             };
 
-            params.eventHandlers.onMouseEnter = mouseMoveHandler;
-            params.eventHandlers.onMouseMove = mouseMoveHandler;
-            params.eventHandlers.onMouseLeave = mouseLeaveHandler;
+            params.eventHandlers.onTouchStart = e => e.preventDefault(); // prevent defaults on ios
+
+            params.eventHandlers.onPointerEnter = pointerMoveHandler;
+            params.eventHandlers.onPointerMove = pointerMoveHandler;
+            params.eventHandlers.onPointerLeave = pointerLeaveHandler;
         }
 
-        params.eventHandlers.onMouseUp = e => {
+        params.eventHandlers.onPointerUp = e => {
             if (this.context.uuiDnD.isDragging) {
                 if (isChildHasClass(e.target, e.currentTarget, [uuiMarkers.draggable])) {
                     return;

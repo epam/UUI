@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Declarative binding components to the Form state",
+                    "text": "Declarative binding components to the form state",
                     "marks": []
                   }
                 ]
@@ -90,7 +90,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Signal user about leaving with unsaved changes",
+                    "text": "Signaling user about leaving with unsaved changes",
                     "marks": []
                   }
                 ]

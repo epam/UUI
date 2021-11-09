@@ -11,18 +11,19 @@ export const mouseCoords = {
 };
 
 if (typeof window !== 'undefined' && window.name !== 'nodejs') {
-    document.addEventListener('mousemove', (e) => {
+    const getMouseCoords = (e: any) => {
         mouseCoords.mouseDx = e.pageX - mouseCoords.mousePageX;
         mouseCoords.mouseDy = e.pageY - mouseCoords.mousePageY;
         mouseCoords.mouseDxSmooth = mouseCoords.mouseDxSmooth * 0.8 + mouseCoords.mouseDx * 0.2;
         mouseCoords.mouseDySmooth = mouseCoords.mouseDySmooth * 0.8 + mouseCoords.mouseDy * 0.2;
         mouseCoords.mousePageX = e.pageX;
         mouseCoords.mousePageY = e.pageY;
-        if (mouseCoords.buttons == 0 && e.buttons > 0) {
+        if (mouseCoords.buttons == 0 && e.buttons > 0 || e.pointerType === 'touch') {
             mouseCoords.mouseDownPageX = mouseCoords.mousePageX;
             mouseCoords.mouseDownPageY = mouseCoords.mousePageY;
         }
         mouseCoords.buttons = e.buttons;
-        //console.log({ mouseDx, mouseDy, mouseDxSmooth, mouseDySmooth });
-    });
+    };
+
+    document.addEventListener('pointermove', getMouseCoords);
 }

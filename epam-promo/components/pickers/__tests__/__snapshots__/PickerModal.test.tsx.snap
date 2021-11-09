@@ -214,10 +214,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    aria-checked={false}
                     aria-posinset={1}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -248,10 +247,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={2}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -282,10 +280,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={3}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -316,10 +313,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={4}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -350,10 +346,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={5}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -384,10 +379,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={6}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -418,10 +412,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={7}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -452,10 +445,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={8}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -486,10 +478,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={9}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -520,10 +511,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={10}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -554,10 +544,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    aria-checked={false}
                     aria-posinset={11}
                     aria-selected={false}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -926,7 +915,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   <div
                     aria-checked={false}
                     aria-posinset={1}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -944,46 +933,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={2}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1001,46 +983,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={3}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1058,46 +1033,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            C1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={4}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1115,46 +1083,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B2+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={5}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1172,46 +1133,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={6}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1229,46 +1183,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={7}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1286,46 +1233,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            B1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={8}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1343,46 +1283,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A2+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={9}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1400,46 +1333,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A2
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={10}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1457,46 +1383,39 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A1+
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>
                   <div
                     aria-checked={false}
                     aria-posinset={11}
-                    className="pickerRow -clickable container -clickable align-items-center"
+                    className="pickerRow container -clickable align-items-center"
                     onClick={[Function]}
                     role="option"
                   >
@@ -1514,39 +1433,32 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         }
                       }
                     >
-                      <div
-                        className="afterPaddings"
-                      >
-                        <label
-                          className="container root size-18 checkbox-color-blue checkbox -clickable"
-                        >
-                          <div
-                            className="uui-checkbox"
-                          >
-                            <input
-                              aria-checked={false}
-                              checked={false}
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div
-                        className="wrappedContent"
+                      <label
+                        className="container root size-18 checkbox-color-blue checkbox -clickable"
                       >
                         <div
-                          className="renderItem"
+                          className="uui-checkbox"
                         >
-                          <div
-                            className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                          >
-                            A1
-                          </div>
-                          <div
-                            className="flexSpacer"
+                          <input
+                            aria-checked={false}
+                            checked={false}
+                            onChange={[Function]}
+                            tabIndex={-1}
+                            type="checkbox"
                           />
                         </div>
+                      </label>
+                      <div
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
                     </div>
                   </div>

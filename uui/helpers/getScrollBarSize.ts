@@ -6,7 +6,7 @@ interface ScrollBarSize {
 export let scrollBarSize: ScrollBarSize | null = null;
 
 function getScrollBarSize(): ScrollBarSize {
-    if (typeof window === 'undefined' || window.name === 'nodejs') {
+    if (typeof window === 'undefined' || window.name === 'nodejs' || document.body === null) {
         return {
             width: 18,
             height: 18,

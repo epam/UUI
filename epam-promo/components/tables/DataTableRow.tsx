@@ -17,7 +17,6 @@ export const renderCell = (props: DataTableCellProps<any, any>) => {
         size={ mods.size }
         { ...props }
         role="cell"
-        reusePadding={ mods.reusePadding || 'auto' }
         isFirstColumn={ isFirstColumn }
         isLastColumn={ isLastColumn }
     />;

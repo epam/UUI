@@ -172,10 +172,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
 
         if (all.checkableCount > 0) {
+            const isAllChecked = all.checkedCount === fullSelection.length;
             this.selectAll = {
-                value: all.checkedCount === fullSelection.length,
+                value: isAllChecked,
                 onValueChange: checked => this.handleCheckedChange(checked ? fullSelection : emptySelection),
-                indeterminate: 0 < all.checkedCount && all.checkedCount < all.checkableCount,
+                indeterminate: all.checkedCount > 0 && !isAllChecked,
             };
         }
     }
@@ -248,7 +249,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const forEachChildren = (action: (key: string) => void) => {
 
             const walkChildrenRec = (node: TreeNode<TItem, TId>) => {
-                if (true) { /* filter && isSelectable */
+                const { isCheckable } = this.getRowProps(node.item, null, []);
+                if (isCheckable) { /* filter && isSelectable */
                     action(node.key);
                 }
                 node.children && node.children.forEach(walkChildrenRec);
