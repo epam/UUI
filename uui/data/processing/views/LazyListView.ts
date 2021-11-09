@@ -100,7 +100,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         // We assume value to be immutable. However, we can't guarantee this.
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
-        this.value = { topIndex: 0, ...newValue };
+        this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
         this.props = props;
     }
@@ -381,7 +381,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.selectAll = {
                 value: rootStats.isAllChecked,
                 onValueChange: this.handleSelectAllCheck,
-                indeterminate: this.value.checked && this.value.checked.length > 0 && this.value.checked.length < this.tree.recursiveCount,
+                indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
         } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
@@ -460,8 +460,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             !isRoot && checked.push(id);
             childKeys.filter(key => !checkedKeysSet.has(key)).forEach(key => {
                 const item = this.cache.itemsById.map.get(key);
-                const isDisabled = this.props.getRowOptions(item.value, null).checkbox?.isDisabled;
-                if (!isDisabled) {
+                const { isCheckable } = this.getRowProps(item.value, null, []);
+                if (isCheckable) {
                     checked.push(this.keyToId(key));
                 }
             });
@@ -470,8 +470,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             !isRoot && keysToUnset.add(key);
             checked = checked.filter(id => {
                 const item = this.cache.itemsById.map.get(this.idToKey(id));
-                const isDisabled = this.props.getRowOptions(item.value, null).checkbox?.isDisabled;
-                return isDisabled || !(this.idToKey(id) === key || keysToUnset.has(this.idToKey(id)));
+                const { isCheckable } = this.getRowProps(item.value, null, []);
+                return !isCheckable || !(this.idToKey(id) === key || keysToUnset.has(this.idToKey(id)));
             });
         }
         this.handleCheckedChange(checked);

@@ -14,9 +14,11 @@ exports[`PickerInput should be rendered correctly 1`] = `
   >
     <input
       aria-haspopup={true}
+      autoComplete="no"
       className="uui-input singleInput"
       onChange={[Function]}
       placeholder="Please select "
+      readOnly={false}
       tabIndex={-1}
       type="text"
       value=""
@@ -26,7 +28,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg
@@ -61,7 +63,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     >
       
       <div
@@ -86,7 +88,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     >
       <div
         className="uui-caption"
@@ -132,7 +134,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       </svg>
     </div>
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
       <svg

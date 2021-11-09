@@ -5,6 +5,7 @@ export interface DataTableCellProps<TItem, TId> extends IHasCX {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     role?: React.HTMLAttributes<HTMLElement>['role'];
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
 interface BaseRowMods {
@@ -23,7 +24,6 @@ export interface DataTableRowMods extends DataTableCellMods {
 
 export interface DataTableCellMods {
     size?: ControlSize | '60';
-    reusePadding?: 'auto' | 'false';
     padding?: '0' | '12' | '24';
     isFirstColumn?: boolean;
     isLastColumn?: boolean;

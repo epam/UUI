@@ -42,8 +42,8 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
     }
 
     getTabIndex(): number {
-        if (this.props.isDisabled || !this.props.onClick) {
-            return null;
+        if (!this.props.tabIndex && (this.props.isDisabled || !this.props.onClick)) {
+            return -1;
         }
 
         return this.props.tabIndex || 0;
@@ -82,7 +82,6 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             tabIndex: this.getTabIndex(),
             href,
             target: this.props.target,
-            disabled: this.props.isDisabled,
             'aria-disabled': this.props.isDisabled as IHasRawProps<HTMLAnchorElement | HTMLButtonElement>['rawProps']['aria-disabled'],
             ...this.props.rawProps,
         },

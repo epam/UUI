@@ -3,8 +3,7 @@
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
   aria-posinset={2}
-  className="pickerRow container -clickable align-items-center"
-  onClick={[Function]}
+  className="pickerRow container align-items-center"
   role="option"
 >
   <div
@@ -35,10 +34,9 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
-  aria-checked={true}
   aria-posinset={2}
   aria-selected={true}
-  className="pickerRow -clickable uui-focus container -clickable align-items-center"
+  className="uui-focus pickerRow container -clickable align-items-center"
   onClick={[Function]}
   role="option"
 >
@@ -66,29 +64,21 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       <div
         className="iconWrapper"
       >
-        <button
-          className="container uui-button-box uui-enabled root icon-color-blue"
-          href={null}
-          onClick={[Function]}
-          role="button"
-          tabIndex={null}
+        <div
+          className="container uui-icon uui-enabled root icon-container-color-blue"
+          style={Object {}}
         >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+          <svg
+            className=""
+            height={24}
+            viewBox="0 0 12 24"
+            width={12}
           >
-            <svg
-              className=""
-              height={24}
-              viewBox="0 0 12 24"
-              width={12}
-            >
-              <use
-                xlinkHref="#notification-done-18.svg"
-              />
-            </svg>
-          </div>
-        </button>
+            <use
+              xlinkHref="#notification-done-18.svg"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>

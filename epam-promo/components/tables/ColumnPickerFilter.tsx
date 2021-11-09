@@ -72,13 +72,8 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                     showSearch={ this.props.showSearch }
                 />
                 <DataPickerFooter
-                    isSingleSelect={ this.isSingleSelect() }
+                    { ...this.getFooterProps() }
                     size={ this.props.size }
-                    hasSelection={ view.getSelectedRows().length > 0 }
-                    clearSelection={ this.clearSelection }
-                    switchValue={ this.state.showSelected }
-                    onSwitchValueChange={ (nV) => this.setState({ showSelected: nV }) }
-                    selectAll={ view.selectAll }
                 />
             </>
         );

@@ -41,16 +41,17 @@
     &.size-18 {
         min-height: 18px;
         min-width: 18px;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 3px;
+        padding-right: 3px;
 
         :global(.uui-count) {
             height: 12px;
+            min-width: 6px;
             line-height: 12px;
             font-size: 8px;
             border-radius: 6px;
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 3px;
+            padding-right: 3px;
         }
 
         :global(.uui-count):not(:first-child) {
@@ -109,6 +110,34 @@
             padding-bottom: 9px;
             line-height: 24px;
             font-size: 16px;
+        }
+
+        :global(.uui-count) {
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            border-radius: 12px;
+            min-width: 12px;
+        }
+    }
+
+    &.size-48 {
+        @include button-horizontal-layout(48px, 0);
+        min-height: 48px;
+
+        :global(.uui-caption), :global(.uui-input) {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+
+        :global(.uui-count) {
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            border-radius: 12px;
+            min-width: 12px;
         }
     }
 }

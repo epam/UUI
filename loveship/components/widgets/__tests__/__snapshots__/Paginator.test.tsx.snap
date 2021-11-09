@@ -7,11 +7,10 @@ exports[`Paginator should be rendered correctly 1`] = `
   <button
     aria-disabled={true}
     className="container uui-button-box uui-disabled -clickable root size-24 color-night400 fill-solid style-square fill-solid size-24"
-    disabled={true}
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   >
     <div
       className="container uui-icon uui-enabled"
@@ -100,7 +99,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -124,7 +123,6 @@ exports[`Paginator should be rendered correctly 1`] = `
   <button
     aria-disabled={false}
     className="container uui-button-box uui-enabled -clickable root size-24 color-night400 fill-white style-square fill-white size-24"
-    disabled={false}
     href={null}
     onClick={[Function]}
     role="button"

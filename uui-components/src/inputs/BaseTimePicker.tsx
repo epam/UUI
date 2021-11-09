@@ -42,7 +42,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     }
 
     onClear = () => {
-        this.props.onValueChange({ hours: 0, minutes: 0 });
+        this.props.onValueChange(null);
     }
 
     onToggle = (value: boolean) => {

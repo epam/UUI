@@ -14,6 +14,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
   >
     <input
       aria-haspopup={true}
+      autoComplete="no"
       className="uui-input singleInput"
       onChange={[Function]}
       tabIndex={-1}
@@ -44,7 +45,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       href={null}
       onClick={[Function]}
       role="button"
-      tabIndex={null}
+      tabIndex={-1}
     >
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
@@ -65,6 +66,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     </button>
     <input
       aria-haspopup={true}
+      autoComplete="no"
       className="uui-input"
       onChange={[Function]}
       tabIndex={-1}

@@ -1,20 +1,19 @@
 import React from 'react';
-import { Form as UuiForm, FormProps, UuiContext, UuiContexts, INotification } from '@epam/uui';
+import { Form as UuiForm, FormProps, useUuiContext, INotification } from '@epam/uui';
 import { ConfirmationModal, Text, RichTextView, WarningNotification } from '..';
 import { i18n } from '../../i18n';
 
-export class Form<T> extends React.Component<FormProps<T>> {
+export function Form<T>(props: FormProps<T>) {
+    const context = useUuiContext();
 
-    static contextType = UuiContext;
-    context: UuiContexts;
+    const beforeLeave = (): Promise<boolean> => {
+        return context.uuiModals.show<boolean>(modalProps =>
+            <ConfirmationModal caption={ i18n.form.modals.beforeLeaveMessage } { ...modalProps } />
+        );
+    };
 
-    beforeLeave = (): Promise<boolean> => {
-        return this.context.uuiModals
-            .show<boolean>(modalProps => <ConfirmationModal caption={ i18n.form.modals.beforeLeaveMessage } { ...modalProps } />);
-    }
-
-    loadUnsavedChanges = (): Promise<void> => {
-        return this.context.uuiNotifications.show((props: INotification) =>
+    const loadUnsavedChanges = (): Promise<void> => {
+        return context.uuiNotifications.show((props: INotification) =>
             <WarningNotification { ...props } actions={
                 [{
                     name: i18n.form.notifications.actionButtonCaption,
@@ -25,7 +24,11 @@ export class Form<T> extends React.Component<FormProps<T>> {
             </WarningNotification>, { duration: 5, position: 'bot-left' });
     }
 
-    render() {
-        return <UuiForm<T> loadUnsavedChanges={ this.loadUnsavedChanges } beforeLeave={ this.beforeLeave } { ...this.props } />;
-    }
+    return (
+        <UuiForm<T>
+            loadUnsavedChanges={ loadUnsavedChanges }
+            beforeLeave={ beforeLeave }
+            { ...props }
+        />
+    );
 }

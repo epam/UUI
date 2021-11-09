@@ -10,7 +10,7 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -23,7 +23,7 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     href={null}
     onClick={[Function]}
     role="button"
-    tabIndex={null}
+    tabIndex={-1}
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"
