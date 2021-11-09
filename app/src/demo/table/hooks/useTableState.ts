@@ -16,7 +16,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     });
     const [presets, setPresets] = useState(params.initialPresets ?? []);
     
-
     const setFilter = useCallback((filter: TFilter) => {
         setTableState(prevValue => ({
             ...prevValue,
@@ -30,6 +29,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             columnsConfig,
         }));
     }, []);
+    
+    useEffect(() => {
+        if (presets.length === 0 && params.initialPresets.length > 0) {
+            setPresets(params.initialPresets);
+        }
+    }, [params.initialPresets]);
 
     useEffect(() => {
         const parsedFilter = parseFilterUrl() as TFilter;
@@ -115,7 +120,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             } as ITablePreset<TFilter>;
 
         newPreset.id = await params?.onPresetCreate(newPreset);
-        console.log("NEW preset id", newPreset.id);
         
         onPresetsChange(prevValue => [...prevValue, newPreset]);
         choosePreset(newPreset);
@@ -191,7 +195,7 @@ interface IParams<TFilter = Record<string, any>> {
     columns: DataColumnProps<any>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
-    onPresetUpdate?: (preset: ITablePreset) => Promise<void>;
-    onPresetCreate?: (preset: ITablePreset) => Promise<number>;
-    onPresetDelete?: (preset: ITablePreset) => Promise<void>;
+    onPresetCreate(preset: ITablePreset): Promise<number>;
+    onPresetUpdate?(preset: ITablePreset): Promise<void>;
+    onPresetDelete?(preset: ITablePreset): Promise<void>;
 }

@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTable.scss";
 import { DataRowProps, DataRowOptions, cx, useLazyDataSource } from "@epam/uui";
 import { Person, PersonGroup } from "@epam/uui-docs";
 import { FlexRow, DataTable, DataTableRow } from "@epam/promo";
 
+import { svc } from "../../services";
 import { getFilters, api } from "./data";
 import { getColumns } from "./columns";
 import { ITablePreset, PersonTableRecord, PersonTableRecordId } from "./types";
@@ -11,39 +12,30 @@ import { useTableState } from "./hooks";
 import { FilterPanel } from "./FilterPanel";
 import { InfoSidebarPanel } from "./InfoSidebarPanel";
 import { Presets } from "./Presets";
+import { SlidingPanel } from "./SlidingPanel";
+import { FilterPanelOpener } from "./FilterPanelOpener";
 
 export const DemoTable: React.FC = () => {
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
-    const [infoPanelId, setInfoPanelId] = useState<number | null>(null);
-    const closeInfoPanel = useCallback(() => setInfoPanelId(null), []);
+    const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
+    const closeInfoPanel = useCallback(() => setIsInfoPanelOpened(false), []);
 
+    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(() => getColumns(filters, setInfoPanelId), []);
+    const columnsSet = useMemo(() => getColumns(filters), []);
+
+    useEffect(() => {
+        svc.api.presets.getPresets()
+            .then(setInitialPresets)
+            .catch(console.error);
+    }, []);
 
     const tableStateApi = useTableState({
         columns: columnsSet.personColumns,
-        initialPresets: JSON.parse(localStorage.getItem("presets")) ?? [],
-        onPresetCreate: async preset => {
-            const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
-            const newId = presets.length
-                ? Math.max.apply(null, presets.map(p => p.id)) + 1
-                : 1;
-            preset.id = newId;
-            localStorage.setItem("presets", JSON.stringify([...presets, preset]));
-            return Promise.resolve(newId);
-        },
-        onPresetUpdate: async preset => {
-            const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
-            presets.splice(presets.findIndex(p => p.id === preset.id), 1, preset);
-            localStorage.setItem("presets", JSON.stringify(presets));
-            return Promise.resolve();
-        },
-        onPresetDelete: async preset => {
-            const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
-            presets.splice(presets.findIndex(p => p.id === preset.id), 1);
-            localStorage.setItem("presets", JSON.stringify(presets));
-            return Promise.resolve();
-        },
+        initialPresets: initialPresets,
+        onPresetCreate: svc.api.presets.createPreset,
+        onPresetUpdate: svc.api.presets.updatePreset,
+        onPresetDelete: svc.api.presets.deletePreset,
     });
 
     const dataSource = useLazyDataSource({
@@ -56,11 +48,14 @@ export const DemoTable: React.FC = () => {
 
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
+        isSelectable: true,
         onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-            if (infoPanelId === rowProps.id[1]) {
-                setInfoPanelId(null);
-            }
-            setInfoPanelId(rowProps.id[1] as number);
+            rowProps.onSelect(rowProps);
+            setIsInfoPanelOpened(true);
+            // if (infoPanelId === rowProps.id[1]) {
+            //     setInfoPanelId(null);
+            // }
+            // setInfoPanelId(rowProps.id[1] as number);
         },
     };
 
@@ -75,20 +70,21 @@ export const DemoTable: React.FC = () => {
         cascadeSelection: true,
     });
 
-    const selectAll = useMemo(() => ({
-        value: false,
-        isDisabled: true,
-        onValueChange: null,
-    }), []);
-
     return (
         <div className={ css.wrapper }>
-            <FilterPanel
-                { ...tableStateApi }
-                filters={ filters }
-                columns={ columnsSet.personColumns }
-                onToggle={ setIsFilterPanelOpened }
+            <FilterPanelOpener
+                isFilterPanelOpened={ isFilterPanelOpened }
+                setIsFilterPanelOpened={ setIsFilterPanelOpened }
             />
+
+            <SlidingPanel isVisible={ isFilterPanelOpened } width={ 288 } position="left">
+                <FilterPanel
+                    { ...tableStateApi }
+                    filters={ filters }
+                    columns={ columnsSet.personColumns }
+                    closePanel={ () => setIsFilterPanelOpened(false) }
+                />
+            </SlidingPanel>
 
             <div
                 className={ css.container }
@@ -109,7 +105,6 @@ export const DemoTable: React.FC = () => {
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
-                    selectAll={ selectAll }
                     showColumnsConfig
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.onTableStateChange }
@@ -119,8 +114,8 @@ export const DemoTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                panelId={ infoPanelId }
-                data={ dataSource.getById(["Person", infoPanelId]) as Person }
+                data={ dataSource.getById(["Person", tableStateApi.tableState.selectedId?.[1]]) as Person }
+                isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
         </div>
