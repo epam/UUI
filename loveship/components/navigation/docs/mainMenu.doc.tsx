@@ -5,7 +5,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext } from "../../../docs";
 import * as svgTriangle from '../../icons/triangle.svg';
 
-const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMenu', component: MainMenu as React.ComponentClass<any> })
+const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMenu', component: MainMenu })
     .prop('renderBurger', {
         examples: [
             {
