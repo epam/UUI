@@ -5,7 +5,7 @@ import { iEditable, isDisabledDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc }
 import { DefaultContext, ResizableContext, GridContext, FormContext, IHasEditModeDoc } from '../../../docs';
 import { PickerToggler, PickerTogglerMods } from '../PickerToggler';
 
-const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTogglerMods>({ name: 'PickerToggler', component: PickerToggler as React.ComponentClass<any> })
+const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTogglerMods>({ name: 'PickerToggler', component: PickerToggler })
     .prop('size', { examples: ['24', '30', '36', '42'], defaultValue: '36' })
     .implements([isDisabledDoc, isReadonlyDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, iEditable, IHasEditModeDoc] as any)
     .prop('selection', { examples: [
