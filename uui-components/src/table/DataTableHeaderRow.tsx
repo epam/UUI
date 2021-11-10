@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     DataSourceState, SortDirection, DataColumnProps, DataTableHeaderRowProps, Lens, DataTableHeaderCellProps,
-    getColumnsConfig, DropParams, getOrderBetween, UuiContext,
+    getColumnsConfig, DropParams, getOrderBetween,
 } from '@epam/uui';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
@@ -10,8 +10,6 @@ const uuiDataTableHeaderRow = {
 };
 
 export class DataTableHeaderRow<T> extends React.Component<DataTableHeaderRowProps<T, any>, {}> {
-    static contextType = UuiContext;
-
     lens = Lens.onEditableComponent<DataSourceState>(this);
     sortLens = this.lens.prop('sorting');
     filterLens = this.lens.prop('filter');

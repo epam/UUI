@@ -1,12 +1,12 @@
 import * as React from "react";
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link } from "@epam/uui";
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx, CX } from "@epam/uui";
 import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
-    columns?: DataColumnProps<any, any>[];
-    renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;
+export interface DataTableRowContainerProps<TItem, TId> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+    columns?: DataColumnProps<TItem, TId>[];
+    renderCell?(column: DataColumnProps<TItem, TId>, idx: number): React.ReactNode;
     wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
@@ -17,7 +17,7 @@ const uuiDataTableRowContainer = {
     uuiTableRowContainer: 'uui-table-row-container',
 };
 
-export class DataTableRowContainer extends React.Component<DataTableRowContainerProps, {}> {
+export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>, {}> {
     protected renderCells(columns: DataColumnProps<React.ReactNode>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;
@@ -25,22 +25,26 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
         }, []);
     }
 
-    wrapScrollingSection(content: React.ReactNode) {
-        return (
-            <div key='ss' className={ css.scrollableColumnsWrapper }>
-                <div key='sc' className={ css.scrollableColumnsContainer }>
-                    { content }
-                </div>
-                <div key='sl' className={ css.scrollShadowLeft } />
-                <div key='sr' className={ css.scrollShadowRight } />
+    wrapScrollingSection = (content: React.ReactNode[]) => (
+        <div className={ css.scrollableColumnsWrapper }>
+            <div className={ css.scrollableColumnsContainer }>
+                { content }
             </div>
-        );
-    }
+            <div className={ css.scrollShadowLeft } />
+            <div className={ css.scrollShadowRight } />
+        </div>
+    );
+
+    wrapFixedSection = (content: React.ReactNode[], direction: 'left' | 'right') => (
+        <>
+            { content }
+        </>
+    )
 
     render() {
-        const fixedLeftColumns: DataColumnProps<any, any>[] = [];
-        const fixedRightColumns: DataColumnProps<any, any>[] = [];
-        const scrollableColumns: DataColumnProps<any, any>[] = [];
+        const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
+        const fixedRightColumns: DataColumnProps<TItem, TId>[] = [];
+        const scrollableColumns: DataColumnProps<TItem, TId>[] = [];
 
         this.props.columns?.forEach(i => {
             if (i.fix === 'left') fixedLeftColumns.push(i);
@@ -48,20 +52,15 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
             else scrollableColumns.push(i);
         });
 
-        const scrollingCells = (
-            <FlexRow alignItems='top' >
-                { this.renderCells(scrollableColumns) }
-            </FlexRow>
+        const scrollingSection = (
+            this.props.wrapScrollingSection?.(this.renderCells(scrollableColumns)) ||
+            this.wrapScrollingSection(this.renderCells(scrollableColumns))
         );
 
-        const scrollingSection = this.props.wrapScrollingSection
-            ? this.props.wrapScrollingSection(scrollingCells)
-            : this.wrapScrollingSection(scrollingCells);
-
         const rowContent = <>
-            { this.renderCells(fixedLeftColumns) }
+            { this.wrapFixedSection(this.renderCells(fixedLeftColumns), 'left') }
             { scrollingSection }
-            { this.renderCells(fixedRightColumns) }
+            { this.wrapFixedSection(this.renderCells(fixedRightColumns), 'right') }
             { this.props.overlays }
             { this.props.renderConfigButton?.() }
         </>;
