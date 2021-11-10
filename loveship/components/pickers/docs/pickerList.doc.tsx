@@ -11,7 +11,7 @@ import { LinkButton, Button } from '../../buttons';
 import { Text } from '../../typography';
 import { FlexRow } from '../../layout';
 
-const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any> >({ name: 'PickerList', component: PickerList as React.ComponentClass<any> })
+const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any> >({ name: 'PickerList', component: PickerList })
     .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */] as any)
     .prop('value', { examples: [
             { name: '1', value: 1 },
