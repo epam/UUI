@@ -58,33 +58,37 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
     render() {
         const sortedModules = sortBy(this.state.moduleItems, ['order']);
         const sortedSections = sortBy(this.state.sectionItems, ['order']);
+        const isDesktop = window.screen?.width >= 1280;
         return (
-            <FlexRow cx={ css.root } alignItems='top' >
-                <Panel background='white' shadow>
-                    <FlexCell minWidth={ 282 } >
-                        <FlexRow padding='18' borderBottom>
-                            <Text size='48' font='sans-semibold'>Modules</Text>
-                            <FlexSpacer />
-                            <IconButton
-                                rawProps={{ 'aria-label': 'Add one More' }}
-                                icon={ addIcon }
-                                onClick={ () => {} }
-                                isDisabled
-                            />
-                        </FlexRow>
-                        <FlexCell cx={ css.moduleRowsContainer } >
-                            { sortedModules.map((module, index) => <DndModule
-                                key={ module.id }
-                                value={ module }
-                                prevModule={ sortedModules[index - 1] }
-                                nextModule={ sortedModules[index + 1] }
-                                onValueChange={ this.handleModuleChange }
-                            />) }
+            <FlexRow cx={ css.root } alignItems='stretch'  >
+                { isDesktop && (<>
+                    <Panel background='white' shadow>
+                        <FlexCell minWidth={ 282 } >
+                            <FlexRow padding='18' borderBottom>
+                                <Text size='48' font='sans-semibold'>Modules</Text>
+                                <FlexSpacer />
+                                <IconButton
+                                    rawProps={ { 'aria-label': 'Add one More' } }
+                                    icon={ addIcon }
+                                    onClick={ () => {} }
+                                    isDisabled
+                                />
+                            </FlexRow>
+                            <FlexCell cx={ css.moduleRowsContainer } >
+                                { sortedModules.map((module, index) => <DndModule
+                                    key={ module.id }
+                                    value={ module }
+                                    prevModule={ sortedModules[index - 1] }
+                                    nextModule={ sortedModules[index + 1] }
+                                    onValueChange={ this.handleModuleChange }
+                                />) }
+                            </FlexCell>
                         </FlexCell>
-                    </FlexCell>
-                </Panel>
-                <FlexSpacer />
-                <FlexCell cx={ css.moduleContent } minWidth={ 894 } >
+                    </Panel>
+                    <FlexSpacer />
+                </>
+                ) }
+                <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
                     <Text font='museo-sans' cx={ css.moduleHeader }>Module 3: Module Name</Text>
                     { sortedSections.map((section, index) => <DndSection
                         key={ section.id }

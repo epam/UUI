@@ -6,275 +6,263 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   role="row"
 >
   <div
-    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
-  >
-    <div
-      aria-sort="none"
-      className="flexCell -clickable"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseMove={[Function]}
-      onMouseUp={[Function]}
-      role="columnheader"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "96px",
-          "flexGrow": 0,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
+    aria-sort="none"
+    className="flexCell -clickable"
+    onClick={[Function]}
+    onPointerEnter={[Function]}
+    onPointerLeave={[Function]}
+    onPointerMove={[Function]}
+    onPointerUp={[Function]}
+    onTouchStart={[Function]}
+    role="columnheader"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "96px",
+        "flexGrow": 0,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
       }
+    }
+  >
+    <label
+      className="container root size-12 theme-light color-sky -clickable"
     >
-      <label
-        className="container root size-12 theme-light color-sky -clickable"
+      <div
+        className="uui-checkbox"
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </div>
+    </label>
+    <div>
+      <div
+        className=""
       >
         <div
-          className="uui-checkbox"
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
         >
-          <input
-            aria-checked={false}
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-          />
+          ID
         </div>
-      </label>
-      <div>
-        <div
-          className=""
+        <button
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+          href={null}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="container uui-icon uui-enabled"
+            style={Object {}}
           >
-            ID
-          </div>
-          <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-            href={null}
-            onClick={[Function]}
-            role="button"
-            tabIndex={-1}
-          >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
             >
-              <svg
-                className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
-            </div>
-          </button>
-        </div>
+              <use
+                xlinkHref="#sort.svg"
+              />
+            </svg>
+          </div>
+        </button>
       </div>
-      <div
-        onMouseDown={[Function]}
-      />
     </div>
+    <div
+      onMouseDown={[Function]}
+    />
   </div>
   <div
     className="scrollableColumnsWrapper"
-    style={
-      Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
-      }
-    }
   >
     <div
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-top"
+        aria-sort="ascending"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        onPointerDown={[Function]}
+        onPointerEnter={[Function]}
+        onPointerLeave={[Function]}
+        onPointerMove={[Function]}
+        onPointerUp={[Function]}
+        onTouchStart={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "200px",
+            "flexGrow": 1,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
       >
-        <div
-          aria-sort="ascending"
-          className="flexCell -clickable"
-          onClick={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "200px",
-              "flexGrow": 1,
-              "flexShrink": undefined,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <div>
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              name
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                name
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort_asc-12.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort_asc-12.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
-          <div
-            onMouseDown={[Function]}
-          />
         </div>
         <div
-          aria-sort="none"
-          className="flexCell -clickable"
-          onClick={[Function]}
           onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "150px",
-              "flexGrow": undefined,
-              "flexShrink": undefined,
-              "minWidth": "200px",
-              "textAlign": undefined,
-            }
+        />
+      </div>
+      <div
+        aria-sort="none"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        onPointerDown={[Function]}
+        onPointerEnter={[Function]}
+        onPointerLeave={[Function]}
+        onPointerMove={[Function]}
+        onPointerUp={[Function]}
+        onTouchStart={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "150px",
+            "flexGrow": undefined,
+            "flexShrink": undefined,
+            "minWidth": "200px",
+            "textAlign": undefined,
           }
-        >
-          <div>
+        }
+      >
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              Level
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                Level
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
-          <div
-            onMouseDown={[Function]}
-          />
         </div>
         <div
-          aria-sort="none"
-          className="flexCell -clickable"
-          onClick={[Function]}
           onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "120px",
-              "flexGrow": 1,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
+        />
+      </div>
+      <div
+        aria-sort="none"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        onPointerDown={[Function]}
+        onPointerEnter={[Function]}
+        onPointerLeave={[Function]}
+        onPointerMove={[Function]}
+        onPointerUp={[Function]}
+        onTouchStart={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "120px",
+            "flexGrow": 1,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
           }
-        >
-          <div>
+        }
+      >
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              DATE
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                DATE
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
-          <div
-            onMouseDown={[Function]}
-          />
         </div>
+        <div
+          onMouseDown={[Function]}
+        />
       </div>
     </div>
     <div
@@ -284,9 +272,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       className="scrollShadowRight"
     />
   </div>
-  <div
-    className="fixedColumnsWrapper fixedColumnsWrapperRight"
-  />
 </div>
 `;
 
@@ -296,228 +281,212 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   role="row"
 >
   <div
-    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
-  >
-    <div
-      aria-sort="none"
-      className="flexCell -clickable"
-      onClick={[Function]}
-      role="columnheader"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "96px",
-          "flexGrow": 0,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
+    aria-sort="none"
+    className="flexCell -clickable"
+    onClick={[Function]}
+    role="columnheader"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "96px",
+        "flexGrow": 0,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": undefined,
       }
-    >
-      <div>
+    }
+  >
+    <div>
+      <div
+        className=""
+      >
         <div
-          className=""
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+        >
+          ID
+        </div>
+        <button
+          className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+          href={null}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="container uui-icon uui-enabled"
+            style={Object {}}
           >
-            ID
-          </div>
-          <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-            href={null}
-            onClick={[Function]}
-            role="button"
-            tabIndex={-1}
-          >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+            <svg
+              className=""
+              height={24}
+              viewBox="0 0 12 24"
+              width={12}
             >
-              <svg
-                className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
-            </div>
-          </button>
-        </div>
+              <use
+                xlinkHref="#sort.svg"
+              />
+            </svg>
+          </div>
+        </button>
       </div>
     </div>
   </div>
   <div
     className="scrollableColumnsWrapper"
-    style={
-      Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
-      }
-    }
   >
     <div
       className="scrollableColumnsContainer"
     >
       <div
-        className="container align-items-top"
+        aria-sort="ascending"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "200px",
+            "flexGrow": 1,
+            "flexShrink": undefined,
+            "minWidth": 0,
+            "textAlign": undefined,
+          }
+        }
       >
-        <div
-          aria-sort="ascending"
-          className="flexCell -clickable"
-          onClick={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "200px",
-              "flexGrow": 1,
-              "flexShrink": undefined,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <div>
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              name
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                name
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort_asc-12.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort_asc-12.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
         </div>
-        <div
-          aria-sort="none"
-          className="flexCell -clickable"
-          onClick={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "150px",
-              "flexGrow": undefined,
-              "flexShrink": undefined,
-              "minWidth": "200px",
-              "textAlign": undefined,
-            }
+      </div>
+      <div
+        aria-sort="none"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "150px",
+            "flexGrow": undefined,
+            "flexShrink": undefined,
+            "minWidth": "200px",
+            "textAlign": undefined,
           }
-        >
-          <div>
+        }
+      >
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              Level
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                Level
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
         </div>
-        <div
-          aria-sort="none"
-          className="flexCell -clickable"
-          onClick={[Function]}
-          role="columnheader"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "120px",
-              "flexGrow": 1,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
+      </div>
+      <div
+        aria-sort="none"
+        className="flexCell -clickable"
+        onClick={[Function]}
+        role="columnheader"
+        style={
+          Object {
+            "alignSelf": undefined,
+            "flexBasis": "120px",
+            "flexGrow": 1,
+            "flexShrink": 0,
+            "minWidth": 0,
+            "textAlign": undefined,
           }
-        >
-          <div>
+        }
+      >
+        <div>
+          <div
+            className=""
+          >
             <div
-              className=""
+              className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            >
+              DATE
+            </div>
+            <button
+              className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+              href={null}
+              onClick={[Function]}
+              role="button"
+              tabIndex={-1}
             >
               <div
-                className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                className="container uui-icon uui-enabled"
+                style={Object {}}
               >
-                DATE
-              </div>
-              <button
-                className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                href={null}
-                onClick={[Function]}
-                role="button"
-                tabIndex={-1}
-              >
-                <div
-                  className="container uui-icon uui-enabled"
-                  style={Object {}}
+                <svg
+                  className=""
+                  height={24}
+                  viewBox="0 0 12 24"
+                  width={12}
                 >
-                  <svg
-                    className=""
-                    height={24}
-                    viewBox="0 0 12 24"
-                    width={12}
-                  >
-                    <use
-                      xlinkHref="#sort.svg"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                  <use
+                    xlinkHref="#sort.svg"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -529,8 +498,5 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
       className="scrollShadowRight"
     />
   </div>
-  <div
-    className="fixedColumnsWrapper fixedColumnsWrapperRight"
-  />
 </div>
 `;

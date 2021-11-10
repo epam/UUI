@@ -36,11 +36,10 @@ export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRow
         this.resizeObserver.disconnect();
     }
 
-    wrapScrollingSection = (content: ReactNode, style: CSSProperties) => (
+    wrapScrollingSection = (content: ReactNode) => (
         <ScrollBars
             className={ uuiDataTableScrollRow.uuiTableScrollBar }
             hideTracksWhenNotNeeded
-            style={ style }
             vertical={ false }
             horizontal={ true }
             ref={ (scrollBars: ScrollbarsApi) => {
