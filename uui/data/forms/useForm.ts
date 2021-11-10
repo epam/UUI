@@ -23,28 +23,35 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         historyIndex: 0
     });
 
-    const [formState, setFormState] = useState<UseFormState<T>>(initialForm.current);
+    const formState = useRef(initialForm.current);
+
+    const [, forceUpdate] = useState<any>();
+
+    const setFormState = (newValue: UseFormState<T>) => {
+        formState.current = newValue;
+        forceUpdate({});
+    };
 
     const handleLeave = props.beforeLeave ? () => props.beforeLeave().then(res => {
         if (res) return handleSave();
         removeUnsavedChanges();
     }) : null;
 
-    useLock({ isEnabled: formState.isChanged, handleLeave });
+    useLock({ isEnabled: formState.current.isChanged, handleLeave });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
-        get: () => formState.form,
+        get: () => formState.current.form,
         set: (_, small: T) => {
             handleFormUpdate(small);
             return small;
         },
         getValidationState: () => {
-            const { form, lastSentForm, serverValidationState, validationState } = formState;
+            const { form, lastSentForm, serverValidationState, validationState } = formState.current;
             const serverValidation = validateServerErrorState(form, lastSentForm, serverValidationState);
             return mergeValidation(validationState, serverValidation);
         },
-        getMetadata: () => props.getMetadata ? props.getMetadata(formState.form) : {},
-    }), [props.value, formState.form, formState.validationState, formState.lastSentForm, formState.serverValidationState]);
+        getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
+    }), [props.value, formState.current.form, formState.current.validationState, formState.current.lastSentForm, formState.current.serverValidationState]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -55,9 +62,9 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     useEffect(() => {
         if (!isEqual(props.value, initialForm.current.prevProps.value)) {
             resetForm({
-                ...formState,
+                ...formState.current,
                 form: props.value,
-                formHistory: formState.isChanged ? formState.formHistory : [props.value]
+                formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value]
             });
         };
     }, [props.value]);
@@ -75,12 +82,12 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleFormUpdate = (newForm: T) => {
-        const { validationState, historyIndex, formHistory } = formState;
+        const { validationState, historyIndex, formHistory } = formState.current;
         const newHistoryIndex = historyIndex + 1;
         const newFormHistory = formHistory.slice(0, newHistoryIndex).concat(newForm);
         setUnsavedChanges(newForm);
         setFormState({
-            ...formState,
+            ...formState.current,
             form: newForm,
             isChanged: !isEqual(props.value, newForm),
             validationState: validationState.isInvalid ? handleValidate(newForm) : validationState,
@@ -94,30 +101,30 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleValidate = (newVal?: T) => {
-        const valueToValidate = newVal || formState.form;
+        const valueToValidate = newVal || formState.current.form;
         const metadata = props.getMetadata ? props.getMetadata(valueToValidate) : {};
         return uuiValidate(valueToValidate, metadata);
     };
 
     const handleSave = useCallback(() => {
         const validationState = handleValidate();
-        setFormState({ ...formState, validationState });
+        setFormState({ ...formState.current, validationState });
         if (!validationState.isInvalid) {
-            setFormState({ ...formState, isInProgress: true });
-            return props.onSave(formState.form)
+            setFormState({ ...formState.current, isInProgress: true });
+            return props.onSave(formState.current.form)
                 .then(handleSaveResponse)
                 .catch(err => props.onError?.(err));
         } else return Promise.reject();
-    }, [formState.validationState, formState.form, formState.isInProgress, props.onSave, props.onError]);
+    }, [formState.current.validationState, formState.current.form, formState.current.isInProgress, props.onSave, props.onError]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
         const newState: UseFormState<T> = {
-            ...formState,
+            ...formState.current,
             isChanged: false,
-            form: response && response.form || formState.form,
+            form: response && response.form || formState.current.form,
             isInProgress: false,
-            serverValidationState: response && response.validation || formState.serverValidationState,
-            lastSentForm: response && response.validation?.isInvalid ? (response.form || formState.form) : formState.lastSentForm,
+            serverValidationState: response && response.validation || formState.current.serverValidationState,
+            lastSentForm: response && response.validation?.isInvalid ? (response.form || formState.current.form) : formState.current.lastSentForm,
         };
         if (response && response.validation) return setFormState(newState);
         resetForm(newState);
@@ -127,52 +134,52 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleUndo = useCallback(() => {
-        const { formHistory, historyIndex, validationState } = formState;
+        const { formHistory, historyIndex, validationState } = formState.current;
         const previousIndex = historyIndex > 0 ? historyIndex - 1 : 0;
         const previousItem = formHistory[previousIndex];
-        if (previousIndex === 0) return resetForm({ ...formState, form: previousItem, formHistory });
+        if (previousIndex === 0) return resetForm({ ...formState.current, form: previousItem, formHistory });
         setFormState({
-            ...formState,
+            ...formState.current,
             form: previousItem,
             historyIndex: previousIndex,
             validationState: validationState.isInvalid ? handleValidate(previousItem) : {}
         });
-    }, [formState.formHistory, formState.historyIndex, formState.validationState, formState.form]);
+    }, [formState.current.formHistory, formState.current.historyIndex, formState.current.validationState, formState.current.form]);
 
     const handleRedo = useCallback(() => {
-        const { formHistory, historyIndex } = formState;
+        const { formHistory, historyIndex } = formState.current;
         const lastIndex = formHistory.length - 1;
         const nextIndex = historyIndex < lastIndex ? historyIndex + 1 : lastIndex;
         const nextItem = formHistory[nextIndex];
-        setFormState({ ...formState, form: nextItem, historyIndex: nextIndex, isChanged: true });
-    }, [formState.formHistory, formState.historyIndex, formState.form, formState.isChanged]);
+        setFormState({ ...formState.current, form: nextItem, historyIndex: nextIndex, isChanged: true });
+    }, [formState.current.formHistory, formState.current.historyIndex, formState.current.form, formState.current.isChanged]);
 
     const validate = useCallback(() => {
-        setFormState({ ...formState, validationState: handleValidate() });
-    }, [formState.form, props.getMetadata]);
+        setFormState({ ...formState.current, validationState: handleValidate() });
+    }, [formState.current.form, props.getMetadata]);
 
     const handleRevert = useCallback(() => {
-        resetForm({ ...formState, form: props.value });
+        resetForm({ ...formState.current, form: props.value });
     }, [props.value]);
 
     const handleValueChange = useCallback((newVal: T) => {
-        setFormState({ ...formState, form: newVal })
-    }, [formState.form]);
+        setFormState({ ...formState.current, form: newVal })
+    }, [formState.current.form]);
 
     return {
-        isChanged: formState.isChanged,
+        isChanged: formState.current.isChanged,
         lens,
         save: handleSave,
         undo: handleUndo,
         redo: handleRedo,
         revert: handleRevert,
         validate,
-        canUndo: formState.historyIndex !== 0,
-        canRedo: formState.historyIndex !== formState.formHistory.length - 1,
-        canRevert: formState.form !== props.value,
-        value: formState.form,
+        canUndo: formState.current.historyIndex !== 0,
+        canRedo: formState.current.historyIndex !== formState.current.formHistory.length - 1,
+        canRevert: formState.current.form !== props.value,
+        value: formState.current.form,
         onValueChange: handleValueChange,
-        isInvalid: formState.validationState.isInvalid,
-        isInProgress: formState.isInProgress,
+        isInvalid: formState.current.validationState.isInvalid,
+        isInProgress: formState.current.isInProgress,
     };
 };
