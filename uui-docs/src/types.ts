@@ -7,15 +7,15 @@ export interface DemoComponentProps<TProps = any> {
     props: any;
 }
 
-export interface IComponentDocs<TProps> {
+export interface IComponentDocs<TProps extends {}> {
     name: string;
-    component?: React.ComponentType<TProps>;
+    component?: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext[];
 }
 
 export interface DemoContext {
-    context: React.ComponentClass<DemoComponentProps>;
+    context: React.ComponentType<DemoComponentProps>;
     name: string;
 }
 

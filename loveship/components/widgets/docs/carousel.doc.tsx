@@ -38,7 +38,7 @@ const items = [
     { country: 'Italy' },
 ];
 
-const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel', component: Carousel as React.ComponentClass<any> })
+const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel', component: Carousel })
     .implements([colorDoc] as any)
     .prop('items', {
         examples: [
