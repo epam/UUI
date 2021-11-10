@@ -2,7 +2,6 @@ import React from 'react';
 import * as props from './props';
 import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams} from '../types';
 import { DataSourceListProps, DataSourceState } from '../data/processing';
-import { ScrollManager } from '../services';
 import { ILens } from '..';
 import { Link } from '../types';
 
@@ -44,7 +43,6 @@ export interface DataTableHeaderCellProps<TItem, TId> extends IEditable<DataTabl
 
 export interface DataTableHeaderRowProps<TItem, TId> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
-    scrollManager?: ScrollManager;
     selectAll?: ICheckable;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
@@ -177,9 +175,6 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
      * We demand to pass the row as well, to avoid creating closures for each row.
      */
     onFocus?(focusedIndex: number): void;
-
-    /** ScrollManager instance, which synchronizes horizontal scrolling of rows. Optional, used for tables with horizontal scrolling. */
-    scrollManager?: ScrollManager;
 };
 
 export type ColumnsConfig = {

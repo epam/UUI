@@ -66,7 +66,6 @@ export class DataTableScrollRow<TItem, TId> extends Component<DataTableScrollRow
             >
                 <DataTableRowContainer<TItem, TId>
                     cx={ uuiDataTableScrollRow.uuiTableScrollRow }
-                    scrollManager={ this.props.scrollManager }
                     columns={ this.props.columns }
                     renderCell={ this.renderCell }
                     wrapScrollingSection={ this.wrapScrollingSection }

@@ -1,7 +1,17 @@
 .table {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
 
 .body {
     flex: 1 1 auto;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.listContainer {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
 }
