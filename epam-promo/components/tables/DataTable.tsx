@@ -5,7 +5,7 @@ import {
 } from '@epam/uui';
 import { PositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { FlexRow, VirtualList, ScrollBars } from '../';
+import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
@@ -54,7 +54,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
     };
 
     return (
-        <ScrollBars autoHeight hideTracksWhenNotNeeded autoHeightMax={ 100500 }>
+        <>
             <DataTableHeaderRow
                 columns={ columns }
                 onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
@@ -66,11 +66,23 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 value={ props.value }
                 onValueChange={ props.onValueChange }
             />
-            <FlexRow topShadow background='white'>
-                <div className={ css.listContainer }>
-                    { props.exactRowsCount !== 0 ? getRows().slice(0, 200) : renderNoResultsBlock() }
-                </div>
+            <FlexRow
+                topShadow
+                background='white'
+                cx={ css.body }
+            >
+                { props.exactRowsCount !== 0 ? (
+                    <VirtualList
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
+                        onScroll={ props.onScroll }
+                        rows={ getRows() }
+                        rowsCount={ props.rowsCount }
+                        focusedIndex={ props.value?.focusedIndex }
+                        shadow='dark'
+                    />
+                ) : renderNoResultsBlock() }
             </FlexRow>
-        </ScrollBars>
+        </>
     );
 };
