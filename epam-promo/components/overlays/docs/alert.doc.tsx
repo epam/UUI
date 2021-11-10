@@ -4,7 +4,7 @@ import { ResizableContext, iconWithInfoDoc, colorDoc } from '../../../docs';
 import { Text } from '../../typography';
 import { AlertProps, Alert } from '..';
 
-const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert as React.ComponentClass<any> })
+const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
     .implements([iconWithInfoDoc, colorDoc] as any)
     .prop('children', {
         examples: [

@@ -5,7 +5,7 @@ import { Switch, SwitchMods } from '../Switch';
 import { isDisabledDoc, iHasLabelDoc, iEditable, colorDoc } from '../../../docs';
 import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
 
-const SwitchDoc = new DocBuilder<SwitchProps & SwitchMods>({ name: 'Switch', component: Switch as React.ComponentClass<any>})
+const SwitchDoc = new DocBuilder<SwitchProps & SwitchMods>({ name: 'Switch', component: Switch })
     .implements([isDisabledDoc, iHasLabelDoc, iEditable, colorDoc] as any)
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
     .prop('size', { examples: ['12', '18', '24'], defaultValue: '18' })
