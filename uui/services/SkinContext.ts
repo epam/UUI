@@ -3,7 +3,7 @@ import { ButtonCoreProps, CheckboxCoreProps, FlexCellProps, FlexRowProps, TextIn
 import * as React from 'react';
 
 interface ISkinComponent<TProps, TSemanticProps= {}> {
-    component: React.ComponentClass<TProps>;
+    component: React.ComponentType<TProps>;
     mapProps?(props: SkinContextComponentProps<TProps, TSemanticProps>): TProps;
     render(props: SkinContextComponentProps<TProps, TSemanticProps>): React.ReactElement<SkinContextComponentProps<TProps, TSemanticProps>>;
 }
@@ -14,7 +14,7 @@ export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps & TS
 
 
 export function skinComponent<TProps, TSemanticProps = {}>(
-    component: React.ComponentClass<TProps>,
+    component: React.ComponentType<TProps>,
     mapProps?: (props: SkinContextComponentProps<TProps, TSemanticProps>) => TProps,
 ): ISkinComponent<TProps, TSemanticProps> {
     return {
