@@ -91,7 +91,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                     />
                 ) : renderNoResultsBlock() }
             </FlexRow>
-        </>
+        </div>
     );
 };
 
