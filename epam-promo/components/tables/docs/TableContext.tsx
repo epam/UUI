@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DataSourceState, Lens, ScrollManager, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig } from '@epam/uui';
+import { DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig } from '@epam/uui';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { Text, DataTableRow, DataTableHeaderRow, Panel, DataTableScrollRow, FlexRow, FlexSpacer, IconButton } from '../..';
+import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import * as gearIcon from '../../../icons/action-settings-18.svg';
 
@@ -29,15 +29,12 @@ let tableData = demoData.personDemoData;
 
 export class TableContext extends React.Component<DemoComponentProps, any> {
     state: DataTableCardState = {
-        tableState: {
-
-        },
+        tableState: {},
         items: tableData,
         columnsConfig: {},
     };
 
     lens = Lens.onState<DataTableCardState>(this);
-    scrollManager = new ScrollManager();
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -48,7 +45,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     }
 
     getRows() {
-        let sort = this.state.tableState.sorting;
+        const sort = this.state.tableState.sorting;
         let rows = this.state.items;
         let columns: DataColumnProps<any>[] = this.getVisibleColumns();
         if (sort) {
@@ -78,7 +75,6 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
             id={ index }
             rowKey={ index + '' }
             index={ index }
-            scrollManager={ this.scrollManager }
         />);
     }
 
@@ -114,30 +110,26 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
                 <DataTableHeaderRow
                     key='header'
                     columns={ this.getVisibleColumns() }
-                    scrollManager={ this.scrollManager }
                     size={ props.size }
                     { ...this.lens.prop('tableState').toProps() }
                 />
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
             </>;
         }
         if (component === DataTableHeaderRow) {
             return <>
-                { React.createElement(component as any, { ...props, scrollManager: this.scrollManager, columns: this.getVisibleColumns() }) }
+                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
             </>;
         }
     }
 
     render() {
-        const { DemoComponent, props } = this.props;
-        const columns = this.props.props.columns;
         return (
             <Panel margin='24' shadow style={ { 'width': '50%' } }>
-                { this.getTable(DemoComponent, props) }
-                <DataTableScrollRow key='scroll' scrollManager={ this.scrollManager } columns={ columns } size={ props.size }/>
+                { this.getTable(this.props.DemoComponent, this.props.props) }
             </Panel>
         );
     }

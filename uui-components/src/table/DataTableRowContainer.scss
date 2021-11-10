@@ -1,25 +1,22 @@
 @use '~@epam/assets/scss/index' as *;
 
 .container {
-    display: flex;
     position: relative;
-    overflow: hidden;
-    flex: 0 0 auto;
 }
 
 .scrollable-columns-wrapper {
     position: relative;
     display: flex;
+    flex: 1;
     align-self: stretch;
-    overflow: hidden;
+    overflow-wrap: anywhere;
+    min-width: 0;
 }
 
 .scrollable-columns-container {
-    flex: 1 1 0;
-    align-self: stretch;
     position: relative;
+    display: flex;
     width: 100%;
-    min-width: 0;
 }
 
 .fixed-columns-wrapper {

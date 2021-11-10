@@ -1,26 +1,24 @@
 import React, { useState, ReactNode } from 'react';
 import {
-    ColumnsConfig, DataRowProps, ScrollManager, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
+    ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
 } from '@epam/uui';
-import type { PositionValues } from '@epam/uui-components';
-import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableScrollRow, DataTableMods } from './';
+import { PositionValues } from '@epam/uui-components';
+import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { FlexRow, VirtualList } from '../';
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataRowProps<TItem, TId>): ReactNode;
-    renderNoResultsBlock?(): ReactNode;
+    renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
+    renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
 }
 
-export const DataTable = <TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
-    const [scrollManager] = useState(new ScrollManager());
+export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
     const context = useUuiContext();
-
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
@@ -34,12 +32,11 @@ export const DataTable = <TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const getRows = () => {
         const renderItemRow = props.renderRow || renderRow;
-        return props.getRows().map(row => renderItemRow({ ...row, scrollManager, columns }));
+        return props.getRows().map(row => renderItemRow({ ...row, columns }));
     };
 
     const renderNoResultsBlock = () => {
         // need default behavior
-
         return props.renderNoResultsBlock ? props.renderNoResultsBlock() : undefined;
     };
 
@@ -59,8 +56,6 @@ export const DataTable = <TItem, TId>(props: React.PropsWithChildren<DataTablePr
     return (
         <div className={ css.table } role="table" aria-rowcount={ props.getRows().length } aria-colcount={ columns.length }>
             <DataTableHeaderRow
-                key='header'
-                scrollManager={ scrollManager }
                 columns={ columns }
                 onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                 selectAll={ props.selectAll }
@@ -72,7 +67,6 @@ export const DataTable = <TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 onValueChange={ props.onValueChange }
             />
             <FlexRow
-                key='body'
                 topShadow
                 background='white'
                 cx={ css.body }
@@ -89,7 +83,6 @@ export const DataTable = <TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     />
                 ) : renderNoResultsBlock() }
             </FlexRow>
-            <DataTableScrollRow key='scroll' scrollManager={ scrollManager } columns={ columns } />
-        </div>
+        </>
     );
 };

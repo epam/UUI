@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import { DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens, getColumnsConfig, DropParams, getOrderBetween } from '@epam/uui';
+import * as React from 'react';
+import {
+    DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens, DataTableHeaderCellProps,
+    getColumnsConfig, DropParams, getOrderBetween,
+} from '@epam/uui';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
 const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',
 };
 
-export class DataTableHeaderRow<TItem, TId> extends Component<DataTableHeaderRowProps<TItem, TId>, {}> {
+export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHeaderRowProps<TItem, TId>, {}> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     sortLens = this.lens.prop('sorting');
     filterLens = this.lens.prop('filter');
@@ -58,7 +61,6 @@ export class DataTableHeaderRow<TItem, TId> extends Component<DataTableHeaderRow
         return (
             <DataTableRowContainer
                 cx={ [this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow] }
-                scrollManager={ this.props.scrollManager }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 rawProps={{ role: 'row' }}

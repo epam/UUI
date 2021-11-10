@@ -28,8 +28,7 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
 
     renderRow(params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) {
         return (
-            <DataTableRowContainer<TItem, TId>
-                scrollManager={ this.props.scrollManager }
+            <DataTableRowContainer
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 onClick={ clickHandler && (() => clickHandler(this.props)) }
