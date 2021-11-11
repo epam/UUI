@@ -1,11 +1,11 @@
-import React, { useState, ReactNode } from 'react';
+import React from 'react';
 import {
     ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
-    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
+    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual,
 } from '@epam/uui';
 import { PositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { FlexRow, VirtualList } from '../';
+import { FlexRow, ScrollBars } from '../';
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
@@ -18,8 +18,15 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 }
 
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
-    const context = useUuiContext();
+    const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
+    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
+        value: props.value,
+        onValueChange: props.onValueChange,
+        onScroll: props.onScroll,
+        rowsCount: props.rowsCount,
+        focusedIndex: props.value.focusedIndex
+    });
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -30,18 +37,13 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
         />
     );
 
-    const getRows = () => {
-        const renderItemRow = props.renderRow || renderRow;
-        return props.getRows().map(row => renderItemRow({ ...row, columns }));
-    };
-
     const renderNoResultsBlock = () => {
         // need default behavior
-        return props.renderNoResultsBlock ? props.renderNoResultsBlock() : undefined;
+        return props.renderNoResultsBlock?.() || undefined;
     };
 
     const onConfigurationButtonClick = () => {
-        context.uuiModals.show<ColumnsConfig>(modalProps => (
+        uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
                 columns={ props.columns }
@@ -53,36 +55,45 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             .catch(() => null);
     };
 
+    const getVirtualisedList = () => {
+        const renderItemRow = props.renderRow || renderRow;
+        const rows = props.getRows().map(row => renderItemRow({ ...row, columns }));
+
+        return (
+            <div
+                ref={ listRef }
+                role='rowgroup'
+                className={ css.listContainer }
+                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
+                { rows }
+            </div>
+        );
+    };
+
     return (
-        <div className={ css.table } role="table" aria-rowcount={ props.getRows().length } aria-colcount={ columns.length }>
-            <DataTableHeaderRow
-                columns={ columns }
-                onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                selectAll={ props.selectAll }
-                size={ props.size }
-                textCase={ props.headerTextCase }
-                allowColumnsReordering={ props.allowColumnsReordering }
-                allowColumnsResizing={ props.allowColumnsResizing }
-                value={ props.value }
-                onValueChange={ props.onValueChange }
-            />
-            <FlexRow
-                topShadow
-                background='white'
-                cx={ css.body }
-            >
-                { props.exactRowsCount !== 0 ? (
-                    <VirtualList
-                        value={ props.value }
-                        onValueChange={ props.onValueChange }
-                        onScroll={ props.onScroll }
-                        rows={ getRows() }
-                        rowsCount={ props.rowsCount }
-                        focusedIndex={ props.value?.focusedIndex }
-                        shadow='dark'
-                    />
-                ) : renderNoResultsBlock() }
-            </FlexRow>
-        </div>
+        <ScrollBars
+            autoHeight
+            ref={ scrollbarsRef }
+            cx={ css.body }
+            onScroll={ handleScroll }
+            hideTracksWhenNotNeeded
+            autoHeightMax={ 100500 }
+        >
+            <div className={ css.table } role="table" aria-colcount={ props.columns.length } aria-rowcount={ props.rowsCount }>
+                <DataTableHeaderRow
+                    columns={ columns }
+                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                    selectAll={ props.selectAll }
+                    size={ props.size }
+                    cx={ css.stickyHeader }
+                    textCase={ props.headerTextCase }
+                    allowColumnsReordering={ props.allowColumnsReordering }
+                    allowColumnsResizing={ props.allowColumnsResizing }
+                    value={ props.value }
+                    onValueChange={ props.onValueChange }
+                />
+                { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
+            </div>
+        </ScrollBars>
     );
 };

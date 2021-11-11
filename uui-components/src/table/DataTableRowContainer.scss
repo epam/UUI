@@ -2,21 +2,22 @@
 
 .container {
     position: relative;
+    display: flex;
+    width: 100%;
 }
 
-.scrollable-columns-wrapper {
+.column {
     position: relative;
     display: flex;
     flex: 1;
-    align-self: stretch;
-    overflow-wrap: anywhere;
-    min-width: 0;
 }
 
-.scrollable-columns-container {
+.columns-container {
     position: relative;
     display: flex;
-    width: 100%;
+    flex-shrink: 0;
+    align-items: stretch;
+    width: 0;
 }
 
 .fixed-columns-wrapper {

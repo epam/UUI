@@ -1,17 +1,43 @@
 .table {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    height: 100%;
 }
 
-.body {
-    flex: 1 1 auto;
-    justify-content: center;
-    align-items: flex-start;
+// .wrapper {
+//     flex: 1 1 0;
+//     align-self: stretch;
+//     display: flex;
+//     position: relative;
+//     width: 100%;
+// }
+
+// .listContainer {
+//     display: flex;
+//     flex-direction: column;
+//     flex: 1 1 0;
+//     align-self: stretch;
+//     margin-top: 0;
+// }
+
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
-.listContainer {
-    display: flex;
-    flex: auto;
-    flex-direction: column;
+:global(.uui-scroll-shadow-top) {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+:global(.uui-scroll-shadow-bottom) {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
