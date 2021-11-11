@@ -18,7 +18,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     showColumnsConfig?: boolean;
 }
 
-export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>): React.ReactElement => {
+export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
     const context = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
@@ -47,7 +47,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
 
             />
         ))
-            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig: config }))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
     };
 
@@ -60,7 +60,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
             </div>
         );
 
-        return props.renderNoResultsBlock ? props.renderNoResultsBlock() : renderNoResults();
+        return props.renderNoResultsBlock?.() || renderNoResults();
     };
 
     return (

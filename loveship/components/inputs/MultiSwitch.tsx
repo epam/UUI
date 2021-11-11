@@ -27,7 +27,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
                             <Button
                                 {  ...item }
                                 cx={ cx(item.cx, { [css.selectedItem]: isActive }) }
-                                key={ index + '-' + item.id as any }
+                                key={ index + '-' + item.id }
                                 onClick={ () => this.props.onValueChange(item.id) }
                                 shape="square"
                                 fill={ isActive ? 'solid' : 'white' }

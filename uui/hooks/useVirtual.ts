@@ -34,25 +34,25 @@ export function useVirtual<T extends HTMLElement>({
 }: UseVirtualProps): UseVirtualApi<T> {
     const [focused, setFocused] = useState<number>(focusedIndex);
     const list = useRef<T>();
-    const scrollbars = useRef<ScrollbarsApi | null>();
+    const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
     const estimatedHeight = useRef<number>(0);
 
     const updateScrollToFocus = useCallback(() => {
-        if (!scrollbars.current || focused == undefined) return;
-        const { scrollTop, clientHeight } = scrollbars.current.getValues();
+        if (!scrollbarsRef.current || focused == undefined) return;
+        const { scrollTop, clientHeight } = scrollbarsRef.current.getValues();
         const focusCoord = focused && rowOffsets.current[focused] || 0;
         const rowHeight = focused && rowHeights.current[focused] || 0;
         if (focusCoord < (scrollTop - rowHeight) || (scrollTop + clientHeight) < focusCoord) {
-            scrollbars.current.scrollTop(focusCoord - clientHeight / 2 + rowHeight / 2);
+            scrollbarsRef.current.scrollTop(focusCoord - clientHeight / 2 + rowHeight / 2);
         };
-    }, [rowOffsets.current, scrollbars.current, focused]);
+    }, [rowOffsets.current, scrollbarsRef.current, focused]);
 
     const handleScroll = useCallback(() => {
-        if (!scrollbars.current) return;
-        if (onScroll) onScroll(scrollbars.current.getValues());
-        const { scrollTop, clientHeight } = scrollbars.current.getValues();
+        if (!scrollbarsRef.current) return;
+        if (onScroll) onScroll(scrollbarsRef.current.getValues());
+        const { scrollTop, clientHeight } = scrollbarsRef.current.getValues();
 
         let topIndex = 0;
         while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + overscan, rowsCount)] < scrollTop) {
@@ -68,7 +68,7 @@ export function useVirtual<T extends HTMLElement>({
             const visibleCount = (bottomIndex - topIndex) + overscan * 2;
             onValueChange({ ...value, topIndex: topIndex, visibleCount });
         }
-    }, [onValueChange, overscan, rowOffsets.current, rowsCount, value, onScroll, scrollbars.current]);
+    }, [onValueChange, overscan, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
 
     const updateRowHeights = useCallback(() => {
         if (!list.current) return;
@@ -114,10 +114,10 @@ export function useVirtual<T extends HTMLElement>({
 
     return {
         estimatedHeight: estimatedHeight.current,
-        scrollValues: scrollbars.current?.getValues(),
+        scrollValues: scrollbarsRef.current?.getValues(),
         handleScroll,
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
-        scrollbarsRef: scrollbars,
+        scrollbarsRef,
         listRef: list,
         scrollToIndex,
     };

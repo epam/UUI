@@ -24,15 +24,15 @@ enum uuiScrollbars {
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
 };
 
-export const ScrollBars = forwardRef(({
+export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style,
     hasBottomShadow,
     hasTopShadow,
     horizontal = true,
     vertical = true,
     ...props
-}: ScrollbarProps, ref) => {
-    const bars = useRef<Scrollbars>();
+}, ref) => {
+    const bars = useRef<ScrollbarsApi>();
 
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 
@@ -75,7 +75,7 @@ export const ScrollBars = forwardRef(({
                 hasTopShadow && uuiScrollbars.uuiShadowTop,
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
-            renderView={ renderView }
+            renderView={ props.renderView === undefined ? renderView : props.renderView }
             renderThumbHorizontal={ horizontal ? () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> : undefined }
             renderThumbVertical={ vertical ? () => <div className={ uuiScrollbars.uuiThumbVertical } /> : undefined }
             style={ { ...{ display: 'flex' }, ...style } }

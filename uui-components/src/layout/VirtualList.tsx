@@ -36,7 +36,7 @@ export function VirtualList({
                 ref={ listRef }
                 role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }
                 className={ css.listContainer }
-                style={ { marginTop: offsetY } }>
+                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
                 { rows }
             </div>
         );
@@ -52,9 +52,7 @@ export function VirtualList({
                 ref={ scrollbarsRef }
                 autoHeightMax={ 100500 }
             >
-                <div className={ css.listWrapperContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                    { renderRows() }
-                </div>
+                { renderRows() }
             </ScrollBars>
         </div>
     );

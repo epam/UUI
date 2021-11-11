@@ -25,16 +25,6 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
         }, []);
     }
 
-    wrapScrollingSection = (content: React.ReactNode[]) => (
-        <div className={ css.scrollableColumnsWrapper }>
-            <div className={ css.scrollableColumnsContainer }>
-                { content }
-            </div>
-            <div className={ css.scrollShadowLeft } />
-            <div className={ css.scrollShadowRight } />
-        </div>
-    );
-
     wrapFixedSection = (content: React.ReactNode[], direction: 'left' | 'right') => (
         <>
             { content }
@@ -52,18 +42,24 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
             else scrollableColumns.push(i);
         });
 
-        const scrollingSection = (
+        const cells = (
             this.props.wrapScrollingSection?.(this.renderCells(scrollableColumns)) ||
-            this.wrapScrollingSection(this.renderCells(scrollableColumns))
+            this.renderCells(scrollableColumns)
         );
 
-        const rowContent = <>
-            { this.wrapFixedSection(this.renderCells(fixedLeftColumns), 'left') }
-            { scrollingSection }
-            { this.wrapFixedSection(this.renderCells(fixedRightColumns), 'right') }
-            { this.props.overlays }
-            { this.props.renderConfigButton?.() }
-        </>;
+        const rowContent = (
+            <>
+                <div className={ css.columnsContainer }>
+                    { this.wrapFixedSection(this.renderCells(fixedLeftColumns), 'left') }
+                    { cells }
+                    { this.wrapFixedSection(this.renderCells(fixedRightColumns), 'right') }
+                </div>
+                { this.props.overlays }
+                <div className={ css.scrollShadowLeft } />
+                <div className={ css.scrollShadowRight } />
+                { this.props.renderConfigButton?.() }
+            </>
+        );
 
         return (
             this.props.link ? (
