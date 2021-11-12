@@ -28,8 +28,8 @@ export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     onLogoClick?: (e: MouseEvent) => any;
     customerLogoLink?: Link;
     customerLogoHref?: string;
-    MainMenuDropdown?: React.ComponentClass<MainMenuDropdownProps>;
-    Burger?: React.ComponentClass<BurgerProps>;
+    MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;
+    Burger?: React.ComponentType<BurgerProps>;
 }
 
 interface MainMenuState {

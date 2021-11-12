@@ -6,7 +6,7 @@ import { Calendar } from '../Calendar';
 import { iEditable } from '../../../docs';
 import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
 
-const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', component: Calendar as React.ComponentClass<any> })
+const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', component: Calendar })
     .implements([iEditable] as any)
     .prop('value', { examples: [{ value: dayjs('2017-12-30') }] })
     .prop('displayedDate', { examples: [{ value: dayjs('2017-12-30'), isDefault: true }], isRequired: true })

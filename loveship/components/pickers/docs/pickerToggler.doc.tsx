@@ -6,7 +6,7 @@ import { DefaultContext, ResizableContext, GridContext, FormContext } from '../.
 import { PickerToggler } from '../PickerToggler';
 import { Button } from '../../buttons';
 
-const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any>>({ name: 'PickerToggler', component: PickerToggler as React.ComponentClass<any> })
+const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any>>({ name: 'PickerToggler', component: PickerToggler })
     .implements([sizeDoc, isDisabledDoc, isReadonlyDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, iEditable, modeDoc] as any)
     .prop('selection', { examples: [
         { name:'Tags', value: [{ value: '.Net' }, { value: 'JS' }, { value: 'React' }], isDefault: true },
