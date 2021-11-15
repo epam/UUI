@@ -3,35 +3,25 @@
 .container {
     position: relative;
     display: flex;
-    width: 100%;
 }
 
-.column {
-    position: relative;
+.fixed-columns-section-left {
     display: flex;
-    flex: 1;
-}
-
-.columns-container {
-    position: relative;
-    display: flex;
-    flex-shrink: 0;
-    align-items: stretch;
-    width: 0;
-}
-
-.fixed-columns-wrapper {
-    display: contents;
     position: sticky;
-
-    &--left {
-        left: 0;
-    }
-
-    &--right {
-        right: 0;
-    }
+    left: 0;
 }
+
+.fixed-columns-section-right {
+    display: flex;
+    position: sticky;
+    right: 0;
+}
+
+.static-cells {
+    display: flex;
+    flex: none;
+}
+
 
 @mixin scroll-shadow($position, $direction) {
     position: absolute;
@@ -41,22 +31,12 @@
     width: 5px;
     pointer-events: none;
     background: linear-gradient(to $direction, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    opacity: 0;
 }
 
-.scroll-shadow-left {
+:global(.uui-scroll-shadow-left) {
     @include scroll-shadow(left, right);
 }
 
-:global(.-scrolled-left) ~ .scroll-shadow-left {
-    opacity: 1;
-}
-
-.scroll-shadow-right {
+:global(.uui-scroll-shadow-right) {
     @include scroll-shadow(right, left);
 }
-
-:global(.-scrolled-right) ~ .scroll-shadow-right {
-    opacity: 1;
-}
-
