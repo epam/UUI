@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx, CX } from "@epam/uui";
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui";
 import { FlexRow } from '../layout';
 import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
@@ -13,23 +13,44 @@ export interface DataTableRowContainerProps<TItem, TId> extends IClickable, IHas
     link?: Link;
 }
 
-const uuiDataTableRowContainer = {
-    uuiTableRowContainer: 'uui-table-row-container',
+enum uuiDataTableRowContainer {
+    uuiTableRowContainer = 'uui-table-row-container',
+    uuiTableFixedSectionLeft = 'uui-table-fixed-section-left',
+    uuiTableFixedSectionRight = 'uui-table-fixed-section-right',
+    uuiScrollShadowLeft = 'uui-scroll-shadow-left',
+    uuiScrollShadowRight = 'uui-scroll-shadow-right'
 };
 
 export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>, {}> {
-    protected renderCells(columns: DataColumnProps<React.ReactNode>[]) {
+    protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;
-            return cells.concat(this.props.renderCell(column, idx));
+            return cells.concat(this.props.renderCell({
+                ...column,
+                minWidth: column.minWidth || typeof column.width === 'string' ? undefined : column.width,
+            }, idx));
         }, []);
     }
 
-    wrapFixedSection = (content: React.ReactNode[], direction: 'left' | 'right') => (
-        <>
-            { content }
-        </>
-    )
+    wrapFixedSection = (columns: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => {
+        const width = columns.reduce((acc, column) => acc + (typeof column.width === 'string' ? 0 : column.width), 0);
+        return (
+            <div
+                style={{ flex: `0 0 ${width}px` }}
+                className={ cx({
+                    [css.fixedColumnsSectionLeft]: direction === 'left',
+                    [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
+                    [css.fixedColumnsSectionRight]: direction === 'right',
+                    [uuiDataTableRowContainer.uuiTableFixedSectionRight]: direction === 'right',
+                })}>
+                    <div className={ css.container }>
+                        { this.renderCells(columns) }
+                        { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
+                        { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+                    </div>
+            </div>
+        )
+    }
 
     render() {
         const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
@@ -49,15 +70,13 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
 
         const rowContent = (
             <>
-                <div className={ css.columnsContainer }>
-                    { this.wrapFixedSection(this.renderCells(fixedLeftColumns), 'left') }
+                { this.wrapFixedSection(fixedLeftColumns, 'left') }
+                <div className={ css.staticCells }>
                     { cells }
-                    { this.wrapFixedSection(this.renderCells(fixedRightColumns), 'right') }
                 </div>
-                { this.props.overlays }
-                <div className={ css.scrollShadowLeft } />
-                <div className={ css.scrollShadowRight } />
+                { this.wrapFixedSection(fixedRightColumns, 'right') }
                 { this.props.renderConfigButton?.() }
+                { this.props.overlays }
             </>
         );
 

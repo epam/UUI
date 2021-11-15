@@ -20,7 +20,7 @@ interface UseVirtualValue {
 interface UseVirtualProps extends IEditable<UseVirtualValue> {
     rowsCount: number;
     focusedIndex: number;
-    overscan?: number;
+    blockAlign?: number;
     onScroll?(value: Partial<PositionValues>): void;
 }
 
@@ -30,11 +30,12 @@ export function useVirtual<T extends HTMLElement>({
     rowsCount,
     focusedIndex,
     onScroll,
-    overscan = 20
+    blockAlign = 20
 }: UseVirtualProps): UseVirtualApi<T> {
     const [focused, setFocused] = useState<number>(focusedIndex);
-    const list = useRef<T>();
+    const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
+    const scrollValues = useRef<PositionValues>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
     const estimatedHeight = useRef<number>(0);
@@ -55,8 +56,8 @@ export function useVirtual<T extends HTMLElement>({
         const { scrollTop, clientHeight } = scrollbarsRef.current.getValues();
 
         let topIndex = 0;
-        while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + overscan, rowsCount)] < scrollTop) {
-            topIndex += overscan;
+        while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + blockAlign, rowsCount)] < scrollTop) {
+            topIndex += blockAlign;
         }
 
         let bottomIndex = topIndex;
@@ -65,14 +66,16 @@ export function useVirtual<T extends HTMLElement>({
         }
 
         if (topIndex !== value.topIndex || (bottomIndex - topIndex) > value.visibleCount) {
-            const visibleCount = (bottomIndex - topIndex) + overscan * 2;
+            const visibleCount = (bottomIndex - topIndex) + blockAlign * 2;
             onValueChange({ ...value, topIndex: topIndex, visibleCount });
-        }
-    }, [onValueChange, overscan, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
+        };
+
+        scrollValues.current = scrollbarsRef.current?.getValues();
+    }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
 
     const updateRowHeights = useCallback(() => {
-        if (!list.current) return;
-        const nodes = Array.from(list.current.children);
+        if (!listRef.current) return;
+        const nodes = Array.from(listRef.current.children);
         const topIndex = value?.topIndex || 0;
 
         nodes.forEach((node, index) => {
@@ -93,7 +96,7 @@ export function useVirtual<T extends HTMLElement>({
         };
 
         estimatedHeight.current = lastOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, list.current]);
+    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listRef.current]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -114,11 +117,11 @@ export function useVirtual<T extends HTMLElement>({
 
     return {
         estimatedHeight: estimatedHeight.current,
-        scrollValues: scrollbarsRef.current?.getValues(),
-        handleScroll,
+        scrollValues: scrollValues.current,
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
         scrollbarsRef,
-        listRef: list,
+        listRef,
+        handleScroll,
         scrollToIndex,
     };
 };

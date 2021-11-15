@@ -14,4 +14,21 @@
     display: flex;
     right: 24px;
     height: 100%;
+    z-index: 2;
+}
+
+:global(.uui-table-header-row .uui-table-fixed-section-left),
+:global(.uui-table-header-row .uui-table-fixed-section-right) {
+    z-index: 2;
+    background: $gray5;
+}
+
+:global(.uui-table-row .uui-table-fixed-section-left),
+:global(.uui-table-row .uui-table-fixed-section-right) {
+    z-index: 2;
+    background: $white;
+
+    &:hover {
+        background-color: $gray20;
+    }
 }

@@ -1,29 +1,12 @@
 .table {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
-
-// .wrapper {
-//     flex: 1 1 0;
-//     align-self: stretch;
-//     display: flex;
-//     position: relative;
-//     width: 100%;
-// }
-
-// .listContainer {
-//     display: flex;
-//     flex-direction: column;
-//     flex: 1 1 0;
-//     align-self: stretch;
-//     margin-top: 0;
-// }
 
 .stickyHeader {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 3;
 }
 
 :global(.uui-scroll-shadow-top) {

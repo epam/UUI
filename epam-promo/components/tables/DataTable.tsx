@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual,
 } from '@epam/uui';
 import { PositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { FlexRow, ScrollBars } from '../';
+import { ScrollBars } from '../';
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
@@ -20,7 +20,14 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
-    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
+    const {
+        listRef,
+        scrollbarsRef,
+        estimatedHeight,
+        offsetY,
+        handleScroll,
+        scrollValues,
+    } = useVirtual<HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -70,16 +77,29 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
         );
     };
 
+    const scrollShadows = useMemo(() => {
+        if (!scrollValues) return {};
+        const { scrollTop, clientHeight, scrollHeight } = scrollValues;
+        return {
+            top: scrollTop !== 0 ,
+            bottom: scrollTop == 0 ? estimatedHeight > clientHeight : (scrollHeight - clientHeight > scrollTop),
+        }
+    }, [scrollValues]);
+
     return (
         <ScrollBars
             autoHeight
             ref={ scrollbarsRef }
-            cx={ css.body }
             onScroll={ handleScroll }
             hideTracksWhenNotNeeded
             autoHeightMax={ 100500 }
         >
-            <div className={ css.table } role="table" aria-colcount={ props.columns.length } aria-rowcount={ props.rowsCount }>
+            <div
+                role="table"
+                aria-colcount={ props.columns.length }
+                aria-rowcount={ props.rowsCount }
+                className={ css.table }
+            >
                 <DataTableHeaderRow
                     columns={ columns }
                     onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
@@ -94,6 +114,8 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 />
                 { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
             </div>
+            <div className='uui-scroll-shadow-top' style={{ opacity: scrollShadows.top ? 1 : 0 }} />
+            <div className='uui-scroll-shadow-bottom' style={{ opacity: scrollShadows.bottom ? 1 : 0 }} />
         </ScrollBars>
     );
 };
