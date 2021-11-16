@@ -46,7 +46,7 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                         aria-disabled={ this.props.isDisabled || undefined }
                         readOnly={ this.props.isReadonly }
                         aria-readonly={ this.props.isReadonly || undefined }
-                        checked={ this.props.value }
+                        checked={ this.props.value || false }
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }

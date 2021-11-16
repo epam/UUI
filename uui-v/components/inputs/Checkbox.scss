@@ -22,30 +22,30 @@
     //Colors
     &:hover, &:active, &:focus-within {
         :global(.uui-checkbox) {
-            border-color: var(--border-color-hovered);
+            border-color: var(--border-color-hover);
         }
 
         :global(.uui-checked) {
-            background-color: var(--background-color-checked-hovered);
+            background-color: var(--background-color-checked-hover);
         }
     }
 
     :global(.uui-checkbox) {
         background-color: var(--background-color);
-        border: 1px solid var(--border-color-default);
+        border: 1px solid var(--border-color);
     }
 
     :global(.uui-input-label) {
-        @include typography-inline();
+        // @include typography-inline(); TODO: ???
         font-family: $font-sans;
-        color: var(--text-color-default);
+        color: var(--label-color);
         margin-left: 12px;
         flex-grow: 1;
     }
 
     :global(.uui-checked) {
         background-color: var(--background-color-checked);
-        border-color: var(--background-color-checked);
+        border-color: var(--border-color-checked);
         fill: var(--fill-color);
     }
 
@@ -61,7 +61,7 @@
 
         &:hover, &:global(.uui-checked), &:focus-within {
             &:global(.uui-checkbox) {
-                border-color: var(--border-color-disabled);
+                border-color: var(--border-color-checked-disabled);
             }
 
             &:global(.uui-icon) {
@@ -71,7 +71,7 @@
         }
 
         :global(.uui-input-label) {
-            color: var(--text-color-disabled);
+            color: var(--label-color-disabled);
         }
 
         :global(.uui-checked) {
@@ -91,7 +91,7 @@
             }
 
             &:global(.uui-checked) {
-                fill: $white;
+                fill: var(--fill-color);
                 background-color: var(--errored-color);
                 border-color: var(--errored-color);
 

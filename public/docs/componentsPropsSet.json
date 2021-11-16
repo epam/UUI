@@ -6622,6 +6622,14 @@
         "value": "(editableFilter: IEditable<any>) => React.ReactNode"
       },
       {
+        "name": "renderFooter",
+        "value": "(props: IModal<any>) => React.ReactNode"
+      },
+      {
+        "name": "disallowClickOutside",
+        "value": "boolean"
+      },
+      {
         "name": "theme",
         "value": "light | dark"
       },
@@ -6688,10 +6696,6 @@
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]"
-      },
-      {
-        "name": "renderFooter",
-        "value": "(props: PickerFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
         "name": "selectionMode",
@@ -7880,6 +7884,206 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/buttons/docs/button.doc.tsx": [
+      {
+        "name": "clearIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "captionCX",
+        "value": "any"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "dropdownIconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "countPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "count",
+        "value": "number"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "link",
+        "value": "Link"
+      },
+      {
+        "name": "href",
+        "value": "string"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\""
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }"
+      },
+      {
+        "name": "caption",
+        "value": "any"
+      },
+      {
+        "name": "onClear",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
+        "name": "placeholder",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48 | 18"
+      },
+      {
+        "name": "fill",
+        "value": "none | solid | white | light"
+      },
+      {
+        "name": "color",
+        "value": "accent | primary | secondary | negative"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/checkbox.doc.ts": [
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "indeterminateIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "renderLabel",
+        "value": "() => React.ReactNode"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "indeterminate",
+        "value": "boolean"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "label",
+        "value": "any"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "18 | 12"
+      },
+      {
+        "name": "fill",
+        "value": "none | solid | white | light"
+      },
+      {
+        "name": "theme",
+        "value": "light | dark"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
