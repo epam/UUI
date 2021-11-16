@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
     ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
-    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual,
+    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, cx,
 } from '@epam/uui';
 import { PositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
@@ -26,7 +26,6 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
         estimatedHeight,
         offsetY,
         handleScroll,
-        scrollValues,
     } = useVirtual<HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
@@ -77,28 +76,18 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
         );
     };
 
-    const scrollShadows = useMemo(() => {
-        if (!scrollValues) return {};
-        const { scrollTop, clientHeight, scrollHeight } = scrollValues;
-        return {
-            top: scrollTop !== 0 ,
-            bottom: scrollTop == 0 ? estimatedHeight > clientHeight : (scrollHeight - clientHeight > scrollTop),
-        }
-    }, [scrollValues]);
-
     return (
         <ScrollBars
-            autoHeight
             ref={ scrollbarsRef }
             onScroll={ handleScroll }
             hideTracksWhenNotNeeded
-            autoHeightMax={ 100500 }
+            autoHeightMax={ estimatedHeight }
         >
             <div
                 role="table"
                 aria-colcount={ props.columns.length }
                 aria-rowcount={ props.rowsCount }
-                className={ css.table }
+                className={ cx(css.table, css['shadow-' + (props.shadow || 'dark')]) }
             >
                 <DataTableHeaderRow
                     columns={ columns }
@@ -112,10 +101,14 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                     value={ props.value }
                     onValueChange={ props.onValueChange }
                 />
+                { (!props.shadow || props.shadow === 'dark') && (
+                    <div className='uui-scroll-shadow-top' style={{ opacity: 1 }} />
+                ) }
                 { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
+                { props.shadow === 'white' && (
+                    <div className='uui-scroll-shadow-bottom' style={{ opacity: 1 }} />
+                ) }
             </div>
-            <div className='uui-scroll-shadow-top' style={{ opacity: scrollShadows.top ? 1 : 0 }} />
-            <div className='uui-scroll-shadow-bottom' style={{ opacity: scrollShadows.bottom ? 1 : 0 }} />
         </ScrollBars>
     );
 };

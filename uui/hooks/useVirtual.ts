@@ -35,7 +35,6 @@ export function useVirtual<T extends HTMLElement>({
     const [focused, setFocused] = useState<number>(focusedIndex);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
-    const scrollValues = useRef<PositionValues>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
     const estimatedHeight = useRef<number>(0);
@@ -69,8 +68,6 @@ export function useVirtual<T extends HTMLElement>({
             const visibleCount = (bottomIndex - topIndex) + blockAlign * 2;
             onValueChange({ ...value, topIndex: topIndex, visibleCount });
         };
-
-        scrollValues.current = scrollbarsRef.current?.getValues();
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
 
     const updateRowHeights = useCallback(() => {
@@ -117,7 +114,7 @@ export function useVirtual<T extends HTMLElement>({
 
     return {
         estimatedHeight: estimatedHeight.current,
-        scrollValues: scrollValues.current,
+        scrollValues: scrollbarsRef.current?.getValues(),
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
         scrollbarsRef,
         listRef,
