@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as colors from '../../assets/styles/colorvars/inputs/radioInput-colorvars.scss';
 import * as css from './RadioInput.scss';
 import { RadioInput as uuiRadioInput, RadioInputProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
@@ -10,6 +11,7 @@ export interface RadioInputMods {
 
 function applyRadioInputMods(mods: RadioInputMods & RadioInputProps) {
     return [
+        colors.radioInputColors,
         css.root,
         css['size-' + (mods.size || '18')],
     ];

@@ -14,7 +14,7 @@ import {
     IAnalyticableOnChange,
     UuiContexts,
     uuiMarkers,
-    UuiContext,
+    UuiContext, isClickableChildClicked,
 } from "@epam/uui";
 import { IconContainer } from '../layout';
 
@@ -54,15 +54,15 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
                         type="radio"
-                        onChange={ !this.props.isReadonly ? this.handleChange : null }
+                        onChange={ !this.props.isReadonly ? this.handleChange : undefined }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled || undefined }
                         readOnly={ this.props.isReadonly }
                         aria-readonly={ this.props.isReadonly || undefined }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }
-                        checked={ this.props.value }
-                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        checked={ this.props.value || false }
+                        aria-checked={ this.props.value || false }
                         id={ this.props.id }
                         tabIndex={ this.props.tabIndex }
                     />
