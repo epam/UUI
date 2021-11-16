@@ -3,25 +3,22 @@
 .container {
     position: relative;
     display: flex;
+    align-items: stretch;
 }
 
 .fixed-columns-section-left {
     display: flex;
     position: sticky;
     left: 0;
+    min-height: inherit;
 }
 
 .fixed-columns-section-right {
     display: flex;
     position: sticky;
     right: 0;
+    min-height: inherit;
 }
-
-.static-cells {
-    display: flex;
-    flex: none;
-}
-
 
 @mixin scroll-shadow($position, $direction) {
     position: absolute;
@@ -31,6 +28,7 @@
     width: 5px;
     pointer-events: none;
     background: linear-gradient(to $direction, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 1;
 }
 
 :global(.uui-scroll-shadow-left) {
