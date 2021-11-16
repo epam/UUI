@@ -1,6 +1,5 @@
 @use 'sass:math';
 @use '../../assets/styles/index.scss' as *;
-@use '../../assets/styles/colorvars/inputs/radioInput-colorvars.scss' as *;
 
 
 @mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
@@ -29,17 +28,15 @@
 }
 
 .root {
-    @include radio-input-color();
-
     &:hover, &:focus-within {
         :global(.uui-radioinput) {
-            border-color: var(--border-color-hovered);
+            border-color: var(--border-color-hover);
 
             &:global(.uui-checked) {
-                border-color: var(--border-color-hovered);
+                border-color: var(--border-color-hover);
 
                 :global(.uui-icon) {
-                    fill: var(--fill-color-hovered);
+                    fill: var(--fill-color-hover);
                 }
             }
         }
@@ -74,8 +71,8 @@
     }
 
     :global(.uui-input-label) {
-        @include typography-inline();
-        color: var(--caption-color);
+        //@include typography-inline(); TODO: ???
+        color: var(--label-color);
         flex-grow: 1;
         font-family: $font-sans;
         margin-left: 12px;
@@ -85,33 +82,33 @@
 
     &:global(.uui-invalid) {
         :global(.uui-icon) {
-            fill: var(--errored-color);
+            fill: var(--errore-color);
         }
 
         :global(.uui-input-label) {
-            color: var(--errored-color);
+            color: var(--errore-color);
         }
 
         :global(.uui-radioinput) {
-            border-color: var(--errored-color);
+            border-color: var(--errore-color);
         }
 
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
 
                 :global(.uui-icon) {
-                    fill: var(--errored-color);
+                    fill: var(--errore-color);
                 }
             }
         }
 
         &:hover, &:focus-within {
             :global(.uui-radioinput) {
-                border-color: var(--errored-color);
+                border-color: var(--errore-color);
             }
 
             :global(.uui-icon) {
-                fill: var(--errored-color);
+                fill: var(--errore-color);
             }
         }
     }
@@ -154,13 +151,13 @@
 
     &:global(.uui-readonly) {
         :global(.uui-input-label) {
-            color: var(--caption-color);
+            color: var(--label-color);
         }
     }
 
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
-            color: var(--caption-color-disabled);
+            color: var(--label-color-disabled);
         }
     }
 

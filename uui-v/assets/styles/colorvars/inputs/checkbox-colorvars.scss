@@ -1,4 +1,4 @@
-.checkbox-color {
+.checkbox-colors {
     --border-color: var(--control-border-color);
     --border-color-hover: var(--control-border-hover-color);
     --border-color-disabled: var(--control-border-disabled-color);
@@ -7,9 +7,9 @@
     --background-color: var(--control-background-color);
     --background-color-checked: var(--control-background-checked-color);
     --background-color-disabled: var(--control-background-disabled-color);
-    --background-color-checked-hover: var(--control-border-checked-hover-color);
-    --background-color-checked-disabled: var(--control-border-checked-disabled-color);
-    --errored-color: var(--negative-color);
+    --background-color-checked-hover: var(--control-background-checked-hover-color);
+    --background-color-checked-disabled: var(--control-background-checked-disabled-color);
+    --errore-color: var(--negative-color);
     --fill-color: var(--control-background-color);
     --label-color: var(--control-label-color);
     --label-color-disabled: var(--control-label-disabled-color);

@@ -49,6 +49,8 @@ $gray90: #1D1E26;
 
     --control-background-color: #{$white};
     --control-background-checked-color: var(--primary-color);
+    --control-background-checked-hover-color: var(--primary-dark-color);
+    --control-background-checked-disabled-color: var(--primary-light-color);
     --control-background-disabled-color: #{$gray5};
     --control-border-color: #{$gray40};
     --control-border-checked-color: var(--primary-color);
@@ -59,6 +61,7 @@ $gray90: #1D1E26;
     --control-rest-color: var(--primary-color);
     --control-hover-color: var(--primary-dark-color);
     --control-active-color: var(--primary-darkest-color);
+
     --control-caption-color: var(--secondary-dark-color);
     --control-caption-disabled-color: var(--secondary-color);
 
