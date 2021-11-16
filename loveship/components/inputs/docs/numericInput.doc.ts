@@ -5,7 +5,7 @@ import { NumericInput, NumericInputMods } from '../NumericInput';
 import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, iHasPlaceholder, modeDoc, iFormatter } from '../../../docs';
 import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs';
 
-const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput as React.ComponentClass<any> })
+const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
     .implements([iEditable, iHasPlaceholder, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, modeDoc, iFormatter] as any)
     .prop('value', { examples: [{ value: 0, isDefault: true }, 11] })
     .prop('step', { examples: [2, 5, 10] })

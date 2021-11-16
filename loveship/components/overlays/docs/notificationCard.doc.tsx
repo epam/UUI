@@ -2,9 +2,9 @@ import React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, colorDoc, iconWithInfoDoc } from '../../../docs';
 import { Text } from '../../typography';
-import { NotificationCard, DefaultNotificationProps } from '../NotificationCard';
+import { NotificationCard, NotificationCardProps } from '../NotificationCard';
 
-const SnackbarCardDoc = new DocBuilder<DefaultNotificationProps>({ name: 'NotificationCard', component: NotificationCard as React.ComponentClass<any> })
+const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
     .implements([iconWithInfoDoc, colorDoc] as any)
     .prop('children', {
         examples: [
