@@ -40,19 +40,30 @@ $gray90: #1D1E26;
     --contrast-color: #{$white};
     --interactive-color: var(--primary-color);
     --warning-color: #{$amber};
-    --disable-color: #{$gray30};
+    --disabled-color: #{$gray30};
     --surface-color: #{$gray5};
     --surface-hover-color: #{$gray5};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
 
-
-    --control-rest-color: var(--interactive-color);
+    --control-background-color: #{$white};
+    --control-background-checked-color: var(--primary-color);
+    --control-background-disabled-color: #{$gray5};
+    --control-border-color: #{$gray40};
+    --control-border-checked-color: var(--primary-color);
+    --control-border-checked-hover-color: var(--primary-dark-color);
+    --control-border-checked-disabled-color: var(--primary-light-color);
+    --control-border-hover-color: var(--primary-dark-color);
+    --control-border-disabled-color: var(--disabled-color);
+    --control-rest-color: var(--primary-color);
     --control-hover-color: var(--primary-dark-color);
     --control-active-color: var(--primary-darkest-color);
     --control-caption-color: var(--secondary-dark-color);
-    --control-caption-disable-color: var(--secondary-color);
+    --control-caption-disabled-color: var(--secondary-color);
+
+    --control-label-color: #{$gray80};
+    --control-label-disabled-color: #{$gray60};
 
     --icon-color: #{$gray60};
 }

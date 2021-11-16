@@ -1,6 +1,6 @@
 import * as types from '../types';
-import * as css from './Checkbox.scss';
 import * as styles from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
+import * as css from './Checkbox.scss';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
 import * as check_12 from '../../icons/check-12.svg';
@@ -18,7 +18,7 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
         css.root,
         css['size-' + (mods.size || '18')],
-        styles['checkbox-color-blue'],
+        styles['checkbox-color'],
     ];
 }
 
