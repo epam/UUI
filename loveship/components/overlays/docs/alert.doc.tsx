@@ -6,7 +6,7 @@ import { AlertProps, Alert } from '..';
 import { colors } from "../../../helpers/colorMap";
 import { allEpamPrimaryColors } from "../../types";
 
-const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert as React.ComponentClass<any> })
+const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
     .implements([iconDoc] as any)
     .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allEpamPrimaryColors })
     .prop('children', {

@@ -57,11 +57,11 @@ export class DndSection extends React.Component<DndSectionProps> {
             onDrop={ this.handleOnDrop }
             render={ props => {
                 return (
-                    <div { ...props.eventHandlers } className={ cx(css.dragElement, props.isDraggedOut && uuiDndState.draggedOut, props.isDropAccepted && uuiDndState.dropAccepted) }>
+                    <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                         <Panel background='white' cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } shadow >
                             <FlexRow padding='24' vPadding='12' spacing='18' cx={ css.grabArea } onClick={ () => this.props.onValueChange({ ...item, isFolded: !item.isFolded }) }>
                                 <DragHandle cx={ [css.dragHandle] } />
-                                <RichTextView><h3>{ item.title }</h3></RichTextView>
+                                <RichTextView><h3 style={ { margin: '20px 0' } }>{ item.title }</h3></RichTextView>
                                 <FlexSpacer />
                                 <FlexRow>
                                     <Text font='sans-semibold'>Deadline:</Text>

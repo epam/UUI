@@ -11,7 +11,7 @@ export type UUIInterfaceName = keyof UUIInterfaces;
 export type StandardIconType = 'dropdown' | 'btn-ok' | 'btn-delete';
 
 export interface SkinContext {
-    getComponent<T extends UUIInterfaceName>(type: T): React.ComponentClass<UUIInterfaces[T]>;  
+    getComponent<T extends UUIInterfaceName>(type: T): React.ComponentType<UUIInterfaces[T]>;
     getIcon(type: StandardIconType): Icon;
 }
 

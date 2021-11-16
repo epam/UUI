@@ -1,3 +1,4 @@
+import React from 'react';
 
 export type DropPosition = 'top' | 'bottom' | 'left' | 'right' | 'inside';
 
@@ -46,12 +47,12 @@ export interface DndActorRenderParams {
      * As onClick event on the element will be overwritten, use DndActorProps.onClick to receive click events on the element
      */
     eventHandlers: {
-        onMouseDown?(e: any): void;
-        //onClick?(e: any): void;
-        onMouseEnter?(e: React.MouseEvent<any>): void;
-        onMouseMove?(e: React.MouseEvent<any>): void;
-        onMouseLeave?(e: React.MouseEvent<any>): void;
-        onMouseUp?(e: React.MouseEvent<any>): void;
+        onTouchStart?(e: React.TouchEvent): void;
+        onPointerDown?(e: React.PointerEvent): void;
+        onPointerEnter?(e: React.PointerEvent<any>): void;
+        onPointerMove?(e: React.PointerEvent<any>): void;
+        onPointerLeave?(e: React.PointerEvent<any>): void;
+        onPointerUp?(e: React.PointerEvent<any>): void;
     };
 
     /**

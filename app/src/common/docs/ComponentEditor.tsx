@@ -22,7 +22,7 @@ interface DemoComponentProps<TProps = any> {
 }
 
 interface DemoContext {
-    context: React.ComponentClass<DemoComponentProps>;
+    context: React.ComponentType<DemoComponentProps>;
     name: string;
 }
 
