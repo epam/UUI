@@ -7,7 +7,7 @@ const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
 };
 
-export interface DataTableRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
+export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     renderCell?: (props: DataTableCellProps<TItem, TId>) => ReactNode;
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }

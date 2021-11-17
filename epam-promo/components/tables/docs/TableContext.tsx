@@ -60,16 +60,18 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
             });
         }
 
-        return rows.map((item, index) => <DataTableRow
-            key={ index }
-            size={ this.props.props.size }
-            borderBottom={ this.props.props.borderBottom }
-            columns={ columns }
-            value={ item }
-            id={ index }
-            rowKey={ index + '' }
-            index={ index }
-        />);
+        return rows.map((item, index) =>
+            <DataTableRow
+                key={ index }
+                size={ this.props.props.size }
+                borderBottom={ this.props.props.borderBottom }
+                columns={ columns }
+                value={ item }
+                id={ index }
+                rowKey={ index + '' }
+                index={ index }
+            />
+        );
     }
 
     showConfigurationModal = () => {
@@ -80,7 +82,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 columnsConfig={ this.state.columnsConfig }
                 defaultConfig={ { gender: { isVisible: false, order: 'f' }} }
             />
-        )).then(columnsConfig => this.setState({columnsConfig }));
+        )).then(columnsConfig => this.setState({ columnsConfig }));
     }
 
     getTable(component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {

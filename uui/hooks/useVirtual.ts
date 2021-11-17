@@ -92,7 +92,7 @@ export function useVirtual<T extends HTMLElement>({
         if (index < 0) throw new Error('Index is less than zero');
         if (index > rowsCount) throw new Error('Index exceeds the size of the list');
         setFocused(index);
-        requestAnimationFrame(() => setFocused(undefined));
+        setTimeout(() => setFocused(undefined), 0);
     }, [focused]);
 
     useEffect(() => {

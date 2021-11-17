@@ -5,7 +5,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
 import { Text, DataTableHeaderCellMods } from '../../../components';
 
-const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps<any, any> & DataTableHeaderCellMods>({ name: 'DataTableHeaderCell', component: DataTableHeaderCell as any })
+const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTableHeaderCellMods>({ name: 'DataTableHeaderCell', component: DataTableHeaderCell })
     .prop('column', {
         examples: [
             {

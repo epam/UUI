@@ -18,9 +18,15 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     showColumnsConfig?: boolean;
 }
 
-export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) => {
+export function DataTable<TItem, TId = any>({
+    value,
+    onValueChange,
+    onScroll,
+    rowsCount,
+    ...props
+}: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const context = useUuiContext();
-    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
+    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, value.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -47,7 +53,7 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
 
             />
         ))
-            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
+            .then(columnsConfig => onValueChange({ ...value, columnsConfig }))
             .catch(() => null);
     };
 
@@ -73,8 +79,8 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 textCase={ props.headerTextCase }
                 allowColumnsReordering={ props.allowColumnsReordering }
                 allowColumnsResizing={ props.allowColumnsResizing }
-                value={ props.value }
-                onValueChange={ props.onValueChange }
+                value={ value }
+                onValueChange={ onValueChange }
             />
             <FlexRow
                 topShadow
@@ -82,12 +88,12 @@ export const DataTable = <TItem, TId = any>(props: React.PropsWithChildren<DataT
                 cx={ css.body }>
                 { props.exactRowsCount !== 0 ? (
                     <VirtualList
-                        value={ props.value }
-                        onValueChange={ props.onValueChange }
-                        onScroll={ props.onScroll }
+                        value={ value }
+                        onValueChange={ onValueChange }
+                        onScroll={ onScroll }
                         rows={ getRows() }
-                        rowsCount={ props.rowsCount }
-                        focusedIndex={ props.value?.focusedIndex }
+                        rowsCount={ rowsCount }
+                        focusedIndex={ value?.focusedIndex }
                     />
                 ) : renderNoResultsBlock() }
             </FlexRow>
