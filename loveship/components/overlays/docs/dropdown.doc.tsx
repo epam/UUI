@@ -4,7 +4,7 @@ import { DropdownProps, Dropdown } from '@epam/uui-components';
 import { DropdownMenuItemMods, DropdownMenuButton, Button, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader } from '../../../components';
 import { DefaultContext } from '../../../docs';
 
-const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ name: 'Dropdown', component: Dropdown as React.ComponentClass<any> })
+const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ name: 'Dropdown', component: Dropdown })
     .prop('renderBody', { isRequired: true, examples: [{
         value:
             () =>

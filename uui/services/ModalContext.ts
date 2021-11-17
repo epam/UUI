@@ -16,7 +16,7 @@ export interface ModalComponentProps<TParameters, TResult> {
 }
 
 export interface ModalOperation {
-    component?: React.ComponentClass<any>;
+    component?: React.ComponentType<any>;
     props: ModalComponentProps<any, any>;
 }
 
@@ -63,7 +63,7 @@ export class ModalContext extends BaseContext implements IModalContext {
     }
 
     private showModal<TParameters, TResult>(
-        component: React.ComponentClass<ModalComponentProps<TParameters, TResult>>,
+        component: React.ComponentType<ModalComponentProps<TParameters, TResult>>,
         parameters?: TParameters,
     ): Promise<TResult> {
         const layer = this.layoutCtx.getLayer();
