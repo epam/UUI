@@ -124,7 +124,7 @@ export class Tree extends React.Component<TreeProps, TreeState> {
     render() {
         return (
             <>
-                { this.state.list.map((i) => this.props.renderRow(i)) }
+                { this.state.list.map((i) => <React.Fragment key={ i.id }> { this.props.renderRow(i) }</React.Fragment>) }
             </>
         );
     }
