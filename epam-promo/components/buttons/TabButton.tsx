@@ -8,7 +8,6 @@ import { getIconClass } from './helper';
 export interface TabButtonMods {
     size?: '36' | '48' | '60';
     withNotify?: boolean;
-    direction?: "horizontal" | "vertical";
 }
 
 function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {

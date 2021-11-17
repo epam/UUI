@@ -20,7 +20,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'profileStatus',
             caption: 'Profile Status',
-            filterId: 'profileStatusId',
             render: p => p.profileStatus && <FlexRow>
                 <Badge
                     cx={ css.status }
@@ -37,7 +36,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'jobTitle',
             caption: "Title",
-            filterId: 'jobTitleId',
             render: r => <Text>{ r.jobTitle }</Text>,
             grow: 0,
             shrink: 0,
@@ -48,7 +46,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'departmentName',
             caption: "Department",
-            filterId: 'departmentId',
             render: p => <Text>{ p.departmentName }</Text>,
             grow: 0,
             shrink: 0,
@@ -60,7 +57,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'officeAddress',
             caption: "Office",
-            filterId: 'officeId',
             render: p => <Text cx={ css.office }>{ p.officeAddress }</Text>,
             grow: 0,
             shrink: 0,
@@ -71,7 +67,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'managerName',
             caption: "Manager",
-            filterId: 'managerId',
             render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#"/>,
             grow: 0,
             shrink: 0,
@@ -82,7 +77,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'countryName',
             caption: 'Country',
-            filterId: 'countryId',
             render: p => <Text>{ p.countryName }</Text>,
             grow: 0,
             shrink: 0,
@@ -93,7 +87,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'cityName',
             caption: 'City',
-            filterId: 'cityId',
             render: p => <Text>{ p.cityName }</Text>,
             grow: 0,
             shrink: 0,
@@ -112,7 +105,6 @@ export function getColumns(filters: ITableFilter[]) {
         {
             key: 'birthDate',
             caption: "Birth Date",
-            filterId: 'birthDate',
             render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
             grow: 0,
             shrink: 0,

@@ -51,34 +51,6 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
             if (isActive) {
                 resetToDefault();
             }
-            // deletePreset(preset);
-            // const newPresets = value.presets.filter(p => p.id !== preset.id);
-            //
-            // if (isActive) {
-            //     // choosePreset(constants.defaultPreset);
-            //     const newQuery = {
-            //         ...svc.uuiRouter.getCurrentLink().query,
-            //         filter: undefined,
-            //     };
-            //     delete newQuery.presetId;
-            //
-            //     onValueChange({
-            //         ...value,
-            //         filter: constants.defaultPreset.filter,
-            //         columnsConfig: constants.defaultPreset.columnsConfig,
-            //         presets: newPresets,
-            //     });
-            //
-            //     svc.history.push({
-            //         pathname: location.pathname,
-            //         query: newQuery,
-            //     });
-            // } else {
-            //     onValueChange({
-            //         ...value,
-            //         presets: newPresets,
-            //     });
-            // }
             props.onClose();
         };
         const update = () => {

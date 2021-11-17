@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { IEditable } from "@epam/uui";
-import { ITableFilter, ITableState, PersonsTableState } from "../../types";
+import { ITableFilter } from "../../types";
 
 interface IFiltersProps {
     filter: Record<string, any>;
