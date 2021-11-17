@@ -25,12 +25,20 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;
-            return cells.concat(this.props.renderCell(column, idx));
+            return cells.concat(this.props.renderCell({
+                ...column,
+                minWidth: column.minWidth || column.width as number
+            }, idx));
         }, []);
+    }
+
+    getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
+        return cells.reduce((width, cell) => width + (typeof cell.width === 'string' ? 0 : cell.width), 0);
     }
 
     wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
         <div
+            style={{ flex: `0 0 ${this.getSectionWidth(cells)}px` }}
             className={ cx({
                 [css.fixedColumnsSectionLeft]: direction === 'left',
                 [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
@@ -43,11 +51,14 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
         </div>
     );
 
-    wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => (
-        <div className={ css.container }>
-            { this.renderCells(cells) }
-        </div>
-    );
+    wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => {
+        if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
+        else return (
+            <div style={{ flex: `0 0 ${this.getSectionWidth(cells)}px` }} className={ css.container }>
+                { this.renderCells(cells) }
+            </div>
+        );
+    }
 
     render() {
         const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
@@ -62,9 +73,9 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
 
         const rowContent = (
             <>
-                { this.renderCells(fixedLeftColumns) }
-                { this.renderCells(staticColumns) }
-                { this.renderCells(fixedRightColumns) }
+                { this.wrapFixedSection(fixedLeftColumns, 'left') }
+                { this.wrapScrollingSection(staticColumns) }
+                { this.wrapFixedSection(fixedRightColumns, 'right') }
                 { this.props.renderConfigButton?.() }
                 { this.props.overlays }
             </>
@@ -84,6 +95,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
                     rawProps={ this.props.rawProps }
+                    alignItems='top'
                 >
                     { rowContent }
                 </FlexRow>

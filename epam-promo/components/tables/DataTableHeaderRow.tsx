@@ -15,5 +15,11 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
             size={ mods.size }
             textCase={ mods.textCase || 'normal' }
         />,
-        renderConfigButton: () => <IconButton key='configuration' onClick={ mods.onConfigButtonClick } cx={ css.configIcon } color='gray60' icon={ moreIcon } />,
+        renderConfigButton: () => <IconButton
+            key='configuration'
+            onClick={ mods.onConfigButtonClick }
+            cx={ css.configIcon }
+            color='gray60'
+            icon={ moreIcon }
+        />,
     }));
