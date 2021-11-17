@@ -70,7 +70,10 @@ export const listPlugin = () => {
 
 
 const UnorderedListToolbarButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ (props.editor as any).isList('unordered-list') } icon={ listBulletIcon } onClick={ () => (props.editor as any).toggleList({ type: 'unordered-list' }) } />;
+    const onClick = () => {
+        (props.editor as any).toggleList({ type: 'unordered-list' });
+    };
+    return <ToolbarButton isActive={ (props.editor as any).isList('unordered-list') } icon={ listBulletIcon } onClick={ onClick } />;
 };
 
 const OrderedListToolbarButton = (props: { editor: any }) => {
