@@ -17,6 +17,7 @@
 .table {
     display: flex;
     flex-direction: column;
+    max-width: 100vw;
 
     &.-scrolled-left {
         :global(.uui-scroll-shadow-left) {
@@ -31,7 +32,7 @@
     }
 
     &.shadow-dark {
-        :global(.uui-scroll-shadow-top) {
+        :global(.uui-scroll-shadow-top-visible) {
             opacity: 1;
             height: 5px;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
@@ -40,16 +41,12 @@
     }
 
     &.shadow-white {
-        :global(.uui-scroll-shadow-bottom) {
-            height: 30px;
+        :global(.uui-scroll-shadow-bottom-visible) {
             opacity: 1;
+            height: 30px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 54%);
         }
     }
-}
-
-.body {
-    position: relative;
 }
 
 .stickyHeader {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
     ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
     DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, cx,
@@ -6,6 +6,7 @@ import {
 import type { PositionValues } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { ScrollBars } from '../';
+import { useTableShadows } from './hooks/useScrollShadows';
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
@@ -16,6 +17,17 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
 }
+
+enum scrollShadowsCx {
+    top = 'uui-scroll-shadow-top',
+    topVisible = 'uui-scroll-shadow-top-visible',
+    bottom = 'uui-scroll-shadow-bottom',
+    bottomVisible = 'uui-scroll-shadow-bottom-visible',
+    left = 'uui-scroll-shadow-left',
+    leftVisible = 'uui-scroll-shadow-left-visible',
+    right = 'uui-scroll-shadow-right',
+    rightVisible = 'uui-scroll-shadow-right-visible',
+};
 
 export function DataTable<TItem, TId>({
     value,
@@ -32,6 +44,8 @@ export function DataTable<TItem, TId>({
         onScroll,
         rowsCount
     });
+
+    const { intersectionRef, ...scrollShadows } = useTableShadows();
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -63,6 +77,7 @@ export function DataTable<TItem, TId>({
     const getVirtualisedList = () => {
         const renderItemRow = props.renderRow || renderRow;
         const rows = props.getRows().map(row => renderItemRow({ ...row, columns }));
+
         return (
             <div
                 ref={ listRef }
@@ -75,12 +90,7 @@ export function DataTable<TItem, TId>({
     };
 
     return (
-        <ScrollBars
-            ref={ scrollbarsRef }
-            onScroll={ handleScroll }
-            hideTracksWhenNotNeeded
-            autoHeightMax={ estimatedHeight }
-        >
+        <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll } hideTracksWhenNotNeeded>
             <div
                 role="table"
                 aria-colcount={ props.columns.length }
@@ -99,9 +109,18 @@ export function DataTable<TItem, TId>({
                     value={ value }
                     onValueChange={ onValueChange }
                 />
-                { (!props.shadow || props.shadow === 'dark') && <div className='uui-scroll-shadow-top' /> }
+                { (!props.shadow || props.shadow === 'dark') && (
+                    <div className={ cx(scrollShadowsCx.top, {
+                        [scrollShadowsCx.topVisible]: scrollShadows.vertical
+                    }) } />
+                ) }
+                <div ref={ intersectionRef } style={{ visibility: 'hidden' }} />
                 { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
-                { props.shadow === 'white' && <div className='uui-scroll-shadow-bottom' /> }
+                { props.shadow === 'white' && (
+                    <div className={ cx(scrollShadowsCx.bottom, {
+                        [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
+                    }) } />
+                ) }
             </div>
         </ScrollBars>
     );
