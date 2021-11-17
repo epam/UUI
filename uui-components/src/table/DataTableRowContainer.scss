@@ -1,9 +1,11 @@
 @use '~@epam/assets/scss/index' as *;
 
 .container {
+    --uui-table-row-min-width: 0px;
     position: relative;
     display: flex;
-    width: max-content;
+    width: min-content;
+    min-width: calc(100vw - var(--uui-table-row-min-width));
     align-items: stretch;
 }
 

@@ -33,6 +33,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     }
 
     getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
+        if (!cells || !Array.isArray(cells)) return 0;
         return cells.reduce((width, cell) => width + (typeof cell.width === 'string' ? 0 : cell.width), 0);
     }
 
@@ -48,6 +49,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
             { this.renderCells(cells) }
             { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
             { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+            { direction === 'right' && this.props.renderConfigButton?.() }
         </div>
     );
 
@@ -76,7 +78,6 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
                 { this.wrapFixedSection(fixedLeftColumns, 'left') }
                 { this.wrapScrollingSection(staticColumns) }
                 { this.wrapFixedSection(fixedRightColumns, 'right') }
-                { this.props.renderConfigButton?.() }
                 { this.props.overlays }
             </>
         );
@@ -94,8 +95,14 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
                 <FlexRow
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
-                    rawProps={ this.props.rawProps }
                     alignItems='top'
+                    rawProps={{
+                        ...this.props.rawProps,
+                        style: {
+                            '--uui-table-row-min-width': `${this.getSectionWidth(this.props.columns)}px`,
+                            ...this.props.rawProps?.style
+                        }
+                    }}
                 >
                     { rowContent }
                 </FlexRow>
