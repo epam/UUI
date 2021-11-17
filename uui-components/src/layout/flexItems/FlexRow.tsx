@@ -5,7 +5,7 @@ import { FlexRowProps, uuiMarkers, isClickableChildClicked, cx } from '@epam/uui
 export class FlexRow extends React.Component<FlexRowProps> {
 
     handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => !isClickableChildClicked(e) && this.props?.onClick ? this.props.onClick(e) : undefined;
-    
+
     render() {
         return (
             <div
@@ -17,6 +17,7 @@ export class FlexRow extends React.Component<FlexRowProps> {
                     css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)],
                 ) }
                 { ...this.props.rawProps }
+                style={ { ...this.props.rawProps?.style } }
             >
                 { this.props.children }
             </div>
