@@ -12,8 +12,9 @@
     flex-direction: column;
     flex: 1 1 0;
     height: calc(100vh - 121px);
+    width: 100vw;
     transition: all 500ms;
-    
+
     .counter {
         &:global(.uui-button-box) {
             background: transparent;

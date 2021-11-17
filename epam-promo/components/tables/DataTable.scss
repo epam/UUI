@@ -17,7 +17,6 @@
 .table {
     display: flex;
     flex-direction: column;
-    width: 100vw;
 
     &.-scrolled-left {
         :global(.uui-scroll-shadow-left) {

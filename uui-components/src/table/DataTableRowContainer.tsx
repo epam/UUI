@@ -75,9 +75,9 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
 
         const rowContent = (
             <>
-                { this.wrapFixedSection(fixedLeftColumns, 'left') }
+                { fixedLeftColumns.length > 0 && this.wrapFixedSection(fixedLeftColumns, 'left') }
                 { this.wrapScrollingSection(staticColumns) }
-                { this.wrapFixedSection(fixedRightColumns, 'right') }
+                { fixedRightColumns.length > 0 && this.wrapFixedSection(fixedRightColumns, 'right') }
                 { this.props.overlays }
             </>
         );
@@ -96,13 +96,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
                     alignItems='top'
-                    rawProps={{
-                        ...this.props.rawProps,
-                        style: {
-                            '--uui-table-row-min-width': `${this.getSectionWidth(this.props.columns)}px`,
-                            ...this.props.rawProps?.style
-                        }
-                    }}
+                    rawProps={ this.props.rawProps }
                 >
                     { rowContent }
                 </FlexRow>
