@@ -147,7 +147,6 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         }
 
         this.props.onBlur && this.props.onBlur(e, editor.value);
-        next();
     }
 
 

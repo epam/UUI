@@ -68,6 +68,10 @@ export const tablePlugin = () => {
         const selectedTable: any = editor.value.document.getParent(editor.value.document.getPath(selectedRow.key));
         let cellColspan = selectedCell.data.get('colSpan');
 
+        if (selectedRow.nodes.size === 1) {
+            return;
+        }
+
         if (cellColspan > 1) {
             for (let i = 0; i < cellColspan; i++) {
                 (editor as any).removeColumn(startBlockIndex);
