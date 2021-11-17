@@ -16,7 +16,7 @@ interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
 }
 
-export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProps<any, any> & DataTableHeaderCellMods, DataTableHeaderCellState> {
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableHeaderCellMods, DataTableHeaderCellState> {
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
@@ -30,7 +30,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
     }
 
     getColumnCaption = () => {
-        let captionContent = (
+        const captionContent = (
             <div className={ cx(css.iconCell, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
                 <Text
                     key="text"
@@ -80,26 +80,20 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
         </div>;
     }
 
-    renderHeaderCheckbox = () => {
-        return this.props.selectAll
-            && this.props.isFirstColumn
-            && (
-                <Checkbox
-                    size="18"
-                    { ...this.props.selectAll }
-                    cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
-                />
-            );
-    }
+    renderHeaderCheckbox = () => this.props.selectAll && this.props.isFirstColumn && (
+        <Checkbox
+            size="18"
+            { ...this.props.selectAll }
+            cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
+        />
+    );
 
-    renderResizeMark(props: HeaderCellContentProps) {
-        return (
-            <div onMouseDown={ props.onResizeStart } className={ css.resizeMark }/>
-        );
-    }
+    renderResizeMark = (props: HeaderCellContentProps) => (
+        <div onMouseDown={ props.onResizeStart } className={ css.resizeMark } />
+    );
 
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler & { ref?: React.Ref<any> }) => {
-        return <FlexCell
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: React.PropsWithRef<IDropdownToggler>) => (
+        <FlexCell
             { ...this.props.column }
             ref={ (node) => { props.ref.current = node; } }
             cx={ cx(
@@ -115,7 +109,7 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                 props.isDraggedOut && css.isDraggedOut,
                 props.isDndInProgress && css['dnd-marker-' + props.position],
             ) }
-            onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
+            onClick={ !this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick }
             rawProps={ {
                 role: 'columnheader',
                 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
@@ -125,23 +119,21 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
             { this.renderHeaderCheckbox() }
             { this.getColumnCaption() }
             { this.props.allowColumnsResizing && this.renderResizeMark(props) }
-        </FlexCell>;
-    }
+        </FlexCell>
+    );
 
-    renderCellWithFilter = (props: HeaderCellContentProps) => {
-        return (
-            <ColumnHeaderDropdown
-                isOpen={ this.state.isDropdownOpen }
-                isSortable={ this.props.column.isSortable }
-                renderTarget={ (dropdownProps) => this.renderCellContent(props, dropdownProps) }
-                renderFilter={ this.props.renderFilter }
-                onSort={ this.props.onSort }
-                sortDirection={ this.props.sortDirection }
-                onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
-                title={ this.props.column.caption as string }
-            />
-        );
-    }
+    renderCellWithFilter = (props: HeaderCellContentProps) => (
+        <ColumnHeaderDropdown
+            isOpen={ this.state.isDropdownOpen }
+            isSortable={ this.props.column.isSortable }
+            renderTarget={ dropdownProps => this.renderCellContent(props, dropdownProps) }
+            renderFilter={ this.props.renderFilter }
+            onSort={ this.props.onSort }
+            sortDirection={ this.props.sortDirection }
+            onOpenChange={ isDropdownOpen => this.setState({ isDropdownOpen }) }
+            title={ this.props.column.caption as string }
+        />
+    );
 
     render() {
         return (

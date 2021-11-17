@@ -1,6 +1,6 @@
 import { MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
 import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
-import type { IEditable } from '..';
+import type { IEditable, DataTableState } from '..';
 
 interface UseVirtualApi<T> {
     estimatedHeight: number;
@@ -12,14 +12,8 @@ interface UseVirtualApi<T> {
     scrollToIndex: (index: number) => void;
 };
 
-interface UseVirtualValue {
-    topIndex?: number;
-    visibleCount?: number;
-};
-
-interface UseVirtualProps extends IEditable<UseVirtualValue> {
+interface UseVirtualProps extends IEditable<Pick<DataTableState, 'focusedIndex' | 'topIndex' | 'visibleCount'>> {
     rowsCount: number;
-    focusedIndex: number;
     blockAlign?: number;
     onScroll?(value: Partial<PositionValues>): void;
 }
@@ -28,11 +22,10 @@ export function useVirtual<T extends HTMLElement>({
     onValueChange,
     value,
     rowsCount,
-    focusedIndex,
     onScroll,
     blockAlign = 20
 }: UseVirtualProps): UseVirtualApi<T> {
-    const [focused, setFocused] = useState<number>(focusedIndex);
+    const [focused, setFocused] = useState<number>(value.focusedIndex);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
@@ -108,9 +101,7 @@ export function useVirtual<T extends HTMLElement>({
         handleScroll();
     });
 
-    useEffect(() => {
-        updateScrollToFocus();
-    }, [focused]);
+    useEffect(updateScrollToFocus, [focused]);
 
     return {
         estimatedHeight: estimatedHeight.current,

@@ -28,10 +28,10 @@ export const propsMods = { renderCell, renderDropMarkers };
 
 export const DataTableRow = withMods<DataTableRowProps<any, any>, DataTableRowMods>(
     uuiDataTableRow,
-    (mods: DataTableRowMods) => [
+    mods => [
         css.root,
         css['border-' + (mods.borderBottom || 'gray30')],
         css['size-' + (mods.size || '30')],
     ],
-    (mods: DataTableRowMods) => propsMods,
+    () => propsMods,
 );

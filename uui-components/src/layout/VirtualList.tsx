@@ -26,7 +26,7 @@ export function VirtualList({
         estimatedHeight,
         offsetY,
         handleScroll
-    } = useVirtual<HTMLDivElement>({ value, onValueChange, onScroll, rowsCount, focusedIndex });
+    } = useVirtual<HTMLDivElement>({ value, onValueChange, onScroll, rowsCount });
 
     const renderRows = () => {
         const firstChildRole = listRef.current?.children?.[0]?.getAttribute('role');

@@ -10,15 +10,15 @@ import * as styles from './ColumnsConfigurationModal.scss';
 import { i18n } from '../../i18n';
 
 export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationModalBase<TItem, TId> {
-    renderDndRow = (column: DataColumnProps<TItem, TId>, prevColumn: string, nextColumn: string) => {
-        return <DndActor<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>
+    renderDndRow = (column: DataColumnProps<TItem, TId>, prevColumn: string, nextColumn: string) => (
+        <DndActor<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>
             key={ column.key }
             srcData={ column }
             dstData={ column }
             canAcceptDrop={ this.handleCanAcceptDrop }
             onDrop={ params => this.onDrop(params, prevColumn, nextColumn) }
-            render={ props => {
-                return <div { ...props.eventHandlers } className={ cx(styles.dragElement, ...props.classNames) }>
+            render={ props => (
+                <div { ...props.eventHandlers } className={ cx(styles.dragElement, ...props.classNames) }>
                     <div className={ styles.dndItem }>
                         <FlexRow background="white" spacing='6'>
                             <DragHandle cx={ [styles.dragHandle] } />
@@ -26,14 +26,13 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                         </FlexRow>
                     </div>
                     <DropMarker { ...props } />
-                </div>;
-            } }
-        />;
-    }
+                </div>
+            ) }
+        />
+    );
 
     render() {
-        const { ...modalProps } = this.props;
-        const { columns } = this.props;
+        const { columns, ...modalProps } = this.props;
         const sortedColumns = sortBy(columns, i => this.state.columnsConfig[i.key].order);
         const widthForModal = this.modalWindowWidth > 600 ? this.modalWindowWidth : 600;
 

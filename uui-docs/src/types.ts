@@ -3,8 +3,8 @@ import { IEditable } from '@epam/uui';
 import { IDemoApi } from './demoApi';
 
 export interface DemoComponentProps<TProps = any> {
-    DemoComponent: React.ComponentType<TProps>;
-    props: any;
+    DemoComponent: React.ComponentType<TProps> & React.NamedExoticComponent<TProps>;
+    props: TProps;
 }
 
 export interface IComponentDocs<TProps extends {}> {
