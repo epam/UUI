@@ -7,11 +7,9 @@ import * as moreIcon from '@epam/assets/icons/common/action-settings-18.svg';
 
 export const DataTableHeaderRow = withMods<DataTableHeaderRowProps<any, any>, DataTableHeaderRowMods>(
     uuiDataTableHeaderRow,
-    (mods: DataTableHeaderRowMods) => [
-        css.root,
-    ],
-    (mods: DataTableHeaderRowMods & DataTableHeaderRowProps<any, any>) => ({
-        renderCell: (props: DataTableHeaderCellProps<any, any>) => <DataTableHeaderCell
+    mods => [css.root],
+    mods => ({
+        renderCell: props => <DataTableHeaderCell
             key={ props.column.key }
             { ...props }
             size={ mods.size }

@@ -25,12 +25,10 @@ type DataTableCardState = {
     columnsConfig: ColumnsConfig;
 };
 
-let tableData = demoData.personDemoData;
-
-export class TableContext extends React.Component<DemoComponentProps, any> {
+export class TableContext extends React.Component<DemoComponentProps, DataTableCardState> {
     state: DataTableCardState = {
         tableState: {},
-        items: tableData,
+        items: demoData.personDemoData,
         columnsConfig: {},
     };
 
@@ -41,28 +39,24 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     public static displayName = "Table";
 
     getVisibleColumns() {
-        return this.props.props.columns.filter((i: DataColumnProps<any>) => this.state.columnsConfig[i.key] ? this.state.columnsConfig[i.key].isVisible : true);
+        return this.props.props.columns.filter((i: DataColumnProps<DemoComponentProps['props']>) => this.state.columnsConfig[i.key]?.isVisible || true);
     }
 
     getRows() {
         const sort = this.state.tableState.sorting;
-        let rows = this.state.items;
-        let columns: DataColumnProps<any>[] = this.getVisibleColumns();
+        const rows = this.state.items;
+        const columns: DataColumnProps<DemoComponentProps>[] = this.getVisibleColumns();
+
         if (sort) {
-            columns.forEach(item => {
-                let fieldToSort = sort[0] && sort[0].field;
-
-                if (item.key === fieldToSort) {
-                    if (item.key === 'id' || item.key === 'departmentId') {
-                        rows = rows.sort((a: any, b: any) => a[item.key] - b[item.key]);
-                    } else {
-                        rows = rows.sort((a: any, b: any) => a[fieldToSort].localeCompare(b[fieldToSort]));
-                    }
-
-                    if (sort[0].direction === 'desc') {
-                        rows = rows.reverse();
-                    }
-                }
+            columns.forEach(({ key }) => {
+                const fieldKey = sort?.[0].field as keyof Person;
+                if (fieldKey !== key) return;
+                if (sort[0].direction === 'desc') rows.reverse();
+                rows.sort((a, b) =>
+                    (key === 'id' || key === 'departmentId') ?
+                    a[key] - b[key] :
+                    a[key].localeCompare(b[key])
+                );
             });
         }
 
@@ -79,48 +73,36 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     }
 
     showConfigurationModal = () => {
-        this.context.uuiModals
-            .show<ColumnsConfig>(modalProps => (
-                <ColumnsConfigurationModal
-                    { ...modalProps }
-                    columns={ this.props.props.columns }
-                    columnsConfig={ this.state.columnsConfig }
-                    defaultConfig={ {gender: {
-                        isVisible: false,
-                        order: 'f',
-                    }} }
-                />
-            ))
-            .then(columnConfiguration => {
-                this.setState({columnsConfig: columnConfiguration});
-            });
+        this.context.uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ this.props.props.columns }
+                columnsConfig={ this.state.columnsConfig }
+                defaultConfig={ { gender: { isVisible: false, order: 'f' }} }
+            />
+        )).then(columnsConfig => this.setState({columnsConfig }));
     }
 
-    getTable(component: any, props: any) {
+    getTable(component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
         if (component === DataTableRow) {
             return <>
                 <FlexRow size="48" background="white" padding="24">
-                        <Text>items</Text>
+                    <Text>items</Text>
                     <FlexSpacer />
-                    <IconButton
-                        icon={ gearIcon }
-                        onClick={ this.showConfigurationModal }
-                    />
+                    <IconButton icon={ gearIcon } onClick={ this.showConfigurationModal } />
                 </FlexRow>
                 <DataTableHeaderRow
-                    key='header'
                     columns={ this.getVisibleColumns() }
                     size={ props.size }
                     { ...this.lens.prop('tableState').toProps() }
                 />
-                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
-                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
             </>;
-        }
-        if (component === DataTableHeaderRow) {
+        } else if (component === DataTableHeaderRow) {
             return <>
-                { React.createElement(component as any, { ...props, columns: this.getVisibleColumns() }) }
+                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
                 { this.getRows() }
             </>;
         }

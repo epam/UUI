@@ -25,15 +25,8 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;
-            return cells.concat(this.props.renderCell({
-                ...column,
-                minWidth: column.minWidth || column.width as number
-            }, idx));
+            return cells.concat(this.props.renderCell(column, idx));
         }, []);
-    }
-
-    getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
-        return cells.reduce((width, cell) => width + (typeof cell.width === 'string' ? 0 : cell.width), 0);
     }
 
     wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
