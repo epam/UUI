@@ -24,16 +24,22 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                 key={ rowProps.rowKey }
                 borderBottom="none"
                 size={ size }
-                renderItem={ i => (
-                    <Text size={ size }>
-                        { rowProps.isLoading
-                            ? <TextPlaceholder wordsCount={ 2 } />
-                            : this.getName(i)
-                        }
-                    </Text>
-                ) }
+                renderItem={ this.renderItem }
                 padding="12"
             />
+        );
+    }
+
+    renderItem = (i: TItem, rowProps: DataRowProps<TItem, TId>) => {
+        const size = isMobile() ? "48" : (this.props.size || '30');
+
+        return (
+            <Text size={ size }>
+                { rowProps.isLoading
+                    ? <TextPlaceholder wordsCount={ 2 }/>
+                    : this.getName(i)
+                }
+            </Text>
         );
     }
 
