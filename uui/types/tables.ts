@@ -17,7 +17,6 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
 
 export interface DataColumnProps<TItem, TId = any, TFilter = any> extends props.FlexCellProps {
     key: string;
-    filterId?: string;
     caption?: React.ReactNode;
     fix?: 'left' | 'right';
     isSortable?: boolean;
