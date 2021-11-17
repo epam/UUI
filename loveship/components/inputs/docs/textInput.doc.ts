@@ -5,7 +5,7 @@ import { TextInput, TextInputMods } from '../TextInput';
 import { iEditable, textSettingsDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, modeDoc } from '../../../docs';
 import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
 
-const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput as React.ComponentClass<any> })
+const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['60', '48', '42', '36', '30', '24'], defaultValue: '36' })
     .implements([textSettingsDoc, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, modeDoc] as any)
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })

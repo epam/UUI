@@ -4,7 +4,7 @@ import { CheckboxProps } from '@epam/uui-components';
 import { Checkbox, CheckboxMods } from '../Checkbox';
 import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, ResizableContext, FormContext, GridContext, colorDoc } from '../../../docs';
 
-const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox as React.ComponentClass<any> })
+const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox })
     .implements([isDisabledDoc, isReadonlyDoc, colorDoc, isInvalidDoc, iHasLabelDoc, iEditable] as any)
     .prop('value', { examples: [true, false] })
     .prop('size', { examples: ['12', '18'], defaultValue: '18' })
