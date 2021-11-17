@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
-import { DataTableHeaderRowProps, withMods, DataTableHeaderCellProps } from '@epam/uui';
+import { DataTableHeaderRowProps, withMods } from '@epam/uui';
 import { IconButton, DataTableHeaderCell, DataTableHeaderRowMods } from '../';
 import * as css from './DataTableHeaderRow.scss';
 import * as moreIcon from '@epam/assets/icons/common/action-settings-18.svg';
 
-export const DataTableHeaderRow = withMods<DataTableHeaderRowProps<any, any>, DataTableHeaderRowMods>(
+export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
     uuiDataTableHeaderRow,
     mods => [css.root],
     mods => ({

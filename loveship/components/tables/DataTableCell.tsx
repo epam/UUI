@@ -6,7 +6,7 @@ import { DataTableCellProps, DataTableCellMods } from './types';
 import * as foldingArrow from '../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
-export class DataTableCell extends React.Component<DataTableCellProps<any, any> & DataTableCellMods, {}> {
+export class DataTableCell extends React.Component<DataTableCellProps & DataTableCellMods, {}> {
     hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);
 
     isDraggable = () => {
@@ -16,7 +16,7 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
     getContent = () => {
         const row = this.props.rowProps;
         const additionalItemSize = +this.props.size < 30 ? '12' : '18';
-        let cellContent = row.isLoading
+        const cellContent = row.isLoading
             ? <Text size={ this.props.size != '60' ? this.props.size : '48' }><TextPlaceholder /></Text>
             : this.props.column.render(this.props.rowProps.value, this.props.rowProps);
 
@@ -35,17 +35,19 @@ export class DataTableCell extends React.Component<DataTableCellProps<any, any> 
                     isInvalid={ row.checkbox.isInvalid }
                 />
                 }
-                { this.props.isFirstColumn && row.indent > 0 && <div key='fold' className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
-                    { row.isFoldable && <IconContainer
-                        key='icon'
-                        icon={ foldingArrow }
-                        cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
-                        rotate={ row.isFolded ? '90ccw' : '0' }
-                        onClick={ () => row.onFold(row) }
-                    />
-                    }
-                </div>
-                }
+                { this.props.isFirstColumn && row.indent > 0 && (
+                    <div key='fold' className={ css.indent } style={ { marginLeft: (row.indent - 1) * 24 } }>
+                        { row.isFoldable &&
+                            <IconContainer
+                                key='icon'
+                                icon={ foldingArrow }
+                                cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
+                                rotate={ row.isFolded ? '90ccw' : '0' }
+                                onClick={ () => row.onFold(row) }
+                            />
+                        }
+                    </div>
+                ) }
                 { cellContent }
             </>
         );

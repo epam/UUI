@@ -1,5 +1,6 @@
-import { ArrayDataSource, DataColumnProps } from "@epam/uui";
 import React from "react";
+import { ArrayDataSource, DataColumnProps } from "@epam/uui";
+import { Person } from '../docs/TableContext'
 
 const personDemoData = [
     {
@@ -138,11 +139,11 @@ export const dataSource = new ArrayDataSource({
     items: personDemoData,
 });
 
-export const demoColumns: DataColumnProps<any>[] = [
+export const demoColumns: DataColumnProps<Person>[] = [
     {
         key: "id",
         caption: "ID",
-        render: product => <div>{ product.id }</div>,
+        render: person => <div>{ person.id }</div>,
         isSortable: true,
         isAlwaysVisible: true,
         fix: "left",
@@ -152,7 +153,7 @@ export const demoColumns: DataColumnProps<any>[] = [
     {
         key: "name",
         caption: "name",
-        render: product => <div>{ product.id }</div>,
+        render: person => <div>{ person.id }</div>,
         isSortable: true,
         isAlwaysVisible: true,
         grow: 1,
@@ -161,7 +162,7 @@ export const demoColumns: DataColumnProps<any>[] = [
     {
         key: "level",
         caption: "Level",
-        render: product => <div>{ product.jobTitle }</div>,
+        render: person => <div>{ person.jobTitle }</div>,
         isSortable: true,
         width: 150,
         minWidth: 200,
@@ -169,7 +170,7 @@ export const demoColumns: DataColumnProps<any>[] = [
     {
         key: "date",
         caption: "DATE",
-        render: product => <div>{ product.birthDate }</div>,
+        render: person => <div>{ person.birthDate }</div>,
         isSortable: true,
         grow: 1,
         shrink: 0,

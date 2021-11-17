@@ -14,7 +14,7 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
     columnsConfig?: ColumnsConfig;
 }
 
-export interface DataColumnProps<TItem, TId = any, TFilter = any> extends props.FlexCellProps {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends props.FlexCellProps {
     key: string;
     caption?: React.ReactNode;
     fix?: 'left' | 'right';
@@ -29,7 +29,7 @@ export interface DataColumnProps<TItem, TId = any, TFilter = any> extends props.
     renderFilter?(lens: ILens<TFilter>): React.ReactNode;
 }
 
-export interface DataTableHeaderCellProps<TItem, TId> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
+export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
     column: DataColumnProps<TItem, TId>;
     isFirstColumn: boolean;
     isLastColumn: boolean;
@@ -41,7 +41,7 @@ export interface DataTableHeaderCellProps<TItem, TId> extends IEditable<DataTabl
     renderFilter?: () => React.ReactNode;
 }
 
-export interface DataTableHeaderRowProps<TItem, TId> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
+export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
     selectAll?: ICheckable;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
@@ -54,7 +54,7 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DataTableCellProps<TItem, TId> {
+export interface DataTableCellProps<TItem = any, TId = any> {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index: number;
