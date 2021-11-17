@@ -48,15 +48,18 @@ $gray90: #1D1E26;
     --divider-color: #{$gray40};
 
     --control-background-color: #{$white};
+    --switch-background-color: #{$gray40};
     --control-background-checked-color: var(--primary-color);
     --control-background-checked-hover-color: var(--primary-dark-color);
     --control-background-checked-disabled-color: var(--primary-light-color);
+    --control-background-hover-color: #{$gray60};
     --control-background-disabled-color: #{$gray5};
     --control-border-color: #{$gray40};
     --control-border-checked-color: var(--primary-color);
     --control-border-checked-hover-color: var(--primary-dark-color);
     --control-border-checked-disabled-color: var(--primary-light-color);
     --control-border-hover-color: var(--primary-dark-color);
+    --switch-border-hover-color: #{$gray60};
     --control-border-disabled-color: var(--disabled-color);
     --control-rest-color: var(--primary-color);
     --control-hover-color: var(--primary-dark-color);
