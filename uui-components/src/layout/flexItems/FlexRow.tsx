@@ -17,7 +17,6 @@ export class FlexRow extends React.Component<FlexRowProps> {
                     css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)],
                 ) }
                 { ...this.props.rawProps }
-                style={ { ...this.props.rawProps?.style } }
             >
                 { this.props.children }
             </div>

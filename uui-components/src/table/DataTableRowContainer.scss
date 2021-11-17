@@ -4,8 +4,7 @@
     --uui-table-row-min-width: 0px;
     position: relative;
     display: flex;
-    width: min-content;
-    min-width: calc(100vw - var(--uui-table-row-min-width));
+    min-width: min-content;
     align-items: stretch;
 }
 
