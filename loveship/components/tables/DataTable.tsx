@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import {
     ColumnsConfig, cx, DataRowProps, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
-    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig,
+    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, uuiMarkers
 } from '@epam/uui';
 import type { PositionValues } from '@epam/uui-components';
+import { useTableShadows } from './hooks/useScrollShadows';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { FlexRow, IconButton, VirtualList, Text } from '../';
+import { ScrollBars, IconButton, Text } from '../';
 import * as css from './DataTable.scss';
 import * as searchIcon from '../icons/search-24.svg';
 
@@ -16,17 +17,32 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-}
+};
 
-export function DataTable<TItem, TId = any>({
+enum scrollShadowsCx {
+    top = 'uui-scroll-shadow-top',
+    topVisible = 'uui-scroll-shadow-top-visible',
+    bottom = 'uui-scroll-shadow-bottom',
+    bottomVisible = 'uui-scroll-shadow-bottom-visible'
+};
+
+export function DataTable<TItem, TId>({
     value,
     onValueChange,
     onScroll,
     rowsCount,
     ...props
 }: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
-    const context = useUuiContext();
+    const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, value.columnsConfig);
+    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
+        value,
+        onValueChange,
+        onScroll,
+        rowsCount
+    });
+
+    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({ root: document.querySelector("[role='table']") });
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -38,13 +54,36 @@ export function DataTable<TItem, TId = any>({
         />
     );
 
-    const getRows = () => {
+    const renderTopShadow = () => (!props.shadow || props.shadow === 'dark') && (
+        <div className={ cx(scrollShadowsCx.top, {
+            [scrollShadowsCx.topVisible]: scrollShadows.vertical
+        }) } />
+    );
+
+    const renderBottomShadow = () => props.shadow === 'white' && (
+        <div className={ cx(scrollShadowsCx.bottom, {
+            [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
+        }) } />
+    );
+
+    const getVirtualisedList = () => {
         const renderItemRow = props.renderRow || renderRow;
-        return props.getRows().map((row: DataRowProps<TItem, TId>) => renderItemRow({ ...row, columns }));
+        const rows = props.getRows().map(row => renderItemRow({ ...row, columns }));
+
+        return (
+            <div
+                ref={ listRef }
+                role='rowgroup'
+                className={ css.listContainer }
+                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
+                { rows }
+                { renderBottomShadow() }
+            </div>
+        );
     };
 
     const onConfigurationButtonClick = () => {
-        context.uuiModals.show<ColumnsConfig>(modalProps => (
+        uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
                 columns={ props.columns }
@@ -70,34 +109,35 @@ export function DataTable<TItem, TId = any>({
     };
 
     return (
-        <div className={ css.table } role="table" aria-rowcount={ props.getRows().length } aria-colcount={ columns.length }>
-            <DataTableHeaderRow
-                columns={ columns }
-                onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                selectAll={ props.selectAll }
-                size={ props.size }
-                textCase={ props.headerTextCase }
-                allowColumnsReordering={ props.allowColumnsReordering }
-                allowColumnsResizing={ props.allowColumnsResizing }
-                value={ value }
-                onValueChange={ onValueChange }
-            />
-            <FlexRow
-                topShadow
-                background='white'
-                cx={ css.body }>
-                { props.exactRowsCount !== 0 ? (
-                    <VirtualList
+        <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll } hideTracksWhenNotNeeded>
+            <div
+                role="table"
+                aria-colcount={ props.columns.length }
+                aria-rowcount={ rowsCount }
+                className={ cx(css.table, css['shadow-' + (props.shadow || 'dark')], {
+                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontal,
+                    [uuiMarkers.scrolledRight]: scrollShadows.horizontal
+                }) }
+            >
+                <div className={ css.stickyHeader }>
+                    <DataTableHeaderRow
+                        columns={ columns }
+                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                        selectAll={ props.selectAll }
+                        size={ props.size }
+                        textCase={ props.headerTextCase }
+                        allowColumnsReordering={ props.allowColumnsReordering }
+                        allowColumnsResizing={ props.allowColumnsResizing }
                         value={ value }
                         onValueChange={ onValueChange }
-                        onScroll={ onScroll }
-                        rows={ getRows() }
-                        rowsCount={ rowsCount }
-                        focusedIndex={ value?.focusedIndex }
                     />
-                ) : renderNoResultsBlock() }
-            </FlexRow>
-        </div>
+                    { renderTopShadow() }
+                </div>
+                <div ref={ verticalRef } className={ css.verticalIntersectingRect } />
+                <div ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
+                { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
+            </div>
+        </ScrollBars>
     );
 };
 

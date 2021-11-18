@@ -1,18 +1,4 @@
-:global(.uui-scroll-shadow-top) {
-    position: sticky;
-    z-index: 3;
-}
-
-:global(.uui-scroll-shadow-bottom) {
-    position: sticky;
-    z-index: 3;
-    bottom: 0;
-}
-
 .table {
-    display: flex;
-    flex-direction: column;
-
     &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {
             opacity: 1;
@@ -61,4 +47,15 @@
     position: sticky;
     top: 50%;
     visibility: hidden;
+}
+
+:global(.uui-scroll-shadow-top) {
+    position: sticky;
+    z-index: 3;
+}
+
+:global(.uui-scroll-shadow-bottom) {
+    position: sticky;
+    z-index: 3;
+    bottom: 0;
 }
