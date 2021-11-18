@@ -1,18 +1,12 @@
 :global(.uui-scroll-shadow-top) {
     position: sticky;
     z-index: 3;
-    top: 36px;
-    left: unset;
-    right: unset;
-    bottom: unset;
 }
 
 :global(.uui-scroll-shadow-bottom) {
     position: sticky;
     z-index: 3;
     bottom: 0;
-    left: unset;
-    right: unset;
 }
 
 .table {
@@ -58,7 +52,6 @@
 .vertical-intersecting-rect {
     height: 1px;
     width: 100%;
-    position: relative;
     visibility: hidden;
 }
 
