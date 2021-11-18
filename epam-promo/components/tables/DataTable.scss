@@ -9,6 +9,7 @@
 
 :global(.uui-scroll-shadow-bottom) {
     position: sticky;
+    z-index: 3;
     bottom: 0;
     left: unset;
     right: unset;
@@ -18,13 +19,13 @@
     display: flex;
     flex-direction: column;
 
-    &.-scrolled-left {
+    &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {
             opacity: 1;
         }
     }
 
-    &.-scrolled-right {
+    &:global(.-scrolled-right) {
         :global(.uui-scroll-shadow-right) {
             opacity: 1;
         }
@@ -48,8 +49,23 @@
     }
 }
 
-.stickyHeader {
+.sticky-header {
     position: sticky;
     top: 0;
     z-index: 3;
+}
+
+.vertical-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    position: relative;
+    visibility: hidden;
+}
+
+.horizontal-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    position: sticky;
+    top: 50%;
+    visibility: hidden;
 }
