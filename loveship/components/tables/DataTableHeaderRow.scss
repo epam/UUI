@@ -14,3 +14,18 @@
     right: 24px;
     height: 100%;
 }
+
+:global(.uui-table-header-row .uui-table-fixed-section-left),
+:global(.uui-table-header-row .uui-table-fixed-section-right) {
+    z-index: 2;
+    background: $night50;
+}
+
+:global(.uui-table-row .uui-table-fixed-section-left),
+:global(.uui-table-row .uui-table-fixed-section-right) {
+    z-index: 2;
+
+    &:hover {
+        background-color: $night100;
+    }
+}

@@ -32,7 +32,6 @@ export function DataTable<TItem, TId>({
     rowsCount,
     ...props
 }: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
-    const tableRef = React.useRef();
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, value.columnsConfig);
     const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
@@ -103,7 +102,6 @@ export function DataTable<TItem, TId>({
         <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll } hideTracksWhenNotNeeded>
             <div
                 role="table"
-                ref={ tableRef }
                 aria-colcount={ props.columns.length }
                 aria-rowcount={ rowsCount }
                 className={ cx(css.table, css['shadow-' + (props.shadow || 'dark')], {

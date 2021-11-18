@@ -1,6 +1,5 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler } from '@epam/uui';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
 import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
@@ -95,7 +94,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: React.PropsWithRef<IDropdownToggler>) => (
         <FlexCell
             { ...this.props.column }
-            ref={ (node) => { props.ref.current = node; } }
+            ref={ node => props.ref.current = node }
             cx={ cx(
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
@@ -139,9 +138,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         return (
             <UuiDataTableHeaderCell
                 { ...this.props }
-                renderCellContent={ this.props.column.renderFilter
-                    ? this.renderCellWithFilter
-                    : this.renderCellContent }
+                renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent }
             />
         );
     }

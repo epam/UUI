@@ -36,7 +36,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         return (
             <Text size={ size }>
                 { rowProps.isLoading
-                    ? <TextPlaceholder wordsCount={ 2 }/>
+                    ? <TextPlaceholder wordsCount={ 2 } />
                     : this.getName(i)
                 }
             </Text>

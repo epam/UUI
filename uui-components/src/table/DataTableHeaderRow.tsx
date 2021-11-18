@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens, DataTableHeaderCellProps,
+    DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens,
     getColumnsConfig, DropParams, getOrderBetween,
 } from '@epam/uui';
 import { DataTableRowContainer } from './DataTableRowContainer';
