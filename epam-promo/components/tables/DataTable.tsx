@@ -42,7 +42,7 @@ export function DataTable<TItem, TId>({
         rowsCount
     });
 
-    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows();
+    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({ root: document.querySelector("[role='table']") });
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -51,6 +51,18 @@ export function DataTable<TItem, TId>({
             borderBottom={ props.border }
             { ...rowProps }
         />
+    );
+
+    const renderTopShadow = () => (!props.shadow || props.shadow === 'dark') && (
+        <div className={ cx(scrollShadowsCx.top, {
+            [scrollShadowsCx.topVisible]: scrollShadows.vertical
+        }) } />
+    );
+
+    const renderBottomShadow = () => props.shadow === 'white' && (
+        <div className={ cx(scrollShadowsCx.bottom, {
+            [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
+        }) } />
     );
 
     const renderNoResultsBlock = () => {
@@ -82,6 +94,7 @@ export function DataTable<TItem, TId>({
                 className={ css.listContainer }
                 style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
                 { rows }
+                { renderBottomShadow() }
             </div>
         );
     };
@@ -98,31 +111,23 @@ export function DataTable<TItem, TId>({
                     [uuiMarkers.scrolledRight]: scrollShadows.horizontal
                 }) }
             >
-                <DataTableHeaderRow
-                    cx={ css.stickyHeader }
-                    columns={ columns }
-                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                    selectAll={ props.selectAll }
-                    size={ props.size }
-                    textCase={ props.headerTextCase }
-                    allowColumnsReordering={ props.allowColumnsReordering }
-                    allowColumnsResizing={ props.allowColumnsResizing }
-                    value={ value }
-                    onValueChange={ onValueChange }
-                />
-                { (!props.shadow || props.shadow === 'dark') && (
-                    <div className={ cx(scrollShadowsCx.top, {
-                        [scrollShadowsCx.topVisible]: scrollShadows.vertical
-                    }) } />
-                ) }
+                <div className={ css.stickyHeader }>
+                    <DataTableHeaderRow
+                        columns={ columns }
+                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                        selectAll={ props.selectAll }
+                        size={ props.size }
+                        textCase={ props.headerTextCase }
+                        allowColumnsReordering={ props.allowColumnsReordering }
+                        allowColumnsResizing={ props.allowColumnsResizing }
+                        value={ value }
+                        onValueChange={ onValueChange }
+                    />
+                    { renderTopShadow() }
+                </div>
                 <div ref={ verticalRef } className={ css.verticalIntersectingRect } />
                 <div ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
                 { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
-                { props.shadow === 'white' && (
-                    <div className={ cx(scrollShadowsCx.bottom, {
-                        [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
-                    }) } />
-                ) }
             </div>
         </ScrollBars>
     );
