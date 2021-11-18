@@ -1,7 +1,6 @@
 @use '~@epam/assets/scss/index' as *;
 
 .container {
-    --uui-table-row-min-width: 0px;
     position: relative;
     display: flex;
     min-width: min-content;
@@ -30,7 +29,7 @@
     width: 5px;
     pointer-events: none;
     background: linear-gradient(to $direction, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    opacity: 1;
+    opacity: 0;
 }
 
 :global(.uui-scroll-shadow-left) {
