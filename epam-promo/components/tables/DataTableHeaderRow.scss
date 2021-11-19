@@ -26,8 +26,4 @@
 :global(.uui-table-row .uui-table-fixed-section-right) {
     z-index: 2;
     background: $white;
-
-    &:hover {
-        background-color: $gray20;
-    }
 }
