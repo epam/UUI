@@ -44,4 +44,26 @@
     &:global(.uui-shadow-bottom-visible)::after {
         opacity: 1;
     }
+
+    &:global(.uui-track-horizontal),
+    &:global(.uui-track-vertical) {
+        position: absolute;
+        background-color: transparent;
+        border-radius: 3px;
+        z-index: 9999;
+    }
+
+    &:global(.uui-track-horizontal) {
+        height: 6px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+    }
+
+    &:global(.uui-track-vertical) {
+        width: 6px;
+        right: 2px;
+        top: 2px;
+        bottom: 2px;
+    }
 }
