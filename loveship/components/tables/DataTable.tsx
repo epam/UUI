@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {
     ColumnsConfig, cx, DataRowProps, IEditable, DataTableState, DataSourceListProps, DataColumnProps,
-    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, uuiMarkers
+    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, uuiMarkers, useTableShadows,
 } from '@epam/uui';
 import type { PositionValues } from '@epam/uui-components';
-import { useTableShadows } from './hooks/useScrollShadows';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { ScrollBars, IconButton, Text } from '../';
 import * as css from './DataTable.scss';
