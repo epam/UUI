@@ -40,7 +40,9 @@ export function DataTable<TItem, TId>({
         rowsCount
     });
 
-    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({ root: document.querySelector("[role='table']") });
+    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({
+        root: scrollbarsRef.current?.container.parentElement
+    });
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
