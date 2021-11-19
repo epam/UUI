@@ -7,8 +7,6 @@ export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps 
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
     ref?: React.MutableRefObject<Scrollbars>;
-    horizontal?: boolean;
-    vertical?: boolean;
 }
 
 export interface PositionValues extends CustomScrollBars.positionValues {}
@@ -20,6 +18,8 @@ enum uuiScrollbars {
     uuiShadowBottom = 'uui-shadow-bottom',
     uuiThumbVertical = 'uui-thumb-vertical',
     uuiThumbHorizontal = 'uui-thumb-horizontal',
+    uuiTrackVertical = 'uui-track-vertical',
+    uuiTrackHorizontal = 'uui-track-horizontal',
     uuiShadowTopVisible = 'uui-shadow-top-visible',
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
 };
@@ -28,8 +28,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style,
     hasBottomShadow,
     hasTopShadow,
-    horizontal = true,
-    vertical = true,
     ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();
@@ -76,15 +74,15 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
             renderView={ typeof props.renderView !== 'function' ? renderView : props.renderView }
-            renderThumbHorizontal={ horizontal ? () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> : undefined }
-            renderThumbVertical={ vertical ? () => <div className={ uuiScrollbars.uuiThumbVertical } /> : undefined }
+            renderTrackHorizontal={ props => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
+            renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } />}
+            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
+            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             hideTracksWhenNotNeeded
             ref={ bars }
             { ...props }
-        >
-            { props.children }
-        </CustomScrollBars.default>
+        />
     );
 });
