@@ -16,30 +16,41 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
     const horizontalObserver = useRef<IntersectionObserver>();
     const verticalRef = useRef<HTMLDivElement>();
     const horizontalRef = useRef<HTMLDivElement>();
-    const [vertical, setVertical] = useState(false);
-    const [horizontal, setHorizontal] = useState(false);
+    const [vertical, setVertical] = useState({ previousY: 0, active: false });
+    const [horizontal, setHorizontal] = useState({ previousX: 0, active: false });
 
     useEffect(() => {
         if (!verticalRef.current) return;
 
         verticalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
-            setVertical(isIntersecting ? boundingClientRect.y < 0 : boundingClientRect.y > 0);
+            setVertical({
+                previousY: boundingClientRect.y,
+                active: !isIntersecting && boundingClientRect.y >= vertical.previousY
+            });
         }, { root });
 
         verticalObserver.current.observe(verticalRef.current);
         return () => verticalRef.current && verticalObserver.current.unobserve(verticalRef.current);
-    }, [verticalRef.current, vertical, root]);
+    }, [verticalRef.current, vertical.previousY, vertical.active, root]);
 
     useEffect(() => {
         if (!horizontalRef.current) return;
 
         horizontalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
-            setHorizontal(isIntersecting ? boundingClientRect.x < 0 : boundingClientRect.x > 0);
+            setHorizontal({
+                previousX: boundingClientRect.x,
+                active: !isIntersecting && boundingClientRect.x >= horizontal.previousX
+            });
         }, { root, threshold: [0.99, 1] });
 
         horizontalObserver.current.observe(horizontalRef.current);
         return () => horizontalRef.current && horizontalObserver.current.unobserve(horizontalRef.current);
-    }, [horizontalRef.current, horizontal, root]);
+    }, [horizontalRef.current, horizontal.previousX, horizontal.active, root]);
 
-    return { vertical, horizontal, horizontalRef, verticalRef };
+    return {
+        vertical: vertical.active,
+        horizontal: horizontal.active,
+        horizontalRef,
+        verticalRef
+    };
 };

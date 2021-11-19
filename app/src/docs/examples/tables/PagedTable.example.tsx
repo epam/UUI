@@ -20,7 +20,7 @@ export default function PagedTable() {
         caption: 'NAME',
         render: person => <Text color='gray80' font='sans-semibold'>{ person.name }</Text>,
         isSortable: true,
-        grow: 1, minWidth: 224,
+        grow: 0, minWidth: 224,
     },
     {
         key: 'location',

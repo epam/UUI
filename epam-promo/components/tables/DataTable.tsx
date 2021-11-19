@@ -41,7 +41,7 @@ export function DataTable<TItem, TId>({
     });
 
     const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({
-        root: scrollbarsRef.current?.container.parentElement
+        root: scrollbarsRef.current?.container
     });
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (

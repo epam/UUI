@@ -10,9 +10,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0;
     height: calc(100vh - 121px);
-    width: 100vw;
+    width: 100%;
     transition: all 500ms;
 
     .counter {
