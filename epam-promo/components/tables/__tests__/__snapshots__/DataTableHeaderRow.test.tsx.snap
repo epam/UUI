@@ -6,35 +6,12 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   role="row"
 >
   <div
-    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
-  />
-  <div
-    className="scrollableColumnsWrapper"
+    className="container"
     style={
       Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
+        "flex": "0 0 0px",
       }
     }
-  >
-    <div
-      className="scrollableColumnsContainer"
-    >
-      <div
-        className="container align-items-top"
-      />
-    </div>
-    <div
-      className="scrollShadowLeft"
-    />
-    <div
-      className="scrollShadowRight"
-    />
-  </div>
-  <div
-    className="fixedColumnsWrapper fixedColumnsWrapperRight"
   />
 </div>
 `;
@@ -45,35 +22,12 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   role="row"
 >
   <div
-    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
-  />
-  <div
-    className="scrollableColumnsWrapper"
+    className="container"
     style={
       Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
+        "flex": "0 0 0px",
       }
     }
-  >
-    <div
-      className="scrollableColumnsContainer"
-    >
-      <div
-        className="container align-items-top"
-      />
-    </div>
-    <div
-      className="scrollShadowLeft"
-    />
-    <div
-      className="scrollShadowRight"
-    />
-  </div>
-  <div
-    className="fixedColumnsWrapper fixedColumnsWrapperRight"
   />
 </div>
 `;

@@ -6,53 +6,30 @@ exports[`DataTableRow should be rendered correctly 1`] = `
   role="row"
 >
   <div
-    className="fixedColumnsWrapper fixedColumnsWrapperLeft"
-  />
-  <div
-    className="scrollableColumnsWrapper"
+    className="container"
     style={
       Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
+        "flex": "0 0 96px",
       }
     }
   >
     <div
-      className="scrollableColumnsContainer"
+      className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24 align-widgets-top"
+      onClick={[Function]}
+      role="cell"
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "96px",
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "minWidth": "96px",
+          "textAlign": undefined,
+        }
+      }
     >
-      <div
-        className="container align-items-top"
-      >
-        <div
-          className="flexCell cell size-36 padding-12 padding-left-24 padding-right-24 align-widgets-top"
-          onClick={[Function]}
-          role="cell"
-          style={
-            Object {
-              "alignSelf": undefined,
-              "flexBasis": "96px",
-              "flexGrow": 0,
-              "flexShrink": 0,
-              "minWidth": 0,
-              "textAlign": undefined,
-            }
-          }
-        >
-          <div />
-        </div>
-      </div>
+      <div />
     </div>
-    <div
-      className="scrollShadowLeft"
-    />
-    <div
-      className="scrollShadowRight"
-    />
   </div>
-  <div
-    className="fixedColumnsWrapper fixedColumnsWrapperRight"
-  />
 </div>
 `;
