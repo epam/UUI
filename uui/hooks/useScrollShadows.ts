@@ -20,7 +20,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
     const [horizontal, setHorizontal] = useState(false);
 
     useEffect(() => {
-        if (!verticalRef.current || !root) return;
+        if (!verticalRef.current) return;
 
         verticalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
             setVertical(isIntersecting ? boundingClientRect.y < 0 : boundingClientRect.y > 0);
@@ -34,12 +34,12 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
         if (!horizontalRef.current) return;
 
         horizontalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
-            setHorizontal(!isIntersecting && boundingClientRect.x < 0);
-        }, { threshold: [0.99, 1] });
+            setHorizontal(isIntersecting ? boundingClientRect.x < 0 : boundingClientRect.x > 0);
+        }, { root, threshold: [0.99, 1] });
 
         horizontalObserver.current.observe(horizontalRef.current);
         return () => horizontalRef.current && horizontalObserver.current.unobserve(horizontalRef.current);
-    }, [horizontalRef.current, horizontal]);
+    }, [horizontalRef.current, horizontal, root]);
 
     return { vertical, horizontal, horizontalRef, verticalRef };
 };
