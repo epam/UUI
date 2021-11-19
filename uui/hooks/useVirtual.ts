@@ -25,12 +25,12 @@ export function useVirtual<T extends HTMLElement>({
     onScroll,
     blockAlign = 20
 }: UseVirtualProps): UseVirtualApi<T> {
-    const [focused, setFocused] = useState<number>(value.focusedIndex);
+    const [focused, setFocused] = useState(value?.focusedIndex || 0);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
-    const estimatedHeight = useRef<number>(0);
+    const estimatedHeight = useRef(0);
 
     const updateScrollToFocus = useCallback(() => {
         if (!scrollbarsRef.current || focused == undefined) return;
