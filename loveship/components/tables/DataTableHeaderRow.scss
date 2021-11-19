@@ -24,8 +24,4 @@
 :global(.uui-table-row .uui-table-fixed-section-left),
 :global(.uui-table-row .uui-table-fixed-section-right) {
     z-index: 2;
-
-    &:hover {
-        background-color: $night100;
-    }
 }
