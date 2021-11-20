@@ -1,7 +1,7 @@
 import { MutableRefObject, useRef, useState, useEffect } from "react";
 
 interface UseTableShadowsProps {
-    root: Element;
+    root?: Element;
 }
 
 interface UseTableShadowsApi {
@@ -31,7 +31,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
 
         verticalObserver.current.observe(verticalRef.current);
         return () => verticalRef.current && verticalObserver.current.unobserve(verticalRef.current);
-    }, [verticalRef.current, vertical.previousY, vertical.active, root]);
+    }, [verticalRef.current, root]);
 
     useEffect(() => {
         if (!horizontalRef.current) return;
@@ -45,7 +45,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
 
         horizontalObserver.current.observe(horizontalRef.current);
         return () => horizontalRef.current && horizontalObserver.current.unobserve(horizontalRef.current);
-    }, [horizontalRef.current, horizontal.previousX, horizontal.active, root]);
+    }, [horizontalRef.current, root]);
 
     return {
         vertical: vertical.active,

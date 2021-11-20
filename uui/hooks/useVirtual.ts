@@ -4,7 +4,6 @@ import type { IEditable, DataTableState } from '..';
 
 interface UseVirtualApi<T> {
     estimatedHeight: number;
-    scrollValues: PositionValues;
     offsetY: number;
     handleScroll: () => void;
     listRef: MutableRefObject<T>;
@@ -105,7 +104,6 @@ export function useVirtual<T extends HTMLElement>({
 
     return {
         estimatedHeight: estimatedHeight.current,
-        scrollValues: scrollbarsRef.current?.getValues(),
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
         scrollbarsRef,
         listRef,
