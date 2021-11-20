@@ -106,7 +106,7 @@ export function DataTable<TItem, TId>({
                 aria-colcount={ props.columns.length }
                 aria-rowcount={ rowsCount }
                 className={ cx(css.table, css['shadow-' + (props.shadow || 'dark')], {
-                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontal,
+                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontal || scrollbarsRef.current?.container.offsetLeft !== 0,
                     [uuiMarkers.scrolledRight]: scrollShadows.horizontal
                 }) }
             >
