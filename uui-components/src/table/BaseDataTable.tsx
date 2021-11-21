@@ -31,7 +31,7 @@ export function BaseDataTable<TItem, TId>({
     onScroll,
     ...props
 }: React.PropsWithChildren<BaseDataTableProps<TItem, TId>>) {
-    const { columns } = useColumnsConfig(props.columns, props.value.columnsConfig);
+    const { columns } = useColumnsConfig(props.columns, props.value?.columnsConfig);
     const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
         value,
         onValueChange,
