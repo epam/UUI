@@ -1,16 +1,4 @@
 .table {
-    &:global(.-scrolled-left) {
-        :global(.uui-scroll-shadow-left) {
-            opacity: 1;
-        }
-    }
-
-    &:global(.-scrolled-right) {
-        :global(.uui-scroll-shadow-right) {
-            opacity: 1;
-        }
-    }
-
     &.shadow-dark {
         :global(.uui-scroll-shadow-top-visible) {
             opacity: 1;
@@ -27,35 +15,4 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 54%);
         }
     }
-}
-
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 3;
-}
-
-.vertical-intersecting-rect {
-    height: 1px;
-    width: 100%;
-    visibility: hidden;
-}
-
-.horizontal-intersecting-rect {
-    height: 1px;
-    width: 100%;
-    position: sticky;
-    top: 50%;
-    visibility: hidden;
-}
-
-:global(.uui-scroll-shadow-top) {
-    position: sticky;
-    z-index: 3;
-}
-
-:global(.uui-scroll-shadow-bottom) {
-    position: sticky;
-    z-index: 3;
-    bottom: 0;
 }
