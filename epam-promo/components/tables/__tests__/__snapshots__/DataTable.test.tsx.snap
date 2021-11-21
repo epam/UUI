@@ -2,16 +2,7 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root root theme-light"
-  cx={
-    Array [
-      Array [
-        "root",
-        "theme-light",
-      ],
-      undefined,
-    ]
-  }
+  className="root"
   style={
     Object {
       "display": "flex",
@@ -40,7 +31,7 @@ exports[`DataTable should be rendered correctly 1`] = `
   >
     <div
       aria-colcount={0}
-      className="table shadow-dark -scrolled-left"
+      className="table shadow-dark"
       role="table"
     >
       <div
@@ -70,7 +61,6 @@ exports[`DataTable should be rendered correctly 1`] = `
         className="horizontalIntersectingRect"
       />
       <div
-        className="listContainer"
         role="rowgroup"
         style={
           Object {

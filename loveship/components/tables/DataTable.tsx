@@ -10,7 +10,7 @@ export interface DataTableProps<TItem, TId> extends Exclude<BaseDataTableProps<T
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
-    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
+    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
