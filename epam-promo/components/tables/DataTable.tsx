@@ -1,48 +1,14 @@
 import * as React from 'react';
-import {
-    ColumnsConfig, DataRowProps, DataColumnProps, IEditable, DataTableState, DataSourceListProps,
-    DataTableColumnsConfigOptions, useUuiContext, useColumnsConfig, useVirtual, cx, uuiMarkers, useTableShadows
-} from '@epam/uui';
-import type { PositionValues } from '@epam/uui-components';
+import { BaseDataTableProps, BaseDataTable } from '@epam/uui-components';
+import { ColumnsConfig, DataRowProps, useUuiContext, useColumnsConfig, cx } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { ScrollBars } from '../';
 import * as css from './DataTable.scss';
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
-    getRows(): DataRowProps<TItem, TId>[];
-    columns: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
-    renderNoResultsBlock?(): React.ReactNode;
-    onScroll?(value: PositionValues): void;
-    showColumnsConfig?: boolean;
-}
+export interface DataTableProps<TItem, TId> extends Exclude<BaseDataTableProps<TItem, TId>, 'renderHeader' | 'onConfigurationButtonClick'> {};
 
-enum scrollShadowsCx {
-    top = 'uui-scroll-shadow-top',
-    topVisible = 'uui-scroll-shadow-top-visible',
-    bottom = 'uui-scroll-shadow-bottom',
-    bottomVisible = 'uui-scroll-shadow-bottom-visible'
-};
-
-export function DataTable<TItem, TId>({
-    value,
-    onValueChange,
-    onScroll,
-    rowsCount,
-    ...props
-}: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
+export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
-    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, value.columnsConfig);
-    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
-        value,
-        onValueChange,
-        onScroll,
-        rowsCount
-    });
-
-    const { verticalRef, horizontalRef, ...scrollShadows } = useTableShadows({
-        root: scrollbarsRef.current?.container
-    });
+    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value.columnsConfig);
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
@@ -51,18 +17,6 @@ export function DataTable<TItem, TId>({
             borderBottom={ props.border }
             { ...rowProps }
         />
-    );
-
-    const renderTopShadow = () => (!props.shadow || props.shadow === 'dark') && (
-        <div className={ cx(scrollShadowsCx.top, {
-            [scrollShadowsCx.topVisible]: scrollShadows.vertical
-        }) } />
-    );
-
-    const renderBottomShadow = () => props.shadow === 'white' && (
-        <div className={ cx(scrollShadowsCx.bottom, {
-            [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
-        }) } />
     );
 
     const renderNoResultsBlock = () => {
@@ -79,55 +33,30 @@ export function DataTable<TItem, TId>({
                 defaultConfig={ defaultConfig }
             />
         ))
-            .then(columnsConfig => onValueChange({ ...value, columnsConfig }))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
     };
 
-    const getVirtualisedList = () => {
-        const renderItemRow = props.renderRow || renderRow;
-        const rows = props.getRows().map(row => renderItemRow({ ...row, columns }));
-
-        return (
-            <div
-                ref={ listRef }
-                role='rowgroup'
-                className={ css.listContainer }
-                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
-                { rows }
-                { renderBottomShadow() }
-            </div>
-        );
-    };
-
     return (
-        <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll } hideTracksWhenNotNeeded>
-            <div
-                role="table"
-                aria-colcount={ props.columns.length }
-                aria-rowcount={ rowsCount }
-                className={ cx(css.table, css['shadow-' + (props.shadow || 'dark')], {
-                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontal || scrollbarsRef.current?.container.offsetLeft !== 0,
-                    [uuiMarkers.scrolledRight]: scrollShadows.horizontal
-                }) }
-            >
-                <div className={ css.stickyHeader }>
-                    <DataTableHeaderRow
-                        columns={ columns }
-                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                        selectAll={ props.selectAll }
-                        size={ props.size }
-                        textCase={ props.headerTextCase }
-                        allowColumnsReordering={ props.allowColumnsReordering }
-                        allowColumnsResizing={ props.allowColumnsResizing }
-                        value={ value }
-                        onValueChange={ onValueChange }
-                    />
-                    { renderTopShadow() }
-                </div>
-                <div ref={ verticalRef } className={ css.verticalIntersectingRect } />
-                <div ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
-                { props.exactRowsCount !== 0 ? getVirtualisedList() : renderNoResultsBlock() }
-            </div>
-        </ScrollBars>
+        <BaseDataTable
+            cx={ cx(props.cx, css.table, css['shadow-' + (props.shadow || 'dark')]) }
+            renderRow={ renderRow }
+            renderNoResultsBlock={ renderNoResultsBlock }
+            onConfigurationButtonClick={ onConfigurationButtonClick }
+            renderHeader={ () => (
+                <DataTableHeaderRow
+                    columns={ columns }
+                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                    selectAll={ props.selectAll }
+                    size={ props.size }
+                    textCase={ props.headerTextCase }
+                    allowColumnsReordering={ props.allowColumnsReordering }
+                    allowColumnsResizing={ props.allowColumnsResizing }
+                    value={ props.value }
+                    onValueChange={ props.onValueChange }
+                />
+            )}
+            { ...props }
+        />
     );
 };

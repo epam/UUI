@@ -48,7 +48,6 @@ export function VirtualList({
                 autoHeight
                 className={ css.body }
                 onScroll={ handleScroll }
-                hideTracksWhenNotNeeded
                 ref={ scrollbarsRef }
                 autoHeightMax={ 100500 }
             >
