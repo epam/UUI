@@ -27,7 +27,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                     css.container,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
-                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
                 { ...this.props.rawProps }
             >
@@ -35,13 +35,13 @@ export class Switch extends React.Component<SwitchProps, any> {
                     <input
                         type="checkbox"
                         role="switch"
-                        onChange={ !this.props.isReadonly ? this.toggle : null }
+                        onChange={ !this.props.isReadonly ? this.toggle : undefined }
                         readOnly={ this.props.isReadonly }
                         aria-readonly={ this.props.isReadonly || undefined }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled }
-                        checked={ this.props.value }
-                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        checked={ this.props.value || false }
+                        aria-checked={ this.props.value || false }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }
                         tabIndex={ this.props.tabIndex }
