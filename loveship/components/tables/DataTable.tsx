@@ -26,7 +26,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
-                columns={ props.columns }
+                columns={ columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }
 
@@ -38,8 +38,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderNoResultsBlock = () => {
         const renderNoResults = () => (
-            <div className={ cx(css.noResults) }>
-                <IconButton icon={ searchIcon } cx={ css.noResultsIcon }/>
+            <div className={ css.noResults }>
+                <IconButton icon={ searchIcon } cx={ css.noResultsIcon } />
                 <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
                 <Text fontSize='14'>We can't find any item matching your request</Text>
             </div>
@@ -68,6 +68,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 />
             )}
             { ...props }
+            columns={ columns }
         />
     );
 };

@@ -28,7 +28,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
-                columns={ props.columns }
+                columns={ columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }
             />
@@ -57,6 +57,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 />
             )}
             { ...props }
+            columns={ columns }
         />
     );
 };

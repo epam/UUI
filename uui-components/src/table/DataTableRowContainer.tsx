@@ -39,7 +39,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
 
     wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
         <div
-            style={{ flex: `0 0 ${this.getSectionWidth(cells)}px` }}
+            style={{ width: `${this.getSectionWidth(cells)}px` }}
             className={ cx({
                 [css.fixedColumnsSectionLeft]: direction === 'left',
                 [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
