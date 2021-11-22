@@ -1,6 +1,7 @@
 .sticky-header {
     position: sticky;
     top: 0;
+    min-width: min-content;
     z-index: 3;
 }
 
@@ -16,6 +17,14 @@
     position: sticky;
     top: 50%;
     visibility: hidden;
+}
+
+.listContainer {
+    --list-offset: 0px;
+    --list-height: 0px;
+    min-height: var(--list-height);
+    margin-top: var(--list-offset);
+    min-width: min-content;
 }
 
 :global(.uui-scroll-shadow-top) {
