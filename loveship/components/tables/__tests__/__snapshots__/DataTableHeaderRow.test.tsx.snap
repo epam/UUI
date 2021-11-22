@@ -9,7 +9,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
-        "flex": "0 0 96px",
+        "width": "96px",
       }
     }
   >
@@ -94,7 +94,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="container"
     style={
       Object {
-        "flex": "0 0 470px",
+        "flex": "1 0 470px",
       }
     }
   >
@@ -291,7 +291,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
-        "flex": "0 0 96px",
+        "width": "96px",
       }
     }
   >
@@ -354,7 +354,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="container"
     style={
       Object {
-        "flex": "0 0 470px",
+        "flex": "1 0 470px",
       }
     }
   >
