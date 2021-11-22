@@ -481,6 +481,7 @@ Array [
         <input
           aria-checked={false}
           aria-disabled={true}
+          checked={false}
           disabled={true}
           onChange={[Function]}
           role="switch"
@@ -984,6 +985,7 @@ Array [
         <input
           aria-checked={false}
           aria-disabled={true}
+          checked={false}
           disabled={true}
           onChange={[Function]}
           role="switch"
