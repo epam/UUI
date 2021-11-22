@@ -56,7 +56,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => {
         if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
         else return (
-            <div style={{ flex: `0 0 ${this.getSectionWidth(cells)}px` }} className={ css.container }>
+            <div style={{ flex: `1 0 ${this.getSectionWidth(cells)}px` }} className={ css.container }>
                 { this.renderCells(cells) }
             </div>
         );
