@@ -279,11 +279,12 @@ exports[`DataTable should be rendered correctly 1`] = `
         className="horizontalIntersectingRect"
       />
       <div
+        className="listContainer"
         role="rowgroup"
         style={
           Object {
-            "marginTop": 0,
-            "minHeight": "0px",
+            "--list-height": "0px",
+            "--list-offset": 0,
           }
         }
       >
