@@ -1,4 +1,4 @@
-import React, { createRef, ReactElement, PropsWithRef, Component } from 'react';
+import React, { createRef, ReactElement, Component, PropsWithRef } from 'react';
 import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui";
 
 interface DataTableRenderProps {
@@ -62,7 +62,7 @@ export abstract class DataTableHeaderCell<TItem, TId> extends Component<DataTabl
 
             columnsConfig[this.props.column.key] = {
                 ...columnsConfig[this.props.column.key],
-                width: (newWidth < this.props.column.minWidth) ? this.props.column.minWidth : newWidth
+                width: newWidth
             };
 
             this.props.onValueChange({ ...this.props.value, columnsConfig });

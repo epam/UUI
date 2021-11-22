@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ColumnsConfig, cx, DataRowProps, useUuiContext, useColumnsConfig } from '@epam/uui';
-import { BaseDataTableProps, BaseDataTable } from '@epam/uui-components';
+import { DataTableProps as BaseDataTableProps, DataTable as BaseDataTable } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text } from '../';
 import * as css from './DataTable.scss';

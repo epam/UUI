@@ -6,7 +6,7 @@ import { DataTableCellProps, DataTableCellMods } from './types';
 import * as foldingArrow from '../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
-export class DataTableCell extends React.Component<DataTableCellProps & DataTableCellMods, {}> {
+export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProps<TItem, TId> & DataTableCellMods, {}> {
     hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);
 
     isDraggable = () => {

@@ -40,28 +40,34 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 >
                     { this.props.column.caption }
                 </Text>
-                { this.props.column.info &&
-                <div><Text key="tooltip-marker" lineHeight="30" fontSize="14" size="30">*</Text></div> }
-                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection)
-                && <IconButton
-                    key="sort"
-                    cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
-                    color="gray50"
-                    icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
-                /> }
-                { this.props.isFilterActive
-                && <IconButton
-                    key="filter"
-                    cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
-                    color="gray60" icon={ filterIcon }
-                /> }
-                { this.props.column.renderFilter
-                && <IconButton
-                    key="dropdown"
-                    cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
-                    color="gray50"
-                    icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }
-                /> }
+                { this.props.column.info && (
+                    <div>
+                        <Text key="tooltip-marker" lineHeight="30" fontSize="14" size="30">*</Text>
+                    </div>
+                ) }
+                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
+                    <IconButton
+                        key="sort"
+                        cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
+                        color="gray50"
+                        icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
+                    />
+                ) }
+                { this.props.isFilterActive && (
+                    <IconButton
+                        key="filter"
+                        cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
+                        color="gray60" icon={ filterIcon }
+                    />
+                ) }
+                { this.props.column.renderFilter && (
+                    <IconButton
+                        key="dropdown"
+                        cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
+                        color="gray50"
+                        icon={ this.state.isDropdownOpen ? openedDropdownIcon : dropdownIcon }
+                    />
+                ) }
             </div>
         );
 
@@ -94,7 +100,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: React.PropsWithRef<IDropdownToggler>) => (
         <FlexCell
             { ...this.props.column }
-            ref={ node => props.ref.current = node }
+            ref={ props.ref }
             cx={ cx(
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,

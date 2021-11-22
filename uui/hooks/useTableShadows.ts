@@ -1,12 +1,13 @@
 import { MutableRefObject, useRef, useState, useEffect } from "react";
 
 interface UseTableShadowsProps {
-    root?: Element;
+    root?: HTMLElement;
 }
 
 interface UseTableShadowsApi {
     vertical: boolean;
-    horizontal: boolean;
+    horizontalLeft: boolean;
+    horizontalRight: boolean;
     horizontalRef: MutableRefObject<HTMLDivElement>;
     verticalRef: MutableRefObject<HTMLDivElement>;
 };
@@ -25,7 +26,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
         verticalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
             setVertical({
                 previousY: boundingClientRect.y,
-                active: !isIntersecting && boundingClientRect.y >= vertical.previousY
+                active: !isIntersecting && boundingClientRect.y > vertical.previousY
             });
         }, { root });
 
@@ -39,7 +40,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
         horizontalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
             setHorizontal({
                 previousX: boundingClientRect.x,
-                active: !isIntersecting && boundingClientRect.x >= horizontal.previousX
+                active: !isIntersecting && boundingClientRect.x !== horizontal.previousX
             });
         }, { root, threshold: [0.99, 1] });
 
@@ -49,7 +50,8 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
 
     return {
         vertical: vertical.active,
-        horizontal: horizontal.active,
+        horizontalLeft: horizontal.active || (root?.scrollWidth > root?.clientWidth),
+        horizontalRight: horizontal.active,
         horizontalRef,
         verticalRef
     };
