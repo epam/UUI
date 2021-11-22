@@ -6,7 +6,7 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
         minWidth: props.minWidth ? `${props.minWidth}px` : 0,
         flexGrow: props.grow,
         flexShrink: props.shrink,
-        flexBasis: (props.width === 'auto' || props.width === '100%') ? props.width : `${props.width}px`,
+        flexBasis: props.width ? ((props.width === 'auto' || props.width === '100%') ? props.width : `${props.width}px`) : "0",
         textAlign: props.textAlign,
         alignSelf: props.alignSelf,
     };

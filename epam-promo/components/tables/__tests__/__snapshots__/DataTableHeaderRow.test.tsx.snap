@@ -9,7 +9,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
     className="container"
     style={
       Object {
-        "flex": "0 0 0px",
+        "flex": "1 0 0px",
       }
     }
   />
@@ -25,7 +25,7 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
     className="container"
     style={
       Object {
-        "flex": "0 0 0px",
+        "flex": "1 0 0px",
       }
     }
   />
