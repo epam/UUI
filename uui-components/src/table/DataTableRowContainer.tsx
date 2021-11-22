@@ -27,7 +27,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
             const idx = this.props.columns?.indexOf(column) || 0;
             return cells.concat(this.props.renderCell({
                 ...column,
-                minWidth: column.minWidth || column.width as number
+                minWidth: column.minWidth || (typeof column.width === 'string' ? 0 : column.width)
             }, idx));
         }, []);
     }

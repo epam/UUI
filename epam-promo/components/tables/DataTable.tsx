@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDataTableProps, BaseDataTable } from '@epam/uui-components';
+import { DataTableProps as BaseDataTableProps, DataTable as BaseDataTable } from '@epam/uui-components';
 import { ColumnsConfig, DataRowProps, useUuiContext, useColumnsConfig, cx } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import * as css from './DataTable.scss';

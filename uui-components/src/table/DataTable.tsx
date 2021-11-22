@@ -4,9 +4,9 @@ import {
     uuiMarkers, useTableShadows, cx, useVirtual, CX, useColumnsConfig
 } from '@epam/uui';
 import { PositionValues, ScrollBars } from '@epam/uui-components';
-import * as css from './BaseDataTable.scss';
+import * as css from './DataTable.scss';
 
-export interface BaseDataTableProps<TItem, TId> extends CX, IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId> extends CX, IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
@@ -24,13 +24,13 @@ enum scrollShadowsCx {
     bottomVisible = 'uui-scroll-shadow-bottom-visible'
 };
 
-export function BaseDataTable<TItem, TId>({
+export function DataTable<TItem, TId>({
     rowsCount,
     value,
     onValueChange,
     onScroll,
     ...props
-}: React.PropsWithChildren<BaseDataTableProps<TItem, TId>>) {
+}: React.PropsWithChildren<DataTableProps<TItem, TId>>) {
     const { columns } = useColumnsConfig(props.columns, props.value?.columnsConfig);
     const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
         value,
@@ -76,8 +76,8 @@ export function BaseDataTable<TItem, TId>({
                 aria-colcount={ columns.length }
                 aria-rowcount={ rowsCount }
                 className={ cx(props.cx, {
-                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontal,
-                    [uuiMarkers.scrolledRight]: scrollShadows.horizontal
+                    [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
+                    [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight
                 }) }
             >
                 <div className={ css.stickyHeader }>

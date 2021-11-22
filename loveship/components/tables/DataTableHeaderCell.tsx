@@ -1,8 +1,6 @@
 import React from 'react';
 import css from './DataTableHeaderCell.scss';
-import cx from 'classnames';
-import { Modifier } from "react-popper";
-import { DataTableHeaderCellProps, IDropdownToggler, mobilePopperModifier, uuiMarkers } from '@epam/uui';
+import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers } from '@epam/uui';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { LinkButton } from '../buttons';
 import { Checkbox } from '../inputs';
@@ -22,7 +20,7 @@ interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
 }
 
-export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProps & DataTableHeaderCellMods, DataTableHeaderCellState> {
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableHeaderCellMods, DataTableHeaderCellState> {
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
@@ -49,16 +47,24 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
                     { this.props.column.caption }
                 </Text>
                 { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
-                { this.props.isFilterActive &&
-                <LinkButton key="filter" cx={ css.icon } size="30" color="night600" icon={ filterIcon }/> }
-                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) &&
-                <LinkButton
-                    key="sort"
-                    cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
-                    size="24"
-                    color="night400"
-                    icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
-                /> }
+                { this.props.isFilterActive && (
+                    <LinkButton
+                        key="filter"
+                        cx={ css.icon }
+                        size="30"
+                        color="night600"
+                        icon={ filterIcon }
+                    />
+                ) }
+                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
+                    <LinkButton
+                        key="sort"
+                        cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
+                        size="24"
+                        color="night400"
+                        icon={ this.props.sortDirection === 'desc' ? sortIconDesc : this.props.sortDirection === 'asc' ? sortIcon : defaultSortIcon }
+                    />
+                )}
                 { this.props.column.renderFilter && (
                     <LinkButton
                         key="dropdown"
@@ -97,10 +103,10 @@ export class DataTableHeaderCell extends React.Component<DataTableHeaderCellProp
         <div onMouseDown={ props.onResizeStart } className={ css.resizeMark } />
     );
 
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) =>(
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
         <FlexCell
             { ...this.props.column }
-            ref={ (node) => { props.ref.current = node; } }
+            ref={ props.ref }
             cx={ [
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                 css.cell, css['size-' + (this.props.size || '36')],
