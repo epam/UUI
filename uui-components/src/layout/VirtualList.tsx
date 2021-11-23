@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps, useVirtual } from '@epam/uui';
+import { IHasCX, IEditable, VirtualListState, cx, IHasRawProps, useVirtualList } from '@epam/uui';
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
@@ -26,7 +26,7 @@ export function VirtualList({
         estimatedHeight,
         offsetY,
         handleScroll
-    } = useVirtual<HTMLDivElement>({ value, onValueChange, onScroll, rowsCount });
+    } = useVirtualList<HTMLDivElement>({ value, onValueChange, onScroll, rowsCount });
 
     const renderRows = () => {
         const firstChildRole = listRef.current?.children?.[0]?.getAttribute('role');
@@ -47,9 +47,9 @@ export function VirtualList({
             <ScrollBars
                 autoHeight
                 className={ css.body }
+                autoHeightMax={ 100500 }
                 onScroll={ handleScroll }
                 ref={ scrollbarsRef }
-                autoHeightMax={ 100500 }
             >
                 { renderRows() }
             </ScrollBars>

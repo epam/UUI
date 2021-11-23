@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     IEditable, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions, DataRowProps, DataColumnProps,
-    uuiMarkers, useTableShadows, cx, useVirtual, CX,
+    uuiMarkers, useTableShadows, cx, useVirtualList, CX,
 } from '@epam/uui';
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './DataTable.scss';
@@ -32,7 +32,7 @@ export function DataTable<TItem, TId>({
     columns,
     ...props
 }: React.PropsWithChildren<DataTableProps<TItem, TId>>) {
-    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtual<HTMLDivElement>({
+    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtualList<HTMLDivElement>({
         value,
         onValueChange,
         onScroll,
