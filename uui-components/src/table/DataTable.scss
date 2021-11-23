@@ -20,11 +20,8 @@
 }
 
 .listContainer {
-    --list-offset: 0px;
-    --list-height: 0px;
-    min-height: var(--list-height);
-    margin-top: var(--list-offset);
     min-width: min-content;
+    max-height: fit-content;
 }
 
 :global(.uui-scroll-shadow-top) {

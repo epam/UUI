@@ -63,7 +63,7 @@ export function DataTable<TItem, TId>({
                 ref={ listRef }
                 role='rowgroup'
                 className={ css.listContainer }
-                style={ { '--list-offset': offsetY, '--list-height': `${estimatedHeight}px` } as React.CSSProperties }>
+                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
                 { rows }
                 { renderBottomShadow() }
             </div>

@@ -25,11 +25,11 @@ export function useVirtual<T extends HTMLElement>({
     blockAlign = 20
 }: UseVirtualProps): UseVirtualApi<T> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
+    const [estimatedHeight, setEstimatedHeight] = useState(0);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
-    const estimatedHeight = useRef(0);
 
     const updateScrollToFocus = useCallback(() => {
         if (!scrollbarsRef.current || focused == undefined) return;
@@ -78,14 +78,15 @@ export function useVirtual<T extends HTMLElement>({
             rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
+
         let lastOffset = 0;
         for (let n = 0; n < rowsCount; n++) {
             rowOffsets.current[n] = lastOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-        estimatedHeight.current = lastOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listRef.current]);
+        setEstimatedHeight(lastOffset);
+    }, [estimatedHeight, rowOffsets.current, rowsCount, listRef.current]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -103,7 +104,7 @@ export function useVirtual<T extends HTMLElement>({
     useEffect(updateScrollToFocus, [focused]);
 
     return {
-        estimatedHeight: estimatedHeight.current,
+        estimatedHeight,
         offsetY: rowOffsets.current[value?.topIndex || 0] || 0,
         scrollbarsRef,
         listRef,
