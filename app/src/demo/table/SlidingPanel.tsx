@@ -17,8 +17,10 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({ isVisible, position, w
     const [isFirstMount, setIsFirstMount] = useState(true);
     
     useEffect(() => {
-        setIsFirstMount(false);
-    }, []);
+        if (isVisible && isFirstMount) {
+            setIsFirstMount(false);
+        }
+    }, [isVisible]);
 
     const style: CustomCssProperties = useMemo(() => ({
         width: width + "px",
