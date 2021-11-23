@@ -65,8 +65,8 @@ exports[`DataTable should be rendered correctly 1`] = `
         role="rowgroup"
         style={
           Object {
-            "--list-height": "0px",
-            "--list-offset": 0,
+            "marginTop": 0,
+            "minHeight": "0px",
           }
         }
       />
