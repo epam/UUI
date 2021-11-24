@@ -32,7 +32,7 @@ export function DataTable<TItem, TId>({
     columns,
     ...props
 }: React.PropsWithChildren<DataTableProps<TItem, TId>>) {
-    const { listRef, scrollbarsRef, estimatedHeight, offsetY, handleScroll } = useVirtualList<HTMLDivElement>({
+    const { listRef, scrollbarsRef, offsetY, handleScroll } = useVirtualList<HTMLDivElement>({
         value,
         onValueChange,
         onScroll,
@@ -59,11 +59,7 @@ export function DataTable<TItem, TId>({
         const rows = props.getRows().map(row => props.renderRow({ ...row, columns }));
 
         return (
-            <div
-                ref={ listRef }
-                role='rowgroup'
-                className={ css.listContainer }
-                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }>
+            <div role='rowgroup' ref={ listRef } className={ css.listContainer } style={{ marginTop: offsetY }}>
                 { rows }
                 { renderBottomShadow() }
             </div>

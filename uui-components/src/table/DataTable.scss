@@ -21,6 +21,8 @@
 
 .listContainer {
     min-width: min-content;
+    display: flex;
+    flex-direction: column;
 }
 
 :global(.uui-scroll-shadow-top) {

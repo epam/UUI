@@ -3,7 +3,6 @@ import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
 import type { IEditable, DataTableState } from '..';
 
 interface UseVirtualListApi<T> {
-    estimatedHeight: number;
     offsetY: number;
     handleScroll: () => void;
     listRef: MutableRefObject<T>;
@@ -25,7 +24,6 @@ export function useVirtualList<T extends HTMLElement>({
     blockAlign = 20
 }: UseVirtualListProps): UseVirtualListApi<T> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
-    const [estimatedHeight, setEstimatedHeight] = useState(0);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
@@ -90,9 +88,7 @@ export function useVirtualList<T extends HTMLElement>({
             rowOffsets.current[n] = lastOffset + listOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         };
-
-        setEstimatedHeight(lastOffset);
-    }, [estimatedHeight, rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
+    }, [rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -116,7 +112,6 @@ export function useVirtualList<T extends HTMLElement>({
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
     return {
-        estimatedHeight,
         offsetY,
         scrollbarsRef,
         listRef,
