@@ -76,6 +76,7 @@ export interface UuiErrorInfo {
     title?: React.ReactNode;
     subtitle?: React.ReactNode;
     imageUrl?: string;
+    mobileImageUrl?: string;
 }
 
 export class UuiError extends Error {
@@ -135,14 +136,14 @@ export interface IApiContext extends IBaseContext {
 
 export interface IAnalyticsContext {
     sendEvent(event?: AnalyticsEvent): void;
-    addListener(listener: IAnalyticsListener): void
+    addListener(listener: IAnalyticsListener): void;
 }
 
 export interface IAnalyticsListener {
     sendEvent(
         event: AnalyticsEvent,
         parameters: Omit<AnalyticsEvent, "name">,
-        eventType?: "event" | "pageView" | "apiTiming"
+        eventType?: "event" | "pageView" | "apiTiming",
         ): void;
 }
 
