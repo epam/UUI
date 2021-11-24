@@ -66,7 +66,6 @@ exports[`DataTable should be rendered correctly 1`] = `
         style={
           Object {
             "marginTop": 0,
-            "minHeight": "0px",
           }
         }
       />

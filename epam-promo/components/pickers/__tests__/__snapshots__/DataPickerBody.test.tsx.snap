@@ -148,7 +148,6 @@ Array [
             style={
               Object {
                 "marginTop": 0,
-                "minHeight": "0px",
               }
             }
           >
