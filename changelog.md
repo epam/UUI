@@ -1,3 +1,10 @@
+# 4.3.1 - xx.xx.xxxx
+
+**What's New**
+
+**What’s Fixed**
+* [CodeSandbox]: fixed functionality of modal windows and notifications in codesandbox examples
+
 # 4.3.0 - 25.10.2021
 
 **What's New**
