@@ -1,3 +1,11 @@
+# 4.3.1 - xx.xx.xxxx
+
+**What's New**
+* [ErrorHandler]: added to 'promo' skin
+* [App]: page 'Downloads' updated, added illustrations and patterns
+
+**What’s Fixed**
+
 # 4.3.0 - 25.10.2021
 
 **What's New**
