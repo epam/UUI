@@ -6,24 +6,9 @@
     width: 100%;
 }
 
-.body {
-    flex: 1 1 0;
-    align-self: stretch;
-    display: flex;
-}
-
-.viewContainer {
-    flex: 1 1 0;
-    align-self: stretch;
-    position: relative;
-}
-
 .listContainer {
-    display: flex;
-    flex: 1 1 0;
-    align-self: stretch;
-    flex-direction: column;
     margin-top: 0;
+    overflow: hidden;
 }
 
 :global(.uui-scroll-shadow-top) {

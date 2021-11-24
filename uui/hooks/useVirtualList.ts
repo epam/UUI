@@ -4,6 +4,7 @@ import type { IEditable, DataTableState } from '..';
 
 interface UseVirtualListApi<T> {
     offsetY: number;
+    estimatedHeight: number;
     handleScroll: () => void;
     listRef: MutableRefObject<T>;
     scrollbarsRef: MutableRefObject<ScrollbarsApi>;
@@ -24,6 +25,7 @@ export function useVirtualList<T extends HTMLElement>({
     blockAlign = 20
 }: UseVirtualListProps): UseVirtualListApi<T> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
+    const [estimatedHeight, setEstimatedHeight] = useState(0);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
@@ -73,9 +75,9 @@ export function useVirtualList<T extends HTMLElement>({
         const topIndex = value?.topIndex || 0;
 
         nodes.forEach((node, index) => {
-            const nodeHeight =  node.getBoundingClientRect().height;
-            if (!nodeHeight) return;
-            rowHeights.current[topIndex + index] = nodeHeight;
+            const { height } =  node.getBoundingClientRect();
+            if (!height) return;
+            rowHeights.current[topIndex + index] = height;
         });
 
         const averageHeight = rowHeights.current.length === 0 ?
@@ -88,7 +90,9 @@ export function useVirtualList<T extends HTMLElement>({
             rowOffsets.current[n] = lastOffset + listOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         };
-    }, [rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
+
+        setEstimatedHeight(lastOffset);
+    }, [estimatedHeight, rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -111,11 +115,5 @@ export function useVirtualList<T extends HTMLElement>({
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
-    return {
-        offsetY,
-        scrollbarsRef,
-        listRef,
-        handleScroll,
-        scrollToIndex,
-    };
+    return { estimatedHeight, offsetY, scrollbarsRef, listRef, handleScroll, scrollToIndex };
 };
