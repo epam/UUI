@@ -20,7 +20,7 @@ export function VirtualList({
     rawProps,
     ...props
 }: VirtualListProps) {
-    const { listRef, scrollbarsRef, offsetY, handleScroll } = useVirtualList<HTMLDivElement>({
+    const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight } = useVirtualList<HTMLDivElement>({
         value,
         onValueChange,
         onScroll,
@@ -31,25 +31,20 @@ export function VirtualList({
         const firstChildRole = listRef.current?.children?.[0]?.getAttribute('role');
 
         return (
-            <div
-                ref={ listRef }
-                role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }
-                className={ css.listContainer }
-                style={ { marginTop: offsetY  } }>
-                { rows }
+            <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+                <div
+                    ref={ listRef }
+                    role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }
+                    style={ { marginTop: offsetY } }>
+                    { rows }
+                </div>
             </div>
         );
     };
 
     return (
         <div className={ cx(css.wrapper, props.cx) } { ...rawProps }>
-            <ScrollBars
-                autoHeight
-                className={ css.body }
-                autoHeightMax={ 100500 }
-                onScroll={ handleScroll }
-                ref={ scrollbarsRef }
-            >
+            <ScrollBars onScroll={ handleScroll } ref={ scrollbarsRef }>
                 { renderRows() }
             </ScrollBars>
         </div>

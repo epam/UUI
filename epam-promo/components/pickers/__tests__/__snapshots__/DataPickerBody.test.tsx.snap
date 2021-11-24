@@ -112,13 +112,11 @@ Array [
       className="wrapper root"
     >
       <div
-        className="body"
+        className="root"
         style={
           Object {
             "display": "flex",
-            "height": "auto",
-            "maxHeight": 100500,
-            "minHeight": 0,
+            "height": "100%",
             "overflow": "hidden",
             "position": "relative",
             "width": "100%",
@@ -129,17 +127,15 @@ Array [
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
-              "bottom": undefined,
+              "bottom": 0,
               "flex": "1 1 auto",
-              "left": undefined,
+              "left": 0,
               "marginBottom": 0,
               "marginRight": 0,
-              "maxHeight": 100500,
-              "minHeight": 0,
               "overflow": "scroll",
               "position": "relative",
-              "right": undefined,
-              "top": undefined,
+              "right": 0,
+              "top": 0,
             }
           }
         >
@@ -147,326 +143,334 @@ Array [
             className="listContainer"
             style={
               Object {
-                "marginTop": 0,
+                "minHeight": "0px",
               }
             }
           >
             <div
-              aria-posinset={3}
-              className="pickerRow container align-items-center"
-              role="option"
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={3}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={4}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={4}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={5}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={5}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={6}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={6}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={7}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={7}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={8}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={8}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={9}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={9}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={10}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={10}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={11}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={11}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={12}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={12}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              aria-posinset={13}
-              className="pickerRow container align-items-center"
-              role="option"
-            >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                aria-posinset={13}
+                className="pickerRow container align-items-center"
+                role="option"
               >
                 <div
-                  className="renderItem"
+                  className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "flexBasis": "0",
+                      "flexGrow": 1,
+                      "flexShrink": undefined,
+                      "minWidth": 0,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

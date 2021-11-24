@@ -5,13 +5,11 @@ exports[`VirtualList should be rendered correctly 1`] = `
   className="wrapper root"
 >
   <div
-    className="body"
+    className="root"
     style={
       Object {
         "display": "flex",
-        "height": "auto",
-        "maxHeight": 100500,
-        "minHeight": 0,
+        "height": "100%",
         "overflow": "hidden",
         "position": "relative",
         "width": "100%",
@@ -22,17 +20,15 @@ exports[`VirtualList should be rendered correctly 1`] = `
       style={
         Object {
           "WebkitOverflowScrolling": "touch",
-          "bottom": undefined,
+          "bottom": 0,
           "flex": "1 1 auto",
-          "left": undefined,
+          "left": 0,
           "marginBottom": 0,
           "marginRight": 0,
-          "maxHeight": 100500,
-          "minHeight": 0,
           "overflow": "scroll",
           "position": "relative",
-          "right": undefined,
-          "top": undefined,
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -40,10 +36,18 @@ exports[`VirtualList should be rendered correctly 1`] = `
         className="listContainer"
         style={
           Object {
-            "marginTop": 0,
+            "minHeight": "0px",
           }
         }
-      />
+      >
+        <div
+          style={
+            Object {
+              "marginTop": 0,
+            }
+          }
+        />
+      </div>
     </div>
     <div
       className="uui-track-horizontal"
