@@ -47,7 +47,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList track some of it's state (topIndex, visibleCount) externally. User have to provide IEdiable<VirtualListState> implementation via props. It's save to use it to scroll the list top or to particular item.",
+            "text": "VirtualList track some of it's state (topIndex, visibleCount) externally. User have to provide IEditable<VirtualListState> implementation via props. It's save to use it to scroll the list top or to particular item.",
             "marks": []
           }
         ]
@@ -60,6 +60,39 @@
           {
             "object": "text",
             "text": "You can also estimate initial visibleCount, to avoid initial re-render. VisibleCount will be updated automatically if VirtualList will detect that there's room for more items.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Additionaly, we provide a separate ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "useVirtualList ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "hook in case you are about to build something own based on it. Props and Api interfaces are fairly the same. The only difference, is that hook doesn't need to the list of rows, classnames string and rawProps.",
             "marks": []
           }
         ]

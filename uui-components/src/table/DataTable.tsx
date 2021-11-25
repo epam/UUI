@@ -1,12 +1,12 @@
 import React from 'react';
 import {
     IEditable, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions, DataRowProps, DataColumnProps,
-    uuiMarkers, useTableShadows, cx, useVirtualList, CX,
+    uuiMarkers, useTableShadows, cx, useVirtualList, IHasCX,
 } from '@epam/uui';
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './DataTable.scss';
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId> extends IHasCX, IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
@@ -15,7 +15,6 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderBottomShadow?: boolean;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-    cx?: CX;
     onConfigurationButtonClick?: () => void;
     renderHeader?: () => React.ReactNode;
 };

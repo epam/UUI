@@ -74,7 +74,7 @@ export default function CitiesTable(props: unknown) {
         {
             key: 'altname',
             caption: 'Alt. names',
-            render: (city) => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
+            render: city => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
             info: 'Alternative city names',
             grow: 1, shrink: 0, width: 1200,
         },
