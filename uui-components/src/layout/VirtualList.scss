@@ -8,7 +8,8 @@
 
 .listContainer {
     margin-top: 0;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr;
 }
 
 :global(.uui-scroll-shadow-top) {

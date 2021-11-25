@@ -50,7 +50,7 @@ export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadows
 
     return {
         vertical: vertical.active,
-        horizontalLeft: horizontal.active || (root?.scrollWidth > root?.clientWidth),
+        horizontalLeft: (root ? (root.clientWidth - root.offsetLeft < root.scrollWidth) : horizontal.active),
         horizontalRight: horizontal.active,
         horizontalRef,
         verticalRef
