@@ -42,20 +42,20 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             render: city => <Text color='gray80' fontSize='14'>{ city.population }</Text>,
             isSortable: true,
             textAlign: 'right',
-            width: 200, shrink: 0,
+            width: 140, shrink: 0,
         },
         {
             key: 'altname',
             caption: 'Alt. names',
             render: city => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
             info: 'Alternative city names',
-            shrink: 0, width: 300,
+            shrink: 0, width: 300
         },
         {
             key: 'actions',
             render: () => <IconButton icon={ moreIcon } color='gray60' />,
             fix: 'right',
-            width: 54, shrink: 0, grow: 0,
+            width: 54
         },
     ], []);
 
