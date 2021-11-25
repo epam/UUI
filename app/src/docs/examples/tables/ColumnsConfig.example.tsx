@@ -22,6 +22,8 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             isSortable: true,
             fix: 'left',
             width: 120,
+            shrink: 0,
+            grow: 0,
             minWidth: 100,
         },
         {
@@ -55,7 +57,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
         {
             key: 'altname',
             caption: 'Alt. names',
-            render: (city) => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
+            render: city => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
             info: 'Alternative city names',
             shrink: 0,
             width: 300,

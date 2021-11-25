@@ -53,7 +53,7 @@ export const PersonsTableDemo = (props: {}) => {
 
     const editable: IEditable<DataSourceState> = { value, onValueChange };
 
-    let dataSource = React.useMemo(() => new LazyDataSource({
+    const dataSource = React.useMemo(() => new LazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
         getChildCount: (item: PersonTableRecord) =>

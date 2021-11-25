@@ -1,23 +1,24 @@
 .table {
     &.shadow-dark {
-        :global(.uui-scroll-shadow-top) {
+        :global(.uui-scroll-shadow-top-visible) {
             height: 5px;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0;
+            opacity: 1;
             transition: opacity 200ms;
         }
     }
 
     &.shadow-white {
-        :global(.uui-scroll-shadow-top) {
+        :global(.uui-scroll-shadow-top-visible) {
             height: 15px;
             background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0;
+            opacity: 1;
             transition: opacity 200ms;
         }
 
-        :global(.uui-scroll-shadow-bottom) {
+        :global(.uui-scroll-shadow-bottom-visible) {
             height: 15px;
+            opacity: 1;
             background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
         }
     }

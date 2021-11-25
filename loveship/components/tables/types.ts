@@ -18,7 +18,7 @@ export interface DataTableMods {
     border?: 'none' | 'night300';
     rowBackground?: 'night50' | 'white' | 'none';
     headerTextCase?: 'upper' | 'normal';
-    shadow?: 'dark' | 'white' | false;
+    shadow?: 'dark' | 'white';
 }
 
 export interface DataTableRowMods extends DataTableCellMods {

@@ -6,7 +6,7 @@ import { IconButton, Text } from '../';
 import * as css from './DataTable.scss';
 import * as searchIcon from '../icons/search-24.svg';
 
-export interface DataTableProps<TItem, TId> extends Exclude<BaseDataTableProps<TItem, TId>, 'renderHeader' | 'onConfigurationButtonClick'> {};
+export interface DataTableProps<TItem, TId> extends Exclude<BaseDataTableProps<TItem, TId>, 'renderTopShadow' | 'renderBottomShadow' | 'renderHeader' | 'onConfigurationButtonClick'> {};
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -50,9 +50,11 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     return (
         <BaseDataTable
-            cx={ cx(css.table, props.cx, css['shadow-' + (props.shadow || 'dark')]) }
-            renderNoResultsBlock={ renderNoResultsBlock }
+            cx={ cx(props.cx, css.table, css['shadow-' + (props.shadow || 'dark')]) }
             renderRow={ renderRow }
+            renderNoResultsBlock={ renderNoResultsBlock }
+            renderTopShadow={ !props.shadow || props.shadow === 'dark' }
+            renderBottomShadow={ props.shadow === 'white' }
             onConfigurationButtonClick={ onConfigurationButtonClick }
             renderHeader={ () => (
                 <DataTableHeaderRow
