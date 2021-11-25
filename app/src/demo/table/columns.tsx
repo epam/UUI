@@ -1,43 +1,13 @@
 import * as React from 'react';
-import { Text, ColumnPickerFilter, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps, ILens, IEditable } from '@epam/uui';
+import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
+import { DataQueryFilter, DataColumnProps } from '@epam/uui';
 import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
 import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
+import { addFiltersToColumns } from "./helpers";
 
-export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person["id"] | null) => void) {
-    const makeFilterRenderCallback = <TField extends keyof Person>(filterKey: TField) => {
-        const filter = filters.find(f => f.id === filterKey);
-
-        const Filter = (props: IEditable<any>) => {
-            return <ColumnPickerFilter
-                dataSource={ filter.dataSource }
-                selectionMode={ filter.selectionMode }
-                valueType='id'
-                getName={ i => (i as any)?.name || "Not Specified" }
-                showSearch
-                { ...props }
-            />;
-        };
-
-        return (filterLens: ILens<any>) => {
-            const props = filterLens
-                .prop(filter.id)
-                .toProps();
-
-            return <Filter { ...props } />;
-        };
-    };
-
-    const renderDepartmentFilter = makeFilterRenderCallback('departmentId');
-    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId');
-    const renderCountryFilter = makeFilterRenderCallback('countryId');
-    const renderCityFilter = makeFilterRenderCallback('cityId');
-    const renderOfficeFilter = makeFilterRenderCallback('officeId');
-    const renderStatusFilter = makeFilterRenderCallback('profileStatusId');
-    const renderManagerFilter = makeFilterRenderCallback('managerId');
-
+export function getColumns(filters: ITableFilter[]) {
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
@@ -53,7 +23,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             render: p => p.profileStatus && <FlexRow>
                 <Badge
                     cx={ css.status }
-                    fill='transparent'
+                    fill="transparent"
                     color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
                     caption={ p.profileStatus }/>
             </FlexRow>,
@@ -61,7 +31,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 140,
             isSortable: true,
-            renderFilter: renderStatusFilter,
             isFilterActive: f => !!f.profileStatusId,
         },
         {
@@ -72,7 +41,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 200,
             isSortable: true,
-            renderFilter: renderJobTitlesFilter,
             isFilterActive: f => !!f.jobTitleId,
         },
         {
@@ -83,7 +51,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 200,
             isSortable: true,
-            renderFilter: renderDepartmentFilter,
             isFilterActive: f => !!f.departmentId,
             isHiddenByDefault: true,
         },
@@ -95,18 +62,16 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 150,
             isSortable: true,
-            renderFilter: renderOfficeFilter,
             isFilterActive: f => !!f.officeId,
         },
         {
             key: 'managerName',
             caption: "Manager",
-            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href='#'/>,
+            render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#"/>,
             grow: 0,
             shrink: 0,
             width: 150,
             isSortable: true,
-            renderFilter: renderManagerFilter,
             isFilterActive: f => !!f.managerId,
         },
         {
@@ -117,7 +82,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 150,
             isSortable: true,
-            renderFilter: renderCountryFilter,
             isFilterActive: f => !!f.countryId,
         },
         {
@@ -128,7 +92,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 150,
             isSortable: true,
-            renderFilter: renderCityFilter,
             isFilterActive: f => !!f.cityId,
         },
         {
@@ -139,7 +102,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 150,
         },
-        { //
+        {
             key: 'birthDate',
             caption: "Birth Date",
             render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
@@ -147,9 +110,8 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             shrink: 0,
             width: 120,
             isSortable: true,
-            isHiddenByDefault: true,
         },
-        { //
+        {
             key: 'relatedNPR',
             caption: "Related NPR",
             render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,
@@ -174,7 +136,6 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
                 icon={ viewIcon }
-                onClick={ () => setInfoPanelId(p.id) }
             />,
             width: 54,
             alignSelf: 'center',
@@ -192,7 +153,7 @@ export function getColumns(filters: ITableFilter[], setInfoPanelId: (id: Person[
     ];
 
     return {
-        personColumns,
+        personColumns: addFiltersToColumns(personColumns, filters),
         groupColumns,
     };
 }
