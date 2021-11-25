@@ -1,8 +1,0 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-
-.container {
-    overflow: hidden;
-    height: calc(100vh - 121px);
-    background-color: #fff;
-    border-right: 1px solid $gray40;
-}
