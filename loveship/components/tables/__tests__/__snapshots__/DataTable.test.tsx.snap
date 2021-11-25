@@ -46,7 +46,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
-                "width": "96px",
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
               }
             }
           >
@@ -303,7 +304,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -406,7 +408,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -509,7 +512,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -612,7 +616,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -715,7 +720,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -818,7 +824,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -921,7 +928,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -1024,7 +1032,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -1127,7 +1136,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >
@@ -1230,7 +1240,8 @@ exports[`DataTable should be rendered correctly 1`] = `
               className="fixedColumnsSectionLeft uui-table-fixed-section-left"
               style={
                 Object {
-                  "width": "96px",
+                  "flex": "0 0 96px",
+                  "maxWidth": "96px",
                 }
               }
             >

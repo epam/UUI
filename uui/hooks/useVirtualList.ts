@@ -25,7 +25,7 @@ export function useVirtualList<T extends HTMLElement>({
     blockAlign = 20
 }: UseVirtualListProps): UseVirtualListApi<T> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
-    const [estimatedHeight, setEstimatedHeight] = useState(0);
+    const estimatedHeight = useRef(0);
     const listRef = useRef<T>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
@@ -91,8 +91,8 @@ export function useVirtualList<T extends HTMLElement>({
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-        setEstimatedHeight(lastOffset);
-    }, [estimatedHeight, rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
+       estimatedHeight.current = lastOffset;
+    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -115,5 +115,12 @@ export function useVirtualList<T extends HTMLElement>({
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
-    return { estimatedHeight, offsetY, scrollbarsRef, listRef, handleScroll, scrollToIndex };
+    return {
+        estimatedHeight: estimatedHeight.current,
+        offsetY,
+        scrollbarsRef,
+        listRef,
+        handleScroll,
+        scrollToIndex
+    };
 };
