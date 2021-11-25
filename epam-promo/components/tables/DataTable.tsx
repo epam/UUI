@@ -41,6 +41,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         <BaseDataTable
             cx={ cx(props.cx, css.table, css['shadow-' + (props.shadow || 'dark')]) }
             renderRow={ renderRow }
+            renderTopShadow={ !props.shadow || props.shadow === 'dark' }
+            renderBottomShadow={ props.shadow === 'white' }
             renderNoResultsBlock={ renderNoResultsBlock }
             onConfigurationButtonClick={ onConfigurationButtonClick }
             renderHeader={ () => (

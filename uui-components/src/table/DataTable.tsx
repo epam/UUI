@@ -6,13 +6,16 @@ import {
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './DataTable.scss';
 
-export interface DataTableProps<TItem, TId> extends CX, IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
+    renderTopShadow?: boolean;
+    renderBottomShadow?: boolean;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
+    cx?: CX;
     onConfigurationButtonClick?: () => void;
     renderHeader?: () => React.ReactNode;
 };
@@ -31,7 +34,7 @@ export function DataTable<TItem, TId>({
     onScroll,
     columns,
     ...props
-}: React.PropsWithChildren<DataTableProps<TItem, TId>>) {
+}: DataTableProps<TItem, TId>) {
     const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight } = useVirtualList<HTMLDivElement>({
         value,
         onValueChange,
@@ -43,13 +46,13 @@ export function DataTable<TItem, TId>({
         root: scrollbarsRef.current?.container
     });
 
-    const renderTopShadow = () => (!props.shadow || props.shadow === 'dark') && (
+    const renderTopShadow = props.renderTopShadow && (
         <div className={ cx(scrollShadowsCx.top, {
             [scrollShadowsCx.topVisible]: scrollShadows.vertical
         }) } />
     );
 
-    const renderBottomShadow = () => props.shadow === 'white' && (
+    const renderBottomShadow = props.renderBottomShadow && (
         <div className={ cx(scrollShadowsCx.bottom, {
             [scrollShadowsCx.bottomVisible]: scrollShadows.vertical
         }) } />
@@ -63,10 +66,12 @@ export function DataTable<TItem, TId>({
                 <div role='rowgroup' ref={ listRef } style={{ marginTop: offsetY }}>
                     { rows }
                 </div>
-                { renderBottomShadow() }
+                { renderBottomShadow }
             </div>
         );
     };
+
+    console.log(props.cx)
 
     return (
         <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll }>
@@ -81,7 +86,7 @@ export function DataTable<TItem, TId>({
             >
                 <div className={ css.stickyHeader }>
                     { props.renderHeader?.() }
-                    { renderTopShadow() }
+                    { renderTopShadow }
                 </div>
                 <div ref={ verticalRef } className={ css.verticalIntersectingRect } />
                 <div ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
