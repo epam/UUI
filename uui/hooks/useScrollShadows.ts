@@ -1,10 +1,10 @@
 import { MutableRefObject, useRef, useState, useEffect } from "react";
 
-interface UseTableShadowsProps {
+interface UseScrollShadowsProps {
     root?: HTMLElement;
 }
 
-interface UseTableShadowsApi {
+interface UseScrollShadowsApi {
     vertical: boolean;
     horizontalLeft: boolean;
     horizontalRight: boolean;
@@ -12,7 +12,7 @@ interface UseTableShadowsApi {
     verticalRef: MutableRefObject<HTMLDivElement>;
 };
 
-export function useTableShadows({ root }: UseTableShadowsProps): UseTableShadowsApi {
+export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
     const verticalObserver = useRef<IntersectionObserver>();
     const horizontalObserver = useRef<IntersectionObserver>();
     const verticalRef = useRef<HTMLDivElement>();

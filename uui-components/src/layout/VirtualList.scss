@@ -1,15 +1,23 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
     flex: 1 1 0;
     align-self: stretch;
-    display: flex;
     position: relative;
-    width: 100%;
 }
 
 .listContainer {
     margin-top: 0;
     display: grid;
     grid-template-rows: 1fr;
+}
+
+.vertical-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
 }
 
 :global(.uui-scroll-shadow-top) {

@@ -32,7 +32,7 @@ exports[`DataTable should be rendered correctly 1`] = `
     <div
       aria-colcount={4}
       aria-rowcount={10}
-      className="table shadow-dark"
+      className="table shadowDark"
       role="table"
     >
       <div
