@@ -96,6 +96,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     style={
       Object {
         "flex": "1 0 470px",
+        "minWidth": "470px",
       }
     }
   >
@@ -357,6 +358,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     style={
       Object {
         "flex": "1 0 470px",
+        "minWidth": "470px",
       }
     }
   >

@@ -44,7 +44,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             selectAll: this.props.selectAll,
             isFirstColumn: idx === 0,
             isLastColumn: idx === this.props.columns.length - 1,
-            isFilterActive: column.isFilterActive && column.isFilterActive(this.filterLens.default({}).get(), column),
+            isFilterActive: column.isFilterActive?.(this.filterLens.default({}).get(), column),
             sortDirection: field === column.key ? (direction || 'asc') : null,
             allowColumnsReordering: this.props.allowColumnsReordering,
             allowColumnsResizing: this.props.allowColumnsResizing,

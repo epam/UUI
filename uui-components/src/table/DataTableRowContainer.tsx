@@ -27,15 +27,13 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
             const idx = this.props.columns?.indexOf(column) || 0;
             return cells.concat(this.props.renderCell({
                 ...column,
-                minWidth: column.minWidth || (typeof column.width === 'string' ? 0 : column.width),
-                width: column.width || column.minWidth
+                minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width)
             }, idx));
         }, []);
     }
 
     getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
-        if (!cells) return 0;
-        return cells.reduce((width, cell) => width + (typeof cell.width === 'string' ? 0 : cell.width), 0);
+        return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
     }
 
     wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
@@ -57,7 +55,10 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => {
         if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
         return (
-            <div className={ css.container } style={{ flex: `1 0 ${this.getSectionWidth(cells)}px` }}>
+            <div className={ css.container } style={{
+                flex: `1 0 ${this.getSectionWidth(cells)}px`,
+                minWidth: `${this.getSectionWidth(cells)}px`
+            }}>
                 { this.renderCells(cells) }
             </div>
         );
