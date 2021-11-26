@@ -16,7 +16,6 @@ export interface DataTableMods {
     size?: ControlSize;
     border?: 'none' | 'gray30';
     headerTextCase?: 'upper' | 'normal';
-    shadow?: 'dark' | 'white';
 }
 
 export interface DataTableRowMods extends DataTableCellMods {

@@ -1,3 +1,29 @@
+.sticky-header {
+    position: sticky;
+    top: 0;
+    min-width: min-content;
+    z-index: 3;
+}
+
+.vertical-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+}
+
+.horizontal-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    position: sticky;
+    top: 50%;
+    visibility: hidden;
+}
+
+.listContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
 .table {
     &.shadow-dark {
         :global(.uui-scroll-shadow-top-visible) {
@@ -21,6 +47,23 @@
             opacity: 1;
             background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
         }
+    }
+
+    :global(.-scrolled-left) {
+        :global(.uui-scroll-shadow-left) {
+            opacity: 1;
+        }
+    }
+
+    :global(.-scrolled-right) {
+        :global(.uui-scroll-shadow-right) {
+            opacity: 1;
+        }
+    }
+
+    :global(.uui-scroll-shadow-top) {
+        position: sticky;
+        z-index: 3;
     }
 }
 

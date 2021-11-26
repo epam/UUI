@@ -2,12 +2,13 @@ import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } f
 import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
 import type { IEditable, DataTableState } from '..';
 
-interface UseVirtualListApi<T> {
+interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
     estimatedHeight: number;
     handleScroll: () => void;
-    listRef: MutableRefObject<T>;
+    listRef: MutableRefObject<List>;
     scrollbarsRef: MutableRefObject<ScrollbarsApi>;
+    scrollContainerRef: MutableRefObject<ScrollContainer>;
     scrollToIndex: (index: number) => void;
 };
 
@@ -15,18 +16,22 @@ interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedInd
     rowsCount: number;
     blockAlign?: number;
     onScroll?(value: Partial<PositionValues>): void;
-}
+};
 
-export function useVirtualList<T extends HTMLElement>({
+export function useVirtualList<
+    List extends HTMLElement,
+    ScrollContainer extends HTMLElement
+>({
     onValueChange,
     value,
     rowsCount,
     onScroll,
     blockAlign = 20
-}: UseVirtualListProps): UseVirtualListApi<T> {
+}: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
     const estimatedHeight = useRef(0);
-    const listRef = useRef<T>();
+    const listRef = useRef<List>();
+    const scrollContainerRef = useRef<ScrollContainer>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
@@ -57,17 +62,17 @@ export function useVirtualList<T extends HTMLElement>({
         }
 
         if (topIndex !== value.topIndex || (bottomIndex - topIndex) > value.visibleCount) {
-            const visibleCount = (bottomIndex - topIndex) + blockAlign * 2;
+            const visibleCount = bottomIndex - topIndex + blockAlign * 2;
             onValueChange({ ...value, topIndex, visibleCount });
         };
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
 
     const listOffset = useMemo(() => {
-        if (!listRef.current || !scrollbarsRef.current) return 0;
-        const wrapperHeight = scrollbarsRef.current.container.children[0].children[0].clientHeight;
+        if (!listRef.current || !scrollContainerRef.current) return 0;
+        const wrapperHeight = scrollContainerRef.current.clientHeight;
         const offsetHeight = listRef.current.clientHeight;
         return wrapperHeight - offsetHeight;
-    }, [listRef.current, scrollbarsRef.current]);
+    }, [listRef.current, scrollContainerRef.current]);
 
     const updateRowHeights = useCallback(() => {
         if (!listRef.current || !scrollbarsRef.current) return;
@@ -119,6 +124,7 @@ export function useVirtualList<T extends HTMLElement>({
         estimatedHeight: estimatedHeight.current,
         offsetY,
         scrollbarsRef,
+        scrollContainerRef,
         listRef,
         handleScroll,
         scrollToIndex

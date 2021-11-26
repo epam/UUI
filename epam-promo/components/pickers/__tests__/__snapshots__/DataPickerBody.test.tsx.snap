@@ -475,6 +475,25 @@ Array [
               </div>
             </div>
           </div>
+          <div
+            className="uui-scroll-shadow-top"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
+          />
+          <div
+            className="uui-scroll-shadow-bottom"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
+          />
+          <div
+            className="verticalIntersectingRect"
+          />
         </div>
         <div
           className="uui-track-horizontal"
