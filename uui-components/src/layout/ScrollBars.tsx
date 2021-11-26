@@ -35,24 +35,19 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 
     const handleUpdateScroll = (event?: React.UIEvent) => {
-        if (!bars.current) return;
+        if (!props.ref?.current || !bars.current || props.onScroll) return;
         event && props.onScroll?.(event);
 
-        const scrollBars = bars.current.container;
-        const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
+        const scrollBars = props.ref.current.container;
+        const { scrollTop, scrollHeight, clientHeight } = props.ref.current.getValues();
+        const showTopShadow = hasTopShadow && scrollTop > 0;
         const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
-        if (hasTopShadow && scrollTop > 0) {
-            scrollBars?.classList?.add(uuiScrollbars.uuiShadowTopVisible);
-        } else {
-            scrollBars?.classList?.remove(uuiScrollbars.uuiShadowTopVisible);
-        }
+        if (showTopShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowTopVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowTopVisible);
 
-        if (showBottomShadow) {
-            scrollBars?.classList?.add(uuiScrollbars.uuiShadowBottomVisible);
-        } else {
-            scrollBars?.classList?.remove(uuiScrollbars.uuiShadowBottomVisible);
-        }
+        if (showBottomShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowBottomVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
     useEffect(handleUpdateScroll);

@@ -46,6 +46,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "1 0 0px",
+                "minWidth": "0px",
               }
             }
           />

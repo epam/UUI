@@ -11,14 +11,12 @@
     display: flex;
     position: sticky;
     left: 0;
-    min-height: inherit;
 }
 
 .fixed-columns-section-right {
     display: flex;
     position: sticky;
     right: 0;
-    min-height: inherit;
 }
 
 @mixin scroll-shadow($position) {

@@ -70,8 +70,6 @@ export function DataTable<TItem, TId>({
         );
     };
 
-    console.log(props.cx)
-
     return (
         <ScrollBars ref={ scrollbarsRef } onScroll={ handleScroll }>
             <div
