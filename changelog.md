@@ -5,6 +5,7 @@
 * [App]: page 'Downloads' updated, added illustrations and patterns
 
 **What’s Fixed**
+* [CodeSandbox]: fixed functionality of modal windows and notifications in codesandbox examples
 
 # 4.3.0 - 25.10.2021
 
