@@ -21,7 +21,14 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
-    const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight } = useVirtualList<HTMLDivElement, HTMLDivElement>({
+    const {
+        listRef,
+        scrollbarsRef,
+        offsetY,
+        handleScroll,
+        estimatedHeight,
+        scrollContainerRef
+    } = useVirtualList<HTMLDivElement, HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -77,6 +84,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
              <div
                 role="table"
                 aria-colcount={ columns.length }
+                ref={ scrollContainerRef }
                 aria-rowcount={ props.rowsCount }
                 className={ cx(css.table, css.shadowDark, {
                     [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
