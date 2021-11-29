@@ -18,7 +18,7 @@ enum scrollShadowsCx {
 };
 
 export function VirtualList(props: VirtualListProps) {
-    const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight, scrollContainerRef } = useVirtualList<HTMLDivElement, HTMLDivElement>({
+    const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight } = useVirtualList<HTMLDivElement, HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -30,10 +30,10 @@ export function VirtualList(props: VirtualListProps) {
     });
 
     const renderRows = () => {
-        const firstChildRole = listRef.current?.children?.[0]?.getAttribute('role');
+        const firstChildRole = listRef.current?.firstElementChild.getAttribute('role');
 
         return (
-            <div ref={ scrollContainerRef } className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+            <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
                 <div
                     ref={ listRef }
                     role={ firstChildRole === 'option' ? 'listbox' : firstChildRole === 'row' ? 'rowgroup' : undefined }

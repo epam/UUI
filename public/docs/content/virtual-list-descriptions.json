@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion, and the height of the whole container.",
+            "text": "VirtualList ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion, and the height of the whole container.",
             "marks": []
           }
         ]
@@ -23,7 +39,70 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Internally, we use this component in DataTable and PickerInputBody to display arbitrary sized lists of DataTableRows.",
+            "text": "Internally, we use this component in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTable ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "PickerInputBody ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "to display arbitrary sized lists of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTableRows",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]
@@ -47,7 +126,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList track some of it's state (topIndex, visibleCount) externally. User have to provide IEditable<VirtualListState> implementation via props. It's save to use it to scroll the list top or to particular item.",
+            "text": "VirtualList ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "track some of it's state (topIndex, visibleCount) externally. User have to provide",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " IEditable<VirtualListState>",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " implementation via props. It's save to use it to scroll the list top or to particular item.",
             "marks": []
           }
         ]
@@ -59,7 +170,44 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can also estimate initial visibleCount, to avoid initial re-render. VisibleCount will be updated automatically if VirtualList will detect that there's room for more items.",
+            "text": "You can also estimate initial ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "visibleCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", to avoid initial re-render. VisibleCount will be updated automatically if ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "VirtualList ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "will detect that there's room for more items.",
             "marks": []
           }
         ]
@@ -82,6 +230,86 @@
                 "object": "mark",
                 "type": "uui-richTextEditor-italic",
                 "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "hook in case you are about to build something own based on it. Props and Api interfaces are fairly the same. The only difference, is that hook doesn't need the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rows ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "node list, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "classnames ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "string and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rawProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".\nThere are some additional properties you may provide for hook to work correctly:\n\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scrollbarsRef ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "- ref to ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Scrollbars ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
               },
               {
                 "object": "mark",
@@ -92,7 +320,76 @@
           },
           {
             "object": "text",
-            "text": "hook in case you are about to build something own based on it. Props and Api interfaces are fairly the same. The only difference, is that hook doesn't need to the list of rows, classnames string and rawProps.",
+            "text": "component (or your custom component, that is compatible with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ScrollbarsApi ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "interface).\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "listRef",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " - wrapper that holds all rows.\n(optional) ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scrollContainerRef ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "- we'll use this ref to calculate estimated height more precisely. This will be useful if you have a table with headers, footers or some additional elements that may appear together with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "VirtualList",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
             "marks": []
           }
         ]
