@@ -1,61 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useUuiContext } from '../services';
 import { ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo } from '../types';
+import { useForceUpdate } from './useForceUpdate';
 
 export type UuiErrorType = 'error' | 'notification' | 'recovery';
 
 export type UUIRecoveryErrorInfo = {
     title: string,
-    text: string,
+    subtitle: string,
 };
 
-export const useUUIError = (customErrorHandler: (error: Error | UuiError | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo, options: { error: Record<string, UuiErrorInfo>, notification: string, recovery: Record<ApiRecoveryReason, UUIRecoveryErrorInfo> }) => {
-    const [, updateState] = React.useState<object>();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
-    const [errorType, setErrorType] = useState<UuiErrorType>();
-    const [errorInfo, setErrorInfo] = useState<UuiErrorInfo | ApiCallInfo[]>();
+export interface UseUUIErrorOptions {
+    error: Record<string, UuiErrorInfo>;
+    recovery: Record<ApiRecoveryReason, UUIRecoveryErrorInfo>;
+}
+
+export interface UseUUIErrorProps {
+    customErrorHandler: (error: Error | UuiError | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    options: UseUUIErrorOptions;
+}
+
+export const useUUIError = (props: UseUUIErrorProps) => {
+    const forceUpdate = useForceUpdate();
     const { uuiApi, uuiErrors, uuiRouter } = useUuiContext();
-    const { error, recovery, notification } = options;
-
-    useEffect(() => {
-        uuiApi.subscribe(onApiChange);
-        uuiRouter.listen(onRouteChange);
-    }, []);
-
-    const onApiChange = () => {
-        const apiErrors: ApiCallInfo[] = [];
-        const apiNotifications: ApiCallInfo[] = [];
-        uuiApi.getActiveCalls().forEach(c => {
-            if (c.status === 'error' && c.options.errorHandling === 'page') {
-                apiErrors.push(c);
-            } else if (c.options.errorHandling === 'notification') {
-                apiNotifications.push(c?.responseData?.errorMessage ? c : { ...c, responseData: { errorMessage: notification } });
-            }
-        });
-
-        if (apiErrors.length) {
-            const defaultErrorInfo =  getDefaultErrorInfo(apiErrors[0].httpStatus);
-            let resultError;
-
-            if (customErrorHandler) {
-                resultError = customErrorHandler(apiErrors[0], defaultErrorInfo);
-            } else {
-                resultError = defaultErrorInfo;
-            }
-
-            setErrorType('error');
-            setErrorInfo(resultError);
-        } else if (apiNotifications.length) {
-            setErrorType('notification');
-            setErrorInfo(apiNotifications);
-        } else if (uuiApi.status === 'recovery') {
-            setErrorType('recovery');
-            setErrorInfo(recovery[uuiApi.recoveryReason]);
-        } else {
-            setErrorType(undefined);
-            setErrorInfo(undefined);
-        }
-    };
+    const { customErrorHandler, options: { error, recovery } } = props;
+    const apiErrors: ApiCallInfo[] = [];
+    const apiNotifications: ApiCallInfo[] = [];
+    let resultError;
 
     const onRouteChange = () => {
         let hasError = false;
@@ -72,6 +43,11 @@ export const useUUIError = (customErrorHandler: (error: Error | UuiError | ApiCa
         hasError && forceUpdate();
     };
 
+    useEffect(() => {
+        uuiRouter.listen(onRouteChange);
+        uuiErrors.subscribe(() => forceUpdate());
+    }, []);
+
     const getDefaultErrorInfo = (errorCode: number): UuiErrorInfo => {
         switch (errorCode) {
             case 403: return error.permissionDenied;
@@ -82,7 +58,29 @@ export const useUUIError = (customErrorHandler: (error: Error | UuiError | ApiCa
         }
     };
 
-    if (uuiErrors.currentError != null) {
+    uuiApi.getActiveCalls().forEach(c => {
+        if (c.status === 'error' && c.options.errorHandling === 'page') {
+            apiErrors.push(c);
+        } else if (c.options.errorHandling === 'notification') {
+            apiNotifications.push(c);
+        }
+    });
+
+    if (apiErrors.length) {
+        const defaultErrorInfo =  getDefaultErrorInfo(apiErrors[0].httpStatus);
+
+        if (customErrorHandler) {
+            resultError = customErrorHandler(apiErrors[0], defaultErrorInfo);
+        } else {
+            resultError = defaultErrorInfo;
+        }
+
+        return { errorType: 'error', errorInfo: resultError };
+    } else if (apiNotifications.length) {
+        return { errorType: 'notification', errorInfo: apiNotifications };
+    } else if (uuiApi.status === 'recovery') {
+        return { errorType: 'recovery', errorInfo: recovery[uuiApi.recoveryReason] };
+    } else if (uuiErrors.currentError != null) {
         const error = uuiErrors.currentError;
         let status;
         let info = {};
@@ -100,19 +98,8 @@ export const useUUIError = (customErrorHandler: (error: Error | UuiError | ApiCa
             resultError = { ...defaultErrorInfo, ...info };
         }
 
-        return {
-            errorType: 'error',
-            errorInfo: resultError,
-        };
-    } else if (uuiApi.status === 'recovery') {
-        return {
-            errorType: 'recovery',
-            errorInfo: recovery[uuiApi.recoveryReason],
-        };
+        return { errorType: 'error', errorInfo: resultError };
+    } else {
+        return { errorType: undefined, errorInfo: undefined };
     }
-
-    return {
-        errorType,
-        errorInfo,
-    };
 };

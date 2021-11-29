@@ -89,7 +89,7 @@ export class UuiError extends Error {
     }
 }
 
-export interface IErrorContext {
+export interface IErrorContext extends IBaseContext {
     currentError?: Error;
     reportError(error: Error): void;
     onError(callback: Function): void;
