@@ -90,9 +90,9 @@ export function useVirtualList<
             rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
-        let lastOffset = 0;
+        let lastOffset = listOffset;
         for (let n = 0; n < rowsCount; n++) {
-            rowOffsets.current[n] = lastOffset + listOffset;
+            rowOffsets.current[n] = lastOffset;
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
