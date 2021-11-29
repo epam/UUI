@@ -23,7 +23,14 @@ enum scrollShadowsCx {
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
-    const { listRef, scrollbarsRef, offsetY, handleScroll, estimatedHeight } = useVirtualList<HTMLDivElement, HTMLDivElement>({
+    const {
+        listRef,
+        scrollbarsRef,
+        offsetY,
+        handleScroll,
+        estimatedHeight,
+        scrollContainerRef
+    } = useVirtualList<HTMLDivElement, HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -89,6 +96,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 role="table"
                 aria-colcount={ columns.length }
                 aria-rowcount={ props.rowsCount }
+                ref={ scrollContainerRef }
                 className={ cx(css.table, css.shadowDark, {
                     [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
                     [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight
