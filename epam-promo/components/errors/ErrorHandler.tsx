@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, UuiError, UuiErrorInfo, UUIRecoveryErrorInfo } from '@epam/uui';
+import React, { FC } from 'react';
+import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUUIError, UuiError, UuiErrorInfo, UUIRecoveryErrorInfo } from '@epam/uui';
 import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../';
-import { ErrorCatch, ErrorHandlerImpl } from '@epam/uui-components';
-import { recoveryWordings, defaultErrorPageConfig, defaultNotificationErrorMessage } from './constants';
+import { ErrorCatch } from '@epam/uui-components';
+import { recoveryMessageConfig, errorPageConfig } from './constants';
 import { ErrorPage } from './ErrorPage';
 import * as css from './ErrorHandler.scss';
 
@@ -11,20 +11,23 @@ export interface ErrorHandlerProps extends IHasCX {
 }
 
 export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
-    const [, updateState] = React.useState<object>();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
-    const { uuiErrors } = useUuiContext();
+    const { uuiNotifications, uuiModals } = useUuiContext();
+    const { errorType, errorInfo } = useUUIError({
+        customErrorHandler: props.getCustomErrorInfo,
+        options: { error: errorPageConfig, recovery:recoveryMessageConfig},
+    });
 
-    useEffect(() => {
-        uuiErrors.onError(() => forceUpdate());
-    }, []);
-
-    const renderNotifications = (notificationProps: INotification, errorMessage: string) => <ErrorNotification { ...notificationProps } >
-                    <Text size='36' fontSize='14'>{ errorMessage }</Text>
-                </ErrorNotification>;
+    const showNotifications = (errors: ApiCallInfo[]) => {
+        errors.forEach(c => {
+            uuiNotifications.show((notificationProps: INotification) => <ErrorNotification { ...notificationProps } >
+                <Text size='36' fontSize='14'>{ c.responseData && c.responseData.errorMessage }</Text>
+            </ErrorNotification>);
+            c.dismissError();
+        });
+    };
 
     const renderRecoveryBlocker = (errorInfo: UUIRecoveryErrorInfo) => {
-        const { title, text } = errorInfo;
+        const { title, subtitle } = errorInfo;
 
         return (
             <ModalBlocker cx={ css.modalBlocker } blockerShadow='dark' key='auth-lost' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
@@ -33,7 +36,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
                     <Spinner cx={ css.recoverySpinner } color='blue' />
                     <FlexRow padding='24' cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
-                            <RichTextView>{ text }</RichTextView>
+                            <RichTextView>{ subtitle }</RichTextView>
                         </FlexCell>
                     </FlexRow>
                 </ModalWindow>
@@ -45,15 +48,28 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         return <ErrorPage cx={ props.cx } { ...errorInfo } />;
     };
 
+    const renderApp = () => {
+        switch (errorType) {
+            case 'recovery':
+                return <>
+                    { props.children }
+                    { renderRecoveryBlocker(errorInfo as UUIRecoveryErrorInfo) }
+                </>;
+            case 'error':
+                uuiModals.closeAll();
+                return <>
+                    { renderErrorPage(errorInfo as UuiErrorInfo) }
+                </>;
+            case 'notification':
+                showNotifications(errorInfo as ApiCallInfo[]);
+            default:
+                return <>
+                    { props.children }
+                </>;
+        }
+    };
+
     return <ErrorCatch>
-        <ErrorHandlerImpl
-            { ...props }
-            renderErrorPage={ renderErrorPage }
-            renderNotification={ renderNotifications }
-            renderRecoveryBlocker={ renderRecoveryBlocker }
-            options={ { error: defaultErrorPageConfig, notification: defaultNotificationErrorMessage, recovery: recoveryWordings } }
-        >
-            { props.children }
-        </ErrorHandlerImpl>
+        { renderApp() }
     </ErrorCatch>;
 };
