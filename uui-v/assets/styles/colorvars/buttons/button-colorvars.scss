@@ -10,7 +10,7 @@
     --border-color-active: var(--primary-darkest-color);
     --background-color-disabled: var(--disabled-color);
     --caption-color: var(--primary-color);
-    --caption-color-disabled: var(--control-caption-disabled-color);
+    --caption-color-disabled: var(--button-caption-disabled-color);
 }
 
 .button-color-accent {
@@ -25,7 +25,7 @@
     --border-color-active: var(--accent-darkest-color);
     --background-color-disabled: var(--disabled-color);
     --caption-color: var(--accent-color);
-    --caption-color-disabled: var(--control-caption-disabled-color);
+    --caption-color-disabled: var(--button-caption-disabled-color);
 }
 
 .button-color-negative {
@@ -40,7 +40,7 @@
     --border-color-active: var(--negative-darkest-color);
     --background-color-disabled: var(--disabled-color);
     --caption-color: var(--negative-color);
-    --caption-color-disabled: var(--control-caption-disabled-color);
+    --caption-color-disabled: var(--button-caption-disabled-color);
 }
 
 .button-color-secondary {
@@ -54,6 +54,6 @@
     --border-color-hover: var(--secondary-dark-color);
     --border-color-active: var(--secondary-darkest-color);
     --background-color-disabled: var(--disabled-color);
-    --caption-color: var(--control-caption-color);
-    --caption-color-disabled: var(--control-caption-disabled-color);
+    --caption-color: var(--button-caption-color);
+    --caption-color-disabled: var(--button-caption-disabled-color);
 }

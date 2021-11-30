@@ -1,8 +1,6 @@
 @use  '../../assets/styles/index.scss' as *;
-@use '../../assets/styles/colorvars/inputs/textInput-colorvars.scss' as *;
 
 .root {
-    @include text-input-color();
     fill: var(--icon-color);
     border-style: solid;
     box-sizing: border-box;
@@ -36,12 +34,12 @@
             fill: var(--icon-color-clickable);
 
             &:hover {
-                fill: var(--icon-color-clickable-hovered);
+                fill: var(--icon-color-clickable-hover);
             }
         }
 
         &:hover {
-            border-color: var(--border-color-hovered);
+            border-color: var(--border-color-hover);
         }
 
         &:global(.uui-focus) {
@@ -69,7 +67,7 @@
                 fill: var(--icon-color-clickable);
 
                 &:hover {
-                    fill: var(--icon-color-clickable-hovered);
+                    fill: var(--icon-color-clickable-hover);
                 }
             }
         }
@@ -83,7 +81,7 @@
     &:global(.uui-invalid) {
         &.mode-form, &.mode-cell {
             background-color: white;
-            border-color: var(--border-color-errored);
+            border-color: var(--border-color-error);
         }
     }
 

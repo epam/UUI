@@ -82,33 +82,33 @@
 
     &:global(.uui-invalid) {
         :global(.uui-icon) {
-            fill: var(--errore-color);
+            fill: var(--error-color);
         }
 
         :global(.uui-input-label) {
-            color: var(--errore-color);
+            color: var(--error-color);
         }
 
         :global(.uui-radioinput) {
-            border-color: var(--errore-color);
+            border-color: var(--error-color);
         }
 
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
 
                 :global(.uui-icon) {
-                    fill: var(--errore-color);
+                    fill: var(--error-color);
                 }
             }
         }
 
         &:hover, &:focus-within {
             :global(.uui-radioinput) {
-                border-color: var(--errore-color);
+                border-color: var(--error-color);
             }
 
             :global(.uui-icon) {
-                fill: var(--errore-color);
+                fill: var(--error-color);
             }
         }
     }
