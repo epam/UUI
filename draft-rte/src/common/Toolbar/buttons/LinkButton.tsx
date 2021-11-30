@@ -3,7 +3,7 @@ import EditorUtils from 'draft-js-plugins-utils';
 import { IconButton } from '@epam/loveship';
 import * as React from 'react';
 import { UuiContexts, UuiContext, prependHttp } from '@epam/uui';
-import * as linkIcon from '../../../icons/insert_link.svg';
+import { ReactComponent as LinkIcon } from '../../../icons/insert_link.svg';
 import { DraftButtonProps } from '../../../types';
 import { getEntityRange, getSelectionText } from '../../../utils';
 import { LinkModalState, showLinkModal } from '../modals/LinkModal';
@@ -89,7 +89,7 @@ export class LinkButton extends React.Component<DraftButtonProps> {
                             .then(data => { this.handleClick(data.href, data.displayText, data.isRemove); })
                             .catch(() => null);
                     } }
-                    icon={ linkIcon }
+                    icon={ LinkIcon }
                 />
             </div>
         );

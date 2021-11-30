@@ -9,7 +9,7 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
     className="container uui-icon uui-enabled globalMenuIcon"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -25,7 +25,7 @@ exports[`GlobalMenu should be rendered correctly with props 1`] = `
     className="container uui-icon uui-enabled globalMenuIcon"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>

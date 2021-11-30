@@ -12,7 +12,7 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -36,7 +36,7 @@ exports[`MainMenuDropdown should be rendered correctly with props 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>

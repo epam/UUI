@@ -22,7 +22,7 @@ exports[`FileCard should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 xlsColor"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -116,7 +116,7 @@ exports[`FileCard should be rendered correctly 2`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 docColor"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -210,7 +210,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       className="container uui-icon uui-enabled root icon-container-color-gray60 imgColor"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>

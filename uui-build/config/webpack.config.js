@@ -443,7 +443,12 @@ function getLocalIdent(
                             removeViewBox: false
                         }
                     }
-                }
+                }},
+                {
+                    loader: 'file-loader',
+                    options: {
+                        emitFile: false,
+                },
             }]
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.

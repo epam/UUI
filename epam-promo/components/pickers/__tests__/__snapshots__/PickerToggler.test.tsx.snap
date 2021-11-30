@@ -52,7 +52,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
         onClick={[Function]}
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>
@@ -76,7 +76,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       style={Object {}}
       tabIndex={-1}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>

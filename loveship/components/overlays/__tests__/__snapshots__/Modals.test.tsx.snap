@@ -172,7 +172,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
               className="container uui-icon uui-enabled"
               style={Object {}}
             >
-              <SvgrURL
+              <svg
                 className=""
               />
             </div>

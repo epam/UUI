@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import css from "./Preset.scss";
 import { Button, ControlGroup, Dropdown, Panel, TextInput } from "@epam/promo";
 import { IDropdownToggler } from "@epam/uui";
-import menuIcon from '@epam/assets/icons/common/navigation-more_vert-12.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 import { DropdownBodyProps } from "@epam/uui-components";
 import { ITablePreset } from "../types";
 import DropdownMenuItem from "./DropdownMenuItem";
@@ -78,7 +78,7 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
         return (
             <Button
                 { ...props }
-                icon={ menuIcon }
+                icon={ MenuIcon }
                 size="24"
                 isDropdown={ false }
                 fill={ isActive ? "solid" : "white" }

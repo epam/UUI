@@ -36,7 +36,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -45,7 +45,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     onClick={[Function]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -53,7 +53,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -61,7 +61,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     className="container uui-icon uui-enabled -clickable"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className="flipY"
     />
   </div>

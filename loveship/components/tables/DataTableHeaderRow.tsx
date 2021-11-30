@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
 import { DataTableHeaderRowProps, withMods } from '@epam/uui';
-import * as gearIcon from './../icons/settings-18.svg';
+import { ReactComponent as GearIcon } from './../icons/settings-18.svg';
 import * as css from './DataTableHeaderRow.scss';
 import { DataTableHeaderCell } from './DataTableHeaderCell';
 import { DataTableHeaderRowMods } from './types';
@@ -23,6 +23,6 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
             cx={ css.configIcon }
             size='30'
             color='night600'
-            icon={ gearIcon }
+            icon={ GearIcon }
         />,
     }));

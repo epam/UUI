@@ -40,7 +40,7 @@ module.exports = {
         "^react-native$": "react-native-web",
         "^.+\\.(sass|scss|less)$": "<rootDir>/uui-build/config/jest/cssModuleTransform.js",
         "@epam/test-utils": "<rootDir>/test-utils",
-        "\\.svg": "<rootDir>/test-utils/mocks/svgrMock.ts"
+        "\\.svg": "<rootDir>/test-utils/mocks/svgrMock.js"
     },
     "moduleFileExtensions": [
         "web.js",

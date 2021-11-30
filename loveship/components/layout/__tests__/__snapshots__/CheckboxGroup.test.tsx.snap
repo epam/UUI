@@ -43,7 +43,7 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
         className="container uui-icon uui-enabled"
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>
@@ -77,7 +77,7 @@ exports[`CheckboxGroup should render with default props 1`] = `
         className="container uui-icon uui-enabled"
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>

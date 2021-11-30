@@ -3,7 +3,7 @@ import { Editor as CoreEditor, Block, KeyUtils } from "slate";
 import * as React from "react";
 import { NotePluginBlock } from "./NotePluginBlock";
 import { Dropdown } from "@epam/uui-components";
-import * as noteIcon from "../../icons/info-block-quote.svg";
+import { ReactComponent as NoteIcon } from "../../icons/info-block-quote.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { NoteBar } from '../../implementation/NoteBar';
 
@@ -70,7 +70,7 @@ export const notePlugin = () => {
 const ToolbarNoteButton = (editorProps: { editor: any }) => {
     return <Dropdown
         renderTarget={ (props) => <ToolbarButton
-            icon={ noteIcon }
+            icon={ NoteIcon }
             isActive={ editorProps.editor.hasBlock(noteBlocks) }
             onClick={ () => null }
             { ...props }

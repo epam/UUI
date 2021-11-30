@@ -1,7 +1,7 @@
 import React from 'react';
 import { Accordion } from '../Accordion';
 import renderer from 'react-test-renderer';
-import * as arrow from '@epam/assets/icons/common/navigation-arrow-down-24.svg';
+import { ReactComponent as Arrow } from '@epam/assets/icons/common/navigation-arrow-down-24.svg';
 
 describe('Accordion', () => {
     it('should be rendered correctly', () => {
@@ -18,7 +18,7 @@ describe('Accordion', () => {
             .create(<Accordion
                 title='Test title'
                 mode='inline'
-                dropdownIcon={ arrow }
+                dropdownIcon={ Arrow }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

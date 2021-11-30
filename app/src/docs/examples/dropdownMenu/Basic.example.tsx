@@ -13,7 +13,7 @@ import {
     FlexSpacer,
     Badge
 } from '@epam/promo';
-import * as icon from '@epam/assets/icons/common/action-eye-18.svg';
+import { ReactComponent as Icon } from '@epam/assets/icons/common/action-eye-18.svg';
 
 const CustomItem = (props: IDropdownMenuItemProps) => {
     return (
@@ -61,26 +61,26 @@ export default function BasicDropdownMenuExample() {
 
         return (
             <DropdownMenuBody onClose={ onClose } style={ { maxWidth: "250px" } } >
-                <DropdownMenuButton icon={ icon } caption="Menu Item with extra link" href="https://www.epam.com/" clickAnalyticsEvent={ clickAnalyticsEvent } />
+                <DropdownMenuButton icon={ Icon } caption="Menu Item with extra link" href="https://www.epam.com/" clickAnalyticsEvent={ clickAnalyticsEvent } />
                 <DropdownMenuButton caption="Disabled Menu Item" isDisabled={ true } />
                 <DropdownSubMenu caption="Menu Item with SubMenu">
                     <DropdownMenuButton caption="Menu Item in Submenu" />
                     <DropdownMenuButton caption="Menu Item in Submenu" />
                     <DropdownMenuButton caption="Menu Item in Submenu" />
-                    <DropdownMenuButton icon={ icon } caption="Menu Item in Submenu with icon" />
+                    <DropdownMenuButton icon={ Icon } caption="Menu Item in Submenu with icon" />
                     <DropdownSubMenu caption="One More SubMenu">
-                        <DropdownMenuButton icon={ icon } iconPosition="right" caption="Menu Item with icon in right" />
+                        <DropdownMenuButton icon={ Icon } iconPosition="right" caption="Menu Item with icon in right" />
                     </DropdownSubMenu>
-                    <DropdownMenuButton icon={ icon } caption="Menu Item in Submenu" />
+                    <DropdownMenuButton icon={ Icon } caption="Menu Item in Submenu" />
                 </DropdownSubMenu>
                 <DropdownMenuSplitter />
-                <DropdownMenuButton icon={ icon } caption="Click to select it" onClick={ setSelected } isSelected={ selected } />
-                <DropdownMenuButton icon={ icon } caption="Menu Item" />
+                <DropdownMenuButton icon={ Icon } caption="Click to select it" onClick={ setSelected } isSelected={ selected } />
+                <DropdownMenuButton icon={ Icon } caption="Menu Item" />
                 <DropdownMenuSwitchButton caption="Menu Item with switch" />
-                <DropdownMenuButton icon={ icon } caption="Menu Item with very long long long long long long long long caption" />
+                <DropdownMenuButton icon={ Icon } caption="Menu Item with very long long long long long long long long caption" />
                 <DropdownMenuSplitter />
                 <DropdownMenuHeader caption="An example of DropdownMenuHeader" />
-                <DropdownMenuButton icon={ icon } iconPosition="right" caption="Menu Item2" />
+                <DropdownMenuButton icon={ Icon } iconPosition="right" caption="Menu Item2" />
                 <DropdownMenuSplitter />
                 <DropdownMenuButton caption="A" />
                 <DropdownMenuButton caption="B" />

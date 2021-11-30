@@ -4,8 +4,8 @@ import { DndActor, cx, DropParams, getOrderBetween, IEditable } from '@epam/uui'
 import { FlexRow, IconContainer, DropMarker, FlexCell, Text } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';
 
-import * as completeIcon from '@epam/assets/icons/common/notification-check-fill-24.svg';
-import * as scheduleIcon from '@epam/assets/icons/common/action-schedule-24.svg';
+import { ReactComponent as CompleteIcon } from '@epam/assets/icons/common/notification-check-fill-24.svg';
+import { ReactComponent as ScheduleIcon } from '@epam/assets/icons/common/action-schedule-24.svg';
 
 export interface ModuleItem {
     id: number;
@@ -55,7 +55,7 @@ export class DndModule extends React.Component<DndModuleProps> {
                         <FlexRow background="white" size='48' padding='12' spacing='12' >
                             <DragHandle cx={ [css.dragHandle] } />
                             <IconContainer
-                                icon={ item.isCompleted ? completeIcon : scheduleIcon }
+                                icon={ item.isCompleted ? CompleteIcon : ScheduleIcon }
                                 color={ item.isCompleted ? 'green' : 'gray50' }
                                 cx={ cx(css.moduleIcon, item.isCompleted ? css.completeIcon : css.scheduleIcon) }
                             />

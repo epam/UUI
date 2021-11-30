@@ -2,10 +2,9 @@ import * as React from 'react';
 import { TimelineController } from './TimelineController';
 import * as css from './TimelineNav.scss';
 import { Scales, scales, scaleSteps } from './helpers';
-
-import * as svgScales from './fit.svg';
-import * as svgPlus from './plus.svg';
-import * as svgMinus from './minus.svg';
+import { ReactComponent as SvgScales } from './fit.svg';
+import { ReactComponent as SvgPlus } from './plus.svg';
+import { ReactComponent as SvgMinus } from './minus.svg';
 import { Icon } from '@epam/uui';
 import { Svg } from '@epam/uui-components';
 import { i18n } from "./i18n";
@@ -50,7 +49,7 @@ export class TimelineNav extends React.Component<TimelineNavProps, {}> {
             <div className={ css.actions }>
                 <div className={ css.button }>
                     <div className={ css.fit }>
-                        { this.renderIcon(svgScales) }
+                        { this.renderIcon(SvgScales) }
                     </div>
                 </div>
                 <div className={ css.actionsForgivingZone } />
@@ -83,7 +82,7 @@ export class TimelineNav extends React.Component<TimelineNavProps, {}> {
                 onClick={ () => this.props.timelineController.zoomBy(1) }
             >
                 <div className={ css.zoomIn }>
-                    { this.renderIcon(svgPlus) }
+                    { this.renderIcon(SvgPlus) }
                 </div>
             </div>
         );
@@ -96,7 +95,7 @@ export class TimelineNav extends React.Component<TimelineNavProps, {}> {
                 onClick={ () => this.props.timelineController.zoomBy(-1) }
             >
                 <div className={ css.zoomOut }>
-                    { this.renderIcon(svgMinus) }
+                    { this.renderIcon(SvgMinus) }
                 </div>
             </div>
         );

@@ -42,7 +42,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     onClick={[Function]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>

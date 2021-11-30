@@ -21,7 +21,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
     onClick={[Function]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
