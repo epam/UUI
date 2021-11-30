@@ -993,7 +993,7 @@
       },
       {
         "name": "Tooltip",
-        "value": "React.ComponentClass<TooltipProps, any>"
+        "value": "React.ComponentType<TooltipProps>"
       },
       {
         "name": "from",
@@ -1697,7 +1697,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
-        "value": "React.ComponentClass<CheckboxProps, any>"
+        "value": "React.ComponentType<CheckboxProps>"
       },
       {
         "name": "items",
@@ -1811,7 +1811,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
-        "value": "React.ComponentClass<TooltipProps, any>"
+        "value": "React.ComponentType<TooltipProps>"
       },
       {
         "name": "infoIcon",
@@ -1873,7 +1873,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
-        "value": "React.ComponentClass<RadioInputProps, any>"
+        "value": "React.ComponentType<RadioInputProps>"
       },
       {
         "name": "items",
@@ -2003,11 +2003,11 @@
       },
       {
         "name": "MainMenuDropdown",
-        "value": "React.ComponentClass<MainMenuDropdownProps, any>"
+        "value": "React.ComponentType<MainMenuDropdownProps>"
       },
       {
         "name": "Burger",
-        "value": "React.ComponentClass<BurgerProps, any>"
+        "value": "React.ComponentType<BurgerProps>"
       },
       {
         "name": "cx",
@@ -2426,6 +2426,18 @@
       {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
       },
       {
         "name": "editMode",
@@ -4681,7 +4693,7 @@
       },
       {
         "name": "Tooltip",
-        "value": "React.ComponentClass<TooltipProps, any>"
+        "value": "React.ComponentType<TooltipProps>"
       },
       {
         "name": "from",
@@ -5479,7 +5491,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
-        "value": "React.ComponentClass<CheckboxProps, any>"
+        "value": "React.ComponentType<CheckboxProps>"
       },
       {
         "name": "items",
@@ -5593,7 +5605,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
-        "value": "React.ComponentClass<TooltipProps, any>"
+        "value": "React.ComponentType<TooltipProps>"
       },
       {
         "name": "infoIcon",
@@ -5659,7 +5671,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
-        "value": "React.ComponentClass<RadioInputProps, any>"
+        "value": "React.ComponentType<RadioInputProps>"
       },
       {
         "name": "items",
@@ -5789,11 +5801,11 @@
       },
       {
         "name": "MainMenuDropdown",
-        "value": "React.ComponentClass<MainMenuDropdownProps, any>"
+        "value": "React.ComponentType<MainMenuDropdownProps>"
       },
       {
         "name": "Burger",
-        "value": "React.ComponentClass<BurgerProps, any>"
+        "value": "React.ComponentType<BurgerProps>"
       },
       {
         "name": "cx",
@@ -6322,6 +6334,14 @@
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "color",
+        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
+      },
+      {
         "name": "actions",
         "value": "notificationAction[]"
       },
@@ -6542,6 +6562,18 @@
       {
         "name": "placeholder",
         "value": "any"
+      },
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
       },
       {
         "name": "editMode",
@@ -8084,6 +8116,300 @@
       {
         "name": "theme",
         "value": "light | dark"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/radioInput.doc.ts": [
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "renderLabel",
+        "value": "() => React.ReactNode"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "label",
+        "value": "any"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "18 | 12"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/switch.doc.ts": [
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "label",
+        "value": "any"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 18 | 12"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/textInput.doc.ts": [
+      {
+        "name": "acceptIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "cancelIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "Icon"
+      },
+      {
+        "name": "inputCx",
+        "value": "any"
+      },
+      {
+        "name": "renderInput",
+        "value": "(props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => JSX.Element"
+      },
+      {
+        "name": "onCancel",
+        "value": "() => void"
+      },
+      {
+        "name": "onAccept",
+        "value": "() => void"
+      },
+      {
+        "name": "onKeyDown",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "onFocus",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "onBlur",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "autoFocus",
+        "value": "boolean"
+      },
+      {
+        "name": "type",
+        "value": "string"
+      },
+      {
+        "name": "autoComplete",
+        "value": "string"
+      },
+      {
+        "name": "name",
+        "value": "string"
+      },
+      {
+        "name": "maxLength",
+        "value": "number"
+      },
+      {
+        "name": "inputMode",
+        "value": "none | text | tel | url | email | numeric | decimal | search"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "placeholder",
+        "value": "any"
+      },
+      {
+        "name": "icon",
+        "value": "Icon"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
+        "name": "caption",
+        "value": "any"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48"
+      },
+      {
+        "name": "mode",
+        "value": "form | cell"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [

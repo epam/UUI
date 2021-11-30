@@ -46,30 +46,44 @@ $gray90: #1D1E26;
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
-
-    --control-background-color: #{$white};
-    --switch-background-color: #{$gray40};
-    --control-background-checked-color: var(--primary-color);
-    --control-background-checked-hover-color: var(--primary-dark-color);
-    --control-background-checked-disabled-color: var(--primary-light-color);
-    --control-background-hover-color: #{$gray60};
-    --control-background-disabled-color: #{$gray5};
-    --control-border-color: #{$gray40};
-    --control-border-checked-color: var(--primary-color);
-    --control-border-checked-hover-color: var(--primary-dark-color);
-    --control-border-checked-disabled-color: var(--primary-light-color);
-    --control-border-hover-color: var(--primary-dark-color);
-    --switch-border-hover-color: #{$gray60};
-    --control-border-disabled-color: var(--disabled-color);
-    --control-rest-color: var(--primary-color);
-    --control-hover-color: var(--primary-dark-color);
-    --control-active-color: var(--primary-darkest-color);
-
-    --control-caption-color: var(--secondary-dark-color);
-    --control-caption-disabled-color: var(--secondary-color);
-
-    --control-label-color: #{$gray80};
-    --control-label-disabled-color: #{$gray60};
-
     --icon-color: #{$gray60};
+
+    --button-caption-color: var(--secondary-dark-color);
+    --button-caption-disabled-color: var(--secondary-color);
+
+    --input-background-color: #{$white};
+    --input-switch-background-color: #{$gray40};
+    --input-background-checked-color: var(--primary-color);
+    --input-background-checked-hover-color: var(--primary-dark-color);
+    --input-background-checked-disabled-color: var(--primary-light-color);
+    --input-background-hover-color: #{$gray60};
+    --input-background-disabled-color: #{$gray5};
+    --input-background-readonly-color: #{$gray5};
+    --input-border-color: #{$gray40};
+    --input-border-checked-color: var(--primary-color);
+    --input-border-checked-hover-color: var(--primary-dark-color);
+    --input-border-checked-disabled-color: var(--primary-light-color);
+    --input-border-hover-color: var(--primary-dark-color);
+    --input-switch-border-hover-color: #{$gray60};
+    --input-textinput-border-hover-color: #{$gray60};
+    --input-border-disabled-color: var(--disabled-color);
+    --input-border-readonly-color: var(--disabled-color);
+    --input-rest-color: var(--primary-color);
+    --input-hover-color: var(--primary-dark-color);
+    --input-active-color: var(--primary-darkest-color);
+
+    --input-label-color: #{$gray80};
+    --input-label-disabled-color: #{$gray60};
+
+    --input-placeholder-color: #{$gray60};
+    --input-placeholder-disabled-color: #{$gray50};
+    --input-text-color: #{$gray80};
+    --input-text-disabled-color: #{$gray50};
+
+    --input-icon-color: #{$gray50};
+    --input-icon-disabled-color: #{$gray50};
+    --input-icon-clickable-color: #{$gray60};
+    --input-icon-clickable-hover-color: #{$gray70};
+
+
 }

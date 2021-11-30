@@ -82,28 +82,28 @@
 
     &:global(.uui-invalid) {
         :global(.uui-checkbox) {
-            border-color: var(--errore-color);
-            fill: var(--errore-color);
+            border-color: var(--error-color);
+            fill: var(--error-color);
 
             &:hover, &:active, &:focus-within {
-                border-color: var(--errore-color);
-                fill: var(--errore-color);
+                border-color: var(--error-color);
+                fill: var(--error-color);
             }
 
             &:global(.uui-checked) {
                 fill: var(--fill-color);
-                background-color: var(--errore-color);
-                border-color: var(--errore-color);
+                background-color: var(--error-color);
+                border-color: var(--error-color);
 
                 &:hover, &:active, &:focus-within {
-                    background-color: var(--errore-color);
-                    border-color: var(--errore-color);
+                    background-color: var(--error-color);
+                    border-color: var(--error-color);
                 }
             }
         }
 
         :global(.uui-input-label) {
-            color: var(--errore-color);
+            color: var(--error-color);
         }
     }
 

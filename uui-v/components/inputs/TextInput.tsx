@@ -4,6 +4,7 @@ import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components'
 import * as types from '../types';
 import { IHasEditMode, EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
+import * as colors from '../../assets/styles/colorvars/inputs/textInput-colorvars.scss';
 import * as css from './TextInput.scss';
 
 const defaultSize = '36';
@@ -15,6 +16,7 @@ export interface TextInputMods extends IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
+        colors.textInputColors,
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],
