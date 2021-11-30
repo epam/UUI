@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUUIError, UuiError, UuiErrorInfo, UUIRecoveryErrorInfo } from '@epam/uui';
+import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo } from '@epam/uui';
 import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../';
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
@@ -7,14 +7,14 @@ import { ErrorPage } from './ErrorPage';
 import * as css from './ErrorHandler.scss';
 
 export interface ErrorHandlerProps extends IHasCX {
-    getCustomErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
 }
 
 export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     const { uuiNotifications, uuiModals } = useUuiContext();
-    const { errorType, errorInfo } = useUUIError({
-        customErrorHandler: props.getCustomErrorInfo,
-        options: { error: getErrorPageConfig(), recovery: getRecoveryMessageConfig() },
+    const { errorType, errorInfo } = useUuiError({
+        customErrorHandler: props.getErrorInfo,
+        options: { errorConfig: getErrorPageConfig(), recoveryConfig: getRecoveryMessageConfig() },
     });
 
     const showNotifications = (errors: ApiCallInfo[]) => {
@@ -26,7 +26,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         });
     };
 
-    const renderRecoveryBlocker = (errorInfo: UUIRecoveryErrorInfo) => {
+    const renderRecoveryBlocker = (errorInfo: UuiRecoveryErrorInfo) => {
         const { title, subtitle } = errorInfo;
 
         return (
@@ -53,7 +53,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
             case 'recovery':
                 return <>
                     { props.children }
-                    { renderRecoveryBlocker(errorInfo as UUIRecoveryErrorInfo) }
+                    { renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
                 </>;
             case 'error':
                 uuiModals.closeAll();

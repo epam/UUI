@@ -77,7 +77,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         this.update({});
     }
 
-    private handleApiError(call: ApiCall, reason?: ApiRecoveryReason, error?: ApiCallError) {
+    private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
         if (reason) {
             call.status = 'scheduled';
             if (this.status === 'recovery') {
@@ -87,14 +87,15 @@ export class ApiContext extends BaseContext implements IApiContext {
             this.errorCtx.reportError(new ApiCallError(call));
             reason === 'auth-lost' ? window.open(reloginPath) : this.recoverConnection();
         } else {
+            const error = new ApiCallError(call);
             call.status = 'error';
             if (call.options?.errorHandling === 'manual') {
                 this.removeFromQueue(call);
-                call.reject(error);
             } else {
                 this.setStatus('error');
                 this.errorCtx.reportError(error);
             }
+            call.reject(error);
         }
     }
 
@@ -123,7 +124,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             if (call.attemptsCount < 2) {
                 this.handleApiError(call, 'connection-lost');
             } else {
-                this.handleApiError(call, null, new ApiCallError(call));
+                this.handleApiError(call);
             }
         });
     }
@@ -152,7 +153,10 @@ export class ApiContext extends BaseContext implements IApiContext {
                 })
                 .catch(e => {
                     /* Problem with response JSON parsing */
-                    this.handleApiError(call, null, e);
+                    call.status = 'error';
+                    this.setStatus('error');
+                    this.errorCtx.reportError(e);
+                    call.reject(e);
                 });
         } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
                 (response.status === 408 /* Request Timeout */
@@ -181,7 +185,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             // Try to parse JSON in response, if there are none - just ignore
             response.json().catch(() => null).then(result => {
                 call.responseData = result;
-                this.handleApiError(call, null, new ApiCallError(call));
+                this.handleApiError(call);
             });
         }
     }
