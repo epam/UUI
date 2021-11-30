@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUUIError, UuiError, UuiErrorInfo, UUIRecoveryErrorInfo } from '@epam/uui';
 import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../';
 import { ErrorCatch } from '@epam/uui-components';
-import { recoveryMessageConfig, errorPageConfig } from './constants';
+import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
 import * as css from './ErrorHandler.scss';
 
@@ -14,7 +14,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     const { uuiNotifications, uuiModals } = useUuiContext();
     const { errorType, errorInfo } = useUUIError({
         customErrorHandler: props.getCustomErrorInfo,
-        options: { error: errorPageConfig, recovery:recoveryMessageConfig},
+        options: { error: getErrorPageConfig(), recovery: getRecoveryMessageConfig() },
     });
 
     const showNotifications = (errors: ApiCallInfo[]) => {
