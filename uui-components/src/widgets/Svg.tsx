@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IHasCX, SvgDescriptor, parseIconViewbox } from '@epam/uui';
+import { Icon, IHasCX } from '@epam/uui';
 
 interface SvgProps extends IHasCX {
     svg?: Icon;
@@ -10,33 +10,15 @@ interface SvgProps extends IHasCX {
 
 export class Svg extends React.Component<SvgProps> {
     render() {
-        if (!this.props.svg) {
+        const { svg, cx, fillColor } = this.props;
+        if (!svg) {
             return null;
         }
+        const svgProps = {
+            className: cx,
+            fill: fillColor,
+        };
 
-        let svgElement: React.ReactNode;
-
-        if ((this.props.svg as SvgDescriptor).viewBox) {
-            let svg = this.props.svg as SvgDescriptor;
-            const viewBox = parseIconViewbox(svg.viewBox);
-            const attrs = {
-                width: this.props.width ? this.props.width : viewBox.w,
-                height: this.props.height ? this.props.height : viewBox.h,
-            };
-
-            svgElement = <svg viewBox={ svg.viewBox } { ...attrs } className={ this.props.cx } fill={ this.props.fillColor }>
-                <use xlinkHref={ svg.url || ('#' + svg.id) } />
-            </svg>;
-        } else {
-            const svgProps = {
-                className: this.props.cx,
-                fill: this.props.fillColor,
-            };
-
-            const IconSVG = (this.props.svg as any).default || this.props.svg;
-            svgElement = React.createElement(IconSVG as React.FC<any>, svgProps);
-        }
-
-        return svgElement;
+        return React.createElement(svg as React.FC<any>, svgProps);
     }
 }

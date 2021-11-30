@@ -31,7 +31,7 @@ exports[`PickerInput should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled uui-icon-dropdown"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -68,7 +68,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
         onClick={[Function]}
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>
@@ -90,7 +90,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
         onClick={[Function]}
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>
@@ -105,7 +105,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       style={Object {}}
       tabIndex={-1}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>

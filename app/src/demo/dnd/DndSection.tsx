@@ -7,7 +7,7 @@ import { CriterionItem, DndCriterion } from './DndCriterion';
 import { DndMaterial, MaterialItem } from './DndMaterial';
 import { demoText } from './defaultState';
 import * as css from './DndSection.scss';
-import * as downIcon from '@epam/assets/icons/common/navigation-chevron-down-24.svg';
+import { ReactComponent as DownIcon } from '@epam/assets/icons/common/navigation-chevron-down-24.svg';
 
 export interface SectionItem {
     id: number;
@@ -68,7 +68,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                     <Text color='gray60' >{ item.deadline }</Text>
                                 </FlexRow>
                                 <Badge fill='semitransparent' size='24' color={ item.status === 'Green' ? 'green' : 'amber' } caption={ `${ item.status } Status` } />
-                                <IconContainer  icon={ downIcon } rotate={ item.isFolded ? '180' : '0' } color='gray60' />
+                                <IconContainer  icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } color='gray60' />
                             </FlexRow>
                             { item.isFolded && <>
                                 <div className={ css.descriptionSection } >

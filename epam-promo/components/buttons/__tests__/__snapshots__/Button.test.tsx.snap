@@ -33,7 +33,7 @@ exports[`Button should be rendered correctly with props 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -41,7 +41,7 @@ exports[`Button should be rendered correctly with props 1`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className="flipY"
     />
   </div>
@@ -50,7 +50,7 @@ exports[`Button should be rendered correctly with props 1`] = `
     onClick={[Function]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>

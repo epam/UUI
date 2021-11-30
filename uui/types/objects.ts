@@ -30,13 +30,6 @@ export interface TimePickerValue {
 // So we'll keep this shortcut to 'any' for now, at least this make code more self-explanatory.
 export type CX = any;
 
-/* An SVG icon descriptor, as imported via the import directive with webpack svg loader */
-export interface SvgDescriptor {
-    id: string;
-    url: string;
-    viewBox: string;
-}
-
-export type Icon = SvgDescriptor | React.FC<any>;
+export type Icon = React.FC<any>;
 
 

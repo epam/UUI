@@ -71,14 +71,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -144,14 +137,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort_asc-12.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -204,14 +190,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -264,14 +243,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -336,14 +308,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -400,14 +365,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort_asc-12.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -451,14 +409,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -502,14 +453,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#sort.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>

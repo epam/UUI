@@ -3,7 +3,7 @@ import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndA
 import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
 import sortBy from "lodash.sortby";
 import { DragHandle } from '@epam/uui-components';
-import * as fileIcon from '@epam/assets/icons/common/file-file-24.svg';
+import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
 import * as css from './DndMaterial.scss';
 
 export interface MaterialItem {
@@ -78,7 +78,7 @@ export default function DndMaterial() {
                             <FlexRow cx={ css.materialRow }>
                                 <FlexCell width='auto'  shrink={ 0 } cx={ css.iconWrapper }>
                                     <DragHandle cx={ [css.dragHandle] } />
-                                    <IconContainer size={ 48 } icon={ fileIcon } />
+                                    <IconContainer size={ 48 } icon={ FileIcon } />
                                 </FlexCell>
                                 <FlexCell width="100%" cx={ css.textWrapper }>
                                     <Text cx={ css.text } size='24' lineHeight='24' fontSize='16' font='sans-semibold' >{ item.name }</Text>

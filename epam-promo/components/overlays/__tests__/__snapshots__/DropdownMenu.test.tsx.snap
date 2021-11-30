@@ -99,7 +99,7 @@ Array [
           className="container uui-icon uui-enabled icon iconAfter"
           style={Object {}}
         >
-          <SvgrURL
+          <svg
             className=""
           />
         </div>

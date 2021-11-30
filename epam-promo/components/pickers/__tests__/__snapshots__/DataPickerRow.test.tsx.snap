@@ -68,7 +68,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="container uui-icon uui-enabled root icon-container-color-blue"
           style={Object {}}
         >
-          <SvgrURL
+          <svg
             className=""
           />
         </div>

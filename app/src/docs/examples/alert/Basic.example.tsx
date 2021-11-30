@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/promo';
 import * as css from './BasicExample.scss';
-import * as accountIcon from '@epam/assets/icons/common/action-account-24.svg';
+import { ReactComponent as AccountIcon } from '@epam/assets/icons/common/action-account-24.svg';
 
 export default function BasicAlertExample() {
     return (
@@ -13,7 +13,7 @@ export default function BasicAlertExample() {
                 <Text size="24" fontSize='14'> Hint notification with actions </Text>
             </HintAlert>
 
-            <Alert icon={ accountIcon } color='amber' onClose={ () => alert('close action') } actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] } >
+            <Alert icon={ AccountIcon } color='amber' onClose={ () => alert('close action') } actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] } >
                 <Text size="24" fontSize='14'>Custom Alert notification with actions</Text>
             </Alert>
         </FlexCell>

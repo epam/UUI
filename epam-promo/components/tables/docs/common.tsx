@@ -4,10 +4,10 @@ import { DocBuilder } from '@epam/uui-docs';
 import { Text, FlexCell, LinkButton, ControlSize } from '../../../components';
 import {  Avatar } from '@epam/uui-components';
 import * as css from '../../pickers/docs/DataPickerRowDoc.scss';
-import * as moreIcon from '../../../icons/navigation-more_vert-18.svg';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
-import * as tickIcon from '../../../icons/notification-done-18.svg';
-import * as pencilIcon from '../../../icons/content-edit-18.svg';
+import { ReactComponent as MoreIcon } from '../../../icons/navigation-more_vert-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import { ReactComponent as TickIcon } from '../../../icons/notification-done-18.svg';
+import { ReactComponent as PencilIcon } from '../../../icons/content-edit-18.svg';
 import { Person } from './TableContext';
 import { DataTableHeaderRowMods } from '../types';
 
@@ -33,7 +33,7 @@ const UserColumns = [
     {
         key: 'inProgress',
         caption: 'IN PROGRESS',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ calendarIcon } size='30' color='blue' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size='30' color='blue' />,
         grow: 1, minWidth: 50,
         vPadding: '30',
         size: '30',
@@ -41,7 +41,7 @@ const UserColumns = [
     {
         key: 'done',
         caption: 'DONE',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ tickIcon } size='30' color='blue' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size='30' color='blue' />,
         grow: 1, minWidth: 50,
         vPadding: '30',
         size: '30',
@@ -49,7 +49,7 @@ const UserColumns = [
     {
         key: 'edited',
         caption: 'EDITED',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ pencilIcon } size='30' color='blue' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size='30' color='blue' />,
         grow: 1, minWidth: 50,
         vPadding: '30',
         size: '30',
@@ -136,7 +136,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
         {
             key: 'settings',
             caption: '',
-            render: (data: Person) => <LinkButton icon={ moreIcon } size={ size } color='blue' />,
+            render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } color='blue' />,
             width: 18,
             textAlign: 'center',
             alignSelf: 'center',

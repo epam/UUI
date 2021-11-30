@@ -89,7 +89,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
               className="container uui-icon uui-enabled"
               style={Object {}}
             >
-              <SvgrURL
+              <svg
                 className=""
               />
             </div>
@@ -304,7 +304,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
               className="container uui-icon uui-enabled"
               style={Object {}}
             >
-              <SvgrURL
+              <svg
                 className=""
               />
             </div>

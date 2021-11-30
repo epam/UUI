@@ -18,7 +18,7 @@ Array [
       className="container uui-icon uui-enabled"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className="flipY"
       />
     </div>
@@ -77,7 +77,7 @@ Array [
                 className="container uui-icon uui-enabled"
                 style={Object {}}
               >
-                <SvgrURL
+                <svg
                   className=""
                 />
               </div>
@@ -103,7 +103,7 @@ Array [
                 className="container uui-icon uui-enabled"
                 style={Object {}}
               >
-                <SvgrURL
+                <svg
                   className=""
                 />
               </div>

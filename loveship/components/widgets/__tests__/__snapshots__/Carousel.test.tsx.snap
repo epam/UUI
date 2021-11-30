@@ -28,7 +28,7 @@ exports[`Carousel should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -63,7 +63,7 @@ exports[`Carousel should be rendered correctly 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -99,7 +99,7 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -134,7 +134,7 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
     DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, MainMenuDropdown, MainMenuSearch } from "@epam/promo";
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
-import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-24.svg";
-import * as logOutIcon from '@epam/assets/icons/common/navigation-logout-24.svg';
+import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
+import { ReactComponent as LogOutIcon } from "@epam/assets/icons/common/navigation-logout-24.svg";
 
 export default function MainMenuCustomElementsExample() {
     const [value, setValue] = useState('');
@@ -17,7 +17,7 @@ export default function MainMenuCustomElementsExample() {
             <BurgerButton caption="Cloud" />
             <BurgerButton caption="Help" />
             <BurgerButton caption="Settings" />
-            <BurgerButton caption="Log out" icon={ logOutIcon }/>
+            <BurgerButton caption="Log out" icon={ LogOutIcon }/>
         </>
     );
 
@@ -56,7 +56,7 @@ export default function MainMenuCustomElementsExample() {
                     placeholder="Search here..."
                     onValueChange={ setValue }
                 />
-                <MainMenuIcon caption="Help" icon={ helpIcon } priority={ 11 } estimatedWidth={ 60 } />
+                <MainMenuIcon caption="Help" icon={ HelpIcon } priority={ 11 } estimatedWidth={ 60 } />
                 <MainMenuCustomElement priority={ 11 } estimatedWidth={ 84 }>
                     <Dropdown
                         renderTarget={ props => (

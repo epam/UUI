@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as clearIcon from "../icons/text-color-default.svg";
-import * as colorIcon from '../icons/text-color-select.svg';
+import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
 import { ToolbarButton } from './ToolbarButton';
 import { Editor } from 'slate-react';
 import { uuiSkin } from "@epam/uui";
@@ -33,10 +33,10 @@ export class ColorBar extends React.Component<ColorBarProps> {
     renderColorMenu() {
 
         return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-            <ToolbarButton isActive={ false } icon={ clearIcon } onClick={ () => this.removeMarks() } />
-            <ToolbarButton iconColor='red' isActive={ false } icon={ colorIcon } onClick={ () => { this.toggleMark('#A72014'); } } />
-            <ToolbarButton iconColor='amber' isActive={ false } icon={ colorIcon } onClick={ () => { this.toggleMark('#995A00'); } } />
-            <ToolbarButton iconColor='green' isActive={ false } icon={ colorIcon } onClick={ () => { this.toggleMark('#669900'); } } />
+            <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => this.removeMarks() } />
+            <ToolbarButton iconColor='red' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#A72014'); } } />
+            <ToolbarButton iconColor='amber' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#995A00'); } } />
+            <ToolbarButton iconColor='green' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#669900'); } } />
         </FlexRow>;
     }
 

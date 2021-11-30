@@ -17,7 +17,7 @@ exports[`Paginator should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>
@@ -125,7 +125,7 @@ exports[`Paginator should be rendered correctly 1`] = `
       className="container uui-icon uui-enabled"
       style={Object {}}
     >
-      <SvgrURL
+      <svg
         className=""
       />
     </div>

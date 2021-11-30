@@ -23,7 +23,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -42,7 +42,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>

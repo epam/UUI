@@ -35,7 +35,7 @@ exports[`TextInput should be rendered correctly 2`] = `
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -43,7 +43,7 @@ exports[`TextInput should be rendered correctly 2`] = `
     className="container uui-icon uui-enabled -clickable"
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className="flipY"
     />
   </div>

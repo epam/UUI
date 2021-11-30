@@ -18,7 +18,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         className="container uui-icon uui-enabled root icon-container-color-blue"
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>
@@ -73,7 +73,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         className="container uui-icon uui-enabled root icon-container-color-blue"
         style={Object {}}
       >
-        <SvgrURL
+        <svg
           className=""
         />
       </div>

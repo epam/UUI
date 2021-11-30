@@ -7,10 +7,10 @@ import { isClientSide, uuiMod, uuiSkin } from "@epam/uui";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import * as css from './ImageBlock.scss';
-import * as alignLeft from '../../icons/align-left.svg';
-import * as alignCenter from '../../icons/align-center.svg';
-import * as alignRight from '../../icons/align-right.svg';
-import * as fullWidth from '../../icons/align-full-width.svg';
+import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
+import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
+import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
+import { ReactComponent as FullWidth } from '../../icons/align-full-width.svg';
 
 const IMAGE_GLOBAL_CLASS = 'uui-rte-image';
 
@@ -77,10 +77,10 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
     renderToolbar(props: DropdownBodyProps) {
         return (
             <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
-                <ToolbarButton isActive={ this.isAlign('align-left') } icon={ alignLeft } onClick={ () => this.toggleBlockAlignment('align-left', props) } />
-                <ToolbarButton isActive={ this.isAlign('align-center') } icon={ alignCenter } onClick={ () => this.toggleBlockAlignment('align-center', props) } />
-                <ToolbarButton isActive={ this.isAlign('align-right') } icon={ alignRight } onClick={ () => this.toggleBlockAlignment('align-right', props) } />
-                <ToolbarButton isActive={ this.props.node.data.get('imageSize')?.width === this.getImageMaxWidth() } icon={ fullWidth } onClick={ () => this.setMaxWidth() } />
+                <ToolbarButton isActive={ this.isAlign('align-left') } icon={ AlignLeft } onClick={ () => this.toggleBlockAlignment('align-left', props) } />
+                <ToolbarButton isActive={ this.isAlign('align-center') } icon={ AlignCenter } onClick={ () => this.toggleBlockAlignment('align-center', props) } />
+                <ToolbarButton isActive={ this.isAlign('align-right') } icon={ AlignRight } onClick={ () => this.toggleBlockAlignment('align-right', props) } />
+                <ToolbarButton isActive={ this.props.node.data.get('imageSize')?.width === this.getImageMaxWidth() } icon={ FullWidth } onClick={ () => this.setMaxWidth() } />
             </div>
         );
     }

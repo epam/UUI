@@ -13,7 +13,7 @@ exports[`Tag should render with all new props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
@@ -32,7 +32,7 @@ exports[`Tag should render with all new props 1`] = `
     onClick={[MockFunction]}
     style={Object {}}
   >
-    <SvgrURL
+    <svg
       className=""
     />
   </div>
