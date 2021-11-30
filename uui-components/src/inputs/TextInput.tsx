@@ -104,6 +104,7 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
 
     render() {
         let icon = this.props.icon && <IconContainer icon={ this.props.icon } onClick={ this.props.onIconClick }/>;
+        const showIconsOnAction = this.props.value && !this.props.isReadonly && !this.props.isDisabled;
 
         return (
             <div onClick={ this.props.onClick && this.handleClick } ref={ el => {
@@ -126,14 +127,14 @@ export class TextInput extends React.Component<TextInputProps, TextInputState> {
             >
                 { this.props.iconPosition !== 'right' && icon }
                 { this.props.renderInput ? this.props.renderInput(this.getInputProps()) : <input { ...this.getInputProps() }/> }
-                { this.props.onAccept && <IconContainer
-                    cx={ cx('uui-icon-accept', (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
-                    isDisabled={ this.props.isDisabled || !this.props.value }
+                { this.props.onAccept && showIconsOnAction && <IconContainer
+                    cx={ cx('uui-icon-accept') }
+                    isDisabled={ this.props.isDisabled }
                     icon={ this.props.acceptIcon }
-                    onClick={ this.props.value ? this.props.onAccept : undefined }
+                    onClick={ this.props.onAccept }
                 /> }
-                { this.props.onCancel && <IconContainer
-                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable, (this.props.isReadonly || this.props.isDisabled) && css.hidden) }
+                { this.props.onCancel && showIconsOnAction && <IconContainer
+                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                     isDisabled={ this.props.isDisabled }
                     icon={ this.props.cancelIcon }
                     onClick={ this.handleCancel }
