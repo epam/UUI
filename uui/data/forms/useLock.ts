@@ -4,7 +4,7 @@ import { useUuiContext } from "../../";
 export interface UseLockProps {
     handleLeave: () => Promise<boolean>;
     isEnabled?: boolean;
-};
+}
 
 export function useLock({ handleLeave, isEnabled }: UseLockProps) {
     if (!handleLeave) return;
@@ -18,7 +18,7 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
             context.uuiLocks.acquire(() => Promise.resolve())
                 .then(lock => context.uuiLocks.release(lock))
                 .catch(lock => context.uuiLocks.release(lock));
-        }
+        };
     }, []);
 
     handleLeaveRef.current.handleLeave = handleLeave;
@@ -29,7 +29,7 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
 
     if (handleLeaveRef.current.isEnabled && !isEnabled) {
         context.uuiLocks.release(context.uuiLocks.getCurrentLock());
-    };
+    }
 
     handleLeaveRef.current.isEnabled = isEnabled;
-};
+}

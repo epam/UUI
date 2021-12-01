@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
-import { mergeValidation, UuiContexts, validate as uuiValidate, validateServerErrorState } from '../../index';
+import { useRef, useEffect, useMemo, useCallback } from 'react';
+import { mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate, validateServerErrorState } from '../../index';
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
@@ -20,16 +20,16 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         serverValidationState: { isInvalid: false },
         formHistory: [props.value],
         prevProps: props,
-        historyIndex: 0
+        historyIndex: 0,
     });
 
     const formState = useRef(initialForm.current);
 
-    const [, forceUpdate] = useState<any>();
+    const forceUpdate = useForceUpdate();
 
     const setFormState = (newValue: UseFormState<T>) => {
         formState.current = newValue;
-        forceUpdate({});
+        forceUpdate();
     };
 
     const handleLeave = props.beforeLeave ? () => props.beforeLeave().then(res => {
@@ -64,9 +64,9 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             resetForm({
                 ...formState.current,
                 form: props.value,
-                formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value]
+                formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value],
             });
-        };
+        }
     }, [props.value]);
 
     const setUnsavedChanges = (form: T) => {
@@ -142,7 +142,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             ...formState.current,
             form: previousItem,
             historyIndex: previousIndex,
-            validationState: validationState.isInvalid ? handleValidate(previousItem) : {}
+            validationState: validationState.isInvalid ? handleValidate(previousItem) : {},
         });
     }, [formState.current.formHistory, formState.current.historyIndex, formState.current.validationState, formState.current.form]);
 
@@ -163,7 +163,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, [props.value]);
 
     const handleValueChange = useCallback((newVal: T) => {
-        setFormState({ ...formState.current, form: newVal })
+        setFormState({ ...formState.current, form: newVal });
     }, [formState.current.form]);
 
     return {
@@ -182,4 +182,4 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         isInvalid: formState.current.validationState.isInvalid,
         isInProgress: formState.current.isInProgress,
     };
-};
+}
