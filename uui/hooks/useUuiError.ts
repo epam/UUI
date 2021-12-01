@@ -16,14 +16,14 @@ export interface UseUuiErrorOptions {
 }
 
 export interface UseUuiErrorProps {
-    getCustomInfo: (error: Error | UuiError | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    getErrorInfo: (error: Error | UuiError | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
     options: UseUuiErrorOptions;
 }
 
 export const useUuiError = (props: UseUuiErrorProps) => {
     const forceUpdate = useForceUpdate();
     const { uuiApi, uuiErrors, uuiRouter } = useUuiContext();
-    const { getCustomInfo, options: { errorConfig, recoveryConfig } } = props;
+    const { getErrorInfo, options: { errorConfig, recoveryConfig } } = props;
     const apiErrors: ApiCallInfo[] = [];
     const apiNotifications: ApiCallInfo[] = [];
 
@@ -58,7 +58,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
     };
 
     const getError = (error: Error | UuiError | ApiCallInfo, errorInfo: UuiErrorInfo) => {
-        const resultError = getCustomInfo ? getCustomInfo(error, errorInfo) : errorInfo;
+        const resultError = getErrorInfo ? getErrorInfo(error, errorInfo) : errorInfo;
         return { errorType: 'error', errorInfo: resultError };
     };
 
