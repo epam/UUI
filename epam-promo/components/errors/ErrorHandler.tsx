@@ -13,7 +13,7 @@ export interface ErrorHandlerProps extends IHasCX {
 export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     const { uuiNotifications, uuiModals } = useUuiContext();
     const { errorType, errorInfo } = useUuiError({
-        customErrorHandler: props.getErrorInfo,
+        getCustomInfo: props.getErrorInfo,
         options: { errorConfig: getErrorPageConfig(), recoveryConfig: getRecoveryMessageConfig() },
     });
 
