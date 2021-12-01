@@ -1,5 +1,3 @@
-import { EpamColor } from '../../epam-promo';
-
 export type FillStyle = 'solid' | 'white' | 'light' | 'none';
 export const allFillStyles: FillStyle[] = ['solid', 'white', 'light', 'none'];
 
