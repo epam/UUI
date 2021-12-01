@@ -2,13 +2,12 @@ import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } f
 import type { PositionValues, ScrollbarsApi } from '@epam/uui-components';
 import type { IEditable, DataTableState } from '..';
 
-interface UseVirtualListApi<List, ScrollContainer> {
+interface UseVirtualListApi<List> {
     offsetY: number;
     estimatedHeight: number;
     handleScroll: () => void;
-    listRef: MutableRefObject<List>;
+    listContainer: MutableRefObject<List>;
     scrollbarsRef: MutableRefObject<ScrollbarsApi>;
-    scrollContainerRef: MutableRefObject<ScrollContainer>;
     scrollToIndex: (index: number) => void;
 };
 
@@ -18,26 +17,22 @@ interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedInd
     onScroll?(value: Partial<PositionValues>): void;
 };
 
-export function useVirtualList<
-    List extends HTMLElement,
-    ScrollContainer extends HTMLElement
->({
+export function useVirtualList<List extends HTMLElement>({
     onValueChange,
     value,
     rowsCount,
     onScroll,
     blockAlign = 20
-}: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
+}: UseVirtualListProps): UseVirtualListApi<List> {
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
     const estimatedHeight = useRef(0);
-    const listRef = useRef<List>();
-    const scrollContainerRef = useRef<ScrollContainer>();
+    const listContainer = useRef<List>();
     const scrollbarsRef = useRef<ScrollbarsApi>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
 
     const updateScrollToFocus = useCallback(() => {
-        if (!scrollbarsRef.current || focused == undefined) return;
+        if (focused == undefined || !scrollbarsRef.current) return;
         const { scrollTop, clientHeight } = scrollbarsRef.current.getValues();
         const focusCoord = focused && rowOffsets.current[focused] || 0;
         const rowHeight = focused && rowHeights.current[focused] || 0;
@@ -48,8 +43,8 @@ export function useVirtualList<
 
     const handleScroll = useCallback(() => {
         if (!scrollbarsRef.current) return;
-        if (onScroll) onScroll(scrollbarsRef.current.getValues());
-        const { scrollTop, clientHeight } = scrollbarsRef.current.getValues();
+        const { scrollTop, clientHeight, ...scrollValues } = scrollbarsRef.current.getValues();
+        onScroll?.({ ...scrollValues, scrollTop, clientHeight });
 
         let topIndex = 0;
         while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + blockAlign, rowsCount)] < scrollTop) {
@@ -68,15 +63,15 @@ export function useVirtualList<
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollbarsRef.current]);
 
     const listOffset = useMemo(() => {
-        if (!listRef.current || !scrollContainerRef.current) return 0;
-        const wrapperHeight = scrollContainerRef.current.clientHeight;
-        const offsetHeight = listRef.current.clientHeight;
+        if (!listContainer.current || !scrollbarsRef.current) return 0;
+        const wrapperHeight = scrollbarsRef.current.container.firstElementChild.scrollHeight;
+        const offsetHeight = listContainer.current.clientHeight;
         return wrapperHeight - offsetHeight;
-    }, [listRef.current, scrollContainerRef.current]);
+    }, [listContainer.current, scrollbarsRef.current]);
 
     const updateRowHeights = useCallback(() => {
-        if (!listRef.current || !scrollbarsRef.current) return;
-        const nodes = Array.from(listRef.current.children);
+        if (!listContainer.current || !scrollbarsRef.current) return;
+        const nodes = Array.from(listContainer.current.children);
         const topIndex = value?.topIndex || 0;
 
         nodes.forEach((node, index) => {
@@ -97,7 +92,7 @@ export function useVirtualList<
         };
 
        estimatedHeight.current = lastOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listRef.current, scrollbarsRef.current, listOffset]);
+    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current, scrollbarsRef.current, listOffset]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -124,8 +119,7 @@ export function useVirtualList<
         estimatedHeight: estimatedHeight.current,
         offsetY,
         scrollbarsRef,
-        scrollContainerRef,
-        listRef,
+        listContainer,
         handleScroll,
         scrollToIndex
     };
