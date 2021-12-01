@@ -25,7 +25,7 @@ export const uuiElement = {
     modalBlocker: 'uui-modal-blocker',
     modalWindow: 'uui-modal-window',
     textareaCounter: 'uui-textarea-counter',
-};
+} as const;
 
 export const uuiMod = {
     enabled: 'uui-enabled',
@@ -38,17 +38,17 @@ export const uuiMod = {
     selected: 'uui-selected',
     opened: 'uui-opened',
     loading: 'uui-loading',
-};
+} as const;
 
 export const labelMod = {
     left: 'uui-label-left',
     top: 'uui-label-top',
-};
+} as const;
 
 export const directionMode = {
     vertical: 'uui-vertical-direction',
     horizontal: 'uui-horizontal-direction',
-};
+} as const;
 
 export const uuiMarkers = {
     lockFocus: '-lock-focus',
@@ -56,13 +56,13 @@ export const uuiMarkers = {
     draggable: '-draggable',
     scrolledLeft: '-scrolled-left',
     scrolledRight: '-scrolled-right',
-};
+} as const;
 
 export const uuiDndState = {
     draggedOut: 'uui-dragged-out',
     dropAccepted: 'uui-drop-accepted',
     dragGhost: 'uui-drag-ghost',
-};
+} as const;
 
 export const uuiDataTableHeaderCell = {
     uuiTableHeaderCell: 'uui-table-header-cell',
@@ -72,4 +72,13 @@ export const uuiDataTableHeaderCell = {
     uuiTableHeaderSortIcon: 'uui-table-header-sort-icon',
     uuiTableHeaderFilterIcon: 'uui-table-header-filter-icon',
     uuiTableHeaderDropdownIcon: 'uui-table-header-dropdown-icon',
-};
+} as const;
+
+export const uuiScrollShadows = {
+    top: 'uui-scroll-shadow-top',
+    topVisible: 'uui-scroll-shadow-top-visible',
+    bottom: 'uui-scroll-shadow-bottom',
+    bottomVisible: 'uui-scroll-shadow-bottom-visible',
+    horizontalIntersectingRect: 'uui-horizontal-intersecting-rect',
+    verticalIntersectingRect: 'uui-vertical-intersecting-rect',
+} as const;

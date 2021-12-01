@@ -52,11 +52,9 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => (
-        <div
-            style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } }
-            { ...rest }
-        />
+    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) =>
+        props.renderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest }) || (
+        <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
     );
 
     return (
@@ -68,7 +66,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
                 hasTopShadow && uuiScrollbars.uuiShadowTop,
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
-            renderView={ typeof props.renderView !== 'function' ? renderView : props.renderView }
+            renderView={ renderView }
             renderTrackHorizontal={ props => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
             renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } />}
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }

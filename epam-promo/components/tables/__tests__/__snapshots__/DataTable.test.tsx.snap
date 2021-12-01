@@ -2,7 +2,8 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root"
+  className="root wrapper root shadow-dark"
+  cx="wrapper root shadow-dark"
   style={
     Object {
       "display": "flex",
@@ -56,12 +57,6 @@ exports[`DataTable should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="verticalIntersectingRect"
-      />
-      <div
-        className="horizontalIntersectingRect"
-      />
-      <div
         className="listContainer"
         style={
           Object {
@@ -70,15 +65,23 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       >
         <div
-          role="rowgroup"
           style={
             Object {
               "marginTop": 0,
             }
           }
         />
+        <div
+          className="uui-scroll-shadow-bottom"
+        />
       </div>
     </div>
+    <div
+      className="uui-vertical-intersecting-rect"
+    />
+    <div
+      className="uui-horizontal-intersecting-rect"
+    />
   </div>
   <div
     className="uui-track-horizontal"

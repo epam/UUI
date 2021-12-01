@@ -1,23 +1,11 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 0;
-    align-self: stretch;
     position: relative;
 }
 
-.listContainer {
+.list-container {
     margin-top: 0;
     display: grid;
     grid-template-rows: 1fr;
-}
-
-.vertical-intersecting-rect {
-    height: 1px;
-    width: 100%;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
 }
 
 :global(.uui-scroll-shadow-top) {
@@ -29,9 +17,22 @@
 }
 
 :global(.uui-scroll-shadow-bottom) {
-    position: absolute;
+    position: sticky;
     pointer-events: none;
-    left: 0;
-    right: 0;
+    bottom: 0;
+}
+
+:global(.uui-vertical-intersecting-rect) {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+}
+
+:global(.uui-horizontal-intersecting-rect) {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    position: sticky;
     bottom: 0;
 }
