@@ -10,14 +10,6 @@
     grid-template-rows: 1fr;
 }
 
-:global(.uui-vertical-intersecting-rect) {
-    top: 36px;
-}
-
-:global(.uui-horizontal-intersecting-rect) {
-    bottom: 36px;
-}
-
 .table {
     &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {

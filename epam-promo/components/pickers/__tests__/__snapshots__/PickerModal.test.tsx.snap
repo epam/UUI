@@ -164,8 +164,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root"
           style={
             Object {
               "display": "flex",
@@ -192,6 +191,14 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             }
           >
+            <div
+              className="uui-vertical-intersecting-rect"
+              style={
+                Object {
+                  "top": "0px",
+                }
+              }
+            />
             <div
               className="wrapper root"
             >
@@ -577,10 +584,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="uui-vertical-intersecting-rect"
-            />
-            <div
               className="uui-horizontal-intersecting-rect"
+              style={
+                Object {
+                  "bottom": "0px",
+                }
+              }
             />
           </div>
           <div
@@ -855,8 +864,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root"
           style={
             Object {
               "display": "flex",
@@ -883,6 +891,14 @@ exports[`PickerModal should be rendered correctly 2`] = `
               }
             }
           >
+            <div
+              className="uui-vertical-intersecting-rect"
+              style={
+                Object {
+                  "top": "0px",
+                }
+              }
+            />
             <div
               className="wrapper root"
             >
@@ -1455,10 +1471,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
               </div>
             </div>
             <div
-              className="uui-vertical-intersecting-rect"
-            />
-            <div
               className="uui-horizontal-intersecting-rect"
+              style={
+                Object {
+                  "bottom": "0px",
+                }
+              }
             />
           </div>
           <div

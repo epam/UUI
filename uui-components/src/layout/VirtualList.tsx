@@ -24,7 +24,14 @@ export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, I
 };
 
 export function VirtualList(props: VirtualListProps) {
-    const { listContainer, offsetY, handleScroll, estimatedHeight, scrollContainer } = useVirtualList<HTMLDivElement, HTMLDivElement>({
+    const {
+        listOffset,
+        listContainer,
+        offsetY,
+        handleScroll,
+        estimatedHeight,
+        scrollContainer
+    } = useVirtualList<HTMLDivElement, HTMLDivElement>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -46,16 +53,12 @@ export function VirtualList(props: VirtualListProps) {
     );
 
     return (
-        <ScrollBars
-            cx={ css.scrollContainer }
-            onScroll={ handleScroll }
-            ref={ scrollbars => scrollContainer.setRef(scrollbars?.container?.firstChild as HTMLDivElement) }
-        >
-            <div className={ cx(css.wrapper, props.cx) }>
+        <ScrollBars onScroll={ handleScroll } ref={ scrollbars => scrollContainer.setRef(scrollbars?.container?.firstChild as HTMLDivElement) }>
+            <div style={{ top: `${listOffset}px` }} ref={ verticalRef } className={ uuiScrollShadows.verticalIntersectingRect } />
+            <div className={ cx(css.wrapper, props.cx) } >
                 { renderRows() }
             </div>
-            <div ref={ verticalRef } className={ uuiScrollShadows.verticalIntersectingRect } />
-            <div ref={ horizontalRef } className={ uuiScrollShadows.horizontalIntersectingRect } />
+            <div style={{ bottom: `${listOffset}px` }} ref={ horizontalRef } className={ uuiScrollShadows.horizontalIntersectingRect } />
         </ScrollBars>
     );
 }

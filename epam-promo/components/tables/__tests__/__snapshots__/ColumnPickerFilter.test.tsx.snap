@@ -11,8 +11,7 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root"
       style={
         Object {
           "display": "flex",
@@ -39,6 +38,14 @@ Array [
           }
         }
       >
+        <div
+          className="uui-vertical-intersecting-rect"
+          style={
+            Object {
+              "top": "0px",
+            }
+          }
+        />
         <div
           className="wrapper root"
         >
@@ -424,10 +431,12 @@ Array [
           </div>
         </div>
         <div
-          className="uui-vertical-intersecting-rect"
-        />
-        <div
           className="uui-horizontal-intersecting-rect"
+          style={
+            Object {
+              "bottom": "0px",
+            }
+          }
         />
       </div>
       <div
@@ -506,8 +515,7 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root"
       style={
         Object {
           "display": "flex",
@@ -534,6 +542,14 @@ Array [
           }
         }
       >
+        <div
+          className="uui-vertical-intersecting-rect"
+          style={
+            Object {
+              "top": "0px",
+            }
+          }
+        />
         <div
           className="wrapper root"
         >
@@ -919,10 +935,12 @@ Array [
           </div>
         </div>
         <div
-          className="uui-vertical-intersecting-rect"
-        />
-        <div
           className="uui-horizontal-intersecting-rect"
+          style={
+            Object {
+              "bottom": "0px",
+            }
+          }
         />
       </div>
       <div

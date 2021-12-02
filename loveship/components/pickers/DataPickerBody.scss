@@ -1,7 +1,8 @@
 @use '../../assets/styles/scss/index'  as *;
 
 .body {
-    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 // TBD: replace with search prop when it will be done
