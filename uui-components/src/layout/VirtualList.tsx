@@ -46,7 +46,11 @@ export function VirtualList(props: VirtualListProps) {
     );
 
     return (
-        <ScrollBars onScroll={ handleScroll } ref={ scrollbars => scrollContainer.setRef(scrollbars?.container?.firstChild as HTMLDivElement) }>
+        <ScrollBars
+            cx={ css.scrollContainer }
+            onScroll={ handleScroll }
+            ref={ scrollbars => scrollContainer.setRef(scrollbars?.container?.firstChild as HTMLDivElement) }
+        >
             <div className={ cx(css.wrapper, props.cx) }>
                 { renderRows() }
             </div>

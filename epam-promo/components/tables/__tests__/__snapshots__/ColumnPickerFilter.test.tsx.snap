@@ -11,7 +11,8 @@ Array [
     }
   >
     <div
-      className="root"
+      className="root scrollContainer"
+      cx="scrollContainer"
       style={
         Object {
           "display": "flex",
@@ -505,7 +506,8 @@ Array [
     }
   >
     <div
-      className="root"
+      className="root scrollContainer"
+      cx="scrollContainer"
       style={
         Object {
           "display": "flex",

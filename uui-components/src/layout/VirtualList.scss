@@ -6,6 +6,10 @@
     align-self: stretch;
 }
 
+.scroll-container {
+    position: relative;
+}
+
 .list-container {
     margin-top: 0;
     display: grid;
