@@ -72,7 +72,9 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({value: e.target.value});
+        if (e.target.value !== "") {
+            this.setState({value: e.target.value});
+        }
     }
 
     handleFocus = () => this.setState({inFocus: true});
