@@ -3,6 +3,9 @@
 .body {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
+    align-self: stretch;
+    width: 100%;
 }
 
 // TBD: replace with search prop when it will be done

@@ -9,24 +9,26 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
     }
   }
 >
-  <div
-    className=""
-    onClick={[Function]}
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": "center",
-      }
-    }
-  >
+  <div>
     <div
-      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": 1,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": "center",
+        }
+      }
     >
-      No Results found
+      <div
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      >
+        No Results found
+      </div>
     </div>
   </div>
 </div>
@@ -41,24 +43,26 @@ exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
     }
   }
 >
-  <div
-    className=""
-    onClick={[Function]}
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": "center",
-      }
-    }
-  >
+  <div>
     <div
-      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      className=""
+      onClick={[Function]}
+      style={
+        Object {
+          "alignSelf": undefined,
+          "flexBasis": "0",
+          "flexGrow": 1,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": "center",
+        }
+      }
     >
-      No Results found
+      <div
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      >
+        No Results found
+      </div>
     </div>
   </div>
 </div>
@@ -126,7 +130,9 @@ Array [
     }
   >
     <div>
-      Not found
+      <div>
+        Not found
+      </div>
     </div>
   </div>,
 ]
