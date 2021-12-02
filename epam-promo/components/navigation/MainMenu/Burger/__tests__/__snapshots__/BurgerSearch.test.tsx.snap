@@ -63,10 +63,5 @@ exports[`BurgerSearch should be rendered correctly 2`] = `
     type="text"
     value=""
   />
-  <div
-    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-    onClick={[Function]}
-    style={Object {}}
-  />
 </div>
 `;

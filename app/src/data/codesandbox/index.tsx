@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from "react-dom";
-import { FlexRow, skinContext as promoSkinContext } from "@epam/promo";
+import { ErrorHandler, FlexRow, skinContext as promoSkinContext } from "@epam/promo";
 import { ContextProvider, UuiContexts } from "@epam/uui";
 import { Modals, Snackbar } from "@epam/uui-components";
 import "@epam/uui-components/styles.css";
@@ -20,11 +20,13 @@ render(
         onInitCompleted={ (context) => Object.assign(svc, context) }
         skinContext={ promoSkinContext }
     >
-        <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
-            <Example />
+        <ErrorHandler>
+            <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
+                <Example />
+            </FlexRow>
             <Snackbar />
             <Modals />
-        </FlexRow>
+        </ErrorHandler>
     </ContextProvider>,
     rootElement,
 );

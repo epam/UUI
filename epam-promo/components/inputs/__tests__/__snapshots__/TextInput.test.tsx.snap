@@ -32,37 +32,6 @@ exports[`TextInput should be rendered correctly 2`] = `
     value=""
   />
   <div
-    className="container uui-icon uui-disabled uui-icon-accept"
-    style={Object {}}
-  >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-18.svg"
-      />
-    </svg>
-  </div>
-  <div
-    className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-    onClick={[Function]}
-    style={Object {}}
-  >
-    <svg
-      className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#btn-cross-18.svg"
-      />
-    </svg>
-  </div>
-  <div
     className="container uui-icon uui-enabled"
     style={Object {}}
   >
