@@ -19,6 +19,7 @@ interface UuiScrollContainerApi<ScrollContainer> {
 
 interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
+    listOffset: number;
     estimatedHeight: number;
     handleScroll: () => void;
     listContainer: MutableRefObject<List>;
@@ -154,6 +155,7 @@ export function useVirtualList<
         scrollContainer,
         listContainer,
         handleScroll,
-        scrollToIndex
+        scrollToIndex,
+        listOffset
     };
 };
