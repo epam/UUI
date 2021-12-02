@@ -1,6 +1,9 @@
 # 4.3.1 - xx.xx.xxxx
 
 **What's New**
+* [ErrorHandler]: added to 'promo' skin
+* [App]: page 'Downloads' updated, added illustrations and patterns
+* added useForceUpdate, useUuiError hooks to '@epam/uui' package
 
 **What’s Fixed**
 * [CodeSandbox]: fixed functionality of modal windows and notifications in codesandbox examples
