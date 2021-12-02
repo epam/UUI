@@ -164,7 +164,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root"
+          className="root scrollContainer"
+          cx="scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -854,7 +855,8 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root"
+          className="root scrollContainer"
+          cx="scrollContainer"
           style={
             Object {
               "display": "flex",
