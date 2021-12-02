@@ -2,8 +2,7 @@
 
 exports[`VirtualList should be rendered correctly 1`] = `
 <div
-  className="root wrapper root"
-  cx="wrapper root"
+  className="root"
   style={
     Object {
       "display": "flex",
@@ -31,20 +30,24 @@ exports[`VirtualList should be rendered correctly 1`] = `
     }
   >
     <div
-      className="listContainer"
-      style={
-        Object {
-          "minHeight": "0px",
-        }
-      }
+      className="wrapper root"
     >
       <div
+        className="listContainer"
         style={
           Object {
-            "marginTop": 0,
+            "minHeight": "0px",
           }
         }
-      />
+      >
+        <div
+          style={
+            Object {
+              "marginTop": 0,
+            }
+          }
+        />
+      </div>
     </div>
     <div
       className="uui-vertical-intersecting-rect"
