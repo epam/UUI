@@ -212,6 +212,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
+                    role="listbox"
                     style={
                       Object {
                         "marginTop": 0,
