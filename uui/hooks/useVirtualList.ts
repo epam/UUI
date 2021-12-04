@@ -72,9 +72,7 @@ export function useVirtualList<
 
     const listOffset = useMemo(() => {
         if (!listContainer.current || !scrollContainer.current) return 0;
-        const wrapperHeight = scrollContainer.current.scrollHeight;
-        const offsetHeight = listContainer.current.scrollHeight;
-        return wrapperHeight - offsetHeight;
+        return scrollContainer.current.scrollHeight - listContainer.current.scrollHeight;
     }, [listContainer.current, scrollContainer.current]);
 
     const updateRowHeights = useCallback(() => {
@@ -99,8 +97,8 @@ export function useVirtualList<
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-       estimatedHeight.current = lastOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current]);
+        estimatedHeight.current = lastOffset - listOffset;
+    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current, listOffset]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
