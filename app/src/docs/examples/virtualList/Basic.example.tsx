@@ -41,6 +41,7 @@ export default function VirtualListExample() {
         <VirtualList
             cx={ css.list } // User need to define height for container, otherwise it would extend to fit whole content
             rows={ visibleRows }
+            role="listbox"
             value={ state }
             onValueChange={ setState }
 

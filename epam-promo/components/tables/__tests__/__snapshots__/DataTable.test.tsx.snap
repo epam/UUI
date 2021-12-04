@@ -75,6 +75,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
+            role="rowgroup"
             style={
               Object {
                 "marginTop": 0,

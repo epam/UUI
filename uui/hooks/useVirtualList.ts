@@ -6,24 +6,13 @@ interface UuiScrollPositionValues {
     clientHeight: number;
 };
 
-interface UuiScrollbarsApi<ScrollContainer> {
-    getValues: () => UuiScrollPositionValues;
-    container: ScrollContainer;
-    scrollTop: (top: number) => void;
-};
-
-interface UuiScrollContainerApi<ScrollContainer> {
-    setRef: (scrollbars: ScrollContainer) => void;
-    api: UuiScrollbarsApi<ScrollContainer>;
-};
-
 interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
     listOffset: number;
     estimatedHeight: number;
     handleScroll: () => void;
     listContainer: MutableRefObject<List>;
-    scrollContainer: UuiScrollContainerApi<ScrollContainer>;
+    scrollContainer: MutableRefObject<ScrollContainer>;
     scrollToIndex: (index: number) => void;
 };
 
@@ -34,8 +23,8 @@ interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedInd
 };
 
 export function useVirtualList<
-    List extends HTMLElement,
-    ScrollContainer extends HTMLElement
+    List extends HTMLElement = HTMLDivElement,
+    ScrollContainer extends HTMLElement = HTMLDivElement
 >({
     onValueChange,
     value,
@@ -46,38 +35,23 @@ export function useVirtualList<
     const [focused, setFocused] = useState(value?.focusedIndex || 0);
     const estimatedHeight = useRef(0);
     const listContainer = useRef<List>();
-    const scrollContainerApi = useRef<UuiScrollbarsApi<ScrollContainer>>();
+    const scrollContainer = useRef<ScrollContainer>();
     const rowHeights = useRef<number[]>([]);
     const rowOffsets = useRef<number[]>([]);
 
-    const scrollContainer = useMemo<UuiScrollContainerApi<ScrollContainer>>(() => ({
-        api: scrollContainerApi.current,
-        setRef: container => {
-            if (!container) return;
-            scrollContainerApi.current = {
-                container,
-                scrollTop: top => container.scrollTo({ top, behavior: 'smooth' }),
-                getValues: () => ({
-                    scrollTop: container.scrollTop,
-                    clientHeight: container.clientHeight,
-                })
-            }
-        }
-    }), [scrollContainerApi.current]);
-
     const updateScrollToFocus = useCallback(() => {
-        if (focused == undefined || !scrollContainer?.api) return;
-        const { scrollTop, clientHeight } = scrollContainer.api.getValues();
+        if (focused == undefined || !scrollContainer.current) return;
+        const { scrollTop, clientHeight } = scrollContainer.current;
         const focusCoord = focused && rowOffsets.current[focused] || 0;
         const rowHeight = focused && rowHeights.current[focused] || 0;
         if (focusCoord < (scrollTop - rowHeight) || (scrollTop + clientHeight) < focusCoord) {
-            scrollContainer.api.scrollTop(focusCoord - clientHeight / 2 + rowHeight / 2);
+            scrollContainer.current.scrollTo({ top: focusCoord - clientHeight / 2 + rowHeight / 2, behavior: 'smooth' });
         };
-    }, [rowOffsets.current, scrollContainer?.api, focused]);
+    }, [rowOffsets.current, scrollContainer.current, focused]);
 
     const handleScroll = useCallback(() => {
-        if (!scrollContainer?.api) return;
-        const { scrollTop, clientHeight, ...scrollValues } = scrollContainer.api.getValues();
+        if (!scrollContainer.current) return;
+        const { scrollTop, clientHeight, ...scrollValues } = scrollContainer.current;
         onScroll?.({ ...scrollValues, scrollTop, clientHeight });
 
         let topIndex = 0;
@@ -94,14 +68,14 @@ export function useVirtualList<
             const visibleCount = bottomIndex - topIndex + blockAlign * 2;
             onValueChange({ ...value, topIndex, visibleCount });
         };
-    }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer?.api]);
+    }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
 
     const listOffset = useMemo(() => {
-        if (!listContainer.current || !scrollContainer?.api) return 0;
-        const wrapperHeight = scrollContainer.api.container.scrollHeight;
+        if (!listContainer.current || !scrollContainer.current) return 0;
+        const wrapperHeight = scrollContainer.current.scrollHeight;
         const offsetHeight = listContainer.current.scrollHeight;
         return wrapperHeight - offsetHeight;
-    }, [listContainer.current, scrollContainer?.api?.container]);
+    }, [listContainer.current, scrollContainer.current]);
 
     const updateRowHeights = useCallback(() => {
         if (!listContainer.current) return;

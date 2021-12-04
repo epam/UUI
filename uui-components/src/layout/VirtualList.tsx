@@ -3,10 +3,9 @@ import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, 
 import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
-export interface RenderRowsConfig {
-    listContainer: MutableRefObject<HTMLDivElement>;
+export interface RenderRowsConfig<List extends HTMLElement = HTMLDivElement> {
+    listContainer: MutableRefObject<List>;
     estimatedHeight: number;
-    role: HTMLAttributes<HTMLDivElement>['role'];
     offsetY: number;
     scrollShadows: {
         vertical: boolean;
@@ -15,15 +14,16 @@ export interface RenderRowsConfig {
     };
 };
 
-export interface VirtualListProps extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
+export interface VirtualListProps<List extends HTMLElement = HTMLDivElement> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<HTMLDivElement> {
     rows: ReactNode[];
     rowsCount?: number;
-    renderRows?: (config: RenderRowsConfig) => React.ReactNode;
+    role?: HTMLAttributes<HTMLDivElement>['role'];
+    renderRows?: (config: RenderRowsConfig<List>) => React.ReactNode;
     focusedIndex?: number;
     onScroll?(value: PositionValues): void;
 };
 
-export function VirtualList(props: VirtualListProps) {
+export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: VirtualListProps<List>) {
     const {
         listOffset,
         listContainer,
@@ -31,29 +31,28 @@ export function VirtualList(props: VirtualListProps) {
         handleScroll,
         estimatedHeight,
         scrollContainer
-    } = useVirtualList<HTMLDivElement, HTMLDivElement>({
+    } = useVirtualList<List>({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
         rowsCount: props.rowsCount
     });
 
-    const { verticalRef, horizontalRef, ...scrollShadows } = useScrollShadows({ root: scrollContainer?.api?.container });
-
-    // Recognize role of the list by children role
-    const childRole = listContainer.current?.firstElementChild?.getAttribute('role');
-    const role = childRole === 'option' ? 'listbox' : childRole === 'row' ? 'rowgroup' : undefined;
+    const { verticalRef, horizontalRef, ...scrollShadows } = useScrollShadows({ root: scrollContainer.current });
 
     const renderRows = () => (
-        props.renderRows?.({ listContainer, estimatedHeight, role, offsetY, scrollShadows }) || (
+        props.renderRows?.({ listContainer, estimatedHeight, offsetY, scrollShadows }) || (
             <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
-                <div ref={ listContainer } role={ role } style={ { marginTop: offsetY } } children={ props.rows } />
+                <div ref={ listContainer as unknown as MutableRefObject<HTMLDivElement> } role={ props.role } style={ { marginTop: offsetY } } children={ props.rows } />
             </div>
         )
     );
 
     return (
-        <ScrollBars onScroll={ handleScroll } ref={ scrollbars => scrollContainer.setRef(scrollbars?.container?.firstChild as HTMLDivElement) }>
+        <ScrollBars onScroll={ handleScroll } ref={ scrollbars => {
+            if (!scrollbars?.container?.firstChild) return;
+            scrollContainer.current = scrollbars.container.firstChild as HTMLDivElement;
+        } }>
             <div style={{ top: `${listOffset}px` }} ref={ verticalRef } className={ uuiScrollShadows.verticalIntersectingRect } />
             <div className={ cx(css.wrapper, props.cx) } >
                 { renderRows() }

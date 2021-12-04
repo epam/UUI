@@ -61,6 +61,7 @@ Array [
               }
             >
               <div
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,
@@ -569,6 +570,7 @@ Array [
               }
             >
               <div
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,

@@ -167,6 +167,7 @@ Array [
               }
             >
               <div
+                role="listbox"
                 style={
                   Object {
                     "marginTop": 0,

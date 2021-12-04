@@ -59,6 +59,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             { ...this.lens.toProps() }
                             shadow={ false }
                             rows={ this.props.rows }
+                            role="listbox"
                             rawProps={ this.props.rawProps }
                             rowsCount={ this.props.rowsCount }
                             focusedIndex={ value && value.focusedIndex || 0 }
