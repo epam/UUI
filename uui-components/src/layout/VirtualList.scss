@@ -1,14 +1,13 @@
-.wrapper {
-    position: relative;
+.scroll-container {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0;
     align-self: stretch;
 }
 
 .list-container {
-    display: grid;
-    grid-template-rows: 1fr;
+    flex: 1 1 0;
+    align-self: stretch;
+    overflow: hidden;
 }
 
 :global(.uui-scroll-shadow-top) {
@@ -25,14 +24,14 @@
     bottom: 0;
 }
 
-:global(.uui-vertical-intersecting-rect) {
+.vertical-intersecting-rect {
     height: 1px;
     width: 100%;
     visibility: hidden;
     position: absolute;
 }
 
-:global(.uui-horizontal-intersecting-rect) {
+.horizontal-intersecting-rect {
     height: 1px;
     width: 100%;
     visibility: hidden;

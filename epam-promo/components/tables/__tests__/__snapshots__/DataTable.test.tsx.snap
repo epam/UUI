@@ -2,7 +2,8 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root"
+  className="root scrollContainer root shadow-dark"
+  cx="scrollContainer root shadow-dark"
   style={
     Object {
       "display": "flex",
@@ -30,7 +31,7 @@ exports[`DataTable should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-vertical-intersecting-rect"
+      className="verticalIntersectingRect"
       style={
         Object {
           "top": "0px",
@@ -38,58 +39,43 @@ exports[`DataTable should be rendered correctly 1`] = `
       }
     />
     <div
-      className="wrapper root shadow-dark"
+      aria-colcount={0}
+      className="table shadowDark"
+      role="table"
     >
       <div
-        aria-colcount={0}
-        className="table shadowDark"
-        role="table"
+        className="stickyHeader"
       >
         <div
-          className="stickyHeader"
+          className="container uui-table-row-container root uui-table-header-row container align-items-top"
+          role="row"
         >
           <div
-            className="container uui-table-row-container root uui-table-header-row container align-items-top"
-            role="row"
-          >
-            <div
-              className="container"
-              style={
-                Object {
-                  "flex": "1 0 0px",
-                  "minWidth": "0px",
-                }
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 0px",
+                "minWidth": "0px",
               }
-            />
-          </div>
-          <div
-            className="uui-scroll-shadow-top"
+            }
           />
         </div>
         <div
-          className="listContainer"
-          style={
-            Object {
-              "minHeight": "0px",
-            }
-          }
-        >
-          <div
-            role="rowgroup"
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
-          />
-          <div
-            className="uui-scroll-shadow-bottom"
-          />
-        </div>
+          className="uui-scroll-shadow-top"
+        />
       </div>
+      <div
+        role="rowgroup"
+        style={
+          Object {
+            "marginTop": 0,
+            "minHeight": "0px",
+          }
+        }
+      />
     </div>
     <div
-      className="uui-horizontal-intersecting-rect"
+      className="horizontalIntersectingRect"
       style={
         Object {
           "bottom": "0px",

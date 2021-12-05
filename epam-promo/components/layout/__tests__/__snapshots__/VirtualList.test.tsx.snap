@@ -2,7 +2,8 @@
 
 exports[`VirtualList should be rendered correctly 1`] = `
 <div
-  className="root"
+  className="root scrollContainer root"
+  cx="scrollContainer root"
   style={
     Object {
       "display": "flex",
@@ -30,7 +31,7 @@ exports[`VirtualList should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-vertical-intersecting-rect"
+      className="verticalIntersectingRect"
       style={
         Object {
           "top": "0px",
@@ -38,27 +39,15 @@ exports[`VirtualList should be rendered correctly 1`] = `
       }
     />
     <div
-      className="wrapper root"
-    >
-      <div
-        className="listContainer"
-        style={
-          Object {
-            "minHeight": "0px",
-          }
+      style={
+        Object {
+          "marginTop": 0,
+          "minHeight": "0px",
         }
-      >
-        <div
-          style={
-            Object {
-              "marginTop": 0,
-            }
-          }
-        />
-      </div>
-    </div>
+      }
+    />
     <div
-      className="uui-horizontal-intersecting-rect"
+      className="horizontalIntersectingRect"
       style={
         Object {
           "bottom": "0px",

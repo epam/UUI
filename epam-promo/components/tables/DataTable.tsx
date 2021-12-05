@@ -54,14 +54,12 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
-                    <div role="rowgroup" ref={ listContainer } style={{ marginTop: offsetY }}>
-                        { getRows() }
-                    </div>
-                    <div className={ cx(uuiScrollShadows.bottom, {
-                        [uuiScrollShadows.bottomVisible]: scrollShadows.vertical
-                    }) } />
-                </div>
+                <div
+                    role="rowgroup"
+                    ref={ listContainer }
+                    style={{ marginTop: offsetY, minHeight: `${estimatedHeight}px` }}
+                    children={ getRows() }
+                />
             ) : renderNoResultsBlock?.() }
         </div>
     );
