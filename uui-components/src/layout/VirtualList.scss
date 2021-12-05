@@ -5,9 +5,8 @@
 }
 
 .list-container {
-    flex: 1 1 0;
-    align-self: stretch;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr;
 }
 
 :global(.uui-scroll-shadow-top) {

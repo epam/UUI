@@ -42,12 +42,14 @@ export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: Vi
 
     const renderRows = () => (
         props.renderRows?.({ listContainer, estimatedHeight, offsetY, scrollShadows }) || (
-            <div
-                ref={ listContainer as unknown as MutableRefObject<HTMLDivElement> }
-                role={ props.role }
-                style={ { marginTop: offsetY, minHeight: `${estimatedHeight}px` } }
-                children={ props.rows }
-            />
+            <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+                <div
+                    ref={ listContainer as unknown as MutableRefObject<HTMLDivElement> }
+                    role={ props.role }
+                    style={ { marginTop: offsetY }}
+                    children={ props.rows }
+                />
+            </div>
         )
     );
 

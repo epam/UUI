@@ -7,11 +7,11 @@ export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps,
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
     ref?: React.MutableRefObject<Scrollbars>;
-}
+};
 
-export interface PositionValues extends CustomScrollBars.positionValues {}
+export interface PositionValues extends CustomScrollBars.positionValues {};
 
-export interface ScrollbarsApi extends Scrollbars {}
+export interface ScrollbarsApi extends Scrollbars {};
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
@@ -35,12 +35,13 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 
-    const handleUpdateScroll = (event?: React.UIEvent) => {
-        if (!props.ref?.current || !bars.current || props.onScroll) return;
+    const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
+        if (!bars.current || props.onScroll) return;
         event && props.onScroll?.(event);
 
-        const scrollBars = props.ref.current.container;
-        const { scrollTop, scrollHeight, clientHeight } = props.ref.current.getValues();
+        const scrollBars = bars.current?.container;
+        if (!scrollBars) return;
+        const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
         const showTopShadow = hasTopShadow && scrollTop > 0;
         const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
