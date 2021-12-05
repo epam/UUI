@@ -105,7 +105,7 @@ export function useVirtualList<
         if (index > rowsCount) throw new Error('Index exceeds the size of the list');
         setFocused(index);
         setTimeout(() => setFocused(undefined), 0);
-    }, [focused]);
+    }, [focused, rowsCount]);
 
     useEffect(() => {
         if (process.env.JEST_WORKER_ID) return;

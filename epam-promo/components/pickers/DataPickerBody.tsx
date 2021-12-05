@@ -49,24 +49,22 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             ) }
             <FlexRow
                 key='body'
-                cx={ cx(css[this.props.editMode]) }
+                cx={ cx(css.body, css[this.props.editMode]) }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
                 background='white'
             >
-                <div className={ css.body }>
-                    { this.props.rowsCount > 0
-                        ? <VirtualList
-                            { ...this.lens.toProps() }
-                            shadow={ false }
-                            rows={ this.props.rows }
-                            role="listbox"
-                            rawProps={ this.props.rawProps }
-                            rowsCount={ this.props.rowsCount }
-                            focusedIndex={ value && value.focusedIndex || 0 }
-                        />
-                        : this.renderNoFound()
-                    }
-                </div>
+                { this.props.rowsCount > 0
+                    ? <VirtualList
+                        { ...this.lens.toProps() }
+                        shadow={ false }
+                        rows={ this.props.rows }
+                        role="listbox"
+                        rawProps={ this.props.rawProps }
+                        rowsCount={ this.props.rowsCount }
+                        focusedIndex={ value && value.focusedIndex || 0 }
+                    />
+                    : this.renderNoFound()
+                }
             </FlexRow>
         </>;
     }

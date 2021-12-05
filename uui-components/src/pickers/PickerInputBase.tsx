@@ -171,7 +171,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             rawProps: {
                 'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
                 'aria-orientation': 'vertical',
-            } as React.HtmlHTMLAttributes<HTMLDivElement>,
+            },
             renderNotFound: this.props.renderNotFound && (() => this.props.renderNotFound({
                 search: this.state.dataSourceState.search,
                 onClose: () => this.toggleBodyOpening(false),
