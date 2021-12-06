@@ -50,7 +50,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     return {
         vertical: vertical.active,
-        horizontalLeft: (root ? (root.clientWidth - root.offsetLeft < root.scrollWidth) : horizontal.active),
+        horizontalLeft: root ? (root.clientWidth - root.offsetLeft < root.scrollWidth) : horizontal.active,
         horizontalRight: horizontal.active,
         horizontalRef,
         verticalRef
