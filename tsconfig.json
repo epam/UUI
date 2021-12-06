@@ -38,6 +38,7 @@
         "webpack",
         "jest",
         "*/**/__tests__",
-        "*/**/globals.d.ts"
+        "*/**/globals.d.ts",
+        "./next-app"
     ]
 }
