@@ -59,8 +59,8 @@ export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: Vi
             onScroll={ handleScroll }
             rawProps={ props.rawProps }
             ref={ scrollbars => {
-                if (!scrollbars?.container?.firstChild) return;
-                scrollContainer.current = scrollbars.container.firstChild as HTMLDivElement;
+                if (!scrollbars?.container) return;
+                scrollContainer.current = scrollbars.container;
             } }
         >
             <div style={{ top: `${listOffset}px` }} ref={ verticalRef } className={ css.verticalIntersectingRect } />
