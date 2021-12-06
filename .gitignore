@@ -26,3 +26,13 @@ _ReSharper.Caches
 .DS_Store
 coverage
 .vscode/settings.json
+
+# next.js next-app
+next-app/.next/
+next-app/out/
+next-app/node_modules
+next-app/build
+next-app/.vercel
+next-app/npm-debug.log*
+next-app/yarn-debug.log*
+next-app/yarn-error.log*

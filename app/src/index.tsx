@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { GAListener, HistoryAdaptedRouter, StubAdaptedRouter, useUUIServices, UuiContext } from '@epam/uui';
+import { DragGhost, GAListener, HistoryAdaptedRouter, StubAdaptedRouter, useUuiServices, UuiContext } from '@epam/uui';
 import { Snackbar, Modals } from '@epam/uui-components';
 import '@epam/internal/styles.css';
 import { ErrorHandler , skinContext as promoSkinContext } from '@epam/promo';
@@ -31,7 +31,7 @@ export const UuiEnhancedApp = () =>  {
         ? new HistoryAdaptedRouter(history)
         : new StubAdaptedRouter();
 
-    const { services } = useUUIServices({
+    const { services } = useUuiServices({
         apiDefinition: getApi,
         skinContext: promoSkinContext,
         router,
@@ -54,6 +54,7 @@ export const UuiEnhancedApp = () =>  {
                 <App />
                 <Snackbar />
                 <Modals />
+                <DragGhost />
             </ErrorHandler>
         </UuiContext.Provider>
     );

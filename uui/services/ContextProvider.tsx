@@ -4,16 +4,16 @@ import { LegacyContextProvider } from "./LegacyContextProvider";
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from "./routing";
 import { DragGhost } from "./dnd";
 import { ISkin } from "./SkinContext";
-import { useUUIServices } from "../hooks";
+import { useUuiServices } from "../hooks";
 import { GAListener } from "./analytics";
 
-export interface IServicesProps<TApi> {
+export interface IUuiServicesProps<TApi> {
     apiServerUrl?: string;
     apiDefinition?: (processRequest: (request: string, requestMethod: string) => any) => TApi;
     skinContext?: ISkin;
 }
 
-export interface ContextProviderProps<TApi, TAppContext> extends IServicesProps<TApi>, IHasChildren {
+export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesProps<TApi>, IHasChildren {
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
     enableLegacyContext?: boolean;
@@ -31,7 +31,7 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
         ? new HistoryAdaptedRouter(history)
         : new StubAdaptedRouter();
 
-    const { services } = useUUIServices<TApi, TAppContext>({...restProps, router});
+    const { services } = useUuiServices<TApi, TAppContext>({...restProps, router});
 
     useEffect(() => {
         const loadAppContextPromise = loadAppContext || (() => Promise.resolve({} as TAppContext));

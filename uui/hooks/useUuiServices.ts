@@ -1,5 +1,5 @@
 import {
-    AnalyticsContext, ApiContext, DndContext, ErrorContext, IServicesProps,
+    AnalyticsContext, ApiContext, DndContext, ErrorContext, IUuiServicesProps,
     LayoutContext, LockContext,
     ModalContext,
     NotificationContext,
@@ -9,12 +9,12 @@ import { ApiCallOptions, CommonContexts, IRouterContext } from "../types";
 import { UserSettingsContext } from "../services/UserSettingsContext";
 import { useMemo } from "react";
 
-export interface IUseUUIServicesProps<TApi, TAppContext> extends IServicesProps<TApi> {
+export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesProps<TApi> {
     appContext?: TAppContext;
     router: IRouterContext;
 }
 
-export const useUUIServices = <TApi, TAppContext>(props: IUseUUIServicesProps<TApi, TAppContext>) => {
+export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>) => {
     const { router, appContext, apiServerUrl, skinContext, apiDefinition } = props;
 
     const uuiLayout = new LayoutContext();
