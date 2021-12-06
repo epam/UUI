@@ -97,7 +97,6 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
                 <FlexRow
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
-                    alignItems='top'
                     rawProps={ this.props.rawProps }
                 >
                     { rowContent }

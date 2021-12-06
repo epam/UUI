@@ -15,11 +15,6 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
                 "type": "uui-richTextEditor-bold",
                 "data": {}
               }
@@ -114,7 +109,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "As height of an item is unknown until it's rendered, items which are not yet rendered are estimated to have and average height of the items that was rendered.",
+            "text": "As the height of an item is unknown until it's rendered, items which are not yet rendered are estimated to have and average height of the items that was rendered.",
             "marks": []
           }
         ]
@@ -130,6 +125,22 @@
             "marks": [
               {
                 "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "track some of it's state (",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "topIndex",
+            "marks": [
+              {
+                "object": "mark",
                 "type": "uui-richTextEditor-italic",
                 "data": {}
               }
@@ -137,7 +148,23 @@
           },
           {
             "object": "text",
-            "text": "track some of it's state (topIndex, visibleCount) externally. User have to provide",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "visibleCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ") externally. User has to provide",
             "marks": []
           },
           {
@@ -158,7 +185,7 @@
           },
           {
             "object": "text",
-            "text": " implementation via props. It's save to use it to scroll the list top or to particular item.",
+            "text": " implementation via props. It's safe to use it to scroll the list top or to particular item.",
             "marks": []
           }
         ]
@@ -186,12 +213,28 @@
           },
           {
             "object": "text",
-            "text": ", to avoid initial re-render. VisibleCount will be updated automatically if ",
+            "text": ", to avoid initial re-render. ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "VirtualList ",
+            "text": "visibleCount ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "will be updated automatically if ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "VirtualList  ",
             "marks": [
               {
                 "object": "mark",
@@ -207,7 +250,7 @@
           },
           {
             "object": "text",
-            "text": "will detect that there's room for more items.",
+            "text": "detects, that there's enough room for more items.",
             "marks": []
           }
         ]
@@ -235,7 +278,7 @@
           },
           {
             "object": "text",
-            "text": "hook in case you are about to build something own based on it. Props and Api interfaces are fairly the same. The only difference, is that hook doesn't need the ",
+            "text": "hook in case you would like to build something own based on it. Props and Api interfaces are fairly the same. The only difference, is that hook doesn't need the ",
             "marks": []
           },
           {
@@ -288,7 +331,7 @@
           },
           {
             "object": "text",
-            "text": "scrollbarsRef ",
+            "text": "scrollContainer ",
             "marks": [
               {
                 "object": "mark",
@@ -299,18 +342,13 @@
           },
           {
             "object": "text",
-            "text": "- ref to ",
+            "text": "- ref to scroll container. This should be a DOM Element, that has scroll bars within. We'll use this ref to calculate estimated height precisely. If you have a table with headers, footers or some additional elements that may appear together with ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "Scrollbars ",
+            "text": "VirtualList, ",
             "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-bold",
@@ -320,33 +358,44 @@
           },
           {
             "object": "text",
-            "text": "component (or your custom component, that is compatible with ",
+            "text": "the margin of all those elements will also be considered during ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "ScrollbarsApi ",
+            "text": "estimatedHeight",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
+                "type": "uui-richTextEditor-italic",
                 "data": {}
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-bold",
                 "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": "interface).\n",
+            "text": "calculation.\n",
             "marks": []
           },
           {
             "object": "text",
-            "text": "listRef",
+            "text": "listContainer ",
             "marks": [
               {
                 "object": "mark",
@@ -357,39 +406,7 @@
           },
           {
             "object": "text",
-            "text": " - wrapper that holds all rows.\n(optional) ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "scrollContainerRef ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "- we'll use this ref to calculate estimated height more precisely. This will be useful if you have a table with headers, footers or some additional elements that may appear together with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "VirtualList",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ". ",
+            "text": "- ref to wrapper that holds all rows.",
             "marks": []
           }
         ]

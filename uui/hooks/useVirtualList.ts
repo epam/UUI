@@ -70,13 +70,9 @@ export function useVirtualList<
         };
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
 
-    const listOffset = useMemo(() => {
-        if (!listContainer.current || !scrollContainer.current) return 0;
-        return scrollContainer.current.scrollHeight - listContainer.current.scrollHeight;
-    }, [listContainer.current, scrollContainer.current]);
-
     const updateRowHeights = useCallback(() => {
         if (!listContainer.current) return;
+        const listOffset = listContainer.current.offsetTop;
         const nodes = Array.from(listContainer.current.children);
         const topIndex = value?.topIndex || 0;
 
@@ -98,7 +94,7 @@ export function useVirtualList<
         };
 
         estimatedHeight.current = lastOffset - listOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current, listOffset]);
+    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current?.offsetTop]);
 
     const scrollToIndex = useCallback((index: number) => {
         if (index < 0) throw new Error('Index is less than zero');
@@ -116,10 +112,11 @@ export function useVirtualList<
     useEffect(updateScrollToFocus, [focused]);
 
     const offsetY = useMemo(() => {
-        if (rowOffsets.current.length === 0) return 0;
-        if (!value.topIndex) return rowOffsets.current[0] - listOffset;
+        if (rowOffsets.current.length === 0 || !listContainer.current) return 0;
+        const listOffset = listContainer.current.offsetTop;
+        if (!value?.topIndex) return rowOffsets.current[0] - listOffset;
         return rowOffsets.current[value.topIndex] - listOffset;
-    }, [rowOffsets.current, listOffset, value?.topIndex]);
+    }, [rowOffsets.current, value?.topIndex, listContainer.current?.offsetTop]);
 
     return {
         estimatedHeight: estimatedHeight.current,
@@ -128,6 +125,6 @@ export function useVirtualList<
         listContainer,
         handleScroll,
         scrollToIndex,
-        listOffset
+        listOffset: listContainer.current?.offsetTop || 0
     };
 };

@@ -54,12 +54,14 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div
-                    role="rowgroup"
-                    ref={ listContainer }
-                    style={{ marginTop: offsetY, minHeight: `${estimatedHeight}px` }}
-                    children={ getRows() }
-                />
+                <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+                    <div
+                        ref={ listContainer }
+                        role='rowgroup'
+                        style={ { marginTop: offsetY }}
+                        children={ getRows() }
+                    />
+                </div>
             ) : renderNoResultsBlock?.() }
         </div>
     );

@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
 >
   <div
@@ -286,7 +286,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 
 exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
 >
   <div
