@@ -5,6 +5,9 @@ export interface ScrollPosition {
     y: number;
 }
 
+/**
+ * @deprecated will be removed in the next major release
+*/
 export class ScrollManager {
     public scrollPosition: ScrollPosition = {
         y: 0,
