@@ -14,7 +14,7 @@ export interface RenderRowsConfig<List extends HTMLElement = HTMLDivElement> {
     };
 };
 
-export interface VirtualListProps<List extends HTMLElement = HTMLDivElement> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollbarsApi> {
+export interface VirtualListProps<List extends HTMLElement = HTMLDivElement, ScrollContainer extends ScrollbarsApi = ScrollbarsApi> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollContainer> {
     rows: ReactNode[];
     rowsCount?: number;
     role?: HTMLAttributes<HTMLDivElement>['role'];
@@ -23,7 +23,7 @@ export interface VirtualListProps<List extends HTMLElement = HTMLDivElement> ext
     onScroll?(value: PositionValues): void;
 };
 
-export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: VirtualListProps<List>) {
+export function VirtualList(props: VirtualListProps) {
     const {
         listOffset,
         listContainer,
@@ -31,7 +31,7 @@ export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: Vi
         handleScroll,
         estimatedHeight,
         scrollContainer
-    } = useVirtualList<List>({
+    } = useVirtualList({
         value: props.value,
         onValueChange: props.onValueChange,
         onScroll: props.onScroll,
@@ -44,7 +44,7 @@ export function VirtualList<List extends HTMLElement = HTMLDivElement>(props: Vi
         props.renderRows?.({ listContainer, estimatedHeight, offsetY, scrollShadows }) || (
             <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
                 <div
-                    ref={ listContainer as unknown as MutableRefObject<HTMLDivElement> }
+                    ref={ listContainer }
                     role={ props.role }
                     style={ { marginTop: offsetY }}
                     children={ props.rows }
