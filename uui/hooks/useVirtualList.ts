@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { IEditable, DataTableState } from '..';
 
 interface UuiScrollPositionValues {
@@ -107,13 +107,13 @@ export function useVirtualList<
         setTimeout(() => setFocused(undefined), 0);
     }, [focused, rowsCount]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (process.env.JEST_WORKER_ID) return;
         updateRowHeights();
         handleScroll();
     });
 
-    useEffect(updateScrollToFocus, [focused]);
+    useLayoutEffect(updateScrollToFocus, [focused]);
 
     const offsetY = useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;

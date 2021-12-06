@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState, useEffect } from "react";
+import { MutableRefObject, useRef, useState, useLayoutEffect } from "react";
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -20,7 +20,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     const [vertical, setVertical] = useState({ previousY: 0, active: false });
     const [horizontal, setHorizontal] = useState({ previousX: 0, active: false });
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!verticalRef.current) return;
 
         verticalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
@@ -34,7 +34,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         return () => verticalRef.current && verticalObserver.current.unobserve(verticalRef.current);
     }, [verticalRef.current, root]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!horizontalRef.current) return;
 
         horizontalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
