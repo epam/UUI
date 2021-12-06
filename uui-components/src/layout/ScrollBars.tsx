@@ -36,7 +36,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 
     const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
-        if (!bars.current || props.onScroll) return;
+        if (!bars.current) return;
         event && props.onScroll?.(event);
 
         const scrollBars = bars.current?.container;

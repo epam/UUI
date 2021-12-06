@@ -1,5 +1,5 @@
-import { MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { IEditable, DataTableState } from '..';
+import { DOMAttributes, MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { IEditable, DataTableState } from '../';
 
 interface UuiScrollPositionValues {
     scrollTop: number;
@@ -10,10 +10,10 @@ interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
     listOffset: number;
     estimatedHeight: number;
-    handleScroll: () => void;
+    handleScroll: DOMAttributes<ScrollContainer>['onScroll'];
     listContainer: MutableRefObject<List>;
     scrollContainer: MutableRefObject<ScrollContainer>;
-    scrollToIndex: (index: number) => void;
+    scrollToIndex(index: number): void;
 };
 
 interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedIndex' | 'topIndex' | 'visibleCount'>> {
@@ -22,10 +22,7 @@ interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedInd
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
 };
 
-export function useVirtualList<
-    List extends HTMLElement = HTMLDivElement,
-    ScrollContainer extends HTMLElement = HTMLDivElement
->({
+export function useVirtualList<List extends HTMLElement = HTMLDivElement, ScrollContainer extends HTMLElement = HTMLDivElement>({
     onValueChange,
     value,
     rowsCount,
@@ -40,14 +37,15 @@ export function useVirtualList<
     const rowOffsets = useRef<number[]>([]);
 
     const updateScrollToFocus = useCallback(() => {
-        if (focused == undefined || !scrollContainer.current) return;
+        if (!value?.focusedIndex || !scrollContainer.current) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusCoord = focused && rowOffsets.current[focused] || 0;
         const rowHeight = focused && rowHeights.current[focused] || 0;
+        setFocused(value.focusedIndex);
         if (focusCoord < (scrollTop - rowHeight) || (scrollTop + clientHeight) < focusCoord) {
             scrollContainer.current.scrollTo({ top: focusCoord - clientHeight / 2 + rowHeight / 2, behavior: 'smooth' });
         };
-    }, [rowOffsets.current, scrollContainer.current, focused]);
+    }, [rowOffsets.current, scrollContainer.current, focused, value?.focusedIndex]);
 
     const handleScroll = useCallback(() => {
         if (!scrollContainer.current) return;
@@ -113,7 +111,7 @@ export function useVirtualList<
         handleScroll();
     });
 
-    useLayoutEffect(updateScrollToFocus, [focused]);
+    useLayoutEffect(updateScrollToFocus, [focused, value?.focusedIndex]);
 
     const offsetY = useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;
