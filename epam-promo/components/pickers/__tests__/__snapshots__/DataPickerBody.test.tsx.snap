@@ -109,8 +109,8 @@ Array [
     }
   >
     <div
-      className="root scrollContainer root"
-      cx="scrollContainer root"
+      className="root scrollContainer"
+      cx="scrollContainer"
       style={
         Object {
           "display": "flex",
@@ -122,6 +122,7 @@ Array [
       }
     >
       <div
+        className="root"
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
