@@ -1,0 +1,69 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "This one shows how our virtualization solution works in the context of the page that has items different from those, you wish to virtualize. That items (e.g. header and filter blocks here) are considered when ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "estimatedHeight ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "is calculated, so that you can put everything you need within ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderRowsContainer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop, pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "listContainer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  ref to your rows wrapper and virtualization will still be done correctly.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
