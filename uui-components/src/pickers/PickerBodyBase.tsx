@@ -2,9 +2,8 @@ import { Component, ReactNode, KeyboardEvent } from 'react';
 import { findDOMNode } from 'react-dom';
 import isEqual from 'lodash.isequal';
 import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui';
-import { ScrollbarsApi } from '../';
 
-export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<ScrollbarsApi> {
+export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<HTMLDivElement> {
     onKeyDown?(e: KeyboardEvent<HTMLElement>): void;
     renderNotFound?: () => ReactNode;
     rows: ReactNode[];

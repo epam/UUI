@@ -11,12 +11,28 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This one shows how our virtualization solution works in the context of the page that has items different from those, you wish to virtualize. That items (e.g. header and filter blocks here) are considered when ",
+            "text": "In case the standard ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "estimatedHeight ",
+            "text": "VirtualList",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " doesn't fit you, we provide a separate ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "useVirtualList  ",
             "marks": [
               {
                 "object": "mark",
@@ -27,12 +43,12 @@
           },
           {
             "object": "text",
-            "text": "is calculated, so that you can put everything you need within ",
+            "text": "hook in case you would like to build something own based on it.\nThere are some additional properties you may provide for hook to work correctly:\n\n",
             "marks": []
           },
           {
             "object": "text",
-            "text": "renderRowsContainer",
+            "text": "scrollContainer ",
             "marks": [
               {
                 "object": "mark",
@@ -43,12 +59,12 @@
           },
           {
             "object": "text",
-            "text": " prop, pass ",
+            "text": "- ref to scroll container. This should be a DOM Element, that has scrollbars within. We'll use this ref to calculate estimated height of  the list precisely.\n",
             "marks": []
           },
           {
             "object": "text",
-            "text": "listContainer",
+            "text": "listContainer ",
             "marks": [
               {
                 "object": "mark",
@@ -59,7 +75,96 @@
           },
           {
             "object": "text",
-            "text": "  ref to your rows wrapper and virtualization will still be done correctly.",
+            "text": "- ref to wrapper that is going to be virtualized.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "estimatedHeight - ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "to measure the approximate height of the list",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "offsetY -",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " must be provided in case ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "listContainer ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scrollContainer ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "are different.",
             "marks": []
           }
         ]

@@ -2,8 +2,8 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root scrollContainer root shadow-dark"
-  cx="scrollContainer root shadow-dark"
+  className="root scrollContainer"
+  cx="scrollContainer"
   style={
     Object {
       "display": "flex",
@@ -15,6 +15,10 @@ exports[`DataTable should be rendered correctly 1`] = `
   }
 >
   <div
+    aria-colcount={4}
+    aria-rowcount={10}
+    className="root shadow-dark table shadowDark"
+    role="table"
     style={
       Object {
         "WebkitOverflowScrolling": "touch",
@@ -39,16 +43,263 @@ exports[`DataTable should be rendered correctly 1`] = `
       }
     />
     <div
-      aria-colcount={4}
-      aria-rowcount={10}
-      className="table shadowDark"
-      role="table"
+      className="stickyHeader"
     >
       <div
-        className="stickyHeader"
+        className="container uui-table-row-container root uui-table-header-row container align-items-center"
+        role="row"
       >
         <div
-          className="container uui-table-row-container root uui-table-header-row container align-items-center"
+          className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+          style={
+            Object {
+              "flex": "0 0 96px",
+              "maxWidth": "96px",
+            }
+          }
+        >
+          <div
+            aria-sort="none"
+            className="flexCell -clickable"
+            onClick={[Function]}
+            role="columnheader"
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "96px",
+                "flexGrow": 0,
+                "flexShrink": undefined,
+                "minWidth": "96px",
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div>
+              <div
+                className=""
+              >
+                <div
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  ID
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="uui-scroll-shadow-right"
+          />
+        </div>
+        <div
+          className="container"
+          style={
+            Object {
+              "flex": "1 0 470px",
+              "minWidth": "470px",
+            }
+          }
+        >
+          <div
+            aria-sort="none"
+            className="flexCell -clickable"
+            onClick={[Function]}
+            role="columnheader"
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "200px",
+                "flexGrow": 1,
+                "flexShrink": undefined,
+                "minWidth": "200px",
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div>
+              <div
+                className=""
+              >
+                <div
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  name
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-sort="none"
+            className="flexCell -clickable"
+            onClick={[Function]}
+            role="columnheader"
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "150px",
+                "flexGrow": undefined,
+                "flexShrink": undefined,
+                "minWidth": "200px",
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div>
+              <div
+                className=""
+              >
+                <div
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  Level
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-sort="none"
+            className="flexCell -clickable"
+            onClick={[Function]}
+            role="columnheader"
+            style={
+              Object {
+                "alignSelf": undefined,
+                "flexBasis": "120px",
+                "flexGrow": 1,
+                "flexShrink": 0,
+                "minWidth": "120px",
+                "textAlign": undefined,
+              }
+            }
+          >
+            <div>
+              <div
+                className=""
+              >
+                <div
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  DATE
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height={24}
+                      viewBox="0 0 12 24"
+                      width={12}
+                    >
+                      <use
+                        xlinkHref="#sort.svg"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="uui-scroll-shadow-top"
+      />
+    </div>
+    <div
+      className="listContainer"
+      style={
+        Object {
+          "minHeight": "0px",
+        }
+      }
+    >
+      <div
+        role="rowgroup"
+        style={
+          Object {
+            "marginTop": 0,
+          }
+        }
+      >
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
           <div
@@ -61,10 +312,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              aria-sort="none"
-              className="flexCell -clickable"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
               onClick={[Function]}
-              role="columnheader"
+              role="cell"
               style={
                 Object {
                   "alignSelf": undefined,
@@ -77,38 +327,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               }
             >
               <div>
-                <div
-                  className=""
-                >
-                  <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  >
-                    ID
-                  </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
-                      >
-                        <use
-                          xlinkHref="#sort.svg"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>
+                1
               </div>
             </div>
             <div
@@ -125,10 +344,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              aria-sort="none"
-              className="flexCell -clickable"
+              className="flexCell cell size-36 padding-12 align-widgets-top"
               onClick={[Function]}
-              role="columnheader"
+              role="cell"
               style={
                 Object {
                   "alignSelf": undefined,
@@ -141,45 +359,13 @@ exports[`DataTable should be rendered correctly 1`] = `
               }
             >
               <div>
-                <div
-                  className=""
-                >
-                  <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  >
-                    name
-                  </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
-                      >
-                        <use
-                          xlinkHref="#sort.svg"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>
+                1
               </div>
             </div>
             <div
-              aria-sort="none"
-              className="flexCell -clickable"
+              className="flexCell cell size-36 padding-12 align-widgets-top"
               onClick={[Function]}
-              role="columnheader"
+              role="cell"
               style={
                 Object {
                   "alignSelf": undefined,
@@ -192,45 +378,13 @@ exports[`DataTable should be rendered correctly 1`] = `
               }
             >
               <div>
-                <div
-                  className=""
-                >
-                  <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  >
-                    Level
-                  </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
-                      >
-                        <use
-                          xlinkHref="#sort.svg"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>
+                Chief Executive Officer
               </div>
             </div>
             <div
-              aria-sort="none"
-              className="flexCell -clickable"
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
               onClick={[Function]}
-              role="columnheader"
+              role="cell"
               style={
                 Object {
                   "alignSelf": undefined,
@@ -243,1109 +397,952 @@ exports[`DataTable should be rendered correctly 1`] = `
               }
             >
               <div>
-                <div
-                  className=""
-                >
-                  <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                  >
-                    DATE
-                  </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                        height={24}
-                        viewBox="0 0 12 24"
-                        width={12}
-                      >
-                        <use
-                          xlinkHref="#sort.svg"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>
+                1969-01-29
               </div>
             </div>
           </div>
         </div>
         <div
-          className="uui-scroll-shadow-top"
-        />
-      </div>
-      <div
-        className="listContainer"
-        style={
-          Object {
-            "minHeight": "0px",
-          }
-        }
-      >
-        <div
-          role="rowgroup"
-          style={
-            Object {
-              "marginTop": 0,
-            }
-          }
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
         >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  1
-                </div>
+              <div>
+                2
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  1
-                </div>
+              <div>
+                2
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Chief Executive Officer
-                </div>
+              }
+            >
+              <div>
+                Vice President of Engineering
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1969-01-29
-                </div>
+              }
+            >
+              <div>
+                1971-08-01
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  2
-                </div>
+              <div>
+                3
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  2
-                </div>
+              <div>
+                3
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Vice President of Engineering
-                </div>
+              }
+            >
+              <div>
+                Engineering Manager
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1971-08-01
-                </div>
+              }
+            >
+              <div>
+                1974-11-12
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  3
-                </div>
+              <div>
+                4
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  3
-                </div>
+              <div>
+                4
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Engineering Manager
-                </div>
+              }
+            >
+              <div>
+                Senior Tool Designer
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1974-11-12
-                </div>
+              }
+            >
+              <div>
+                1974-12-23
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  4
-                </div>
+              <div>
+                5
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  4
-                </div>
+              <div>
+                5
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Senior Tool Designer
-                </div>
+              }
+            >
+              <div>
+                Design Engineer
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1974-12-23
-                </div>
+              }
+            >
+              <div>
+                1952-09-27
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  5
-                </div>
+              <div>
+                6
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  5
-                </div>
+              <div>
+                6
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Design Engineer
-                </div>
+              }
+            >
+              <div>
+                Design Engineer
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1952-09-27
-                </div>
+              }
+            >
+              <div>
+                1959-03-11
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  6
-                </div>
+              <div>
+                7
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  6
-                </div>
+              <div>
+                7
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Design Engineer
-                </div>
+              }
+            >
+              <div>
+                Research and Development Manager
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1959-03-11
-                </div>
+              }
+            >
+              <div>
+                1987-02-24
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  7
-                </div>
+              <div>
+                8
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  7
-                </div>
+              <div>
+                8
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Research and Development Manager
-                </div>
+              }
+            >
+              <div>
+                Research and Development Engineer
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1987-02-24
-                </div>
+              }
+            >
+              <div>
+                1986-06-05
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  8
-                </div>
+              <div>
+                9
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="uui-scroll-shadow-right"
+            />
+          </div>
+          <div
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
+          >
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  8
-                </div>
+              <div>
+                9
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Research and Development Engineer
-                </div>
+              }
+            >
+              <div>
+                Research and Development Engineer
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  1986-06-05
-                </div>
+              }
+            >
+              <div>
+                1979-01-21
               </div>
             </div>
           </div>
+        </div>
+        <div
+          aria-expanded={true}
+          className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
+          role="row"
+        >
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+                "maxWidth": "96px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "96px",
+                  "flexGrow": 0,
+                  "flexShrink": undefined,
+                  "minWidth": "96px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  9
-                </div>
+              <div>
+                10
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
-              style={
-                Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
-                }
-              }
-            >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  9
-                </div>
-              </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  Research and Development Engineer
-                </div>
-              </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  1979-01-21
-                </div>
-              </div>
-            </div>
+              className="uui-scroll-shadow-right"
+            />
           </div>
           <div
-            aria-expanded={true}
-            className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
-            role="row"
+            className="container"
+            style={
+              Object {
+                "flex": "1 0 470px",
+                "minWidth": "470px",
+              }
+            }
           >
             <div
-              className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "0 0 96px",
-                  "maxWidth": "96px",
+                  "alignSelf": undefined,
+                  "flexBasis": "200px",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "96px",
-                    "flexGrow": 0,
-                    "flexShrink": undefined,
-                    "minWidth": "96px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  10
-                </div>
+              <div>
+                10
               </div>
-              <div
-                className="uui-scroll-shadow-right"
-              />
             </div>
             <div
-              className="container"
+              className="flexCell cell size-36 padding-12 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
               style={
                 Object {
-                  "flex": "1 0 470px",
-                  "minWidth": "470px",
+                  "alignSelf": undefined,
+                  "flexBasis": "150px",
+                  "flexGrow": undefined,
+                  "flexShrink": undefined,
+                  "minWidth": "200px",
+                  "textAlign": undefined,
                 }
               }
             >
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "200px",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  10
-                </div>
+              <div>
+                Research and Development Manager
               </div>
-              <div
-                className="flexCell cell size-36 padding-12 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "150px",
-                    "flexGrow": undefined,
-                    "flexShrink": undefined,
-                    "minWidth": "200px",
-                    "textAlign": undefined,
-                  }
+            </div>
+            <div
+              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              onClick={[Function]}
+              role="cell"
+              style={
+                Object {
+                  "alignSelf": undefined,
+                  "flexBasis": "120px",
+                  "flexGrow": 1,
+                  "flexShrink": 0,
+                  "minWidth": "120px",
+                  "textAlign": undefined,
                 }
-              >
-                <div>
-                  Research and Development Manager
-                </div>
-              </div>
-              <div
-                className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
-                onClick={[Function]}
-                role="cell"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "120px",
-                    "flexGrow": 1,
-                    "flexShrink": 0,
-                    "minWidth": "120px",
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div>
-                  1984-11-30
-                </div>
+              }
+            >
+              <div>
+                1984-11-30
               </div>
             </div>
           </div>

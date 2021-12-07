@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
-import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, cx, useScrollShadows } from '@epam/uui';
-import { PositionValues, ScrollbarsApi, ScrollBars } from '@epam/uui-components';
+import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui';
+import { PositionValues, ScrollBars } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
 export interface RenderRowsConfig<List extends HTMLElement = HTMLDivElement> {
@@ -14,7 +14,7 @@ export interface RenderRowsConfig<List extends HTMLElement = HTMLDivElement> {
     };
 };
 
-export interface VirtualListProps<List extends HTMLElement = HTMLDivElement, ScrollContainer extends ScrollbarsApi = ScrollbarsApi> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollContainer> {
+export interface VirtualListProps<List extends HTMLElement = HTMLDivElement, ScrollContainer extends HTMLElement = HTMLDivElement> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollContainer> {
     rows: ReactNode[];
     rowsCount?: number;
     role?: HTMLAttributes<HTMLDivElement>['role'];
@@ -55,9 +55,19 @@ export function VirtualList(props: VirtualListProps) {
 
     return (
         <ScrollBars
-            cx={ cx(css.scrollContainer, props.cx) }
+            cx={ css.scrollContainer }
             onScroll={ handleScroll }
-            rawProps={ props.rawProps }
+            renderView={ ({ style, ...rest }) => (
+                <div
+                    style={ { ...style, position: 'relative', flex: '1 1 auto'} }
+                    className={ cx(props.cx, {
+                        [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
+                        [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight
+                    }) }
+                    { ...rest }
+                    { ...props.rawProps }
+                />
+            ) }
             ref={ scrollbars => {
                 if (!scrollbars?.container?.firstChild) return;
                 scrollContainer.current = scrollbars.container.firstChild as HTMLDivElement;

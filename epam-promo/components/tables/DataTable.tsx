@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PositionValues, RenderRowsConfig } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, uuiMarkers, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -28,15 +28,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     );
 
     const renderRowsContainer = ({ listContainer, estimatedHeight, offsetY, scrollShadows }: RenderRowsConfig) => (
-        <div
-            role="table"
-            aria-colcount={ columns.length }
-            aria-rowcount={ props.rowsCount }
-            className={ cx(css.table, css.shadowDark, {
-                [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
-                [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight
-            }) }
-        >
+        <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
                     columns={ columns }
@@ -63,7 +55,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     />
                 </div>
             ) : renderNoResultsBlock?.() }
-        </div>
+        </>
     );
 
     const getRows = () => {
@@ -99,6 +91,12 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             focusedIndex={ props.value?.focusedIndex }
             shadow='dark'
             renderRows={ renderRowsContainer }
+            cx={ cx(css.table, css.shadowDark) }
+            rawProps={{
+                role: 'table',
+                'aria-colcount': columns.length,
+                'aria-rowcount': props.rowsCount,
+            }}
         />
     );
 }
