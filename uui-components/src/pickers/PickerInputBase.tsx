@@ -4,13 +4,13 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps,
+    IDropdownToggler, DataSourceListProps, IHasIcon,
 } from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
-export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & {
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
     editMode?: 'dropdown' | 'modal';
     maxItems?: number;
     minBodyWidth?: number;
@@ -182,7 +182,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         let selectedRows = this.getSelectedRows();
-        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, validationMessage, validationProps, disableClear: propDisableClear } = this.props;
+        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
+            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
         const disableClear = forcedDisabledClear || propDisableClear;
@@ -197,6 +198,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isReadonly,
             isDisabled,
             autoFocus,
+            icon,
+            iconPosition,
             onFocus: this.onFocus,
             onBlur: this.onBlur,
             onClear: this.handleClearSelection,

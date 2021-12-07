@@ -14,7 +14,7 @@ const dataSource = new ArrayDataSource({
     items: ["Product Manager", "Technician", "Senior Director", "Software Developer"].map(name => ({ id: name, name })),
 });
 
-const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'PickerModal', component: PickerModal as React.ComponentClass<any> })
+const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'PickerModal', component: PickerModal })
     .implements([pickerBaseOptionsDoc /*iconDoc, , */] as any)
     .prop('initialValue', { examples: [
             { name: '1', value: 1 },

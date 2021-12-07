@@ -9,9 +9,10 @@ import { pickerBaseOptionsDoc } from './common';
 import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
 import {FlexCell, FlexRow} from "../../layout/FlexItems";
 import {Text} from "../../typography";
+import { iconDoc, iconOptionsDoc } from "../../../../epam-promo/docs";
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
-    .implements([sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc] as any)
+    .implements([sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc] as any)
     .prop('value', { examples: [
         { name: '1', value: 1 },
         { name: '[1, 2]', value: [1, 2] },

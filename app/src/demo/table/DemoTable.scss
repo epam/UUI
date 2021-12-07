@@ -3,6 +3,8 @@
 
 .wrapper {
     overflow: hidden;
+    display: flex;
+    position: relative;
 }
 
 .container {
@@ -11,7 +13,7 @@
     flex: 1 1 0;
     height: calc(100vh - 121px);
     transition: all 500ms;
-
+    
     .counter {
         &:global(.uui-button-box) {
             background: transparent;
@@ -68,80 +70,11 @@
     }
 }
 
-.filter-sidebar-panel-wrapper {
-    width: 288px;
-    margin-right: -288px;
+.presets {
+    padding-left: 50px;
+    transition: .5s padding-left;
 
-    &:global(.show) {
-        animation: show-filter-panel 500ms;
-        animation-fill-mode: forwards;
-    }
-
-    &:global(.hide) {
-        animation: hide-filter-panel 500ms;
-        animation-fill-mode: forwards;
-    }
-}
-
-.info-sidebar-panel-wrapper {
-    width: 360px;
-    margin-left: -360px;
-
-    &:global(.show) {
-        animation: show-info-panel 500ms;
-        animation-fill-mode: forwards;
-    }
-
-    &:global(.hide) {
-        animation: hide-info-panel 500ms;
-        animation-fill-mode: forwards;
-    }
-}
-
-@keyframes show-info-panel {
-    0% {
-        transform: translate3d(100%, 0, 0);
-        margin-left: -360px;
-    }
-
-    100% {
-        transform: translate3d(0, 0, 0);
-        margin-left: 0;
-    }
-}
-
-@keyframes hide-info-panel {
-    0% {
-        transform: translate3d(0, 0, 0);
-        margin-left: 0;
-    }
-
-    100% {
-        transform: translate3d(100%, 0, 0);
-        margin-left: -360px;
-    }
-}
-
-@keyframes show-filter-panel {
-    0% {
-        transform: translate3d(-100%, 0, 0);
-        margin-right: -288px;
-    }
-
-    100% {
-        transform: translate3d(0, 0, 0);
-        margin-right: 0;
-    }
-}
-
-@keyframes hide-filter-panel {
-    0% {
-        transform: translate3d(0, 0, 0);
-        margin-right: 0;
-    }
-
-    100% {
-        transform: translate3d(-100%, 0, 0);
-        margin-right: -288px;
+    &-with-filter {
+        padding-left: 0;
     }
 }

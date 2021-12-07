@@ -9,6 +9,7 @@ import * as sketch from '../../icons/sketch.svg';
 import * as fontIcon from '../../icons/fonts_icon.svg';
 import * as logotypeIcon from '../../icons/design_platform_icon.svg';
 import * as downloadIcon from '../../icons/download_icon_set.svg';
+import * as illustrationsIcon from '../../icons/illustrations_icon.svg';
 import * as lockIcon from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import * as downloadFileIcon from '@epam/assets/icons/common/file-download-18.svg';
 import * as contentLinkIcon from '@epam/assets/icons/common/content-link-18.svg';
@@ -43,6 +44,20 @@ const libraries = {
             image: artbord,
             libraryType: 'figma',
         },
+        {
+            title: 'UUI Patterns',
+            additionalInfo: 'Requires Figma 97 or greater',
+            link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
+            image: artbord,
+            libraryType: 'figma',
+        },
+        {
+            title: 'UUI Illustartions',
+            additionalInfo: 'Requires Figma 97 or greater',
+            link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations',
+            image: artbord,
+            libraryType: 'figma',
+        },
     ],
     UUI4: [
         {
@@ -66,6 +81,20 @@ const libraries = {
             image: artbord,
             libraryType: 'figma',
         },
+        {
+            title: 'UUI Patterns',
+            additionalInfo: 'Requires Figma 97 or greater',
+            link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
+            image: artbord,
+            libraryType: 'figma',
+        },
+        {
+            title: 'UUI Illustartions',
+            additionalInfo: 'Requires Figma 97 or greater',
+            link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations',
+            image: artbord,
+            libraryType: 'figma',
+        },
     ],
 };
 
@@ -74,11 +103,13 @@ const assets = {
         fonts: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Fonts_UUI3.7z',
         logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Logotypes_UUI3.7z',
         icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Icons_UUI3.7z',
+        illustrations: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/uui-illustrations/UUI_Illustrations.zip',
     },
     UUI4: {
         fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
         logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
         icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
+        illustrations: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/uui-illustrations/UUI_Illustrations.zip',
     },
 };
 
@@ -189,6 +220,25 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         caption='Download'
                                         size='24'
                                         href={ isUUI4Skin ? assets.UUI4.icons : assets.UUI3.icons }
+                                        captionCX={ css.assetsLinkCaption }
+                                    />
+                                </FlexCell>
+                            </FlexRow>
+                        </FlexCell>
+                    </FlexRow>
+                    <FlexRow alignItems='bottom' cx={ css.downloadsRow } >
+                        <FlexCell minWidth={ 480 } >
+                            <FlexRow spacing='12' >
+                                <div className={ cx(css.downloadsOval, css.illustrationsBackground) } >
+                                    <IconContainer icon={ illustrationsIcon
+                                    } />
+                                </div>
+                                <FlexCell width='auto'>
+                                    <Text size='24' fontSize='16' font='museo-sans' >UUI Illustartions (SVG pack & Guidline)</Text>
+                                    <LinkButton
+                                        caption='Download'
+                                        size='24'
+                                        href={ isUUI4Skin ? assets.UUI4.illustrations : assets.UUI3.illustrations }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
