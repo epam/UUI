@@ -20,6 +20,10 @@ export const toDoListPlugin = () => {
     const onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
         const { value } = editor;
 
+        if (event.key === "Enter" && value.startBlock.type === "toDoItem" && editor.value.anchorBlock.text.length === 0) {
+            return editor.setBlocks("paragraph");
+        }
+        
         if (event.key === "Enter" && !event.shiftKey && value.startBlock.type === "toDoItem") {
             return editor.splitBlock().setBlocks({ data: { checked: false }, type: "toDoItem" });
         }
@@ -36,22 +40,6 @@ export const toDoListPlugin = () => {
         return next();
     };
 
-    const addToDo = (editor: CoreEditor) => {
-        const newToDoItem = Block.create({
-            object: "block",
-            type: "toDoItem",
-            key: KeyUtils.create(),
-            data: {
-                checked: false,
-            },
-            nodes: List([{ text: "", object: "text" } as any]),
-        });
-
-        editor.setBlocks(newToDoItem);
-        // TODO: fix bug with focus
-        // editor.focus();
-    };
-
     return {
         renderBlock,
         onKeyDown,
@@ -60,6 +48,22 @@ export const toDoListPlugin = () => {
         },
         sidebarButtons: [ToDoItemToolbarButton],
     };
+};
+
+const addToDo = (editor: Editor | CoreEditor) => {
+    const newToDoItem = Block.create({
+        object: "block",
+        type: "toDoItem",
+        key: KeyUtils.create(),
+        data: {
+            checked: false,
+        },
+        nodes: List([{ text: "", object: "text" } as any]),
+    });
+
+    editor.setBlocks(newToDoItem);
+    // TODO: fix bug with focus
+    // editor.focus();
 };
 
 const isTodo = (editor: Editor) => {
@@ -75,11 +79,13 @@ const ToDoItemToolbarButton = (props: { editor: Editor }) => {
                 : "unordered-list";
             (props.editor as any).toggleList({ type: listType });
  
-            props.editor.setBlocks("toDoItem");
+            addToDo(props.editor);
             return;
         }
         
-        isTodo(props.editor) ? props.editor.setBlocks("paragraph") : props.editor.setBlocks("toDoItem");
+        isTodo(props.editor) 
+            ? props.editor.setBlocks("paragraph") 
+            : addToDo(props.editor);
     };
     return <ToolbarButton isActive={ isTodo(props.editor) } icon={ checkboxListIcon } onClick={ onClick }/>;
 };
