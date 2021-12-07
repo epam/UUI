@@ -1,12 +1,20 @@
-# 4.3.1 - xx.xx.xxxx
+# 4.4.0 - 07.12.2021
 
 **What's New**
+* [Drag&Drop]: added mobile devices support
 * [ErrorHandler]: added to 'promo' skin
-* [App]: page 'Downloads' updated, added illustrations and patterns
-* added useForceUpdate, useUuiError hooks to '@epam/uui' package
+* [PickerInput]: add possibility to pass icon to the toggler
+* [DropSpot]: move wordings to the i18n
 
 **What’s Fixed**
-* [CodeSandbox]: fixed functionality of modal windows and notifications in codesandbox examples
+* [Router]: remove history types dependency from UUI, fix types for location.state
+* [TextPlaceholder]: fix placeholder visibility for Safari
+* [Form]: fix lens batch updates
+* [Checkbox]: added default value, fixed alignment for label
+* [ApiContext]: fix bug when 'connection lost' modal was shown on canceled fetch request
+* [IconButton]: fix the IconButton color on focus when the button is disabled
+* [SearchInput]: fix accept and cancel icons visibility when onAccept and onCancel callback are passed and value is empty
+* [BurgerButton]: fix styles
 
 # 4.3.0 - 25.10.2021
 
