@@ -44,7 +44,7 @@ export class Toolbar extends React.Component<ToolbarProps, any> {
         };
     }
 
-    renderButton = (Button: React.ComponentClass<{ editor: Editor }>, index: number) => {
+    renderButton = (Button: React.ComponentType<{ editor: Editor }>, index: number) => {
         return <Button editor={ this.props.editor } key={ `toolbar-button-${index}` } />;
     }
 

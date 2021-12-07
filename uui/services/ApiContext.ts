@@ -17,6 +17,7 @@ export class ApiCallError extends Error {
 
 export interface FileUploadOptions {
     onProgress?: (progress: number) => any;
+    getXHR?: (xhr: XMLHttpRequest) => any; // get xhr to be able to cancel the request
 }
 
 export interface FileUploadResponse {
@@ -76,6 +77,28 @@ export class ApiContext extends BaseContext implements IApiContext {
         this.update({});
     }
 
+    private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
+        if (reason) {
+            call.status = 'scheduled';
+            if (this.status === 'recovery') {
+                return;
+            }
+            this.setStatus('recovery', reason);
+            this.errorCtx.reportError(new ApiCallError(call));
+            reason === 'auth-lost' ? window.open(reloginPath) : this.recoverConnection();
+        } else {
+            const error = new ApiCallError(call);
+            call.status = 'error';
+            if (call.options?.errorHandling === 'manual') {
+                this.removeFromQueue(call);
+            } else {
+                this.setStatus('error');
+                this.errorCtx.reportError(error);
+            }
+            call.reject(error);
+        }
+    }
+
     private startCall(call: ApiCall) {
         const headers = new Headers();
         const csrfCookie = getCookie('CSRF-TOKEN');
@@ -100,9 +123,9 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             if (call.attemptsCount < 2) {
-                this.handleConnectionLost(call, 'connection-lost');
+                this.handleApiError(call, 'connection-lost');
             } else {
-                this.handleError(call, new ApiCallError(call));
+                this.handleApiError(call);
             }
         });
     }
@@ -117,7 +140,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                     value: call.finishedAt.getTime() - call.startedAt.getTime(),
                     name: call.name,
                     event_category: window.location.pathname,
-                }
+                },
             }, "apiTiming");
 
             if (response.status == 204) {
@@ -131,7 +154,10 @@ export class ApiContext extends BaseContext implements IApiContext {
                 })
                 .catch(e => {
                     /* Problem with response JSON parsing */
-                    this.handleError(call, e);
+                    call.status = 'error';
+                    this.setStatus('error');
+                    this.errorCtx.reportError(e);
+                    call.reject(e);
                 });
         } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
                 (response.status === 408 /* Request Timeout */
@@ -153,14 +179,14 @@ export class ApiContext extends BaseContext implements IApiContext {
                 reason = 'maintenance';
             }
 
-            this.handleConnectionLost(call, reason);
+            this.handleApiError(call, reason);
         } else if (response.status === 401) /* Authentication cookies invalidated */ {
-            this.handleAuthLost(call);
+            this.handleApiError(call, 'auth-lost');
         } else {
             // Try to parse JSON in response, if there are none - just ignore
             response.json().catch(() => null).then(result => {
                 call.responseData = result;
-                this.handleError(call, new ApiCallError(call));
+                this.handleApiError(call);
             });
         }
     }
@@ -178,31 +204,11 @@ export class ApiContext extends BaseContext implements IApiContext {
         call.resolve(result);
     }
 
-    private handleError(call: ApiCall, error: ApiCallError) {
-        call.status = 'error';
-        if (call.options?.errorHandling === 'manual') {
-            this.removeFromQueue(call);
-        } else {
-            this.setStatus('error');
-        }
-        call.reject(error);
-    }
-
     private runQueue() {
         this.isRunScheduled = false;
         if (this.status === 'idle' || this.status === 'running') {
             this.queue.filter(c => c.status === 'scheduled').forEach(c => this.startCall(c));
         }
-    }
-
-    private handleConnectionLost(call: ApiCall, reason: ApiRecoveryReason) {
-        call.status = 'scheduled';
-
-        if (this.status == 'recovery') {
-            return;
-        }
-        this.setStatus('recovery', reason);
-        this.recoverConnection();
     }
 
     private recoverConnection() {
@@ -214,19 +220,11 @@ export class ApiContext extends BaseContext implements IApiContext {
             if (response.ok) {
                 this.setStatus('running');
                 this.runQueue();
+                this.errorCtx.recover();
             } else {
                 retry();
             }
         }).catch(retry);
-    }
-
-    private handleAuthLost(call: ApiCall) {
-        call.status = 'scheduled';
-        if (this.status === 'recovery') {
-            return;
-        }
-        this.setStatus('recovery', 'auth-lost');
-        window.open(reloginPath);
     }
 
     private scheduleRun() {
@@ -283,12 +281,22 @@ export class ApiContext extends BaseContext implements IApiContext {
             if (csrfCookie) {
                 xhr.setRequestHeader('X-CSRF-Token', csrfCookie);
             }
+
             xhr.withCredentials = true;
+
+            const removeAllListeners = () => {
+                xhr.upload.removeEventListener('progress', trackProgress);
+                xhr.removeEventListener('abort', removeAllListeners);
+            };
 
             if (options.onProgress) {
                 xhr.upload.addEventListener("progress", trackProgress, false);
             }
 
+            if (options.getXHR) {
+                xhr.addEventListener('abort', removeAllListeners, false);
+                options.getXHR(xhr);
+            }
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
@@ -297,8 +305,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                     reject(xhr.response);
                 }
 
-                xhr.upload.removeEventListener("progress", trackProgress, false);
-
+                removeAllListeners();
                 resolve(JSON.parse(xhr.response));
             };
             xhr.send(formData);

@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { ContextProvider } from '@epam/uui';
 import { Snackbar, Modals } from '@epam/uui-components';
 import '@epam/internal/styles.css';
-import { ErrorHandler } from '@epam/loveship';
+import { ErrorHandler } from '@epam/promo';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
@@ -28,7 +28,7 @@ export class UuiEnhancedApp extends React.Component {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    };
+    }
 
     render() {
         const isProduction = /uui.epam.com/.test(location.hostname);
