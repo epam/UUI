@@ -47,4 +47,8 @@ export const i18n = {
         sortAscending: 'Sort Ascending',
         sortDescending: 'Sort Descending',
     },
+    fileUpload: {
+        label: "Drop files to attach or",
+        browse: "browse",
+    },
 };
