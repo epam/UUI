@@ -1,4 +1,4 @@
-import { getDemoApi } from "@epam/uui-docs";
+import { getDemoApi, IDemoApi } from "@epam/uui-docs";
 import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui";
 import { ITablePreset } from "../demo/table/types";
 
