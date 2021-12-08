@@ -58,7 +58,6 @@ export const getFilters = (): ITableFilter[] => {
             key: "birthDate",
             title: "Birth Date",
             type: "rangeDatePicker",
-            dataSource: new LazyDataSource({ api: svc.api.demo.birthDates }),
         },
     ];
 };

@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.3.0",
+    "@epam/uui": "4.4.0",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
