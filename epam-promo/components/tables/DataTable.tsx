@@ -92,11 +92,11 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             shadow='dark'
             renderRows={ renderRowsContainer }
             cx={ cx(css.table, css.shadowDark) }
-            rawProps={{
+            rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,
                 'aria-rowcount': props.rowsCount,
-            }}
+            } }
         />
     );
 }
