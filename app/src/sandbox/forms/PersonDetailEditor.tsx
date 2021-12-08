@@ -95,24 +95,24 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         <Panel>
             <FlexRow type='form'>
                 <FlexCell grow={1}>
-                    <LabeledInput htmlFor='city' label='City' {...this.props.lens.prop('countryId').toProps()} >
+                    <LabeledInput htmlFor='uui-pickerinput-input-city' label='City' {...this.props.lens.prop('countryId').toProps()} >
                         <PickerInput<City, string>
                             {...this.props.lens.prop('city').toProps()}
                             selectionMode='multi'
                             valueType='id'
-                            inputId='city'
+                            id='city'
                             dataSource={this.lazyDs}
                             getName={(c: City) => c.name}
                         />
                     </LabeledInput>
                 </FlexCell>
                 <FlexCell grow={1}>
-                    <LabeledInput htmlFor='country' label='Country' { ...this.props.lens.prop('countryId').toProps() } >
+                    <LabeledInput htmlFor='uui-pickerinput-input-country' label='Country' { ...this.props.lens.prop('countryId').toProps() } >
                        { <PickerInput
                             {...this.props.lens.prop('countries').toProps()}
                             selectionMode='multi'
                             valueType='id'
-                            inputId='country'
+                            id='country'
                             dataSource={this.asyncLocationsDs}
                             getName={(c: Location) => c.name}
                         /> }

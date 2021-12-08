@@ -3,6 +3,7 @@
 exports[`Alert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-sky"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -17,6 +18,7 @@ exports[`Alert should be rendered correctly 1`] = `
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
   className="alertWrapper color-sun root"
+  role="alert"
 >
   <div
     className="mainPath"

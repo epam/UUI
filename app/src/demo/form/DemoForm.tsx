@@ -65,23 +65,23 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
             <RichTextView><h3>Location</h3></RichTextView>
 
             <FlexRow vPadding='12' spacing='18' alignItems='top'>
-                <LabeledInput htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
+                <LabeledInput htmlFor="uui-pickerinput-input-country" label='Country' { ...lens.prop('country').toProps() }>
                     <PickerInput
                         { ...lens.prop('country').toProps() }
                         dataSource={ countriesDS }
                         selectionMode='single'
                         valueType='id'
-                        inputId="country"
+                        id="country"
                         placeholder='Select Country'
                         onValueChange={ value => lens.set({ country: value as string, city: null }) }
                     />
                 </LabeledInput>
-                <LabeledInput htmlFor="city" label='City' { ...lens.prop('city').toProps() }>
+                <LabeledInput htmlFor="uui-pickerinput-input-city" label='City' { ...lens.prop('city').toProps() }>
                     <PickerInput
                         { ...lens.prop('city').toProps() }
                         selectionMode='single'
                         valueType='id'
-                        inputId="city"
+                        id="city"
                         dataSource={ citiesDataSource }
                         filter={ { country: lens.prop('country').get() } }
                         placeholder='Select City'
@@ -190,12 +190,12 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
 
             <FlexRow vPadding='12'>
                 <FlexCell minWidth={ 324 }>
-                    <LabeledInput htmlFor="institution" label='Institution' { ...lens.prop('institution').toProps() }>
+                    <LabeledInput htmlFor="uui-pickerinput-input-institution" label='Institution' { ...lens.prop('institution').toProps() }>
                         <PickerInput
                             { ...lens.prop('institution').toProps() }
                             dataSource={ institutionLevelsDataSource }
                             selectionMode='single'
-                            inputId="institution"
+                            id="institution"
                             getName={ item => item.university.split(' / ')[0] }
                             sorting={ { field: 'university', direction: 'asc' } }
                             valueType='id'
@@ -274,38 +274,38 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top'>
                         <FlexCell minWidth={ 186 }>
-                            <LabeledInput htmlFor={`language-${index}`} label='Language' { ...lensItem.prop('language').toProps() } >
+                            <LabeledInput htmlFor={`uui-pickerinput-input-language-${index}`} label='Language' { ...lensItem.prop('language').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('language').toProps() }
                                     dataSource={ languageDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`language-${index}`}
+                                    id={`language-${index}`}
                                     placeholder='Select Language'
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`speakingLevel-${index}`} label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
+                            <LabeledInput htmlFor={`uui-pickerinput-input-speakingLevel-${index}`} label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('speakingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`speakingLevel-${index}`}
+                                    id={`speakingLevel-${index}`}
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`writingLevel-${index}`} label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
+                            <LabeledInput htmlFor={`uui-pickerinput-input-writingLevel-${index}`} label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('writingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`writingLevel-${index}`}
+                                    id={`writingLevel-${index}`}
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
@@ -380,13 +380,13 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top' >
                         <FlexCell minWidth={ 324 }>
-                            <LabeledInput htmlFor={`travelVisasCountry-${index}`} label='Country' { ...visasLens.index(index).prop('country').toProps() } >
+                            <LabeledInput htmlFor={`uui-pickerinput-input-travelVisasCountry-${index}`} label='Country' { ...visasLens.index(index).prop('country').toProps() } >
                                 <PickerInput
                                     { ...visasLens.index(index).prop('country').toProps() }
                                     dataSource={ countriesDS }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`travelVisasCountry-${index}`}
+                                    id={`travelVisasCountry-${index}`}
                                     placeholder='Select Country'
                                 />
                             </LabeledInput>

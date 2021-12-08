@@ -670,6 +670,10 @@
         "value": "any"
       },
       {
+        "name": "id",
+        "value": "string"
+      },
+      {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       },
@@ -2228,6 +2232,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "id",
+        "value": "string"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
@@ -2480,7 +2488,7 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "inputId",
+        "name": "id",
         "value": "string"
       },
       {
@@ -2664,7 +2672,7 @@
         "value": "number"
       },
       {
-        "name": "inputId",
+        "name": "id",
         "value": "string"
       },
       {
@@ -4324,6 +4332,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "getValueChangeAnalyticsEvent",
@@ -6596,7 +6608,7 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "inputId",
+        "name": "id",
         "value": "string"
       },
       {
@@ -6926,7 +6938,7 @@
         "value": "number"
       },
       {
-        "name": "inputId",
+        "name": "id",
         "value": "string"
       },
       {
