@@ -4,6 +4,7 @@ import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from
 import * as css from './DropSpot.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '../';
 import * as shapeIcon from '../../icons/fileUpload/shape.svg';
+import { i18n } from "../../i18n";
 
 export interface DropSpotProps {
     cx?: string;
@@ -21,10 +22,10 @@ export class DropSpot extends React.Component<DropSpotProps> {
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                         <FlexRow size='24' spacing='6' >
                             <IconContainer color='blue' icon={ shapeIcon } />
-                            <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> Drop files to attach or </Text>
+                            <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> {i18n.fileUpload.label} </Text>
                             <UploadFileToggler
                                 onFilesAdded={ this.props.onUploadFiles }
-                                render={ (props) => <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold' ><Anchor { ...props } cx={ css.link } >browse</Anchor></Text> }
+                                render={ (props) => <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold' ><Anchor { ...props } cx={ css.link }>{ i18n.fileUpload.browse }</Anchor></Text> }
                                 accept={ this.props.accept }
                                 single={ this.props.single }
                             />

@@ -32,7 +32,9 @@ exports[`DropSpot should be rendered correctly 1`] = `
       <div
         className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
       >
-         Drop files to attach or 
+         
+        Drop files to attach or
+         
       </div>
       <div>
         <input
@@ -92,7 +94,9 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
       <div
         className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
       >
-         Drop files to attach or 
+         
+        Drop files to attach or
+         
       </div>
       <div>
         <input
