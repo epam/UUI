@@ -7,8 +7,8 @@
         :global(.uui-scroll-shadow-top) {
             height: 5px;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0;
-            transition: opacity 200ms;
+            display: none;
+            transition: display 200ms;
         }
     }
 
@@ -16,12 +16,13 @@
         :global(.uui-scroll-shadow-top) {
             height: 15px;
             background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0;
+            display: none;
             transition: opacity 200ms;
         }
 
         :global(.uui-scroll-shadow-bottom) {
             height: 15px;
+            display: none;
             background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
         }
     }

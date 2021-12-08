@@ -141,15 +141,12 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         />
         <div
+          className="uui-track-horizontal"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "height": 6,
-              "left": 2,
               "position": "absolute",
-              "right": 2,
             }
           }
         >
@@ -158,14 +155,11 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           />
         </div>
         <div
+          className="uui-track-vertical"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "position": "absolute",
-              "right": 2,
-              "top": 2,
               "width": 6,
             }
           }
@@ -377,15 +371,12 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           </div>
         </div>
         <div
+          className="uui-track-horizontal"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "height": 6,
-              "left": 2,
               "position": "absolute",
-              "right": 2,
             }
           }
         >
@@ -394,14 +385,11 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           />
         </div>
         <div
+          className="uui-track-vertical"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "position": "absolute",
-              "right": 2,
-              "top": 2,
               "width": 6,
             }
           }

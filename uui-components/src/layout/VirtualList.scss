@@ -1,35 +1,12 @@
-.wrapper {
-    flex: 1 1 0;
-    align-self: stretch;
-    display: flex;
-    position: relative;
-    width: 100%;
-}
-
-.body {
-    flex: 1 1 0;
-    align-self: stretch;
-    display: flex;
-}
-
-.container-1 {
-    flex: 1 1 0;
-    align-self: stretch;
-    position: relative;
-    overflow: hidden;
-    overscroll-behavior-x: none;
-}
-
-.container-2 {
-    flex: 1 1 0;
-    align-self: stretch;
-    overflow: hidden;
-}
-
-.container-3 {
+.scroll-container {
     display: flex;
     flex-direction: column;
-    margin-top: 0;
+    align-self: stretch;
+}
+
+.list-container {
+    display: grid;
+    grid-template-rows: 1fr;
 }
 
 :global(.uui-scroll-shadow-top) {
@@ -41,9 +18,22 @@
 }
 
 :global(.uui-scroll-shadow-bottom) {
-    position: absolute;
+    position: sticky;
     pointer-events: none;
-    left: 0;
-    right: 0;
+    bottom: 0;
+}
+
+.vertical-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+}
+
+.horizontal-intersecting-rect {
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    position: sticky;
     bottom: 0;
 }

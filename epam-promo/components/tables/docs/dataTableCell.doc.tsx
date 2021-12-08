@@ -5,7 +5,7 @@ import { DataTableCell } from '../DataTableCell';
 import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
 import { Text, DataTableCellMods } from '../../../components';
 
-const DataTableCellDoc = new DocBuilder<DataTableCellProps<any, any> & DataTableCellMods>({ name: 'DataTableCell', component: DataTableCell as any })
+const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>({ name: 'DataTableCell', component: DataTableCell as any })
     .prop('column', {
         examples: [
             {
