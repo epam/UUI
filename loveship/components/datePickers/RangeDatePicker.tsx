@@ -10,6 +10,7 @@ import * as css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;
+    id?: string;
 }
 
 export type InputType = 'from' | 'to';
@@ -30,6 +31,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                         renderDay={ this.props.renderDay }
                         renderFooter={ this.props.renderFooter && (() => this.props.renderFooter(this.props.value || defaultValue)) }
                         isHoliday={ this.props.isHoliday }
+                        rawProps={{ id: this.props.id && `uui-rangedatepicker-body-${this.props.id}` }}
                     />
                 </FlexRow>
             </DropdownContainer>
@@ -37,8 +39,6 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
     }
 
     renderInput = (props: IDropdownToggler) => {
-        const handleFromChange = this.getChangeHandler('from');
-        const handleToChange = this.getChangeHandler('to');
         return (
             <div
                 className={ cx(
@@ -60,13 +60,14 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     fontSize={ this.props.fontSize }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
-                    onValueChange={ handleFromChange }
+                    onValueChange={ this.getChangeHandler('from') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
                     onFocus={ () => this.handleFocus('from') }
                     onBlur={ () => this.handleBlur('from') }
                     isDropdown={ false }
+                    rawProps={{ id: this.props.id && `uui-rangedatepicker-from-input-${this.props.id}` }}
                 />
                 <div className={ css.separator } />
                 <TextInput
@@ -78,7 +79,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     fontSize={ this.props.fontSize }
                     value={ this.state.inputValue.to }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
-                    onValueChange={ handleToChange }
+                    onValueChange={ this.getChangeHandler('to') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
@@ -86,6 +87,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
+                    rawProps={{ id: this.props.id && `uui-rangedatepicker-to-input-${this.props.id}` }}
                 />
             </div>
         );

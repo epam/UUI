@@ -15,6 +15,7 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, IHasEditM
     renderFooter?(): React.ReactNode;
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
+    id?: string;
 }
 
 export class DatePicker extends BaseDatePicker<DatePickerProps> {
@@ -38,6 +39,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 mode={ this.props.mode || defaultMode }
+                rawProps={{ id: this.props.id && `uui-datepicker-input-${this.props.id}` }}
             />
         );
     }
@@ -52,8 +54,9 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 changeIsOpen={ this.onToggle }
                 renderDay={ this.props.renderDay }
                 isHoliday={ this.props.isHoliday }
+                rawProps={{ id: this.props.id && `uui-datepicker-body-${this.props.id}` }}
             />
-            { this.props.renderFooter && this.props.renderFooter() }
+            { this.props.renderFooter?.() }
         </DropdownContainer>;
     }
 }
