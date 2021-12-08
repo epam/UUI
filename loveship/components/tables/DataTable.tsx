@@ -78,7 +78,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainerRef } style={ { minHeight: `${estimatedHeight}px` } }>
+                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
                         ref={ listContainerRef }
                         role='rowgroup'
