@@ -13,7 +13,7 @@ interface ITableFilter {
     id: string;
     key: string;
     type: "singlePicker" | "multiPicker" | "datePicker" | "rangeDatePicker";
-    dataSource: IDataSource<any, any, any>;
+    dataSource?: IDataSource<any, any, any>;
 }
 
 interface PersonsTableState extends DataTableState {
