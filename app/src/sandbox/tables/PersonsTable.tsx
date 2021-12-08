@@ -13,13 +13,13 @@ export const PersonsTable = (props: PersonsTableProps) => {
 
     const columnsSet = React.useMemo(() => getColumns(), []);
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, number>) => {
-        let columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.id } { ...props } columns={ columns } />;
+    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+        const columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
+        return <DataTableRow key={  String(props.id) } { ...props } columns={ columns } />;
     };
 
     return (
-        <DataTable<PersonTableRecord>
+        <DataTable<PersonTableRecord, PersonTableRecordId>
             getRows={ () => props.view.getVisibleRows() }
             columns={ columnsSet.personColumns }
             renderRow={ renderRow }

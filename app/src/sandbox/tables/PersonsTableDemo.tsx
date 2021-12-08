@@ -53,7 +53,7 @@ export const PersonsTableDemo = (props: {}) => {
 
     const editable: IEditable<DataSourceState> = { value, onValueChange };
 
-    let dataSource = React.useMemo(() => new LazyDataSource({
+    const dataSource = React.useMemo(() => new LazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
         getChildCount: (item: PersonTableRecord) =>
@@ -72,31 +72,33 @@ export const PersonsTableDemo = (props: {}) => {
         cascadeSelection: true,
     });
 
-    return <div className={ css.container } role="table" aria-colcount={ getColumns().personColumns.length } aria-rowcount={ personsDataView.getListProps().rowsCount }>
-        <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
-            <FlexCell width={ 200 }>
-                <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Text size='30'>Group By:</Text>
-            </FlexCell>
-            <FlexCell width={ 130 }>
-                <PickerInput { ...useLens(editable, b => b.prop('filter').prop('groupBy')) } dataSource={ groupingDataSource } selectionMode='single' valueType='id' size='30' />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button caption={ value.isFolded ? "Unfold All" : "Fold All" } onClick={ () => {
-                    onValueChange({
-                        ...value,
-                        folded: {},
-                        isFolded: !value.isFolded,
-                    });
-                } } size='30'/>
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
-            </FlexCell>
-        </FlexRow>
-        <PersonsTable { ...useLens(editable, b => b) } view={ personsDataView }/>
-    </div>;
+    return (
+        <div className={ css.container }>
+            <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
+                <FlexCell width={ 200 }>
+                    <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
+                </FlexCell>
+                <FlexCell width='auto'>
+                    <Text size='30'>Group By:</Text>
+                </FlexCell>
+                <FlexCell width={ 130 }>
+                    <PickerInput { ...useLens(editable, b => b.prop('filter').prop('groupBy')) } dataSource={ groupingDataSource } selectionMode='single' valueType='id' size='30' />
+                </FlexCell>
+                <FlexSpacer />
+                <FlexCell width='auto'>
+                    <Button caption={ value.isFolded ? "Unfold All" : "Fold All" } onClick={ () => {
+                        onValueChange({
+                            ...value,
+                            folded: {},
+                            isFolded: !value.isFolded,
+                        });
+                    } } size='30'/>
+                </FlexCell>
+                <FlexCell width='auto'>
+                    <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
+                </FlexCell>
+            </FlexRow>
+            <PersonsTable { ...useLens(editable, b => b) } view={ personsDataView } />
+        </div>
+    );
 };

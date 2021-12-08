@@ -5,7 +5,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext[];
-    component: React.ComponentType<TProps>;
+    component: IComponentDocs<TProps>['component'];
 
     constructor(docs: IComponentDocs<TProps>) {
         this.name = docs.name;
