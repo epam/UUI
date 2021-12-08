@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable, DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions } from '@epam/uui';
-import { PositionValues, RenderRowsConfig } from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -59,7 +59,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             .catch(() => null);
     };
 
-    const renderRowsContainer =  ({ listContainer, estimatedHeight, offsetY, scrollShadows }: RenderRowsConfig) => (
+    const renderRowsContainer =  ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
@@ -74,15 +74,15 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     onValueChange={ props.onValueChange }
                 />
                 <div className={ cx(uuiScrollShadows.top, {
-                    [uuiScrollShadows.topVisible]: scrollShadows.vertical
+                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+                <div className={ css.listContainerRef } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
-                        ref={ listContainer }
+                        ref={ listContainerRef }
                         role='rowgroup'
-                        style={ { marginTop: offsetY }}
+                        style={ { marginTop: offsetY } }
                         children={ getRows() }
                     />
                 </div>

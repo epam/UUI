@@ -11,8 +11,8 @@ interface UseVirtualListApi<List, ScrollContainer> {
     listOffset: number;
     estimatedHeight: number;
     handleScroll: DOMAttributes<ScrollContainer>['onScroll'];
-    listContainer: MutableRefObject<List>;
-    scrollContainer: MutableRefObject<ScrollContainer>;
+    listContainerRef: MutableRefObject<List>;
+    scrollContainerRef: MutableRefObject<ScrollContainer>;
     scrollToIndex(index: number): void;
 };
 
@@ -22,12 +22,12 @@ interface UseVirtualListProps extends IEditable<Pick<DataTableState, 'focusedInd
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
 };
 
-export function useVirtualList<List extends HTMLElement = HTMLDivElement, ScrollContainer extends HTMLElement = HTMLDivElement>({
+export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>({
     onValueChange,
     value,
     rowsCount,
     onScroll,
-    blockAlign = 20
+    blockAlign = 20,
 }: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
     const estimatedHeight = useRef(0);
     const listContainer = useRef<List>();
@@ -120,8 +120,8 @@ export function useVirtualList<List extends HTMLElement = HTMLDivElement, Scroll
     return {
         estimatedHeight: estimatedHeight.current,
         offsetY,
-        scrollContainer,
-        listContainer,
+        scrollContainerRef: scrollContainer,
+        listContainerRef: listContainer,
         handleScroll,
         scrollToIndex,
         listOffset

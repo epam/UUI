@@ -11,18 +11,18 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList ",
+            "text": "VirtualList",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": "provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion, and the height of the whole container.",
+            "text": " provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion, and the height of the whole container.",
             "marks": []
           }
         ]
@@ -39,34 +39,35 @@
           },
           {
             "object": "text",
-            "text": "DataTable ",
+            "text": "DataTable",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": "and ",
+            "text": " and ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "PickerInputBody ",
+            "text": "PickerInputBody",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
+                "type": "uui-richTextEditor-code",
                 "data": {}
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-bold",
@@ -85,12 +86,7 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
@@ -121,18 +117,18 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList ",
+            "text": "VirtualList",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": "track some of it's state (",
+            "text": " track some of it's state (",
             "marks": []
           },
           {
@@ -141,7 +137,7 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-italic",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
@@ -157,28 +153,23 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-italic",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": ") externally. User has to provide",
+            "text": ") externally. User has to provide ",
             "marks": []
           },
           {
             "object": "text",
-            "text": " IEditable<VirtualListState>",
+            "text": "IEditable<VirtualListState>",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
@@ -206,7 +197,7 @@
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-italic",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
@@ -234,23 +225,18 @@
           },
           {
             "object": "text",
-            "text": "VirtualList  ",
+            "text": "VirtualList",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": "detects, that there's enough room for more items.",
+            "text": " detects, that there's enough room for more items.",
             "marks": []
           }
         ]
