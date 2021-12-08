@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PositionValues, RenderRowsConfig } from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
@@ -27,7 +27,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     );
 
-    const renderRowsContainer = ({ listContainer, estimatedHeight, offsetY, scrollShadows }: RenderRowsConfig) => (
+    const renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
@@ -42,15 +42,15 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     onValueChange={ props.onValueChange }
                 />
                 <div className={ cx(uuiScrollShadows.top, {
-                    [uuiScrollShadows.topVisible]: scrollShadows.vertical
+                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={{ minHeight: `${estimatedHeight}px` }}>
+                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
-                        ref={ listContainer }
+                        ref={ listContainerRef }
                         role='rowgroup'
-                        style={ { marginTop: offsetY }}
+                        style={ { marginTop: offsetY } }
                         children={ getRows() }
                     />
                 </div>
@@ -92,11 +92,11 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             shadow='dark'
             renderRows={ renderRowsContainer }
             cx={ cx(css.table, css.shadowDark) }
-            rawProps={{
+            rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,
                 'aria-rowcount': props.rowsCount,
-            }}
+            } }
         />
     );
 }
