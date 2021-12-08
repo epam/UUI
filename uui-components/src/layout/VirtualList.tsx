@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
 import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui';
-import { PositionValues, ScrollBars } from '@epam/uui-components';
+import { PositionValues, ScrollBars } from './';
 import * as css from './VirtualList.scss';
 
 export interface RenderRowsConfig<List extends HTMLElement = HTMLDivElement> {
