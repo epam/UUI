@@ -73,7 +73,7 @@ export default function DndMaterial() {
             onDrop={ (params) => handleOnDrop(params, prevItem, nextItem) }
             render={ (params: DndActorRenderParams) => {
                 return (
-                    <div { ...params.eventHandlers } className={ cx(css.dragElement, params.isDraggedOut && uuiDndState.draggedOut, params.isDropAccepted && uuiDndState.dropAccepted) }>
+                    <div { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
                         <Panel background='white' cx={ cx(css.dndItem, params.isDragGhost && uuiDndState.dragGhost) } >
                             <FlexRow cx={ css.materialRow }>
                                 <FlexCell width='auto'  shrink={ 0 } cx={ css.iconWrapper }>

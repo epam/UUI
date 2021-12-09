@@ -6,7 +6,7 @@ import { Svg } from '../widgets/Svg';
 import { i18n } from '../../i18n';
 
 export interface LabeledInputProps extends LabeledInputCoreProps {
-    Tooltip?: React.ComponentClass<TooltipProps>;
+    Tooltip?: React.ComponentType<TooltipProps>;
     infoIcon?: Icon;
 }
 

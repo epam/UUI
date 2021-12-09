@@ -1,104 +1,88 @@
 import * as React from "react";
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps, ScrollManager, uuiMarkers, Link, UuiContexts, UuiContext } from "@epam/uui";
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui";
 import { FlexRow } from '../layout';
-import * as css from './DataTableRowContainer.scss';
 import { Anchor } from '../navigation/Anchor';
+import * as css from './DataTableRowContainer.scss';
 
-export interface DataTableRowContainerProps extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
-    scrollManager?: ScrollManager;
-    columns?: DataColumnProps<any, any>[];
-    renderCell?(column: DataColumnProps<any, any>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: React.ReactNode, style: React.CSSProperties, scrollRef: (node: Node) => void): React.ReactNode;
+export interface DataTableRowContainerProps<TItem, TId> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+    columns?: DataColumnProps<TItem, TId>[];
+    renderCell?(column: DataColumnProps<TItem, TId>, idx: number): React.ReactNode;
+    wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
 }
 
-const uuiDataTableRowContainer = {
-    uuiTableRowContainer: 'uui-table-row-container',
+enum uuiDataTableRowContainer {
+    uuiTableRowContainer = 'uui-table-row-container',
+    uuiTableFixedSectionLeft = 'uui-table-fixed-section-left',
+    uuiTableFixedSectionRight = 'uui-table-fixed-section-right',
+    uuiScrollShadowLeft = 'uui-scroll-shadow-left',
+    uuiScrollShadowRight = 'uui-scroll-shadow-right'
 };
 
-export class DataTableRowContainer extends React.Component<DataTableRowContainerProps, {}> {
-    static contextType = UuiContext;
-    context: UuiContexts;
-
-    scrollNode: HTMLElement | null = null;
-
-    attachNode(node: HTMLElement) {
-        this.props.scrollManager && this.scrollNode && this.props.scrollManager.detachNode(this.scrollNode);
-        this.scrollNode = node;
-        node && this.props.scrollManager && this.props.scrollManager.attachNode(node);
+export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>, {}> {
+    protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
+        return columns.reduce<React.ReactNode[]>((cells, column) => {
+            const idx = this.props.columns?.indexOf(column) || 0;
+            return cells.concat(this.props.renderCell({
+                ...column,
+                minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width)
+            }, idx));
+        }, []);
     }
 
-    componentWillUnmount() {
-        this.props.scrollManager && this.scrollNode && this.props.scrollManager.detachNode(this.scrollNode);
+    getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
+        return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
     }
 
-    protected renderCells(columns: DataColumnProps<any>[]) {
-        let cells = [];
-        for (let n = 0; n < columns.length; n++) {
-            const column = columns[n];
-            let idx = 0;
-            if (this.props.columns) {
-                idx = this.props.columns.indexOf(column);
-            }
-            cells.push(this.props.renderCell(column, idx));
-        }
-        return cells;
-    }
+    wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
+        <div
+            style={{ flex: `0 0 ${this.getSectionWidth(cells)}px`, maxWidth: `${this.getSectionWidth(cells)}px` }}
+            className={ cx({
+                [css.fixedColumnsSectionLeft]: direction === 'left',
+                [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
+                [css.fixedColumnsSectionRight]: direction === 'right',
+                [uuiDataTableRowContainer.uuiTableFixedSectionRight]: direction === 'right',
+            })}>
+            { this.renderCells(cells) }
+            { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
+            { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+            { direction === 'right' && this.props.renderConfigButton?.() }
+        </div>
+    );
 
-    wrapScrollingSection(content: React.ReactNode, style: React.CSSProperties, scrollRef: (node: Node) => void) {
+    wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => {
+        if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
         return (
-            <div key='ss' className={ css.scrollableColumnsWrapper } style={ style }>
-                <div key='sc' className={ css.scrollableColumnsContainer } ref={ scrollRef }>
-                    { content }
-                </div>
-                <div key='sl' className={ css.scrollShadowLeft } />
-                <div key='sr' className={ css.scrollShadowRight } />
+            <div className={ css.container } style={{
+                flex: `1 0 ${this.getSectionWidth(cells)}px`,
+                minWidth: `${this.getSectionWidth(cells)}px`
+            }}>
+                { this.renderCells(cells) }
             </div>
         );
     }
 
     render() {
-        const fixedLeftColumns: DataColumnProps<any, any>[] = [];
-        const fixedRightColumns: DataColumnProps<any, any>[] = [];
-        const scrollableColumns: DataColumnProps<any, any>[] = [];
-        const scrollableStyle = {
-            flexGrow: 100,
-            flexShrink: 1,
-            minWidth: 0,
-            width: 0,
-        };
+        const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
+        const fixedRightColumns: DataColumnProps<TItem, TId>[] = [];
+        const staticColumns: DataColumnProps<TItem, TId>[] = [];
 
-        this.props.columns && this.props.columns.forEach(i => {
-            if (i.fix === 'left') {
-                fixedLeftColumns.push(i);
-            } else if (i.fix === 'right') {
-                fixedRightColumns.push(i);
-            } else {
-                scrollableColumns.push(i);
-            }
+        this.props.columns?.forEach(i => {
+            if (i.fix === 'left') fixedLeftColumns.push(i);
+            else if (i.fix === 'right') fixedRightColumns.push(i);
+            else staticColumns.push(i);
         });
 
-        const scrollingCells = (
-            <FlexRow alignItems='top' >
-                { this.renderCells(scrollableColumns) }
-            </FlexRow>
+        const rowContent = (
+            <>
+                { fixedLeftColumns.length > 0 && this.wrapFixedSection(fixedLeftColumns, 'left') }
+                { this.wrapScrollingSection(staticColumns) }
+                { fixedRightColumns.length > 0 && this.wrapFixedSection(fixedRightColumns, 'right') }
+                { this.props.overlays }
+            </>
         );
-
-        const scrollRef = (node: Node) => this.attachNode(node as HTMLElement);
-
-        const scrollingSection = this.props.wrapScrollingSection
-            ? this.props.wrapScrollingSection(scrollingCells, scrollableStyle, scrollRef)
-            : this.wrapScrollingSection(scrollingCells, scrollableStyle, scrollRef);
-
-        const rowContent = <>
-            { this.renderCells(fixedLeftColumns) }
-            { scrollingSection }
-            { this.renderCells(fixedRightColumns) }
-            { this.props.overlays }
-            { this.props.renderConfigButton && this.props.renderConfigButton() }
-        </>;
 
         return (
             this.props.link ? (
@@ -114,7 +98,6 @@ export class DataTableRowContainer extends React.Component<DataTableRowContainer
                     onClick={ this.props.onClick }
                     cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
                     rawProps={ this.props.rawProps }
-                    alignItems='top'
                 >
                     { rowContent }
                 </FlexRow>

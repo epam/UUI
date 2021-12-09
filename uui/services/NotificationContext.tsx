@@ -6,7 +6,7 @@ import { LayoutContext } from './LayoutContext';
 import { INotification } from '../types/props';
 
 export interface NotificationOperation {
-    component: React.ComponentClass<any>;
+    component: React.ComponentType<any>;
     props: INotification;
     config: NotificationParams;
 }

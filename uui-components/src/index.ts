@@ -9,4 +9,5 @@ export * from './table';
 export * from './navigation';
 export * from './RichTextView';
 export * from './pickers';
+export * from './errors';
 import './assets/styles/index.scss';

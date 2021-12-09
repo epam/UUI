@@ -2901,10 +2901,7 @@
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
       },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
-      },
+
       {
         "name": "selectAll",
         "value": "ICheckable"
@@ -3114,10 +3111,6 @@
       {
         "name": "onFocus",
         "value": "(focusedIndex: number) => void"
-      },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
       },
       {
         "name": "borderBottom",
@@ -7140,10 +7133,6 @@
         "value": "DataColumnProps<TItem, TId, any>[]"
       },
       {
-        "name": "scrollManager",
-        "value": "ScrollManager"
-      },
-      {
         "name": "selectAll",
         "value": "ICheckable"
       },
@@ -7352,10 +7341,6 @@
       {
         "name": "onFocus",
         "value": "(focusedIndex: number) => void"
-      },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
       },
       {
         "name": "borderBottom",

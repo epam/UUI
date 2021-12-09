@@ -10,7 +10,7 @@ const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ 
     .implements([onClickDoc, iconDoc] as any)
     .prop('color', {
         examples: [...allEpamAdditionalColors, ...allEpamGrayscaleColors],
-        renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
     .prop('style', { examples: [
             { name: 'fill: blue', value: { fill: '#008ACE' } },

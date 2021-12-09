@@ -9,7 +9,7 @@ exports[`RadioInput should be rendered correctly 1`] = `
   >
     <input
       aria-checked={false}
-      checked={null}
+      checked={false}
       onChange={[Function]}
       type="radio"
     />
@@ -26,7 +26,7 @@ exports[`RadioInput should be rendered correctly 2`] = `
   >
     <input
       aria-checked={false}
-      checked={null}
+      checked={false}
       onChange={[Function]}
       type="radio"
     />

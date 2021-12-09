@@ -5,7 +5,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext[];
-    component: React.ComponentType<TProps>;
+    component: IComponentDocs<TProps>['component'];
 
     constructor(docs: IComponentDocs<TProps>) {
         this.name = docs.name;
@@ -38,7 +38,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this;
     }
 
-    public withContexts(...contexts: (React.ComponentClass<DemoComponentProps> & { displayName: string })[]) {
+    public withContexts(...contexts: (React.ComponentType<DemoComponentProps> & { displayName: string })[]) {
         contexts.forEach(context => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
