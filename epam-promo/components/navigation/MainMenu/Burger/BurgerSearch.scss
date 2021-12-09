@@ -6,8 +6,9 @@
     height: 60px;
     background-color: var(--background-color);
     fill: var(--fill);
-    padding: 0 16px;
+    padding: 0 24px;
     flex-shrink: 0;
+    width: auto;
 
     :global(.uui-input) {
         color: var(--color);

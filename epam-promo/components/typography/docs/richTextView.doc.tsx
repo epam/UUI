@@ -13,7 +13,7 @@ import cx from 'classnames';
 import * as css from '../../../assets/styles/typography.scss';
 import * as style from './richTextViewDoc.scss';
 
-const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView as React.ComponentClass<any> })
+const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
         examples: [
             { value: '<h1>Hello</h1>', isDefault: false, name: '<h1>' },

@@ -1,39 +1,25 @@
 import * as React from 'react';
 import { isClickableChildClicked, cx, FlexCellProps } from '@epam/uui';
 
-export class FlexCell extends React.Component<FlexCellProps> {
+export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, ref) => {
+    const style = {
+        minWidth: props.minWidth ? `${props.minWidth}px` : 0,
+        flexGrow: props.grow,
+        flexShrink: props.shrink,
+        flexBasis: props.width ? ((props.width === 'auto' || props.width === '100%') ? props.width : `${props.width}px`) : "0",
+        textAlign: props.textAlign,
+        alignSelf: props.alignSelf,
+    };
 
-    handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => !isClickableChildClicked(e) && this.props.onClick && this.props.onClick(e);
-
-    render() {
-        let width: string = '0';
-
-        if (this.props.width) {
-            if (this.props.width === 'auto' || this.props.width === '100%') {
-                width = this.props.width;
-            } else {
-                width = this.props.width + 'px';
-            }
-        }
-
-        const style = {
-            minWidth: this.props.minWidth ? (this.props.minWidth + 'px') : 0,
-            flexGrow: this.props.grow,
-            flexShrink: this.props.shrink,
-            flexBasis: width,
-            textAlign: this.props.textAlign,
-            alignSelf: this.props.alignSelf,
-        };
-
-        return (
-            <div
-                className={ cx(this.props.cx) }
-                onClick={ this.handleClick }
-                style={ style }
-                { ...this.props.rawProps }
-            >
-                { this.props.children }
-           </div>
-        );
-    }
-}
+    return (
+        <div
+            className={ cx(props.cx) }
+            onClick={ e => !isClickableChildClicked(e) && props.onClick?.(e) }
+            style={ style }
+            ref={ ref }
+            { ...props.rawProps }
+        >
+            { props.children }
+        </div>
+    );
+});

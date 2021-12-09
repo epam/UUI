@@ -13,6 +13,11 @@ export class VirtualListDoc extends BaseDocsBlock {
                     title='Basic'
                     path='./examples/virtualList/Basic.example.tsx'
                 />
+
+                <DocExample
+                    title='Advanced'
+                    path='./examples/virtualList/Advanced.example.tsx'
+                />
             </>
         );
     }

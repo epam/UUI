@@ -1,6 +1,6 @@
 {
   "name": "@epam/edu-core-routing",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "description": "EPAM Edu Core Routing",
   "author": "EPAM",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@epam/uui": "4.3.0",
+    "@epam/uui": "4.4.0",
     "jsurl": "0.1.5",
     "lodash.clone": "4.5.0",
     "lodash.merge": "4.6.2",

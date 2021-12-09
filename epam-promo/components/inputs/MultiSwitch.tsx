@@ -24,7 +24,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
                         <Button
                             {  ...item }
                             isDisabled={ this.props.isDisabled }
-                            key={ index + '-' + item.id as any }
+                            key={ index + '-' + item.id }
                             onClick={ () => this.props.onValueChange(item.id) }
                             fill={ this.props.value === item.id ? 'solid' : 'white' }
                             color={ item.color || 'blue' }

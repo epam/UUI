@@ -20,7 +20,7 @@ const MyListItem: FC<{ index: number }> = (props) => {
     </div>;
 }
 
-// Generate some data. In real app, this would be some data items retrieved from server.
+// Generate some data. In the real app data items are retrieved from the server.
 const someData: number[] = [];
 for (let n = 0; n < 1000; n++) {
     someData.push(n + 1);
@@ -29,18 +29,19 @@ for (let n = 0; n < 1000; n++) {
 export default function VirtualListExample() {
     const [state, setState] = useState<VirtualListState>({ topIndex: 0, visibleCount: 10 });
 
-    // Extract the visible part: starting from the state.topIndex, and only state.visibleCount of items
+    // Extract visible part: starting from state.topIndex, and only state.visibleCount of items
     const visibleItems = someData.slice(state.topIndex, state.topIndex + state.visibleCount);
 
-    // Render visible data items into some components. Passing key is critical in this case!
-    // Invisible components would be unmount, and would loose their state.
-    // So it's a good idea to keep their state outside. We don't do this in this demo for the sake of simplicity.
-    const visibleRows = visibleItems.map(index => <MyListItem index={ index } key={ index }/>);
+    // Map visible data to some components. Passing key is critical in this case!
+    // Invisible components will be unmounted, and, thus, lose their state.
+    // So it's a good idea to keep their state externally. We are not doing this in this demo for simplicity sake.
+    const visibleRows = visibleItems.map(index => <MyListItem index={ index } key={ index } />);
 
     return (
         <VirtualList
-            cx={ css.list } // User need to define height for container, otherwise it would extend to fit whole content
+            cx={ css.list } // User needs to define height for container, otherwise it would extend to fit the whole content
             rows={ visibleRows }
+            role="listbox"
             value={ state }
             onValueChange={ setState }
 
