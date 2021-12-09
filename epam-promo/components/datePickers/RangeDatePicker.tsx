@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, uuiMod } from '@epam/uui';
+import { IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';
@@ -9,6 +9,11 @@ import * as css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;
+    rawProps?: {
+        from?: IHasRawProps<HTMLDivElement>['rawProps'];
+        to?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    }
 }
 
 export type InputType = 'from' | 'to';
@@ -29,6 +34,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                         renderDay={ this.props.renderDay }
                         renderFooter={ this.props.renderFooter && (() => this.props.renderFooter(this.props.value || defaultValue)) }
                         isHoliday={ this.props.isHoliday }
+                        rawProps={ this.props.rawProps?.body }
                     />
                 </FlexRow>
             </DropdownContainer>
@@ -36,8 +42,6 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
     }
 
     renderInput = (props: IDropdownToggler) => {
-        const handleFromChange = this.getChangeHandler('from');
-        const handleToChange = this.getChangeHandler('to');
         return (
             <div
                 className={ cx(
@@ -56,13 +60,14 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
-                    onValueChange={ handleFromChange }
+                    onValueChange={ this.getChangeHandler('from') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
                     onFocus={ () => this.handleFocus('from') }
                     onBlur={ () => this.handleBlur('from') }
                     isDropdown={ false }
+                    rawProps={ this.props.rawProps?.from }
                 />
                 <div className={ css.separator } />
                 <TextInput
@@ -71,7 +76,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     size={ this.props.size || '36' }
                     value={ this.state.inputValue.to }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
-                    onValueChange={ handleToChange }
+                    onValueChange={ this.getChangeHandler('to') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
@@ -79,6 +84,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
                     ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
+                    rawProps={ this.props.rawProps?.to }
                 />
             </div>
         );

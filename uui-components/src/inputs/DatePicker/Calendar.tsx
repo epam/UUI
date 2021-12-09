@@ -38,7 +38,7 @@ export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLDivE
 }
 
 export class Calendar<TSelection> extends React.Component<CalendarProps<TSelection>, { weeksHeight: number }> {
-    constructor(props: any) {
+    constructor(props: CalendarProps<TSelection>) {
         super(props);
         dayjs.locale(i18n.datePicker.locale);
         dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
