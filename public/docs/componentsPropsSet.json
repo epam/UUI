@@ -2220,10 +2220,6 @@
       {
         "name": "cx",
         "value": "any"
-      },
-      {
-        "name": "id",
-        "value": "string"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
@@ -6561,10 +6557,6 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -6889,10 +6881,6 @@
       {
         "name": "minCharsToSearch",
         "value": "number"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "selection",
