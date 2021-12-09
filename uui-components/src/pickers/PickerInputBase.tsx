@@ -164,7 +164,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getPickerBodyProps(rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> {
-        return  {
+        return {
             value: this.getDataSourceState(),
             onValueChange: this.handleDataSourceValueChange,
             search: this.lens.prop('dataSourceState').prop('search').toProps(),
@@ -178,7 +178,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 search: this.state.dataSourceState.search,
                 onClose: () => this.toggleBodyOpening(false),
             })),
-            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
+            onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
         };
     }
 
@@ -211,7 +211,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition: this.props.searchPosition,
-            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
+            onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             ref: this.togglerRef,
