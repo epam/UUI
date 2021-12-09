@@ -4,7 +4,7 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon,
+    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps,
 } from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
@@ -24,7 +24,10 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
-    inputId?: string;
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    }
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -61,14 +64,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
     }
 
-    componentDidUpdate = (prevProps: PickerInputBaseProps<any, any>, prevState: PickerInputState) => {
+    componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
         const { search } = this.state.dataSourceState;
         const isSearchingStarted = !prevState.dataSourceState.search && search;
         const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
         if (isSearchingStarted && prevState.showSelected) {
-            this.setState({
-                showSelected: false,
-            });
+            this.setState({ showSelected: false });
         }
         if (search && isSwitchIsBeingTurnedOn) {
             this.handleTogglerSearchChange('', true);
@@ -76,7 +77,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getInitialState() {
-        let base = super.getInitialState();
+        const base = super.getInitialState();
         return {
             ...base,
             opened: false,
@@ -163,7 +164,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getPickerBodyProps(rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> {
-        return  {
+        return {
             value: this.getDataSourceState(),
             onValueChange: this.handleDataSourceValueChange,
             search: this.lens.prop('dataSourceState').prop('search').toProps(),
@@ -171,12 +172,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             rawProps: {
                 'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
                 'aria-orientation': 'vertical',
+                ...this.props.rawProps?.body,
             },
             renderNotFound: this.props.renderNotFound && (() => this.props.renderNotFound({
                 search: this.state.dataSourceState.search,
                 onClose: () => this.toggleBodyOpening(false),
             })),
-            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
+            onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
         };
     }
 
@@ -209,13 +211,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition: this.props.searchPosition,
-            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => this.handlePickerInputKeyboard(rows, e),
+            onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
             editMode: this.props.editMode,
-            inputId: this.props.inputId,
+            rawProps: this.props.rawProps?.input,
         };
     }
 
