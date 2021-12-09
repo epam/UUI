@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { IDropdownToggler } from '@epam/uui';
+import { IDropdownToggler, IHasRawProps } from '@epam/uui';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays';
@@ -14,6 +14,10 @@ const defaultMode = EditMode.FORM;
 export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditMode {
     minutesStep?: number;
     format?: 12 | 24;
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    }
 }
 
 export class TimePicker extends BaseTimePicker<TimePickerProps> {
@@ -34,6 +38,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
             isDropdown={ false }
             placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
             mode={ this.props.mode || defaultMode }
+            rawProps={ this.props.rawProps?.input }
         />
     );
 
@@ -43,6 +48,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
                 <TimePickerBody
                     { ...this.props }
                     value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
+                    rawProps={ this.props.rawProps?.body }
                 />
             </DropdownContainer>
         )

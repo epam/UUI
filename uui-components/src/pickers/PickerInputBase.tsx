@@ -4,7 +4,7 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon,
+    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps,
 } from '@epam/uui';
 import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
@@ -24,7 +24,10 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
-    id?: string;
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    }
 };
 
 interface PickerInputState extends DropdownState, PickerBaseState {
@@ -169,8 +172,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             rawProps: {
                 'aria-multiselectable': this.props.selectionMode === 'multi' ? true : null,
                 'aria-orientation': 'vertical',
-                id: this.props.id && `uui-pickerinput-body-${this.props.id}`
-            } as React.HtmlHTMLAttributes<HTMLDivElement>,
+                ...this.props.rawProps?.body,
+            },
             renderNotFound: this.props.renderNotFound && (() => this.props.renderNotFound({
                 search: this.state.dataSourceState.search,
                 onClose: () => this.toggleBodyOpening(false),
@@ -214,7 +217,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
             editMode: this.props.editMode,
-            id: this.props.id && `uui-pickerinput-input-${this.props.id}`
+            rawProps: this.props.rawProps?.input,
         };
     }
 

@@ -536,10 +536,6 @@
         "value": "(day: Dayjs) => boolean"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "value",
         "value": "T"
       },
@@ -668,10 +664,6 @@
       {
         "name": "cx",
         "value": "any"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "getValueChangeAnalyticsEvent",
@@ -1552,10 +1544,6 @@
       {
         "name": "format",
         "value": "24 | 12"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "renderTarget",
@@ -2488,10 +2476,6 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -2670,10 +2654,6 @@
       {
         "name": "minCharsToSearch",
         "value": "number"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "selection",
@@ -4192,10 +4172,6 @@
         "value": "(day: Dayjs) => boolean"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "value",
         "value": "T"
       },
@@ -4334,10 +4310,6 @@
         "value": "any"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       },
@@ -4374,10 +4346,6 @@
       {
         "name": "tabIndex",
         "value": "number"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "value",
@@ -4518,10 +4486,6 @@
       {
         "name": "inputCx",
         "value": "any"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "cx",
@@ -5342,10 +5306,6 @@
       {
         "name": "format",
         "value": "24 | 12"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "renderTarget",
