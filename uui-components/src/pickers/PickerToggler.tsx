@@ -21,7 +21,6 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
-    id?: string;
 }
 
 interface PickerTogglerState {
@@ -122,7 +121,6 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
             type='text'
             tabIndex={ -1 }
             aria-haspopup={ true }
-            id={ this.props.id }
             autoComplete='no'
             aria-required={ this.props.isRequired }
             aria-disabled={ this.props.isDisabled }

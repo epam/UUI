@@ -3,14 +3,14 @@ import * as css from './ComplexForm.scss';
 import {
     Panel, FlexRow, FlexCell, LabeledInput,
     TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput,
-    RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker
+    RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker,
 } from '@epam/loveship';
 import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource } from '@epam/uui';
 import { svc } from '../../services';
-import { Location, City, PersonDetails } from '@epam/uui-docs';
+import { City, PersonDetails } from '@epam/uui-docs';
 import { ExperienceEditor } from './ExperienceEditor';
 
-interface PersonDetailEditorProps{
+interface PersonDetailEditorProps {
     lens: ILens<PersonDetails>;
     isDisabled: boolean;
     isReadOnly: boolean;
@@ -22,7 +22,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         const attachments =  this.props.lens.prop('attachments').get();
         const file = attachments.find(i => i.id === id);
         file.progress = progress;
-        this.updateAttachment(file, file.id)
+        this.updateAttachment(file, file.id);
     }
 
     updateAttachment(newFile: any, id: number) {
@@ -41,10 +41,10 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                 name: file.name,
                 size: file.size,
             });
-            svc.uuiApi.uploadFile('/uploadFileMock', file, {onProgress: (progress) => this.trackProgress(progress, tempId)}).then( res => {
-                this.updateAttachment(res, tempId)
-            })
-        })
+            svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => this.trackProgress(progress, tempId) }).then(res => {
+                this.updateAttachment(res, tempId);
+            });
+        });
 
         this.props.lens.prop('attachments').set(attachments);
     }
@@ -58,9 +58,12 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                             <img className={ css.dropImg } src="/grow/static/images/attachment_area.svg" />
                             <div className={ css.dropText }>Drop to attach file</div>
                         </div>
-                    ) : <FlexRow spacing={null}>
-                            <UploadFileToggler onFilesAdded={ this.uploadFile } render={ (props) => <LinkButton font='sans-semibold' {...props} caption='Attach ' /> } />
-                            <Text font='sans-semibold'>{ ' or drop files here'}</Text>
+                    ) : <FlexRow spacing={ null }>
+                            <UploadFileToggler
+                                onFilesAdded={ this.uploadFile }
+                                render={ props => <LinkButton font='sans-semibold' { ...props } caption='Attach ' /> }
+                            />
+                            <Text font='sans-semibold'>{ ' or drop files here' }</Text>
                     </FlexRow> }
                 </div>
             </div>
@@ -73,9 +76,9 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         return (
             <div>
                 <DropSpot render={ this.renderAttachmentSection } onFilesDropped={ this.uploadFile } />
-                { attachments && attachments.map(i => <Text lineHeight='24' size='30'>{i.name} {i.progress}</Text>) }
+                { attachments && attachments.map(i => <Text lineHeight='24' size='30'>{ i.name } { i.progress }</Text>) }
             </div>
-        )
+        );
     }
 
     lazyDs = new LazyDataSource({
@@ -83,75 +86,75 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
     });
 
     arrayDs = new ArrayDataSource({
-        items: (new Array(50)).fill(0).map((item, index) => (2018 - index).toString()).map(name => ({ id: name, name: name }))
-    })
+        items: (new Array(50)).fill(0).map((item, index) => (2018 - index).toString()).map(name => ({ id: name, name })),
+    });
 
     asyncLocationsDs = new AsyncDataSource({
         api: () => svc.api.demo.locations({}).then(r => r.items),
     });
 
-    render(){
-        return <div className={css.horizontal}>
+    render() {
+        return <div className={ css.horizontal }>
         <Panel>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
-                    <LabeledInput htmlFor='uui-pickerinput-input-city' label='City' {...this.props.lens.prop('countryId').toProps()} >
+                <FlexCell grow={ 1 }>
+                    <LabeledInput htmlFor='city' label='City' { ...this.props.lens.prop('countryId').toProps() }>
                         <PickerInput<City, string>
-                            {...this.props.lens.prop('city').toProps()}
+                            { ...this.props.lens.prop('city').toProps() }
                             selectionMode='multi'
                             valueType='id'
-                            id='city'
-                            dataSource={this.lazyDs}
-                            getName={(c: City) => c.name}
+                            rawProps={ { input: { id: 'city' } } }
+                            dataSource={ this.lazyDs }
+                            getName={ c => c.name }
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
-                    <LabeledInput htmlFor='uui-pickerinput-input-country' label='Country' { ...this.props.lens.prop('countryId').toProps() } >
+                <FlexCell grow={ 1 }>
+                    <LabeledInput htmlFor='country' label='Country' { ...this.props.lens.prop('countryId').toProps() } >
                        { <PickerInput
-                            {...this.props.lens.prop('countries').toProps()}
+                            { ...this.props.lens.prop('countries').toProps() }
                             selectionMode='multi'
                             valueType='id'
-                            id='country'
-                            dataSource={this.asyncLocationsDs}
-                            getName={(c: Location) => c.name}
+                            rawProps={ { input: { id: 'country' } } }
+                            dataSource={ this.asyncLocationsDs }
+                            getName={ c => c.name }
                         /> }
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
+                <FlexCell grow={ 1 }>
                     <LabeledInput
                         label='Middle Name'
                         htmlFor="middleName"
-                        {...this.props.lens.prop('middleName').toProps()}
+                        { ...this.props.lens.prop('middleName').toProps() }
                     >
                         <TextInput
-                            {...this.props.lens.prop('middleName').toProps()}
+                            { ...this.props.lens.prop('middleName').toProps() }
                             id="middleName"
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1} minWidth={100}>
-                    <LabeledInput htmlFor='birthDate' label='Birthday date' {...this.props.lens.prop('birthdayDate').toProps()}>
+                <FlexCell grow={ 1 } minWidth={ 100 }>
+                    <LabeledInput htmlFor='birthDate' label='Birthday date' { ...this.props.lens.prop('birthdayDate').toProps() }>
                         <DatePicker
-                            {...this.props.lens.prop('birthdayDate').toProps()}
+                            { ...this.props.lens.prop('birthdayDate').toProps() }
                             format='DD-MM-YYYY'
-                            id='birthDate'
+                            rawProps={ { input: { id: 'birthDate' } } }
                         />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
+                <FlexCell grow={ 1 }>
                     <LabeledInput
                         label='Last Name'
                         htmlFor='lastName'
-                        {...this.props.lens.prop('lastName').toProps()}
+                        { ...this.props.lens.prop('lastName').toProps() }
                     >
                         <TextInput
                             id='lastName'
-                            {...this.props.lens.prop('lastName').toProps()}
+                            { ...this.props.lens.prop('lastName').toProps() }
                         />
                     </LabeledInput>
                 </FlexCell>

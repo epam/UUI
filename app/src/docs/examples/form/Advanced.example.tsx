@@ -34,7 +34,7 @@ export default function AdvancedFormExample() {
                         return !(val && val.includes('@')) && ['Please enter correct email'];
                     },
                 ],
-            }
+            },
         },
     });
 
@@ -52,7 +52,7 @@ export default function AdvancedFormExample() {
             </ErrorNotification>
         )),
         getMetadata,
-        settingsKey: 'advanced-form-example'
+        settingsKey: 'advanced-form-example',
     });
 
     const countriesDataSource = useAsyncDataSource({
@@ -60,7 +60,7 @@ export default function AdvancedFormExample() {
     }, []);
 
     const citiesDataSource = useLazyDataSource({
-        api: svc.api.demo.cities
+        api: svc.api.demo.cities,
     }, []);
 
     return (
