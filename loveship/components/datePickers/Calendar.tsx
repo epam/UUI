@@ -9,4 +9,4 @@ export function applyDateSelectionMods() {
     ];
 }
 
-export const Calendar = withMods<CalendarProps<Dayjs>, any>(uuiCalendar, applyDateSelectionMods, () => ({}));
+export const Calendar = withMods<CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods, () => ({}));

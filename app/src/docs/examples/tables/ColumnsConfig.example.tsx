@@ -22,7 +22,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             isSortable: true,
             fix: 'left',
             width: 120,
-            minWidth: 100,
+            shrink: 0,
         },
         {
             key: 'name',
@@ -37,35 +37,35 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             key: 'countryName',
             caption: 'COUNTRY',
             render: city => <Text color='gray80' fontSize='14'>{ city.countryName }</Text>,
-            isSortable: true,
-            shrink: 0,
             width: 140,
             minWidth: 100,
+            shrink: 0,
+            isSortable: true,
         },
         {
             key: 'population',
             caption: 'POPULATION',
             render: city => <Text color='gray80' fontSize='14'>{ city.population }</Text>,
+            isSortable: true,
+            textAlign: 'right',
             width: 140,
             minWidth: 100,
             shrink: 0,
-            isSortable: true,
-            textAlign: 'right',
         },
         {
             key: 'altname',
             caption: 'Alt. names',
-            render: (city) => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
+            render: city => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
             info: 'Alternative city names',
             shrink: 0,
             width: 300,
-            minWidth: 150,
+            minWidth: 250,
         },
         {
             key: 'actions',
             render: () => <IconButton icon={ moreIcon } color='gray60' />,
-            width: 54,
             fix: 'right',
+            width: 54
         },
     ], []);
 
@@ -90,11 +90,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{
-            role: 'table',
-            'aria-rowcount': view.getListProps().rowsCount,
-            'aria-colcount': citiesColumns.length
-        }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }

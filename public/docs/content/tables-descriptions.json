@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI has widely configurable solution for displaying data as a table. We have already builded components like ",
+            "text": "UUI has a widely configurable solution for displaying data as a table. We have already built components like ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " or set of  separate table components from which you can create your own custom table.",
+            "text": " as long as a set of  separate table components from which you can create your own custom table.",
             "marks": []
           }
         ]
@@ -80,7 +80,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Virtualized list of rows (only visible rows are in the DOM)",
+                    "text": "List virtualization (only visible rows are in the DOM)",
                     "marks": []
                   }
                 ]
@@ -99,7 +99,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Tree table with folding",
+                    "text": "Foldable tree table",
                     "marks": []
                   }
                 ]
@@ -156,7 +156,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Row selection and 'Select All' functionality (only for Array and Async DataSources)",
+                    "text": "Row selection and 'Select All' functionality (only for Array- and Async- DataSources)",
                     "marks": []
                   }
                 ]
@@ -175,7 +175,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Rows reordering via Drag&Drop",
+                    "text": "Rows reordering via Drag & Drop",
                     "marks": []
                   }
                 ]

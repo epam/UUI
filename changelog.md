@@ -1,3 +1,10 @@
+# 4.5.0 - 09.12.2021
+
+**What's New**
+
+* [RawProps][BreakingChange]: added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
+* [VirtualList]: introduced new useVirtualList hook
+
 # 4.4.0 - 07.12.2021
 
 **What's New**

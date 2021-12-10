@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTable.scss";
 import { DataRowProps, DataRowOptions, cx, useLazyDataSource } from "@epam/uui";
-import { Person, PersonGroup } from "@epam/uui-docs";
+import { Person } from "@epam/uui-docs";
 import { FlexRow, DataTable, DataTableRow } from "@epam/promo";
 
 import { svc } from "../../services";
@@ -40,24 +40,22 @@ export const DemoTable: React.FC = () => {
 
     const dataSource = useLazyDataSource({
         api,
-        getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
-        getChildCount: (item: PersonTableRecord) => {
-            return item.__typename === "PersonGroup" ? item.count : null;
-        },
+        getId: i => [i.__typename, i.id] as PersonTableRecordId,
+        getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, []);
 
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
         isSelectable: true,
-        onClick: (rowProps: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+        onClick(rowProps) {
             rowProps.onSelect(rowProps);
             setIsInfoPanelOpened(true);
         },
     };
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        let columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns }/>;
+        const columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
+        return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns } />;
     };
 
     const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
@@ -82,18 +80,13 @@ export const DemoTable: React.FC = () => {
                 />
             </SlidingPanel>
 
-            <div
-                className={ css.container }
-                role="table"
-                aria-rowcount={ personsDataView.getListProps().rowsCount }
-                aria-colcount={ columnsSet.personColumns.length }
-            >
+            <div className={ css.container }>
                 <FlexRow
                     background="white"
                     borderBottom
                     cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }
                 >
-                    <Presets { ...tableStateApi }/>
+                    <Presets { ...tableStateApi } />
                 </FlexRow>
 
                 <DataTable
@@ -104,7 +97,7 @@ export const DemoTable: React.FC = () => {
                     showColumnsConfig
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.onTableStateChange }
-                    allowColumnsResizing={ true }
+                    allowColumnsResizing
                     { ...personsDataView.getListProps() }
                 />
             </div>

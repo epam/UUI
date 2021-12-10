@@ -2,66 +2,34 @@
 
 exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
 >
   <div
-    className="scrollableColumnsWrapper"
+    className="container"
     style={
       Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
+        "flex": "1 0 0px",
+        "minWidth": "0px",
       }
     }
-  >
-    <div
-      className="scrollableColumnsContainer"
-    >
-      <div
-        className="container align-items-top"
-      />
-    </div>
-    <div
-      className="scrollShadowLeft"
-    />
-    <div
-      className="scrollShadowRight"
-    />
-  </div>
+  />
 </div>
 `;
 
 exports[`DataTableHeaderRow should be rendered correctly 2`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-top"
+  className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
 >
   <div
-    className="scrollableColumnsWrapper"
+    className="container"
     style={
       Object {
-        "flexGrow": 100,
-        "flexShrink": 1,
-        "minWidth": 0,
-        "width": 0,
+        "flex": "1 0 0px",
+        "minWidth": "0px",
       }
     }
-  >
-    <div
-      className="scrollableColumnsContainer"
-    >
-      <div
-        className="container align-items-top"
-      />
-    </div>
-    <div
-      className="scrollShadowLeft"
-    />
-    <div
-      className="scrollShadowRight"
-    />
-  </div>
+  />
 </div>
 `;
