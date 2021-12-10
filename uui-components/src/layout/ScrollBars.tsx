@@ -1,87 +1,84 @@
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
-import * as React from 'react';
-import { IHasCX, cx } from '@epam/uui';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui';
 import * as css from './ScrollBars.scss';
-import * as ReactDOM from 'react-dom';
 
-export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps {
+export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps, IHasRawProps<Scrollbars> {
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
-}
+    ref?: React.MutableRefObject<Scrollbars>;
+};
 
-export interface PositionValues extends CustomScrollBars.positionValues {}
+export interface PositionValues extends CustomScrollBars.positionValues {};
 
-export class ScrollBars extends React.Component<ScrollbarProps, any> {
-    scrollBars: Scrollbars;
+export interface ScrollbarsApi extends Scrollbars {};
 
-    componentDidMount() {
-        this.handleUpdateScroll();
-    }
+enum uuiScrollbars {
+    uuiShadowTop = 'uui-shadow-top',
+    uuiShadowBottom = 'uui-shadow-bottom',
+    uuiThumbVertical = 'uui-thumb-vertical',
+    uuiThumbHorizontal = 'uui-thumb-horizontal',
+    uuiTrackVertical = 'uui-track-vertical',
+    uuiTrackHorizontal = 'uui-track-horizontal',
+    uuiShadowTopVisible = 'uui-shadow-top-visible',
+    uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
+};
 
-    componentDidUpdate() {
-        this.handleUpdateScroll();
-    }
+export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
+    style,
+    hasBottomShadow,
+    hasTopShadow,
+    rawProps,
+    ...props
+}, ref) => {
+    const bars = useRef<ScrollbarsApi>();
 
-    setRefs = (scrollBars: Scrollbars) => {
-        this.scrollBars = scrollBars;
-    }
+    useImperativeHandle(ref, () => bars.current, [bars.current]);
 
-    handleUpdateScroll = () => {
-        const scrollBars = this.scrollBars && ReactDOM.findDOMNode(this.scrollBars) as Element;
-        let scrollValues = this.scrollBars.getValues();
-        let showBottomShadow = this.props.hasBottomShadow && (scrollValues.scrollHeight - scrollValues.clientHeight > scrollValues.scrollTop);
+    const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
+        if (!bars.current) return;
+        event && props.onScroll?.(event);
 
-        if (this.props.hasTopShadow && scrollValues.scrollTop > 0) {
-            scrollBars?.classList?.add('uui-shadow-top-visible');
-        } else {
-            scrollBars?.classList?.remove('uui-shadow-top-visible');
-        }
+        const scrollBars = bars.current?.container;
+        if (!scrollBars) return;
+        const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
+        const showTopShadow = hasTopShadow && scrollTop > 0;
+        const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
 
-        if (showBottomShadow) {
-            scrollBars?.classList?.add('uui-shadow-bottom-visible');
-        } else {
-            scrollBars?.classList?.remove('uui-shadow-bottom-visible');
-        }
-    }
+        if (showTopShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowTopVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowTopVisible);
 
-    renderView = ({ style, ...props }: { style: {}, props: any }) => {
-        return (
-            <div
-                style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } }
-                { ...props }
-            />
-        );
-    }
+        if (showBottomShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowBottomVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
+    };
 
-    renderThumbVertical = () => <div className="uui-thumb-vertical"/>;
+    useEffect(handleUpdateScroll);
 
-    renderThumbHorizontal = () => <div className="uui-thumb-horizontal"/>;
+    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) =>
+        props.renderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest }) || (
+        <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
+    );
 
-    render() {
-        let { renderView, style, hasBottomShadow, hasTopShadow, ...restProps } = this.props;
-
-        return (
-            <CustomScrollBars.default
-                { ...restProps }
-                className={ cx(
-                    css.root,
-                    this.props.cx,
-                    this.props.className,
-                    hasTopShadow && "uui-shadow-top",
-                    hasBottomShadow && "uui-shadow-bottom",
-                ) }
-                renderView={ renderView || this.renderView }
-                renderThumbHorizontal={ this.renderThumbHorizontal }
-                renderThumbVertical={ this.renderThumbVertical }
-                style={ { ...{ display: 'flex' }, ...style } }
-                onScroll={ e => {
-                    this.handleUpdateScroll();
-                    this.props.onScroll && this.props.onScroll(e);
-                } }
-                ref={ this.setRefs }
-            >
-                { this.props.children }
-            </CustomScrollBars.default>
-        );
-    }
-}
+    return (
+        <CustomScrollBars.default
+            className={ cx(
+                css.root,
+                props.cx,
+                props.className,
+                hasTopShadow && uuiScrollbars.uuiShadowTop,
+                hasBottomShadow && uuiScrollbars.uuiShadowBottom,
+            ) }
+            renderView={ renderView }
+            renderTrackHorizontal={ props => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
+            renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } />}
+            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
+            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
+            style={ { ...{ display: 'flex' }, ...style } }
+            onScroll={ handleUpdateScroll }
+            hideTracksWhenNotNeeded
+            ref={ bars }
+            { ...props }
+            { ...rawProps }
+        />
+    );
+});

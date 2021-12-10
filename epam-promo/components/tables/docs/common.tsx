@@ -54,11 +54,11 @@ const UserColumns = [
         vPadding: '30',
         size: '30',
     },
-] as DataColumnProps<any, any>[];
+] as DataColumnProps[];
 
 
 function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
-    let columns = [
+    const columns = [
         {
             key: 'name',
             caption: 'Name',
@@ -144,7 +144,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
     ] as DataColumnProps<Person>[];
 
     if (count) {
-        columns = columns.slice(0, count);
+        columns.splice(count + 1);
     }
 
     if (addFixed) {
@@ -155,7 +155,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
     return columns;
 }
 
-export const ColumnsHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps<any, any> & DataTableHeaderRowMods>({ name: 'ColumnsHeaderRowDoc' })
+export const ColumnsHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTableHeaderRowMods>({ name: 'ColumnsHeaderRowDoc' })
     .prop('columns', {
         examples: ctx => {
             return [

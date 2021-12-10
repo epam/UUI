@@ -31,28 +31,29 @@ const DropdownMenuContainer = ({
     ...props
 }: IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
-    const [currentlyFocused, setFocused] = useState<number>(0);
+    const [currentlyFocused, setFocused] = useState<number>(-1);
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
 
     useEffect(() => {
-        if (currentlyFocused === 0 && menuItems.length > 0 && !menuItems.includes(document.activeElement as HTMLElement)) {
-            menuItems[currentlyFocused].focus();
-        }
+      menuRef.current.focus()
     }, [menuRef.current]);
+
+    const changeFocus = (nextFocusedIndex: number) => {
+      if (menuItems.length > 0) {
+        setFocused(nextFocusedIndex);
+        menuItems[nextFocusedIndex].focus();
+      }
+    }
 
     const handleArrowKeys = (e: React.KeyboardEvent<HTMLMenuElement>) => {
         e.stopPropagation();
 
+        const lastMenuItemsIndex = menuItems.length - 1;
+
         if (e.key === IDropdownControlKeys.UP_ARROW) {
-            const nextFocusedIndex = currentlyFocused - 1;
-            if (nextFocusedIndex < 0) return;
-            setFocused(nextFocusedIndex);
-            menuItems[nextFocusedIndex].focus();
+            changeFocus(currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex)
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
-            const nextFocusedIndex = currentlyFocused + 1;
-            if (nextFocusedIndex >= menuItems.length) return;
-            setFocused(nextFocusedIndex);
-            menuItems[nextFocusedIndex].focus();
+            changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0)
         } else if (e.key === closeOnKey && onClose) {
             onClose();
         }
