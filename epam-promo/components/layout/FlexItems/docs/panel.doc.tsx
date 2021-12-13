@@ -5,7 +5,7 @@ import { VPanelProps } from '@epam/uui';
 import { DefaultContext, onClickDoc } from '../../../../docs';
 
 const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', component: Panel })
-    .implements([onClickDoc] as any)
+    .implements([onClickDoc])
     .prop('children', { examples: [
         {
             name: 'grid',

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
+import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
@@ -11,7 +11,7 @@ import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
-    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc] as any)
+    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .prop('value', { examples: [
             { name: '1', value: 1 },
@@ -32,33 +32,23 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('renderToggler', { examples: [
             {
                 name: 'Button',
-                value: (props: PickerTogglerProps<any>) => <Button
-                    { ...props }
-                    caption={ props.selection.map(s => s.value.name).join(', ') }
-                />,
+                value: props => <Button { ...props } caption={ props.selection.map(s => s.value.name).join(', ') } />,
             },
             {
                 name: 'LinkButton',
-                value: (props: PickerTogglerProps<any>) => <LinkButton
-                    { ...props }
-                    caption={ props.selection.map(s => s.value.name).join(', ') }
-                />,
+                value: props => <LinkButton { ...props } caption={ props.selection.map(s => s.value.name).join(', ') } />,
             },
             {
                 name: 'Search',
-                value: (props: PickerTogglerProps<any>) => <SearchInput
-                    value=""
-                    onValueChange={ null }
-                    { ...props }
-                />,
+                value: props => <SearchInput value="" onValueChange={ null } { ...props } />,
             },
         ] })
     .prop('searchPosition', { examples: ['input' , 'body', 'none'], defaultValue: 'input'})
-    .prop('disableClear', { examples: [true], defaultValue: false})
-    .prop('renderNotFound', { examples: ctx => [
+    .prop('disableClear', { examples: [true], defaultValue: false })
+    .prop('renderNotFound', { examples: () => [
             {
                 name: 'Custom not found block',
-                value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+                value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ArrayDataSource, LazyDataSource, DataRowProps, AsyncDataSource } from '@epam/uui';
+import { ArrayDataSource, LazyDataSource, AsyncDataSource } from '@epam/uui';
 import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
-import { PickerBaseOptions, Avatar } from '@epam/uui-components';
-import { TextPlaceholder, Text } from '../../typography';
+import { PickerBaseOptions } from '@epam/uui-components';
+import { Text } from '../../typography';
 import { DataPickerRow } from '../DataPickerRow';
-import { demoData, Location, City, Language, LanguageLevel } from '@epam/uui-docs';
-import * as css from './DataPickerRowDoc.scss';
+import { demoData } from '@epam/uui-docs';
 import { PickerItem } from '../PickerItem';
+import * as css from './DataPickerRowDoc.scss';
 
 export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
     {
@@ -53,14 +53,14 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
     })
     .prop('getName', {
         examples: [
-            { name: 'i => i.name', value: (i: any) => i.name },
-            { name: 'i => i.level', value: (i: any) => i.level },
+            { name: 'i => i.name', value: i => i.name },
+            { name: 'i => i.level', value: i => i.level },
         ],
     })
     .prop('entityName', { examples: ['Language', 'City', 'Role', 'Location', 'Person'] })
     .prop('entityPluralName', { examples: ['Cities'] })
-    .prop('renderRow', { examples: (ctx) => [
-        { name: 'UserPickerRow', value: (props: DataRowProps<any, any>) => <DataPickerRow
+    .prop('renderRow', { examples: ctx => [
+        { name: 'UserPickerRow', value: props => <DataPickerRow
             { ...props }
             key={ props.rowKey }
             alignActions={ 'center' }
@@ -71,8 +71,8 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
         />},
         {
             name: 'Skills',
-            value: (rowProps: DataRowProps<any, any>) => {
-                let isParent = !rowProps.value.parentId;
+            value: rowProps => {
+                const isParent = !rowProps.value.parentId;
                 return <DataPickerRow
                     { ...rowProps }
                     depth={ isParent ? 0 : 1 }

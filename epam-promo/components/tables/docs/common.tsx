@@ -2,14 +2,14 @@ import * as React from 'react';
 import { DataColumnProps, DataTableHeaderRowProps } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { Text, FlexCell, LinkButton, ControlSize } from '../../../components';
-import {  Avatar } from '@epam/uui-components';
+import { Avatar } from '@epam/uui-components';
+import { Person } from './TableContext';
+import { DataTableHeaderRowMods } from '../types';
 import * as css from '../../pickers/docs/DataPickerRowDoc.scss';
 import * as moreIcon from '../../../icons/navigation-more_vert-18.svg';
 import * as calendarIcon from '../../../icons/calendar-18.svg';
 import * as tickIcon from '../../../icons/notification-done-18.svg';
 import * as pencilIcon from '../../../icons/content-edit-18.svg';
-import { Person } from './TableContext';
-import { DataTableHeaderRowMods } from '../types';
 
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 

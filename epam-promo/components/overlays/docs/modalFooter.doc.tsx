@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { ModalFooter, ModalFooterProps } from '../Modals';
 import { DefaultContext} from '../../../docs';
