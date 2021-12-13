@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { RichTextView, RichTextViewMods } from '../RichTextView';
-import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
+import { DefaultContext } from '../../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '../../layout';
 import { LinkButton } from '../../buttons';
 import { DocBuilder } from '@epam/uui-docs';

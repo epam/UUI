@@ -3,7 +3,7 @@ import { UuiContexts, UuiContext } from '@epam/uui';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, Button, LabeledInput, TextArea, FlexRow } from '../../components';
 
-export class ModalContext extends React.Component<DemoComponentProps, any> {
+export class ModalContext extends React.Component<DemoComponentProps, {}> {
     public static displayName = "Modal";
     static contextType = UuiContext;
     context: UuiContexts;
@@ -11,9 +11,7 @@ export class ModalContext extends React.Component<DemoComponentProps, any> {
 
     handleOnClick = () => {
         const { DemoComponent, props } = this.props;
-        this.context.uuiModals.show(modalProps =>
-                <DemoComponent { ...props } { ...modalProps }/>,
-            )
+        this.context.uuiModals.show(modalProps => <DemoComponent { ...props } { ...modalProps } />)
             .then(result => this.setState({ result }))
             .catch(() => null);
     }

@@ -32,9 +32,9 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this;
     }
 
-    public implements(docs: IComponentDocs<Partial<TProps>>[]) {
-        this.props = this.props.concat(...docs.map(i => i.props as any));
-        this.contexts = this.contexts.concat(...docs.map(i => i.contexts));
+    public implements(docs: any[]) {
+        this.props = this.props.concat(docs.map(i => i.props));
+        this.contexts = this.contexts.concat(docs.map(i => i.contexts));
         return this;
     }
 
