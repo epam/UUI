@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as css from './FileCard.scss';
+import { i18n } from '../..';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui';
 import { SvgCircleProgress } from './';
 import { FlexCell, FlexRow, IconButton, IconContainer, Text } from '../';
@@ -28,7 +29,7 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
         loading: true,
     };
 
-    componentDidUpdate(prevProps: Readonly<FileCardProps>, prevState: Readonly<FileCardState>, snapshot?: any) {
+    componentDidUpdate(prevProps: Readonly<FileCardProps>) {
         if (prevProps !== this.props && this.props.file?.progress === 100) {
             this.setState({ loading: false });
         }
@@ -42,10 +43,10 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
             }
             case 'xls':
             case 'xlsx': {
-                return <IconContainer size={ 24 } icon={ exelIcon } cx={ css.xlsColor }/>;
+                return <IconContainer size={ 24 } icon={ exelIcon } cx={ css.xlsColor } />;
             }
             case 'pdf': {
-                return <IconContainer size={ 24 } icon={ pdfIcon } cx={ css.pdfColor }/>;
+                return <IconContainer size={ 24 } icon={ pdfIcon } cx={ css.pdfColor } />;
             }
             case 'gif':
             case 'jpg':
@@ -53,26 +54,26 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
             case 'svg':
             case 'png':
             case 'webp': {
-                return <IconContainer size={ 24 } icon={ imgIcon } cx={ css.imgColor }/>;
+                return <IconContainer size={ 24 } icon={ imgIcon } cx={ css.imgColor } />;
             }
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
             case 'mkv': {
-                return <IconContainer size={ 24 } icon={ videoIcon } cx={ css.movieColor }/>;
+                return <IconContainer size={ 24 } icon={ videoIcon } cx={ css.movieColor } />;
             }
             case 'csv':
             case 'xml': {
-                return <IconContainer size={ 24 } icon={ tableIcon } cx={ css.xmlColor }/>;
+                return <IconContainer size={ 24 } icon={ tableIcon } cx={ css.xmlColor } />;
             }
             case 'rtf':
             case 'txt': {
-                return <IconContainer size={ 24 } icon={ textIcon } cx={ css.textColor }/>;
+                return <IconContainer size={ 24 } icon={ textIcon } cx={ css.textColor } />;
             }
             case 'eml':
             case 'emlx': {
-                return <IconContainer size={ 24 } icon={ mailIcon } cx={ css.emlColor }/>;
+                return <IconContainer size={ 24 } icon={ mailIcon } cx={ css.emlColor } />;
             }
             default: {
                 return <IconContainer size={ 24 } icon={ fileIcon } cx={ css.defaultColor } />;
@@ -82,19 +83,24 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
 
     render() {
         const { loading } = this.state;
+        const extension = this.props.file.name?.split('.').pop();
 
         return (
             <FlexCell cx={ cx(css.fileCardWrapper, loading && uuiMod.loading, this.props.cx) } minWidth={ this.props.width } width={ !this.props.width ? '100%' : undefined } >
                 <FlexRow cx={ css.fileCardRow } size='36' alignItems='top' spacing='6'>
-                        { this.getIcon(this.props.file.name?.split('.').pop()) }
-                        <FlexCell width={ '100%' }>
-                            <Text size='18' fontSize='14' lineHeight='18' color={ this.props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ this.props.file.name }</Text>
-                            <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
-                                { `${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + ' of ' : '' }${ formatBytes(this.props.file.size) }` }
-                            </Text>
-                        </FlexCell>
-                    <FlexCell minWidth={ 18 } >
-                        { loading ? <SvgCircleProgress progress={ this.props.file.progress } size={ 18 } /> : <IconButton icon={ removeIcon } onClick={ this.props.onClick }  /> }
+                    { extension && this.getIcon(extension) }
+                    <FlexCell width='100%'>
+                        <Text size='18' fontSize='14' lineHeight='18' color={ this.props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ this.props.file.name }</Text>
+                        <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
+                            { `${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' }${extension.toUpperCase()}, ${ formatBytes(this.props.file.size) }` }
+                        </Text>
+                    </FlexCell>
+                    <FlexCell minWidth={ 18 }>
+                        { loading ? (
+                            <SvgCircleProgress progress={ this.props.file.progress } size={ 18 } />
+                        ) : this.props.onClick && (
+                            <IconButton icon={ removeIcon } onClick={ this.props.onClick } />
+                        ) }
                     </FlexCell>
                 </FlexRow>
             </FlexCell>
