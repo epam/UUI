@@ -55,7 +55,7 @@ exports[`FileCard should be rendered correctly 1`] = `
       <div
         className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
       >
-        0 Bytes of 12.25 KB
+        XLS,0 Bytes of  12.25 KB
       </div>
     </div>
     <div
@@ -156,7 +156,7 @@ exports[`FileCard should be rendered correctly 2`] = `
       <div
         className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
       >
-        0 Bytes of 12.25 KB
+        DOC,0 Bytes of  12.25 KB
       </div>
     </div>
     <div
@@ -257,7 +257,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       <div
         className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
       >
-        12.25 KB
+        GIF, 12.25 KB
       </div>
     </div>
     <div

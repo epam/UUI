@@ -92,7 +92,7 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
                     <FlexCell width='100%'>
                         <Text size='18' fontSize='14' lineHeight='18' color={ this.props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ this.props.file.name }</Text>
                         <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
-                            { `${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' }${extension.toUpperCase()}, ${ formatBytes(this.props.file.size) }` }
+                            { `${extension.toUpperCase()},${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' } ${ formatBytes(this.props.file.size) }` }
                         </Text>
                     </FlexCell>
                     <FlexCell minWidth={ 18 }>
