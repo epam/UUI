@@ -1,7 +1,7 @@
-import React, { useContext, useRef, useState, useEffect } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import * as css from './DropdownMenu.scss';
-import { cx, IDropdownToggler, withMods, uuiMod, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, UuiContext, IHasCaption, IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui';
+import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Switch } from "../inputs";
@@ -23,7 +23,7 @@ export enum IDropdownControlKeys {
     RIGHT_ARROW = 'ArrowRight',
     UP_ARROW = 'ArrowUp',
     DOWN_ARROW = 'ArrowDown',
-}
+};
 
 const DropdownMenuContainer = ({
     onClose,
@@ -35,7 +35,7 @@ const DropdownMenuContainer = ({
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
 
     useEffect(() => {
-      menuRef.current.focus()
+      menuRef.current?.focus();
     }, [menuRef.current]);
 
     const changeFocus = (nextFocusedIndex: number) => {
@@ -191,7 +191,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
                     onClose={ onClose }
                 />
             ) }
-            renderTarget={ ({ toggleDropdownOpening }: IDropdownToggler)  => (
+            renderTarget={ ({ toggleDropdownOpening }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
                     icon={ icons.foldingArrow }
