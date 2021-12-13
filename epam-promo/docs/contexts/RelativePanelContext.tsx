@@ -3,10 +3,14 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, FlexRow, Text, MultiSwitch, FlexSpacer, Button, TextInput, LabeledInput, NumericInput, DatePicker } from '../../components';
 import * as css from './RelativePanelContext.scss';
 
-export class RelativePanelContext extends React.Component<DemoComponentProps, any> {
+interface DemoComponentState {
+    activeContent: 'form' | 'text';
+}
+
+export class RelativePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Relative panel';
 
-    state = {
+    state: DemoComponentState = {
         activeContent: 'form',
     };
 
@@ -53,14 +57,14 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, an
                 <FlexRow padding='12'>
                     <Text>Relative Panel</Text>
                     <FlexSpacer/>
-                    <MultiSwitch
+                    <MultiSwitch<DemoComponentState['activeContent']>
                         size='24'
                         items={ [
                             { id: 'form', caption: 'form' },
                             { id: 'text', caption: 'text' },
                         ] }
                         value={ this.state.activeContent }
-                        onValueChange={ (newValue) => { this.setState({ activeContent: newValue }); } }
+                        onValueChange={ newValue => { this.setState({ activeContent: newValue }); } }
                     />
                 </FlexRow>
                 <Panel background='white' cx={ css.demo }>

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { IEditable, Lens, ArrayDataSource } from '@epam/uui';
+import { Lens, ArrayDataSource } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerModal } from '../PickerModal';
 import { PickerModalProps } from '@epam/uui-components';
 import { ModalContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { PickerInput } from '../PickerInput';
-import {FlexCell, FlexSpacer} from '../../layout/FlexItems';
+import { FlexCell, FlexSpacer } from '../../layout/FlexItems';
 import { Button } from '../../buttons';
 import { Text } from '../../typography';
 
@@ -15,7 +15,7 @@ const dataSource = new ArrayDataSource({
 });
 
 const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'PickerModal', component: PickerModal })
-    .implements([pickerBaseOptionsDoc /*iconDoc, , */] as any)
+    .implements([pickerBaseOptionsDoc /*iconDoc, , */])
     .prop('initialValue', { examples: [
             { name: '1', value: 1 },
             { name: '[1, 2]', value: [1, 2] },
@@ -26,10 +26,9 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('caption', { examples: ["The caption is customizable"] })
     .prop('renderFilter', { examples: [
-        { name: 'Title Filter', value: (props: IEditable<any>) => {
-            const lens = Lens.onEditable(props);
+        { name: 'Title Filter', value: props => {
             return <PickerInput
-                { ...lens.prop('title').toProps() }
+                { ...Lens.onEditable(props).prop('title').toProps() }
                 valueType='id'
                 selectionMode='single'
                 dataSource={ dataSource }
@@ -37,7 +36,7 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
             />;
         }},
     ]})
-    .prop('renderFooter', { examples: ctx => [
+    .prop('renderFooter', { examples: () => [
         {
             name: 'Custom Footer',
             value: (props: any) => <>
@@ -55,10 +54,10 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
         },
     ]})
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})
-    .prop('renderNotFound', { examples: ctx => [
+    .prop('renderNotFound', { examples: () => [
         {
             name: 'Custom not found block',
-            value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+            value: props => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
         },
     ] })
     .withContexts(ModalContext);

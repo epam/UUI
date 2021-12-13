@@ -9,20 +9,20 @@ interface MainMenuAppMultiSwitchPropsItem<TValue> extends ButtonProps, ButtonMod
     id: TValue;
 }
 
-export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<any> {
+export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IAnalyticableOnChange<TValue> {
     items: MainMenuAppMultiSwitchPropsItem<TValue>[];
     color?: ButtonColor;
 }
 
-export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>, any> {
-    handleClick = (id: any) => {
+export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>, {}> {
+    handleClick = (id: TValue) => {
         this.props.onValueChange(id);
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(id, this.props.value);
             svc.uuiAnalytics.sendEvent(event);
         }
     }
-    
+
     render() {
         return (
             <ControlGroup>
@@ -31,7 +31,7 @@ export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppM
                         <Button
                             { ...item }
                             isDisabled={ this.props.isDisabled }
-                            key={ index + '-' + item.id as any }
+                            key={ index + '-' + item.id }
                             onClick={ () => this.handleClick(item.id) }
                             size={ this.props.size }
                             cx={ this.props.value === item.id ? css.activeButton : css.noneButton }

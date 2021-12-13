@@ -87,7 +87,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                 // tslint:disable-next-line:no-console
                 console.log(`${name} (`, args, ')');
             };
-            (callback as any).displayName = `callback`;
+            callback.displayName = `callback`;
             return callback;
         },
         getChangeHandler: (name) => {
@@ -154,7 +154,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         if (prop.renderEditor) {
             return prop.renderEditor(
                 {
-                    value: this.state.selectedProps && this.state.selectedProps[prop.name as any],
+                    value: this.state.selectedProps && this.state.selectedProps[prop.name],
                     onValueChange: onExampleClick,
                 },
                 this.propExamples[prop.name] && this.propExamples[prop.name].map(ex => ex.value),
@@ -170,7 +170,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 dataSource={ getPropsDataSource(prop.examples as any) }
                                 selectionMode='single'
                                 value={ this.state.selectedProps[prop.name] }
-                                onValueChange={ (newValue: any) => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
+                                onValueChange={ newValue => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
                                 valueType='id'
                                 entityName={ prop.name }
                                 placeholder={ this.state.selectedProps[prop.name] && this.state.selectedProps[prop.name] }

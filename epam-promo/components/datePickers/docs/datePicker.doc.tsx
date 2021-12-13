@@ -17,24 +17,24 @@ const getCustomDay = (day: Dayjs) => {
 };
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
-    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc] as any)
+    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', { examples: [
         {
             name: 'Filter before current day',
-            value: (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf(),
+            value: day => day.valueOf() >= dayjs().subtract(1, 'day').valueOf(),
         },
     ] })
     .prop('renderDay', { examples: ctx => [{
             name: 'Render custom day',
-            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
+            value: (day, onDayClick: (day: Dayjs) => void) => {
                 return <Day renderDayNumber={ getCustomDay } value={ day } onValueChange={ onDayClick } isSelected={ day && day.isSame(ctx.getSelectedProps().value) } filter={ ctx.getSelectedProps().filter } />;
             },
         }] })
     .prop('disableClear', { examples: [true], defaultValue: false})
-    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: day => false }] })
+    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
     .prop('renderFooter', {
         examples: ctx => [
             {
