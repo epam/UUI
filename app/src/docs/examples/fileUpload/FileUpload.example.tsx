@@ -4,24 +4,31 @@ import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import * as css from './FileUpload.scss';
 
 type AttachmentType = FileUploadResponse & { progress?: number };
+
+enum AttachmentActions {
+    ADD = 'ADD_FILE',
+    DELETE = 'REMOVE_FILE',
+    UPDATE = 'UPDATE_FILE',
+}
+
 type AttachmentAction =
-    | { type: 'ADD', file: AttachmentType }
-    | { type: 'DELETE', index: number }
-    | { type: 'UPDATE', file: AttachmentType };
+    | { type: AttachmentActions.ADD, file: AttachmentType }
+    | { type: AttachmentActions.DELETE, index: number }
+    | { type: AttachmentActions.UPDATE, file: AttachmentType };
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
 
-function fileReducer(attachments: AttachmentType[], action: AttachmentAction): AttachmentType[] {
+function fileReducer(attachments: AttachmentType[], action: AttachmentAction) {
     switch (action.type) {
-        case 'ADD': {
+        case AttachmentActions.ADD: {
             return attachments.concat(action.file);
         }
 
-        case 'UPDATE': {
+        case AttachmentActions.UPDATE: {
             return attachments.map(file => file.name === action.file.name ? action.file : file);
         }
 
-        case 'DELETE': {
+        case AttachmentActions.DELETE: {
             return attachments.filter((_, index) => index !== action.index);
         }
 
@@ -35,19 +42,27 @@ export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
     const [attachments, dispatch] = React.useReducer(fileReducer, []);
 
-    const trackProgress = (progress: number, name: string) => {
-        dispatch({ type: 'UPDATE', file: { ...attachments.find(file => file.name === name), progress } });
-    };
-
     const uploadFile = (files: File[]) => {
-        files.map(file => {
-            dispatch({ type: 'ADD', file: { id: undefined, name: file.name, size: file.size, progress: 0 } });
+        files.forEach(file => {
+            dispatch({
+                type: AttachmentActions.ADD,
+                file: {
+                    id: undefined,
+                    name: file.name,
+                    size: file.size,
+                    progress: 0,
+                },
+            });
 
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
-                onProgress: progress => trackProgress(progress, file.name),
-            }).then(res => {
-                dispatch({ type: 'UPDATE', file: { ...res, progress: 100 } });
-            });
+                onProgress: progress => dispatch({
+                    type: AttachmentActions.UPDATE,
+                    file: { ...attachments.find(attachment => attachment.name === file.name), progress },
+                }),
+            }).then(res => dispatch({
+                type: AttachmentActions.UPDATE,
+                file: { ...res, progress: 100 },
+            }));
         });
     };
 
@@ -56,7 +71,11 @@ export default function FileUploadExample() {
             <DropSpot onUploadFiles={ uploadFile } />
             <div className={ css.attachmentBlock }>
                 { attachments?.map((file, index) => (
-                    <FileCard key={ index } file={ file } onClick={ () => dispatch({ type: 'DELETE', index }) } />
+                    <FileCard
+                        key={ index }
+                        file={ file }
+                        onClick={ () => dispatch({ type: AttachmentActions.DELETE, index }) }
+                    />
                 )) }
             </div>
         </div>
