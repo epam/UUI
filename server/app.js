@@ -15,8 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors());
-app.options('*', cors());
+app.use(cors({
+    credentials: false,
+}));
 
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
