@@ -1,5 +1,4 @@
-import React from 'react';
-import { IClickable } from '@epam/uui';
+import * as React from 'react';
 import { PickerListBaseProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerList, PickerListProps } from '../PickerList';
@@ -11,8 +10,8 @@ import { LinkButton, Button } from '../../buttons';
 import { Text } from '../../typography';
 import { FlexRow } from '../../layout';
 
-const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any> >({ name: 'PickerList', component: PickerList })
-    .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */] as any)
+const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any>>({ name: 'PickerList', component: PickerList })
+    .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */])
     .prop('value', { examples: [
             { name: '1', value: 1 },
             { name: '[1, 2]', value: [1, 2] },
@@ -33,7 +32,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('renderModalToggler', {examples: [
         {
             name: 'Green Button',
-            value: (props: IClickable, selection: any[]) => <LinkButton color='grass' { ...props } />,
+            value: props => <LinkButton color='grass' { ...props } />,
         },
     ]})
     .prop('theme', {

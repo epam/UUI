@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { MainMenu } from '../../components';
 import * as css from './MainMenuContext.scss';
 
-export class MainMenuContext extends React.Component<DemoComponentProps, any> {
+export class MainMenuContext extends React.Component<DemoComponentProps, {}> {
     public static displayName = "Main Menu";
     render() {
         const { DemoComponent, props } = this.props;
