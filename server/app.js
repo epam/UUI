@@ -1,13 +1,13 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const cors = require("cors");
 const fileUpload = require('express-fileupload');
 const api = require('./api');
 const fileUploadApi = require('./api/fileUpload');
 
-var app = express();
+const app = express();
 
 !process.env['WEBPACK_DEV_SERVER'] && app.use(logger("dev"));
 
@@ -15,7 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
+app.options('*', cors());
 
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
@@ -37,8 +38,7 @@ app.use("/android-chrome-512x512.png", express.static("../app/build/android-chro
 app.use("/mstile-150x150.png", express.static("../app/build/mstile-150x150.png"));
 app.use("/browserconfig.xml", express.static("../app/build/browserconfig.xml"));
 
-const uploadsPath = path.resolve(__dirname, "../public/uploads");
-app.use("/static/uploads", express.static(uploadsPath));
+app.use("/static/uploads", express.static(path.resolve(__dirname, "../public/uploads")));
 
 app.use('/', fileUploadApi)
 app.use('/api', api);
