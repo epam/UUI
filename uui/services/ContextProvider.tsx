@@ -8,7 +8,7 @@ import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from "./routing";
 import { AnalyticsContext } from "./AnalyticsContext";
 import { LockContext } from "./LockContext";
 import { ErrorContext } from "./ErrorContext";
-import { ApiContext } from "./ApiContext";
+import { ApiContext, IProcessRequest } from "./ApiContext";
 import { UserSettingsContext } from "./UserSettingsContext";
 import { DndContext, DragGhost } from "./dnd";
 import { ISkin, uuiSkin } from "./SkinContext";
@@ -17,7 +17,7 @@ export interface ContextProviderProps<TApi, TAppContext> extends IHasChildren {
     apiServerUrl?: string;
     gaCode?: string;
     loadAppContext?: (api: TApi) => Promise<TAppContext>;
-    apiDefinition?: (processRequest: (request: string, requestMethod: string) => any) => TApi;
+    apiDefinition?: (processRequest: IProcessRequest) => TApi;
     onInitCompleted(svc: CommonContexts<TApi, TAppContext>): void;
     history?: IHistory4;
     skinContext?: ISkin;

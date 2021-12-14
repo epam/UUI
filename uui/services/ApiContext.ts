@@ -29,6 +29,8 @@ export interface FileUploadResponse {
     extension?: string;
 }
 
+export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
+
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 
 const reloginPath = '/auth/login';
@@ -234,7 +236,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         }
     }
 
-    public processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any> {
+    public processRequest: IProcessRequest = (url, method, data, options) => {
         let name = url;
         if (data && data.operationName) {
             name += ' ' + data.operationName;
