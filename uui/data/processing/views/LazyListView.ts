@@ -2,7 +2,7 @@ import { DataRowProps, IEditable } from "../../../types";
 import { DataSourceState, LazyDataSourceApi } from '../types';
 import { DataSourceListProps, IDataSourceView } from './types';
 import isEqual from 'lodash.isequal';
-import {BaseListView, BaseListViewProps } from "./BaseListView";
+import { BaseListView, BaseListViewProps } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
 import { LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
 
@@ -58,6 +58,11 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * See more here: https://github.com/epam/UUI/issues/8
      */
     flattenSearchResults?: boolean;
+
+    /**
+     * Disables select all behaviour. Default is false.
+     */
+    disableSelectAll?: boolean;
 }
 
 interface LoadResult<TItem, TId> {
@@ -179,7 +184,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (item !== null) {
             return this.getRowProps(item, index, []);
         } else {
-            return this.getLoadingRow('_loading_' + id as any, index, []);
+            return this.getLoadingRow('_loading_' + id, index, []);
         }
     }
 
@@ -320,7 +325,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < reportedChildCount && index < lastIndex; m++) {
-                                    const row = this.getLoadingRow('_loading_' + index  as any, index, parentsWithRow);
+                                    const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
                                     row.indent = parentsWithRow.length;
                                     row.isLastChild = m == (reportedChildCount - 1);
                                     rows.push(row);
@@ -355,7 +360,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
 
                 while (index < lastIndex && missingCount > 0) {
-                    const row = this.getLoadingRow('_loading_' + index  as any, index, parents);
+                    const row = this.getLoadingRow('_loading_' + index, index, parents);
                     rows.push(row);
                     layerRows.push(row);
                     index++;
@@ -377,13 +382,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const rootStats = iterateNode(this.tree, true, []);
 
-        if (rootStats.isSomeCheckable) {
+        if (rootStats.isSomeCheckable && !this.props.disableSelectAll) {
             this.selectAll = {
                 value: rootStats.isAllChecked,
                 onValueChange: this.handleSelectAllCheck,
                 indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
-        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible) {
+        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && !this.props.disableSelectAll) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
             this.selectAll = {
                 value: false,
@@ -496,7 +501,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             while (rows.length < count && (from + rows.length) < listProps.rowsCount) {
                 const index = from + rows.length;
-                const row = this.getLoadingRow('_loading_' + index as any, index);
+                const row = this.getLoadingRow('_loading_' + index, index);
                 row.indent = lastRow.indent;
                 row.path = lastRow.path;
                 row.depth = lastRow.depth;

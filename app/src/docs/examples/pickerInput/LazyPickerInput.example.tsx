@@ -11,7 +11,7 @@ export default function LazyPersonsMultiPicker() {
         return svc.api.demo.persons(request);
     }, []);
 
-    const dataSource = useLazyDataSource({ api: loadPersons }, []);
+    const dataSource = useLazyDataSource({ api: loadPersons, disableSelectAll: true }, []);
 
     return (
         <FlexRow>
