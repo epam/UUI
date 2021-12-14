@@ -59,10 +59,10 @@ export default function FileUploadExample() {
                     type: AttachmentActions.UPDATE,
                     file: { ...attachments.find(attachment => attachment.name === file.name), progress },
                 }),
-            }).then(res => dispatch({
+            }).then(res => setTimeout(() => dispatch({
                 type: AttachmentActions.UPDATE,
                 file: { ...res, progress: 100 },
-            }));
+            }), 2000));
         });
     };
 
