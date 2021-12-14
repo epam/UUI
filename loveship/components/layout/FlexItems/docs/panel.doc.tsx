@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { PanelMods, Panel, FlexRow, Text, Button, FlexSpacer, FlexCell, ModalHeader, ModalFooter } from '../../../../components';
 import { DocBuilder } from '@epam/uui-docs';
 import { VPanelProps } from '@epam/uui';
 import { DefaultContext, onClickDoc, ResizableContext } from '../../../../docs';
 
 const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', component: Panel })
-    .implements([onClickDoc] as any)
+    .implements([onClickDoc])
     .prop('children', { examples: [
         {
             name: 'grid',

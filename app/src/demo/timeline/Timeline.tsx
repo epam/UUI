@@ -26,7 +26,7 @@ export class Timeline extends React.Component<{}, {}> {
                     to: new Date(event.endDate),
                     color: event.status === "FREE" ? "#acd24e" : "#c0c3ce",
                     minPixPerDay: event.eventType === "EXCHANGE" ? 200 : 10,
-                    fillType: event.status === "TENTATIVE" ? "shaded" : "solid" as any,
+                    fillType: event.status === "TENTATIVE" ? "shaded" : "solid",
                     priority: event.status === "FREE" ? 0 : (event.status === "TENTATIVE" ? 1 : 2),
                     opacity: event.status === "FREE" ? 0.3 : 1.0,
                     height: event.status === "FREE" ? 30 : 18,
@@ -34,7 +34,7 @@ export class Timeline extends React.Component<{}, {}> {
                 return ({ items: items });
             });
             this.forceUpdate();
-        })
+        });
     }
 
     componentDidMount() {
