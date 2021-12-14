@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import css from "./Filter.scss";
 import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/promo";
 import { IEditable } from "@epam/uui";
+import { RangeDatePickerValue } from "@epam/uui-components";
 import arrowDown from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 import { ITableFilter } from "../../../types";
 
@@ -52,8 +53,8 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
             case "rangeDatePicker":
                 return (
                     <RangeDatePicker
-                        value={ value?.[id] as any }
-                        onValueChange={ handleChange as any }
+                        value={ value?.[id] as RangeDatePickerValue }
+                        onValueChange={ handleChange as (v: RangeDatePickerValue) => void }
                     />
                 );
         }

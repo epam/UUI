@@ -6,4 +6,4 @@ export const windowMock = {
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
     },
-} as any;
+};
