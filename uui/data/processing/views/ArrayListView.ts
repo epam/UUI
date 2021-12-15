@@ -171,7 +171,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             row.isFocused = this.value.focusedIndex === index;
         });
 
-        if (all.checkableCount > 0) {
+        const isSelectAllSwitched = this.props.selectAll == undefined ? true : this.props.selectAll;
+
+        if (all.checkableCount > 0 && isSelectAllSwitched) {
             const isAllChecked = all.checkedCount === fullSelection.length;
             this.selectAll = {
                 value: isAllChecked,

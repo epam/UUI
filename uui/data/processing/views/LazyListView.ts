@@ -58,11 +58,6 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * See more here: https://github.com/epam/UUI/issues/8
      */
     flattenSearchResults?: boolean;
-
-    /**
-     * Disables select all behaviour. Default is false.
-     */
-    disableSelectAll?: boolean;
 }
 
 interface LoadResult<TItem, TId> {
@@ -381,14 +376,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
 
         const rootStats = iterateNode(this.tree, true, []);
+        const isSelectAllSwitched = this.props.selectAll == undefined ? true : this.props.selectAll;
 
-        if (rootStats.isSomeCheckable && !this.props.disableSelectAll) {
+        if (rootStats.isSomeCheckable && isSelectAllSwitched) {
             this.selectAll = {
                 value: rootStats.isAllChecked,
                 onValueChange: this.handleSelectAllCheck,
                 indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
-        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && !this.props.disableSelectAll) {
+        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && isSelectAllSwitched) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
             this.selectAll = {
                 value: false,
