@@ -38,46 +38,28 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
     getIcon(extension?: string) {
         switch (extension) {
             case 'doc':
-            case 'docx': {
-                return <IconContainer size={ 24 } icon={ docIcon } cx={ css.docColor }/>;
-            }
+            case 'docx': return <IconContainer size={ 24 } icon={ docIcon } cx={ css.docColor } />
             case 'xls':
-            case 'xlsx': {
-                return <IconContainer size={ 24 } icon={ exelIcon } cx={ css.xlsColor } />;
-            }
-            case 'pdf': {
-                return <IconContainer size={ 24 } icon={ pdfIcon } cx={ css.pdfColor } />;
-            }
+            case 'xlsx': return <IconContainer size={ 24 } icon={ exelIcon } cx={ css.xlsColor } />
+            case 'pdf': return <IconContainer size={ 24 } icon={ pdfIcon } cx={ css.pdfColor } />
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'svg':
             case 'png':
-            case 'webp': {
-                return <IconContainer size={ 24 } icon={ imgIcon } cx={ css.imgColor } />;
-            }
+            case 'webp': return <IconContainer size={ 24 } icon={ imgIcon } cx={ css.imgColor } />
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
-            case 'mkv': {
-                return <IconContainer size={ 24 } icon={ videoIcon } cx={ css.movieColor } />;
-            }
+            case 'mkv': return <IconContainer size={ 24 } icon={ videoIcon } cx={ css.movieColor } />
             case 'csv':
-            case 'xml': {
-                return <IconContainer size={ 24 } icon={ tableIcon } cx={ css.xmlColor } />;
-            }
+            case 'xml': return <IconContainer size={ 24 } icon={ tableIcon } cx={ css.xmlColor } />
             case 'rtf':
-            case 'txt': {
-                return <IconContainer size={ 24 } icon={ textIcon } cx={ css.textColor } />;
-            }
+            case 'txt': return <IconContainer size={ 24 } icon={ textIcon } cx={ css.textColor } />
             case 'eml':
-            case 'emlx': {
-                return <IconContainer size={ 24 } icon={ mailIcon } cx={ css.emlColor } />;
-            }
-            default: {
-                return <IconContainer size={ 24 } icon={ fileIcon } cx={ css.defaultColor } />;
-            }
+            case 'emlx': return <IconContainer size={ 24 } icon={ mailIcon } cx={ css.emlColor } />
+            default: return <IconContainer size={ 24 } icon={ fileIcon } cx={ css.defaultColor } />
         }
     }
 
@@ -92,7 +74,7 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
                     <FlexCell width='100%'>
                         <Text size='18' fontSize='14' lineHeight='18' color={ this.props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ this.props.file.name }</Text>
                         <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
-                            { `${extension.toUpperCase()},${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' } ${ formatBytes(this.props.file.size) }` }
+                            { `${extension.toUpperCase()}, ${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' } ${ formatBytes(this.props.file.size) }` }
                         </Text>
                     </FlexCell>
                     <FlexCell minWidth={ 18 }>

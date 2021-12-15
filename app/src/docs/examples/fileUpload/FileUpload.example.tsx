@@ -57,12 +57,15 @@ export default function FileUploadExample() {
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: progress => dispatch({
                     type: AttachmentActions.UPDATE,
-                    file: { ...attachments.find(attachment => attachment.name === file.name), progress },
+                    file: {
+                        ...attachments.find(attachment => attachment.name === file.name),
+                        progress,
+                    },
                 }),
-            }).then(res => setTimeout(() => dispatch({
+            }).then(res => dispatch({
                 type: AttachmentActions.UPDATE,
                 file: { ...res, progress: 100 },
-            }), 2000));
+            }));
         });
     };
 
