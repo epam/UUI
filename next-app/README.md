@@ -2,14 +2,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-### Start with local version UUI.
+### Start with local version of UUI library.
 
 To start next app with last local changes of UUI library, run this commands from ` ./UUI ` folder:
 
 ```bash
 lerna run build
 # then
-yarn run next:dev
+yarn run next:dev ## this script install all modules and update @epam modules with local changes and run application for manual check
+
+## to check whether pages are rendered run tests
+cd ./next-app
+yarn test
 ```
 
 ### Start with public version UUI.
@@ -21,7 +25,11 @@ cd ./next-app
 # remove folders ./node_modules and ./.next if they are is
 # then
 yarn
-yarn dev
+yarn dev ## for manual check the application
+
+## to check whether pages are rendered run tests
+yarn test
+
 ```
 
 Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.

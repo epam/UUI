@@ -78,22 +78,25 @@ const UuiApp = () => {
     }, []);
 
     return (!Object.values(view).length ? <Spinner /> :
-        <Panel
-            shadow
-            rawProps={ {
-                role: 'table',
-                'aria-rowcount': view.getListProps().rowsCount,
-                'aria-colcount': tableColumns.length,
-            } }>
-            <DataTable
-                { ...view.getListProps() }
-                getRows={ view.getVisibleRows }
-                value={ value }
-                onValueChange={ onValueChange }
-                columns={ tableColumns }
-                headerTextCase='upper'
-            />
-        </Panel>
+            <div className={ 'withGap' }>
+                <h2>Demo example with appData</h2>
+                <Panel
+                    shadow
+                    rawProps={ {
+                        role: 'table',
+                        'aria-rowcount': view.getListProps().rowsCount,
+                        'aria-colcount': tableColumns.length,
+                    } }>
+                    <DataTable
+                        { ...view.getListProps() }
+                        getRows={ view.getVisibleRows }
+                        value={ value }
+                        onValueChange={ onValueChange }
+                        columns={ tableColumns }
+                        headerTextCase='upper'
+                    />
+                </Panel>
+            </div>
     );
 };
 
