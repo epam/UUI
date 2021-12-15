@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import * as React from "react";
 import css from "./FilterPanelOpener.scss";
 import { FlexRow, IconButton } from "@epam/promo";
 import filterIcon from "@epam/assets/icons/common/content-filter_list-24.svg";
@@ -9,12 +9,12 @@ interface IFilterPanelOpenerProps {
 }
 
 export const FilterPanelOpener: React.FC<IFilterPanelOpenerProps> = props => {
-    const openPanel = useCallback(() => {
+    const openPanel = React.useCallback(() => {
         props.setIsFilterPanelOpened(true);
     }, [props.setIsFilterPanelOpened]);
-    
+
     if (props.isFilterPanelOpened) return null;
-    
+
     return (
         <FlexRow background="white" borderBottom cx={ css.iconContainer }>
             <IconButton

@@ -1,6 +1,5 @@
-import React from 'react';
-import cx from 'classnames';
-import { Icon, IHasChildren, IHasCX, IHasRawProps } from '@epam/uui';
+import * as React from 'react';
+import { Icon, IHasChildren, IHasCX, IHasRawProps, cx } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import { EpamPrimaryColor } from '../types';
 import { IconButton, LinkButton } from '../buttons';
@@ -28,6 +27,7 @@ export class Alert extends React.Component<AlertProps> {
         return (
             <div
                 role="alert"
+                aria-live='assertive'
                 className={ cx(css.alertWrapper, css[`color-${this.props.color || 'sky'}`], this.props.cx) }
                 { ...this.props.rawProps }
             >

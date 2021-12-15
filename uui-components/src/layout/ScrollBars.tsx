@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import * as React from 'react';
 import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui';
 import * as css from './ScrollBars.scss';
@@ -24,16 +24,16 @@ enum uuiScrollbars {
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
 };
 
-export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
+export const ScrollBars = React.forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style,
     hasBottomShadow,
     hasTopShadow,
     rawProps,
     ...props
 }, ref) => {
-    const bars = useRef<ScrollbarsApi>();
+    const bars = React.useRef<ScrollbarsApi>();
 
-    useImperativeHandle(ref, () => bars.current, [bars.current]);
+    React.useImperativeHandle(ref, () => bars.current, [bars.current]);
 
     const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
         if (!bars.current) return;
@@ -52,9 +52,9 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
         else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
-    useEffect(handleUpdateScroll);
+    React.useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) =>
+    const renderView = ({ style, ...rest }: { style: React.CSSProperties, rest: {} }) =>
         props.renderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest }) || (
         <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
     );

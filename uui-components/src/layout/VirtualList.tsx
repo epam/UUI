@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
+import * as React from 'react';
 import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui';
 import { PositionValues, ScrollBars } from '../layout';
 import * as css from './VirtualList.scss';
 
 export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
-    listContainerRef: MutableRefObject<List>;
+    listContainerRef: React.MutableRefObject<List>;
     estimatedHeight: number;
     offsetY: number;
     scrollShadows: {
@@ -15,9 +15,9 @@ export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
 };
 
 export interface VirtualListProps<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any> extends IHasCX, IEditable<VirtualListState>, IHasRawProps<ScrollContainer> {
-    rows: ReactNode[];
+    rows: React.ReactNode[];
     rowsCount?: number;
-    role?: HTMLAttributes<HTMLDivElement>['role'];
+    role?: React.HTMLAttributes<HTMLDivElement>['role'];
     renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
     focusedIndex?: number;
     onScroll?(value: PositionValues): void;

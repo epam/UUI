@@ -22,6 +22,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-red root"
   role="alert"
 >
@@ -79,6 +80,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-blue root"
   role="alert"
 >
@@ -136,6 +138,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-red root"
   role="alert"
 >
@@ -174,6 +177,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 2`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-red root"
   role="alert"
 >
@@ -231,6 +235,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-green root"
   role="alert"
 >
@@ -288,6 +293,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
+  aria-live="polite"
   className="notificationWrapper color-amber root"
   role="alert"
 >

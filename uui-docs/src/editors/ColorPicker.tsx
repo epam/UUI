@@ -1,7 +1,6 @@
 import * as React from 'react';
-import cx from 'classnames';
 import * as css from './ColorPicker.scss';
-import { IEditable } from '@epam/uui';
+import { IEditable, cx } from '@epam/uui';
 import { Tooltip } from '@epam/uui-components';
 
 interface Color {
@@ -13,12 +12,11 @@ interface ColorPickerProps extends IEditable<string> {
     colors: Color[];
 }
 
-export class ColorPicker extends React.Component<ColorPickerProps, any> {
-
+export class ColorPicker extends React.Component<ColorPickerProps> {
     render() {
         return (
             <div className={ css.container }>
-                { this.props.colors.map((color: Color) => <Tooltip cx={ css.tooltip } renderContent={ () => <div className={ css.tooltipContent }>{ color.value }</div> } key={ color.value }>
+                { this.props.colors.map(color => <Tooltip cx={ css.tooltip } renderContent={ () => <div className={ css.tooltipContent }>{ color.value }</div> } key={ color.value }>
                     <div
                         className={ cx(css.colorItem) }
                         onClick={ () => this.props.onValueChange(color.value) }
@@ -28,7 +26,8 @@ export class ColorPicker extends React.Component<ColorPickerProps, any> {
                             backgroundColor: color.hex || "transparent",
                             width: this.props.value === color.value && '14px',
                             height: this.props.value === color.value && '14px',
-                            boxShadow: this.props.value === color.value && `0 0 0 1px ${ color.hex }` } }
+                            boxShadow: this.props.value === color.value && `0 0 0 1px ${ color.hex }` }
+                        }
                     />
                 </Tooltip>) }
             </div>

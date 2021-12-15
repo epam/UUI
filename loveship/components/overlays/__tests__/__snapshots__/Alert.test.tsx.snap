@@ -2,6 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-sky"
   role="alert"
 >
@@ -17,6 +18,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-sun root"
   role="alert"
 >

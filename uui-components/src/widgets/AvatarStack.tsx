@@ -1,8 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import * as css from './AvatarStack.scss';
-import cx from 'classnames';
 import { Avatar } from "./Avatar";
-import { IHasCX } from "@epam/uui";
+import { IHasCX, cx } from "@epam/uui";
 import { FlexRow } from '../';
 
 export interface AvatarStackProps extends IHasCX {
@@ -14,19 +13,18 @@ export interface AvatarStackProps extends IHasCX {
 }
 
 export const AvatarStack = (props: AvatarStackProps) => {
-
     const { avatarSize, urlArray, direction, avatarsCount, renderItem } = props;
 
-    let firstElements = avatarsCount && (urlArray.length > avatarsCount) ? urlArray.slice(0, avatarsCount) : urlArray;
+    const firstElements = avatarsCount && (urlArray.length > avatarsCount) ? urlArray.slice(0, avatarsCount) : urlArray;
 
     return (
         <FlexRow cx={ props.cx }>
             <FlexRow
-                rawProps={ { role:"group", style: { ['--overlap' as any]: `-${ +avatarSize / 4 }px` } } }
+                rawProps={ { role:"group", style: { ['--overlap']: `-${ +avatarSize / 4 }px` } } }
                 cx={ cx('avatars', css.container, css['avatar-' + direction]) }
             >
                 {
-                    firstElements.map((avatar: string, index: number) => {
+                    firstElements.map((avatar, index) => {
                         let avatarItem = <Avatar
                             key={ index }
                             size={ avatarSize }

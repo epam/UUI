@@ -1,6 +1,5 @@
-import React, { PropsWithChildren } from 'react';
-import cx from 'classnames';
-import { isMobile, uuiMarkers } from '@epam/uui';
+import * as React from 'react';
+import { isMobile, uuiMarkers, cx } from '@epam/uui';
 import { PickerFooterProps } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
@@ -18,7 +17,7 @@ const switchSizes = {
     '48': '24',
 } as const;
 
-const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) => {
+const DataPickerFooterImpl = <TItem, TId>(props: React.PropsWithChildren<DataPickerFooterProps<TItem, TId>>) => {
     const { clearSelection, view, showSelected } = props;
     const size = isMobile() ? '48' : (props.size || '36');
     const switchSize = switchSizes[size as keyof typeof switchSizes];

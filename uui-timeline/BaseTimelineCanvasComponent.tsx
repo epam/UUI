@@ -1,7 +1,7 @@
 import * as React from 'react';
-import cx from 'classnames';
 import { TimelineController } from './TimelineController';
 import { TimelineTransform } from './TimelineTransform';
+import { cx } from '@epam/uui';
 
 export interface BaseTimelineCanvasComponentProps {
     className?: string;

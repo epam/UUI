@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { IconContainer } from '../../layout';
-import { Icon, IEditable, IHasCX } from '@epam/uui';
-import cx from 'classnames';
+import { Icon, IEditable, IHasCX, cx } from '@epam/uui';
 import * as css from './DatePickerHeader.scss';
 import dayjs, { Dayjs } from "dayjs";
 import { PickerBodyValue, ViewType } from './DatePickerBodyBase';
@@ -19,7 +18,7 @@ interface HeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
     navIconRight?: Icon;
 }
 
-export class DatePickerHeader extends React.Component<HeaderProps, any> {
+export class DatePickerHeader extends React.Component<HeaderProps> {
     getPrevMonthFromCurrent = (currentDate: Dayjs) => {
         return currentDate.subtract(1, 'month');
     }

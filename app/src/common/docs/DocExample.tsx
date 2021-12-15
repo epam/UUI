@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';

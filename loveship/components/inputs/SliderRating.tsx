@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import * as React from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
-import { Icon, IEditable } from '@epam/uui';
+import { Icon, IEditable, cx } from '@epam/uui';
 import * as css from './SliderRating.scss';
 import * as lineGrayIcon from '../icons/slider-rating/line_gray_icon.svg';
 import * as lineRedIcon from '../icons/slider-rating/line_red_icon.svg';
@@ -15,7 +15,6 @@ import * as activeMarkVioletIcon from '../icons/slider-rating/active_mark_violet
 import * as naIcon from '../icons/slider-rating/na_icon.svg';
 import * as naActiveIcon from '../icons/slider-rating/na_active_icon.svg';
 import { Tooltip } from '../overlays';
-import cx from 'classnames';
 import { i18n } from "../../i18n";
 
 const defaultSize = '18';
@@ -56,7 +55,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
     }
 
     getLeftHandlerIconPosition = (rating: number, from: number, stepWidth: number) => {
-        let left = !!rating ? ((rating - from) * stepWidth) - (this.handlerWidth / 2) : 0;
+        const left = !!rating ? ((rating - from) * stepWidth) - (this.handlerWidth / 2) : 0;
 
         if (rating && rating === from) {
             return left + 2;
@@ -139,8 +138,8 @@ type TooltipBoxProps = {
 
 const TooltipBox = (props: TooltipBoxProps) => {
     const { content, size } = props;
-    const tooltipBoxRef = useRef<HTMLDivElement>(null);
-    const [left, setLeft] = useState<number>(0);
+    const tooltipBoxRef = React.useRef<HTMLDivElement>(null);
+    const [left, setLeft] = React.useState<number>(0);
 
     const topPosition = tooltipBoxRef.current?.getBoundingClientRect().y || 0;
 
@@ -148,7 +147,7 @@ const TooltipBox = (props: TooltipBoxProps) => {
         <div
             className={ css.tooltipsBox }
             ref={ tooltipBoxRef }
-            onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }
+            onMouseMove={ event => setLeft(event.clientX) }
         >
             <Tooltip placement='top' content={ content } cx={ css.tooltip }>
                 <div className={ css.tooltipsBoxItem } style={ {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui';
+import * as React from 'react';
+import { IHasChildren, IHasCX, Icon, IHasRawProps, cx } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import * as successIcon from '../../icons/notification-check_circle-fill-24.svg';
 import * as warningIcon from '../../icons/notification-warning-fill-24.svg';
@@ -9,7 +9,6 @@ import * as crossIcon from '../../icons/navigation-close-24.svg';
 import * as styles from '../../assets/styles/colorvars/overlays/alert-colorvars.scss';
 import * as css from './Alert.scss';
 import { IconButton } from '../buttons';
-import cx from 'classnames';
 import { EpamPrimaryColor, LinkButton } from '..';
 
 type notificationAction = {
@@ -29,6 +28,7 @@ export class Alert extends React.Component<AlertProps> {
         return (
             <div
                 role="alert"
+                aria-live='assertive'
                 className={ cx(css.alertWrapper, styles[`color-${this.props.color || 'blue'}`], css.root, this.props.cx) }
                 { ...this.props.rawProps }
             >

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { LandingPage } from './landing';
 import { Route } from 'react-router';
 import { DocumentsPage } from './documents';

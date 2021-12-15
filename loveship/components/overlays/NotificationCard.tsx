@@ -1,5 +1,5 @@
-import React from 'react';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
+import * as React from 'react';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, cx, IHasRawProps } from '@epam/uui';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
@@ -9,7 +9,6 @@ import * as errorIcon from '../icons/notification-error-fill-24.svg';
 import * as hintIcon from '../icons/notification-help-fill-24.svg';
 import * as crossIcon from '../icons/snackbar/cross.svg';
 import * as css from './NotificationCard.scss';
-import cx from 'classnames';
 import { EpamColor, LinkButton } from '..';
 import { i18n } from '../../i18n';
 
@@ -18,7 +17,7 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX {
+export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
     actions?: notificationAction[];
 }
 
@@ -32,7 +31,6 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
 
     constructor(props: NotificationCardProps) {
         super(props);
-        this.refNode = this.refNode.bind(this);
     }
 
     componentDidMount() {
@@ -45,29 +43,48 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
         this.notificationCardNode.removeEventListener('mouseleave', this.props.refreshTimer);
     }
 
-    refNode (el: HTMLDivElement) {
-        this.notificationCardNode = el;
-    }
-
     render() {
-        return <div className={ cx(css.notificationWrapper, styles[`color-${ this.props.color }`], this.props.cx) } ref={ this.refNode }>
-            <div className={ css.mainPath }>
-                {
-                    this.props.icon && <div className={ css.iconWrapper }>
-                        <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+        return (
+            <div
+                role="alert"
+                aria-live='polite'
+                className={ cx(css.notificationWrapper, styles[`color-${ this.props.color }`], this.props.cx) }
+                ref={ el => this.notificationCardNode = el }
+                { ...this.props.rawProps }
+            >
+                <div className={ css.mainPath }>
+                    { this.props.icon && (
+                        <div className={ css.iconWrapper }>
+                            <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+                        </div>
+                    ) }
+                    <div className={ css.content }>
+                        { this.props.children }
+                        { this.props.actions && (
+                            <div className={ css.actionWrapper }>
+                                { this.props.actions.map(action => (
+                                    <LinkButton
+                                        caption={ action.name }
+                                        onClick={ action.action }
+                                        key={ action.name }
+                                        cx={ css.actionLink }
+                                        size='36'
+                                    />
+                                )) }
+                            </div>
+                        ) }
                     </div>
-                }
-                <div className={ css.content }>
-                    { this.props.children }
-                    { this.props.actions && <div className={ css.actionWrapper }>
-                        { this.props.actions.map((action: notificationAction) => {
-                            return <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size='36' />;
-                        }) }
-                    </div> }
+                    { this.props.onClose && (
+                        <IconButton
+                            icon={ crossIcon }
+                            color='night600'
+                            onClick={ this.props.onClose }
+                            cx={ css.closeIcon }
+                        />
+                    ) }
                 </div>
-                { this.props.onClose && <IconButton icon={ crossIcon } color='night600' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
             </div>
-        </div>;
+        );
     }
 }
 

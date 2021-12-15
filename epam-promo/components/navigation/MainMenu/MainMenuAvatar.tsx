@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as css from './MainMenuAvatar.scss';
-import cx from 'classnames';
-import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX } from '@epam/uui';
+import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX, cx } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import * as foldingArrow from '../../../icons/folding-arrow-18.svg';
 import { Avatar } from '@epam/uui-components';
@@ -11,7 +10,7 @@ export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IH
     icon?: Icon;
 }
 
-export class MainMenuAvatar extends React.Component<MainMenuAvatarProps, {}> {
+export class MainMenuAvatar extends React.Component<MainMenuAvatarProps> {
     render() {
         return (
             <div

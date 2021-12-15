@@ -1,8 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { ProgressBar, IndeterminateBar } from "./";
-import cx from 'classnames';
 import * as css from './IndicatorBar.scss';
-import { IHasCX } from "@epam/uui";
+import { IHasCX, cx } from "@epam/uui";
 
 interface IIndicatorProps extends IHasCX {
     progress?: number;
@@ -11,9 +10,8 @@ interface IIndicatorProps extends IHasCX {
 export const IndicatorBar = (props: IIndicatorProps) => {
     const { progress } = props;
 
-    return (progress || progress === 0 ?
-            <ProgressBar progress={ progress } cx={ cx(css.root, props.cx) } hideLabel />
-        :
-            <IndeterminateBar cx={ cx(css.root, props.cx) } />
+    return (progress || progress === 0
+        ? <ProgressBar progress={ progress } cx={ cx(css.root, props.cx) } hideLabel />
+        : <IndeterminateBar cx={ cx(css.root, props.cx) } />
     );
 };

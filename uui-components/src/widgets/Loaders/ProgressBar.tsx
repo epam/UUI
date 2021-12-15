@@ -1,6 +1,5 @@
-import React from 'react';
-import { IHasCX } from "@epam/uui";
-import cx from 'classnames';
+import * as React from 'react';
+import { IHasCX, cx } from "@epam/uui";
 import * as css from './ProgressBar.scss';
 
 export interface IProgressBarProps extends IHasCX {
@@ -28,9 +27,7 @@ export const ProgressBar = (props: IProgressBarProps) => {
                     <div className={ cx(css.label, 'label') } >
                         { barLabel }
                     </div>
-                    <div className={ cx(css.label, 'topLabel') }
-                         style={ { clipPath: `inset(0 0 0 ${ props.progress }%)` } }
-                    >
+                    <div className={ cx(css.label, 'topLabel') } style={ { clipPath: `inset(0 0 0 ${ props.progress }%)` } }>
                         { barLabel }
                     </div>
                 </>

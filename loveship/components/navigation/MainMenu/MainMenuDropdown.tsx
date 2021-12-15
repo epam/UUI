@@ -1,14 +1,13 @@
-import React from 'react';
-import cx from 'classnames';
+import * as React from 'react';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
-import {IDropdownToggler, IHasCaption, ICanRedirect, CX, IHasCX} from '@epam/uui';
+import { IDropdownToggler, IHasCaption, ICanRedirect, cx, IHasCX } from '@epam/uui';
 import * as css from './MainMenuDropdown.scss';
 import { DropdownMenuBody } from '../../overlays';
 import { MainMenuButton } from './MainMenuButton';
 
 interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX {}
 
-class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps, {}> {
+class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps> {
     render() {
         return (
             <MainMenuButton

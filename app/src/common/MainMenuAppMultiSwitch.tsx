@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as css from './MainMenuAppMultiSwitch.scss';
 import {IAnalyticableOnChange, IEditable} from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
@@ -22,7 +22,7 @@ export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppM
             svc.uuiAnalytics.sendEvent(event);
         }
     }
-    
+
     render() {
         return (
             <ControlGroup>

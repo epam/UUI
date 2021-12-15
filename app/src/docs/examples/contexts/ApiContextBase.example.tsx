@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { LinkButton, Text, FlexRow } from "@epam/promo";
 import { useUuiContext } from '@epam/uui';
 

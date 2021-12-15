@@ -1,7 +1,6 @@
-import React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui';
+import * as React from 'react';
+import { IEditable, IHasRawProps, cx } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
-import cx from 'classnames';
 import { Button, ControlGroup } from '../index';
 import * as types from '../types';
 import * as css from './MultiSwitch.scss';
@@ -14,8 +13,7 @@ export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.Color
     items: MultiSwitchItem<TValue>[];
 }
 
-export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>, any> {
-
+export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
     render() {
         return (
             <ControlGroup rawProps={ { ...this.props.rawProps, role: 'tablist' } }>

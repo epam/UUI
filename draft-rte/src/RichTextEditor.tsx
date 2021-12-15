@@ -9,7 +9,7 @@ import { convertHtmlToDraftState, convertDraftStateToHtml } from './utils';
 import { ToolbarButton } from './types';
 import * as I from 'immutable';
 import { ScrollBars } from '@epam/loveship';
-import cx from 'classnames';
+import { cx } from '@epam/uui';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
 export type RichTextEditorBindingProps = (RawRichTextEditorProps | HtmlRichTextEditorProps | MarkdownRichTextEditorProps);

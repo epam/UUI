@@ -2,6 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-blue root"
   role="alert"
 >
@@ -17,6 +18,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly 2`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-amber root"
   role="alert"
 >
@@ -92,6 +94,7 @@ exports[`Alert should be rendered correctly 2`] = `
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-red root"
   role="alert"
 >
@@ -126,6 +129,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
 
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-blue root"
   role="alert"
 >
@@ -160,6 +164,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-green root"
   role="alert"
 >
@@ -194,6 +199,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
 
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
+  aria-live="assertive"
   className="alertWrapper color-amber root"
   role="alert"
 >
