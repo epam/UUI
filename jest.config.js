@@ -31,10 +31,12 @@ module.exports = {
         "^.+\\.(sass|scss|less)$"
     ],
     "testPathIgnorePatterns": [
-        "node_modules"
+        "node_modules",
+        "./next-app"
     ],
     "modulePathIgnorePatterns": [
-        "/build/"
+        "/build/",
+        "./next-app"
     ],
     "moduleNameMapper": {
         "^react-native$": "react-native-web",

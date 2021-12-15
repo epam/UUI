@@ -53,6 +53,8 @@ const TableExample = () => {
 
     return (
         <div className={ 'withGap' }>
+            <h2>Demo example with table</h2>
+
             <Panel shadow rawProps={ {
                 role: 'table',
                 'aria-rowcount': view.getListProps().rowsCount,

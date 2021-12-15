@@ -59,38 +59,41 @@ export default function SlateEditorBasicExample() {
     ];
 
     return (
-        <Panel cx={ css.root }>
-            <FlexRow spacing='18' vPadding='12'>
-                <MultiSwitch
-                    items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
-                    value={ fontSize }
-                    onValueChange={ (value: EditorFontSize) => setFontSize(value) }
-                    color='blue'
-                />
-                <FlexSpacer />
-                <Switch
-                    value={ mode === 'inline' }
-                    onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') }
-                    label='Inline mode'
-                />
-                <Switch
-                    value={ isReadonly }
-                    onValueChange={ setIsReadonly }
-                    label='View mode'
-                />
-            </FlexRow>
+        <div className={ 'withGap' }>
+            <h2>Demo example with RichTextEditor(RTE)</h2>
+            <Panel cx={ css.root }>
+                <FlexRow spacing='18' vPadding='12'>
+                    <MultiSwitch
+                        items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
+                        value={ fontSize }
+                        onValueChange={ (value: EditorFontSize) => setFontSize(value) }
+                        color='blue'
+                    />
+                    <FlexSpacer />
+                    <Switch
+                        value={ mode === 'inline' }
+                        onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') }
+                        label='Inline mode'
+                    />
+                    <Switch
+                        value={ isReadonly }
+                        onValueChange={ setIsReadonly }
+                        label='View mode'
+                    />
+                </FlexRow>
 
-            <SlateEditor
-                value={ value }
-                onValueChange={ setValue }
-                isReadonly={ isReadonly }
-                autoFocus={ true }
-                plugins={ plugins }
-                mode={ mode }
-                placeholder='Add description'
-                minHeight={ 'none' }
-                fontSize={ fontSize }
-            />
-        </Panel>
+                <SlateEditor
+                    value={ value }
+                    onValueChange={ setValue }
+                    isReadonly={ isReadonly }
+                    autoFocus={ true }
+                    plugins={ plugins }
+                    mode={ mode }
+                    placeholder='Add description'
+                    minHeight={ 'none' }
+                    fontSize={ fontSize }
+                />
+            </Panel>
+        </div>
     );
 }
