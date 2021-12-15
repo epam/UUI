@@ -34,13 +34,13 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
     }
 
     componentDidMount() {
-        this.notificationCardNode.addEventListener('mouseenter', this.props.clearTimer);
-        this.notificationCardNode.addEventListener('mouseleave', this.props.refreshTimer);
+        this.notificationCardNode?.addEventListener('mouseenter', this.props.clearTimer);
+        this.notificationCardNode?.addEventListener('mouseleave', this.props.refreshTimer);
     }
 
     componentWillUnmount() {
-        this.notificationCardNode.removeEventListener('mouseenter', this.props.clearTimer);
-        this.notificationCardNode.removeEventListener('mouseleave', this.props.refreshTimer);
+        this.notificationCardNode?.removeEventListener('mouseenter', this.props.clearTimer);
+        this.notificationCardNode?.removeEventListener('mouseleave', this.props.refreshTimer);
     }
 
     render() {
