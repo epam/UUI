@@ -42,30 +42,46 @@ export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
     const [attachments, dispatch] = React.useReducer(fileReducer, []);
 
+    const addFile = (file: File, tempId: number) => {
+        dispatch({
+            type: AttachmentActions.ADD,
+            file: {
+                id: tempId,
+                name: file.name,
+                size: file.size,
+                progress: 0,
+            }
+        });
+    };
+
+    const trackProgress = (progress: number, id: number) => {
+        const file = attachments.find(i => i.id === id);
+        dispatch({
+            type: AttachmentActions.UPDATE,
+            file: { ...file, progress },
+        });
+    };
+
+    const finishUploading = (file: FileUploadResponse) => {
+        dispatch({
+            type: AttachmentActions.UPDATE,
+            file: { ...file, progress: 100 },
+        });
+    };
+
+    const deleteFile = (index: number) => {
+        dispatch({ type: AttachmentActions.DELETE, index });
+    };
+
     const uploadFile = (files: File[]) => {
+        let tempIdCounter = 0;
         files.forEach(file => {
-            dispatch({
-                type: AttachmentActions.ADD,
-                file: {
-                    id: undefined,
-                    name: file.name,
-                    size: file.size,
-                    progress: 0,
-                },
-            });
+            const tempId = --tempIdCounter;
+            addFile(file, tempId);
 
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
-                onProgress: progress => dispatch({
-                    type: AttachmentActions.UPDATE,
-                    file: {
-                        ...attachments.find(attachment => attachment.name === file.name),
-                        progress,
-                    },
-                }),
-            }).then(res => dispatch({
-                type: AttachmentActions.UPDATE,
-                file: { ...res, progress: 100 },
-            }));
+                onProgress: progress => trackProgress(progress, tempId),
+            }).then(finishUploading);
         });
     };
 
@@ -77,7 +93,7 @@ export default function FileUploadExample() {
                     <FileCard
                         key={ index }
                         file={ file }
-                        onClick={ () => dispatch({ type: AttachmentActions.DELETE, index }) }
+                        onClick={ () => deleteFile(index) }
                     />
                 )) }
             </div>
