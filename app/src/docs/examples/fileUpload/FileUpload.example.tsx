@@ -5,91 +5,44 @@ import * as css from './FileUpload.scss';
 
 type AttachmentType = FileUploadResponse & { progress?: number };
 
-enum AttachmentActions {
-    ADD = 'ADD_FILE',
-    DELETE = 'REMOVE_FILE',
-    UPDATE = 'UPDATE_FILE',
-}
-
-type AttachmentAction =
-    | { type: AttachmentActions.ADD, file: AttachmentType }
-    | { type: AttachmentActions.DELETE, index: number }
-    | { type: AttachmentActions.UPDATE, file: AttachmentType };
-
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-
-function fileReducer(attachments: AttachmentType[], action: AttachmentAction) {
-    switch (action.type) {
-        case AttachmentActions.ADD: {
-            return attachments.concat(action.file);
-        }
-
-        case AttachmentActions.UPDATE: {
-            return attachments.map(file => file.name === action.file.name ? action.file : file);
-        }
-
-        case AttachmentActions.DELETE: {
-            return attachments.filter((_, index) => index !== action.index);
-        }
-
-        default: {
-            throw new Error('Action not implemented');
-        }
-    }
-}
 
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
-    const [attachments, dispatch] = React.useReducer(fileReducer, []);
-
-    const addFile = (file: File, tempId: number) => {
-        dispatch({
-            type: AttachmentActions.ADD,
-            file: {
-                id: tempId,
-                name: file.name,
-                size: file.size,
-                progress: 0,
-            }
-        });
-    };
+    const [attachments, setAttachments] = React.useState<AttachmentType[]>([]);
 
     const trackProgress = (progress: number, id: number) => {
         const file = attachments.find(i => i.id === id);
-        dispatch({
-            type: AttachmentActions.UPDATE,
-            file: { ...file, progress },
-        });
+        setAttachments(attachments.map(f => f.id === file.id ? { ...file, progress } : f));
     };
 
-    const finishUploading = (file: FileUploadResponse) => {
-        dispatch({
-            type: AttachmentActions.UPDATE,
-            file: { ...file, progress: 100 },
-        });
+    const updateFile = (file: AttachmentType, id: number) => {
+        setAttachments(attachments.map(f => f.id === id ? file : f));
     };
 
     const deleteFile = (index: number) => {
-        dispatch({ type: AttachmentActions.DELETE, index });
+        setAttachments(attachments.filter((_, i) => i !== index));
     };
 
     const uploadFile = (files: File[]) => {
-        let tempIdCounter = 0;
-        files.forEach(file => {
-            const tempId = --tempIdCounter;
-            addFile(file, tempId);
+        const newAttachments = attachments.slice();
 
+        files.map((file, index) => {
+            const tempId = index - 1;
+            attachments.push({ id: tempId, name: file.name, size: file.size });
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: progress => trackProgress(progress, tempId),
-            }).then(finishUploading);
+            }).then(res => updateFile({ ...res, progress: 100 }, tempId));
         });
+
+        setAttachments(newAttachments);
     };
 
     return (
         <div className={ css.container }>
             <DropSpot onUploadFiles={ uploadFile } />
             <div className={ css.attachmentBlock }>
-                { attachments?.map((file, index) => (
+                { attachments.map((file, index) => (
                     <FileCard
                         key={ index }
                         file={ file }
