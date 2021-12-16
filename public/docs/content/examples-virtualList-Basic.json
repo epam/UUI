@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This demo shows use of VirtualList to display a big list of custom components.",
+            "text": "This demo shows the usage of VirtualList to display a big list of custom components.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Items are made foldable to show possibility to change items heights dynamically. VirtualList doesn't re-measure items on folding/unfolding, so there can be some glitches, but we tried to minimize them as much as possible.",
+            "text": "Items are made foldable to show the possibility to change items heights' dynamically. VirtualList doesn't re-measure items while folding/unfolding, so there can be some glitches, which we tried to minimize as much as possible.",
             "marks": []
           }
         ]

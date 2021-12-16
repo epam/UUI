@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from "react-dom";
-import { FlexRow, skinContext as promoSkinContext } from "@epam/promo";
+import { ErrorHandler, FlexRow, skinContext as promoSkinContext } from "@epam/promo";
 import { ContextProvider, UuiContexts } from "@epam/uui";
+import { Modals, Snackbar } from "@epam/uui-components";
 import "@epam/uui-components/styles.css";
 import "@epam/promo/styles.css";
 import "@epam/loveship/styles.css";
@@ -16,12 +17,16 @@ const origin = process.env.REACT_APP_PUBLIC_URL;
 render(
     <ContextProvider<TApi, UuiContexts>
         apiDefinition={ processRequest => getApi(processRequest, origin) }
-        onInitCompleted={(context) => Object.assign(svc, context)}
-        skinContext={promoSkinContext}
+        onInitCompleted={ (context) => Object.assign(svc, context) }
+        skinContext={ promoSkinContext }
     >
-        <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
-            <Example />
-        </FlexRow>
+        <ErrorHandler>
+            <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
+                <Example />
+            </FlexRow>
+            <Snackbar />
+            <Modals />
+        </ErrorHandler>
     </ContextProvider>,
-    rootElement
+    rootElement,
 );

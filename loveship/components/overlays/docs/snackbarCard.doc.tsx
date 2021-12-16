@@ -6,7 +6,7 @@ import { LinkButton } from '../../buttons';
 import { FlexRow } from '../../layout';
 import { Text } from '../../typography';
 
-const SnackbarCardDoc = new DocBuilder<SnackbarCardProps>({ name: 'SnackbarCard', component: SnackbarCard as React.ComponentClass<any> })
+const SnackbarCardDoc = new DocBuilder<SnackbarCardProps>({ name: 'SnackbarCard', component: SnackbarCard })
     .prop('snackType', {
         examples: [
             { value: 'success' },

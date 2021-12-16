@@ -10,7 +10,7 @@ interface CheckboxGroupItem<TValue> {
 }
 
 export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement> {
-    CheckboxInput?: React.ComponentClass<CheckboxProps>;
+    CheckboxInput?: React.ComponentType<CheckboxProps>;
     items: CheckboxGroupItem<TValue>[];
 }
 

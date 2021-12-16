@@ -4,7 +4,7 @@ import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
     PickerInput, SuccessNotification, ErrorNotification,
-    useForm
+    useForm,
 } from "@epam/promo";
 
 interface Person {

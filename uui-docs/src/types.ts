@@ -3,19 +3,19 @@ import { IEditable } from '@epam/uui';
 import { IDemoApi } from './demoApi';
 
 export interface DemoComponentProps<TProps = any> {
-    DemoComponent: React.ComponentType<TProps>;
-    props: any;
+    DemoComponent: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
+    props: TProps;
 }
 
 export interface IComponentDocs<TProps> {
     name: string;
-    component?: React.ComponentType<TProps>;
+    component?: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>;
     props?: PropDoc<TProps, keyof TProps>[];
     contexts?: DemoContext[];
 }
 
 export interface DemoContext {
-    context: React.ComponentClass<DemoComponentProps>;
+    context: React.ComponentType<DemoComponentProps>;
     name: string;
 }
 

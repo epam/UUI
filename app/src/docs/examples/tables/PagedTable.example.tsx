@@ -45,11 +45,7 @@ export default function PagedTable() {
     const view = dataSource.useView(state, setState, {});
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{
-            role: 'table',
-            'aria-rowcount': view.getListProps().rowsCount,
-            'aria-colcount': columns.length
-        }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
