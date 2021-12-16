@@ -16,7 +16,6 @@ export class ToDoItem extends React.Component<RenderBlockProps, any> {
     }
 
     render() {
-
         const data = this.props.node.data;
         return (
             <FlexRow rawProps={ this.props.attributes }>

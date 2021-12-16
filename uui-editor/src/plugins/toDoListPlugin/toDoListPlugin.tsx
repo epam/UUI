@@ -1,15 +1,16 @@
-import {Editor, RenderBlockProps} from "slate-react";
-import {Block, Editor as CoreEditor, KeyUtils} from "slate";
+import { Editor, RenderBlockProps } from "slate-react";
+import Lists from "@convertkit/slate-lists";
+import { Block, Editor as CoreEditor, KeyUtils } from "slate";
 import { ToDoItem } from "./ToDoItem";
 import * as React from "react";
 import { List } from "immutable";
 import * as checkboxListIcon from "../../icons/to-do.svg";
-import { ToolbarButton } from '../../implementation/ToolbarButton';
+import { ToolbarButton } from "../../implementation/ToolbarButton";
 
 export const toDoListPlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
         switch (props.node.type) {
-            case 'toDoItem':
+            case "toDoItem":
                 return <ToDoItem { ...props } />;
             default:
                 return next();
@@ -19,12 +20,16 @@ export const toDoListPlugin = () => {
     const onKeyDown = (event: KeyboardEvent, editor: CoreEditor, next: () => any) => {
         const { value } = editor;
 
-        if (event.key === 'Enter' && !event.shiftKey && value.startBlock.type === 'toDoItem') {
-            return editor.splitBlock().setBlocks({ data: { checked: false }, type: 'toDoItem' });
+        if (event.key === "Enter" && value.startBlock.type === "toDoItem" && editor.value.anchorBlock.text.length === 0) {
+            return editor.setBlocks("paragraph");
+        }
+        
+        if (event.key === "Enter" && !event.shiftKey && value.startBlock.type === "toDoItem") {
+            return editor.splitBlock().setBlocks({ data: { checked: false }, type: "toDoItem" });
         }
 
-        if (event.key === 'Backspace' &&  value.selection.isCollapsed &&  value.startBlock.type === 'toDoItem' &&  value.selection.start.offset === 0) {
-            return editor.setBlocks('paragraph');
+        if (event.key === "Backspace" && value.selection.isCollapsed && value.startBlock.type === "toDoItem" && value.selection.start.offset === 0) {
+            return editor.setBlocks("paragraph");
         }
 
         if (new RegExp(/^\[]$/).test(value.anchorBlock.text)) {
@@ -33,22 +38,6 @@ export const toDoListPlugin = () => {
         }
 
         return next();
-    };
-
-    const addToDo = (editor: CoreEditor) => {
-        const newToDoItem = Block.create({
-            object: 'block',
-            type: 'toDoItem',
-            key: KeyUtils.create(),
-            data: {
-                checked: false,
-            },
-            nodes: List([{ text: '', object: 'text' } as any]),
-        });
-
-        editor.setBlocks(newToDoItem);
-        // TODO: fix bug with focus
-        // editor.focus();
     };
 
     return {
@@ -61,11 +50,42 @@ export const toDoListPlugin = () => {
     };
 };
 
+const addToDo = (editor: Editor | CoreEditor) => {
+    const newToDoItem = Block.create({
+        object: "block",
+        type: "toDoItem",
+        key: KeyUtils.create(),
+        data: {
+            checked: false,
+        },
+        nodes: List([{ text: "", object: "text" } as any]),
+    });
+
+    editor.setBlocks(newToDoItem);
+    // TODO: fix bug with focus
+    // editor.focus();
+};
+
 const isTodo = (editor: Editor) => {
-    return editor.value.anchorBlock.type == 'toDoItem';
+    return editor.value.anchorBlock.type == "toDoItem";
 };
 
 
 const ToDoItemToolbarButton = (props: { editor: Editor }) => {
-    return <ToolbarButton isActive={ isTodo(props.editor) } icon={ checkboxListIcon } onClick={ () => isTodo(props.editor) ? props.editor.setBlocks('paragraph') : props.editor.setBlocks('toDoItem') } />;
+    const onClick = () => {
+        if (props.editor.value.anchorBlock.type === "list-item-child") {
+            const listType = (props.editor as any).isList("ordered-list")
+                ? "ordered-list"
+                : "unordered-list";
+            (props.editor as any).toggleList({ type: listType });
+ 
+            addToDo(props.editor);
+            return;
+        }
+        
+        isTodo(props.editor) 
+            ? props.editor.setBlocks("paragraph") 
+            : addToDo(props.editor);
+    };
+    return <ToolbarButton isActive={ isTodo(props.editor) } icon={ checkboxListIcon } onClick={ onClick }/>;
 };
