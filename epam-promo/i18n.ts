@@ -3,6 +3,9 @@ export const i18n = {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
     },
+    fileCard: {
+        fileSizeProgress: ' of '
+    },
     pickerModal: {
         headerTitle: 'Please select',
         searchPlaceholder: 'Type text for quick search',
