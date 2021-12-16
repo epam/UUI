@@ -407,9 +407,8 @@ describe('useForm', () => {
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("validationMessage", "Single test error");
 
             act(() => result.current.lens.prop("deep").prop("inner").set("correct"));
-            expect(result.current.lens.toProps()).toHaveProperty('isInvalid', false);
-            expect(result.current.lens.prop('deep').toProps().isInvalid).toBe(false);
-            expect(result.current.lens.prop('deep').toProps().validationProps).toBeUndefined();
+            expect(result.current.lens.prop('deep').prop("inner").toProps().isInvalid).toBe(false);
+            expect(result.current.lens.prop('deep').prop("inner").toProps().validationProps).toBeUndefined();
         });
 
         it('Should keep only validationProps tree with validationMessage in the end', async () => {

@@ -62,11 +62,7 @@ export default function ProductTable() {
     ], []);
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{
-            role: 'table',
-            'aria-rowcount': view.getListProps().rowsCount,
-            'aria-colcount': productColumns.length
-        }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
@@ -76,6 +72,5 @@ export default function ProductTable() {
                 headerTextCase='upper'
             />
         </Panel>
-
     );
 }

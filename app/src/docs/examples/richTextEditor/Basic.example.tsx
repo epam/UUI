@@ -86,7 +86,7 @@ export default function SlateEditorBasicExample() {
             <SlateEditor
                 value={ value }
                 onValueChange={ setValue }
-                isReadonly={isReadonly }
+                isReadonly={ isReadonly }
                 autoFocus={ true }
                 plugins={ plugins }
                 mode={ mode }

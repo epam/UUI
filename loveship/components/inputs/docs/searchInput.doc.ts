@@ -8,7 +8,7 @@ import {
 } from '../../../docs';
 import { IEditableDebouncerOptions } from '@epam/uui';
 
-const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput as React.ComponentClass<any> })
+const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
     .implements([onClickDoc, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc] as any)
     .prop('value', { examples: [
         { value: 'Hello, World!', isDefault: true },

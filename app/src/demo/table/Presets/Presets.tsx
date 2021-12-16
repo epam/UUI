@@ -1,18 +1,60 @@
-import React from "react";
-import {Button, FlexRow} from "@epam/promo";
+import React, { useCallback, useMemo } from "react";
+import css from "./Presets.scss";
+import { Button, FlexRow } from "@epam/promo";
+import { IPresetsApi, ITablePreset } from "../types";
+import { Preset } from "./Preset";
+import { DataTableState } from "@epam/uui";
 
-interface IPresetsProps {
-    presets: { id: string, name: string, isActive: boolean }[];
+interface IPresetsProps extends IPresetsApi {
+    presets: ITablePreset[];
+    tableState: DataTableState;
 }
 
-const Presets: React.FC<IPresetsProps> = ({presets}) => {
-    return (
-        <FlexRow spacing='6' size='48' padding='18' >
-            { presets.map(preset => {
-                const fill = preset.isActive ? "solid" : "white";
+const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
+    const newPresetTitle = "New preset";
+    const activePresetId = getActivePresetId();
 
-                return <Button key={ preset.id } size='24' caption={ preset.name } fill={ fill }/>;
-            }) }
+    const saveNewPreset = useCallback(() => {
+        createNewPreset(newPresetTitle);
+    }, [createNewPreset, newPresetTitle]);
+
+    const activePreset = presets.find(p => p.id === activePresetId);
+    const hasActivePresetChanged = useMemo(() => {
+        return !isDefaultPresetActive()
+            && hasPresetChanged(activePreset);
+    }, [isDefaultPresetActive, activePreset, tableState.filter]);
+    
+    return (
+        <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>
+            <Button
+                size="24"
+                caption="Default"
+                fill={ isDefaultPresetActive() ? "solid" : "white" }
+                onClick={ isDefaultPresetActive() ? null : resetToDefault }
+            />
+            { presets.map(preset => (
+                <Preset
+                    preset={ preset }
+                    isActive={ preset.id === activePresetId }
+                    hasChanged={ preset.id === activePresetId && hasActivePresetChanged }
+                    choosePreset={ choosePreset }
+                    duplicatePreset={ duplicatePreset }
+                    deletePreset={ deletePreset }
+                    updatePreset={ updatePreset }
+                    resetToDefault={ resetToDefault }
+                    key={ preset.id }
+                />
+            )) }
+
+            { hasActivePresetChanged && (
+                <Button
+                    caption={ `Save as ${ newPresetTitle }` }
+                    onClick={ saveNewPreset }
+                    color="green"
+                    fill="solid"
+                    size="24"
+                />
+            ) }
         </FlexRow>
     );
 };

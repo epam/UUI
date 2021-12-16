@@ -42,5 +42,5 @@ export interface FormComponentState<T> extends FormState<T> {
 
 export function Form<T>({ renderForm, ...props }: FormProps<T>) {
     const useFormProps = useForm<T>(props);
-    return <>{renderForm(useFormProps)}</>;
+    return <>{ renderForm(useFormProps) }</>;
 };

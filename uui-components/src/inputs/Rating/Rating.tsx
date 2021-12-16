@@ -9,7 +9,7 @@ export interface RatingProps extends BaseRatingProps<number> {
     emptyStarIcon?: any;
     hideTooltip?: boolean;
     hint?: (value: number) => string;
-    Tooltip?: React.ComponentClass<TooltipProps>;
+    Tooltip?: React.ComponentType<TooltipProps>;
 }
 
 const uuiRating: Record<string, string> = {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withMods } from '@epam/uui';
 import { VirtualList as uuiVirtualList, VirtualListProps } from '@epam/uui-components';
 import * as css from './VirtualList.scss';

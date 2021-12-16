@@ -1,3 +1,31 @@
+# 4.5.0 - 09.12.2021
+
+**What's New**
+
+* [RawProps][BreakingChange]: added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
+* [VirtualList]: introduced new useVirtualList hook
+* [DataPickerRow]: Fix tick icon alignment
+* [FileCard]: Added extension to file card. Bugfixes.
+* [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
+
+# 4.4.0 - 07.12.2021
+
+**What's New**
+* [Drag&Drop]: added mobile devices support
+* [ErrorHandler]: added to 'promo' skin
+* [PickerInput]: add possibility to pass icon to the toggler
+* [DropSpot]: move wordings to the i18n
+
+**What’s Fixed**
+* [Router]: remove history types dependency from UUI, fix types for location.state
+* [TextPlaceholder]: fix placeholder visibility for Safari
+* [Form]: fix lens batch updates
+* [Checkbox]: added default value, fixed alignment for label
+* [ApiContext]: fix bug when 'connection lost' modal was shown on canceled fetch request
+* [IconButton]: fix the IconButton color on focus when the button is disabled
+* [SearchInput]: fix accept and cancel icons visibility when onAccept and onCancel callback are passed and value is empty
+* [BurgerButton]: fix styles
+
 # 4.3.0 - 25.10.2021
 
 **What's New**

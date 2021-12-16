@@ -9,7 +9,7 @@ exports[`Switch should be rendered correctly 1`] = `
   >
     <input
       aria-checked={false}
-      checked={null}
+      checked={false}
       onChange={[Function]}
       role="switch"
       type="checkbox"
@@ -33,7 +33,7 @@ exports[`Switch should be rendered correctly 2`] = `
   >
     <input
       aria-checked={false}
-      checked={null}
+      checked={false}
       onChange={[Function]}
       role="switch"
       type="checkbox"

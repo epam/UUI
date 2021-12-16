@@ -20,7 +20,6 @@ export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, I
     disableClear?: boolean;
     renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
     isHoliday?: (day: Dayjs) => boolean;
-    id?: string;
 }
 
 interface DatePickerState extends PickerBodyValue<string> {

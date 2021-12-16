@@ -1,0 +1,25 @@
+.recovery-spinner {
+    margin: 32px 0 12px;
+}
+
+.recovery-message {
+    margin: 12px 0 24px;
+}
+
+.modal-blocker {
+    animation: modalFadeIn 2s ease-out;
+}
+
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
