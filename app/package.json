@@ -47,9 +47,6 @@
     "react-router-dom": "5.2.0",
     "slate": "0.47.9"
   },
-  "optionalDependencies": {
-    "@epam/uui-docs": "4.3.0"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
