@@ -5,6 +5,7 @@
 * [RawProps][BreakingChange]: added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
 * [VirtualList]: introduced new useVirtualList hook
 * [DataPickerRow]: Fix tick icon alignment
+* [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
 
 # 4.4.0 - 07.12.2021
 
