@@ -64,7 +64,7 @@ export class LockContext extends BaseContext {
         }
     }
 
-    public release(lock: object) {
+    public release(lock: Lock) {
         if (lock && this.currentLock == lock) {
             this.currentLock = null;
             this.unblock();

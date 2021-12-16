@@ -6,6 +6,7 @@
 * [VirtualList]: introduced new useVirtualList hook
 * [DataPickerRow]: Fix tick icon alignment
 * [FileCard]: Added extension to file card. Bugfixes.
+* [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
 
 # 4.4.0 - 07.12.2021
 
