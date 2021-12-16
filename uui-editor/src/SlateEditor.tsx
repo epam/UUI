@@ -142,11 +142,18 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
     }
 
     onBlur = (e: any, editor: Editor, next: () => any) => {
+        if (!editor.value.selection.isFocused) return;
         if (e.relatedTarget && e.relatedTarget.closest('.slate-prevent-blur')) {
             return e.preventDefault();
         }
 
-        this.props.onBlur && this.props.onBlur(e, editor.value);
+        this.props.onBlur?.(e, editor.value);
+        return next();
+    }
+    
+    onFocus = (e: any, editor: Editor, next: () => any) => {
+        if (editor.value.selection.isFocused) return;
+        return next();
     }
 
 
@@ -170,6 +177,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
                     autoFocus={ this.props.autoFocus }
                     plugins={ this.props.plugins }
                     schema={ schema }
+                    onFocus={ this.onFocus }
                     onBlur={ this.onBlur }
                     value={ this.props.value || slateEditorEmptyValue }
                     onChange={ this.onChange }
