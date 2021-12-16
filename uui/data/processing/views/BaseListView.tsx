@@ -114,6 +114,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
     }
 
+    protected isSelectAllEnabled() {
+        return this.props.selectAll == undefined ? true : this.props.selectAll;
+    }
+
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {
         this.onValueChange({
             ...this.value,

@@ -376,15 +376,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
 
         const rootStats = iterateNode(this.tree, true, []);
-        const isSelectAllSwitched = this.props.selectAll == undefined ? true : this.props.selectAll;
 
-        if (rootStats.isSomeCheckable && isSelectAllSwitched) {
+        if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
             this.selectAll = {
                 value: rootStats.isAllChecked,
                 onValueChange: this.handleSelectAllCheck,
                 indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
-        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && isSelectAllSwitched) {
+        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && this.isSelectAllEnabled()) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
             this.selectAll = {
                 value: false,
