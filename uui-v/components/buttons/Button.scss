@@ -25,16 +25,23 @@
     border-color: $border-color;
 }
 
-.fill-solid {
+.mode-solid {
     background-color: var(--background-color);
-    color: var(--background-color-contrast);
-    fill: var(--background-color-contrast);
-    border-color: var(--border-color);
+    color: var(--caption-color);
+    fill: var(--caption-color);
+    border-color: var(--background-color);
 
     &:global(.-clickable) {
-        &:hover, &:focus {
+        &:hover {
             background-color: var(--background-color-hover);
             border-color: var(--background-color-hover);
+        }
+
+        &:focus {
+            background-color: var(--background-color-hover);
+            border-color: var(--background-color-hover);
+            box-shadow: var(--focus-shadow);
+            outline: var(--focus-outline);
         }
 
         &:active {
@@ -54,57 +61,57 @@
     }
 }
 
-.fill-white {
-    background-color: var(--background-color-contrast);
-    color: var(--caption-color);
-    fill: var(--caption-color);
+.mode-outline {
+    background-color: var(--background-color-outline);
+    color: var(--caption-halftone-color);
+    fill: var(--caption-halftone-color);
     border-color: var(--border-color);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-light-hover);
-            color: var(--caption-color);
-            fill: var(--caption-color);
+            background-color: var(--background-color-halftone-hover);
+            color: var(--caption-halftone-color);
+            fill: var(--caption-halftone-color);
             border-color: var(--border-color);
         }
 
         &:active {
-            background-color: var(--background-color-light-active);
-            color: var(--caption-color);
-            fill: var(--caption-color);
+            background-color: var(--background-color-halftone-active);
+            color: var(--caption-halftone-color);
+            fill: var(--caption-halftone-color);
             border-color: var(--border-color);
         }
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--background-color-contrast), var(--background-color-disabled));
+        @include button-disables-styles(var(--background-color-outline), var(--background-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--background-color-contrast), var(--background-color-disabled));
+            @include button-disables-styles(var(--background-color-outline), var(--background-color-disabled));
         }
     }
 }
 
-.fill-none {
+.mode-none {
     background-color: transparent;
-    color: var(--caption-color);
-    fill: var(--caption-color);
+    color: var(--caption-halftone-color);
+    fill: var(--caption-halftone-color);
     border-color: var(--border-color);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-light-hover);
-            color: var(--caption-color);
-            fill: var(--caption-color);
+            background-color: var(--background-color-halftone-hover);
+            color: var(--caption-halftone-color);
+            fill: var(--caption-halftone-color);
             border-color: var(--border-color);
         }
 
         &:active {
-            background-color: var(--background-color-light-active);
-            color: var(--caption-color);
-            fill: var(--caption-color);
+            background-color: var(--background-color-halftone-active);
+            color: var(--caption-halftone-color);
+            fill: var(--caption-halftone-color);
             border-color: var(--border-color);
         }
     }
@@ -120,21 +127,21 @@
     }
 }
 
-.fill-light {
+.mode-ghost {
     background-color: transparent;
-    color: var(--background-color);
-    fill: var(--background-color);
+    color: var(--caption-halftone-color);
+    fill: var(--caption-halftone-color);
     border-color: transparent;
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-light-hover);
-            border-color: var(--background-color-light-hover);
+            background-color: var(--background-color-halftone-hover);
+            border-color: var(--background-color-halftone-hover);
         }
 
         &:active {
-            background-color: var(--background-color-light-active);
-            border-color: var(--background-color-light-active);
+            background-color: var(--background-color-halftone-active);
+            border-color: var(--background-color-halftone-active);
         }
     }
 

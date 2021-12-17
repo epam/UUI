@@ -1,4 +1,4 @@
-import { allFillStyles } from '../../types';
+import { allButtonModes } from '../../types';
 import { allButtonColors, Button, ButtonMods } from '../Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
@@ -16,7 +16,7 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
         { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
     ], type: 'string' })
     .implements([iconOptionsDoc] as any)
-    .prop('fill', { examples: allFillStyles, defaultValue: 'solid' })
+    .prop('mode', { examples: allButtonModes, defaultValue: 'solid' })
     .withContexts(DefaultContext);
 
 export = ButtonDoc;

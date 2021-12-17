@@ -1,22 +1,20 @@
-import * as types from '../types';
-import * as colors from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
-import * as css from './Checkbox.scss';
-import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
+import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
+import * as css from './Checkbox.scss';
 import * as check_12 from '../../icons/check-12.svg';
 import * as check_18 from '../../icons/check-18.svg';
 import * as partlySelect_12 from '../../icons/partly-select-12.svg';
 import * as partlySelect_18 from '../../icons/partly-select-18.svg';
+import '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
 
 export interface CheckboxMods {
     size?: '12' | '18';
-    fill?: types.FillStyle;
     theme?: 'light' | 'dark';
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
-        colors.checkboxColors,
+        'checkbox-colors',
         css.root,
         css['size-' + (mods.size || '18')],
     ];

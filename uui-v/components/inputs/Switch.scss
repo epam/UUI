@@ -62,7 +62,7 @@
     :global(.uui-input-label) {
         //@include typography-inline; TODO: ???
         font-family: $font-sans;
-        color: var(--caption-color);
+        color: var(--label-color);
         margin-left: 11px;
     }
 

@@ -22,6 +22,7 @@ export default function LazyPersonsMultiPicker() {
                 entityName='person'
                 selectionMode='multi'
                 valueType='id'
+
             />
         </FlexRow>
     );

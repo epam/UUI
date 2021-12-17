@@ -1,22 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
-import * as types from '../types';
-import { IHasEditMode, EditMode } from '../types';
+import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
-import * as colors from '../../assets/styles/colorvars/inputs/textInput-colorvars.scss';
 import * as css from './TextInput.scss';
+import '../../assets/styles/colorvars/inputs/textInput-colorvars.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;
 
 export interface TextInputMods extends IHasEditMode {
-    size?: types.ControlSize;
+    size?: ControlSize;
 }
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        colors.textInputColors,
+        'text-input-colors',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],

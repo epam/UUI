@@ -1,4 +1,4 @@
-.switch-colors {
+:global(.switch-colors) {
     --background-color: var(--input-switch-background-color);
     --background-color-checked: var(--input-background-checked-color);
     --background-color-hover: var(--input-background-hover-color);
@@ -13,7 +13,7 @@
     --border-color-checked-disabled: var(--input-border-checked-disabled-color);
     --label-color: var(--input-label-color);
     --label-color-disabled: var(--input-label-disabled-color);
-    --toggler-background-color: var(--input-background-color);
+    --toggler-background-color: #fff;
     --toggler-background-color-disabled: var(--input-background-disabled-color);
     --toggler-border-color: var(--input-switch-background-color);
     --toggler-border-color-checked: var(--input-background-checked-color);
