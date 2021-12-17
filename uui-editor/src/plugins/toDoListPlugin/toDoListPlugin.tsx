@@ -1,6 +1,6 @@
 import { Editor, RenderBlockProps } from "slate-react";
 import Lists from "@convertkit/slate-lists";
-import { Block, Editor as CoreEditor, KeyUtils } from "slate";
+import { Block, Editor as CoreEditor, KeyUtils, TextJSON } from "slate";
 import { ToDoItem } from "./ToDoItem";
 import * as React from "react";
 import { List } from "immutable";
@@ -58,7 +58,7 @@ const addToDo = (editor: Editor | CoreEditor) => {
         data: {
             checked: false,
         },
-        nodes: List([{ text: "", object: "text" } as any]),
+        nodes: [{ text: "", object: "text" }],
     });
 
     editor.setBlocks(newToDoItem);
