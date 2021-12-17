@@ -28,7 +28,7 @@ export class UuiEnhancedApp extends React.Component {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    };
+    }
 
     render() {
         const isProduction = /uui.epam.com/.test(location.hostname);
@@ -43,7 +43,7 @@ export class UuiEnhancedApp extends React.Component {
                 skinContext={ promoSkinContext }
                 enableLegacyContext={ false }
             >
-                <ErrorHandler>
+                <ErrorHandler >
                     <App />
                     <Snackbar />
                     <Modals />

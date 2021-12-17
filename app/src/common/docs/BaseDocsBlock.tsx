@@ -7,7 +7,7 @@ import { svc } from '../../services';
 import { getQuery } from '../../helpers';
 import { analyticsEvents } from '../../analyticsEvents';
 import * as css from './BaseDocsBlock.scss';
-import * as theme from './theme.scss';
+import * as theme from '../../theme.scss';
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';

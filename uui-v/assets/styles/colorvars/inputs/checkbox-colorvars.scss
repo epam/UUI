@@ -1,4 +1,4 @@
-.checkbox-colors {
+:global(.checkbox-colors) {
     --border-color: var(--input-border-color);
     --border-color-hover: var(--input-border-hover-color);
     --border-color-disabled: var(--input-border-disabled-color);
@@ -10,7 +10,7 @@
     --background-color-checked-hover: var(--input-background-checked-hover-color);
     --background-color-checked-disabled: var(--input-background-checked-disabled-color);
     --error-color: var(--negative-color);
-    --fill-color: var(--input-background-color);
+    --fill-color: var(--input-checkbox-icon-color);
     --label-color: var(--input-label-color);
     --label-color-disabled: var(--input-label-disabled-color);
 }

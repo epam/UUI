@@ -60,7 +60,7 @@
         }
 
         &:hover {
-            background-color: white;
+            background-color: var(--background-color);
             border-color: var(--border-color);
 
             :global(.-clickable) {
@@ -73,14 +73,14 @@
         }
 
         &:global(.uui-focus) {
-            background-color: white;
+            background-color: var(--background-color);
             border-color: var(--border-color-active);
         }
     }
 
     &:global(.uui-invalid) {
         &.mode-form, &.mode-cell {
-            background-color: white;
+            background-color: var(--background-color);
             border-color: var(--border-color-error);
         }
     }

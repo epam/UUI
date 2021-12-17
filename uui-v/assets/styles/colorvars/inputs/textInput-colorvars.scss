@@ -1,4 +1,4 @@
-.text-input-colors {
+:global(.text-input-colors) {
     --background-color: var(--input-background-color);
     --background-color-disabled: var(--input-background-disabled-color);
     --background-color-readonly: var(--input-background-readonly-color);
