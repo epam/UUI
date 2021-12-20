@@ -20,7 +20,9 @@ export class ToDoItem extends React.Component<RenderBlockProps, any> {
         return (
             <FlexRow rawProps={ this.props.attributes }>
                 <div contentEditable={ false } className={ css.checkboxContainer }><Checkbox value={ data.get('checked') } onValueChange={ this.onChange }/></div>
-                { this.props.children }
+                <div className={ css.textContainer }>
+                    { this.props.children }
+                </div>
             </FlexRow>
         );
     }
