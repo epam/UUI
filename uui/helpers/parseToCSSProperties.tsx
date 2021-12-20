@@ -3,7 +3,7 @@ export function parseStringToCSSProperties(styles: string) {
     if (styles) {
         styles.split(';').map((item: any) => {
             let [name, value] = item.trim().split(':');
-            parsedStyle[name] = !name || overwritingStyles.includes(name)
+            parsedStyle[name] = !name || erasedStyleProps.includes(name)
                 ? null
                 : value.trim();
         });
@@ -11,6 +11,6 @@ export function parseStringToCSSProperties(styles: string) {
     return parsedStyle;
 }
 
-const overwritingStyles = [
+const erasedStyleProps = [
     "background-color", "font-family", "font-style",  
 ];
