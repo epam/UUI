@@ -18,7 +18,7 @@
     "@mercuriya/slate-linkify": "0.1.2",
     "@popperjs/core": "2.9.0",
     "@types/lodash.flatten": "4.4.6",
-    "@types/slate": "0.47.5",
+    "@types/slate": "0.47.9",
     "@types/slate-react": "0.22.8",
     "classnames": "2.2.6",
     "get-video-id": "3.1.3",
