@@ -31,7 +31,8 @@ module.exports = {
         "^.+\\.(sass|scss|less)$"
     ],
     "testPathIgnorePatterns": [
-        "node_modules"
+        "node_modules",
+        "templates"
     ],
     "modulePathIgnorePatterns": [
         "/build/"
