@@ -41,6 +41,7 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
             getBoundingClientRect: () => {
                 let selectedCells = this.props.selectedCells;
                 let firstCellPath = this.props.editor.value.document.getPath(this.props.selectedCells[0].key);
+                // @ts-ignore: Type instantiation is excessively deep and possibly infinite.
                 let firstCoord: any = (this.props.editor.findDOMNode(firstCellPath) as any).getBoundingClientRect();
                 let lastCoordIndex = selectedCells.length - 1;
                 let lastCellPath = this.props.editor.value.document.getPath(this.props.selectedCells[lastCoordIndex].key);
