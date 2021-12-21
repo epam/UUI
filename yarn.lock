@@ -3088,10 +3088,10 @@
     "@types/slate" "*"
     immutable "^3.8.2"
 
-"@types/slate@*", "@types/slate@0.47.9":
-  version "0.47.9"
-  resolved "https://registry.yarnpkg.com/@types/slate/-/slate-0.47.9.tgz#ce212ba09bb2c0de470b59b496efeac739eff1b4"
-  integrity sha512-KzC0iNuZJkiKx0dMAC9PBF6TXZNd0l3hqVCF5/7GwCEnLDx6VsETAedAi4OjRpzObvL4x7n8ZS51+sgXHn/HvQ==
+"@types/slate@0.47.5":
+  version "0.47.5"
+  resolved "https://registry.yarnpkg.com/@types/slate/-/slate-0.47.5.tgz#9e6bc71ef06c0e00c9f895eeebb7c7b51be43556"
+  integrity sha512-l1BkMvYKEY0XrWbScoPurgJQqmncLipxNXqNv/Tvl6X5Vhut+ucE+Wey36Tu2LcUsMzLaQ4WUoO1DcOLZR7kUA==
   dependencies:
     "@types/react" "*"
     immutable "^3.8.2"
