@@ -11,7 +11,18 @@
         "nodes": [
           {
             "object": "text",
-            "text": "ControlGroup is used to group various input widgets like checkbox, button, etc.",
+            "text": "ControlGroup",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is used to group various components like buttons, inputs and etc.",
             "marks": []
           }
         ]
