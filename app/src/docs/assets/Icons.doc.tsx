@@ -252,7 +252,7 @@ export class IconsDoc extends React.Component {
             return <div className={ css.unsuccessfulSearch } >
                 <Text fontSize='16' lineHeight='24' cx={ css.unsuccessfulSearchText }>
                     Unfortunately, we did not find
-                    <span>{ this.state.search }</span>
+                    <span> { this.state.search } </span>
                     icon in our package. But we can add it in the next release.
                 </Text>
                 <FlexRow>
