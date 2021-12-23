@@ -4,7 +4,7 @@ import { FlexCell, FlexRow, FlexSpacer, LinkButton, Text } from '@epam/promo';
 import { team } from '../docs';
 import { analyticsEvents } from '../analyticsEvents';
 import * as css from './TeamBlock.scss';
-import * as linkIcon from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
+import { ReactComponent as LinkIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 
 export class TeamBlock extends React.Component {
     render() {
@@ -22,7 +22,7 @@ export class TeamBlock extends React.Component {
                                         <FlexSpacer />
                                         <LinkButton
                                             size={ containerWidth > 768 ? '48' : '30' }
-                                            icon={ containerWidth <= 768 ? linkIcon : undefined }
+                                            icon={ containerWidth <= 768 ? LinkIcon : undefined }
                                             caption={ containerWidth > 768 && 'View All Members' }
                                             link={ { pathname: '/documents', query: { id: 'team' } } }
                                             clickAnalyticsEvent={ analyticsEvents.welcome.team('All') }

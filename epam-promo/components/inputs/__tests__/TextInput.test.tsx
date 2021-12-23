@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from '../TextInput';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TextInput', () => {
     it('should be rendered correctly', () => {
@@ -21,7 +21,7 @@ describe('TextInput', () => {
                 onValueChange={ jest.fn }
                 onAccept={ jest.fn }
                 onCancel={ jest.fn }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 iconPosition='right'
                 size='36'
                 isDropdown

@@ -11,9 +11,9 @@ import {
 import type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from './types';
 import { personDetailsSchema } from './validationShema';
 import { defaultData, emptyInfo } from './defaultData';
-import * as infoIcon from '@epam/assets/icons/common/notification-help-outline-24.svg';
-import * as addIcon from '@epam/assets/icons/common/action-add-18.svg';
-import * as clearIcon from '@epam/assets/icons/common/navigation-close-24.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import * as css from './DemoForm.scss';
 
 const tShirtSizes = [
@@ -97,7 +97,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
         <FlexRow>
             <RichTextView><h3>Primary Info</h3></RichTextView>
             <Tooltip trigger='hover' offset={ [0, 3] } content='You have no permission to edit this information'>
-                <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
+                <IconContainer icon={ InfoIcon } cx={ css.infoIcon } />
             </Tooltip>
         </FlexRow>
 
@@ -314,7 +314,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
                             { isClearable && (
                               <IconButton
-                                icon={ clearIcon }
+                                icon={ ClearIcon }
                                 onClick={ () => removeLensItemHandler<PersonLanguageInfo>(lens, index) }
                               />
                             ) }
@@ -326,7 +326,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                 <Button
                     onClick={ () => addLensItemHandler<PersonLanguageInfo>(lens, emptyInfo.language) }
                     caption='Add One More'
-                    icon={ addIcon }
+                    icon={ AddIcon }
                     fill='none'
                 />
             </FlexRow>
@@ -397,13 +397,13 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
-                            { isClearable && <IconButton icon={ clearIcon } onClick={ () => removeLensItemHandler<PersonTravelVisa>(visasLens, index) } /> }
+                            { isClearable && <IconButton icon={ ClearIcon } onClick={ () => removeLensItemHandler<PersonTravelVisa>(visasLens, index) } /> }
                         </FlexRow>
                     </FlexRow>
                 );
             }) }
             <FlexRow vPadding='12'>
-                <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) }  caption='Add One More' icon={ addIcon } fill='none' />
+                <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) }  caption='Add One More' icon={ AddIcon } fill='none' />
             </FlexRow>
             <FlexRow vPadding='12' spacing='18' >
                 <FlexCell width='100%'>

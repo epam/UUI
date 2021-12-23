@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 import {Button} from '../Button';
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('Button', () => {
     it('should be rendered correctly', () => {
@@ -19,7 +19,7 @@ describe('Button', () => {
                 caption='Click me'
                 onClick={ jest.fn() }
                 onClear={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 isDisabled={ false }
                 isDropdown={ true }
                 count={ 10 }

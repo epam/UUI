@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {IconContainer} from "../IconContainer";
-import * as acceptIcon from '../../icons/accept-12.svg';
+import { ReactComponent as AcceptIcon } from '../../icons/accept-12.svg';
 
 describe('IconContainer', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<IconContainer icon={ acceptIcon }/>)
+            .create(<IconContainer icon={ AcceptIcon }/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -16,7 +16,7 @@ describe('IconContainer', () => {
             .create(<IconContainer
                 color='sun'
                 onClick={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 size={ 36 }
                 rotate='90ccw'
                 tabIndex={ 0 }

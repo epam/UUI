@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SliderScaleElement } from './SliderScaleElement';
 import { SliderScaleBase } from './SliderScaleBase';
+import { isClientSide } from "@epam/uui";
 
 interface HandleOffsetValue {
     from: number;
@@ -13,6 +14,7 @@ export class RangeSliderScale extends SliderScaleBase<HandleOffsetValue> {
         const sliderWidth = this.props.slider && this.props.slider.offsetWidth;
         return this.generateScale(splitAt).map(value => {
             const offset = (value - this.props.min) * this.props.valueWidth;
+            const sliderMargin = isClientSide && this.props.slider && +window.getComputedStyle(this.props.slider).marginLeft.slice(0, -2);
             return (
                 <SliderScaleElement
                     key={ value }
@@ -20,7 +22,7 @@ export class RangeSliderScale extends SliderScaleBase<HandleOffsetValue> {
                     offset={ offset }
                     isFilledDot={ this.props.handleOffset.from <= offset && offset <= this.props.handleOffset.to  }
                     label={ value }
-                    sliderMargin={ this.props.slider && +window.getComputedStyle(this.props.slider).marginLeft.slice(0, -2) }
+                    sliderMargin={ sliderMargin }
                 />
             );
         });

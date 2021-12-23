@@ -3,7 +3,7 @@ import { cx, IHasRawProps } from '@epam/uui';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import * as css from './DropSpot.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '../';
-import * as shapeIcon from '../../icons/fileUpload/shape.svg';
+import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from "../../i18n";
 
 export interface DropSpotProps {
@@ -21,7 +21,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
             <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart) } { ...this.props.rawProps }>
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                     <FlexRow size='24' spacing='6' >
-                        <IconContainer color='blue' icon={ shapeIcon } />
+                        <IconContainer color='blue' icon={ ShapeIcon } />
                         <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> {i18n.fileUpload.label} </Text>
                         <UploadFileToggler
                             onFilesAdded={ this.props.onUploadFiles }

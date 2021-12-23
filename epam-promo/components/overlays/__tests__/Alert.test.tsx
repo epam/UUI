@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert } from '../Alert';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('Alert', () => {
     it('should be rendered correctly', () => {
@@ -14,7 +14,7 @@ describe('Alert', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<Alert
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 color='amber'
                 actions={ [{
                     name: 'ACTION 1',

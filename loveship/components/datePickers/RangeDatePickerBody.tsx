@@ -4,7 +4,7 @@ import * as calendarCss from './Calendar.scss';
 import * as calendarPresetsCss from './CalendarPresets.scss';
 import { RangeDatePickerBody as uuiRangeDatePickerBody, RangeDatePickerValue, RangeDatePickerBodyProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
-import * as arrowIcon from './../icons/folding-arrow-24.svg';
+import { ReactComponent as ArrowIcon } from './../icons/folding-arrow-24.svg';
 
 export function applyRangeDatePickerBodyMods() {
     return [
@@ -18,5 +18,5 @@ export function applyRangeDatePickerBodyMods() {
 export const RangeDatePickerBody = withMods<RangeDatePickerBodyProps<RangeDatePickerValue>>(
     uuiRangeDatePickerBody,
     applyRangeDatePickerBodyMods,
-    () => ({ navIconLeft: arrowIcon, navIconRight: arrowIcon }),
+    () => ({ navIconLeft: ArrowIcon, navIconRight: ArrowIcon }),
 );

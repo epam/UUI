@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from '../Tag';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('Tag', () => {
     it('should be rendered correctly', () => {
@@ -20,7 +20,7 @@ describe('Tag', () => {
         const tree = renderer
             .create(<Tag
                 caption='Test badge'
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 count={ 12 }
                 onIconClick={ () => {} }
                 onClick={ () => {} }

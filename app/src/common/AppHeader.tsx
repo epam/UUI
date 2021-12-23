@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer } from '@epam/promo';
 import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import * as css from './AppHeader.scss';
-import * as gitIcon from '../icons/git-branch-18.svg';
+import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
@@ -110,7 +110,7 @@ export class AppHeader extends React.Component {
                 <FlexSpacer priority={ 100500 } />
                 <MainMenuCustomElement priority={ 0 } estimatedWidth={ 113 }  >
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } >
-                        <IconContainer icon={ gitIcon } color='white' />
+                        <IconContainer icon={ GitIcon } color='white' />
                         <Text font='sans-semibold' fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
                     </Anchor>
                 </MainMenuCustomElement>

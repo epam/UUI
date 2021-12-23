@@ -24,14 +24,7 @@ exports[`FileCard should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_excel-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"
@@ -125,14 +118,7 @@ exports[`FileCard should be rendered correctly 2`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_word-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"
@@ -226,14 +212,7 @@ exports[`FileCard should be rendered correctly 3`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={24}
-      >
-        <use
-          xlinkHref="#file-file_image-24.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="flexCell"

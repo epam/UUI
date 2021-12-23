@@ -96,14 +96,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height={24}
-                      viewBox="0 0 12 24"
-                      width={12}
-                    >
-                      <use
-                        xlinkHref="#sort.svg"
-                      />
-                    </svg>
+                    />
                   </div>
                 </button>
               </div>
@@ -160,14 +153,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height={24}
-                      viewBox="0 0 12 24"
-                      width={12}
-                    >
-                      <use
-                        xlinkHref="#sort.svg"
-                      />
-                    </svg>
+                    />
                   </div>
                 </button>
               </div>
@@ -211,14 +197,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height={24}
-                      viewBox="0 0 12 24"
-                      width={12}
-                    >
-                      <use
-                        xlinkHref="#sort.svg"
-                      />
-                    </svg>
+                    />
                   </div>
                 </button>
               </div>
@@ -262,14 +241,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height={24}
-                      viewBox="0 0 12 24"
-                      width={12}
-                    >
-                      <use
-                        xlinkHref="#sort.svg"
-                      />
-                    </svg>
+                    />
                   </div>
                 </button>
               </div>
