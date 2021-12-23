@@ -3,7 +3,6 @@ import { RenderBlockProps } from 'slate-react';
 import cx from 'classnames';
 import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
-import { getReadableFileSizeString } from '../../helpers';
 import * as css from './AttachmentBlock.scss';
 import * as downloadIcon from '../../icons/download-icon.svg';
 import * as fileIcon from '../../icons/file-file-24.svg';
@@ -22,6 +21,17 @@ interface AttachmentBlockState {
 }
 
 const { FlexRow, FlexCell, TextInput } = uuiSkin;
+
+function getReadableFileSizeString(fileSizeInBytes: number) {
+    let i = -1;
+    let byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        fileSizeInBytes = fileSizeInBytes / 1000;
+        i++;
+    } while (fileSizeInBytes > 1000);
+
+    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+}
 
 export class AttachmentBlock extends React.Component<RenderBlockProps, AttachmentBlockState> {
     static contextType = UuiContext;
