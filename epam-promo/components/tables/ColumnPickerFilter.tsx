@@ -10,15 +10,14 @@ export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     close?: () => void;
 };
 
-export interface PickerFilterState extends PickerBaseState {
-}
+export interface PickerFilterState extends PickerBaseState {}
 
 const pickerHeight = 300;
 
 export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         const size = isMobile() ? "48" : (this.props.size || '30');
-        
+
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
@@ -33,11 +32,11 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
 
     renderItem = (i: TItem, rowProps: DataRowProps<TItem, TId>) => {
         const size = isMobile() ? "48" : (this.props.size || '30');
-        
+
         return (
             <Text size={ size }>
                 { rowProps.isLoading
-                    ? <TextPlaceholder wordsCount={ 2 }/>
+                    ? <TextPlaceholder wordsCount={ 2 } />
                     : this.getName(i)
                 }
             </Text>
@@ -55,8 +54,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         }
     }
 
-    render() {
-        const view = this.getView();
+    render() {;
         const renderedDataRows = this.getRows().map(this.renderRow);
         const maxHeight = isMobile() ? document.documentElement.clientHeight : pickerHeight;
 

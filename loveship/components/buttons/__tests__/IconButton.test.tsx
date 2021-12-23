@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 import {IconButton} from '../IconButton';
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('IconButton', () => {
     it('should be rendered correctly', () => {
@@ -16,7 +16,7 @@ describe('IconButton', () => {
             .create(<IconButton
                 color='sun'
                 onClick={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 isDisabled={ false }
             />)
             .toJSON();

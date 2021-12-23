@@ -2,18 +2,18 @@ import React, { useState, useRef } from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
 import { Icon, IEditable } from '@epam/uui';
 import * as css from './SliderRating.scss';
-import * as lineGrayIcon from '../icons/slider-rating/line_gray_icon.svg';
-import * as lineRedIcon from '../icons/slider-rating/line_red_icon.svg';
-import * as lineYellowIcon from '../icons/slider-rating/line_yellow_icon.svg';
-import * as lineBlueIcon from '../icons/slider-rating/line_blue_icon.svg';
-import * as lineVioletIcon from '../icons/slider-rating/line_violet_icon.svg';
-import * as activeMarkRedIcon from '../icons/slider-rating/active_mark_red_icon.svg';
-import * as activeMarkYellowIcon from '../icons/slider-rating/active_mark_yellow_icon.svg';
-import * as activeMarkGreenIcon from '../icons/slider-rating/active_mark_green_icon.svg';
-import * as activeMarkBlueIcon from '../icons/slider-rating/active_mark_blue_icon.svg';
-import * as activeMarkVioletIcon from '../icons/slider-rating/active_mark_violet_icon.svg';
-import * as naIcon from '../icons/slider-rating/na_icon.svg';
-import * as naActiveIcon from '../icons/slider-rating/na_active_icon.svg';
+import { ReactComponent as LineGrayIcon } from '../icons/slider-rating/line_gray_icon.svg';
+import { ReactComponent as LineRedIcon } from '../icons/slider-rating/line_red_icon.svg';
+import { ReactComponent as LineYellowIcon } from '../icons/slider-rating/line_yellow_icon.svg';
+import { ReactComponent as LineBlueIcon } from '../icons/slider-rating/line_blue_icon.svg';
+import { ReactComponent as LineVioletIcon } from '../icons/slider-rating/line_violet_icon.svg';
+import { ReactComponent as ActiveMarkRedIcon } from '../icons/slider-rating/active_mark_red_icon.svg';
+import { ReactComponent as ActiveMarkYellowIcon } from '../icons/slider-rating/active_mark_yellow_icon.svg';
+import { ReactComponent as ActiveMarkGreenIcon } from '../icons/slider-rating/active_mark_green_icon.svg';
+import { ReactComponent as ActiveMarkBlueIcon } from '../icons/slider-rating/active_mark_blue_icon.svg';
+import { ReactComponent as ActiveMarkVioletIcon } from '../icons/slider-rating/active_mark_violet_icon.svg';
+import { ReactComponent as NaIcon } from '../icons/slider-rating/na_icon.svg';
+import { ReactComponent as NaActiveIcon } from '../icons/slider-rating/na_active_icon.svg';
 import { Tooltip } from '../overlays';
 import cx from 'classnames';
 import { i18n } from "../../i18n";
@@ -36,22 +36,22 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
     getScaleIcon = (rating: number) => {
         switch (rating) {
-            case 1: return lineRedIcon;
-            case 2: return lineYellowIcon;
-            case 3: return lineGrayIcon;
-            case 4: return lineBlueIcon;
-            case 5: return lineVioletIcon;
-            default: return lineGrayIcon;
+            case 1: return LineRedIcon;
+            case 2: return LineYellowIcon;
+            case 3: return LineGrayIcon;
+            case 4: return LineBlueIcon;
+            case 5: return LineVioletIcon;
+            default: return LineGrayIcon;
         }
     }
 
     getHandlerIcon = (rating: number) => {
         switch (rating) {
-            case 1: return activeMarkRedIcon;
-            case 2: return activeMarkYellowIcon;
-            case 3: return activeMarkGreenIcon;
-            case 4: return activeMarkBlueIcon;
-            case 5: return activeMarkVioletIcon;
+            case 1: return ActiveMarkRedIcon;
+            case 2: return ActiveMarkYellowIcon;
+            case 3: return ActiveMarkGreenIcon;
+            case 4: return ActiveMarkBlueIcon;
+            case 5: return ActiveMarkVioletIcon;
         }
     }
 
@@ -101,11 +101,11 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
         const size = this.props.size || defaultSize;
 
         if (isReadonly && this.props.value !== 0) {
-            return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ naIcon }/>;
+            return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ NaIcon }/>;
         } else {
             return (
                 <Tooltip content={ this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage }>
-                    <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) } icon={ this.props.value === 0 ? naActiveIcon : naIcon } onClick={ !isReadonly && (() => this.props.onValueChange(0)) }/>
+                    <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) } icon={ this.props.value === 0 ? NaActiveIcon : NaIcon } onClick={ !isReadonly && (() => this.props.onValueChange(0)) }/>
                 </Tooltip>
             );
         }

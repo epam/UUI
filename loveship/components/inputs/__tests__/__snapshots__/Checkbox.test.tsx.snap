@@ -19,14 +19,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#checkbox-checked.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </label>
@@ -51,14 +44,7 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#checkbox-checked.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </label>

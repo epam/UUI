@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Lens, IEditable, ArrayDataSource } from '@epam/uui';
 import { LabeledInput, TextInput, FlexRow, FlexCell, Button, FlexSpacer, PickerInput, LinkButton, RichTextView } from '@epam/loveship';
 import { PersonExperienceItem } from '@epam/uui-docs';
-import * as addIcon from '@epam/assets/icons/common/content-plus-18.svg';
-import * as removeIcon from '@epam/assets/icons/common/navigation-close-24.svg';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-plus-18.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
 export interface ExperienceEditorProps extends IEditable<PersonExperienceItem[]> {
     isDisabled?: boolean;
@@ -54,7 +54,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
             <FlexCell width='auto'>
                 <LinkButton
                     rawProps={{ "aria-label": 'Remove' }}
-                    icon={ removeIcon }
+                    icon={ RemoveIcon }
                     color='night600'
                     onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
                 />
@@ -94,7 +94,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                     caption='add'
                     size='30'
                     color='grass'
-                    icon={ addIcon }
+                    icon={ AddIcon }
                 />
                 <FlexSpacer />
             </FlexRow>

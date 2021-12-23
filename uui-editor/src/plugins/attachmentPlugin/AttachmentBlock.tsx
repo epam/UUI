@@ -3,18 +3,17 @@ import { RenderBlockProps } from 'slate-react';
 import cx from 'classnames';
 import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
-import { getReadableFileSizeString } from '../../helpers';
 import * as css from './AttachmentBlock.scss';
-import * as downloadIcon from '../../icons/download-icon.svg';
-import * as fileIcon from '../../icons/file-file-24.svg';
-import * as docIcon from '../../icons/file-file_word-24.svg';
-import * as exelIcon from '../../icons/file-file_excel-24.svg';
-import * as pdfIcon from '../../icons/file-file_pdf-24.svg';
-import * as imgIcon from '../../icons/file-file_image-24.svg';
-import * as videoIcon from '../../icons/file-file_video-24.svg';
-import * as tableIcon from '../../icons/file-file_table-24.svg';
-import * as textIcon from '../../icons/file-file_text-24.svg';
-import * as mailIcon from '../../icons/file-file_eml-24.svg';
+import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
+import { ReactComponent as FileIcon } from '../../icons/file-file-24.svg';
+import { ReactComponent as DocIcon } from '../../icons/file-file_word-24.svg';
+import { ReactComponent as ExelIcon } from '../../icons/file-file_excel-24.svg';
+import { ReactComponent as PdfIcon } from '../../icons/file-file_pdf-24.svg';
+import { ReactComponent as ImgIcon } from '../../icons/file-file_image-24.svg';
+import { ReactComponent as VideoIcon } from '../../icons/file-file_video-24.svg';
+import { ReactComponent as TableIcon } from '../../icons/file-file_table-24.svg';
+import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
+import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
 interface AttachmentBlockState {
     progress: number| null;
@@ -22,6 +21,17 @@ interface AttachmentBlockState {
 }
 
 const { FlexRow, FlexCell, TextInput } = uuiSkin;
+
+function getReadableFileSizeString(fileSizeInBytes: number) {
+    let i = -1;
+    let byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        fileSizeInBytes = fileSizeInBytes / 1000;
+        i++;
+    } while (fileSizeInBytes > 1000);
+
+    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+}
 
 export class AttachmentBlock extends React.Component<RenderBlockProps, AttachmentBlockState> {
     static contextType = UuiContext;
@@ -51,43 +61,43 @@ export class AttachmentBlock extends React.Component<RenderBlockProps, Attachmen
         switch (type) {
             case 'doc':
             case 'docx': {
-                return <IconContainer size={ 48 } icon={ docIcon } cx={ css.docColor }/>;
+                return <IconContainer size={ 48 } icon={ DocIcon } cx={ css.docColor }/>;
             }
             case 'xls':
             case 'xlsx': {
-                return <IconContainer size={ 48 } icon={ exelIcon } cx={ css.xlsColor }/>;
+                return <IconContainer size={ 48 } icon={ ExelIcon } cx={ css.xlsColor }/>;
             }
             case 'pdf': {
-                return <IconContainer size={ 48 } icon={ pdfIcon } cx={ css.pdfColor }/>;
+                return <IconContainer size={ 48 } icon={ PdfIcon } cx={ css.pdfColor }/>;
             }
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'png':
             case 'webp': {
-                return <IconContainer size={ 48 } icon={ imgIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ ImgIcon } cx={ css.img }/>;
             }
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
             case 'mkv': {
-                return <IconContainer size={ 48 } icon={ videoIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ VideoIcon } cx={ css.img }/>;
             }
             case 'csv':
             case 'xml': {
-                return <IconContainer size={ 48 } icon={ tableIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ TableIcon } cx={ css.img }/>;
             }
             case 'rtf':
             case 'txt': {
-                return <IconContainer size={ 48 } icon={ textIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ TextIcon } cx={ css.img }/>;
             }
             case 'eml':
             case 'emlx': {
-                return <IconContainer size={ 48 } icon={ mailIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ MailIcon } cx={ css.img }/>;
             }
             default: {
-                return <IconContainer size={ 48 } icon={ fileIcon } cx={ css.img }/>;
+                return <IconContainer size={ 48 } icon={ FileIcon } cx={ css.img }/>;
             }
         }
     }
@@ -120,7 +130,7 @@ export class AttachmentBlock extends React.Component<RenderBlockProps, Attachmen
                 </FlexCell>
                 <FlexCell width='auto' shrink={ 0 } cx={ css.imgBox }>
                     <a href={ this.props.node.data.get('path') } download={ true } className={ css.linkWrapper }>
-                        <IconContainer icon={ downloadIcon } cx={ css.img }/>
+                        <IconContainer icon={ DownloadIcon } cx={ css.img }/>
                     </a>
                 </FlexCell>
             </FlexRow>

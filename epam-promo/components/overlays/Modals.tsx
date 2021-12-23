@@ -4,7 +4,7 @@ import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
-import * as  crossIcon from '../../icons/navigation-close-24.svg';
+import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
 import * as css from './Modals.scss';
 
 export interface ModalBlockerMods {
@@ -29,7 +29,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalW
 
 export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
-export class ModalHeader extends React.Component<ModalHeaderProps, any> {
+export class ModalHeader extends React.Component<ModalHeaderProps, {}> {
     render() {
         return (
             <FlexRow
@@ -39,11 +39,12 @@ export class ModalHeader extends React.Component<ModalHeaderProps, any> {
                 borderBottom={ this.props.borderBottom ? 'gray40' : undefined }
                 cx={ [css.modalHeader, this.props.cx] }
                 spacing='12'
+                rawProps={ this.props.rawProps }
             >
                 { this.props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ this.props.title }</Text> }
                 { this.props.children }
                 { this.props.onClose && <FlexSpacer /> }
-                { this.props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ crossIcon } onClick={ this.props.onClose } /></FlexCell> }
+                { this.props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ this.props.onClose } /></FlexCell> }
             </FlexRow>
         );
     }
@@ -51,7 +52,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps, any> {
 
 export interface ModalFooterProps extends RowMods, ModalFooterCoreProps {}
 
-export class ModalFooter extends React.Component<ModalFooterCoreProps & RowMods, any> {
+export class ModalFooter extends React.Component<ModalFooterCoreProps & RowMods, {}> {
     render() {
         return (
             <FlexRow
@@ -60,6 +61,7 @@ export class ModalFooter extends React.Component<ModalFooterCoreProps & RowMods,
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }
                 background={ this.props.background || 'none' }
+                rawProps={ this.props.rawProps }
             >
                 { this.props.children }
             </FlexRow>

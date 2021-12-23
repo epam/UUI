@@ -5,8 +5,8 @@ import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { codesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
-import * as anchorIcon from '@epam/assets/icons/common/action-external_link-18.svg';
-import * as CodesandboxIcon from '../../icons/social-network-codesandbox-24.svg';
+import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
+import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
 
 interface DocExampleProps {
     path: string;
@@ -114,7 +114,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 {this.props.title && (
                     <FlexRow cx={ css.titleRow }>
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
-                        <IconButton cx={ css.anchor } icon={ anchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
                     </FlexRow>
                 )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />

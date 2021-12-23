@@ -2,7 +2,7 @@ import * as React from 'react';
 import sortBy from 'lodash.sortby';
 import * as css from './DemoDnd.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text } from '@epam/promo';
-import * as addIcon from '@epam/assets/icons/common/content-add-outline-18.svg';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
 import { DropParams, getOrderBetween } from '@epam/uui';
 import { DndModule, ModuleItem } from './DndModule';
 import { DndSection, SectionItem } from './DndSection';
@@ -69,7 +69,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                                 <FlexSpacer />
                                 <IconButton
                                     rawProps={ { 'aria-label': 'Add one More' } }
-                                    icon={ addIcon }
+                                    icon={ AddIcon }
                                     onClick={ () => {} }
                                     isDisabled
                                 />

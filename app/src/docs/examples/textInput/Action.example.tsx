@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FlexCell, TextInput } from '@epam/promo';
 import * as css from './BasicExample.scss';
-import customIcon from '@epam/assets/icons/common/social-network-yammer-18.svg';
+import { ReactComponent as CustomIcon } from '@epam/assets/icons/common/social-network-yammer-18.svg';
 
 
 export default function ActionSearchInputExample() {
@@ -9,7 +9,7 @@ export default function ActionSearchInputExample() {
 
     return (
         <FlexCell cx={ css.container } width='auto' >
-            <TextInput icon={ customIcon } onIconClick={ () => {} } value={ value } onValueChange={ onValueChange } placeholder='onIconClick action'/>
+            <TextInput icon={ CustomIcon } onIconClick={ () => {} } value={ value } onValueChange={ onValueChange } placeholder='onIconClick action'/>
             <TextInput onClick={ e => {} } value={ value } onValueChange={ onValueChange } placeholder='onClick action'/>
             <TextInput onFocus={ e => {} } value={ value } onValueChange={ onValueChange } placeholder='onFocus action'/>
             <TextInput onAccept={ () => {} } value={ value } onValueChange={ onValueChange } placeholder='onAccept action'/>

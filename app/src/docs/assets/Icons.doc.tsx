@@ -4,12 +4,12 @@ import { FlexCell, SearchInput, ControlSize, Panel, FlexRow, Text, IconContainer
     Tooltip, FlexSpacer, NotificationCard, MultiSwitch, ScrollBars } from '@epam/promo';
 import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon, INotification } from '@epam/uui';
 import { getGroupedIcons, getIconList, IconList } from '@epam/assets/icons/helpers';
-import * as lockedIcon from '@epam/assets/icons/common/action-lock-fill-18.svg';
-import * as unlockedIcon from '@epam/assets/icons/common/action-lock_open-fill-18.svg';
+import { ReactComponent as LockedIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
+import { ReactComponent as UnlockedIcon } from '@epam/assets/icons/common/action-lock_open-fill-18.svg';
 import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
-import * as notificationIcon from '../../icons/notification-check-fill-24.svg';
-import * as warningIcon from '../../icons/notification-error-fill-24.svg';
+import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
+import { ReactComponent as WarningIcon } from '../../icons/notification-error-fill-24.svg';
 
 const sizeList = ['24', '30', '36', '42', '48'];
 
@@ -47,7 +47,7 @@ export class IconsDoc extends React.Component {
 
     showNotification() {
         svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard { ...props } icon={ notificationIcon } color='gray60' onClose={ null } >
+            <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
                 <Text size='36' font='sans'>Import was copied to the clipboard</Text>
             </NotificationCard>, { duration: 3 });
     }
@@ -82,7 +82,7 @@ export class IconsDoc extends React.Component {
                         color='gray50'
                         size='30'
                         fill='light'
-                        icon={ this.state.isLocked ? lockedIcon : unlockedIcon }
+                        icon={ this.state.isLocked ? LockedIcon : UnlockedIcon }
                         onClick={ () => this.setState({ isLocked: !this.state.isLocked }) }
                         cx={ css.lockButton }
                     />
@@ -213,7 +213,7 @@ export class IconsDoc extends React.Component {
             <>
                 <FlexCell minWidth={ 60 } cx={ css.warningWrapper } >
                     <Tooltip placement='top-end' content={ "We don't recommend this combination of sizes" } >
-                        <IconContainer icon={ warningIcon } color='red' cx={ css.warningIcon } />
+                        <IconContainer icon={ WarningIcon } color='red' cx={ css.warningIcon } />
                     </Tooltip>
                 </FlexCell>
             </>

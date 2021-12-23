@@ -36,14 +36,7 @@ export default function ArrayDataTableExample() {
     ], []);
 
     return (
-        <Panel
-            shadow
-            cx={ css.container }
-            rawProps={{
-                role: 'table',
-                'aria-rowcount': view.getListProps().rowsCount,
-                'aria-colcount': productColumns.length
-            }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
@@ -53,6 +46,5 @@ export default function ArrayDataTableExample() {
                 headerTextCase='upper'
             />
         </Panel>
-
     );
 }

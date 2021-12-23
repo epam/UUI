@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {TextInput} from "../TextInput";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe("TextInput", () => {
     const value = "test";
@@ -21,7 +21,7 @@ describe("TextInput", () => {
                 onValueChange={ onChange }
                 onAccept={ jest.fn() }
                 onCancel={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 iconPosition='right'
                 isDropdown
                 isOpen

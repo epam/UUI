@@ -163,7 +163,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     getSelectedRows() {
-        if (this.props.value && this.props.value !== []) {
+        if (this.props.value !== undefined && this.props.value !== []) {
             const view = this.getView();
             return view.getSelectedRows();
         }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './TeamDoc.scss';
 import { Button, FlexRow, IconContainer, LinkButton, RichTextView, Text } from '@epam/promo';
-import * as addIcon from '@epam/assets/icons/common/action-add-24.svg';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-24.svg';
 import { ContentSection } from '../../common';
 
 export const team = [
@@ -58,7 +58,7 @@ export class TeamDoc extends React.Component {
                         );
                     }) }
                     <div className={ css.contributeCard } >
-                        <IconContainer cx={ css.iconContainer } icon={ addIcon } size={ 48 } color='blue' />
+                        <IconContainer cx={ css.iconContainer } icon={ AddIcon } size={ 48 } color='blue' />
                         <Button cx={ css.link } size='48' fill='light' caption='Contribute' target='_blank' href='https://git.epam.com/epm-tmc/ui/-/issues'  />
                     </div>
                 </FlexRow>
