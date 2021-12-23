@@ -20,14 +20,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#folding-arrow-24.svg"
-            />
-          </svg>
+          />
         </div>
         <div
           className="uui-datepickerheader-nav-title"
@@ -43,14 +36,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#folding-arrow-24.svg"
-            />
-          </svg>
+          />
         </div>
       </header>
     </div>

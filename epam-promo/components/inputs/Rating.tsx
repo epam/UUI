@@ -1,8 +1,8 @@
 import { withMods } from '@epam/uui';
 import { Rating as uuiRating, RatingProps } from '@epam/uui-components';
 import * as css from './Rating.scss';
-import * as filledStarIcon from '@epam/assets/icons/common/fav-rates-star-24.svg';
-import * as emptyStarIcon from '@epam/assets/icons/common/fav-rates-star-24.svg';
+import { ReactComponent as FilledStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';
+import { ReactComponent as EmptyStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';
 import { Tooltip } from '../overlays';
 
 export interface RatingMods {
@@ -19,5 +19,5 @@ function applyRatingMods(mods: RatingMods & RatingProps) {
 export const Rating = withMods<RatingProps, RatingMods>(
     uuiRating,
     applyRatingMods,
-    () => ({ filledStarIcon, emptyStarIcon, Tooltip, rawProps: { tabIndex: 0 } })
+    () => ({ filledStarIcon: FilledStarIcon, emptyStarIcon:EmptyStarIcon, Tooltip, rawProps: { tabIndex: 0 } })
 );

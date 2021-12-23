@@ -3,7 +3,7 @@ import { MainMenuMods, MainMenu, MainMenuButton, MainMenuAvatar, FlexSpacer, Glo
 import { MainMenuCustomElement, MainMenuLogo, MainMenuProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext } from "../../../docs";
-import * as svgTriangle from '../../../icons/triangle.svg';
+import { ReactComponent as TriangleIcon } from '../../../icons/triangle.svg';
 
 const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMenu', component: MainMenu })
     .prop('renderBurger', {
@@ -33,7 +33,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
                     <MainMenuButton caption='My Team' collapseToMore priority={ 2 } estimatedWidth={ 92 } showInBurgerMenu key='my team'/>,
                     <MainMenuButton caption='Skill Matrices' collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key='skill'/>,
                     <FlexSpacer priority={ 100500 } key='spacer'/>,
-                    <MainMenuButton caption='Tools' type='secondary' dropdownIcon={ svgTriangle } isDropdown priority={ 4 } estimatedWidth={ 113 } key='tool'/>,
+                    <MainMenuButton caption='Tools' type='secondary' dropdownIcon={ TriangleIcon } isDropdown priority={ 4 } estimatedWidth={ 113 } key='tool'/>,
                     <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key='global-menu'/>,
                 ],
                 name: 'Grow',

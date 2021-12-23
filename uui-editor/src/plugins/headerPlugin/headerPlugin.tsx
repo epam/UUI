@@ -1,6 +1,6 @@
 import { RenderBlockProps } from "slate-react";
 import { Block, Editor as CoreEditor, KeyUtils } from "slate";
-import * as headlinePickerIcon from "../../icons/heading.svg";
+import { ReactComponent as  HeadlinePickerIcon } from "../../icons/heading.svg";
 import * as React from "react";
 import { HeaderBar } from "../../implementation/HeaderBar";
 import { headerBlocks } from "../../implementation/HeaderBar";
@@ -55,7 +55,7 @@ export const headerPlugin = () => {
 const HeaderButton = (editorProps: { editor: any }) => {
     return <Dropdown
         renderTarget={ (props) => <ToolbarButton
-            icon={ headlinePickerIcon }
+            icon={ HeadlinePickerIcon }
             isActive={ editorProps.editor.hasBlock(headerBlocks) }
             onClick={ () => null }
             { ...props }

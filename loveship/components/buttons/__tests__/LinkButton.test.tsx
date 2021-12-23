@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 import {LinkButton} from '../LinkButton';
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('LinkButton', () => {
     it('should be rendered correctly', () => {
@@ -16,7 +16,7 @@ describe('LinkButton', () => {
             .create(<LinkButton
                 color='sun'
                 onClick={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 isDisabled={ false }
                 isDropdown
                 onClear={ jest.fn() }

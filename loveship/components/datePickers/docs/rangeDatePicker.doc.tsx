@@ -7,12 +7,12 @@ import * as css from '../RangeDatePicker.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
 import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
 import { Button } from '../..';
-import * as point from "../../icons/radio-point.svg";
+import { ReactComponent as Point } from "../../icons/radio-point.svg";
 
 const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
-        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ point } />
+        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ Point } />
     </>;
 };
 

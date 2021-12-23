@@ -1,85 +1,85 @@
-import * as btnCross12 from './btn-cross-12.svg';
-import * as btnCross18 from './btn-cross-18.svg';
-import * as btnCross24 from './btn-cross-24.svg';
-import * as foldingArrow12 from './folding-arrow-12.svg';
-import * as foldingArrow18 from './folding-arrow-18.svg';
-import * as foldingArrow24 from './folding-arrow-24.svg';
-import * as accept12 from './accept-12.svg';
-import * as accept18 from './accept-18.svg';
-import * as accept24 from './accept-24.svg';
-import * as search12 from './search-12.svg';
-import * as search18 from './search-18.svg';
-import * as search24 from './search-24.svg';
-import * as calendar12 from './calendar-12.svg';
-import * as calendar18 from './calendar-18.svg';
-import * as calendar24 from './calendar-24.svg';
-import * as info12 from './info-12.svg';
-import * as info18 from './info-18.svg';
-import * as info24 from './info-24.svg';
+import { ReactComponent as BtnCross12 } from './btn-cross-12.svg';
+import { ReactComponent as BtnCross18 } from './btn-cross-18.svg';
+import { ReactComponent as BtnCross24 } from './btn-cross-24.svg';
+import { ReactComponent as FoldingArrow12 } from './folding-arrow-12.svg';
+import { ReactComponent as FoldingArrow18 } from './folding-arrow-18.svg';
+import { ReactComponent as FoldingArrow24 } from './folding-arrow-24.svg';
+import { ReactComponent as Accept12 } from './accept-12.svg';
+import { ReactComponent as Accept18 } from './accept-18.svg';
+import { ReactComponent as Accept24 } from './accept-24.svg';
+import { ReactComponent as Search12 } from './search-12.svg';
+import { ReactComponent as Search18 } from './search-18.svg';
+import { ReactComponent as Search24 } from './search-24.svg';
+import { ReactComponent as Calendar12 } from './calendar-12.svg';
+import { ReactComponent as Calendar18 } from './calendar-18.svg';
+import { ReactComponent as Calendar24 } from './calendar-24.svg';
+import { ReactComponent as Info12 } from './info-12.svg';
+import { ReactComponent as Info18 } from './info-18.svg';
+import { ReactComponent as Info24 } from './info-24.svg';
 
 export const systemIcons: { [key: string]: any } = {
     '18': {
-        clear: btnCross12,
-        foldingArrow: foldingArrow12,
-        accept: accept12,
-        search: search12,
-        calendar: calendar12,
-        info: info12,
+        clear: BtnCross12,
+        foldingArrow: FoldingArrow12,
+        accept: Accept12,
+        search: Search12,
+        calendar: Calendar12,
+        info: Info12,
     },
     '24': {
-        clear: btnCross12,
-        foldingArrow: foldingArrow12,
-        accept: accept12,
-        search: search12,
-        calendar: calendar12,
-        info: info12,
+        clear: BtnCross12,
+        foldingArrow: FoldingArrow12,
+        accept: Accept12,
+        search: Search12,
+        calendar: Calendar12,
+        info: Info12,
     },
     '30': {
-        clear: btnCross12,
-        foldingArrow: foldingArrow12,
-        accept: accept12,
-        search: search12,
-        calendar: calendar12,
-        info: info12,
+        clear: BtnCross12,
+        foldingArrow: FoldingArrow12,
+        accept: Accept12,
+        search: Search12,
+        calendar: Calendar12,
+        info: Info12,
     },
     '36': {
-        clear: btnCross18,
-        foldingArrow: foldingArrow18,
-        accept: accept18,
-        search: search18,
-        calendar: calendar18,
-        info: info18,
+        clear: BtnCross18,
+        foldingArrow: FoldingArrow18,
+        accept: Accept18,
+        search: Search18,
+        calendar: Calendar18,
+        info: Info18,
     },
     '42': {
-        clear: btnCross18,
-        foldingArrow: foldingArrow18,
-        accept: accept18,
-        search: search18,
-        calendar: calendar18,
-        info: info18,
+        clear: BtnCross18,
+        foldingArrow: FoldingArrow18,
+        accept: Accept18,
+        search: Search18,
+        calendar: Calendar18,
+        info: Info18,
     },
     '48': {
-        clear: btnCross24,
-        foldingArrow: foldingArrow24,
-        accept: accept24,
-        search: search24,
-        calendar: calendar24,
-        info: info24,
+        clear: BtnCross24,
+        foldingArrow: FoldingArrow24,
+        accept: Accept24,
+        search: Search24,
+        calendar: Calendar24,
+        info: Info24,
     },
     '60': {
-        clear: btnCross24,
-        foldingArrow: foldingArrow24,
-        accept: accept24,
-        search: search24,
-        calendar: calendar24,
-        info: info24,
+        clear: BtnCross24,
+        foldingArrow: FoldingArrow24,
+        accept: Accept24,
+        search: Search24,
+        calendar: Calendar24,
+        info: Info24,
     },
     'none': {
-        clear: btnCross18,
-        foldingArrow: foldingArrow18,
-        accept: accept18,
-        search: search18,
-        calendar: calendar18,
-        info: info18,
+        clear: BtnCross18,
+        foldingArrow: FoldingArrow18,
+        accept: Accept18,
+        search: Search18,
+        calendar: Calendar18,
+        info: Info18,
     },
 };

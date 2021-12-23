@@ -2,7 +2,7 @@ import * as css from './DatePicker.scss';
 import * as calendarCss from './Calendar.scss';
 import { DatePickerBody as uuiDatePickerBody, DatePickerBodyProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
-import * as arrowIcon from './../icons/folding-arrow-24.svg';
+import { ReactComponent as ArrowIcon } from './../icons/folding-arrow-24.svg';
 
 export function applyDatePickerBodyMods() {
     return [
@@ -14,5 +14,5 @@ export function applyDatePickerBodyMods() {
 export const DatePickerBody = withMods<DatePickerBodyProps>(
     uuiDatePickerBody,
     applyDatePickerBodyMods,
-    () => ({ navIconLeft: arrowIcon, navIconRight: arrowIcon }),
+    () => ({ navIconLeft: ArrowIcon, navIconRight: ArrowIcon }),
 );

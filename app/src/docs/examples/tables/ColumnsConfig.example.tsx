@@ -3,7 +3,7 @@ import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo'
 import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
-import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
+import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
@@ -37,20 +37,20 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             key: 'countryName',
             caption: 'COUNTRY',
             render: city => <Text color='gray80' fontSize='14'>{ city.countryName }</Text>,
+            isSortable: true,
+            shrink: 0,
             width: 140,
             minWidth: 100,
-            shrink: 0,
-            isSortable: true,
         },
         {
             key: 'population',
             caption: 'POPULATION',
             render: city => <Text color='gray80' fontSize='14'>{ city.population }</Text>,
-            isSortable: true,
-            textAlign: 'right',
             width: 140,
             minWidth: 100,
             shrink: 0,
+            isSortable: true,
+            textAlign: 'right',
         },
         {
             key: 'altname',
@@ -63,9 +63,9 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
         },
         {
             key: 'actions',
-            render: () => <IconButton icon={ moreIcon } color='gray60' />,
+            render: () => <IconButton icon={ MoreIcon } color='gray60' />,
+            width: 54,
             fix: 'right',
-            width: 54
         },
     ], []);
 
@@ -105,4 +105,4 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             />
         </Panel>
     );
-};
+}

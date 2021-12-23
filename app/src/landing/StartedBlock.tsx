@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Button, FlexRow, IconContainer, RichTextView, Text } from '@epam/promo';
 import * as css from './StartedBlock.scss';
-import * as crystalIcon from '../icons/crystal.svg';
-import * as reactIcon from '../icons/react_small.svg';
+import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
+import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
 import { UUI4 } from '../common';
 import { analyticsEvents } from '../analyticsEvents';
 
@@ -21,7 +21,7 @@ export class StartedBlock extends React.Component {
                         <div className={ css.contentColumn }>
                             <div className={ css.contentColumnWrapper }>
                                 <div className={ css.contentIcon } style={ {backgroundColor: '#E3FCFC'} }>
-                                    <IconContainer icon={ reactIcon }/>
+                                    <IconContainer icon={ ReactIcon }/>
                                 </div>
                                 <Text fontSize='24' lineHeight='30'
                                       cx={ css.contentText }>{ 'Learn more about React Components, Demos, Packages & Documentation' }</Text>
@@ -42,7 +42,7 @@ export class StartedBlock extends React.Component {
                         <div className={ css.contentColumn }>
                             <div className={ css.contentColumnWrapper }>
                                 <div className={ css.contentIcon } style={ {backgroundColor: '#FAE4CF'} }>
-                                    <IconContainer icon={ crystalIcon }/>
+                                    <IconContainer icon={ CrystalIcon }/>
                                 </div>
                                 <Text fontSize='24' lineHeight='30'
                                       cx={ css.contentText }>{ 'Learn more about Design Library, Specifications, Palettes & Typography' }</Text>
