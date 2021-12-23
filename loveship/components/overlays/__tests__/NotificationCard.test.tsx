@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {ClearNotification, ErrorNotification, HintNotification, NotificationCard, SuccessNotification, WarningNotification} from "../NotificationCard";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 jest.spyOn(NotificationCard.prototype, "refNode")
     .mockImplementation(function (this: typeof NotificationCard.prototype) {
@@ -15,7 +15,7 @@ describe("NotificationCard", () => {
     it("should be rendered correctly", () => {
         const tree = renderer
             .create(<NotificationCard
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 id={ 1 }
                 key='test'
                 color='sun'
@@ -29,7 +29,7 @@ describe("NotificationCard", () => {
     it("should be rendered correctly with icon", () => {
         const tree = renderer
             .create(<NotificationCard
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 id={ 1 }
                 key='test'
                 color='sun'

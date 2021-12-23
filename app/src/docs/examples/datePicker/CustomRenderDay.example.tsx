@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Dayjs } from 'dayjs';
 import { DatePicker, FlexRow } from '@epam/promo';
 import { IconContainer, Day } from '@epam/uui-components';
-import * as point from '@epam/assets/icons/common/radio-point-10.svg';
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
-        { day.day() === 0 && <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ point } /> }
+        { day.day() === 0 && <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ Point } /> }
     </>;
 };
 

@@ -4,9 +4,10 @@ declare module '*.scss' {
 }
 
 declare module '*.svg' {
-    export const id: string;
-    export const url: string;
-    export const viewBox: string;
+    import React from 'react';
+    export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+    const src: string;
+    export default src;
 }
 
 declare module "react-imask" {

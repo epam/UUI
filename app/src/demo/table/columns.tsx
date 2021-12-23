@@ -4,7 +4,7 @@ import { DataQueryFilter, DataColumnProps } from '@epam/uui';
 import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
 import { ITableFilter, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
-import * as viewIcon from '@epam/assets/icons/common/action-eye-18.svg';
+import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { addFiltersToColumns } from "./helpers";
 
 export function getColumns(filters: ITableFilter[]) {
@@ -135,7 +135,7 @@ export function getColumns(filters: ITableFilter[]) {
             key: 'detailed',
             render: (p) => <IconButton
                 cx={ css.detailedIcon }
-                icon={ viewIcon }
+                icon={ ViewIcon }
             />,
             width: 54,
             alignSelf: 'center',

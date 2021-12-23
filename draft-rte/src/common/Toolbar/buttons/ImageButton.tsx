@@ -6,7 +6,7 @@ import { UuiContexts, prependHttp, UuiContext } from '@epam/uui';
 import { DraftButtonProps } from '../../../types';
 import { getSelectionText } from '../../../utils';
 import { ImageModalState, showImageModal } from '../modals/ImageModal';
-import * as photoIcon from '../../../icons/insert_photo.svg';
+import { ReactComponent as PhotoIcon } from '../../../icons/insert_photo.svg';
 
 export class ImageButton extends React.Component<DraftButtonProps> {
     static contextType = UuiContext;
@@ -76,7 +76,7 @@ export class ImageButton extends React.Component<DraftButtonProps> {
                 onMouseDown={ this.onMouseDown }
             >
                 <IconButton
-                    icon={ photoIcon }
+                    icon={ PhotoIcon }
                     color={ this.isImageSelected() ? 'sky' : 'night600' }
                     onClick={ () => {
                         showImageModal(this.context, modalInitialState)

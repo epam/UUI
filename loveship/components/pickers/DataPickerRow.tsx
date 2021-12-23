@@ -4,8 +4,8 @@ import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { DataTableRowMods } from '../tables';
 import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';
-import * as tickIcon from '../icons/notification-done-18.svg';
-import * as smallSizeIcon from '../icons/notification-done-12.svg';
+import { ReactComponent as TickIcon } from '../icons/notification-done-18.svg';
+import { ReactComponent as SmallSizeIcon } from '../icons/notification-done-12.svg';
 import * as css from './DataPickerRow.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>, DataTableRowMods {
@@ -22,7 +22,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
                 { this.props.renderItem(item, rowProps) }
                 <FlexSpacer />
                 { (rowProps.isChildrenSelected || rowProps.isSelected) && <div className={ css.iconWrapper }>
-                    <IconContainer icon={ this.props.size === '24' ? smallSizeIcon : tickIcon } color={ rowProps.isChildrenSelected ? 'night400' : 'sky' } />
+                    <IconContainer icon={ this.props.size === '24' ? SmallSizeIcon : TickIcon } color={ rowProps.isChildrenSelected ? 'night400' : 'sky' } />
                 </div> }
             </div>,
         };

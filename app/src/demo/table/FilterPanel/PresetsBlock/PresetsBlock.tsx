@@ -2,7 +2,7 @@ import React, { ReactEventHandler, useCallback, useState } from "react";
 import css from "./PresetsBlock.scss";
 import { Accordion, IconContainer, TextInput, VerticalTabButton } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
-import plusIcon from "@epam/assets/icons/common/content-add-outline-18.svg";
+import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/content-add-outline-18.svg";
 import { IPresetsApi, ITablePreset } from "../../types";
 
 interface IPresetsBlockProps {
@@ -42,7 +42,7 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
         return (
             <>
                 <FlexSpacer/>
-                <IconContainer icon={ plusIcon } cx={ [css.icon] } onClick={ addPreset }/>
+                <IconContainer icon={ PlusIcon } cx={ [css.icon] } onClick={ addPreset }/>
             </>
         );
     }, [addPreset]);

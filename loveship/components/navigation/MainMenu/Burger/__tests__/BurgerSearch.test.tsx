@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BurgerSearch} from "../BurgerSearch";
-import * as acceptIcon from "../../../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../../../icons/accept-12.svg";
 
 describe("BurgerSearch", () => {
     it("should be rendered correctly", () => {
@@ -18,7 +18,7 @@ describe("BurgerSearch", () => {
                 onValueChange={ jest.fn() }
                 onAccept={ jest.fn() }
                 onCancel={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 iconPosition='right'
                 isDropdown
                 isOpen

@@ -38,6 +38,11 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * If selection (checking items) of a parent node should select all children, and vice versa
      */
     cascadeSelection?: boolean;
+
+    /**
+     * Disables select all behaviour. Default is false.
+     */
+     selectAll?: true | false;
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
@@ -107,6 +112,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             checked = [...checked, rowProps.id];
             this.handleCheckedChange(checked);
         }
+    }
+
+    protected isSelectAllEnabled() {
+        return this.props.selectAll == undefined ? true : this.props.selectAll;
     }
 
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {

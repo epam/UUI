@@ -12,7 +12,9 @@
         &:global(.-clickable) {
             cursor: pointer;
 
-            &:hover {
+            &:hover,
+            &:hover > *:global(.uui-table-fixed-section-left),
+            &:hover > *:global(.uui-table-fixed-section-right) {
                 background-color: $night100;
             }
         }
