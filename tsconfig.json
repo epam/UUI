@@ -37,6 +37,7 @@
         "**/build",
         "webpack",
         "jest",
+        "templates",
         "*/**/__tests__",
         "*/**/globals.d.ts",
         "./next-app"
