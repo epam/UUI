@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 import {TabButton} from '../TabButton';
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('TabButton', () => {
     it('should be rendered correctly', () => {
@@ -15,7 +15,7 @@ describe('TabButton', () => {
         const tree = renderer
             .create(<TabButton
                 onClick={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 isDisabled={ false }
             />)
             .toJSON();

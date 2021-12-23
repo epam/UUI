@@ -2,8 +2,8 @@ import React, { ReactNode, useState } from 'react';
 import { BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
     BurgerGroupHeader, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider } from "@epam/promo";
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
-import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-24.svg";
-import * as pinIcon from '@epam/assets/icons/common/action-pin_on-24.svg';
+import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
+import { ReactComponent as PinIcon } from '@epam/assets/icons/common/action-pin_on-24.svg';
 
 export default function MainMenuResponsiveExample() {
     const [width, setWidth] = useState<number>(100);
@@ -58,8 +58,8 @@ export default function MainMenuResponsiveExample() {
                     <MainMenuButton collapseToMore caption="Action Items" priority={ 1 } estimatedWidth={ 115 } />
                     <MainMenuButton collapseToMore caption="Subscriptions" priority={ 0 } estimatedWidth={ 128 } />
                     <FlexSpacer priority={ 100500 } />
-                    <MainMenuIcon icon={ pinIcon } priority={ 10 } estimatedWidth={ 60 } />
-                    <MainMenuIcon icon={ helpIcon } priority={ 10 } estimatedWidth={ 60 } />
+                    <MainMenuIcon icon={ PinIcon } priority={ 10 } estimatedWidth={ 60 } />
+                    <MainMenuIcon icon={ HelpIcon } priority={ 10 } estimatedWidth={ 60 } />
                     <MainMenuCustomElement priority={ 10 } estimatedWidth={ 84 }>
                         <Dropdown
                             renderTarget={ props => (

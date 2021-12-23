@@ -6,8 +6,8 @@ import { Editor, findDOMNode } from 'slate-react';
 import { Popper } from 'react-popper';
 import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
 import * as PropTypes from "prop-types";
-import * as unmergeIcon from "../icons/table-un-merge.svg";
-import * as mergeIcon from '../icons/table-merge.svg';
+import { ReactComponent as UnmergeIcon } from "../icons/table-un-merge.svg";
+import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';
 import { ToolbarButton } from './ToolbarButton';
 import cx from 'classnames';
 
@@ -79,8 +79,8 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
                     { (props) => {
                         return (
                             <div ref={ (node) => { this.tableBar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'merge-cells-bar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
-                                <ToolbarButton isActive={ false } icon={ mergeIcon } onClick={ () => { (this.props.editor as any).mergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } />
-                                { this.isSomeMerged(this.props.selectedCells) && <ToolbarButton isActive={ false } icon={ unmergeIcon } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } /> }
+                                <ToolbarButton isActive={ false } icon={ MergeIcon } onClick={ () => { (this.props.editor as any).mergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } />
+                                { this.isSomeMerged(this.props.selectedCells) && <ToolbarButton isActive={ false } icon={ UnmergeIcon } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } /> }
                             </div>
                         );
                     } }

@@ -21,6 +21,7 @@
     :global(.uui-burger-button) {
         width: 60px;
         cursor: pointer;
+        fill: $white;
 
         &:hover {
             opacity: 0.9;

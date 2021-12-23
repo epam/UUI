@@ -2,14 +2,14 @@ import * as React from 'react';
 import { Portal } from "@epam/uui-components";
 import * as css from './TableBar.scss';
 import * as ReactDOM from "react-dom";
-import * as insertColumnAfter from "../icons/table-add-column-right.svg";
-import * as insertColumnBefore from "../icons/table-add-column-left.svg";
-import * as insertRowAfter from "../icons/table-add-row-after.svg";
-import * as insertRowBefore from "../icons/table-add-row-before.svg";
-import * as removeColumn from "../icons/table-delete-column.svg";
-import * as removeRow from "../icons/table-delete-row.svg";
-import * as unmergeCellsIcon from '../icons/table-un-merge.svg';
-import * as removeTable from '../icons/table-table_remove-24.svg';
+import { ReactComponent as InsertColumnAfter } from "../icons/table-add-column-right.svg";
+import { ReactComponent as InsertColumnBefore } from "../icons/table-add-column-left.svg";
+import { ReactComponent as InsertRowAfter } from "../icons/table-add-row-after.svg";
+import { ReactComponent as InsertRowBefore } from "../icons/table-add-row-before.svg";
+import { ReactComponent as RemoveColumn } from "../icons/table-delete-column.svg";
+import { ReactComponent as RemoveRow } from "../icons/table-delete-row.svg";
+import { ReactComponent as UnmergeCellsIcon } from '../icons/table-un-merge.svg';
+import { ReactComponent as RemoveTable } from '../icons/table-table_remove-24.svg';
 import { Editor } from 'slate-react';
 import { Popper } from 'react-popper';
 import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
@@ -81,14 +81,14 @@ export class TableBar extends React.Component<TableProps, any> {
                     { (props) => {
                         return (
                             <div ref={ (node) => { this.tablebar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'uui-rte-tablebar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props, 'before'); } } icon={ insertColumnBefore }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props); } } icon={ insertColumnAfter }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedColumn(this.props); } } icon={ removeColumn }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewRow(this.props, 'before'); } } icon={ insertRowBefore }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewRow(this.props); } } icon={ insertRowAfter }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedRow(this.props); } } icon={ removeRow }/>
-                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeTable(); } } icon={ removeTable }/>
-                                { this.isMerged() && <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, [this.props.editor.value.anchorBlock]); } } icon={ unmergeCellsIcon }/> }
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props, 'before'); } } icon={ InsertColumnBefore }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props); } } icon={ InsertColumnAfter }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedColumn(this.props); } } icon={ RemoveColumn }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewRow(this.props, 'before'); } } icon={ InsertRowBefore }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewRow(this.props); } } icon={ InsertRowAfter }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedRow(this.props); } } icon={ RemoveRow }/>
+                                <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeTable(); } } icon={ RemoveTable }/>
+                                { this.isMerged() && <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, [this.props.editor.value.anchorBlock]); } } icon={ UnmergeCellsIcon }/> }
                             </div>
                         );
                     } }

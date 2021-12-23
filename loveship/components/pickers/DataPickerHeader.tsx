@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./DataPickerHeader.scss";
-import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
+import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 import { Text } from "../typography";
 import { isMobile } from "@epam/uui";
 import { IconButton } from "../buttons";
@@ -20,7 +20,7 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = props => {
         <FlexRow alignItems="center" size="48" background="white" borderBottom="night400" cx={ css.header }>
             <Text font="sans-semibold">{ title }</Text>
             <IconButton
-                icon={ closeIcon }
+                icon={ CloseIcon }
                 onClick={ () => props.close?.() }
                 cx={ css.close }
             />

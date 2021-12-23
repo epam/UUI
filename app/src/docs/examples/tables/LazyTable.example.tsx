@@ -5,8 +5,8 @@ import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epa
 import { City, Country } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
 import * as css from "./TablesExamples.scss";
-import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
-import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
+import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
+import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
 export default function CitiesTable(props: unknown) {
     const svc = useUuiContext();
@@ -31,7 +31,7 @@ export default function CitiesTable(props: unknown) {
 
     const renderMenu = (): ReactNode => (
         <DropdownMenuBody color='white'>
-            <DropdownMenuButton caption='Edit' icon={pencilIcon}/>
+            <DropdownMenuButton caption='Edit' icon={ PencilIcon }/>
             <DropdownMenuButton caption='Remove'/>
             <DropdownMenuSplitter/>
             <DropdownMenuButton caption='Cancel'/>
@@ -82,7 +82,7 @@ export default function CitiesTable(props: unknown) {
             key: 'actions',
             render: () => (
                 <Dropdown
-                    renderTarget={ props => <IconButton icon={ moreIcon } color='gray60' { ...props } /> }
+                    renderTarget={ props => <IconButton icon={ MoreIcon } color='gray60' { ...props } /> }
                     renderBody={ renderMenu }
                     placement='bottom-end'
                 />

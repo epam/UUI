@@ -35,14 +35,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-12.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled"
@@ -50,14 +43,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   >
     <svg
       className="flipY"
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#folding-arrow-18.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled -clickable -clickable"
@@ -66,14 +52,7 @@ exports[`Button should be rendered correctly with props 1`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#btn-cross-18.svg"
-      />
-    </svg>
+    />
   </div>
 </button>
 `;

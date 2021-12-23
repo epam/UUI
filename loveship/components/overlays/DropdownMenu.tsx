@@ -3,10 +3,10 @@ import * as css from './DropdownMenu.scss';
 import {  withMods, IHasIcon,  IDropdownToggler, VPanelProps } from '@epam/uui';
 import { Button, ButtonProps, VPanel, IconContainer, CheckboxProps,
     Checkbox, TextInput, TextInputProps } from '@epam/uui-components';
-import * as btnCross from '../icons/menu_input_cancel.svg';
-import * as btnTriangle from '../icons/folding-arrow-18.svg';
-import * as tickIcon from '../icons/tick-12.svg';
-import * as lensIcon from '../icons/search-18.svg';
+import { ReactComponent as BtnCross } from '../icons/menu_input_cancel.svg';
+import { ReactComponent as BtnTriangle } from '../icons/folding-arrow-18.svg';
+import { ReactComponent as TickIcon } from '../icons/tick-12.svg';
+import { ReactComponent as LensIcon } from '../icons/search-18.svg';
 
 import cx from "classnames";
 
@@ -36,12 +36,12 @@ export const DropdownMenuButton = withMods<ButtonProps, DropdownMenuItemMods>(
         css['color-' + (props.color || 'white')],
         !props.icon && !props.isDropdown && css.noIcon,
     ],
-    () => ({ dropdownIcon: btnTriangle, clearIcon: btnCross, dropdownIconPosition: 'left' }),
+    () => ({ dropdownIcon: BtnTriangle, clearIcon: BtnCross, dropdownIconPosition: 'left' }),
 );
 
 export const DropdownMenuCheckbox = withMods<CheckboxProps, DropdownMenuItemMods>(Checkbox, (props) =>
         [css.checkboxRoot],
-        () => ({ icon: tickIcon }),
+        () => ({ icon: TickIcon }),
 );
 
 export const DropdownMenuSearch = (props: DropdownMenuSearchProps) => {
@@ -51,7 +51,7 @@ export const DropdownMenuSearch = (props: DropdownMenuSearchProps) => {
                 props.icon && css.noIcon,
             ) }>
             { props.icon && <IconContainer cx={ css.icon } icon={ props.icon }/> }
-            <TextInput iconPosition='right' icon={ lensIcon } placeholder={ props.placeholder } value={ props.value } onValueChange={ props.onValueChange }/>
+            <TextInput iconPosition='right' icon={ LensIcon } placeholder={ props.placeholder } value={ props.value } onValueChange={ props.onValueChange }/>
         </div>
     );
 };

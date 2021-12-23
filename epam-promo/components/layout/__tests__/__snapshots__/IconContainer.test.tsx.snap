@@ -7,14 +7,7 @@ exports[`IconContainer should be rendered correctly 1`] = `
 >
   <svg
     className=""
-    height={24}
-    viewBox="0 0 12 24"
-    width={12}
-  >
-    <use
-      xlinkHref="#calendar-18.svg"
-    />
-  </svg>
+  />
 </div>
 `;
 
@@ -27,13 +20,6 @@ exports[`IconContainer should be rendered correctly with props 1`] = `
 >
   <svg
     className="flipY rotate-90ccw"
-    height={36}
-    viewBox="0 0 12 24"
-    width={36}
-  >
-    <use
-      xlinkHref="#calendar-18.svg"
-    />
-  </svg>
+  />
 </div>
 `;

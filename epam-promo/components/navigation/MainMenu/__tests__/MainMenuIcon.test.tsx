@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MainMenuIcon } from '../MainMenuIcon';
-import * as calendarIcon from '../../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../../icons/calendar-18.svg';
 
 describe('MainMenuIcon', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<MainMenuIcon icon={ calendarIcon } />)
+            .create(<MainMenuIcon icon={ CalendarIcon } />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -14,7 +14,7 @@ describe('MainMenuIcon', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<MainMenuIcon
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 target='_blank'
                 link={ { pathname: '/' } }
                 collapseToMore

@@ -4,7 +4,7 @@ import {
     DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody,
 } from "@epam/promo";
 import { MainMenuCustomElement, Dropdown } from "@epam/uui-components";
-import * as helpIcon from "@epam/assets/icons/common/notification-help-outline-24.svg";
+import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
 
 export default function MainMenuBasicExample() {
     const renderBurger = () => (
@@ -27,7 +27,7 @@ export default function MainMenuBasicExample() {
                 <MainMenuButton collapseToMore caption="Training Catalog" priority={ 3 } estimatedWidth={ 145 }  />
                 <MainMenuButton collapseToMore caption="Requests" priority={ 3 } estimatedWidth={ 93 } />
                 <FlexSpacer priority={ 100500 } />
-                <MainMenuIcon href='https://support.epam.com' target="_blank" icon={ helpIcon } onClick={ () => {} } priority={ 10 } estimatedWidth={ 60 } />
+                <MainMenuIcon href='https://support.epam.com' target="_blank" icon={ HelpIcon } onClick={ () => {} } priority={ 10 } estimatedWidth={ 60 } />
                 <MainMenuCustomElement priority={ 10 } estimatedWidth={ 80 }>
                     <Dropdown
                         renderTarget={ props => (

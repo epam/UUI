@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ColorBar } from "../../implementation/ColorBar";
-import * as colorIcon from '../../icons/text-color-normal.svg';
+import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Dropdown } from '@epam/uui-components';
 
@@ -13,7 +13,7 @@ export const colorPlugin = () => {
 const ColorButton = (editorProps: { editor: any }) => {
     return <Dropdown
         renderTarget={ (props) => <ToolbarButton
-            icon={ colorIcon }
+            icon={ ColorIcon }
             isActive={ false }
             onClick={ () => null }
             { ...props }
