@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ControlGroup, Dropdown, Panel } from '@epam/promo';
-import menuIcon from "@epam/assets/icons/common/navigation-more_vert-12.svg";
+import { ReactComponent as menuIcon } from "@epam/assets/icons/common/navigation-more_vert-12.svg";
 import DropdownMenuItem from "../../../demo/table/Presets/DropdownMenuItem";
 
 export default function BasicExample() {
