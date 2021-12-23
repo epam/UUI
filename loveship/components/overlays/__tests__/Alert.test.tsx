@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Alert} from "../Alert";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe("Alert", () => {
     it("should be rendered correctly", () => {
@@ -18,7 +18,7 @@ describe("Alert", () => {
                 actions={ [{action: jest.fn(), name: "test"}] }
                 onClose={ jest.fn() }
                 cx={ ["root"] }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

@@ -1,3 +1,5 @@
+import { isClientSide } from './ssr';
+
 export const mouseCoords = {
     mousePageX: 0,
     mousePageY: 0,
@@ -10,7 +12,7 @@ export const mouseCoords = {
     buttons: 0,
 };
 
-if (typeof window !== 'undefined' && window.name !== 'nodejs') {
+if (isClientSide) {
     const getMouseCoords = (e: any) => {
         mouseCoords.mouseDx = e.pageX - mouseCoords.mousePageX;
         mouseCoords.mouseDy = e.pageY - mouseCoords.mousePageY;

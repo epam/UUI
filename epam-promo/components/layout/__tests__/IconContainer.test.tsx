@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { IconContainer } from '../IconContainer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('IconContainer', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<IconContainer
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -18,7 +18,7 @@ describe('IconContainer', () => {
             .create(<IconContainer
                 color='blue'
                 onClick={ () => null }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 size={ 36 }
                 rotate='90ccw'
                 tabIndex={ 0 }

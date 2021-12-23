@@ -5,7 +5,7 @@ import { DataTableCellMods, DataTableCellProps } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { FlexCell } from '../layout';
 import { Checkbox } from '../inputs';
-import * as foldingArrow from '../../icons/tree_folding_arrow.svg';
+import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
 export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProps<TItem, TId> & DataTableCellMods, {}> {
@@ -40,7 +40,7 @@ export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProp
                         { row.isFoldable &&
                             <IconContainer
                                 key='icon'
-                                icon={ foldingArrow }
+                                icon={ FoldingArrow }
                                 cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
                                 rotate={ row.isFolded ? '90ccw' : '0' }
                                 onClick={ () => row.onFold(row) }

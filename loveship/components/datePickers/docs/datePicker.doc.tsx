@@ -6,12 +6,12 @@ import { DatePicker, DatePickerProps } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../';
 import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc } from '../../../docs';
 import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
-import * as point from '../../icons/radio-point.svg';
+import { ReactComponent as Point } from '../../icons/radio-point.svg';
 
 const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
-        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ point } />
+        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: "absolute", top: '7px', right: '10px' } }  icon={ Point } />
     </>;
 };
 

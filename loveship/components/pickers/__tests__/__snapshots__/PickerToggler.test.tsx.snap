@@ -54,14 +54,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#btn-cross-12.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
     <input
@@ -85,14 +78,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#btn-cross-12.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>

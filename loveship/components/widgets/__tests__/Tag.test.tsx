@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Tag} from "../Tag";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('Tag', () => {
     it('should render with default props', () => {
@@ -17,7 +17,7 @@ describe('Tag', () => {
                 fill={ "white" }
                 size={ "24" }
                 caption='Test tag'
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 count={ 12 }
                 onIconClick={ jest.fn() }
                 onClick={ jest.fn() }

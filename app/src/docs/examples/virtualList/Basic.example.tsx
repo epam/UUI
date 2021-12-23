@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { IconButton, FlexRow, Panel, Text, TextPlaceholder, VirtualList } from '@epam/promo';
 import { VirtualListState } from '@epam/uui';
-import * as unfoldedIcon from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import * as foldedIcon from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
+import { ReactComponent as UnfoldedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
+import { ReactComponent as FoldedIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
 import * as css from './BasicExample.scss';
 
 const MyListItem: FC<{ index: number }> = (props) => {
@@ -10,7 +10,7 @@ const MyListItem: FC<{ index: number }> = (props) => {
     return <div className={ css.itemContainer }>
         <Panel cx={ css.item } shadow background='white'>
             <FlexRow cx={ css.header } onClick={ () => setIsFolded(!isFolded) }>
-                <IconButton icon={ isFolded ? foldedIcon : unfoldedIcon } />
+                <IconButton icon={ isFolded ? FoldedIcon : UnfoldedIcon } />
                 <Text>Row #{ props.index }</Text>
             </FlexRow>
             { !isFolded && <FlexRow cx={ css.body }>

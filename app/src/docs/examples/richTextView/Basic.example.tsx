@@ -10,7 +10,7 @@ import {
 } from "@epam/promo";
 import { Svg } from "@epam/uui-components";
 import { cx } from "@epam/uui";
-import * as calendar from "@epam/assets/icons/common/action-calendar-18.svg";
+import { ReactComponent as Calendar } from "@epam/assets/icons/common/action-calendar-18.svg";
 // tslint:disable-next-line:no-import
 import * as css from "@epam/promo/assets/styles/typography.scss";
 
@@ -59,7 +59,7 @@ export default function BasicExample() {
                     good job if capturing our feelings about space. cillum
                     dolore eu fugiat nulla pariatur.{" "}
                     <Anchor href="/">
-                        Click me <Svg svg={calendar}></Svg>
+                        Click me <Svg svg={Calendar}></Svg>
                     </Anchor>{" "}
                     It is those feelings that drive our love of astronomy and
                     our desire to learn more and more about it.
@@ -174,7 +174,7 @@ export default function BasicExample() {
                             <>
                                 Demo Component
                                 <Anchor href="/">
-                                    <Svg svg={calendar}></Svg>
+                                    <Svg svg={Calendar}></Svg>
                                 </Anchor>{" "}
                                 :{" "}
                             </>
@@ -205,7 +205,7 @@ export const MyComponent = <div className={ css.myHeader }>`}</pre>
                 <p className={cx(css.typography16)}>
                     Lorem ipsum dolor sit amet,{" "}
                     <Anchor href="/">
-                        click me <Svg svg={calendar}></Svg>
+                        click me <Svg svg={Calendar}></Svg>
                     </Anchor>{" "}
                     consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -222,7 +222,7 @@ export const MyComponent = <div className={ css.myHeader }>`}</pre>
                 <p className={cx(css.typography16)}>
                     Lorem ipsum dolor sit amet,{" "}
                     <Anchor href="/">
-                        click me <Svg svg={calendar}></Svg>
+                        click me <Svg svg={Calendar}></Svg>
                     </Anchor>{" "}
                     consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -242,7 +242,7 @@ export const MyComponent = <div className={ css.myHeader }>`}</pre>
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam,{" "}
                     <Anchor href="/">
-                        click me <Svg svg={calendar}></Svg>
+                        click me <Svg svg={Calendar}></Svg>
                     </Anchor>{" "}
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                     ea commodo consequat. Duis aute irure reprehenderit in
@@ -257,7 +257,7 @@ export const MyComponent = <div className={ css.myHeader }>`}</pre>
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam,{" "}
                     <Anchor href="/">
-                        click me <Svg svg={calendar}></Svg>
+                        click me <Svg svg={Calendar}></Svg>
                     </Anchor>{" "}
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                     ea commodo consequat. Duis aute irure reprehenderit in

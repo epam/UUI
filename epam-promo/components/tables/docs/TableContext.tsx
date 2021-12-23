@@ -3,7 +3,7 @@ import { DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, Column
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
-import * as gearIcon from '../../../icons/action-settings-18.svg';
+import { ReactComponent as GearIcon } from '../../../icons/action-settings-18.svg';
 
 export type Person = {
     id: number,
@@ -55,8 +55,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 rows.sort((a, b) =>
                     (key === 'id' || key === 'departmentId') ?
                     a[key] - b[key] :
-                    a[key].localeCompare(b[key])
-                );
+                    a[key].localeCompare(b[key]));
             });
         }
 
@@ -70,8 +69,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 id={ index }
                 rowKey={ index + '' }
                 index={ index }
-            />
-        );
+            />);
     }
 
     showConfigurationModal = () => {
@@ -91,7 +89,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 <FlexRow size="48" background="white" padding="24">
                     <Text>items</Text>
                     <FlexSpacer />
-                    <IconButton icon={ gearIcon } onClick={ this.showConfigurationModal } />
+                    <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
                 </FlexRow>
                 <DataTableHeaderRow
                     columns={ this.getVisibleColumns() }

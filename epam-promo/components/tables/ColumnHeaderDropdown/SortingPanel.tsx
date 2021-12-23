@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import css from "./SortingPanel.scss";
-import sortIcon from '@epam/assets/icons/common/table-sort_asc-18.svg';
-import sortIconDesc from '@epam/assets/icons/common/table-sort_desc-18.svg';
+import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
+import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
 import { isMobile, SortDirection } from "@epam/uui";
 import { FlexCell, FlexRow } from "../../layout";
 import { IconButton } from "../../buttons";
@@ -23,7 +23,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
             <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortAsc }>
                 <IconButton
                     color={ sortDirection === 'asc' ? "blue" : "gray60" }
-                    icon={ sortIcon }
+                    icon={ SortIcon }
                 />
                 <Text
                     cx={ sortDirection === 'asc' ? css.activeText : css.sortText }
@@ -38,7 +38,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
             <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
                 <IconButton
                     color={ sortDirection === 'desc' ? "blue" : "gray60" }
-                    icon={ sortIconDesc }
+                    icon={ SortIconDesc }
                 />
                 <Text
                     cx={ sortDirection === 'desc' ? css.activeText : css.sortText }

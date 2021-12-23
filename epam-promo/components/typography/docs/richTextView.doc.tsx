@@ -7,7 +7,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { RichTextViewProps } from '@epam/uui-components';
 import { Anchor } from '../../navigation';
 import { Svg } from '@epam/uui-components';
-import * as calendar from '@epam/assets/icons/common/action-calendar-18.svg';
+import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import { TextInput } from '../../inputs';
 import cx from 'classnames';
 import * as css from '../../../assets/styles/typography.scss';
@@ -47,7 +47,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                     <p>
                         <b>Main text</b> — Default is here… Further is a fish → While it was just a TV show, that little speech at the beginning
                         of the original Star Trek show really did do a good job if capturing our feelings about space.
-                        cillum dolore eu fugiat nulla pariatur. <Anchor href="/">Click me <Svg svg={ calendar }></Svg></Anchor> It is those feelings that drive
+                        cillum dolore eu fugiat nulla pariatur. <Anchor href="/">Click me <Svg svg={ Calendar }></Svg></Anchor> It is those feelings that drive
                         our love of astronomy and our desire to learn more and more about it.
                     </p>
                     <p>
@@ -90,7 +90,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                     <i>Additional data, unnecessary info, caption or quote.</i> <Anchor>Links and tags are looks like this.</Anchor>
                     <h4>LabeledInput</h4>
                     <FlexRow>
-                        <LabeledInput size='36' label={ <>Demo Component<Anchor href="/"><Svg svg={ calendar }></Svg></Anchor> : </> }>
+                        <LabeledInput size='36' label={ <>Demo Component<Anchor href="/"><Svg svg={ Calendar }></Svg></Anchor> : </> }>
                             <ControlWrapper size='36'>
                                 <TextInput value="" onValueChange={ () => {} }></TextInput>
                             </ControlWrapper>
@@ -110,7 +110,7 @@ import * as css from './MyComponent.scss';
 export const MyComponent = <div className={ css.myHeader }>` }</pre>
                     <h4>Text with size 16</h4>
                     <p className={ cx(css.typography16) }>
-                        Lorem ipsum dolor sit amet, <Anchor href="/">click me <Svg svg={ calendar }></Svg></Anchor> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, <Anchor href="/">click me <Svg svg={ Calendar }></Svg></Anchor> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                         dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure
                         dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <code>{ `import { Button } from '@epam/loveship'` }</code>
@@ -119,7 +119,7 @@ export const MyComponent = <div className={ css.myHeader }>` }</pre>
                     <h4>Text with size 12</h4>
                     <p className={ cx(css.typography12) }>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, <Anchor href="/">click me <Svg svg={ calendar }></Svg></Anchor> quis nostrud exercitation ullamco
+                        Ut enim ad minim veniam, <Anchor href="/">click me <Svg svg={ Calendar }></Svg></Anchor> quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure reprehenderit in voluptate velit esse cillum
                         dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <code>{ `import { Button } from '@epam/loveship'` }</code>
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

@@ -1,8 +1,8 @@
 import Lists from "@convertkit/slate-lists";
 import { Editor as CoreEditor, Editor } from "slate";
 import { RenderBlockProps } from "slate-react";
-import * as listBulletIcon from "../../icons/bullet-list.svg";
-import * as listNumberIcon from "../../icons/numbered-list.svg";
+import { ReactComponent as ListBulletIcon } from "../../icons/bullet-list.svg";
+import { ReactComponent as ListNumberIcon } from "../../icons/numbered-list.svg";
 import * as React from "react";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { getBlockDesirialiser } from '../../helpers';
@@ -73,11 +73,11 @@ const UnorderedListToolbarButton = (props: { editor: any }) => {
     const onClick = () => {
         (props.editor as any).toggleList({ type: 'unordered-list' });
     };
-    return <ToolbarButton isActive={ (props.editor as any).isList('unordered-list') } icon={ listBulletIcon } onClick={ onClick } />;
+    return <ToolbarButton isActive={ (props.editor as any).isList('unordered-list') } icon={ ListBulletIcon } onClick={ onClick } />;
 };
 
 const OrderedListToolbarButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ (props.editor as any).isList('ordered-list') } icon={ listNumberIcon } onClick={ () => (props.editor as any).toggleList({ type: 'ordered-list' }) } />;
+    return <ToolbarButton isActive={ (props.editor as any).isList('ordered-list') } icon={ ListNumberIcon } onClick={ () => (props.editor as any).toggleList({ type: 'ordered-list' }) } />;
 };
 
 const LIST_TAGS: any = {
