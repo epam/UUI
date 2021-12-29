@@ -33,6 +33,7 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
         : new StubAdaptedRouter();
 
     const { services } = useUuiServices<TApi, TAppContext>({...restProps, router});
+    services.history = history;
 
     useEffect(() => {
         const loadAppContextPromise = loadAppContext || (() => Promise.resolve({} as TAppContext));
