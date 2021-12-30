@@ -2,17 +2,10 @@
 
 .root {
     overflow: hidden;
+    border-radius: var(--panel-border-radius);
 
-    &.background-white {
-        background-color: var(--surface-light-color);
-    }
-
-    &.background-gray90 {
-        background-color: var(--surface-dark-color);
-    }
-
-    &.background-none {
-        background-color: transparent;
+    &.background {
+        background-color: var(--panel-background-color);
     }
 
     &.margin-24 {
@@ -28,7 +21,7 @@
     }
 
     &.shadow {
-        @include panel-shadow();
+        box-shadow: var(--panel-shadow);
     }
 
     &:global(.-clickable):hover {

@@ -1,4 +1,4 @@
-@mixin panel-shadow() { box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10); }
+@mixin panel-shadow() { box-shadow: var(--panel-shadow); }
 
 @mixin panel-top-shadow() { box-shadow: inset 0 10px 5px -10px rgba(51, 51, 51, 0.2); }
 

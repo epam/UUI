@@ -5,6 +5,7 @@
         border-style: solid;
         justify-content: center;
         min-width: inherit;
+        border-radius: var(--button-border-radius);
     }
 
     :global(.uui-caption) {
@@ -12,7 +13,7 @@
         min-width: 0;
         text-align: center;
         flex: 1 1 auto;
-        font-family: $font-sans-semibold;
+        font-family: var(--font-semibold);
         font-weight: normal;
         user-select: none;
     }
@@ -20,128 +21,128 @@
 
 @mixin button-disables-styles($bg-color, $border-color) {
     background-color: $bg-color;
-    color: var(--caption-color-disabled);
-    fill: var(--caption-color-disabled);
+    color: var(--button-caption-color-disabled);
+    fill: var(--button-caption-color-disabled);
     border-color: $border-color;
 }
 
 .mode-solid {
-    background-color: var(--background-color);
-    color: var(--caption-color);
-    fill: var(--caption-color);
-    border-color: var(--background-color);
+    background-color: var(--button-background-color);
+    color: var(--button-caption-color);
+    fill: var(--button-caption-color);
+    border-color: var(--button-background-color);
 
     &:global(.-clickable) {
         &:hover {
-            background-color: var(--background-color-hover);
-            border-color: var(--background-color-hover);
+            background-color: var(--button-background-color-hover);
+            border-color: var(--button-background-color-hover);
         }
 
         &:focus {
-            background-color: var(--background-color-hover);
-            border-color: var(--background-color-hover);
-            box-shadow: var(--focus-shadow);
-            outline: var(--focus-outline);
+            background-color: var(--button-background-color-hover);
+            border-color: var(--button-background-color-hover);
+            box-shadow: var(--button-focus-shadow);
+            outline: var(--button-focus-outline);
         }
 
         &:active {
-            background-color: var(--background-color-active);
-            border-color: var(--background-color-active);
+            background-color: var(--button-background-color-active);
+            border-color: var(--button-background-color-active);
         }
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--background-color-disabled), var(--background-color-disabled));
+        @include button-disables-styles(var(--button-background-color-disabled), var(--button-background-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--background-color-disabled), var(--background-color-disabled));
+            @include button-disables-styles(var(--button-background-color-disabled), var(--button-background-color-disabled));
         }
     }
 }
 
 .mode-outline {
-    background-color: var(--background-color-outline);
-    color: var(--caption-halftone-color);
-    fill: var(--caption-halftone-color);
-    border-color: var(--border-color);
+    background-color: var(--button-background-halftone-color);
+    color: var(--button-caption-halftone-color);
+    fill: var(--button-caption-halftone-color);
+    border-color: var(--button-border-color);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-halftone-hover);
-            color: var(--caption-halftone-color);
-            fill: var(--caption-halftone-color);
-            border-color: var(--border-color);
+            background-color: var(--button-background-color-halftone-hover);
+            color: var(--button-caption-halftone-color);
+            fill: var(--button-caption-halftone-color);
+            border-color: var(--button-border-color);
         }
 
         &:active {
-            background-color: var(--background-color-halftone-active);
-            color: var(--caption-halftone-color);
-            fill: var(--caption-halftone-color);
-            border-color: var(--border-color);
+            background-color: var(--button-background-color-halftone-active);
+            color: var(--button-caption-halftone-color);
+            fill: var(--button-caption-halftone-color);
+            border-color: var(--button-border-color);
         }
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--background-color-outline), var(--background-color-disabled));
+        @include button-disables-styles(var(--button-background-color-outline), var(--button-background-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--background-color-outline), var(--background-color-disabled));
+            @include button-disables-styles(var(--button-background-color-outline), var(--button-background-color-disabled));
         }
     }
 }
 
 .mode-none {
     background-color: transparent;
-    color: var(--caption-halftone-color);
-    fill: var(--caption-halftone-color);
-    border-color: var(--border-color);
+    color: var(--button-caption-halftone-color);
+    fill: var(--button-caption-halftone-color);
+    border-color: var(--button-border-color);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-halftone-hover);
-            color: var(--caption-halftone-color);
-            fill: var(--caption-halftone-color);
-            border-color: var(--border-color);
+            background-color: var(--button-background-color-halftone-hover);
+            color: var(--button-caption-halftone-color);
+            fill: var(--button-caption-halftone-color);
+            border-color: var(--button-border-color);
         }
 
         &:active {
-            background-color: var(--background-color-halftone-active);
-            color: var(--caption-halftone-color);
-            fill: var(--caption-halftone-color);
-            border-color: var(--border-color);
+            background-color: var(--button-background-color-halftone-active);
+            color: var(--button-caption-halftone-color);
+            fill: var(--button-caption-halftone-color);
+            border-color: var(--button-border-color);
         }
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(transparent, var(--background-color-disabled));
+        @include button-disables-styles(transparent, var(--button-background-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(transparent, var(--background-color-disabled));
+            @include button-disables-styles(transparent, var(--button-background-color-disabled));
         }
     }
 }
 
 .mode-ghost {
     background-color: transparent;
-    color: var(--caption-halftone-color);
-    fill: var(--caption-halftone-color);
+    color: var(--button-caption-halftone-color);
+    fill: var(--button-caption-halftone-color);
     border-color: transparent;
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--background-color-halftone-hover);
-            border-color: var(--background-color-halftone-hover);
+            background-color: var(--button-background-color-halftone-hover);
+            border-color: var(--button-background-color-halftone-hover);
         }
 
         &:active {
-            background-color: var(--background-color-halftone-active);
-            border-color: var(--background-color-halftone-active);
+            background-color: var(--button-background-color-halftone-active);
+            border-color: var(--button-background-color-halftone-active);
         }
     }
 
@@ -175,7 +176,7 @@
     @include button-layout(42px, 1px);
 
     :global(.uui-caption) {
-        font-family: $font-museo-sans;
+        font-family: var(--font-primary);
         text-transform: uppercase;
     }
 }
@@ -184,7 +185,7 @@
     @include button-layout(48px, 1px);
 
     :global(.uui-caption) {
-        font-family: $font-museo-sans;
+        font-family: var(--font-primary);
         text-transform: uppercase;
     }
 }

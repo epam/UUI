@@ -1,20 +1,21 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    fill: var(--icon-color);
+    fill: var(--text-input-icon-color);
     border-style: solid;
     box-sizing: border-box;
     padding-left: 5px;
     padding-right: 5px;
+    border-radius: var(--text-input-border-radius);
 
     :global(.uui-input) {
-        color: var(--text-color);
-        font-family: $font-sans;
+        color: var(--text-input-text-color);
+        font-family: var(--font-regular);
         padding-left: 6px;
         padding-right: 6px;
 
         &::placeholder {
-            color: var(--placeholder-color);
+            color: var(--text-input-placeholder-color);
         }
 
         &:placeholder-shown {
@@ -27,23 +28,23 @@
     }
 
     &.mode-form {
-        background-color: var(--background-color);
-        border-color: var(--border-color);
+        background-color: var(--text-input-background-color);
+        border-color: var(--text-input-border-color);
 
         :global(.-clickable) {
-            fill: var(--icon-color-clickable);
+            fill: var(--text-input-icon-color-clickable);
 
             &:hover {
-                fill: var(--icon-color-clickable-hover);
+                fill: var(--text-input-icon-color-clickable-hover);
             }
         }
 
         &:hover {
-            border-color: var(--border-color-hover);
+            border-color: var(--text-input-border-color-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--border-color-active);
+            border-color: var(--text-input-border-color-active);
         }
     }
 
@@ -60,39 +61,39 @@
         }
 
         &:hover {
-            background-color: var(--background-color);
-            border-color: var(--border-color);
+            background-color: var(--text-input-background-color);
+            border-color: var(--text-input-border-color);
 
             :global(.-clickable) {
-                fill: var(--icon-color-clickable);
+                fill: var(--text-input-icon-color-clickable);
 
                 &:hover {
-                    fill: var(--icon-color-clickable-hover);
+                    fill: var(--text-input-icon-color-clickable-hover);
                 }
             }
         }
 
         &:global(.uui-focus) {
-            background-color: var(--background-color);
-            border-color: var(--border-color-active);
+            background-color: var(--text-input-background-color);
+            border-color: var(--text-input-border-color-active);
         }
     }
 
     &:global(.uui-invalid) {
         &.mode-form, &.mode-cell {
-            background-color: var(--background-color);
-            border-color: var(--border-color-error);
+            background-color: var(--text-input-background-color);
+            border-color: var(--text-input-border-color-error);
         }
     }
 
     &:global(.uui-readonly) {
-        color: var(--text-color);
-        fill: var(--icon-color);
+        color: var(--text-input-text-color);
+        fill: var(--text-input-icon-color);
         pointer-events: none;
 
         &.mode-form {
-            background-color: var(--background-color-readonly);
-            border-color: var(--border-color-readonly);
+            background-color: var(--text-input-background-color-readonly);
+            border-color: var(--text-input-border-color-readonly);
         }
 
         &.mode-cell {
@@ -102,21 +103,21 @@
     }
 
     &:global(.uui-disabled) {
-        color: var(--text-color-disabled);
-        fill: var(--icon-color-disabled);
+        color: var(--text-input-text-color-disabled);
+        fill: var(--text-input-icon-color-disabled);
         pointer-events: none;
 
         :global(.uui-input) {
-            color: var(--text-color-disabled);
+            color: var(--text-input-text-color-disabled);
 
             &::placeholder {
-                color: var(--placeholder-color-disabled);
+                color: var(--text-input-placeholder-color-disabled);
             }
         }
 
         &.mode-form {
-            background-color: var(--background-color-disabled);
-            border-color: var(--border-color-disabled);
+            background-color: var(--text-input-background-color-disabled);
+            border-color: var(--text-input-border-color-disabled);
         }
 
         &.mode-cell {

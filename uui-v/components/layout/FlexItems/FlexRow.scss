@@ -110,19 +110,7 @@
         @include items-spacing(18px);
     }
 
-    &.background-white {
-        background-color: white;
-    }
-
-    &.background-gray5 {
-        background-color: var(--surface-color);
-    }
-
-    &.background-none {
-        background-color: transparent;
-    }
-
-    &.border-bottom-gray40 {
+    &.border-bottom {
         border-bottom: 1px solid var(--divider-color);
     }
 }

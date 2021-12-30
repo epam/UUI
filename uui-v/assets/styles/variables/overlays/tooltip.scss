@@ -1,0 +1,9 @@
+.color-white {
+    --background-color: white;
+    --text-color: var(--text-primary-color);
+}
+
+.color-gray90 {
+    --background-color: var(--surface-dark-color);
+    --text-color: white;
+}

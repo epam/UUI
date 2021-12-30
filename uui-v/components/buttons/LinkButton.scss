@@ -3,18 +3,18 @@
 .root {
     &:global(.uui-button-box) {
         background-color: transparent;
-        color: var(--text-color);
-        fill: var(--text-color);
+        color: var(--link-button-text-color);
+        fill: var(--link-button-text-color);
 
         &:global(.-clickable:not(.uui-disabled)) {
             &:hover, &:focus {
-                color: var(--text-color-hover);
-                fill: var(--text-color-hover);
+                color: var(--link-button-text-color-hover);
+                fill: var(--link-button-text-color-hover);
             }
 
             &:active {
-                color: var(--text-color-active);
-                fill: var(--text-color-active);
+                color: var(--link-button-text-color-active);
+                fill: var(--link-button-text-color-active);
             }
 
             &:focus {
@@ -23,8 +23,8 @@
         }
 
         &:global(.uui-disabled) {
-            color: var(--text-color-disabled);
-            fill: var(--text-color-disabled);
+            color: var(--link-button-text-color-disabled);
+            fill: var(--link-button-text-color-disabled);
             background-color: transparent;
 
             &:hover {
@@ -34,7 +34,7 @@
     }
 
     :global(.uui-caption) {
-        font-family: $font-sans-semibold;
+        font-family: var(--font-semibold);
         font-weight: normal;
     }
 
@@ -64,7 +64,7 @@
         min-width: auto;
 
         :global(.uui-caption) {
-            font-family: $font-museo-sans;
+            font-family: var(--font-primary);
             text-transform: uppercase;
         }
     }
@@ -74,7 +74,7 @@
         min-width: auto;
 
         :global(.uui-caption) {
-            font-family: $font-museo-sans;
+            font-family: var(--font-primary);
             text-transform: uppercase;
         }
     }
