@@ -1,17 +1,16 @@
 import React from 'react';
+import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
 import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
+import { IconButton, LinkButton } from '../buttons';
+import { i18n } from '../../i18n';
 import * as successIcon from '../../icons/notification-check_circle-fill-24.svg';
 import * as warningIcon from '../../icons/notification-warning-fill-24.svg';
 import * as errorIcon from '../../icons/notification-error-fill-24.svg';
 import * as hintIcon from '../../icons/notification-help-fill-24.svg';
 import * as crossIcon from '../../icons/snackbar/cross.svg';
-import * as styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
 import * as css from './NotificationCard.scss';
-import { IconButton } from '../buttons';
-import cx from 'classnames';
-import { LinkButton } from '..';
-import { i18n } from '../../i18n';
+import '../../assets/styles/variables/overlays/notificationCard.scss';
 
 type notificationAction = {
     name: string;
@@ -41,26 +40,32 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
     }
 
     render() {
-        return <div role="alert" className={ cx(css.notificationWrapper, styles[`color-${this.props.color}`], css.root, this.props.cx) }
-            ref={ (el) => this.notificationCardNode = el }>
-            <div className={ css.mainPath }>
-                {
-                    this.props.icon && <div className={ css.iconWrapper }>
-                        <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+        return (
+            <div
+                role='alert'
+                className={
+                    cx(css.notificationWrapper, 'notification-card-vars', `notification-card-color-${this.props.color}`, css.root, this.props.cx) }
+                ref={ (el) => this.notificationCardNode = el }
+            >
+                <div className={ css.mainPath }>
+                    {
+                        this.props.icon && <div className={ css.iconWrapper }>
+                            <IconContainer icon={ this.props.icon } cx={ css.actionIcon } />
+                        </div>
+                    }
+                    <div className={ css.content }>
+                        { this.props.children }
+                        { this.props.actions && <div className={ css.actionWrapper }>
+                            { this.props.actions.map((action: notificationAction) => {
+                                return <LinkButton caption={ action.name } onClick={ action.action }
+                                    key={ action.name } cx={ css.actionLink } size='36' />;
+                            }) }
+                        </div> }
                     </div>
-                }
-                <div className={ css.content }>
-                    { this.props.children }
-                    { this.props.actions && <div className={ css.actionWrapper }>
-                        { this.props.actions.map((action: notificationAction) => {
-                            return <LinkButton caption={ action.name } onClick={ action.action }
-                                key={ action.name } cx={ css.actionLink } size='36' />;
-                        }) }
-                    </div> }
+                    { this.props.onClose && <IconButton icon={ crossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
                 </div>
-                { this.props.onClose && <IconButton icon={ crossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
             </div>
-        </div>;
+        );
     }
 }
 

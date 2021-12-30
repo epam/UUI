@@ -1,16 +1,18 @@
-import * as css from './Panel.scss';
-import { VPanel } from '@epam/uui-components';
 import { withMods, VPanelProps } from '@epam/uui';
+import { VPanel } from '@epam/uui-components';
+import '../../../assets/styles/variables/layout/panel.scss';
+import * as css from './Panel.scss';
 
 export interface PanelMods {
     shadow?: boolean;
     margin?: '24';
-    background?: 'white' | 'gray90';
+    background?: boolean;
 }
 
 export const Panel = withMods<VPanelProps, PanelMods>(VPanel, props => [
+    'panel-vars',
     css.root,
     props.shadow && css.shadow,
+    props.background && css.background,
     props.margin && css['margin-' + props.margin],
-    props.background && css['background-' + props.background],
 ]);

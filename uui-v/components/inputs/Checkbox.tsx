@@ -5,7 +5,7 @@ import * as check_12 from '../../icons/check-12.svg';
 import * as check_18 from '../../icons/check-18.svg';
 import * as partlySelect_12 from '../../icons/partly-select-12.svg';
 import * as partlySelect_18 from '../../icons/partly-select-18.svg';
-import '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
+import '../../assets/styles/variables/inputs/checkbox.scss';
 
 export interface CheckboxMods {
     size?: '12' | '18';
@@ -14,7 +14,7 @@ export interface CheckboxMods {
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
-        'checkbox-colors',
+        'checkbox-vars',
         css.root,
         css['size-' + (mods.size || '18')],
     ];

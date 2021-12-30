@@ -3,7 +3,7 @@ import { withMods } from '@epam/uui';
 import { ControlSize, ButtonMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './Button.scss';
-import '../../assets/styles/colorvars/buttons/button-colorvars.scss';
+import '../../assets/styles/variables/buttons/button.scss';
 
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
 export const allButtonColors: ButtonColor[] = ['accent', 'primary', 'secondary', 'negative'];
@@ -18,10 +18,11 @@ export interface ButtonMods {
 
 export function applyButtonMods(mods: ButtonMods & ButtonProps) {
     return [
-        'button-color-' + (mods.color || 'primary'),
+        'button-vars',
+        `button-color-${mods.color || 'primary'}`,
         css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || 'solid')],
+        css[`size-${mods.size || defaultSize}`],
+        css[`mode-${mods.mode || 'solid'}`],
     ];
 }
 

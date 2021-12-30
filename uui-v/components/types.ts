@@ -10,6 +10,12 @@ export const allRowSizes: RowSize[] = [null, '24', '30', '36', '42', '48'];
 export type EpamSemanticColor = 'accent' | 'primary' | 'secondary' | 'negative';
 export const allEpamSemanticColors: EpamSemanticColor[] = ['accent', 'primary', 'secondary', 'negative'];
 
+export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';
+export const allTextSizes: TextSize[] = ['18', '24', '30', '36', '48'];
+
+export type FontStyle = 'regular' | 'semibold' | 'italic' | 'primary' | 'promo';
+export const allFontStyles: FontStyle[] = ['regular', 'semibold', 'italic', 'primary', 'promo'];
+
 export interface ColorMod {
     color?: EpamSemanticColor;
 }
