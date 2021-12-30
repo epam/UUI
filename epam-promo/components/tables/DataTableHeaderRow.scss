@@ -11,7 +11,19 @@
 
 .config-icon {
     position: absolute;
-    display: flex;
-    right: 24px;
     height: 100%;
+    right: 24px;
+    z-index: 2;
+}
+
+:global(.uui-table-header-row .uui-table-fixed-section-left),
+:global(.uui-table-header-row .uui-table-fixed-section-right) {
+    z-index: 2;
+    background: $gray5;
+}
+
+:global(.uui-table-row .uui-table-fixed-section-left),
+:global(.uui-table-row .uui-table-fixed-section-right) {
+    z-index: 2;
+    background: $white;
 }

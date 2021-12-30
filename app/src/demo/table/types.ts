@@ -1,7 +1,7 @@
-import { ColumnsConfig, DataSourceState, DataTableState, IDataSource } from "@epam/uui";
-import { Person, PersonGroup } from "@epam/uui-docs";
+import { ColumnsConfig, DataTableState, IDataSource } from "@epam/uui";
+import { Person, PersonGroup, Location } from "@epam/uui-docs";
 
-type PersonTableRecord = Person | PersonGroup;
+type PersonTableRecord = Person | PersonGroup | Location;
 
 type PersonTableRecordId = [PersonTableRecord["__typename"], string | number];
 
@@ -13,7 +13,7 @@ interface ITableFilter {
     id: string;
     key: string;
     type: "singlePicker" | "multiPicker" | "datePicker" | "rangeDatePicker";
-    dataSource: IDataSource<any, any, any>;
+    dataSource?: IDataSource<any, any, any>;
 }
 
 interface PersonsTableState extends DataTableState {

@@ -9,7 +9,7 @@ import {Sidebar} from './implementation/Sidebar';
 import SoftBreak from "slate-soft-break";
 import { baseMarksPlugin, utilsPlugin } from "./plugins";
 import { paragraphPlugin } from './plugins/paragraphPlugin/paragraphPlugin';
-import { getSerializer } from './helpers';
+import { getSerializer, isEditorEmpty } from './helpers';
 import htmlclean from 'htmlclean';
 
 export const slateEditorEmptyValue: any = Value.fromJS({
@@ -120,17 +120,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
             return true;
         }
 
-        const blocks: Block[] = this.props.value.get('document').get('nodes').toArray();
-
-        if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
-            const nodes: SlateText[] = blocks[0].get('nodes').toArray();
-
-            if (nodes.length === 1 && nodes[0].get('text') === '') {
-                return true;
-            }
-        }
-
-        return false;
+        return isEditorEmpty(this.props.value);
     }
 
     onChange = (props: any) => {
@@ -142,12 +132,18 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
     }
 
     onBlur = (e: any, editor: Editor, next: () => any) => {
+        if (!editor.value.selection.isFocused) return;
         if (e.relatedTarget && e.relatedTarget.closest('.slate-prevent-blur')) {
             return e.preventDefault();
         }
 
-        this.props.onBlur && this.props.onBlur(e, editor.value);
-        next();
+        this.props.onBlur?.(e, editor.value);
+        return next();
+    }
+    
+    onFocus = (e: any, editor: Editor, next: () => any) => {
+        if (editor.value.selection.isFocused) return;
+        return next();
     }
 
 
@@ -171,6 +167,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
                     autoFocus={ this.props.autoFocus }
                     plugins={ this.props.plugins }
                     schema={ schema }
+                    onFocus={ this.onFocus }
                     onBlur={ this.onBlur }
                     value={ this.props.value || slateEditorEmptyValue }
                     onChange={ this.onChange }

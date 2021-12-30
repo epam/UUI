@@ -2,7 +2,7 @@ import React from "react";
 import css from "./InfoSidebarPanel.scss";
 import { Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text } from "@epam/promo";
 import { Person } from "@epam/uui-docs";
-import crossIcon from "@epam/assets/icons/common/navigation-close-24.svg";
+import { ReactComponent as CrossIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 import { cx } from "@epam/uui";
 
 interface SidebarPanelProps {
@@ -29,7 +29,7 @@ export const InfoSidebarPanel: React.FC<SidebarPanelProps> = ({ data, isVisible,
                 <FlexRow borderBottom padding="24">
                     <Text size="48" font="sans-semibold">Detailed Information</Text>
                     <FlexSpacer/>
-                    <FlexCell shrink={ 0 } width="auto"><IconButton icon={ crossIcon } onClick={ onClose }/></FlexCell>
+                    <FlexCell shrink={ 0 } width="auto"><IconButton icon={ CrossIcon } onClick={ onClose }/></FlexCell>
                 </FlexRow>
                 { data && (
                     <ScrollBars>

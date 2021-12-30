@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from "react-dom";
-import { FlexRow, skinContext as promoSkinContext } from "@epam/promo";
-import { ContextProvider, UuiContexts } from "@epam/uui";
+import { ErrorHandler, FlexRow, skinContext as promoSkinContext } from "@epam/promo";
+import { ApiCallOptions, ContextProvider, UuiContexts } from "@epam/uui";
 import { Modals, Snackbar } from "@epam/uui-components";
 import "@epam/uui-components/styles.css";
 import "@epam/promo/styles.css";
@@ -16,15 +16,22 @@ const origin = process.env.REACT_APP_PUBLIC_URL;
 
 render(
     <ContextProvider<TApi, UuiContexts>
-        apiDefinition={ processRequest => getApi(processRequest, origin) }
+        apiDefinition={ (processRequest) =>
+            getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
+                processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }),
+                origin,
+            )
+        }
         onInitCompleted={ (context) => Object.assign(svc, context) }
         skinContext={ promoSkinContext }
     >
-        <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
-            <Example />
+        <ErrorHandler>
+            <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
+                <Example />
+            </FlexRow>
             <Snackbar />
             <Modals />
-        </FlexRow>
+        </ErrorHandler>
     </ContextProvider>,
     rootElement,
 );

@@ -3,9 +3,9 @@ import { Editor as CoreEditor } from "slate";
 import * as css from './textAlign.scss';
 import * as React from "react";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import * as alignLeft from '../../icons/align-left.svg';
-import * as alignCenter from '../../icons/align-center.svg';
-import * as alignRight from '../../icons/align-right.svg';
+import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
+import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
+import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
 
 const alignMarks = ['uui-richTextEditor-align-text-left', 'uui-richTextEditor-align-text-center', 'uui-richTextEditor-align-text-right'];
 
@@ -68,7 +68,7 @@ const isAlignActive = (alignType: string, editor: Editor) => {
 const leftAlignButton = (props: { editor: any }) => {
     return <ToolbarButton
                 isActive={ isAlignActive('uui-richTextEditor-align-text-left', props.editor) }
-                icon={ alignLeft }
+                icon={ AlignLeft }
                 iconColor={ 'red' }
                 onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-left') }
             />;
@@ -77,7 +77,7 @@ const leftAlignButton = (props: { editor: any }) => {
 const rightAlignButton = (props: { editor: any }) => {
     return <ToolbarButton
                 isActive={ isAlignActive('uui-richTextEditor-align-text-right', props.editor) }
-                icon={ alignRight }
+                icon={ AlignRight }
                 iconColor={ 'red' }
                 onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-right') }
             />;
@@ -86,7 +86,7 @@ const rightAlignButton = (props: { editor: any }) => {
 const centerAlignButton = (props: { editor: any }) => {
     return <ToolbarButton
                 isActive={ isAlignActive('uui-richTextEditor-align-text-center', props.editor) }
-                icon={ alignCenter }
+                icon={ AlignCenter }
                 iconColor={ 'red' }
                 onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-center') }
             />;

@@ -5,7 +5,7 @@ import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '.
 import { IconContainer } from '@epam/uui-components';
 import { SizeInfo } from './SizeInfo';
 import { IconList } from '@epam/assets/icons/helpers';
-import * as infoIcon from '../../components/icons/notification-help-fill-12.svg';
+import { ReactComponent as InfoIcon } from '../../components/icons/notification-help-fill-12.svg';
 
 interface IconPickerProps extends IEditable<IHasIcon> {
     icons: IconList<Icon>[];
@@ -49,7 +49,7 @@ export class IconPicker extends React.Component<IconPickerProps, any> {
         return <div className={ css.infoContainer }>
         <Text fontSize='12' font='sans-semibold' color='sky' cx={ css.infoText }>I don't know what icon size use.</Text>
         <Tooltip cx={ css.tooltip } placement='top' content={ this.renderTooltip() } color='night100'>
-            <IconButton icon={ infoIcon } color='sky'/>
+            <IconButton icon={ InfoIcon } color='sky'/>
         </Tooltip>
     </div>;
     }

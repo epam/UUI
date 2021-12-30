@@ -64,7 +64,6 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
                                 isOpen={ item.isOpen }
                                 isDropdown={ item.isDropdown }
                                 isActive={ item.id === this.props.value }
-                                key={ item.id }
                                 caption={ item.data.name }
                                 onClick={ () => this.handleClick(item) }
                             />

@@ -3,6 +3,7 @@
 exports[`Alert should be rendered correctly 1`] = `
 <div
   className="alertWrapper color-sky"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -17,6 +18,7 @@ exports[`Alert should be rendered correctly 1`] = `
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
   className="alertWrapper color-sun root"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -30,14 +32,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#accept-12.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -75,14 +70,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#navigation-close-24.svg"
-        />
-      </svg>
+      />
     </div>
   </button>
 </div>

@@ -24,7 +24,7 @@ export class GAListener implements IAnalyticsListener {
         document.head.appendChild(gtagScript);
     }
 
-    public sendEvent(event:AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType: string) {
+    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType?: string) {
         switch (eventType) {
             case "pageView":
                 this.sendPageView(event.path);

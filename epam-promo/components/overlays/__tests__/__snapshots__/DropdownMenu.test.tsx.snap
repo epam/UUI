@@ -101,14 +101,7 @@ Array [
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#folding-arrow-18.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>

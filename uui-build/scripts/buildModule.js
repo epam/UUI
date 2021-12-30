@@ -48,6 +48,7 @@ async function main() {
             };
         }
     }
+    // await fs.copy('./build', `../next-app/node-modules/@epam/${name}/build/package.json`);
     console.log(chalk.green(`Done building package: ` + paths.appPath));
 }
 

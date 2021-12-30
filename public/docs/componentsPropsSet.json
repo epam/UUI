@@ -536,10 +536,6 @@
         "value": "(day: Dayjs) => boolean"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "value",
         "value": "T"
       },
@@ -1550,10 +1546,6 @@
         "value": "24 | 12"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
       },
@@ -2492,10 +2484,6 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "inputId",
-        "value": "string"
-      },
-      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -2674,10 +2662,6 @@
       {
         "name": "minCharsToSearch",
         "value": "number"
-      },
-      {
-        "name": "inputId",
-        "value": "string"
       },
       {
         "name": "selection",
@@ -2925,10 +2909,7 @@
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
       },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
-      },
+
       {
         "name": "selectAll",
         "value": "ICheckable"
@@ -3138,10 +3119,6 @@
       {
         "name": "onFocus",
         "value": "(focusedIndex: number) => void"
-      },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
       },
       {
         "name": "borderBottom",
@@ -4196,10 +4173,6 @@
         "value": "(day: Dayjs) => boolean"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "value",
         "value": "T"
       },
@@ -4376,10 +4349,6 @@
         "value": "number"
       },
       {
-        "name": "id",
-        "value": "string"
-      },
-      {
         "name": "value",
         "value": "T"
       },
@@ -4518,10 +4487,6 @@
       {
         "name": "inputCx",
         "value": "any"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "cx",
@@ -5342,10 +5307,6 @@
       {
         "name": "format",
         "value": "24 | 12"
-      },
-      {
-        "name": "id",
-        "value": "string"
       },
       {
         "name": "renderTarget",
@@ -6628,10 +6589,6 @@
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
       },
       {
-        "name": "inputId",
-        "value": "string"
-      },
-      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -6962,10 +6919,6 @@
         "value": "number"
       },
       {
-        "name": "inputId",
-        "value": "string"
-      },
-      {
         "name": "selection",
         "value": "DataRowProps<TItem, TId>[]"
       },
@@ -7204,10 +7157,6 @@
         "value": "DataColumnProps<TItem, TId, any>[]"
       },
       {
-        "name": "scrollManager",
-        "value": "ScrollManager"
-      },
-      {
         "name": "selectAll",
         "value": "ICheckable"
       },
@@ -7416,10 +7365,6 @@
       {
         "name": "onFocus",
         "value": "(focusedIndex: number) => void"
-      },
-      {
-        "name": "scrollManager",
-        "value": "ScrollManager"
       },
       {
         "name": "borderBottom",

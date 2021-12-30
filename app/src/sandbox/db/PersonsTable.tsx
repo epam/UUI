@@ -40,7 +40,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
         }
     };
 
-    return <DataTable<PersonTableRecord>
+    return <DataTable<PersonTableRecord, Person['id']>
         getRows={ () => props.view.getVisibleRows() }
         columns={ columnsSet.personColumns }
         renderRow={ renderRow }

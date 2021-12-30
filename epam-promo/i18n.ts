@@ -3,6 +3,9 @@ export const i18n = {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
     },
+    fileCard: {
+        fileSizeProgress: ' of '
+    },
     pickerModal: {
         headerTitle: 'Please select',
         searchPlaceholder: 'Type text for quick search',
@@ -46,5 +49,51 @@ export const i18n = {
     pickerFilterHeader: {
         sortAscending: 'Sort Ascending',
         sortDescending: 'Sort Descending',
+    },
+    fileUpload: {
+        label: "Drop files to attach or",
+        browse: "browse",
+    },
+    errorHandler: {
+        errorPageConfig: {
+            notFound: {
+                title: "Oooops! We couldn’t find this page",
+                subtitle: "Sorry for the inconvenience.",
+            },
+            permissionDenied: {
+                title: "You have no permissions!",
+                subtitle: "Sorry for the inconvenience.",
+            },
+            serverError: {
+                title: "500 Error! Something went wrong",
+                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+            },
+            serviceUnavailable: {
+                title: "The page request was canceled, because it took too long to complete",
+                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+            },
+            default: {
+                title: "Something went wrong",
+                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+            },
+        },
+        recoveryMessageConfig: {
+            'auth-lost': {
+                title: 'Your session has expired.',
+                subtitle: 'Attempting to log you in.',
+            },
+            'connection-lost': {
+                title: 'Network connection down',
+                subtitle: 'Please check your network connection.',
+            },
+            'maintenance': {
+                title: 'Server maintenance',
+                subtitle: 'We apologize for the inconvenience. Our site is currently under maintenance. Will come back as soon as possible.',
+            },
+            'server-overload': {
+                title: 'Server overloaded',
+                subtitle: 'We are trying to recover. Please wait.',
+            },
+        },
     },
 };

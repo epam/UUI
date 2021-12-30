@@ -2,7 +2,7 @@ import { RenderBlockProps, Editor } from "slate-react";
 import * as React from "react";
 import { IframeBlock } from "./IframeBlock";
 import { UploadFileToggler } from '@epam/uui-components';
-import * as pdfIcon from "../../icons/pdf.svg";
+import { ReactComponent as PdfIcon } from "../../icons/pdf.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { parseStringToCSSProperties } from "@epam/uui";
 import {isTextSelected} from "../../helpers";
@@ -41,7 +41,7 @@ export const iframePlugin = () => {
 const FileUploadButton = (props: { editor: Editor }) => {
     return (
         <UploadFileToggler
-            render={ toglerProps => <ToolbarButton { ...toglerProps } icon={ pdfIcon } isDisabled={ isTextSelected(props.editor) } /*cx={ css.pdfButton }*//> }
+            render={ toglerProps => <ToolbarButton { ...toglerProps } icon={ PdfIcon } isDisabled={ isTextSelected(props.editor) } /*cx={ css.pdfButton }*//> }
             onFilesAdded={ files => { files.map(file => (props.editor as any).handleUploadFile(file)); } }
             accept='.pdf'
         />

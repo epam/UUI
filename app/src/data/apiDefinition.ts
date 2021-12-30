@@ -1,5 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui";
+import type { IProcessRequest, CommonContexts, UuiContexts } from "@epam/uui";
 import { ITablePreset } from "../demo/table/types";
 
 export interface GetCodeParams {
@@ -13,7 +13,7 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = "") {
+export function getApi(processRequest: IProcessRequest, origin: string = "") {
     return {
         demo: getDemoApi(processRequest, origin),
         success: {

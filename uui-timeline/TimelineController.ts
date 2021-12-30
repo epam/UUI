@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Viewport } from './types';
-import { addMs, msPerDay, scales, scaleSteps } from './helpers';
+import { msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from './TimelineTransform';
 import sortedIndex from 'lodash.sortedindex';
+import { isClientSide } from "@epam/uui";
 
 type TimelineRenderHandler = (transform: TimelineTransform) => void;
 
@@ -55,9 +56,11 @@ export class TimelineController {
         this.targetViewport = viewport;
         this.onViewportChange = onViewportChange;
         this.options = options ? options : {};
-        window.addEventListener('mousemove', this.handleMouseMove);
-        window.addEventListener('mouseup', this.handleMouseUp);
-        window.addEventListener('mouseleave', this.handleMouseLeave);
+        if (isClientSide) {
+            window.addEventListener('mousemove', this.handleMouseMove);
+            window.addEventListener('mouseup', this.handleMouseUp);
+            window.addEventListener('mouseleave', this.handleMouseLeave);
+        }
     }
 
     handlers: TimelineRenderHandler[] = [];

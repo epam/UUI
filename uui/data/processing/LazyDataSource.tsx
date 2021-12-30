@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, DataSourceState, ILazyDataSource } from './types';
+import { LazyDataSourceApiRequestOptions, DataSourceState, ILazyDataSource } from './types';
 import { LazyListView, LazyListViewProps } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from "./BaseDataSource";
@@ -56,7 +55,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             view.update(value, viewProps);
             return view;
         } else {
-            const newView: any = new LazyListView({ value, onValueChange }, viewProps, this.cache);
+            const newView = new LazyListView({ value, onValueChange }, viewProps, this.cache);
             this.views.set(onValueChange, newView);
             return newView;
         }

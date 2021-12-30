@@ -3,7 +3,7 @@ import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo'
 import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import * as css from "./TablesExamples.scss";
-import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
+import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
@@ -22,7 +22,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             isSortable: true,
             fix: 'left',
             width: 120,
-            minWidth: 100,
+            shrink: 0,
         },
         {
             key: 'name',
@@ -55,15 +55,15 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
         {
             key: 'altname',
             caption: 'Alt. names',
-            render: (city) => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
+            render: city => <Text color='gray80'>{ city.alternativeNames.join(', ') }</Text>,
             info: 'Alternative city names',
             shrink: 0,
             width: 300,
-            minWidth: 150,
+            minWidth: 250,
         },
         {
             key: 'actions',
-            render: () => <IconButton icon={ moreIcon } color='gray60' />,
+            render: () => <IconButton icon={ MoreIcon } color='gray60' />,
             width: 54,
             fix: 'right',
         },
@@ -90,11 +90,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{
-            role: 'table',
-            'aria-rowcount': view.getListProps().rowsCount,
-            'aria-colcount': citiesColumns.length
-        }}>
+        <Panel shadow cx={ css.container }>
             <DataTable
                 value={ tableState }
                 onValueChange={ handleTableStateChange }
@@ -109,4 +105,4 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             />
         </Panel>
     );
-};
+}
