@@ -41,6 +41,8 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
 
     portalTarget?: HTMLElement;
     boundaryElement?: Boundary;
+
+    closeBodyOnTogglerHidden?: boolean; // default: true; Set false if you do not want to hide the dropdown body in case Toggler is out of the viewport
 }
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -191,7 +193,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             }
         };
 
-        if (isReferenceHidden && (this.state.opened || this.props.value)) {
+        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && (this.state.opened || this.props.value)) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => { this.handleOpenedChange(false); }, 0);
             return null;

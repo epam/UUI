@@ -29,14 +29,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -48,14 +41,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -67,14 +53,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -86,14 +65,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -105,14 +77,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>
@@ -133,14 +98,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -152,14 +110,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -171,14 +122,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -190,14 +134,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -209,14 +146,7 @@ exports[`Rating should be rendered correctly 1`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>
@@ -253,14 +183,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -272,14 +195,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -291,14 +207,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -310,14 +219,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -329,14 +231,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>
@@ -357,14 +252,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -376,14 +264,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -395,14 +276,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -414,14 +288,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
       <div
@@ -433,14 +300,7 @@ exports[`Rating should be rendered correctly 2`] = `
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#fav-rates-star-24.svg"
-            />
-          </svg>
+          />
         </div>
       </div>
     </div>

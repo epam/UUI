@@ -1,10 +1,16 @@
 export function parseStringToCSSProperties(styles: string) {
-    let parsedStyle: any = {};
+    const parsedStyle: any = {};
     if (styles) {
         styles.split(';').map((item: any) => {
-            let style = item.trim().split(':');
-            style[0] ? parsedStyle[style[0]] = style[1].trim() : null;
+            let [name, value] = item.trim().split(':');
+            parsedStyle[name] = !name || erasedStyleProps.includes(name)
+                ? null
+                : value.trim();
         });
     }
     return parsedStyle;
 }
+
+const erasedStyleProps = [
+    "background-color", "font-family", "font-style",  
+];

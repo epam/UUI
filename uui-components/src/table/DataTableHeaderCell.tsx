@@ -1,12 +1,11 @@
-import React, {createRef} from 'react';
-import {AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked} from "@epam/uui";
-import { findDOMNode } from "react-dom";
+import React, { createRef, ReactElement, Component, PropsWithRef } from 'react';
+import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui";
 
 interface DataTableRenderProps {
-    renderCellContent: (props: HeaderCellContentProps) => React.ReactElement;
+    renderCellContent: (props: HeaderCellContentProps) => ReactElement;
 }
 
-export interface HeaderCellContentProps extends DndActorRenderParams, React.PropsWithRef<any> {
+export interface HeaderCellContentProps extends DndActorRenderParams, PropsWithRef<any> {
     onResizeStart: (e: React.MouseEvent) => void;
     onResizeEnd: (e: React.MouseEvent) => void;
     onResize: (e: MouseEvent) => void;
@@ -17,18 +16,19 @@ interface DataTableHeaderCellState {
     isResizing: boolean;
 }
 
-export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps, DataTableHeaderCellState> {
+export abstract class DataTableHeaderCell<TItem, TId> extends Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps, DataTableHeaderCellState> {
     state: DataTableHeaderCellState = {
         isResizing: false,
     };
 
-    cellRef = createRef<any>();
+    cellRef = createRef<HTMLElement>();
 
     toggleSort = (e: React.MouseEvent) => {
-        !isClickableChildClicked(e) && this.props.column.isSortable && this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
+        if (isClickableChildClicked(e)) return;
+        this.props.column.isSortable && this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
     }
 
-    canAcceptDrop(params: AcceptDropParams<DataColumnProps<any>, DataColumnProps<any>>) {
+    canAcceptDrop(params: AcceptDropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>) {
         if (!params.dstData.fix) {
             return {
                 left: true,
@@ -56,18 +56,14 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
 
     onResize = (e: MouseEvent) => {
         if (this.state.isResizing) {
-            const columnsConfig = { ...this.props.value.columnsConfig };
-
-            const cellNode: HTMLElement = findDOMNode(this.cellRef.current) as any;
-            const cellRect = cellNode.getBoundingClientRect();
-
+            const { columnsConfig } = this.props.value;
+            const cellRect = this.cellRef.current.getBoundingClientRect();
             const newWidth = e.clientX - cellRect.left;
 
-            if (newWidth < this.props.column.minWidth) {
-                columnsConfig[this.props.column.key] = { ...columnsConfig[this.props.column.key], width: this.props.column.minWidth  };
-            } else {
-                columnsConfig[this.props.column.key] = { ...columnsConfig[this.props.column.key], width: newWidth  };
-            }
+            columnsConfig[this.props.column.key] = {
+                ...columnsConfig[this.props.column.key],
+                width: newWidth
+            };
 
             this.props.onValueChange({ ...this.props.value, columnsConfig });
 
@@ -83,7 +79,7 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
             toggleSort: this.toggleSort,
             ref: this.cellRef,
             ...dndProps,
-        } as any);
+        });
     }
 
 
@@ -98,8 +94,6 @@ export abstract class DataTableHeaderCell<TItem, TId>  extends React.Component<D
                     render={ this.renderCellContent }
                 />
             );
-        } else {
-            return this.renderCellContent();
-        }
+        } else return this.renderCellContent();
     }
 }

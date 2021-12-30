@@ -95,14 +95,7 @@ Array [
         >
           <svg
             className=""
-            height={24}
-            viewBox="0 0 12 24"
-            width={12}
-          >
-            <use
-              xlinkHref="#search-24.svg"
-            />
-          </svg>
+          />
         </div>
         <input
           aria-invalid={false}

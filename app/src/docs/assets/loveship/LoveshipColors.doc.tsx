@@ -3,7 +3,7 @@ import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from
 import { cx, INotification } from '@epam/uui';
 import { copyTextToClipboard } from './../../../helpers';
 import { svc } from './../../../services';
-import * as notificationIcon from './../../../icons/notification-check-fill-24.svg';
+import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
 import * as style from '@epam/loveship/assets/styles/scss/loveship-color-vars.scss';
 import * as css from './LoveshipColorsDoc.scss';
 
@@ -204,7 +204,7 @@ const additionalColors: any = {
 export class LoveshipColorsDoc extends React.Component {
     showNotification() {
         svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard { ...props } icon={ notificationIcon } color='gray60' onClose={ null } >
+            <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
                 <Text size='36' font='sans'>HEX code was copied to the clipboard</Text>
             </NotificationCard>, { duration: 3 });
     }

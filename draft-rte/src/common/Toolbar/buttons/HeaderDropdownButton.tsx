@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Dropdown, FlexRow, IconButton, Panel } from '@epam/loveship';
 import { createBlockStyleDropDownItem } from '../../../utils/createBlockStyleDropDownItem'
 import { DraftBlockStyleButton } from '../../..';
-import * as headerDropdownIcon from '../../../icons/header_dropdown.svg'
+import { ReactComponent as HeaderDropdownIcon } from '../../../icons/header_dropdown.svg'
 import * as css from './HeaderDropdownButton.scss';
 import { cx } from '@epam/uui';
 
@@ -56,7 +56,7 @@ export const HeaderDropDownButton = (props: any) => (
             renderTarget={ (props: any) => (
                 <IconButton
                     {...props}
-                    icon={ headerDropdownIcon }
+                    icon={ HeaderDropdownIcon }
                     color='night600'
                     cx={cx('header-dropdown-button', { active: props.isOpen })}
                 />

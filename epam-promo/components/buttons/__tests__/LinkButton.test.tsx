@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkButton } from '../LinkButton';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('LinkButton', () => {
     it('should be rendered correctly', () => {
@@ -18,7 +18,7 @@ describe('LinkButton', () => {
             .create(<LinkButton
                 color='blue'
                 onClick={ jest.fn }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 isDisabled={ false }
                 isDropdown
                 onClear={ jest.fn }

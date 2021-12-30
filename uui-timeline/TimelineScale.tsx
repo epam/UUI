@@ -5,8 +5,8 @@ import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '.
 import { addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM } from './helpers';
 import * as styles from './TimelineScale.scss';
 
-import * as arrowLeftSvg from './arrowLeft.svg';
-import * as arrowRightSvg from './arrowRight.svg';
+import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
+import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
 import { Icon } from '@epam/uui';
 import { Svg } from '@epam/uui-components';
 
@@ -234,7 +234,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
           className={ cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight) }
           onClick={ handleClick }
         >
-          { renderArrowIcon(direction == 'left' ? arrowLeftSvg : arrowRightSvg) }
+          { renderArrowIcon(direction == 'left' ? ArrowLeftSvg : ArrowRightSvg) }
         </div>
         );
     }

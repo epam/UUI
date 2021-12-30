@@ -3,7 +3,7 @@
 
 .root {
     @include burger-button-color();
-    padding: 0 48px;
+    padding: 0 24px;
     background: none;
     border: 0;
     outline: none;
@@ -23,6 +23,7 @@
 
     &:global(.uui-active) {
         color: var(--color-active);
+        fill: var(--color-active);
     }
 
     :global(.uui-icon) {

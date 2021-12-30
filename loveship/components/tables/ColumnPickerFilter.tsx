@@ -9,8 +9,7 @@ export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     showSearch?: boolean;
 };
 
-export interface PickerFilterState extends PickerBaseState {
-}
+export interface PickerFilterState extends PickerBaseState {}
 
 const pickerHeight = 300;
 
@@ -25,8 +24,8 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                 size={ this.props.size || '30' }
                 renderItem={ i => (
                     <Text size={ this.props.size || '30' }>
-                        { rowProps.isLoading 
-                            ? <TextPlaceholder wordsCount={ 2 }/> 
+                        { rowProps.isLoading
+                            ? <TextPlaceholder wordsCount={ 2 }/>
                             : this.getName(i) }
                     </Text>
                 ) }

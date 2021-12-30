@@ -1,8 +1,8 @@
 import React from "react";
 import { FlexRow, IconButton, ScrollBars, Text } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
-import closeIcon from "@epam/assets/icons/common/navigation-close-24.svg";
 import { DataColumnProps } from "@epam/uui";
+import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 
 import { ITableFilter, ITableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
@@ -23,7 +23,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = props => {
             <FlexRow background="white" borderBottom size="48" padding="18">
                 <Text fontSize="18" font="sans-semibold">Views</Text>
                 <FlexSpacer/>
-                <IconButton icon={ closeIcon } onClick={ props.closePanel }/>
+                <IconButton icon={ CloseIcon } onClick={ props.closePanel }/>
             </FlexRow>
 
             <ScrollBars>

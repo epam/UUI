@@ -4,7 +4,7 @@ import { ImageBlock } from "./ImageBlock";
 import * as css from './ImageBlock.scss';
 import { useUuiContext, UuiContext, UuiContexts } from "@epam/uui";
 import {AddImageModal} from "./AddImageModal";
-import * as imageIcon from "../../icons/image.svg";
+import { ReactComponent as ImageIcon } from "../../icons/image.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { uuiSkin } from "@epam/uui";
 import {isTextSelected} from "../../helpers";
@@ -48,7 +48,7 @@ export const ImageButton = (props: { editor: Editor }) => {
     return <ToolbarButton
         onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />)
             .catch(() => null) }
-        icon={ imageIcon }
+        icon={ ImageIcon }
         isDisabled={ isTextSelected(props.editor) }
     />;
 };

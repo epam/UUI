@@ -19,14 +19,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#navigation-chevron-left-18.svg"
-        />
-      </svg>
+      />
     </div>
   </button>
   <button
@@ -134,14 +127,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#navigation-chevron-right-18.svg"
-        />
-      </svg>
+      />
     </div>
   </button>
 </nav>

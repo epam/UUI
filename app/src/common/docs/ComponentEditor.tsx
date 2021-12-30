@@ -346,7 +346,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                 {
                     isLoading
                     ? <Spinner color='blue' cx={ css.spinner } />
-                    : <div className={ cx(css.root, this.props.cx) } >
+                    : <div className={ css.root } >
                         <div className={ css.container } >
                             <FlexRow key='head' size='36' padding='12' borderBottom spacing='6' cx={ css.boxSizing } >
                                 <Text fontSize='16' lineHeight='24' cx={ css.vPadding } font='sans-semibold'>{ title }</Text>

@@ -91,14 +91,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#navigation-close-24.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -141,15 +134,12 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         />
         <div
+          className="uui-track-horizontal"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "height": 6,
-              "left": 2,
               "position": "absolute",
-              "right": 2,
             }
           }
         >
@@ -158,14 +148,11 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           />
         </div>
         <div
+          className="uui-track-vertical"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "position": "absolute",
-              "right": 2,
-              "top": 2,
               "width": 6,
             }
           }
@@ -319,14 +306,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
             >
               <svg
                 className=""
-                height={24}
-                viewBox="0 0 12 24"
-                width={12}
-              >
-                <use
-                  xlinkHref="#navigation-close-24.svg"
-                />
-              </svg>
+              />
             </div>
           </button>
         </div>
@@ -377,15 +357,12 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </div>
         <div
+          className="uui-track-horizontal"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "height": 6,
-              "left": 2,
               "position": "absolute",
-              "right": 2,
             }
           }
         >
@@ -394,14 +371,11 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           />
         </div>
         <div
+          className="uui-track-vertical"
           style={
             Object {
-              "borderRadius": 3,
-              "bottom": 2,
               "display": "none",
               "position": "absolute",
-              "right": 2,
-              "top": 2,
               "width": 6,
             }
           }
