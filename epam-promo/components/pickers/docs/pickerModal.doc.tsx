@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { IEditable, Lens, ArrayDataSource } from '@epam/uui';
+import { Lens, ArrayDataSource } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerModal } from '../PickerModal';
 import { PickerModalProps } from '@epam/uui-components';
 import { ModalContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { PickerInput } from '../PickerInput';
-import {FlexCell, FlexSpacer} from '../../layout/FlexItems';
+import { FlexCell, FlexSpacer } from '../../layout/FlexItems';
 import { Button } from '../../buttons';
 import { Text } from '../../typography';
 
@@ -26,7 +26,7 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('caption', { examples: ["The caption is customizable"] })
     .prop('renderFilter', { examples: [
-        { name: 'Title Filter', value: (props: IEditable<any>) => {
+        { name: 'Title Filter', value: props => {
             const lens = Lens.onEditable(props);
             return <PickerInput
                 { ...lens.prop('title').toProps() }
@@ -54,11 +54,11 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
             </>,
         },
     ]})
-    .prop('disallowClickOutside', { examples: [true], defaultValue: false})
+    .prop('disallowClickOutside', { examples: [true], defaultValue: false })
     .prop('renderNotFound', { examples: ctx => [
         {
             name: 'Custom not found block',
-            value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+            value: props => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
         },
     ] })
     .withContexts(ModalContext);

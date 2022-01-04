@@ -1,5 +1,5 @@
-import React from 'react';
-import { IEditable, ArrayDataSource } from '@epam/uui';
+import * as React from 'react';
+import { ArrayDataSource } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerModal } from '../PickerModal';
 import { PickerModalProps } from '@epam/uui-components';
@@ -20,15 +20,15 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('caption', { examples: ["The caption is customizable"] })
     .prop('renderFilter', { examples: [
-        { name: 'Title Filter', value: (props: IEditable<any>) => {
-            return <PickerInput
+        { name: 'Title Filter', value: props => (
+            <PickerInput
                 { ...props }
                 valueType='id'
                 selectionMode='single'
                 dataSource={ dataSource }
                 dropdownPlacement='bottom-end'
-            />;
-        }},
+            />
+        )},
     ]})
     .prop('renderFooter', { examples: ctx => [
         {
@@ -51,7 +51,7 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .prop('renderNotFound', { examples: ctx => [
         {
             name: 'Custom not found block',
-            value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+            value: props => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
         },
     ] })
     .withContexts(ModalContext);

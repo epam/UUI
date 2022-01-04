@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
@@ -6,9 +6,9 @@ import { SearchInput, Switch } from '../../inputs';
 import { iEditable, sizeDoc, isDisabledDoc, modeDoc, iconDoc, iconOptionsDoc } from '../../../docs';
 import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
-import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
-import {FlexCell, FlexRow} from "../../layout/FlexItems";
-import {Text} from "../../typography";
+import { PickerInputBaseProps } from '@epam/uui-components';
+import { FlexCell, FlexRow } from "../../layout/FlexItems";
+import { Text } from "../../typography";
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc] as any)
@@ -32,50 +32,48 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('renderToggler', { examples: [
             {
                 name: 'Button',
-                value: (props: PickerTogglerProps<any, any>) => <Button
+                value: props => <Button
                     { ...props }
                     caption={ props.selection.map(s => s.value.name).join(', ') }
                 />,
             },
             {
                 name: 'LinkButton',
-                value: (props: PickerTogglerProps<any, any>) => <LinkButton
+                value: props => <LinkButton
                     { ...props }
                     caption={ props.selection.map(s => s.value.name).join(', ') }
                 />,
             },
             {
                 name: 'Search',
-                value: (props: PickerTogglerProps<any, any>) => <SearchInput
+                value: props => <SearchInput
                     value=""
                     onValueChange={ null }
                     { ...props }
                 />,
             },
         ] })
-    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({isDisabled: true}) }] })
+    .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true }) }] })
     .prop('searchPosition', { examples: ['input' , 'body', 'none'], defaultValue: 'input'})
     .prop('disableClear', { examples: [true], defaultValue: false})
     .prop('renderNotFound', { examples: ctx => [
             {
                 name: 'Custom not found block',
-                value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+                value: props => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
     .prop('renderFooter', { examples: ctx => [
             {
                 name: 'Custom Footer',
-                value: (props) => {
-                    return (
-                        <FlexRow padding='12'>
-                            <Switch
-                                value={ props.showSelected.value }
-                                onValueChange={ props.showSelected.onValueChange }
-                                label='Show selected'
-                            />
-                        </FlexRow>
-                    );
-                },
+                value: props => (
+                    <FlexRow padding='12'>
+                        <Switch
+                            value={ props.showSelected.value }
+                            onValueChange={ props.showSelected.onValueChange }
+                            label='Show selected'
+                        />
+                    </FlexRow>
+                ),
             },
         ] })
     .prop('autoFocus', { examples: [true, { value: false, isDefault: true}] })
