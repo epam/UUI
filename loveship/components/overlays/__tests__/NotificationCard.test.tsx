@@ -3,14 +3,6 @@ import renderer from "react-test-renderer";
 import {ClearNotification, ErrorNotification, HintNotification, NotificationCard, SuccessNotification, WarningNotification} from "../NotificationCard";
 import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
-jest.spyOn(NotificationCard.prototype, "refNode")
-    .mockImplementation(function (this: typeof NotificationCard.prototype) {
-        this.notificationCardNode = {
-            addEventListener: jest.fn(),
-            removeEventListener: jest.fn(),
-        } as any;
-    });
-
 describe("NotificationCard", () => {
     it("should be rendered correctly", () => {
         const tree = renderer
