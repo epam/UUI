@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PickerTogglerProps, PickerInputBaseProps } from '@epam/uui-components';
+import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
@@ -32,21 +32,21 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('renderToggler', { examples: [
             {
                 name: 'Button',
-                value: (props: PickerTogglerProps<any>) => <Button
+                value: props => <Button
                     { ...props }
                     caption={ props.selection.map(s => s.value.name).join(', ') }
                 />,
             },
             {
                 name: 'LinkButton',
-                value: (props: PickerTogglerProps<any>) => <LinkButton
+                value: props => <LinkButton
                     { ...props }
                     caption={ props.selection.map(s => s.value.name).join(', ') }
                 />,
             },
             {
                 name: 'Search',
-                value: (props: PickerTogglerProps<any>) => <SearchInput
+                value: props => <SearchInput
                     value=""
                     onValueChange={ null }
                     { ...props }
@@ -55,10 +55,10 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         ] })
     .prop('searchPosition', { examples: ['input' , 'body', 'none'], defaultValue: 'input'})
     .prop('disableClear', { examples: [true], defaultValue: false})
-    .prop('renderNotFound', { examples: ctx => [
+    .prop('renderNotFound', { examples: () => [
             {
                 name: 'Custom not found block',
-                value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+                value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
