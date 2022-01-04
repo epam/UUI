@@ -67,27 +67,18 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     getPluralName = () => {
-
-        const entityName = this.props.entityName;
-
-        if (entityName?.slice(-1) === 's') {
-            return entityName + 'es';
-        }
-        if (entityName?.slice(-1) === 'y') {
-            return entityName + '(s)';
-        }
-        return entityName + 's';
+        const { entityName } = this.props;
+        if (!entityName) return;
+        if (entityName.endsWith('s')) return entityName.concat('es');
+        if (entityName.endsWith('y')) return entityName.concat('(s)');
+        return entityName.concat('s');
     }
 
     getEntityName = (countSelected?: number) => {
-        if (!this.props.entityName && !this.props.entityPluralName || (!this.props.entityName && countSelected === 1)) {
-            return '';
-        }
-        if (countSelected === 1) {
-            return this.props.entityName;
-        }
-
-        return this.props.entityPluralName ? this.props.entityPluralName : this.getPluralName();
+        const { entityName, entityPluralName, selectionMode } = this.props;
+        if (!entityName && !entityPluralName || (!entityName && countSelected === 1)) return '';
+        if (countSelected <= 1 && entityName || selectionMode === 'single') return entityName;
+        return entityPluralName || this.getPluralName();
     }
 
     isSingleSelect = () => {
