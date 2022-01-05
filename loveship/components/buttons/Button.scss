@@ -56,11 +56,11 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-colors($night300, $night500, $night300);
+        @include button-colors($night300, $night600, $night500);
         cursor: default;
 
         &:hover, &:active, &:focus {
-            @include button-colors($night300, $night500, $night300);
+            @include button-colors($night300, $night600, $night500);
             box-shadow: none;
         }
 
@@ -84,11 +84,11 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-colors($white, $night500, $night300);
+        @include button-colors($white, $night600, $night500);
         cursor: default;
 
         &:hover, &:active, &:focus {
-            @include button-colors($white, $night500, $night300);
+            @include button-colors($white, $night600, $night500);
             box-shadow: none;
         }
 
@@ -112,11 +112,11 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-colors(transparent, $night500, $night300);
+        @include button-colors(transparent, $night600, $night500);
         cursor: default;
 
         &:hover, &:active, &:focus {
-            @include button-colors(transparent, $night500, $night300);
+            @include button-colors(transparent, $night600, $night500);
             box-shadow: none;
         }
 
@@ -140,11 +140,11 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-colors(transparent, $night500, transparent);
+        @include button-colors(transparent, $night600, transparent);
         cursor: default;
 
         &:hover, &:active, &:focus {
-            @include button-colors(transparent, $night500, transparent);
+            @include button-colors(transparent, $night600, transparent);
             box-shadow: none;
         }
 
