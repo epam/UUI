@@ -15,7 +15,7 @@ const mapFilter = <TFilter extends PersonTableFilter>(filter: TFilter): { [TKey 
 
 export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
-    const ids = clientIds?.map(clientId => typeof clientId[1] === 'number' && clientId[1]);
+    const ids = clientIds?.map(clientId => clientId && typeof clientId[1] === 'number' && clientId[1]);
 
     if (groupBy && !ctx.parent) {
         return svc.api.demo.personGroups({

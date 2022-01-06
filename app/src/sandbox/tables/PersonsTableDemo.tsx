@@ -9,7 +9,7 @@ import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './typ
 const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
 
-    const ids = clientIds.map(clientId => typeof clientId === 'number' && clientId[1]);
+    const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
 
     if (request.search) {
         return svc.api.demo.persons({ ...rq, filter, ids });
