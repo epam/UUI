@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { allBorderStyles, allFillStyles } from '../../types';
+import { allBorderStyles, allFillStyles, allEpamPrimaryColors, allEpamAdditionalColors } from '../../types';
 import { Button, ButtonMods } from '../Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
@@ -12,7 +12,7 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .implements([textSettingsDoc, onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder] as any)
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: ['night600'],
+        examples: [...allEpamPrimaryColors.filter(color => color !== 'sun'), 'white', 'night600'],
     })
     .prop('caption', { examples:  [
         { value: 'Click me', isDefault: true },
