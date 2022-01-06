@@ -21,7 +21,7 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
 
     render() {
         // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-        (this.props.uuiContexts.uuiErrors as any).discardError();
+        this.props.uuiContexts.uuiErrors.discardError();
         this.props.uuiContexts.uuiApi.reset();
 
         //this.uuiContexts.uuiDnD.
