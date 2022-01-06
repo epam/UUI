@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PickerListBaseProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerList, PickerListProps } from '../PickerList';
-import { iEditable, sizeDoc, isDisabledDoc } from '../../../docs';
+import { iEditable, isDisabledDoc } from '../../../docs';
 import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
 import { allThemes } from '../../types';
 import { pickerBaseOptionsDoc } from './common';
@@ -13,11 +13,12 @@ import { FlexRow } from '../../layout';
 const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any>>({ name: 'PickerList', component: PickerList })
     .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */])
     .prop('value', { examples: [
-            { name: '1', value: 1 },
-            { name: '[1, 2]', value: [1, 2] },
-            { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } },
-            { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
-        ]})    .prop('valueType', { examples: ['id', 'entity'], isRequired: true })
+        { name: '1', value: 1 },
+        { name: '[1, 2]', value: [1, 2] },
+        { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } },
+        { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
+    ]})
+    .prop('valueType', { examples: ['id', 'entity'], isRequired: true })
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('defaultIds', { examples: [
         { value: ['en', 'ru'], name: 'Languages' },
@@ -35,9 +36,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
             value: props => <LinkButton color='grass' { ...props } />,
         },
     ]})
-    .prop('theme', {
-        examples : allThemes,
-    })
+    .prop('theme', { examples : allThemes })
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})
     .prop('noOptionsMessage', { examples: [{ value: <FlexRow spacing="12"><Text>No results found</Text><Button onClick={ () => {} } size="24" caption='Search'/></FlexRow>, name: '<Text/><Button/>'}]})
     .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);

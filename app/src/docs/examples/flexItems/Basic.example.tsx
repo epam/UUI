@@ -1,11 +1,11 @@
 import React from 'react';
 import { FlexCell, FlexRow, FlexSpacer, Panel, Text, LinkButton, IconButton, Badge, Avatar } from '@epam/promo';
 import { demoData } from '@epam/uui-docs';
-import * as TickIcon from '@epam/assets/icons/common/notification-done-18.svg';
-import * as PencilIcon from '@epam/assets/icons/common/content-edit-18.svg';
-import * as OnlineIcon from '@epam/assets/icons/common/content-filtration-18.svg';
-import * as TrashIcon from '@epam/assets/icons/common/action-delete-18.svg';
-import * as GearIcon from '@epam/assets/icons/common/action-settings-18.svg';
+import { ReactComponent as TickIcon } from '@epam/assets/icons/common/notification-done-18.svg';
+import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+import { ReactComponent as OnlineIcon } from '@epam/assets/icons/common/content-filtration-18.svg';
+import { ReactComponent as TrashIcon } from '@epam/assets/icons/common/action-delete-18.svg';
+import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 const imgPath = 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50';
 

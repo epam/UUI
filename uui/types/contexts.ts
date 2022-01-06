@@ -168,7 +168,7 @@ export interface ApiExtensions<TApi> {
 export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     api: TApi & ApiExtensions<TApi>;
     uuiApp: TAppContext;
-    history: IHistory4;
+    history?: IHistory4;
 }
 
 export type AnalyticsEvent = {

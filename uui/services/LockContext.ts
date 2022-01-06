@@ -1,5 +1,5 @@
 import { BaseContext } from './BaseContext';
-import { IRouterContext } from '../types';
+import { IRouterContext, Link } from '../types';
 
 export class Lock {
     constructor(public tryRelease: () => Promise<void>) {
@@ -24,9 +24,9 @@ export class LockContext extends BaseContext {
         } else {
             const lock = new Lock(tryRelease);
 
-            this.unblock = this.router.block(((location: Location) => {
+            this.unblock = this.router.block(location => {
                 this.routerWillLeave(location);
-            }) as any);
+            });
 
             this.currentLock = lock;
             return Promise.resolve(lock);
@@ -56,7 +56,7 @@ export class LockContext extends BaseContext {
         }
     }
 
-    public routerWillLeave(nextLocation: Location) {
+    public routerWillLeave(nextLocation: Link) {
         if (this.currentLock) {
             this.tryRelease().then(() => {
                 this.router.redirect(nextLocation);
@@ -64,7 +64,7 @@ export class LockContext extends BaseContext {
         }
     }
 
-    public release(lock: object) {
+    public release(lock: Lock) {
         if (lock && this.currentLock == lock) {
             this.currentLock = null;
             this.unblock();

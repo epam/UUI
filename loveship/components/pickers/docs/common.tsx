@@ -44,7 +44,7 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
 ];
 
 export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
-    .prop('dataSource', {examples: getDataSourceExamples})
+    .prop('dataSource', { examples: getDataSourceExamples })
     .prop('sorting', { examples: [
             { value: { field: 'name', direction: 'asc' }, name: 'name' },
             { value: { field: 'id', direction: 'asc' }, name: 'id' },

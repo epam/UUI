@@ -60,15 +60,18 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
     .prop('entityName', { examples: ['Language', 'City', 'Role', 'Location', 'Person'] })
     .prop('entityPluralName', { examples: ['Cities'] })
     .prop('renderRow', { examples: ctx => [
-        { name: 'UserPickerRow', value: props => <DataPickerRow
-            { ...props }
-            key={ props.rowKey }
-            alignActions={ 'center' }
-            padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-            renderItem={ (item, rowProps) =>
-                <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } />
-            }
-        />},
+        {
+            name: 'UserPickerRow',
+            value: props => <DataPickerRow
+                { ...props }
+                key={ props.rowKey }
+                alignActions='center'
+                padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
+                renderItem={ (item, rowProps) =>
+                    <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } />
+                }
+            />,
+        },
         {
             name: 'Skills',
             value: rowProps => {

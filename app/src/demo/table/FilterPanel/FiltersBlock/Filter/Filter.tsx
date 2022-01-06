@@ -3,7 +3,7 @@ import css from "./Filter.scss";
 import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/promo";
 import { IEditable } from "@epam/uui";
 import { RangeDatePickerValue } from "@epam/uui-components";
-import arrowDown from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
+import { ReactComponent as ArrowDown } from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 import { ITableFilter } from "../../../types";
 
 interface IFilterProps<T> extends ITableFilter, IEditable<{ [key: string]: (T | T[]) } | undefined> {
@@ -64,7 +64,7 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
         <div>
             <div className={ css.title } onClick={ toggle }>
                 <div>{ title }</div>
-                <IconContainer icon={ arrowDown } flipY={ isOpened }/>
+                <IconContainer icon={ ArrowDown } flipY={ isOpened }/>
             </div>
 
             { isOpened && (

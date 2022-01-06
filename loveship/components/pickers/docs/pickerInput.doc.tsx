@@ -55,17 +55,15 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('renderFooter', { examples: () => [
             {
                 name: 'Custom Footer',
-                value: props => {
-                    return (
-                        <FlexRow padding='12'>
-                            <Switch
-                                value={ props.showSelected.value }
-                                onValueChange={ props.showSelected.onValueChange }
-                                label='Show selected'
-                            />
-                        </FlexRow>
-                    );
-                },
+                value: props => (
+                    <FlexRow padding='12'>
+                        <Switch
+                            value={ props.showSelected.value }
+                            onValueChange={ props.showSelected.onValueChange }
+                            label='Show selected'
+                        />
+                    </FlexRow>
+                ),
             },
         ] })
     .prop('autoFocus', { examples: [true, { value: false, isDefault: true}] })

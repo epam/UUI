@@ -1,7 +1,7 @@
 import React from 'react';
 import { BurgerSearch } from '../BurgerSearch';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
 
 describe('BurgerSearch', () => {
     it('should be rendered correctly', () => {
@@ -21,7 +21,7 @@ describe('BurgerSearch', () => {
                 onValueChange={ () => {} }
                 onAccept={ () => {} }
                 onCancel={ () => {} }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 iconPosition='right'
                 isDropdown
                 isOpen

@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Accordion} from "../Accordion";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe("Accordion", () => {
     it("should be rendered correctly", () => {
@@ -16,7 +16,7 @@ describe("Accordion", () => {
             .create(<Accordion
                 title="test"
                 mode="inline"
-                dropdownIcon={ acceptIcon }
+                dropdownIcon={ AcceptIcon }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

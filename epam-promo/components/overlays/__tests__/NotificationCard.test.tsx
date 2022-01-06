@@ -1,7 +1,7 @@
 import React from 'react';
 import { ClearNotification, ErrorNotification, HintNotification, NotificationCard, SuccessNotification, WarningNotification } from '../NotificationCard';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('NotificationCard', () => {
     it('should be rendered correctly', () => {
@@ -20,7 +20,7 @@ describe('NotificationCard', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<NotificationCard
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 id={ 1 }
                 key='test'
                 color='red'

@@ -3,36 +3,42 @@ import { IRouterContext, Link } from "../../types";
 export class StubAdaptedRouter implements IRouterContext {
     private warningMessage = "Warning: [RouterContext] there is not Router Adapter provided. StubAdapter is used";
 
+    throwError() {
+        if (process.env.NODE_ENV !== 'test') {
+            console.error(this.warningMessage);
+        }
+    }
+
     public getCurrentLink(): Link {
-        console.error(this.warningMessage);
+        this.throwError();
         return null;
     }
 
     public redirect(link: Link): void {
-        console.error(this.warningMessage);
+        this.throwError();
     }
 
     public transfer(link: Link): void {
-        console.error(this.warningMessage);
+        this.throwError();
     }
 
     public isActive(link: Link): boolean {
-        console.error(this.warningMessage);
+        this.throwError();
         return false;
     }
 
     public createHref(link: Link): string {
-        console.error(this.warningMessage);
+        this.throwError();
         return '';
     }
 
     public listen(listener: (link: Link) => void): () => void {
-        console.error(this.warningMessage);
+        this.throwError();
         return () => {};
     }
 
     public block(listener: (link: Link) => void): () => void {
-        console.error(this.warningMessage);
+        this.throwError();
         return () => {};
     }
 }

@@ -4,7 +4,7 @@ import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '
 import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
-import * as crossIcon from '../../icons/navigation-close-24.svg';
+import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
 import * as css from './Modals.scss';
 
 export interface ModalBlockerMods {
@@ -44,7 +44,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps, {}> {
                 { this.props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ this.props.title }</Text> }
                 { this.props.children }
                 { this.props.onClose && <FlexSpacer /> }
-                { this.props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ crossIcon } onClick={ this.props.onClose } /></FlexCell> }
+                { this.props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ this.props.onClose } /></FlexCell> }
             </FlexRow>
         );
     }

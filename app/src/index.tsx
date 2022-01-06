@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ContextProvider } from '@epam/uui';
+import { ApiCallOptions, ContextProvider } from '@epam/uui';
 import { Snackbar, Modals } from '@epam/uui-components';
 import '@epam/internal/styles.css';
 import { ErrorHandler } from '@epam/promo';
@@ -36,7 +36,10 @@ export class UuiEnhancedApp extends React.Component {
 
         return (
             <ContextProvider
-                apiDefinition={ getApi }
+                apiDefinition={ (processRequest) =>
+                    getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
+                }
                 onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
                 history={ history }
                 gaCode='UA-132675234-1'

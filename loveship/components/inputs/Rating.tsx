@@ -3,8 +3,8 @@ import { Rating as uuiRating, RatingProps } from '@epam/uui-components';
 import * as types from '../types';
 import * as css from './Rating.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as filledStarIcon from '../icons/star-filled.svg';
-import * as emptyStarIcon from '../icons/star-empty.svg';
+import { ReactComponent as FilledStarIcon } from '../icons/star-filled.svg';
+import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
 
 export interface RatingMods {
@@ -20,4 +20,4 @@ function applyRatingMods(mods: RatingMods & RatingProps) {
     ];
 }
 
-export const Rating = withMods<RatingProps, RatingMods>(uuiRating, applyRatingMods, () => ({ filledStarIcon, emptyStarIcon, Tooltip }));
+export const Rating = withMods<RatingProps, RatingMods>(uuiRating, applyRatingMods, () => ({ filledStarIcon: FilledStarIcon, emptyStarIcon: EmptyStarIcon, Tooltip }));

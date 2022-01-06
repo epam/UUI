@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
     DataSourceState,
     Lens,
@@ -10,7 +10,7 @@ import {
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
-import * as gearIcon from '../../icons/action-settings-18.svg';
+import { ReactComponent as GearIcon } from '../../icons/action-settings-18.svg';
 
 export type Person = {
     id: number,
@@ -87,34 +87,36 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 { ...modalProps }
                 columns={ this.props.props.columns }
                 columnsConfig={ this.state.columnsConfig }
-                defaultConfig={ {gender: {
-                    isVisible: false,
-                    order: 'f',
-                }} }
+                defaultConfig={ {
+                    gender: {
+                        isVisible: false,
+                        order: 'f',
+                    },
+                } }
             />
         )).then(columnsConfig => this.setState({ columnsConfig }));
     }
 
-    getTable(component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
-        if (component === DataTableRow) {
+    getTable(Component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
+        if (Component === DataTableRow) {
             return <>
                 <FlexRow size="48" background="white" padding="24">
                     <Text>items</Text>
                     <FlexSpacer />
-                    <IconButton icon={ gearIcon } onClick={ this.showConfigurationModal } />
+                    <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
                 </FlexRow>
                 <DataTableHeaderRow
                     columns={ this.getVisibleColumns() }
                     size={ props.size }
                     { ...this.lens.prop('tableState').toProps() }
                 />
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
                 { this.getRows() }
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
             </>;
-        } else if (component === DataTableHeaderRow) {
+        } else if (Component === DataTableHeaderRow) {
             return <>
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
                 { this.getRows() }
             </>;
         }

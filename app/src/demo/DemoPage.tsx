@@ -6,7 +6,7 @@ import { demoItems } from './structure';
 import { analyticsEvents } from '../analyticsEvents';
 import { getQuery } from '../helpers';
 import * as css from './DemoPage.scss';
-import * as linkIcon from '../icons/action-external_link.svg';
+import { ReactComponent as LinkIcon } from '../icons/action-external_link.svg';
 
 export class DemoPage extends React.Component {
     constructor(props: any) {
@@ -62,7 +62,7 @@ export class DemoPage extends React.Component {
                     );
                 }) }
                 <FlexSpacer />
-                <LinkButton icon={ linkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } clickAnalyticsEvent={ analyticsEvents.demo.scenarioGit(source) } />
+                <LinkButton icon={ LinkIcon } caption='View Source Code' target='_blank' href={ source } cx={ css.sourceLink } clickAnalyticsEvent={ analyticsEvents.demo.scenarioGit(source) } />
             </FlexRow>
         );
     }

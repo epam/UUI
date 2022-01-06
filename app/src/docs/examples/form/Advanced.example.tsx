@@ -1,9 +1,9 @@
 import React from 'react';
 import type { TApi } from '../../../data';
 import { Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts } from "@epam/uui";
-import { useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification, Form } from "@epam/promo";
-import * as undoIcon from '@epam/assets/icons/common/content-edit_undo-18.svg';
-import * as redoIcon from '@epam/assets/icons/common/content-edit_redo-18.svg';
+import { useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification } from "@epam/promo";
+import { ReactComponent as UndoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
+import { ReactComponent as RedoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 
 type Person = {
     firstName?: string;
@@ -68,8 +68,8 @@ export default function AdvancedFormExample() {
             <FlexRow vPadding='12' spacing='12' >
                 <Button caption='Revert changes' onClick={ revert } isDisabled={ !canRevert } fill='white' />
                 <FlexSpacer />
-                <Button icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } fill='light' />
-                <Button icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } fill='light' />
+                <Button icon={ UndoIcon } onClick={ undo } isDisabled={ !canUndo } fill='light' />
+                <Button icon={ RedoIcon } onClick={ redo } isDisabled={ !canRedo } fill='light' />
             </FlexRow>
             <FlexRow vPadding='12'>
                 <FlexCell grow={ 1 }>

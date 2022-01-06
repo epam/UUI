@@ -23,6 +23,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-fire typeError"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -36,14 +37,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#notification-error-fill-24.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -62,14 +56,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -79,6 +66,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sky typeHint"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -92,14 +80,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#notification-help-fill-24.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -118,14 +99,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -135,6 +109,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sun"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -148,14 +123,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#accept-12.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -174,14 +142,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -191,6 +152,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 exports[`NotificationCard should be rendered correctly with icon 1`] = `
 <div
   className="notificationWrapper color-sun"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -204,14 +166,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#accept-12.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -230,14 +185,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -247,6 +195,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-grass typeSuccess"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -260,14 +209,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#notification-check-fill-24.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -286,14 +228,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>
@@ -303,6 +238,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sun typeWarning"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -316,14 +252,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#notification-warning-fill-24.svg"
-          />
-        </svg>
+        />
       </div>
     </div>
     <div
@@ -342,14 +271,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       >
         <svg
           className=""
-          height={24}
-          viewBox="0 0 12 24"
-          width={12}
-        >
-          <use
-            xlinkHref="#cross.svg"
-          />
-        </svg>
+        />
       </div>
     </button>
   </div>

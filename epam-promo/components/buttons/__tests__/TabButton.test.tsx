@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabButton } from '../TabButton';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TabButton', () => {
     it('should be rendered correctly', () => {
@@ -17,7 +17,7 @@ describe('TabButton', () => {
         const tree = renderer
             .create(<TabButton
                 onClick={ jest.fn }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 isDisabled={ false }
             />)
             .toJSON();

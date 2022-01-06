@@ -21,6 +21,7 @@
     :global(.uui-burger-button) {
         width: 60px;
         cursor: pointer;
+        fill: var(--icon-fill);
 
         &:hover {
             background-color: var(--background-color-hover);

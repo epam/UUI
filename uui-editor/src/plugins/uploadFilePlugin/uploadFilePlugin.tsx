@@ -1,5 +1,5 @@
 import { getEventTransfer, getEventRange, Editor } from "slate-react";
-import * as attachIcon from "../../icons/attach-file.svg";
+import { ReactComponent as AttachIcon } from "../../icons/attach-file.svg";
 import { Editor as CoreEditor, Range} from "slate";
 import { FileUploadResponse, BlockTypes } from "@epam/uui";
 import { UploadFileToggler} from "@epam/uui-components";
@@ -53,7 +53,7 @@ const FileUploadButton = (props: { editor: Editor }) => {
         <UploadFileToggler
             render={ togglerProps => <ToolbarButton
                 { ...togglerProps }
-                icon={ attachIcon }
+                icon={ AttachIcon }
                 isDisabled={ isTextSelected(props.editor) }
             /> }
             onFilesAdded={ files => { files.map(file => (props.editor as any).handleUploadFile(file, null, 'attachment')); } }

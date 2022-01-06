@@ -2,7 +2,7 @@ import { RenderBlockProps } from "slate-react";
 import { Editor as CoreEditor } from "slate";
 import * as css from './quote.scss';
 import * as React from "react";
-import * as quoteIcon from "../../icons/quote.svg";
+import { ReactComponent as QuoteIcon } from "../../icons/quote.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { getBlockDesirialiser } from '../../helpers';
 
@@ -46,7 +46,7 @@ export const quotePlugin = () => {
 };
 
 const QuoteButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ (props.editor as any).isQuote() } icon={ quoteIcon } onClick={ () => (props.editor as any).isQuote() ? props.editor.unwrapBlock('uui-richTextEditor-quote') : props.editor.wrapBlock('uui-richTextEditor-quote') } />;
+    return <ToolbarButton isActive={ (props.editor as any).isQuote() } icon={ QuoteIcon } onClick={ () => (props.editor as any).isQuote() ? props.editor.unwrapBlock('uui-richTextEditor-quote') : props.editor.wrapBlock('uui-richTextEditor-quote') } />;
 };
 
 const QUOTE_TAG: any = {
