@@ -26,15 +26,18 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('caption', { examples: ["The caption is customizable"] })
     .prop('renderFilter', { examples: [
-        { name: 'Title Filter', value: props => {
-            return <PickerInput
-                { ...Lens.onEditable(props).prop('title').toProps() }
-                valueType='id'
-                selectionMode='single'
-                dataSource={ dataSource }
-                dropdownPlacement='bottom-end'
-            />;
-        }},
+        {
+            name: 'Title Filter',
+            value: props => (
+                <PickerInput
+                    { ...Lens.onEditable(props).prop('title').toProps() }
+                    valueType='id'
+                    selectionMode='single'
+                    dataSource={ dataSource }
+                    dropdownPlacement='bottom-end'
+                />
+            ),
+        },
     ]})
     .prop('renderFooter', { examples: () => [
         {

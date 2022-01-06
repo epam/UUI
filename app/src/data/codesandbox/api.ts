@@ -1,2 +1,2 @@
 export const svc = {};
-export const getApi = (processRequest: any, getApi: any) => ({});
+export const getApi = (processRequest: any, getApi: any) => ({} as any);

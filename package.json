@@ -11,6 +11,7 @@
     "coverage": "yarn test --coverage",
     "process-icons": "node uui-build/scripts/processIcons.js",
     "start": "cd ./app && yarn start",
+    "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
     "build": "cd ./app && yarn build --stats",
     "build-dev": "cd ./app && yarn build-dev",
     "start-server": "cd ./app && yarn server",

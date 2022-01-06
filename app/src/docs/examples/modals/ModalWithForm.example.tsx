@@ -1,9 +1,9 @@
 import React from 'react';
-import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse, useForm } from '@epam/uui';
+import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
 import { Country } from '@epam/uui-docs';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
-    Button, ScrollBars, ModalFooter, SuccessNotification,
+    Button, ScrollBars, ModalFooter, SuccessNotification, useForm,
     Text, Panel, FlexCell, ControlWrapper, RadioGroup, PickerInput,
 } from '@epam/promo';
 
@@ -40,7 +40,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
     return (
         <ModalBlocker { ...modalProps } abort={ () => handleLeave().then(modalProps.abort) }>
             <ModalWindow >
-                <ModalHeader borderBottom title="New committee" onClose={modalProps.abort} />
+                <ModalHeader borderBottom title="New committee" onClose={ () => handleLeave().then(modalProps.abort) } />
                 <ScrollBars>
                     <Panel>
                         <FlexRow padding='24' vPadding='12'>

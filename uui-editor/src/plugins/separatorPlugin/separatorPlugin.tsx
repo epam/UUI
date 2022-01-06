@@ -2,7 +2,7 @@ import {Editor, RenderBlockProps} from "slate-react";
 import { Editor as CoreEditor } from "slate";
 import * as React from "react";
 import { Separator } from "./Separator";
-import * as separateIcon from "../../icons/breakline.svg";
+import { ReactComponent as SeparateIcon } from "../../icons/breakline.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import {getBlockDesirialiser, isTextSelected} from '../../helpers';
 
@@ -36,7 +36,7 @@ export const separatorPlugin = () => {
 const SeparatorButton = (props: { editor: Editor }) => {
     return <ToolbarButton
         onClick={ () => props.editor.setBlocks((props.editor as any).createBlock({}, 'separatorBLock')) }
-        icon={ separateIcon }
+        icon={ SeparateIcon }
         isDisabled={ isTextSelected(props.editor) }
     />;
 };

@@ -1,10 +1,25 @@
-# 4.5.0 - 09.12.2021
+# 4.5.0 - 23.12.2021
 
 **What's New**
+* [Breaking Change]: Changed VirtualList component api. Introduced new useVirtualList hook.
+    More information here - https://uui.epam.com/documents?category=components&id=virtualList#advanced
+  
 
-* [RawProps][BreakingChange]: added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
-* [VirtualList]: introduced new useVirtualList hook
+* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.  
+* Added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
+* [FileCard]: Added extension to file card. Bugfixes.
+* [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
+* [RTE]: Added isEditorEmpty helper. Bugfixes.
+
+**What’s Fixed**
 * [DataPickerRow]: Fix tick icon alignment
+* [MainMenu]: remove fill style from burger icons source
+* [PickerInput]: fix bug when picker value === 0
+* [DropdownMenu]: fix reset fonts for DropdownMenuButton
+* [DropdownMenu]: Don't focus the first action in dropdown menu on menu opening
+* [LockContext]: fix typings for 'release' method
+* [BurgerButton]: fix BurgerButton icon color if isActiveLink=true
+
 
 # 4.4.0 - 07.12.2021
 

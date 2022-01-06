@@ -3,9 +3,9 @@ import { DataRowProps, DataColumnProps } from '@epam/uui';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';
-import * as tickIcon_24 from '@epam/assets/icons/common/notification-done-24.svg';
-import * as tickIcon_18 from '@epam/assets/icons/common/notification-done-18.svg';
-import * as tickIcon_12 from '@epam/assets/icons/common/notification-done-12.svg';
+import { ReactComponent as TickIcon_24 } from '@epam/assets/icons/common/notification-done-24.svg';
+import { ReactComponent as TickIcon_18 } from '@epam/assets/icons/common/notification-done-18.svg';
+import { ReactComponent as TickIcon_12 } from '@epam/assets/icons/common/notification-done-12.svg';
 import * as css from './DataPickerRow.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
@@ -19,11 +19,11 @@ export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
     private getIcon = (size: string) => {
         switch (size) {
-            case '24': return tickIcon_12;
-            case '30': return tickIcon_18;
-            case '36': return tickIcon_18;
-            case '42': return tickIcon_24;
-            default: return tickIcon_18;
+            case '24': return TickIcon_12;
+            case '30': return TickIcon_18;
+            case '36': return TickIcon_18;
+            case '42': return TickIcon_24;
+            default: return TickIcon_18;
         }
     }
 

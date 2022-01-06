@@ -6,7 +6,7 @@ import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 import { TableHeaderCell } from "./TableHeaderCell";
 import { Editor } from "slate-react";
-import * as tableIcon from "../../icons/table-add.svg";
+import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import {getBlockDesirialiser, isTextSelected} from '../../helpers';
 import { mergeCellsPlugin } from '../tableMergePlugin/tableMergePlugin';
@@ -67,6 +67,10 @@ export const tablePlugin = () => {
         const selectedRow: any = editor.value.document.getParent(editor.value.document.getPath(selectedCell.key));
         const selectedTable: any = editor.value.document.getParent(editor.value.document.getPath(selectedRow.key));
         let cellColspan = selectedCell.data.get('colSpan');
+
+        if (selectedRow.nodes.size === 1) {
+            return;
+        }
 
         if (cellColspan > 1) {
             for (let i = 0; i < cellColspan; i++) {
@@ -292,7 +296,7 @@ export const tablePlugin = () => {
 };
 
 export const TableButton = (props: { editor: Editor }) => {
-    return <ToolbarButton isDisabled={ isTextSelected(props.editor) } onClick={ () => ((props.editor as any).insertTableIn()) } icon={ tableIcon } />;
+    return <ToolbarButton isDisabled={ isTextSelected(props.editor) } onClick={ () => ((props.editor as any).insertTableIn()) } icon={ TableIcon } />;
 };
 
 const TABLE_TAGS: any = {

@@ -1,9 +1,11 @@
+import { isClientSide } from './ssr';
+
 export const screenSize = {
     width: 0,
     height: 0,
 };
 
-if (typeof window !== 'undefined' && window.name !== 'nodejs') {
+if (isClientSide) {
     screenSize.width = window.innerWidth;
     screenSize.height = window.innerHeight;
 

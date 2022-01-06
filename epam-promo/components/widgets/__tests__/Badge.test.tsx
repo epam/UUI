@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from '../Badge';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import CalendarIcon from '../../../icons/calendar-18.svg';
 
 describe('Badge', () => {
     it('should be rendered correctly', () => {
@@ -19,7 +19,7 @@ describe('Badge', () => {
                 caption='Test badge'
                 fill='semitransparent'
                 color='amber'
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 count={ 12 }
                 onIconClick={ () => {} }
                 onClick={ () => {} }

@@ -29,14 +29,7 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#chevron-down-24.svg"
-      />
-    </svg>
+    />
   </div>
 </a>
 `;

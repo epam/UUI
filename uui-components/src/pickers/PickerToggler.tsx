@@ -145,7 +145,7 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
 
         e.preventDefault();
         if (this.state.inFocus && this.props.value && !this.props.disableSearch) return;
-        this.props.onClick();
+        this.props.onClick && this.props.onClick();
     }
 
     render() {

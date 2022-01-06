@@ -1,8 +1,9 @@
 import { Modifier } from "react-popper";
+import { isClientSide } from './ssr';
 
 export const isMobile = () => {
     // return window.matchMedia?.("screen and (max-width: 720px)").matches;
-    return window.screen?.width <= 720;
+    return isClientSide && window.screen?.width <= 720;
 };
 
 export const mobilePopperModifier: Modifier<any> = {

@@ -1,0 +1,31 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+
+    > div {
+        height: 100%;
+    }
+}
+
+main {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    background: $gray10;
+}
+
+footer {
+    height: 30px;
+    background: $gray70;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+

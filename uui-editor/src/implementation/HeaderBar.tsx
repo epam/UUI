@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as clearIcon from "../icons/text-color-default.svg";
-import * as h1Icon from "../icons/heading-H1.svg";
-import * as h2Icon from "../icons/heading-H2.svg";
-import * as h3Icon from "../icons/heading-H3.svg";
+import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as H1Icon } from "../icons/heading-H1.svg";
+import { ReactComponent as H2Icon } from "../icons/heading-H2.svg";
+import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
 import { ToolbarButton } from './ToolbarButton';
 import { Editor } from 'slate-react';
 import {DropdownBodyProps } from '@epam/uui-components';
@@ -37,10 +37,10 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
 
     renderHeaderMenu() {
         return <FlexRow rawProps={ {style: { background: '#303240' }} }>
-            <ToolbarButton isActive={ false } icon={ clearIcon } onClick={ this.clearHeaderStyle } />
-            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-1']) } icon={ h1Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-1') } />
-            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-2']) } icon={ h2Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-2') } />
-            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-3']) } icon={ h3Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-3') } />
+            <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ this.clearHeaderStyle } />
+            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-1']) } icon={ H1Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-1') } />
+            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-2']) } icon={ H2Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-2') } />
+            <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['uui-richTextEditor-header-3']) } icon={ H3Icon } onClick={ () => this.toggleBlock('uui-richTextEditor-header-3') } />
         </FlexRow>;
     }
 

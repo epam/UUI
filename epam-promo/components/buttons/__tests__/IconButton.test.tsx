@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '../IconButton';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('IconButton', () => {
     it('should be rendered correctly', () => {
@@ -17,7 +17,7 @@ describe('IconButton', () => {
             .create(<IconButton
                 color='blue'
                 onClick={ jest.fn }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 isDisabled={ false }
             />)
             .toJSON();

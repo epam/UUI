@@ -5,12 +5,11 @@ import { DataSourceState, useLens, IEditable, ArrayDataSource, LazyDataSource, L
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { getColumns } from './columns';
 
 const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
-    let { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
+    const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
 
-    let ids = clientIds && clientIds.map(clientId => clientId[1]) as any[];
+    const ids = clientIds.map(clientId => typeof clientId === 'number' && clientId[1]);
 
     if (request.search) {
         return svc.api.demo.persons({ ...rq, filter, ids });
