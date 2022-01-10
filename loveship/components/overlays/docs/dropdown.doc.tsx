@@ -23,7 +23,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
         isDefault: true,
     }] })
     .prop('renderTarget', { isRequired: true, examples: [{
-        value: (props: any) => <Button caption='Target' { ...props }/>,
+        value: props => <Button caption='Target' { ...props } />,
         isDefault: true,
     }] })
     .prop('openOnClick', {

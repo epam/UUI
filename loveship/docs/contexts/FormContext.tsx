@@ -21,7 +21,6 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
         size: '36' as ControlSize,
         checkboxGroupValue: [] as number[],
         acceptCheckboxValue: false,
-
     };
 
     render() {
@@ -39,7 +38,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                         <LabeledInput label='Form size:' labelPosition='left'>
                             <ControlWrapper size='36'>
                                 <RadioGroup
-                                    onValueChange={ (value: ControlSize) => this.setState({ size: value }) }
+                                    onValueChange={ value => this.setState({ size: value }) }
                                     items={ [
                                         { name: '36', id: '36' },
                                         { name: '30', id: '30' },
@@ -55,14 +54,14 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                     <FlexCell width='auto'>
                         <LabeledInput label='Is Invalid' labelPosition='left'>
                             <ControlWrapper size='36'>
-                                <Switch value={ this.state.isInvalid } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isInvalid: newVal}) } />
+                                <Switch value={ this.state.isInvalid } onValueChange={ newVal => this.setState({ ...this.state, isInvalid: newVal }) } />
                             </ControlWrapper>
                         </LabeledInput>
                     </FlexCell>
                     <FlexCell width='auto'>
                         <LabeledInput label='is Disabled' labelPosition='left'>
                             <ControlWrapper size='36'>
-                                <Switch value={ this.state.isDisabled } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isDisabled: newVal}) } />
+                                <Switch value={ this.state.isDisabled } onValueChange={ newVal => this.setState({ ...this.state, isDisabled: newVal }) } />
                             </ControlWrapper>
                         </LabeledInput>
                     </FlexCell>
@@ -131,7 +130,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                             isInvalid={ this.state.isInvalid }
                             isDisabled={ this.state.isDisabled }
                             label="Accept License Agreement"
-                            onValueChange={ (newValue: boolean) => this.setState({ acceptCheckboxValue: newValue }) }
+                            onValueChange={ newValue => this.setState({ acceptCheckboxValue: newValue }) }
                             value={ this.state.acceptCheckboxValue }
                         />
                     </ControlWrapper>

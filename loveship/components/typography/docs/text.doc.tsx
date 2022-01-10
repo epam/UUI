@@ -7,7 +7,7 @@ import { allEpamPrimaryColors, allEpamAdditionalColors, allEpamGrayscaleColors  
 import { colors } from '../../../helpers/colorMap';
 
 const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: Text })
-    .implements([sizeDoc, textSettingsDoc, fontDoc] as any)
+    .implements([sizeDoc, textSettingsDoc, fontDoc])
     .prop('children', {
         examples: [
             { value: 'Hello World', isDefault: true },
@@ -16,7 +16,7 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
                 name: 'long text',
             },
         ], type: 'string'})
-    .prop('color', { examples: [...allEpamPrimaryColors, ...allEpamAdditionalColors, ...allEpamGrayscaleColors], renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } /> })
+    .prop('color', { examples: [...allEpamPrimaryColors, ...allEpamAdditionalColors, ...allEpamGrayscaleColors], renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } /> })
     .withContexts(DefaultContext, ResizableContext, FormContext, GridContext);
 
 export = textDoc;

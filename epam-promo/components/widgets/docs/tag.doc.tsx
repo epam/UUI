@@ -3,10 +3,9 @@ import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } fro
 import { ButtonProps } from '@epam/uui-components';
 import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
 import { iconDoc, iconOptionsDoc } from '../../../docs';
-import * as React from 'react';
 
 const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: Tag })
-    .implements([iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc] as any)
+    .implements([iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('caption', { examples: [
             { value: 'Simple Tag', isDefault: true },
             { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },

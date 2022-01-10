@@ -1,8 +1,8 @@
-import React from 'react';
-import { IEditable, ArrayDataSource } from '@epam/uui';
+import * as React from 'react';
+import { ArrayDataSource } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
-import { PickerModal } from '../PickerModal';
 import { PickerModalProps } from '@epam/uui-components';
+import { PickerModal } from '../PickerModal';
 import { ModalContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { PickerInput } from '../PickerInput';
@@ -15,22 +15,22 @@ const dataSource = new ArrayDataSource({
 });
 
 const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'PickerModal', component: PickerModal })
-    .implements([pickerBaseOptionsDoc /*iconDoc, , */] as any)
+    .implements([pickerBaseOptionsDoc /*iconDoc, , */])
     .prop('valueType', { examples: ['id', 'entity'], isRequired: true })
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('caption', { examples: ["The caption is customizable"] })
     .prop('renderFilter', { examples: [
-        { name: 'Title Filter', value: (props: IEditable<any>) => {
-            return <PickerInput
+        { name: 'Title Filter', value: props => (
+            <PickerInput
                 { ...props }
                 valueType='id'
                 selectionMode='single'
                 dataSource={ dataSource }
                 dropdownPlacement='bottom-end'
-            />;
-        }},
+            />
+        )},
     ]})
-    .prop('renderFooter', { examples: ctx => [
+    .prop('renderFooter', { examples: () => [
         {
             name: 'Custom Footer',
             value: (props: any) => <>
@@ -48,10 +48,10 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
         },
     ]})
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})
-    .prop('renderNotFound', { examples: ctx => [
+    .prop('renderNotFound', { examples: () => [
         {
             name: 'Custom not found block',
-            value: (props: any) => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
+            value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
         },
     ] })
     .withContexts(ModalContext);

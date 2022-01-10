@@ -104,7 +104,7 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                                         <Text font='sans' fontSize='24' cx={ css.heroSecondary } >No more need to build user interface from scratch every time. Just use "lego blocks" to assemble new pages in a quick way for any current or new EPAM product.</Text>
                                     </div>
                                     <div className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') } >
-                                        <div className={ css.heroImage } style={ { ['--height' as any]: `${ containerWidth / 2 }px` } } >
+                                        <div className={ css.heroImage } style={ { ['--height']: `${ containerWidth / 2 }px` } as React.CSSProperties } >
                                             { containerWidth > 1280 ? this.renderAnimatedImage() : this.renderStaticImage() }
                                         </div>
                                     </div>

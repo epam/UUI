@@ -1,4 +1,4 @@
-import { Badge, allFillStyles, BadgeMods } from '../../../components/index';
+import { Badge, BadgeMods } from '../../../components/index';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
@@ -6,7 +6,7 @@ import { fontDoc, iconDoc, iconOptionsDoc, colorDoc } from '../../../docs/index'
 import { allBorderStyles } from '../../../components/types';
 
 const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', component: Badge })
-    .implements([fontDoc, colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc] as any)
+    .implements([fontDoc, colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('caption', { examples: [
         { value: 'Badge', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },

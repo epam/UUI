@@ -16,7 +16,7 @@ export class QueryBuilder<T = any> implements IQueryable<T> {
 
     public find(pattern: Partial<T>): QueryBuilder<T> {
         const clone = this.clone();
-        clone.query.pattern = { ...this.query.pattern, ...pattern as any };
+        clone.query.pattern = { ...this.query.pattern, ...pattern };
         return clone;
     }
 

@@ -6,7 +6,7 @@ export interface TimelineGridProps extends BaseTimelineCanvasComponentProps {
 
 }
 
-export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps, {}> {
+export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps> {
 
     private renderLine(ctx: CanvasRenderingContext2D, x: number, width?: number) {
         ctx.beginPath();

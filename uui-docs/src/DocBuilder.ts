@@ -1,5 +1,5 @@
-import { IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc, PropSamplesCreationContext } from './types';
-import * as React from 'react';
+import type { ComponentType } from 'react';
+import type { IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc } from './types';
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
@@ -24,7 +24,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
 
         if (typeof details.examples === 'function') {
             const originalExamples = details.examples;
-            details.examples = (ctx: PropSamplesCreationContext<TProps>) => this.normalizeExamples(originalExamples(ctx));
+            details.examples = ctx => this.normalizeExamples(originalExamples(ctx));
         } else {
             details.examples = this.normalizeExamples(details.examples);
         }
@@ -32,13 +32,15 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this;
     }
 
-    public implements(docs: IComponentDocs<Partial<TProps>>[]) {
-        this.props = this.props.concat(...docs.map(i => i.props as any));
-        this.contexts = this.contexts.concat(...docs.map(i => i.contexts));
+    public implements(docs: any[] extends DocBuilder<TProps>[] ? any[] : never) {
+        docs.forEach(doc => {
+            this.props.push(...doc.props);
+            this.contexts.push(...doc.contexts);
+        });
         return this;
     }
 
-    public withContexts(...contexts: (React.ComponentType<DemoComponentProps> & { displayName: string })[]) {
+    public withContexts(...contexts: (ComponentType<DemoComponentProps>)[]) {
         contexts.forEach(context => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
@@ -65,7 +67,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             return 'none';
         } else if (value.displayName) {
             return value.displayName;
-        } else if (value.type && value.type.displayName) {
+        } else if (value.type?.displayName) {
             return value.type.displayName;
         } else if (typeof value === 'function') {
             return 'callback';

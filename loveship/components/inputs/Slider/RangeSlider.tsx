@@ -13,4 +13,4 @@ export function applyRangeSliderMods(mods: RangeSliderMods) {
     ];
 }
 
-export const RangeSlider = withMods<SliderBaseProps<RangeSliderValue>, any>(uuiRangeSlider, applyRangeSliderMods);
+export const RangeSlider = withMods<SliderBaseProps<RangeSliderValue>, RangeSliderMods>(uuiRangeSlider, applyRangeSliderMods);

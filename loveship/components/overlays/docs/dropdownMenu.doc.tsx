@@ -23,7 +23,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
         isDefault: true,
     }] })
     .prop('renderTarget', { examples: [{
-        value: (props: any) => <MainMenuButton caption='Toggler' { ...props }/>,
+        value: props => <MainMenuButton caption='Toggler' { ...props } />,
         isDefault: true,
     }], isRequired: true })
     .withContexts(MainMenuContext, DefaultContext);

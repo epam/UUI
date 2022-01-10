@@ -80,13 +80,7 @@ const UuiApp = () => {
     return (!Object.values(view).length ? <Spinner /> :
             <div className={ 'withGap' }>
                 <h2>Demo example with appData</h2>
-                <Panel
-                    shadow
-                    rawProps={ {
-                        role: 'table',
-                        'aria-rowcount': view.getListProps().rowsCount,
-                        'aria-colcount': tableColumns.length,
-                    } }>
+                <Panel shadow>
                     <DataTable
                         { ...view.getListProps() }
                         getRows={ view.getVisibleRows }
