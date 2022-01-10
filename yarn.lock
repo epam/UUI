@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@amplitude/types/-/types-1.9.1.tgz#df614ac6d278c60c39bb49e05014cdcc7e7714e9"
   integrity sha512-s10ewnlFjHjNWrUMVTPJ2YRj0eD5UoeL+d0HB01x2Ltae/jFgtHQBS/HGKYV5I+NyiaezjrrZImhAQ72Ww/+8g==
 
-"@amplitude/ua-parser-js@0.7.24":
-  version "0.7.24"
-  resolved "https://registry.yarnpkg.com/@amplitude/ua-parser-js/-/ua-parser-js-0.7.24.tgz#2ce605af7d2c38d4a01313fb2385df55fbbd69aa"
-  integrity sha512-VbQuJymJ20WEw0HtI2np7EdC3NJGUWi8+Xdbc7uk8WfMIF308T0howpzkQ3JFMN7ejnrcSM/OyNGveeE3TP3TA==
+"@amplitude/ua-parser-js@0.7.26":
+  version "0.7.26"
+  resolved "https://registry.yarnpkg.com/@amplitude/ua-parser-js/-/ua-parser-js-0.7.26.tgz#18d889d84d2ba90c248ab6fcd7e3dd07f1c9c86e"
+  integrity sha512-62/Rid6YQ7F2KT/5vTre41Y26ivrEoFC8lbrsJZqBKaiXMJWG0YpNv9RgxNSaZS2jPLVQgoB/FFeWxihOLfIcg==
 
 "@amplitude/utils@^1.0.5":
   version "1.9.1"
@@ -2620,10 +2620,10 @@
     multimatch "^4.0.0"
     typescript "~3.9.7"
 
-"@types/amplitude-js@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@types/amplitude-js/-/amplitude-js-7.0.1.tgz#c0b1bc6e508faa513a30ece580c300f0738a9449"
-  integrity sha512-xrmhX39GoSBIuOOPWYL5uvVLn6a5Cvea0wb6SkJNW9+2w5GCK6hT0vvMaH1GaaeSqvb1QFjHNsEgXuyQqML0sw==
+"@types/amplitude-js@^8.0.1":
+  version "8.9.3"
+  resolved "https://registry.yarnpkg.com/@types/amplitude-js/-/amplitude-js-8.9.3.tgz#d6280fe6cb6210d6dbc5a374577385ac5b682872"
+  integrity sha512-Sv7yiP7MLkcrrrNzUVHwpyGyR+3POMwQlJWHywqXhQa8ae3HpXPnwwvnEry0BQ1t+xRW3MoEuVXha/8Oy8i50w==
 
 "@types/babel__core@^7.1.0":
   version "7.1.17"
@@ -3475,13 +3475,14 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
-amplitude-js@7.4.1:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/amplitude-js/-/amplitude-js-7.4.1.tgz#ad1b47fefca3b1c9afe257f8b8164cce95e671cf"
-  integrity sha512-AiqYt9z0tzWBxcE0ILVDNOksXuPdZa4Jiak2VSWwBpgt+CUJ4jZzT3daGZPbw50o2/KnSIfMfAojcT7PpmKxLA==
+amplitude-js@^8.9.1:
+  version "8.15.0"
+  resolved "https://registry.yarnpkg.com/amplitude-js/-/amplitude-js-8.15.0.tgz#1f7f8b8985cac187d67a614c369bfa50bc90e3cc"
+  integrity sha512-8pHN4dfKB0XwzgtgdEZgPVgkPr/fRsv11BECATYdUAIpLkj+sVEob7DphBa7fpBWPmRm+NXe1LRryThPZp7UuQ==
   dependencies:
-    "@amplitude/ua-parser-js" "0.7.24"
+    "@amplitude/ua-parser-js" "0.7.26"
     "@amplitude/utils" "^1.0.5"
+    "@babel/runtime" "^7.3.4"
     blueimp-md5 "^2.10.0"
     query-string "5"
 
@@ -16535,10 +16536,10 @@ typedoc@0.17.4:
     shelljs "^0.8.3"
     typedoc-default-themes "^0.10.0"
 
-typescript@4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.5.tgz#123a3b214aaff3be32926f0d8f1f6e704eb89a72"
-  integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
+typescript@4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
+  integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
 
 typescript@~3.9.7:
   version "3.9.10"
