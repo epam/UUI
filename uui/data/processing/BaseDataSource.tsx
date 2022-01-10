@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { DataRowOptions } from '../../types';
 import { DataSourceState, IDataSource } from "./types";
 import { BaseListViewProps, IDataSourceView } from './views';
 
@@ -7,19 +5,18 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
 
-    constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {
-    }
+    constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 
     abstract getById(id: TId): TItem;
     abstract setItem(item: TItem): void;
-    abstract getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
-    abstract useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
+    abstract getView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: Partial<BaseListViewProps<TItem, TId, TFilter>>): IDataSourceView<TItem, TId, TFilter>;
+    abstract useView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: Partial<BaseListViewProps<TItem, TId, TFilter>>): IDataSourceView<TItem, TId, TFilter>;
 
     protected updateViews = () => {
         this.views.forEach(view => view._forceUpdate());
     }
 
-    public unsubscribeView(onValueChange: (val: any) => any) {
+    public unsubscribeView(onValueChange: (val: any) => void) {
         this.views.delete(onValueChange);
     }
 
@@ -28,18 +25,10 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         this.views.clear();
     }
 
-    public getId = (item: TItem) => {
-        if (item == null) {
-            return null;
-        }
+    public getId = (item: TItem & { id?: TId }) => {
+        if (item == null) return null;
 
-        let id: TId;
-
-        if (this.props.getId) {
-            id = this.props.getId(item);
-        } else {
-            id = (item as any)['id' as any];
-        }
+        const id = this.props.getId?.(item) || item.id;
 
         if (id == null) {
             throw new Error(`Item ID not found. Check 'getId' prop value. Item: ${JSON.stringify(item)}`);

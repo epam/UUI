@@ -30,7 +30,10 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps, a
                 <input
                     className={ css.fileInput }
                     ref={ (ref) => { this.fileInput = ref; } }
-                    onChange={ e => { this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));  (e.currentTarget.value as any) = null; } }
+                    onChange={ e => {
+                        this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));
+                        e.currentTarget.value = null;
+                    } }
                     type="file"
                     multiple={ !this.props.single }
                     accept={ this.props.accept }

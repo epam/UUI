@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import { ContextProviderProps } from "./ContextProvider";
 
 interface LegacyContextProviderProps<TApi, TAppContext> extends ContextProviderProps<TApi, TAppContext> {
-    uuiContexts: CommonContexts<any, any>;
+    uuiContexts: CommonContexts<TApi, TAppContext>;
 }
 
 interface ContextProviderState {
@@ -21,7 +21,7 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
 
     render() {
         // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-        (this.props.uuiContexts.uuiErrors as any).discardError();
+        this.props.uuiContexts.uuiErrors.discardError();
         this.props.uuiContexts.uuiApi.reset();
 
         //this.uuiContexts.uuiDnD.

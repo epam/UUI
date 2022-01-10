@@ -3,7 +3,7 @@ import { AvatarStack as uuiAvatarStack, AvatarStackProps } from "@epam/uui-compo
 import { withMods } from "@epam/uui";
 import * as css from "./AvatarStack.scss";
 
-export const AvatarStack = withMods<AvatarStackProps, {}>(
+export const AvatarStack = withMods<AvatarStackProps>(
     uuiAvatarStack,
     (mods) => [css.root],
 );

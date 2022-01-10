@@ -2,10 +2,10 @@ import { DocBuilder } from '@epam/uui-docs';
 import { RadioGroupProps } from '@epam/uui-components';
 import { RadioGroup } from '../RadioGroup';
 import { isDisabledDoc, isInvalidDoc, iEditable } from '../../../docs';
-import { FormContext, DefaultContext, ResizableContext, GridContext } from '../../../docs';
+import { FormContext, DefaultContext, GridContext } from '../../../docs';
 
 const radioGroupDoc = new DocBuilder<RadioGroupProps<any>>({ name: 'RadioGroup', component: RadioGroup })
-    .implements([isDisabledDoc, isInvalidDoc, iEditable as any])
+    .implements([isDisabledDoc, isInvalidDoc, iEditable])
     .prop('items',  { examples: [
         {
             name: `Languages`,

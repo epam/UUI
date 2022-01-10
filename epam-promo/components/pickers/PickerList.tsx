@@ -25,8 +25,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ item => this.getName(item) } { ...row }
-                               key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
     }
 
     handleShowPicker = () => {
@@ -37,13 +36,13 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
                     { ...this.props }
                     caption={ this.props.placeholder || `Please select ${ this.getEntityName() ? this.getEntityName() : "" }` }
                     initialValue={ this.props.value as any }
-                    selectionMode={ this.props.selectionMode as any }
-                    valueType={ this.props.valueType as any }
+                    selectionMode={ this.props.selectionMode }
+                    valueType={ this.props.valueType }
                 />
             ))
             .then((value: any) => {
                 this.appendLastSelected([...this.getSelectedIdsArray(value)]);
-                (this.props.onValueChange as any)(value);
+                this.props.onValueChange(value);
             });
     }
 

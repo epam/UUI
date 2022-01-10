@@ -32,7 +32,7 @@ const TableExample = () => {
         return result;
     }, [state.page, state.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, {}>({ api }, [state.page]);
+    const dataSource = useLazyDataSource<Person, number, unknown>({ api }, [state.page]);
 
     const view = dataSource.useView(state, setState, {});
 
@@ -56,9 +56,6 @@ const TableExample = () => {
             <h2>Demo example with table</h2>
 
             <Panel shadow rawProps={ {
-                role: 'table',
-                'aria-rowcount': view.getListProps().rowsCount,
-                'aria-colcount': personsColumns.length,
                 style: {
                     width: '100%',
                     height: 'auto',

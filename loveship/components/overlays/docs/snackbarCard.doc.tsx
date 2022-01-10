@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { SnackbarCard, SnackbarCardProps } from '../SnackbarCard';
 import { DefaultContext } from '../../../docs';

@@ -17,7 +17,7 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
             ['12', '12', '18', '18', '18', '24'], // icon size with caption
         ];
 
-        let index = iconSizes[0].findIndex(i => i == this.props.size);
+        const index = iconSizes[0].findIndex(i => i == this.props.size);
 
         return <div>
             <Text size='18' fontSize='14' font='sans-semibold' cx={ css.recommendedText }>Use the recommended icon sizes</Text>

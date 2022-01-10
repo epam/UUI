@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder, isDisabledDoc } from '@epam/uui-docs';
 import { AccordionProps } from '@epam/uui-components';
 import { Accordion, AccordionMods, Button, FlexRow, FlexSpacer, Text, RichTextView } from '../../../components';
 import { ResizableContext } from '../../../docs';
 
 const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Accordion', component: Accordion })
-    .implements([isDisabledDoc] as any)
+    .implements([isDisabledDoc])
     .prop('title', { examples: [{ value: 'Accordion title', isDefault: true }, 'Additional info'] })
     .prop('children', { examples: [
         {

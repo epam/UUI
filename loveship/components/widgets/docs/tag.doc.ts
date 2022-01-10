@@ -5,7 +5,7 @@ import { DefaultContext, FormContext, GridContext, ResizableContext  } from '../
 import { iconDoc, iconOptionsDoc, basicPickerTogglerDoc, colorDoc } from '../../../docs/index';
 
 const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: Tag })
-    .implements([colorDoc, iconDoc, basicPickerTogglerDoc, dropdownTogglerDoc, iconOptionsDoc] as any)
+    .implements([colorDoc, iconDoc, basicPickerTogglerDoc, dropdownTogglerDoc, iconOptionsDoc])
     .prop('caption', { examples: [
         { value: 'Tag', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },

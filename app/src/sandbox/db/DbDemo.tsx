@@ -45,7 +45,7 @@ export const DbDemoImpl = () => {
     }), []);
 
     const personsDataView = dataSource.useView(value, onValueChange, {
-        getRowOptions: (p: any) => ({ checkbox: { isVisible: true } }),
+        getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
     });
 
