@@ -6,10 +6,9 @@ import { FlexCell } from '@epam/promo';
 import { analyticsEvents } from "../analyticsEvents";
 import { svc } from "../services";
 
-export class LandingPage extends React.Component<any, any> {
-    constructor(props: any) {
+export class LandingPage extends React.Component {
+    constructor(props: {}) {
         super(props);
-
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.pv());
     }
     render() {
