@@ -14,7 +14,7 @@ export interface MainMenuAppMultiSwitchProps<TValue> extends IEditable<TValue>, 
     color?: ButtonColor;
 }
 
-export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>, {}> {
+export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppMultiSwitchProps<TValue>> {
     handleClick = (id: TValue) => {
         this.props.onValueChange(id);
         if (this.props.getValueChangeAnalyticsEvent) {

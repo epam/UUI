@@ -3,7 +3,7 @@ import { UuiContexts, UuiContext } from '@epam/uui';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, Button, LabeledInput, TextArea, FlexRow } from '../../components';
 
-export class ModalContext extends React.Component<DemoComponentProps, {}> {
+export class ModalContext extends React.Component<DemoComponentProps> {
     public static displayName = "Modal";
     static contextType = UuiContext;
     context: UuiContexts;

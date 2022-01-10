@@ -11,7 +11,7 @@ interface Row {
 
 const selectedDay = new Date(2018, 7, 9, 12, 0, 0);
 
-export class Timeline extends React.Component<{}, {}> {
+export class Timeline extends React.Component {
     timeline: any = null;
     timelineController = new TimelineController({ center: (new Date(2018, 7, 15)), pxPerMs: 32 / msPerDay, widthPx: 0 });
     dataRows: Row[] = [];

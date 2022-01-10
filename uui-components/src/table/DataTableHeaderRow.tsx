@@ -9,7 +9,7 @@ const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',
 };
 
-export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHeaderRowProps<TItem, TId>, {}> {
+export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHeaderRowProps<TItem, TId>> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     sortLens = this.lens.prop('sorting');
     filterLens = this.lens.prop('filter');
