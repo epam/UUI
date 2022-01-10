@@ -11,7 +11,7 @@ import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
-    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc] as any)
+    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .prop('value', { examples: [
             { name: '1', value: 1 },
@@ -32,29 +32,19 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('renderToggler', { examples: [
             {
                 name: 'Button',
-                value: props => <Button
-                    { ...props }
-                    caption={ props.selection.map(s => s.value.name).join(', ') }
-                />,
+                value: props => <Button { ...props } caption={ props.selection.map(s => s.value.name).join(', ') } />,
             },
             {
                 name: 'LinkButton',
-                value: props => <LinkButton
-                    { ...props }
-                    caption={ props.selection.map(s => s.value.name).join(', ') }
-                />,
+                value: props => <LinkButton { ...props } caption={ props.selection.map(s => s.value.name).join(', ') } />,
             },
             {
                 name: 'Search',
-                value: props => <SearchInput
-                    value=""
-                    onValueChange={ null }
-                    { ...props }
-                />,
+                value: props => <SearchInput value="" onValueChange={ null } { ...props } />,
             },
         ] })
     .prop('searchPosition', { examples: ['input' , 'body', 'none'], defaultValue: 'input'})
-    .prop('disableClear', { examples: [true], defaultValue: false})
+    .prop('disableClear', { examples: [true], defaultValue: false })
     .prop('renderNotFound', { examples: () => [
             {
                 name: 'Custom not found block',

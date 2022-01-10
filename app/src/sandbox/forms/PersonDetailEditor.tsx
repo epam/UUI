@@ -5,7 +5,7 @@ import {
     TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput,
     RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker,
 } from '@epam/loveship';
-import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource } from '@epam/uui';
+import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource, FileUploadResponse } from '@epam/uui';
 import { svc } from '../../services';
 import { City, PersonDetails } from '@epam/uui-docs';
 import { ExperienceEditor } from './ExperienceEditor';
@@ -17,31 +17,32 @@ interface PersonDetailEditorProps {
     isBlocked: boolean;
 }
 
+type Attachment = { progress?: number } & FileUploadResponse;
+
 export class PersonDetailEditor extends React.Component<PersonDetailEditorProps> {
     trackProgress(progress: number, id: number) {
-        const attachments =  this.props.lens.prop('attachments').get();
+        const attachments = this.props.lens.prop('attachments').get();
         const file = attachments.find(i => i.id === id);
         file.progress = progress;
         this.updateAttachment(file, file.id);
     }
 
-    updateAttachment(newFile: any, id: number) {
-        const attachments =  this.props.lens.prop('attachments').get();
+    updateAttachment(newFile: Attachment, id: number) {
+        const attachments = this.props.lens.prop('attachments').get();
         this.props.lens.prop('attachments').set(attachments.map(i => i.id === id ? newFile : i));
     }
 
-    uploadFile = (files: File[]): any => {
-        let tempIdCounter = 0;
+    uploadFile = (files: File[]) => {
         const attachments = this.props.lens.prop('attachments').default([]).get();
 
-        files.map(file => {
-            const tempId = --tempIdCounter;
-            attachments.push({
-                id: tempId,
-                name: file.name,
-                size: file.size,
-            });
-            svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => this.trackProgress(progress, tempId) }).then(res => {
+        files.map((file, index) => {
+            const tempId = index - 1;
+
+            attachments.push({ id: tempId, name: file.name, size: file.size });
+
+            svc.uuiApi.uploadFile('/uploadFileMock', file, {
+                onProgress: progress => this.trackProgress(progress, tempId),
+            }).then(res => {
                 this.updateAttachment(res, tempId);
             });
         });

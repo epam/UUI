@@ -16,7 +16,7 @@ export class Snackbar extends React.Component<SnackbarProps> {
 
         // add button for clear notification list
         if (items.length > 1) {
-            let clearOperation: NotificationOperation = { component: ClearNotification, props: { id: null } as any, config: { position: items[0].config.position, duration: 'forever' } };
+            const clearOperation: NotificationOperation = { component: ClearNotification, props: { id: null } as any, config: { position: items[0].config.position, duration: 'forever' } };
             items = [clearOperation].concat(items);
         }
 

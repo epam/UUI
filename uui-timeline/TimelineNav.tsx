@@ -13,7 +13,7 @@ export interface TimelineNavProps {
     timelineController: TimelineController;
 }
 
-export class TimelineNav extends React.Component<TimelineNavProps, {}> {
+export class TimelineNav extends React.Component<TimelineNavProps> {
     componentDidMount() {
         this.props.timelineController.subscribe(this.handleForceUpdate);
     }

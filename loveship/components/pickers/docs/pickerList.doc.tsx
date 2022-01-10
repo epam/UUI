@@ -11,7 +11,7 @@ import { Text } from '../../typography';
 import { FlexRow } from '../../layout';
 
 const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any>>({ name: 'PickerList', component: PickerList })
-    .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */] as any)
+    .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */])
     .prop('value', { examples: [
         { name: '1', value: 1 },
         { name: '[1, 2]', value: [1, 2] },
@@ -33,7 +33,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('renderModalToggler', {examples: [
         {
             name: 'Green Button',
-            value: (props, selection) => <LinkButton color='grass' { ...props } />,
+            value: props => <LinkButton color='grass' { ...props } />,
         },
     ]})
     .prop('theme', { examples : allThemes })

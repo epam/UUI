@@ -55,11 +55,12 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 rows.sort((a, b) =>
                     (key === 'id' || key === 'departmentId') ?
                     a[key] - b[key] :
-                    a[key].localeCompare(b[key]));
+                    a[key].localeCompare(b[key]),
+                );
             });
         }
 
-        return rows.map((item, index) =>
+        return rows.map((item, index) => (
             <DataTableRow
                 key={ index }
                 size={ this.props.props.size }
@@ -69,7 +70,8 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 id={ index }
                 rowKey={ index + '' }
                 index={ index }
-            />);
+            />
+        ));
     }
 
     showConfigurationModal = () => {

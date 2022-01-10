@@ -21,7 +21,7 @@ enum uuiDataTableRowContainer {
     uuiScrollShadowRight = 'uui-scroll-shadow-right'
 };
 
-export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>, {}> {
+export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>> {
     protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;

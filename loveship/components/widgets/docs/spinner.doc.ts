@@ -5,7 +5,7 @@ import { FormContext, DefaultContext, ResizableContext, GridContext } from '../.
 import { colorDoc } from '../../../docs';
 
 const spinnerDoc = new DocBuilder<SpinnerProps & SpinnerMods>({ name: 'Spinner', component: Spinner })
-    .implements([colorDoc] as any)
+    .implements([colorDoc])
     .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
 
 export = spinnerDoc;

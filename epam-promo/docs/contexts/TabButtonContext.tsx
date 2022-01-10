@@ -1,18 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { Panel, FlexRow, TabButtonMods } from '../../components';
 
-export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, any> {
+interface DemoComponentState {
+    activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';
+}
+
+export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, DemoComponentState> {
     public static displayName = "TabButtonContext";
 
-    state = {
+    state: DemoComponentState = {
         activeTab: 'Main',
     };
 
-    setTab(tab: string, onClick?: () => void) {
+    setTab(tab: DemoComponentState['activeTab'], onClick?: () => void) {
         this.setState({ activeTab: tab });
-        onClick && onClick();
+        onClick?.();
     }
 
     render() {

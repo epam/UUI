@@ -1,9 +1,9 @@
+import * as React from "react";
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../../docs/index';
 import { AvatarStackProps } from '@epam/uui-components';
 import { Tooltip, AvatarStack } from "../../";
 import { uuiMarkers } from "@epam/uui";
-import React from "react";
 
 const renderItem = (url: string) => {
     const handleClick = () => {

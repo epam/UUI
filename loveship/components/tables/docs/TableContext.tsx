@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
     DataSourceState,
     Lens,
@@ -62,11 +62,12 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 rows.sort((a, b) =>
                     (key === 'id' || key === 'departmentId') ?
                     a[key] - b[key] :
-                    a[key].localeCompare(b[key]));
+                    a[key].localeCompare(b[key]),
+                );
             });
         }
 
-        return rows.map((item, index) =>
+        return rows.map((item, index) => (
             <DataTableRow
                 key={ index }
                 size={ this.props.props.size }
@@ -76,7 +77,8 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 id={ index }
                 rowKey={ index + '' }
                 index={ index }
-            />);
+            />
+        ));
     }
 
     showConfigurationModal = () => {
@@ -85,16 +87,18 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 { ...modalProps }
                 columns={ this.props.props.columns }
                 columnsConfig={ this.state.columnsConfig }
-                defaultConfig={ {gender: {
-                    isVisible: false,
-                    order: 'f',
-                }} }
+                defaultConfig={ {
+                    gender: {
+                        isVisible: false,
+                        order: 'f',
+                    },
+                } }
             />
         )).then(columnsConfig => this.setState({ columnsConfig }));
     }
 
-    getTable(component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
-        if (component === DataTableRow) {
+    getTable(Component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
+        if (Component === DataTableRow) {
             return <>
                 <FlexRow size="48" background="white" padding="24">
                     <Text>items</Text>
@@ -106,13 +110,13 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                     size={ props.size }
                     { ...this.lens.prop('tableState').toProps() }
                 />
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
                 { this.getRows() }
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
             </>;
-        } else if (component === DataTableHeaderRow) {
+        } else if (Component === DataTableHeaderRow) {
             return <>
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
+                <Component { ...props } columns={ this.getVisibleColumns() } />
                 { this.getRows() }
             </>;
         }

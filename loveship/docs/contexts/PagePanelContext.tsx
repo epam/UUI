@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, FlexRow, Text, FlexCell } from '../../components';
 import * as css from './PagePanelContext.scss';
 
-const items = [
+const items: Array<{ country: string }> = [
     { country: 'Belarus' },
     { country: 'Russia' },
     { country: 'China' },
@@ -15,14 +15,18 @@ const items = [
     { country: 'Germany' },
 ];
 
-export class PagePanelContext extends React.Component<DemoComponentProps, any> {
+interface DemoComponentState {
+    totalPages: number;
+}
+
+export class PagePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Page panel';
 
     state = {
         totalPages: items.length,
     };
 
-    renderTable(item: any) {
+    renderTable(item: typeof items[number]) {
         return (
             <React.Fragment>
                 <FlexRow padding='12' borderBottom>

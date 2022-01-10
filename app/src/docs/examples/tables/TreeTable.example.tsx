@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
 import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
 import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
 import * as css from './TablesExamples.scss';
 
-export default function TreeTableExample({
-    size
-}: DataTableMods) {
+export default function TreeTableExample({ size }: DataTableMods) {
     const svc = useUuiContext();
-    const [tableState, setTableState] = useState<DataSourceState>({
+    const [tableState, setTableState] = useState<DataSourceState<Location, string>>({
         sorting: [{ field: 'name', direction: 'asc' }],
     });
 
@@ -57,22 +55,18 @@ export default function TreeTableExample({
         },
     ], []);
 
-    const handleTableStateChange = useCallback((newState: DataSourceState) => {
-        setTableState(newState)
-    }, []);
-
     const locationsDS = useAsyncDataSource<Location, string, unknown>({
         api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
     }, []);
 
     useEffect(() => {
         return () => {
-            locationsDS.unsubscribeView(handleTableStateChange);
+            locationsDS.unsubscribeView(setTableState);
         };
     }, []);
 
     // handleTableStateChange function should not be re-created on each render, as it would cause performance issues.
-    const view = locationsDS.useView(tableState, handleTableStateChange, {
+    const view = locationsDS.useView(tableState, setTableState, {
         getSearchFields: item => [item.name],
         sortBy: (item, sorting) => {
             switch (sorting.field) {
@@ -89,7 +83,7 @@ export default function TreeTableExample({
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={{ role: 'treegrid' }}>
+        <Panel shadow cx={ css.container } rawProps={ { role: 'treegrid' } }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }

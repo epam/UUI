@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, colorDoc, iconWithInfoDoc } from '../../../docs';
 import { Text } from '../../typography';
 import { NotificationCard, NotificationCardProps } from '../NotificationCard';
 
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
-    .implements([iconWithInfoDoc, colorDoc] as any)
+    .implements([iconWithInfoDoc, colorDoc])
     .prop('children', {
         examples: [
             {
