@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import { ContextProviderProps } from "./ContextProvider";
 
 interface LegacyContextProviderProps<TApi, TAppContext> extends ContextProviderProps<TApi, TAppContext> {
-    uuiContexts: CommonContexts<any, any>;
+    uuiContexts: CommonContexts<TApi, TAppContext>;
 }
 
 interface ContextProviderState {
