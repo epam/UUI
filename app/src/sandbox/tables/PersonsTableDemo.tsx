@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
-import { DataSourceState, useLens, IEditable, ArrayDataSource, LazyDataSource, LazyDataSourceApi } from '@epam/uui';
+import { DataSourceState, useLens, IEditable, LazyDataSourceApi, useArrayDataSource, useLazyDataSource } from '@epam/uui';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
@@ -33,15 +33,16 @@ interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;
 }
 
-export const PersonsTableDemo = (props: {}) => {
-
+export const PersonsTableDemo = () => {
     const groupings = React.useMemo(() => [
         { id: 'jobTitle', name: "Job Title" },
         { id: 'department', name: "Department" },
         { id: 'location', name: "Location" },
     ], []);
 
-    const groupingDataSource = React.useMemo(() => new ArrayDataSource({ items: groupings }), []);
+    const groupingDataSource = useArrayDataSource({
+        items: groupings,
+    }, []);
 
     const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
         topIndex: 0,
@@ -52,10 +53,10 @@ export const PersonsTableDemo = (props: {}) => {
 
     const editable: IEditable<DataSourceState> = { value, onValueChange };
 
-    const dataSource = React.useMemo(() => new LazyDataSource({
+    const dataSource = useLazyDataSource({
         api,
         getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
-        getChildCount: (item: PersonTableRecord) =>
+        getChildCount: item =>
             item.__typename === 'PersonGroup'
             ? item.count
             : item.__typename === 'Location' ? item.type == 'city'
@@ -63,7 +64,7 @@ export const PersonsTableDemo = (props: {}) => {
                 : 10
             : null,
         fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
-    }), [value.filter?.groupBy]);
+    }, [value.filter?.groupBy]);
 
     const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions: { checkbox: { isVisible: true } },
