@@ -69,7 +69,7 @@ interface LoadResult<TItem, TId> {
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: LazyTreeList<TItem, TId>;
+    private tree: LazyTreeList<TItem, TId> & { value?: DataSourceState<TFilter, TId> };
     private rows: DataRowProps<TItem, TId>[] = [];
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
@@ -126,7 +126,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
-            this.tree = { items: [], value: this.value } as any;
+            this.tree = { items: [], value: this.value };
             completeReset = true;
         }
 

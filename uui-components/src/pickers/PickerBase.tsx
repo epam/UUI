@@ -56,13 +56,13 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
     }
 
-    getName = (i: TItem) => {
+    getName = (i: TItem & { name?: string }) => {
         if (i == null) {
             return '';
         } else if (this.props.getName) {
             return this.props.getName(i);
         } else {
-            return (i as any).name;
+            return i.name;
         }
     }
 
@@ -105,7 +105,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     protected handleSelectionValueChange = (newValue: any) => {
-        (this.props.onValueChange as any)(newValue);
+        this.props.onValueChange(newValue);
 
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
