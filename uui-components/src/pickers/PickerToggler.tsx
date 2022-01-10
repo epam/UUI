@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps, isChildHasClass } from "@epam/uui";
+import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps } from "@epam/uui";
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
@@ -96,15 +96,15 @@ export class PickerToggler<TItem, TId> extends React.Component<PickerTogglerProp
     }
 
     renderItems() {
-        let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
+        const maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
         if (this.props.selection && this.props.selection.length > maxItems) {
-            let item = {
+            const item = {
                 value: i18n.pickerToggler.createItemValue(this.props.selection.length, this.props.entityName || ''),
                 onCheck: () => this.props.onClear && this.props.onClear(),
             };
-            return this.props.renderItem && this.props.renderItem(item as any);
+            return this.props.renderItem?.(item as any);
         } else {
-            return this.props.selection && this.props.selection.map(row => this.props.renderItem && this.props.renderItem(row));
+            return this.props.selection?.map(row => this.props.renderItem?.(row));
         }
     }
 

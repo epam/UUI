@@ -11,7 +11,7 @@ export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IH
     icon?: Icon;
 }
 
-export class MainMenuAvatar extends React.Component<MainMenuAvatarProps, {}> {
+export class MainMenuAvatar extends React.Component<MainMenuAvatarProps> {
     render() {
         return (
             <div

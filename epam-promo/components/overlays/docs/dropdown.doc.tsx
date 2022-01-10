@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DropdownProps, Dropdown } from '@epam/uui-components';
 import { Button, Panel, FlexRow, Text } from '../../../components';
@@ -23,7 +23,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         isDefault: true,
     }] })
     .prop('renderTarget', { isRequired: true, examples: [{
-        value: (props: any) => <Button caption='Target' { ...props }/>,
+        value: props => <Button caption='Target' { ...props }/>,
         isDefault: true,
     }] })
     .prop('openOnClick', {

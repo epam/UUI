@@ -53,7 +53,7 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
     }), []);
 
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
-    (services.uuiErrors as any).discardError();
+    services.uuiErrors.discardError();
     services.uuiApi.reset();
 
     return { services };

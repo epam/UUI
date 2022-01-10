@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, iconWithInfoDoc } from '../../../docs';
 import { Text } from '../../typography';
@@ -7,8 +7,8 @@ import { colors } from '../../../helpers/colorMap';
 import { allEpamPrimaryColors } from '../../types';
 
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
-    .implements([iconWithInfoDoc] as any)
-    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: [...allEpamPrimaryColors, 'gray60'] })
+    .implements([iconWithInfoDoc])
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: [...allEpamPrimaryColors, 'gray60'] })
     .prop('children', {
         examples: [
             {

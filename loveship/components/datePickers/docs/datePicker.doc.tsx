@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder } from '@epam/uui-docs';
 import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker, DatePickerProps } from '../DatePicker';
-import { LinkButton, FlexRow } from '../../';
+import { LinkButton, FlexRow } from '../../../';
 import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc } from '../../../docs';
 import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
 import { ReactComponent as Point } from '../../icons/radio-point.svg';
@@ -16,14 +16,14 @@ const getCustomDay = (day: Dayjs) => {
 };
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
-    .implements([iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc] as any)
+    .implements([iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
     .prop('value', { examples: ['2017-12-30'] })
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', { examples: [
         {
             name: 'Filter before current day',
-            value: (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf(),
+            value: day => day.valueOf() >= dayjs().subtract(1, 'day').valueOf(),
         },
     ] })
     .prop('renderDay', { examples: ctx => [{

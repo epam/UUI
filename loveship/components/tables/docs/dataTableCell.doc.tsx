@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DataTableCell } from '../DataTableCell';
 import { DataTableCellProps } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';

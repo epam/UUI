@@ -30,7 +30,7 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions, {}> {
+export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions> {
     render() {
         // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
         const textInputProps = {...this.props};

@@ -36,7 +36,7 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions, {}> {
+export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions> {
     render() {
         return <IEditableDebouncer
             { ...this.props }

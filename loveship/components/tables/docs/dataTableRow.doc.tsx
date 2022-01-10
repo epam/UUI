@@ -7,7 +7,7 @@ import { TableContext } from './TableContext';
 import { DataTableRowMods } from '../..';
 
 const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
-    .implements([ColumnsHeaderRowDoc] as any)
+    .implements([ColumnsHeaderRowDoc])
     .prop('value', {
         examples: [
             { name: 'person', value: demoData.personDemoData[1] },

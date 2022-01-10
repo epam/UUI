@@ -5,8 +5,8 @@ import { PickerBaseOptions } from '@epam/uui-components';
 import { Text } from '../../typography';
 import { DataPickerRow } from '../DataPickerRow';
 import { demoData } from '@epam/uui-docs';
-import * as css from './DataPickerRowDoc.scss';
 import { PickerItem } from '../PickerItem';
+import * as css from './DataPickerRowDoc.scss';
 
 export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
     {
@@ -41,7 +41,6 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
         }),
     },
 ];
-
 
 export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
     .prop('dataSource', { examples: getDataSourceExamples, isRequired: true })
