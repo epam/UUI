@@ -22,7 +22,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export class PickerToggler extends React.Component<PickerTogglerProps<any> & PickerTogglerMods, {}> {
+export class PickerToggler extends React.Component<PickerTogglerProps<any> & PickerTogglerMods> {
     getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
         switch (propSize) {
             case '48':

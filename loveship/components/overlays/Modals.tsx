@@ -29,7 +29,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalW
 
 export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
-export class ModalHeader extends React.Component<ModalHeaderProps, {}> {
+export class ModalHeader extends React.Component<ModalHeaderProps> {
 
     render() {
         return (
@@ -52,7 +52,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps, {}> {
 
 export interface ModalFooterProps extends RowMods, ModalFooterCoreProps {}
 
-export class ModalFooter extends React.Component<ModalFooterProps, {}> {
+export class ModalFooter extends React.Component<ModalFooterProps> {
     render() {
         return (
             <FlexRow

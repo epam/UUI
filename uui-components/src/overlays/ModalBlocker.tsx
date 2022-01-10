@@ -3,7 +3,7 @@ import FocusLock from 'react-focus-lock';
 import * as css from './ModalBlocker.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
 
-export class ModalBlocker extends React.Component<ModalBlockerProps, {}> {
+export class ModalBlocker extends React.Component<ModalBlockerProps> {
     constructor(props: ModalBlockerProps) {
         super(props);
     }

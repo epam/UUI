@@ -3,12 +3,11 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel } from '../../components/layout/FlexItems';
 import { i18n } from "../../i18n";
 
-export class LocaleContext extends React.Component<DemoComponentProps, {}> {
+export class LocaleContext extends React.Component<DemoComponentProps> {
     public static displayName = "RU locale";
 
     componentWillUnmount() {
         i18n.datePicker.locale = 'en';
-
     }
 
     render() {
