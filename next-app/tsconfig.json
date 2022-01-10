@@ -12,6 +12,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "noEmitOnError": true,
+    "importHelpers": true,
     "outDir": "./build",
     "rootDir": ".",
     "lib": [
