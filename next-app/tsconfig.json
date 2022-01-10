@@ -14,7 +14,6 @@
     "noEmitOnError": true,
     "outDir": "./build",
     "rootDir": ".",
-    "importHelpers": true,
     "lib": [
       "dom",
       "dom.iterable",
