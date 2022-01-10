@@ -16,7 +16,7 @@
         "jsx": "react",
         "outDir": "./build",
         "rootDir": ".",
-        "importHelpers": false,
+        "importHelpers": true,
         "esModuleInterop": true,
         "lib": [
             "dom",
