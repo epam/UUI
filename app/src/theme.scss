@@ -214,13 +214,14 @@
     --default-hover-color: #{$white};
     --default-active-color: #{$gray10};
     --disabled-color: #{$gray50};
+    --iconButton-disabled-color: #{$gray30};
     --surface-color: #{$gray80};
     --surface-hover-color: #{$gray5};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
-    --icon-color: #{$gray60};
-    --iconButton-disabled-color: #{$gray30};
+    --scroll-bar-background-color: #{$gray30};
+    --scroll-bar-background-active-color: #{$gray20};
 
     --text-brand-color: #{$white};
     --text-primary-color: #{$gray5};
@@ -447,6 +448,8 @@
     --surface-dark-color: #{$black};
     --surface-light-color: #{$white};
     --divider-color: #{$transparent-50};
+    --scroll-bar-background-color: #{$black-40};
+    --scroll-bar-background-active-color: #{$black-40};
 
     --text-brand-color: #{$primary2-day};
     --text-primary-color: #{$black};
@@ -491,6 +494,8 @@
     --input-icon-clickable-color: #{$transparent-50};
     --input-icon-clickable-hover-color: #{$transparent-50};
     --input-checkbox-icon-color: #{$black};
+
+    --panel-shadow: rgb(28 41 61 / 5%) 0px 0px 20px, rgb(28 41 61 / 6%) 0px 12px 20px;
 
     // ---------------------------
 
@@ -849,7 +854,7 @@
     //--surface-hover-color: #{$gray5};
     //--surface-dark-color: #{$gray90};
     //--surface-light-color: #{$white};
-    //--divider-color: #{$gray40};
+    --divider-color: #{$dark_indigo_30};
     //--icon-color: #{$gray60};
     //
 
@@ -886,6 +891,8 @@
     --input-text-disabled-color: #{$dark_indigo_30};
 
     --input-checkbox-icon-color: #{$white};
+
+    --panel-shadow: 0 1px 2px rgb(11 31 53 / 16%), 0 4px 12px rgb(11 31 53 / 8%);
 
     // ---------------------------
 

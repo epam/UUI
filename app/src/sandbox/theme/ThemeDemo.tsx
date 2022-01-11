@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from '@epam/uui';
 import {
-    Button,
-    Checkbox,
-    Switch,
-    TextInput,
-    SuccessNotification,
-    ErrorNotification,
-    Text,
-    LabeledInput,
-    Panel,
-    FlexRow,
-    FlexCell,
-    FlexSpacer,
-    RadioGroup, ScrollBars,
+    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel,
+    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton,
 } from '@epam/uui-v';
 import { TabButton, FlexRow as PromoFlexRow } from '@epam/promo';
+import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import * as themeCss from '../../theme.scss';
 
 
@@ -23,7 +14,7 @@ interface Person {
     firstName?: string;
     lastName?: string;
     gender?: string;
-    visaRecords?: [{ country?: string, term?: { from: string, to: string } }];
+    visaRecords?: Array<{ country?: string, term?: { from: string, to: string } }>;
     processingPersonalDataAgreed?: boolean;
     displayAdsAgreed?: boolean;
 }
@@ -98,7 +89,7 @@ export const ThemeDemo = () => {
     const renderDemoForm = () => {
         return (
             <FlexRow vPadding='24' padding='24'>
-                <FlexCell width='100%'>
+                <FlexCell width={ 600 } minWidth={ 600 }>
                     <Text color='primary' lineHeight='30' fontSize='24' font='semibold'>Personal Info</Text>
                     <FlexRow vPadding='36' >
                         <SuccessNotification id={ 1 } key='1' onSuccess={ () => {} } onClose={ () => {} }>
@@ -135,24 +126,40 @@ export const ThemeDemo = () => {
                     {
                         lens.prop('visaRecords').get().map((record, index) => {
                             return (
-                                <FlexRow spacing='12'>
-                                    <LabeledInput label='Country' >
-                                        <TextInput { ...lens.prop('visaRecords').index(index).prop('country').toProps() } />
-                                    </LabeledInput>
-                                    <LabeledInput label='Term'>
-                                        <FlexRow spacing='6'>
-                                            <FlexCell width={ 140 }>
-                                                <TextInput placeholder='From:' { ...lens.prop('visaRecords').index(index).prop('term').prop('from').toProps() } />
-                                            </FlexCell>
-                                            <FlexCell width={ 140 } >
-                                                <TextInput placeholder='To:' { ...lens.prop('visaRecords').index(index).prop('term').prop('to').toProps() } />
-                                            </FlexCell>
-                                        </FlexRow>
-                                    </LabeledInput>
+                                <FlexRow key={ index } spacing='12' vPadding='12' alignItems='bottom'>
+                                    <FlexCell width={ 242 }>
+                                        <LabeledInput label='Country' >
+                                            <TextInput { ...lens.prop('visaRecords').index(index).prop('country').toProps() } />
+                                        </LabeledInput>
+                                    </FlexCell>
+                                    <FlexCell width={ 300 }>
+                                        <LabeledInput label='Term'>
+                                            <FlexRow spacing='6'>
+                                                <FlexCell width={ 140 }>
+                                                    <TextInput placeholder='From:' { ...lens.prop('visaRecords').index(index).prop('term').prop('from').toProps() } />
+                                                </FlexCell>
+                                                <FlexCell width={ 140 } >
+                                                    <TextInput placeholder='To:' { ...lens.prop('visaRecords').index(index).prop('term').prop('to').toProps() } />
+                                                </FlexCell>
+                                            </FlexRow>
+                                        </LabeledInput>
+                                    </FlexCell>
+                                    <FlexRow alignItems='center'>
+                                        <IconButton icon={ CrossIcon } onClick={ () => lens.prop('visaRecords').set(lens.prop('visaRecords').get().filter((_, i) => index !== i)) } />
+                                    </FlexRow>
                                 </FlexRow>
                             );
                         })
                     }
+                    <FlexRow vPadding='24' >
+                        <Button
+                            caption='Add one more'
+                            icon={ AddIcon }
+                            color='primary'
+                            mode='outline'
+                            onClick={ () => lens.prop('visaRecords').set(lens.prop('visaRecords').get().concat({ country: '', term: { from: '', to: '' } })) }
+                        />
+                    </FlexRow>
                     <FlexRow vPadding='24' >
                         <Text color='primary' lineHeight='30' fontSize='24' font='semibold'>Agreement</Text>
                     </FlexRow>
