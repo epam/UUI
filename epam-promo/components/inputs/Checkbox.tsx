@@ -1,11 +1,11 @@
-import { withMods } from '@epam/uui';
-import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
 import * as css from './Checkbox.scss';
 import * as styles from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
-import * as check_12 from '../../icons/check-12.svg';
-import * as check_18 from '../../icons/check-18.svg';
-import * as partlySelect_12 from '../../icons/partly-select-12.svg';
-import * as partlySelect_18 from '../../icons/partly-select-18.svg';
+import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
+import { withMods } from '@epam/uui';
+import { ReactComponent as Check_12 } from '../../icons/check-12.svg';
+import { ReactComponent as Check_18 } from '../../icons/check-18.svg';
+import { ReactComponent as PartlySelect_12 } from '../../icons/partly-select-12.svg';
+import { ReactComponent as PartlySelect_18 } from '../../icons/partly-select-18.svg';
 
 export interface CheckboxMods {
     size?: '12' | '18';
@@ -21,6 +21,6 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
 }
 
 export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, (props) => ({
-    icon: (props.size === '12') ? check_12 : check_18,
-    indeterminateIcon: (props.size === '12') ? partlySelect_12 : partlySelect_18,
+    icon: (props.size === '12') ? Check_12 : Check_18,
+    indeterminateIcon: (props.size === '12') ? PartlySelect_12 : PartlySelect_18,
 }));

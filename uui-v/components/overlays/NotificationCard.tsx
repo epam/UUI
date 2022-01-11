@@ -4,11 +4,11 @@ import { IconContainer } from '@epam/uui-components';
 import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts } from '@epam/uui';
 import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
-import * as successIcon from '../../icons/notification-check_circle-fill-24.svg';
-import * as warningIcon from '../../icons/notification-warning-fill-24.svg';
-import * as errorIcon from '../../icons/notification-error-fill-24.svg';
-import * as hintIcon from '../../icons/notification-help-fill-24.svg';
-import * as crossIcon from '../../icons/snackbar/cross.svg';
+import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
+import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
+import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
+import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
+import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import * as css from './NotificationCard.scss';
 import '../../assets/styles/variables/overlays/notificationCard.scss';
 
@@ -62,7 +62,7 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
                             }) }
                         </div> }
                     </div>
-                    { this.props.onClose && <IconButton icon={ crossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
+                    { this.props.onClose && <IconButton icon={ CrossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
                 </div>
             </div>
         );
@@ -70,13 +70,13 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
 }
 
 export const WarningNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ warningIcon } color='warning' { ...props } cx={ cx(props.cx) } />;
+    <NotificationCard icon={ WarningIcon } color='warning' { ...props } cx={ cx(props.cx) } />;
 export const SuccessNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ successIcon } color='success' { ...props } cx={ cx(props.cx) } />;
+    <NotificationCard icon={ SuccessIcon } color='success' { ...props } cx={ cx(props.cx) } />;
 export const HintNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ hintIcon } color='info' { ...props } cx={ cx(props.cx) } />;
+    <NotificationCard icon={ HintIcon } color='info' { ...props } cx={ cx(props.cx) } />;
 export const ErrorNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ errorIcon } color='error' { ...props } cx={ cx(props.cx) } />;
+    <NotificationCard icon={ ErrorIcon } color='error' { ...props } cx={ cx(props.cx) } />;
 
 export class ClearNotification extends React.Component<{}> {
     public static contextType = UuiContext;
