@@ -11,7 +11,6 @@ export interface TextMods extends TextSettings {
     size?: types.TextSize | '42';
     font?: types.FontStyle;
     color?: 'brand' | 'primary' | 'secondary' | 'disabled' | 'contrast';
-    additionalColor?: string;
 }
 
 function applyTextMods(mods: TextMods) {
@@ -28,6 +27,4 @@ function applyTextMods(mods: TextMods) {
     ].concat(textClasses);
 }
 
-export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods, props => (props.additionalColor && {
-    rawProps: { ...props.rawProps, style: { color: `var(--${props.additionalColor})` } },
-}));
+export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods);
