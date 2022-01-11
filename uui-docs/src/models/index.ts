@@ -34,6 +34,7 @@ export interface Person {
     primarySkillId?: string;
     primarySkill?: string;
     relatedNPR?: boolean;
+    salary?: string;
 }
 
 export interface PersonGroup {

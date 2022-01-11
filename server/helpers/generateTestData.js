@@ -1,6 +1,5 @@
-"use strict";
-var chance = require("chance"); // https://chancejs.com/
-const { getData } = require('./getData');
+const { Chance } = require("chance"); // https://chancejs.com/
+const { getData } = require("./getData");
 
 const cache = {};
 
@@ -11,30 +10,31 @@ const cached = (key, fn) => {
         }
 
         return cache[key];
-    }
-}
+    };
+};
 
-const getCities = cached('cities', async () => {
-    const cities = await getData('cities');
-    const countries = await getData('countries');
+const getCities = cached("cities", async () => {
+    const cities = await getData("cities");
+    const countries = await getData("countries");
     const countryById = Object.fromEntries(countries.map(c => [c.id, c]));
     cities.forEach(i => i.countryName = countryById[i.country].name);
     return cities;
 });
 
-const getLocationTree = cached('locations', async () => {
+const getLocationTree = cached("locations", async () => {
     const cities = await getCities();
-    const continents = await getData('continents');
-    const countries = await getData('countries');
+    const continents = await getData("continents");
+    const countries = await getData("countries");
 
-    let list = [];
-    list = list.concat(continents.map(c => ({ id: 'c-' + c.id, type: 'continent', name: c.name, parentId: null })));
-    list = list.concat(cities.map(c => ({ ...c, id: c.id, name: c.name, type: 'city', parentId: c.country })));
-    list = list.concat(countries.map(c => ({ id: c.id, name: c.name, type: 'country', parentId: 'c-' + c.continent })));
-    list.forEach(l => { l.__typename = "Location"; });
+    const list = []
+        .concat(continents.map(c => ({ id: `c-${c.id}`, type: "continent", name: c.name, parentId: null })))
+        .concat(cities.map(c => ({ ...c, id: c.id, name: c.name, type: "city", parentId: c.country })))
+        .concat(countries.map(c => ({ id: c.id, name: c.name, type: "country", parentId: `c-${c.continent}` })))
+        .forEach(l => { l.__typename = "Location"; });
 
     const byId = new Map(list.map(l => [l.id, l]));
     const byParentId = new Map();
+
     list.forEach(l => {
         if (byParentId.get(l.parentId) == null) {
             byParentId.set(l.parentId, []);
@@ -45,77 +45,73 @@ const getLocationTree = cached('locations', async () => {
     return { list, byId, byParentId };
 });
 
-const getPersons = cached('persons', async () => {
-
+const getPersons = cached("persons", async () => {
     const size = 10000;
-
     const cities = await getCities();
+    const c = new Chance(1);
 
-    var c = new chance.Chance(1);
-
-    var companies = [{
+    const companies = [{
         id: 1,
-        name: c.company()
+        name: c.company(),
     }];
 
     const jobTitles = jobTitlesWithFrequency.map(({ frequency, ...t }) => t);
     const jobTitlesFreq = jobTitlesWithFrequency.map(jt => jt.frequency);
-    const topCities = cities.filter(c => c.population > 400000);
+    const topCities = cities.filter(city => city.population > 400000);
     const statuses = profileStatuses;
-    const managers = c.unique(c.name, 30).map((i, index) => ({ 'id': index, 'name': i }));
-    const offices = c.unique(c.address, 30).map((i, index) => ({ 'id': index, 'name': i }));
+    const managers = c.unique(c.name, 30).map((i, index) => ({ id: index, name: i }));
+    const offices = c.unique(c.address, 30).map((i, index) => ({ id: index, name: i }));
+    const persons = [];
 
-    var persons = [];
-    for (var n = 0; n < size; n++) {
-        var id = n + 1;
-        var firstName = c.first();
-        var lastName = c.last();
-        var name_1 = firstName + ' ' + lastName;
-        var manager = c.pickone(managers);
-        var email = firstName + '_' + lastName + '@uui.com';
-        var department = c.pickone(departments);
-        var city = c.pickone(topCities);
-        var office = c.pickone(offices);
-        var profileStatus = c.weighted(profileStatuses, [1, 3, 5]);
-        var primarySkill = c.pickone(skills)
-
-        var jobTitle = (n <= 1)
+    for (let n = 0; n < size; n++) {
+        const id = n + 1;
+        const firstName = c.first();
+        const lastName = c.last();
+        const manager = c.pickone(managers);
+        const email = `${firstName}_${lastName}@uui.com`;
+        const department = c.pickone(departments);
+        const city = c.pickone(topCities);
+        const office = c.pickone(offices);
+        const profileStatus = c.weighted(profileStatuses, [1, 3, 5]);
+        const primarySkill = c.pickone(skills);
+        const jobTitle = (n <= 1)
             ? jobTitles[n] // CTO and CEO
             : c.weighted(jobTitles, jobTitlesFreq);
 
         persons.push({
-            id,
             avatarUrl: `https://avatars.dicebear.com/api/human/${c.guid()}.svg?background=%23EBEDF5&radius=50`,
             birthDate: c.birthday().toISOString(),
-            name: name_1,
-            firstName: firstName,
-            lastName: lastName,
-            uid: c.ssn({ dashes: false }),
-            relatedNPR: c.bool(),
-            employmentStatus: c.bool(),
-            managerId: manager.id,
-            managerName: manager.name,
-            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }).toISOString(),
-            email: email,
-            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }).toISOString(),
-            departmentId: department.id,
-            departmentName: department.name,
-            jobTitleId: jobTitle.id,
-            jobTitle: jobTitle.name,
-            titleLevel: c.character({ pool: 'AB' }) + '' + c.character({ pool: '1234' }),
-            productionCategory: c.bool(),
-            officeId: office.id,
-            officeAddress: office.name,
             cityId: city.id,
             cityName: city.name,
             countryId: city.countryId,
             countryName: city.countryName,
+            departmentId: department.id,
+            departmentName: department.name,
+            email,
+            employmentStatus: c.bool(),
+            firstName,
+            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }).toISOString(),
+            id,
+            jobTitle: jobTitle.name,
+            jobTitleId: jobTitle.id,
+            lastName,
             locationId: city.id,
             locationName: city.countryName + ", " + city.name,
-            profileStatusId: profileStatus.id,
-            profileStatus: profileStatus.name,
-            primarySkillId: primarySkill.id,
+            managerId: manager.id,
+            managerName: manager.name,
+            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }).toISOString(),
+            name: `${firstName} ${lastName}`,
+            officeAddress: office.name,
+            officeId: office.id,
             primarySkill: primarySkill.name,
+            primarySkillId: primarySkill.id,
+            productionCategory: c.bool(),
+            profileStatus: profileStatus.name,
+            profileStatusId: profileStatus.id,
+            relatedNPR: c.bool(),
+            salary: c.dollar(),
+            titleLevel: `${c.character({ pool: "AB" })}${c.character({ pool: "1234" })}`,
+            uid: c.ssn({ dashes: false }),
         });
     }
 
@@ -125,10 +121,10 @@ const getPersons = cached('persons', async () => {
 });
 
 module.exports = {
-    getPersons,
     getCities,
     getLocationTree,
-}
+    getPersons,
+};
 
 const profileStatuses = [
     { "id": 1, "name": "Red" },
@@ -152,7 +148,7 @@ const departments = [
     { "id": 6, "name": "Research and Development" },
     { "id": 3, "name": "Sales" },
     { "id": 15, "name": "Shipping and Receiving" },
-    { "id": 2, "name": "Tool Design" }
+    { "id": 2, "name": "Tool Design" },
 ];
 
 const jobTitlesWithFrequency = [
@@ -223,7 +219,7 @@ const jobTitlesWithFrequency = [
     { id: 65, name: "Vice President of Engineering", frequency: 1 },
     { id: 66, name: "Vice President of Production", frequency: 1 },
     { id: 67, name: "Vice President of Sales", frequency: 1 },
-]
+];
 
 const skills = [
     { name: ".NET", id: ".NET" },
@@ -326,4 +322,4 @@ const skills = [
     { name: "Writing Technical Documentation (English)", id: "Writing Technical Documentation (English)" },
     { name: "iOS Objective-C", id: "iOS Objective-C" },
     { name: "iOS Swift", id: "iOS Swift" },
-]
+];
