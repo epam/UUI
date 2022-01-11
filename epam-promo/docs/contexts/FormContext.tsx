@@ -14,6 +14,7 @@ interface FormContextState {
 
 export class FormContext extends React.Component<DemoComponentProps, FormContextState> {
     public static displayName = "Form";
+
     state = {
         textValue: '',
         isInvalid: false,
@@ -55,14 +56,14 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                     <FlexCell width='auto'>
                         <LabeledInput label='Is Invalid' labelPosition='left'>
                             <ControlWrapper size='36'>
-                                <Switch value={ this.state.isInvalid } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isInvalid: newVal}) } />
+                                <Switch value={ this.state.isInvalid } onValueChange={ newVal => this.setState({ ...this.state, isInvalid: newVal}) } />
                             </ControlWrapper>
                         </LabeledInput>
                     </FlexCell>
                     <FlexCell width='auto'>
                         <LabeledInput label='is Disabled' labelPosition='left'>
                             <ControlWrapper size='36'>
-                                <Switch value={ this.state.isDisabled } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isDisabled: newVal}) } />
+                                <Switch value={ this.state.isDisabled } onValueChange={ newVal => this.setState({ ...this.state, isDisabled: newVal}) } />
                             </ControlWrapper>
                         </LabeledInput>
                     </FlexCell>
@@ -112,7 +113,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                                 <CheckboxGroup
                                     isInvalid={ this.state.isInvalid }
                                     isDisabled={ this.state.isDisabled }
-                                    onValueChange={ (newValue: number[]) => this.setState({ checkboxGroupValue: newValue }) }
+                                    onValueChange={ newValue => this.setState({ checkboxGroupValue: newValue }) }
                                     items={ [
                                         { name: 'label', id: 1 },
                                         { name: 'label label', id: 2 },
@@ -131,7 +132,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                             isInvalid={ this.state.isInvalid }
                             isDisabled={ this.state.isDisabled }
                             label="Accept License Agreement"
-                            onValueChange={ (newValue: boolean) => this.setState({ acceptCheckboxValue: newValue }) }
+                            onValueChange={ newValue => this.setState({ acceptCheckboxValue: newValue }) }
                             value={ this.state.acceptCheckboxValue }
                         />
                     </ControlWrapper>

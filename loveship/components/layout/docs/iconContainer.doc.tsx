@@ -1,16 +1,16 @@
+import * as React from "react";
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ControlIconProps } from '@epam/uui-components';
-import { DefaultContext, FormContext, GridContext, onClickDoc, ResizableContext, iconDoc } from '../../../docs';
+import { DefaultContext, FormContext, GridContext, onClickDoc, iconDoc } from '../../../docs';
 import { IconContainer, IconContainerMods } from "../IconContainer";
 import { allEpamAdditionalColors, allEpamGrayscaleColors, allEpamPrimaryColors } from "../../types";
 import { colors } from "../../../helpers/colorMap";
-import React from "react";
 
-const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ name: 'IconContainer', component: IconContainer as any })
-    .implements([onClickDoc, iconDoc] as any)
+const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ name: 'IconContainer', component: IconContainer })
+    .implements([onClickDoc, iconDoc])
     .prop('color', {
         examples: [...allEpamPrimaryColors, ...allEpamAdditionalColors, ...allEpamGrayscaleColors],
-        renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
     .prop('size', { examples: [12, 18, 24, 30, 36, 42, 48, 60] })
     .prop('style', { examples: [

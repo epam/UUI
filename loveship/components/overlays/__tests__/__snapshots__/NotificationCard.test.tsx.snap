@@ -23,6 +23,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-fire typeError"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -65,6 +66,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sky typeHint"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -107,6 +109,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sun"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -149,6 +152,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 exports[`NotificationCard should be rendered correctly with icon 1`] = `
 <div
   className="notificationWrapper color-sun"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -191,6 +195,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-grass typeSuccess"
+  role="alert"
 >
   <div
     className="mainPath"
@@ -233,6 +238,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
   className="notificationWrapper color-sun typeWarning"
+  role="alert"
 >
   <div
     className="mainPath"

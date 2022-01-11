@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import {RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer} from '@epam/uui-components';
+import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as css from '../RangeDatePicker.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
@@ -23,7 +23,7 @@ const getRangeLength = (value: RangeDatePickerValue) => {
 };
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
-    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc] as any)
+    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc])
     .prop('value', { examples: [
             { name: '{ from: \'2017-01-22\', to: \'2017-01-28\' }', value: { from: '2017-01-22', to: '2017-01-28' } },
         ] })
@@ -31,7 +31,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         examples: [
             {
                 name: 'Custom placeholder',
-                value: (type: any) => type === 'from' ? 'Enter start day' : type === 'to' ? 'Enter end day' : null,
+                value: type => type === 'from' ? 'Enter start day' : type === 'to' ? 'Enter end day' : null,
             },
         ],
     })
@@ -40,20 +40,21 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         examples: [
             {
                 name: 'Filter before current day and after 2 months',
-                value: (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf() && day.valueOf() < dayjs().add(2, 'month').valueOf(),
+                value: day => day.valueOf() >= dayjs().subtract(1, 'day').valueOf() && day.valueOf() < dayjs().add(2, 'month').valueOf(),
             },
         ],
     })
     .prop('renderDay', { examples: ctx => [{
             name: 'Render custom day',
-            value: (day: any, onDayClick: (day: Dayjs) => void) => {
-                return <Day renderDayNumber={ getCustomDay }
-                            value={ day }
-                            onValueChange={ onDayClick }
-                            isSelected={ day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]') }
-                            filter={ ctx.getSelectedProps().filter }
-                />;
-            },
+            value: (day, onDayClick: (day: Dayjs) => void) => (
+                <Day
+                    renderDayNumber={ getCustomDay }
+                    value={ day }
+                    onValueChange={ onDayClick }
+                    isSelected={ day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]') }
+                    filter={ ctx.getSelectedProps().filter }
+                />
+            ),
         }] })
     .prop('presets', {
         examples: [
@@ -68,9 +69,9 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     lastMonth: null,
                     last3Days: {
                         name: 'Last 3 days (custom)',
-                        getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
-                        },
+                        getRange: () => ({
+                            from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11,
+                        }),
                     },
                 },
             },
@@ -80,7 +81,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         examples: [
             {
                 name: 'footer',
-                value: (value: RangeDatePickerValue) => <div className={ css.container }>
+                value: value => <div className={ css.container }>
                     <div>
                         <div className={ css.counter }>Days: { getRangeLength(value) }</div>
                     </div>
@@ -92,7 +93,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         ],
     })
     .prop('disableClear', { examples: [true], defaultValue: false})
-    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: day => false }] })
+    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
     .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
 
 export = RangeDatePickerDoc;

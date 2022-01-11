@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasIcon, ArrayDataSource, DataRowProps, Icon, cx } from '@epam/uui';
+import { IEditable, IHasIcon, ArrayDataSource, Icon, cx } from '@epam/uui';
 import * as css from './IconPicker.scss';
 import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '../../components';
 import { IconContainer } from '@epam/uui-components';
@@ -12,8 +12,12 @@ interface IconPickerProps extends IEditable<IHasIcon> {
     enableInfo?: boolean;
 }
 
-export class IconPicker extends React.Component<IconPickerProps, any> {
-    state: any = {
+interface IconPickerState {
+    iconId: string | null;
+}
+
+export class IconPicker extends React.Component<IconPickerProps, IconPickerState> {
+    state: IconPickerState = {
         iconId: null,
     };
 
@@ -74,19 +78,19 @@ export class IconPicker extends React.Component<IconPickerProps, any> {
                 <PickerInput<any, string>
                     selectionMode='single'
                     value={ this.state.iconId }
-                    onValueChange={ (id: string) => { this.props.onValueChange(icons[id].icon as any); this.setState({iconId: id}); } }
+                    onValueChange={ (id: string) => { this.props.onValueChange(icons[id].icon as IHasIcon); this.setState({iconId: id}); } }
                     dataSource={ this.dataSource }
                     searchPosition='body'
                     renderToggler={ props => <Button
                         { ...props }
                         placeholder={ this.props.value ? '' : 'Select icon' }
-                        icon={ this.props.value as any }
+                        icon={ this.props.value as Icon }
                         shape="square"
                         fill="none"
                         size='24'
                         onClear={ this.handleClear }
                     /> }
-                    renderRow={ (props: DataRowProps<any, string>) => <DataPickerRow key={ props.id } size='48' renderItem={ this.renderItem }  { ...props } /> }
+                    renderRow={ props => <DataPickerRow key={ props.id } size='48' renderItem={ this.renderItem }  { ...props } /> }
                     getRowOptions={ item => ({ isSelectable: item.parentId }) }
                 />
                 { this.props.enableInfo && this.renderInfo() }

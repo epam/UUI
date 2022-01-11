@@ -8,7 +8,7 @@ import { MainMenuButton } from './MainMenuButton';
 
 interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX {}
 
-class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps, {}> {
+class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps> {
     render() {
         return (
             <MainMenuButton
@@ -20,7 +20,7 @@ class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps
     }
 }
 
-export class MainMenuDropdown extends React.Component<MainMenuDropdownProps, {}> {
+export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {
         return (
             <Dropdown

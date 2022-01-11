@@ -6,7 +6,7 @@ import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
 
 const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
-    .implements([ColumnsHeaderRowDoc] as any)
+    .implements([ColumnsHeaderRowDoc])
     .prop('value', {
         examples: [
             { name: 'person', value: demoData.personDemoData[1] },

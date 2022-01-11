@@ -5,7 +5,7 @@ import { Text } from '../../typography';
 import { AlertProps, Alert } from '..';
 
 const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
-    .implements([iconWithInfoDoc, colorDoc] as any)
+    .implements([iconWithInfoDoc, colorDoc])
     .prop('children', {
         examples: [
             {

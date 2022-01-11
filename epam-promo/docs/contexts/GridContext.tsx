@@ -5,6 +5,7 @@ import * as css from './GridContext.scss';
 
 export class GridContext extends React.Component<DemoComponentProps, any> {
     public static displayName = "Grid";
+
     render() {
         const { DemoComponent, props } = this.props;
         return (

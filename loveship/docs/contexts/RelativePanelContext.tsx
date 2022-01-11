@@ -7,10 +7,14 @@ import {
 } from '../../components';
 import * as css from './RelativePanelContext.scss';
 
-export class RelativePanelContext extends React.Component<DemoComponentProps, any> {
+interface DemoComponentState {
+    activeContent: 'form' | 'text';
+}
+
+export class RelativePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Relative panel';
 
-    state = {
+    state: DemoComponentState = {
         activeContent: 'form',
     };
 
@@ -64,7 +68,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, an
                             { id: 'text', caption: 'text' },
                         ] }
                         value={ this.state.activeContent }
-                        onValueChange={ (newValue) => { this.setState({ activeContent: newValue }); } }
+                        onValueChange={ (newValue: DemoComponentState['activeContent']) => { this.setState({ activeContent: newValue }); } }
                     />
                 </FlexRow>
                 <Panel background='white'  cx={ css.demo }>

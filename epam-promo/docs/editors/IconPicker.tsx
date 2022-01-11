@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasIcon, Icon, cx, ArrayDataSource, DataRowProps } from '@epam/uui';
+import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import { Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip } from '../../components';
 import { SizeInfo } from '../editors';
@@ -76,7 +76,10 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                 <PickerInput<any, string>
                     selectionMode='single'
                     value={ this.state.iconId }
-                    onValueChange={ (id: string) => { this.props.onValueChange(icons[id].icon as any); this.setState({ iconId: id, iconName: icons[id].parentId }); } }
+                    onValueChange={ (id: string) => {
+                        this.props.onValueChange(icons[id].icon as IHasIcon);
+                        this.setState({ iconId: id, iconName: icons[id].parentId });
+                    } }
                     dataSource={ this.dataSource }
                     searchPosition='body'
                     renderToggler={ props => <Button
@@ -88,7 +91,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                         size='24'
                         onClear={ this.props.value && this.handleClear }
                     /> }
-                    renderRow={ (props: DataRowProps<any, string>) => <DataPickerRow { ...props } key={ props.id } size='48' renderItem={ this.renderItem }/> }
+                    renderRow={ props => <DataPickerRow { ...props } key={ props.id } size='48' renderItem={ this.renderItem } /> }
                     getRowOptions={ item => ({ isSelectable: item.parentId }) }
                 />
                 { this.props.enableInfo && this.renderInfo() }

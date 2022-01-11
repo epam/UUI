@@ -8,7 +8,12 @@ import { Dropdown } from '@epam/uui-components';
 import { ReactComponent as PencilIcon } from '../../components/icons/content-edit-18.svg';
 import { ReactComponent as TrashIcon } from '../../components/icons/action-delete-18.svg';
 
-export class DropdownMenuContext extends React.Component<DemoComponentProps, any> {
+interface DropdownComponentState {
+    checkboxValue: boolean;
+    searchValue: string;
+}
+
+export class DropdownMenuContext extends React.Component<DemoComponentProps, DropdownComponentState> {
     public static displayName = "DropdownMenu";
 
     state = {

@@ -5,7 +5,7 @@ import { DocumentsPage } from './documents';
 import { DemoPage } from './demo';
 import { SandboxPage } from './sandbox/SandboxPage';
 
-class App extends React.Component<any, any> {
+class App extends React.Component {
     render() {
         return (
             <>
