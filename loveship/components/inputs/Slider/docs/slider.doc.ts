@@ -4,7 +4,7 @@ import { Slider, SliderMods } from '../Slider';
 import { DefaultContext, FormContext, GridContext, ResizableContext, colorDoc, iEditable, isDisabledDoc } from '../../../../docs';
 
 const sliderDoc = new DocBuilder<SliderBaseProps<number> & SliderMods>({ name: 'Slider', component: Slider })
-    .implements([colorDoc, iEditable, isDisabledDoc] as any)
+    .implements([colorDoc, iEditable, isDisabledDoc])
     .prop('value', { examples: [10, 20, 50], isRequired: true })
     .prop('min', { examples: [{value: 0, isDefault: true}, 1, 50], isRequired: true })
     .prop('max', { examples: [100, 200, 300], isRequired: true })

@@ -5,7 +5,7 @@ import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, iHasPlaceholder, isIn
 import { DefaultContext, FormContext, TableContext, IHasEditModeDoc } from '../../../docs';
 
 const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextArea', component: TextArea })
-    .implements([iEditable, sizeDoc, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc] as any)
+    .implements([iEditable, sizeDoc, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc])
     .prop('value', { examples: [
             'Hello, World!',
             { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },

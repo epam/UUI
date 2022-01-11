@@ -54,7 +54,7 @@ const grayscaleColors = [
     { name: 'night900', hasVariable: true, hex: '#1D1E26', context: 'Text' },
 ];
 
-const additionalColors: any = {
+const additionalColors = {
     'red': [
         { hex: '#FFEADB', contrastText: false },
         { hex: '#FFD7BE', contrastText: false },
@@ -276,7 +276,7 @@ export class LoveshipColorsDoc extends React.Component {
                     { (Object.keys(additionalColors) as Array<AdditionalColorsTypes>).map((nameColor: AdditionalColorsTypes, index: number) => {
                         return (
                             <FlexCell key={ index } minWidth={ 80 } >
-                                { additionalColors[nameColor].map((color: any, index: number) => {
+                                { additionalColors[nameColor].map((color, index: number) => {
                                     return (
                                         <div key={ index } className={ cx(css.box, css.additionalColorBox) } style={ { 'backgroundColor': color.hex } } >
                                             <div className={ cx(css.hexText, color.contrastText && css.contrastText) } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) } >{ color.hex }</div>

@@ -5,7 +5,7 @@ export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLA
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
-export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps, {}> {
+export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 

@@ -21,7 +21,7 @@ export default function TableWithDnDExample() {
                 onDrop: data => {
                     const arrIndex = index - 1;
 
-                    let newOrder = data.position === 'top'
+                    const newOrder = data.position === 'top'
                         ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
                         : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
 

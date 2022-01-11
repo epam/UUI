@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { TooltipProps } from '@epam/uui-components';
 import { Button, Tooltip, TooltipMods } from '../../../components';
