@@ -2,9 +2,9 @@ import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { DataSourceState, useLens, IEditable, LazyDataSourceApi, useArrayDataSource, useLazyDataSource } from '@epam/uui';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 
 const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
     const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
@@ -55,7 +55,7 @@ export const PersonsTableDemo = () => {
 
     const dataSource = useLazyDataSource({
         api,
-        getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
+        getId: i => [i.__typename, i.id] as PersonTableRecordId,
         getChildCount: item =>
             item.__typename === 'PersonGroup'
             ? item.count
