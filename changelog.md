@@ -1,3 +1,18 @@
+# 4.5.1 - 12.01.2021
+
+**What's New**
+* [LazyDataSource]: add logic for check/uncheck parents if all/no siblings checked in cascadeSelection mode
+* [NotificationCard]: Added rawProps
+
+* 
+* **What’s Fixed**
+* [DataTable]: Fix styles for loveship skin, fix columns layout
+* [PickerInput]: fix picker body closing on mobile after opening keyboard
+* [PickerInput]: Fix placeholder ending for single selection mode
+* [ContextProvider]: revert history in ContextProvider
+* [PickerToggler]: don't crash when onClick props is not passed
+
+
 # 4.5.0 - 23.12.2021
 
 **What's New**
