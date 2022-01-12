@@ -18,6 +18,7 @@ export default function LazyTreePicker() {
                 dataSource={ dataSource }
                 value={ value }
                 onValueChange={ onValueChange }
+                cascadeSelection={ true }
                 entityName='location'
                 selectionMode='multi'
                 valueType='id'
