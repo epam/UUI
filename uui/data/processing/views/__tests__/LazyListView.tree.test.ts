@@ -415,6 +415,8 @@ describe('LazyListView', () => {
         expect(row120.id).toBe(120);
         row120.onCheck(row120);
 
+        await delay();
+
         let row300 = view.getVisibleRows()[6];
         expect(row300.id).toBe(300);
         row300.onCheck(row300);
@@ -702,5 +704,69 @@ describe('LazyListView', () => {
             { id: 400 },
             { id: 500 },
         ].map(r => expect.objectContaining(r)));
+    });
+
+    it('should check/uncheck parents if all/no siblings checked', async () => {
+        let ds = treeDataSource;
+        value.visibleCount = 10;
+        let view: LazyListView<TestItem, number> = null;
+
+        let onValueChanged = (newValue: DataSourceState) => {
+            value = newValue;
+            view = getView();
+        };
+
+        const getView = () => ds.getView(
+            value,
+            onValueChanged,
+            {
+                getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: i => false,
+                cascadeSelection: true,
+            },
+        );
+
+        view = getView();
+        view.getVisibleRows();
+        await delay();
+
+        let row121 = view.getVisibleRows()[3];
+        row121.onCheck(row121);
+        await delay();
+
+        let row122 = view.getVisibleRows()[4];
+        row122.onCheck(row122);
+        await delay();
+
+        expectViewToLookLike(view, [
+            { id: 100, isChildrenChecked: true },
+            { id: 110 },
+            { id: 120, isChecked: true , isChildrenChecked: true },
+            { id: 121, isChecked: true },
+            { id: 122, isChecked: true  },
+            { id: 200 },
+            { id: 300, isChildrenChecked: false },
+            { id: 310, isChecked: false  },
+            { id: 320, isChecked: false  },
+            { id: 330 },
+        ]);
+
+        row121 = view.getVisibleRows()[3];
+        row121.onCheck(row121);
+        await delay();
+
+        expectViewToLookLike(view, [
+            { id: 100, isChildrenChecked: true },
+            { id: 110 },
+            { id: 120, isChecked: false , isChildrenChecked: true },
+            { id: 121, isChecked: false },
+            { id: 122, isChecked: true  },
+            { id: 200 },
+            { id: 300, isChildrenChecked: false },
+            { id: 310, isChecked: false  },
+            { id: 320, isChecked: false  },
+            { id: 330 },
+        ]);
+
     });
 });

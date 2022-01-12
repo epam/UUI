@@ -208,7 +208,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         return {
             id,
-            rowKey: JSON.stringify(id),
+            rowKey: this.idToKey(id),
             index,
             isLoading: true,
             depth: parents ? parents.length : 0,
