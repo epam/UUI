@@ -27,7 +27,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
             const idx = this.props.columns?.indexOf(column) || 0;
             return cells.concat(this.props.renderCell({
                 ...column,
-                minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width)
+                minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width),
             }, idx));
         }, []);
     }
@@ -38,7 +38,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
 
     wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
         <div
-            style={{ flex: `0 0 ${this.getSectionWidth(cells)}px`, maxWidth: `${this.getSectionWidth(cells)}px` }}
+            style={ { flex: `0 0 ${this.getSectionWidth(cells)}px`, maxWidth: `${this.getSectionWidth(cells)}px` } }
             className={ cx({
                 [css.fixedColumnsSectionLeft]: direction === 'left',
                 [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
