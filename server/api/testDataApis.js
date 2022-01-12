@@ -56,7 +56,7 @@ function group(request, allItems, typeName) {
     let groups = [];
     const groupBy = filter.groupBy;
     const groupIdFieldName = `${groupBy}Id`;
-    const grouped = groupBy(items, groupIdFieldName);
+    const grouped = _.groupBy(items, groupIdFieldName);
 
     Object.keys(grouped).forEach(groupIdStr => {
         const groupId = groupIdStr === "undefined" ? 0 : +groupIdStr; // null-values are grouped under groupId = 0
@@ -104,6 +104,8 @@ router.post("/schedules", async (req, res) => {
 router.post("/persons", async (req, res) => {
     const data = await helpers.getPersons();
     const result = filterAndSort(req.body, data.persons, "Person");
+    const total = data.persons.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
+    result.total = total;
     res.json(result);
 });
 
