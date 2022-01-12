@@ -109,7 +109,7 @@ const getPersons = cached("persons", async () => {
             profileStatus: profileStatus.name,
             profileStatusId: profileStatus.id,
             relatedNPR: c.bool(),
-            salary: c.dollar(),
+            salary: c.dollar({ max: 700 }),
             titleLevel: `${c.character({ pool: "AB" })}${c.character({ pool: "1234" })}`,
             uid: c.ssn({ dashes: false }),
         });
