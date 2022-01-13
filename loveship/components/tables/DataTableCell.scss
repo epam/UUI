@@ -3,6 +3,7 @@
 .cell {
     position: relative;
     box-sizing: border-box;
+    width: 0;
 
     &.wrapper {
         display: flex;

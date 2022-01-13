@@ -36,7 +36,7 @@ describe('IEditableDebouncer', () => {
                     lastRenderProps = props;
                     return null;
                 } }
-                debounceDelay={ 5 }
+                debounceDelay={ 100 }
             />,
         );
 
@@ -54,7 +54,7 @@ describe('IEditableDebouncer', () => {
             expect(lastRenderProps.value).toBe(2);
             expect(outerOnValueChange).toBeCalledWith(2);
             done();
-        }, 10);
+        }, 1000);
     });
 
     it('should change inner value immediately if outer value is changed outside', async () => {
