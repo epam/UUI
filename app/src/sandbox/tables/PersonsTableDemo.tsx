@@ -153,7 +153,12 @@ export const PersonsTableDemo = () => {
                     <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
                 </FlexCell>
             </FlexRow>
-            <PersonsTable summary={ summary } { ...useLens(editable, b => b) } view={ personsDataView } />
+            <PersonsTable
+                showColumnsConfig
+                summary={ summary }
+                { ...useLens(editable, b => b) }
+                view={ personsDataView }
+            />
         </div>
     );
 };

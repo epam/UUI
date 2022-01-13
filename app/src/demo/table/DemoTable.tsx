@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTable.scss";
-import { DataRowProps, DataRowOptions, cx, useLazyDataSource } from "@epam/uui";
+import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
 import { FlexRow, DataTable, DataTableRow } from "@epam/promo";
 
-import { svc } from "../../services";
+import type { TApi } from "../../data";
 import { getFilters, api } from "./data";
 import { getColumns } from "./columns";
-import { ITablePreset, PersonTableRecord, PersonTableRecordId } from "./types";
+import { ITablePreset, PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
 import { useTableState } from "./hooks";
 import { FilterPanel } from "./FilterPanel";
 import { InfoSidebarPanel } from "./InfoSidebarPanel";
@@ -16,6 +16,7 @@ import { SlidingPanel } from "./SlidingPanel";
 import { FilterPanelOpener } from "./FilterPanelOpener";
 
 export const DemoTable: React.FC = () => {
+    const svc = useUuiContext<TApi, UuiContexts>();
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
     const closeInfoPanel = useCallback(() => setIsInfoPanelOpened(false), []);
@@ -38,9 +39,9 @@ export const DemoTable: React.FC = () => {
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const dataSource = useLazyDataSource({
+    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api,
-        getId: i => [i.__typename, i.id] as PersonTableRecordId,
+        getId: i => [i.__typename, i.id],
         getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, []);
 
@@ -94,9 +95,10 @@ export const DemoTable: React.FC = () => {
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
-                    showColumnsConfig
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.onTableStateChange }
+                    allowColumnsReordering
+                    showColumnsConfig
                     allowColumnsResizing
                     { ...personsDataView.getListProps() }
                 />

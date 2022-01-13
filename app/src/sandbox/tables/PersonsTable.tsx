@@ -1,36 +1,54 @@
 import * as React from 'react';
-import { VirtualList, DataTableHeaderRow, DataTableRow } from '@epam/loveship';
+import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows } from '@epam/uui';
-import { VirtualListRenderRowsParams } from '@epam/uui-components';
+import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState } from '@epam/uui';
 import { getColumns } from './columns';
+import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
+import type{ TApi } from '../../data';
 import * as css from './PersonsTable.scss';
 
-export interface PersonsTableProps extends IEditable<DataSourceState> {
+export interface PersonsTableProps extends IEditable<DataTableState> {
     view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
     summary: PersonsSummary;
+    showColumnsConfig: boolean;
 }
 
 export const PersonsTable = (props: PersonsTableProps) => {
+    const { uuiModals } = useUuiContext<TApi, UuiContexts>();
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+    const { columns, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : groupColumns;
-        return <DataTableRow key={ String(props.id) } { ...props } columns={ columns } />;
+        const cols = (props.isLoading || props.value?.__typename === 'Person') ? columns : groupColumns;
+        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
     };
 
     const getRows = () => {
         return props.view.getVisibleRows().map(row => renderRow({ ...row, columns: personColumns }));
     };
 
+    const onConfigurationButtonClick = () => {
+        uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ personColumns }
+                columnsConfig={ config }
+                defaultConfig={ defaultConfig }
+            />
+        ))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
+            .catch(() => null);
+    };
+
     const renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
-                    columns={ personColumns }
+                    columns={ columns }
                     textCase='upper'
+                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                     selectAll={ props.view.selectAll }
                     allowColumnsReordering
                     allowColumnsResizing
