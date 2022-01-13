@@ -59,6 +59,12 @@ export const PersonsTableDemo = () => {
             const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
             const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
 
+            const updateSummary = (response: PersonsApiResponse) => {
+                const { summary, totalCount } = response;
+                const totalSalary = formatCurrency(Number(summary.totalSalary));
+                setSummary({ totalCount, totalSalary });
+            };
+
             const getPersons = (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
                 if (groupBy && !ctx.parent) {
                     return svc.api.demo.personGroups({
@@ -68,16 +74,12 @@ export const PersonsTableDemo = () => {
                         itemsRequest: { filter, search: rq.search },
                         ids,
                     } as any).then(res => {
-                        const { summary, totalCount } = res as PersonsApiResponse;
-                        const totalSalary = formatCurrency(Number(summary.totalSalary));
-                        setSummary({ totalCount, totalSalary });
+                        updateSummary(res as PersonsApiResponse);
                         return res;
                     });
                 } else {
                     return svc.api.demo.persons(rq).then(res => {
-                        const { summary, totalCount } = res as PersonsApiResponse;
-                        const totalSalary = formatCurrency(Number(summary.totalSalary));
-                        setSummary({ totalCount, totalSalary });
+                        updateSummary(res as PersonsApiResponse);
                         return res;
                     });
                 }

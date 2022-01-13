@@ -12,7 +12,10 @@
     bottom: 0;
     min-width: min-content;
     z-index: 3;
-    background: $night50 !important;
+
+    & > * {
+        background-color: $night50 !important;
+    }
 }
 
 .listContainer {
