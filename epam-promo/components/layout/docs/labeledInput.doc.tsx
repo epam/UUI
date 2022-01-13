@@ -6,7 +6,7 @@ import { DefaultContext, FormContext } from '../../../docs';
 import { sizeDoc, isInvalidDoc, iHasLabelDoc } from '../../../docs';
 
 const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ name: 'LabeledInput', component: LabeledInput })
-    .implements([isInvalidDoc, iHasLabelDoc, sizeDoc] as any)
+    .implements([isInvalidDoc, iHasLabelDoc, sizeDoc])
     .prop('labelPosition', { examples: [{ value: 'top', isDefault: true }, 'left'] })
     .prop('children', { examples: [
             { name: "TextInput 48", value: <TextInput value='text' size='48' onValueChange={ null } />, isDefault: true },

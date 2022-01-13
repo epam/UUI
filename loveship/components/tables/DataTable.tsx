@@ -50,7 +50,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
-                columns={ columns }
+                columns={ props.columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }
             />

@@ -5,7 +5,7 @@ import { Accordion, AccordionMods, Button, FlexRow, FlexSpacer, Text, RichTextVi
 import { ResizableContext } from '../../../docs';
 
 const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Accordion', component: Accordion })
-    .implements([isDisabledDoc] as any)
+    .implements([isDisabledDoc])
     .prop('title', { examples: [{ value: 'Accordion title', isDefault: true }, 'Additional info'] })
     .prop('children', { examples: [
         {
@@ -57,8 +57,8 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                 </Text>
                 <FlexRow>
                     <FlexSpacer/>
-                    <Button fill='white' color='night500' caption='Cancel' onClick={ () => {} }/>
-                    <Button color='grass' caption='Accept' onClick={ () => {} }/>
+                    <Button fill='white' color='night500' caption='Cancel' onClick={ () => {} } />
+                    <Button color='grass' caption='Accept' onClick={ () => {} } />
                 </FlexRow>
             </React.Fragment>,
         }] })

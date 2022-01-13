@@ -1,5 +1,4 @@
-import { TimelineTransform } from '@epam/uui-timeline/TimelineTransform';
-import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline/BaseTimelineCanvasComponent';
+import { BaseTimelineCanvasComponentProps } from '@epam/uui-timeline/BaseTimelineCanvasComponent';
 import * as React from 'react';
 import * as styles from './ModuleItems.scss';
 
@@ -16,7 +15,7 @@ export interface ModuleItemsProps extends BaseTimelineCanvasComponentProps {
     items: Item[];
 }
 
-export class ModuleItems extends React.Component<ModuleItemsProps, {}> {
+export class ModuleItems extends React.Component<ModuleItemsProps> {
 
     componentDidMount() {
         this.props.timelineController.subscribe(this.handleForceUpdate);

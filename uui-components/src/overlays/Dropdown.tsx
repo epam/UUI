@@ -106,8 +106,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return this.props.value !== undefined ? this.props.value : this.state.opened;
     }
 
-    private handleTargetClick = (e: Event) => {
-        if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e as any))) {
+    private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
+        if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
             const currentValue = this.props.value !== undefined ? this.props.value : this.state.opened;
             const newValue = (this.props.closeOnTargetClick === false) ? true : !currentValue;
             if (currentValue !== newValue) {

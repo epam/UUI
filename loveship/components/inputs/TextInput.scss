@@ -1,12 +1,12 @@
 @use '../../assets/styles/scss/index'  as *;
 
 .root {
-    color: $night700;
+    color: $night800;
     fill: $night600;
     box-sizing: border-box;
 
     :global(.uui-input) {
-        color: $night700;
+        color: $night800;
         font-family: $font-sans;
 
         &::placeholder {

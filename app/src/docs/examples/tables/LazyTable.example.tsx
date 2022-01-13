@@ -94,7 +94,7 @@ export default function CitiesTable(props: unknown) {
 
     // Create DataSource instance for your table.
     // For more details go to the DataSources example
-    const citiesDS = useLazyDataSource({ api: svc.api.demo.cities }, []);
+    const citiesDS = useLazyDataSource<City, string, unknown>({ api: svc.api.demo.cities }, []);
 
     // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
     // Pass this.handleTableStateChange function which you provided to getView as a second argument
@@ -104,7 +104,7 @@ export default function CitiesTable(props: unknown) {
 
     // Create View according to your tableState and options
     const view = citiesDS.useView(tableState, setTableState, {
-        getRowOptions: useCallback((item: City) => ({
+        getRowOptions: useCallback(item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }), []),
     });

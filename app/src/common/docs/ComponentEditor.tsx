@@ -87,7 +87,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                 // tslint:disable-next-line:no-console
                 console.log(`${name} (`, args, ')');
             };
-            (callback as any).displayName = `callback`;
+            callback.displayName = `callback`;
             return callback;
         },
         getChangeHandler: (name) => {
@@ -149,12 +149,12 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     renderPropEditor(prop: PropDoc<any, any>) {
         const onExampleClick = (newValue: string) => this.setState({ ...this.state, selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } });
 
-        const getPropsDataSource = (items: any[]) => new ArrayDataSource({items: items, getId: i => i.value});
+        const getPropsDataSource = (items: any[] | any) => new ArrayDataSource({ items, getId: i => i.value });
 
         if (prop.renderEditor) {
             return prop.renderEditor(
                 {
-                    value: this.state.selectedProps && this.state.selectedProps[prop.name as any],
+                    value: this.state.selectedProps && this.state.selectedProps[prop.name],
                     onValueChange: onExampleClick,
                 },
                 this.propExamples[prop.name] && this.propExamples[prop.name].map(ex => ex.value),
@@ -167,10 +167,10 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         <FlexCell minWidth={ 150 } >
                             <PickerInput
                                 size='24'
-                                dataSource={ getPropsDataSource(prop.examples as any) }
+                                dataSource={ getPropsDataSource(prop.examples) }
                                 selectionMode='single'
                                 value={ this.state.selectedProps[prop.name] }
-                                onValueChange={ (newValue: any) => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
+                                onValueChange={ newValue => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
                                 valueType='id'
                                 entityName={ prop.name }
                                 placeholder={ this.state.selectedProps[prop.name] && this.state.selectedProps[prop.name] }
@@ -200,7 +200,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 id: example.value,
                             })) }
                             onValueChange={ onExampleClick }
-                            value={ this.state.selectedProps[prop.name as any] }
+                            value={ this.state.selectedProps[prop.name] }
                             size="24"
                         />
                         { prop.description &&
@@ -216,7 +216,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     <React.Fragment>
                         <RadioInput
                             value={ !!this.state.selectedProps[prop.name] }
-                            onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].value as any) }
+                            onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].value) }
                             size='18'
                             label={ this.propExamples[prop.name][0].name }
                         />
