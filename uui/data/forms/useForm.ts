@@ -106,18 +106,18 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         return uuiValidate(valueToValidate, metadata);
     };
 
-    const handleSave = useCallback(() => {
+    const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
         const validationState = handleValidate();
         setFormState({ ...formState.current, validationState });
         if (!validationState.isInvalid) {
             setFormState({ ...formState.current, isInProgress: true });
             return props.onSave(formState.current.form)
-                .then(handleSaveResponse)
+                .then((response) => handleSaveResponse(response, isSavedBeforeLeave))
                 .catch(err => props.onError?.(err));
         } else return Promise.reject();
     }, [formState.current.validationState, formState.current.form, formState.current.isInProgress, props.onSave, props.onError]);
 
-    const handleSaveResponse = (response: FormSaveResponse<T> | void) => {
+    const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newState: UseFormState<T> = {
             ...formState.current,
             isChanged: false,
@@ -130,7 +130,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         resetForm(newState);
         removeUnsavedChanges();
         if (!props.onSuccess || !response) return;
-        props.onSuccess(response.form);
+        props.onSuccess(response.form, isSavedBeforeLeave);
     };
 
     const handleUndo = useCallback(() => {
