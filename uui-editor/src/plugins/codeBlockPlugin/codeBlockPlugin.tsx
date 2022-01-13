@@ -1,7 +1,7 @@
 import React from "react";
 import { RenderMarkProps } from "slate-react";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
-import editorCodeIcon from "../../icons/editor-code.svg";
+import { ReactComponent as editorCodeIcon } from "../../icons/editor-code.svg";
 
 export const codeBlockPlugin = () => {
     const renderMark = (props: RenderMarkProps) => {
