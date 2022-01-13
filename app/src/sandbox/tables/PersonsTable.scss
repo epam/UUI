@@ -1,8 +1,18 @@
+@import '../../../../loveship/assets/styles/scss/loveship-colors.scss';
+
 .sticky-header {
     position: sticky;
     top: 0;
     min-width: min-content;
     z-index: 3;
+}
+
+.sticky-footer {
+    position: sticky;
+    bottom: 0;
+    min-width: min-content;
+    z-index: 3;
+    background: $night50 !important;
 }
 
 .listContainer {
