@@ -201,14 +201,14 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return rowProps;
     }
 
-    protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<any, any> {
+    protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<TItem, TId> {
         const rowOptions = this.props.rowOptions;
 
         const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value })) : [];
 
         return {
             id,
-            rowKey: JSON.stringify(id),
+            rowKey: this.idToKey(id),
             index,
             isLoading: true,
             depth: parents ? parents.length : 0,

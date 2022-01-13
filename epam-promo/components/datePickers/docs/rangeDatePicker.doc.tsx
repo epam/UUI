@@ -1,20 +1,20 @@
-import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as React from 'react';
+import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as css from '../RangeDatePicker.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc } from '../../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
 import dayjs, { Dayjs } from "dayjs";
-import {RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer} from '@epam/uui-components';
+import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { Button, Text } from '../..';
-import * as point from "../../../icons/radio-point.svg";
+import { ReactComponent as Point } from "../../../icons/radio-point.svg";
 import isBetween from 'dayjs/plugin/isBetween';
 dayjs.extend(isBetween);
 
 const getCustomDay = (day: Dayjs) => {
     return <>
         { day.format('D') }
-        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px' } }  icon={ point } />
+        <IconContainer style={ { fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px' } }  icon={ Point } />
     </>;
 };
 
@@ -25,7 +25,7 @@ const getRangeLength = (value: RangeDatePickerValue) => {
 };
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
-    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc] as any)
+    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
     .prop('value', { examples: [
             { name: '{ from: \'2017-01-22\', to: \'2017-01-28\' }', value: { from: '2017-01-22', to: '2017-01-28' } },
         ] })
@@ -33,7 +33,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         examples: [
             {
                 name: 'Custom placeholder',
-                value: (type: any) => type === 'from' ? 'Enter start day' : type === 'to' ? 'Enter end day' : null,
+                value: type => type === 'from' ? 'Enter start day' : type === 'to' ? 'Enter end day' : null,
             },
         ],
     })
@@ -48,12 +48,12 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('renderDay', { examples: ctx => [{
             name: 'Render custom day',
-            value: (day: Dayjs, onDayClick: (day: Dayjs) => void) => {
+            value: (day, onDayClick: (day: Dayjs) => void) => {
                 return <Day renderDayNumber={ getCustomDay }
-                            value={ day }
-                            onValueChange={ onDayClick }
-                            isSelected={ day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]') }
-                            filter={ ctx.getSelectedProps().filter }
+                    value={ day }
+                    onValueChange={ onDayClick }
+                    isSelected={ day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]') }
+                    filter={ ctx.getSelectedProps().filter }
                 />;
             },
         }] })
@@ -82,7 +82,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         examples: [
             {
                 name: 'footer',
-                value: (value: RangeDatePickerValue) => <div className={ css.container }>
+                value: value => <div className={ css.container }>
                     <div>
                         <Text color='gray60' size='24' >Days: { getRangeLength(value) }</Text>
                     </div>
@@ -94,7 +94,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
         ],
     })
     .prop('disableClear', { examples: [true], defaultValue: false})
-    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: day => false }] })
+    .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = RangeDatePickerDoc;

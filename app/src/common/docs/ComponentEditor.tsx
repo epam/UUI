@@ -3,14 +3,14 @@ import * as css from './ComponentEditor.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
 import { ArrayDataSource, INotification } from "@epam/uui";
-import * as resetIcon from '../../icons/reset-icon.svg';
-import * as copyIcon from '../../icons/icon-copy.svg';
-import * as infoIcon from '@epam/assets/icons/common/notification-help-fill-18.svg';
+import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
+import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
+import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { svc } from '../../services';
 import { IEditable } from '@epam/uui';
 import { IDemoApi } from '@epam/uui-docs';
 import { copyTextToClipboard } from '../../helpers';
-import * as notificationIcon from '../../icons/notification-check-fill-24.svg';
+import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 
 declare var require: any;
 
@@ -87,7 +87,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                 // tslint:disable-next-line:no-console
                 console.log(`${name} (`, args, ')');
             };
-            (callback as any).displayName = `callback`;
+            callback.displayName = `callback`;
             return callback;
         },
         getChangeHandler: (name) => {
@@ -149,12 +149,12 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     renderPropEditor(prop: PropDoc<any, any>) {
         const onExampleClick = (newValue: string) => this.setState({ ...this.state, selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } });
 
-        const getPropsDataSource = (items: any[]) => new ArrayDataSource({items: items, getId: i => i.value});
+        const getPropsDataSource = (items: any[] | any) => new ArrayDataSource({ items, getId: i => i.value });
 
         if (prop.renderEditor) {
             return prop.renderEditor(
                 {
-                    value: this.state.selectedProps && this.state.selectedProps[prop.name as any],
+                    value: this.state.selectedProps && this.state.selectedProps[prop.name],
                     onValueChange: onExampleClick,
                 },
                 this.propExamples[prop.name] && this.propExamples[prop.name].map(ex => ex.value),
@@ -167,10 +167,10 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         <FlexCell minWidth={ 150 } >
                             <PickerInput
                                 size='24'
-                                dataSource={ getPropsDataSource(prop.examples as any) }
+                                dataSource={ getPropsDataSource(prop.examples) }
                                 selectionMode='single'
                                 value={ this.state.selectedProps[prop.name] }
-                                onValueChange={ (newValue: any) => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
+                                onValueChange={ newValue => this.setState({ selectedProps: { ...this.state.selectedProps, [prop.name]: newValue } }) }
                                 valueType='id'
                                 entityName={ prop.name }
                                 placeholder={ this.state.selectedProps[prop.name] && this.state.selectedProps[prop.name] }
@@ -186,7 +186,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         </FlexCell>
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ infoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='gray60'/>
                         </Tooltip>
                         }
                     </>
@@ -200,12 +200,12 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 id: example.value,
                             })) }
                             onValueChange={ onExampleClick }
-                            value={ this.state.selectedProps[prop.name as any] }
+                            value={ this.state.selectedProps[prop.name] }
                             size="24"
                         />
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ infoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='gray60'/>
                         </Tooltip>
                         }
                     </React.Fragment>
@@ -216,13 +216,13 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     <React.Fragment>
                         <RadioInput
                             value={ !!this.state.selectedProps[prop.name] }
-                            onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].value as any) }
+                            onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].value) }
                             size='18'
                             label={ this.propExamples[prop.name][0].name }
                         />
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ infoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='gray60'/>
                         </Tooltip>
                         }
                     </React.Fragment>
@@ -332,7 +332,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
 
     showNotification() {
         svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard { ...props } icon={ notificationIcon } color='gray60' onClose={ null } >
+            <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
                 <Text size='36' font='sans'>Code was copied to the clipboard</Text>
             </NotificationCard>, { duration: 3 });
     }
@@ -354,7 +354,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 <Tooltip placement='auto' content={ Object.keys(this.state.selectedProps).length > 0 && 'Reset setting' } >
                                     <IconButton
                                         isDisabled={ !(Object.keys(this.state.selectedProps).length > 0) }
-                                        icon={ resetIcon }
+                                        icon={ ResetIcon }
                                         onClick={ () => this.setState({
                                             ...this.state,
                                             selectedProps: { ...this.initialProps },
@@ -378,7 +378,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 <Switch label='View Code' value={ this.state.showCode } onValueChange={ () => this.setState({ showCode: !this.state.showCode }) } />
                                 <FlexSpacer/>
                                 <Tooltip content='Copy code' placement='top' >
-                                    <IconButton icon={ copyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
+                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
                                 </Tooltip>
                             </FlexRow>
                             { this.state.showCode && <FlexRow key='code' size='36' padding='12'>{ this.renderCodeBlock() }</FlexRow> }

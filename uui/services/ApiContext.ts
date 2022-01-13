@@ -2,7 +2,7 @@ import { BaseContext } from './BaseContext';
 import { ErrorContext } from './ErrorContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
-import { getCookie } from '../helpers';
+import { getCookie, isClientSide } from '../helpers';
 
 interface ApiCall extends ApiCallInfo {
     resolve: (value?: any) => any;
@@ -29,6 +29,8 @@ export interface FileUploadResponse {
     extension?: string;
 }
 
+export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
+
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 
 const reloginPath = '/auth/login';
@@ -44,7 +46,10 @@ export class ApiContext extends BaseContext implements IApiContext {
         super();
         this.errorCtx = errorCtx;
         this.analyticsCtx = analyticsCtx;
+        isClientSide && this.runListeners();
+    }
 
+    private runListeners() {
         // If this window is opened by another app in another window to re-login, tell it that Auth was passed ok
         window.opener && window.location.pathname === reloginPath && window.opener.postMessage("authSuccess", "*");
 
@@ -101,7 +106,7 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     private startCall(call: ApiCall) {
         const headers = new Headers();
-        const csrfCookie = getCookie('CSRF-TOKEN');
+        const csrfCookie = isClientSide && getCookie('CSRF-TOKEN');
         headers.append('Content-Type', 'application/json');
         if (csrfCookie) {
             headers.append('X-CSRF-Token', csrfCookie);
@@ -234,7 +239,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         }
     }
 
-    public processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any> {
+    public processRequest: IProcessRequest = (url, method, data, options) => {
         let name = url;
         if (data && data.operationName) {
             name += ' ' + data.operationName;

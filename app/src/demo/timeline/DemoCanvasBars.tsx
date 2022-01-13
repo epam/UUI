@@ -6,11 +6,11 @@ export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
     items: Item[];
 }
 
-export class DemoCanvasBars extends BaseTimelineCanvasComponent<DemoCanvasBarsProps, {}> {
+export class DemoCanvasBars extends BaseTimelineCanvasComponent<DemoCanvasBarsProps> {
     canvasHeight = 30;
 
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
-        ctx.clearRect(0, 0, window.outerWidth, this.canvasHeight);       
+        ctx.clearRect(0, 0, window.outerWidth, this.canvasHeight);
 
         const transformedItems = this.props.items
             .map(i => ({

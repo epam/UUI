@@ -2,7 +2,7 @@ import * as css from './RadioInput.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { RadioInput as uuiRadioInput, RadioInputProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui';
-import * as radioPoint from '../icons/radio-point.svg';
+import { ReactComponent as RadioPoint } from '../icons/radio-point.svg';
 import * as types from '../types';
 
 export interface RadioInputMods {
@@ -20,4 +20,4 @@ function applyRadioInputMods(mods: RadioInputMods & RadioInputProps) {
     ];
 }
 
-export const RadioInput = withMods<RadioInputProps, RadioInputMods>(uuiRadioInput, applyRadioInputMods, () => ({ icon: radioPoint }));
+export const RadioInput = withMods<RadioInputProps, RadioInputMods>(uuiRadioInput, applyRadioInputMods, () => ({ icon: RadioPoint }));

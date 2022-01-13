@@ -4,7 +4,7 @@ import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-component
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
 import * as css from './DataTable.scss';
-import * as searchIcon from '../icons/search-24.svg';
+import { ReactComponent as SearchIcon } from '../icons/search-24.svg';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -13,7 +13,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-};
+}
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -32,7 +32,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const renderNoResultsBlock = () => {
         const renderNoResults = () => (
             <div className={ css.noResults }>
-                <IconButton icon={ searchIcon } cx={ css.noResultsIcon } />
+                <IconButton icon={ SearchIcon } cx={ css.noResultsIcon } />
                 <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
                 <Text fontSize='14'>We can't find any item matching your request</Text>
             </div>
@@ -50,7 +50,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
-                columns={ columns }
+                columns={ props.columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }
             />
@@ -101,12 +101,12 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             shadow='dark'
             renderRows={ renderRowsContainer }
             cx={ cx(css.table, css.shadowDark) }
-            rawProps={{
+            rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,
                 'aria-rowcount': props.rowsCount,
-            }}
+            } }
         />
     );
-};
+}
 

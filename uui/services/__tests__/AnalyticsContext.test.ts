@@ -53,7 +53,6 @@ describe("AnalyticsContext", () => {
         const router = new RouterMock();
         const context = new AnalyticsContext({
             router,
-            gaCode: "asd",
         } as any);
         const sendEventSpy = jest.spyOn(context, "sendEvent");
 

@@ -5,8 +5,8 @@ import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epa
 import { City, Country } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
 import * as css from "./TablesExamples.scss";
-import * as moreIcon from "@epam/assets/icons/common/navigation-more_vert-18.svg";
-import * as pencilIcon from "@epam/assets/icons/common/content-edit-18.svg";
+import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
+import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
 export default function CitiesTable(props: unknown) {
     const svc = useUuiContext();
@@ -31,7 +31,7 @@ export default function CitiesTable(props: unknown) {
 
     const renderMenu = (): ReactNode => (
         <DropdownMenuBody color='white'>
-            <DropdownMenuButton caption='Edit' icon={pencilIcon}/>
+            <DropdownMenuButton caption='Edit' icon={ PencilIcon }/>
             <DropdownMenuButton caption='Remove'/>
             <DropdownMenuSplitter/>
             <DropdownMenuButton caption='Cancel'/>
@@ -82,7 +82,7 @@ export default function CitiesTable(props: unknown) {
             key: 'actions',
             render: () => (
                 <Dropdown
-                    renderTarget={ props => <IconButton icon={ moreIcon } color='gray60' { ...props } /> }
+                    renderTarget={ props => <IconButton icon={ MoreIcon } color='gray60' { ...props } /> }
                     renderBody={ renderMenu }
                     placement='bottom-end'
                 />
@@ -94,7 +94,7 @@ export default function CitiesTable(props: unknown) {
 
     // Create DataSource instance for your table.
     // For more details go to the DataSources example
-    const citiesDS = useLazyDataSource({ api: svc.api.demo.cities }, []);
+    const citiesDS = useLazyDataSource<City, string, unknown>({ api: svc.api.demo.cities }, []);
 
     // IMPORTANT! Unsubscribe view from DataSource when you don't need it more.
     // Pass this.handleTableStateChange function which you provided to getView as a second argument
@@ -104,7 +104,7 @@ export default function CitiesTable(props: unknown) {
 
     // Create View according to your tableState and options
     const view = citiesDS.useView(tableState, setTableState, {
-        getRowOptions: useCallback((item: City) => ({
+        getRowOptions: useCallback(item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }), []),
     });

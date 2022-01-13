@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import * as acceptIcon from "../../icons/accept-12.svg";
+import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 import { VerticalTabButton } from "../VerticalTabButton";
 
 describe("VerticalTabButton", () => {
@@ -15,7 +15,7 @@ describe("VerticalTabButton", () => {
         const tree = renderer
             .create(<VerticalTabButton
                 onClick={ jest.fn() }
-                icon={ acceptIcon }
+                icon={ AcceptIcon }
                 isDisabled={ false }
             />)
             .toJSON();

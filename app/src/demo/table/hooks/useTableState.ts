@@ -62,7 +62,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: encodeURIComponent(JSON.stringify(normalizedFilter)),
         };
 
-        svc.history.push({
+        svc.uuiRouter.redirect({
             pathname: location.pathname,
             query: newQuery,
         });
@@ -100,7 +100,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         onFilterChange(preset.filter);
         onColumnsConfigChange(preset.columnsConfig);
 
-        svc.history.push({
+        svc.uuiRouter.redirect({
             pathname: location.pathname,
             query: newQuery,
         });

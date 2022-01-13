@@ -3,7 +3,7 @@ import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from
 import { cx, INotification } from '@epam/uui';
 import { copyTextToClipboard } from './../../../helpers';
 import { svc } from './../../../services';
-import * as notificationIcon from './../../../icons/notification-check-fill-24.svg';
+import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
 import * as style from '@epam/loveship/assets/styles/scss/loveship-color-vars.scss';
 import * as css from './LoveshipColorsDoc.scss';
 
@@ -54,7 +54,7 @@ const grayscaleColors = [
     { name: 'night900', hasVariable: true, hex: '#1D1E26', context: 'Text' },
 ];
 
-const additionalColors: any = {
+const additionalColors = {
     'red': [
         { hex: '#FFEADB', contrastText: false },
         { hex: '#FFD7BE', contrastText: false },
@@ -204,7 +204,7 @@ const additionalColors: any = {
 export class LoveshipColorsDoc extends React.Component {
     showNotification() {
         svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard { ...props } icon={ notificationIcon } color='gray60' onClose={ null } >
+            <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
                 <Text size='36' font='sans'>HEX code was copied to the clipboard</Text>
             </NotificationCard>, { duration: 3 });
     }
@@ -276,7 +276,7 @@ export class LoveshipColorsDoc extends React.Component {
                     { (Object.keys(additionalColors) as Array<AdditionalColorsTypes>).map((nameColor: AdditionalColorsTypes, index: number) => {
                         return (
                             <FlexCell key={ index } minWidth={ 80 } >
-                                { additionalColors[nameColor].map((color: any, index: number) => {
+                                { additionalColors[nameColor].map((color, index: number) => {
                                     return (
                                         <div key={ index } className={ cx(css.box, css.additionalColorBox) } style={ { 'backgroundColor': color.hex } } >
                                             <div className={ cx(css.hexText, color.contrastText && css.contrastText) } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) } >{ color.hex }</div>

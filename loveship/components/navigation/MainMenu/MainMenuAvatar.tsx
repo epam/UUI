@@ -3,7 +3,7 @@ import * as css from './MainMenuAvatar.scss';
 import cx from 'classnames';
 import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
-import * as triangle from '../../icons/triangle.svg';
+import { ReactComponent as TriangleIcon } from '../../icons/triangle.svg';
 import { Avatar } from '@epam/uui-components';
 
 export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IHasCX {
@@ -11,7 +11,7 @@ export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IH
     icon?: Icon;
 }
 
-export class MainMenuAvatar extends React.Component<MainMenuAvatarProps, {}> {
+export class MainMenuAvatar extends React.Component<MainMenuAvatarProps> {
     render() {
         return (
             <div
@@ -22,7 +22,7 @@ export class MainMenuAvatar extends React.Component<MainMenuAvatarProps, {}> {
                 { this.props.icon && <IconContainer icon={ this.props.icon } /> }
                 { this.props.isDropdown && (
                     <div className={ css.dropdownIcon }>
-                        <IconContainer icon={ triangle } flipY={ this.props.isOpen } />
+                        <IconContainer icon={ TriangleIcon } flipY={ this.props.isOpen } />
                     </div>
                 ) }
             </div>

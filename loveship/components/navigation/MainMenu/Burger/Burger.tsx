@@ -1,8 +1,8 @@
 import { withMods } from '@epam/uui';
 import * as css from './Burger.scss';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
-import * as burgerIcon from '../../../icons/burger.svg';
-import * as crossIcon from '../../../icons/burger-close.svg';
+import { ReactComponent as BurgerIcon } from '../../../icons/burger.svg';
+import { ReactComponent as CrossIcon } from '../../../icons/burger-close.svg';
 
 export interface BurgerMods {
 }
@@ -12,7 +12,7 @@ function applyBurgerMods(mods: BurgerMods) {
 }
 
 export const Burger = withMods<BurgerProps, BurgerMods>(uuiBurger, applyBurgerMods, (props) => ({
-    burgerIcon,
-    crossIcon,
+    burgerIcon: BurgerIcon,
+    crossIcon: CrossIcon,
     burgerContentCx: css.burgerContent,
 }));

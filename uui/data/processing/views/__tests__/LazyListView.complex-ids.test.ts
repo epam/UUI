@@ -117,6 +117,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
             }
         );
 
+        view.getVisibleRows(); // load;
         await delay();
 
         expectViewToLookLike(view, [
@@ -139,7 +140,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         ], 3);
 
         row = view.getVisibleRows()[0];
-        row.onCheck(row);
+        row.onCheck(row)
         await delay(); // checkboxes are async in LazyDataSource
 
         view.update(value, view.props);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from '../Button';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../icons/calendar-18.svg';
-import * as clearIcon from '@epam/assets/icons/common/navigation-close-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 
 
 describe('Button', () => {
@@ -22,14 +22,14 @@ describe('Button', () => {
                 fill='white'
                 caption='Click me'
                 onClick={ jest.fn }
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 isDisabled={ false }
                 isDropdown={ true }
                 count={ 10 }
                 iconPosition='right'
                 onClear={ jest.fn }
                 isOpen
-                clearIcon={ clearIcon }
+                clearIcon={ ClearIcon }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

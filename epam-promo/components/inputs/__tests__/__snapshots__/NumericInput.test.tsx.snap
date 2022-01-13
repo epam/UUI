@@ -29,14 +29,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
@@ -45,14 +38,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>
@@ -87,14 +73,7 @@ exports[`NumericInput should be rendered correctly 2`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
@@ -103,14 +82,7 @@ exports[`NumericInput should be rendered correctly 2`] = `
     >
       <svg
         className=""
-        height={24}
-        viewBox="0 0 12 24"
-        width={12}
-      >
-        <use
-          xlinkHref="#folding-arrow-18.svg"
-        />
-      </svg>
+      />
     </div>
   </div>
 </div>

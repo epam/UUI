@@ -3,14 +3,14 @@ import FocusLock from 'react-focus-lock';
 import * as css from './ModalBlocker.scss';
 import { ModalBlockerProps, cx, uuiElement } from '@epam/uui';
 
-export class ModalBlocker extends React.Component<ModalBlockerProps, {}> {
+export class ModalBlocker extends React.Component<ModalBlockerProps> {
     constructor(props: ModalBlockerProps) {
         super(props);
-        window.addEventListener('keydown', this.keydownHandler);
     }
 
     componentDidMount() {
         document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', this.keydownHandler);
     }
 
     componentWillUnmount() {
