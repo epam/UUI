@@ -66,12 +66,16 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         ...prevState,
                         stylesheets: {
                             ...prevState.stylesheets,
-                            [filePath]: { content: stylesheet.raw, isBinary: false }
-                        }
+                            [filePath]: { content: stylesheet.raw, isBinary: false },
+                        },
                     }));
                 });
             });
         }
+    }
+    
+    private onSwitchValueChange = (val: boolean) => {
+        this.setState({ showCode: val });
     }
 
     private renderCode(): React.ReactNode {
@@ -90,18 +94,18 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                 <FlexRow padding='12' vPadding='12' cx={ css.containerFooter }>
                     <Switch
                         value={ this.state.showCode }
-                        onValueChange={ (val) => this.setState({ showCode: val }) }
+                        onValueChange={ this.onSwitchValueChange }
                         label='View code'
                     />
-                    {codesandboxLink && (
+                    { codesandboxLink && (
                         <LinkButton
-                            icon={CodesandboxIcon}
+                            icon={ CodesandboxIcon }
                             iconPosition='right'
                             target="_blank"
                             caption="Open in Codesandbox"
-                            href={codesandboxLink}
+                            href={ codesandboxLink }
                         />
-                    )}
+                    ) }
                 </FlexRow>
                 { this.state.showCode && this.renderCode() }
             </>
@@ -111,12 +115,12 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     render() {
         return (
             <div className={ css.container }>
-                {this.props.title && (
+                { this.props.title && (
                     <FlexRow cx={ css.titleRow }>
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
                         <IconButton cx={ css.anchor } icon={ anchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
                     </FlexRow>
-                )}
+                ) } 
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
 
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>
