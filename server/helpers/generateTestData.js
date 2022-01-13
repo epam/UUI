@@ -26,11 +26,11 @@ const getLocationTree = cached("locations", async () => {
     const continents = await getData("continents");
     const countries = await getData("countries");
 
-    const list = []
-        .concat(continents.map(c => ({ id: `c-${c.id}`, type: "continent", name: c.name, parentId: null })))
-        .concat(cities.map(c => ({ ...c, id: c.id, name: c.name, type: "city", parentId: c.country })))
-        .concat(countries.map(c => ({ id: c.id, name: c.name, type: "country", parentId: `c-${c.continent}` })))
-        .forEach(l => { l.__typename = "Location"; });
+    let list = [];
+    list = list.concat(continents.map(c => ({ id: `c-${c.id}`, type: "continent", name: c.name, parentId: null })));
+    list = list.concat(cities.map(c => ({ ...c, id: c.id, name: c.name, type: "city", parentId: c.country })));
+    list = list.concat(countries.map(c => ({ id: c.id, name: c.name, type: "country", parentId: `c-${c.continent}` })));
+    list.forEach(l => { l.__typename = "Location"; });
 
     const byId = new Map(list.map(l => [l.id, l]));
     const byParentId = new Map();

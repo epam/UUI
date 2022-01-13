@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Text, ColumnPickerFilter } from '@epam/loveship';
+import { Text, ColumnPickerFilter, FlexRow } from '@epam/loveship';
 import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens } from '@epam/uui';
-import { Person, PersonGroup } from '@epam/uui-docs';
 import { svc } from '../../services';
-import { PersonTableRecordId } from './types';
+import type { Person, PersonGroup } from '@epam/uui-docs';
+import type { PersonTableRecordId } from './types';
+import type { PersonsSummary } from './PersonsTableDemo';
 
 export function getColumns() {
     function makeFilterRenderCallback<TField extends keyof Person>(fieldName: TField, api: LazyDataSourceApi<any, any, any>) {
@@ -93,8 +94,61 @@ export function getColumns() {
         },
     ];
 
+    const summaryColumns: DataColumnProps<PersonsSummary>[] = [
+        {
+            key: 'totalCount',
+            caption: "Total Count",
+            fix: 'left',
+            textAlign: 'center',
+            width: 250,
+            render: p => (
+                <FlexRow>
+                    <Text font='sans-semibold'>Total</Text>
+                    <Text>{ p.totalCount }</Text>
+                </FlexRow>
+            ),
+        },
+        {
+            key: 'totalJobTitle',
+            width: 200,
+            render: () => <Text>-</Text>,
+            textAlign: 'center',
+        },
+        {
+            key: 'totalDepartmentName',
+            width: 200,
+            render: () => <Text>-</Text>,
+            textAlign: 'center',
+        },
+        {
+            key: 'totalBirthDate',
+            render: () => <Text>-</Text>,
+            width: 120,
+            textAlign: 'center',
+        },
+        {
+            key: 'totalHireDate',
+            render: () => <Text>-</Text>,
+            width: 120,
+            textAlign: 'center',
+        },
+        {
+            key: 'totalLocationName',
+            render: () => <Text>-</Text>,
+            width: 120,
+            textAlign: 'center',
+        },
+        {
+            key: 'totalSalary',
+            caption: "Total Salary",
+            render: p => <Text>{ p.totalSalary }</Text>,
+            width: 150,
+        },
+    ];
+
     return {
         personColumns,
         groupColumns,
+        summaryColumns,
     };
 }

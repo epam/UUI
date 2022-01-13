@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { VirtualList, DataTableRow, DataTableHeaderRow } from '@epam/loveship';
+import { VirtualList, DataTableHeaderRow, DataTableRow } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, useLens, DataRowProps, cx, uuiScrollShadows } from '@epam/uui';
+import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows } from '@epam/uui';
 import { VirtualListRenderRowsParams } from '@epam/uui-components';
 import { getColumns } from './columns';
+import type { PersonsSummary } from './PersonsTableDemo';
 import * as css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataSourceState> {
     view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
+    summary: PersonsSummary;
 }
 
 export const PersonsTable = (props: PersonsTableProps) => {
-    const { groupColumns, personColumns } = React.useMemo(() => getColumns(), []);
+    const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
@@ -39,7 +41,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
-            { props.view.getListProps().exactRowsCount !== 0 ? (
+            { props.view.getListProps().exactRowsCount !== 0 && (
                 <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
                         ref={ listContainerRef }
@@ -48,7 +50,16 @@ export const PersonsTable = (props: PersonsTableProps) => {
                         children={ getRows() }
                     />
                 </div>
-            ) : undefined }
+            ) }
+            <DataTableRow
+                columns={ summaryColumns }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ props.summary }
+                size='48'
+            />
         </>
     );
 
