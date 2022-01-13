@@ -99,49 +99,44 @@ export function getColumns() {
             key: 'totalCount',
             caption: "Total Count",
             fix: 'left',
-            textAlign: 'center',
+            textAlign: 'right',
             width: 250,
             render: p => (
-                <FlexRow>
-                    <Text font='sans-semibold'>Total</Text>
-                    <Text>{ p.totalCount }</Text>
+                <FlexRow background='night50'>
+                    <Text fontSize='14' font='sans-semibold'>Total</Text>
+                    <Text fontSize='14' font='sans-semibold' color='night500'>{ p.totalCount || 0 } records</Text>
                 </FlexRow>
             ),
         },
         {
             key: 'totalJobTitle',
             width: 200,
-            render: () => <Text>-</Text>,
-            textAlign: 'center',
+            render: () => <Text fontSize='14'>-</Text>,
         },
         {
             key: 'totalDepartmentName',
             width: 200,
-            render: () => <Text>-</Text>,
-            textAlign: 'center',
+            render: () => <Text fontSize='14' font='sans-semibold'>-</Text>,
         },
         {
             key: 'totalBirthDate',
-            render: () => <Text>-</Text>,
+            render: () => <Text fontSize='14'>-</Text>,
             width: 120,
-            textAlign: 'center',
         },
         {
             key: 'totalHireDate',
-            render: () => <Text>-</Text>,
+            render: () => <Text fontSize='14'>-</Text>,
             width: 120,
-            textAlign: 'center',
         },
         {
             key: 'totalLocationName',
-            render: () => <Text>-</Text>,
+            render: () => <Text fontSize='14'>-</Text>,
             width: 120,
-            textAlign: 'center',
         },
         {
             key: 'totalSalary',
             caption: "Total Salary",
-            render: p => <Text>{ p.totalSalary }</Text>,
+            render: p => <Text font='sans-semibold' fontSize='14'>{ p.totalSalary }</Text>,
             width: 150,
         },
     ];
