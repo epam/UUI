@@ -69,7 +69,7 @@ interface LoadResult<TItem, TId> {
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: LazyTreeList<TItem, TId>;
+    private tree: LazyTreeList<TItem, TId> & { value?: DataSourceState<TFilter, TId> };
     private rows: DataRowProps<TItem, TId>[] = [];
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
@@ -126,7 +126,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
-            this.tree = { items: [], value: this.value } as any;
+            this.tree = { items: [], value: this.value };
             completeReset = true;
         }
 
@@ -411,13 +411,38 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.updateChecked(value, true);
     }
 
+    findNodeInTree = (tree: LazyTreeList<TItem, TId>, key: string): { node: LazyTreeItem<TItem, TId>; parentIds: TId[]; } => {
+        for (let n = 0; n < tree.items.length; n++) {
+            let node = tree.items[n];
+            if (this.idToKey(node.id) == key) {
+                return { node, parentIds: [] };
+            }
+
+            if (node.children) {
+                const found = this.findNodeInTree(node.children, key);
+                if (found != null) {
+                    found.parentIds.unshift(node.id);
+                    return found;
+                }
+            }
+        }
+    }
+
     private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
-        let childKeys: string[] = [];
+        let checked = this.value && this.value.checked || [];
+
         if (this.props.cascadeSelection || isRoot) {
+            let childKeys: string[] = [];
+            let checkedKeysSet = new Set(checked.map(id => this.idToKey(id)));
+
             let result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
             let tree = result.tree;
 
             const appendChildIds = (list: LazyTreeList<TItem, TId>) => {
+                if (!list) {
+                    return;
+                }
+
                 for (let n = 0; n < list.items.length; n++) {
                     let node = list.items[n];
                     childKeys.push(this.idToKey(node.id));
@@ -425,56 +450,61 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
             };
 
-            const findNode = (list: LazyTreeList<TItem, TId>): { node: LazyTreeItem<TItem, TId>; list: LazyTreeList<TItem, TId>; parentIds: TId[]; } => {
-                for (let n = 0; n < list.items.length; n++) {
-                    let node = list.items[n];
-                    if (this.idToKey(node.id) == key) {
-                        return { node, list, parentIds: [] };
-                    }
+            const nodeInfo = isRoot ? null : this.findNodeInTree(tree, key);
+            appendChildIds(isRoot ? tree : nodeInfo.node.children);
 
-                    if (node.children) {
-                        const found = findNode(node.children);
-                        if (found != null) {
-                            found.parentIds.unshift(node.id);
-                            return found;
+
+            if (isChecked) {
+                !isRoot && checkedKeysSet.add(key);
+
+                childKeys.forEach(key => {
+                    const item = this.cache.itemsById.map.get(key);
+                    const { isCheckable } = this.getRowProps(item.value, null, []);
+                    if (isCheckable) {
+                        checkedKeysSet.add(key);
+                    }
+                });
+            } else {
+                const keysToUnset = new Set(childKeys);
+                !isRoot && keysToUnset.add(key);
+
+                keysToUnset.forEach(key => {
+                    const item = this.cache.itemsById.map.get(key);
+                    const { isCheckable } = this.getRowProps(item.value, null, []);
+                    if (isCheckable || keysToUnset.has(key)) {
+                        checkedKeysSet.delete(key);
+                    }
+                });
+            }
+
+            // check/uncheck parents if all/no siblings checked
+            if (this.props.cascadeSelection && nodeInfo?.parentIds) {
+                nodeInfo?.parentIds.reverse().forEach(parentId => {
+                    const parentNode = this.findNodeInTree(tree, this.idToKey(parentId));
+                    const parentNodeKey = this.idToKey(parentId);
+                    const isAllChildrenChecked = parentNode.node.children.items.every(i => checkedKeysSet.has(this.idToKey(i.id)));
+
+                    if (isAllChildrenChecked) {
+                        checkedKeysSet.add(parentNodeKey);
+                    } else {
+                        if (this.idToKey(parentId) !== key) {
+                            checkedKeysSet.delete(parentNodeKey);
                         }
                     }
-                }
-            };
+                });
+            }
 
-            const nodeInfo = isRoot ? { node: { children: tree } } : findNode(tree);
-            nodeInfo.node.children && appendChildIds(nodeInfo.node.children);
+            this.handleCheckedChange(Array.from(checkedKeysSet).map(key => this.keyToId(key)));
 
-            // TBD: check/uncheck parents if all/no siblings checked?
-            // const allSiblingsChecked = nodeInfo.list.items.every(i => checkedSet.has(i.id));
-            // const noSiblingsChecked = nodeInfo.list.items.some(i => !checkedSet.has(i.id));
-        }
-
-        // this.value might be updated while children were loaded for cascading
-        // So this.value.checked shouldn't be used before this point
-        let checked = this.value && this.value.checked || [];
-
-        if (isChecked) {
-            const checkedKeysSet = new Set(checked.map(c => this.idToKey(c)));
-            checked = [...checked];
-            !isRoot && checked.push(id);
-            childKeys.filter(key => !checkedKeysSet.has(key)).forEach(key => {
-                const item = this.cache.itemsById.map.get(key);
-                const { isCheckable } = this.getRowProps(item.value, null, []);
-                if (isCheckable) {
-                    checked.push(this.keyToId(key));
-                }
-            });
         } else {
-            const keysToUnset = new Set(childKeys);
-            !isRoot && keysToUnset.add(key);
-            checked = checked.filter(id => {
-                const item = this.cache.itemsById.map.get(this.idToKey(id));
-                const { isCheckable } = this.getRowProps(item.value, null, []);
-                return !isCheckable || !(this.idToKey(id) === key || keysToUnset.has(this.idToKey(id)));
-            });
+            if (isChecked) {
+                checked.push(id);
+            } else {
+                checked = checked.filter(i => i !== id);
+            }
+
+            this.handleCheckedChange(checked);
         }
-        this.handleCheckedChange(checked);
     }
 
     public getVisibleRows = () => {

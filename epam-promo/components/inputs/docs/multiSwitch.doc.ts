@@ -4,7 +4,7 @@ import { DefaultContext, FormContext } from '../../../docs';
 import { sizeDoc, iEditable, isDisabledDoc } from '../../../docs';
 
 const multiSwitchDoc = new DocBuilder<MultiSwitchProps<any>>({ name: 'MultiSwitch', component: MultiSwitch })
-    .implements([sizeDoc, iEditable, isDisabledDoc] as any)
+    .implements([sizeDoc, iEditable, isDisabledDoc])
     .prop('items', { examples: [
         {
             name: 'Context Switch',

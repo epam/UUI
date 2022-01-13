@@ -5,7 +5,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext, DefaultContext, onClickDoc } from '../../../../docs';
 
 const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', component: FlexRow })
-    .implements([onClickDoc] as any)
+    .implements([onClickDoc])
     .prop('children', { examples: [
             {
                 name: 'Text 24',

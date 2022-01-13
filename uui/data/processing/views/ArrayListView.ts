@@ -201,8 +201,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const comparers: ((a: TreeNode<TItem, TId>, b: TreeNode<TItem, TId>) => number)[] = [];
 
         this.value.sorting && this.value.sorting.forEach(sorting => {
-            const sortByFn = sortBy || ((i: TItem) => (i as any)[sorting.field] || '');
-
+            const sortByFn = sortBy || ((i: TItem) => i[sorting.field as keyof TItem] || '');
             const sign = sorting.direction == 'asc' ? 1 : -1;
             comparers.push((a, b) => sign * compareScalars(sortByFn(a.item, sorting) + '', sortByFn(b.item, sorting) + ''));
         });

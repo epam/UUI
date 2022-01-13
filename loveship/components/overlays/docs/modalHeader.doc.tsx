@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
+import { DocBuilder } from '@epam/uui-docs';
 import { ModalHeader, ModalHeaderProps } from '../Modals';
 import { DefaultContext} from '../../../docs';
 import { FlexRow } from '../../layout';
@@ -13,7 +13,7 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
     .prop('background', { examples: ['white', 'night50', 'none'] })
     .prop('borderBottom', { examples: [true, 'night50', 'night400'], defaultValue: 'night400' })
     .prop('padding', { examples: ['6', '12', '24'] })
-    .prop('onClose', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onClose')] })
+    .prop('onClose', { examples: ctx => [ctx.getCallback('onClose')] })
     .prop('children', {
         examples: [
             {

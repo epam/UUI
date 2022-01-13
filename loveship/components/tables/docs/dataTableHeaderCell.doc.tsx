@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
 import { DataTableHeaderCellProps } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';

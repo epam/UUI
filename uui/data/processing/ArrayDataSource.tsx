@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BaseDataSource } from './BaseDataSource';
 import { DataSourceState, IArrayDataSource, TreeNode } from './types';
 import { ArrayListView, ArrayListViewProps, IDataSourceView } from './views';
@@ -46,9 +46,9 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     /* indexing, sorting */
     protected updateIndexes(items: TItem[]) {
-        const getParentId = this.props.getParentId || ((item: TItem) => (item as any).parentId);
+        const getParentId = this.props.getParentId || ((item: TItem & { parentId?: TId }) => item.parentId);
 
-        this.nodes = items.map((item: TItem, index: number) => {
+        this.nodes = items.map<TreeNode<TItem, TId>>((item, index) => {
             const parentId = getParentId(item);
             return {
                 item,
@@ -59,7 +59,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
                 parentKey: parentId != null ? this.idToKey(parentId) : null,
                 path: [],
                 children: [],
-            } as TreeNode<TItem, TId>;
+            };
         });
 
         this.byKey = {};
@@ -97,11 +97,11 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         });
     }
 
-    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, props?: Partial<ArrayListViewProps<TItem, TId, TFilter>>): IDataSourceView<TItem, TId, TFilter> {
+    getView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
             //...this.props,
-            ...props,
+            ...options,
             getId: this.getId,
         };
 
@@ -109,13 +109,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             view.update(value, viewProps);
             return view;
         } else {
-            const newView: any = new ArrayListView(this, { value, onValueChange }, viewProps);
+            const newView = new ArrayListView(this, { value, onValueChange }, viewProps);
             this.views.set(onValueChange, newView);
             return newView;
         }
     }
 
-    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: ArrayListViewProps<TItem, TId, TFilter>): IDataSourceView<TItem, TId, TFilter> {
+    useView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: ArrayListViewProps<TItem, TId, TFilter>): IDataSourceView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 
         return this.getView(value, onValueChange, options);

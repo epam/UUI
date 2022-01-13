@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui';
-import { Panel, Text, DataTable, DataTableCell, FlexRow, RichTextView } from '../../components';
+import { Panel, Text, DataTable, DataTableCell } from '../../components';
 
 interface Person {
     id: number;
@@ -17,14 +17,18 @@ interface Person {
     departmentName: string;
 }
 
-export class TableContext extends React.Component<DemoComponentProps, any> {
+interface DemoComponentState {
+    demoState: DataSourceState;
+}
+
+export class TableContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Table';
 
-    state = {
+    state: DemoComponentState = {
         demoState: {},
     };
 
-    dataSource = new ArrayDataSource<Person, number, any>({
+    dataSource = new ArrayDataSource<Person, number, unknown>({
         items: demoData.personDemoData,
         getId: p => p.id,
     });
@@ -34,7 +38,7 @@ export class TableContext extends React.Component<DemoComponentProps, any> {
     render() {
         const { DemoComponent, props } = this.props;
         const view = this.dataSource.getView(this.state.demoState, this.handleDemoStateChange, {
-            getRowOptions: (item: Person) => ({
+            getRowOptions: () => ({
                 checkbox: { isVisible: true },
             }),
         });

@@ -1,6 +1,6 @@
 import { Avatar, AvatarProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
-import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
+import { DefaultContext } from '../../../docs/index';
 
 const AvatarDoc = new DocBuilder<AvatarProps>({ name: 'Avatar', component: Avatar })
     .prop('img', {

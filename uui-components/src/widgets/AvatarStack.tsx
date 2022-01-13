@@ -22,7 +22,7 @@ export const AvatarStack = (props: AvatarStackProps) => {
     return (
         <FlexRow cx={ props.cx }>
             <FlexRow
-                rawProps={ { role:"group", style: { ['--overlap' as any]: `-${ +avatarSize / 4 }px` } } }
+                rawProps={ { role:"group", style: { ['--overlap']: `-${ +avatarSize / 4 }px` } } }
                 cx={ cx('avatars', css.container, css['avatar-' + direction]) }
             >
                 {

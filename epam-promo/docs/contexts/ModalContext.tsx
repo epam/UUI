@@ -3,17 +3,23 @@ import { UuiContext, UuiContexts } from '@epam/uui';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, Button, LabeledInput, TextArea, FlexRow } from '../../components';
 
-export class ModalContext extends React.Component<DemoComponentProps, any> {
-    public static displayName = "Modal";
+interface DemoComponentState {
+    result: string;
+}
+
+export class ModalContext extends React.Component<DemoComponentProps, DemoComponentState> {
     static contextType = UuiContext;
     context: UuiContexts;
-    state = { result: '' };
+
+    public static displayName = "Modal";
+
+    state: DemoComponentState = {
+        result: '',
+    };
 
     handleOnClick = () => {
         const { DemoComponent, props } = this.props;
-        this.context.uuiModals.show(modalProps =>
-                <DemoComponent { ...props } { ...modalProps }/>,
-            )
+        this.context.uuiModals.show<string>(modalProps => <DemoComponent { ...props } { ...modalProps } />)
             .then(result => this.setState({ result }))
             .catch(() => null);
     }
@@ -30,7 +36,7 @@ export class ModalContext extends React.Component<DemoComponentProps, any> {
                 </FlexRow>
                 <FlexRow size='36' spacing='12' alignItems='top' vPadding='18' padding='24' >
                     <LabeledInput label='Last result'>
-                        <TextArea value={ JSON.stringify(this.state.result, null, 2) } onValueChange={ () => {} } rows={ 10 }/>
+                        <TextArea value={ JSON.stringify(this.state.result, null, 2) } onValueChange={ () => {} } rows={ 10 } />
                     </LabeledInput>
                 </FlexRow>
             </Panel>

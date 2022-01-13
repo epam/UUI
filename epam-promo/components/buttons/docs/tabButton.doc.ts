@@ -5,7 +5,7 @@ import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, i
 import { TabButtonContext } from '../../../docs';
 
 const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabButton', component: TabButton })
-    .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc] as any)
+    .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc])
     .prop('caption', { examples:  [
         { value: 'Click me', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
