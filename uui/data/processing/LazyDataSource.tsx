@@ -41,7 +41,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     public getView = <TState extends DataSourceState<any, TId>>(
         value: TState,
-        onValueChange: (value: TState) => any,
+        onValueChange: (value: TState) => void,
         props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> => {
         const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;

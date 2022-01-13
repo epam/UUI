@@ -33,7 +33,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export class PickerToggler extends React.Component<PickerTogglerProps<any, any> & PickerTogglerMods, {}> {
+export class PickerToggler extends React.Component<PickerTogglerProps<any, any> & PickerTogglerMods> {
 
     renderItem = (row: DataRowProps<any, any>) => {
         const tagSize = mapSize[this.props.size] as TagSize;

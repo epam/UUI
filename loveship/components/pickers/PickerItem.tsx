@@ -15,7 +15,7 @@ export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, S
     subtitle?: string;
 }
 
-export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>, {}> {
+export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TItem, TId>> {
     getAvatarSize = (size: string, isMultiline: boolean): string | number => {
         return isMultiline ? size : +size - 6;
     }

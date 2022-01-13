@@ -3,7 +3,7 @@ import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, FlexRow, FlexCell, Text } from '../../components';
 import * as css from './GridContext.scss';
 
-export class GridContext extends React.Component<DemoComponentProps, any> {
+export class GridContext extends React.Component<DemoComponentProps> {
     public static displayName = "Grid";
     render() {
         const { DemoComponent, props } = this.props;

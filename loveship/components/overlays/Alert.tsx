@@ -4,11 +4,11 @@ import { Icon, IHasChildren, IHasCX, IHasRawProps } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import { EpamPrimaryColor } from '../types';
 import { IconButton, LinkButton } from '../buttons';
-import * as successIcon from './../icons/notification-check-fill-24.svg';
-import * as warningIcon from './../icons/notification-warning-fill-24.svg';
-import * as errorIcon from './../icons/notification-error-fill-24.svg';
-import * as hintIcon from './../icons/notification-help-fill-24.svg';
-import * as crossIcon from '../icons/navigation-close-24.svg';
+import { ReactComponent as SuccessIcon } from './../icons/notification-check-fill-24.svg';
+import { ReactComponent as WarningIcon } from './../icons/notification-warning-fill-24.svg';
+import { ReactComponent as ErrorIcon } from './../icons/notification-error-fill-24.svg';
+import { ReactComponent as HintIcon } from './../icons/notification-help-fill-24.svg';
+import { ReactComponent as CrossIcon } from '../icons/navigation-close-24.svg';
 import * as css from './Alert.scss';
 
 type notificationAction = {
@@ -44,17 +44,17 @@ export class Alert extends React.Component<AlertProps> {
                         </div> }
                     </div>
                 </div>
-                { this.props.onClose && <IconButton icon={ crossIcon } color='night600' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
+                { this.props.onClose && <IconButton icon={ CrossIcon } color='night600' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
             </div>
         );
     }
 }
 
 export const WarningAlert = (props: AlertProps) =>
-    <Alert icon={ warningIcon } color='sun' { ...props } />;
+    <Alert icon={ WarningIcon } color='sun' { ...props } />;
 export const SuccessAlert = (props: AlertProps) =>
-    <Alert icon={ successIcon } color='grass' { ...props } />;
+    <Alert icon={ SuccessIcon } color='grass' { ...props } />;
 export const HintAlert = (props: AlertProps) =>
-    <Alert icon={ hintIcon } color='sky' { ...props } />;
+    <Alert icon={ HintIcon } color='sky' { ...props } />;
 export const ErrorAlert = (props: AlertProps) =>
-    <Alert icon={ errorIcon } color='fire' { ...props } />;
+    <Alert icon={ ErrorIcon } color='fire' { ...props } />;

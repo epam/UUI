@@ -5,10 +5,15 @@ import {
     DropdownMenuSplitter, Tooltip, DropdownMenuCheckbox, DropdownMenuSearch,
 } from '../../components';
 import { Dropdown } from '@epam/uui-components';
-import * as pencilIcon from '../../components/icons/content-edit-18.svg';
-import * as trashIcon from '../../components/icons/action-delete-18.svg';
+import { ReactComponent as PencilIcon } from '../../components/icons/content-edit-18.svg';
+import { ReactComponent as TrashIcon } from '../../components/icons/action-delete-18.svg';
 
-export class DropdownMenuContext extends React.Component<DemoComponentProps, any> {
+interface DropdownComponentState {
+    checkboxValue: boolean;
+    searchValue: string;
+}
+
+export class DropdownMenuContext extends React.Component<DemoComponentProps, DropdownComponentState> {
     public static displayName = "DropdownMenu";
 
     state = {
@@ -21,11 +26,11 @@ export class DropdownMenuContext extends React.Component<DemoComponentProps, any
         return (
             <DropdownMenuBody color={ color }>
                 <DropdownMenuSearch value={ this.state.searchValue } onValueChange={ (newValue => this.setState({ searchValue: newValue })) } placeholder='Log in as'/>
-                <DropdownMenuButton icon={ pencilIcon } caption='Export' />
+                <DropdownMenuButton icon={ PencilIcon } caption='Export' />
                 <Tooltip placement='left' content='Import tools from current page'><DropdownMenuButton noIcon caption='Import' /></Tooltip>
                 <DropdownMenuButton isDropdown dropdownIconPosition='left' caption='Manage external feedback' />
                 <DemoComponent { ...props } />
-                <DropdownMenuButton icon={ trashIcon } caption='Overwrite Titles' />
+                <DropdownMenuButton icon={ TrashIcon } caption='Overwrite Titles' />
                 <DropdownMenuCheckbox
                     value={ this.state.checkboxValue }
                     onValueChange={ () => this.setState({ checkboxValue: !this.state.checkboxValue }) }

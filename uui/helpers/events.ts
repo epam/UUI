@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { uuiMarkers } from '../constants';
 
-export function isClickableChildClicked(e: React.SyntheticEvent<any>): boolean {
+export function isClickableChildClicked(e: React.SyntheticEvent<Element>): boolean {
     return isChildHasClass(e.target, e.currentTarget, [uuiMarkers.clickable]);
 }
 
@@ -10,7 +10,7 @@ export function isChildFocusable(e: React.FocusEvent<HTMLElement>): boolean {
 }
 
 export function isChildHasClass(target: EventTarget, currentTarget: Node, classNames: string[]): boolean {
-    let el = target as any;
+    let el = target as HTMLElement;
     while (el && currentTarget != el) {
         if (el.classList && classNames.some(className => el.classList.contains(className))) {
             return true;

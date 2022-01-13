@@ -15,7 +15,7 @@ export default function ProductTable() {
     }, []);
 
     const view = dataSource.useView(value, onValueChange, {
-        getRowOptions: (item: Product) => ({
+        getRowOptions: item => ({
             checkbox: { isVisible: true },
             isSelectable: true,
         }), // Provide metadata options about row. Go to the "DataRowOptions" interface, to see the full list of possible options.

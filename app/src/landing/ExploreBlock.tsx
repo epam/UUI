@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './ExploreBlock.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '@epam/promo';
-import * as downloadIcon from '../icons/download.svg';
+import { ReactComponent as DownloadIcon } from '../icons/download.svg';
 import { UUI4 } from '../common/docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
@@ -32,7 +32,7 @@ export class ExploreBlock extends React.Component {
                             <Anchor rawProps={{ tabIndex: -1 }} link={ { pathname: '/documents', query: { id: 'downloads', category: 'assets' } } } onClick={ () => this.sendEvent('Downloads') } >
                                 <div tabIndex={ 0 } className={ css.download } >
                                     <Text font='sans-semibold' lineHeight='30' fontSize='24' cx={ css.caption } >Download Assets</Text>
-                                    <IconContainer rawProps={{ tabIndex: -1 }} icon={ downloadIcon }  cx={ css.downloadIcon } />
+                                    <IconContainer rawProps={{ tabIndex: -1 }} icon={ DownloadIcon }  cx={ css.downloadIcon } />
                                 </div>
                             </Anchor>
                             <Anchor rawProps={{ tabIndex: -1 }} link={ { pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } } } onClick={ () => this.sendEvent('Components') } >

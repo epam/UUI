@@ -18,13 +18,13 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
     }
 
     getById(id: TId) {
-        return this.getLoadingRow('_loading_' + id as any);
+        return this.getLoadingRow('_loading_' + id);
     }
 
     getVisibleRows() {
         let result = [];
         for (let i = 0; i < this.value.visibleCount; i++) {
-            result.push(this.getLoadingRow('_loading_' + (this.value.topIndex + i) as any));
+            result.push(this.getLoadingRow('_loading_' + (this.value.topIndex + i)));
         }
         return result;
     }

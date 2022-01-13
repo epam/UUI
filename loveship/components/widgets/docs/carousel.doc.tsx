@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { CarouselProps } from '@epam/uui-components';
 import { CarouselMods, Carousel } from '../Carousel';
 import { colorDoc, DefaultContext, ResizableContext } from '../../../docs';
 import { FlexRow, Text, FlexCell, Panel } from '../../../components';
 
-const renderItem = (item: any) => {
+const renderItem = (item: Record<string, any>) => {
     return (
         <Panel style={ { width: 200 } } margin='24' background='white'>
             <FlexRow padding='12'>
@@ -39,7 +39,7 @@ const items = [
 ];
 
 const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel', component: Carousel })
-    .implements([colorDoc] as any)
+    .implements([colorDoc])
     .prop('items', {
         examples: [
             {

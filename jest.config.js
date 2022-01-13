@@ -31,15 +31,19 @@ module.exports = {
         "^.+\\.(sass|scss|less)$"
     ],
     "testPathIgnorePatterns": [
-        "node_modules"
+        "node_modules",
+        "templates",
+        "./next-app"
     ],
     "modulePathIgnorePatterns": [
-        "/build/"
+        "/build/",
+        "./next-app"
     ],
     "moduleNameMapper": {
         "^react-native$": "react-native-web",
         "^.+\\.(sass|scss|less)$": "<rootDir>/uui-build/config/jest/cssModuleTransform.js",
-        "@epam/test-utils": "<rootDir>/test-utils"
+        "@epam/test-utils": "<rootDir>/test-utils",
+        "\\.svg": "<rootDir>/test-utils/mocks/svgrMock.js"
     },
     "moduleFileExtensions": [
         "web.js",

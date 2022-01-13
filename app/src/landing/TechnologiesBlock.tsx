@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { FlexRow, IconButton } from '@epam/promo';
 import * as css from './TechnologiesBlock.scss';
-import * as cssModulesIcon from '../icons/css-modules-logo.inkscape.svg';
-import * as sassIcon from '../icons/sass.svg';
-import * as tsIcon from '../icons/typescript-icon.svg';
-import * as reactIcon from '../icons/react.svg';
-import * as craIcon from '../icons/create.svg';
-import * as webpackIcon from '../icons/webpack.svg';
-import * as jestIcon from '../icons/jest.svg';
+import { ReactComponent as CssModulesIcon } from '../icons/css-modules-logo.inkscape.svg';
+import { ReactComponent as SassIcon } from '../icons/sass.svg';
+import { ReactComponent as TsIcon } from '../icons/typescript-icon.svg';
+import { ReactComponent as ReactIcon } from '../icons/react.svg';
+import { ReactComponent as CraIcon } from '../icons/create.svg';
+import { ReactComponent as WebpackIcon } from '../icons/webpack.svg';
+import { ReactComponent as JestIcon } from '../icons/jest.svg';
 
 const technologies = [
-    { icon: cssModulesIcon, link: 'https://github.com/css-modules/css-modules', label: 'CSS Modules' },
-    { icon: sassIcon, link: 'https://sass-lang.com', label: 'SASS' },
-    { icon: tsIcon, link: 'https://www.typescriptlang.org', label: 'Typescript' },
-    { icon: reactIcon, link: 'https://reactjs.org', label: 'React' },
-    { icon: craIcon, link: 'https://create-react-app.dev', label: 'Create React App' },
-    { icon: webpackIcon, link: 'https://webpack.js.org', label: 'Webpack' },
-    { icon: jestIcon, link: 'https://jestjs.io', label: 'Jest' },
+    { icon: CssModulesIcon, link: 'https://github.com/css-modules/css-modules', label: 'CSS Modules' },
+    { icon: SassIcon, link: 'https://sass-lang.com', label: 'SASS' },
+    { icon: TsIcon, link: 'https://www.typescriptlang.org', label: 'Typescript' },
+    { icon: ReactIcon, link: 'https://reactjs.org', label: 'React' },
+    { icon: CraIcon, link: 'https://create-react-app.dev', label: 'Create React App' },
+    { icon: WebpackIcon, link: 'https://webpack.js.org', label: 'Webpack' },
+    { icon: JestIcon, link: 'https://jestjs.io', label: 'Jest' },
 ];
 
 export class TechnologiesBlock extends React.Component {

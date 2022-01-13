@@ -9,7 +9,7 @@ import {Sidebar} from './implementation/Sidebar';
 import SoftBreak from "slate-soft-break";
 import { baseMarksPlugin, utilsPlugin } from "./plugins";
 import { paragraphPlugin } from './plugins/paragraphPlugin/paragraphPlugin';
-import { getSerializer } from './helpers';
+import { getSerializer, isEditorEmpty } from './helpers';
 import htmlclean from 'htmlclean';
 
 export const slateEditorEmptyValue: any = Value.fromJS({
@@ -120,17 +120,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
             return true;
         }
 
-        const blocks: Block[] = this.props.value.get('document').get('nodes').toArray();
-
-        if (blocks.length === 1 && blocks[0].get('type') === 'paragraph') {
-            const nodes: SlateText[] = blocks[0].get('nodes').toArray();
-
-            if (nodes.length === 1 && nodes[0].get('text') === '') {
-                return true;
-            }
-        }
-
-        return false;
+        return isEditorEmpty(this.props.value);
     }
 
     onChange = (props: any) => {

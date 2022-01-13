@@ -26,6 +26,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
             selectAll={ { value: false, isDisabled: true, onValueChange: null } }
             allowColumnsResizing={ true }
             allowColumnsReordering={ true }
+            showColumnsConfig={ true }
             { ...tableLens }
             { ... props.view.getListProps() }
         />

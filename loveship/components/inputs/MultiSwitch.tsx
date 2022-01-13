@@ -14,7 +14,7 @@ export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.Color
     items: MultiSwitchItem<TValue>[];
 }
 
-export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>, any> {
+export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
 
     render() {
         return (

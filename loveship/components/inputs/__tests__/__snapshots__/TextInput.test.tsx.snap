@@ -38,14 +38,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-24.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
@@ -54,14 +47,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#btn-cross-24.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled"
@@ -69,14 +55,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#accept-12.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled -clickable"
@@ -84,14 +63,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
   >
     <svg
       className="flipY"
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#folding-arrow-24.svg"
-      />
-    </svg>
+    />
   </div>
 </div>
 `;

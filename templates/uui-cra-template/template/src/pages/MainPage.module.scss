@@ -1,0 +1,28 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+.uuiTitle {
+    margin-top: 80px;
+    font-size: 120px;
+    line-height: 120px;
+    color: white;
+    font-family: 'Sans Semibold', Arial, sans-serif;
+}
+
+.bgImg {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: linear-gradient(180deg, #21232E 0%, rgba(57, 61, 74, 0.1) 100%), linear-gradient(270deg, rgba(24, 24, 22, 0) 0%, #000000 100%), url(../icons/pattern.jpg);
+}
+
+
+.mainPanel {
+    padding: 24px 30px;
+    box-shadow: 0 1px 2px 0 rgba(44,47,60,0.06), 0 3px 10px 0 rgba(44,47,60,0.09);
+    margin: -90px auto 60px;
+    max-width: 1000px;
+}
+
+

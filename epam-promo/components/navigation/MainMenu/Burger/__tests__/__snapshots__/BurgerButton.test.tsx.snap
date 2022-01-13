@@ -25,14 +25,7 @@ exports[`BurgerButton should be rendered correctly 2`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#triangle.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="container uui-icon uui-enabled"
@@ -40,14 +33,7 @@ exports[`BurgerButton should be rendered correctly 2`] = `
   >
     <svg
       className=""
-      height={24}
-      viewBox="0 0 12 24"
-      width={12}
-    >
-      <use
-        xlinkHref="#calendar-18.svg"
-      />
-    </svg>
+    />
   </div>
   <div
     className="uui-caption"

@@ -13,12 +13,12 @@ import {
 import clone from 'lodash.clone';
 import isEqual from 'lodash.isequal';
 
-export interface TreeNodeProps extends TreeNode<any, string> {
+export interface TreeNodeProps<TItem = TreeListItem> extends TreeNode<TItem, string> {
     data: any;
     depth: number;
     isDropdown?: boolean;
     isOpen?: boolean;
-    onClick(): any;
+    onClick(): void;
 }
 
 export interface TreeListItem {
@@ -27,34 +27,29 @@ export interface TreeListItem {
     parentId?: string;
 }
 
-export interface TreeProps extends IHasCX, IHasChildren, IEditable<string[]>, IAnalyticableOnChange<string[]> {
+export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren, IEditable<string[]>, IAnalyticableOnChange<string[]> {
     items: TreeListItem[];
-    renderRow(row: TreeNodeProps): any;
+    renderRow(row: TreeNodeProps<TItem>): void;
     search?: string;
 }
 
-interface TreeState {
-    list: TreeNodeProps[];
+interface TreeState<TItem> {
+    list: TreeNodeProps<TItem>[];
 }
 
-export class Tree extends React.Component<TreeProps, TreeState> {
+export class Tree<TItem extends TreeListItem> extends React.Component<TreeProps<TItem>, TreeState<TItem>> {
     static contextType = UuiContext;
     context: UuiContexts;
 
     dataSource: ArrayDataSource;
 
-    constructor(props: TreeProps) {
+    constructor(props: TreeProps<TItem>) {
         super(props);
-
-        this.dataSource = new ArrayDataSource({
-            items: this.props.items,
-        });
-        this.state = {
-            list: this.getListRecursive(),
-        };
+        this.dataSource = new ArrayDataSource({ items: this.props.items });
+        this.state = { list: this.getListRecursive() };
     }
 
-    public componentDidUpdate(prevProps: TreeProps) {
+    public componentDidUpdate(prevProps: TreeProps<TItem>) {
         if (prevProps.search !== this.props.search || !isEqual(prevProps.value, this.props.value)) {
             this.setState({list: this.getListRecursive()});
         }
@@ -80,17 +75,17 @@ export class Tree extends React.Component<TreeProps, TreeState> {
     }
 
     getListRecursive() {
-        const flatList: TreeNodeProps[] = [];
+        const flatList: TreeNodeProps<TItem>[] = [];
         this.dataSource.rootNodes.forEach(i => flatList.push(...this.getNodes(i, 0)));
         return flatList;
     }
 
-    getNodes(item: TreeNode<any, string>, depth: number) {
-        const items: TreeNodeProps[] = [];
+    getNodes(item: TreeNode<TItem & { name?: string }, string>, depth: number) {
+        const items: TreeNodeProps<TItem>[] = [];
         const isUnfolded = this.props.value.includes(item.id);
         const applySearch = this.props.search && getSearchFilter(this.props.search);
-        const isPassedSearch = applySearch ? applySearch([(item.item as any).name]) : true;
-        let children: TreeNodeProps[] = [];
+        const isPassedSearch = applySearch ? applySearch([item.item.name]) : true;
+        const children: TreeNodeProps<TItem>[] = [];
 
         if (item.children && item.children.length) {
             item.children.forEach(i => children.push(...this.getNodes(i, depth + 1)));
@@ -124,7 +119,7 @@ export class Tree extends React.Component<TreeProps, TreeState> {
     render() {
         return (
             <>
-                { this.state.list.map((i) => this.props.renderRow(i)) }
+                { this.state.list.map((i) => <React.Fragment key={ i.id }> { this.props.renderRow(i) }</React.Fragment>) }
             </>
         );
     }

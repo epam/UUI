@@ -1,7 +1,7 @@
 import { RenderMarkProps } from "slate-react";
 import {Editor as CoreEditor} from "slate";
 import * as React from "react";
-import * as superScriptIcon from "../../icons/super-script.svg";
+import { ReactComponent as SuperScriptIcon } from "../../icons/super-script.svg";
 import {ToolbarButton} from "../../implementation/ToolbarButton";
 
 export const superscriptPlugin = () => {
@@ -21,5 +21,5 @@ export const superscriptPlugin = () => {
 };
 
 const SuperscriptButton = (props: { editor: any }) => {
-    return <ToolbarButton isActive={ props.editor.hasMark('uui-richTextEditor-superscript') } icon={ superScriptIcon } onClick={ () => props.editor.toggleMark('uui-richTextEditor-superscript') } />;
+    return <ToolbarButton isActive={ props.editor.hasMark('uui-richTextEditor-superscript') } icon={ SuperScriptIcon } onClick={ () => props.editor.toggleMark('uui-richTextEditor-superscript') } />;
 };

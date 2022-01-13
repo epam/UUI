@@ -1,7 +1,7 @@
 import React from 'react';
 import { BurgerButton } from '../BurgerButton';
 import renderer from 'react-test-renderer';
-import * as calendarIcon from '../../../../../icons/calendar-18.svg';
+import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
 
 describe('BurgerButton', () => {
     it('should be rendered correctly', () => {
@@ -15,7 +15,7 @@ describe('BurgerButton', () => {
         const tree = renderer
             .create(<BurgerButton
                 caption='Test button'
-                icon={ calendarIcon }
+                icon={ CalendarIcon }
                 href={ '#' }
                 target='_blank'
                 type='secondary'
