@@ -12,6 +12,7 @@
     bottom: 0;
     min-width: min-content;
     z-index: 3;
+    border-top: 1px solid $night300;
 
     & > * {
         background-color: $night50 !important;
