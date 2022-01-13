@@ -11,8 +11,10 @@
     display: flex;
     flex-direction: column;
     height: calc(100vh - 121px);
-    width: 100%;
     transition: all 500ms;
+    flex-basis: auto;
+    min-width: 0px;
+    flex-grow: 1;
 
     .counter {
         &:global(.uui-button-box) {
