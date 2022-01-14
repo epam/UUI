@@ -94,10 +94,11 @@ export const DemoTable: React.FC = () => {
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
-                    showColumnsConfig
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.onTableStateChange }
+                    showColumnsConfig
                     allowColumnsResizing
+                    allowColumnsReordering
                     { ...personsDataView.getListProps() }
                 />
             </div>
