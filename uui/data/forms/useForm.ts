@@ -33,7 +33,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleLeave = props.beforeLeave ? () => props.beforeLeave().then(res => {
-        if (res) return handleSave();
+        if (res) return handleSave(true);
         removeUnsavedChanges();
     }) : null;
 
