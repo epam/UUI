@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import css from './DataTableHeaderCell.scss';
-import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers } from '@epam/uui';
+import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers, uuiDataTableHeaderCell } from '@epam/uui';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { LinkButton } from '../buttons';
 import { Checkbox } from '../inputs';
@@ -26,58 +26,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     getTextStyle = () => {
-        if (this.props.textCase === 'upper') {
-            return css.upperCase;
-        } else {
-            if (this.props.size === '30') {
-                return css['font-size-13'];
-            } else {
-                return css['font-size-14'];
-            }
-        }
+        if (this.props.textCase === 'upper') return css.upperCase;
+        return css[`font-size-${this.props.size === '30' ? '13' : '14'}`];
     }
 
-    getColumnCaption = () => {
-        const captionContent = (
-            <div className={ cx(css.iconCell, this.props.column.textAlign && css['align-' + this.props.column.textAlign]) }>
-                <Text
-                    key="text"
-                    cx={ cx(css.caption, this.getTextStyle()) }
-                >
-                    { this.props.column.caption }
-                </Text>
-                { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
-                { this.props.isFilterActive && (
-                    <LinkButton
-                        key="filter"
-                        cx={ css.icon }
-                        size="30"
-                        color="night600"
-                        icon={ FilterIcon }
-                    />
-                ) }
-                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
-                    <LinkButton
-                        key="sort"
-                        cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
-                        size="24"
-                        color="night400"
-                        icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
-                    />
-                ) }
-                { this.props.column.renderFilter && (
-                    <LinkButton
-                        key="dropdown"
-                        cx={ cx(css.icon, css.dropdownIcon) }
-                        size="30"
-                        color="night600"
-                        icon={ this.state.isDropdownOpen ? OpenedDropdownIcon : DropdownIcon }
-                    />
-                ) }
-            </div>
-        );
-
-        return <div className={ css.tooltipWrapper }>
+    getColumnCaption = () => (
+        <div className={ css.tooltipWrapper }>
             <Tooltip
                 trigger="hover"
                 placement="bottom-start"
@@ -86,10 +40,44 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 cx={ css.cellTooltip }
                 offset={ [-12, 12] }
             >
-                { captionContent }
+                <div className={ cx(
+                    css.iconCell,
+                    this.props.column.textAlign && css['align-' + this.props.column.textAlign],
+                    uuiDataTableHeaderCell.uuiTableHeaderCaption
+                ) }>
+                    <Text key="text" cx={ cx(css.caption, this.getTextStyle()) }>{ this.props.column.caption }</Text>
+                    { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
+                    { this.props.isFilterActive && (
+                        <LinkButton
+                            key="filter"
+                            cx={ css.icon }
+                            size="30"
+                            color="night600"
+                            icon={ FilterIcon }
+                        />
+                    ) }
+                    { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
+                        <LinkButton
+                            key="sort"
+                            cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive) }
+                            size="24"
+                            color="night400"
+                            icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
+                        />
+                    ) }
+                    { this.props.column.renderFilter && (
+                        <LinkButton
+                            key="dropdown"
+                            cx={ cx(css.icon, css.dropdownIcon) }
+                            size="30"
+                            color="night600"
+                            icon={ this.state.isDropdownOpen ? OpenedDropdownIcon : DropdownIcon }
+                        />
+                    ) }
+                </div>
             </Tooltip>
-        </div>;
-    }
+        </div>
+    );
 
     renderHeaderCheckbox = () => this.props.selectAll && this.props.isFirstColumn && (
         <Checkbox
@@ -100,7 +88,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     )
 
     renderResizeMark = (props: HeaderCellContentProps) => (
-        <div onMouseDown={ props.onResizeStart } className={ css.resizeMark } />
+        <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />
     )
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
@@ -119,7 +107,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 props.isDndInProgress && css['dnd-marker-' + props.position],
                 this.props.cx,
             ] }
-            onClick={ !this.props.column.renderFilter ? props.toggleSort : (dropdownProps && dropdownProps.onClick) }
+            onClick={ !this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick }
             rawProps={ {
                 role: 'columnheader',
                 'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
@@ -136,11 +124,11 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         <ColumnHeaderDropdown
             isOpen={ this.state.isDropdownOpen }
             isSortable={ this.props.column.isSortable }
-            renderTarget={ (dropdownProps) => this.renderCellContent(props, dropdownProps) }
+            renderTarget={ dropdownProps => this.renderCellContent(props, dropdownProps) }
             renderFilter={ this.props.renderFilter }
             onSort={ this.props.onSort }
             sortDirection={ this.props.sortDirection }
-            onOpenChange={ (isDropdownOpen) => this.setState({ isDropdownOpen }) }
+            onOpenChange={ isDropdownOpen => this.setState({ isDropdownOpen }) }
             title={ this.props.column.caption as string }
         />
     )
