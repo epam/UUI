@@ -25,7 +25,6 @@ export interface VirtualListProps<List extends HTMLElement = any, ScrollContaine
 
 export function VirtualList(props: VirtualListProps) {
     const {
-        listOffset,
         listContainerRef,
         offsetY,
         handleScroll,
@@ -38,17 +37,14 @@ export function VirtualList(props: VirtualListProps) {
         rowsCount: props.rowsCount,
     });
 
-    const { verticalRef, horizontalRef, ...scrollShadows } = useScrollShadows({ root: scrollContainerRef.current });
+    const { ...scrollShadows } = useScrollShadows({ root: scrollContainerRef.current });
 
     const renderRows = () => (
         props.renderRows?.({ listContainerRef, estimatedHeight, offsetY, scrollShadows }) || (
             <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                <div
-                    ref={ listContainerRef }
-                    role={ props.role }
-                    style={ { marginTop: offsetY } }
-                    children={ props.rows }
-                />
+                <div ref={ listContainerRef } role={ props.role } style={ { marginTop: offsetY } }>
+                    { props.rows }
+                </div>
             </div>
         )
     );
@@ -73,9 +69,7 @@ export function VirtualList(props: VirtualListProps) {
                 scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
             } }
         >
-            <div style={ { top: `${listOffset}px` } } ref={ verticalRef } className={ css.verticalIntersectingRect } />
             { renderRows() }
-            <div style={ { bottom: `${listOffset}px` } } ref={ horizontalRef } className={ css.horizontalIntersectingRect } />
         </ScrollBars>
     );
 }
