@@ -76,7 +76,6 @@ export const PersonsTable = (props: PersonsTableProps) => {
                 rowKey="footer"
                 index={ 100500 }
                 value={ props.summary }
-                size='48'
             />
         </>
     );
