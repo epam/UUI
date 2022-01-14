@@ -32,6 +32,7 @@ function parseQueryString(querystring: string) {
 function cleaningObject(obj: any) {
     const isArray = obj instanceof Array;
     for (const k in obj) {
+        if (typeof k !== 'number') return;
         if (obj[k] === null || obj[k] === undefined) isArray ? obj.splice(k, 1) : delete obj[k];
         else if (typeof obj[k] == "object") cleaningObject(obj[k]);
     }
