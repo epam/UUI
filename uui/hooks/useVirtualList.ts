@@ -1,4 +1,4 @@
-import { DOMAttributes, MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import { DOMAttributes, useState, MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import type { IEditable, DataTableState } from '../';
 
 interface UuiScrollPositionValues {
@@ -29,7 +29,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     onScroll,
     blockAlign = 20,
 }: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
-    const estimatedHeight = useRef(0);
+    const [estimatedHeight, setEstimatedHeight] = useState<number>(0);
     const listContainer = useRef<List>();
     const scrollContainer = useRef<ScrollContainer>();
     const rowHeights = useRef<number[]>([]);
@@ -93,15 +93,17 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-        estimatedHeight.current = lastOffset - listOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current, listOffset]);
+        const newEstimatedHeight = lastOffset - listOffset;
+        if (estimatedHeight === newEstimatedHeight) return;
+        setEstimatedHeight(newEstimatedHeight);
+    }, [estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, listOffset]);
 
     const scrollToIndex = useCallback((focusedIndex: number) => {
         if (!value?.focusedIndex) return;
         if (focusedIndex < 0) throw new Error('Index is less than zero');
         if (focusedIndex > rowsCount) throw new Error('Index exceeds the size of the list');
         onValueChange({ ...value, focusedIndex });
-    }, [value?.focusedIndex, rowsCount]);
+    }, [value?.focusedIndex, rowsCount, value]);
 
     useLayoutEffect(() => {
         if (process.env.JEST_WORKER_ID) return;
@@ -118,7 +120,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
     return {
-        estimatedHeight: estimatedHeight.current,
+        estimatedHeight,
         offsetY,
         scrollContainerRef: scrollContainer,
         listContainerRef: listContainer,
