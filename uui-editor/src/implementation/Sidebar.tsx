@@ -21,6 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly })
             && !editor?.readOnly;
         
         if (isSidebarVisible !== isVisible) {
+            // delay is used to make mouse click work on elements outside editor before they moved because of sidebar disappearing
             timeoutIdRef.current = setTimeout(() => {
                 setIsVisible(isSidebarVisible);
             }, 50);
