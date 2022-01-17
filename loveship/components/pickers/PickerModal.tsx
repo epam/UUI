@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DataRowProps, Lens } from '@epam/uui';
 import { PickerModalBase, PickerModalProps,  handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
@@ -98,7 +98,11 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                     <FlexRow padding='24' vPadding='24' spacing='12' cx={ css.modalFooter }>
                         {
                             this.props.renderFooter
-                                ? this.props.renderFooter({ ...this.props as any, view })
+                                ? this.props.renderFooter({
+                                    view,
+                                    showSelected: this.lens.prop('showSelected').toProps(),
+                                    clearSelection: this.clearSelection
+                                })
                                 : this.renderFooter(selectedDataRows)
                         }
                     </FlexRow>
@@ -108,7 +112,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     }
 }
 
-export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>, any> {
+export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>> {
     state = { selection: this.props.initialValue };
     lens = Lens.onState<any>(this);
 
@@ -117,7 +121,7 @@ export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TI
         return <PickerModalImpl
             { ...this.props }
             { ...this.lens.prop('selection').toProps() }
-            success={ () => { (this.props.success as any)(this.state.selection); } }
+            success={ () => this.props.success(this.state.selection as any) }
         />;
     }
 }

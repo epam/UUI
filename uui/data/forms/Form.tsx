@@ -13,7 +13,7 @@ export interface FormProps<T> {
     onSave(state: T): Promise<FormSaveResponse<T> | void>;
     beforeLeave?: (() => Promise<boolean>) | null;
     loadUnsavedChanges?: () => Promise<void>;
-    onSuccess?(state: T): any;
+    onSuccess?(state: T, isSavedBeforeLeave?: boolean): any;
     onError?(error: any): any;
     settingsKey?: string;
     value: T;

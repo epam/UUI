@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -79,6 +79,7 @@
     "ts-morph": "7.1.2",
     "ts-pnp": "1.1.6",
     "tsconfig-paths-webpack-plugin": "3.2.0",
+    "tslib": "^2.3.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-react": "^3.6.0",
@@ -90,7 +91,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
-    "typescript": "4.1.5"
+    "typescript": "4.5.4"
   },
   "publishConfig": {
     "directory": "build"
