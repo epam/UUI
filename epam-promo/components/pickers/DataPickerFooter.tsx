@@ -9,7 +9,9 @@ import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
 import css from './DataPickerFooter.scss';
 
-type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod;
+type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod & {
+    hideShowOnlySelected?: boolean;
+};
 
 const switchSizes = {
     '24': '12',
@@ -30,13 +32,15 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
     return (
         <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
-            <Switch
-                size={ switchSize }
-                value={ showSelected.value }
-                isDisabled={ !hasSelection }
-                onValueChange={ showSelected.onValueChange }
-                label={ i18n.pickerInput.showOnlySelectedLabel }
-            />
+            {
+                !props.hideShowOnlySelected && <Switch
+                    size={ switchSize }
+                    value={ showSelected.value }
+                    isDisabled={ !hasSelection }
+                    onValueChange={ showSelected.onValueChange }
+                    label={ i18n.pickerInput.showOnlySelectedLabel }
+                />
+            }
 
             <FlexSpacer/>
 
