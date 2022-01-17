@@ -17,11 +17,12 @@ export interface PersonsTableProps extends IEditable<DataTableState> {
 export const PersonsTable = (props: PersonsTableProps) => {
     const { uuiModals } = useUuiContext<TApi, UuiContexts>();
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
-    const { columns, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
+    const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
+    const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const cols = (props.isLoading || props.value?.__typename === 'Person') ? columns : groupColumns;
+        const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
         return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
     };
 
@@ -46,7 +47,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
-                    columns={ columns }
+                    columns={ personColumnsSync }
                     textCase='upper'
                     onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                     selectAll={ props.view.selectAll }
@@ -70,7 +71,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                 </div>
             ) }
             <DataTableRow
-                columns={ summaryColumns }
+                columns={ summaryColumnsSync }
                 cx={ css.stickyFooter }
                 id="footer"
                 rowKey="footer"

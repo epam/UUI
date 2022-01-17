@@ -96,7 +96,7 @@ export function getColumns() {
 
     const summaryColumns: DataColumnProps<PersonsSummary>[] = [
         {
-            key: 'totalCount',
+            key: 'name',
             caption: "Total Count",
             fix: 'left',
             textAlign: 'right',
@@ -109,32 +109,32 @@ export function getColumns() {
             ),
         },
         {
-            key: 'totalJobTitle',
+            key: 'jobTitle',
             width: 200,
             render: () => <Text fontSize='14'>-</Text>,
         },
         {
-            key: 'totalDepartmentName',
+            key: 'departmentName',
             width: 200,
             render: () => <Text fontSize='14' font='sans-semibold'>-</Text>,
         },
         {
-            key: 'totalBirthDate',
+            key: 'birthDate',
             render: () => <Text fontSize='14'>-</Text>,
             width: 120,
         },
         {
-            key: 'totalHireDate',
+            key: 'hireDate',
             render: () => <Text fontSize='14'>-</Text>,
             width: 120,
         },
         {
-            key: 'totalLocationName',
+            key: 'locationName',
             render: () => <Text fontSize='14'>-</Text>,
             width: 120,
         },
         {
-            key: 'totalSalary',
+            key: 'salary',
             caption: "Total Salary",
             render: p => <Text font='sans-semibold' fontSize='14'>{ p.totalSalary }</Text>,
             width: 150,
