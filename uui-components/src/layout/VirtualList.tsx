@@ -37,7 +37,7 @@ export function VirtualList(props: VirtualListProps) {
         rowsCount: props.rowsCount,
     });
 
-    const { ...scrollShadows } = useScrollShadows({ root: scrollContainerRef.current });
+    const scrollShadows = useScrollShadows({ root: scrollContainerRef.current });
 
     const renderRows = () => (
         props.renderRows?.({ listContainerRef, estimatedHeight, offsetY, scrollShadows }) || (
