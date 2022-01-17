@@ -33,7 +33,7 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
         .prop('showSelected');
 
     getInitialState() {
-        let base = super.getInitialState();
+        const base = super.getInitialState();
         return {
             ...base,
             dataSourceState: {
