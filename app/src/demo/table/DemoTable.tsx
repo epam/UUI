@@ -44,14 +44,14 @@ export const DemoTable: React.FC = () => {
         getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, []);
 
-    const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
+    const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
             rowProps.onSelect(rowProps);
             setIsInfoPanelOpened(true);
         },
-    };
+    });
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
         const columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
