@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './PickerModal.scss';
-import { DataRowProps, Lens, uuiMarkers } from '@epam/uui';
+import { DataRowProps, Lens } from '@epam/uui';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
@@ -96,8 +96,12 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                     <ModalFooter borderTop padding='24' vPadding='24'>
                         {
                             this.props.renderFooter
-                            ? this.props.renderFooter({ ...this.props as any, view })
-                            : this.renderFooter(selectedDataRows)
+                                ? this.props.renderFooter({
+                                    view,
+                                    showSelected: this.lens.prop('showSelected').toProps(),
+                                    clearSelection: this.clearSelection
+                                })
+                                : this.renderFooter(selectedDataRows)
                         }
                     </ModalFooter>
                 </ModalWindow>
@@ -106,7 +110,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     }
 }
 
-export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>, any> {
+export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>> {
     state = { selection: this.props.initialValue };
     lens = Lens.onState<any>(this);
 
@@ -114,7 +118,7 @@ export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TI
         return <PickerModalImpl
             { ...this.props }
             { ...this.lens.prop('selection').toProps() }
-            success={ () => { (this.props.success as any)(this.state.selection); } }
+            success={ () => this.props.success(this.state.selection as any) }
         />;
     }
 }
