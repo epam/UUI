@@ -43,10 +43,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         return props.renderNoResultsBlock?.() || <DataTableNoResults />;
     }, [props.renderNoResultsBlock]);
 
-    const rows = React.useMemo(() => {
-        const rowRenderer = props.renderRow || renderRow;
-        return props.getRows().map(row => rowRenderer({ ...row, columns }));
-    }, [props.renderRow, props.getRows, columns]);
+    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
