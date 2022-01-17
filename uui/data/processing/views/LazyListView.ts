@@ -112,7 +112,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const prevValue = this.loadedValue;
         const prevProps = this.loadedProps;
-        this.loadedValue = { ...this.value };
+        this.loadedValue = this.value;
         this.loadedProps = this.props;
         this.isUpdatePending = false;
 
