@@ -75,13 +75,13 @@ export class ProjectsDoc extends React.Component {
                                 <IconContainer icon={ project.icon } size={ 72 }/>
                                 <FlexCell width='auto' cx={ css.projectDescription }>
                                     {
-                                        project.url ?
-                                            <LinkButton size='30' caption={ project.projectName } target='_blank'
+                                        project.url 
+                                            ? <LinkButton size='30' caption={ project.projectName } target='_blank'
                                                         href={ project.url } icon={ LinkIcon } iconPosition='right'
-                                                        cx={ css.projectLink }/> :
-                                            <Text font='museo-sans' fontSize='24' lineHeight='30'
+                                                        cx={ css.projectLink }/> 
+                                            : <Text font='museo-sans' fontSize='24' lineHeight='30'
                                                   cx={ css.projectName }>{ project.projectName }</Text>
-                                    }`
+                                    }
                                     <Text color='gray60' cx={ css.projectCode }>{ project.projectCode }</Text>
                                 </FlexCell>
                                 <FlexSpacer/>
