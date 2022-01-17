@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import * as React from "react";
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -11,8 +11,9 @@ interface UseScrollShadowsApi {
 };
 
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
-    const [vertical, setVertical] = useState({ active: false });
-    const [horizontal, setHorizontal] = useState({ left: false, right: false });
+    const [vertical, setVertical] = React.useState({ active: false });
+    const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
+    const resizeObserver = React.useRef<MutationObserver>();
 
     function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
         const { scrollLeft, clientWidth, scrollWidth } = root;
@@ -40,26 +41,30 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         return root.scrollTop === 0 && vertical.active;
     }
 
-    useLayoutEffect(() => {
+    function updateScrollShadows() {
+        // Horizontal shadow states
+        if (shouldHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: true });
+        else if (shouldNotHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: false });
+        else if (shouldHaveRightShadow(root)) setHorizontal({ ...horizontal, right: true });
+        else if (shouldNotHaveRightShadow(root)) setHorizontal({ ...horizontal, right: false });
+
+        // Vertical shadow states
+        if (shouldHaveVerticalShadow(root)) setVertical({ ...vertical, active: true });
+        else if (shouldNotHaveVerticalShadow(root)) setVertical({ ...vertical, active: false });
+    }
+
+    React.useEffect(() => {
         if (!root) return;
-
-        const updateScrollShadows = (e: Event) => {
-            const table = e.currentTarget as HTMLElement;
-
-            // Horizontal shadow states
-            if (shouldHaveLeftShadow(table)) setHorizontal({ ...horizontal, left: true });
-            else if (shouldNotHaveLeftShadow(table)) setHorizontal({ ...horizontal, left: false });
-            else if (shouldHaveRightShadow(table)) setHorizontal({ ...horizontal, right: true });
-            else if (shouldNotHaveRightShadow(table)) setHorizontal({ ...horizontal, right: false });
-
-            // Vertical shadow states
-            if (shouldHaveVerticalShadow(table)) setVertical({ ...vertical, active: true });
-            else if (shouldNotHaveVerticalShadow(table)) setVertical({ ...vertical, active: false });
-        };
-
         root.addEventListener('scroll', updateScrollShadows);
         return () => root.removeEventListener('scroll', updateScrollShadows);
     }, [root, horizontal, setHorizontal, vertical, setVertical]);
+
+    React.useEffect(() => {
+        if (!root) return;
+        resizeObserver.current = new MutationObserver(updateScrollShadows);
+        resizeObserver.current.observe(root, { attributes: true, attributeFilter: ['width', 'height', 'scrollWidth']});
+        return () => root && resizeObserver.current.disconnect();
+    }, [root]);
 
     return {
         vertical: vertical.active,
