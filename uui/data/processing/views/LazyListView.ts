@@ -112,7 +112,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const prevValue = this.loadedValue;
         const prevProps = this.loadedProps;
-        this.loadedValue = this.value;
+        this.loadedValue = { ...this.value };
         this.loadedProps = this.props;
         this.isUpdatePending = false;
 
@@ -497,13 +497,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.handleCheckedChange(Array.from(checkedKeysSet).map(key => this.keyToId(key)));
 
         } else {
+            let result = [...checked];
             if (isChecked) {
-                checked.push(id);
+                result.push(id);
             } else {
-                checked = checked.filter(i => i !== id);
+                result = result.filter(i => i !== id);
             }
 
-            this.handleCheckedChange(checked);
+            this.handleCheckedChange(result);
         }
     }
 
