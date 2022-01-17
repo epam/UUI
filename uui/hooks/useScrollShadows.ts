@@ -16,28 +16,28 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
         const { scrollLeft, clientWidth, scrollWidth } = root;
-        return scrollWidth - clientWidth - scrollLeft > 1;
+        return scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right;
     }
 
     function shouldNotHaveRightShadow(root: UseScrollShadowsProps['root']) {
         const { scrollLeft, clientWidth, scrollWidth } = root;
-        return scrollWidth - clientWidth - scrollLeft <= 1;
+        return scrollWidth - clientWidth - scrollLeft <= 1 && horizontal.right;
     }
 
     function shouldHaveLeftShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollLeft > 0;
+        return root.scrollLeft > 0 && !horizontal.left;
     }
 
     function shouldNotHaveLeftShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollLeft === 0;
+        return root.scrollLeft === 0 && horizontal.left;
     }
 
     function shouldHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollTop > 0;
+        return root.scrollTop > 0 && !vertical.active;
     }
 
     function shouldNotHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
-        return root.scrollTop === 0;
+        return root.scrollTop === 0 && vertical.active;
     }
 
     useLayoutEffect(() => {
