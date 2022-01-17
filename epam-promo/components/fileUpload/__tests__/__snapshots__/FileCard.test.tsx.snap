@@ -24,6 +24,8 @@ exports[`FileCard should be rendered correctly 1`] = `
     >
       <svg
         className=""
+        height={24}
+        width={24}
       />
     </div>
     <div
@@ -118,6 +120,8 @@ exports[`FileCard should be rendered correctly 2`] = `
     >
       <svg
         className=""
+        height={24}
+        width={24}
       />
     </div>
     <div
@@ -212,6 +216,8 @@ exports[`FileCard should be rendered correctly 3`] = `
     >
       <svg
         className=""
+        height={24}
+        width={24}
       />
     </div>
     <div
