@@ -15,11 +15,21 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     showColumnsConfig?: boolean;
 }
 
+function DataTableNoResults() {
+    return (
+        <div className={ css.noResults }>
+            <IconButton icon={ SearchIcon } cx={ css.noResultsIcon } />
+            <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
+            <Text fontSize='14'>We can't find any item matching your request</Text>
+        </div>
+    );
+};
+
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
 
-    const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
@@ -27,26 +37,18 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             borderBottom={ props.border }
             { ...rowProps }
         />
-    );
+    ), [props.border, props.size, props.rowBackground]);
 
-    const renderNoResultsBlock = () => {
-        const renderNoResults = () => (
-            <div className={ css.noResults }>
-                <IconButton icon={ SearchIcon } cx={ css.noResultsIcon } />
-                <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
-                <Text fontSize='14'>We can't find any item matching your request</Text>
-            </div>
-        );
+    const renderNoResultsBlock = React.useCallback(() => {
+        return props.renderNoResultsBlock?.() || <DataTableNoResults />;
+    }, [props.renderNoResultsBlock]);
 
-        return props.renderNoResultsBlock?.() || renderNoResults();
-    };
-
-    const getRows = () => {
+    const rows = React.useMemo(() => {
         const rowRenderer = props.renderRow || renderRow;
         return props.getRows().map(row => rowRenderer({ ...row, columns }));
-    };
+    }, [props.renderRow, props.getRows, columns]);
 
-    const onConfigurationButtonClick = () => {
+    const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
                 { ...modalProps }
@@ -57,45 +59,46 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         ))
             .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
-    };
+    }, [props.columns, config, defaultConfig, props.value, props.onValueChange]);
 
-    const renderRowsContainer =  ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
-        <>
-            <div className={ css.stickyHeader }>
-                <DataTableHeaderRow
-                    columns={ columns }
-                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
-                    selectAll={ props.selectAll }
-                    size={ props.size }
-                    textCase={ props.headerTextCase }
-                    allowColumnsReordering={ props.allowColumnsReordering }
-                    allowColumnsResizing={ props.allowColumnsResizing }
-                    value={ props.value }
-                    onValueChange={ props.onValueChange }
-                />
-                <div className={ cx(uuiScrollShadows.top, {
-                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
-                }) } />
-            </div>
-            { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
-                    <div
-                        ref={ listContainerRef }
-                        role='rowgroup'
-                        style={ { marginTop: offsetY } }
-                        children={ getRows() }
+    const renderRowsContainer = React.useCallback(
+        ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+            <>
+                <div className={ css.stickyHeader }>
+                    <DataTableHeaderRow
+                        columns={ columns }
+                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                        selectAll={ props.selectAll }
+                        size={ props.size }
+                        textCase={ props.headerTextCase }
+                        allowColumnsReordering={ props.allowColumnsReordering }
+                        allowColumnsResizing={ props.allowColumnsResizing }
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
                     />
+                    <div className={ cx(uuiScrollShadows.top, {
+                        [uuiScrollShadows.topVisible]: scrollShadows.vertical,
+                    }) } />
                 </div>
-            ) : renderNoResultsBlock?.() }
-        </>
-    );
+                { props.exactRowsCount !== 0 ? (
+                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                        <div
+                            ref={ listContainerRef }
+                            role='rowgroup'
+                            style={ { marginTop: offsetY } }
+                            children={ rows }
+                        />
+                    </div>
+                ) : renderNoResultsBlock?.() }
+            </>
+    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
         <VirtualList
             value={ props.value }
             onValueChange={ props.onValueChange }
             onScroll={ props.onScroll }
-            rows={ getRows() }
+            rows={ rows }
             rowsCount={ props.rowsCount }
             focusedIndex={ props.value?.focusedIndex }
             shadow='dark'

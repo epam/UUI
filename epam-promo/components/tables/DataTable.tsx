@@ -18,16 +18,39 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
 
-    const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
             borderBottom={ props.border }
             { ...rowProps }
         />
-    );
+    ), [props.size, props.border]);
 
-    const renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+    const rows = React.useMemo(() => {
+        const rowRenderer = props.renderRow || renderRow;
+        return props.getRows().map(row => rowRenderer({ ...row, columns }));
+    }, [props.renderRow, props.getRows, columns]);
+
+    const renderNoResultsBlock = React.useCallback(() => {
+        // need default behavior
+        return props.renderNoResultsBlock?.() || undefined;
+    }, [props.renderNoResultsBlock]);
+
+    const onConfigurationButtonClick = React.useCallback(() => {
+        uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ props.columns }
+                columnsConfig={ config }
+                defaultConfig={ defaultConfig }
+            />
+        ))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
+            .catch(() => null);
+    }, [props.columns, config, defaultConfig, props.value, props.onValueChange]);
+
+    const renderRowsContainer = React.useCallback(({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
@@ -51,42 +74,19 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         ref={ listContainerRef }
                         role='rowgroup'
                         style={ { marginTop: offsetY } }
-                        children={ getRows() }
+                        children={ rows }
                     />
                 </div>
             ) : renderNoResultsBlock?.() }
         </>
-    );
-
-    const getRows = () => {
-        const rowRenderer = props.renderRow || renderRow;
-        return props.getRows().map(row => rowRenderer({ ...row, columns }));
-    };
-
-    const renderNoResultsBlock = () => {
-        // need default behavior
-        return props.renderNoResultsBlock?.() || undefined;
-    };
-
-    const onConfigurationButtonClick = () => {
-        uuiModals.show<ColumnsConfig>(modalProps => (
-            <ColumnsConfigurationModal
-                { ...modalProps }
-                columns={ props.columns }
-                columnsConfig={ config }
-                defaultConfig={ defaultConfig }
-            />
-        ))
-            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
-            .catch(() => null);
-    };
+    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
         <VirtualList
             value={ props.value }
             onValueChange={ props.onValueChange }
             onScroll={ props.onScroll }
-            rows={ getRows() }
+            rows={ rows }
             rowsCount={ props.rowsCount }
             focusedIndex={ props.value?.focusedIndex }
             shadow='dark'
