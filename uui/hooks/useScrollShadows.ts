@@ -14,42 +14,47 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     const [vertical, setVertical] = useState({ active: false });
     const [horizontal, setHorizontal] = useState({ left: false, right: false });
 
-    const updateHorizontalShadows = (scrollTop: number) => {
-        console.log({ scrollTop });
-        if (scrollTop > 0 && !vertical.active) {
-            setVertical({ active: true })
-        } else if (scrollTop === 0 && vertical.active) {
-            setVertical({ active: false });
-        } else return;
-    };
+    function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
+        const { scrollLeft, clientWidth, scrollWidth } = root;
+        return scrollWidth - clientWidth - scrollLeft > 1;
+    }
 
-    const updateVerticalShadows = ({
-        scrollWidth,
-        clientWidth,
-        scrollLeft
-    }: {
-        scrollWidth: number,
-        clientWidth: number,
-        scrollLeft: number
-    }) => {
-        if (scrollLeft > 0 && !horizontal.left) {
-            setHorizontal({ ...horizontal, left: true });
-        } else if (scrollLeft === 0 && horizontal.left) {
-            setHorizontal({ ...horizontal, left: false });
-        } else if (scrollLeft > 0 && scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right) {
-            setHorizontal({ ...horizontal, right: true });
-        } else if (scrollWidth - clientWidth - scrollLeft <= 1 && horizontal.right) {
-            setHorizontal({ ...horizontal, right: false });
-        } else return;
-    };
+    function shouldNotHaveRightShadow(root: UseScrollShadowsProps['root']) {
+        const { scrollLeft, clientWidth, scrollWidth } = root;
+        return scrollWidth - clientWidth - scrollLeft <= 1;
+    }
+
+    function shouldHaveLeftShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollLeft > 0;
+    }
+
+    function shouldNotHaveLeftShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollLeft === 0;
+    }
+
+    function shouldHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollTop > 0;
+    }
+
+    function shouldNotHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollTop === 0;
+    }
 
     useLayoutEffect(() => {
         if (!root) return;
 
         const updateScrollShadows = (e: Event) => {
-            const { scrollWidth, clientWidth, scrollLeft, scrollTop } = e.currentTarget as HTMLElement;
-            updateHorizontalShadows(scrollTop);
-            updateVerticalShadows({ scrollWidth, clientWidth, scrollLeft });
+            const table = e.currentTarget as HTMLElement;
+
+            // Horizontal shadow states
+            if (shouldHaveLeftShadow(table)) setHorizontal({ ...horizontal, left: true });
+            else if (shouldNotHaveLeftShadow(table)) setHorizontal({ ...horizontal, left: false });
+            else if (shouldHaveRightShadow(table)) setHorizontal({ ...horizontal, right: true });
+            else if (shouldNotHaveRightShadow(table)) setHorizontal({ ...horizontal, right: false });
+
+            // Vertical shadow states
+            if (shouldHaveVerticalShadow(table)) setVertical({ ...vertical, active: true });
+            else if (shouldNotHaveVerticalShadow(table)) setVertical({ ...vertical, active: false });
         };
 
         root.addEventListener('scroll', updateScrollShadows);
@@ -58,7 +63,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     return {
         vertical: vertical.active,
-        horizontalLeft: horizontal.right,
-        horizontalRight: horizontal.left,
+        horizontalLeft: horizontal.right || root && shouldHaveRightShadow(root),
+        horizontalRight: horizontal.left || root && shouldHaveLeftShadow(root),
     };
 };
