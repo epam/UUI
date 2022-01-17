@@ -12,9 +12,9 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "noEmitOnError": true,
+    "importHelpers": true,
     "outDir": "./build",
     "rootDir": ".",
-    "importHelpers": true,
     "lib": [
       "dom",
       "dom.iterable",

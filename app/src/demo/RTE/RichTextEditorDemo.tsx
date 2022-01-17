@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Value } from 'slate';
 import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin } from '@epam/uui-editor';
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, codeBlockPlugin,
+} from "@epam/uui-editor";
 import { svc } from '../../services';
 import { initialValue } from './state';
 import * as css from './RichTextEditorDemo.scss';
@@ -59,6 +60,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
                 },
             ],
         }),
+        codeBlockPlugin(),
     ];
 
     render() {
