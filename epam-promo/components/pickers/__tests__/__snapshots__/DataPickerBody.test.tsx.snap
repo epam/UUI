@@ -11,7 +11,6 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 >
   <div
     className="no-found-size-36"
-    onClick={[Function]}
     style={
       Object {
         "alignSelf": undefined,
@@ -54,7 +53,6 @@ Array [
   >
     <div
       className=""
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -162,7 +160,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -191,7 +188,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -220,7 +216,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -249,7 +244,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -278,7 +272,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -307,7 +300,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -336,7 +328,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -365,7 +356,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -394,7 +384,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -423,7 +412,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -452,7 +440,6 @@ Array [
             >
               <div
                 className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                onClick={[Function]}
                 style={
                   Object {
                     "alignSelf": undefined,

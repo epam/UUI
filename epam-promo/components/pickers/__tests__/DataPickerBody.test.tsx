@@ -4,10 +4,6 @@ import { ArrayDataSource } from '@epam/uui';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 const languageLevels = [
     { "id": 2, "level": "A1" },
     { "id": 3, "level": "A1+" },
