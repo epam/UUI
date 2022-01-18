@@ -52,12 +52,12 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
 
 export interface ModalFooterProps extends RowMods, ModalFooterCoreProps {}
 
-export class ModalFooter extends React.Component<ModalFooterCoreProps & RowMods> {
+export class ModalFooter extends React.Component<ModalFooterProps> {
     render() {
         return (
             <FlexRow
                 spacing={ this.props.spacing || '12' }
-                cx={ [css.modalFooter, this.props.borderTop && css.borderTop] }
+                cx={ [css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx] }
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }
                 background={ this.props.background || 'none' }
