@@ -32,9 +32,8 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
 
     getImageMaxWidth() {
         if (!isClientSide) return 0;
-        const editorNode = findDOMNode(this.props.editor);
-        if (!editorNode || editorNode instanceof Text) return;
-        return editorNode.getBoundingClientRect().width - 50;
+        let editorNode: any = findDOMNode(this.props.editor);
+        return editorNode && editorNode.getBoundingClientRect().width - 50;
     }
 
     isAlign(type: string) {
