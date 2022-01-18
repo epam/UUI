@@ -18,3 +18,4 @@ export * from './textAlignPlugin/textAlignPlugin';
 export * from './utilsPlugin/utilsPlugin';
 export * from './tableMergePlugin/tableMergePlugin';
 export * from './placeholderPlugin/placeholderPlugin';
+export * from './codeBlockPlugin/codeBlockPlugin';

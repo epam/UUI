@@ -1,9 +1,8 @@
-import * as React from 'react';
-import * as css from './Sidebar.scss';
+import React, { useEffect, useRef, useState } from "react";
+import css from "./Sidebar.scss";
 import { Editor, Plugins } from "slate-react";
-import { UuiContexts, UuiContext } from '@epam/uui';
-import flatten from 'lodash.flatten';
-import cx from 'classnames';
+import flatten from "lodash.flatten";
+import cx from "classnames";
 
 interface SidebarProps {
     editor: Editor;
@@ -11,37 +10,35 @@ interface SidebarProps {
     isReadonly: boolean;
 }
 
-export class Sidebar extends React.Component<SidebarProps> {
-    sidebar = React.createRef<HTMLDivElement>();
-    static contextType = UuiContext;
-    context: UuiContexts;
+export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const timeoutIdRef = useRef<ReturnType<typeof setTimeout>>(null);
 
-    isSidebarVisible = () => {
-        if (!this.props.editor || !this.props.editor.value.focusBlock) {
-            return false;
+    useEffect(() => {
+        const isSidebarVisible = editor?.value.focusBlock
+            && editor?.value.selection.isFocused
+            && !editor?.readOnly;
+        
+        if (isSidebarVisible !== isVisible) {
+            // delay is used to make mouse click work on elements outside editor before they moved because of sidebar disappearing
+            timeoutIdRef.current = setTimeout(() => {
+                setIsVisible(isSidebarVisible);
+            }, 50);
         }
 
-        return this.props.editor.value.selection.isFocused && !this.props.editor.readOnly;
-    }
+        return () => clearTimeout(timeoutIdRef.current);
+    }, [editor?.value.focusBlock, editor?.value.selection.isFocused, editor?.readOnly]);
 
-    renderSidebar = () => {
-        return (
-            <div className={ cx('slate-prevent-blur', css.sidebar) } ref={ this.sidebar } >
-                { flatten(this.props.plugins).map((plugin: any) => plugin.sidebarButtons
-                    && plugin.sidebarButtons.map((Button: any, index: number) =>
-                        <Button editor={ this.props.editor } key={ `button-${index}` } />,
-                    ))
-                }
-            </div>
-        );
-    }
+    if (isReadonly || !isVisible) return null;
 
-    render() {
-        if (this.props.isReadonly) {
-            return null;
-        }
-        const isVisible = this.isSidebarVisible();
-
-        return isVisible && this.renderSidebar();
-    }
-}
+    return (
+        <div className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
+            { flatten(plugins).map((plugin: any) => (
+                plugin.sidebarButtons?.map((Button: any, index: number) => (
+                    <Button editor={ editor } key={ `button-${ index }` }/>
+                ))
+            )) }
+        </div>
+    );
+};

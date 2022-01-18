@@ -2,10 +2,8 @@ import * as React from 'react';
 import { Value } from 'slate';
 import { IEditableDebouncer } from '@epam/uui';
 import { Blocker } from '@epam/loveship';
-import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin,
-    quotePlugin, tablePlugin,
-} from '@epam/uui-editor';
+import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
+} from "@epam/uui-editor";
 import { svc } from '../../services';
 import * as css from './EditableDocContent.scss';
 
@@ -34,6 +32,7 @@ const plugins = [
     notePlugin(),
     separatorPlugin(),
     tablePlugin(),
+    codeBlockPlugin(),
 ];
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
