@@ -18,7 +18,7 @@ enum uuiDataTableRowContainer {
     uuiTableFixedSectionLeft = 'uui-table-fixed-section-left',
     uuiTableFixedSectionRight = 'uui-table-fixed-section-right',
     uuiScrollShadowLeft = 'uui-scroll-shadow-left',
-    uuiScrollShadowRight = 'uui-scroll-shadow-right'
+    uuiScrollShadowRight = 'uui-scroll-shadow-right',
 };
 
 export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<DataTableRowContainerProps<TItem, TId, TFilter>> {
@@ -47,7 +47,6 @@ export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<
             { this.renderCells(cells) }
             { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
             { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
-            { direction === 'right' && this.props.renderConfigButton?.() }
         </div>
     );
 
@@ -79,6 +78,7 @@ export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<
                 { fixedLeftColumns.length > 0 && this.wrapFixedSection(fixedLeftColumns, 'left') }
                 { this.wrapScrollingSection(staticColumns) }
                 { fixedRightColumns.length > 0 && this.wrapFixedSection(fixedRightColumns, 'right') }
+                { this.props.renderConfigButton?.() }
                 { this.props.overlays }
             </>
         );
