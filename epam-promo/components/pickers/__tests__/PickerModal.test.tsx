@@ -3,10 +3,6 @@ import { ArrayDataSource } from '@epam/uui';
 import { renderWithContextAsync } from "@epam/test-utils";
 import { PickerModal } from '../PickerModal';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 const languageLevels = [
     { "id": 2, "level": "A1" },
     { "id": 3, "level": "A1+" },

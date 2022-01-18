@@ -12,31 +12,27 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
     showSearch?: boolean | 'auto';
 }
 
-export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends Component<TProps, unknown> {
-    needFocusSearch: boolean = this.showSearch();
+export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends Component<TProps> {
+    needFocusSearch = this.showSearch();
 
     componentDidUpdate(prevProps: PickerBodyBaseProps) {
-        if (this.needFocusSearch  && !isMobile()) {
+        if (this.needFocusSearch && !isMobile()) {
             const body = findDOMNode(this) as HTMLElement;
-            body && body.getElementsByTagName('input')[0]?.focus({ preventScroll: true });
+            body?.getElementsByTagName('input')[0]?.focus({ preventScroll: true });
             this.needFocusSearch = false;
-        }
+        };
+
         if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {
-            this.props.scheduleUpdate && this.props.scheduleUpdate();
+            this.props.scheduleUpdate?.();
         }
     }
 
-    showSearch(): boolean {
-        let showSearch = this.props.showSearch;
-        if (showSearch === 'auto') {
-            showSearch = this.props.totalCount > 10;
-        }
-
-        return showSearch as boolean;
+    showSearch() {
+        return this.props.showSearch === 'auto' ? (this.props.totalCount > 10) : Boolean(this.props.showSearch);
     }
 
     searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        this.props.onKeyDown && this.props.onKeyDown(e);
+        this.props.onKeyDown?.(e);
         if (e.shiftKey && e.key === 'Tab') e.preventDefault();
     }
 }
