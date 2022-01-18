@@ -156,9 +156,9 @@ export const PersonsTableDemo = () => {
                 </FlexCell>
             </FlexRow>
             <PersonsTable
-                showColumnsConfig
+                value={ value }
+                onValueChange={ onValueChange }
                 summary={ summary }
-                { ...useLens(editable, b => b) }
                 view={ personsDataView }
             />
         </div>
