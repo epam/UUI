@@ -38,9 +38,11 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
       className="uui-label"
     >
       Test label
-      <svg
-        className="uui-labeled-input-info-icon"
-      />
+      <div>
+        <svg
+          className="uui-labeled-input-info-icon"
+        />
+      </div>
     </label>
     <div
       className="rightChildrenPosition"

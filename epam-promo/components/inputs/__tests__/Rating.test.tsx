@@ -2,10 +2,6 @@ import React from 'react';
 import { Rating } from '../Rating';
 import renderer from 'react-test-renderer';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('Rating', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

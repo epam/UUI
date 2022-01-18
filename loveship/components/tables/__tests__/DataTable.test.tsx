@@ -1,11 +1,7 @@
 import React from 'react';
 import { renderWithContextAsync } from '@epam/test-utils';
 import { demoColumns, dataSource } from './dataMocks';
-import {DataTable} from '../DataTable';
-
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
+import { DataTable } from '../DataTable';
 
 class ResizeObserverMock {
     observe = () => jest.fn();

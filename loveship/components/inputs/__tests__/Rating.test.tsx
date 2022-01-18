@@ -2,10 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Rating} from "../Rating";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("Rating", () => {
     const value = 2;
     const onChange = jest.fn();

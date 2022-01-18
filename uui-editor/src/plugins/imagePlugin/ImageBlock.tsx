@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
-import { RenderBlockProps } from 'slate-react';
+import { findDOMNode } from 'react-dom';
+import { RenderAttributes, RenderBlockProps } from 'slate-react';
 import { Resizable } from 're-resizable';
 import { isClientSide, uuiMod, uuiSkin } from "@epam/uui";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
@@ -16,20 +16,25 @@ const IMAGE_GLOBAL_CLASS = 'uui-rte-image';
 
 const { FlexRow } = uuiSkin;
 
-
 interface ImageBlockProps extends RenderBlockProps {
     src?: string;
 }
 
+interface ImageSize {
+    width: number,
+    height: number
+}
+
 export class ImageBlock extends React.Component<ImageBlockProps> {
-    state: any = {
+    state = {
         isOpened: false,
     };
 
     getImageMaxWidth() {
         if (!isClientSide) return 0;
-        let editorNode: any = ReactDOM.findDOMNode(this.props.editor);
-        return editorNode && editorNode.getBoundingClientRect().width - 50;
+        const editorNode = findDOMNode(this.props.editor);
+        if (!editorNode || editorNode instanceof Text) return;
+        return editorNode.getBoundingClientRect().width - 50;
     }
 
     isAlign(type: string) {
@@ -42,12 +47,12 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
         const newData = this.props.node.data.set('align', !this.isAlign(type) ? type : null);
 
         this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node as any,
+            ...this.props.node,
             data: newData,
         });
     }
 
-    getDefaultSizes(naturalWidth: number, naturalHeight: number) {
+    getDefaultSizes(naturalWidth: number, naturalHeight: number): ImageSize {
         const imageWidth = naturalWidth > this.getImageMaxWidth() ? this.getImageMaxWidth() : naturalWidth;
         const imageRatio = naturalWidth / naturalHeight;
 
@@ -58,18 +63,17 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
     }
 
     setMaxWidth = () => {
-        const imageSizes = this.props.node.data.get('imageSize');
+        const imageSizes: ImageSize = this.props.node.data.get('imageSize');
         const imageRatio = imageSizes.width / imageSizes.height;
         this.setSize({ width: this.getImageMaxWidth(), height: this.getImageMaxWidth() / imageRatio });
         this.setState({ isOpened: false });
     }
 
-    setSize = (data: any) => {
-
+    setSize = (data: ImageSize) => {
         const newData = this.props.node.data.set('imageSize', data);
 
         this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node as any,
+            ...this.props.node,
             data: newData,
         });
     }
@@ -85,56 +89,54 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
         );
     }
 
-    renderImage(attributes: any, src: string) {
-        let image = <><img
-            onFocus={ () => !this.props.readOnly && this.setState({ isOpened: true }) }
-            tabIndex={ 0 }
-            className={ cx(css.container, this.props.isFocused ? uuiMod.focus : null, !this.props.readOnly ? css.containerHover : null, IMAGE_GLOBAL_CLASS) }
-            { ...attributes }
-            ref={ (ref) => { attributes.ref.current = ref; } }
-            src={ src }
-            onLoad={ (e: any) => {
-                const sizes = this.props.node.data.get('imageSize');
-                this.setSize(sizes || this.getDefaultSizes(e.target.naturalWidth, e.target.naturalHeight));
-                this.forceUpdate();
-            } }
-        />
-            <div className={ cx(css.leftTopDot, css.dot) } /><div className={ cx(css.rightTopDot, css.dot) } /><div className={ cx(css.leftBotDot, css.dot) } /><div className={ cx(css.rightBotDot, css.dot) } />
-        </>;
+    renderImage(attributes: RenderAttributes, src: string) {
+        const size: ImageSize = this.props.node.data.get('imageSize') || { width: 0, height: 0 };
+        const imageRatio = size.width / size.height;
 
-        let size = this.props.node.data.get('imageSize') || {width: 0, height: 0};
-        let imageRatio = size.width / size.height;
         return <Resizable
-            size={ { width: size.width, height: size.height} }
-            onResizeStop={ (e: MouseEvent | TouchEvent, d: any, ref: HTMLDivElement) => {
-                this.setSize({
-                    width: ref.clientWidth,
-                    height: ref.clientHeight,
-                });
-            } }
+            size={ { width: size.width, height: size.height } }
+            onResizeStop={ (_, __, ref) => this.setSize({ width: ref.clientWidth, height: ref.clientHeight }) }
             onResize={ () => this.state.isOpened && this.setState({ isOpened: false }) }
             maxWidth={ this.getImageMaxWidth() }
             maxHeight={ this.getImageMaxWidth() / imageRatio }
             lockAspectRatio={ true }
             enable={ this.props.readOnly ? {} : undefined }
         >
-            { image }
+            <img
+                onFocus={ () => !this.props.readOnly && this.setState({ isOpened: true }) }
+                tabIndex={ 0 }
+                className={ cx(css.container, this.props.isFocused ? uuiMod.focus : null, !this.props.readOnly ? css.containerHover : null, IMAGE_GLOBAL_CLASS) }
+                { ...attributes }
+                ref={ attributes.ref }
+                src={ src }
+                onLoad={ e => {
+                    const target = e.target as HTMLImageElement;
+                    const sizes = this.props.node.data.get('imageSize');
+                    this.setSize(sizes || this.getDefaultSizes(target.naturalWidth, target.naturalHeight));
+                    this.forceUpdate();
+                } }
+            />
+                <div className={ cx(css.leftTopDot, css.dot) } />
+                <div className={ cx(css.rightTopDot, css.dot) } />
+                <div className={ cx(css.leftBotDot, css.dot) } />
+                <div className={ cx(css.rightBotDot, css.dot) } />
         </Resizable>;
     }
 
 
     render() {
         const { attributes, node } = this.props;
-        const src = node.data.get('src');
+        const src: string = node.data.get('src');
         return src ? (
             <Dropdown
-                renderTarget={ (props) => {
-                    return <div className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
-                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined } >{ this.renderImage(attributes, src) }</div>
-                    </div>;
-                }
-                }
-                renderBody={ (props) => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
+                renderTarget={ () => (
+                    <div className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
+                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined }>
+                            { this.renderImage(attributes, src) }
+                        </div>
+                    </div>
+                ) }
+                renderBody={ props => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
                 value={ this.props.isFocused }
                 placement='top'
             />

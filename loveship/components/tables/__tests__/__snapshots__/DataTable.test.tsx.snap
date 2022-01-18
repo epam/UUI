@@ -75,30 +75,32 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div>
-              <div
-                className=""
-              >
+              <div>
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                >
-                  ID
-                </div>
-                <button
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                  href={null}
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={-1}
+                  className=""
                 >
                   <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
+                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                   >
-                    <svg
-                      className=""
-                    />
+                    ID
                   </div>
-                </button>
+                  <button
+                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                    href={null}
+                    onClick={[Function]}
+                    role="button"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -132,30 +134,32 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div>
-              <div
-                className=""
-              >
+              <div>
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                >
-                  name
-                </div>
-                <button
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                  href={null}
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={-1}
+                  className=""
                 >
                   <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
+                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                   >
-                    <svg
-                      className=""
-                    />
+                    name
                   </div>
-                </button>
+                  <button
+                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                    href={null}
+                    onClick={[Function]}
+                    role="button"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -176,30 +180,32 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div>
-              <div
-                className=""
-              >
+              <div>
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                >
-                  Level
-                </div>
-                <button
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                  href={null}
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={-1}
+                  className=""
                 >
                   <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
+                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                   >
-                    <svg
-                      className=""
-                    />
+                    Level
                   </div>
-                </button>
+                  <button
+                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                    href={null}
+                    onClick={[Function]}
+                    role="button"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -220,30 +226,32 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div>
-              <div
-                className=""
-              >
+              <div>
                 <div
-                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-                >
-                  DATE
-                </div>
-                <button
-                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                  href={null}
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={-1}
+                  className=""
                 >
                   <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
+                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
                   >
-                    <svg
-                      className=""
-                    />
+                    DATE
                   </div>
-                </button>
+                  <button
+                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                    href={null}
+                    onClick={[Function]}
+                    role="button"
+                    tabIndex={-1}
+                  >
+                    <div
+                      className="container uui-icon uui-enabled"
+                      style={Object {}}
+                    >
+                      <svg
+                        className=""
+                      />
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

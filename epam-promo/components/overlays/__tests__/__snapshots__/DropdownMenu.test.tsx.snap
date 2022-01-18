@@ -80,28 +80,30 @@ Array [
           An example of DropdownMenuHeader
         </span>
       </div>
-      <div
-        className="submenuRootItem itemRoot container -clickable align-items-center"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="menuitem"
-        tabIndex={0}
-      >
+      <div>
         <div
-          className="caption container"
+          className="submenuRootItem itemRoot container -clickable align-items-center"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
-          One More SubMenu
-        </div>
-        <div
-          className="flexSpacer"
-        />
-        <div
-          className="container uui-icon uui-enabled icon iconAfter"
-          style={Object {}}
-        >
-          <svg
-            className=""
+          <div
+            className="caption container"
+          >
+            One More SubMenu
+          </div>
+          <div
+            className="flexSpacer"
           />
+          <div
+            className="container uui-icon uui-enabled icon iconAfter"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
 
     componentDidUpdate(prevProps: PickerBodyBaseProps) {
         if (this.needFocusSearch  && !isMobile()) {
-            let body = findDOMNode(this) as HTMLElement;
+            const body = findDOMNode(this) as HTMLElement;
             body && body.getElementsByTagName('input')[0]?.focus({ preventScroll: true });
             this.needFocusSearch = false;
         }
