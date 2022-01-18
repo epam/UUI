@@ -4,9 +4,9 @@ import { FlexRow } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
-export interface DataTableRowContainerProps<TItem, TId> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
-    columns?: DataColumnProps<TItem, TId>[];
-    renderCell?(column: DataColumnProps<TItem, TId>, idx: number): React.ReactNode;
+export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+    columns?: DataColumnProps<TItem, TId, TFilter>[];
+    renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
     wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
@@ -21,8 +21,8 @@ enum uuiDataTableRowContainer {
     uuiScrollShadowRight = 'uui-scroll-shadow-right'
 };
 
-export class DataTableRowContainer<TItem, TId> extends React.Component<DataTableRowContainerProps<TItem, TId>> {
-    protected renderCells(columns: DataColumnProps<TItem, TId>[]) {
+export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<DataTableRowContainerProps<TItem, TId, TFilter>> {
+    protected renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = this.props.columns?.indexOf(column) || 0;
             return cells.concat(this.props.renderCell({
@@ -32,13 +32,12 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
         }, []);
     }
 
-    getSectionWidth = (cells: DataColumnProps<TItem, TId>[]) => {
+    getSectionWidth = (cells: DataColumnProps<TItem, TId, TFilter>[]) => {
         return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
     }
 
-    wrapFixedSection = (cells: DataColumnProps<TItem, TId>[], direction: 'left' | 'right') => (
+    wrapFixedSection = (cells: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right') => (
         <div
-            style={ { flex: `0 0 ${this.getSectionWidth(cells)}px`, maxWidth: `${this.getSectionWidth(cells)}px` } }
             className={ cx({
                 [css.fixedColumnsSectionLeft]: direction === 'left',
                 [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
@@ -52,7 +51,7 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
         </div>
     );
 
-    wrapScrollingSection = (cells: DataColumnProps<TItem, TId>[]) => {
+    wrapScrollingSection = (cells: DataColumnProps<TItem, TId, TFilter>[]) => {
         if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
         return (
             <div className={ css.container } style={{
@@ -65,15 +64,15 @@ export class DataTableRowContainer<TItem, TId> extends React.Component<DataTable
     }
 
     render() {
-        const fixedLeftColumns: DataColumnProps<TItem, TId>[] = [];
-        const fixedRightColumns: DataColumnProps<TItem, TId>[] = [];
-        const staticColumns: DataColumnProps<TItem, TId>[] = [];
+        const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+        const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+        const staticColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
 
-        this.props.columns?.forEach(i => {
-            if (i.fix === 'left') fixedLeftColumns.push(i);
-            else if (i.fix === 'right') fixedRightColumns.push(i);
-            else staticColumns.push(i);
-        });
+        for (const column of this.props.columns) {
+            if (column.fix === 'left') fixedLeftColumns.push(column);
+            else if (column.fix === 'right') fixedRightColumns.push(column);
+            else staticColumns.push(column);
+        };
 
         const rowContent = (
             <>

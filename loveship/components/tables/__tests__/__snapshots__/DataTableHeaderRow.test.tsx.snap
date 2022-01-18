@@ -7,12 +7,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 >
   <div
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
-    style={
-      Object {
-        "flex": "0 0 96px",
-        "maxWidth": "96px",
-      }
-    }
   >
     <div
       aria-sort="none"
@@ -51,7 +45,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       </label>
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -77,6 +71,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
+        className="-draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -117,7 +112,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -143,6 +138,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
+        className="-draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -170,7 +166,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -196,6 +192,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
+        className="-draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -223,7 +220,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -249,6 +246,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
+        className="-draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -263,12 +261,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
 >
   <div
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
-    style={
-      Object {
-        "flex": "0 0 96px",
-        "maxWidth": "96px",
-      }
-    }
   >
     <div
       aria-sort="none"
@@ -288,7 +280,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -345,7 +337,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -389,7 +381,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
@@ -433,7 +425,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     >
       <div>
         <div
-          className=""
+          className="uui-table-header-caption"
         >
           <div
             className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
