@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { findDOMNode } from 'react-dom';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
@@ -53,15 +52,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Partial<PickerBodyBaseProps>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
-    static getDerivedStateFromProps(props: PickerInputBaseProps<any, any>, state: PickerInputState) {
+    static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
             return {
                 ...state,
                 opened: false,
             };
-        } else {
-            return null;
-        }
+        } else return null;
     }
 
     componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
@@ -117,21 +114,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onFocus && this.props.onFocus(e);
+        this.props.onFocus?.(e);
     }
 
     onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onBlur && this.props.onBlur(e);
+        this.props.onBlur?.(e);
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.toggleDropdownOpening(false);
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
-        this.focusToggler();
-    }
-
-    focusToggler = () => {
-        (findDOMNode(this.togglerRef.current) as HTMLElement).focus();
+        this.togglerRef.current?.focus();
     }
 
     getSearchPosition() {
@@ -183,9 +176,11 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
-        let selectedRows = this.getSelectedRows();
-        const { isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
-            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition } = this.props;
+        const selectedRows = this.getSelectedRows();
+        const {
+            isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
+            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition
+        } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
         const disableClear = forcedDisabledClear || propDisableClear;
@@ -231,7 +226,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (e.key === 'Escape' && this.state.opened) {
             e.preventDefault();
             this.toggleDropdownOpening(false);
-            this.focusToggler();
+            this.togglerRef.current?.focus();
         }
 
         handleDataSourceKeyboard({

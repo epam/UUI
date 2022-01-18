@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as types from '../types';
 import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
@@ -18,7 +18,7 @@ const mapSize = {
     '30': '24',
     '24': '18',
     'none': 'none',
-};
+} as const;
 
 export interface PickerTogglerMods extends types.EditMode {
     size?: types.ControlSize;
@@ -33,47 +33,47 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export class PickerToggler extends React.Component<PickerTogglerProps<any, any> & PickerTogglerMods> {
+export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: any) => {
+    const getCaption = (row: DataRowProps<any, TId>) => {
+        const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
 
-    renderItem = (row: DataRowProps<any, any>) => {
-        const tagSize = mapSize[this.props.size] as TagSize;
-        let caption;
-        let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
-
-        if (!row.isLoading) {
-            if (!this.props.getName || this.props.selection && this.props.selection.length > maxItems) {
-                caption = row.value;
-            } else {
-                caption = this.props.getName(row.value);
-            }
+        if (row.isLoading) {
+            return <TextPlaceholder />;
+        } else if (!props.getName || props.selection?.length > maxItems) {
+            return row.value;
         } else {
-            caption = <TextPlaceholder/>;
-        }
-
-        return <Tag
-            key={ row.rowKey }
-            caption={ caption }
-            color="night300"
-            tabIndex={ -1 }
-            size={ this.props.size ? tagSize : '30' }
-            onClear={ e => {
-                row.onCheck && row.onCheck(row);
-                e.stopPropagation();
-            } }
-        />;
+            return props.getName(row.value);
+        };
     }
 
-    render() {
+    const renderItem = (row: DataRowProps<TItem, TId>) => {
+        const tagSize = mapSize[props.size] as TagSize;
+
         return (
-            <UuiPickerToggler
-                { ...this.props }
-                isDropdown={ this.props.isDropdown && !this.props.minCharsToSearch }
-                cx={ [applyPickerTogglerMods(this.props), this.props.cx] }
-                renderItem={ !!this.props.renderItem ? this.props.renderItem : this.renderItem }
-                getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
-                cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
-                dropdownIcon={ systemIcons[this.props.size || defaultSize].foldingArrow }
+            <Tag
+                key={ row.rowKey }
+                caption={ getCaption(row) }
+                color="night300"
+                tabIndex={ -1 }
+                size={ props.size ? tagSize : '30' }
+                onClear={ e => {
+                    row.onCheck?.(row);
+                    e.stopPropagation();
+                } }
             />
-        );
-    }
-}
+        )
+    };
+
+    return (
+        <UuiPickerToggler
+            { ...props }
+            ref={ ref }
+            isDropdown={ props.isDropdown && !props.minCharsToSearch }
+            cx={ [applyPickerTogglerMods(props), props.cx] }
+            renderItem={ !!props.renderItem ? props.renderItem : renderItem }
+            getName={ (row: any) => props.getName ? props.getName(row.value) : row.value }
+            cancelIcon={ systemIcons[props.size || defaultSize].clear }
+            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
+        />
+    );
+});
