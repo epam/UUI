@@ -65,6 +65,7 @@ export class DndActor<TSrcData = any, TDstData = any>
     windowPointerUpHandler = (e: Event) => {
         if (this.state.isDragging || this.state.isMouseDown) {
             this.setState(s => initialState);
+            this.context.uuiDnD.endDrag();
         }
     }
 
