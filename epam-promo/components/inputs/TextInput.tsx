@@ -30,24 +30,25 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions> {
-    render() {
-        // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
-        const textInputProps = {...this.props};
-        delete textInputProps.getValueChangeAnalyticsEvent;
+export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>(
+    (props, ref) => {
+    // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
+    const { getValueChangeAnalyticsEvent, ...textInputProps } = props;
 
-        return <IEditableDebouncer
-            { ...this.props }
-            render={ (iEditable =>
-                    <TextInput
-                        icon={ systemIcons[this.props.size || defaultSize].search }
-                        onCancel={ !!this.props.value ? (() => iEditable.onValueChange('')) : undefined }
-                        type="search"
-                        inputMode="search"
-                        { ...textInputProps }
-                        { ...iEditable }
-                    />
+    return (
+        <IEditableDebouncer
+            { ...props }
+            render={ iEditable => (
+                <TextInput
+                    icon={ systemIcons[props.size || defaultSize].search }
+                    onCancel={ !!props.value ? (() => iEditable.onValueChange('')) : undefined }
+                    type="search"
+                    inputMode="search"
+                    ref={ ref }
+                    { ...textInputProps }
+                    { ...iEditable }
+                />
             ) }
-        />;
-    }
-}
+        />
+    )
+});

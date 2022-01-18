@@ -22,8 +22,8 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export class PickerToggler extends React.Component<PickerTogglerProps<any> & PickerTogglerMods> {
-    getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
+export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: any) => {
+    const getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
         switch (propSize) {
             case '48':
                 return '42';
@@ -35,45 +35,43 @@ export class PickerToggler extends React.Component<PickerTogglerProps<any> & Pic
                 return '24';
             case '24':
                 return '18';
-        }
-    }
+        };
+    };
 
-    renderItem = (row: DataRowProps<any, any>) => {
-        let caption;
-        let maxItems = (this.props.maxItems || this.props.maxItems === 0) ? this.props.maxItems : 100;
+    const getCaption = (row: DataRowProps<any, TId>) => {
+        const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
 
-        if (!row.isLoading) {
-            if (!this.props.getName || this.props.selection && this.props.selection.length > maxItems) {
-                caption = row.value;
-            } else {
-                caption = this.props.getName(row.value);
-            }
+        if (row.isLoading) {
+            return <TextPlaceholder />;
+        } else if (!props.getName || props.selection?.length > maxItems) {
+            return row.value;
         } else {
-            caption = <TextPlaceholder/>;
-        }
-
-        return <Tag
-                key={ row.id }
-                caption={ caption }
-                tabIndex={ -1 }
-                size={ this.props.size ? this.getPickerTogglerButtonSize(this.props.size) : '30' }
-                onClear={ e => {
-                    row.onCheck && row.onCheck(row);
-                    e.stopPropagation();
-                } }
-            />;
+            return props.getName(row.value);
+        };
     }
 
-    render() {
-        return (
-            <UuiPickerToggler
-                { ...this.props }
-                cx={ [applyPickerTogglerMods(this.props), this.props.cx] }
-                renderItem={ !!this.props.renderItem ? this.props.renderItem : this.renderItem }
-                getName={ (row) => this.props.getName ? this.props.getName(row.value) : row.value }
-                cancelIcon={ systemIcons[this.props.size || defaultSize].clear }
-                dropdownIcon={ systemIcons[this.props.size || defaultSize].foldingArrow }
-            />
-        );
-    }
-}
+    const renderItem = (row: DataRowProps<TItem, TId>) => (
+        <Tag
+            key={ row.rowKey }
+            caption={ getCaption(row) }
+            tabIndex={ -1 }
+            size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
+            onClear={ e => {
+                row.onCheck?.(row);
+                e.stopPropagation();
+            } }
+        />
+    );
+
+    return (
+        <UuiPickerToggler
+            { ...props }
+            ref={ ref }
+            cx={ [applyPickerTogglerMods(props), props.cx] }
+            renderItem={ !!props.renderItem ? props.renderItem : renderItem }
+            getName={ (row: any) => props.getName ? props.getName(row.value) : row.value }
+            cancelIcon={ systemIcons[props.size || defaultSize].clear }
+            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
+        />
+    );
+});
