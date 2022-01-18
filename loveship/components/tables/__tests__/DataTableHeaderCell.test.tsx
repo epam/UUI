@@ -2,10 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {DataTableHeaderCell} from "../DataTableHeaderCell";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("DataTableHeaderCell", () => {
     it("should be rendered correctly", () => {
         const tree = renderer

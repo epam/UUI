@@ -2,10 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {TimePicker} from "../TimePicker";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("TimePicker", () => {
     const value = {
         hours: 1,

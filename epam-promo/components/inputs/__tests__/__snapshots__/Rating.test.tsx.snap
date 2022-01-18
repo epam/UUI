@@ -20,64 +20,74 @@ exports[`Rating should be rendered correctly 1`] = `
     <div
       className="uui-rating-empty-star-container"
     >
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -89,64 +99,74 @@ exports[`Rating should be rendered correctly 1`] = `
         }
       }
     >
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -174,64 +194,74 @@ exports[`Rating should be rendered correctly 2`] = `
     <div
       className="uui-rating-empty-star-container"
     >
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -243,64 +273,74 @@ exports[`Rating should be rendered correctly 2`] = `
         }
       }
     >
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
-      <div
-        className="uui-rating-star"
-      >
+      <div>
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="uui-rating-star"
         >
-          <svg
-            className=""
-          />
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
         </div>
       </div>
     </div>

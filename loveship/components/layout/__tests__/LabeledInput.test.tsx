@@ -3,10 +3,6 @@ import renderer from "react-test-renderer";
 import {LabeledInput} from "../LabeledInput";
 import {TextInput} from "../../inputs";
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('LabeledInput', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

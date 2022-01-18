@@ -1,16 +1,14 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
 import { Portal } from './Portal';
-import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { FreeFocusInside } from 'react-focus-lock';
 
 export interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
-    closeDropdownTimerId: any;
+    closeDropdownTimerId: number;
 }
 
 export interface DropdownBodyProps {
@@ -25,7 +23,7 @@ export type DropdownPlacement = Placement;
 export interface DropdownProps extends Partial<IEditable<boolean>> {
     renderTarget: (props: IDropdownToggler) => React.ReactNode;
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
-    onClose?: () => any;
+    onClose?: () => void;
     isNotUnfoldable?: boolean;
     stopCloseSelectors?: string[];
     zIndex?: number;
@@ -52,40 +50,41 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private togglerWidth: number;
     private togglerHeight: number;
 
+    static contextType = UuiContext;
+    public context: UuiContexts;
+    private layer: LayoutLayer;
+
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: { y: null, x: null, height: null, width: null },
         closeDropdownTimerId: null,
     };
 
-    static contextType = UuiContext;
-
-    private readonly layer: LayoutLayer | null = null;
-
-    constructor(props: DropdownProps, public context: UuiContexts) {
-        super(props, context);
-        this.layer = this.context.uuiLayout && this.context.uuiLayout.getLayer();
+    constructor(props: DropdownProps) {
+        super(props);
     }
 
     public componentDidMount() {
+        this.layer = this.context.uuiLayout?.getLayer();
+
         window.addEventListener('dragstart', this.clickOutsideHandler);
 
         if (this.props.openOnHover && !this.props.openOnClick) {
             this.targetNode?.addEventListener('mouseenter', this.handleMouseEnter);
         }
+
         if (this.props.closeOnMouseLeave === 'toggler') {
             this.targetNode?.addEventListener('mouseleave', this.handleMouseLeave);
         }
+
         if (this.props.closeOnClickOutside !== false) {
             window.addEventListener('click', this.clickOutsideHandler, true);
         }
-
     }
 
     public componentWillUnmount() {
         window.removeEventListener('dragstart', this.clickOutsideHandler);
         window.removeEventListener('click', this.clickOutsideHandler, true);
-
         this.context.uuiLayout?.releaseLayer(this.layer);
     }
 
@@ -96,9 +95,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             window.removeEventListener('mousemove', this.handleMouseMove);
         }
 
-        this.props.onValueChange ? this.props.onValueChange(opened) : this.setState({ opened: opened });
+        if (this.props.onValueChange) {
+            this.props.onValueChange(opened);
+        } else {
+            this.setState({ opened });
+        }
+
         if (opened) {
-            this.lastOpenedMs = (new Date()).getTime();
+            this.lastOpenedMs = new Date().getTime();
         }
     }
 
@@ -110,6 +114,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
             const currentValue = this.props.value !== undefined ? this.props.value : this.state.opened;
             const newValue = (this.props.closeOnTargetClick === false) ? true : !currentValue;
+
             if (currentValue !== newValue) {
                 this.handleOpenedChange(newValue);
             }
@@ -135,14 +140,17 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     setCloseDropdownTimer() {
         this.setState({
-            closeDropdownTimerId: setTimeout(() => { this.handleOpenedChange(false); this.clearCloseDropdownTimer(); }, 1500),
+            closeDropdownTimerId: window.setTimeout(() => {
+                this.handleOpenedChange(false);
+                this.clearCloseDropdownTimer();
+            }, 1500),
         });
     }
 
     clearCloseDropdownTimer() {
         if (this.state.closeDropdownTimerId) {
             clearTimeout(this.state.closeDropdownTimerId);
-            this.setState({closeDropdownTimerId: null});
+            this.setState({ closeDropdownTimerId: null });
         }
     }
 
@@ -158,35 +166,33 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private onClose = () => {
-        this.props.onClose ? this.props.onClose() : this.handleOpenedChange(false);
-    }
-
-    private renderTarget(targetProps: ReferenceChildrenProps) {
-        const innerRef = (node: Element) => {
-            this.targetNode = ReactDOM.findDOMNode(node) as HTMLElement;
-            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
+        if (this.props.onClose) {
+            this.props.onClose();
+        } else {
+            this.handleOpenedChange(false)
         };
-
-        return (
-            <PopperTargetWrapper innerRef={ innerRef }>
-            {
-                this.props.renderTarget({
-                    onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
-                    isOpen: this.isOpened(),
-                    isDropdown: true,
-                    toggleDropdownOpening: this.handleOpenedChange,
-                })
-            }
-            </PopperTargetWrapper>
-        );
     }
+
+    private renderTarget = (targetProps: ReferenceChildrenProps) => (
+        <div ref={ node => {
+            this.targetNode = node;
+            (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
+        } }>
+            { this.props.renderTarget({
+                onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
+                isOpen: this.isOpened(),
+                isDropdown: true,
+                toggleDropdownOpening: this.handleOpenedChange,
+            }) }
+        </div>
+    );
 
     private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
-            (ref as React.RefCallback<any>)(node);
+            (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
             if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
-                const { x, y, height, width } = this.bodyNode.getBoundingClientRect() as DOMRect;
+                const { x, y, height, width } = this.bodyNode.getBoundingClientRect();
                 if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
                     this.setState({ bodyBoundingRect : { y, height, width, x } });
                 }
@@ -195,9 +201,10 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
         if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && (this.state.opened || this.props.value)) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
-            setTimeout(() => { this.handleOpenedChange(false); }, 0);
+            setTimeout(() => this.handleOpenedChange(false), 0);
             return null;
         }
+
         return (
             <FreeFocusInside>
                 <div
@@ -220,14 +227,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private isInteractedOutside = (e: Event) => {
-        if (!this.isOpened()) {
-            return false;
-        }
+        if (!this.isOpened()) return false;
 
-        const target = (e.target as HTMLElement);
+        const target = e.target as HTMLElement;
         const stopNodes = [this.bodyNode, this.targetNode, ...(this.props.stopCloseSelectors || [])];
 
-        if (stopNodes.some((node: any) => node && closest(target, node))) {
+        if (stopNodes.filter(stopNode => typeof stopNode !== 'string').some(node => node && closest(target, node))) {
             return false;
         }
 
@@ -246,9 +251,9 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private updateTogglerSize() {
         if (this.targetNode) {
-            const rect = this.targetNode.getBoundingClientRect();
-            this.togglerWidth = rect.width;
-            this.togglerHeight = rect.height;
+            const { width, height } = this.targetNode.getBoundingClientRect();
+            this.togglerWidth = width;
+            this.togglerHeight = height;
         }
     }
 
@@ -275,17 +280,19 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return (
             <Manager>
                 <Reference>
-                    { (targetProps: ReferenceChildrenProps) => this.renderTarget(targetProps) }
+                    { targetProps => this.renderTarget(targetProps) }
                 </Reference>
-                { shouldShowBody && <Portal target={ this.props.portalTarget }>
-                    <Popper
-                        placement={ this.props.placement || 'bottom-start' }
-                        strategy={ 'fixed' }
-                        modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }
-                    >
-                        { this.renderDropdownBody }
-                    </Popper>
-                </Portal> }
+                { shouldShowBody && (
+                    <Portal target={ this.props.portalTarget }>
+                        <Popper
+                            placement={ this.props.placement || 'bottom-start' }
+                            strategy={ 'fixed' }
+                            modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }
+                        >
+                            { this.renderDropdownBody }
+                        </Popper>
+                    </Portal>
+                ) }
             </Manager>
         );
     }

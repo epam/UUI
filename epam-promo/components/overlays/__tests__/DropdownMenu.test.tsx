@@ -5,14 +5,11 @@ import { systemIcons } from '../../../icons/icons';
 
 const { accept: icon } = systemIcons["30"];
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('DropdownMenu', () => {
     it('should be rendered DropdownMenuBody correctly', () => {
         const tree = renderer
-            .create(<DropdownMenuBody style={ { maxWidth: "250px" } }>
+            .create(
+            <DropdownMenuBody onClose={ () => {} } style={ { maxWidth: "250px" } }>
                 <DropdownMenuButton
                     caption="Menu Item in Submenu"
                 />
@@ -29,8 +26,8 @@ describe('DropdownMenu', () => {
                         caption="Menu Item with icon in right"
                     />
                 </DropdownSubMenu>
-            </DropdownMenuBody>)
-            .toJSON();
+            </DropdownMenuBody>,
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

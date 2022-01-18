@@ -18,13 +18,15 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   }
 >
   <div>
-    <div
-      className=""
-    >
+    <div>
       <div
-        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+        className=""
       >
-        Test
+        <div
+          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+        >
+          Test
+        </div>
       </div>
     </div>
   </div>

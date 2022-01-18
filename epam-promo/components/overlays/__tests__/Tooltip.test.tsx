@@ -2,10 +2,6 @@ import React from 'react';
 import { Tooltip } from '../Tooltip';
 import renderer from 'react-test-renderer';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('Tooltip', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

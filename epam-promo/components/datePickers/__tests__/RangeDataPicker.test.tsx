@@ -3,11 +3,8 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import renderer from 'react-test-renderer';
 import dayjs from 'dayjs';
 import { RangeDatePicker } from '..';
-import {toCustomDateRangeFormat, valueFormat} from '@epam/uui-components';
+import { toCustomDateRangeFormat, valueFormat } from '@epam/uui-components';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
 
 describe('RangeDataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
