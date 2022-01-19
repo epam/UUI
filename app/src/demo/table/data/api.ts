@@ -24,16 +24,10 @@ export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, Pers
             search: null,
             itemsRequest: { filter, search: rq.search },
             ids,
-        } as any).then(response => ({
-            ...response,
-            items: response.items.slice(0, 2),
-        }));
+        } as any);
     } else {
         const parentFilter = ctx.parent && { [groupBy + 'Id']: ctx.parent.id };
         const mappedFilter = mapFilter(filter);
-        return svc.api.demo.persons({ ...rq, filter: { ...mappedFilter, ...parentFilter }, ids }).then(response => ({
-            ...response,
-            items: response.items.slice(0, 2),
-        }));
+        return svc.api.demo.persons({ ...rq, filter: { ...mappedFilter, ...parentFilter }, ids });
     }
 };
