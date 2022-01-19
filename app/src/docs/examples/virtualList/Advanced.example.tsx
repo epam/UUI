@@ -4,7 +4,6 @@ import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/promo';
 import { City } from '@epam/uui-docs';
 import * as css from './Advanced.example.scss';
 
-
 const Header = () => {
     return (
         <MainMenu cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl='/static/logo.svg' logoWidth={ 168 }>
@@ -17,7 +16,7 @@ export default function AdvancedVirtualList() {
     const svc = useUuiContext();
     const [value, onValueChange] = React.useState<DataSourceState>({
         topIndex: 0,
-        visibleCount: 3,
+        visibleCount: 10,
         sorting: [{ field: 'name' }],
     });
     const citiesDataSource = useLazyDataSource<City, string, string>({ api: svc.api.demo.cities }, []);

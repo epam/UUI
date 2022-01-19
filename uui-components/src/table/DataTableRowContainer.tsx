@@ -47,6 +47,7 @@ export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<
             { this.renderCells(cells) }
             { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
             { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+            { direction === 'right' && this.props.renderConfigButton?.() }
         </div>
     );
 
