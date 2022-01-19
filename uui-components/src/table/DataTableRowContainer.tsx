@@ -79,7 +79,6 @@ export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<
                 { fixedLeftColumns.length > 0 && this.wrapFixedSection(fixedLeftColumns, 'left') }
                 { this.wrapScrollingSection(staticColumns) }
                 { fixedRightColumns.length > 0 && this.wrapFixedSection(fixedRightColumns, 'right') }
-                { this.props.renderConfigButton?.() }
                 { this.props.overlays }
             </>
         );
