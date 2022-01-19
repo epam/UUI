@@ -92,7 +92,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-        setEstimatedHeight(lastOffset - listOffset);
+        const newEstimatedHeight = lastOffset - listOffset;
+        if (estimatedHeight === newEstimatedHeight) return;
+        setEstimatedHeight(newEstimatedHeight);
     }, [estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, listOffset]);
 
     const scrollToIndex = React.useCallback((focusedIndex: number) => {
