@@ -13,9 +13,10 @@ interface UseScrollShadowsApi {
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
     const [vertical, setVertical] = React.useState({ active: false });
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
-    const resizeObserver = React.useRef<MutationObserver>();
+    const mutationObserver = React.useRef<MutationObserver>();
 
     function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
         const { scrollLeft, clientWidth, scrollWidth } = root;
         return scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right;
     }
@@ -26,6 +27,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     }
 
     function shouldHaveLeftShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
         return root.scrollLeft > 0 && !horizontal.left;
     }
 
@@ -34,6 +36,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     }
 
     function shouldHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
         return root.scrollTop > 0 && !vertical.active;
     }
 
@@ -41,7 +44,9 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         return root.scrollTop === 0 && vertical.active;
     }
 
-    function updateScrollShadows() {
+    const updateScrollShadows = React.useCallback(() => {
+        if (!root) return;
+
         // Horizontal shadow states
         if (shouldHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: true });
         else if (shouldNotHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: false });
@@ -51,7 +56,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         // Vertical shadow states
         if (shouldHaveVerticalShadow(root)) setVertical({ ...vertical, active: true });
         else if (shouldNotHaveVerticalShadow(root)) setVertical({ ...vertical, active: false });
-    }
+    }, [root, vertical, horizontal, setVertical, setHorizontal]);
 
     React.useEffect(() => {
         if (!root) return;
@@ -61,14 +66,19 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     React.useEffect(() => {
         if (!root) return;
-        resizeObserver.current = new MutationObserver(updateScrollShadows);
-        resizeObserver.current.observe(root, { attributes: true, attributeFilter: ['width', 'height', 'scrollWidth']});
-        return () => root && resizeObserver.current.disconnect();
+        mutationObserver.current = new MutationObserver(updateScrollShadows);
+        mutationObserver.current.observe(root, { attributes: true });
+        return () => mutationObserver.current.disconnect();
     }, [root]);
+
+    React.useEffect(() => {
+        window.addEventListener('resize', updateScrollShadows);
+        return () => window.removeEventListener('resize', updateScrollShadows);
+    }, [updateScrollShadows]);
 
     return {
         vertical: vertical.active,
-        horizontalLeft: horizontal.right || root && shouldHaveRightShadow(root),
-        horizontalRight: horizontal.left || root && shouldHaveLeftShadow(root),
+        horizontalLeft: horizontal.right || shouldHaveRightShadow(root),
+        horizontalRight: horizontal.left || shouldHaveLeftShadow(root),
     };
 };

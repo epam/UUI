@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withMods } from '@epam/uui';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { EpamAdditionalColor, FontMod } from '../types';
+import { EpamAdditionalColor } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as buttonCss from '../buttons/Button.scss';
 import * as styles from '../../assets/styles/colorvars/widgets/badge-colorvars.scss';
@@ -18,7 +18,7 @@ const mapSize = {
     '18': '18',
 };
 
-export interface BadgeMods extends FontMod {
+export interface BadgeMods {
     fill?: 'solid' | 'semitransparent' | 'transparent';
     size?: '18' | '24' | '30' | '36' | '42' | '48';
     color?: EpamAdditionalColor;
@@ -42,4 +42,4 @@ export const Badge = withMods<ButtonProps, BadgeMods>(
         clearIcon: systemIcons[props.size && mapSize[props.size] || defaultSize].clear,
         countPosition: 'left',
     }),
-)
+);
