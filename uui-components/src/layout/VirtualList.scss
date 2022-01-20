@@ -22,18 +22,3 @@
     pointer-events: none;
     bottom: 0;
 }
-
-.vertical-intersecting-rect {
-    height: 1px;
-    width: 100%;
-    visibility: hidden;
-    position: absolute;
-}
-
-.horizontal-intersecting-rect {
-    height: 1px;
-    width: 100%;
-    visibility: hidden;
-    position: sticky;
-    bottom: 0;
-}

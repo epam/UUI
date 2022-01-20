@@ -1,6 +1,7 @@
 @use '../../assets/styles/scss/index'  as *;
 
 .root {
+    position: relative;
     background: $night50;
     border-bottom: 1px solid $night300;
 

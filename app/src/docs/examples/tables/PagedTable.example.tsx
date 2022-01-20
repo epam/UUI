@@ -21,8 +21,7 @@ export default function PagedTable() {
         render: person => <Text color='gray80' font='sans-semibold'>{ person.name }</Text>,
         isSortable: true,
         grow: 1, minWidth: 224,
-    },
-    {
+    }, {
         key: 'location',
         caption: 'LOCATION',
         render: person => <Text>{ person.locationName }</Text>,
@@ -41,7 +40,6 @@ export default function PagedTable() {
     }, [state.page, state.pageSize]);
 
     const dataSource = useLazyDataSource<Person, number, unknown>({ api }, [state.page]);
-
     const view = dataSource.useView(state, setState, {});
 
     return (
@@ -57,8 +55,8 @@ export default function PagedTable() {
             <FlexRow size='36' padding='12' background='gray5'>
                 <FlexSpacer />
                 <Paginator
-                    value={ state.page}
-                    onValueChange={ newPage => setState({ ...state, page: newPage })}
+                    value={ state.page }
+                    onValueChange={ newPage => setState({ ...state, page: newPage }) }
                     totalPages={ Math.ceil(state.totalCount / state.pageSize) }
                     size='30'
                 />
