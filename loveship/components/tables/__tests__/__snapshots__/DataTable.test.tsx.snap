@@ -43,6 +43,11 @@ exports[`DataTable should be rendered correctly 1`] = `
       >
         <div
           className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+          style={
+            Object {
+              "flex": "0 0 96px",
+            }
+          }
         >
           <div
             aria-sort="none"
@@ -270,6 +275,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -365,6 +375,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -460,6 +475,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -555,6 +575,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -650,6 +675,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -745,6 +775,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -840,6 +875,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -935,6 +975,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -1030,6 +1075,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
@@ -1125,6 +1175,11 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            style={
+              Object {
+                "flex": "0 0 96px",
+              }
+            }
           >
             <div
               className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
