@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-v",
-  "version": "4.5.1",
+  "version": "4.5.3",
   "description": "EPAM UUI-V components set",
   "author": "EPAM",
   "license": "MIT",
@@ -11,13 +11,13 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.5.1",
-    "@epam/uui": "4.5.1",
-    "@epam/uui-components": "4.5.1",
+    "@epam/assets": "4.5.3",
+    "@epam/uui": "4.5.3",
+    "@epam/uui-components": "4.5.3",
     "classnames": "2.2.6"
   },
   "devDependencies": {
-    "@epam/uui-docs": "4.5.1"
+    "@epam/uui-docs": "4.5.3"
   },
   "peerDependencies": {
     "prop-types": "*",
