@@ -50,7 +50,7 @@ export class DndModule extends React.Component<DndModuleProps> {
             canAcceptDrop={ this.handleCanAcceptDrop }
             onDrop={ this.handleOnDrop }
             render={ props => {
-                return <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+                return <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                     <div className={ css.dndItem }>
                         <FlexRow background="white" size='48' padding='12' spacing='12' >
                             <DragHandle cx={ [css.dragHandle] } />

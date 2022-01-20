@@ -53,7 +53,7 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
             onDrop={ this.handleOnDrop }
             render={ props => {
                 return (
-                    <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+                    <div { ...props.eventHandlers } ref={ props.ref } className={ cx(css.dragElement, props.classNames) }>
                         <Panel background='white' cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } >
                             <FlexRow cx={ css.materialRow }>
                                 <FlexCell width='auto'  shrink={ 0 } cx={ css.iconWrapper }>
