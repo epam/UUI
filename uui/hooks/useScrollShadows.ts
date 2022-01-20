@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState, useLayoutEffect } from "react";
+import * as React from "react";
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -8,51 +8,77 @@ interface UseScrollShadowsApi {
     vertical: boolean;
     horizontalLeft: boolean;
     horizontalRight: boolean;
-    horizontalRef: MutableRefObject<HTMLDivElement>;
-    verticalRef: MutableRefObject<HTMLDivElement>;
 };
 
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
-    const verticalObserver = useRef<IntersectionObserver>();
-    const horizontalObserver = useRef<IntersectionObserver>();
-    const verticalRef = useRef<HTMLDivElement>();
-    const horizontalRef = useRef<HTMLDivElement>();
-    const [vertical, setVertical] = useState({ previousY: 0, active: false });
-    const [horizontal, setHorizontal] = useState({ previousX: 0, active: false });
+    const [vertical, setVertical] = React.useState({ active: false });
+    const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
+    const mutationObserver = React.useRef<MutationObserver>();
 
-    useLayoutEffect(() => {
-        if (!verticalRef.current) return;
+    function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
+        const { scrollLeft, clientWidth, scrollWidth } = root;
+        return scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right;
+    }
 
-        verticalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
-            setVertical({
-                previousY: boundingClientRect.y,
-                active: !isIntersecting && boundingClientRect.y > vertical.previousY
-            });
-        }, { root });
+    function shouldNotHaveRightShadow(root: UseScrollShadowsProps['root']) {
+        const { scrollLeft, clientWidth, scrollWidth } = root;
+        return scrollWidth - clientWidth - scrollLeft <= 1 && horizontal.right;
+    }
 
-        verticalObserver.current.observe(verticalRef.current);
-        return () => verticalRef.current && verticalObserver.current.unobserve(verticalRef.current);
-    }, [verticalRef.current, root]);
+    function shouldHaveLeftShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
+        return root.scrollLeft > 0 && !horizontal.left;
+    }
 
-    useLayoutEffect(() => {
-        if (!horizontalRef.current) return;
+    function shouldNotHaveLeftShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollLeft === 0 && horizontal.left;
+    }
 
-        horizontalObserver.current = new IntersectionObserver(([{ isIntersecting, boundingClientRect }]) => {
-            setHorizontal({
-                previousX: boundingClientRect.x,
-                active: !isIntersecting && boundingClientRect.x !== horizontal.previousX
-            });
-        }, { root, threshold: [0.99, 1] });
+    function shouldHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+        if (!root) return false;
+        return root.scrollTop > 0 && !vertical.active;
+    }
 
-        horizontalObserver.current.observe(horizontalRef.current);
-        return () => horizontalRef.current && horizontalObserver.current.unobserve(horizontalRef.current);
-    }, [horizontalRef.current, root]);
+    function shouldNotHaveVerticalShadow(root: UseScrollShadowsProps['root']) {
+        return root.scrollTop === 0 && vertical.active;
+    }
+
+    const updateScrollShadows = React.useCallback(() => {
+        if (!root) return;
+
+        // Horizontal shadow states
+        if (shouldHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: true });
+        else if (shouldNotHaveLeftShadow(root)) setHorizontal({ ...horizontal, left: false });
+        else if (shouldHaveRightShadow(root)) setHorizontal({ ...horizontal, right: true });
+        else if (shouldNotHaveRightShadow(root)) setHorizontal({ ...horizontal, right: false });
+
+        // Vertical shadow states
+        if (shouldHaveVerticalShadow(root)) setVertical({ ...vertical, active: true });
+        else if (shouldNotHaveVerticalShadow(root)) setVertical({ ...vertical, active: false });
+    }, [root, vertical, horizontal, setVertical, setHorizontal]);
+
+    React.useEffect(() => {
+        if (!root) return;
+        root.addEventListener('scroll', updateScrollShadows);
+        return () => root.removeEventListener('scroll', updateScrollShadows);
+    }, [root, horizontal, setHorizontal, vertical, setVertical]);
+
+    React.useEffect(() => {
+        if (!root) return;
+        mutationObserver.current = new MutationObserver(updateScrollShadows);
+        mutationObserver.current.observe(root, { attributes: true });
+        return () => mutationObserver.current.disconnect();
+    }, [root]);
+
+    React.useEffect(() => {
+        window.addEventListener('resize', updateScrollShadows);
+        return () => window.removeEventListener('resize', updateScrollShadows);
+    }, [updateScrollShadows]);
 
     return {
         vertical: vertical.active,
-        horizontalLeft: root ? (root.clientWidth - root.offsetLeft < root.scrollWidth) : horizontal.active,
-        horizontalRight: horizontal.active,
-        horizontalRef,
-        verticalRef
+        horizontalLeft: horizontal.right || shouldHaveRightShadow(root),
+        horizontalRight: horizontal.left || shouldHaveLeftShadow(root),
     };
 };

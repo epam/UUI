@@ -11,7 +11,6 @@ import * as css from './PersonsTable.scss';
 export interface PersonsTableProps extends IEditable<DataTableState> {
     view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
     summary: PersonsSummary;
-    showColumnsConfig: boolean;
 }
 
 export const PersonsTable = (props: PersonsTableProps) => {
@@ -49,7 +48,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                 <DataTableHeaderRow
                     columns={ personColumnsSync }
                     textCase='upper'
-                    onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                    onConfigButtonClick={ onConfigurationButtonClick }
                     selectAll={ props.view.selectAll }
                     allowColumnsReordering
                     allowColumnsResizing
