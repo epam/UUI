@@ -457,31 +457,6 @@ Array [
         Show only selected
       </div>
     </label>
-    <label
-      className="container root size-18 color-sky theme-light uui-disabled"
-    >
-      <div
-        className="uui-switch-body"
-      >
-        <input
-          aria-checked={false}
-          aria-disabled={true}
-          checked={false}
-          disabled={true}
-          onChange={[Function]}
-          role="switch"
-          type="checkbox"
-        />
-        <div
-          className="uui-switch-toggler"
-        />
-      </div>
-      <div
-        className="uui-input-label"
-      >
-        Show only selected
-      </div>
-    </label>
     <div
       className="flexSpacer"
     />
@@ -921,31 +896,6 @@ Array [
   <div
     className="root size-36 background-white padding-12 spacing-6 -clickable container align-items-center"
   >
-    <label
-      className="container root size-18 color-sky theme-light uui-disabled"
-    >
-      <div
-        className="uui-switch-body"
-      >
-        <input
-          aria-checked={false}
-          aria-disabled={true}
-          checked={false}
-          disabled={true}
-          onChange={[Function]}
-          role="switch"
-          type="checkbox"
-        />
-        <div
-          className="uui-switch-toggler"
-        />
-      </div>
-      <div
-        className="uui-input-label"
-      >
-        Show only selected
-      </div>
-    </label>
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
     >
