@@ -1,4 +1,4 @@
-import { DOMAttributes, MutableRefObject, useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import * as React from "react";
 import type { IEditable, DataTableState } from '../';
 
 interface UuiScrollPositionValues {
@@ -10,9 +10,9 @@ interface UseVirtualListApi<List, ScrollContainer> {
     offsetY: number;
     listOffset: number;
     estimatedHeight: number;
-    handleScroll: DOMAttributes<ScrollContainer>['onScroll'];
-    listContainerRef: MutableRefObject<List>;
-    scrollContainerRef: MutableRefObject<ScrollContainer>;
+    handleScroll: React.DOMAttributes<ScrollContainer>['onScroll'];
+    listContainerRef: React.MutableRefObject<List>;
+    scrollContainerRef: React.MutableRefObject<ScrollContainer>;
     scrollToIndex(index: number): void;
 };
 
@@ -29,13 +29,13 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     onScroll,
     blockAlign = 20,
 }: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
-    const estimatedHeight = useRef(0);
-    const listContainer = useRef<List>();
-    const scrollContainer = useRef<ScrollContainer>();
-    const rowHeights = useRef<number[]>([]);
-    const rowOffsets = useRef<number[]>([]);
+    const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
+    const listContainer = React.useRef<List>();
+    const scrollContainer = React.useRef<ScrollContainer>();
+    const rowHeights = React.useRef<number[]>([]);
+    const rowOffsets = React.useRef<number[]>([]);
 
-    const updateScrollToFocus = useCallback(() => {
+    const updateScrollToFocus = React.useCallback(() => {
         if (!scrollContainer.current) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusCoord = value?.focusedIndex && rowOffsets.current[value.focusedIndex] || 0;
@@ -45,7 +45,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         };
     }, [rowOffsets.current, scrollContainer.current, value?.focusedIndex]);
 
-    const handleScroll = useCallback(() => {
+    const handleScroll = React.useCallback(() => {
         if (!scrollContainer.current) return;
         const { scrollTop, clientHeight, ...scrollValues } = scrollContainer.current;
         onScroll?.({ ...scrollValues, scrollTop, clientHeight });
@@ -66,17 +66,16 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         };
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
 
-    const listOffset = useMemo(() => {
-        if (!listContainer.current) return 0;
+    const listOffset = React.useMemo(() => {
+        if (!listContainer.current) return undefined;
         return listContainer.current.offsetTop;
     }, [listContainer.current]);
 
-    const updateRowHeights = useCallback(() => {
-        if (!listContainer.current) return;
-        const nodes = Array.from(listContainer.current.children);
-        const topIndex = value?.topIndex || 0;
+    const updateRowHeights = React.useCallback(() => {
+        if (!listContainer.current || (listContainer.current.offsetTop > 0 && !listOffset)) return;
 
-        nodes.forEach((node, index) => {
+        Array.from(listContainer.current.children).forEach((node, index) => {
+            const topIndex = value?.topIndex || 0;
             const { height } =  node.getBoundingClientRect();
             if (!height) return;
             rowHeights.current[topIndex + index] = height;
@@ -93,32 +92,34 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             lastOffset += rowHeights.current[n] || averageHeight;
         };
 
-        estimatedHeight.current = lastOffset - listOffset;
-    }, [estimatedHeight.current, rowOffsets.current, rowsCount, listContainer.current, listOffset]);
+        const newEstimatedHeight = lastOffset - listOffset;
+        if (estimatedHeight === newEstimatedHeight) return;
+        setEstimatedHeight(newEstimatedHeight);
+    }, [estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, listOffset]);
 
-    const scrollToIndex = useCallback((focusedIndex: number) => {
+    const scrollToIndex = React.useCallback((focusedIndex: number) => {
         if (!value?.focusedIndex) return;
         if (focusedIndex < 0) throw new Error('Index is less than zero');
         if (focusedIndex > rowsCount) throw new Error('Index exceeds the size of the list');
         onValueChange({ ...value, focusedIndex });
-    }, [value?.focusedIndex, rowsCount]);
+    }, [value?.focusedIndex, rowsCount, value]);
 
-    useLayoutEffect(() => {
+    React.useLayoutEffect(() => {
         if (process.env.JEST_WORKER_ID) return;
         updateRowHeights();
         handleScroll();
     });
 
-    useLayoutEffect(updateScrollToFocus, [value?.focusedIndex]);
+    React.useLayoutEffect(updateScrollToFocus, [value?.focusedIndex]);
 
-    const offsetY = useMemo(() => {
+    const offsetY = React.useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;
         if (!value?.topIndex) return rowOffsets.current[0] - listOffset;
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
     return {
-        estimatedHeight: estimatedHeight.current,
+        estimatedHeight,
         offsetY,
         scrollContainerRef: scrollContainer,
         listContainerRef: listContainer,

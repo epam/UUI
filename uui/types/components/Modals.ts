@@ -10,6 +10,6 @@ export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps
     title?: React.ReactNode;
 }
 
-export interface ModalFooterCoreProps extends IHasChildren, IHasRawProps<HTMLDivElement> {
+export interface ModalFooterCoreProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
     borderTop?: boolean;
 }

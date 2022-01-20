@@ -1,24 +1,34 @@
-# 4.5.1 - 12.01.2021
+# 4.5.2 - 18.01.2022
+
+**What's New**
+* [Form]: Add isBeforeLeave param to onSuccess callback
+* [MainMenuSearch]: add IEditableDebouncer
+* [PickerInput]: add hideShowOnlySelected props for DataPickerFooter component
+* [ModalFooter]: add cx prop
+
+**What’s Fixed**
+* [DataTable]: bug fixes
+* [PickerModal]: renderFooter props type fix
+* [DnD]: fix drag ending on not draggable element
+
+# 4.5.1 - 12.01.2022
 
 **What's New**
 * [LazyDataSource]: add logic for check/uncheck parents if all/no siblings checked in cascadeSelection mode
 * [NotificationCard]: Added rawProps
 
-* 
-* **What’s Fixed**
+**What’s Fixed**
 * [DataTable]: Fix styles for loveship skin, fix columns layout
 * [PickerInput]: fix picker body closing on mobile after opening keyboard
 * [PickerInput]: Fix placeholder ending for single selection mode
 * [ContextProvider]: revert history in ContextProvider
 * [PickerToggler]: don't crash when onClick props is not passed
 
-
 # 4.5.0 - 23.12.2021
 
 **What's New**
 * [Breaking Change]: Changed VirtualList component api. Introduced new useVirtualList hook.
     More information here - https://uui.epam.com/documents?category=components&id=virtualList#advanced
-  
 
 * Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.  
 * Added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
@@ -34,7 +44,6 @@
 * [DropdownMenu]: Don't focus the first action in dropdown menu on menu opening
 * [LockContext]: fix typings for 'release' method
 * [BurgerButton]: fix BurgerButton icon color if isActiveLink=true
-
 
 # 4.4.0 - 07.12.2021
 
