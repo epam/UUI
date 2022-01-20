@@ -7,6 +7,11 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 >
   <div
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+    style={
+      Object {
+        "flex": "0 0 96px",
+      }
+    }
   >
     <div
       aria-sort="none"
@@ -269,6 +274,11 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
 >
   <div
     className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+    style={
+      Object {
+        "flex": "0 0 96px",
+      }
+    }
   >
     <div
       aria-sort="none"

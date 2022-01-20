@@ -22,14 +22,14 @@ export default function AdvancedVirtualList() {
 
     const citiesDataSource = useLazyDataSource<City, string, string>({ api: svc.api.demo.cities }, []);
     const { getVisibleRows, getListProps } = citiesDataSource.useView(value, onValueChange, {});
-    const { listContainerRef, offsetY, handleScroll, scrollContainerRef } = useVirtualList({
+    const { listContainerRef, offsetY, handleScroll, scrollContainerRef, estimatedHeight } = useVirtualList({
         value, onValueChange, rowsCount: getListProps().rowsCount,
     });
 
     return (
         <div ref={ scrollContainerRef } onScroll={ handleScroll } className={ css.mainContainer }>
             <Header />
-            <div className={ css.mainContainerWrapper }>
+            <div className={ css.mainContainerWrapper } style={ { minHeight: `${estimatedHeight}px` } }>
                 <ul ref={ listContainerRef } style={ { marginTop: `${offsetY}px` } } className={ css.mainContainerList }>
                     { getVisibleRows().map(row => (
                         <li className={ cx(css.mainContainerListItem, css.text) } key={ row.key + String(row.index) }>
