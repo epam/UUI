@@ -72,12 +72,16 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value !== "") {
-            this.setState({value: e.target.value});
-        }
+        this.setState({value: e.target.value});
     }
 
     handleFocus = () => this.setState({inFocus: true});
+
+    handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (!/\d/.test(e.key)) {
+            e.preventDefault()
+        }
+    }
 
     handleBlur = () => {
         let value: number | null;
@@ -153,6 +157,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     value={ this.state.value }
                     inputMode="numeric"
                     placeholder={ this.props.placeholder || '0' }
+                    onKeyPress={this.handleKeyPress}
                     onChange={ this.handleChange }
                     min={ this.props.min || 0 }
                     max={ this.props.max }
