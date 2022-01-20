@@ -47,7 +47,7 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                 onDrop={ this.handleOnDrop }
                 render={ props => {
                     return (
-                        <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+                        <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
                                 <DragHandle cx={ [css.dragHandle] } />
                                 <FlexRow background='white' vPadding='12' padding='18' cx={ css.row }>

@@ -17,7 +17,7 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
             canAcceptDrop={ this.handleCanAcceptDrop }
             onDrop={ params => this.onDrop(params, prevColumn, nextColumn) }
             render={ props => (
-                <div { ...props.eventHandlers } className={ styles.dragElement }>
+                <div ref={ props.ref } { ...props.eventHandlers } className={ styles.dragElement }>
                     <div className={ styles.dndItem }>
                         <FlexRow background="white">
                             <DragHandle cx={ [styles.dragHandle] } />
