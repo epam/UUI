@@ -62,15 +62,16 @@
     --success-color: #{$green};
     --success-hover-color: #{darken($green, 5%)};
     --success-active-color: #{darken($green, 10%)};
+
     --warning-color: #{$amber};
     --warning-hover-color: #{darken($amber, 5%)};
     --warning-active-color: #{darken($amber, 10%)};
     --error-color: #{$red};
     --error-hover-color: #{darken($red, 5%)};
     --error-active-color: #{darken($red, 10%)};
-    --default-color: #{$gray60};
-    --default-hover-color: #{$gray70};
-    --default-active-color: #{$gray80};
+    --icon-color: #{$gray60};
+    --icon-hover-color: #{$gray70};
+    --icon-active-color: #{$gray80};
     //--secondary-color: #{$gray50};
     --secondary-hover-color: #{$gray60};
     --secondary-active-color: #{$gray70};
@@ -125,21 +126,20 @@
 
     --input-icon-color: #{$gray50};
     --input-icon-disabled-color: #{$gray50};
-    --input-icon-clickable-color: #{$gray60};
-    --input-icon-clickable-hover-color: #{$gray70};
     --input-checkbox-icon-color: #{$white};
-    //--input-checkbox-icon-hover-color: #{$white};
-    //--input-checkbox-icon-disabled-color: #{$white};
 
     :global(.button-color-secondary) {
         --caption-halftone-color: var(--secondary-dark-color);
     }
 
-    --panel-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --overlay-color: rgba(29, 30, 38, 0.8);
+
+    --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
 
     // --------------------
 
     --border-radius: 0;
+
 }
 
 .promo_dark {
@@ -280,6 +280,7 @@
         --button-border-color: var(--primary-light-color);
         --button-border-color-hover: var(--primary-light-color);
         --button-border-color-active: var(--primary-lightest-color);
+        --button-caption-halftone-color: var(--primary-light-color);
     }
 
     :global(.button-color-accent) {
@@ -290,6 +291,7 @@
         --button-border-color: var(--accent-light-color);
         --button-border-color-hover: var(--accent-light-color);
         --button-border-color-active: var(--accent-lightest-color);
+        --button-caption-halftone-color: var(--accent-light-color);
     }
 
     :global(.button-color-negative) {
@@ -300,6 +302,7 @@
         --button-border-color: var(--negative-light-color);
         --button-border-color-hover: var(--negative-light-color);
         --button-border-color-active: var(--negative-lightest-color);
+        --button-caption-halftone-color: var(--negative-light-color);
     }
 
     :global(.button-color-secondary) {
@@ -335,6 +338,14 @@
 
     :global(.notification-card-vars) {
         --notification-card-border-width: 6px 0 0;
+    }
+
+    :global(.panel-vars) {
+        --panel-border-radius: 6px;
+    }
+
+    :global(.modals-vars) {
+        --modals-border-radius: 6px;
     }
 }
 
