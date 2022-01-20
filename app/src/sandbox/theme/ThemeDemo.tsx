@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useForm } from '@epam/uui';
+import { useForm, useUuiContext } from '@epam/uui';
 import {
     Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel,
-    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton,
+    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
 } from '@epam/uui-v';
 import { TabButton, FlexRow as PromoFlexRow } from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
@@ -21,6 +21,13 @@ interface Person {
 
 export const ThemeDemo = () => {
     const [theme, setTheme] = useState<{ name: string, type: 'light' | 'dark', link?: string }>({ name: 'promo', type: 'light' });
+
+    const svc = useUuiContext();
+    const showModal = () => svc.uuiModals.show(props => <ModalBlocker overlay { ...props }>
+        <ModalWindow width={ 360 } height={ 500 }>
+            <ModalHeader title="Simple modal example " onClose={ () => props.abort() } />
+        </ModalWindow>
+    </ModalBlocker>);
 
     const { lens, save } = useForm<Person>({
         value: { visaRecords: [{
@@ -120,6 +127,14 @@ export const ThemeDemo = () => {
                             <RadioGroup direction='horizontal' { ...lens.prop('gender').toProps() } items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] } />
                         </LabeledInput>
                     </FlexRow>
+                    <FlexRow vPadding='12'>
+                        <LabeledInput label='Status'>
+                            <FlexRow spacing='12'>
+                                <Badge color='success' caption='Approved' size='24' />
+                                <Badge color='info' caption='Active' size='24' />
+                            </FlexRow>
+                        </LabeledInput>
+                    </FlexRow>
                     <FlexRow vPadding='24' >
                         <Text color='primary' lineHeight='30' fontSize='24' font='semibold'>Visa records</Text>
                     </FlexRow>
@@ -175,7 +190,7 @@ export const ThemeDemo = () => {
                     </FlexRow>
                     <FlexRow vPadding='24' spacing='12'>
                         <FlexSpacer />
-                        <Button caption='Cancel' onClick={ () => {} } color='secondary' mode='outline'/>
+                        <Button caption='Cancel' onClick={ showModal } color='secondary' mode='outline'/>
                         <Button caption='SAVE' onClick={ save } color='primary' />
                     </FlexRow>
                 </FlexCell>
