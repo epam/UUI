@@ -1,3 +1,11 @@
+# 4.?.? - ??.??.2022
+
+**What's New**
+* 
+
+**What’s Fixed**
+* [Badge]: removed redundant prop font for Badge
+
 # 4.5.2 - 18.01.2022
 
 **What's New**
