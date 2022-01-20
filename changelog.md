@@ -1,9 +1,23 @@
 # 4.?.? - ??.??.2022
 
 **What's New**
+* 
+
+**What’s Fixed**
+* [Badge]: removed redundant prop font for Badge
+
+# 4.5.2 - 18.01.2022
+
+**What's New**
+* [Form]: Add isBeforeLeave param to onSuccess callback
+* [MainMenuSearch]: add IEditableDebouncer
+* [PickerInput]: add hideShowOnlySelected props for DataPickerFooter component
 * [ModalFooter]: add cx prop
 
 **What’s Fixed**
+* [DataTable]: bug fixes
+* [PickerModal]: renderFooter props type fix
+* [DnD]: fix drag ending on not draggable element
 
 # 4.5.1 - 12.01.2022
 

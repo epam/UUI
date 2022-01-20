@@ -3,6 +3,7 @@
 .root {
     cursor: default;
     flex-shrink: 0;
+    font-family: $font-sans;
 
     :global(.uui-count) {
         font-family: $font-sans-semibold;
@@ -19,10 +20,6 @@
         &:not(:first-child) {
             margin-left: 6px;
         }
-    }
-
-    &.font-sans {
-        font-family: $font-sans;
     }
 
     &:focus {
