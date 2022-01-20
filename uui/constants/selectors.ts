@@ -79,6 +79,4 @@ export const uuiScrollShadows = {
     topVisible: 'uui-scroll-shadow-top-visible',
     bottom: 'uui-scroll-shadow-bottom',
     bottomVisible: 'uui-scroll-shadow-bottom-visible',
-    horizontalIntersectingRect: 'uui-horizontal-intersecting-rect',
-    verticalIntersectingRect: 'uui-vertical-intersecting-rect',
 } as const;

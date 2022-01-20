@@ -41,13 +41,6 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                     label={ i18n.pickerInput.showOnlySelectedLabel }
                 />
             }
-            <Switch
-                size={ switchSize }
-                value={ showSelected.value }
-                isDisabled={ !hasSelection }
-                onValueChange={ showSelected.onValueChange }
-                label={ i18n.pickerInput.showOnlySelectedLabel }
-            />
 
             <FlexSpacer/>
 

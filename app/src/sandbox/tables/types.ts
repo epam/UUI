@@ -5,6 +5,6 @@ export type PersonTableRecord = Person | PersonGroup | Location;
 
 export type PersonTableRecordId = [PersonTableRecord['__typename'], string | number];
 
-export type PersonTableId = []
+export type PersonTableId = [];
 
-export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string }
+export type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
