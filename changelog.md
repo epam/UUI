@@ -1,9 +1,8 @@
-# 4.?.? - ??.??.2022
-
-**What's New**
-* 
+# 4.5.3 - 20.01.2022
 
 **What’s Fixed**
+* [DataTable]: bug fixes
+* [DataPickerFooter]: remove switch duplication in loveship
 * [Badge]: removed redundant prop font for Badge
 
 # 4.5.2 - 18.01.2022
