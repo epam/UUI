@@ -72,9 +72,11 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({value: e.target.value});
+        if (e.target.value === "" || /^-?\d*$/.test(e.target.value)) {
+            this.setState({ value: e.target.value });
+        }
     }
-
+    
     handleFocus = () => this.setState({inFocus: true});
 
     handleBlur = () => {
@@ -133,14 +135,14 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx
+                    this.props.cx,
                 ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }
                 onFocus={ this.handleFocus }
                 onKeyDown={ this.handleArrowKeyDown }
                 tabIndex={ -1 }
-                {...this.props.rawProps}
+                { ...this.props.rawProps }
             >
                 <input
                     type="number"
