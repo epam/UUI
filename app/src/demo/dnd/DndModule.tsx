@@ -33,7 +33,7 @@ export class DndModule extends React.Component<DndModuleProps> {
     }
 
     handleOnDrop = ({ srcData, dstData, position }: DropParams<ModuleItem, ModuleItem>) => {
-        let newOrder = position === 'bottom'
+        const newOrder = position === 'bottom'
             ? getOrderBetween(dstData.order, this.props.nextModule?.order)
             : getOrderBetween(this.props.prevModule?.order, dstData.order);
 
@@ -44,7 +44,7 @@ export class DndModule extends React.Component<DndModuleProps> {
     render() {
         const item = this.props.value;
         return <DndActor
-            key={ item.id }
+            key={ item.id + item.order }
             srcData={ item }
             dstData={ item }
             canAcceptDrop={ this.handleCanAcceptDrop }

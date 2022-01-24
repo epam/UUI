@@ -39,9 +39,9 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
         const prevMaterial = orderedMaterials[dstMaterialIndex - 1]?.order;
         const nextMaterial = orderedMaterials[dstMaterialIndex + 1]?.order;
 
-        let newOrder = position === 'bottom'
-                       ? getOrderBetween(dstData.order, nextMaterial)
-                       : getOrderBetween(prevMaterial, dstData.order);
+        const newOrder = position === 'bottom'
+            ? getOrderBetween(dstData.order, nextMaterial)
+            : getOrderBetween(prevMaterial, dstData.order);
 
         this.setState({
             ...this.state,
@@ -76,7 +76,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                             </FlexRow>
                             <FlexCell cx={ css.moduleRowsContainer } >
                                 { sortedModules.map((module, index) => <DndModule
-                                    key={ module.id }
+                                    key={ module.id + module.order }
                                     value={ module }
                                     prevModule={ sortedModules[index - 1] }
                                     nextModule={ sortedModules[index + 1] }
@@ -91,7 +91,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                 <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
                     <Text font='museo-sans' cx={ css.moduleHeader }>Module 3: Module Name</Text>
                     { sortedSections.map((section, index) => <DndSection
-                        key={ section.id }
+                        key={ section.id + section.order }
                         prevSection={ sortedSections[index - 1] }
                         nextSection={ sortedSections[index + 1] }
                         value={ section }

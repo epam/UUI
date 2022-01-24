@@ -33,9 +33,9 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
     handleOnDrop = (params: DropParams<MaterialItem, MaterialItem>) => {
         const { srcData, dstData, position } = params;
         if (srcData.sectionId === dstData.sectionId) {
-            let newOrder = position === 'bottom'
-                           ? getOrderBetween(dstData.order, this.props.nextMaterial?.order)
-                           : getOrderBetween(this.props.prevMaterial?.order, dstData.order);
+            const newOrder = position === 'bottom'
+                ? getOrderBetween(dstData.order, this.props.nextMaterial?.order)
+                : getOrderBetween(this.props.prevMaterial?.order, dstData.order);
 
             this.props.onValueChange({ ...srcData, order: newOrder });
         } else {
@@ -46,7 +46,7 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
     render() {
         const item = this.props.value;
         return <DndActor
-            key={ item.id }
+            key={ item.id + item.order }
             srcData={ item }
             dstData={ item }
             canAcceptDrop={ this.handleCanAcceptDrop }
