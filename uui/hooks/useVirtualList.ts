@@ -115,8 +115,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     React.useLayoutEffect(updateScrollToFocus, [value?.focusedIndex]);
 
     const offsetY = React.useMemo(() => {
-        if (rowOffsets.current.length === 0) return 0;
-        if (!value?.topIndex) return rowOffsets.current[0] - listOffset;
+        if (rowOffsets.current.length === 0 || !value?.topIndex) return 0;
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [rowOffsets.current, listOffset, value?.topIndex]);
 
