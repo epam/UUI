@@ -78,7 +78,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                 <div className={ css.criteriaSection }>
                                     <Text size='24' lineHeight='24' fontSize='18' font='sans-semibold' cx={ css.title } >Success Criteria</Text>
                                     { sortedCriteria.map((criterion, index) => <DndCriterion
-                                        key={ criterion.id }
+                                        key={ criterion.id + criterion.order }
                                         value={ criterion }
                                         prevCriterion={ sortedCriteria[index - 1] }
                                         nextCriterion={ sortedCriteria[index + 1] }
@@ -88,7 +88,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                 <div className={ css.materialsSection }>
                                     <Text size='24' lineHeight='24' fontSize='18' font='sans-semibold' cx={ css.title } >Materials</Text>
                                     { sortedMaterials.map((material, index) => <DndMaterial
-                                        key={ material.id }
+                                        key={ material.id + material.order }
                                         value={ material }
                                         prevMaterial={ sortedMaterials[index - 1] }
                                         nextMaterial={ sortedMaterials[index + 1] }
