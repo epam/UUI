@@ -58,7 +58,7 @@
           },
           {
             "object": "text",
-            "text": ": To display a config button in your table, you need to explicitly pass a container column with a fix: 'right' field to wrap a skin-defined config button.",
+            "text": ": To display a columns config button in your table, you need to explicitly pass a column with a fix: 'right' field to provide required space for this button.",
             "marks": []
           }
         ]
