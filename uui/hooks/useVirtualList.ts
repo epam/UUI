@@ -66,7 +66,12 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         };
     }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
 
-    const listOffset = React.useMemo(() => listContainer.current?.offsetTop || 0, [listContainer.current]);
+    const listOffset = React.useMemo(() => {
+        if (!scrollContainer.current || !listContainer.current) return 0;
+        const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
+        const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
+        return Math.floor(listContainerTop - scrollContainerTop);
+    }, [listContainer.current, scrollContainer.current]);
 
     const updateRowHeights = React.useCallback(() => {
         if (!listContainer.current) return;
