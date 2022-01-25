@@ -24,8 +24,8 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     cellRef = React.createRef<HTMLElement>();
 
     toggleSort = (e: React.MouseEvent) => {
-        if (isClickableChildClicked(e)) return;
-        this.props.column.isSortable && this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
+        if (isClickableChildClicked(e) || !this.props.column.isSortable) return;
+        this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
     }
 
     canAcceptDrop(params: AcceptDropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>) {
@@ -77,8 +77,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             onResizeEnd: this.onResizeEnd,
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
-            ref: this.cellRef,
             ...dndProps,
+            ref: node => {
+                (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;
+                if (!dndProps) return;
+                (dndProps.ref as React.MutableRefObject<HTMLElement>).current = node;
+            },
         });
     }
 

@@ -61,7 +61,10 @@ export interface DndActorRenderParams {
      */
     classNames: string[];
 
-    ref?: React.RefObject<any> | React.RefCallback<any>;
+    /**
+     * Ref to the DOM element to perform DnD actions
+     */
+    ref?: React.Ref<any>;
 }
 
 export interface IDndActor<TSrcData, TDstData> {

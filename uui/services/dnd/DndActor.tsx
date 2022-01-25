@@ -45,11 +45,10 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
     constructor(props: DndActorProps<TSrcData, TDstData>) {
         super(props);
+        this.context?.uuiDnD.subscribe(this.contextUpdateHandler);
     }
 
     componentDidMount() {
-        if (!this.dndRef.current) return;
-        this.context?.uuiDnD.subscribe(this.contextUpdateHandler);
         window.addEventListener('pointerup', this.windowPointerUpHandler);
         window.addEventListener('pointermove', this.windowPointerMoveHandler);
     }
@@ -75,6 +74,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         if (!this.state.isMouseDown
             || e.buttons === 0 // can happen if native drag-n-drop occurs
             || this.state.isDragging
+            || !this.dndRef.current
         ) return;
 
         if (isChildHasClass(e.target, this.dndRef.current, [uuiElement.input])) {
