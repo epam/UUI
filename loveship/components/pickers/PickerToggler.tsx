@@ -33,7 +33,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: any) => {
+export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLDivElement>) => {
     const getCaption = (row: DataRowProps<any, TId>) => {
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
 

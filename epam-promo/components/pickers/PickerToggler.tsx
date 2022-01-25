@@ -22,7 +22,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: any) => {
+export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLDivElement>) => {
     const getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
         switch (propSize) {
             case '48':

@@ -74,7 +74,7 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
         );
     }, [preset, duplicatePreset, deletePreset, isActive, choosePreset, hasChanged]);
 
-    const renderTarget = useCallback((props: IDropdownToggler & { ref?: React.Ref<any> }) => {
+    const renderTarget = useCallback((props: React.PropsWithRef<IDropdownToggler>) => {
         return (
             <Button
                 { ...props }

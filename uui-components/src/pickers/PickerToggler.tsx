@@ -23,7 +23,7 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     minCharsToSearch?: number;
 }
 
-export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: any) => {
+export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) => {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const [isActive, setIsActive] = React.useState<boolean>(false);
 
