@@ -31,7 +31,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
-            key={ rowProps.rowKey }
+            key={ rowProps.rowKey + rowProps.id + rowProps.index }
             size={ props.size }
             background={ props.rowBackground }
             borderBottom={ props.border }
