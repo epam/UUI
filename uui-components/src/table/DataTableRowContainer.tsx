@@ -85,7 +85,6 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 { props.overlays }
             </>
         );
-
     }
 
     return (
