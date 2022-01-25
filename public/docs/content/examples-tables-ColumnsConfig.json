@@ -23,23 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Provide ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "showColumnsConfig={ true }",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop to enable columns config dialog. Config button will appear in the last column.",
+            "text": "Provide showColumnsConfig={ true } prop to enable columns config dialog. Config button will appear in the last column.",
             "marks": []
           }
         ]
@@ -51,39 +35,30 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For allowing columns resize and reorder use ",
+            "text": "For allowing columns resize and reorder use allowColumnsResizing={ true } and allowColumnsReordering={ true } props. \n",
             "marks": []
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
           {
             "object": "text",
-            "text": "allowColumnsResizing={ true }",
+            "text": "Hint",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-code",
+                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " and ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "allowColumnsReordering={ true }",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props.",
+            "text": ": To display a columns config button in your table, you need to explicitly pass a column with a fix: 'right' field to provide required space for this button.",
             "marks": []
           }
         ]
