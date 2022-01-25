@@ -39,7 +39,7 @@ export class Portal extends React.Component<PortalProps, PortalState> {
     }
 
     componentWillUnmount() {
-        this.state.root.removeChild(this.state.el);
+        this.state.root?.removeChild(this.state.el);
     }
 
     render() {
