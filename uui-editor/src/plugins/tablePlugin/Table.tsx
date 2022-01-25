@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './Table.scss';
-import { findDOMNode } from "react-dom";
+import * as ReactDOM from "react-dom";
 import { Broadcast } from 'react-broadcast';
 import { mouseCoords } from '@epam/uui';
 import { RenderBlockProps } from 'slate-react';
@@ -50,11 +50,10 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
         hoverCellIndex: null,
         selectedCells: [this.props.editor.value.anchorBlock],
     };
+    tableNode: any = null;
+    tableWrapperNode: any = null;
 
-    private tableNode: HTMLTableElement;
-    private tableWrapperNode: HTMLDivElement;
-
-    constructor (props: RenderBlockProps) {
+    constructor (props: any) {
         super(props);
     }
 
@@ -93,7 +92,9 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     }
 
     windowMouseUpHandler = (e: Event) => {
-        if (this.props.editor.readOnly) return;
+        if (this.props.editor.readOnly) {
+            return;
+        }
 
         if (this.state.isBorderMoving || this.state.isCellSelecting || this.state.isTextSelectingForbiden) {
             this.setState({ isBorderMoving: false, isCellSelecting: false, isTextSelectingForbiden: false });
@@ -106,7 +107,7 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     setSize = (data: any) => {
         const newData = this.props.node.data.set('cellSizes', data);
         this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node,
+            ...this.props.node as any,
             data: newData,
         });
     }
@@ -120,8 +121,9 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     }
 
     isTableWidthValid = () => {
-        const tableSize = this.tableNode?.getBoundingClientRect() || { width: 0 };
-        const editorNode = findDOMNode(this.props.editor) as HTMLElement;
+        let tableSize = this.tableNode && this.tableNode.getBoundingClientRect() || {width: 0};
+        const editorNode: HTMLElement = ReactDOM.findDOMNode(this.props.editor) as any;
+
         return tableSize.width < editorNode.getBoundingClientRect().width;
     }
 
@@ -176,7 +178,7 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
 
         if (this.state.isCellSelecting) {
             let currentCell = (e.target as any).closest('td, th');
-            let currentRow = (e.target as HTMLElement).closest('tr');
+            let currentRow = (e.target as any).closest('tr');
 
             if (this.isSomeCellsSelected(currentCell, currentRow)) {
                 this.forbidTextSelection();
@@ -284,24 +286,22 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     }
 
     render() {
-        return (
-            <div className={ css.tableWrapper } ref={ el => this.tableWrapperNode = el }>
-                <Broadcast value={ this.state.selectedCells } channel='uui-rte-table'>
-                    <table className={ css.table } style={ {width: `${this.getTableWidth()}px`} } ref={ (el) => this.tableNode = el }>
-                        <colgroup>
-                            { (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).map((size: number, index: number) => {
-                                let hoverStyle = this.state.hoverCellIndex === index ? { borderRight: '2px solid #008ACE' } : null;
-                                return <col style={ { width: `${ size }px`, ...hoverStyle } } key={ `col-${ index }` } />;
-                            }) }
-                        </colgroup>
-                        <tbody { ...this.props.attributes } className={ css.tableBody }>
-                            { this.props.children }
-                        </tbody>
-                    </table>
-                </Broadcast>
-                <MergeCellBar editor={ this.props.editor } selectedCells={ this.state.selectedCells } clearSelection={ () => this.setState({ selectedCells: [] }) } />
-                <TableBar editor={ this.props.editor } isVisible={ this.state.selectedCells.length == 1 && this.props.isFocused } />
-            </div>
-        );
+        return <div className={ css.tableWrapper } ref={ (el) => this.tableWrapperNode = el }>
+            <Broadcast value={ this.state.selectedCells } channel='uui-rte-table'>
+                <table className={ css.table } style={ {width: `${this.getTableWidth()}px`} } ref={ (el) => this.tableNode = el }>
+                    <colgroup>
+                        { (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).map((size: number, index: number) => {
+                            let hoverStyle = this.state.hoverCellIndex === index ? { borderRight: '2px solid #008ACE' } : null;
+                            return <col style={ { width: `${ size }px`, ...hoverStyle } } key={ `col-${ index }` } />;
+                        }) }
+                    </colgroup>
+                    <tbody { ...this.props.attributes } className={ css.tableBody }>
+                        { this.props.children }
+                    </tbody>
+                </table>
+            </Broadcast>
+            <MergeCellBar editor={ this.props.editor } selectedCells={ this.state.selectedCells } clearSelection={ () => this.setState({ selectedCells: [] }) } />
+            <TableBar editor={ this.props.editor } isVisible={ this.state.selectedCells.length == 1 && this.props.isFocused } />
+        </div>;
     }
 }
