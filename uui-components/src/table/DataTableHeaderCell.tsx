@@ -2,10 +2,10 @@ import * as React from 'react';
 import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui";
 
 interface DataTableRenderProps {
-    renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;
+    renderCellContent: (props: React.PropsWithRef<HeaderCellContentProps>) => React.ReactElement<HeaderCellContentProps>;
 }
 
-export interface HeaderCellContentProps extends DndActorRenderParams, React.PropsWithRef<any> {
+export interface HeaderCellContentProps extends DndActorRenderParams {
     onResizeStart: (e: React.MouseEvent) => void;
     onResizeEnd: (e: React.MouseEvent) => void;
     onResize: (e: MouseEvent) => void;

@@ -20,7 +20,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
-            key={ rowProps.rowKey }
+            key={ rowProps.key + rowProps.rowKey }
             size={ props.size }
             borderBottom={ props.border }
             { ...rowProps }

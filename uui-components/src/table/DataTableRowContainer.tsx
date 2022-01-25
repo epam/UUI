@@ -13,95 +13,99 @@ export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClicka
     link?: Link;
 }
 
-enum uuiDataTableRowContainer {
-    uuiTableRowContainer = 'uui-table-row-container',
-    uuiTableFixedSectionLeft = 'uui-table-fixed-section-left',
-    uuiTableFixedSectionRight = 'uui-table-fixed-section-right',
-    uuiScrollShadowLeft = 'uui-scroll-shadow-left',
-    uuiScrollShadowRight = 'uui-scroll-shadow-right',
-};
+const uuiDataTableRowContainer = {
+    uuiTableRowContainer: 'uui-table-row-container',
+    uuiTableFixedSectionLeft: 'uui-table-fixed-section-left',
+    uuiTableFixedSectionRight: 'uui-table-fixed-section-right',
+    uuiScrollShadowLeft: 'uui-scroll-shadow-left',
+    uuiScrollShadowRight: 'uui-scroll-shadow-right',
+} as const;
 
-export class DataTableRowContainer<TItem, TId, TFilter> extends React.Component<DataTableRowContainerProps<TItem, TId, TFilter>> {
-    protected renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
+export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
+    function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
-            const idx = this.props.columns?.indexOf(column) || 0;
-            return cells.concat(this.props.renderCell({
+            const idx = props.columns?.indexOf(column) || 0;
+            return cells.concat(props.renderCell({
                 ...column,
                 minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width),
             }, idx));
         }, []);
     }
 
-    getSectionWidth = (cells: DataColumnProps<TItem, TId, TFilter>[]) => {
+    function getSectionWidth(cells: DataColumnProps<TItem, TId, TFilter>[]) {
         return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
     }
 
-    wrapFixedSection = (cells: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right') => (
-        <div
-            style={ { flex: `0 0 ${this.getSectionWidth(cells)}px` } }
-            className={ cx({
-                [css.fixedColumnsSectionLeft]: direction === 'left',
-                [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
-                [css.fixedColumnsSectionRight]: direction === 'right',
-                [uuiDataTableRowContainer.uuiTableFixedSectionRight]: direction === 'right',
-            }) }>
-            { this.renderCells(cells) }
-            { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
-            { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
-            { direction === 'right' && this.props.renderConfigButton?.() }
-        </div>
-    );
+    function wrapFixedSection(cells: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right') {
+        return (
+            <div
+                style={ { flex: `0 0 ${getSectionWidth(cells)}px` } }
+                className={ cx({
+                    [css.fixedColumnsSectionLeft]: direction === 'left',
+                    [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
+                    [css.fixedColumnsSectionRight]: direction === 'right',
+                    [uuiDataTableRowContainer.uuiTableFixedSectionRight]: direction === 'right',
+                }) }>
+                { renderCells(cells) }
+                { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
+                { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+                { direction === 'right' && props.renderConfigButton?.() }
+            </div>
+        )
+    };
 
-    wrapScrollingSection = (cells: DataColumnProps<TItem, TId, TFilter>[]) => {
-        if (this.props.wrapScrollingSection) return this.props.wrapScrollingSection(cells);
+    function wrapScrollingSection(cells: DataColumnProps<TItem, TId, TFilter>[]) {
+        if (props.wrapScrollingSection) return props.wrapScrollingSection(cells);
         return (
             <div className={ css.container } style={{
-                flex: `1 0 ${this.getSectionWidth(cells)}px`,
-                minWidth: `${this.getSectionWidth(cells)}px`
+                flex: `1 0 ${getSectionWidth(cells)}px`,
+                minWidth: `${getSectionWidth(cells)}px`
             }}>
-                { this.renderCells(cells) }
+                { renderCells(cells) }
             </div>
         );
     }
 
-    render() {
+    function getRowContent() {
         const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
         const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
         const staticColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
 
-        for (const column of this.props.columns) {
+        for (const column of props.columns) {
             if (column.fix === 'left') fixedLeftColumns.push(column);
             else if (column.fix === 'right') fixedRightColumns.push(column);
             else staticColumns.push(column);
         };
 
-        const rowContent = (
+        return (
             <>
-                { fixedLeftColumns.length > 0 && this.wrapFixedSection(fixedLeftColumns, 'left') }
-                { this.wrapScrollingSection(staticColumns) }
-                { fixedRightColumns.length > 0 && this.wrapFixedSection(fixedRightColumns, 'right') }
-                { this.props.overlays }
+                { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left') }
+                { wrapScrollingSection(staticColumns) }
+                { fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right') }
+                { props.overlays }
             </>
         );
 
-        return (
-            this.props.link ? (
-                <Anchor
-                    link={ this.props.link }
-                    cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
-                    rawProps={ this.props.rawProps }
-                >
-                    { rowContent }
-                </Anchor>
-            ) : (
-                <FlexRow
-                    onClick={ this.props.onClick }
-                    cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, this.props.onClick && uuiMarkers.clickable, this.props.cx] }
-                    rawProps={ this.props.rawProps }
-                >
-                    { rowContent }
-                </FlexRow>
-            )
-        );
     }
-}
+
+    return (
+        props.link ? (
+            <Anchor
+                link={ props.link }
+                cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
+                rawProps={ props.rawProps }
+            >
+                { getRowContent() }
+            </Anchor>
+        ) : (
+            <FlexRow
+                onClick={ props.onClick }
+                cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
+                rawProps={ props.rawProps }
+                ref={ ref }
+            >
+                { getRowContent() }
+            </FlexRow>
+        )
+    )
+});

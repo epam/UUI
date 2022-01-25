@@ -1,17 +1,16 @@
 import * as React from 'react';
-import * as ReactDom from 'react-dom';
 import { IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState } from '../../types';
-import {  mouseCoords } from '../../helpers';
+import { mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
 import { isChildHasClass } from '../../helpers';
 import { UuiContext } from "../ContextProvider";
 
-export type DndActorProps<TSrcData, TDstData> = IDndActor<TSrcData, TDstData> & {
+export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     render(props: DndActorRenderParams): React.ReactNode;
 };
 
-const dndStartThreshold = 5;
+const DND_START_THRESHOLD = 5;
 
 interface DndActorState {
     pointerX: number;
@@ -45,10 +44,10 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
     constructor(props: DndActorProps<TSrcData, TDstData>) {
         super(props);
-        this.context?.uuiDnD.subscribe(this.contextUpdateHandler);
     }
 
     componentDidMount() {
+        this.context?.uuiDnD?.subscribe?.(this.contextUpdateHandler);
         window.addEventListener('pointerup', this.windowPointerUpHandler);
         window.addEventListener('pointermove', this.windowPointerMoveHandler);
     }
@@ -74,7 +73,6 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         if (!this.state.isMouseDown
             || e.buttons === 0 // can happen if native drag-n-drop occurs
             || this.state.isDragging
-            || !this.dndRef.current
         ) return;
 
         if (isChildHasClass(e.target, this.dndRef.current, [uuiElement.input])) {
@@ -86,7 +84,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
             + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2),
         );
 
-        if (dist > dndStartThreshold) {
+        if (dist > DND_START_THRESHOLD) {
             this.context.uuiDnD.startDrag(
                 this.dndRef.current,
                 this.props.srcData,
