@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext, uuiElement } from '@epam/uui';
 import { Portal } from './Portal';
 import { FreeFocusInside } from 'react-focus-lock';
 
@@ -174,7 +174,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private renderTarget = (targetProps: ReferenceChildrenProps) => (
-        <div ref={ node => {
+        <div className={ uuiElement.dummyWrapper } ref={ node => {
             this.targetNode = node;
             (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         } }>

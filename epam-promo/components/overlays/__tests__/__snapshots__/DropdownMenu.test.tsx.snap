@@ -80,7 +80,9 @@ Array [
           An example of DropdownMenuHeader
         </span>
       </div>
-      <div>
+      <div
+        className="uui-dummy-wrapper"
+      >
         <div
           className="submenuRootItem itemRoot container -clickable align-items-center"
           onClick={[Function]}
