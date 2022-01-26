@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RangeDataPicker should be rendered correctly 1`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="dateInputGroup"
     onBlur={[Function]}
@@ -53,7 +55,9 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
 `;
 
 exports[`RangeDataPicker should be rendered correctly 2`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="dateInputGroup uui-disabled uui-readonly uui-invalid"
     onBlur={[Function]}

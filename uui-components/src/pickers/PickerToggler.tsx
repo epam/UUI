@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
 
-export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement>, React.PropsWithRef<any> {
+export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
@@ -21,9 +21,10 @@ export interface PickerTogglerProps<TItem, TId = any> extends IPickerToggler<TIt
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
+    ref?: React.Ref<any>;
 }
 
-export const PickerToggler = React.forwardRef(<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps<any, any>>((props, ref) => {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const [isActive, setIsActive] = React.useState<boolean>(false);
 

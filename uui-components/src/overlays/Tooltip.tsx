@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { uuiElement, IHasCX, LayoutLayer, IHasChildren, UuiContexts, closest, cx, UuiContext } from '@epam/uui';
-import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
+import { Manager, Reference, Popper, PopperChildrenProps, ReferenceChildrenProps } from 'react-popper';
 import type { Placement, Boundary } from '@popperjs/core';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { Portal } from './Portal';
@@ -129,18 +129,20 @@ export class Tooltip extends React.Component<TooltipProps, TooltipState> {
         return !!this.props.content || !!this.props.renderContent;
     }
 
+    private renderTarget = (targetProps: ReferenceChildrenProps) => (
+        <div className={ uuiElement.dummyWrapper } ref={ node => {
+            this.node = node;
+            (targetProps.ref as React.RefCallback<HTMLElement>)(node);
+        } }>
+            { this.props.children }
+        </div>
+    );
+
     render() {
         return (
             <Manager>
                 <Reference>
-                    { ({ ref }) => (
-                        <div ref={ node => {
-                            this.node = node;
-                            (ref as React.RefCallback<HTMLElement>)(node);
-                        } }>
-                            { this.props.children }
-                        </div>
-                    ) }
+                    { targetProps => this.renderTarget(targetProps) }
                 </Reference>
                 { this.isTooltipExist() && this.state.isOpen && (
                     <Portal target={ this.props.portalTarget }>

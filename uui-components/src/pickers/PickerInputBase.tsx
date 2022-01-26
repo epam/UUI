@@ -211,7 +211,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
-            editMode: this.props.editMode,
             rawProps: this.props.rawProps?.input,
         };
     }

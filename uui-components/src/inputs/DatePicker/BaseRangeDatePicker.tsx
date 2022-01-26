@@ -202,8 +202,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props: DropdownBodyProps) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderBody={ props => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
                 onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }

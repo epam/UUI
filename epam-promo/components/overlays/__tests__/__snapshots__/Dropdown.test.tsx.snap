@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dropdown should be rendered correctly 1`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <button
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}
@@ -27,7 +29,9 @@ exports[`Dropdown should be rendered correctly 1`] = `
 `;
 
 exports[`Dropdown should be rendered correctly 2`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <button
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
     href={null}

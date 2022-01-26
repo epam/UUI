@@ -18,7 +18,9 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   }
 >
   <div>
-    <div>
+    <div
+      className="uui-dummy-wrapper"
+    >
       <div
         className="uui-table-header-caption"
       >

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataPicker should be rendered correctly 1`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="container uui-input-box -clickable root size-36 mode-form dateInput"
     onBlur={[Function]}
@@ -31,7 +33,9 @@ exports[`DataPicker should be rendered correctly 1`] = `
 `;
 
 exports[`DataPicker should be rendered correctly 2`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="container uui-input-box -clickable root size-36 mode-form dateInput"
     onBlur={[Function]}

@@ -25,10 +25,11 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = props.columns?.indexOf(column) || 0;
-            return cells.concat(props.renderCell({
+            cells.push(props.renderCell({
                 ...column,
                 minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width),
             }, idx));
+            return cells;
         }, []);
     }
 

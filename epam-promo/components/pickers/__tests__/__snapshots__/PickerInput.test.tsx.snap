@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PickerInput should be rendered correctly 1`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="container uui-input-box -clickable root size-36 mode-form"
     onBlur={[Function]}
@@ -42,7 +44,9 @@ exports[`PickerInput should be rendered correctly 1`] = `
 `;
 
 exports[`PickerInput should be rendered correctly 2`] = `
-<div>
+<div
+  className="uui-dummy-wrapper"
+>
   <div
     className="container uui-input-box -clickable root size-48 mode-form"
     onBlur={[Function]}
