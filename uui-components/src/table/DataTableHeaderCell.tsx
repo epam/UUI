@@ -90,6 +90,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         if (this.props.allowColumnsReordering) {
             return (
                 <DndActor
+                    key={ this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '') }
                     dstData={ this.props.column }
                     srcData={ this.props.column.fix ? null : this.props.column }
                     canAcceptDrop={ this.canAcceptDrop }
