@@ -74,14 +74,16 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                                     isDisabled
                                 />
                             </FlexRow>
-                            <FlexCell cx={ css.moduleRowsContainer } >
-                                { sortedModules.map((module, index) => <DndModule
-                                    key={ module.id + module.order }
-                                    value={ module }
-                                    prevModule={ sortedModules[index - 1] }
-                                    nextModule={ sortedModules[index + 1] }
-                                    onValueChange={ this.handleModuleChange }
-                                />) }
+                            <FlexCell cx={ css.moduleRowsContainer }>
+                                { sortedModules.map((module, index) => (
+                                    <DndModule
+                                        key={ module.id }
+                                        value={ module }
+                                        prevModule={ sortedModules[index - 1] }
+                                        nextModule={ sortedModules[index + 1] }
+                                        onValueChange={ this.handleModuleChange }
+                                    />
+                                )) }
                             </FlexCell>
                         </FlexCell>
                     </Panel>
@@ -90,14 +92,16 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                 ) }
                 <FlexCell cx={ css.moduleContent } minWidth={ isDesktop && 894 } width={ !isDesktop ? '100%' : undefined }>
                     <Text font='museo-sans' cx={ css.moduleHeader }>Module 3: Module Name</Text>
-                    { sortedSections.map((section, index) => <DndSection
-                        key={ section.id + section.order }
-                        prevSection={ sortedSections[index - 1] }
-                        nextSection={ sortedSections[index + 1] }
-                        value={ section }
-                        onValueChange={ this.handleSectionChange }
-                        onMaterialDropFromSection={ this.handleMaterialDropFromSection }
-                    />) }
+                    { sortedSections.map((section, index) => (
+                        <DndSection
+                            key={ section.id }
+                            prevSection={ sortedSections[index - 1] }
+                            nextSection={ sortedSections[index + 1] }
+                            value={ section }
+                            onValueChange={ this.handleSectionChange }
+                            onMaterialDropFromSection={ this.handleMaterialDropFromSection }
+                        />
+                    )) }
                 </FlexCell>
             </FlexRow>
         );
