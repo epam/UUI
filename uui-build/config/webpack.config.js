@@ -567,6 +567,7 @@ function getLocalIdent(
       async: false,
       tsconfig: paths.appTsConfig,
       tslint: paths.appTsLint,
+      eslint: paths.appEsLint,
       useTypescriptIncrementalApi: true
     }),
   ].filter(Boolean),
