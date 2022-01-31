@@ -53,21 +53,22 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
             <aside className={ css.root } >
                 <SearchInput value={ this.state.searchValue } onValueChange={ (val) => this.setState({ searchValue: val }) } autoFocus={ true } placeholder='Search' cx={ css.search } getValueChangeAnalyticsEvent={ this.getSearchEvent } />
                 <div className={ css.tree } role='tablist'>
-                    <ScrollBars >
+                    <ScrollBars>
                         <Tree
                             items={ this.props.items }
                             value={ this.state.unfoldedIds }
-                            onValueChange={ (value) => this.setState({ unfoldedIds: value }) }
-                            renderRow={ (item) => <SidebarButton
-                                link={ this.props.getItemLink(item) }
-                                indent={ item.depth * 12 }
-                                isOpen={ item.isOpen }
-                                isDropdown={ item.isDropdown }
-                                isActive={ item.id === this.props.value }
-                                caption={ item.data.name }
-                                onClick={ () => this.handleClick(item) }
-                            />
-                            }
+                            onValueChange={ value => this.setState({ unfoldedIds: value }) }
+                            renderRow={ item => (
+                                <SidebarButton
+                                    link={ this.props.getItemLink(item) }
+                                    indent={ item.depth * 12 }
+                                    isOpen={ item.isOpen }
+                                    isDropdown={ item.isDropdown }
+                                    isActive={ item.id === this.props.value }
+                                    caption={ item.data.name }
+                                    onClick={ () => this.handleClick(item) }
+                                />
+                            ) }
                             search={ this.state.searchValue }
                         />
                     </ScrollBars>
