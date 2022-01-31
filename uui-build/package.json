@@ -42,6 +42,7 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^40.1.0",
     "file-loader": "4.3.0",
     "fork-ts-checker-webpack-plugin": "4.1.3",

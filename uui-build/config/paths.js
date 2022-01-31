@@ -65,5 +65,5 @@ module.exports = {
   appTsConfig,
   appTsRoot: path.dirname(appTsConfig),
   appTsLint: locateApp('tslint.json', '../tslint.json'),
-  appEsLint: locateApp('.eslintrc.js', '../.eslintrc.js'),
+  appEsLint: locateApp('.eslintrc.json', '../.eslintrc.json'),
 };

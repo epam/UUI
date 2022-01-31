@@ -1,18 +1,24 @@
-module.exports = {
+{
     "env": {
         "browser": true
     },
     "extends": [
         "plugin:react/recommended",
-        "eslint:recommended",
+        "plugin:security/recommended"
     ],
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
+    },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./tsconfig.json",
+        "project": "tsconfig.json",
         "sourceType": "module",
         "plugins": ["@typescript-eslint"]
     },
     "plugins": [
+        "security",
         "eslint-plugin-import",
         "eslint-plugin-react",
         "eslint-plugin-prefer-arrow",
@@ -67,7 +73,6 @@ module.exports = {
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "@typescript-eslint/no-use-before-define": "off",
-        "@typescript-eslint/no-var-requires": "error",
         "@typescript-eslint/prefer-for-of": "off",
         "@typescript-eslint/prefer-function-type": "error",
         "@typescript-eslint/prefer-namespace-keyword": "error",
@@ -263,4 +268,4 @@ module.exports = {
             }
         ]
     }
-};
+}
