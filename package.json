@@ -16,9 +16,9 @@
     "build-dev": "cd ./app && yarn build-dev",
     "start-server": "cd ./app && yarn server",
     "release": "node uui-build/scripts/buildModules",
-    "lint": "npx tslint -p ./tsconfig.json -e node_modules",
+    "lint": "npx eslint -c .eslintrc.js --ext .ts --ext .js --ext .tsx",
     "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
-    "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
+    "format": "yarn lint --fix",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
     "generate-components-api": "cd uui-build && yarn generate-components-api"
@@ -67,6 +67,7 @@
   "devDependencies": {
     "tslib": "^2.3.1",
     "lerna": "3.22.1",
+    "prettier": "^2.5.1",
     "typedoc": "0.17.4"
   }
 }

@@ -101,5 +101,8 @@
     "scss.lint.emptyRules": "ignore",
     "editor.codeActionsOnSave": {
         "source.fixAll.stylelint": true
-    }
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.lintTask.enable": true,
+    "eslint.packageManager": "yarn",
 }
