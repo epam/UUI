@@ -16,7 +16,7 @@
     "build-dev": "cd ./app && yarn build-dev",
     "start-server": "cd ./app && yarn server",
     "release": "node uui-build/scripts/buildModules",
-    "lint": "npx eslint -c .eslintrc.js --ext .ts --ext .js --ext .tsx",
+    "lint": "npx eslint -c .eslintrc.json --ext .ts --ext .js --ext .tsx",
     "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
     "format": "yarn lint --fix",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
