@@ -275,8 +275,7 @@
     }
 
     &.fill-transparent {
-        @include button-colors(transparent, var(--uui-color-700), transparent);
-        color: $night800;
+        @include button-colors(transparent, $night800, transparent);
 
         &::before {
             position: absolute;
