@@ -12,7 +12,8 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-};
+    filters?: Record<string, any>[];
+}
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();

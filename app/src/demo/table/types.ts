@@ -8,11 +8,11 @@ type PersonTableRecordId = [PersonTableRecord["__typename"], string | number];
 // type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
 type PersonTableFilter = { [key: string]: any, groupBy?: string };
 
-interface ITableFilter {
+interface FilterConfig<TFilter extends Record<string, any>> {
     title: string;
-    id: string;
-    key: string;
+    field: keyof TFilter;
     type: "singlePicker" | "multiPicker" | "datePicker" | "rangeDatePicker";
+    columnKey?: string;
     dataSource?: IDataSource<any, any, any>;
 }
 
@@ -51,4 +51,4 @@ interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
     presets: ITablePreset<TFilter>[];
 }
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi, ITableState };
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, FilterConfig, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi, ITableState };

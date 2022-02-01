@@ -1,11 +1,11 @@
 import React from "react";
 import { DataColumnProps, IEditable, ILens } from "@epam/uui";
 import { ColumnPickerFilter, DatePicker, RangeDatePicker } from "@epam/promo";
-import { ITableFilter } from "../types";
+import { FilterConfig } from "../types";
 
-export const addFiltersToColumns = (columns: DataColumnProps<any>[], filters: ITableFilter[]) => {
+export const addFiltersToColumns = (columns: DataColumnProps<any>[], filters: FilterConfig[]) => {
     const makeFilterRenderCallback = (key: string) => {
-        const filter = filters.find(f => f.key === key);
+        const filter = filters.find(f => f.columnKey === key);
 
         const Filter = (props: IEditable<any>) => {
             switch (filter.type) {
@@ -41,12 +41,12 @@ export const addFiltersToColumns = (columns: DataColumnProps<any>[], filters: IT
         return (filterLens: ILens<any>) => {
             if (!filter) return null;
 
-            const props = filterLens.prop(filter.id).toProps();
+            const props = filterLens.prop(filter.field).toProps();
             return <Filter { ...props } />;
         };
     };
 
-    const filterKeys = filters.map(f => f.key);
+    const filterKeys = filters.map(f => f.columnKey);
     return columns.map(column => {
         if (filterKeys.includes(column.key)) {
             return {

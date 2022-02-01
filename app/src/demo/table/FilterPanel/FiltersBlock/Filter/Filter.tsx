@@ -4,20 +4,20 @@ import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/pr
 import { IEditable } from "@epam/uui";
 import { RangeDatePickerValue } from "@epam/uui-components";
 import { ReactComponent as ArrowDown } from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
-import { ITableFilter } from "../../../types";
+import { FilterConfig } from "../../../types";
 
-interface IFilterProps<T> extends ITableFilter, IEditable<{ [key: string]: (T | T[]) } | undefined> {
+interface IFilterProps<TFilter extends Record<string, any>> extends FilterConfig<TFilter>, IEditable<TFilter | undefined> {
 
 }
 
-const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
-    const { id, value, onValueChange, title, dataSource, type } = props;
+const FilterImpl = <TFilter extends Record<string, any>>(props: IFilterProps<TFilter>) => {
+    const { field, value, onValueChange, title, dataSource, type } = props;
     const [isOpened, setIsOpened] = useState(false);
 
-    const handleChange = useCallback((value: (T | T[])) => {
-        onValueChange({ [id]: value });
-    }, [id, onValueChange]);
-
+    const handleChange = useCallback((value: TFilter[keyof TFilter]) => {
+        onValueChange({ [field]: value } as TFilter);
+    }, [field, onValueChange]);
+    
     const toggle = () => setIsOpened(!isOpened);
 
     const renderPicker = () => {
@@ -27,7 +27,7 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
                     <PickerList
                         dataSource={ dataSource }
                         selectionMode="single"
-                        value={ value?.[id] }
+                        value={ value?.[field] }
                         onValueChange={ handleChange }
                         valueType="id"
                     />
@@ -37,7 +37,7 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
                     <PickerList
                         dataSource={ dataSource }
                         selectionMode="multi"
-                        value={ value?.[id] as T[] }
+                        value={ value?.[field] as TFilter[] }
                         onValueChange={ handleChange }
                         valueType="id"
                     />
@@ -46,14 +46,14 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
                 return (
                     <DatePicker
                         format="DD/MM/YYYY"
-                        value={ value?.[id] as string }
-                        onValueChange={ handleChange as (v: string) => void }
+                        value={ value?.[field] as string }
+                        onValueChange={ handleChange as (v: TFilter[keyof TFilter]) => void }
                     />
                 );
             case "rangeDatePicker":
                 return (
                     <RangeDatePicker
-                        value={ value?.[id] as RangeDatePickerValue }
+                        value={ value?.[field] as RangeDatePickerValue }
                         onValueChange={ handleChange as (v: RangeDatePickerValue) => void }
                     />
                 );
@@ -76,4 +76,4 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
     );
 };
 
-export const Filter = React.memo(FilterComponent) as typeof FilterComponent;
+export const Filter = React.memo(FilterImpl) as typeof FilterImpl;

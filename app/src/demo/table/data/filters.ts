@@ -1,61 +1,61 @@
 import { LazyDataSource } from "@epam/uui";
 import { svc } from "../../../services";
-import { ITableFilter } from "../types";
+import { FilterConfig } from "../types";
 
-export const getFilters = (): ITableFilter[] => {
+export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<TFilter>[] => {
     return [
         {
-            id: "profileStatusId",
-            key: "profileStatus",
+            field: "profileStatusId",
+            columnKey: "profileStatus",
             title: "Profile Status",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
         },
         {
-            id: "jobTitleId",
-            key: "jobTitle",
+            field: "jobTitleId",
+            columnKey: "jobTitle",
             title: "Title",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
         },
         {
-            id: "departmentId",
-            key: 'departmentName',
+            field: "departmentId",
+            columnKey: 'departmentName',
             title: "Department",
             type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
         },
         {
-            id: "officeId",
-            key: "officeAddress",
+            field: "officeId",
+            columnKey: "officeAddress",
             title: "Office",
             type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.offices }),
         },
         {
-            id: "managerId",
-            key: "managerName",
+            field: "managerId",
+            columnKey: "managerName",
             title: "Manager",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.managers }),
         },
         {
-            id: "countryId",
-            key: "countryName",
+            field: "countryId",
+            columnKey: "countryName",
             title: "Country",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
         },
         {
-            id: "cityId",
-            key: "cityName",
+            field: "cityId",
+            columnKey: "cityName",
             title: "City",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
         },
         {
-            id: "birthDate",
-            key: "birthDate",
+            field: "birthDate",
+            columnKey: "birthDate",
             title: "Birth Date",
             type: "rangeDatePicker",
         },

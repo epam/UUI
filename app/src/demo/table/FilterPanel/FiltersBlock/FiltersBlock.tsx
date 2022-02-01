@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { ITableFilter } from "../../types";
+import { FilterConfig } from "../../types";
 
 interface IFiltersProps {
     filter: Record<string, any>;
     onFilterChange(newFilter: Record<string, any>): void;
-    filters: ITableFilter[];
+    filters: FilterConfig[];
 }
 
 const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter, filters }) => {
@@ -25,7 +25,7 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
                         { ...f }
                         value={ filter }
                         onValueChange={ handleChange }
-                        key={ f.id }
+                        columnKey={ f.field }
                     />
                 );
             }) }
