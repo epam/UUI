@@ -3,6 +3,7 @@
 
 .root {
     @include epam-uui-fonts();
+    @include typography-inline();
     color: var(--color);
 }
 
