@@ -12,7 +12,7 @@ export const SideBar = () => {
     const router = useRouter();
 
     return (
-        <ScrollBars >
+        <ScrollBars>
             <Tree
                 items={ structure }
                 value={ unfoldedIds }
@@ -27,6 +27,6 @@ export const SideBar = () => {
                     />
                 ) }
             />
-        </ScrollBars >
+        </ScrollBars>
     );
 };
