@@ -11,7 +11,7 @@ import {
 } from "@epam/uui";
 
 export interface TreeNodeProps<TItem extends TreeListItem = TreeListItem> extends TreeNode<TItem, string> {
-    data: any;
+    data: TItem;
     depth: number;
     isDropdown?: boolean;
     isOpen?: boolean;
@@ -20,8 +20,8 @@ export interface TreeNodeProps<TItem extends TreeListItem = TreeListItem> extend
 
 export interface TreeListItem {
     id: string;
-    data: any;
-    parentId: string;
+    data?: TreeListItem;
+    parentId?: string;
     name?: string;
 }
 
@@ -69,10 +69,10 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
 
     function getNodes(item: TreeNode<TItem, string>, depth: number) {
         const items: TreeNodeProps<TItem>[] = [];
+        const children: TreeNodeProps<TItem>[] = [];
         const isUnfolded = props.value.includes(item.id);
         const applySearch = props.search && getSearchFilter(props.search);
         const isPassedSearch = applySearch ? applySearch([item.item.name]) : true;
-        const children: TreeNodeProps<TItem>[] = [];
 
         if (item.children?.length) {
             item.children.forEach(i => children.push(...getNodes(i, depth + 1)));
