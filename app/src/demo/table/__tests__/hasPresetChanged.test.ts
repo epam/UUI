@@ -1,19 +1,19 @@
-import { ITableFilter, ITablePreset } from "../types";
+import { FilterConfig, ITablePreset } from "../types";
 import { hasPresetChanged } from "../helpers";
 import { getDefaultColumnsConfig } from "@epam/uui";
 import { getColumns } from "../columns";
 import { setMockedUrl, clearMockedUrl } from "./utils";
 
 describe("hasPresetChanged", () => {
-    const filters: ITableFilter[] = [
+    const filters: FilterConfig[] = [
         {
-            id: "profileStatusId",
+            field: "profileStatusId",
             title: "Profile Status",
             type: "multiPicker",
             dataSource: {} as any,
         },
         {
-            id: "jobTitleId",
+            field: "jobTitleId",
             title: "Title",
             type: "multiPicker",
             dataSource: {} as any,

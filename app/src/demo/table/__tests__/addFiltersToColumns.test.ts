@@ -1,18 +1,18 @@
-import { ITableFilter } from "../types";
+import { FilterConfig } from "../types";
 import { addFiltersToColumns } from "../helpers";
 
 describe('addFiltersToColumns', () => {
-    const filters: ITableFilter[] = [
+    const filters: FilterConfig[] = [
         {
-            id: "profileStatusId",
-            key: "profileStatus",
+            field: "profileStatusId",
+            columnKey: "profileStatus",
             title: "Profile Status",
             type: "multiPicker",
             dataSource: {} as any,
         },
         {
-            id: "jobTitleId",
-            key: "jobTitle",
+            field: "jobTitleId",
+            columnKey: "jobTitle",
             title: "Title",
             type: "multiPicker",
             dataSource: {} as any,
@@ -48,7 +48,7 @@ describe('addFiltersToColumns', () => {
 
     it('should add filters to columns', () => {
         const result = addFiltersToColumns(columns, filters);
-        const filterKeys = filters.map(f => f.key);
+        const filterKeys = filters.map(f => f.columnKey);
 
         const columnsWithFilters = result.filter(column => filterKeys.includes(column.key));
         const columnsWithoutFilters = result.filter(column => !filterKeys.includes(column.key));

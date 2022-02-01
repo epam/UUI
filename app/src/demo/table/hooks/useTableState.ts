@@ -119,7 +119,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
                 name: preset.name + "_copy",
             } as ITablePreset<TFilter>;
 
-        newPreset.id = await params?.onPresetCreate(newPreset);
+        newPreset.id = await params?.onPresetCreate?.(newPreset);
         
         onPresetsChange(prevValue => [...prevValue, newPreset]);
         choosePreset(newPreset);
@@ -195,7 +195,7 @@ interface IParams<TFilter = Record<string, any>> {
     columns: DataColumnProps<any>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
-    onPresetCreate(preset: ITablePreset): Promise<number>;
+    onPresetCreate?(preset: ITablePreset): Promise<number>;
     onPresetUpdate?(preset: ITablePreset): Promise<void>;
     onPresetDelete?(preset: ITablePreset): Promise<void>;
 }

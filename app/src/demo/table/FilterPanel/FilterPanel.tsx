@@ -4,20 +4,20 @@ import { FlexSpacer } from "@epam/uui-components";
 import { DataColumnProps } from "@epam/uui";
 import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 
-import { ITableFilter, ITableState } from "../types";
+import { FilterConfig, ITableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
 
 // import { GroupingBlock } from "./GroupingBlock";
 
-export interface IFilterPanelProps extends ITableState {
-    columns: DataColumnProps<any>[];
-    filters: ITableFilter[];
+export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState {
+    columns: DataColumnProps[];
+    filters: FilterConfig<TFilter>[];
     closePanel(): void;
 }
 
-const FilterPanel: React.FC<IFilterPanelProps> = props => {
+const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelProps<TFilter>) => {
     return (
         <>
             <FlexRow background="white" borderBottom size="48" padding="18">
@@ -52,4 +52,4 @@ const FilterPanel: React.FC<IFilterPanelProps> = props => {
     );
 };
 
-export default React.memo(FilterPanel);
+export default React.memo(FilterPanel) as typeof FilterPanel;

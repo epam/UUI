@@ -1,21 +1,21 @@
 import { clearMockedUrl, setMockedUrl } from "./utils";
 import { getColumnsConfig } from "@epam/uui";
 import { getColumns } from "../columns";
-import { ITableFilter, PersonsTableState } from "../types";
+import { FilterConfig, PersonsTableState } from "../types";
 import { isDefaultPresetActive } from "../helpers";
 
 describe('isDefaultPresetActive', () => {
     it('should work correctly', () => {
         clearMockedUrl();
-        const filters: ITableFilter[] = [
+        const filters: FilterConfig[] = [
             {
-                id: "profileStatusId",
+                field: "profileStatusId",
                 title: "Profile Status",
                 type: "multiPicker",
                 dataSource: {} as any,
             },
             {
-                id: "jobTitleId",
+                field: "jobTitleId",
                 title: "Title",
                 type: "multiPicker",
                 dataSource: {} as any,

@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
 import { DataQueryFilter, DataColumnProps } from '@epam/uui';
 import { City, Department, Person, PersonGroup, Manager, Country, Office } from '@epam/uui-docs';
-import { ITableFilter, PersonTableRecordId } from './types';
+import { FilterConfig, PersonTableRecordId } from './types';
 import * as css from './DemoTable.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { addFiltersToColumns } from "./helpers";
 
-export function getColumns(filters: ITableFilter[]) {
+export function getColumns<TFilter extends Record<string, any>>(filters: FilterConfig<TFilter>[]) {
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
