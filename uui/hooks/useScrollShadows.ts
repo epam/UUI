@@ -13,7 +13,7 @@ interface UseScrollShadowsApi {
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
     const [vertical, setVertical] = React.useState({ active: false });
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
-    const mutationObserver = React.useRef<MutationObserver>();
+    const resizeObserver = React.useRef<ResizeObserver>();
 
     function shouldHaveRightShadow(root: UseScrollShadowsProps['root']) {
         if (!root) return false;
@@ -66,15 +66,16 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
 
     React.useEffect(() => {
         if (!root) return;
-        mutationObserver.current = new MutationObserver(updateScrollShadows);
-        mutationObserver.current.observe(root, { attributes: true });
-        return () => mutationObserver.current.disconnect();
-    }, [root]);
+        resizeObserver.current = new ResizeObserver(updateScrollShadows);
+        resizeObserver.current.observe(root);
+        return () => resizeObserver.current.disconnect();
+    }, [root, resizeObserver.current]);
 
     React.useEffect(() => {
+        if (!root) return;
         window.addEventListener('resize', updateScrollShadows);
         return () => window.removeEventListener('resize', updateScrollShadows);
-    }, [updateScrollShadows]);
+    }, [updateScrollShadows, root]);
 
     return {
         vertical: vertical.active,
