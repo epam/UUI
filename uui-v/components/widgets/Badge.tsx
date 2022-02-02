@@ -17,11 +17,17 @@ const mapSize = {
     '18': '18',
 };
 
+export type BadgeColor = 'info' | 'success' | 'warning' | 'error';
+export type BadgeFill = 'solid';
+export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
+
 export interface BadgeMods {
-    fill?: 'solid';
-    size?: '18' | '24' | '30' | '36' | '42' | '48';
-    color?: 'info' | 'success' | 'warning' | 'error';
+    fill?: BadgeFill;
+    size?: BadgeSize;
+    color?: BadgeColor;
 }
+
+export interface BadgeProps extends ButtonProps, BadgeMods {}
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [

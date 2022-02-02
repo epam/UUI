@@ -214,20 +214,20 @@
     }
 
     &.fill-solid {
-        background-color: var(--background-color);
-        color: var(--caption-color-solid);
-        fill: var(--caption-color-solid);
-        border-color: var(--background-color);
+        background-color: var(--badge-background-color);
+        color: var(--badge-caption-color-solid);
+        fill: var(--badge-caption-color-solid);
+        border-color: var(--badge-background-color);
 
         :global(.uui-count) {
-            background-color: var(--count-background-color);
-            color: var(--count-color);
+            background-color: var(--badge-count-background-color);
+            color: var(--badge-count-color);
         }
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--background-color-hover);
-                border-color: var(--background-color-hover);
+                background-color: var(--badge-background-color-hover);
+                border-color: var(--badge-background-color-hover);
                 cursor: pointer;
             }
         }

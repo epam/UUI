@@ -13,6 +13,7 @@
   "dependencies": {
     "@epam/assets": "4.5.3",
     "@epam/uui": "4.5.3",
+    "@epam/uui-v": "4.5.3",
     "@epam/uui-components": "4.5.3",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
@@ -23,6 +24,7 @@
     "lodash.isequal": "4.5.0",
     "lodash.sortby": "4.7.0",
     "react-custom-scrollbars-2": "^4.4.0",
+    "react-focus-lock": "2.7.1",
     "react-popper": "2.2.5"
   },
   "devDependencies": {

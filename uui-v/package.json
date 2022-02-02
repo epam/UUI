@@ -14,6 +14,7 @@
     "@epam/assets": "4.5.3",
     "@epam/uui": "4.5.3",
     "@epam/uui-components": "4.5.3",
+    "react-focus-lock": "2.7.1",
     "classnames": "2.2.6"
   },
   "devDependencies": {

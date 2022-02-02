@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, useUuiContext } from '@epam/uui';
 import {
     Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel,
     FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
 } from '@epam/uui-v';
-import { TabButton, FlexRow as PromoFlexRow } from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
-import * as themeCss from '../../theme.scss';
-
 
 interface Person {
     firstName?: string;
@@ -20,12 +17,15 @@ interface Person {
 }
 
 export const ThemeDemo = () => {
-    const [theme, setTheme] = useState<{ name: string, type: 'light' | 'dark', link?: string }>({ name: 'promo', type: 'light' });
-
     const svc = useUuiContext();
     const showModal = () => svc.uuiModals.show(props => <ModalBlocker overlay { ...props }>
-        <ModalWindow width={ 360 } height={ 500 }>
+        <ModalWindow width={ 360 } height={ 200 }>
             <ModalHeader title="Simple modal example " onClose={ () => props.abort() } />
+            <ScrollBars>
+                <Panel margin='24'>
+                    <Text color='primary' fontSize='16' >Changes will be undone!</Text>
+                </Panel>
+            </ScrollBars>
         </ModalWindow>
     </ModalBlocker>);
 
@@ -49,49 +49,6 @@ export const ThemeDemo = () => {
         }),
         settingsKey: 'theme-demo',
     });
-
-    const renderThemeBar = () => {
-        return (
-            <PromoFlexRow borderBottom background='white'>
-                <TabButton
-                    caption={ 'Promo' }
-                    isLinkActive={ theme.name === 'promo' }
-                    onClick={ () => setTheme({ name: 'promo', type: 'light' }) }
-                    size='48'
-                />
-                <TabButton
-                    caption='Promo Dark'
-                    isLinkActive={ theme.name === 'promo_dark' }
-                    onClick={ () => setTheme({ name: 'promo_dark', type: 'dark' }) }
-                    size='48'
-                />
-                <TabButton
-                    caption='Orange Theme'
-                    isLinkActive={ theme.name === 'orange' }
-                    onClick={ () => setTheme({ name: 'orange', type: 'light' }) }
-                    size='48'
-                />
-                <TabButton
-                    caption='Cyan Theme'
-                    isLinkActive={ theme.name === 'cyan' }
-                    onClick={ () => setTheme({ name: 'cyan', type: 'light' }) }
-                    size='48'
-                />
-                <TabButton
-                    caption='Violet Theme'
-                    isLinkActive={ theme.name === 'violet' }
-                    onClick={ () => setTheme({ name: 'violet', type: 'light' }) }
-                    size='48'
-                />
-                <TabButton
-                    caption='Red Theme'
-                    isLinkActive={ theme.name === 'red' }
-                    onClick={ () => setTheme({ name: 'red', type: 'light' }) }
-                    size='48'
-                />
-            </PromoFlexRow>
-        );
-    };
 
     const renderDemoForm = () => {
         return (
@@ -199,8 +156,7 @@ export const ThemeDemo = () => {
     };
 
     return (
-        <Panel cx={ themeCss[theme.name] } style={ { height: 'calc(100vh - 60px)', width: '100%', background: theme.type === 'light' ? '#F5F6FA' : '#1D1E26' } }>
-            { renderThemeBar() }
+        <Panel style={ { height: 'calc(100vh - 60px)', width: '100%' } }>
             <Panel background shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>
                     { renderDemoForm() }

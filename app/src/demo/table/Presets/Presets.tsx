@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import css from "./Presets.scss";
-import { Button, FlexRow } from "@epam/promo";
+import { FlexRow } from "@epam/promo";
+import { Button } from "@epam/uui-v";
 import { IPresetsApi, ITablePreset } from "../types";
 import { Preset } from "./Preset";
 import { DataTableState } from "@epam/uui";
@@ -29,7 +30,7 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
             <Button
                 size="24"
                 caption="Default"
-                fill={ isDefaultPresetActive() ? "solid" : "white" }
+                mode={ isDefaultPresetActive() ? "solid" : "outline" }
                 onClick={ isDefaultPresetActive() ? null : resetToDefault }
             />
             { presets.map(preset => (
@@ -50,8 +51,8 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
                 <Button
                     caption={ `Save as ${ newPresetTitle }` }
                     onClick={ saveNewPreset }
-                    color="green"
-                    fill="solid"
+                    color="accent"
+                    mode="solid"
                     size="24"
                 />
             ) }
