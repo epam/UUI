@@ -1,6 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    height: 312px;
+
     // DatePickerBase style
     :global(.uui-datepicker-container) {
         background-color: $white;
@@ -137,8 +139,4 @@
 
 .date-input {
     width: 100%;
-}
-
-.body {
-    height: 312px;
 }
