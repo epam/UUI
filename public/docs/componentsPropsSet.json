@@ -3,7 +3,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -11,7 +11,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -59,7 +59,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -149,7 +149,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -175,7 +175,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -183,7 +183,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -231,7 +231,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -293,7 +293,7 @@
       },
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -301,7 +301,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -349,7 +349,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -403,7 +403,7 @@
       },
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -411,7 +411,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -459,7 +459,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -528,6 +528,10 @@
         "value": "boolean"
       },
       {
+        "name": "rawProps",
+        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+      },
+      {
         "name": "renderDay",
         "value": "(day: Dayjs) => void) => React.ReactElement<Element, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>"
       },
@@ -592,6 +596,10 @@
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; to?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
       },
       {
         "name": "format",
@@ -677,11 +685,11 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "indeterminateIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -752,10 +760,6 @@
         "value": "18 | 12"
       },
       {
-        "name": "fill",
-        "value": "none | solid | white | light"
-      },
-      {
         "name": "theme",
         "value": "light | dark"
       }
@@ -821,11 +825,11 @@
       },
       {
         "name": "upIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "downIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "step",
@@ -903,7 +907,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -1055,15 +1059,15 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "inputCx",
@@ -1171,7 +1175,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -1377,15 +1381,15 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "inputCx",
@@ -1493,7 +1497,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -1544,6 +1548,14 @@
       {
         "name": "format",
         "value": "24 | 12"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "renderTarget",
@@ -1601,7 +1613,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderAdditionalItems",
@@ -1757,7 +1769,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "flipY",
@@ -1807,7 +1819,7 @@
       },
       {
         "name": "infoIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "labelPosition",
@@ -2025,7 +2037,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "children",
@@ -2034,6 +2046,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
@@ -2096,6 +2112,10 @@
       {
         "name": "boundaryElement",
         "value": "clippingParents"
+      },
+      {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean"
       },
       {
         "name": "value",
@@ -2170,6 +2190,14 @@
       {
         "name": "children",
         "value": "any"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
@@ -2220,12 +2248,16 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "color",
@@ -2233,7 +2265,7 @@
       },
       {
         "name": "actions",
-        "value": "notificationAction[]"
+        "value": "NotificationAction[]"
       },
       {
         "name": "onClose",
@@ -2266,6 +2298,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
@@ -2421,7 +2457,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -2482,6 +2518,10 @@
       {
         "name": "onBlur",
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
       },
       {
         "name": "size",
@@ -2601,11 +2641,11 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "autoFocus",
@@ -2729,7 +2769,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -2909,7 +2949,6 @@
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
       },
-
       {
         "name": "selectAll",
         "value": "ICheckable"
@@ -3278,7 +3317,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/widgets/docs/badge.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -3286,7 +3325,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -3334,7 +3373,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3387,10 +3426,6 @@
       {
         "name": "color",
         "value": "blue | green | red | amber | cyan | orange | purple | violet"
-      },
-      {
-        "name": "font",
-        "value": "sans | sans-semibold | sans-italic | museo-sans | museo-slab"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/widgets/docs/paginator.doc.tsx": [
@@ -3460,7 +3495,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/widgets/docs/tag.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -3468,7 +3503,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -3516,7 +3551,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3563,10 +3598,10 @@
         "value": "24 | 30 | 36 | 42 | 48 | 18"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/button.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -3574,7 +3609,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -3622,7 +3657,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3724,7 +3759,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3750,7 +3785,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/linkButton.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -3758,7 +3793,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -3806,7 +3841,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3884,7 +3919,7 @@
       },
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -3892,7 +3927,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -3940,7 +3975,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -3998,7 +4033,7 @@
       },
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -4006,7 +4041,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -4054,7 +4089,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -4165,6 +4200,10 @@
         "value": "boolean"
       },
       {
+        "name": "rawProps",
+        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+      },
+      {
         "name": "renderDay",
         "value": "(day: Dayjs) => void) => React.ReactElement<Element, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>"
       },
@@ -4237,6 +4276,10 @@
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; to?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
       },
       {
         "name": "format",
@@ -4334,11 +4377,11 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/checkbox.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "indeterminateIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -4347,6 +4390,10 @@
       {
         "name": "tabIndex",
         "value": "number"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "value",
@@ -4474,11 +4521,11 @@
       },
       {
         "name": "upIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "downIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "step",
@@ -4487,6 +4534,10 @@
       {
         "name": "inputCx",
         "value": "any"
+      },
+      {
+        "name": "id",
+        "value": "string"
       },
       {
         "name": "cx",
@@ -4564,7 +4615,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/radioInput.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -4728,15 +4779,15 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "inputCx",
@@ -4844,7 +4895,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -4922,11 +4973,11 @@
       },
       {
         "name": "getScaleIcon",
-        "value": "(value: number) => Icon"
+        "value": "(value: number) => React.FC<any>"
       },
       {
         "name": "getHandlerIcon",
-        "value": "(value: number) => Icon"
+        "value": "(value: number) => React.FC<any>"
       },
       {
         "name": "value",
@@ -5132,15 +5183,15 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "inputCx",
@@ -5248,7 +5299,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -5309,6 +5360,10 @@
         "value": "24 | 12"
       },
       {
+        "name": "id",
+        "value": "string"
+      },
+      {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
       },
@@ -5364,7 +5419,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderAdditionalItems",
@@ -5520,7 +5575,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "flipY",
@@ -5570,7 +5625,7 @@
       },
       {
         "name": "infoIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "labelPosition",
@@ -5792,7 +5847,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "children",
@@ -5801,6 +5856,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/dropdown.doc.tsx": [
@@ -5865,6 +5924,10 @@
         "value": "clippingParents"
       },
       {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean"
+      },
+      {
         "name": "value",
         "value": "T"
       },
@@ -5910,7 +5973,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -6003,6 +6066,10 @@
         "value": "clippingParents"
       },
       {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean"
+      },
+      {
         "name": "value",
         "value": "T"
       },
@@ -6048,7 +6115,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -6082,7 +6149,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -6090,7 +6157,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -6138,7 +6205,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -6237,6 +6304,14 @@
       {
         "name": "children",
         "value": "any"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/modalHeader.doc.tsx": [
@@ -6291,12 +6366,16 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "color",
@@ -6304,7 +6383,7 @@
       },
       {
         "name": "actions",
-        "value": "notificationAction[]"
+        "value": "NotificationAction[]"
       },
       {
         "name": "onClose",
@@ -6337,6 +6416,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
@@ -6526,7 +6609,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -6587,6 +6670,10 @@
       {
         "name": "onBlur",
         "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
       },
       {
         "name": "size",
@@ -6856,11 +6943,11 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "autoFocus",
@@ -6984,7 +7071,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -7536,7 +7623,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/widgets/docs/badge.doc.ts": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -7544,7 +7631,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -7592,7 +7679,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -7649,10 +7736,6 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
-      },
-      {
-        "name": "font",
-        "value": "sans | sans-semibold | sans-light"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/widgets/docs/carousel.doc.tsx": [
@@ -7670,7 +7753,7 @@
       },
       {
         "name": "arrowIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cx",
@@ -7752,7 +7835,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/widgets/docs/tag.doc.ts": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -7760,7 +7843,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -7808,7 +7891,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -7866,7 +7949,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "captionCX",
@@ -7874,7 +7957,7 @@
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIconPosition",
@@ -7922,7 +8005,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -7969,22 +8052,128 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 18"
       },
       {
-        "name": "fill",
-        "value": "none | solid | white | light"
+        "name": "mode",
+        "value": "none | solid | outline | ghost"
       },
       {
         "name": "color",
         "value": "accent | primary | secondary | negative"
       }
     ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/buttons/docs/linkButton.doc.ts": [
+      {
+        "name": "clearIcon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "captionCX",
+        "value": "any"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "dropdownIconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "countPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "count",
+        "value": "number"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "link",
+        "value": "Link"
+      },
+      {
+        "name": "href",
+        "value": "string"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\""
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "icon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }"
+      },
+      {
+        "name": "caption",
+        "value": "any"
+      },
+      {
+        "name": "onClear",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
+        "name": "placeholder",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48"
+      }
+    ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "indeterminateIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -8055,10 +8244,6 @@
         "value": "18 | 12"
       },
       {
-        "name": "fill",
-        "value": "none | solid | white | light"
-      },
-      {
         "name": "theme",
         "value": "light | dark"
       }
@@ -8066,7 +8251,7 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "renderLabel",
@@ -8198,15 +8383,15 @@
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "cancelIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "dropdownIcon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "inputCx",
@@ -8314,7 +8499,7 @@
       },
       {
         "name": "icon",
-        "value": "Icon"
+        "value": "React.FC<any>"
       },
       {
         "name": "iconPosition",
@@ -8355,6 +8540,16 @@
       {
         "name": "mode",
         "value": "form | cell"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/typography/docs/textPlaceholder.doc.tsx": [
+      {
+        "name": "wordsCount",
+        "value": "number"
+      },
+      {
+        "name": "isNotAnimated",
+        "value": "boolean"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import * as css from './TextPlaceholder.scss';
 import cx from 'classnames';
+import * as css from './TextPlaceholder.scss';
+import '../../assets/styles/variables/typography/textPlaceholder.scss';
 
 export interface TextPlaceholderProps {
     wordsCount?: number;
-    color?: 'gray10' | 'gray40';
     isNotAnimated?: boolean;
 }
 
@@ -25,8 +25,8 @@ export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (p
                 <span
                     key={ index }
                     className={ cx([
+                        'text-placeholder-vars',
                         css.loadingWord,
-                        css['text-placeholder-color-' + (props.color || 'gray40')],
                         !props.isNotAnimated && css.animatedLoading,
                     ]) }
                     dangerouslySetInnerHTML={ {__html: it} }

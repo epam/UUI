@@ -54,7 +54,6 @@
     @include defineColorsByName('negative', $red, 35%, 40%);
 
     --contrast-color: #{$white};
-    --interactive-color: var(--primary-color);
     --visited-color: #{$violet};
     --info-color: #{$blue};
     --info-hover-color: #{darken($blue, 5%)};
@@ -62,7 +61,6 @@
     --success-color: #{$green};
     --success-hover-color: #{darken($green, 5%)};
     --success-active-color: #{darken($green, 10%)};
-
     --warning-color: #{$amber};
     --warning-hover-color: #{darken($amber, 5%)};
     --warning-active-color: #{darken($amber, 10%)};
@@ -79,7 +77,7 @@
     --disabled-color: #{$gray30};
     --iconButton-disabled-color: #{$gray40};
     --surface-color: #{$white};
-    --surface-hover-color: #{$gray5};
+    --surface-hover-color: #{$gray30};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
@@ -128,6 +126,9 @@
     --input-icon-disabled-color: #{$gray50};
     --input-checkbox-icon-color: #{$white};
 
+    --skeleton-color: #{$gray40};
+    --skeleton-gradient: linear-gradient(to right, #{$gray40} 0%, #{$gray10} 50%, #{$gray40} 100%) repeat;
+
     :global(.button-color-secondary) {
         --caption-halftone-color: var(--secondary-dark-color);
     }
@@ -142,7 +143,7 @@
 
 }
 
-.promo_dark {
+.loveship_dark {
     $white: #FFFFFF;
     $blue: #008ACE;
     $green: #669900;
@@ -193,11 +194,8 @@
     --negative-dark-color: #694548;
     --negative-darkest-color: #473943;
 
-    --button-background-halftone-color: #{$gray70};
-    --button-caption-disabled-color: #{$gray50};
-
     --contrast-color: #{$white};
-    --interactive-color: var(--primary-color);
+    --visited-color: #A171B0;
     --info-color: #{$blue};
     --info-hover-color: #{darken($blue, 5%)};
     --info-active-color: #{darken($blue, 10%)};
@@ -210,16 +208,19 @@
     --error-color: #{$red};
     --error-hover-color: #{darken($red, 5%)};
     --error-active-color: #{darken($red, 10%)};
-    --default-color: #{$gray10};
-    --default-hover-color: #{$white};
-    --default-active-color: #{$gray10};
+    --icon-color: #{$gray10};
+    --icon-hover-color: #{$white};
+    --icon-active-color: #{$gray10};
+    --secondary-hover-color: #{$gray60}; // ?
+    --secondary-active-color: #{$gray70}; // ?
+    --button-disabled-color: #{$gray30};
     --disabled-color: #{$gray50};
     --iconButton-disabled-color: #{$gray30};
     --surface-color: #{$gray80};
-    --surface-hover-color: #{$gray5};
+    --surface-hover-color: #{$gray50};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
-    --divider-color: #{$gray40};
+    --divider-color: #{$gray50};
     --scroll-bar-background-color: #{$gray30};
     --scroll-bar-background-active-color: #{$gray20};
 
@@ -228,6 +229,9 @@
     --text-secondary-color: #{$gray20};
     --text-disabled-color: #{$gray30};
     --text-contrast-color: #{$gray70};
+
+    --button-background-halftone-color: #{$gray70};
+    --button-caption-disabled-color: #{$gray50};
 
     --input-background-color: #{$gray70};
     --input-switch-background-color: #{$gray30};
@@ -260,17 +264,15 @@
 
     --input-icon-color: #{$gray50};
     --input-icon-disabled-color: #{$gray50};
-    --input-icon-clickable-color: #{$gray60};
-    --input-icon-clickable-hover-color: #{$gray70};
     --input-checkbox-icon-color: #{$white};
-    //--input-checkbox-icon-hover-color: #{$gray70};
-    //--input-checkbox-icon-disabled-color: #{$gray70};
 
-    --panel-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 4px 22px 3px rgba(0, 0, 0, 0.26);;
+    --overlay-color: rgba(29, 30, 38, 0.8); // ?
+
+    --shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 4px 22px 3px rgba(0, 0, 0, 0.26);;
 
     // ----------------------------
 
-    --border-radius: 3px;
+    --border-radius: 0px;
 
     :global(.button-color-primary) {
         --button-background-color-hover: var(--primary-light-color);
@@ -341,11 +343,14 @@
     }
 
     :global(.panel-vars) {
-        --panel-border-radius: 6px;
+        --panel-border-radius: 0px;
     }
 
     :global(.modals-vars) {
-        --modals-border-radius: 6px;
+        --modals-border-radius: 0px;
+        --modals-overlay-color: var(--overlay-color);
+        --modals-shadow: 0px 3px 25px 0px #0000008F, 0px 1px 2px 0px #00000033;
+    ;
     }
 }
 
@@ -437,7 +442,6 @@
     --negative-darkest-color: #473943;
 
     --contrast-color: #{$white};
-    --interactive-color: var(--primary-color);
     --info-color: #{$info-day};
     --info-hover-color: #{darken($info-day, 5%)};
     --info-active-color: #{darken($info-day, 10%)};
@@ -454,7 +458,7 @@
     --default-hover-color: #{$black};
     --default-active-color: #{$black};
     --disabled-color: #{$transparent-10};
-    --surface-color: #{$black-10};
+    --surface-color: #{$white};
     --surface-hover-color: #{$black-10};
     --surface-dark-color: #{$black};
     --surface-light-color: #{$white};
@@ -563,11 +567,10 @@
     --negative-darkest-color: #EC2D30;
 
     --contrast-color: #{$white};
-    --interactive-color: #3B82F6;
     --warning-color: #FFAD0D;
     --disabled-color: #B0EBEC;
-    --surface-color: #{$neutral50};
-    --surface-hover-color: #{$neutral50};
+    --surface-color: #{$white};
+    --surface-hover-color: #{$neutral200};
     --surface-dark-color: #{$neutral700};
     --surface-light-color: #{$white};
     --divider-color: #{$neutral300};
@@ -676,11 +679,10 @@
     --button-caption-disabled-color: #{$white};
 
     --contrast-color: #{$white};
-    --interactive-color: var(--primary-color);
     --warning-color: #ff8f00;
     --disabled-color: #{$gray-500};
-    --surface-color: #{$gray-50};
-    --surface-hover-color: #{$gray-50};
+    --surface-color: #{$white};
+    --surface-hover-color: #{$gray-200};
     --surface-dark-color: #{$gray-900};
     --surface-light-color: #{$white};
     --divider-color: #{$gray-400};
@@ -839,7 +841,6 @@
 
 
     --contrast-color: #{$white};
-    --interactive-color: var(--primary-color);
     --visited-color: #{$blue_link_mobile_10};
     --info-color: #{$blue_action};
     --info-hover-color: #{darken($blue_action, 5%)};
@@ -853,21 +854,19 @@
     --error-color: #{$red_error};
     --error-hover-color: #{darken($red_error, 5%)};
     --error-active-color: #{darken($red_error, 10%)};
-    --default-color: #666666;
-    --default-hover-color: #{$black};
-    --default-active-color: #{$black};
+    --icon-color: #666666;
+    --icon-hover-color: #{$black};
+    --icon-active-color: #{$black};
     //--secondary-color: #{$gray50};
     //--secondary-hover-color: #{$gray60};
     //--secondary-active-color: #{$gray70};
     //--button-disabled-color: #{$gray50};
     --disabled-color: #{$dark_indigo_20};
-    //--surface-color: #{$gray5};
-    //--surface-hover-color: #{$gray5};
+    --surface-color: #{$white};
+    --surface-hover-color: #0b1f3514;
     //--surface-dark-color: #{$gray90};
     //--surface-light-color: #{$white};
     --divider-color: #{$dark_indigo_30};
-    //--icon-color: #{$gray60};
-    //
 
     --button-background-halftone-color: transparent;
     --button-caption-disabled-color: #{$dark_indigo_30};

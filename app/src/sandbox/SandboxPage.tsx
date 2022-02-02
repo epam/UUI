@@ -33,7 +33,7 @@ export const SandboxPage = () => {
 
     return (
         <Page renderHeader={ () => <AppHeader /> } >
-            <FlexRow alignItems='stretch'>
+            <FlexRow alignItems='stretch' rawProps={ { style: { height: 'calc(100vh - 60px)' } } }>
                 <Sidebar
                     value={ getQuery('id') }
                     onValueChange={ onChange }
