@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './ComponentEditor.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
-import { ArrayDataSource, INotification } from "@epam/uui";
+import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui";
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
@@ -40,7 +40,7 @@ interface IComponentDocs<TProps> {
     contexts?: DemoContext[];
 }
 
-interface ComponentEditorProps<TProps> {
+interface ComponentEditorProps<TProps> extends IHasCX {
     propsDocPath: string;
     title: string;
 }
@@ -346,7 +346,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                 {
                     isLoading
                     ? <Spinner color='blue' cx={ css.spinner } />
-                    : <div className={ css.root } >
+                    : <div className={ cx(css.root, this.props.cx) } >
                         <div className={ css.container } >
                             <FlexRow key='head' size='36' padding='12' borderBottom spacing='6' cx={ css.boxSizing } >
                                 <Text fontSize='16' lineHeight='24' cx={ css.vPadding } font='sans-semibold'>{ title }</Text>
