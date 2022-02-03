@@ -80,7 +80,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             ...dndProps,
             ref: node => {
                 (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;
-                if (!dndProps) return;
+                if (!dndProps?.ref) return;
                 (dndProps.ref as React.MutableRefObject<HTMLElement>).current = node;
             },
         });
