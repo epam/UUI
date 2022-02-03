@@ -5,6 +5,7 @@ export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mod
 export interface LazyTreeParams<TItem, TId, TFilter> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     getId?(item: TItem): TId;
+    getParentId?(item: TItem): TId;
     filter?: TFilter;
     getChildCount?(item: TItem): number;
     isFolded?: (item: TItem) => boolean;
@@ -20,6 +21,11 @@ export interface LazyTreeList<TItem, TId> {
     recursiveCount?: number;
 }
 
+export interface LazyTree<TItem, TId> extends LazyTreeList<TItem, TId> {
+    byKey?: Record<string, TItem>;
+    byParentKey?: Record<string, TItem[]>;
+}
+
 export interface LazyTreeItem<TItem, TId> {
     id: TId;
     item: TItem;
@@ -30,10 +36,16 @@ export async function loadLazyTree<TItem, TId, TFilter>(
     node: Readonly<LazyTreeList<TItem, TId>>,
     params: LazyTreeParams<TItem, TId, TFilter>,
     value: Readonly<DataSourceState>,
-) {
+): Promise<LazyTree<TItem, TId>> {
     params = { fetchStrategy: 'sequential', ...params };
     const requiredRowsCount = value.topIndex + value.visibleCount;
-    return loadNodeRec(node, null, params, value, requiredRowsCount, params.loadAll);
+    const list = await loadNodeRec(node, null, params, value, requiredRowsCount, params.loadAll);
+
+    return {
+        ...list,
+        byKey: {},
+        byParentKey: {}
+    }
 }
 
 async function loadNodeRec<TItem, TId, TFilter>(
