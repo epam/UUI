@@ -2,64 +2,56 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-dummy-wrapper"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
 >
   <div
-    className="container uui-input-box -clickable root size-36 mode-form dateInput"
-    onBlur={[Function]}
-    onClick={null}
-    onFocus={[Function]}
-    tabIndex={-1}
+    className="container uui-icon uui-enabled"
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <input
-      className="uui-input"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="MMM D, YYYY"
-      type="text"
-      value=""
+    <svg
+      className=""
     />
-    
   </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="MMM D, YYYY"
+    type="text"
+    value=""
+  />
+  
 </div>
 `;
 
 exports[`DataPicker should be rendered correctly 2`] = `
 <div
-  className="uui-dummy-wrapper"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
 >
   <div
-    className="container uui-input-box -clickable root size-36 mode-form dateInput"
-    onBlur={[Function]}
-    onClick={null}
-    onFocus={[Function]}
-    tabIndex={-1}
+    className="container uui-icon uui-enabled"
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <input
-      className="uui-input"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Test"
-      type="text"
-      value=""
+    <svg
+      className=""
     />
-    
   </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Test"
+    type="text"
+    value=""
+  />
+  
 </div>
 `;

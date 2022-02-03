@@ -21,16 +21,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     className="tooltipWrapper"
   >
     <div
-      className="uui-dummy-wrapper"
+      className="iconCell align-undefined uui-table-header-caption-wrapper"
     >
       <div
-        className="iconCell align-undefined uui-table-header-caption-wrapper"
+        className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
       >
-        <div
-          className="root font-sans text-color-gray80 line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
-        >
-          Test
-        </div>
+        Test
       </div>
     </div>
   </div>

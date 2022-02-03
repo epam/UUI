@@ -2,118 +2,110 @@
 
 exports[`RangeDataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-dummy-wrapper"
+  className="dateInputGroup"
+  onBlur={[Function]}
+  onClick={[Function]}
 >
   <div
-    className="dateInputGroup"
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
-    onClick={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
   >
     <div
-      className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
+      className="container uui-icon uui-enabled"
+      style={Object {}}
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-      <input
-        className="uui-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder="From:"
-        type="text"
-        value=""
+      <svg
+        className=""
       />
     </div>
-    <div
-      className="separator"
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="From:"
+      type="text"
+      value=""
     />
-    <div
-      className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
-    >
-      <input
-        className="uui-input"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder="To:"
-        type="text"
-        value=""
-      />
-    </div>
+  </div>
+  <div
+    className="separator"
+  />
+  <div
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="To:"
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;
 
 exports[`RangeDataPicker should be rendered correctly 2`] = `
 <div
-  className="uui-dummy-wrapper"
+  className="dateInputGroup uui-disabled uui-readonly uui-invalid"
+  onBlur={[Function]}
+  onClick={false}
 >
   <div
-    className="dateInputGroup uui-disabled uui-readonly uui-invalid"
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
-    onClick={false}
+    onFocus={[Function]}
+    tabIndex={-1}
   >
     <div
-      className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
+      className="container uui-icon uui-enabled"
+      style={Object {}}
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-      <input
-        aria-disabled={true}
-        aria-invalid={true}
-        aria-readonly={true}
-        className="uui-input"
-        disabled={true}
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder=""
-        readOnly={true}
-        type="text"
-        value=""
+      <svg
+        className=""
       />
     </div>
-    <div
-      className="separator"
+    <input
+      aria-disabled={true}
+      aria-invalid={true}
+      aria-readonly={true}
+      className="uui-input"
+      disabled={true}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      readOnly={true}
+      type="text"
+      value=""
     />
-    <div
-      className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      tabIndex={-1}
-    >
-      <input
-        aria-disabled={true}
-        aria-invalid={true}
-        aria-readonly={true}
-        className="uui-input"
-        disabled={true}
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder=""
-        readOnly={true}
-        type="text"
-        value=""
-      />
-    </div>
+  </div>
+  <div
+    className="separator"
+  />
+  <div
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <input
+      aria-disabled={true}
+      aria-invalid={true}
+      aria-readonly={true}
+      className="uui-input"
+      disabled={true}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      readOnly={true}
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;

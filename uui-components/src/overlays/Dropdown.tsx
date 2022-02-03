@@ -66,16 +66,18 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     public componentDidMount() {
-        this.layer = this.context.uuiLayout?.getLayer();
+        if (!this.targetNode) return;
+
+        this.layer = this.context?.uuiLayout?.getLayer();
 
         window.addEventListener('dragstart', this.clickOutsideHandler);
 
         if (this.props.openOnHover && !this.props.openOnClick) {
-            this.targetNode?.addEventListener('mouseenter', this.handleMouseEnter);
+            this.targetNode.addEventListener('mouseenter', this.handleMouseEnter);
         }
 
         if (this.props.closeOnMouseLeave === 'toggler') {
-            this.targetNode?.addEventListener('mouseleave', this.handleMouseLeave);
+            this.targetNode.addEventListener('mouseleave', this.handleMouseLeave);
         }
 
         if (this.props.closeOnClickOutside !== false) {

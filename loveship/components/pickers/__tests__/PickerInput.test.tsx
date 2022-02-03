@@ -3,6 +3,10 @@ import { renderWithContextAsync, windowMock } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { PickerInput } from "../PickerInput";
 
+jest.mock("react-dom", () => ({
+    findDOMNode: jest.fn(),
+}));
+
 describe("PickerInput", () => {
     let windowSpy: any;
 
