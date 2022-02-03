@@ -46,7 +46,7 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
     render() {
         const item = this.props.value;
         return <DndActor
-            key={ item.id + item.order }
+            key={ item.id }
             srcData={ item }
             dstData={ item }
             canAcceptDrop={ this.handleCanAcceptDrop }
