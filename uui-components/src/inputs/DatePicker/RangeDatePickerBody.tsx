@@ -4,8 +4,8 @@ import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valu
 import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
-import { CalendarPresets, Presets } from './CalendarPresets';
-import { arrayToMatrix, cx, IEditable } from '@epam/uui';
+import { CalendarPresets } from './CalendarPresets';
+import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from "@epam/uui";
 import isoWeek from 'dayjs/plugin/isoWeek';
 import * as css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);
@@ -28,7 +28,7 @@ const uuiRangeDatePickerBody = {
 
 export type pickerPart = 'from' | 'to';
 
-export const rangeDatePickerPresets: Presets = {
+export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
         name: 'Today',
         getRange: () => ({ from: dayjs().toString(), to: undefined, order: 1 }),
@@ -270,7 +270,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } {...this.props.rawProps} >
+            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps } >
                 { this.renderDatePicker() }
             </div>
         );

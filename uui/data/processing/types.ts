@@ -19,6 +19,8 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     sorting?: SortingOption[];
     selectedId?: TId;
     focusedIndex?: number;
+    page?: number;
+    pageSize?: number;
 }
 
 export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
@@ -34,6 +36,8 @@ export interface LazyDataSourceApiRequestRange {
 
 export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
     range?: LazyDataSourceApiRequestRange;
+    page?: number;
+    pageSize?: number;
     ids?: TId[];
 }
 

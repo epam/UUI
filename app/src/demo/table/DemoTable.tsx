@@ -5,7 +5,7 @@ import { Person } from "@epam/uui-docs";
 import { FlexRow, DataTable, DataTableRow } from "@epam/promo";
 
 import { svc } from "../../services";
-import { getFilters, api } from "./data";
+import { api, getFilters } from "./data";
 import { getColumns } from "./columns";
 import { ITablePreset, PersonTableRecord, PersonTableRecordId } from "./types";
 import { useTableState } from "./hooks";
@@ -22,7 +22,7 @@ export const DemoTable: React.FC = () => {
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(() => getColumns(filters), []);
+    const columnsSet = useMemo(getColumns, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -58,7 +58,7 @@ export const DemoTable: React.FC = () => {
         return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns } />;
     };
 
-    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
+    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions,
         isFoldedByDefault: () => true,
         cascadeSelection: true,
@@ -93,12 +93,12 @@ export const DemoTable: React.FC = () => {
                     headerTextCase="upper"
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
+                    filters={ filters }
                     renderRow={ renderRow }
                     showColumnsConfig
                     value={ tableStateApi.tableState }
-                    onValueChange={ tableStateApi.onTableStateChange }
+                    onValueChange={ tableStateApi.setTableState }
                     allowColumnsResizing
-                    filters={ filters }
                     { ...personsDataView.getListProps() }
                 />
             </div>

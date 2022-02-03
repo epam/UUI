@@ -2,7 +2,7 @@ import { LazyDataSourceApi, normalizeDataQueryFilter } from "@epam/uui";
 import { svc } from "../../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "../types";
 
-const mapFilter = <TFilter extends PersonTableFilter>(filter: TFilter): { [TKey in keyof TFilter]: { in: TFilter[TKey] } } => {
+export const mapFilter = <TFilter extends PersonTableFilter>(filter: TFilter): { [TKey in keyof TFilter]: { in: TFilter[TKey] } } => {
     return Object.keys(filter).reduce((acc, key) => {
         return {
             ...acc,
@@ -18,7 +18,7 @@ export const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, Pers
     const ids = clientIds?.map(clientId => clientId && typeof clientId[1] === 'number' && clientId[1]);
 
     if (groupBy && !ctx.parent) {
-        return svc.api.demo.personGroups({
+        return svc.api.demo.personsPaged({
             ...rq,
             filter: { groupBy },
             search: null,

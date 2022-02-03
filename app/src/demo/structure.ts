@@ -3,6 +3,7 @@ import { DemoDnd } from './dnd';
 import { TimelineDemo } from './timeline/TimelineDemo';
 import { DemoTable } from "./table";
 import { RichTextEditorDemo } from "./RTE/RichTextEditorDemo";
+import { DemoTablePaged } from "./tablePaged";
 
 export interface DemoItem {
     id: string;
@@ -18,4 +19,5 @@ export const demoItems: DemoItem[] = [
     { id: 'table', name: 'Table', component: DemoTable, source: 'https://github.com/epam/UUI/tree/main/app/src/demo/table', previewImage: '/static/images/DemoTable.png' },
     { id: 'RTE', name: 'Rich Text Editor', component: RichTextEditorDemo, source: 'https://github.com/epam/UUI/tree/main/app/src/demo/RTE', previewImage: '/static/images/DemoRTE.png' },
     { id: 'timeline', name: 'Timeline', component: TimelineDemo, source: 'https://github.com/epam/UUI/tree/main/app/src/demo/timeline', previewImage: '/static/images/DemoTimeline.png' },
+    { id: 'tablePaged', name: 'Demo Table Paged', component: DemoTablePaged, source: 'https://github.com/epam/UUI/tree/main/app/src/demo/table', previewImage: '/static/images/DemoTable.png' },
 ];

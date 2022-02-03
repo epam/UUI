@@ -1,10 +1,10 @@
 import React from "react";
 import { FlexRow, IconButton, ScrollBars, Text } from "@epam/promo";
 import { FlexSpacer } from "@epam/uui-components";
-import { DataColumnProps } from "@epam/uui";
+import { DataColumnProps, FilterConfig } from "@epam/uui";
 import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 
-import { FilterConfig, ITableState } from "../types";
+import { ITableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
@@ -32,18 +32,18 @@ const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelPro
                     createNewPreset={ props.createNewPreset }
                     isDefaultPresetActive={ props.isDefaultPresetActive }
                     resetToDefault={ props.resetToDefault }
-                    getActivePresetId={ props.getActivePresetId }
+                    activePresetId={ props.activePresetId }
                     hasPresetChanged={ props.hasPresetChanged }
                     choosePreset={ props.choosePreset }
                 />
                 <FiltersBlock
                     filter={ props.tableState.filter }
-                    onFilterChange={ props.onFilterChange }
+                    onFilterChange={ props.setFilter }
                     filters={ props.filters }
                 />
                 <ColumnsBlock
                     columnsConfig={ props.tableState.columnsConfig }
-                    onColumnsConfigChange={ props.onColumnsConfigChange }
+                    onColumnsConfigChange={ props.setColumnsConfig }
                     columns={ props.columns }
                 />
                 { /*<GroupingBlock/>*/ }

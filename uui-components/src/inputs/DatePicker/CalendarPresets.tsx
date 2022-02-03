@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui';
-import * as css from './CalendarPresets.scss';
+import React from 'react';
+import css from './CalendarPresets.scss';
+import { IHasCX, cx, IHasRawProps, RangeDatePickerPresets, RangeDatePickerPresetValue } from "@epam/uui";
 
 export const uuiPresets = {
     container: 'uui-presets-container',
@@ -8,22 +8,9 @@ export const uuiPresets = {
     item: 'uui-presets-item',
 };
 
-type PresetValue = {
-    from: string,
-    to: string,
-    order?: number,
-};
-
-export type Presets = {
-    [key: string]: {
-        name: string,
-        getRange: () => PresetValue,
-    },
-};
-
 export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement> {
-    presets: Presets;
-    onPresetSet: (nV: PresetValue) => any;
+    presets: RangeDatePickerPresets;
+    onPresetSet: (nV: RangeDatePickerPresetValue) => any;
 }
 
 export class CalendarPresets extends React.Component<CalendarPresetsProps, any> {
@@ -34,12 +21,12 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps, any> 
             this.props.presets[key] && presets.push({...this.props.presets[key].getRange(), name: this.props.presets[key].name});
         }
 
-        presets.sort((a: PresetValue, b: PresetValue) => {
+        presets.sort((a: RangeDatePickerPresetValue, b: RangeDatePickerPresetValue) => {
             return a.order - b.order;
         });
 
         return (
-            <div className={ cx(css.container, uuiPresets.container, this.props.cx) } {...this.props.rawProps} >
+            <div className={ cx(css.container, uuiPresets.container, this.props.cx) } { ...this.props.rawProps } >
                 <div className={ uuiPresets.header }>Presets</div>
                 { presets.map(item => <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>{ item.name }</div>) }
             </div>
