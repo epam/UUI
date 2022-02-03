@@ -4,7 +4,7 @@ import { DataSourceListProps, IDataSourceView } from './types';
 import isEqual from 'lodash.isequal';
 import { BaseListView, BaseListViewProps } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
+import { LazyTree, LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -26,10 +26,19 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * Usually, this value should be returned from API.
      *
      * If you can't get number of children via API, you can return a guess value (avg number of children for this type of entity).
-     * Note, that this can lead to more API calls, and increased load times.
+     * Note, that this can lead to more API calls, and increased load times in the 'parallel' fetch mode.
      * @param item
      */
     getChildCount?(item: TItem): number;
+
+    /** Should return ID of the Item's parent. Usually it's i => i.parentId.
+     * Used to pre-fetch parents of loaded items, which are required in following cases:
+     * - when a child item is pre-selected, but not yet loaded at start. We need to load it's parent chain
+     *   to highlight parents with selected children
+     * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
+     *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
+     */
+    getParentId?(item: TItem): TId;
 
     /**
      * A filter to pass to API.
@@ -63,13 +72,13 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
 interface LoadResult<TItem, TId> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: LazyTreeList<TItem, TId>;
+    tree: LazyTree<TItem, TId>;
 }
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: LazyTreeList<TItem, TId> & { value?: DataSourceState<TFilter, TId> };
+    private tree: LazyTree<TItem, TId> & { value?: DataSourceState<TFilter, TId> };
     private rows: DataRowProps<TItem, TId>[] = [];
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
@@ -411,7 +420,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.updateChecked(value, true);
     }
 
-    findNodeInTree = (tree: LazyTreeList<TItem, TId>, key: string): { node: LazyTreeItem<TItem, TId>; parentIds: TId[]; } => {
+    findNodeInTree = (tree: LazyTree<TItem, TId>, key: string): { node: LazyTreeItem<TItem, TId>; parentIds: TId[]; } => {
         for (let n = 0; n < tree.items.length; n++) {
             let node = tree.items[n];
             if (this.idToKey(node.id) == key) {
