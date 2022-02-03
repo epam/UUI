@@ -1,16 +1,18 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { FilterConfig } from "../../types";
+import { FilterConfig } from "@epam/uui";
 
-interface IFiltersProps {
-    filter: Record<string, any>;
-    onFilterChange(newFilter: Record<string, any>): void;
-    filters: FilterConfig[];
+interface IFiltersProps<TFilter extends Record<string, any>> {
+    filter: TFilter;
+    onFilterChange(newFilter: TFilter): void;
+    filters: FilterConfig<TFilter>[];
 }
 
-const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter, filters }) => {
-    const handleChange = useCallback((newFilter: { [key: string]: any[] }) => {
+const FiltersBlockImpl = <TFilter extends Record<string, any>>(props: IFiltersProps<TFilter>) => {
+    const { onFilterChange, filter, filters } = props;
+    
+    const handleChange = useCallback((newFilter: TFilter) => {
         onFilterChange({
             ...filter,
             ...newFilter,
@@ -25,7 +27,7 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
                         { ...f }
                         value={ filter }
                         onValueChange={ handleChange }
-                        columnKey={ f.field }
+                        columnKey={ f.columnKey }
                     />
                 );
             }) }
@@ -33,4 +35,4 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
     );
 };
 
-export const FiltersBlock = React.memo(FiltersBlockComponent);
+export const FiltersBlock = React.memo(FiltersBlockImpl) as typeof FiltersBlockImpl;

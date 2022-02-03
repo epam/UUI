@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui';
-import { Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader,
-    LabeledInput, IconButton, ButtonColor, IconButtonProps } from './components';
+import {
+    Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader,
+    LabeledInput, IconButton, ButtonColor, IconButtonProps, ColumnPickerFilter, DatePicker, RangeDatePicker,
+} from "./components";
 
 const buttonTypeToColor: { [key: string]: ButtonColor } = {
     'success': "green",
@@ -35,5 +37,9 @@ export const skinContext: ISkin = {
     ModalFooter: skinComponent(ModalFooter),
     ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "gray40" as const, ...props })),
     LabeledInput: skinComponent(LabeledInput, props => ({ size: '36' as const, ...props })),
+    // @ts-ignore
+    ColumnPickerFilter: skinComponent(ColumnPickerFilter),
+    DatePicker: skinComponent(DatePicker),
+    RangeDatePicker: skinComponent(RangeDatePicker),
 };
 

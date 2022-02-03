@@ -1,14 +1,4 @@
-import { IEditable, DataSourceState, IDataSource } from '@epam/uui';
-import { PickerBaseProps } from "./PickerBase";
-
-export type PickerBindingProps<TItem, TId> =
-    (SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>);
-
-export type PickerBindingValueType = 'scalar' | 'array';
-
-export type SinglePickerProps<TId, TItem> = ({ selectionMode: 'single', valueType: 'id'} & IEditable<TId>) | ({ selectionMode: 'single', valueType?: 'entity' } & IEditable<TItem>);
-export type ArrayPickerProps<TId, TItem> = ({ selectionMode: 'multi', valueType: 'id', emptyValue?: [] | null } & IEditable<TId[]>)
-    | ({ selectionMode: 'multi', valueType: 'entity', emptyValue?: [] | null } & IEditable<TItem[]>);
+import { DataSourceState, IDataSource, PickerBaseProps } from "@epam/uui";
 
 export interface PickerBindingHelper<TItem, TId, TValue> {
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): any;

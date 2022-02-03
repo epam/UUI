@@ -1,11 +1,11 @@
-import { FilterConfig, ITablePreset } from "../types";
+import { ITablePreset } from "../types";
 import { hasPresetChanged } from "../helpers";
-import { getDefaultColumnsConfig } from "@epam/uui";
+import { FilterConfig, getDefaultColumnsConfig } from "@epam/uui";
 import { getColumns } from "../columns";
 import { setMockedUrl, clearMockedUrl } from "./utils";
 
 describe("hasPresetChanged", () => {
-    const filters: FilterConfig[] = [
+    const filters: FilterConfig<any>[] = [
         {
             field: "profileStatusId",
             title: "Profile Status",

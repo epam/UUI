@@ -1,6 +1,11 @@
 import { getDemoApi } from "@epam/uui-docs";
 import type { IProcessRequest, CommonContexts, UuiContexts } from "@epam/uui";
 import { ITablePreset } from "../demo/table/types";
+// import { delay } from "@epam/test-utils";
+
+export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
+    setTimeout(resolve, ms);
+});
 
 export interface GetCodeParams {
     path: string;
@@ -35,10 +40,12 @@ export function getApi(processRequest: IProcessRequest, origin: string = "") {
             return processRequest(origin.concat(`/api/get-props/`), "GET");
         },
         presets: {
-            getPresets(): Promise<ITablePreset[]> {
+            async getPresets(): Promise<ITablePreset[]> {
+                await delay(500);
                 return Promise.resolve(JSON.parse(localStorage.getItem("presets")) ?? []);
             },
-            createPreset(preset: ITablePreset): Promise<number> {
+            async createPreset(preset: ITablePreset): Promise<number> {
+                await delay(500);
                 const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
                 const newId = presets.length
                     ? Math.max.apply(null, presets.map(p => p.id)) + 1
@@ -47,13 +54,15 @@ export function getApi(processRequest: IProcessRequest, origin: string = "") {
                 localStorage.setItem("presets", JSON.stringify([...presets, preset]));
                 return Promise.resolve(newId);
             },
-            updatePreset(preset: ITablePreset): Promise<void> {
+            async updatePreset(preset: ITablePreset): Promise<void> {
+                await delay(500);
                 const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
                 presets.splice(presets.findIndex(p => p.id === preset.id), 1, preset);
                 localStorage.setItem("presets", JSON.stringify(presets));
                 return Promise.resolve();
             },
-            deletePreset(preset: ITablePreset): Promise<void> {
+            async deletePreset(preset: ITablePreset): Promise<void> {
+                await delay(500);
                 const presets = (JSON.parse(localStorage.getItem("presets")) ?? []) as ITablePreset[];
                 presets.splice(presets.findIndex(p => p.id === preset.id), 1);
                 localStorage.setItem("presets", JSON.stringify(presets));

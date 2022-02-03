@@ -1,9 +1,8 @@
+import { Attributes, CSSProperties, HTMLAttributes } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import {DataRowProps} from "./tables";
 import {AnalyticsEvent} from "./contexts";
-import * as types from "../index";
-import * as React from "react";
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -136,12 +135,12 @@ export interface INotification {
 }
 
 export interface IHasRawProps<T> {
-    rawProps?: React.HTMLAttributes<T> & Record<string, any>;
+    rawProps?: HTMLAttributes<T> & Record<string, any>;
 }
 
 export type FlexRowProps = IHasCX
     & IClickable
-    & React.Attributes
+    & Attributes
     & IHasRawProps<HTMLDivElement>
     & {
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
@@ -151,7 +150,7 @@ export type FlexRowProps = IHasCX
 export type FlexCellProps = IHasCX
     & IClickable
     & IHasRawProps<HTMLDivElement>
-    & React.Attributes
+    & Attributes
     & {
         width?: number | 'auto' | '100%';
         minWidth?: number;
@@ -162,8 +161,8 @@ export type FlexCellProps = IHasCX
         children?: any;
     };
 
-export type VPanelProps = types.IHasCX & types.IHasChildren & types.IClickable & types.IHasRawProps<HTMLDivElement> & IAnalyticableClick & {
-    style?: React.CSSProperties;
+export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLDivElement> & IAnalyticableClick & {
+    style?: CSSProperties;
 };
 
 export type ICheckable = IEditable<boolean> & IDisableable & {

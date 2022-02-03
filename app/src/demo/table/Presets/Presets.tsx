@@ -10,9 +10,8 @@ interface IPresetsProps extends IPresetsApi {
     tableState: DataTableState;
 }
 
-const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
+const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, activePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
     const newPresetTitle = "New preset";
-    const activePresetId = getActivePresetId();
 
     const saveNewPreset = useCallback(() => {
         createNewPreset(newPresetTitle);
@@ -20,8 +19,7 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
 
     const activePreset = presets.find(p => p.id === activePresetId);
     const hasActivePresetChanged = useMemo(() => {
-        return !isDefaultPresetActive()
-            && hasPresetChanged(activePreset);
+        return !isDefaultPresetActive && hasPresetChanged(activePreset);
     }, [isDefaultPresetActive, activePreset, tableState.filter]);
     
     return (
@@ -29,8 +27,8 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
             <Button
                 size="24"
                 caption="Default"
-                fill={ isDefaultPresetActive() ? "solid" : "white" }
-                onClick={ isDefaultPresetActive() ? null : resetToDefault }
+                fill={ isDefaultPresetActive ? "solid" : "white" }
+                onClick={ isDefaultPresetActive ? null : resetToDefault }
             />
             { presets.map(preset => (
                 <Preset

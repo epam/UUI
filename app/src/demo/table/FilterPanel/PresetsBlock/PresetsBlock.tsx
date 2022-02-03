@@ -10,12 +10,12 @@ interface IPresetsBlockProps {
     createNewPreset: IPresetsApi["createNewPreset"];
     isDefaultPresetActive: IPresetsApi["isDefaultPresetActive"];
     resetToDefault: IPresetsApi["resetToDefault"];
-    getActivePresetId: IPresetsApi["getActivePresetId"];
+    activePresetId: IPresetsApi["activePresetId"];
     hasPresetChanged: IPresetsApi["hasPresetChanged"];
     choosePreset: IPresetsApi["choosePreset"];
 }
 
-const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, isDefaultPresetActive, resetToDefault, getActivePresetId, hasPresetChanged, choosePreset }) => {
+const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, isDefaultPresetActive, resetToDefault, activePresetId, hasPresetChanged, choosePreset }) => {
     const [isOpened, setIsOpened] = useState(true);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -61,13 +61,13 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
                 <VerticalTabButton
                     key="default"
                     caption="Default"
-                    onClick={ isDefaultPresetActive() ? null : resetToDefault }
-                    isLinkActive={ isDefaultPresetActive() }
+                    onClick={ isDefaultPresetActive ? null : resetToDefault }
+                    isLinkActive={ isDefaultPresetActive }
                     size="36"
                     cx={ css.button }
                 />
                 { presets.map(preset => {
-                    const isActive = preset.id === getActivePresetId();
+                    const isActive = preset.id === activePresetId;
                     const hasChanged = isActive && hasPresetChanged(preset);
                     return (
                         <VerticalTabButton
