@@ -3,6 +3,10 @@ import { renderWithContextAsync } from '@epam/test-utils';
 import { demoColumns, dataSource } from './dataMocks';
 import { DataTable } from '../DataTable';
 
+jest.mock("react-dom", () => ({
+    findDOMNode: jest.fn(),
+}));
+
 class ResizeObserverMock {
     observe = () => jest.fn();
     unobserve = () => jest.fn();
@@ -16,13 +20,14 @@ describe('DataTable', () => {
         const view = dataSource.getView({topIndex: 0, visibleCount: 20}, () => {});
 
         const tree = await renderWithContextAsync(
-                <DataTable
-                    { ...view.getListProps() }
-                    columns={ demoColumns }
-                    getRows={ view.getVisibleRows }
-                    value={ {} }
-                    onValueChange={ jest.fn() }
-                />);
+            <DataTable
+                { ...view.getListProps() }
+                columns={ demoColumns }
+                getRows={ view.getVisibleRows }
+                value={ {} }
+                onValueChange={ jest.fn() }
+            />
+        );
 
         expect(tree).toMatchSnapshot();
     });

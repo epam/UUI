@@ -6,7 +6,12 @@ interface TooltipWrapperProps {
 }
 
 export class PopperTargetWrapper extends React.Component<TooltipWrapperProps> {
-    componentDidMount(): void {
+    componentDidMount() {
+        const node = findDOMNode(this) as HTMLElement;
+        (this.props.innerRef as React.RefCallback<HTMLElement>)(node);
+    }
+
+    componentDidUpdate() {
         const node = findDOMNode(this) as HTMLElement;
         (this.props.innerRef as React.RefCallback<HTMLElement>)(node);
     }

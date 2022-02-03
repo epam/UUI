@@ -6,6 +6,7 @@ import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 
 jest.mock('react-dom', () => ({
     createPortal: jest.fn((element, node) => element),
+    findDOMNode: jest.fn(),
 }));
 
 describe('ColumnHeaderDropdown', () => {

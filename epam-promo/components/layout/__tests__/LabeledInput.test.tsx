@@ -3,6 +3,10 @@ import { LabeledInput } from '../LabeledInput';
 import { TextInput } from '../../inputs';
 import { renderWithContextAsync } from '@epam/test-utils';
 
+jest.mock('react-dom', () => ({
+    findDOMNode: jest.fn(),
+}));
+
 describe('LabeledInput', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(

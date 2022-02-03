@@ -5,6 +5,10 @@ import { renderWithContextAsync } from '@epam/test-utils';
 import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
 import { DatePicker } from '..';
 
+jest.mock('react-dom', () => ({
+    findDOMNode: jest.fn(),
+}));
+
 describe('DataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
 

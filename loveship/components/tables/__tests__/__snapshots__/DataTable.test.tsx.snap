@@ -67,33 +67,29 @@ exports[`DataTable should be rendered correctly 1`] = `
           >
             <div>
               <div
-                className="uui-dummy-wrapper"
+                className="uui-table-header-caption"
               >
                 <div
-                  className="uui-table-header-caption"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  ID
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
-                    ID
+                    <svg
+                      className=""
+                    />
                   </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -128,33 +124,29 @@ exports[`DataTable should be rendered correctly 1`] = `
           >
             <div>
               <div
-                className="uui-dummy-wrapper"
+                className="uui-table-header-caption"
               >
                 <div
-                  className="uui-table-header-caption"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  name
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
-                    name
+                    <svg
+                      className=""
+                    />
                   </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -176,33 +168,29 @@ exports[`DataTable should be rendered correctly 1`] = `
           >
             <div>
               <div
-                className="uui-dummy-wrapper"
+                className="uui-table-header-caption"
               >
                 <div
-                  className="uui-table-header-caption"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  Level
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
-                    Level
+                    <svg
+                      className=""
+                    />
                   </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -224,33 +212,29 @@ exports[`DataTable should be rendered correctly 1`] = `
           >
             <div>
               <div
-                className="uui-dummy-wrapper"
+                className="uui-table-header-caption"
               >
                 <div
-                  className="uui-table-header-caption"
+                  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                >
+                  DATE
+                </div>
+                <button
+                  className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+                  href={null}
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={-1}
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
                   >
-                    DATE
+                    <svg
+                      className=""
+                    />
                   </div>
-                  <button
-                    className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
-                    href={null}
-                    onClick={[Function]}
-                    role="button"
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </button>
-                </div>
+                </button>
               </div>
             </div>
           </div>

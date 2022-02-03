@@ -19,16 +19,12 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 >
   <div>
     <div
-      className="uui-dummy-wrapper"
+      className="uui-table-header-caption"
     >
       <div
-        className="uui-table-header-caption"
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
       >
-        <div
-          className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
-        >
-          Test
-        </div>
+        Test
       </div>
     </div>
   </div>

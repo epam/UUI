@@ -2,6 +2,10 @@ import React from 'react';
 import { TimePicker } from '../TimePicker';
 import { renderWithContextAsync } from '@epam/test-utils';
 
+jest.mock('react-dom', () => ({
+    findDOMNode: jest.fn(),
+}));
+
 describe('TimePicker', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
