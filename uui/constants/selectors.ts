@@ -25,7 +25,6 @@ export const uuiElement = {
     modalBlocker: 'uui-modal-blocker',
     modalWindow: 'uui-modal-window',
     textareaCounter: 'uui-textarea-counter',
-    dummyWrapper: 'uui-dummy-wrapper',
 } as const;
 
 export const uuiMod = {

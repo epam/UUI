@@ -4,6 +4,7 @@ import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext, uuiElement } from '@epam/uui';
 import { Portal } from './Portal';
 import { FreeFocusInside } from 'react-focus-lock';
+import { PopperTargetWrapper } from './PopperTargetWrapper';
 
 export interface DropdownState {
     opened: boolean;
@@ -169,23 +170,28 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         if (this.props.onClose) {
             this.props.onClose();
         } else {
-            this.handleOpenedChange(false)
+            this.handleOpenedChange(false);
         };
     }
-
-    private renderTarget = (targetProps: ReferenceChildrenProps) => (
-        <div className={ uuiElement.dummyWrapper } ref={ node => {
+    private renderTarget(targetProps: ReferenceChildrenProps) {
+        const innerRef = (node: HTMLElement) => {
             this.targetNode = node;
             (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
-        } }>
-            { this.props.renderTarget({
-                onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
-                isOpen: this.isOpened(),
-                isDropdown: true,
-                toggleDropdownOpening: this.handleOpenedChange,
-            }) }
-        </div>
-    );
+        };
+
+        return (
+            <PopperTargetWrapper innerRef={ innerRef }>
+            {
+                this.props.renderTarget({
+                    onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
+                    isOpen: this.isOpened(),
+                    isDropdown: true,
+                    toggleDropdownOpening: this.handleOpenedChange,
+                })
+            }
+            </PopperTargetWrapper>
+        );
+    }
 
     private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
