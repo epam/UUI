@@ -42,7 +42,7 @@ export interface IRouterContext {
     block(callback: (link: Link) => void): () => void;
 }
 
-export interface IModalContext {
+export interface IModalContext extends IBaseContext {
     show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactNode, parameters?: TParameters): Promise<TResult>;
     closeAll(): void;
     isModalOperationActive(): boolean;
