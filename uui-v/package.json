@@ -5,6 +5,7 @@
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
+  "private": true,
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
