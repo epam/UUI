@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4 } from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUIV } from '../common';
 
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
@@ -8,6 +8,7 @@ export class RadioInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/inputs/docs/radioInput.doc.tsx',
             [UUI4]: './epam-promo/components/inputs/docs/radioInput.doc.ts',
+            [UUIV]: './uui-v/components/inputs/docs/radioInput.doc.ts',
         };
     }
 

@@ -46,7 +46,7 @@ export class UuiEnhancedApp extends React.Component {
                 skinContext={ promoSkinContext }
                 enableLegacyContext={ false }
             >
-                <ErrorHandler>
+                <ErrorHandler >
                     <App />
                     <Snackbar />
                     <Modals />
