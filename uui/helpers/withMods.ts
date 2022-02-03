@@ -11,4 +11,4 @@ export function withMods<TProps extends IHasCX, TMods = {}>(
         Component.displayName = `withMods(${Component?.displayName || Component?.name || 'unknown'})`;
         return React.createElement(Component, { ...allProps, cx: [getCx(props), props.cx], ref });
     });
-};
+}

@@ -76,7 +76,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             if (column.fix === 'left') fixedLeftColumns.push(column);
             else if (column.fix === 'right') fixedRightColumns.push(column);
             else staticColumns.push(column);
-        };
+        }
 
         return (
             <>
