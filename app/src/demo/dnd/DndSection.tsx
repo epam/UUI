@@ -51,7 +51,7 @@ export class DndSection extends React.Component<DndSectionProps> {
         const sortedMaterials = sortBy(item.materials, ['order']);
 
         return <DndActor
-            key={ item.id + item.order }
+            key={ item.id }
             srcData={ item }
             dstData={ item }
             canAcceptDrop={ this.handleCanAcceptDrop }

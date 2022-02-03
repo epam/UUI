@@ -66,7 +66,7 @@ export default function DndMaterial() {
 
     const renderMaterial = (item: MaterialItem, prevItem: MaterialItem, nextItem: MaterialItem) => (
         <DndActor
-            key={ item.id + item.order }
+            key={ item.id }
             srcData={ item }
             dstData={ item }
             canAcceptDrop={ canAcceptDrop }

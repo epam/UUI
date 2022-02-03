@@ -12,7 +12,7 @@ import { i18n } from '../../i18n';
 export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationModalBase<TItem, TId> {
     renderDndRow = (column: DataColumnProps<TItem, TId>, prevColumn: string, nextColumn: string) => (
         <DndActor<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>
-            key={ column.key + prevColumn }
+            key={ column.key }
             srcData={ column }
             dstData={ column }
             canAcceptDrop={ this.handleCanAcceptDrop }

@@ -97,7 +97,6 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
                     isDndInProgress: true,
                     eventHandlers: {},
                     classNames: [uuiDndState.dragGhost],
-                    ref: this.dndRef,
                 }),
             );
 
