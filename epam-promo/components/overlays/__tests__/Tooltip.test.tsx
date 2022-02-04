@@ -1,27 +1,30 @@
 import React from 'react';
 import { Tooltip } from '../Tooltip';
-import renderer from 'react-test-renderer';
+import { renderWithContextAsync } from '@epam/test-utils';
+
+jest.mock('react-dom', () => ({
+    findDOMNode: jest.fn(),
+}));
 
 describe('Tooltip', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Tooltip>
-                { 'Test' }
-            </Tooltip>)
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <Tooltip>Test</Tooltip>
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Tooltip
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <Tooltip
                 color='gray90'
                 content='Test'
                 trigger='click'
             >
                 { 'Test' }
-            </Tooltip>)
-            .toJSON();
+            </Tooltip>
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

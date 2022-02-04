@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, UuiContext } from '@epam/uui';
+import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui';
 import * as css from './Tooltip.scss';
 import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
@@ -22,145 +22,140 @@ export interface TooltipState {
     isOpen: boolean;
 }
 
-export class Tooltip extends React.Component<TooltipProps, TooltipState> {
-    public static contextType = UuiContext;
+export function Tooltip(props: TooltipProps) {
+    const context = useUuiContext();
+    const layer = React.useRef<LayoutLayer>();
+    const node = React.useRef<HTMLElement>();
+    const prevNode = React.useRef<HTMLElement>(node.current);
+    const prevProps = React.useRef<TooltipProps>(props);
+    const [isOpen, setOpen] = React.useState<boolean>(false);
 
-    private layer: LayoutLayer | null = null;
-    private node: HTMLElement = null;
+    const mouseEnterHandler = (e: MouseEvent) => setOpen(true);
+    const mouseLeaveHandler = (e: MouseEvent) => setOpen(false);
+    const mouseUpHandler = (e: Event) => setOpen(false);
+    const mouseDownHandler = (e: MouseEvent) => setOpen(!isOpen);
+    const mouseClickHandler = (e: MouseEvent) => setOpen(closest((e.target as HTMLElement), node.current) ? !isOpen : false);
 
-    state: TooltipState = { isOpen: false };
-
-    constructor(props: TooltipProps) {
-        super(props);
-    }
-
-    mouseEnterHandler = (e: MouseEvent) => this.setState({ isOpen: true });
-    mouseLeaveHandler = (e: MouseEvent) => this.setState({ isOpen: false });
-    mouseUpHandler = (e: Event) => this.setState({ isOpen: false });
-    mouseDownHandler = (e: MouseEvent) => this.setState({ isOpen: !this.state.isOpen });
-
-    mouseClickHandler = (e: MouseEvent) => {
-        if (closest((e.target as HTMLElement), this.node)) {
-            this.setState({ isOpen: !this.state.isOpen });
-        } else {
-            this.setState({ isOpen: false });
-        }
-    }
-
-    attachHandlers(node?: HTMLElement) {
+    const attachHandlers = (node: HTMLElement | null) => {
         if (!node) return;
 
-        switch (this.props.trigger) {
+        switch (props.trigger) {
             case 'click': {
-                node.addEventListener('click', this.mouseClickHandler);
+                node.addEventListener('click', mouseClickHandler);
                 break;
             }
 
             case 'press': {
-                node.addEventListener('mousedown', this.mouseDownHandler);
-                node.addEventListener('mouseup', this.mouseUpHandler);
+                node.addEventListener('mousedown', mouseDownHandler);
+                node.addEventListener('mouseup', mouseUpHandler);
                 break;
             }
 
             default: {
-                node.addEventListener('mouseenter', this.mouseEnterHandler);
-                node.addEventListener('mouseleave', this.mouseLeaveHandler);
+                node.addEventListener('mouseenter', mouseEnterHandler);
+                node.addEventListener('mouseleave', mouseLeaveHandler);
                 break;
             }
         }
     }
 
-    detachHandlers(node: HTMLElement, prevProps: TooltipProps) {
+   const detachHandlers = (node: HTMLElement | null, prevProps: TooltipProps) => {
         if (!node) return;
 
         switch (prevProps.trigger) {
             case 'click': {
-                node.removeEventListener('click', this.mouseClickHandler);
+                node.removeEventListener('click', mouseClickHandler);
                 break;
             }
 
             case 'press': {
-                node.removeEventListener('mousedown', this.mouseDownHandler);
-                node.removeEventListener('mouseup', this.mouseUpHandler);
+                node.removeEventListener('mousedown', mouseDownHandler);
+                node.removeEventListener('mouseup', mouseUpHandler);
                 break;
             }
 
             default: {
-                node.removeEventListener('mouseenter', this.mouseEnterHandler);
-                node.removeEventListener('mouseleave', this.mouseLeaveHandler);
+                node.removeEventListener('mouseenter', mouseEnterHandler);
+                node.removeEventListener('mouseleave', mouseLeaveHandler);
                 break;
             }
         }
     }
 
-    componentDidMount() {
-        if (!this.node) return;
-        this.layer = this.context?.uuiLayout?.getLayer();
-        this.attachHandlers(this.node);
-    }
-
-    componentDidUpdate(prevProps: TooltipProps): void {
-        if (prevProps.trigger !== this.props.trigger) {
-            this.detachHandlers(this.node, prevProps);
-            this.attachHandlers(this.node);
+    React.useEffect(() => {
+        if (node.current && node.current !== prevNode.current || prevProps.current.trigger !== props.trigger) {
+            detachHandlers(prevNode.current, prevProps.current);
+            attachHandlers(node.current);
         }
-    }
 
-    componentWillUnmount() {
-        this.detachHandlers(this.node, this.props);
-        this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
-    }
+        prevNode.current = node.current;
+        prevProps.current = props;
+    }, [props]);
 
-    private renderTooltip = () => (
-        <div role="tooltip" aria-hidden={ this.isTooltipExist() } className={ uuiElement.tooltipBody }>
-            { this.props.content || this.props.renderContent?.() }
+    React.useEffect(() => {
+        layer.current = context?.uuiLayout?.getLayer();
+
+        return () => {
+            if (!node.current || !layer.current) return;
+            detachHandlers(node.current, props);
+            context?.uuiLayout?.releaseLayer(layer.current);
+        };
+    }, []);
+
+    const renderTooltip = () => (
+        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody }>
+            { props.content || props.renderContent?.() }
         </div>
     );
 
-    private renderTooltipBody = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
-        if (isReferenceHidden && this.state.isOpen) {
-            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
-            setTimeout(() => { this.setState({ isOpen: false }); }, 0);
+    const renderTooltipBody = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
+        if (isReferenceHidden && isOpen) {
+            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in case
+            setTimeout(() => setOpen(false), 0);
             return null;
-        }
+        };
+
         return (
             <div
                 ref={ ref }
-                style={ { ...style, zIndex: this.layer?.zIndex } }
-                className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
+                style={ { ...style, zIndex: layer.current?.zIndex } }
+                className={ cx(props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
                 data-placement={ placement }
                 data-popper-reference-hidden={ isReferenceHidden }
             >
-                { this.renderTooltip() }
+                { renderTooltip() }
                 <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
             </div>
         );
     }
 
-    private isTooltipExist() {
-        return !!this.props.content || !!this.props.renderContent;
-    }
+    const isTooltipExist = () => !!props.content || !!props.renderContent;
 
-    render() {
-        return (
-            <Manager>
-                <Reference>
-                    { ({ ref }) => <PopperTargetWrapper innerRef={ ref }>{ this.props.children }</PopperTargetWrapper> }
-                </Reference>
-                { this.isTooltipExist() && this.state.isOpen && <Portal target={ this.props.portalTarget }>
-                    <Popper
-                        placement={ this.props.placement || 'top' }
-                        modifiers={ [
-                            { name: 'preventOverflow', options: { boundary: this.props.boundaryElement } },
-                            { name: 'offset', options: { offset: this.props.offset || [0, 12] } },
-                            { name: 'computeStyles', options: { gpuAcceleration: false } },
-                            { name: 'hide', enabled: true },
-                        ] }
-                    >
-                        { this.renderTooltipBody }
-                    </Popper>
-                </Portal> }
-            </Manager>
-        );
-    }
+    const getInnerRef = (nodeRef: typeof node.current, callbackRef: React.Ref<typeof node.current>) => {
+        node.current = nodeRef;
+        prevNode.current = node.current;
+        attachHandlers(node.current);
+        (callbackRef as React.RefCallback<typeof nodeRef>)(nodeRef);
+    };
+
+    return (
+        <Manager>
+            <Reference>
+                { ({ ref }) => <PopperTargetWrapper children={ props.children } innerRef={ node => getInnerRef(node, ref) } /> }
+            </Reference>
+            { isTooltipExist() && isOpen && <Portal target={ props.portalTarget }>
+                <Popper
+                    placement={ props.placement || 'top' }
+                    modifiers={ [
+                        { name: 'preventOverflow', options: { boundary: props.boundaryElement } },
+                        { name: 'offset', options: { offset: props.offset || [0, 12] } },
+                        { name: 'computeStyles', options: { gpuAcceleration: false } },
+                        { name: 'hide', enabled: true },
+                    ] }
+                >
+                    { renderTooltipBody }
+                </Popper>
+            </Portal> }
+        </Manager>
+    );
 }
