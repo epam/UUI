@@ -9,6 +9,7 @@ export interface ToolbarButtonProps  {
     onClick?: () => any;
     icon?: Icon;
     iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';
+    ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
     editor?: Editor;
     isDisabled?: boolean;
     caption?: string;
@@ -17,6 +18,7 @@ export interface ToolbarButtonProps  {
 export class ToolbarButton extends React.Component<ToolbarButtonProps> {
     render() {
         return <Button
+            forwardedRef={ this.props.ref }
             onClick={ (e) => { e.preventDefault(); this.props.onClick(); } }
             icon={ this.props.icon }
             caption={ this.props.caption }
