@@ -4,7 +4,6 @@ import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext, uuiElement } from '@epam/uui';
 import { Portal } from './Portal';
 import { FreeFocusInside } from 'react-focus-lock';
-import { findDOMNode } from 'react-dom';
 
 export interface DropdownState {
     opened: boolean;
@@ -167,11 +166,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private onClose = () => {
-        if (this.props.onClose) {
-            this.props.onClose();
-        } else {
-            this.handleOpenedChange(false);
-        };
+        if (this.props.onClose) this.props.onClose();
+        else this.handleOpenedChange(false);
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
