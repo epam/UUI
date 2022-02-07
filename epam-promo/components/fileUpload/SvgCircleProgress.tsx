@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as css from './SvgCircleProgress.scss';
-import { IHasCX } from '@epam/uui';
+import { IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui';
 
-interface SvgCircleProgressProps extends IHasCX {
+interface SvgCircleProgressProps extends IHasCX, IHasRawProps<SVGSVGElement>, IHasForwardedRef<SVGSVGElement> {
     size: number;
     progress: number;
 }
@@ -11,9 +11,10 @@ export class SvgCircleProgress extends React.Component<SvgCircleProgressProps> {
     outsetRadius = this.props.size / 2 - 1;
     insetRadius = this.props.size / 2 - 3;
     circumference = this.insetRadius * Math.PI;
+
     render() {
         return (
-            <svg className={ css.root } width={ this.props.size } height={ this.props.size } >
+            <svg className={ css.root } width={ this.props.size } height={ this.props.size } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <circle
                     stroke={ '#ACAFBF' }
                     strokeDasharray={ this.circumference }

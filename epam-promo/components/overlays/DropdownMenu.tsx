@@ -77,7 +77,7 @@ export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     ({ style }) => ({ style }),
 );
 
-export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
+export const DropdownMenuButton = React.forwardRef<HTMLAnchorElement | HTMLDivElement, IDropdownMenuItemProps>((props, ref) => {
     const context = useContext(UuiContext);
 
     const {
@@ -139,6 +139,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
             onClick={ handleClick }
             isDisabled={ isDisabled }
+            forwardedRef={ ref as any }
         >
             { getMenuButtonContent() }
         </Anchor>
@@ -151,11 +152,12 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             } }
             cx={ itemClassNames }
             onClick={ handleClick }
+            ref={ ref as any }
         >
             { getMenuButtonContent() }
         </FlexRow>
     );
-};
+});
 
 DropdownMenuButton.displayName = 'DropdownMenuButton';
 
@@ -190,7 +192,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
                     onClose={ onClose }
                 />
             ) }
-            renderTarget={ ({ toggleDropdownOpening }) => (
+            renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
                     icon={ icons.foldingArrow }
@@ -198,6 +200,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }
                     { ...props }
+                    { ...targetProps }
                 />
             ) }
         />

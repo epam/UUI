@@ -39,6 +39,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 borderBottom={ this.props.borderBottom ? 'gray40' : undefined }
                 cx={ [css.modalHeader, this.props.cx] }
                 spacing='12'
+                ref={ this.props.forwardedRef }
                 rawProps={ this.props.rawProps }
             >
                 { this.props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ this.props.title }</Text> }
@@ -56,6 +57,7 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
     render() {
         return (
             <FlexRow
+                ref={ this.props.forwardedRef }
                 spacing={ this.props.spacing || '12' }
                 cx={ [css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx] }
                 padding={ this.props.padding || '24' }

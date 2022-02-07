@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { cx, ButtonBaseCoreProps, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui';
+import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement> {}
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
@@ -81,6 +81,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
+            ref: this.props.forwardedRef,
             target: this.props.target,
             'aria-disabled': this.props.isDisabled as IHasRawProps<HTMLAnchorElement | HTMLButtonElement>['rawProps']['aria-disabled'],
             ...this.props.rawProps,

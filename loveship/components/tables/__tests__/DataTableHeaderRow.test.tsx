@@ -4,10 +4,6 @@ import { demoColumns } from "./dataMocks";
 import { DataSourceState } from '@epam/uui';
 import { DataTableHeaderRow } from "../DataTableHeaderRow";
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 const dataSourceState: DataSourceState = {
     sorting: [{ field: 'name', direction: "asc" }],
 };

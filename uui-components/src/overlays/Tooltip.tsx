@@ -4,7 +4,6 @@ import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui';
 import * as css from './Tooltip.scss';
-import { PopperTargetWrapper } from './PopperTargetWrapper';
 import { Portal } from './Portal';
 
 export interface TooltipProps extends IHasCX, IHasChildren {
@@ -23,7 +22,7 @@ export interface TooltipState {
 }
 
 export function Tooltip(props: TooltipProps) {
-    const context = useUuiContext();
+    const { uuiLayout } = useUuiContext();
     const layer = React.useRef<LayoutLayer>();
     const node = React.useRef<HTMLElement>();
     const prevNode = React.useRef<HTMLElement>(node.current);
@@ -93,12 +92,11 @@ export function Tooltip(props: TooltipProps) {
     }, [props]);
 
     React.useEffect(() => {
-        layer.current = context?.uuiLayout?.getLayer();
+        layer.current = uuiLayout?.getLayer();
 
         return () => {
-            if (!node.current || !layer.current) return;
             detachHandlers(node.current, props);
-            context?.uuiLayout?.releaseLayer(layer.current);
+            layer.current && uuiLayout?.releaseLayer(layer.current);
         };
     }, []);
 
@@ -132,8 +130,8 @@ export function Tooltip(props: TooltipProps) {
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
     const getInnerRef = (nodeRef: typeof node.current, callbackRef: React.Ref<typeof node.current>) => {
+        if (node.current !== nodeRef) prevNode.current = node.current;
         node.current = nodeRef;
-        prevNode.current = node.current;
         attachHandlers(node.current);
         (callbackRef as React.RefCallback<typeof nodeRef>)(nodeRef);
     };
@@ -141,7 +139,12 @@ export function Tooltip(props: TooltipProps) {
     return (
         <Manager>
             <Reference>
-                { ({ ref }) => <PopperTargetWrapper children={ props.children } innerRef={ node => getInnerRef(node, ref) } /> }
+                { ({ ref }) => React.Children.map(props.children, (child, idx) => {
+                    if (idx > 0 || !React.isValidElement(child)) return child;
+                    return React.cloneElement(child, {
+                        ref: (node: HTMLElement) => getInnerRef(node, ref)
+                    })
+                }) }
             </Reference>
             { isTooltipExist() && isOpen && <Portal target={ props.portalTarget }>
                 <Popper

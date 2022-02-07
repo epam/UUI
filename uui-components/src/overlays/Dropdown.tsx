@@ -4,7 +4,7 @@ import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext, uuiElement } from '@epam/uui';
 import { Portal } from './Portal';
 import { FreeFocusInside } from 'react-focus-lock';
-import { PopperTargetWrapper } from './PopperTargetWrapper';
+import { findDOMNode } from 'react-dom';
 
 export interface DropdownState {
     opened: boolean;
@@ -66,18 +66,16 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     public componentDidMount() {
-        if (!this.targetNode) return;
-
-        this.layer = this.context?.uuiLayout?.getLayer();
+        this.layer = this.context.uuiLayout?.getLayer();
 
         window.addEventListener('dragstart', this.clickOutsideHandler);
 
         if (this.props.openOnHover && !this.props.openOnClick) {
-            this.targetNode.addEventListener('mouseenter', this.handleMouseEnter);
+            this.targetNode?.addEventListener?.('mouseenter', this.handleMouseEnter);
         }
 
         if (this.props.closeOnMouseLeave === 'toggler') {
-            this.targetNode.addEventListener('mouseleave', this.handleMouseLeave);
+            this.targetNode?.addEventListener?.('mouseleave', this.handleMouseLeave);
         }
 
         if (this.props.closeOnClickOutside !== false) {
@@ -88,7 +86,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     public componentWillUnmount() {
         window.removeEventListener('dragstart', this.clickOutsideHandler);
         window.removeEventListener('click', this.clickOutsideHandler, true);
-        this.context.uuiLayout?.releaseLayer(this.layer);
+        this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
     }
 
     handleOpenedChange = (opened: boolean) => {
@@ -175,24 +173,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             this.handleOpenedChange(false);
         };
     }
+
     private renderTarget(targetProps: ReferenceChildrenProps) {
-        const innerRef = (node: HTMLElement) => {
+        const { openOnClick, openOnHover } = this.props;
+        const handleTargetClick =  (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
+        const innerRef = (node: HTMLElement | null) => {
+            if (!node) return;
             this.targetNode = node;
             (targetProps.ref as React.RefCallback<HTMLElement>)(this.targetNode);
         };
 
-        return (
-            <PopperTargetWrapper innerRef={ innerRef }>
-            {
-                this.props.renderTarget({
-                    onClick: (this.props.openOnClick || (!this.props.openOnClick && !this.props.openOnHover)) ? this.handleTargetClick : undefined,
-                    isOpen: this.isOpened(),
-                    isDropdown: true,
-                    toggleDropdownOpening: this.handleOpenedChange,
-                })
-            }
-            </PopperTargetWrapper>
-        );
+        return this.props.renderTarget({
+            onClick: handleTargetClick,
+            isOpen: this.isOpened(),
+            isDropdown: true,
+            ref: innerRef,
+            toggleDropdownOpening: this.handleOpenedChange,
+        })
     }
 
     private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasForwardedRef, IHasRawProps } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
 import { ControlGroup } from '../layout';
 import { Button, ButtonColor, ButtonMods } from '../buttons';
@@ -9,16 +9,15 @@ interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
     id: TValue;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement> {
+export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
     color?: ButtonColor;
 }
 
-export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>, any> {
-
+export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
     render() {
         return (
-            <ControlGroup rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
+            <ControlGroup forwardedRef={ this.props.forwardedRef } rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
                 {
                     this.props.items.map((item, index) =>
                         <Button
