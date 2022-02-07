@@ -2,10 +2,6 @@ import React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
 import { renderWithContextAsync } from '@epam/test-utils';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('DataTableHeaderCell', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(

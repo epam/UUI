@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Lens, DataSourceState, isMobile, cx } from '@epam/uui';
+import { Lens, DataSourceState, isMobile, cx, IHasForwardedRef } from '@epam/uui';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
@@ -8,7 +8,7 @@ import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import * as css from './DataPickerBody.scss';
 
-export type DataPickerBodyProps = PickerBodyBaseProps & {
+export interface DataPickerBodyProps extends PickerBodyBaseProps, IHasForwardedRef<HTMLDivElement> {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
@@ -49,6 +49,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             ) }
             <FlexRow
                 key='body'
+                ref={ this.props.forwardedRef }
                 cx={ cx(css.body, css[this.props.editMode]) }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
                 background='white'

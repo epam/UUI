@@ -5,10 +5,6 @@ import { RangeDatePicker } from '..';
 import { toCustomDateRangeFormat, valueFormat } from '@epam/uui-components';
 import { renderWithContextAsync } from '@epam/test-utils';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('RangeDataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
 

@@ -5,10 +5,6 @@ import { systemIcons } from '../../../icons/icons';
 
 const { accept: icon } = systemIcons["30"];
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('DropdownMenu', () => {
     it('should be rendered DropdownMenuBody correctly', () => {
         const tree = renderer

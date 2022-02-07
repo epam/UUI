@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './FileCard.scss';
 import { i18n } from '../..';
-import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui';
+import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, IHasForwardedRef, uuiMod } from '@epam/uui';
 import { SvgCircleProgress } from './';
 import { FlexCell, FlexRow, IconButton, IconContainer, Text } from '../';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
@@ -15,7 +15,7 @@ import { ReactComponent as TextIcon } from '../../icons/fileUpload/file-file_tex
 import { ReactComponent as MailIcon } from '../../icons/fileUpload/file-file_eml-24.svg';
 import { ReactComponent as FileIcon } from '../../icons/fileUpload/file-file-24.svg';
 
-export interface FileCardProps extends IClickable, IHasCX {
+export interface FileCardProps extends IClickable, IHasCX, IHasForwardedRef<HTMLDivElement> {
     file: { progress?: number } & Partial<FileUploadResponse>;
     width?: number;
 }
@@ -68,7 +68,7 @@ export class FileCard extends React.Component<FileCardProps, FileCardState> {
         const extension = this.props.file.name?.split('.').pop();
 
         return (
-            <FlexCell cx={ cx(css.fileCardWrapper, loading && uuiMod.loading, this.props.cx) } minWidth={ this.props.width } width={ !this.props.width ? '100%' : undefined } >
+            <FlexCell ref={ this.props.forwardedRef } cx={ cx(css.fileCardWrapper, loading && uuiMod.loading, this.props.cx) } minWidth={ this.props.width } width={ !this.props.width ? '100%' : undefined } >
                 <FlexRow cx={ css.fileCardRow } size='36' alignItems='top' spacing='6'>
                     { extension && this.getIcon(extension) }
                     <FlexCell width='100%'>

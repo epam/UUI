@@ -13,7 +13,7 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTM
     size?: number;
 }
 
-export const IconContainer = (props: ControlIconProps) => {
+export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
     const isClickable = !props.isDisabled && props.onClick;
 
     return (
@@ -26,12 +26,13 @@ export const IconContainer = (props: ControlIconProps) => {
                 props.cx,
                 props.rawProps?.className
             ) }
+            ref={ ref }
             onClick={ isClickable ? props.onClick : undefined }
             tabIndex={ isClickable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
-            {...props.rawProps}
+            { ...props.rawProps }
         >
             <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) }/>
         </div>
     );
-};
+});

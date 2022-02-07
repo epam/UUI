@@ -2,10 +2,6 @@ import React from 'react';
 import { Tooltip } from '../Tooltip';
 import { renderWithContextAsync } from '@epam/test-utils';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('Tooltip', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(

@@ -1,5 +1,5 @@
-import React from 'react';
-import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui';
+import * as React from 'react';
+import { IHasChildren, IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui';
 import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
@@ -17,7 +17,7 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     actions?: notificationAction[];
     color?: EpamPrimaryColor;
     onClose?(): void;
@@ -29,6 +29,7 @@ export class Alert extends React.Component<AlertProps> {
         return (
             <div
                 role="alert"
+                ref={ this.props.forwardedRef }
                 className={ cx(css.alertWrapper, styles[`color-${this.props.color || 'blue'}`], css.root, this.props.cx) }
                 { ...this.props.rawProps }
             >
@@ -39,10 +40,15 @@ export class Alert extends React.Component<AlertProps> {
                     <div className={ css.content }>
                         { this.props.children }
                         { this.props.actions && <div className={ css.actionWrapper }>
-                            { this.props.actions.map((action: notificationAction) => {
-                                return <LinkButton caption={ action.name } onClick={ action.action }
-                                    key={ action.name } cx={ css.actionLink } size='24' />;
-                            }) }
+                            { this.props.actions.map(action => (
+                                <LinkButton
+                                    caption={ action.name }
+                                    onClick={ action.action }
+                                    key={ action.name }
+                                    cx={ css.actionLink }
+                                    size='24'
+                                />
+                            )) }
                         </div> }
                     </div>
                     { this.props.onClose && <IconButton icon={ CrossIcon } color='gray60' onClick={ this.props.onClose } cx={ css.closeIcon } /> }

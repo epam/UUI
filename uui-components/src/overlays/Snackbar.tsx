@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps } from '@epam/uui';
+import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import * as css from './Snackbar.scss';
 
 const itemsOffset = 12;
 const offset = 30;
 
-export interface SnackbarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface SnackbarProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     closeIcon?: Icon;
     notifications?: NotificationOperation[];
 }
@@ -128,7 +128,7 @@ export class Snackbar extends React.Component<SnackbarProps> {
             .map(this.renderItemWithOffset(botCenterOffset));
 
         return (
-            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } { ...this.props.rawProps } ref={ this.props.forwardedRef }>
                 <TransitionGroup>
                     { botLeftItems }
                     { botRightItems }
