@@ -27,7 +27,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows().map(row => <React.Fragment key={ row.rowKey }>{ (props.renderRow || renderRow)({ ...row, columns }) }</React.Fragment>);
 
     const renderNoResultsBlock = React.useCallback(() => {
         // need default behavior

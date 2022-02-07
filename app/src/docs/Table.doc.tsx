@@ -44,6 +44,11 @@ export class TablesDoc extends BaseDocsBlock {
                     title='Table with paging'
                     path='./examples/tables/PagedTable.example.tsx'
                 />
+
+                <DocExample
+                    title='Table with custom row and extra block'
+                    path='./examples/tables/TableWithPanel.example.tsx'
+                />
             </>
         );
     }
