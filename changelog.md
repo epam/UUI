@@ -1,3 +1,8 @@
+# 4.6.0 -
+
+**New approach to working with refs**
+* Internally, we made a major refactor to get rid of React legacy APIs (findDOMNode), so you can enable the StrictMode for your projects and have no confusion over warnings in the console. However, there are some things, that you need to be sure for this to work correctly while preserving the previous API. See [Migration Guide](https://docs.google.com/document/d/1k3DzB2J9nOrsBO3gx3H9SLS3JqVbXXIlQ6F_Ip2BWfU/edit?usp=sharing).
+
 # 4.5.3 - 20.01.2022
 
 **What’s Fixed**
@@ -37,7 +42,7 @@
 * [Breaking Change]: Changed VirtualList component api. Introduced new useVirtualList hook.
     More information here - https://uui.epam.com/documents?category=components&id=virtualList#advanced
 
-* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.  
+* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.
 * Added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
 * [FileCard]: Added extension to file card. Bugfixes.
 * [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
