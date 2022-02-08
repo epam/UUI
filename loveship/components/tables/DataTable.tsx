@@ -23,7 +23,7 @@ function DataTableNoResults() {
             <Text fontSize='14'>We can't find any item matching your request</Text>
         </div>
     );
-};
+}
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -98,9 +98,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             rows={ rows }
             rowsCount={ props.rowsCount }
             focusedIndex={ props.value?.focusedIndex }
-            shadow='dark'
             renderRows={ renderRowsContainer }
-            cx={ cx(css.table, css.shadowDark) }
+            cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,
