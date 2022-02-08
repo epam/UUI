@@ -11,45 +11,23 @@
 }
 
 .table {
-    &:global(.-scrolled-left) {
+    :global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {
             opacity: 1;
         }
     }
 
-    &:global(.-scrolled-right) {
+    :global(.-scrolled-right) {
         :global(.uui-scroll-shadow-right) {
             opacity: 1;
         }
     }
 
-    &.shadow-dark {
-        :global(.uui-scroll-shadow-top-visible) {
-            height: 5px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-            display: block;
-            transition: display 200ms;
-        }
-    }
-
-    &.shadow-white {
-        :global(.uui-scroll-shadow-top-visible) {
-            height: 15px;
-            background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-            display: block;
-            transition: display 200ms;
-        }
-
-        :global(.uui-scroll-shadow-bottom-visible) {
-            height: 15px;
-            display: block;
-            background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
-        }
-    }
-
-    :global(.uui-scroll-shadow-top) {
-        position: sticky;
-        z-index: 3;
+    :global(.uui-scroll-shadow-top-visible) {
+        height: 5px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+        display: block;
+        transition: display 200ms;
     }
 }
 
