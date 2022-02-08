@@ -159,7 +159,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, [formState.current.form, props.getMetadata]);
 
     const handleRevert = useCallback(() => {
-        resetForm({ ...formState.current, form: props.value });
+        resetForm(initialForm.current);
     }, [props.value]);
 
     const handleValueChange = useCallback((newVal: T) => {
