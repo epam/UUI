@@ -209,9 +209,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
-            ref: this.togglerRef,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
+        };
+    }
+
+    getTargetRef(props: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
+        return {
+            ref: (node: HTMLElement) => {
+                (this.togglerRef as React.MutableRefObject<HTMLElement>).current = node;
+                (props.ref as React.RefCallback<HTMLElement>)(node);
+            },
         };
     }
 
@@ -269,7 +277,11 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
         return (
             <Dropdown
-                renderTarget={ dropdownProps => this.renderTarget({ ...dropdownProps, ...this.getTogglerProps(rows) }) }
+                renderTarget={ dropdownProps => {
+                    const targetProps = this.getTogglerProps(rows);
+                    const targetRef = this.getTargetRef({ ...targetProps, ...dropdownProps });
+                    return this.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
+                } }
                 renderBody={ props => this.renderBody({ ...props, ...this.getPickerBodyProps(rows), ...this.getListProps() }, rows) }
                 value={ this.shouldShowBody() }
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
