@@ -17,7 +17,7 @@ export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IH
 export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
     render() {
         return (
-            <ControlGroup forwardedRef={ this.props.forwardedRef } rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
+            <ControlGroup ref={ this.props.forwardedRef } rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
                 {
                     this.props.items.map((item, index) =>
                         <Button

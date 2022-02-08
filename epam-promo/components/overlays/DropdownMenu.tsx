@@ -77,7 +77,7 @@ export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     ({ style }) => ({ style }),
 );
 
-export const DropdownMenuButton = React.forwardRef<HTMLAnchorElement | HTMLDivElement, IDropdownMenuItemProps>((props, ref) => {
+export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
     const context = useContext(UuiContext);
 
     const {
@@ -139,7 +139,7 @@ export const DropdownMenuButton = React.forwardRef<HTMLAnchorElement | HTMLDivEl
             rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
             onClick={ handleClick }
             isDisabled={ isDisabled }
-            forwardedRef={ ref as any }
+            forwardedRef={ ref }
         >
             { getMenuButtonContent() }
         </Anchor>
