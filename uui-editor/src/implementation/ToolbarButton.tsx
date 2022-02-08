@@ -9,21 +9,21 @@ export interface ToolbarButtonProps  {
     onClick?: () => any;
     icon?: Icon;
     iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';
-    ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
     editor?: Editor;
     isDisabled?: boolean;
     caption?: string;
 }
 
-export class ToolbarButton extends React.Component<ToolbarButtonProps> {
-    render() {
-        return <Button
-            forwardedRef={ this.props.ref }
-            onClick={ (e) => { e.preventDefault(); this.props.onClick(); } }
-            icon={ this.props.icon }
-            caption={ this.props.caption }
-            cx={ cx(css.toolbarButton, css['color-' + this.props.iconColor], css[this.props.isActive ? 'gray90' : 'gray80']) }
-            isDisabled={ this.props.isDisabled }
-        />;
-    }
-}
+export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
+    <Button
+        onClick={ (e) => {
+            e.preventDefault();
+            props.onClick();
+        } }
+        icon={ props.icon }
+        caption={ props.caption }
+        forwardedRef={ ref }
+        cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80']) }
+        isDisabled={ props.isDisabled }
+    />
+));

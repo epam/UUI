@@ -1,7 +1,9 @@
 # 4.6.0 -
 
-**New approach to working with refs**
-* Internally, we made a major refactor to get rid of React legacy APIs (findDOMNode), so you can enable the StrictMode for your projects and have no confusion over warnings in the console. However, there are some things, that you need to be sure for this to work correctly while preserving the previous API. See [Migration Guide](https://docs.google.com/document/d/1k3DzB2J9nOrsBO3gx3H9SLS3JqVbXXIlQ6F_Ip2BWfU).
+**Breaking Change**
+* [Tooltip]: the Tooltip target needs to accept ref correctly
+* [Dropdown]: renderTarget now returns a ref, that needs to passed correctly to the target component
+* [DndActor]: ref needs to be passed to the root node in the render prop
 
 # 4.5.3 - 20.01.2022
 
