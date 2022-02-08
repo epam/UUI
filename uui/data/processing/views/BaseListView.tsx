@@ -213,7 +213,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             isLoading: true,
             depth: parents ? parents.length : 0,
             path,
-            checkbox: rowOptions?.checkbox.isVisible && { isVisible: true, isDisabled: true },
+            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
 }

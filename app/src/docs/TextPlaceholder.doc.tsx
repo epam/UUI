@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUIV } from '../common';
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
@@ -8,6 +8,7 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/typography/docs/textPlaceholder.doc.tsx',
             [UUI4]: './epam-promo/components/typography/docs/textPlaceholder.doc.tsx',
+            [UUIV]: './uui-v/components/typography/docs/textPlaceholder.doc.tsx',
         };
     }
 
