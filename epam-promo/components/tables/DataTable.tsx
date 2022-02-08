@@ -12,7 +12,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-};
+}
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -86,9 +86,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             rows={ rows }
             rowsCount={ props.rowsCount }
             focusedIndex={ props.value?.focusedIndex }
-            shadow='dark'
             renderRows={ renderRowsContainer }
-            cx={ cx(css.table, css.shadowDark) }
+            cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,
