@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext } from '@epam/uui';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
@@ -28,7 +28,7 @@ export interface NotificationCardProps extends DefaultNotificationProps {
     color: EpamPrimaryColor | 'gray60';
 }
 
-export const  NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
+export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
     const notificationCardNode = React.useRef(null);
 
     React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
@@ -83,27 +83,31 @@ export const  NotificationCard = React.forwardRef<HTMLDivElement, NotificationCa
     );
 });
 
-export const WarningNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ WarningIcon } color='amber' { ...props } cx={ cx(props.cx) } />;
-export const SuccessNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ SuccessIcon } color='green' { ...props } cx={ cx(props.cx) } />;
-export const HintNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ HintIcon } color='blue' { ...props } cx={ cx(props.cx) } />;
-export const ErrorNotification = (props: DefaultNotificationProps) =>
-    <NotificationCard icon={ ErrorIcon } color='red' { ...props } cx={ cx(props.cx) } />;
+export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ WarningIcon } color='amber' { ...props } ref={ ref } cx={ cx(props.cx) } />
+));
 
-export class ClearNotification extends React.Component<IHasForwardedRef<HTMLDivElement>> {
-    public static contextType = UuiContext;
-    public context: UuiContexts;
+export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ SuccessIcon } color='green' { ...props } cx={ cx(props.cx) } />
+));
 
-    render() {
-        return (
-            <div ref={ this.props.forwardedRef } className={ cx(css.notificationWrapper, css.clearButton) }>
-                <LinkButton
-                    caption={ i18n.notificationCard.closeAllNotificationsButton }
-                    onClick={ () => this.context.uuiNotifications.clearAll() }
-                />
-            </div>
-        );
-    }
-}
+export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ HintIcon } color='blue' { ...props } cx={ cx(props.cx) } />
+));
+
+export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
+    <NotificationCard icon={ ErrorIcon } color='red' { ...props } cx={ cx(props.cx) } />
+));
+
+export const ClearNotification = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
+    const context = useUuiContext();
+
+    return (
+        <div ref={ ref } className={ cx(css.notificationWrapper, css.clearButton) }>
+            <LinkButton
+                caption={ i18n.notificationCard.closeAllNotificationsButton }
+                onClick={ () => context.uuiNotifications.clearAll() }
+            />
+        </div>
+    );
+});
