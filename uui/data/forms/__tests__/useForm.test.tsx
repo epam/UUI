@@ -179,7 +179,7 @@ describe('useForm', () => {
         });
 
         it('Should revert and load last passed value', async () => {
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -190,11 +190,9 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
             expect(result.current.value.dummy).toBe('hi');
 
-            act(() => result.current.lens.prop('dummy').set('hello'));
-            expect(result.current.value.dummy).toBe('hello');
-
             act(() => result.current.revert());
-            expect(result.current.value.dummy).toBe(testData['dummy']);
+            expect(result.current.value.dummy).toBe(testData.dummy);
+            expect(result.current.isChanged).toBe(false);
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
