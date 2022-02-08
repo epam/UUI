@@ -20,7 +20,7 @@ export class ReleaseNotesDoc extends React.Component<any, ReleaseNotesDocState> 
             .then(response => response)
             .then(data => {
                 this.setState({
-                    markdown: data.markdown.split('#').filter((el: any) => el !== '').map((el: any) => '#'.concat(el)),
+                    markdown: data.markdown.split('# ').filter((el: any) => el !== '').map((el: any) => '#'.concat(el)),
                     isLoading: false,
                 });
             });

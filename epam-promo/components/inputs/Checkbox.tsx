@@ -1,4 +1,3 @@
-import * as types from '../types';
 import * as css from './Checkbox.scss';
 import * as styles from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
@@ -10,7 +9,6 @@ import { ReactComponent as PartlySelect_18 } from '../../icons/partly-select-18.
 
 export interface CheckboxMods {
     size?: '12' | '18';
-    fill?: types.FillStyle;
     theme?: 'light' | 'dark';
 }
 

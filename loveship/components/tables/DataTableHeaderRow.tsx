@@ -12,6 +12,7 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
     mods => [css.root],
     mods => ({
         renderCell: props => <DataTableHeaderCell
+            key={ props.column.key + (props.value.columnsConfig?.[props.column.key]?.order || '') }
             { ...props }
             size={ mods.size }
             textCase={ mods.textCase || 'normal' }
