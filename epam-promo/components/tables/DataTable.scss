@@ -23,6 +23,14 @@
         }
     }
 
+    :global(.uui-scroll-shadow-top) {
+        position: absolute;
+        pointer-events: none;
+        left: 0;
+        right: 0;
+        bottom: -5px;
+    }
+
     :global(.uui-scroll-shadow-top-visible) {
         display: block;
         height: 5px;

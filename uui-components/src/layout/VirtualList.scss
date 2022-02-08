@@ -8,17 +8,3 @@
     display: grid;
     grid-template-rows: 1fr;
 }
-
-:global(.uui-scroll-shadow-top) {
-    position: absolute;
-    pointer-events: none;
-    left: 0;
-    right: 0;
-    bottom: -5px;
-}
-
-:global(.uui-scroll-shadow-bottom) {
-    position: sticky;
-    pointer-events: none;
-    bottom: 0;
-}
