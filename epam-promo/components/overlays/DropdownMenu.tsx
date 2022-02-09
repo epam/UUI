@@ -152,7 +152,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             } }
             cx={ itemClassNames }
             onClick={ handleClick }
-            ref={ ref as any }
+            ref={ ref }
         >
             { getMenuButtonContent() }
         </FlexRow>
@@ -163,7 +163,7 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export const DropdownMenuSplitter = (props: IHasCX) => (
     <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter }/>
+        <hr className={ css.splitter } />
     </div>
 );
 
