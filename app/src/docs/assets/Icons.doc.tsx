@@ -147,10 +147,8 @@ export class IconsDoc extends React.Component {
     }
 
     checkValidSize = () => {
-        if (this.state.selectedIcon.name) {
+        if (!recommendedSizes[this.state.selectedIcon.size]?.every(i => i === this.state.controlSize)) {
             return true;
-        } else if (typeof recommendedSizes[this.state.selectedIcon.size] === 'undefined') {
-            return false;
         } else {
             return recommendedSizes[this.state.selectedIcon.size].some(i => i === this.state.controlSize);
         }
@@ -198,7 +196,7 @@ export class IconsDoc extends React.Component {
                             )) }
                         </FlexRow>
                     </FlexCell>
-                    { !this.checkValidSize() || (!this.state.selectedIcon.name && !this.state.isLocked) && this.renderWarningIcon() }
+                    { !this.checkValidSize() && this.renderWarningIcon() }
                 </FlexRow>
                 <FlexCell width='100%'>
                     { !Object.keys(recommendedSizes).every(i => iconSizesList.includes(i)) && (
