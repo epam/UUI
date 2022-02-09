@@ -20,7 +20,6 @@ interface NotificationAction extends IHasRawProps<HTMLButtonElement> {
 
 export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
     actions?: NotificationAction[];
-    ref?: React.Ref<HTMLDivElement>;
 }
 
 export interface NotificationCardProps extends DefaultNotificationProps {
