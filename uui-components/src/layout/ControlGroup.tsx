@@ -4,7 +4,7 @@ import { IHasCX, IHasChildren, cx, IHasRawProps, IHasForwardedRef } from '@epam/
 
 export interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {}
 
-export class ControlGroup extends React.Component<ControlGroupProps, any> {
+export class ControlGroup extends React.Component<ControlGroupProps> {
     render() {
         return (
             <div role="group" className={ cx(css.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>

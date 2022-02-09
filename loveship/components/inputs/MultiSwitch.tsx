@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasForwardedRef, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasRawProps } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
 import cx from 'classnames';
 import { Button, ControlGroup } from '../index';
@@ -10,32 +10,31 @@ interface MultiSwitchItem<TValue> extends ButtonProps, types.ColorMod {
     id: TValue;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.ColorMod, types.SizeMod, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.ColorMod, types.SizeMod, IHasRawProps<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
 }
 
-export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
-    render() {
-        return (
-            <ControlGroup ref={ this.props.forwardedRef } rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
-                { this.props.items.map((item, index) => {
-                    const isActive = this.props.value === item.id;
+function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
+    return (
+        <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
+            { props.items.map((item, index) => {
+                const isActive = props.value === item.id;
+                return (
+                    <Button
+                        {  ...item }
+                        cx={ cx(item.cx, { [css.selectedItem]: isActive }) }
+                        key={ index + '-' + item.id }
+                        onClick={ () => props.onValueChange(item.id) }
+                        shape="square"
+                        fill={ isActive ? 'solid' : 'white' }
+                        color={ item.color || props.color }
+                        size={ props.size }
+                        rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
+                    />
+                );
+            }) }
+        </ControlGroup>
+    );
+};
 
-                    return (
-                        <Button
-                            {  ...item }
-                            cx={ cx(item.cx, { [css.selectedItem]: isActive }) }
-                            key={ index + '-' + item.id }
-                            onClick={ () => this.props.onValueChange(item.id) }
-                            shape="square"
-                            fill={ isActive ? 'solid' : 'white' }
-                            color={ item.color || this.props.color }
-                            size={ this.props.size }
-                            rawProps={ { 'aria-current': this.props.value === item.id, role: 'tab' } }
-                        />
-                    );
-                }) }
-            </ControlGroup>
-        );
-    }
-}
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;

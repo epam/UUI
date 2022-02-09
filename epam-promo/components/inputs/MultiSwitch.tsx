@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasForwardedRef, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasRawProps } from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
 import { ControlGroup } from '../layout';
 import { Button, ButtonColor, ButtonMods } from '../buttons';
@@ -9,30 +9,28 @@ interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
     id: TValue;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
     color?: ButtonColor;
 }
 
-export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue>> {
-    render() {
-        return (
-            <ControlGroup ref={ this.props.forwardedRef } rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
-                {
-                    this.props.items.map((item, index) =>
-                        <Button
-                            {  ...item }
-                            isDisabled={ this.props.isDisabled }
-                            key={ index + '-' + item.id }
-                            onClick={ () => this.props.onValueChange(item.id) }
-                            fill={ this.props.value === item.id ? 'solid' : 'white' }
-                            color={ item.color || 'blue' }
-                            size={ this.props.size }
-                            rawProps={ { 'aria-current': this.props.value === item.id, role: 'tab' } }
-                        />,
-                    )
-                }
-            </ControlGroup>
-        );
-    }
-}
+function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
+    return (
+        <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
+            { props.items.map((item, index) => (
+                <Button
+                    {  ...item }
+                    isDisabled={ props.isDisabled }
+                    key={ index + '-' + item.id }
+                    onClick={ () => props.onValueChange(item.id) }
+                    fill={ props.value === item.id ? 'solid' : 'white' }
+                    color={ item.color || 'blue' }
+                    size={ props.size }
+                    rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
+                />
+            )) }
+        </ControlGroup>
+    );
+};
+
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
