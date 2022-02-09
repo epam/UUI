@@ -22,7 +22,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps<any, any> & PickerTogglerMods>((props, ref) => {
+function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) {
     const getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
         switch (propSize) {
             case '48':
@@ -38,7 +38,7 @@ export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps
         };
     };
 
-    const getCaption = (row: DataRowProps<any, any>) => {
+    const getCaption = (row: DataRowProps<TItem, TId>) => {
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
 
         if (row.isLoading) {
@@ -46,11 +46,11 @@ export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps
         } else if (!props.getName || props.selection?.length > maxItems) {
             return row.value;
         } else {
-            return props.getName(row.value);
+            return props.getName(row.value as unknown as DataRowProps<TItem, TId>);
         };
     }
 
-    const renderItem = (row: DataRowProps<any, any>) => (
+    const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
             key={ row.rowKey }
             caption={ getCaption(row) }
@@ -69,9 +69,11 @@ export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
-            getName={ row => props.getName ? props.getName(row.value) : row.value }
+            getName={ row => props.getName ? props.getName(row.value as unknown as DataRowProps<TItem, TId>) : row.value }
             cancelIcon={ systemIcons[props.size || defaultSize].clear }
             dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
-});
+};
+
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;

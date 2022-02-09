@@ -24,7 +24,7 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     ref?: React.Ref<any>;
 }
 
-export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps<any, any>>((props, ref) => {
+function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const [isActive, setIsActive] = React.useState<boolean>(false);
 
@@ -177,4 +177,6 @@ export const PickerToggler = React.forwardRef<HTMLDivElement, PickerTogglerProps
             </div>
         </div>
     );
-});
+};
+
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;
