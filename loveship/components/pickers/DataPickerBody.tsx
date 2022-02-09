@@ -56,7 +56,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 { this.props.rowsCount > 0
                     ? <VirtualList
                         { ...this.lens.toProps() }
-                        shadow='white'
                         role="listbox"
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
