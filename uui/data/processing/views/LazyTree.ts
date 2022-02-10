@@ -33,31 +33,90 @@ export interface LazyTreeItem<TItem, TId> {
 }
 
 export async function loadLazyTree<TItem, TId, TFilter>(
-    node: Readonly<LazyTreeList<TItem, TId>>,
+    inputNode: Readonly<LazyTree<TItem, TId>>,
     params: LazyTreeParams<TItem, TId, TFilter>,
     value: Readonly<DataSourceState>,
 ): Promise<LazyTree<TItem, TId>> {
     params = { fetchStrategy: 'sequential', ...params };
     const requiredRowsCount = value.topIndex + value.visibleCount;
-    const list = await loadNodeRec(node, null, params, value, requiredRowsCount, params.loadAll);
-
-    return {
-        ...list,
+    let isChanged = false;
+    let newTree: LazyTree<TItem, TId> = {
         byKey: {},
-        byParentKey: {}
+        byParentKey: {},
+        ...inputNode,
+    };
+    const apiWithCashing: LazyDataSourceApi<TItem, TId, TFilter> = (req, ctx) => params.api(req, ctx).then(res => {
+        res.items.forEach(item => {
+            const key = JSON.stringify(params.getId(item));
+            newTree.byKey[key] = item;
+
+            const parentId = params?.getParentId(item);
+            if (parentId) {
+                const parentKey = JSON.stringify(parentId);
+                newTree.byParentKey[parentKey] = newTree.byParentKey[parentKey] || [];
+                newTree.byParentKey[parentKey].push(item);
+            }
+        });
+
+        isChanged = true;
+        return res;
+    });
+
+    let newList = await loadNodeRec(inputNode, null, { ...params, api: apiWithCashing }, value, requiredRowsCount, params.loadAll);
+    newTree = await loadMissingAndParents(newTree, value.checked, { ...params, api: apiWithCashing });
+
+    if (isChanged) {
+        return {
+            ...newTree,
+            items: newList.items,
+            count: newList.count,
+            recursiveCount: newList.recursiveCount,
+        };
+    } else {
+        return inputNode;
+    }
+}
+
+async function loadMissingAndParents<TItem, TId, TFilter>(
+    inputNode: Readonly<LazyTree<TItem, TId>>,
+    selection: TId[],
+    params: LazyTreeParams<TItem, TId, TFilter>,
+): Promise<LazyTree<TItem, TId>> {
+    const newTree = { ...inputNode };
+    const missing = new Set<TId>();
+
+    const nodes = Object.keys(newTree.byKey);
+
+    selection?.forEach(id => {
+        !newTree.byKey[JSON.stringify(id)] && missing.add(id);
+    });
+
+    nodes?.forEach(i => {
+        const node = newTree.byKey[i];
+        const parentNodeId = params.getParentId(node);
+        const parentNodeKey = JSON.stringify(parentNodeId);
+
+        (parentNodeId && !newTree.byKey[parentNodeKey]) && missing.add(parentNodeId);
+    });
+
+    if (missing.size > 0) {
+        await params.api({ ids: Array.from(missing) });
+        return loadMissingAndParents(newTree, selection, params)
+    } else {
+        return inputNode;
     }
 }
 
 async function loadNodeRec<TItem, TId, TFilter>(
-    inputNode: Readonly<LazyTreeList<TItem, TId>>,
+    inputNode: Readonly<LazyTree<TItem, TId>>,
     parent: Readonly<LazyTreeItem<TItem, TId>>,
     params: LazyTreeParams<TItem, TId, TFilter>,
     value: Readonly<DataSourceState>,
     requiredRowsCount: number,
     parentLoadAll: boolean,
 ) {
-    let node: LazyTreeList<TItem, TId> = inputNode
-        ? { ...inputNode, items: [ ...inputNode.items ] }
+    let node: LazyTree<TItem, TId> = inputNode
+        ? { ...inputNode, items: [...inputNode.items] }
         : { items: [] };
 
     const flatten = value.search && params.flattenSearchResults;
