@@ -26,10 +26,11 @@
     --button-bg-color-halftone: var(--button-bg-halftone-color);
     --button-bg-color-halftone-hover: var(--accent-lightest-color);
     --button-bg-color-halftone-active: var(--accent-light-color);
+    --button-bg-color-disabled: var(--disabled-color);
     --button-border-color: var(--accent-color);
     --button-border-color-hover: var(--accent-dark-color);
     --button-border-color-active: var(--accent-darkest-color);
-    --button-bg-color-disabled: var(--disabled-color);
+    --button-border-color-disabled: var(--disabled-color);
     --button-caption-color: var(--contrast-color);
     --button-caption-halftone-color: var(--accent-color);
     --button-caption-color-disabled: var(--button-caption-disabled-color);
@@ -42,10 +43,11 @@
     --button-bg-color-halftone: var(--button-bg-halftone-color);
     --button-bg-color-halftone-hover: var(--negative-lightest-color);
     --button-bg-color-halftone-active: var(--negative-light-color);
+    --button-bg-color-disabled: var(--disabled-color);
     --button-border-color: var(--negative-color);
     --button-border-color-hover: var(--negative-dark-color);
     --button-border-color-active: var(--negative-darkest-color);
-    --button-bg-color-disabled: var(--disabled-color);
+    --button-border-color-disabled: var(--disabled-color);
     --button-caption-color: var(--contrast-color);
     --button-caption-halftone-color: var(--negative-color);
     --button-caption-color-disabled: var(--button-caption-disabled-color);
@@ -58,10 +60,11 @@
     --button-bg-color-halftone: var(--button-bg-halftone-color);
     --button-bg-color-halftone-hover: var(--secondary-lightest-color);
     --button-bg-color-halftone-active: var(--secondary-light-color);
+    --button-bg-color-disabled: var(--disabled-color);
     --button-border-color: var(--secondary-color);
     --button-border-color-hover: var(--secondary-dark-color);
     --button-border-color-active: var(--secondary-darkest-color);
-    --button-bg-color-disabled: var(--disabled-color);
+    --button-border-color-disabled: var(--disabled-color);
     --button-caption-color: var(--contrast-color);
     --button-caption-halftone-color: var(--secondary-color);
     --button-caption-color-disabled: var(--button-caption-disabled-color);
