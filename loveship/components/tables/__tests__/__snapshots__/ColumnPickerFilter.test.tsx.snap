@@ -11,8 +11,8 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root scrollContainer root"
+      cx="scrollContainer root"
       style={
         Object {
           "display": "flex",
@@ -24,7 +24,7 @@ Array [
       }
     >
       <div
-        className="root shadow-white"
+        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
@@ -440,7 +440,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white padding-12 spacing-6 -clickable container align-items-center"
+    className="root size-36 background-white padding-12 spacing-6 container align-items-center"
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
@@ -485,8 +485,8 @@ Array [
     }
   >
     <div
-      className="root scrollContainer"
-      cx="scrollContainer"
+      className="root scrollContainer root"
+      cx="scrollContainer root"
       style={
         Object {
           "display": "flex",
@@ -498,7 +498,7 @@ Array [
       }
     >
       <div
-        className="root shadow-white"
+        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
@@ -914,7 +914,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white padding-12 spacing-6 -clickable container align-items-center"
+    className="root size-36 background-white padding-12 spacing-6 container align-items-center"
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
