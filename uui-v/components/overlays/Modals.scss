@@ -20,7 +20,7 @@
 
 .modal {
     &:global(.uui-modal-window) {
-        background-color: var(--modals-background-color);
+        background-color: var(--modals-bg-color);
         overflow: auto;
         border-radius: var(--modals-border-radius);
         max-height: 80%;
