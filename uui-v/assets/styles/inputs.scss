@@ -1,11 +1,11 @@
 @mixin disabled-input() {
     &.mode-form {
-        @include input-colors(var(--input-background-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+        @include input-colors(var(--input-bg-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
         cursor: default;
         pointer-events: none;
 
         &:hover, &:active, &:focus {
-            @include input-colors(var(--input-background-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+            @include input-colors(var(--input-bg-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
             box-shadow: none;
         }
 
@@ -32,7 +32,7 @@
 
 @mixin readonly-input() {
     &.mode-form {
-        background-color: var(--input-background-readonly-color);
+        background-color: var(--input-bg-readonly-color);
         border-color: var(--input-border-readonly-color);
         pointer-events: none;
 

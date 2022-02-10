@@ -68,31 +68,31 @@
 
     //Colors
     :global(.uui-tooltip-body) {
-        background-color: var(--tooltip-background-color);
+        background-color: var(--tooltip-bg-color);
         color: var(--tooltip-text-color);
     }
 
     &:global(.uui-tooltip-container[data-placement^='right']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-background-color);
+            background: var(--tooltip-bg-color);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='left']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-background-color);
+            background: var(--tooltip-bg-color);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='top']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-background-color);
+            background: var(--tooltip-bg-color);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='bottom']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-background-color);
+            background: var(--tooltip-bg-color);
         }
     }
 }
