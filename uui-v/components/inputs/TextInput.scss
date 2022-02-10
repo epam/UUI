@@ -28,7 +28,7 @@
     }
 
     &.mode-form {
-        background-color: var(--text-input-background-color);
+        background-color: var(--text-input-bg-color);
         border-color: var(--text-input-border-color);
 
         :global(.-clickable) {
@@ -61,7 +61,7 @@
         }
 
         &:hover {
-            background-color: var(--text-input-background-color);
+            background-color: var(--text-input-bg-color);
             border-color: var(--text-input-border-color);
 
             :global(.-clickable) {
@@ -74,14 +74,14 @@
         }
 
         &:global(.uui-focus) {
-            background-color: var(--text-input-background-color);
+            background-color: var(--text-input-bg-color);
             border-color: var(--text-input-border-color-active);
         }
     }
 
     &:global(.uui-invalid) {
         &.mode-form, &.mode-cell {
-            background-color: var(--text-input-background-color);
+            background-color: var(--text-input-bg-color);
             border-color: var(--text-input-border-color-error);
         }
     }
@@ -92,7 +92,7 @@
         pointer-events: none;
 
         &.mode-form {
-            background-color: var(--text-input-background-color-readonly);
+            background-color: var(--text-input-bg-color-readonly);
             border-color: var(--text-input-border-color-readonly);
         }
 
@@ -116,7 +116,7 @@
         }
 
         &.mode-form {
-            background-color: var(--text-input-background-color-disabled);
+            background-color: var(--text-input-bg-color-disabled);
             border-color: var(--text-input-border-color-disabled);
         }
 
