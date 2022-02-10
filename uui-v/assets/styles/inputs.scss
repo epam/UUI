@@ -1,0 +1,70 @@
+@mixin disabled-input() {
+    &.mode-form {
+        @include input-colors(var(--input-background-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+        cursor: default;
+        pointer-events: none;
+
+        &:hover, &:active, &:focus {
+            @include input-colors(var(--input-background-disabled-color), var(--input-text-disabled-color), var(--input-border-disabled-color));
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: var(--input-placeholder-disabled-color);
+        }
+    }
+
+    &.mode-cell {
+        @include input-colors(transparent, var(--input-text-disabled-color), transparent);
+        cursor: default;
+        pointer-events: none;
+
+        &:hover, &:active, &:focus {
+            @include input-colors(transparent, var(--input-text-disabled-color), transparent);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: var(--input-placeholder-disabled-color);
+        }
+    }
+}
+
+@mixin readonly-input() {
+    &.mode-form {
+        background-color: var(--input-background-readonly-color);
+        border-color: var(--input-border-readonly-color);
+        pointer-events: none;
+
+        &:hover {
+            border-color: var(--input-border-readonly-color);
+        }
+    }
+
+    &.mode-cell {
+        background-color: transparent;
+        border-color: transparent;
+        pointer-events: none;
+
+        &:hover {
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+
+@mixin input-colors($bg, $fg, $brd) {
+    background-color: $bg;
+    color: $fg;
+    fill: $fg;
+    border-color: $brd;
+
+    // override more selective selector on input tag in browsers stylesheets
+    :global(.uui-input) {
+        color: $fg;
+
+        &::placeholder {
+            color: var(--input-placeholder-disabled-color);
+        }
+    }
+}

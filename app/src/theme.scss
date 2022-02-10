@@ -81,8 +81,8 @@
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
-    --scroll-bar-background-color: #{$gray40};
-    --scroll-bar-background-active-color: #{$gray60};
+    --tag-color: #{$gray30};
+    --tag-hover-color: #{$gray40};
 
     --text-brand-color: #{$gray90};
     --text-primary-color: #{$gray80};
@@ -114,13 +114,13 @@
     --input-hover-color: var(--primary-dark-color);
     --input-active-color: var(--primary-darkest-color);
 
-    --input-label-color: #{$gray80};
-    --input-label-disabled-color: #{$gray60};
+    --input-label-color: var(--text-primary-color);
+    --input-label-disabled-color: var(--text-secondary-color);
 
-    --input-placeholder-color: #{$gray60};
-    --input-placeholder-disabled-color: #{$gray50};
-    --input-text-color: #{$gray80};
-    --input-text-disabled-color: #{$gray50};
+    --input-placeholder-color: var(--text-secondary-color);
+    --input-placeholder-disabled-color: var(--text-disabled-color);
+    --input-text-color: var(--text-primary-color);
+    --input-text-disabled-color: var(--text-disabled-color);
 
     --input-icon-color: #{$gray50};
     --input-icon-disabled-color: #{$gray50};
@@ -221,8 +221,6 @@
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray50};
-    --scroll-bar-background-color: #{$gray30};
-    --scroll-bar-background-active-color: #{$gray20};
 
     --text-brand-color: #{$white};
     --text-primary-color: #{$gray5};
@@ -262,8 +260,8 @@
     --input-text-color: #{$gray5};
     --input-text-disabled-color: #{$gray30};
 
-    --input-icon-color: #{$gray50};
-    --input-icon-disabled-color: #{$gray50};
+    --input-icon-color: #{$gray30};
+    --input-icon-disabled-color: #{$gray30};
     --input-checkbox-icon-color: #{$white};
 
     --overlay-color: rgba(29, 30, 38, 0.8); // ?
@@ -272,7 +270,7 @@
 
     // ----------------------------
 
-    --border-radius: 0px;
+    --border-radius: 3px;
 
     :global(.button-color-primary) {
         --button-background-color-hover: var(--primary-light-color);
@@ -350,7 +348,11 @@
         --modals-border-radius: 0px;
         --modals-overlay-color: var(--overlay-color);
         --modals-shadow: 0px 3px 25px 0px #0000008F, 0px 1px 2px 0px #00000033;
-    ;
+    }
+
+    :global(.scroll-bars-vars) {
+        --scroll-bars-background-color: #{$gray30};
+        --scroll-bars-background-color-active: #{$gray20};
     }
 }
 
@@ -463,8 +465,6 @@
     --surface-dark-color: #{$black};
     --surface-light-color: #{$white};
     --divider-color: #{$transparent-50};
-    --scroll-bar-background-color: #{$black-40};
-    --scroll-bar-background-active-color: #{$black-40};
 
     --text-brand-color: #{$primary2-day};
     --text-primary-color: #{$black};

@@ -41,30 +41,31 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     border-style: solid;
 
     &.mode-form {
-        background-color: $white;
-        border-color: $gray40;
-        fill: $gray50;
+        background-color: var(--picker-toggler-background-color);
+        border-color: var(--picker-toggler-border-color);
+        fill: var(--picker-toggler-icon-color);
+        border-radius: var(--picker-toggler-border-radius);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
-                fill: $gray60;
+                fill: var(--picker-toggler-icon-color-clickable);
 
                 &:hover {
-                    fill: $gray70;
+                    fill: var(--picker-toggler-icon-color-clickable-hover);
                 }
             }
 
             &:global(.uui-disabled) {
-                fill: $gray50;
+                fill: var(--picker-toggler-icon-color-disabled);
             }
         }
 
         &:hover {
-            border-color: $gray60;
+            border-color: var(--picker-toggler-border-color-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: $blue;
+            border-color: var(--picker-toggler-border-color-active);
             outline: none;
         }
     }
@@ -72,7 +73,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
-        fill: $gray50;
+        fill: var(--picker-toggler-icon-color);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             cursor: pointer;
@@ -88,14 +89,14 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
         &:hover {
             background-color: white;
-            border-color: $gray40;
+            border-color: var(--picker-toggler-border-color);
 
             :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
-                    fill: $gray60;
+                    fill: var(--picker-toggler-icon-color-clickable);
 
                     &:hover {
-                        fill: $gray70;
+                        fill: var(--picker-toggler-icon-color-clickable-hover);
                     }
                 }
 
@@ -107,14 +108,14 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
         &:global(.uui-focus) {
             background-color: white;
-            border-color: $blue;
+            border-color: var(--picker-toggler-border-color-active);
             outline: none;
         }
     }
 
     &:global(.uui-invalid) {
         &.mode-form, &.mode-cell {
-            border-color: $red;
+            border-color: var(--picker-toggler-border-color-error);
         }
     }
 
@@ -128,13 +129,13 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     &:global(.uui-disabled) {
         @include disabled-input();
-        fill: $gray50;
+        fill: var(--picker-toggler-icon-color-disabled);
 
         :global(.uui-input) {
             cursor: default;
 
             &::placeholder {
-                color: $gray50;
+                color: var(--picker-toggler-text-color-disabled);
             }
         }
 
@@ -147,11 +148,11 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         padding-left: 6px;
         padding-right: 6px;
         margin-bottom: 2px;
-        font-family: $font-sans;
-        color: $gray80;
+        font-family: var(--font-regular);
+        color: var(--picker-toggler-text-color);
 
         &::placeholder {
-            color: $gray60;
+            color: var(--picker-toggler-placeholder-color);
         }
 
         &::-moz-placeholder {
@@ -161,7 +162,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     :global(.uui-caption) {
         @include overflow-ellipsis();
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         align-self: center;
         white-space: nowrap;
     }
@@ -169,10 +170,6 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     :global(.uui-button-box) {
         margin-right: 3px;
         margin-bottom: 2px;
-        background-color: $gray30;
-        color: $gray70;
-        fill: $gray70;
-        border-color: $gray30;
 
         &:last-of-type {
             margin-right: 0;
@@ -180,11 +177,11 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     }
 
     :global(.uui-placeholder) {
-        color: $gray80;
+        color: var(--picker-toggler-text-color);
     }
 
     :global(.uui-placeholder)::placeholder {
-        color: $gray80;
+        color: var(--picker-toggler-text-color);
     }
 
     :global(.uui-placeholder)::-moz-placeholder {
