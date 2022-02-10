@@ -1,4 +1,4 @@
-import { DataRowProps, DataColumnProps } from "@epam/uui";
+import { DataRowProps, DataColumnProps } from "@epam/uui-core";
 import React from "react";
 import { ControlSize } from "..";
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui-core';
 import * as css from './YearSelection.scss';
 import { Dayjs } from 'dayjs';
 

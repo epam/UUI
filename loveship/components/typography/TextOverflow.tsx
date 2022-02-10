@@ -1,5 +1,5 @@
 import React from "react";
-import { IHasCX, cx } from "@epam/uui";
+import { IHasCX, cx } from "@epam/uui-core";
 import styles from "./TextOverflow.scss";
 import { Tooltip } from '..';
 

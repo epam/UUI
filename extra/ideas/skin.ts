@@ -1,4 +1,4 @@
-import { IClickable, Icon } from '@epam/uui';
+import { IClickable, Icon } from '@epam/uui-core';
 import * as React from 'react';
 
 type UUIInterfaces = {

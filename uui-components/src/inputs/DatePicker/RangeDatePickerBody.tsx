@@ -5,7 +5,7 @@ import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets, Presets } from './CalendarPresets';
-import { arrayToMatrix, cx, IEditable } from '@epam/uui';
+import { arrayToMatrix, cx, IEditable } from '@epam/uui-core';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import * as css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);

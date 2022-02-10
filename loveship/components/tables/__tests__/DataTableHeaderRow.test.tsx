@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {demoColumns} from "./dataMocks";
-import {DataSourceState} from '@epam/uui';
+import {DataSourceState} from '@epam/uui-core';
 import {DataTableHeaderRow} from "../DataTableHeaderRow";
 
 jest.mock("react-dom", () => ({

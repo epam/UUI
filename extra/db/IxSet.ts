@@ -1,4 +1,4 @@
-import { SortDirection } from '@epam/uui';
+import { SortDirection } from '@epam/uui-core';
 
 export interface ColumnOrder {
     name: string;

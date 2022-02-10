@@ -1,6 +1,6 @@
 import React from 'react';
 import * as css from "./ErrorPage.scss";
-import { UuiErrorInfo, IHasCX } from '@epam/uui';
+import { UuiErrorInfo, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 
 

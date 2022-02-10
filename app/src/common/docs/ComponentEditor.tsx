@@ -2,12 +2,11 @@ import * as React from 'react';
 import * as css from './ComponentEditor.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
-import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui";
+import { ArrayDataSource, cx, IHasCX, INotification, IEditable } from "@epam/uui";
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { svc } from '../../services';
-import { IEditable } from '@epam/uui';
 import { IDemoApi } from '@epam/uui-docs';
 import { copyTextToClipboard } from '../../helpers';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';

@@ -13,7 +13,7 @@ import {
     useLazyDataSource,
     useUuiContext,
     UuiContexts
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { TApi } from "../helpers/apiDefinition";
 import { defaultData, emptyInfo } from '../demoData/defaultFormData';
 import { Country, demoData} from "@epam/uui-docs";
@@ -67,7 +67,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const citiesDataSource = useLazyDataSource({
-        api: svc.api.demo.cities
+        api: svc.api.demo.cities,
     }, []);
 
     // useEffect(() => {

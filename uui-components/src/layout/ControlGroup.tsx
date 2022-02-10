@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './ControlGroup.scss';
-import { IHasCX, IHasChildren, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, IHasChildren, cx, IHasRawProps } from '@epam/uui-core';
 
 export interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {}
 

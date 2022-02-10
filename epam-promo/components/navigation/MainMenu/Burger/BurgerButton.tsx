@@ -1,4 +1,4 @@
-import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui';
+import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as SvgTriangle } from '../../../../icons/triangle.svg';
 import * as css from './BurgerButton.scss';

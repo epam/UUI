@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
 import cx from 'classnames';
 import { Button, ControlGroup } from '../index';

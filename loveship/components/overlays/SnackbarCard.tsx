@@ -1,5 +1,5 @@
 import React from 'react';
-import { IHasChildren, INotification } from '@epam/uui';
+import { IHasChildren, INotification } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { ReactComponent as CrossIcon } from './../icons/snackbar/cross.svg';

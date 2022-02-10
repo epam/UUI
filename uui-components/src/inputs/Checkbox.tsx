@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { cx, uuiMarkers } from '@epam/uui';
+import { cx, uuiMarkers } from '@epam/uui-core';
 import * as css from './Checkbox.scss';
-import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
 export interface CheckboxProps extends CheckboxCoreProps {

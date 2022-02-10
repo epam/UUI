@@ -1,10 +1,9 @@
 import React, { useCallback, useMemo } from "react";
-import css from "./Presets.scss";
+import { Button, DataTableState } from "@epam/uui";
 import { FlexRow } from "@epam/promo";
-import { Button } from "@epam/uui-v";
-import { IPresetsApi, ITablePreset } from "../types";
 import { Preset } from "./Preset";
-import { DataTableState } from "@epam/uui";
+import { IPresetsApi, ITablePreset } from "../types";
+import css from "./Presets.scss";
 
 interface IPresetsProps extends IPresetsApi {
     presets: ITablePreset[];

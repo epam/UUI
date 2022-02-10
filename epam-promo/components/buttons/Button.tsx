@@ -1,5 +1,5 @@
 import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { ControlSize, FillStyle } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './Button.scss';

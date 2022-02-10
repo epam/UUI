@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 import Measure from 'react-measure';
 import * as css from './MainMenu.scss';
-import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx } from '@epam/uui';
+import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx } from '@epam/uui-core';
 import { ButtonProps } from '../../buttons';
 import { BurgerProps, MainMenuLogo } from './index';
 import orderBy from 'lodash.orderby';

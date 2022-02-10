@@ -1,6 +1,6 @@
 import React from 'react';
 import sortBy from 'lodash.sortby';
-import { DataColumnProps, DndActor } from '@epam/uui';
+import { DataColumnProps, DndActor } from '@epam/uui-core';
 import { ColumnsConfigurationModalBase, DragHandle } from '@epam/uui-components';
 import {
     ModalBlocker, ModalWindow, ModalFooter, FlexSpacer, Button, Panel, Checkbox, LinkButton, ModalHeader,

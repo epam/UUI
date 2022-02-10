@@ -1,6 +1,6 @@
 import * as css from './CalendarPresets.scss';
 import { CalendarPresets as uuiCalendarPresets, CalendarPresetsProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 
 export function applyCalendarPresetsMods() {
     return [

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uuiMod, cx } from '@epam/uui';
+import { uuiMod, cx } from '@epam/uui-core';
 import { SliderBase, uuiSlider } from './SliderBase';
 import * as css from './SliderBase.scss';
 import { SliderHandle } from './SliderHandle';

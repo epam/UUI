@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens,
     getColumnsConfig, DropParams, getOrderBetween,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
 const uuiDataTableHeaderRow = {

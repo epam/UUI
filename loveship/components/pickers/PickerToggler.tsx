@@ -2,7 +2,7 @@ import React from 'react';
 import * as types from '../types';
 import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
-import { DataRowProps } from '@epam/uui';
+import { DataRowProps } from '@epam/uui-core';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../icons/icons';
 import { Tag, TagSize } from '../widgets';

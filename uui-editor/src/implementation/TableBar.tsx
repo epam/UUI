@@ -12,7 +12,7 @@ import { ReactComponent as UnmergeCellsIcon } from '../icons/table-un-merge.svg'
 import { ReactComponent as RemoveTable } from '../icons/table-table_remove-24.svg';
 import { Editor } from 'slate-react';
 import { Popper } from 'react-popper';
-import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
+import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui-core";
 import cx from 'classnames';
 import { ToolbarButton } from './ToolbarButton';
 

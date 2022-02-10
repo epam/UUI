@@ -1,4 +1,4 @@
-import {FileUploadResponse, TimePickerValue} from "@epam/uui";
+import {FileUploadResponse, TimePickerValue} from "@epam/uui-core";
 
 export interface Person {
     __typename: "Person";

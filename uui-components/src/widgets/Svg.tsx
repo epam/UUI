@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IHasCX } from '@epam/uui';
+import { Icon, IHasCX } from '@epam/uui-core';
 
 interface SvgProps extends IHasCX {
     svg?: Icon;

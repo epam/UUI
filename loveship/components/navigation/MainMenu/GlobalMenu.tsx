@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import * as css from './GlobalMenu.scss';
 import { ReactComponent as GlobalMenuIcon } from '../../icons/global_menu.svg';
-import { IAdaptiveItem, IHasCX } from '@epam/uui';
+import { IAdaptiveItem, IHasCX } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 
 export interface GlobalMenuProps extends IAdaptiveItem, IHasCX {

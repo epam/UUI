@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lens, DataSourceState, isMobile, cx } from '@epam/uui';
+import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';

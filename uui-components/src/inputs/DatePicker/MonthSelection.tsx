@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui-core';
 import * as css from './MonthSelection.scss';
 import localeData from 'dayjs/plugin/localeData';
 dayjs.extend(localeData);

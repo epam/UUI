@@ -3,7 +3,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../../docs/index';
 import { AvatarStackProps } from '@epam/uui-components';
 import { Tooltip, AvatarStack } from "../../";
-import { uuiMarkers } from "@epam/uui";
+import { uuiMarkers } from "@epam/uui-core";
 
 const renderItem = (url: string) => {
     const handleClick = () => {

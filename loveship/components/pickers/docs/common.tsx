@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayDataSource, LazyDataSource, AsyncDataSource } from '@epam/uui';
+import { ArrayDataSource, LazyDataSource, AsyncDataSource } from '@epam/uui-core';
 import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
 import { PickerBaseOptions } from '@epam/uui-components';
 import { Text } from '../../typography';

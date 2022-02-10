@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uuiElement, ModalWindowProps, cx } from '@epam/uui';
+import { uuiElement, ModalWindowProps, cx } from '@epam/uui-core';
 import { VPanel } from '../layout';
 
 export class ModalWindow extends React.Component<ModalWindowProps, any> {

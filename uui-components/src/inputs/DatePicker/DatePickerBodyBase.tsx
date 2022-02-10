@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dayjs } from 'dayjs';
-import { IHasCX, Icon, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, Icon, cx, IHasRawProps } from '@epam/uui-core';
 import { Presets } from './CalendarPresets';
 
 export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';

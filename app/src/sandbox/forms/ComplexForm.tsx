@@ -1,15 +1,12 @@
 import * as React from 'react';
-import * as css from './ComplexForm.scss';
+import { INotification, Metadata, RenderFormProps } from '@epam/uui';
+import { Spinner } from '@epam/uui-components';
+import { PersonDetails } from '@epam/uui-docs';
 import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
 import { svc } from '../../services';
-import { INotification } from '@epam/uui';
-import { Metadata } from '@epam/uui';
-
-import { RenderFormProps } from '@epam/uui';
-import { PersonDetails } from '@epam/uui-docs';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
-import { Spinner } from '@epam/uui-components';
+import * as css from './ComplexForm.scss';
 
 interface ComplexFormState {
     person: PersonDetails;

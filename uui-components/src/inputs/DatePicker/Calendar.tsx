@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import { Day } from "./Day";
 import * as css from './Calendar.scss';

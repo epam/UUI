@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './Anchor.scss';
-import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui';
+import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
 import {
     IHasCX,
@@ -10,7 +10,7 @@ import {
     IDisableable,
     IClickable,
     cx,
-} from '@epam/uui';
+} from '@epam/uui-core';
 
 export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement> {}
 

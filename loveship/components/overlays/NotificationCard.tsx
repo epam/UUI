@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
