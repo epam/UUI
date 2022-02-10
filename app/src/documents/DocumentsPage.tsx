@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { UUI4, UUI3 } from '../common';
-import { items } from './structure';
+import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
 
@@ -41,7 +41,7 @@ export const DocumentsPage = () => {
     return (
         <Page renderHeader={ () => <AppHeader /> } >
             <FlexRow alignItems='stretch'>
-                <Sidebar
+                <Sidebar<DocItem>
                     value={ getQuery('id') }
                     onValueChange={ onChange }
                     items={ items }

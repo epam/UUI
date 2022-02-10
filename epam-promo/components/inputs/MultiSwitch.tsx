@@ -18,7 +18,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
 
     render() {
         return (
-            <ControlGroup rawProps={{ ...this.props.rawProps, role: 'tablist' }}>
+            <ControlGroup rawProps={ { ...this.props.rawProps, role: 'tablist' } }>
                 {
                     this.props.items.map((item, index) =>
                         <Button
@@ -29,7 +29,7 @@ export class MultiSwitch<TValue> extends React.Component<MultiSwitchProps<TValue
                             fill={ this.props.value === item.id ? 'solid' : 'white' }
                             color={ item.color || 'blue' }
                             size={ this.props.size }
-                            rawProps={{ 'aria-current': this.props.value === item.id, role: 'tab' }}
+                            rawProps={ { 'aria-current': this.props.value === item.id, role: 'tab' } }
                         />,
                     )
                 }

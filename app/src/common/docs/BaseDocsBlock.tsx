@@ -10,24 +10,23 @@ import * as css from './BaseDocsBlock.scss';
 
 export type UUI3 = 'UUI3_loveship';
 export type UUI4 = 'UUI4_promo';
+export type UUIV = 'UUI-V';
+export type Skin = UUI3 | UUI4 | UUIV;
 
 export const UUI3: UUI3 = 'UUI3_loveship';
 export const UUI4: UUI4 = 'UUI4_promo';
+export const UUIV: UUIV = 'UUI-V';
 
-const items = [
-    {
-        caption: 'UUI3 [Loveship]',
-        id: UUI3,
-    },
-    {
-        caption: 'UUI4 [Promo]',
-        id: UUI4,
-    },
+const items: { id: Skin, caption: string }[] = [
+    { caption: 'UUI3 [Loveship]', id: UUI3 },
+    { caption: 'UUI4 [Promo]', id: UUI4 },
+    { caption: 'UUI-V', id: UUIV },
 ];
 
 interface DocPath {
     [UUI3]?: string;
     [UUI4]?: string;
+    [UUIV]?: string;
 }
 
 interface BaseDocsBlockState {
@@ -109,12 +108,17 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderMultiSwitch() {
-        return <MultiSwitch size='36' items={ items } value={ getQuery('skin') || UUI4 } onValueChange={ (newValue: UUI3 | UUI4) => this.handleChangeSkin(newValue) } />;
+        return <MultiSwitch<Skin>
+            size='36'
+            items={ items.filter(i => !window.location.host.includes('localhost') ? i.id !== UUIV : true) }
+            value={ getQuery('skin') || UUI4 }
+            onValueChange={ (newValue: Skin) => this.handleChangeSkin(newValue) }
+        />;
     }
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={{ role: 'tablist' }} background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
+            <FlexRow rawProps={ { role: 'tablist' } } background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 <TabButton
                     size='60'
                     caption='Documentation'
@@ -145,12 +149,12 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                 },
             });
         }
-        if (!this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4]) {
+        if (!this.getPropsDocPath()[getQuery('skin') as Skin]) {
             return this.renderNotSupportPropExplorer();
         }
         return <ComponentEditor
-            key={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
-            propsDocPath={ this.getPropsDocPath()[getQuery('skin') as UUI3 | UUI4] }
+            key={ this.getPropsDocPath()[getQuery('skin') as Skin] }
+            propsDocPath={ this.getPropsDocPath()[getQuery('skin') as Skin] }
             title={ this.title }
         />;
     }
@@ -192,7 +196,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         );
     }
 
-    handleChangeSkin(skin: UUI3 | UUI4) {
+    handleChangeSkin(skin: Skin) {
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {

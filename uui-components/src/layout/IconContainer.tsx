@@ -24,12 +24,12 @@ export const IconContainer = (props: ControlIconProps) => {
                 props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 isClickable && uuiMarkers.clickable,
                 props.cx,
-                props.rawProps?.className
+                props.rawProps?.className,
             ) }
             onClick={ isClickable ? props.onClick : undefined }
             tabIndex={ isClickable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
-            {...props.rawProps}
+            { ...props.rawProps }
         >
             <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) }/>
         </div>

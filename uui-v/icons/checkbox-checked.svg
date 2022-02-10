@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20" height="20" version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0,-294.65)" display="none">
+  <path d="m6 297.65v1h-2v2h-1v8h1v2h2v1h8v-1h2v-2h1v-8h-1v-2h-2v-1z" fill-opacity=".27451" opacity=".544"/>
+  <path d="m9.91 297.99a6.6574 6.6574 89.506 0 0-6.568 6.7468 6.6574 6.6574 89.506 0 0 6.7468 6.568 6.6574 6.6574 89.506 0 0 6.568-6.7468 6.6574 6.6574 89.506 0 0-6.7468-6.568zm0.089396 0.83218a5.8252 5.8252 0 0 1 5.8252 5.8252 5.8252 5.8252 0 0 1-5.8252 5.8252 5.8252 5.8252 0 0 1-5.8252-5.8252 5.8252 5.8252 0 0 1 5.8252-5.8252z"/>
+  <rect x="-4.9792" y="289.67" width="29.958" height="29.958" fill="none" stroke="#000000" stroke-width=".041609"/>
+  <ellipse cx="10" cy="304.65" rx="14.979" ry="14.979" fill="none" stroke="#000000" stroke-width=".041609"/>
+ </g>
+ <g transform="translate(0,-4)">
+  <g transform="matrix(1.1539 0 0 1.15 .68686 4.4985)">
+   <g transform="translate(0,-298.65)" display="none">
+    <rect x="-3.9834" y="294.67" width="23.967" height="23.967" fill="none" stroke="#000000" stroke-width=".033287"/>
+    <circle cx="8" cy="306.65" r="11.983" fill="none" stroke="#000000" stroke-width=".033287"/>
+    <path d="m5 300.65v1h-1v1h-1v1h-1v6h1v1h1v1h1v1h6v-1h1v-1h1v-1h1v-6h-1v-1h-1v-1h-1v-1z" fill="#000000" fill-opacity=".14902"/>
+   </g>
+   <g>
+    <path d="m7.3054 9.0514 4.8667-5.5042a1.6253 1.6667 0 0 1 2.4074 2.2399l-5.8938 6.6664a1.6251 1.6666 0 0 1-2.221 0.18l-3.857-3.1721a1.6254 1.6668 0 1 1 2.0347-2.5999z" fill-rule="evenodd" stroke-width="1.0972"/>
+   </g>
+  </g>
+ </g>
+</svg>

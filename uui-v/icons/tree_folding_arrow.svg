@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18" height="18" version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Rectangle</title>
+ <desc>Created with Sketch.</desc>
+ <defs>
+  <path id="path-1" d="m6.056 6.9981c-0.276 0.016953-0.5577-0.080023-0.7686-0.29093l-4.9945-4.9945c-0.39043-0.39043-0.39043-1.0234 0-1.4139l0.005946-0.005946c0.39043-0.39043 1.0234-0.39043 1.4139 0l4.2874 4.2874 4.2874-4.2874c0.39043-0.39043 1.0234-0.39043 1.4198 0.005946 0.39043 0.39043 0.39043 1.0234 0 1.4139l-4.9945 4.9945c-0.18227 0.18227-0.41741 0.27945-0.65667 0.29093z"/>
+ </defs>
+ <g id="Symbols" transform="matrix(.8512 0 0 .8512 3.8928 6.0208)" fill-rule="evenodd">
+  <g id="ic/Arrow-Down">
+   <g id="Rectangle">
+    <mask fill="white">
+     <use width="100%" height="100%" xlink:href="#path-1"/>
+    </mask>
+    <use id="Mask" width="100%" height="100%" xlink:href="#path-1"/>
+   </g>
+  </g>
+ </g>
+</svg>
