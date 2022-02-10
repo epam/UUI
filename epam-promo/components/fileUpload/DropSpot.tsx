@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, IHasRawProps } from '@epam/uui';
+import { cx, IHasRawProps } from '@epam/uui-core';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import * as css from './DropSpot.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '../';

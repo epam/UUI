@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './Button.scss';
-import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx } from '@epam/uui';
+import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
 

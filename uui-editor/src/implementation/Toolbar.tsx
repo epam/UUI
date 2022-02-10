@@ -5,7 +5,7 @@ import * as ReactDOM from "react-dom";
 import {Editor, Plugins} from 'slate-react';
 import { Popper } from 'react-popper';
 import flatten from 'lodash.flatten';
-import { LayoutContext, LayoutLayer, UuiContext } from "@epam/uui";
+import { LayoutContext, LayoutLayer, UuiContext } from "@epam/uui-core";
 import { isTextSelected } from '../helpers';
 
 interface ToolbarProps {

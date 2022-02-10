@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './DropdownContainer.scss';
-import { uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers } from '@epam/uui';
+import { uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 
 export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {

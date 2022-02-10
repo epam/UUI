@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@epam/assets": "4.5.3",
-    "@epam/uui": "4.5.3",
+    "@epam/uui-core": "4.5.3",
     "@epam/uui-components": "4.5.3",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",

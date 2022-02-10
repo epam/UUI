@@ -17,7 +17,7 @@ import {
     IAnalyticableOnChange,
     UuiContexts,
     UuiContext,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
 export interface ICanBeFormatted<T> {

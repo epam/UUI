@@ -1,7 +1,7 @@
 import { Component, ReactNode, KeyboardEvent } from 'react';
 import { findDOMNode } from 'react-dom';
 import isEqual from 'lodash.isequal';
-import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui';
+import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
 
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<HTMLDivElement> {
     onKeyDown?(e: KeyboardEvent<HTMLElement>): void;

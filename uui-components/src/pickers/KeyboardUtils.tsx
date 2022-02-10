@@ -1,4 +1,4 @@
-import {DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui";
+import {DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui-core";
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;

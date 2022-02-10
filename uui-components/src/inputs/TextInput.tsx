@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext, cx } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, UuiContexts, UuiContext, cx } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './TextInput.scss';
 

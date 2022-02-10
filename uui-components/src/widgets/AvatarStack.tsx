@@ -2,7 +2,7 @@ import React from 'react';
 import * as css from './AvatarStack.scss';
 import cx from 'classnames';
 import { Avatar } from "./Avatar";
-import { IHasCX } from "@epam/uui";
+import { IHasCX } from "@epam/uui-core";
 import { FlexRow } from '../';
 
 export interface AvatarStackProps extends IHasCX {

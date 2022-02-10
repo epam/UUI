@@ -1,6 +1,6 @@
 import React from 'react';
 import { PickerBase, PickerBaseProps, PickerBaseState } from '@epam/uui-components';
-import { DataRowProps, isMobile } from '@epam/uui';
+import { DataRowProps, isMobile } from '@epam/uui-core';
 import { DataPickerBody, DataPickerRow, DataPickerFooter } from '../pickers';
 import { Text, TextPlaceholder } from '../typography';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IModal, Lens } from '@epam/uui';
+import { DataSourceState, IEditable, IHasCaption, IModal, Lens } from '@epam/uui-core';
 import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState, PickerFooterProps } from './index';
 
 export interface PickerModalOptions<TItem, TId> {

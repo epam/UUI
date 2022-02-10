@@ -7,7 +7,7 @@ import * as styles from './TimelineScale.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
-import { Icon } from '@epam/uui';
+import { Icon } from '@epam/uui-core';
 import { Svg } from '@epam/uui-components';
 
 export interface TimelineScaleProps extends BaseTimelineCanvasComponentProps {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import * as css from './ControlWrapper.scss';
 import * as types from '../types';
-import { IHasCX } from '@epam/uui';
+import { IHasCX } from '@epam/uui-core';
 
 interface ControlWrapperProps extends IHasCX {
     size: types.ControlSize;

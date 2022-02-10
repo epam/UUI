@@ -1,4 +1,4 @@
-import { DataRowProps, DataColumnProps, IHasCX } from '@epam/uui';
+import { DataRowProps, DataColumnProps, IHasCX } from '@epam/uui-core';
 import { ControlSize } from '..';
 
 export interface DataTableCellProps<TItem, TId> extends IHasCX {

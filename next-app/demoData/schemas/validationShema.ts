@@ -1,4 +1,4 @@
-import { Metadata } from '@epam/uui';
+import { Metadata } from '@epam/uui-core';
 import { PersonDetails } from '../models/types';
 
 const fullNameRegExp = /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/;

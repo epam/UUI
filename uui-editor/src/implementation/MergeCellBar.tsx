@@ -4,7 +4,7 @@ import * as css from './Toolbar.scss';
 import * as ReactDOM from "react-dom";
 import { Editor, findDOMNode } from 'slate-react';
 import { Popper } from 'react-popper';
-import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
+import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui-core";
 import * as PropTypes from "prop-types";
 import { ReactComponent as UnmergeIcon } from "../icons/table-un-merge.svg";
 import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';

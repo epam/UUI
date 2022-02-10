@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './Carousel.scss';
 import { FlexRow, VPanel, FlexCell, IconContainer } from "../layout";
 import range from 'lodash.range';
-import { IHasCX, Icon, uuiMod, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, Icon, uuiMod, cx, IHasRawProps } from '@epam/uui-core';
 
 export interface CarouselProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     items: Record<string, any>[];

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './Burger.scss';
-import { IHasCX, Icon } from '@epam/uui';
+import { IHasCX, Icon } from '@epam/uui-core';
 import { IconContainer, Portal } from '../../../index';
 import cx from 'classnames';
 

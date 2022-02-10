@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Icon, IHasChildren, IHasCX, IHasRawProps } from '@epam/uui';
+import { Icon, IHasChildren, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { EpamPrimaryColor } from '../types';
 import { IconButton, LinkButton } from '../buttons';

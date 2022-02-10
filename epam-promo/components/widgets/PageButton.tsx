@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { ButtonColor } from '../buttons';
 import * as types from '../types';
 import * as buttonCss from '../buttons/Button.scss';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui';
+import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
 import * as types from '../types';
 import { IHasEditMode, EditMode } from '../types';

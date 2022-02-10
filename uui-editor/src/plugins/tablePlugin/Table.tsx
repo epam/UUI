@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './Table.scss';
 import * as ReactDOM from "react-dom";
 import { Broadcast } from 'react-broadcast';
-import { mouseCoords } from '@epam/uui';
+import { mouseCoords } from '@epam/uui-core';
 import { RenderBlockProps } from 'slate-react';
 import { MergeCellBar } from '../../implementation/MergeCellBar';
 import { TableBar } from '../../implementation/TableBar';

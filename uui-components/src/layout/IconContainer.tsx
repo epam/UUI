@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './IconContainer.scss';
-import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps } from '@epam/uui';
+import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps } from '@epam/uui-core';
 import { Svg } from '../widgets';
 
 export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTMLDivElement> {

@@ -15,7 +15,7 @@ import {
     UuiContexts,
     uuiMarkers,
     UuiContext, isClickableChildClicked,
-} from "@epam/uui";
+} from "@epam/uui-core";
 import { IconContainer } from '../layout';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {

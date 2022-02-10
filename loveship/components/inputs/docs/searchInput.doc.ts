@@ -1,7 +1,7 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
 import { SearchInput, TextInputMods } from '../TextInput';
-import { IEditableDebouncerOptions } from '@epam/uui';
+import { IEditableDebouncerOptions } from '@epam/uui-core';
 import {
     iEditable, sizeDoc, textSettingsDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
     FormContext, GridContext, ResizableContext, DefaultContext,

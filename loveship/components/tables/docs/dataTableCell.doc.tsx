@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTableCell } from '../DataTableCell';
-import { DataTableCellProps } from '@epam/uui';
+import { DataTableCellProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
 import { Text, DataTableCellMods } from '../../../components';

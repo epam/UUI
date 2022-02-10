@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
-import { DataTableHeaderRowProps, withMods } from '@epam/uui';
+import { DataTableHeaderRowProps, withMods } from '@epam/uui-core';
 import { IconButton, DataTableHeaderCell, DataTableHeaderRowMods } from '../';
 import * as css from './DataTableHeaderRow.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/action-settings-18.svg';

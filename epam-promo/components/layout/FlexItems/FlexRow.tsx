@@ -1,6 +1,6 @@
 import * as types from '../../types';
 import * as css from './FlexRow.scss';
-import { FlexRowProps, withMods } from '@epam/uui';
+import { FlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 
 export interface RowMods extends types.RowSizeMod {

@@ -7,7 +7,7 @@ import {
     UuiContexts,
     cx,
     UuiContext,
-} from '@epam/uui';
+} from '@epam/uui-core';
 
 export class VPanel extends React.Component<VPanelProps> {
     static contextType = UuiContext;

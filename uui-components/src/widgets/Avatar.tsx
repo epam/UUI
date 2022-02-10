@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './Avatar.scss';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 
 export interface AvatarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     alt?: string;

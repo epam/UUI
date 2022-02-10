@@ -1,5 +1,5 @@
 import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { IHasChildren } from '@epam/uui';
+import { IHasChildren } from '@epam/uui-core';
 
 export interface IScrollSpyProps {
     elements?: Readonly<string[]>;

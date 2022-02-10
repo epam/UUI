@@ -1,5 +1,3 @@
-import {LazyDataSourceApiResponse} from "@epam/uui";
-
 export const HEADERS = {
     'content-type': 'application/json;charset=UTF-8',
     origin: '*',

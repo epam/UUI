@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './DataTableHeaderCell.scss';
-import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers, uuiDataTableHeaderCell } from '@epam/uui';
+import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers, uuiDataTableHeaderCell } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { LinkButton } from '../buttons';
 import { Checkbox } from '../inputs';
