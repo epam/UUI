@@ -78,7 +78,7 @@ interface LoadResult<TItem, TId> {
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: LazyTree<TItem, TId> & { value?: DataSourceState<TFilter, TId> };
+    private tree: LazyTree<TItem, TId>;
     private rows: DataRowProps<TItem, TId>[] = [];
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
@@ -100,6 +100,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.update(editable.value, props);
     }
 
+    protected getParentId = (item: TItem) => {
+        try {
+            return this.props.getParentId ? this.props.getParentId(item) : (item as any).parentId;
+        } catch (err) {
+            throw new Error('Attempt to get parentId field for item, if you have it in another field, provide your own getParentId callback');
+        }
+    }
+
     public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
         this.isUpdatePending = true;
 
@@ -112,6 +120,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
         this.props = props;
+    }
+
+    private resetTreeItems(tree: LazyTree<TItem, TId>): LazyTree<TItem, TId> {
+        return {
+            items: [],
+            byKey: tree?.byKey || {},
+            byParentKey: tree?.byParentKey || {} ,
+        };
     }
 
     private updateRowsAndLoadMissing(): void {
@@ -135,7 +151,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
-            this.tree = { items: [], value: this.value };
+            this.tree = this.resetTreeItems(this.tree);
             completeReset = true;
         }
 
@@ -229,6 +245,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 filter: this.props.filter,
                 getChildCount: this.props.getChildCount,
                 getId: this.props.getId,
+                getParentId: this.getParentId,
                 isFolded: (node) => this.isFolded(node),
                 ...options,
             },
@@ -420,23 +437,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.updateChecked(value, true);
     }
 
-    findNodeInTree = (tree: LazyTree<TItem, TId>, key: string): { node: LazyTreeItem<TItem, TId>; parentIds: TId[]; } => {
-        for (let n = 0; n < tree.items.length; n++) {
-            let node = tree.items[n];
-            if (this.idToKey(node.id) == key) {
-                return { node, parentIds: [] };
-            }
-
-            if (node.children) {
-                const found = this.findNodeInTree(node.children, key);
-                if (found != null) {
-                    found.parentIds.unshift(node.id);
-                    return found;
-                }
-            }
-        }
-    }
-
     private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
         let checked = this.value && this.value.checked || [];
 
@@ -447,21 +447,25 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             let result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
             let tree = result.tree;
 
-            const appendChildIds = (list: LazyTreeList<TItem, TId>) => {
-                if (!list) {
-                    return;
-                }
+            const appendChildIds = (key: string) => {
+                const children = tree.byParentKey[key];
 
-                for (let n = 0; n < list.items.length; n++) {
-                    let node = list.items[n];
-                    childKeys.push(this.idToKey(node.id));
-                    node.children && appendChildIds(node.children);
+                if (children?.length > 0) {
+                    children.forEach(item => {
+                        const id = this.props.getId(item);
+                        const key = this.idToKey(id);
+
+                        childKeys.push(key);
+                        appendChildIds(key);
+                    });
                 }
             };
 
-            const nodeInfo = isRoot ? null : this.findNodeInTree(tree, key);
-            appendChildIds(isRoot ? tree : nodeInfo.node.children);
+            const addAllIds = () => {
+                Object.keys(tree.byKey).forEach(key => childKeys.push(key));
+            };
 
+            isRoot ? addAllIds() : appendChildIds(key);
 
             if (isChecked) {
                 !isRoot && checkedKeysSet.add(key);
@@ -486,18 +490,34 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 });
             }
 
+            const getParentIds = (id: TId) => {
+                const parentIds: TId[] = [];
+
+                const getParent = (id: TId) => {
+                    const node = tree.byKey[this.idToKey(id)];
+                    const parentId = this.getParentId(node);
+                    if (parentId) {
+                        parentIds.push(parentId);
+                        getParent(parentId);
+                    }
+                };
+
+                getParent(id);
+                return parentIds;
+            };
+
             // check/uncheck parents if all/no siblings checked
-            if (this.props.cascadeSelection && nodeInfo?.parentIds) {
-                nodeInfo?.parentIds.reverse().forEach(parentId => {
-                    const parentNode = this.findNodeInTree(tree, this.idToKey(parentId));
-                    const parentNodeKey = this.idToKey(parentId);
-                    const isAllChildrenChecked = parentNode.node.children.items.every(i => checkedKeysSet.has(this.idToKey(i.id)));
+            if (!isRoot) {
+                getParentIds(id).forEach(parentId => {
+                    const parentKey = this.idToKey(parentId);
+                    const children = tree.byParentKey[parentKey];
+                    const isAllChildrenChecked = children.every(i => checkedKeysSet.has(this.idToKey(this.props.getId(i))));
 
                     if (isAllChildrenChecked) {
-                        checkedKeysSet.add(parentNodeKey);
+                        checkedKeysSet.add(parentKey);
                     } else {
                         if (this.idToKey(parentId) !== key) {
-                            checkedKeysSet.delete(parentNodeKey);
+                            checkedKeysSet.delete(parentKey);
                         }
                     }
                 });
