@@ -33,7 +33,7 @@ const tShirtSizes = [
 
 function removeLensItemHandler<T>(lens: ILens<T[]>, index: number) {
     return lens.set(lens.get().filter((_, i: number) => index !== i));
-};
+}
 
 function addLensItemHandler<T>(lens: ILens<T[]>, item: T) {
     return lens.set(lens.get().concat(item));
@@ -70,10 +70,6 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
         api: svc.api.demo.cities,
     }, []);
 
-    // useEffect(() => {
-    //     lens.set({ country: 'DZ' })
-    // }, [])
-
     return (
         <>
             <RichTextView><h3>Location</h3></RichTextView>
@@ -83,7 +79,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                     <PickerInput
                         { ...lens.prop('country').toProps() }
                         dataSource={ countriesDS }
-                        value={lens.prop('country').toProps().value }  // || 'DZ' }
+                        value={ lens.prop('country').toProps().value }  // || 'DZ' }
                         selectionMode='single'
                         valueType='id'
                         inputId="country"
@@ -289,38 +285,38 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top'>
                         <FlexCell minWidth={ 186 }>
-                            <LabeledInput htmlFor={`language-${index}`} label='Language' { ...lensItem.prop('language').toProps() } >
+                            <LabeledInput htmlFor={ `language-${index}` } label='Language' { ...lensItem.prop('language').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('language').toProps() }
                                     dataSource={ languageDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`language-${index}`}
+                                    inputId={ `language-${index}` }
                                     placeholder='Select Language'
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`speakingLevel-${index}`} label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
+                            <LabeledInput htmlFor={ `speakingLevel-${index}` } label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('speakingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`speakingLevel-${index}`}
+                                    inputId={ `speakingLevel-${index}` }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell minWidth={ 120 }>
-                            <LabeledInput htmlFor={`writingLevel-${index}`} label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
+                            <LabeledInput htmlFor={ `writingLevel-${index}` } label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('writingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`writingLevel-${index}`}
+                                    inputId={ `writingLevel-${index}` }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
@@ -396,13 +392,13 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top' >
                         <FlexCell minWidth={ 324 }>
-                            <LabeledInput htmlFor={`travelVisasCountry-${index}`} label='Country' { ...visasLens.index(index).prop('country').toProps() } >
+                            <LabeledInput htmlFor={ `travelVisasCountry-${index}` } label='Country' { ...visasLens.index(index).prop('country').toProps() } >
                                 <PickerInput
                                     { ...visasLens.index(index).prop('country').toProps() }
                                     dataSource={ countriesDS }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={`travelVisasCountry-${index}`}
+                                    inputId={ `travelVisasCountry-${index}` }
                                     placeholder='Select Country'
                                 />
                             </LabeledInput>
@@ -429,13 +425,13 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                             onUploadFiles={ files => uploadFile(files, scansLens) }
                         />
                         <div className={ scansLens.get().length ? css.attachmentContainer : '' } >
-                            {scansLens.get().map((i, index) => (
+                            { scansLens.get().map((i, index) => (
                                 <FileCard
                                     key={ index }
                                     file={ i }
                                     onClick={ () => removeLensItemHandler<Attachment>(scansLens, index) }
                                 />
-                            ))}
+                            )) }
                         </div>
                     </LabeledInput>
                 </FlexCell>
@@ -503,7 +499,7 @@ const DemoForm = () => {
                 </FlexCell>
             </Panel>
         </div>
-);
-}
+    );
+};
 
 export default DemoForm;
