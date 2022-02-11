@@ -56,7 +56,7 @@ export abstract class DataTableHeaderCell<TItem, TId> extends Component<DataTabl
 
     onResize = (e: MouseEvent) => {
         if (this.state.isResizing) {
-            const { columnsConfig } = this.props.value;
+            const columnsConfig = this.props.value.columnsConfig || {};
             const cellRect = this.cellRef.current.getBoundingClientRect();
             const newWidth = e.clientX - cellRect.left;
 

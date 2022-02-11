@@ -87,9 +87,8 @@ export const PersonsTable = (props: PersonsTableProps) => {
             rows={ getRows() }
             rowsCount={ exactRowsCount }
             focusedIndex={ props.value?.focusedIndex }
-            shadow='dark'
             renderRows={ renderRowsContainer }
-            cx={ cx(css.table, css.shadowDark) }
+            cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': personColumns.length,
