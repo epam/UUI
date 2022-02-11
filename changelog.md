@@ -1,3 +1,15 @@
+# 4.5.4 - 10.02.2022
+
+**What’s Fixed**
+* [DataTable]: bug fixes
+* [NumericInput] doesn't allow entering letters in safari
+* [Portal]: fix portal crashing when it's try to remove portal child from root and root doesn't already exist in DOM
+* [FileUpload]: update labels
+* [Tree]: Re-create dataSource based on new props
+* [Text]: add typography class to have possibility use Anchor inside Text with skin styles
+* [FileCard]: fix progress behavior, remove extension from name
+* [Form]: fix isChanged reset to false on form revert
+
 # 4.5.3 - 20.01.2022
 
 **What’s Fixed**
