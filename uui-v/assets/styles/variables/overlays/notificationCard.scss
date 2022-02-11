@@ -6,23 +6,23 @@
 :global(.notification-card-color-warning) {
     --notification-card-fill-color: var(--warning-color);
     --notification-card-border-color: var(--warning-color);
-    --notification-card-background-color: white;
+    --notification-card-bg-color: white;
 }
 
 :global(.notification-card-color-success) {
     --notification-card-fill-color: var(--success-color);
     --notification-card-border-color: var(--success-color);
-    --notification-card-background-color: white;
+    --notification-card-bg-color: white;
 }
 
 :global(.notification-card-color-info) {
     --notification-card-fill-color: var(--info-color);
     --notification-card-border-color: var(--info-color);
-    --notification-card-background-color: white;
+    --notification-card-bg-color: white;
 }
 
 :global(.notification-card-color-error) {
     --notification-card-fill-color: var(--error-color);
     --notification-card-border-color: var(--error-color);
-    --notification-card-background-color: white;
+    --notification-card-bg-color: white;
 }
