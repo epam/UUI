@@ -1,5 +1,5 @@
 import { DataRowOptions, DataRowProps, ICheckable, IEditable, SortingOption } from "../../../types";
-import { DataSourceState, IDataSource } from "../types";
+import { DataSourceState } from "../types";
 import { DataSourceListProps, IDataSourceView } from './types';
 
 export interface BaseListViewProps<TItem, TId, TFilter> {
@@ -42,7 +42,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     /**
      * Disables select all behaviour. Default is false.
      */
-     selectAll?: true | false;
+    selectAll?: true | false;
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
@@ -158,7 +158,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const key = this.idToKey(this.props.getId(item));
 
         if (folded[key] != null) {
-            return folded[key]
+            return folded[key];
         }
 
         if (this.props.isFoldedByDefault) {
@@ -213,7 +213,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             isLoading: true,
             depth: parents ? parents.length : 0,
             path,
-            checkbox: rowOptions?.checkbox.isVisible && { isVisible: true, isDisabled: true },
+            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
 }

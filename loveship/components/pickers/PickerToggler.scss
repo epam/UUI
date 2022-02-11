@@ -33,7 +33,7 @@
 .root {
     padding-top: 2px;
     width: 100%;
-    fill: $night600;
+    fill: $night500;
     box-sizing: border-box;
 
     :global(.uui-input) {
@@ -134,7 +134,7 @@
         border-color: $fire;
     }
 
-    :global(.uui-icon):global(.-clickable) {
+    :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
         cursor: pointer;
 
         &:global(.uui-enabled) {

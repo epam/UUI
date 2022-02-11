@@ -150,8 +150,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root scrollContainer root"
+          cx="scrollContainer root"
           style={
             Object {
               "display": "flex",
@@ -163,7 +163,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="root shadow-white"
+            className=""
             style={
               Object {
                 "WebkitOverflowScrolling": "touch",
