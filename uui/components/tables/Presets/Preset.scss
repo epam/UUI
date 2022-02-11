@@ -1,5 +1,3 @@
-@use  '../epam-promo/assets/styles/colors' as *;
-
 .container {
     flex-wrap: nowrap;
 }
@@ -17,7 +15,7 @@
 .divider {
     height: 1px;
     width: 100%;
-    background-color: $gray30;
+    background-color: var(--divider-color);
 }
 
 .input {
@@ -29,11 +27,11 @@
     
     &:after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         width: 6px;
         height: 6px;
-        background-color: $red;
+        background-color: var(--negative-color);
         border-radius: 50%;
         right: -3px;
         top: -3px;

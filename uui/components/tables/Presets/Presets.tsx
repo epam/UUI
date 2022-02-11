@@ -1,17 +1,32 @@
-import React, { useCallback, useMemo } from "react";
-import { Button, DataTableState } from "@epam/uui";
-import { FlexRow } from "@epam/promo";
-import { Preset } from "./Preset";
-import { IPresetsApi, ITablePreset } from "../types";
-import css from "./Presets.scss";
+import React, { useCallback, useMemo } from 'react';
+import { DataTableState } from '@epam/uui-core';
+import { Button } from '../../index';
+import { FlexRow } from '../../layout';
+import { Preset } from './Preset';
+import { IPresetsApi, ITablePreset } from '../types';
+import css from './Presets.scss';
 
 interface IPresetsProps extends IPresetsApi {
     presets: ITablePreset[];
     tableState: DataTableState;
 }
 
-const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, getActivePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
-    const newPresetTitle = "New preset";
+const PresetsImpl: React.FC<IPresetsProps> = (
+    {
+        tableState,
+        presets,
+        createNewPreset,
+        getActivePresetId,
+        isDefaultPresetActive,
+        hasPresetChanged,
+        resetToDefault,
+        choosePreset,
+        duplicatePreset,
+        deletePreset,
+        updatePreset,
+    },
+) => {
+    const newPresetTitle = 'New preset';
     const activePresetId = getActivePresetId();
 
     const saveNewPreset = useCallback(() => {
@@ -25,11 +40,11 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
     }, [isDefaultPresetActive, activePreset, tableState.filter]);
     
     return (
-        <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>
+        <FlexRow spacing='6' size='48' padding='18' cx={ css.row }>
             <Button
-                size="24"
-                caption="Default"
-                mode={ isDefaultPresetActive() ? "solid" : "outline" }
+                size='24'
+                caption='Default'
+                mode={ isDefaultPresetActive() ? 'solid' : 'outline' }
                 onClick={ isDefaultPresetActive() ? null : resetToDefault }
             />
             { presets.map(preset => (
@@ -50,13 +65,13 @@ const Presets: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset
                 <Button
                     caption={ `Save as ${ newPresetTitle }` }
                     onClick={ saveNewPreset }
-                    color="accent"
-                    mode="solid"
-                    size="24"
+                    color='accent'
+                    mode='solid'
+                    size='24'
                 />
             ) }
         </FlexRow>
     );
 };
 
-export default React.memo(Presets);
+export const Presets = React.memo(PresetsImpl);

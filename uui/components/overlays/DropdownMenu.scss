@@ -68,12 +68,12 @@
 
 .bodyRoot {
     @include icon-layout(36px);
-    @include panel-shadow();
     @include fillColor(var(--icon-color), var(--text-primary-color));
     font-family: var(--font-regular);
     font-size: 14px;
     padding: 0.5em 0;
     background-color: var(--surface-color);
+    box-shadow: var(--shadow);
 }
 
 .submenuRootItem {

@@ -1,12 +1,5 @@
-import { DataRowProps, DataColumnProps, IHasCX } from '@epam/uui-core';
+import { ColumnsConfig } from '@epam/uui-core';
 import { ControlSize } from '..';
-
-export interface DataTableCellProps<TItem, TId> extends IHasCX {
-    rowProps: DataRowProps<TItem, TId>;
-    column: DataColumnProps<TItem, TId>;
-    role?: React.HTMLAttributes<HTMLElement>['role'];
-    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-}
 
 export interface DataTableCellMods {
     size?: ControlSize | '60';
@@ -14,4 +7,24 @@ export interface DataTableCellMods {
     isFirstColumn?: boolean;
     isLastColumn?: boolean;
     alignActions?: 'top' | 'center';
+}
+
+export interface ITablePreset<TFilter = Record<string, any>> {
+    name: string;
+    id: number | null;
+    filter: TFilter;
+    isReadonly?: boolean;
+    columnsConfig: ColumnsConfig;
+}
+
+export interface IPresetsApi {
+    getActivePresetId(): number;
+    isDefaultPresetActive(): boolean;
+    choosePreset(preset: ITablePreset): void;
+    createNewPreset(name: string): void;
+    resetToDefault(): void;
+    hasPresetChanged(preset: ITablePreset): boolean;
+    duplicatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): void;
+    updatePreset(preset: ITablePreset): void;
 }

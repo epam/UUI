@@ -1,19 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import css from "./DemoTable.scss";
-import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts } from "@epam/uui";
-import { Person } from "@epam/uui-docs";
-import { FlexRow, DataTable, DataTableRow } from "@epam/promo";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import css from './DemoTable.scss';
+import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts, Presets, ITablePreset } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
+import { FlexRow, DataTable, DataTableRow } from '@epam/promo';
 
-import type { TApi } from "../../data";
-import { getFilters, api } from "./data";
-import { getColumns } from "./columns";
-import { ITablePreset, PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
-import { useTableState } from "./hooks";
-import { FilterPanel } from "./FilterPanel";
-import { InfoSidebarPanel } from "./InfoSidebarPanel";
-import { Presets } from "./Presets";
-import { SlidingPanel } from "./SlidingPanel";
-import { FilterPanelOpener } from "./FilterPanelOpener";
+import type { TApi } from '../../data';
+import { getFilters, api } from './data';
+import { getColumns } from './columns';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
+import { useTableState } from './hooks';
+import { FilterPanel } from './FilterPanel';
+import { InfoSidebarPanel } from './InfoSidebarPanel';
+import { SlidingPanel } from './SlidingPanel';
+import { FilterPanelOpener } from './FilterPanelOpener';
 
 export const DemoTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();

@@ -1,8 +1,8 @@
 import React from 'react';
-import { uuiMarkers, cx } from '@epam/uui-core';
+import { uuiMarkers, cx, DataTableCellProps } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { FlexCell, Checkbox, TextPlaceholder, Text } from '../';
-import { DataTableCellProps, DataTableCellMods } from './types';
+import { DataTableCellMods } from './types';
 import { ReactComponent as FoldingArrow } from '../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
