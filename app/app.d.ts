@@ -10,6 +10,12 @@ declare module '*.svg' {
     export default src;
 }
 
+declare module '@epam/assets/icons/react/*' {
+    import React from 'react';
+    const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+    export default ReactComponent;
+}
+
 declare module "react-imask" {
     import IMask from "imask";
 

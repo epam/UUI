@@ -3,7 +3,7 @@ import * as css from './DndMaterial.scss';
 import { DndActor, IEditable, IDndActor, cx, DropParams, uuiDndState, getOrderBetween } from '@epam/uui';
 import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';
-import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
+import FileIcon from '@epam/assets/icons/react/file-file-24';
 
 export interface MaterialItem {
     id: number;
