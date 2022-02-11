@@ -51,8 +51,9 @@ export const i18n = {
         sortDescending: 'Sort Descending',
     },
     fileUpload: {
-        label: "Drop files to attach or",
+        labelStart: "Drop files to attach or",
         browse: "browse",
+        labelEnd: "your local files",
     },
     errorHandler: {
         errorPageConfig: {
