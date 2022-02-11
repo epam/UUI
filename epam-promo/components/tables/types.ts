@@ -1,12 +1,4 @@
-import { DataRowProps, DataColumnProps, IHasCX } from '@epam/uui-core';
 import { ControlSize } from '..';
-
-export interface DataTableCellProps<TItem, TId> extends IHasCX {
-    rowProps: DataRowProps<TItem, TId>;
-    column: DataColumnProps<TItem, TId>;
-    role?: React.HTMLAttributes<HTMLElement>['role'];
-    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-}
 
 interface BaseRowMods {
     size?: ControlSize | '60';
