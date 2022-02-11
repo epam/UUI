@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Portal } from "@epam/uui-components";
 import * as css from './Toolbar.scss';
-import * as ReactDOM from "react-dom";
-import { Editor, findDOMNode } from 'slate-react';
+import { Editor } from 'slate-react';
 import { Popper } from 'react-popper';
-import { LayoutContext, LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
-import * as PropTypes from "prop-types";
+import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
 import { ReactComponent as UnmergeIcon } from "../icons/table-un-merge.svg";
 import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';
 import { ToolbarButton } from './ToolbarButton';
@@ -35,8 +33,6 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
     }
 
     virtualReferenceElement() {
-        const toolbar: HTMLElement = ReactDOM.findDOMNode(this.tableBar) as any;
-
         return {
             getBoundingClientRect: () => {
                 let selectedCells = this.props.selectedCells;
@@ -51,14 +47,14 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
                     result[key] = firstCoord[key];
                 }
                 while (!lastCoord.right) {
-                    lastCoord = findDOMNode(selectedCells[--lastCoordIndex]).getBoundingClientRect();
+                    lastCoord = (this.props.editor.findDOMNode(selectedCells[--lastCoordIndex]) as any).getBoundingClientRect();
                 }
                 result.right = lastCoord.right;
                 result.width = firstCoord.width + lastCoord.width;
                 return result;
             },
-            clientWidth: toolbar && toolbar.getBoundingClientRect().width,
-            clientHeight: toolbar && toolbar.getBoundingClientRect().height,
+            clientWidth: this.tableBar?.getBoundingClientRect().width,
+            clientHeight: this.tableBar?.getBoundingClientRect().height,
         };
     }
 

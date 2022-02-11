@@ -5,7 +5,7 @@ import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
-};
+} as const;
 
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     renderCell?: (props: DataTableCellProps<TItem, TId>) => ReactNode;
@@ -30,6 +30,7 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
         return (
             <DataTableRowContainer
                 columns={ this.props.columns }
+                ref={ params.ref }
                 renderCell={ this.renderCell }
                 onClick={ clickHandler && (() => clickHandler(this.props)) }
                 rawProps={ {
@@ -58,8 +59,8 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
         if (this.props.dnd && (this.props.dnd.srcData || this.props.dnd.canAcceptDrop)) {
             return (
                 <DndActor
-                    render={ params => this.renderRow(params, clickHandler, this.props.renderDropMarkers?.(params)) }
                     { ...this.props.dnd }
+                    render={ params => this.renderRow(params, clickHandler, this.props.renderDropMarkers?.(params)) }
                 />
             );
         } else return this.renderRow({}, clickHandler);

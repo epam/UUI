@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
 import * as css from './YearSelection.scss';
 import { Dayjs } from 'dayjs';
 
@@ -12,9 +12,9 @@ export const uuiYearSelection = {
     yearRow: 'uui-yearselection-year-row',
     year: 'uui-yearselection-year',
     currentYear: 'uui-yearselection-current-year',
-};
+} as const;
 
-export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 
@@ -22,10 +22,10 @@ const getYears = (currentYear: number) => {
     return new Array(16).fill(0).map((item, index) => currentYear - 5 + index);
 };
 
-export class YearSelection extends React.Component<YearSelectionProps, any> {
+export class YearSelection extends React.Component<YearSelectionProps> {
     render() {
         return (
-            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) } {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) } { ...this.props.rawProps }>
                 <div className={ uuiYearSelection.content }>
                     <div className={ uuiYearSelection.yearContainer }>
                         { arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) =>

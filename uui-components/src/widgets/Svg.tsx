@@ -1,29 +1,29 @@
 import * as React from 'react';
-import { Icon, IHasCX } from '@epam/uui';
+import { Icon, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui';
 
-interface SvgProps extends IHasCX {
+interface SvgProps extends IHasCX, IHasRawProps<SVGSVGElement>, IHasForwardedRef<SVGSVGElement> {
     svg?: Icon;
     fillColor?: string;
     width?: number;
     height?: number;
 }
 
-export class Svg extends React.Component<SvgProps> {
-    render() {
-        const { svg, cx, fillColor, height, width } = this.props;
-        if (!svg) return null;
-        
-        const svgProps: ISvgProps = {
-            className: cx,
-            fill: fillColor,
-        };
-        
-        if (height !== undefined) svgProps.height = height;
-        if (width !== undefined) svgProps.width = width;
+export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
+    if (!props.svg) return null;
 
-        return React.createElement(svg as React.FC<any>, svgProps);
-    }
-}
+    const { svg, cx, fillColor, height, width } = props;
+
+    const svgProps: ISvgProps = {
+        className: cx,
+        fill: fillColor,
+        ...props.rawProps,
+    };
+
+    if (height !== undefined) svgProps.height = height;
+    if (width !== undefined) svgProps.width = width;
+
+    return React.createElement(svg, { ...svgProps, ref });
+});
 
 interface ISvgProps {
     className: string;

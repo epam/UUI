@@ -14,18 +14,19 @@ import {
     IAnalyticableOnChange,
     UuiContexts,
     uuiMarkers,
-    UuiContext, isClickableChildClicked,
+    UuiContext,
+    IHasForwardedRef,
 } from "@epam/uui";
 import { IconContainer } from '../layout';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
     id?: string;
 }
 
-export class RadioInput extends React.Component<RadioInputProps, any> {
+export class RadioInput extends React.Component<RadioInputProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -49,6 +50,7 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     this.props.cx,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
