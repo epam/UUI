@@ -26,12 +26,12 @@
         }
 
         :global(.uui-checked) {
-            background-color: var(--checkbox-background-color-checked-hover);
+            background-color: var(--checkbox-bg-color-checked-hover);
         }
     }
 
     :global(.uui-checkbox) {
-        background-color: var(--checkbox-background-color);
+        background-color: var(--checkbox-bg-color);
         border: 1px solid var(--checkbox-border-color);
         border-radius: var(--checkbox-border-radius);
     }
@@ -45,7 +45,7 @@
     }
 
     :global(.uui-checked) {
-        background-color: var(--checkbox-background-color-checked);
+        background-color: var(--checkbox-bg-color-checked);
         border-color: var(--checkbox-border-color-checked);
         fill: var(--checkbox-fill-color);
     }
@@ -56,7 +56,7 @@
 
         :global(.uui-checkbox) {
             cursor: default;
-            background-color: var(--checkbox-background-color-disabled);
+            background-color: var(--checkbox-bg-color-disabled);
             border-color: var(--checkbox-border-color-disabled);
         }
 
@@ -66,7 +66,7 @@
             }
 
             &:global(.uui-icon) {
-                background-color: var(--checkbox-background-color-checked-disabled);
+                background-color: var(--checkbox-bg-color-checked-disabled);
                 border-color: var(--checkbox-border-color-checked-disabled);
             }
         }
@@ -76,7 +76,7 @@
         }
 
         :global(.uui-checked) {
-            background-color: var(--checkbox-background-color-checked-disabled);
+            background-color: var(--checkbox-bg-color-checked-disabled);
             border-color: var(--checkbox-border-color-checked-disabled);
         }
     }

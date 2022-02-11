@@ -27,57 +27,57 @@
 }
 
 .mode-solid {
-    background-color: var(--button-background-color);
+    background-color: var(--button-bg-color);
     color: var(--button-caption-color);
     fill: var(--button-caption-color);
-    border-color: var(--button-background-color);
+    border-color: var(--button-bg-color);
 
     &:global(.-clickable) {
         &:hover {
-            background-color: var(--button-background-color-hover);
-            border-color: var(--button-background-color-hover);
+            background-color: var(--button-bg-color-hover);
+            border-color: var(--button-bg-color-hover);
         }
 
         &:focus {
-            background-color: var(--button-background-color-hover);
-            border-color: var(--button-background-color-hover);
+            background-color: var(--button-bg-color-hover);
+            border-color: var(--button-bg-color-hover);
             box-shadow: var(--button-focus-shadow);
             outline: var(--button-focus-outline);
         }
 
         &:active {
-            background-color: var(--button-background-color-active);
-            border-color: var(--button-background-color-active);
+            background-color: var(--button-bg-color-active);
+            border-color: var(--button-bg-color-active);
         }
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--button-background-color-disabled), var(--button-background-color-disabled));
+        @include button-disables-styles(var(--button-bg-color-disabled), var(--button-border-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--button-background-color-disabled), var(--button-background-color-disabled));
+            @include button-disables-styles(var(--button-bg-color-disabled), var(--button-border-color-disabled));
         }
     }
 }
 
 .mode-outline {
-    background-color: var(--button-background-halftone-color);
+    background-color: var(--button-bg-color-halftone);
     color: var(--button-caption-halftone-color);
     fill: var(--button-caption-halftone-color);
     border-color: var(--button-border-color);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--button-background-color-halftone-hover);
+            background-color: var(--button-bg-color-halftone-hover);
             color: var(--button-caption-halftone-color);
             fill: var(--button-caption-halftone-color);
             border-color: var(--button-border-color);
         }
 
         &:active {
-            background-color: var(--button-background-color-halftone-active);
+            background-color: var(--button-bg-color-halftone-active);
             color: var(--button-caption-halftone-color);
             fill: var(--button-caption-halftone-color);
             border-color: var(--button-border-color);
@@ -85,12 +85,12 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(var(--button-background-color-outline), var(--button-background-color-disabled));
+        @include button-disables-styles(var(--button-bg-color-halftone), var(--button-border-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(var(--button-background-color-outline), var(--button-background-color-disabled));
+            @include button-disables-styles(var(--button-bg-color-halftone), var(--button-border-color-disabled));
         }
     }
 }
@@ -103,14 +103,14 @@
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--button-background-color-halftone-hover);
+            background-color: var(--button-bg-color-halftone-hover);
             color: var(--button-caption-halftone-color);
             fill: var(--button-caption-halftone-color);
             border-color: var(--button-border-color);
         }
 
         &:active {
-            background-color: var(--button-background-color-halftone-active);
+            background-color: var(--button-bg-color-halftone-active);
             color: var(--button-caption-halftone-color);
             fill: var(--button-caption-halftone-color);
             border-color: var(--button-border-color);
@@ -118,12 +118,12 @@
     }
 
     &:global(.uui-disabled) {
-        @include button-disables-styles(transparent, var(--button-background-color-disabled));
+        @include button-disables-styles(transparent, var(--button-border-color-disabled));
     }
 
     &:global(.-clickable), &:hover, &:active, &:focus {
         &:global(.uui-disabled) {
-            @include button-disables-styles(transparent, var(--button-background-color-disabled));
+            @include button-disables-styles(transparent, var(--button-border-color-disabled));
         }
     }
 }
@@ -136,13 +136,13 @@
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: var(--button-background-color-halftone-hover);
-            border-color: var(--button-background-color-halftone-hover);
+            background-color: var(--button-bg-color-halftone-hover);
+            border-color: var(--button-bg-color-halftone-hover);
         }
 
         &:active {
-            background-color: var(--button-background-color-halftone-active);
-            border-color: var(--button-background-color-halftone-active);
+            background-color: var(--button-bg-color-halftone-active);
+            border-color: var(--button-bg-color-halftone-active);
         }
     }
 

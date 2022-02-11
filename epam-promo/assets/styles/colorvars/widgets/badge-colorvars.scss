@@ -103,3 +103,16 @@
     --count-background-color: white;
     --count-color: #{$gray60};
 }
+
+.badge-color-gray30 {
+    --background-color: #{$gray30};
+    --background-color-hover: #{$gray40};
+    --background-color-semitransparent: #{$gray20};
+    --caption-color-solid: #{$gray80};
+    --border-color-semitransparent: #{$gray40};
+    --caption-color-semitransparent: #{$gray80};
+    --caption-color-semitransparent-hover: #{$gray40};
+    --caption-color-transparent: #{$gray80};
+    --count-background-color: white;
+    --count-color: #{$gray60};
+}

@@ -24,7 +24,7 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
                 props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 isClickable && uuiMarkers.clickable,
                 props.cx,
-                props.rawProps?.className
+                props.rawProps?.className,
             ) }
             ref={ ref }
             onClick={ isClickable ? props.onClick : undefined }

@@ -214,33 +214,33 @@
     }
 
     &.fill-solid {
-        background-color: var(--badge-background-color);
+        background-color: var(--badge-bg-color);
         color: var(--badge-caption-color-solid);
         fill: var(--badge-caption-color-solid);
-        border-color: var(--badge-background-color);
+        border-color: var(--badge-bg-color);
 
         :global(.uui-count) {
-            background-color: var(--badge-count-background-color);
+            background-color: var(--badge-count-bg-color);
             color: var(--badge-count-color);
         }
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--badge-background-color-hover);
-                border-color: var(--badge-background-color-hover);
+                background-color: var(--badge-bg-color-hover);
+                border-color: var(--badge-bg-color-hover);
                 cursor: pointer;
             }
         }
     }
 
     //&.fill-semitransparent {
-    //    background-color: var(--background-color-semitransparent);
+    //    background-color: var(--bg-color-semitransparent);
     //    color: var(--caption-color-semitransparent);
     //    fill: var(--caption-color-semitransparent);
     //    border-color: var(--border-color-semitransparent);
     //
     //    :global(.uui-count) {
-    //        background-color: var(--count-background-color);
+    //        background-color: var(--count-bg-color);
     //        color: var(--count-color);
     //    }
     //
@@ -257,12 +257,12 @@
     //&.fill-transparent {
     //    background-color: transparent;
     //    color: var(--caption-color-transparent);
-    //    fill: var(--background-color);
+    //    fill: var(--bg-color);
     //    border-color: transparent;
     //
     //    &:global(.-clickable) {
     //        &:hover {
-    //            fill: var(--background-color-hover);
+    //            fill: var(--bg-color-hover);
     //            cursor: pointer;
     //        }
     //    }
@@ -271,7 +271,7 @@
     //        position: absolute;
     //        content: '';
     //        border-radius: 50%;
-    //        background-color: var(--background-color);
+    //        background-color: var(--bg-color);
     //    }
     //}
 }
