@@ -24,22 +24,24 @@ export interface FileCardState {
     loading: boolean;
 }
 
-export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, ref) => {
-    const [isLoading, setLoading] = React.useState<boolean>(true);
+export class FileCard extends React.Component<FileCardProps, FileCardState> {
+    state: FileCardState = {
+        loading: true,
+    };
 
-    React.useEffect(() => {
-        if (props.file?.progress === 100 && isLoading === true) {
-            setLoading(false);
-        };
-    }, [props]);
+    componentDidUpdate(prevProps: Readonly<FileCardProps>) {
+        if (prevProps !== this.props && this.props.file?.progress === 100) {
+            this.setState({ loading: false });
+        }
+    }
 
-    const getIcon = (extension: string) => {
+    getIcon(extension?: string) {
         switch (extension) {
             case 'doc':
             case 'docx': return <IconContainer size={ 24 } icon={ DocIcon } cx={ css.docColor } />;
             case 'xls':
             case 'xlsx': return <IconContainer size={ 24 } icon={ ExelIcon } cx={ css.xlsColor } />;
-            case 'pdf':  return <IconContainer size={ 24 } icon={ PdfIcon } cx={ css.pdfColor } />;
+            case 'pdf': return <IconContainer size={ 24 } icon={ PdfIcon } cx={ css.pdfColor } />;
             case 'gif':
             case 'jpg':
             case 'jpeg':
@@ -61,33 +63,29 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         }
     }
 
-    const extension = props.file.name?.split('.').pop();
+    render() {
+        const { loading } = this.state;
+        const extension = this.props.file.name?.split('.').pop();
 
-    return (
-        <FlexCell
-            minWidth={ props.width }
-            width={ !props.width ? '100%' : undefined }
-            ref={ ref }
-            cx={ cx(props.cx, css.fileCardWrapper, {
-                [uuiMod.loading]: isLoading
-            }) }
-        >
-            <FlexRow cx={ css.fileCardRow } size='36' alignItems='top' spacing='6'>
-                { extension && getIcon(extension) }
-                <FlexCell width='100%'>
-                    <Text size='18' fontSize='14' lineHeight='18' color={ props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ props.file.name }</Text>
-                    <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
-                        { `${extension ? extension.toUpperCase() : ''}, ${ props.file.progress !== 100 ? formatBytes(props.file.size / 100 * props.file.progress) + i18n.fileCard.fileSizeProgress : '' } ${ formatBytes(props.file.size) }` }
-                    </Text>
-                </FlexCell>
-                <FlexCell minWidth={ 18 }>
-                    { isLoading ? (
-                        <SvgCircleProgress progress={ props.file.progress } size={ 18 } />
-                    ) : props.onClick && (
-                        <IconButton icon={ RemoveIcon } onClick={ props.onClick } />
-                    ) }
-                </FlexCell>
-            </FlexRow>
-        </FlexCell>
-    );
-});
+        return (
+            <FlexCell cx={ cx(css.fileCardWrapper, loading && uuiMod.loading, this.props.cx) } minWidth={ this.props.width } width={ !this.props.width ? '100%' : undefined } >
+                <FlexRow cx={ css.fileCardRow } size='36' alignItems='top' spacing='6'>
+                    { extension && this.getIcon(extension) }
+                    <FlexCell width='100%'>
+                        <Text size='18' fontSize='14' lineHeight='18' color={ this.props.file.progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName } >{ this.props.file.name }</Text>
+                        <Text size='18' fontSize='14' lineHeight='18' color='gray60' >
+                            { `${extension ? extension.toUpperCase() : ''}, ${ this.props.file.progress !== 100 ? formatBytes(this.props.file.size / 100 * this.props.file.progress) + i18n.fileCard.fileSizeProgress : '' } ${ formatBytes(this.props.file.size) }` }
+                        </Text>
+                    </FlexCell>
+                    <FlexCell minWidth={ 18 }>
+                        { loading ? (
+                            <SvgCircleProgress progress={ this.props.file.progress } size={ 18 } />
+                        ) : this.props.onClick && (
+                            <IconButton icon={ RemoveIcon } onClick={ this.props.onClick } />
+                        ) }
+                    </FlexCell>
+                </FlexRow>
+            </FlexCell>
+        );
+    }
+}
