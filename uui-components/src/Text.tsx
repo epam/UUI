@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { UuiContexts, IHasCX, IHasChildren, IClickable, IAnalyticableClick, UuiContext, IHasRawProps, cx } from '@epam/uui';
+import { UuiContexts, IHasCX, IHasChildren, IClickable, IAnalyticableClick, UuiContext, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui';
 import * as css from './Text.scss';
 
-export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick & IHasRawProps<HTMLDivElement>;
+export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick & IHasRawProps<HTMLDivElement> & IHasForwardedRef<HTMLDivElement>;
 
 export class Text extends React.Component<TextProps> {
     static contextType = UuiContext;
@@ -18,6 +18,7 @@ export class Text extends React.Component<TextProps> {
             <div
                 onClick={ this.props.onClick && this.onClick }
                 className={ cx(this.props.cx, css.container) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 { this.props.children }

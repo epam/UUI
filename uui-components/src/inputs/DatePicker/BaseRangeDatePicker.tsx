@@ -54,15 +54,15 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     static contextType = UuiContext;
     context: UuiContexts;
 
+    toTextInput = React.createRef<HTMLInputElement>();
+    inFocus: InputType;
+
     state: RangeDatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
         ...getStateFromValue(this.props.value, this.props.format),
         inFocus: null,
     };
-    toTextInput: any;
-    inFocus: InputType = null;
-
 
     static getDerivedStateFromProps(props: BaseRangeDatePickerProps, state: RangeDatePickerState): RangeDatePickerState {
         if (!props.value || (props.value.from !== state.selectedDate.from || props.value.to !== state.selectedDate.to)) {
@@ -147,7 +147,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
-        let isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const isFromValueChanged = this.props.value.from != value.selectedDate.from;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
         } else {
@@ -195,15 +195,15 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         }
     }
 
-    abstract renderInput(props: any): React.ReactElement;
+    abstract renderInput(props: IDropdownToggler): React.ReactElement;
 
     abstract renderBody(props: DropdownBodyProps): React.ReactElement;
 
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props: DropdownBodyProps) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderBody={ props => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
                 onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }

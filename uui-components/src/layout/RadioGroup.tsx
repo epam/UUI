@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './RadioGroup.scss';
 import { RadioInputProps } from '../inputs/RadioInput';
-import { IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui';
 
 export interface RadioGroupItem<TValue> extends IDisableable {
     name?: string;
@@ -9,14 +9,13 @@ export interface RadioGroupItem<TValue> extends IDisableable {
     id: TValue;
 }
 
-export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement> {
+export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement>, IHasForwardedRef<HTMLFieldSetElement> {
     RadioInput?: React.ComponentType<RadioInputProps>;
     items: RadioGroupItem<TValue>[];
-    radioInputProps?: any;
+    radioInputProps?: RadioInputProps & { key: React.Key };
 }
 
 export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>> {
-
     handleChange = (newVal: TValue) => {
         if (newVal !== this.props.value) {
             this.props.onValueChange(newVal);
@@ -28,7 +27,7 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
         const direction = this.props.direction || 'vertical';
 
         return (
-            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) }  { ...this.props.rawProps }>
+            <fieldset ref={ this.props.forwardedRef } className={ cx(directionMode[direction], this.props.cx, css.container) }  { ...this.props.rawProps }>
                 {
                     RadioInput && this.props.items.map(i =>
                         <RadioInput
@@ -38,8 +37,8 @@ export class RadioGroup<TValue> extends React.Component<RadioGroupProps<TValue>>
                             isDisabled={ isDisabled || i.isDisabled }
                             isReadonly={ this.props.isReadonly }
                             isInvalid={ isInvalid }
-                            key={ i.id }
                             isRequired={ this.props.isRequired }
+                            key={ i.id }
                             { ...this.props.radioInputProps }
                         />,
                     )

@@ -10,7 +10,7 @@ import { SortingPanel, SortingPanelProps } from "./SortingPanel";
 type ColumnHeaderDropdownProps = SortingPanelProps & {
     isOpen: boolean;
     isSortable: boolean;
-    renderTarget: (props: React.PropsWithRef<IDropdownToggler>) => ReactNode;
+    renderTarget: (props: IDropdownToggler) => ReactNode;
     renderFilter?: () => ReactNode;
     onOpenChange(nV: boolean): void;
     title: string;
