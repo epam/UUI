@@ -15,14 +15,15 @@ interface DragGhostState extends DndContextState {
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     static contextType = UuiContext;
     context: UuiContexts;
+
     private layer: LayoutLayer = null;
+
     state: DragGhostState = {
         isDragging: false,
     };
 
-    constructor(props: DragGhostProps, context: UuiContexts) {
-        super(props, context);
-        context.uuiDnD.subscribe(this.contextUpdateHandler);
+    constructor(props: DragGhostProps) {
+        super(props);
     }
 
     onPointerMove = (e: PointerEvent) => {
@@ -33,7 +34,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
 
     contextUpdateHandler = (state: DndContextState) => {
         if (state.isDragging && !this.layer) {
-            this.layer = this.context.uuiLayout && this.context.uuiLayout.getLayer();
+            this.layer = this.context.uuiLayout?.getLayer();
         } else if (!state.isDragging && this.layer) {
             this.context.uuiLayout.releaseLayer(this.layer);
             this.layer = null;
@@ -43,6 +44,8 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     }
 
     componentDidMount() {
+        if (!this.context) return;
+        this.context.uuiDnD.subscribe(this.contextUpdateHandler);
         window.addEventListener('pointermove', this.onPointerMove);
     }
 
@@ -78,5 +81,3 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         );
     }
 }
-
-DragGhost.contextType = UuiContext;

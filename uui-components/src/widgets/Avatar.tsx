@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Avatar.scss';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 
-export interface AvatarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface AvatarProps extends IHasCX, IHasRawProps<HTMLImageElement>, IHasForwardedRef<HTMLImageElement> {
     alt?: string;
     img: string;
     size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144';
     isLoading?: boolean;
 }
 
-export class Avatar extends React.Component<AvatarProps, any> {
+export class Avatar extends React.Component<AvatarProps> {
     render() {
         return (
             <img

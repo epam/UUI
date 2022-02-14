@@ -2,24 +2,18 @@ import * as React from 'react';
 import * as css from './FlexRow.scss';
 import { FlexRowProps, uuiMarkers, isClickableChildClicked, cx } from '@epam/uui-core';
 
-export class FlexRow extends React.Component<FlexRowProps> {
-
-    handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => !isClickableChildClicked(e) && this.props?.onClick ? this.props.onClick(e) : undefined;
-
-    render() {
-        return (
-            <div
-                onClick={ this.props.onClick ? this.handleClick : undefined }
-                className={ cx(
-                    this.props.cx,
-                    css.container,
-                    this.props.onClick && uuiMarkers.clickable,
-                    css['align-items-' + (this.props.alignItems === undefined ? 'center' : this.props.alignItems)],
-                ) }
-                { ...this.props.rawProps }
-            >
-                { this.props.children }
-            </div>
-        );
-    }
-}
+export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => (
+    <div
+        ref={ ref }
+        onClick={ props.onClick ? e => !isClickableChildClicked(e) && props.onClick(e) : undefined }
+        className={ cx(
+            props.cx,
+            css.container,
+            props.onClick && uuiMarkers.clickable,
+            css['align-items-' + (props.alignItems === undefined ? 'center' : props.alignItems)],
+        ) }
+        { ...props.rawProps }
+    >
+        { props.children }
+    </div>
+));

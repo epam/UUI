@@ -42,7 +42,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         </>;
     }
 
-    render(): React.ReactNode {
+    render() {
         const view = this.getView();
         const dataRows = this.getRows();
         const selectedDataRows = view.getSelectedRows();

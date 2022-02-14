@@ -1,8 +1,9 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui-core';
-import * as css from './MonthSelection.scss';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import localeData from 'dayjs/plugin/localeData';
+import * as css from './MonthSelection.scss';
+
 dayjs.extend(localeData);
 
 const MONTH_ROW_LENGTH = 3;
@@ -14,13 +15,13 @@ export const uuiMonthSelection = {
     monthsRow: 'uui-monthselection-months-row',
     month: 'uui-monthselection-month',
     currentMonth: 'uui-monthselection-current-month',
-};
+} as const;
 
-export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 
-export class MonthSelection extends React.Component<MonthSelectionProps, any> {
+export class MonthSelection extends React.Component<MonthSelectionProps> {
     renderMonth(month: string, index: number) {
         const isSelected = this.props.selectedDate.year() === this.props.value.year() && month === this.props.selectedDate.format('MMM');
         return (
@@ -37,16 +38,15 @@ export class MonthSelection extends React.Component<MonthSelectionProps, any> {
     render() {
         const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
         return (
-            <div className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } {...this.props.rawProps} >
+            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } { ...this.props.rawProps } >
                 <div className={ uuiMonthSelection.content }>
                     <div className={ uuiMonthSelection.monthContainer }>
                         { arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) =>
                             <div key={ index } className={ uuiMonthSelection.monthsRow }>
                                 { monthsRow.map(month => {
-                                    const monthIndex = MONTHS_SHORT_ARRAY.findIndex((it: string) => it === month);
+                                    const monthIndex = MONTHS_SHORT_ARRAY.findIndex(it => it === month);
                                     return this.renderMonth(month, monthIndex);
-                                })
-                                }
+                                }) }
                             </div>,
                         ) }
                     </div>
