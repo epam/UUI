@@ -5,8 +5,8 @@ export class ErrorCatch extends React.Component {
     static contextType = UuiContext;
     public context: UuiContexts;
 
-    constructor(props: any, context: UuiContexts) {
-        super(props, context);
+    constructor(props: {}) {
+        super(props);
     }
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {

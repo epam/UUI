@@ -20,18 +20,20 @@ export class ConfirmationModal extends React.Component<ConfirmationModalWindowPr
                 </Panel>;
         }
 
-        return <ModalBlocker blockerShadow='dark' { ...this.props }>
-        <ModalWindow width='420'>
-            <ModalHeader borderBottom title={ this.props.caption } onClose={ () => this.props.abort() } background='white' />
-            <ScrollBars>
-            { bodyContent }
-            </ScrollBars>
-            <ModalFooter background='white'>
-                <FlexSpacer />
-                { this.props.hideCancelButton || <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } fill='white' color='gray50'/> }
-                <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color='green'/>
-            </ModalFooter>
-        </ModalWindow>
-    </ModalBlocker>;
+        return (
+            <ModalBlocker blockerShadow='dark' { ...this.props }>
+                <ModalWindow width='420'>
+                    <ModalHeader borderBottom title={ this.props.caption } onClose={ () => this.props.abort() } background='white' />
+                    <ScrollBars>
+                    { bodyContent }
+                    </ScrollBars>
+                    <ModalFooter background='white'>
+                        <FlexSpacer />
+                        { this.props.hideCancelButton || <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } fill='white' color='gray50'/> }
+                        <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color='green'/>
+                    </ModalFooter>
+                </ModalWindow>
+            </ModalBlocker>
+        );
     }
 }

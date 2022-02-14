@@ -1,17 +1,16 @@
 import * as React from 'react';
-import * as ReactDom from 'react-dom';
 import { IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState } from '../../types';
-import {  mouseCoords } from '../../helpers';
+import { mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
 import { isChildHasClass } from '../../helpers';
 import { UuiContext } from "../ContextProvider";
 
-export type DndActorProps<TSrcData, TDstData> = IDndActor<TSrcData, TDstData> & {
+export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     render(props: DndActorRenderParams): React.ReactNode;
 };
 
-const dndStartThreshold = 5;
+const DND_START_THRESHOLD = 5;
 
 interface DndActorState {
     pointerX: number;
@@ -35,23 +34,20 @@ const initialState: DndActorState = {
     },
 };
 
-export class DndActor<TSrcData = any, TDstData = any>
-    extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
-    static contextType = UuiContext;
-    context: UuiContexts;
+export class DndActor<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
     state = initialState;
 
-    contextUpdateHandler = (dndContextState: DndContextState) => {
-        this.setState({ dndContextState });
-    }
+    static contextType = UuiContext;
+    public context: UuiContexts;
 
-    constructor(props: DndActorProps<TSrcData, TDstData>, context: any) {
-        super(props, context);
-        this.context?.uuiDnD.subscribe(this.contextUpdateHandler);
-    }
+    dndRef = React.createRef<HTMLElement>();
 
+    constructor(props: DndActorProps<TSrcData, TDstData>) {
+        super(props);
+    }
 
     componentDidMount() {
+        this.context?.uuiDnD?.subscribe?.(this.contextUpdateHandler);
         window.addEventListener('pointerup', this.windowPointerUpHandler);
         window.addEventListener('pointermove', this.windowPointerMoveHandler);
     }
@@ -60,6 +56,10 @@ export class DndActor<TSrcData = any, TDstData = any>
         window.removeEventListener('pointerup', this.windowPointerUpHandler);
         window.removeEventListener('pointermove', this.windowPointerMoveHandler);
         this.context.uuiDnD.unsubscribe(this.contextUpdateHandler);
+    }
+
+    contextUpdateHandler = (dndContextState: DndContextState) => {
+        this.setState({ dndContextState });
     }
 
     windowPointerUpHandler = (e: Event) => {
@@ -73,13 +73,9 @@ export class DndActor<TSrcData = any, TDstData = any>
         if (!this.state.isMouseDown
             || e.buttons === 0 // can happen if native drag-n-drop occurs
             || this.state.isDragging
-        ) {
-            return;
-        }
+        ) return;
 
-        const node = ReactDom.findDOMNode(this);
-
-        if (isChildHasClass(e.target, node, [uuiElement.input])) {
+        if (isChildHasClass(e.target, this.dndRef.current, [uuiElement.input])) {
             return;
         }
 
@@ -88,9 +84,9 @@ export class DndActor<TSrcData = any, TDstData = any>
             + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2),
         );
 
-        if (dist > dndStartThreshold) {
+        if (dist > DND_START_THRESHOLD) {
             this.context.uuiDnD.startDrag(
-                node,
+                this.dndRef.current,
                 this.props.srcData,
                 () => this.props.render({
                     isDragGhost: true,
@@ -113,16 +109,15 @@ export class DndActor<TSrcData = any, TDstData = any>
     }
 
     getDropParams(e: React.MouseEvent<HTMLElement>): AcceptDropParams<TSrcData, TDstData> {
-        const el = e.currentTarget;
-        const rect = el.getBoundingClientRect();
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
 
         return {
             srcData: this.context.uuiDnD.dragData,
             dstData: this.props.dstData,
-            offsetLeft: e.clientX - rect.left,
-            offsetTop: e.clientY - rect.top,
-            targetWidth: rect.width,
-            targetHeight: rect.height,
+            offsetLeft: e.clientX - left,
+            offsetTop: e.clientY - top,
+            targetWidth: width,
+            targetHeight: height,
         };
     }
 
@@ -138,9 +133,7 @@ export class DndActor<TSrcData = any, TDstData = any>
     };
 
     getPosition(params: AcceptDropParams<TSrcData, TDstData>, options: DropPositionOptions): DropPosition {
-        if (options == null) {
-            return null;
-        }
+        if (options == null) return null;
 
         // Compute x/y offsets relative to the center, normalized by element dimensions:
         // -------------------------------
@@ -189,6 +182,7 @@ export class DndActor<TSrcData = any, TDstData = any>
             eventHandlers: {},
             position: this.state.isMouseOver ? this.state.position : null,
             classNames: null,
+            ref: this.dndRef,
         };
 
         params.classNames = [

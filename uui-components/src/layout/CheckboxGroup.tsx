@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as css from './CheckboxGroup.scss';
+import { ICanBeInvalid, IHasForwardedRef, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui-core';
 import { CheckboxProps } from '../inputs/Checkbox';
-import { ICanBeInvalid, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui-core';
+import * as css from './CheckboxGroup.scss';
 
 interface CheckboxGroupItem<TValue> {
     name: string;
@@ -9,13 +9,12 @@ interface CheckboxGroupItem<TValue> {
     renderName?: () => React.ReactNode;
 }
 
-export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement> {
+export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement>, IHasForwardedRef<HTMLFieldSetElement> {
     CheckboxInput?: React.ComponentType<CheckboxProps>;
     items: CheckboxGroupItem<TValue>[];
 }
 
 export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TValue>> {
-
     handleChange = (selected: boolean, newVal: TValue) => {
         let newSelection;
         const currentValue = this.props.value || [];
@@ -35,7 +34,7 @@ export class CheckboxGroup<TValue> extends React.Component<CheckboxGroupProps<TV
         const direction = this.props.direction || 'vertical';
 
         return (
-            <fieldset className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
+            <fieldset ref={ this.props.forwardedRef } className={ cx(directionMode[direction], this.props.cx, css.container) } { ...this.props.rawProps }>
                 {
                     this.props.items.map(i =>
                         <CheckboxInput

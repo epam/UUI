@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IEditable, IDisableable, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
-export interface SliderBaseProps<TSelection>  extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<HTMLDivElement> {
+export interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     min: number;
     max: number;
     step: number;
@@ -24,7 +24,7 @@ export const uuiSlider = {
     scaleNumber: 'uui-slider-scale-number',
     scaleDot: 'uui-slider-scale-dot',
     scaleFilledDot: 'uui-slider-scale-filled-dot',
-};
+} as const;
 
 export abstract class SliderBase<TSelection, TState extends SliderBaseState> extends React.Component<SliderBaseProps<TSelection>, TState> {
     slider: HTMLElement | null;
@@ -68,5 +68,4 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
             return this.roundToStep((mouseX - this.slider.getBoundingClientRect().left) / valueWidth + this.props.min, this.props.step) ;
         }
     }
-
 }

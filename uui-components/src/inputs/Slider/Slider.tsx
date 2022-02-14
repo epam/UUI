@@ -45,7 +45,8 @@ export class Slider extends SliderBase<number, any> {
                 ) }
                 onClick={ e => this.props.onValueChange(this.getValue(e.clientX, valueWidth)) }
                 onMouseDown={ this.handleMouseDown }
-                {...this.props.rawProps}
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <div
                     ref={ slider => this.slider = slider }

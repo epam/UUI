@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as css from './FlexRow.scss';
 import { FlexCellProps } from '@epam/uui-core';
 import { FlexCell as uuiFlexCell } from '@epam/uui-components';

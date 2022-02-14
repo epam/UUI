@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import isEqual from 'lodash.isequal';
 import { DataRowProps, FlexRowProps, uuiMod } from '@epam/uui-core';
 import { FlexRow } from '../index';
@@ -9,18 +8,16 @@ interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
 }
 
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
-    rowNode: React.RefObject<any> = React.createRef();
-    rowDOMNode: Element | Text = null;
+    rowNode = React.createRef<HTMLDivElement>();
 
     componentDidMount() {
-        this.rowDOMNode = ReactDOM.findDOMNode(this.rowNode.current);
         if (this.props.onFocus) {
-            this.rowDOMNode?.addEventListener('mouseenter', this.handleMouseEnter);
+            this.rowNode.current?.addEventListener('mouseenter', this.handleMouseEnter);
         }
     }
 
     componentWillUnmount() {
-        this.rowDOMNode?.removeEventListener('mouseenter', this.handleMouseEnter);
+        this.rowNode.current?.removeEventListener('mouseenter', this.handleMouseEnter);
     }
 
     handleMouseEnter = () => {
@@ -28,8 +25,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     }
 
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
-        const eq = isEqual(this.props, nextProps);
-        return !eq;
+        return !isEqual(this.props, nextProps);
     }
 
     render() {

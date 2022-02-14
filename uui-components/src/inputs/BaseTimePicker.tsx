@@ -81,7 +81,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
                 renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }

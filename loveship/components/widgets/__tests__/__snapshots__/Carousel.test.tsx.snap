@@ -37,7 +37,6 @@ exports[`Carousel should be rendered correctly 1`] = `
     >
       <div
         className="uui-carousel-item"
-        onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
@@ -108,7 +107,6 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
     >
       <div
         className="uui-carousel-item"
-        onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,

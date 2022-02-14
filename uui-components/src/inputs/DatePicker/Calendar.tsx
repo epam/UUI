@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { IHasCX, arrayToMatrix, cx, IHasRawProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
-import { Day } from "./Day";
-import * as css from './Calendar.scss';
-import { i18n } from "../../../i18n";
+import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { Day } from './Day';
+import { i18n } from '../../../i18n';
 import localeData from 'dayjs/plugin/localeData';
+import * as css from './Calendar.scss';
 dayjs.extend(localeData);
 
 const DAYS_COUNT_IN_WEEK = 7;
@@ -24,9 +24,9 @@ export const uuiDaySelection = {
     clickable: 'uui-calendar-clickable-day',
     dayWrapper: 'uui-calendar-day-wrapper',
     holiday: 'uui-calendar-day-holiday',
-};
+} as const;
 
-export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     value: TSelection;
     onValueChange: (day: Dayjs) => void;
     displayedDate: Dayjs;
@@ -42,7 +42,6 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
         super(props);
         dayjs.locale(i18n.datePicker.locale);
         dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
-        // dayjs().localeData();
 
         this.state = {
             weeksHeight: this.getDaysMatrix(this.props.displayedDate?.startOf('day')).length * 36,
@@ -121,7 +120,7 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
     render() {
         return (
-            <div className={ cx(css.container, uuiDaySelection.container, this.props.cx) }  {...this.props.rawProps}>
+            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, this.props.cx) }  { ...this.props.rawProps }>
                 <div className={ uuiDaySelection.content }>
                     <div className={ uuiDaySelection.weekdaysContainer }>
                         { dayjs.weekdaysShort(true).map((weekday, index) => <div className={ uuiDaySelection.weekday } key={ index }>{ weekday }</div>) }

@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './BaseRating.scss';
-import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps } from '@epam/uui-core';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
+export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;
@@ -129,8 +129,11 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
                 onTouchEnd={ (e) => !isReadonly && this.onTouchEnd(e) }
-                ref={ (container) => this.container = container }
-                {...this.props.rawProps}
+                ref={ (container) => {
+                    this.container = container;
+                    (this.props.forwardedRef as React.RefCallback<HTMLDivElement>)?.(container);
+                } }
+                { ...this.props.rawProps }
             >
                 { this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks()) }
             </div>

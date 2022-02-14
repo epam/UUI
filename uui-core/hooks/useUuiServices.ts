@@ -26,9 +26,7 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
     const uuiApi = new ApiContext(uuiErrors, apiServerUrl, uuiAnalytics);
 
     const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : {} as TApi;
-    const withOptions = (options: ApiCallOptions) => apiDefinition(
-        (url: string, method: string, data?: any) => uuiApi.processRequest(url, method, data, options),
-    );
+    const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data) => uuiApi.processRequest(url, method, data, options));
     const api = { ...rawApi, withOptions };
 
     const uuiUserSettings = new UserSettingsContext();
