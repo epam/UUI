@@ -1,7 +1,7 @@
 {
   "name": "@epam/uui",
   "version": "4.5.4",
-  "description": "EPAM UUI-V components set",
+  "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "classnames": "2.2.6"
   },
   "devDependencies": {
-    "@epam/uui-docs": "4.5.3"
+    "@epam/uui-docs": "4.5.4"
   },
   "peerDependencies": {
     "prop-types": "*",

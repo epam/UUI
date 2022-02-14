@@ -1,4 +1,5 @@
 import * as React from 'react';
+import flatten from 'lodash.flatten';
 import { Popper } from 'react-popper';
 import { Editor, Plugins } from 'slate-react';
 import { LayoutContext, LayoutLayer, UuiContext } from '@epam/uui-core';
@@ -64,9 +65,8 @@ export class Toolbar extends React.Component<ToolbarProps> {
                                     (props.ref as React.RefCallback<HTMLDivElement>)(node);
                                 } }
                             >
-                                { this.props.plugins.flatMap((plugin: any) => {
-                                    return !Array.isArray(plugin) && plugin.toolbarButtons?.map(this.renderButton);
-                                }) }
+                                { flatten(this.props.plugins).map((plugin: any) => plugin.toolbarButtons
+                                    && plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))) }
                             </div>
                         ) }
                     </Popper>
