@@ -1,0 +1,429 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you going  to use ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://nextjs.org/"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Next.JS",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " for your application it is a best way to configure it from scratch with our custom UUI Template for ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://nextjs.org/docs/getting-started"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Create Next App",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example: ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "npx ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "create-next-app --example ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " my-app\n\n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "# or\n\n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(128, 128, 128)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "yarn create next-app --example ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(106, 135, 89)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " my-app\n\n",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "## where my-app is the name of ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(128, 128, 128)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "your project.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "color": "rgb(128, 128, 128)",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "box-sizing": "border-box",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It will create and initialize environment and dependencies automatically. Also it will setup minimal UUI configuration with simple layout.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
