@@ -28,7 +28,7 @@ export default function PagedTable() {
         grow: 0, shrink: 0, width: 144,
     }], []);
 
-    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
+    const api = useCallback(async (rq: LazyDataSourceApiRequest<Person>) => {
         const result = await svc.api.demo.personsPaged({
             ...rq,
             filter: { departmentId: 13 }, // to get less results and non round-numbered number of people

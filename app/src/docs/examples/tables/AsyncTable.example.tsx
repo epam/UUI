@@ -8,7 +8,7 @@ export default function ProductTable() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState({});
 
-    const dataSource = useAsyncDataSource<Product, number, unknown>({
+    const dataSource = useAsyncDataSource<Product & { id: string, name: string }, number, unknown>({
         // Provide api which returns Promise with items for table. If you want to pass just array of items, look to the ArrayDataSource
         api: () => svc.api.demo.products({}).then((r: any) => r.items),
         getId: p => p.ProductID, // Default: p => p.id
@@ -22,10 +22,11 @@ export default function ProductTable() {
         getFilter: (filter => (item) => !!item.Color), // Provide filter callback, if your need to apply filtering for rows.
         // By default sorting will be applied by column 'key' field. If you need another behavior, pass sortBy callback, which will return item field for sorting;
         sortBy: (item, sorting) => {
-            switch (sorting.field) {
-                case 'id': return item.ProductID;
-                case 'name': return item.Name;
-            }
+            if (sorting.field === 'id') {
+                return item.ProductID;
+            } else if (sorting.field === 'name') {
+                return item.Name;
+            };
         },
         // Also you can provide more options if you need:
         // getSearchFields(item: Product): string[] { return [item.Name, item.Color] }, Function that return array of item fields by which search will applies;

@@ -16,14 +16,14 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     checked?: TId[];
     folded?: Record<string, boolean>;
     filter?: TFilter;
-    sorting?: SortingOption[];
+    sorting?: SortingOption<any>[];
     selectedId?: TId;
     focusedIndex?: number;
 }
 
 export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
     filter?: TFilter;
-    sorting?: SortingOption[];
+    sorting?: SortingOption<TItem>[];
     search?: string;
 }
 

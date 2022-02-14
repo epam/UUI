@@ -16,9 +16,9 @@ export type PickerBaseOptions<TItem, TId> = {
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
     renderNotFound?: (props: { search: string, onClose: () => void }) => React.ReactNode;
     emptyValue?: undefined | null | [];
-    sortBy?(item: TItem, sorting: SortingOption): any;
+    sortBy?(item: TItem, sorting: SortingOption<TItem>): any;
     filter?: any;
-    sorting?: SortingOption;
+    sorting?: SortingOption<TItem>;
     cascadeSelection?: boolean;
     isFoldedByDefault?(item: TItem): boolean;
     getSearchFields?(item: TItem): string[];

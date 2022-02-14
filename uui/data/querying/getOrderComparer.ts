@@ -19,7 +19,7 @@ function compareScalars(a: any, b: any, order: number) {
     return order;
 }
 
-export function getOrderComparer<TEntity>(sorting: SortingOption[]): (a: TEntity, b: TEntity) => number {
+export function getOrderComparer<TEntity>(sorting: SortingOption<TEntity>[]): (a: TEntity, b: TEntity) => number {
     if (!sorting || sorting.length === 0) {
         return eqPredicate;
     }

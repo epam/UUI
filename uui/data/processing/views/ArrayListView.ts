@@ -8,7 +8,7 @@ import isEqual from 'lodash.isequal';
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getParentId?(item: TItem): TId;
     getSearchFields?(item: TItem): string[];
-    sortBy?(item: TItem, sorting: SortingOption): any;
+    sortBy?(item: TItem, sorting: SortingOption<TItem>): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
@@ -195,7 +195,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
     }
 
-    private buildSortingComparer(sortBy?: (item: TItem, sorting: SortingOption) => any) {
+    private buildSortingComparer(sortBy?: (item: TItem, sorting: SortingOption<TItem>) => any) {
         const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
 
         const comparers: ((a: TreeNode<TItem, TId>, b: TreeNode<TItem, TId>) => number)[] = [];

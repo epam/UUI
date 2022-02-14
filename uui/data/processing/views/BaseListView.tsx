@@ -143,7 +143,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
     }
 
-    protected handleSort = (sorting: SortingOption) => {
+    protected handleSort = (sorting: SortingOption<TItem>) => {
         if (this.onValueChange) {
             this.onValueChange({
                 ...this.value,

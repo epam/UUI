@@ -114,7 +114,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         return this.update(t => t.q = { ...t.q, filter: { ...this.q.filter as any, ...filter as any } });
     }
 
-    public order(order: SortingOption[]) {
+    public order(order: SortingOption<TEntity>[]) {
         return this.update(t => t.q = { ...t.q, sorting: order });
     }
 

@@ -1,7 +1,7 @@
 export type SortDirection = 'asc' | 'desc';
 
-export interface SortingOption<T = any> {
-    field: keyof T;
+export interface SortingOption<TItem> {
+    field: keyof TItem;
     direction?: SortDirection;
 }
 
