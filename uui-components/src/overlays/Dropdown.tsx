@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext, uuiElement } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
-    closeDropdownTimerId: number;
+    closeDropdownTimerId: any;
 }
 
 export interface DropdownBodyProps {
@@ -140,7 +140,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     setCloseDropdownTimer() {
         this.setState({
-            closeDropdownTimerId: window.setTimeout(() => {
+            closeDropdownTimerId: setTimeout(() => {
                 this.handleOpenedChange(false);
                 this.clearCloseDropdownTimer();
             }, 1500),
@@ -185,7 +185,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             isDropdown: true,
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
-        })
+        });
     }
 
     private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
@@ -233,7 +233,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         const target = e.target as HTMLElement;
         const stopNodes = [this.bodyNode, this.targetNode, ...(this.props.stopCloseSelectors || [])];
 
-        if (stopNodes.filter(stopNode => typeof stopNode !== 'string').some(node => node && closest(target, node))) {
+        if (stopNodes.some(node => node && typeof node !== 'string' && closest(target, node))) {
             return false;
         }
 
