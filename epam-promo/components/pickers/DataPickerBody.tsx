@@ -12,15 +12,18 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
-};
+}
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search');
 
     renderNoFound() {
-        if (this.props.renderNotFound) return this.props.renderNotFound();
-        else return (
+        if (this.props.renderNotFound) {
+            return this.props.renderNotFound();
+        }
+
+        return (
             <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
                 <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
             </FlexCell>
@@ -57,7 +60,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     ? <VirtualList
                         { ...this.lens.toProps() }
                         rows={ this.props.rows }
-                        role="listbox"
+                        role='listbox'
                         rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
                         focusedIndex={ value && value.focusedIndex || 0 }

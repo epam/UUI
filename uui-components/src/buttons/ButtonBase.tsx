@@ -82,6 +82,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
+            ref: this.props.forwardedRef,
             target: this.props.target,
             'aria-disabled': this.props.isDisabled as IHasRawProps<HTMLAnchorElement | HTMLButtonElement>['rawProps']['aria-disabled'],
             ...this.props.rawProps,

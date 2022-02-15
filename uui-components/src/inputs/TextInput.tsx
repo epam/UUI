@@ -52,14 +52,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const handleClick = (e: any) => {
         if (e.target.classList.contains(uuiMarkers.clickable)) {
             return e.preventDefault();
-        };
+        }
         props.onClick?.(e);
-    }
+    };
 
     const handleCancel = () => {
         props.onCancel();
         inputElement.current?.focus();
-    }
+    };
 
     const getInputProps = () => ({
         type: props.type || "text",
@@ -82,7 +82,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         'aria-invalid': props.isInvalid,
         'aria-required': props.isRequired,
         'aria-disabled': props.isDisabled,
-        'aria-readonly': props.isReadonly
+        'aria-readonly': props.isReadonly,
     });
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
