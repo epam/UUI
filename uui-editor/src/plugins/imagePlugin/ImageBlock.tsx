@@ -128,12 +128,13 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
         const src = node.data.get('src');
         return src ? (
             <Dropdown
-                renderTarget={ (props) => {
-                    return <div className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
-                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined } >{ this.renderImage(attributes, src) }</div>
-                    </div>;
-                }
-                }
+                renderTarget={ (props) => (
+                    <div ref={ props.ref } className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
+                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined }>
+                            { this.renderImage(attributes, src) }
+                        </div>
+                    </div>
+                ) }
                 renderBody={ (props) => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
                 value={ this.props.isFocused }
                 placement='top'

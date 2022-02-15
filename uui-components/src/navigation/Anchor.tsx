@@ -1,24 +1,18 @@
 import * as React from 'react';
-import * as css from './Anchor.scss';
-import { handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext } from '@epam/uui-core';
-import { ButtonBase } from '../buttons';
 import {
-    IHasCX,
-    ICanRedirect,
-    IHasChildren,
-    UuiContexts,
-    IDisableable,
-    IClickable,
-    cx,
+    handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext, IHasForwardedRef,
+    IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx
 } from '@epam/uui-core';
+import { ButtonBase } from '../buttons';
+import * as css from './Anchor.scss';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement> {}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
 
 export class Anchor extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
-    handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         !this.props.isDisabled && handleSpaceKey(e, this.clickHandler);
     }
 
@@ -32,6 +26,7 @@ export class Anchor extends ButtonBase<AnchorProps> {
         } else if (this.props.href) {
             href = this.props.href;
         }
+
         return React.createElement('a', {
             className: cx(
                 css.container,
@@ -45,6 +40,7 @@ export class Anchor extends ButtonBase<AnchorProps> {
             href,
             role: 'link',
             target: this.props.target,
+            ref: this.props.forwardedRef,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
             disabled: this.props.isDisabled,

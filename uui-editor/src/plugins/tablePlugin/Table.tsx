@@ -99,10 +99,9 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
         if (this.state.isBorderMoving || this.state.isCellSelecting || this.state.isTextSelectingForbiden) {
             this.setState({ isBorderMoving: false, isCellSelecting: false, isTextSelectingForbiden: false });
         }
-        const table: HTMLElement = ReactDOM.findDOMNode(this.tableNode) as any;
-        table.style.userSelect = null;
-        table.removeAttribute('contenteditable');
 
+        this.tableNode.style.userSelect = null;
+        this.tableNode.removeAttribute('contenteditable');
     }
 
     setSize = (data: any) => {
@@ -139,9 +138,8 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     forbidTextSelection = () => {
         this.setState({ isTextSelectingForbiden: true });
         window.getSelection().setPosition(this.tableNode);
-        const table: HTMLElement = ReactDOM.findDOMNode(this.tableNode) as any;
-        table.style.userSelect = 'none';
-        table.setAttribute('contenteditable', 'false');
+        this.tableNode.style.userSelect = 'none';
+        this.tableNode.setAttribute('contenteditable', 'false');
     }
 
     windowMouseMoveHandler = (e: MouseEvent) => {

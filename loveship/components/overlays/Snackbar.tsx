@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { NotificationOperation, UuiContext, UuiContexts } from '@epam/uui-core';
 import { SnackbarProps, Snackbar as UuiSnackbar } from '@epam/uui-components';
 import { ClearNotification } from '.';
@@ -20,7 +20,7 @@ export class Snackbar extends React.Component<SnackbarProps> {
             items = [clearOperation].concat(items);
         }
 
-        return <UuiSnackbar notifications={ items } />;
+        return <UuiSnackbar forwardedRef={ this.props.forwardedRef } notifications={ items } />;
     }
 
 }

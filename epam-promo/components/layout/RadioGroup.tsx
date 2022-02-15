@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { RadioGroup as uuiRadioGroup, RadioGroupProps } from '@epam/uui-components';
 import { RadioInput } from '../inputs';

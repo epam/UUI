@@ -17,7 +17,7 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
             canAcceptDrop={ this.handleCanAcceptDrop }
             onDrop={ params => this.onDrop(params, prevColumn, nextColumn) }
             render={ props => (
-                <div { ...props.eventHandlers } className={ styles.dragElement }>
+                <div ref={ props.ref } { ...props.eventHandlers } className={ styles.dragElement }>
                     <div className={ styles.dndItem }>
                         <FlexRow background="white">
                             <DragHandle cx={ [styles.dragHandle] } />
@@ -52,12 +52,12 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                                 { sortedColumns
                                     .filter(column => !!column.caption)
                                     .map((item, index) => {
-                                        const prevItem = index ? sortedColumns[index - 1] : null;
-                                        const nextItem = index === sortedColumns.length - 1 ? null : sortedColumns[index + 1];
+                                        const prevItem = index > 0 ? sortedColumns[index - 1] : sortedColumns[0];
+                                        const nextItem = index === sortedColumns.length - 1 ? sortedColumns[0] : sortedColumns[index + 1];
                                         return this.renderDndRow(
                                             item,
-                                            prevItem && this.state.columnsConfig[prevItem.key].order,
-                                            nextItem && this.state.columnsConfig[nextItem.key].order,
+                                            this.state.columnsConfig[prevItem.key].order,
+                                            this.state.columnsConfig[nextItem.key].order,
                                         );
                                     }) }
                             </div>

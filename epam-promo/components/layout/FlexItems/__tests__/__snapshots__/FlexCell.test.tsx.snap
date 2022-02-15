@@ -3,7 +3,6 @@
 exports[`FlexCell should be rendered correctly 1`] = `
 <div
   className="flexCell"
-  onClick={[Function]}
   style={
     Object {
       "alignSelf": undefined,

@@ -1,9 +1,22 @@
 # 4.?.? - ??.??.2022
 
-**What's New**
-* [Breaking Change]: uui package moved to uui-core, uui-v package moved to uui, uui-core reexported to uui
+**Breaking Change**
+* [Tooltip]: the Tooltip target needs to accept ref correctly
+* [Dropdown]: renderTarget now returns a ref, that needs to passed correctly to the target component
+* [DndActor]: ref needs to be passed to the root node in the render prop
+* uui package moved to uui-core, uui-v package moved to uui, uui-core reexported to uui
+
+# 4.5.4 - 10.02.2022
 
 **What’s Fixed**
+* [DataTable]: bug fixes
+* [NumericInput] doesn't allow entering letters in safari
+* [Portal]: fix portal crashing when it's try to remove portal child from root and root doesn't already exist in DOM
+* [FileUpload]: update labels
+* [Tree]: Re-create dataSource based on new props
+* [Text]: add typography class to have possibility use Anchor inside Text with skin styles
+* [FileCard]: fix progress behavior, remove extension from name
+* [Form]: fix isChanged reset to false on form revert
 
 # 4.5.3 - 20.01.2022
 

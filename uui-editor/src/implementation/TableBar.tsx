@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Portal } from "@epam/uui-components";
 import * as css from './TableBar.scss';
-import * as ReactDOM from "react-dom";
 import { ReactComponent as InsertColumnAfter } from "../icons/table-add-column-right.svg";
 import { ReactComponent as InsertColumnBefore } from "../icons/table-add-column-left.svg";
 import { ReactComponent as InsertRowAfter } from "../icons/table-add-row-after.svg";
@@ -21,7 +20,7 @@ interface TableProps {
     isVisible: boolean;
 }
 
-export class TableBar extends React.Component<TableProps, any> {
+export class TableBar extends React.Component<TableProps> {
     public static contextType = UuiContext;
     public context: UuiContexts;
 
@@ -42,15 +41,15 @@ export class TableBar extends React.Component<TableProps, any> {
         if (!this.tablebar) {
             return;
         }
-        const toolbar: HTMLElement = ReactDOM.findDOMNode(this.tablebar) as any;
+
         return {
             getBoundingClientRect: () => {
                 let cellCoordPath = this.props.editor.value.document.getPath(this.props.editor.value.anchorBlock.key);
-                let CellCoord: any = (this.props.editor.findDOMNode(cellCoordPath) as any).getBoundingClientRect();
+                let CellCoord = (this.props.editor.findDOMNode(cellCoordPath) as any).getBoundingClientRect();
                 return CellCoord;
             },
-            clientWidth: toolbar && toolbar.getBoundingClientRect().width,
-            clientHeight: toolbar && toolbar.getBoundingClientRect().height,
+            clientWidth: this.tablebar?.getBoundingClientRect().width,
+            clientHeight: this.tablebar?.getBoundingClientRect().height,
         };
     }
 
@@ -77,10 +76,18 @@ export class TableBar extends React.Component<TableProps, any> {
 
         return (
             <Portal>
-                 { this.isTableCell() && this.props.isVisible && <Popper referenceElement={ this.virtualReferenceElement() } placement='bottom' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
-                    { (props) => {
-                        return (
-                            <div ref={ (node) => { this.tablebar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'uui-rte-tablebar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
+                { this.isTableCell() && this.props.isVisible && (
+                    <Popper referenceElement={ this.virtualReferenceElement() } placement='bottom' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
+                        { props => (
+                            <div
+                                onMouseDown={ e => e.preventDefault() }
+                                className={ cx(css.container, 'uui-rte-tablebar') }
+                                style={ { ...props.style, zIndex: this.layer.zIndex } }
+                                ref={ node => {
+                                    this.tablebar = node;
+                                    (props.ref as React.RefCallback<HTMLDivElement>)(node);
+                                } }
+                            >
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props, 'before'); } } icon={ InsertColumnBefore }/>
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).addNewColumn(this.props); } } icon={ InsertColumnAfter }/>
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeSelectedColumn(this.props); } } icon={ RemoveColumn }/>
@@ -90,9 +97,9 @@ export class TableBar extends React.Component<TableProps, any> {
                                 <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).removeTable(); } } icon={ RemoveTable }/>
                                 { this.isMerged() && <ToolbarButton isActive={ false } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, [this.props.editor.value.anchorBlock]); } } icon={ UnmergeCellsIcon }/> }
                             </div>
-                        );
-                    } }
-                </Popper> }
+                        ) }
+                    </Popper>
+                ) }
             </Portal>
         );
     }

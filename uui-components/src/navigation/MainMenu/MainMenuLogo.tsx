@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as css from './MainMenuLogo.scss';
-import { IAdaptiveItem, Link, ICanRedirect, cx, IHasRawProps } from '@epam/uui-core';
+import { IAdaptiveItem, Link, ICanRedirect, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { Anchor } from '../Anchor';
+import * as css from './MainMenuLogo.scss';
 
-export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawProps<HTMLDivElement> {
+export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     logoUrl?: string;
     logoBgColor?: string;
     showArrow?: boolean;
@@ -12,10 +12,10 @@ export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawP
     onClick?: (e: React.MouseEvent) => any;
 }
 
-export class MainMenuLogo extends React.Component<MainMenuLogoProps, any> {
+export class MainMenuLogo extends React.Component<MainMenuLogoProps> {
     render() {
         return (
-            <div onContextMenu={ this.props.onContextMenu } onClick={ this.props.onClick } {...this.props.rawProps}>
+            <div onContextMenu={ this.props.onContextMenu } onClick={ this.props.onClick } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <Anchor cx={ css.container } link={ this.props.link } href={ this.props.href } isDisabled={ !this.props.href && !this.props.link }>
                     <img
                         className={ css.logo }
