@@ -5,8 +5,9 @@ type PersonTableRecord = Person | PersonGroup | Location;
 
 type PersonTableRecordId = [PersonTableRecord["__typename"], string | number];
 
-// type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
 type PersonTableFilter = { [key: string]: any, groupBy?: string };
+
+import { ITablePreset, IPresetsApi } from '@epam/uui';
 
 interface ITableFilter {
     title: string;
@@ -21,27 +22,7 @@ interface PersonsTableState extends DataTableState {
     presets?: ITablePreset[];
 }
 
-interface ITablePreset<TFilter = Record<string, any>> {
-    name: string;
-    id: number | null;
-    filter: TFilter;
-    isReadonly?: boolean;
-    columnsConfig: ColumnsConfig;
-}
-
 type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
-
-interface IPresetsApi {
-    getActivePresetId(): number;
-    isDefaultPresetActive(): boolean;
-    choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
-    resetToDefault(): void;
-    hasPresetChanged(preset: ITablePreset): boolean;
-    duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
-}
 
 interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
     tableState: DataTableState;
@@ -51,4 +32,4 @@ interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
     presets: ITablePreset<TFilter>[];
 }
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ITablePreset, ILocalStoragePresets, IPresetsApi, ITableState };
+export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, ITableFilter, PersonsTableState, ILocalStoragePresets, ITableState };

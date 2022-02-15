@@ -5,4 +5,5 @@ export * from './overlays';
 export * from './pickers';
 export * from './typography';
 export * from './widgets';
+export * from './tables';
 export * from './types';
