@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { IHasChildren, IHasRawProps, INotification } from '@epam/uui';
+import cx from 'classnames';
+import { IHasChildren, IHasRawProps, INotification } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { ReactComponent as CrossIcon } from './../icons/snackbar/cross.svg';
@@ -7,7 +8,6 @@ import { ReactComponent as InfoIcon } from './../icons/snackbar/info.svg';
 import { ReactComponent as WarningIcon } from './../icons/snackbar/warning.svg';
 import { ReactComponent as SuccessIcon } from './../icons/snackbar/success.svg';
 import * as css from './SnackbarCard.scss';
-import cx from 'classnames';
 
 export interface SnackbarCardProps extends INotification, IHasChildren, IHasRawProps<HTMLDivElement> {
     snackType: 'success' | 'warning' | 'info' | 'danger';

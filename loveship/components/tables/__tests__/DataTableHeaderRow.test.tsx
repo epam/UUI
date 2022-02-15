@@ -1,8 +1,8 @@
 import React from "react";
 import { renderWithContextAsync } from '@epam/test-utils';
-import { demoColumns } from "./dataMocks";
-import { DataSourceState } from '@epam/uui';
-import { DataTableHeaderRow } from "../DataTableHeaderRow";
+import { DataSourceState } from '@epam/uui-core';
+import { demoColumns } from './dataMocks';
+import { DataTableHeaderRow } from '../DataTableHeaderRow';
 
 const dataSourceState: DataSourceState = {
     sorting: [{ field: 'name', direction: "asc" }],

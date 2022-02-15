@@ -12,3 +12,11 @@ declare module '*.svg' {
 
 declare module "jsurl";
 declare module "query-string";
+declare module 'draft-js-plugins-editor';
+declare module 'draft-js-clear-formatting';
+declare module 'draft-convert';
+declare module 'draft-js-plugins-utils';
+declare module 'draft-js/lib/*';
+declare module 'slate-soft-break';
+declare module 'slate-mark-hotkeys';
+declare module 'markdown-draft-js';

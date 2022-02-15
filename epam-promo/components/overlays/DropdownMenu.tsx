@@ -3,7 +3,7 @@ import FocusLock from 'react-focus-lock';
 import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
     IDisableable, IAnalyticableClick, IHasCX, IClickable,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as css from './RadioGroup.scss';
+import { IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui-core';
 import { RadioInputProps } from '../inputs/RadioInput';
-import { IHasCX, IEditable, IDisableable, IHasForwardedRef, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui';
+import * as css from './RadioGroup.scss';
 
 export interface RadioGroupItem<TValue> extends IDisableable {
     name?: string;

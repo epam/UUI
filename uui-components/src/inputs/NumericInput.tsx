@@ -1,25 +1,8 @@
 import * as React from 'react';
-import * as css from './NumericInput.scss';
-import {
-    IHasRawProps,
-    cx,
-    getCalculatedValue,
-    IHasCX,
-    IClickable,
-    IDisableable,
-    IEditable,
-    IHasPlaceholder,
-    Icon,
-    uuiMod,
-    uuiElement,
-    CX,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    UuiContexts,
-    UuiContext,
-    IHasForwardedRef,
-} from '@epam/uui';
+import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
+    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import * as css from './NumericInput.scss';
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;

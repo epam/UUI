@@ -1,6 +1,6 @@
 import { CompositeDecorator, Editor, EditorState, RichUtils, DraftHandleValue, DefaultDraftBlockRenderMap, convertFromRaw, convertToRaw } from 'draft-js';
 import * as React from 'react';
-import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam/uui';
+import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam/uui-core';
 import { Toolbar } from './common';
 import { linkDecorator } from './decorators';
 import * as css from './RichTextEditor.scss';

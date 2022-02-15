@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 import { IDemoApi } from './demoApi';
 
 export interface DemoComponentProps<TProps = any> {

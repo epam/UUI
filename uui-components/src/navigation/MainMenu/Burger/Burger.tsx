@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as css from './Burger.scss';
-import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui';
-import { IconContainer, Portal } from '../../../index';
 import cx from 'classnames';
+import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { IconContainer, Portal } from '../../../index';
+import * as css from './Burger.scss';
 
 interface BurgerState {
     isOpen: boolean;

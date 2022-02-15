@@ -1,7 +1,7 @@
 import { DbTablePatch, DbTablesSet, DbPatch, DbFieldSchema, DbSaveResponse } from "./types";
 import { Db } from "./Db";
 import { objectKeys } from "./utils";
-import { DataQuery, DataQueryFilter, DataQueryFilterCondition } from '@epam/uui';
+import { DataQuery, DataQueryFilter, DataQueryFilterCondition } from '@epam/uui-core';
 
 let lastTempId = -1;
 

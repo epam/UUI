@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import renderer from 'react-test-renderer';
-import { getDefaultColumnsConfig } from '@epam/uui';
+import { getDefaultColumnsConfig } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 
 const mockColumns = [

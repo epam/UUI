@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconContainer } from '../../layout';
-import { Icon, IEditable, IHasCX } from '@epam/uui';
+import { Icon, IEditable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import * as css from './DatePickerHeader.scss';
 import dayjs, { Dayjs } from "dayjs";

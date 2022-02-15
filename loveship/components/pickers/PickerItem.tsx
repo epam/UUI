@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps } from '@epam/uui';
+import { DataRowProps } from '@epam/uui-core';
 import { AvatarProps } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout/FlexItems';
 import { Text, TextPlaceholder } from '../typography';

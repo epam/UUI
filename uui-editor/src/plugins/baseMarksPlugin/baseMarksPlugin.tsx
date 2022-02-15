@@ -6,7 +6,7 @@ import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";
 import { ReactComponent as UnderlinedIcon } from "../../icons/underline.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { getMarkDeserializer } from '../../helpers';
-import { parseStringToCSSProperties } from '@epam/uui';
+import { parseStringToCSSProperties } from '@epam/uui-core';
 
 export const baseMarksPlugin = () => {
     const renderMark = (props: RenderMarkProps, editor: CoreEditor, next: () => any) => {

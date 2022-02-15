@@ -7,7 +7,7 @@ import {
     IHasCaption,
     IHasPlaceholder,
     UuiContext,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';

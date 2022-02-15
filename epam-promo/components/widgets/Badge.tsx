@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { EpamAdditionalColor } from '../types';
 import { systemIcons } from '../../icons/icons';

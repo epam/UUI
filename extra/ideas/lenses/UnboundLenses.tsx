@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as uui from '@epam/uui';
+import * as uui from '@epam/uui-core';
 import * as ls from '@epam/loveship';
 
 interface ILens<TBig, TSmall> {   

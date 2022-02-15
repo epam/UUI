@@ -5,7 +5,7 @@ import orderBy from 'lodash.orderby';
 import sortBy from 'lodash.sortby';
 import range from 'lodash.range';
 import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import { getPatternPredicate, getOrderComparer } from '@epam/uui';
+import { getPatternPredicate, getOrderComparer } from '@epam/uui-core';
 import { string } from 'prop-types';
 import { DbTable } from '..';
 

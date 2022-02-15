@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as css from './MainMenuLogo.scss';
-import { IAdaptiveItem, Link, ICanRedirect, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { IAdaptiveItem, Link, ICanRedirect, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { Anchor } from '../Anchor';
+import * as css from './MainMenuLogo.scss';
 
 export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     logoUrl?: string;

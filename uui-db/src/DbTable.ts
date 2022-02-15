@@ -1,6 +1,6 @@
 import { DbTablePatch, DbQuery, DbEntitySchema, DbPkFieldType, DbTablesSet } from './types';
 import * as I from 'immutable';
-import { SortDirection, getPatternPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui';
+import { SortDirection, getPatternPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui-core';
 import { Seq, Iterable } from 'immutable';
 
 interface ApplyQueryOptions {
