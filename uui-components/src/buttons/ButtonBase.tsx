@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui';
+import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers,
+    UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 

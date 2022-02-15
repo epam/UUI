@@ -1,5 +1,5 @@
 import { DataTableHeaderRow } from '../DataTableHeaderRow';
-import { DataTableHeaderRowProps } from '@epam/uui';
+import { DataTableHeaderRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext, FormContext, GridContext, iEditable } from '../../../docs';
 import { ColumnsHeaderRowDoc } from './common';

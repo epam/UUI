@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
 import dayjs, { Dayjs } from 'dayjs';
-import { Day } from "./Day";
-import * as css from './Calendar.scss';
-import { i18n } from "../../../i18n";
+import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { Day } from './Day';
+import { i18n } from '../../../i18n';
 import localeData from 'dayjs/plugin/localeData';
+import * as css from './Calendar.scss';
 dayjs.extend(localeData);
 
 const DAYS_COUNT_IN_WEEK = 7;
@@ -42,7 +42,6 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
         super(props);
         dayjs.locale(i18n.datePicker.locale);
         dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
-        // dayjs().localeData();
 
         this.state = {
             weeksHeight: this.getDaysMatrix(this.props.displayedDate?.startOf('day')).length * 36,

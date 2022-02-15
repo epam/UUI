@@ -1,5 +1,5 @@
 import React from 'react';
-import { uuiMarkers, cx } from '@epam/uui';
+import { uuiMarkers, cx } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { FlexCell, Checkbox, TextPlaceholder, Text } from '../';
 import { DataTableCellProps, DataTableCellMods } from './types';

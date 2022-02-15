@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './UploadFileToggler.scss';
-import { IHasForwardedRef, IHasRawProps } from '@epam/uui';
+import { IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 
 interface UploadFileTogglerRenderParams {
     onClick(): any;

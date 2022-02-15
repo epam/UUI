@@ -3,7 +3,7 @@ import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
 import { ToolbarButton } from './ToolbarButton';
 import { Editor } from 'slate-react';
-import { uuiSkin } from "@epam/uui";
+import { uuiSkin } from "@epam/uui-core";
 
 interface ColorBarProps {
     editor: Editor;

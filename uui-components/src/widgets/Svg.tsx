@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Icon, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui';
+import { Icon, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
+
+interface ISvgProps {
+    className: string;
+    fill: string;
+    height?: number;
+    width?: number;
+}
 
 interface SvgProps extends IHasCX, IHasRawProps<SVGSVGElement>, IHasForwardedRef<SVGSVGElement> {
     svg?: Icon;
@@ -24,10 +31,3 @@ export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
 
     return React.createElement(svg, { ...svgProps, ref });
 });
-
-interface ISvgProps {
-    className: string;
-    fill: string;
-    height?: number;
-    width?: number;
-}

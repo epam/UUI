@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui';
+import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui-core';
 import { PositionValues, ScrollBars, ScrollbarsApi } from '../layout';
 import * as css from './VirtualList.scss';
 

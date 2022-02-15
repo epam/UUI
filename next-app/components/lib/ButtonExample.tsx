@@ -13,7 +13,7 @@ import {
 import {
     IDropdownToggler,
     INotification, useUuiContext,
-} from "@epam/uui";
+} from "@epam/uui-core";
 import React, {useState} from "react";
 import {BasicModalExample} from "../Modal";
 import Link from 'next/link';

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef } from '@epam/uui';
-import dayjs, { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from 'dayjs';
+import objectSupport from 'dayjs/plugin/objectSupport';
+import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
 import { IconContainer } from '../layout/IconContainer';
-import objectSupport from "dayjs/plugin/objectSupport";
+
 dayjs.extend(objectSupport);
 
 export const uuiTimePicker = {

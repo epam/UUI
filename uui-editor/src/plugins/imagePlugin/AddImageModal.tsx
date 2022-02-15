@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
-import { IModal, prependHttp, uuiSkin } from '@epam/uui';
+import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import * as css from './AddImageModal.scss';
 import { Editor } from 'slate-react';
 

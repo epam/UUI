@@ -3,7 +3,7 @@ import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui';
 import {
     Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
     FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
-} from '@epam/uui-v';
+} from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';

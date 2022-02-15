@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './Accordion.scss';
 

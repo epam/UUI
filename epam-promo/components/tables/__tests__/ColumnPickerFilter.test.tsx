@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { ArrayDataSource } from '@epam/uui';
+import { ArrayDataSource } from '@epam/uui-core';
 import { windowMock } from "@epam/test-utils";
 import { ColumnPickerFilter } from '../ColumnPickerFilter';
 

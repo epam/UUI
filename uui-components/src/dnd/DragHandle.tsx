@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IHasRawProps } from '@epam/uui';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import cx from 'classnames';
 import * as css from './DragHandle.scss';
 

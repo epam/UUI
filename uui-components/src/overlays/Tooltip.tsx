@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui';
-import * as css from './Tooltip.scss';
+import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui-core';
 import { Portal } from './Portal';
+import * as css from './Tooltip.scss';
 
 export interface TooltipProps extends IHasCX, IHasChildren {
     content?: any;

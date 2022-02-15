@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './FlexSpacer.scss';
-import { IAdaptiveItem } from '@epam/uui';
+import { IAdaptiveItem } from '@epam/uui-core';
 
 export interface FlexSpacerProps extends IAdaptiveItem {}
 

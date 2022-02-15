@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAdaptiveItem, IHasChildren } from '@epam/uui';
+import { IAdaptiveItem, IHasChildren } from '@epam/uui-core';
 
 export interface MainMenuCustomElementProps extends IAdaptiveItem, IHasChildren {}
 

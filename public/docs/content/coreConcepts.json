@@ -47,7 +47,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "@epam/uui",
+                    "text": "@epam/uui-core",
                     "marks": [
                       {
                         "object": "mark",

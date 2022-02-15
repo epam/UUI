@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './RichTextView.scss';
 import * as style from '../../assets/styles/typography.scss';
 import { RichTextView as uuiRichTextView, RichTextViewProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 
 export interface RichTextViewMods {
     size?: '12' | '14' | '16';

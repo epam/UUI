@@ -1,5 +1,5 @@
 import { IconButtonBaseProps, IconButton as uuiIconButton } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import * as css from './IconButton.scss';
 import * as styles from '../../assets/styles/colorvars/buttons/iconButton-colorvars.scss';
 import { allEpamPrimaryColors, EpamPrimaryColor } from '../types';

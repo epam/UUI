@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import cx from 'classnames';
-import { isMobile } from '@epam/uui';
+import { isMobile } from '@epam/uui-core';
 import { PickerFooterProps } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';

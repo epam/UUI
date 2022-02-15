@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Portal } from "@epam/uui-components";
-import * as css from './Toolbar.scss';
-import { Editor } from 'slate-react';
-import { Popper } from 'react-popper';
-import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui";
-import { ReactComponent as UnmergeIcon } from "../icons/table-un-merge.svg";
-import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';
-import { ToolbarButton } from './ToolbarButton';
 import cx from 'classnames';
+import { Popper } from 'react-popper';
+import { Editor } from 'slate-react';
+import { LayoutLayer, UuiContext, UuiContexts } from '@epam/uui-core';
+import { Portal } from '@epam/uui-components';
+import { ToolbarButton } from './ToolbarButton';
+import { ReactComponent as UnmergeIcon } from '../icons/table-un-merge.svg';
+import { ReactComponent as MergeIcon } from '../icons/table-merge.svg';
+import * as css from './Toolbar.scss';
 
 interface MergeCellBarProps {
     editor: Editor;

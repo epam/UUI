@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UuiContexts, UuiContext } from '@epam/uui';
+import { UuiContexts, UuiContext } from '@epam/uui-core';
 
 export class Modals extends React.Component {
     static contextType = UuiContext;

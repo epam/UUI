@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection } from './Calendar';
 import isToday from "dayjs/plugin/isToday";

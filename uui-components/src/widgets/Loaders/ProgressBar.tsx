@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { IHasCX, IHasRawProps } from "@epam/uui";
 import cx from 'classnames';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as css from './ProgressBar.scss';
 
 export interface IProgressBarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
@@ -16,7 +16,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((
     return (
         <div ref={ ref } className={ cx(props.cx, css.container) } { ...props.rawProps }>
             <div
-                role="progressbar"
+                role='progressbar'
                 className={ cx(css.bar, 'bar') }
                 style={ { width: `${ props.progress || 0 }%` } }
                 aria-valuenow={ progress }

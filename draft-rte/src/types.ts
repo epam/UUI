@@ -1,5 +1,5 @@
 import { EditorState, DraftInlineStyleType, DraftBlockType, ContentState } from 'draft-js';
-import { Icon, IEditable } from '@epam/uui';
+import { Icon, IEditable } from '@epam/uui-core';
 
 export interface DraftButtonProps  extends IEditable<EditorState> {}
 

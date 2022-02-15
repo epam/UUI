@@ -2,7 +2,7 @@ import { Slider as UuiSlider, SliderBaseProps } from '@epam/uui-components';
 import * as css from './Slider.scss';
 import * as styles from '../../../assets/styles/scss/loveship-color-vars.scss';
 import * as types from '../../types';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 
 export interface SliderMods extends types.ColorMod { }
 

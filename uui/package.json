@@ -1,7 +1,7 @@
 {
   "name": "@epam/uui",
   "version": "4.5.4",
-  "description": "EPAM UUI",
+  "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,35 +11,14 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@types/classnames": "2.2.6",
-    "@types/lodash.clone": "4.5.6",
-    "@types/lodash.debounce": "4.0.6",
-    "@types/lodash.isequal": "4.5.5",
-    "@types/lodash.maxby": "4.6.6",
-    "@types/lodash.memoize": "4.1.6",
-    "@types/lodash.orderby": "4.6.6",
-    "@types/lodash.sortby": "4.7.6",
-    "@types/lodash.trimend": "4.5.6",
-    "@types/query-string": "6.1.0",
-    "classnames": "2.2.6",
-    "csstype": "2.6.10",
-    "jsurl": "0.1.5",
-    "lodash.clone": "4.5.0",
-    "lodash.debounce": "4.0.8",
-    "lodash.isequal": "4.5.0",
-    "lodash.maxby": "4.6.0",
-    "lodash.memoize": "4.1.2",
-    "lodash.orderby": "4.6.0",
-    "lodash.sortby": "4.7.0",
-    "lodash.trimend": "4.5.1",
-    "query-string": "^6.5.0",
-    "react-popper": "2.2.5"
+    "@epam/assets": "4.5.4",
+    "@epam/uui-core": "4.5.4",
+    "@epam/uui-components": "4.5.4",
+    "react-focus-lock": "2.7.1",
+    "classnames": "2.2.6"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "7.0.2",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0",
-    "react-test-renderer": "16.13.1"
+    "@epam/uui-docs": "4.5.4"
   },
   "peerDependencies": {
     "prop-types": "*",

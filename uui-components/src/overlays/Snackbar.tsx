@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import * as css from './Snackbar.scss';
 
