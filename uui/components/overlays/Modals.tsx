@@ -5,8 +5,8 @@ import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import * as css from './Modals.scss';
 import '../../assets/styles/variables/overlays/modals.scss';
+import * as css from './Modals.scss';
 
 export interface ModalBlockerMods {
     overlay?: boolean;
