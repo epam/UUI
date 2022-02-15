@@ -8,7 +8,15 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {
         return (
             <Dropdown
-                renderTarget={ props => <MainMenuButton caption={ this.props.caption } { ...props } isLinkActive={ this.props.isLinkActive } isDropdown/> }
+                renderTarget={ props => (
+                  <MainMenuButton
+                    caption={ this.props.caption }
+                    { ...props }
+                    rawProps={ this.props.rawProps }
+                    isLinkActive={ this.props.isLinkActive }
+                    isDropdown
+                  />
+                ) }
                 renderBody={ props => (
                     <div className={ cx(css.dropdownBody) }>
                         { React.Children.map(this.props.children, item => {

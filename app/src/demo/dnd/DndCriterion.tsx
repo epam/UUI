@@ -29,9 +29,9 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
     }
 
     handleOnDrop = ({ srcData, dstData, position }: DropParams<CriterionItem, CriterionItem>) => {
-        let newOrder = position === 'bottom'
-                       ? getOrderBetween(dstData.order, this.props.nextCriterion?.order)
-                       : getOrderBetween(this.props.prevCriterion?.order, dstData.order);
+        const newOrder = position === 'bottom'
+            ? getOrderBetween(dstData.order, this.props.nextCriterion?.order)
+            : getOrderBetween(this.props.prevCriterion?.order, dstData.order);
 
         this.props.onValueChange({ ...srcData, order: newOrder });
     }
@@ -47,7 +47,7 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
                 onDrop={ this.handleOnDrop }
                 render={ props => {
                     return (
-                        <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
+                        <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
                                 <DragHandle cx={ [css.dragHandle] } />
                                 <FlexRow background='white' vPadding='12' padding='18' cx={ css.row }>

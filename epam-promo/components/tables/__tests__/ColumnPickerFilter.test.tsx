@@ -4,10 +4,6 @@ import { ArrayDataSource } from '@epam/uui-core';
 import { windowMock } from "@epam/test-utils";
 import { ColumnPickerFilter } from '../ColumnPickerFilter';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 const languageLevels = [
     { "id": 2, "level": "A1" },
     { "id": 3, "level": "A1+" },
@@ -37,7 +33,7 @@ describe('ColumnPickerFilter', () => {
     afterEach(() => {
         windowSpy.mockRestore();
     });
-    
+
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<ColumnPickerFilter

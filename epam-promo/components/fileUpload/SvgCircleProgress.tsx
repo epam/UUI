@@ -1,38 +1,37 @@
 import * as React from 'react';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as css from './SvgCircleProgress.scss';
-import { IHasCX } from '@epam/uui-core';
 
-interface SvgCircleProgressProps extends IHasCX {
+interface SvgCircleProgressProps extends IHasCX, IHasRawProps<SVGSVGElement> {
     size: number;
     progress: number;
 }
 
-export class SvgCircleProgress extends React.Component<SvgCircleProgressProps> {
-    outsetRadius = this.props.size / 2 - 1;
-    insetRadius = this.props.size / 2 - 3;
-    circumference = this.insetRadius * Math.PI;
-    render() {
-        return (
-            <svg className={ css.root } width={ this.props.size } height={ this.props.size } >
-                <circle
-                    stroke={ '#ACAFBF' }
-                    strokeDasharray={ this.circumference }
-                    strokeDashoffset={ this.circumference - (this.props.progress / 100 * this.circumference) }
-                    strokeWidth={ this.insetRadius }
-                    fill='transparent'
-                    r={ this.insetRadius / 2 }
-                    cx={ this.props.size / 2 }
-                    cy={ this.props.size / 2 }
-                />
-                <circle
-                    stroke={ '#ACAFBF' }
-                    strokeWidth={ 1 }
-                    fill='transparent'
-                    r={ this.outsetRadius }
-                    cx={ this.props.size / 2 }
-                    cy={ this.props.size / 2 }
-                />
-            </svg>
-        );
-    }
-}
+export const SvgCircleProgress = React.forwardRef<SVGSVGElement, SvgCircleProgressProps>((props, ref) => {
+    const outsetRadius = props.size / 2 - 1;
+    const insetRadius = props.size / 2 - 3;
+    const circumference = insetRadius * Math.PI;
+
+    return (
+        <svg className={ css.root } width={ props.size } height={ props.size } ref={ ref } { ...props.rawProps }>
+            <circle
+                stroke={ '#ACAFBF' }
+                strokeDasharray={ circumference }
+                strokeDashoffset={ circumference - (props.progress / 100 * circumference) }
+                strokeWidth={ insetRadius }
+                fill='transparent'
+                r={ insetRadius / 2 }
+                cx={ props.size / 2 }
+                cy={ props.size / 2 }
+            />
+            <circle
+                stroke={ '#ACAFBF' }
+                strokeWidth={ 1 }
+                fill='transparent'
+                r={ outsetRadius }
+                cx={ props.size / 2 }
+                cy={ props.size / 2 }
+            />
+        </svg>
+    );
+});

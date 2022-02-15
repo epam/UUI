@@ -35,6 +35,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
             <div
                 className={ cx(css.container, this.props.cx) }
                 style={ { zIndex: this.props.zIndex } }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick } />

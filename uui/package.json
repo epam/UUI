@@ -1,25 +1,24 @@
 {
   "name": "@epam/uui",
-  "version": "4.5.3",
-  "description": "EPAM UUI-V components set",
+  "version": "4.5.4",
+  "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "private": true,
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.5.3",
-    "@epam/uui-core": "4.5.3",
-    "@epam/uui-components": "4.5.3",
+    "@epam/assets": "4.5.4",
+    "@epam/uui-core": "4.5.4",
+    "@epam/uui-components": "4.5.4",
     "react-focus-lock": "2.7.1",
     "classnames": "2.2.6"
   },
   "devDependencies": {
-    "@epam/uui-docs": "4.5.3"
+    "@epam/uui-docs": "4.5.4"
   },
   "peerDependencies": {
     "prop-types": "*",

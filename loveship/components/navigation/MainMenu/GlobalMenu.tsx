@@ -1,24 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import * as css from './GlobalMenu.scss';
-import { ReactComponent as GlobalMenuIcon } from '../../icons/global_menu.svg';
-import { IAdaptiveItem, IHasCX } from '@epam/uui-core';
+import { IAdaptiveItem, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
+import { ReactComponent as GlobalMenuIcon } from '../../icons/global_menu.svg';
+import * as css from './GlobalMenu.scss';
 
-export interface GlobalMenuProps extends IAdaptiveItem, IHasCX {
+export interface GlobalMenuProps extends IAdaptiveItem, IHasCX, IHasRawProps<HTMLDivElement> {}
 
-}
-
-export class GlobalMenu extends React.Component<GlobalMenuProps, any> {
-    render() {
-        return (
-            <div id='global_menu_toggle' className={ cx(css.globalMenuBtn, this.props.cx) } >
-                { /* <img className={ css.globalMenuBtn }
-                    src='/static/icons/global_menu.svg'
-                    onError={ function () { document.getElementById('global_menu_toggle').style.display = 'none'; } }
-                /> */}
-                <IconContainer icon={ GlobalMenuIcon } cx={ css.globalMenuIcon } />
-            </div>
-        );
-    }
-}
+export const GlobalMenu = React.forwardRef<HTMLDivElement, GlobalMenuProps>((props, ref) => (
+    <div ref={ ref } id='global_menu_toggle' className={ cx(css.globalMenuBtn, props.cx) } { ...props.rawProps }>
+        <IconContainer icon={ GlobalMenuIcon } cx={ css.globalMenuIcon } />
+    </div>
+));

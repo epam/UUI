@@ -1,26 +1,23 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {Rating} from "../Rating";
-
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
+import { renderWithContextAsync } from '@epam/test-utils';
+import { Rating } from "../Rating";
 
 describe("Rating", () => {
     const value = 2;
     const onChange = jest.fn();
 
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<Rating value={ value } onValueChange={ onChange }/>)
-            .toJSON();
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(
+            <Rating value={ value } onValueChange={ onChange } />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
 
-    it("should be rendered correctly with props", () => {
-        const tree = renderer
-            .create(<Rating
+    it("should be rendered correctly with props", async () => {
+        const tree = await renderWithContextAsync(
+            <Rating
                 value={ value }
                 onValueChange={ onChange }
                 step={ 1 }
@@ -28,8 +25,9 @@ describe("Rating", () => {
                 to={ 4 }
                 size={ 24 }
                 color="sky"
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

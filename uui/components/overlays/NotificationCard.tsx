@@ -9,8 +9,8 @@ import { ReactComponent as WarningIcon } from '../../icons/notification-warning-
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import * as css from './NotificationCard.scss';
 import '../../assets/styles/variables/overlays/notificationCard.scss';
+import * as css from './NotificationCard.scss';
 
 type notificationAction = {
     name: string;
