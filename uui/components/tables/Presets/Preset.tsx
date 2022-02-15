@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from "react";
-import css from "./Preset.scss";
-import { Button, Dropdown, TextInput, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, ControlGroup, IDropdownToggler } from "@epam/uui";
+import React, { useCallback, useState } from 'react';
+import { IDropdownToggler } from '@epam/uui-core';
+import { DropdownBodyProps } from '@epam/uui-components';
+import { ITablePreset } from '../types';
+import { Button, Dropdown, TextInput, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, ControlGroup } from '../../';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
-import { DropdownBodyProps } from "@epam/uui-components";
-import { ITablePreset } from "../types";
+import css from './Preset.scss';
 
 interface IPresetProps {
     preset: ITablePreset;
@@ -16,7 +17,18 @@ interface IPresetProps {
     resetToDefault: () => void;
 }
 
-export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, choosePreset, duplicatePreset, deletePreset, updatePreset, resetToDefault }) => {
+export const Preset: React.FC<IPresetProps> = (
+    {
+        preset,
+        isActive,
+        hasChanged,
+        choosePreset,
+        duplicatePreset,
+        deletePreset,
+        updatePreset,
+        resetToDefault,
+    },
+) => {
     const [isRenaming, setIsRenaming] = useState(false);
     const [renamingValue, setRenamingValue] = useState("");
 
@@ -62,12 +74,12 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
 
         return (
             <DropdownMenuBody { ...props }>
-                <DropdownMenuButton caption="Duplicate" onClick={ handleDuplicate }/>
-                <DropdownMenuButton caption="Rename" onClick={ startRenaming }/>
-                <DropdownMenuButton caption="Update" onClick={ update } isDisabled={ !hasChanged }/>
-                <DropdownMenuButton caption="Delete" onClick={ handleDelete }/>
+                <DropdownMenuButton caption='Duplicate' onClick={ handleDuplicate }/>
+                <DropdownMenuButton caption='Rename' onClick={ startRenaming }/>
+                <DropdownMenuButton caption='Update' onClick={ update } isDisabled={ !hasChanged }/>
+                <DropdownMenuButton caption='Delete' onClick={ handleDelete }/>
                 <DropdownMenuSplitter />
-                <DropdownMenuButton caption="Discard all changes" onClick={ choose } isDisabled={ !hasChanged }/>
+                <DropdownMenuButton caption='Discard all changes' onClick={ choose } isDisabled={ !hasChanged }/>
             </DropdownMenuBody>
         );
     }, [preset, duplicatePreset, deletePreset, isActive, choosePreset, hasChanged]);
@@ -77,9 +89,9 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
             <Button
                 { ...props }
                 icon={ MenuIcon }
-                size="24"
+                size='24'
                 isDropdown={ false }
-                mode={ isActive ? "solid" : "outline" }
+                mode={ isActive ? 'solid' : 'outline' }
                 cx={ [css.target, hasChanged && css.notification] }
             />
         );
@@ -92,7 +104,7 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
                     <TextInput
                         value={ renamingValue }
                         onValueChange={ setRenamingValue }
-                        size="24"
+                        size='24'
                         onAccept={ acceptRenaming }
                         onBlur={ acceptRenaming }
                         cx={ css.input }
@@ -103,9 +115,9 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
                     <ControlGroup cx={ css.container }>
                         <Button
                             key={ preset.id }
-                            size="24"
+                            size='24'
                             caption={ preset.name }
-                            mode={ isActive ? "solid" : "outline" }
+                            mode={ isActive ? 'solid' : 'outline' }
                             onClick={ isActive ? null : handleChoose }
                         />
 
@@ -113,7 +125,7 @@ export const Preset: React.FC<IPresetProps> = ({ preset, isActive, hasChanged, c
                             <Dropdown
                                 renderBody={ renderBody }
                                 renderTarget={ renderTarget }
-                                placement="bottom-end"
+                                placement='bottom-end'
                             />
                         ) }
                     </ControlGroup>

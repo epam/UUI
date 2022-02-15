@@ -54,11 +54,12 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any> {
+export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
-    index: number;
-    role: React.HTMLAttributes<HTMLElement>['role'];
+    index?: number;
+    role?: React.HTMLAttributes<HTMLElement>['role'];
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
 export interface DataRowOptions<TItem, TId> extends IDisableable {

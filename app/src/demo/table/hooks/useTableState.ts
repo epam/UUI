@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
-import isEqual from "lodash.isequal";
-import { ColumnsConfig, DataColumnProps, DataTableState, getColumnsConfig } from "@epam/uui";
-import { svc } from "../../../services";
-import { ITablePreset, ITableState } from "../types";
-import { isDefaultColumnsConfig, normalizeFilter, parseFilterUrl } from "../helpers";
-import { constants } from "../data";
+import { useCallback, useEffect, useState } from 'react';
+import isEqual from 'lodash.isequal';
+import { ColumnsConfig, DataColumnProps, DataTableState, getColumnsConfig, ITablePreset } from '@epam/uui';
+import { svc } from '../../../services';
+import { ITableState } from '../types';
+import { isDefaultColumnsConfig, normalizeFilter, parseFilterUrl } from '../helpers';
+import { constants } from '../data';
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const [tableState, setTableState] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
-        sorting: [{ field: "name" }],
+        sorting: [{ field: 'name' }],
         filter: params.initialFilter ?? parseFilterUrl(),
         columnsConfig: getColumnsConfig(params.columns, {}),
     });
@@ -83,7 +83,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const isDefaultPresetActive = useCallback(() => {
         const searchParams = new URLSearchParams(location.search);
-        return !searchParams.get("presetId") 
+        return !searchParams.get('presetId')
             && !tableState.filter
             && isDefaultColumnsConfig(tableState.columnsConfig, params.columns);
     }, [params.columns, tableState.filter, tableState.columnsConfig]);
@@ -107,7 +107,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, []);
 
     const createNewPreset = useCallback(async (preset: string | ITablePreset) => {
-        const newPreset = typeof preset === "string" 
+        const newPreset = typeof preset === 'string'
             ? {
                 name: preset,
                 filter: tableState.filter,
@@ -116,7 +116,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             } as ITablePreset<TFilter>
             : {
                 ...preset,
-                name: preset.name + "_copy",
+                name: preset.name + '_copy',
             } as ITablePreset<TFilter>;
 
         newPreset.id = await params?.onPresetCreate(newPreset);
