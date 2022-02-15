@@ -5,7 +5,7 @@ import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue
 import {
     IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
     IDropdownToggler, UuiContext, isChildFocusable
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);

@@ -6,7 +6,7 @@ import {
     LazyDataSourceApiRequest,
     DataSourceState,
     useUuiContext,
-} from "@epam/uui";
+} from "@epam/uui-core";
 import {Person} from "@epam/uui-docs";
 import {NextPageContext} from "next";
 import {fetcher, UUI_API_POINT} from "../helpers/apiHelper";

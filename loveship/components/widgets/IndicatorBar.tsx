@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ProgressBar, IndeterminateBar } from "./";
 import cx from 'classnames';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import { ProgressBar, IndeterminateBar } from './';
 import * as css from './IndicatorBar.scss';
-import { IHasCX, IHasRawProps } from "@epam/uui";
 
 interface IIndicatorProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     progress?: number;

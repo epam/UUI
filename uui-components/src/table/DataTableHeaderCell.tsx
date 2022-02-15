@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui";
+import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui-core";
 
 interface DataTableRenderProps {
     renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;

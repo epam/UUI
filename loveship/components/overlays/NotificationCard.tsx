@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps, useUuiContext } from '@epam/uui';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import cx from 'classnames';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps, useUuiContext } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
+import { EpamColor, LinkButton } from '..';
+import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../icons/snackbar/cross.svg';
+import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as css from './NotificationCard.scss';
-import cx from 'classnames';
-import { EpamColor, LinkButton } from '..';
-import { i18n } from '../../i18n';
 
 interface NotificationAction extends IHasRawProps<HTMLButtonElement> {
     name: string;

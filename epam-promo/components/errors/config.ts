@@ -1,4 +1,4 @@
-import { ApiRecoveryReason } from '@epam/uui';
+import { ApiRecoveryReason } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 
 export const getRecoveryMessageConfig: () => Record<ApiRecoveryReason, { title: string, subtitle: string }> = () => ({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Spinner as uuiSpinner, SpinnerProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import * as css from './Spinner.scss';
 import * as styles from '../../assets/styles/colorvars/widgets/spinner-colorvars.scss';
 

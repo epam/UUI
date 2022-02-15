@@ -2,7 +2,7 @@ import { EditorState, AtomicBlockUtils } from 'draft-js';
 import EditorUtils from 'draft-js-plugins-utils';
 import { IconButton } from '@epam/loveship';
 import * as React from 'react';
-import { UuiContexts, prependHttp, UuiContext } from '@epam/uui';
+import { UuiContexts, prependHttp, UuiContext } from '@epam/uui-core';
 import { DraftButtonProps } from '../../../types';
 import { getSelectionText } from '../../../utils';
 import { ImageModalState, showImageModal } from '../modals/ImageModal';

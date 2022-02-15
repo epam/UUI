@@ -1,9 +1,9 @@
-import * as React from 'react';
-import * as css from './TextPlaceholder.scss';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as types from '../types';
+import React from 'react';
 import cx from 'classnames';
-import { IHasCX, IHasRawProps } from '@epam/uui';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import * as types from '../types';
+import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import * as css from './TextPlaceholder.scss';
 
 export interface TextPlaceholderProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     wordsCount?: number;
@@ -31,7 +31,7 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
                     className={ cx([
                         props.cx,
                         css.loadingWord,
-                        styles['color-' + (props.color || 'night100')],
+                        styles[`color-${props.color || 'night100'}`],
                         !props.isNotAnimated && css.animatedLoading,
                     ]) }
                 />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uuiSkin } from '@epam/uui';
+import { uuiSkin } from '@epam/uui-core';
 import { RenderBlockProps } from "slate-react";
 import * as css from './ToDoItem.scss';
 

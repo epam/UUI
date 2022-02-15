@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler } from '@epam/uui';
+import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler } from '@epam/uui-core';
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Dropdown } from '../overlays';
 dayjs.extend(customParseFormat);

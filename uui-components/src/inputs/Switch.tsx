@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Switch.scss';
-import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from "@epam/uui";
 
 export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
     tabIndex?: number;
@@ -34,8 +34,8 @@ export class Switch extends React.Component<SwitchProps> {
             >
                 <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>
                     <input
-                        type="checkbox"
-                        role="switch"
+                        type='checkbox'
+                        role='switch'
                         onChange={ !this.props.isReadonly ? this.toggle : undefined }
                         readOnly={ this.props.isReadonly }
                         aria-readonly={ this.props.isReadonly || undefined }

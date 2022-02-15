@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IModal, prependHttp, uuiSkin } from '@epam/uui';
+import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import * as css from './AddVideoModal.scss';
 import { Editor } from "slate-react";

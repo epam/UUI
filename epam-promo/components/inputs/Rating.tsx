@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Rating as uuiRating, RatingProps } from '@epam/uui-components';
 import * as css from './Rating.scss';
 import { ReactComponent as FilledStarIcon } from '@epam/assets/icons/common/fav-rates-star-24.svg';

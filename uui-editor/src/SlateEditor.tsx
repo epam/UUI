@@ -3,7 +3,7 @@ import { Editor, Plugin, getEventTransfer } from 'slate-react';
 import { KeyUtils, SchemaProperties, Value, Block, Text as SlateText } from 'slate';
 import * as css from './SlateEditor.scss';
 import * as style from '@epam/assets/scss/promo/typography.scss';
-import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui';
+import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui-core';
 import {Toolbar} from "./implementation/Toolbar";
 import {Sidebar} from './implementation/Sidebar';
 import SoftBreak from "slate-soft-break";

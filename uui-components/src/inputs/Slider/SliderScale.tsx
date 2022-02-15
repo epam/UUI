@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SliderScaleElement } from './SliderScaleElement';
 import { SliderScaleBase } from './SliderScaleBase';
-import { isClientSide } from "@epam/uui";
+import { isClientSide } from "@epam/uui-core";
 
 interface HandlerOffsetValue {
     from: number;

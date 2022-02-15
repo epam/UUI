@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui';
+import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';

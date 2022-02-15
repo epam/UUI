@@ -1,8 +1,7 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import sortBy from "lodash.sortby";
 import { Accordion } from "@epam/promo";
-import { ColumnsConfig, DataColumnProps, getColumnsConfig, IEditable } from "@epam/uui";
-import { ITableState, PersonsTableState } from "../../types";
+import { ColumnsConfig, DataColumnProps } from "@epam/uui";
 import Column from "./Column";
 
 interface IColumnsBlockProps {

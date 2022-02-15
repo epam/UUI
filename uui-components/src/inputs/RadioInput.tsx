@@ -1,23 +1,8 @@
 import * as React from 'react';
-import * as css from './RadioInput.scss';
-import {
-    IHasRawProps,
-    cx,
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasLabel,
-    Icon,
-    uuiMod,
-    uuiElement,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    UuiContexts,
-    uuiMarkers,
-    UuiContext,
-    IHasForwardedRef,
-} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly,
+    IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import * as css from './RadioInput.scss';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
     icon?: Icon;
@@ -55,7 +40,7 @@ export class RadioInput extends React.Component<RadioInputProps> {
             >
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
-                        type="radio"
+                        type='radio'
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled || undefined }

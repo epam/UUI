@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as css from './SvgCircleProgress.scss';
-import { IHasCX, IHasRawProps } from '@epam/uui';
 
 interface SvgCircleProgressProps extends IHasCX, IHasRawProps<SVGSVGElement> {
     size: number;

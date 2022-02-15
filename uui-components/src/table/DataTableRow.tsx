@@ -1,6 +1,6 @@
 import React, { ReactNode, Component } from "react";
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers } from '@epam/uui';
+import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers } from '@epam/uui-core';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {

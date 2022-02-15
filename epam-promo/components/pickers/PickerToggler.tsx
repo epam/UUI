@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps } from '@epam/uui';
+import { DataRowProps } from '@epam/uui-core';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
@@ -35,7 +35,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                 return '24';
             case '24':
                 return '18';
-        };
+        }
     };
 
     const getCaption = (row: DataRowProps<TItem, TId>) => {
@@ -47,8 +47,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             return row.value;
         } else {
             return props.getName(row.value as unknown as DataRowProps<TItem, TId>);
-        };
-    }
+        }
+    };
 
     const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
@@ -74,6 +74,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
-};
+}
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;

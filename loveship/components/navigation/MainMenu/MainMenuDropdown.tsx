@@ -1,10 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import { IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
-import {IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps} from '@epam/uui';
-import * as css from './MainMenuDropdown.scss';
 import { DropdownMenuBody } from '../../overlays';
 import { MainMenuButton } from './MainMenuButton';
+import * as css from './MainMenuDropdown.scss';
 
 interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
@@ -35,7 +35,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                     />
                     ) }
                 renderBody={ (props) => (
-                    <DropdownMenuBody color="night" inMainMenu>
+                    <DropdownMenuBody color='night' inMainMenu>
                         { React.Children.map(this.props.children, (item: any) => {
                             if (!item) {
                                 return item;
@@ -52,7 +52,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                         }) }
                     </DropdownMenuBody>
                 ) }
-                placement="bottom-start"
+                placement='bottom-start'
             />
         );
     }

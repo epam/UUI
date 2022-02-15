@@ -1,11 +1,11 @@
 import React, { MouseEvent } from 'react';
 import Measure from 'react-measure';
-import * as css from './MainMenu.scss';
-import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui';
+import orderBy from 'lodash.orderby';
+import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
 import { ButtonProps } from '../../buttons';
 import { BurgerProps, MainMenuLogo } from './index';
-import orderBy from 'lodash.orderby';
 import { i18n } from '../../../i18n';
+import * as css from './MainMenu.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 

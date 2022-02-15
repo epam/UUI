@@ -1,5 +1,5 @@
 import React from 'react';
-import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui';
+import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui-core';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';
@@ -117,7 +117,7 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
                 this.context.uuiNotifications.show(props =>
                     <SnackbarCard { ...props } snackType='danger'>
                         <FlexRow padding='24' vPadding='12'>
-                            <Text size="36">{ (c.responseData?.errorMessage) || defaultNotificationErrorMessage }</Text>
+                            <Text size='36'>{ (c.responseData?.errorMessage) || defaultNotificationErrorMessage }</Text>
                         </FlexRow>
                     </SnackbarCard>,
                 );

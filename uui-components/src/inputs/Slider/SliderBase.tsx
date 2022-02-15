@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
 export interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     min: number;

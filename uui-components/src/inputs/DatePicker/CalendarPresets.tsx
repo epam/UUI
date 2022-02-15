@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './CalendarPresets.scss';
 
 export const uuiPresets = {

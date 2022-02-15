@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isClickableChildClicked, cx, FlexCellProps } from '@epam/uui';
+import { isClickableChildClicked, cx, FlexCellProps } from '@epam/uui-core';
 
 export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, ref) => (
     <div

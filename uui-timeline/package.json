@@ -10,7 +10,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.5.4",
+    "@epam/uui-core": "4.5.4",
     "@epam/uui-components": "4.5.4",
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.sortedindex": "4.1.6",

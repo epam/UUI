@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Lens, DataSourceState, isMobile, cx } from '@epam/uui';
+import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
@@ -37,7 +37,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 <div key='search' className={ searchClass }>
                     <FlexCell grow={ 1 }>
                         <SearchInput
-                            ref={ this.searchRef }
                             cx={ css.search }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             { ...this.searchLens.toProps() }

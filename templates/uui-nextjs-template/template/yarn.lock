@@ -78,7 +78,7 @@
   integrity sha512-PB/w3WpxDBXt69N1un+CFEg6y7FhvtyLlN+/9jdEQ0DSOF7nAPudGKS9Bu5RnUd1LUo47hwCyfjBMez6nkhS3Q==
   dependencies:
     "@epam/assets" "4.4.0"
-    "@epam/uui" "4.4.0"
+    "@epam/uui-core" "4.4.0"
     "@epam/uui-components" "4.4.0"
     "@types/classnames" "2.2.6"
     "@types/lodash.isequal" "4.5.5"
@@ -97,7 +97,7 @@
   resolved "https://registry.yarnpkg.com/@epam/uui-components/-/uui-components-4.4.0.tgz#7edde3c45eaeaf72c9b2b07ae8b0830ac83682c5"
   integrity sha512-9TkI5UNoooNSc+E7U4OyYQaOpS4v7SlBYKzb6h5FNkhJ9zRkxXVpqPg+LH+DbDRc42fLWo7jvgGmdf4gzvYQbA==
   dependencies:
-    "@epam/uui" "4.4.0"
+    "@epam/uui-core" "4.4.0"
     "@popperjs/core" "2.9.0"
     "@types/classnames" "2.2.6"
     "@types/lodash.clone" "4.5.6"

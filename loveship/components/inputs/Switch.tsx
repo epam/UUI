@@ -1,7 +1,7 @@
 import * as css from './Switch.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import * as types from '../types';
 
 export interface SwitchMods extends types.ColorMod {

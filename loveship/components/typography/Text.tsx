@@ -2,7 +2,7 @@ import * as css from './Text.scss';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as types from '../types';
 import { Text as uuiText, TextProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { getTextClasses, TextSettings } from '../../helpers/textLayout';
 
 export interface TextMods extends TextSettings {

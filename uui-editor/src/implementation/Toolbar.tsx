@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Portal } from "@epam/uui-components";
-import * as css from './Toolbar.scss';
-import { Editor, Plugins } from 'slate-react';
+import flatten from 'lodash.flatten';
 import { Popper } from 'react-popper';
-import { LayoutContext, LayoutLayer, UuiContext } from "@epam/uui";
+import { Editor, Plugins } from 'slate-react';
+import { LayoutContext, LayoutLayer, UuiContext } from '@epam/uui-core';
+import { Portal } from '@epam/uui-components';
 import { isTextSelected } from '../helpers';
+import * as css from './Toolbar.scss';
 
 interface ToolbarProps {
     editor: Editor;
@@ -64,9 +65,8 @@ export class Toolbar extends React.Component<ToolbarProps> {
                                     (props.ref as React.RefCallback<HTMLDivElement>)(node);
                                 } }
                             >
-                                { this.props.plugins.flatMap((plugin: any) => {
-                                    return !Array.isArray(plugin) && plugin.toolbarButtons?.map(this.renderButton);
-                                }) }
+                                { flatten(this.props.plugins).map((plugin: any) => plugin.toolbarButtons
+                                    && plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))) }
                             </div>
                         ) }
                     </Popper>

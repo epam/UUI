@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithContextAsync } from "@epam/test-utils";
-import { ArrayDataSource } from '@epam/uui';
+import { ArrayDataSource } from '@epam/uui-core';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
 

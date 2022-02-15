@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RenderBlockProps } from "slate-react";
 import * as css from './iframeBlock.scss';
-import { uuiMod } from "@epam/uui";
+import { uuiMod } from "@epam/uui-core";
 import cx from 'classnames';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 
