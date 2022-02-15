@@ -1,10 +1,11 @@
-import React from 'react';
-import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps } from '@epam/uui';
-import dayjs, { Dayjs } from "dayjs";
+import * as React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
+import objectSupport from 'dayjs/plugin/objectSupport';
+import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
 import { IconContainer } from '../layout/IconContainer';
-import objectSupport from "dayjs/plugin/objectSupport";
+
 dayjs.extend(objectSupport);
 
 export const uuiTimePicker = {
@@ -13,13 +14,13 @@ export const uuiTimePicker = {
     iconDown: 'uui-timepicker-icon-down',
     input: 'uui-timepicker-input',
     elementContainer: 'uui-timepicker-item',
-};
+} as const;
 
 const MIN_MINUTES: number = 0;
 const MAX_MINUTES: number = 59;
 const FORMAT_12H: number = 12;
 
-export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<HTMLDivElement> {
+export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     minutesStep?: number;
     addIcon?: Icon;
     subtractIcon?: Icon;
@@ -49,7 +50,7 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
         const MAX_HOURS = this.props.format || FORMAT_12H;
 
         return (
-            <div className={ cx(uuiTimePicker.container, this.props.cx) } {...this.props.rawProps}>
+            <div className={ cx(uuiTimePicker.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <div className={ uuiTimePicker.elementContainer }>
                     <IconContainer
                         cx={ uuiTimePicker.iconUp }

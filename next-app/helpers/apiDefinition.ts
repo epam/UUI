@@ -1,5 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui";
+import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui-core";
 
 export interface GetCodeParams {
     path: string;

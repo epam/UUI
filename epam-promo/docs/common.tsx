@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasIcon, Icon } from '@epam/uui';
+import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors, IHasEditMode } from '../components';
 import { getIconList } from '@epam/assets/icons/helpers';

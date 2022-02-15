@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import { RenderBlockProps } from 'slate-react';
 import { Resizable } from 're-resizable';
-import { isClientSide, uuiMod, uuiSkin } from "@epam/uui";
+import { isClientSide, uuiMod, uuiSkin } from "@epam/uui-core";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import * as css from './ImageBlock.scss';
@@ -128,12 +128,13 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
         const src = node.data.get('src');
         return src ? (
             <Dropdown
-                renderTarget={ (props) => {
-                    return <div className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
-                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined } >{ this.renderImage(attributes, src) }</div>
-                    </div>;
-                }
-                }
+                renderTarget={ (props) => (
+                    <div ref={ props.ref } className={ cx(css.wrapper, css[this.props.node.data.get('align')]) }>
+                        <div className={ !this.props.readOnly ? css.containerWrapper : undefined }>
+                            { this.renderImage(attributes, src) }
+                        </div>
+                    </div>
+                ) }
                 renderBody={ (props) => <FlexRow cx={ css.imageToolbarWrapper }>{ this.renderToolbar(props) }</FlexRow> }
                 value={ this.props.isFocused }
                 placement='top'

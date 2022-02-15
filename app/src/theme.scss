@@ -77,12 +77,12 @@
     --disabled-color: #{$gray30};
     --iconButton-disabled-color: #{$gray40};
     --surface-color: #{$white};
-    --surface-hover-color: #{$gray30};
+    --surface-hover-color: #{$gray20};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
-    --scroll-bar-background-color: #{$gray40};
-    --scroll-bar-background-active-color: #{$gray60};
+    --tag-color: #{$gray30};
+    --tag-hover-color: #{$gray40};
 
     --text-brand-color: #{$gray90};
     --text-primary-color: #{$gray80};
@@ -90,17 +90,17 @@
     --text-disabled-color: #{$gray50};
     --text-contrast-color: #{$gray5};
 
-    --button-background-halftone-color: #{$white};
+    --button-bg-halftone-color: #{$white};
     --button-caption-disabled-color: #{$gray50};
 
-    --input-background-color: #{$white};
-    --input-switch-background-color: #{$gray40};
-    --input-background-checked-color: var(--primary-color);
-    --input-background-checked-hover-color: var(--primary-dark-color);
-    --input-background-checked-disabled-color: var(--primary-light-color);
-    --input-background-hover-color: #{$gray60};
-    --input-background-disabled-color: #{$gray5};
-    --input-background-readonly-color: #{$gray5};
+    --input-bg-color: #{$white};
+    --input-switch-bg-color: #{$gray40};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-dark-color);
+    --input-bg-checked-disabled-color: var(--primary-light-color);
+    --input-bg-hover-color: #{$gray60};
+    --input-bg-disabled-color: #{$gray5};
+    --input-bg-readonly-color: #{$gray5};
     --input-border-color: #{$gray40};
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-dark-color);
@@ -114,13 +114,13 @@
     --input-hover-color: var(--primary-dark-color);
     --input-active-color: var(--primary-darkest-color);
 
-    --input-label-color: #{$gray80};
-    --input-label-disabled-color: #{$gray60};
+    --input-label-color: var(--text-primary-color);
+    --input-label-disabled-color: var(--text-secondary-color);
 
-    --input-placeholder-color: #{$gray60};
-    --input-placeholder-disabled-color: #{$gray50};
-    --input-text-color: #{$gray80};
-    --input-text-disabled-color: #{$gray50};
+    --input-placeholder-color: var(--text-secondary-color);
+    --input-placeholder-disabled-color: var(--text-disabled-color);
+    --input-text-color: var(--text-primary-color);
+    --input-text-disabled-color: var(--text-disabled-color);
 
     --input-icon-color: #{$gray50};
     --input-icon-disabled-color: #{$gray50};
@@ -131,6 +131,10 @@
 
     :global(.button-color-secondary) {
         --caption-halftone-color: var(--secondary-dark-color);
+    }
+
+    :global(.uui-button-box):global(.size-36) {
+        --border-radius: 12px;
     }
 
     --overlay-color: rgba(29, 30, 38, 0.8);
@@ -221,8 +225,6 @@
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray50};
-    --scroll-bar-background-color: #{$gray30};
-    --scroll-bar-background-active-color: #{$gray20};
 
     --text-brand-color: #{$white};
     --text-primary-color: #{$gray5};
@@ -230,17 +232,17 @@
     --text-disabled-color: #{$gray30};
     --text-contrast-color: #{$gray70};
 
-    --button-background-halftone-color: #{$gray70};
+    --button-bg-halftone-color: #{$gray70};
     --button-caption-disabled-color: #{$gray50};
 
-    --input-background-color: #{$gray70};
-    --input-switch-background-color: #{$gray30};
-    --input-background-checked-color: var(--primary-color);
-    --input-background-checked-hover-color: var(--primary-light-color);
-    --input-background-checked-disabled-color: var(--primary-dark-color);
-    --input-background-hover-color: #{$gray20};
-    --input-background-disabled-color: #{$gray60};
-    --input-background-readonly-color: #{$gray60};
+    --input-bg-color: #{$gray70};
+    --input-switch-bg-color: #{$gray30};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-light-color);
+    --input-bg-checked-disabled-color: var(--primary-dark-color);
+    --input-bg-hover-color: #{$gray20};
+    --input-bg-disabled-color: #{$gray60};
+    --input-bg-readonly-color: #{$gray60};
     --input-border-color: #{$gray30};
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-light-color);
@@ -262,8 +264,8 @@
     --input-text-color: #{$gray5};
     --input-text-disabled-color: #{$gray30};
 
-    --input-icon-color: #{$gray50};
-    --input-icon-disabled-color: #{$gray50};
+    --input-icon-color: #{$gray30};
+    --input-icon-disabled-color: #{$gray30};
     --input-checkbox-icon-color: #{$white};
 
     --overlay-color: rgba(29, 30, 38, 0.8); // ?
@@ -272,13 +274,13 @@
 
     // ----------------------------
 
-    --border-radius: 0px;
+    --border-radius: 3px;
 
     :global(.button-color-primary) {
-        --button-background-color-hover: var(--primary-light-color);
-        --button-background-color-active: var(--primary-lightest-color);
-        --button-background-color-halftone-hover: var(--primary-darkest-color);
-        --button-background-color-halftone-active: var(--primary-dark-color);
+        --button-bg-color-hover: var(--primary-light-color);
+        --button-bg-color-active: var(--primary-lightest-color);
+        --button-bg-color-halftone-hover: var(--primary-darkest-color);
+        --button-bg-color-halftone-active: var(--primary-dark-color);
         --button-border-color: var(--primary-light-color);
         --button-border-color-hover: var(--primary-light-color);
         --button-border-color-active: var(--primary-lightest-color);
@@ -286,10 +288,10 @@
     }
 
     :global(.button-color-accent) {
-        --button-background-color-hover: var(--accent-light-color);
-        --button-background-color-active: var(--accent-lightest-color);
-        --button-background-color-halftone-hover: var(--accent-darkest-color);
-        --button-background-color-halftone-active: var(--accent-dark-color);
+        --button-bg-color-hover: var(--accent-light-color);
+        --button-bg-color-active: var(--accent-lightest-color);
+        --button-bg-color-halftone-hover: var(--accent-darkest-color);
+        --button-bg-color-halftone-active: var(--accent-dark-color);
         --button-border-color: var(--accent-light-color);
         --button-border-color-hover: var(--accent-light-color);
         --button-border-color-active: var(--accent-lightest-color);
@@ -297,10 +299,10 @@
     }
 
     :global(.button-color-negative) {
-        --button-background-color-hover: var(--negative-light-color);
-        --button-background-color-active: var(--negative-lightest-color);
-        --button-background-color-halftone-hover: var(--negative-darkest-color);
-        --button-background-color-halftone-active: var(--negative-dark-color);
+        --button-bg-color-hover: var(--negative-light-color);
+        --button-bg-color-active: var(--negative-lightest-color);
+        --button-bg-color-halftone-hover: var(--negative-darkest-color);
+        --button-bg-color-halftone-active: var(--negative-dark-color);
         --button-border-color: var(--negative-light-color);
         --button-border-color-hover: var(--negative-light-color);
         --button-border-color-active: var(--negative-lightest-color);
@@ -308,10 +310,10 @@
     }
 
     :global(.button-color-secondary) {
-        --button-background-color-hover: var(--secondary-light-color);
-        --button-background-color-active: var(--secondary-lightest-color);
-        --button-background-color-halftone-hover: var(--secondary-color);
-        --button-background-color-halftone-active: #{$gray40};
+        --button-bg-color-hover: var(--secondary-light-color);
+        --button-bg-color-active: var(--secondary-lightest-color);
+        --button-bg-color-halftone-hover: var(--secondary-color);
+        --button-bg-color-halftone-active: #{$gray40};
         --button-border-color: var(--secondary-lightest-color);
         --button-border-color-hover: var(--secondary-lightest-color);
         --button-border-color-active: var(--secondary-lightest-color);
@@ -323,19 +325,19 @@
     }
 
     :global(.notification-card-color-warning) {
-        --notification-card-background-color: #{$gray70};
+        --notification-card-bg-color: #{$gray70};
     }
 
     :global(.notification-card-color-success) {
-        --notification-card-background-color: #{$gray70};
+        --notification-card-bg-color: #{$gray70};
     }
 
     :global(.notification-card-color-info) {
-        --notification-card-background-color: #{$gray70};
+        --notification-card-bg-color: #{$gray70};
     }
 
     :global(.notification-card-color-error) {
-        --notification-card-background-color: #{$gray70};
+        --notification-card-bg-color: #{$gray70};
     }
 
     :global(.notification-card-vars) {
@@ -350,7 +352,11 @@
         --modals-border-radius: 0px;
         --modals-overlay-color: var(--overlay-color);
         --modals-shadow: 0px 3px 25px 0px #0000008F, 0px 1px 2px 0px #00000033;
-    ;
+    }
+
+    :global(.scroll-bars-vars) {
+        --scroll-bars-bg-color: #{$gray30};
+        --scroll-bars-bg-color-active: #{$gray20};
     }
 }
 
@@ -463,8 +469,6 @@
     --surface-dark-color: #{$black};
     --surface-light-color: #{$white};
     --divider-color: #{$transparent-50};
-    --scroll-bar-background-color: #{$black-40};
-    --scroll-bar-background-active-color: #{$black-40};
 
     --text-brand-color: #{$primary2-day};
     --text-primary-color: #{$black};
@@ -472,17 +476,17 @@
     --text-disabled-color: #{$transparent-25};
     --text-contrast-color: #{$white};
 
-    --button-background-halftone-color: transparent;
+    --button-bg-halftone-color: transparent;
     --button-caption-disabled-color: #{$transparent-25};
 
-    --input-background-color: #{$transparent-5};
-    --input-switch-background-color: #{$transparent-25};
-    --input-background-checked-color: #{$white};
-    --input-background-checked-hover-color: #{$white};
-    --input-background-checked-disabled-color: #{$white};
-    --input-background-hover-color: #{$transparent-5};
-    --input-background-disabled-color: #{$transparent-25};
-    --input-background-readonly-color: #{$transparent-25};
+    --input-bg-color: #{$transparent-5};
+    --input-switch-bg-color: #{$transparent-25};
+    --input-bg-checked-color: #{$white};
+    --input-bg-checked-hover-color: #{$white};
+    --input-bg-checked-disabled-color: #{$white};
+    --input-bg-hover-color: #{$transparent-5};
+    --input-bg-disabled-color: #{$transparent-25};
+    --input-bg-readonly-color: #{$transparent-25};
     --input-border-color: #{$transparent-25};
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-color);
@@ -576,17 +580,17 @@
     --divider-color: #{$neutral300};
     --icon-color: #{$neutral400};
 
-    --button-background-halftone-color: #{$white};
+    --button-bg-halftone-color: #{$white};
     --button-caption-disabled-color: #{$white};
 
-    --input-background-color: #{$white};
-    --input-switch-background-color: #{$neutral400};
-    --input-background-checked-color: var(--primary-color);
-    --input-background-checked-hover-color: var(--primary-color);
-    --input-background-checked-disabled-color: var(--primary-light-color);
-    --input-background-hover-color: #{$neutral400};
-    --input-background-disabled-color: #{$neutral50};
-    --input-background-readonly-color: #{$neutral50};
+    --input-bg-color: #{$white};
+    --input-switch-bg-color: #{$neutral400};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-color);
+    --input-bg-checked-disabled-color: var(--primary-light-color);
+    --input-bg-hover-color: #{$neutral400};
+    --input-bg-disabled-color: #{$neutral50};
+    --input-bg-readonly-color: #{$neutral50};
     --input-border-color: #{$neutral300};
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-dark-color);
@@ -675,7 +679,7 @@
     --negative-dark-color: #694548;
     --negative-darkest-color: #473943;
 
-    --button-background-halftone-color: transparent;
+    --button-bg-halftone-color: transparent;
     --button-caption-disabled-color: #{$white};
 
     --contrast-color: #{$white};
@@ -688,14 +692,14 @@
     --divider-color: #{$gray-400};
     --icon-color: #{$gray-600};
 
-    --input-background-color: #{$white};
-    --input-switch-background-color: #{$gray-500};
-    --input-background-checked-color: var(--primary-color);
-    --input-background-checked-hover-color: var(--primary-color);
-    --input-background-checked-disabled-color: var(--primary-dark-color);
-    --input-background-hover-color: #38383a6b;
-    --input-background-disabled-color: #f0f1f2;
-    --input-background-readonly-color: #f0f1f2;
+    --input-bg-color: #{$white};
+    --input-switch-bg-color: #{$gray-500};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-color);
+    --input-bg-checked-disabled-color: var(--primary-dark-color);
+    --input-bg-hover-color: #38383a6b;
+    --input-bg-disabled-color: #f0f1f2;
+    --input-bg-readonly-color: #f0f1f2;
     --input-border-color: #{$gray-500};
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-light-color);
@@ -868,17 +872,17 @@
     //--surface-light-color: #{$white};
     --divider-color: #{$dark_indigo_30};
 
-    --button-background-halftone-color: transparent;
+    --button-bg-halftone-color: transparent;
     --button-caption-disabled-color: #{$dark_indigo_30};
 
-    --input-background-color: #f3f4f5;
-    --input-switch-background-color: #{$dark_indigo_30};
-    --input-background-checked-color: var(--primary-color);
-    --input-background-checked-hover-color: var(--primary-dark-color);
-    --input-background-checked-disabled-color: var(--primary-darkest-color);
-    --input-background-hover-color: #{$dark_indigo_60};
-    --input-background-disabled-color: #{$dark_indigo_30};
-    --input-background-readonly-color: #{$dark_indigo_30};
+    --input-bg-color: #f3f4f5;
+    --input-switch-bg-color: #{$dark_indigo_30};
+    --input-bg-checked-color: var(--primary-color);
+    --input-bg-checked-hover-color: var(--primary-dark-color);
+    --input-bg-checked-disabled-color: var(--primary-darkest-color);
+    --input-bg-hover-color: #{$dark_indigo_60};
+    --input-bg-disabled-color: #{$dark_indigo_30};
+    --input-bg-readonly-color: #{$dark_indigo_30};
     --input-border-color: #{$dark_indigo_40};
     --input-border-checked-color: var($dark_indigo_90);
     --input-border-checked-hover-color: var($dark_indigo_25);

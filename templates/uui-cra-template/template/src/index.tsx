@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { ContextProvider } from '@epam/uui';
+import { ContextProvider } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { ErrorHandler } from '@epam/promo';
 import '@epam/uui-components/styles.css';
@@ -15,9 +15,9 @@ const history = createBrowserHistory();
 
 const UuiEnhancedApp = () => (
     <ContextProvider
-        onInitCompleted={(context) => {
-           Object.assign(svc, context);
-        }}
+        onInitCompleted={ (context) => {
+            Object.assign(svc, context);
+        } }
         history={ history }
     >
         <ErrorHandler>
@@ -32,7 +32,7 @@ const RoutedApp = () => (
     <Router history={ history }>
         <UuiEnhancedApp />
     </Router>
-)
+);
 
 
 ReactDOM.render(<RoutedApp />, document.getElementById('root'));

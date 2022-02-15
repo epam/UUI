@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './MainMenuAvatar.scss';
 import cx from 'classnames';
-import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX } from '@epam/uui';
+import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as FoldingArrow } from '../../../icons/folding-arrow-18.svg';
 import { Avatar } from '@epam/uui-components';
@@ -11,21 +11,18 @@ export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IH
     icon?: Icon;
 }
 
-export class MainMenuAvatar extends React.Component<MainMenuAvatarProps> {
-    render() {
-        return (
-            <div
-                className={ cx(css.container, this.props.isDropdown && css.dropdown, this.props.isOpen && css.open, this.props.cx) }
-                onClick={ this.props.onClick }
-            >
-                <Avatar size='36' img={ this.props.avatarUrl }/>
-                { this.props.icon && <IconContainer icon={ this.props.icon } /> }
-                { this.props.isDropdown && (
-                    <div>
-                        <IconContainer icon={ FoldingArrow } flipY={ this.props.isOpen } />
-                    </div>
-                ) }
+export const MainMenuAvatar = React.forwardRef<HTMLDivElement, MainMenuAvatarProps>((props, ref) => (
+    <div
+        ref={ ref }
+        className={ cx(css.container, props.isDropdown && css.dropdown, props.isOpen && css.open, props.cx) }
+        onClick={ props.onClick }
+    >
+        <Avatar size='36' img={ props.avatarUrl } />
+        { props.icon && <IconContainer icon={ props.icon } /> }
+        { props.isDropdown && (
+            <div>
+                <IconContainer icon={ FoldingArrow } flipY={ props.isOpen } />
             </div>
-        );
-    }
-}
+        ) }
+    </div>
+));

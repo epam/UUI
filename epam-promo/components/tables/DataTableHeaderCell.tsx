@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui';
+import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownToggler, cx } from '@epam/uui-core';
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { ColumnHeaderDropdown, DataTableHeaderCellMods } from './';
 import { FlexCell, Checkbox, Text, IconButton, Tooltip } from '../';
@@ -90,10 +90,13 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />
     );
 
-    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: React.PropsWithRef<IDropdownToggler>) => (
+    renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
         <FlexCell
             { ...this.props.column }
-            ref={ props.ref }
+            ref={ ref => {
+                (props.ref as React.RefCallback<HTMLElement>)(ref);
+                (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
+            } }
             cx={ cx(
                 uuiDataTableHeaderCell.uuiTableHeaderCell,
                 (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,

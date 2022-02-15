@@ -1,5 +1,5 @@
 import * as css from './DropdownContainer.scss';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { DropdownContainer as uuiDropdownListContainer, DropdownContainerProps } from '@epam/uui-components';
 
 export interface DropdownContainerMods {

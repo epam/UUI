@@ -13,6 +13,12 @@ export class ContextProviderDoc extends BaseDocsBlock {
                     path='./examples/contexts/ContextProvider.example.tsx'
                     onlyCode={ true }
                 />
+
+                <DocExample
+                    title='Example with hook'
+                    path='./examples/contexts/UseUuiServices.example.tsx'
+                    onlyCode={ true }
+                />
             </>
         );
     }

@@ -1,23 +1,30 @@
 import React from 'react';
-import { useForm, useUuiContext } from '@epam/uui';
+import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui';
 import {
-    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel,
+    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
     FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
-} from '@epam/uui-v';
+} from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
+import { ReactComponent as LocationIcon } from '@epam/assets/icons/common/action-map_pin-18.svg';
+import { Country } from '@epam/uui-docs';
 
 interface Person {
     firstName?: string;
     lastName?: string;
     gender?: string;
-    visaRecords?: Array<{ country?: string, term?: { from: string, to: string } }>;
+    visaRecords?: Array<{ country?: Country, term?: { from: string, to: string } }>;
     processingPersonalDataAgreed?: boolean;
     displayAdsAgreed?: boolean;
 }
 
 export const ThemeDemo = () => {
     const svc = useUuiContext();
+
+    const countryDataSource = useAsyncDataSource<Country, string, unknown>({
+        api: () => svc.api.demo.countries({}).then((r: any) => r.items),
+    }, []);
+
     const showModal = () => svc.uuiModals.show(props => <ModalBlocker overlay { ...props }>
         <ModalWindow width={ 360 } height={ 200 }>
             <ModalHeader title="Simple modal example " onClose={ () => props.abort() } />
@@ -31,7 +38,7 @@ export const ThemeDemo = () => {
 
     const { lens, save } = useForm<Person>({
         value: { visaRecords: [{
-            country: '',
+            country: null,
             term: {
                 from: '',
                 to: '',
@@ -101,13 +108,20 @@ export const ThemeDemo = () => {
                                 <FlexRow key={ index } spacing='12' vPadding='12' alignItems='bottom'>
                                     <FlexCell width={ 242 }>
                                         <LabeledInput label='Country' >
-                                            <TextInput { ...lens.prop('visaRecords').index(index).prop('country').toProps() } />
+                                            <PickerInput<Country, string>
+                                                dataSource={ countryDataSource }
+                                                { ...lens.prop('visaRecords').index(index).prop('country').toProps() }
+                                                entityName='Country'
+                                                selectionMode='single'
+                                                valueType='entity'
+                                                icon={ LocationIcon }
+                                            />
                                         </LabeledInput>
                                     </FlexCell>
-                                    <FlexCell width={ 300 }>
+                                    <FlexCell rawProps={ { style: { width: '300px' } } }>
                                         <LabeledInput label='Term'>
                                             <FlexRow spacing='6'>
-                                                <FlexCell width={ 140 }>
+                                                <FlexCell width={ 140 } >
                                                     <TextInput placeholder='From:' { ...lens.prop('visaRecords').index(index).prop('term').prop('from').toProps() } />
                                                 </FlexCell>
                                                 <FlexCell width={ 140 } >
@@ -129,7 +143,7 @@ export const ThemeDemo = () => {
                             icon={ AddIcon }
                             color='primary'
                             mode='outline'
-                            onClick={ () => lens.prop('visaRecords').set(lens.prop('visaRecords').get().concat({ country: '', term: { from: '', to: '' } })) }
+                            onClick={ () => lens.prop('visaRecords').set(lens.prop('visaRecords').get().concat({ country: null, term: { from: '', to: '' } })) }
                         />
                     </FlexRow>
                     <FlexRow vPadding='24' >

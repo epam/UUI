@@ -1,6 +1,6 @@
 import { Task } from './TaskDb';
 import { ListLoadingTracker } from '../ListLoadingTracker';
-import { DataQuery, LazyDataSourceApiResponse, runDataQuery } from '@epam/uui';
+import { DataQuery, LazyDataSourceApiResponse, runDataQuery } from '@epam/uui-core';
 import range from 'lodash.range';
 
 describe("db - ListLoadingTracker ", () => {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource,
     IEditable, IAnalyticableOnChange, DataSourceListProps,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { PickerBindingProps } from './bindingHelpers';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';

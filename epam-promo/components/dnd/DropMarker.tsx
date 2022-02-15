@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DndActorRenderParams } from '@epam/uui';
+import { DndActorRenderParams } from '@epam/uui-core';
 import * as css from './DropMarker.scss';
 
 export interface DropMarkerProps extends DndActorRenderParams {
