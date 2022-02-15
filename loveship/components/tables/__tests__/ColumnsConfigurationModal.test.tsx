@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { getDefaultColumnsConfig } from "@epam/uui";
+import { getDefaultColumnsConfig } from "@epam/uui-core";
 import { demoColumns } from "./dataMocks";
 import {ColumnsConfigurationModal} from "../ColumnsConfigurationModal";
 

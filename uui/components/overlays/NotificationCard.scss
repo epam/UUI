@@ -1,0 +1,65 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: var(--notification-card-fill-color);
+        }
+    }
+}
+
+.notification-wrapper {
+    border-style: solid;
+    border-color: var(--notification-card-border-color);
+    border-width: var(--notification-card-border-width);
+    padding: 6px 18px;
+    width: 360px;
+    background: var(--notification-card-bg-color);
+    display: flex;
+    overflow: hidden;
+    border-radius:  var(--notification-card-border-radius);
+
+    @media (max-width: 720px) {
+        width: 100%;
+    }
+}
+
+.icon-wrapper {
+    height: 100%;
+    padding: 6px 0;
+    margin-right: 14px;
+}
+
+.action-wrapper {
+    display: flex;
+}
+
+.action-link:not(:last-child) {
+    margin-right: 12px;
+}
+
+.close-icon {
+    height: 100%;
+    padding: 6px 0;
+    margin-left: 17px;
+}
+
+.main-path {
+    width: 100%;
+    display: flex;
+    align-self: baseline;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.clear-button {
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px;
+}

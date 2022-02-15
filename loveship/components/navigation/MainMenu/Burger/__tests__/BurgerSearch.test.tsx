@@ -1,20 +1,18 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {BurgerSearch} from "../BurgerSearch";
+import { BurgerSearch } from "../BurgerSearch";
+import { renderWithContextAsync } from '@epam/test-utils';
 import { ReactComponent as AcceptIcon } from "../../../../icons/accept-12.svg";
 
 describe("BurgerSearch", () => {
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<BurgerSearch value='test' onValueChange={ jest.fn() }/>)
-            .toJSON();
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(<BurgerSearch value='test' onValueChange={ jest.fn() } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<BurgerSearch
-                value='test' 
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderWithContextAsync(
+            <BurgerSearch
+                value='test'
                 onValueChange={ jest.fn() }
                 onAccept={ jest.fn() }
                 onCancel={ jest.fn() }
@@ -22,8 +20,9 @@ describe("BurgerSearch", () => {
                 iconPosition='right'
                 isDropdown
                 isOpen
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

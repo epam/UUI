@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RichUtils } from 'draft-js';
 import { upperFirst, toLower } from 'lodash';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import { Button } from '@epam/uui-components';
 import { DraftBlockStyleButton, DraftButtonProps } from '../types';
 import { blockTypeIsActive } from './helpers';

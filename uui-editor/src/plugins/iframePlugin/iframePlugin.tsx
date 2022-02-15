@@ -4,7 +4,7 @@ import { IframeBlock } from "./IframeBlock";
 import { UploadFileToggler } from '@epam/uui-components';
 import { ReactComponent as PdfIcon } from "../../icons/pdf.svg";
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { parseStringToCSSProperties } from "@epam/uui";
+import { parseStringToCSSProperties } from "@epam/uui-core";
 import {isTextSelected} from "../../helpers";
 
 export const iframePlugin = () => {

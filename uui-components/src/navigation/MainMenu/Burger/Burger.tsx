@@ -1,14 +1,14 @@
 import * as React from 'react';
-import * as css from './Burger.scss';
-import { IHasCX, Icon } from '@epam/uui';
-import { IconContainer, Portal } from '../../../index';
 import cx from 'classnames';
+import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { IconContainer, Portal } from '../../../index';
+import * as css from './Burger.scss';
 
 interface BurgerState {
     isOpen: boolean;
 }
 
-export interface BurgerProps extends IHasCX {
+export interface BurgerProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     burgerIcon?: Icon;
     crossIcon?: Icon;
     width: number;
@@ -28,15 +28,15 @@ export const uuiBurger = {
     items: 'uui-burger-items',
     overlayVisible: 'uui-burger-overlay-visible',
     itemsVisible: 'uui-burger-items-visible',
-};
+} as const;
 
 export class Burger extends React.Component<BurgerProps, BurgerState> {
     constructor(props: BurgerProps) {
         super(props);
+    }
 
-        this.state = {
-            isOpen: false,
-        };
+    state: BurgerState = {
+        isOpen: false,
     }
 
     private toggleBurgerMenu = () => {
@@ -54,7 +54,7 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
         const globalMenuWidth = 60;
         return (
             <>
-                <div className={ cx(this.props.cx, uuiBurger.menu, css.container, this.state.isOpen && uuiBurger.menuOpen) }>
+                <div ref={ this.props.forwardedRef } className={ cx(this.props.cx, uuiBurger.menu, css.container, this.state.isOpen && uuiBurger.menuOpen) } { ...this.props.rawProps }>
                     <div
                         className={ uuiBurger.button }
                         onClick={ this.toggleBurgerMenu }

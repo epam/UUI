@@ -1,5 +1,5 @@
 import {Panel, Text, DataTable, Spinner} from '@epam/promo';
-import { DataSourceState, DataColumnProps, useArrayDataSource, useUuiContext} from "@epam/uui";
+import { DataSourceState, DataColumnProps, useArrayDataSource, useUuiContext} from "@epam/uui-core";
 import { useMemo, useState} from "react";
 import Image from "next/image";
 import {Badge} from "@epam/promo";

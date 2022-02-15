@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { AcceptDropParams, DropParams, getOrderBetween, IModal, Lens, DataColumnProps, ColumnsConfig } from '@epam/uui';
+import { AcceptDropParams, DropParams, getOrderBetween, IModal, Lens, DataColumnProps, ColumnsConfig } from '@epam/uui-core';
 
 interface ColumnsConfigurationModalBaseProps<TItem, TId>
     extends IModal<ColumnsConfig> {

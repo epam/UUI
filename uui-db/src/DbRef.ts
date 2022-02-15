@@ -5,7 +5,7 @@ import { TempIdMap, IClientIdsMap } from './tempIds';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEmpty from 'lodash.isempty';
 import { Loader, LoaderOptions } from './Loader';
-import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui';
+import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { SimpleLoadingTracker } from './SimpleLoadingTracker';
 import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTracker';
 

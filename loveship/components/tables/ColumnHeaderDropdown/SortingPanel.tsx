@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import css from './SortingPanel.scss';
-import { isMobile, SortDirection } from '@epam/uui';
+import { isMobile, SortDirection } from '@epam/uui-core';
 import { ReactComponent as SortIcon } from '../../icons/sort_asc-12.svg';
 import { ReactComponent as SortIconDesc } from '../../icons/sort_desc-12.svg';
 import { ReactComponent as SortActive } from '../../icons/tick-24.svg';

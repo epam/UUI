@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler } from '@epam/uui';
+import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler } from '@epam/uui-core';
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Dropdown } from '../overlays';
 dayjs.extend(customParseFormat);
@@ -81,7 +81,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
                 renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }

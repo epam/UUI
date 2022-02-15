@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
-import { Icon, IEditable } from '@epam/uui';
+import { Icon, IEditable } from '@epam/uui-core';
 import * as css from './SliderRating.scss';
 import { ReactComponent as LineGrayIcon } from '../icons/slider-rating/line_gray_icon.svg';
 import { ReactComponent as LineRedIcon } from '../icons/slider-rating/line_red_icon.svg';

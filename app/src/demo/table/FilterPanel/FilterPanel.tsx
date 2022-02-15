@@ -9,8 +9,6 @@ import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
 
-// import { GroupingBlock } from "./GroupingBlock";
-
 export interface IFilterPanelProps extends ITableState {
     columns: DataColumnProps<any>[];
     filters: ITableFilter[];

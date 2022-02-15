@@ -1,9 +1,9 @@
-import React from 'react';
-import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps } from '@epam/uui';
+import * as React from 'react';
+import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './Accordion.scss';
 
-export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement> {
+export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     title: string;
     dropdownIcon?: Icon;
     renderAdditionalItems?: (isOpened: boolean) => React.ReactNode;
@@ -13,7 +13,7 @@ export interface AccordionState {
     opened: boolean;
 }
 
-const uuiAccordion: Record<string, string> = {
+const uuiAccordion = {
     title: 'uui-accordion-title',
     toggler: 'uui-accordion-toggler',
     toggleContainer: 'uui-accordion-toggle-container',
@@ -53,7 +53,8 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                     isAccordionOpened && uuiMod.opened,
                     this.props.isDisabled && uuiMod.disabled
                 ) }
-                {...this.props.rawProps}
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
                     <div className={ cx(uuiAccordion.title) }>

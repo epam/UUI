@@ -1,4 +1,4 @@
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 
 // combine reducers and lenses somehow...
 

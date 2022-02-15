@@ -1,7 +1,7 @@
 import * as css from './FlexRow.scss';
-import { FlexCellProps } from '@epam/uui';
+import { FlexCellProps } from '@epam/uui-core';
 import { FlexCell as uuiFlexCell } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 
 export type FlexCellMods = {};
 

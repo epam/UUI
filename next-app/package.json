@@ -12,7 +12,7 @@
   "dependencies": {
     "@epam/assets": "^4.4.0",
     "@epam/promo": "^4.4.0",
-    "@epam/uui": "^4.4.0",
+    "@epam/uui-core": "^4.4.0",
     "@epam/uui-components": "^4.4.0",
     "@epam/uui-docs": "^4.4.0",
     "@epam/uui-editor": "^4.4.0",

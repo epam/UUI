@@ -21,7 +21,7 @@ const uuiRating: Record<string, string> = {
 
 const maxValue = 5;
 
-export class Rating extends React.Component<RatingProps, any> {
+export class Rating extends React.Component<RatingProps> {
     getFilledStarsWidth = (rating: number, markWidth: number): number => {
         const step = this.props.step || 1;
         return !!rating ? rating / step * markWidth : 0;

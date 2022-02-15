@@ -1,10 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {DataTableRow} from "../DataTableRow";
-
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
+import { DataTableRow } from "../DataTableRow";
 
 describe("DataTableRow", () => {
     it("should be rendered correctly", () => {
