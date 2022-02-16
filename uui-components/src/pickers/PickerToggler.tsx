@@ -52,10 +52,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.onBlur?.(e);
         setInFocus(false);
         toggleContainer.current.querySelector('input')?.blur();
-        const hasEnoughChars = props.minCharsToSearch ? (props.minCharsToSearch <= props.value?.length) : true;
 
-        // Doesn't have enough chars entered => clear input on blur
-        if (!hasEnoughChars) props.onValueChange('');
+        // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
+        if (!props.isOpen) props.onValueChange('');
         else {
             const blurTrigger = e.relatedTarget as HTMLElement;
             const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
@@ -66,13 +65,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     }
 
     const handleActive = (e: Event) => {
-        if (closest((e.target as HTMLElement), toggleContainer.current)) {
-           setIsActive(true);
-        }
-
-        if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
-            setIsActive(false);
-        }
+        const target = e.target as HTMLElement;
+        setIsActive(!isActive && !!closest(target, toggleContainer.current));
     }
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
