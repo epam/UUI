@@ -102,7 +102,7 @@
 
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
-            color: var(--switch-caption-color-disabled);
+            color: var(--switch-label-color-disabled);
         }
 
         &,

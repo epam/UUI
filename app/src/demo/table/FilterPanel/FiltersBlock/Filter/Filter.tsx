@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from "react";
-import css from "./Filter.scss";
-import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/promo";
-import { IEditable } from "@epam/uui";
-import { RangeDatePickerValue } from "@epam/uui-components";
-import { ReactComponent as ArrowDown } from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
-import { ITableFilter } from "../../../types";
+import React, { useCallback, useState } from 'react';
+import { RangeDatePickerValue } from '@epam/uui-components';
+import { IEditable } from '@epam/uui-core';
+import { PickerList, IconContainer } from '@epam/uui';
+import { DatePicker, RangeDatePicker } from '@epam/promo';
+import { ITableFilter } from '../../../types';
+import { ReactComponent as ArrowDown } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
+import css from './Filter.scss';
 
 interface IFilterProps<T> extends ITableFilter, IEditable<{ [key: string]: (T | T[]) } | undefined> {
 
@@ -22,35 +23,35 @@ const FilterComponent = <T extends unknown>(props: IFilterProps<T>) => {
 
     const renderPicker = () => {
         switch (type) {
-            case "singlePicker":
+            case 'singlePicker':
                 return (
                     <PickerList
                         dataSource={ dataSource }
-                        selectionMode="single"
+                        selectionMode='single'
                         value={ value?.[id] }
                         onValueChange={ handleChange }
-                        valueType="id"
+                        valueType='id'
                     />
                 );
-            case "multiPicker":
+            case 'multiPicker':
                 return (
                     <PickerList
                         dataSource={ dataSource }
-                        selectionMode="multi"
+                        selectionMode='multi'
                         value={ value?.[id] as T[] }
                         onValueChange={ handleChange }
-                        valueType="id"
+                        valueType='id'
                     />
                 );
-            case "datePicker":
+            case 'datePicker':
                 return (
                     <DatePicker
-                        format="DD/MM/YYYY"
+                        format='DD/MM/YYYY'
                         value={ value?.[id] as string }
                         onValueChange={ handleChange as (v: string) => void }
                     />
                 );
-            case "rangeDatePicker":
+            case 'rangeDatePicker':
                 return (
                     <RangeDatePicker
                         value={ value?.[id] as RangeDatePickerValue }

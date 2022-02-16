@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
-import sortBy from "lodash.sortby";
-import { Accordion } from "@epam/promo";
-import { ColumnsConfig, DataColumnProps } from "@epam/uui";
-import Column from "./Column";
+import React, { useMemo } from 'react';
+import sortBy from 'lodash.sortby';
+import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
+import { Accordion } from '@epam/uui';
+import Column from './Column';
 
 interface IColumnsBlockProps {
     columnsConfig: ColumnsConfig;
@@ -25,7 +25,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ columnsConfig, onColumnsCo
     }, [columns, columnsConfig]);
 
     return (
-        <Accordion title="Columns" mode="inline" padding="18">
+        <Accordion title='Columns' mode='inline' padding='18'>
             { items.map(item => (
                 <Column
                     value={ columnsConfig }
