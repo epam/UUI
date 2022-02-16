@@ -287,6 +287,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 onValueChange={ !this.props.isDisabled && this.toggleBodyOpening }
                 placement={ this.props.dropdownPlacement }
                 modifiers={ this.popperModifiers }
+                closeOnClickOutside={ this.props.minCharsToSearch >= this.state.dataSourceState.search?.length }
                 closeBodyOnTogglerHidden={ !isMobile() }
             />
         );
