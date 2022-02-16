@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import css from './DemoTable.scss';
-import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts, Presets, ITablePreset } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
-import { FlexRow, DataTable, DataTableRow } from '@epam/promo';
+import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { Presets, ITablePreset, FlexRow } from '@epam/uui';
+import { DataTable, DataTableRow } from '@epam/promo';
+import css from './DemoTable.scss';
 
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
@@ -41,7 +42,7 @@ export const DemoTable: React.FC = () => {
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api,
         getId: i => [i.__typename, i.id],
-        getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
+        getChildCount: item => item.__typename === 'PersonGroup' ? item.count : null,
     }, []);
 
     const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
@@ -54,8 +55,8 @@ export const DemoTable: React.FC = () => {
     });
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns } />;
+        const columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
+        return <DataTableRow key={ props.rowKey } { ...props } size='36' columns={ columns } />;
     };
 
     const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
@@ -82,7 +83,6 @@ export const DemoTable: React.FC = () => {
 
             <div className={ css.container }>
                 <FlexRow
-                    background="white"
                     borderBottom
                     cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }
                 >
@@ -90,7 +90,7 @@ export const DemoTable: React.FC = () => {
                 </FlexRow>
 
                 <DataTable
-                    headerTextCase="upper"
+                    headerTextCase='upper'
                     getRows={ personsDataView.getVisibleRows }
                     columns={ columnsSet.personColumns }
                     renderRow={ renderRow }
