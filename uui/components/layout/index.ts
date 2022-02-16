@@ -1,3 +1,4 @@
+export * from './Accordion';
 export * from './ControlGroup';
 export * from './FlexItems';
 export * from './IconContainer';
