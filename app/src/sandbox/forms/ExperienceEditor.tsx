@@ -53,7 +53,7 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
             </FlexCell>
             <FlexCell width='auto'>
                 <LinkButton
-                    rawProps={{ "aria-label": 'Remove' }}
+                    rawProps={ { "aria-label": 'Remove' } }
                     icon={ RemoveIcon }
                     color='night600'
                     onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
