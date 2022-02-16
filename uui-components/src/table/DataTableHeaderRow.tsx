@@ -63,7 +63,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
                 cx={ [this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow] }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
-                rawProps={{ role: 'row' }}
+                rawProps={ { role: 'row' } }
                 renderConfigButton={ this.props.onConfigButtonClick && this.props.renderConfigButton }
             />
         );
