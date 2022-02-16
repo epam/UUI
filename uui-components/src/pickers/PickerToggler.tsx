@@ -67,11 +67,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const handleActive = (e: Event) => {
         if (closest((e.target as HTMLElement), toggleContainer.current)) {
             setIsActive(true);
-         }
+        }
 
-         if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
-             setIsActive(false);
-         }
+        if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
+            setIsActive(false);
+        }
     }
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
