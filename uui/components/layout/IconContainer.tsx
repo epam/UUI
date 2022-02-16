@@ -5,7 +5,7 @@ import * as css from './IconContainer.scss';
 import '../../assets/styles/variables/layout/iconContainer.scss';
 
 export interface IconContainerMods {
-    color: IconColor;
+    color?: IconColor;
 }
 
 export function applyIconContainerMods(mods: IconContainerMods) {

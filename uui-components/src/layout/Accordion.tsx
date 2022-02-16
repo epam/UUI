@@ -51,7 +51,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                 className={ cx(
                     uuiAccordion.toggler,
                     isAccordionOpened && uuiMod.opened,
-                    this.props.isDisabled && uuiMod.disabled
+                    this.props.isDisabled && uuiMod.disabled,
                 ) }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
@@ -74,7 +74,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     }
 
     renderBody = () => (
-        <div className={ uuiAccordion.body } role="region">
+        <div className={ uuiAccordion.body } role='region'>
             { this.props.children }
         </div>
     )

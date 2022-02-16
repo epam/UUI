@@ -1,7 +1,7 @@
-import React, { ReactNode, useCallback } from "react";
-import css from "./Column.scss";
-import { Checkbox } from "@epam/promo";
-import { ColumnsConfig, IEditable } from "@epam/uui";
+import React, { ReactNode, useCallback } from 'react';
+import css from './Column.scss';
+import { ColumnsConfig, IEditable } from '@epam/uui-core';
+import { Checkbox } from '@epam/uui';
 
 interface IColumnProps extends IEditable<ColumnsConfig> {
     columnInfo: {
