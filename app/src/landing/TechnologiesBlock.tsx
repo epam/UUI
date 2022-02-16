@@ -27,7 +27,7 @@ export class TechnologiesBlock extends React.Component {
                     <FlexRow cx={ css.technologies } >
                         { technologies.map(({ icon, label, link }) => (
                             <IconButton
-                                rawProps={{ 'aria-label': label, rel: 'noreferrer noopener' }}
+                                rawProps={ { 'aria-label': label } }
                                 key={ label }
                                 icon={ icon }
                                 target='_blank'
