@@ -4,8 +4,8 @@ export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mod
 
 export interface LazyTreeParams<TItem, TId, TFilter> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
-    getId?(item: TItem): TId;
-    getParentId?(item: TItem): TId;
+    getId(item: TItem): TId;
+    getParentId(item: TItem): TId;
     filter?: TFilter;
     getChildCount?(item: TItem): number;
     isFolded?: (item: TItem) => boolean;
@@ -38,7 +38,6 @@ export async function loadLazyTree<TItem, TId, TFilter>(
     value: Readonly<DataSourceState>,
 ): Promise<LazyTree<TItem, TId>> {
     params = { fetchStrategy: 'sequential', ...params };
-    const requiredRowsCount = value.topIndex + value.visibleCount;
     let isChanged = false;
     let newTree: LazyTree<TItem, TId> = {
         byKey: {},
@@ -50,7 +49,7 @@ export async function loadLazyTree<TItem, TId, TFilter>(
             const key = JSON.stringify(params.getId(item));
             newTree.byKey[key] = item;
 
-            const parentId = params?.getParentId(item);
+            const parentId = params.getParentId(item);
             if (parentId) {
                 const parentKey = JSON.stringify(parentId);
                 newTree.byParentKey[parentKey] = newTree.byParentKey[parentKey] || [];
@@ -62,7 +61,9 @@ export async function loadLazyTree<TItem, TId, TFilter>(
         return res;
     });
 
+    const requiredRowsCount = value.topIndex + value.visibleCount;
     let newList = await loadNodeRec(inputNode, null, { ...params, api: apiWithCashing }, value, requiredRowsCount, params.loadAll);
+
     newTree = await loadMissingAndParents(newTree, value.checked, { ...params, api: apiWithCashing });
 
     if (isChanged) {
@@ -100,8 +101,8 @@ async function loadMissingAndParents<TItem, TId, TFilter>(
     });
 
     if (missing.size > 0) {
-        await params.api({ ids: Array.from(missing) });
-        return loadMissingAndParents(newTree, selection, params)
+        await params.api({ ids: Array.from(missing) }, { parent: null, parentId: null });
+        return loadMissingAndParents(newTree, selection, params);
     } else {
         return inputNode;
     }

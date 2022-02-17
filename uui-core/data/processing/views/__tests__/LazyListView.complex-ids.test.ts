@@ -10,6 +10,7 @@ interface TestParent {
     type: 'parent';
     id: number;
     childrenCount?: number;
+    parentId?: number;
 }
 
 interface TestChild {
@@ -43,6 +44,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         },
         getChildCount: (i) => i.type == 'parent' ? i.childrenCount : 0,
         getId: i => [i.type, i.id],
+        getParentId: i => i.parentId ? ['parent', i.parentId] : null,
         cascadeSelection: true,
     });
 
@@ -126,7 +128,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
             { id: ['child', 2], isChecked: false },
         ], 3);
 
-        let row = view.getVisibleRows()[0];
+        let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
         row.onCheck(row);
         await delay(); // checkboxes are async in LazyDataSource
 
