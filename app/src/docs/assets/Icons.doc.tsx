@@ -55,13 +55,21 @@ export class IconsDoc extends React.Component {
     getImportCode = (icon: IconList<Icon>) => `import { ReactComponent as myIcon } from '${icon.name}';`;
 
     renderIconCard() {
+        const isRecommendedSizeAvailable = typeof recommendedSizes[this.state.selectedIcon.size] !== 'undefined';
+
         return (
             <Panel cx={ css.iconCard }>
                 <FlexRow padding='24' vPadding='48' borderBottom >{ this.renderPreviewIcon() }</FlexRow>
-                <FlexRow cx={ css.recommendedSize } padding='24' vPadding='48' background='white' borderBottom>
-                    { this.renderRecommendedSize() }
-                </FlexRow>
-                <div className={ cx(this.state.isLocked ? css.hideControlSize : css.showControlSize, css.controlSizeWrapper) }>
+                { isRecommendedSizeAvailable && (
+                    <FlexRow cx={ css.recommendedSize } padding='24' vPadding='48' background='white' borderBottom>
+                        { this.renderRecommendedSize() }
+                    </FlexRow>
+                ) }
+                <div className={ cx({
+                    [css.controlSizeWrapper]: isRecommendedSizeAvailable || !this.state.isLocked,
+                    [css.hideControlSize]: this.state.isLocked,
+                    [css.showControlSize]: !this.state.isLocked,
+                }) }>
                     <FlexRow cx={ css.controlSizeContent } padding='24' vPadding='24' spacing='12' size='24' borderBottom>
                         { this.renderControlSize() }
                     </FlexRow>
@@ -147,8 +155,8 @@ export class IconsDoc extends React.Component {
     }
 
     checkValidSize = () => {
-        if (!recommendedSizes[this.state.selectedIcon.size]?.every(i => i === this.state.controlSize)) {
-            return true;
+        if (typeof recommendedSizes[this.state.selectedIcon.size] === 'undefined') {
+            return false;
         } else {
             return recommendedSizes[this.state.selectedIcon.size].some(i => i === this.state.controlSize);
         }
