@@ -1,31 +1,17 @@
 import * as React from 'react';
-import * as css from './RadioInput.scss';
-import {
-    IHasRawProps,
-    cx,
-    IHasCX,
-    IDisableable,
-    IEditable,
-    IHasLabel,
-    Icon,
-    uuiMod,
-    uuiElement,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    UuiContexts,
-    uuiMarkers,
-    UuiContext, isClickableChildClicked,
-} from "@epam/uui";
+import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly,
+    IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import * as css from './RadioInput.scss';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;
     id?: string;
 }
 
-export class RadioInput extends React.Component<RadioInputProps, any> {
+export class RadioInput extends React.Component<RadioInputProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -49,11 +35,12 @@ export class RadioInput extends React.Component<RadioInputProps, any> {
                     this.props.cx,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.radioInput, this.props.value && uuiMod.checked) }>
                     <input
-                        type="radio"
+                        type='radio'
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
                         disabled={ this.props.isDisabled }
                         aria-disabled={ this.props.isDisabled || undefined }

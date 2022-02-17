@@ -37,7 +37,7 @@ export class ProjectsBlock extends React.Component {
                                             <Anchor
                                                 key='allProjects'
                                                 cx={ css.project }
-                                                rawProps={{ tabIndex: -1 }}
+                                                rawProps={ { tabIndex: -1 } }
                                                 link={ { pathname: '/documents', query: { id: 'projects' } } }
                                                 onClick={ () => this.sendEvent('All') }
                                             >

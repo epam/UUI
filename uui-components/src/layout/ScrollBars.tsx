@@ -1,6 +1,6 @@
 import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import * as css from './ScrollBars.scss';
 
 export interface ScrollbarProps extends IHasCX, CustomScrollBars.ScrollbarProps, IHasRawProps<Scrollbars> {

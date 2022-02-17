@@ -1,15 +1,15 @@
 import React, { MouseEvent } from 'react';
 import Measure from 'react-measure';
-import * as css from './MainMenu.scss';
-import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx } from '@epam/uui';
+import orderBy from 'lodash.orderby';
+import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
 import { ButtonProps } from '../../buttons';
 import { BurgerProps, MainMenuLogo } from './index';
-import orderBy from 'lodash.orderby';
 import { i18n } from '../../../i18n';
+import * as css from './MainMenu.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
-export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     children: any;
     externalGap?: number;
     appLogoUrl?: string;
@@ -54,7 +54,7 @@ export const uuiMainMenu = {
     serverBadge: 'uui-mainmenu-server-badge',
     serverBadgeLabel: 'uui-mainmenu-server-badge-label',
     transparent: 'uui-mainmenu-transparent',
-};
+} as const;
 
 function adaptItems<T extends { width: number; priority: number }>(
     items: T[],
@@ -87,7 +87,7 @@ function adaptItems<T extends { width: number; priority: number }>(
 function convertReactChildrenToItems(children: any): ItemProps[] {
     const items: ItemProps[] = React.Children.map(
         children,
-        (child: any) => {
+        (child) => {
             if (child) {
                 const item: ItemProps = {
                     width: child.props.estimatedWidth || 0,
@@ -210,7 +210,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
     render() {
         return (
             <Measure bounds>
-                { ({ measureRef, contentRect }: { measureRef: (instance: HTMLDivElement) => any, contentRect: any }) => {
+                { ({ measureRef, contentRect }: { measureRef: (instance: HTMLElement) => any, contentRect: any }) => {
                     const childrenItems = convertReactChildrenToItems(this.props.children);
 
                     const appLogoItem: ItemProps = {
@@ -295,7 +295,10 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                     return (
                         <nav
                             key='uuiMainMenu'
-                            ref={ measureRef }
+                            ref={ node => {
+                                measureRef(node as HTMLElement);
+                                (this.props.forwardedRef as React.RefCallback<HTMLElement>)?.(node);
+                            } }
                             className={ cx(
                                 this.props.cx,
                                 uuiMainMenu.container,

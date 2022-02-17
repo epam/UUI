@@ -1,29 +1,13 @@
 import * as React from 'react';
-import * as css from './NumericInput.scss';
-import {
-    IHasRawProps,
-    cx,
-    getCalculatedValue,
-    IHasCX,
-    IClickable,
-    IDisableable,
-    IEditable,
-    IHasPlaceholder,
-    Icon,
-    uuiMod,
-    uuiElement,
-    CX,
-    ICanBeReadonly,
-    IAnalyticableOnChange,
-    UuiContexts,
-    UuiContext,
-} from '@epam/uui';
+import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
+    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import * as css from './NumericInput.scss';
 
 export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
 }
-export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement> {
+export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     max: number;
     min: number;
     upIcon?: Icon;
@@ -42,7 +26,7 @@ export const uuiNumericInput = {
     upButton: 'uui-numeric-input-up-button',
     downButton: 'uui-numeric-input-down-button',
     buttonGroup: 'uui-numeric-input-button-group',
-};
+} as const;
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
     static contextType = UuiContext;
@@ -76,7 +60,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             this.setState({ value: e.target.value });
         }
     }
-    
+
     handleFocus = () => this.setState({inFocus: true});
 
     handleBlur = () => {
@@ -142,6 +126,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                 onFocus={ this.handleFocus }
                 onKeyDown={ this.handleArrowKeyDown }
                 tabIndex={ -1 }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <input

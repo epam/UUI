@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Rating as uuiRating, RatingProps } from '@epam/uui-components';
 import * as types from '../types';
 import * as css from './Rating.scss';

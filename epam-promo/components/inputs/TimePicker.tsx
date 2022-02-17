@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { IDropdownToggler, IHasRawProps } from '@epam/uui';
+import { IDropdownToggler, IHasRawProps } from '@epam/uui-core';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays';

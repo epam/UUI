@@ -2,10 +2,6 @@ import React from 'react';
 import { DataTableRow } from '../DataTableRow';
 import renderer from 'react-test-renderer';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('DataTableRow', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

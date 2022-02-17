@@ -1,8 +1,6 @@
 import { DbState, DbQuery, IQueryable } from './types';
-import { Iterable } from 'immutable';
 import { runQuery } from './runQuery';
-import { SortDirection } from '@epam/uui';
-import * as I from 'immutable';
+import { SortDirection } from '@epam/uui-core';
 
 export class QueryBuilder<T = any> implements IQueryable<T> {
     constructor(private db: DbState, private query: DbQuery) {

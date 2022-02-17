@@ -149,7 +149,6 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
         />
         <div
           className="flexCell"
-          onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,

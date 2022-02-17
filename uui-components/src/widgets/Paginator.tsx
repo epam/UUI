@@ -1,6 +1,6 @@
 import * as React from 'react';
 import range from 'lodash.range';
-import { IAnalyticableOnChange, IEditable, UuiContext, UuiContexts } from "@epam/uui";
+import { IAnalyticableOnChange, IEditable, UuiContext, UuiContexts } from "@epam/uui-core";
 
 export interface PaginatorParams {
     size: '24' | '30';

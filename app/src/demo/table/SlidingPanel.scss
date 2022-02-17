@@ -51,8 +51,7 @@
 .container {
     overflow: hidden;
     height: calc(100vh - 121px);
-    background-color: #fff;
-    border-right: 1px solid $gray40;
+    border-right: 1px solid var(--divider-color, $gray40);
     flex-shrink: 0;
 
     &-left {

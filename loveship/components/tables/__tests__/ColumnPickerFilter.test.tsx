@@ -4,10 +4,6 @@ import { windowMock } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { ColumnPickerFilter } from "../ColumnPickerFilter";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("ColumnPickerFilter", () => {
     beforeEach(() => {
         jest.spyOn(window, "window", "get")

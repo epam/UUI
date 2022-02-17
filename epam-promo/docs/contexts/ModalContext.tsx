@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UuiContext, UuiContexts } from '@epam/uui';
+import { UuiContext, UuiContexts } from '@epam/uui-core';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, Button, LabeledInput, TextArea, FlexRow } from '../../components';
 

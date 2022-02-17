@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IHasCX, IHasChildren, IHasRawProps, cx } from '@epam/uui';
+import { IHasCX, IHasChildren, IHasRawProps, cx } from '@epam/uui-core';
 
 export interface RichTextViewProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement> {
     htmlContent?: any;

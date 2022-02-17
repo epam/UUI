@@ -1,7 +1,7 @@
 import * as types from '../types';
 import * as css from './NumericInput.scss';
 import * as textInputCss from './TextInput.scss';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 

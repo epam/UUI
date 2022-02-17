@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui';
+import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
 import { Panel, Text, DataTable, DataTableCell } from '../../components';
 
 interface Person {
