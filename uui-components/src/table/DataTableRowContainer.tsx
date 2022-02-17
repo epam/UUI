@@ -58,10 +58,10 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     function wrapScrollingSection(cells: DataColumnProps<TItem, TId, TFilter>[]) {
         if (props.wrapScrollingSection) return props.wrapScrollingSection(cells);
         return (
-            <div className={ css.container } style={{
+            <div className={ css.container } style= {{
                 flex: `1 0 ${getSectionWidth(cells)}px`,
                 minWidth: `${getSectionWidth(cells)}px`
-            }}>
+            } }>
                 { renderCells(cells) }
             </div>
         );

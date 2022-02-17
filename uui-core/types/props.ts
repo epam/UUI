@@ -137,7 +137,7 @@ export interface INotification {
 }
 
 export interface IHasRawProps<T> {
-    rawProps?: React.HTMLAttributes<T> & Record<string, any>;
+    rawProps?: React.HTMLAttributes<T> & Record<`data-${string}`, string>;
 }
 
 export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
