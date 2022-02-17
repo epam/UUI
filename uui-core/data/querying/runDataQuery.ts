@@ -4,9 +4,15 @@ import { getPatternPredicate } from "./getPatternPredicate";
 import { getSearchFilter } from './getSearchFilter';
 import orderBy from 'lodash.orderby';
 
-export function runDataQuery<TItem>(allItems: TItem[], request: DataQuery<TItem>, searchBy?: (item: TItem) => string[]) {
+export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], request: DataQuery<TItem> & { ids?: any[] }, searchBy?: (item: TItem) => string[]) {
     let items = allItems || [];
     request = request || {};
+
+    if (request.ids) {
+        return {
+            items: items.filter(i => request.ids.includes(i.id)),
+        };
+    }
 
     if (request.search) {
         searchBy = searchBy || ((i: any) => i.name);

@@ -4,7 +4,8 @@ export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mod
 
 export interface LazyTreeParams<TItem, TId, TFilter> {
     api: LazyDataSourceApi<TItem, TId, TFilter>;
-    getId?(item: TItem): TId;
+    getId(item: TItem): TId;
+    getParentId(item: TItem): TId;
     filter?: TFilter;
     getChildCount?(item: TItem): number;
     isFolded?: (item: TItem) => boolean;
@@ -20,6 +21,11 @@ export interface LazyTreeList<TItem, TId> {
     recursiveCount?: number;
 }
 
+export interface LazyTree<TItem, TId> extends LazyTreeList<TItem, TId> {
+    byKey?: Record<string, TItem>;
+    byParentKey?: Record<string, TItem[]>;
+}
+
 export interface LazyTreeItem<TItem, TId> {
     id: TId;
     item: TItem;
@@ -27,24 +33,90 @@ export interface LazyTreeItem<TItem, TId> {
 }
 
 export async function loadLazyTree<TItem, TId, TFilter>(
-    node: Readonly<LazyTreeList<TItem, TId>>,
+    inputNode: Readonly<LazyTree<TItem, TId>>,
     params: LazyTreeParams<TItem, TId, TFilter>,
     value: Readonly<DataSourceState>,
-) {
+): Promise<LazyTree<TItem, TId>> {
     params = { fetchStrategy: 'sequential', ...params };
+    let isChanged = false;
+    let newTree: LazyTree<TItem, TId> = {
+        byKey: {},
+        byParentKey: {},
+        ...inputNode,
+    };
+    const apiWithCashing: LazyDataSourceApi<TItem, TId, TFilter> = (req, ctx) => params.api(req, ctx).then(res => {
+        res.items.forEach(item => {
+            const key = JSON.stringify(params.getId(item));
+            newTree.byKey[key] = item;
+
+            const parentId = params.getParentId(item);
+            if (parentId) {
+                const parentKey = JSON.stringify(parentId);
+                newTree.byParentKey[parentKey] = newTree.byParentKey[parentKey] || [];
+                newTree.byParentKey[parentKey].push(item);
+            }
+        });
+
+        isChanged = true;
+        return res;
+    });
+
     const requiredRowsCount = value.topIndex + value.visibleCount;
-    return loadNodeRec(node, null, params, value, requiredRowsCount, params.loadAll);
+    let newList = await loadNodeRec(inputNode, null, { ...params, api: apiWithCashing }, value, requiredRowsCount, params.loadAll);
+
+    newTree = await loadMissingAndParents(newTree, value.checked, { ...params, api: apiWithCashing });
+
+    if (isChanged) {
+        return {
+            ...newTree,
+            items: newList.items,
+            count: newList.count,
+            recursiveCount: newList.recursiveCount,
+        };
+    } else {
+        return inputNode;
+    }
+}
+
+async function loadMissingAndParents<TItem, TId, TFilter>(
+    inputNode: Readonly<LazyTree<TItem, TId>>,
+    selection: TId[],
+    params: LazyTreeParams<TItem, TId, TFilter>,
+): Promise<LazyTree<TItem, TId>> {
+    const newTree = { ...inputNode };
+    const missing = new Set<TId>();
+
+    const nodes = Object.keys(newTree.byKey);
+
+    selection?.forEach(id => {
+        !newTree.byKey[JSON.stringify(id)] && missing.add(id);
+    });
+
+    nodes?.forEach(i => {
+        const node = newTree.byKey[i];
+        const parentNodeId = params.getParentId(node);
+        const parentNodeKey = JSON.stringify(parentNodeId);
+
+        (parentNodeId && !newTree.byKey[parentNodeKey]) && missing.add(parentNodeId);
+    });
+
+    if (missing.size > 0) {
+        await params.api({ ids: Array.from(missing) }, { parent: null, parentId: null });
+        return loadMissingAndParents(newTree, selection, params);
+    } else {
+        return inputNode;
+    }
 }
 
 async function loadNodeRec<TItem, TId, TFilter>(
-    inputNode: Readonly<LazyTreeList<TItem, TId>>,
+    inputNode: Readonly<LazyTree<TItem, TId>>,
     parent: Readonly<LazyTreeItem<TItem, TId>>,
     params: LazyTreeParams<TItem, TId, TFilter>,
     value: Readonly<DataSourceState>,
     requiredRowsCount: number,
     parentLoadAll: boolean,
 ) {
-    let node: LazyTreeList<TItem, TId> = inputNode
+    let node: LazyTree<TItem, TId> = inputNode
         ? { ...inputNode, items: [...inputNode.items] }
         : { items: [] };
 
