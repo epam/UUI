@@ -55,17 +55,18 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         setInFocus(false);
         inputContainer.current?.blur();
 
-        const isPickerChildTriggerBlur = isChildFocusable(e) || closest((e.relatedTarget as HTMLElement), toggleContainer.current);
+        // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
+        if (!props.isOpen) props.onValueChange('');
+        const blurTrigger = e.relatedTarget as HTMLElement;
+        const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
         const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
-
-        if (shouldCloseOnBlur) {
-            props.toggleDropdownOpening(false);
-        }
+        if (!shouldCloseOnBlur) return;
+        props.toggleDropdownOpening(false);
     }
 
     const handleActive = (e: Event) => {
         if (closest((e.target as HTMLElement), toggleContainer.current)) {
-           setIsActive(true);
+            setIsActive(true);
         }
 
         if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
