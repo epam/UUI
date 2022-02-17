@@ -56,7 +56,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === "" || /^-?\d*$/.test(e.target.value)) {
+        if (e.target.value === "" || /^-?\d*[,.]?\d*$/.test(e.target.value)) {
             this.setState({ value: e.target.value });
         }
     }
