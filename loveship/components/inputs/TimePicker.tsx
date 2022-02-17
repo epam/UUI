@@ -1,5 +1,5 @@
 import React from 'react';
-import { IDropdownToggler } from '@epam/uui';
+import { IDropdownToggler } from '@epam/uui-core';
 import { BaseTimePicker, BaseTimePickerProps } from '@epam/uui-components';
 import { SizeMod, EditMode } from '../types';
 import { TextInput } from './TextInput';

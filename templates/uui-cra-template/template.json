@@ -3,7 +3,7 @@
     "dependencies": {
       "@epam/assets": "latest",
       "@epam/promo": "latest",
-      "@epam/uui": "latest",
+      "@epam/uui-core": "latest",
       "@epam/uui-components": "latest",
       "react-router-dom": "5.2.0",
       "history": "4.10.1",

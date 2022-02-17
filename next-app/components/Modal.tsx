@@ -1,5 +1,5 @@
 import React from 'react';
-import { IModal } from '@epam/uui';
+import { IModal } from '@epam/uui-core';
 import { demoData } from '@epam/uui-docs';
 import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button } from '@epam/promo';
 

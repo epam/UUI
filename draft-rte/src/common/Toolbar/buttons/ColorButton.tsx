@@ -1,7 +1,7 @@
 import { EditorState, RichUtils, Modifier } from 'draft-js';
 import { colorStyle } from '../../../utils/helpers';
 import { Dropdown, Button } from '@epam/loveship';
-import { UuiContext, UuiContexts } from '@epam/uui';
+import { UuiContext, UuiContexts } from '@epam/uui-core';
 import * as React from 'react';
 import { DraftButtonProps, ToolbarTextColor } from '../../../types';
 import * as css from './ColorButton.scss';

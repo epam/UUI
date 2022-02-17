@@ -5,7 +5,7 @@ import {
     iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
     DefaultContext, FormContext,
 } from '../../../docs';
-import { IEditableDebouncerOptions } from '@epam/uui';
+import { IEditableDebouncerOptions } from '@epam/uui-core';
 
 const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
     .implements([onClickDoc, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc])

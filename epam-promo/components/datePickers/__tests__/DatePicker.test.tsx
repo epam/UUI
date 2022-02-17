@@ -1,13 +1,9 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { shallow, ShallowWrapper } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { renderWithContextAsync } from '@epam/test-utils';
 import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
 import { DatePicker } from '..';
-
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
 
 describe('DataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
@@ -16,28 +12,30 @@ describe('DataPicker', () => {
         wrapper && wrapper.unmount();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DatePicker
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <DatePicker
                 format="MMM D, YYYY"
                 value={ null }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DatePicker
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <DatePicker
                 format="MMM D, YYYY"
                 value={ null }
                 onValueChange={ jest.fn }
                 placeholder='Test'
                 disableClear={ false }
                 renderFooter={ () => <div>Test footer</div>  }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 

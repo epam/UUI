@@ -3,7 +3,6 @@
 exports[`FileCard should be rendered correctly 1`] = `
 <div
   className="flexCell fileCardWrapper uui-loading"
-  onClick={[Function]}
   style={
     Object {
       "alignSelf": undefined,
@@ -30,7 +29,6 @@ exports[`FileCard should be rendered correctly 1`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -57,7 +55,6 @@ exports[`FileCard should be rendered correctly 1`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -101,7 +98,6 @@ exports[`FileCard should be rendered correctly 1`] = `
 exports[`FileCard should be rendered correctly 2`] = `
 <div
   className="flexCell fileCardWrapper uui-loading"
-  onClick={[Function]}
   style={
     Object {
       "alignSelf": undefined,
@@ -128,7 +124,6 @@ exports[`FileCard should be rendered correctly 2`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -155,7 +150,6 @@ exports[`FileCard should be rendered correctly 2`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -199,7 +193,6 @@ exports[`FileCard should be rendered correctly 2`] = `
 exports[`FileCard should be rendered correctly 3`] = `
 <div
   className="flexCell fileCardWrapper uui-loading"
-  onClick={[Function]}
   style={
     Object {
       "alignSelf": undefined,
@@ -226,7 +219,6 @@ exports[`FileCard should be rendered correctly 3`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,
@@ -253,7 +245,6 @@ exports[`FileCard should be rendered correctly 3`] = `
     </div>
     <div
       className="flexCell"
-      onClick={[Function]}
       style={
         Object {
           "alignSelf": undefined,

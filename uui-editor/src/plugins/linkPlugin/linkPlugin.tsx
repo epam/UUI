@@ -2,7 +2,7 @@ import { linkifyPlugin } from '@mercuriya/slate-linkify';
 import * as React from 'react';
 import * as css from './link.scss';
 import { Editor } from "slate";
-import { useUuiContext, UuiContext, UuiContexts } from "@epam/uui";
+import { useUuiContext } from "@epam/uui-core";
 import { ReactComponent as LinkIcon } from "../../icons/link.svg";
 import {AddLinkModal} from "./AddLinkModal";
 import {ToolbarButton} from "../../implementation/ToolbarButton";

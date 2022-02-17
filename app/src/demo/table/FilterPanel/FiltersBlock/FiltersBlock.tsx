@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
-import { Filter } from "./Filter";
-import { Accordion } from "@epam/promo";
-import { ITableFilter } from "../../types";
+import React, { useCallback } from 'react';
+import { Filter } from './Filter';
+import { Accordion } from '@epam/uui';
+import { ITableFilter } from '../../types';
 
 interface IFiltersProps {
     filter: Record<string, any>;
@@ -18,7 +18,7 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
     }, [filter]);
     
     return (
-        <Accordion title="Filters" mode="inline" padding="18">
+        <Accordion title='Filters' mode='inline' padding='18'>
             { filters.map(f => {
                 return (
                     <Filter

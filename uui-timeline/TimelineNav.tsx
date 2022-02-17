@@ -5,7 +5,7 @@ import { Scales, scales, scaleSteps } from './helpers';
 import { ReactComponent as SvgScales } from './fit.svg';
 import { ReactComponent as SvgPlus } from './plus.svg';
 import { ReactComponent as SvgMinus } from './minus.svg';
-import { Icon } from '@epam/uui';
+import { Icon } from '@epam/uui-core';
 import { Svg } from '@epam/uui-components';
 import { i18n } from "./i18n";
 

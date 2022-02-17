@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './PickerModal.scss';
-import { DataRowProps, Lens } from '@epam/uui';
+import { DataRowProps, Lens } from '@epam/uui-core';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
@@ -42,7 +42,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         </>;
     }
 
-    render(): React.ReactNode {
+    render() {
         const view = this.getView();
         const dataRows = this.getRows();
         const selectedDataRows = view.getSelectedRows();

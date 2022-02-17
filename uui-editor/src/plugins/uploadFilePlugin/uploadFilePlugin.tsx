@@ -1,7 +1,7 @@
 import { getEventTransfer, getEventRange, Editor } from "slate-react";
 import { ReactComponent as AttachIcon } from "../../icons/attach-file.svg";
 import { Editor as CoreEditor, Range} from "slate";
-import { FileUploadResponse, BlockTypes } from "@epam/uui";
+import { FileUploadResponse, BlockTypes } from "@epam/uui-core";
 import { UploadFileToggler} from "@epam/uui-components";
 import * as React from "react";
 import { ToolbarButton } from '../../implementation/ToolbarButton';

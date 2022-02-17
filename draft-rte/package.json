@@ -12,7 +12,7 @@
   "dependencies": {
     "@epam/assets": "4.5.3",
     "@epam/loveship": "4.5.4",
-    "@epam/uui": "4.5.4",
+    "@epam/uui-core": "4.5.4",
     "@epam/uui-components": "4.5.4",
     "@types/draft-js": "0.10.23",
     "classnames": "^2.2.6",

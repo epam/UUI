@@ -1,5 +1,5 @@
 import React from 'react';
-import { UuiContexts, ApiRecoveryReason, INotification, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui';
+import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui-core';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';
@@ -18,7 +18,6 @@ export interface ErrorPageProps extends IHasCX {
     errorPageConfig?: ErrorConfig;
     theme?: Theme;
 }
-
 
 const imageUrl = {
     light: {
@@ -98,11 +97,15 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
     public context: UuiContexts;
     public state: { jsError: Error, jsErrorInfo: React.ErrorInfo } = { jsError: null, jsErrorInfo: null };
 
-    constructor(props: ErrorPageProps, context: UuiContexts) {
-        super(props, context);
-        context.uuiApi.subscribe(this.onApiChange);
-        context.uuiErrors.onError(() => this.forceUpdate());
-        context.uuiRouter.listen(this.onRouteChange);
+    constructor(props: ErrorPageProps) {
+        super(props);
+    }
+
+    componentDidMount() {
+        if (!this.context) return;
+        this.context.uuiApi.subscribe(this.onApiChange);
+        this.context.uuiErrors.onError(() => this.forceUpdate());
+        this.context.uuiRouter.listen(this.onRouteChange);
     }
 
     defaultErrorPageProps = getDefaultErrorPageProps(this.props?.theme);
@@ -111,10 +114,10 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
         this.context.uuiApi.getActiveCalls()
             .filter(c => c.options.errorHandling === 'notification')
             .forEach(c => {
-                this.context.uuiNotifications.show((props: INotification) =>
+                this.context.uuiNotifications.show(props =>
                     <SnackbarCard { ...props } snackType='danger'>
                         <FlexRow padding='24' vPadding='12'>
-                            <Text size="36">{ (c.responseData && c.responseData.errorMessage) || defaultNotificationErrorMessage }</Text>
+                            <Text size='36'>{ (c.responseData?.errorMessage) || defaultNotificationErrorMessage }</Text>
                         </FlexRow>
                     </SnackbarCard>,
                 );
@@ -206,5 +209,4 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
             { blocker }
         </>;
     }
-
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Panel, FlexRow, LabeledInput, TextInput, Button } from '@epam/loveship';
-import { IEditable, Lens, Stateful } from '@epam/uui';
+import { IEditable, Lens, Stateful } from '@epam/uui-core';
 
 interface FormState {
     text1?: string;

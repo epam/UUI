@@ -70,14 +70,14 @@
     --icon-color: #{$gray60};
     --icon-hover-color: #{$gray70};
     --icon-active-color: #{$gray80};
-    //--secondary-color: #{$gray50};
     --secondary-hover-color: #{$gray60};
     --secondary-active-color: #{$gray70};
+    --secondary-disabled-color: #{$gray40};
     --button-disabled-color: #{$gray50};
     --disabled-color: #{$gray30};
-    --iconButton-disabled-color: #{$gray40};
+    --iconButton-disabled-color: #{$gray50};
     --surface-color: #{$white};
-    --surface-hover-color: #{$gray30};
+    --surface-hover-color: #{$gray20};
     --surface-dark-color: #{$gray90};
     --surface-light-color: #{$white};
     --divider-color: #{$gray40};
@@ -217,6 +217,7 @@
     --icon-active-color: #{$gray10};
     --secondary-hover-color: #{$gray60}; // ?
     --secondary-active-color: #{$gray70}; // ?
+    --secondary-disabled-color: #{$gray40}; // ?
     --button-disabled-color: #{$gray30};
     --disabled-color: #{$gray50};
     --iconButton-disabled-color: #{$gray30};
