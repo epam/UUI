@@ -55,25 +55,11 @@ export class IconsDoc extends React.Component {
     getImportCode = (icon: IconList<Icon>) => `import { ReactComponent as myIcon } from '${icon.name}';`;
 
     renderIconCard() {
-        const isRecommendedSizeAvailable = typeof recommendedSizes[this.state.selectedIcon.size] !== 'undefined';
-
         return (
             <Panel cx={ css.iconCard }>
                 <FlexRow padding='24' vPadding='48' borderBottom >{ this.renderPreviewIcon() }</FlexRow>
-                { isRecommendedSizeAvailable && (
-                    <FlexRow cx={ css.recommendedSize } padding='24' vPadding='48' background='white' borderBottom>
-                        { this.renderRecommendedSize() }
-                    </FlexRow>
-                ) }
-                <div className={ cx({
-                    [css.controlSizeWrapper]: isRecommendedSizeAvailable || !this.state.isLocked,
-                    [css.hideControlSize]: this.state.isLocked,
-                    [css.showControlSize]: !this.state.isLocked,
-                }) }>
-                    <FlexRow cx={ css.controlSizeContent } padding='24' vPadding='24' spacing='12' size='24' borderBottom>
-                        { this.renderControlSize() }
-                    </FlexRow>
-                </div>
+                { this.renderRecommendedSize() }
+                { this.renderControlSize() }
                 <FlexRow padding='24' vPadding='48' borderBottom cx={ css.iconCardDemo }>{ this.renderDemo() }</FlexRow>
                 <FlexRow vPadding='24' padding='24' background='gray5' cx={ css.iconCardImport }>{ this.renderImport() }</FlexRow>
             </Panel>
@@ -164,8 +150,9 @@ export class IconsDoc extends React.Component {
 
     renderRecommendedSize() {
         const item = this.state.currentIcon;
-        const iconList =  [...this.groupedIcons[item.name]];
+        const iconList =  this.groupedIcons[item.name];
         const iconSizesList =  iconList.map(i => i.size + '');
+        const isRecommendedSizeAvailable = typeof recommendedSizes[this.state.selectedIcon.size] !== 'undefined';
 
         const handleIconSizeChange = (size: string, control: string) => {
             return iconSizesList.some(i => i === size)
@@ -173,48 +160,54 @@ export class IconsDoc extends React.Component {
                 : null;
         };
 
-        return (
-            <FlexCell width='100%' cx={ css.recommendedSizeIcon } >
-                <Text size='18' fontSize='14' font='sans-semibold' cx={ css.recommendedCaption }>Use the recommended icon sizes:</Text>
-                <FlexRow padding={ null } vPadding={ null } margin={ null } cx={ css.recommendedSizeIconRow } >
-                    <FlexCell minWidth={ 227 } >
-                        <FlexRow vPadding={ null } padding={ null } >
-                            <FlexCell minWidth={ 42 } cx={ css.sizesCaptions } >
-                                <Text size='30' fontSize='12' color='gray60' >Control:</Text>
-                                <Text size='30' fontSize='12' color='gray60' >Icon:</Text>
-                            </FlexCell>
-                            { Object.keys(recommendedSizes).map((size) => (
-                                recommendedSizes[size].map(control => (
-                                    <Tooltip key={ control } trigger={ null } content={ !iconSizesList.some(i => i === size) && 'There is no size for this icon' } >
-                                        <FlexCell
+        return isRecommendedSizeAvailable && (
+            <FlexRow cx={ css.recommendedSize } padding='24' vPadding='48' background='white' borderBottom>
+                <FlexCell width='100%' cx={ css.recommendedSizeIcon } >
+                    <Text size='18' fontSize='14' font='sans-semibold' cx={ css.recommendedCaption }>Use the recommended icon sizes:</Text>
+                    <FlexRow padding={ null } vPadding={ null } margin={ null } cx={ css.recommendedSizeIconRow } >
+                        <FlexCell minWidth={ 227 } >
+                            <FlexRow vPadding={ null } padding={ null } >
+                                <FlexCell minWidth={ 42 } cx={ css.sizesCaptions } >
+                                    <Text size='30' fontSize='12' color='gray60' >Control:</Text>
+                                    <Text size='30' fontSize='12' color='gray60' >Icon:</Text>
+                                </FlexCell>
+                                { Object.keys(recommendedSizes).map((size) => (
+                                    recommendedSizes[size].map(control => (
+                                        <Tooltip
                                             key={ control }
-                                            minWidth={ 30 }
-                                            onClick={ () => handleIconSizeChange(size, control) }
-                                            cx={ cx(
-                                                css.sizes,
-                                                iconSizesList.some(i => i === size) ? css.activeSizes : css.disabledSizes,
-                                                (control === this.state.controlSize && size === this.state.selectedIcon.size.toString()) && css.selectedSizes,
-                                            ) }
+                                            trigger={ null }
+                                            content={ !iconSizesList.some(i => i === size) && 'There is no size for this icon' }
                                         >
-                                            <Text size='30' font='sans-semibold' cx={ css.sizesText } >{ control }</Text>
-                                            <Text size='30' cx={ css.sizesText } >{ size }</Text>
-                                        </FlexCell>
-                                    </Tooltip>
-                                ))
-                            )) }
-                        </FlexRow>
+                                            <FlexCell
+                                                key={ control }
+                                                minWidth={ 30 }
+                                                onClick={ () => handleIconSizeChange(size, control) }
+                                                cx={ cx(
+                                                    css.sizes,
+                                                    iconSizesList.some(i => i === size) ? css.activeSizes : css.disabledSizes,
+                                                    (control === this.state.controlSize && size === this.state.selectedIcon.size.toString()) && css.selectedSizes,
+                                                ) }
+                                            >
+                                                <Text size='30' font='sans-semibold' cx={ css.sizesText } >{ control }</Text>
+                                                <Text size='30' cx={ css.sizesText } >{ size }</Text>
+                                            </FlexCell>
+                                        </Tooltip>
+                                    ))
+                                )) }
+                            </FlexRow>
+                        </FlexCell>
+                        { !this.checkValidSize() && this.renderWarningIcon() }
+                    </FlexRow>
+                    <FlexCell width='100%'>
+                        { !Object.keys(recommendedSizes).every(i => iconSizesList.includes(i)) && (
+                            <FlexRow size='24' spacing='6' alignItems='bottom'>
+                                <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://kb.epam.com/pages/viewpage.action?pageId=717764058' />
+                                &nbsp;<Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
+                            </FlexRow>
+                        ) }
                     </FlexCell>
-                    { !this.checkValidSize() && this.renderWarningIcon() }
-                </FlexRow>
-                <FlexCell width='100%'>
-                    { !Object.keys(recommendedSizes).every(i => iconSizesList.includes(i)) && (
-                        <FlexRow size='24' spacing='6' alignItems='bottom'>
-                            <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://kb.epam.com/pages/viewpage.action?pageId=717764058' />
-                            &nbsp;<Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
-                        </FlexRow>
-                    ) }
                 </FlexCell>
-            </FlexCell>
+            </FlexRow>
         );
     }
 
@@ -230,19 +223,24 @@ export class IconsDoc extends React.Component {
 
     renderControlSize() {
         return (
-            <>
-                <FlexCell width='auto'>
-                    <Text font='sans-semibold' size='24' fontSize='14'>Control size:</Text>
-                </FlexCell>
-                <FlexCell width='auto'>
-                    <MultiSwitch
-                        size='24'
-                        items={ sizeList.map((size) => ({ id: size, caption: size })) }
-                        value={ this.state.controlSize }
-                        onValueChange={ (newValue) => this.setState({ controlSize: newValue }) }
-                    />
-                </FlexCell>
-            </>
+            <div className={ cx(css.controlSizeWrapper, {
+                [css.hideControlSize]: this.state.isLocked,
+                [css.showControlSize]: !this.state.isLocked,
+            }) }>
+                <FlexRow padding='24' vPadding='24' spacing='12' size='24' borderBottom cx={ css.controlSizeContent }>
+                    <FlexCell width='auto'>
+                        <Text font='sans-semibold' size='24' fontSize='14'>Control size:</Text>
+                    </FlexCell>
+                    <FlexCell width='auto'>
+                        <MultiSwitch
+                            size='24'
+                            items={ sizeList.map((size) => ({ id: size, caption: size })) }
+                            value={ this.state.controlSize }
+                            onValueChange={ (newValue) => this.setState({ controlSize: newValue }) }
+                        />
+                    </FlexCell>
+                </FlexRow>
+            </div>
         );
     }
 
