@@ -126,13 +126,13 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     onUpdate={ (mouseX) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
                     onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
-                    rawProps={{
+                    rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'From',
                         'aria-valuenow': this.props.value?.from,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',
-                    }}
+                    } }
                 />
                 <SliderHandle
                     cx={ this.props.cx }
@@ -142,13 +142,13 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'to', valueWidth) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'to' : null }) }
                     onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
-                    rawProps={{
+                    rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'To',
                         'aria-valuenow': this.props.value?.to,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',
-                    }}
+                    } }
                 />
             </div>
         );

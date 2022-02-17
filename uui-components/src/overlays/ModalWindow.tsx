@@ -9,11 +9,11 @@ export class ModalWindow extends React.Component<ModalWindowProps> {
                 style={ this.props.style }
                 cx={ cx(uuiElement.modalWindow, this.props.cx) }
                 forwardedRef={ this.props.forwardedRef }
-                rawProps={{
+                rawProps={ {
                     'aria-modal': true,
                     'role': 'modal',
                     ...this.props.rawProps,
-                }}
+                } }
             >
                 { this.props.children }
             </VPanel>

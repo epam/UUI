@@ -159,56 +159,56 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
+                <FlexCell grow={ 1 }>
                     <LabeledInput
                         label='Time'
                         htmlFor='timeValue'
-                        {...this.props.lens.prop('timeValue').toProps()}
+                        { ...this.props.lens.prop('timeValue').toProps() }
                     >
                         <TimePicker
                             id='timeValue'
-                            {...this.props.lens.prop('timeValue').toProps()}
+                            { ...this.props.lens.prop('timeValue').toProps() }
                         />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
-                    <LabeledInput label='Sex' {...this.props.lens.prop('sex').toProps()}>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Sex' { ...this.props.lens.prop('sex').toProps() }>
                         <ControlWrapper size='36'>
                             <RadioGroup
-                                items={[{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }]}
-                                {...this.props.lens.prop('sex').toProps()}
+                                items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] }
+                                { ...this.props.lens.prop('sex').toProps() }
                                 direction='horizontal'
                             />
                         </ControlWrapper>
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
-                    <LabeledInput label='Role' {...this.props.lens.prop('roles').toProps()}>
-                        <ControlWrapper size='36' cx={css.control}>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Role' { ...this.props.lens.prop('roles').toProps() }>
+                        <ControlWrapper size='36' cx={ css.control }>
                             <CheckboxGroup
-                                {...this.props.lens.prop('roles').toProps()}
-                                items={[{ id: 'Admin', name: 'Admin' }, { id: 'User', name: 'User' }]}
+                                { ...this.props.lens.prop('roles').toProps() }
+                                items={ [{ id: 'Admin', name: 'Admin' }, { id: 'User', name: 'User' }] }
                                 direction='horizontal'
                             />
                         </ControlWrapper>
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
-                    <LabeledInput label='Rating' {...this.props.lens.prop('rating').toProps()} >
-                        <ControlWrapper size='36' cx={css.control}>
-                            <Rating {...this.props.lens.prop('rating').toProps()} rawProps={{ 'aria-label': 'Rating' }} />
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Rating' { ...this.props.lens.prop('rating').toProps() } >
+                        <ControlWrapper size='36' cx={ css.control }>
+                            <Rating { ...this.props.lens.prop('rating').toProps() } rawProps={ { 'aria-label': 'Rating' } } />
                         </ControlWrapper>
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
-                    <LabeledInput htmlFor='notes' label='Notes' {...this.props.lens.prop('notes').toProps()}>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput htmlFor='notes' label='Notes' { ...this.props.lens.prop('notes').toProps() }>
                         <TextArea
-                            {...this.props.lens.prop('notes').toProps()}
-                            rows={10}
+                            { ...this.props.lens.prop('notes').toProps() }
+                            rows={ 10 }
                             id='notes'
                         />
                     </LabeledInput>
@@ -217,55 +217,55 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         </Panel>
         <Panel>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
-                    <LabeledInput htmlFor='vacDays' label='Vacation days' {...this.props.lens.prop('vacDays').toProps()}>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput htmlFor='vacDays' label='Vacation days' { ...this.props.lens.prop('vacDays').toProps() }>
                         <NumericInput
-                            {...this.props.lens.prop('vacDays').toProps()}
-                            max={100}
+                            { ...this.props.lens.prop('vacDays').toProps() }
+                            max={ 100 }
                             id='vacDays'
-                            min={0}
-                            step={1}
+                            min={ 0 }
+                            step={ 1 }
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
-                    <LabeledInput label='Vacation range' {...this.props.lens.prop('rangeDateValue').toProps()}>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label='Vacation range' { ...this.props.lens.prop('rangeDateValue').toProps() }>
                         <RangeDatePicker
                             format='YYYY-MM-DD'
-                            {...this.props.lens.prop('rangeDateValue').toProps()}
+                            { ...this.props.lens.prop('rangeDateValue').toProps() }
                         />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow type='form'>
-                <FlexCell grow={1}>
+                <FlexCell grow={ 1 }>
                     <LabeledInput
                         label='Slider'
                         htmlFor="vacationDaysSlider"
-                        {...this.props.lens.prop('vacDays').toProps()}
+                        { ...this.props.lens.prop('vacDays').toProps() }
                     >
-                        <Slider min={0} max={40} step={1}
-                            rawProps={{ 'aria-label': 'Vacation Days Slider', id: 'vacationDaysSlider' }}
-                            {...this.props.lens.prop('vacDays').toProps()}
+                        <Slider min={ 0 } max={ 40 } step={ 1 }
+                            rawProps={ { 'aria-label': 'Vacation Days Slider', id: 'vacationDaysSlider' } }
+                            { ...this.props.lens.prop('vacDays').toProps() }
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>
+                <FlexCell grow={ 1 }>
                     <LabeledInput
                         label='Range'
-                        {...this.props.lens.prop('bracket').toProps()}
+                        { ...this.props.lens.prop('bracket').toProps() }
                     >
                         <RangeSlider
-                            min={-12}
-                            max={13}
-                            step={7}
-                            {...this.props.lens.prop('bracket').toProps()}
+                            min={ -12 }
+                            max={ 13 }
+                            step={ 7 }
+                            { ...this.props.lens.prop('bracket').toProps() }
                         />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <ExperienceEditor
-                {...this.props.lens.prop("experience").toProps()}
+                { ...this.props.lens.prop("experience").toProps() }
             />
             <FlexRow type='form'>
                 <LabeledInput label='Attachment'>

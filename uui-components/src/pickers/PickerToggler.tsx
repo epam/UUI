@@ -21,7 +21,6 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
-    ref?: React.Ref<any>;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -29,6 +28,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const [isActive, setIsActive] = React.useState<boolean>(false);
 
     const toggleContainer = React.useRef<HTMLDivElement>();
+    const inputContainer = React.useRef<HTMLInputElement>();
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
@@ -44,14 +44,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const handleFocus = (e?: React.FocusEvent<HTMLInputElement>) => {
         props.onFocus?.(e);
+        const shouldFocus = e.target === inputContainer.current || e.target === toggleContainer.current;
+        if (!shouldFocus) return;
         setInFocus(true);
-        toggleContainer.current.querySelector('input')?.focus();
+        inputContainer.current?.focus();
     }
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onBlur?.(e);
         setInFocus(false);
-        toggleContainer.current.querySelector('input')?.blur();
+        inputContainer.current?.blur();
 
         const isPickerChildTriggerBlur = isChildFocusable(e) || closest((e.relatedTarget as HTMLElement), toggleContainer.current);
         const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
@@ -104,6 +106,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return <input
             type='text'
             tabIndex={ -1 }
+            ref={ inputContainer }
             aria-haspopup={ true }
             autoComplete='no'
             aria-required={ props.isRequired }
