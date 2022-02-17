@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Editor, Plugin, getEventTransfer } from 'slate-react';
-import { KeyUtils, SchemaProperties, Value, Block, Text as SlateText } from 'slate';
-import * as css from './SlateEditor.scss';
-import * as style from '@epam/assets/scss/promo/typography.scss';
+import SoftBreak from "slate-soft-break";
+import htmlclean from 'htmlclean';
+import { KeyUtils, SchemaProperties, Value } from 'slate';
+import { ScrollBars } from '@epam/uui-components';
 import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui-core';
 import {Toolbar} from "./implementation/Toolbar";
 import {Sidebar} from './implementation/Sidebar';
-import SoftBreak from "slate-soft-break";
-import { baseMarksPlugin, utilsPlugin } from "./plugins";
-import { paragraphPlugin } from './plugins/paragraphPlugin/paragraphPlugin';
+import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
 import { getSerializer, isEditorEmpty } from './helpers';
-import htmlclean from 'htmlclean';
+import * as style from '@epam/assets/scss/promo/typography.scss';
+import * as css from './SlateEditor.scss';
 
 export const slateEditorEmptyValue: any = Value.fromJS({
     document: {
@@ -159,32 +159,34 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
                 ) }
                 { ...this.props.rawProps }
             >
-                <Editor
-                    readOnly={ this.props.isReadonly }
-                    className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
-                    renderInline={ (pr, ed, next) => next() }
-                    onKeyDown={ this.onKeyDown as any }
-                    autoFocus={ this.props.autoFocus }
-                    plugins={ this.props.plugins }
-                    schema={ schema }
-                    onFocus={ this.onFocus }
-                    onBlur={ this.onBlur }
-                    value={ this.props.value || slateEditorEmptyValue }
-                    onChange={ this.onChange }
-                    style={ { minHeight: this.props.minHeight || 350, padding: '0 23px', overflow: 'hidden' } }
-                    ref={ (editor) => this.editor = editor }
-                    onPaste={ this.onPaste }
-                    spellCheck={ true }
-                />
-                { this.isEmpty() &&
-                    (
-                        <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
-                            { this.props.placeholder }
-                        </div>
-                    )
-                }
-                <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
-                <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
+                <ScrollBars cx={ css.scrollbars }>
+                    <Editor
+                        readOnly={ this.props.isReadonly }
+                        className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
+                        renderInline={ (pr, ed, next) => next() }
+                        onKeyDown={ this.onKeyDown as any }
+                        autoFocus={ this.props.autoFocus }
+                        plugins={ this.props.plugins }
+                        schema={ schema }
+                        onFocus={ this.onFocus }
+                        onBlur={ this.onBlur }
+                        value={ this.props.value || slateEditorEmptyValue }
+                        onChange={ this.onChange }
+                        style={ { minHeight: this.props.minHeight || 350, padding: '0 23px', overflow: 'hidden' } }
+                        ref={ (editor) => this.editor = editor }
+                        onPaste={ this.onPaste }
+                        spellCheck={ true }
+                    />
+                    { this.isEmpty() &&
+                        (
+                            <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
+                                { this.props.placeholder }
+                            </div>
+                        )
+                    }
+                    <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
+                    <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
+                </ScrollBars>
             </div>
         );
     }
