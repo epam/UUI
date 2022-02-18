@@ -101,7 +101,7 @@ async function loadMissingAndParents<TItem, TId, TFilter>(
     });
 
     if (missing.size > 0) {
-        await params.api({ ids: Array.from(missing) }, { parent: null, parentId: null });
+        await params.api({ ids: Array.from(missing) });
         return loadMissingAndParents(newTree, selection, params);
     } else {
         return inputNode;
