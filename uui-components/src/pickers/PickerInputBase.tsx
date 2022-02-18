@@ -69,7 +69,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             this.setState({ showSelected: false });
         }
         if (search && isSwitchIsBeingTurnedOn) {
-            this.handleTogglerSearchChange('', true);
+            this.handleTogglerSearchChange('');
         }
     }
 
@@ -245,7 +245,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, e);
     }
 
-    handleTogglerSearchChange = (value: string, opened?: boolean) => {
+    handleTogglerSearchChange = (value: string) => {
         this.setState({
             ...this.state,
             dataSourceState: {
@@ -253,7 +253,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 focusedIndex: -1,
                 search: value,
             },
-            opened: value.length > 0 || opened,
+            opened: !this.state.opened && value.length > 0 ? true : this.state.opened,
         });
     }
 
