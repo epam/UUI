@@ -28,7 +28,7 @@ describe('LazyTree', () => {
     const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> =
         (rq, ctx) => {
             rq.filter = rq.filter || {};
-            rq.filter.parentId = ctx.parent ? ctx.parent.id : undefined;
+            rq.filter.parentId = ctx?.parent ? ctx.parent.id : undefined;
             return Promise.resolve(runDataQuery(testData, rq));
         };
 

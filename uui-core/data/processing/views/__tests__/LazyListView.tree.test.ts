@@ -38,7 +38,7 @@ describe('LazyListView', () => {
     );
 
     let treeDataSource = new LazyDataSource({
-        api: (rq, ctx) => ctx.parent
+        api: (rq, ctx) => ctx?.parent
             ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
             : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
