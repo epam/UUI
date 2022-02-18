@@ -153,8 +153,16 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
+    hasSelection() {
+        if (Array.isArray(this.props.value)) {
+            return this.props.value.length !== 0;
+        } else {
+            return this.props.value !== undefined && this.props.value !== null;
+        }
+    }
+
     getSelectedRows() {
-        if (this.props.value !== undefined && this.props.value !== []) {
+        if (this.hasSelection()) {
             const view = this.getView();
             return view.getSelectedRows();
         }
