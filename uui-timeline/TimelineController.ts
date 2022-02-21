@@ -3,7 +3,7 @@ import { Viewport } from './types';
 import { msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from './TimelineTransform';
 import sortedIndex from 'lodash.sortedindex';
-import { isClientSide } from "@epam/uui";
+import { isClientSide } from "@epam/uui-core";
 
 type TimelineRenderHandler = (transform: TimelineTransform) => void;
 

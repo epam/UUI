@@ -13,7 +13,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.5.4",
+    "@epam/uui-core": "4.5.4",
     "@types/lodash.countby": "4.6.6",
     "@types/lodash.filter": "4.6.6",
     "@types/lodash.foreach": "4.5.6",

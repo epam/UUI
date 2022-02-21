@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Button, ControlGroup, Dropdown, Panel } from '@epam/promo';
-import { ReactComponent as menuIcon } from "@epam/assets/icons/common/navigation-more_vert-12.svg";
-import DropdownMenuItem from "../../../demo/table/Presets/DropdownMenuItem";
+import React from 'react';
+import { Button, ControlGroup, Dropdown, Panel, DropdownMenuButton } from '@epam/promo';
+import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 
 export default function BasicExample() {
     const renderBody = () => {
         return (
-            <Panel background="white" shadow={ true }>
-                <DropdownMenuItem caption="Duplicate" onClick={ () => {} }/>
-                <DropdownMenuItem caption="Rename" onClick={ () => {} }/>
-                <DropdownMenuItem caption="Delete" onClick={ () => {} }/>
+            <Panel background='white' shadow={ true }>
+                <DropdownMenuButton caption='Duplicate' onClick={ () => {} }/>
+                <DropdownMenuButton caption='Rename' onClick={ () => {} }/>
+                <DropdownMenuButton caption='Delete' onClick={ () => {} }/>
             </Panel>
         );
     };
@@ -17,24 +16,24 @@ export default function BasicExample() {
     return (
         <>
             <ControlGroup>
-                <Button size="36" caption='Preset' fill={ 'solid' } onClick={ () => {} }/>
+                <Button size='36' caption='Preset' fill={ 'solid' } onClick={ () => {} }/>
                 <Dropdown
                     renderBody={ renderBody }
                     renderTarget={ (props) =>
-                        <Button { ...props } fill='solid' icon={ menuIcon } size="36" isDropdown={ false } />
+                        <Button { ...props } fill='solid' icon={ menuIcon } size='36' isDropdown={ false } />
                     }
-                    placement="bottom-end"
+                    placement='bottom-end'
                 />
             </ControlGroup>
 
             <ControlGroup>
-                <Button size="36" caption='Preset' fill='white' onClick={ () => {} }/>
+                <Button size='36' caption='Preset' fill='white' onClick={ () => {} }/>
                 <Dropdown
                     renderBody={ renderBody }
                     renderTarget={ (props) =>
-                        <Button { ...props } fill='white' icon={ menuIcon } size="36" isDropdown={ false } />
+                        <Button { ...props } fill='white' icon={ menuIcon } size='36' isDropdown={ false } />
                     }
-                    placement="bottom-end"
+                    placement='bottom-end'
                 />
             </ControlGroup>
         </>

@@ -1,13 +1,4 @@
-import { DataRowProps, DataColumnProps } from "@epam/uui";
-import React from "react";
 import { ControlSize } from "..";
-
-export interface DataTableCellProps<TItem = any, TId = any> {
-    rowProps: DataRowProps<TItem, TId>;
-    column: DataColumnProps<TItem, TId>;
-    role?: React.HTMLAttributes<HTMLElement>['role'];
-    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-}
 
 interface BaseRowMods {
     size?: ControlSize | '60';

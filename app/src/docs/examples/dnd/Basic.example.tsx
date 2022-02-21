@@ -60,9 +60,9 @@ export default function DndMaterial() {
             ...srcData,
             order: position === 'bottom'
                 ? getOrderBetween(dstData.order, nextItem?.order)
-                : getOrderBetween(prevItem?.order, dstData.order)
+                : getOrderBetween(prevItem?.order, dstData.order),
         });
-    }
+    };
 
     const renderMaterial = (item: MaterialItem, prevItem: MaterialItem, nextItem: MaterialItem) => (
         <DndActor
@@ -71,25 +71,25 @@ export default function DndMaterial() {
             dstData={ item }
             canAcceptDrop={ canAcceptDrop }
             onDrop={ (params) => handleOnDrop(params, prevItem, nextItem) }
-            render={ (params: DndActorRenderParams) => {
-                return (
-                    <div { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
-                        <Panel background='white' cx={ cx(css.dndItem, params.isDragGhost && uuiDndState.dragGhost) } >
-                            <FlexRow cx={ css.materialRow }>
-                                <FlexCell width='auto'  shrink={ 0 } cx={ css.iconWrapper }>
-                                    <DragHandle cx={ [css.dragHandle] } />
-                                    <IconContainer size={ 48 } icon={ FileIcon } />
-                                </FlexCell>
-                                <FlexCell width="100%" cx={ css.textWrapper }>
-                                    <Text cx={ css.text } size='24' lineHeight='24' fontSize='16' font='sans-semibold' >{ item.name }</Text>
-                                    <Text cx={ css.text } size='24' lineHeight='24' fontSize='14' color='gray60'>{ item.description }</Text>
-                                </FlexCell>
-                            </FlexRow>
-                        </Panel>
-                        <DropMarker { ...params } />
-                    </div>
-                );
-            } }
+            render={ (params: DndActorRenderParams) => (
+                <div ref={ params.ref } { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
+                    <Panel background='white' cx={ cx(css.dndItem, {
+                        [uuiDndState.dragGhost]: params.isDragGhost,
+                    }) }>
+                        <FlexRow cx={ css.materialRow }>
+                            <FlexCell width='auto' shrink={ 0 } cx={ css.iconWrapper }>
+                                <DragHandle cx={ [css.dragHandle] } />
+                                <IconContainer size={ 48 } icon={ FileIcon } />
+                            </FlexCell>
+                            <FlexCell width="100%" cx={ css.textWrapper }>
+                                <Text cx={ css.text } size='24' lineHeight='24' fontSize='16' font='sans-semibold'>{ item.name }</Text>
+                                <Text cx={ css.text } size='24' lineHeight='24' fontSize='14' color='gray60'>{ item.description }</Text>
+                            </FlexCell>
+                        </FlexRow>
+                    </Panel>
+                    <DropMarker { ...params } />
+                </div>
+            ) }
         />
     );
 

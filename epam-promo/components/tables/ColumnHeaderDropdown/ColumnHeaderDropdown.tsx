@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import css from './ColumnHeaderDropdown.scss';
 import { Modifier } from "react-popper";
-import { IDropdownToggler, isMobile, mobilePopperModifier } from '@epam/uui';
+import { IDropdownToggler, isMobile, mobilePopperModifier } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { Panel } from '../../layout';
 import { MobileDropdownWrapper } from "../../pickers";
@@ -10,7 +10,7 @@ import { SortingPanel, SortingPanelProps } from "./SortingPanel";
 type ColumnHeaderDropdownProps = SortingPanelProps & {
     isOpen: boolean;
     isSortable: boolean;
-    renderTarget: (props: React.PropsWithRef<IDropdownToggler>) => React.ReactNode;
+    renderTarget: (props: IDropdownToggler) => React.ReactNode;
     renderFilter?: () => React.ReactNode;
     onOpenChange(nV: boolean): void;
     title: string;

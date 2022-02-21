@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form as UuiForm, FormProps, useUuiContext, INotification } from '@epam/uui';
+import { Form as UuiForm, FormProps, useUuiContext, INotification } from '@epam/uui-core';
 import { ConfirmationModal, Text, RichTextView, WarningNotification } from '..';
 import { i18n } from '../../i18n';
 

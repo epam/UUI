@@ -9,7 +9,7 @@ import {
     Switch, TextInput,
 } from "@epam/promo";
 import React, {useCallback, useState} from "react";
-import {LazyDataSourceApiRequest, useArrayDataSource, useLazyDataSource, useUuiContext} from "@epam/uui";
+import {LazyDataSourceApiRequest, useArrayDataSource, useLazyDataSource, useUuiContext} from "@epam/uui-core";
 import {Person} from "@epam/uui-docs";
 
 const languageLevels = [

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RenderBlockProps } from 'slate-react';
 import cx from 'classnames';
-import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui';
+import { uuiMod, Lens, UuiContexts, uuiSkin, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import * as css from './AttachmentBlock.scss';
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';

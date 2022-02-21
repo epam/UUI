@@ -66,9 +66,7 @@
 
             :global(.uui-accordion-toggler) {
                 cursor: default;
-                border-color: $night400;
                 fill: $night500;
-                border-bottom: 1px solid $night400;
                 box-shadow: unset;
 
                 :global(.uui-accordion-title) {

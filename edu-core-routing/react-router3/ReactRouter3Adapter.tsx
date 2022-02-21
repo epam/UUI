@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from '../types';
 import * as PropTypes from 'prop-types';
-import { IRouterContext } from '@epam/uui';
+import { IRouterContext } from '@epam/uui-core';
 
 export class ReactRouter3Adapter extends React.Component<{}, {}> {
 

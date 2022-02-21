@@ -1,25 +1,22 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { LabeledInput } from '../LabeledInput';
 import { TextInput } from '../../inputs';
-
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
+import { renderWithContextAsync } from '@epam/test-utils';
 
 describe('LabeledInput', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<LabeledInput>
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <LabeledInput>
                 <TextInput value={ null } onValueChange={ () => {} } />
-            </LabeledInput>)
-            .toJSON();
+            </LabeledInput>
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<LabeledInput
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderWithContextAsync(
+            <LabeledInput
                 label='Test label'
                 size='36'
                 info='Test'
@@ -28,8 +25,9 @@ describe('LabeledInput', () => {
                 labelPosition='left'
             >
                 <TextInput value={ null } onValueChange={ () => {} } />
-            </LabeledInput>)
-            .toJSON();
+            </LabeledInput>
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

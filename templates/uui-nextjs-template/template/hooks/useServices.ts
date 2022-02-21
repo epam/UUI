@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { NextRouterAdapter, useUuiServices, UuiContexts} from "@epam/uui";
+import { NextRouterAdapter, useUuiServices, UuiContexts} from "@epam/uui-core";
 import { skinContext } from "@epam/promo";
 import { svc } from "../services";
 

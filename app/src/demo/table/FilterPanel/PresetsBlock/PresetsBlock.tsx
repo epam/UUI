@@ -1,18 +1,17 @@
-import React, { ReactEventHandler, useCallback, useState } from "react";
-import css from "./PresetsBlock.scss";
-import { Accordion, IconContainer, TextInput, VerticalTabButton } from "@epam/promo";
-import { FlexSpacer } from "@epam/uui-components";
-import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/content-add-outline-18.svg";
-import { IPresetsApi, ITablePreset } from "../../types";
+import React, { ReactEventHandler, useCallback, useState } from 'react';
+import { IPresetsApi, ITablePreset, Accordion, IconContainer, TextInput, VerticalTabButton, FlexSpacer } from '@epam/uui';
+import { ReactComponent as PlusIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
+import css from './PresetsBlock.scss';
+
 
 interface IPresetsBlockProps {
     presets: ITablePreset[];
-    createNewPreset: IPresetsApi["createNewPreset"];
-    isDefaultPresetActive: IPresetsApi["isDefaultPresetActive"];
-    resetToDefault: IPresetsApi["resetToDefault"];
-    getActivePresetId: IPresetsApi["getActivePresetId"];
-    hasPresetChanged: IPresetsApi["hasPresetChanged"];
-    choosePreset: IPresetsApi["choosePreset"];
+    createNewPreset: IPresetsApi['createNewPreset'];
+    isDefaultPresetActive: IPresetsApi['isDefaultPresetActive'];
+    resetToDefault: IPresetsApi['resetToDefault'];
+    getActivePresetId: IPresetsApi['getActivePresetId'];
+    hasPresetChanged: IPresetsApi['hasPresetChanged'];
+    choosePreset: IPresetsApi['choosePreset'];
 }
 
 const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, isDefaultPresetActive, resetToDefault, getActivePresetId, hasPresetChanged, choosePreset }) => {
@@ -49,9 +48,9 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
 
     return (
         <Accordion
-            title="Presets"
-            mode="inline"
-            padding="18"
+            title='Presets'
+            mode='inline'
+            padding='18'
             renderAdditionalItems={ renderAddPresetIcon }
             value={ isOpened }
             onValueChange={ setIsOpened }
@@ -59,11 +58,11 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
         >
             <>
                 <VerticalTabButton
-                    key="default"
-                    caption="Default"
+                    key='default'
+                    caption='Default'
                     onClick={ isDefaultPresetActive() ? null : resetToDefault }
                     isLinkActive={ isDefaultPresetActive() }
-                    size="36"
+                    size='36'
                     cx={ css.button }
                 />
                 { presets.map(preset => {
@@ -72,10 +71,10 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
                     return (
                         <VerticalTabButton
                             key={ preset.id }
-                            caption={ preset.name + (hasChanged ? "*" : "") }
+                            caption={ preset.name + (hasChanged ? '*' : '') }
                             onClick={ () => choosePreset(preset) }
                             isLinkActive={ isActive }
-                            size="36"
+                            size='36'
                             cx={ [css.button, hasChanged && css.changed] }
                         />
                     );

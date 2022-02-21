@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasIcon, ArrayDataSource, Icon, cx } from '@epam/uui';
+import { IEditable, IHasIcon, ArrayDataSource, Icon, cx } from '@epam/uui-core';
 import * as css from './IconPicker.scss';
 import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '../../components';
 import { IconContainer } from '@epam/uui-components';

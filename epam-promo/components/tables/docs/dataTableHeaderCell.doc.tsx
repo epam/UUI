@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
-import { DataTableHeaderCellProps } from '@epam/uui';
+import { DataTableHeaderCellProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
 import { Text, DataTableHeaderCellMods } from '../../../components';

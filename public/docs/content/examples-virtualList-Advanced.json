@@ -169,7 +169,7 @@
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "estimatedHeight ",
+                        "text": "estimatedHeight",
                         "marks": [
                           {
                             "object": "mark",
@@ -180,7 +180,7 @@
                       },
                       {
                         "object": "text",
-                        "text": "- to measure the approximate height of the list.",
+                        "text": " - to measure the approximate height of the list.",
                         "marks": []
                       }
                     ]

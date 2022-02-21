@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { EpamAdditionalColor } from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -21,7 +21,7 @@ const mapSize = {
 export interface BadgeMods {
     fill?: 'solid' | 'semitransparent' | 'transparent';
     size?: '18' | '24' | '30' | '36' | '42' | '48';
-    color?: EpamAdditionalColor;
+    color?: EpamAdditionalColor | 'gray30';
 }
 
 export function applyBadgeMods(mods: BadgeMods) {
