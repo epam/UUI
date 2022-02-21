@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ApiCallOptions, ContextProvider } from '@epam/uui';
+import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui';
 import { Snackbar, Modals } from '@epam/uui-components';
-import '@epam/internal/styles.css';
 import { ErrorHandler } from '@epam/promo';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
-import './index.scss';
 import App from './App';
-import { getApi } from './data';
+import { getApi, TApi } from './data';
 import qhistory from 'qhistory';
+import '@epam/internal/styles.css';
+import './index.scss';
 
 import { stringify, parse } from 'query-string';
 
@@ -24,7 +24,7 @@ const history = qhistory(
 
 export class UuiEnhancedApp extends React.Component {
 
-    onInitCompleted = (context: any, ampCode: string) => {
+    onInitCompleted = (context: CommonContexts<TApi, UuiContexts>, ampCode: string) => {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
@@ -35,7 +35,7 @@ export class UuiEnhancedApp extends React.Component {
         const ampCode = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
         return (
-            <ContextProvider
+            <ContextProvider<TApi, UuiContexts>
                 apiDefinition={ (processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
                         processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
@@ -56,6 +56,11 @@ export class UuiEnhancedApp extends React.Component {
     }
 }
 
-ReactDOM.render(<Router history={ history } >
-    <UuiEnhancedApp />
-</Router>, document.getElementById('root'));
+render(
+    <React.StrictMode>
+        <Router history={ history }>
+            <UuiEnhancedApp />
+        </Router>
+    </React.StrictMode>,
+    document.getElementById('root'),
+);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Editor } from "slate-react";
 import { Button } from '@epam/uui-components';
 import * as css from './ToolbarButton.scss';
-import { Icon, cx } from '@epam/uui';
+import { Icon, cx } from '@epam/uui-core';
 
 export interface ToolbarButtonProps  {
     isActive?: boolean;
@@ -14,14 +14,16 @@ export interface ToolbarButtonProps  {
     caption?: string;
 }
 
-export class ToolbarButton extends React.Component<ToolbarButtonProps> {
-    render() {
-        return <Button
-            onClick={ (e) => { e.preventDefault(); this.props.onClick(); } }
-            icon={ this.props.icon }
-            caption={ this.props.caption }
-            cx={ cx(css.toolbarButton, css['color-' + this.props.iconColor], css[this.props.isActive ? 'gray90' : 'gray80']) }
-            isDisabled={ this.props.isDisabled }
-        />;
-    }
-}
+export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
+    <Button
+        onClick={ (e) => {
+            e.preventDefault();
+            props.onClick();
+        } }
+        icon={ props.icon }
+        caption={ props.caption }
+        forwardedRef={ ref }
+        cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80']) }
+        isDisabled={ props.isDisabled }
+    />
+));

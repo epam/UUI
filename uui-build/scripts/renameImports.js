@@ -17,6 +17,7 @@ let modules = [
     'edu-utils',
     'uui',
     'uui-build',
+    'uui-core',
     'uui-timeline',
 ];
 

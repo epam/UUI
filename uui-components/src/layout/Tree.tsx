@@ -8,7 +8,7 @@ import {
     IAnalyticableOnChange,
     useUuiContext,
     useArrayDataSource,
-} from "@epam/uui";
+} from "@epam/uui-core";
 
 export interface TreeNodeProps<TItem extends TreeListItem = TreeListItem> extends TreeNode<TItem, string> {
     data: TItem;

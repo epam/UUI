@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrayDataSource, DataColumnProps } from "@epam/uui";
+import { ArrayDataSource, DataColumnProps } from "@epam/uui-core";
 import { Person } from '../docs/TableContext'
 
 const personDemoData = [

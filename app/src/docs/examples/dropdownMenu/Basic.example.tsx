@@ -11,7 +11,7 @@ import {
     DropdownSubMenu,
     IDropdownMenuItemProps,
     FlexSpacer,
-    Badge
+    Badge,
 } from '@epam/promo';
 import { ReactComponent as Icon } from '@epam/assets/icons/common/action-eye-18.svg';
 

@@ -2,7 +2,7 @@ import React from "react";
 import css from "./DataPickerHeader.scss";
 import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
 import { Text } from "../typography";
-import { isMobile } from "@epam/uui";
+import { isMobile } from "@epam/uui-core";
 import { IconButton } from "../buttons";
 import { FlexRow } from "../layout";
 

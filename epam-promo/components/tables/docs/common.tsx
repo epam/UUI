@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataColumnProps, DataTableHeaderRowProps } from '@epam/uui';
+import { DataColumnProps, DataTableHeaderRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { Text, FlexCell, LinkButton, ControlSize } from '../../../components';
 import { Avatar } from '@epam/uui-components';

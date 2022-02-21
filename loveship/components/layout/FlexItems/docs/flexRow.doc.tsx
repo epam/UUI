@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexRow, RowMods, Button, Text, LabeledInput, ControlWrapper, CheckboxGroup, TextInput, FlexCell } from '../../../../components';
-import { FlexRowProps } from '@epam/uui';
+import { FlexRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext, DefaultContext, onClickDoc } from '../../../../docs';
 

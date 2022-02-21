@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCookie, setCookie } from '@epam/uui';
+import { getCookie, setCookie } from '@epam/uui-core';
 import { MultiSwitch } from '../inputs';
 
 interface Instance {

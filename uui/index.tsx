@@ -1,7 +1,4 @@
-export * from './constants';
-export * from './helpers';
-export * from './services';
-export * from './types';
-export * from './data';
-export * from './i18n';
-export * from './hooks';
+import './assets/styles/font-faces.scss';
+export * from './components';
+// export * from './i18n';
+export * from '@epam/uui-core';

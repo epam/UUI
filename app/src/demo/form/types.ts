@@ -74,5 +74,4 @@ export interface PersonDetails {
     otherInfo?: PersonOtherInfo;
 }
 
-
 export type Attachment = Partial<FileUploadResponse> & { progress?: number };

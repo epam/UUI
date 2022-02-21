@@ -1,5 +1,5 @@
 import { TimePickerBody as uuiTimePickerBody, TimePickerBodyProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { ReactComponent as ArrowIcon } from './../../icons/folding-arrow-18.svg';
 import * as css from './TimePicker.scss';
 

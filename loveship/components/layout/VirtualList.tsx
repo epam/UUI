@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { VirtualList as uuiVirtualList, VirtualListProps } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
