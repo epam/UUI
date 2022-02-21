@@ -12,6 +12,7 @@ const modulesNameMap = {
     ['uui-components']: 'uui-components',
     ['uui-editor']: 'uui-editor',
     ['uui-docs']: 'uui-docs',
+    ['uui-core']: 'uui-core'
 }
 
 async function isModuleBuildExist(module) {

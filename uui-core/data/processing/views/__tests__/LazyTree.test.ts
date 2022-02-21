@@ -1,5 +1,6 @@
-import { DataSourceState, LazyDataSourceApi, } from "../../types";
-import { DataQueryFilter, runDataQuery } from '../../../..';
+import { DataSourceState, LazyDataSourceApi } from "../../types";
+import { runDataQuery } from '../../../querying/runDataQuery';
+import { DataQueryFilter } from '../../../..';
 import { LazyTree, LazyTreeParams, loadLazyTree } from '../LazyTree';
 
 interface TestItem {
