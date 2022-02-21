@@ -19,7 +19,7 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
         if (this.needFocusSearch && !isMobile()) {
             this.searchRef.current?.focus({ preventScroll: true });
             this.needFocusSearch = false;
-        };
+        }
 
         if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {
             this.props.scheduleUpdate?.();

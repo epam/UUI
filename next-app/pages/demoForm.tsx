@@ -2,7 +2,7 @@ import {
     FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, Text,
     TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
     MultiSwitch, DropSpot, FileCard,
-    useForm
+    useForm,
 } from '@epam/promo';
 import css from '../styles/DemoForm.module.scss';
 import {
@@ -12,7 +12,7 @@ import {
     useAsyncDataSource,
     useLazyDataSource,
     useUuiContext,
-    UuiContexts
+    UuiContexts,
 } from '@epam/uui-core';
 import { TApi } from "../helpers/apiDefinition";
 import { defaultData, emptyInfo } from '../demoData/defaultFormData';
@@ -20,7 +20,7 @@ import { Country, demoData} from "@epam/uui-docs";
 import infoIcon from '@epam/assets/icons/common/notification-help-outline-24.svg';
 import addIcon from '@epam/assets/icons/common/action-add-18.svg';
 import clearIcon from '@epam/assets/icons/common/navigation-close-24.svg';
-import  type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from "../demoData/models/types";
+import type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from "../demoData/models/types";
 import {personDetailsSchema} from "../demoData/schemas/validationShema";
 
 const tShirtSizes = [
@@ -55,13 +55,13 @@ const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
             <FlexRow vPadding='12'>
                 <FlexCell width='auto'>
                     <LabeledInput htmlFor="birthDate" label='Date of Birth' { ...lens.prop('birthdayDate').toProps() }>
-                        <DatePicker id="birthDate" format='DD/MM/YYYY' { ...lens.prop('birthdayDate').toProps() } />
+                        <DatePicker rawProps={ { input: { id: "birthDate" } } } format='DD/MM/YYYY' { ...lens.prop('birthdayDate').toProps() } />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
         </>
     );
-}
+};
 
 const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']>, countriesDS: AsyncDataSource<Country, string, unknown> }) => {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -82,7 +82,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                         value={ lens.prop('country').toProps().value }  // || 'DZ' }
                         selectionMode='single'
                         valueType='id'
-                        inputId="country"
+                        rawProps={ { input: { id: 'country' } } }
                         placeholder='Select Country'
                         onValueChange={ value => lens.set({ country: value as string }) }
                     />
@@ -92,7 +92,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                         { ...lens.prop('city').toProps() }
                         selectionMode='single'
                         valueType='id'
-                        inputId="city"
+                        rawProps={ { input: { id: 'city' } } }
                         dataSource={ citiesDataSource }
                         filter={ { country: lens.prop('country').get() } }
                         placeholder='Select City'
@@ -100,7 +100,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                 </LabeledInput>
             </FlexRow>
         </>
-    )
+    );
 };
 
 const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>  (
@@ -206,7 +206,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                             { ...lens.prop('institution').toProps() }
                             dataSource={ institutionLevelsDataSource }
                             selectionMode='single'
-                            inputId="institution"
+                            rawProps={ { input: { id: "institution" } } }
                             getName={ item => item.university.split(' / ')[0] }
                             sorting={ { field: 'university', direction: 'asc' } }
                             valueType='id'
@@ -291,7 +291,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                                     dataSource={ languageDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={ `language-${index}` }
+                                    rawProps={ { input: { id: `language-${index}` } } }
                                     placeholder='Select Language'
                                 />
                             </LabeledInput>
@@ -303,7 +303,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={ `speakingLevel-${index}` }
+                                    rawProps={ { input: { id: `speakingLevel-${index}` } } }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
@@ -316,7 +316,7 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={ `writingLevel-${index}` }
+                                    rawProps={ { input: { id: `writingLevel-${index}` } } }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
@@ -398,7 +398,7 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                                     dataSource={ countriesDS }
                                     selectionMode='single'
                                     valueType='id'
-                                    inputId={ `travelVisasCountry-${index}` }
+                                    rawProps={ { input: { id: `travelVisasCountry-${index}` } } }
                                     placeholder='Select Country'
                                 />
                             </LabeledInput>
@@ -460,7 +460,7 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 const DemoForm = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
 
-    const { lens, validate, save, isChanged, isInvalid } = useForm<PersonDetails>({
+    const { lens, save } = useForm<PersonDetails>({
         settingsKey: 'next-js_demo-form',
         value: defaultData,
         getMetadata: personDetailsSchema,
@@ -493,7 +493,7 @@ const DemoForm = () => {
                     <hr className={ css.divider } />
                     <FlexRow spacing='12'>
                         <FlexSpacer />
-                        <Button caption='Validate' color='blue' onClick={ validate } />
+                        {/*<Button caption='Validate' color='blue' onClick={ validate } />*/}
                         <Button caption='Save' color='green' onClick={ save } />
                     </FlexRow>
                 </FlexCell>

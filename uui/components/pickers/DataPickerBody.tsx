@@ -8,11 +8,11 @@ import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import * as css from './DataPickerBody.scss';
 
-export type DataPickerBodyProps = PickerBodyBaseProps & {
+export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
-};
+}
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);

@@ -10,19 +10,19 @@ import { useServices } from '../hooks/useServices';
 import {AppHeader} from "../components/AppHeader";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { services, isLoading } = useServices();
-  return (
-      <UuiContext.Provider value={ services }>
-         <ErrorHandler>
-            <AppHeader />
-            <Component { ...pageProps } />
-            { isLoading && <Blocker isEnabled={ isLoading }/> }
-            <Snackbar />
-            <Modals />
-            <DragGhost />
-        </ErrorHandler>
-      </UuiContext.Provider>
-  )
+    const { services, isLoading } = useServices();
+    return (
+        <UuiContext.Provider value={ services }>
+            <ErrorHandler>
+                <AppHeader />
+                <Component { ...pageProps } />
+                { isLoading && <Blocker isEnabled={ isLoading }/> }
+                <Snackbar />
+                <Modals />
+                <DragGhost />
+            </ErrorHandler>
+        </UuiContext.Provider>
+    );
 }
 
-export default MyApp
+export default MyApp;
