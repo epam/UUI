@@ -9,10 +9,8 @@ import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import * as css from './AppHeader.scss';
-import * as theme from '../theme.scss';
 
 type Theme = 'promo' | 'loveship_dark' | 'orange' | 'cyan' | 'violet' | 'red';
-const allThemes: Theme[] = ['promo', 'loveship_dark', 'orange', 'cyan', 'violet', 'red'];
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -26,18 +24,9 @@ export class AppHeader extends React.Component {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
     }
 
-    componentDidMount() {
-        const appTheme = allThemes.find(i => document.body.classList.contains(theme[i]));
-        if (appTheme) {
-            this.setState(s => ({ ...s, theme: appTheme }));
-        } else {
-            document.body.classList.add(theme.promo);
-        }
-    }
-
     setTheme = (newTheme: Theme) => {
-        document.body.classList.remove(theme[this.state.theme]);
-        document.body.classList.add(theme[newTheme]);
+        document.body.classList.remove(`uui-theme-${this.state.theme}`);
+        document.body.classList.add(`uui-theme-${newTheme}`);
         this.setState(s => ({ ...s, theme: newTheme }));
     }
 
@@ -96,10 +85,10 @@ export class AppHeader extends React.Component {
                             <DropdownMenuButton caption='Promo' isSelected={ thisTheme === 'promo' } iconPosition='right' onClick={ () => this.setTheme('promo') } />
                             <DropdownMenuButton caption='Loveship dark' isSelected={ thisTheme === 'loveship_dark' } iconPosition='right' onClick={ () => this.setTheme('loveship_dark') } />
                             <DropdownMenuSplitter />
+                            <DropdownMenuButton caption='Red (restricted)' isSelected={ thisTheme === 'red' } iconPosition='right' onClick={ () => this.setTheme('red') } />
                             <DropdownMenuButton caption='Orange (restricted)' isSelected={ thisTheme === 'orange' } iconPosition='right' onClick={ () => this.setTheme('orange') } />
                             <DropdownMenuButton caption='Cyan (restricted)' isSelected={ thisTheme === 'cyan' } iconPosition='right' onClick={ () => this.setTheme('cyan') } />
                             <DropdownMenuButton caption='Violet (restricted)' isSelected={ thisTheme === 'violet' } iconPosition='right' onClick={ () => this.setTheme('violet') } />
-                            <DropdownMenuButton caption='Red (restricted)' isSelected={ thisTheme === 'red' } iconPosition='right' onClick={ () => this.setTheme('red') } />
                         </DropdownMenuBody>
                     ) }
                     placement="bottom-end"

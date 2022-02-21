@@ -56,9 +56,9 @@ export function Tooltip(props: TooltipProps) {
                 break;
             }
         }
-    }
+    };
 
-   const detachHandlers = (node: HTMLElement | null, prevProps: TooltipProps) => {
+    const detachHandlers = (node: HTMLElement | null, prevProps: TooltipProps) => {
         if (!node) return;
 
         switch (prevProps.trigger) {
@@ -79,7 +79,7 @@ export function Tooltip(props: TooltipProps) {
                 break;
             }
         }
-    }
+    };
 
     React.useEffect(() => {
         if (node.current && node.current !== prevNode.current || prevProps.current.trigger !== props.trigger) {
@@ -111,7 +111,7 @@ export function Tooltip(props: TooltipProps) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in case
             setTimeout(() => setOpen(false), 0);
             return null;
-        };
+        }
 
         return (
             <div
@@ -125,7 +125,7 @@ export function Tooltip(props: TooltipProps) {
                 <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
             </div>
         );
-    }
+    };
 
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
@@ -142,8 +142,8 @@ export function Tooltip(props: TooltipProps) {
                 { ({ ref }) => React.Children.map(props.children, (child, idx) => {
                     if (idx > 0 || !React.isValidElement(child)) return child;
                     return React.cloneElement(child, {
-                        ref: (node: HTMLElement) => getInnerRef(node, ref)
-                    })
+                        ref: (node: HTMLElement) => getInnerRef(node, ref),
+                    });
                 }) }
             </Reference>
             { isTooltipExist() && isOpen && <Portal target={ props.portalTarget }>
