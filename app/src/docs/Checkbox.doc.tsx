@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUIV } from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI } from '../common';
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';
@@ -8,7 +8,7 @@ export class CheckboxDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/inputs/docs/checkbox.doc.tsx',
             [UUI4]: './epam-promo/components/inputs/docs/checkbox.doc.ts',
-            [UUIV]: './uui-v/components/inputs/docs/checkbox.doc.ts',
+            [UUI]: './uui/components/inputs/docs/checkbox.doc.ts',
         };
     }
 
