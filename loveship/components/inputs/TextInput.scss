@@ -1,9 +1,28 @@
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss' as *;
 
 .root {
     color: $night800;
     fill: $night600;
     box-sizing: border-box;
+
+    :global(.uui-input-prefix),
+    :global(.uui-input-suffix) {
+        @include prefix-suffix($night100, $night400);
+    }
+
+    :global(.uui-input-prefix) {
+        margin-left: -5px;
+        border-left: none;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    :global(.uui-input-suffix) {
+        margin-right: -5px;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
+    }
 
     :global(.uui-input) {
         color: $night800;
