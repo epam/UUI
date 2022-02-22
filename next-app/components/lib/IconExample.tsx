@@ -1,4 +1,4 @@
-import {Avatar, AvatarStack, FlexRow, IconContainer, Panel, Tooltip} from "@epam/promo";
+import { Avatar, AvatarStack, FlexRow, IconContainer, Panel, Tooltip } from "@epam/promo";
 import React from "react";
 import Icon from '@epam/assets/icons/common/action-add-18.svg';
 
