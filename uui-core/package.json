@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "4.5.4",
+  "version": "4.6.0-alpha.1",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@types/lodash.orderby": "4.6.6",
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.trimend": "4.5.6",
-    "@types/query-string": "6.1.0",
+    "@types/query-string": "6.3.0",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
     "jsurl": "0.1.5",
@@ -32,13 +32,13 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "query-string": "^6.5.0",
+    "query-string": "7.1.1",
     "react-popper": "2.2.5"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "7.0.2",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.10.0",
     "react-test-renderer": "16.13.1"
   },
   "peerDependencies": {
@@ -50,8 +50,9 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
   "publishConfig": {
+    "access": "public",
     "directory": "build"
   }
 }
