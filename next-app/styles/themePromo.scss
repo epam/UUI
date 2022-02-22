@@ -13,7 +13,7 @@
     --#{$colorName}-darkest-color: #{darken($colorHex, $darkest)};
 }
 
-:global(.uui-theme-promo) {
+.uui-theme-promo {
     $white: #FFFFFF;
     $blue: #008ACE;
     $green: #88CC00;
@@ -137,7 +137,7 @@
 
     --border-radius: 0;
 
-    :global(.button-color-secondary) {
+    .button-color-secondary {
         --caption-halftone-color: var(--secondary-dark-color);
     }
 }
