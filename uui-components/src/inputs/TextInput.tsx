@@ -105,7 +105,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             tabIndex={ -1 }
             { ...props.rawProps }
         >
-            { props.prefix && <span className={ uuiElement.prefixInput }>{ props.prefix }</span> }
+            { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }
             { props.iconPosition !== 'right' && icon }
             { props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } /> }
             { props.onAccept && showIconsOnAction && <IconContainer
@@ -120,7 +120,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 icon={ props.cancelIcon }
                 onClick={ handleCancel }
             /> }
-            { props.suffix && <span className={ uuiElement.suffixInput }>{ props.suffix }</span> }
+            { props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{ props.suffix }</span> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
                 cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, uuiMarkers.clickable) }
