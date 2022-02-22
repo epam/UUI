@@ -72,6 +72,14 @@
         background-color: transparent;
         border-color: transparent;
 
+        :global(.uui-input-prefix) {
+            border-right: none;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+        }
+
         :global(.uui-icon):first-child {
             padding-left: 6px;
         }
