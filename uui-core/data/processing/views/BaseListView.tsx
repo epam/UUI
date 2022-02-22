@@ -10,6 +10,17 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      */
     getId?(item: TItem): TId;
 
+    /** Should return ID of the Item's parent. Usually it's i => i.parentId.
+     * If specified, Data Source will build items hierarchy.
+     *
+     * Also, it is used by LazyDataSource to pre-fetch missing parents of loaded items. This is required in following cases:
+     * - when a child item is pre-selected, but not yet loaded at start. We need to load it's parent chain
+     *   to highlight parents with selected children
+     * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
+     *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
+     */
+     getParentId?(item: TItem): TId;
+
     /**
      * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
      * See DataRowOptions for more details.
@@ -40,7 +51,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     cascadeSelection?: boolean;
 
     /**
-     * Disables select all behaviour. Default is false.
+     * Disables select all behavior. Default is false.
      */
     selectAll?: true | false;
 }

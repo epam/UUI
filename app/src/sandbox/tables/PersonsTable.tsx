@@ -9,7 +9,7 @@ import type{ TApi } from '../../data';
 import * as css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataTableState> {
-    view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
+    view: IDataSourceView<PersonTableRecord, string, DataQueryFilter<PersonTableFilter>>;
     summary: PersonsSummary;
 }
 
@@ -20,7 +20,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+    const renderRow = (props: DataRowProps<PersonTableRecord, string>) => {
         const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
         return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
     };

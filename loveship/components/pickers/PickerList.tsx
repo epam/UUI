@@ -7,6 +7,7 @@ import {
     IHasCaption,
     IHasPlaceholder,
     UuiContext,
+    DataSourceItemId,
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
@@ -20,7 +21,7 @@ export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModa
     noOptionsMessage?: React.ReactNode;
 };
 
-export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
+export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
     static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceItemId, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
@@ -17,7 +17,7 @@ export type PickerInputProps = SizeMod & IHasEditMode & {};
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
+export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...this.props }

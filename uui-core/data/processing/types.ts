@@ -2,7 +2,9 @@ import { SortingOption, VirtualListState } from '../../types';
 import { IDataSourceView } from "./views";
 import { ListApiResponse } from "./ListApiCache";
 
-export interface IDataSource<TItem, TId, TFilter> {
+export type DataSourceItemId = string | number | boolean | null;
+
+export interface IDataSource<TItem, TId extends DataSourceItemId, TFilter> {
     getId(item: TItem): TId;
     getById(id: TId): TItem;
     setItem(item: TItem): void;
@@ -65,7 +67,8 @@ export interface IEntityStore<TEntity, TId> {
     get(id: TId): TEntity;
     set(id: TId, entity: TEntity): void;
 }
-export interface IArrayDataSource<TItem, TId, TFilter> extends IDataSource<TItem, TId, TFilter> {
+
+export interface IArrayDataSource<TItem, TId extends DataSourceItemId, TFilter> extends IDataSource<TItem, TId, TFilter> {
     byKey: { [key: string]: TreeNode<TItem, TId> };
     byParentKey: { [key: string]: TreeNode<TItem, TId>[] };
     nodes: TreeNode<TItem, TId>[];
@@ -84,6 +87,6 @@ export interface TreeNode<TItem, TId> {
     children: TreeNode<TItem, TId>[];
 }
 
-export interface ILazyDataSource<TItem, TFilter, TId> extends IDataSource<TItem, TId, TFilter> {
+export interface ILazyDataSource<TItem, TFilter, TId extends DataSourceItemId> extends IDataSource<TItem, TId, TFilter> {
     getList(from: number, count: number, options: LazyDataSourceApiRequestOptions<TItem, TFilter>): ListApiResponse<TItem>;
 }

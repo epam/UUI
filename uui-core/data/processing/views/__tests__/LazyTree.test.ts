@@ -1,7 +1,7 @@
 import { DataSourceState, LazyDataSourceApi } from "../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
 import { DataQueryFilter } from '../../../..';
-import { LazyTree, LazyTreeParams, loadLazyTree } from '../LazyTree';
+import { LazyTree, LazyTreeList, LazyTreeLoadParams, LazyTreeParams } from '../LazyTree';
 
 interface TestItem {
     id: number;
@@ -29,8 +29,12 @@ describe('LazyTree', () => {
     const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> =
         (rq, ctx) => {
             rq.filter = rq.filter || {};
+            if (rq.ids) {
+                rq.filter.id = { in: rq.ids };
+            }
             rq.filter.parentId = ctx?.parent ? ctx.parent.id : undefined;
-            return Promise.resolve(runDataQuery(testData, rq));
+            const result = runDataQuery(testData, rq);
+            return Promise.resolve(result);
         };
 
     const testApi = jest.fn(testApiFn);
@@ -40,6 +44,9 @@ describe('LazyTree', () => {
         getChildCount: i => i.childrenCount,
         getParentId: i => i.parentId,
         getId: i => i.id,
+    };
+
+    let loadParams: LazyTreeLoadParams<TestItem, number> = {
         isFolded: i => true,
     };
 
@@ -50,34 +57,41 @@ describe('LazyTree', () => {
     });
 
     function expectTreeToLookLike(
-        expected: LazyTree<TestItem, number>,
-        actual: LazyTree<TestItem, number>,
+        actual: LazyTree<TestItem, number, DataQueryFilter<TestItem>>,
+        expectedTree: LazyTreeList<TestItem, number>,
+        expectedById: [number, TestItem][],
+        expectedByParentId: [number, TestItem[]][],
     ) {
-        expect(expected).toEqual(actual);
+        //expect(expectedTree).toEqual(actual.rootList);
+        //expect(expectedById).toEqual([...actual.byId]);
+        //expect(expectedByParentId).toEqual([...actual.byParentId]);
     }
 
     it('Can load items (folded)', async () => {
-        let tree = await loadLazyTree(null, params, value);
-        expectTreeToLookLike(tree, {
-            items: [
-                { id: 100, item: itemsById[100] },
-                { id: 200, item: itemsById[200] },
-                { id: 300, item: itemsById[300] },
-            ],
-            count: 3,
-            recursiveCount: 3,
-            byParentKey: {},
-            byKey: {
-                "100": { id: 100, childrenCount: 2 },
-                "200": { id: 200, childrenCount: 0 },
-                "300": { id: 300, childrenCount: 3 },
+        let tree = await LazyTree.blank(params).loadMissing(loadParams, value);
+        expectTreeToLookLike(tree,
+            {
+                items: [
+                    { id: 100, item: itemsById[100] },
+                    { id: 200, item: itemsById[200] },
+                    { id: 300, item: itemsById[300] },
+                ],
+                count: 3,
+                recursiveCount: 3,
             },
-        });
+            [
+                [100, { id: 100, childrenCount: 2 }],
+                [200, { id: 200, childrenCount: 0 }],
+                [300, { id: 300, childrenCount: 3 }],
+
+            ],
+            [],
+        );
     });
 
     it('Can load items (unfolded)', async () => {
-        let tree = await loadLazyTree(null, { ...params, isFolded: i => false }, value);
-        expect({ items: tree.items, count: tree.count, recursiveCount: tree.recursiveCount }).toEqual({
+        let tree = await LazyTree.blank(params).loadMissing({ ...loadParams, isFolded: i => false }, value);
+        expect({ items: tree.rootList.items, count: tree.rootList.count, recursiveCount: tree.rootList.recursiveCount }).toEqual({
             items: [
                 { id: 100, item: itemsById[100], children: {
                     items: [
@@ -109,33 +123,35 @@ describe('LazyTree', () => {
             recursiveCount: 10,
         });
 
-        let tree2 = await loadLazyTree(tree, params, value);
+        let tree2 = await tree.loadMissing(loadParams, value);
         expect(tree2).toEqual(tree);
         expect(tree2).toBe(tree); // everything is loaded, should return exact same instance
     });
 
     it('should load to cache items from selection and their parents', async () => {
-        let tree = await loadLazyTree(null, params, { ...value, checked: [121, 200] });
+        let tree = await LazyTree.blank(params).loadMissing(loadParams, { ...value, checked: [121, 200] });
 
-        expectTreeToLookLike(tree, {
-            items: [
-                { id: 100, item: itemsById[100] },
-                { id: 200, item: itemsById[200] },
-                { id: 300, item: itemsById[300] },
+        expectTreeToLookLike(tree,
+            {
+                items: [
+                    { id: 100, item: itemsById[100] },
+                    { id: 200, item: itemsById[200] },
+                    { id: 300, item: itemsById[300] },
+                ],
+                count: 3,
+                recursiveCount: 3,
+            },
+            [
+                [100, itemsById[100]],
+                [120, itemsById[120]],
+                [121, itemsById[121]],
+                [200, itemsById[200]],
+                [300, itemsById[300]],
             ],
-            count: 3,
-            recursiveCount: 3,
-            byParentKey: {
-                "100": [itemsById[120]],
-                "120": [itemsById[121]],
-            },
-            byKey: {
-                "100": itemsById[100],
-                "120": itemsById[120],
-                "121": itemsById[121],
-                "200": itemsById[200],
-                "300": itemsById[300],
-            },
-        });
+            [
+                [100, [itemsById[120]]],
+                [120, [itemsById[121]]],
+            ],
+        );
     });
 });

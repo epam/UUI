@@ -42,6 +42,7 @@ describe('LazyListView', () => {
             ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
             : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
+        getParentId: i => i.parentId,
     });
 
     beforeEach(() => {
@@ -672,6 +673,7 @@ describe('LazyListView', () => {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
+                getParentId: i => i.parentId,
             });
 
         let view = getView();

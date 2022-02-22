@@ -4,15 +4,15 @@ import { DataSourceState, IArrayDataSource, TreeNode } from "../types";
 import { DataSourceListProps, IDataSourceView } from './types';
 import { BaseListView, BaseListViewProps } from './BaseListView';
 import isEqual from 'lodash.isequal';
+import { DataSourceItemId } from "..";
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
-    getParentId?(item: TItem): TId;
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
-export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     visibleRows: DataRowProps<TItem, TId>[] = [];
     props: ArrayListViewProps<TItem, TId, TFilter>;
 
