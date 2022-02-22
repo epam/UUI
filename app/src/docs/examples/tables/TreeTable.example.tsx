@@ -57,6 +57,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
 
     const locationsDS = useAsyncDataSource<Location, string, unknown>({
         api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
+        getParentId: l => l.parentId,
     }, []);
 
     useEffect(() => {

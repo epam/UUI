@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
     DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource,
-    IEditable, IAnalyticableOnChange, DataSourceListProps,
+    IEditable, IAnalyticableOnChange, DataSourceListProps, DataSourceItemId,
 } from '@epam/uui-core';
 import { PickerBindingProps } from './bindingHelpers';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
-export type PickerBaseOptions<TItem, TId> = {
+export type PickerBaseOptions<TItem, TId extends DataSourceItemId> = {
     entityName?: string;
     entityPluralName?: string;
     dataSource: IDataSource<TItem, TId, any>;
@@ -31,14 +31,14 @@ export type PickerFooterProps<TItem, TId> = {
     clearSelection: () => void;
 };
 
-export type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
+export type PickerBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
 
 export interface PickerBaseState {
     dataSourceState: DataSourceState;
     showSelected?: boolean;
 }
 
-export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
+export abstract class PickerBase<TItem, TId extends DataSourceItemId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
     state: TState = this.getInitialState();
     lens = Lens.onState<PickerBaseState>(this);
 

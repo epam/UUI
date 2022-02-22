@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as css from './PickerModal.scss';
-import { DataRowProps, Lens } from '@epam/uui-core';
+import { DataRowProps, DataSourceItemId, Lens } from '@epam/uui-core';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
@@ -11,7 +11,7 @@ import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
 
-export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
+export class PickerModalImpl<TItem, TId extends DataSourceItemId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
@@ -110,7 +110,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     }
 }
 
-export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>> {
+export class PickerModal<TItem, TId extends DataSourceItemId> extends React.Component<PickerModalProps<TItem, TId>> {
     state = { selection: this.props.initialValue };
     lens = Lens.onState<any>(this);
 

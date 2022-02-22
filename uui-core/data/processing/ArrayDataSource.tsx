@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState, IArrayDataSource, TreeNode } from './types';
+import { DataSourceItemId, DataSourceState, IArrayDataSource, TreeNode } from './types';
 import { ArrayListView, ArrayListViewProps, IDataSourceView } from './views';
 
 export type ArrayDataSourceProps<TItem, TId, TFilter> = ArrayListViewProps<TItem, TId, TFilter> & {
     items: TItem[];
 };
 
-export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> implements IArrayDataSource<TItem, TId, TFilter> {
+export class ArrayDataSource<TItem = any, TId extends DataSourceItemId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> implements IArrayDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
 
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {

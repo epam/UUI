@@ -39,13 +39,13 @@ export const DemoTable: React.FC = () => {
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+    const dataSource = useLazyDataSource<PersonTableRecord, string, PersonTableFilter>({
         api,
-        getId: i => [i.__typename, i.id],
+        getId: i => JSON.stringify([i.__typename, i.id]),
         getChildCount: item => item.__typename === 'PersonGroup' ? item.count : null,
     }, []);
 
-    const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
+    const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, string>>({
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
@@ -104,7 +104,7 @@ export const DemoTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ dataSource.getById(["Person", tableStateApi.tableState.selectedId?.[1]]) as Person }
+                data={ dataSource.getById(JSON.stringify(["Person", tableStateApi.tableState.selectedId?.[1]])) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />

@@ -28,7 +28,7 @@ export function getColumns() {
 
     const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
 
-    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+    const personColumns: DataColumnProps<Person, string, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
             caption: "Name",
