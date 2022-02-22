@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3 } from "../common/docs";
+import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
@@ -8,6 +8,7 @@ export class PickerInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/pickers/docs/pickerInput.doc.tsx',
             [UUI4]: './epam-promo/components/pickers/docs/pickerInput.doc.tsx',
+            [UUI]: './uui/components/pickers/docs/pickerInput.doc.tsx',
         };
     }
 
