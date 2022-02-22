@@ -4,8 +4,14 @@ import {
 } from '@epam/promo';
 import React, { useState } from "react";
 import { structure } from "../helpers/structure";
-import { Tree } from '@epam/uui-components';
+import { Tree, TreeListItem } from '@epam/uui-components';
 import { useRouter } from "next/router";
+import { Link } from '@epam/uui-core';
+
+interface TreeItem extends Omit<TreeListItem, 'data'> {
+    link: Link;
+    data: TreeListItem & { link: Link };
+}
 
 export const SideBar = () => {
     const [unfoldedIds, setUnfoldedIds] = useState<string[]>([]);
@@ -13,7 +19,7 @@ export const SideBar = () => {
 
     return (
         <ScrollBars>
-            <Tree
+            <Tree<TreeItem>
                 items={ structure }
                 value={ unfoldedIds }
                 onValueChange={ setUnfoldedIds }
