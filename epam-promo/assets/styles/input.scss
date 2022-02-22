@@ -1,4 +1,5 @@
 @use './colors' as *;
+@use './fonts.scss' as *;
 
 @mixin disabled-input() {
     &.mode-form {
@@ -69,4 +70,17 @@
             color: $gray50;
         }
     }
+}
+
+@mixin prefix-suffix($bg, $border) {
+    display: flex;
+    align-items: center;
+    font-family: $font-sans;
+    font-size: 14px;
+    color: $gray60;
+    border-color: $border;
+    border-style: solid;
+    border-width: 1px;
+    background: $bg;
+    padding: 6px;
 }
