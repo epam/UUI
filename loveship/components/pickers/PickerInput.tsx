@@ -74,11 +74,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return this.props.renderFooter
             ? this.props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ this.props.size }/>;
+            : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
     }
 
-    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode {
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
+    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } prefix={ this.props.prefix } suffix={ this.props.suffix } />);
 
         return (
             <IEditableDebouncer
@@ -90,7 +90,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
+        const renderedDataRows = rows.map(props => this.renderRow({ ...props }));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 
