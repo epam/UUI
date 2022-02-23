@@ -23,6 +23,8 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+    prefix?: React.ReactNode;
+    suffix?: React.ReactNode;
     rawProps?: {
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
@@ -258,18 +260,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getRows() {
-        if (this.shouldShowBody()) {
-            const view = this.getView();
+        if (!this.shouldShowBody()) return [];
 
-            if (this.state.showSelected) {
-                const topIndex = this.state.dataSourceState.topIndex;
-                return view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount);
-            } else {
-                return view.getVisibleRows();
-            }
-        } else {
-            return [];
-        }
+        const { showSelected, dataSourceState: { topIndex, visibleCount } } = this.state;
+        const { getVisibleRows, getSelectedRows } = this.getView();
+
+        if (!showSelected) return getVisibleRows();
+        return getSelectedRows().slice(topIndex, topIndex + visibleCount);
     }
 
     render() {

@@ -78,7 +78,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } prefix={ this.props.prefix } suffix={ this.props.suffix } />);
 
         return (
             <IEditableDebouncer
