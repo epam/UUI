@@ -1,10 +1,11 @@
-import {AccordionExample, ButtonExample, IconExample, InputExample, LoaderExample} from "../components/lib";
 import React from "react";
+import { AccordionExample, ButtonExample, IconExample, InputExample, LoaderExample } from "../components/lib";
+import { Text } from '@epam/uui';
 
 const Components = () => {
     return (
         <div className={ 'withGap' }>
-            <h2>Demo example with list of components</h2>
+            <Text size='42' fontSize='24' font='semibold'>Demo example with list of components</Text>
             <ButtonExample />
             <InputExample />
             <LoaderExample />

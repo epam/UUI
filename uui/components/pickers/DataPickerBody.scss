@@ -17,6 +17,7 @@
     &:global(.uui-input-box) {
         border: 0;
         box-shadow: none;
+        background-color: transparent;
 
         &:global(.uui-focus) {
             border-color: transparent;
@@ -31,7 +32,6 @@
 
 .search-wrapper {
     border-bottom: 1px solid var(--divider-color);
-    background: white;
     padding: 0 4px;
 }
 
