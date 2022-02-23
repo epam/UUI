@@ -500,7 +500,6 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             if (!isRoot) {
                 getParentIds(id).forEach(parentId => {
                     const children = tree.byParentId.get(parentId);
-                    console.log(id, children);
                     const isAllChildrenChecked = children.every(i => checkedIdsSet.has(this.props.getId(i)));
 
                     if (isAllChildrenChecked) {
