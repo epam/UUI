@@ -42,7 +42,7 @@
 
     :global(.uui-input-prefix),
     :global(.uui-input-suffix) {
-        @include prefix-suffix($night100, $night400);
+        @include prefix-suffix-input($night100, $night400);
         border-top: none;
         border-bottom: none;
     }

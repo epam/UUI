@@ -11,7 +11,7 @@
 
     :global(.uui-input-prefix),
     :global(.uui-input-suffix) {
-        @include prefix-suffix($gray10, $gray40);
+        @include prefix-suffix-input($gray10, $gray40);
     }
 
     :global(.uui-input-prefix) {

@@ -9,13 +9,12 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     }
 
     :global(.uui-input-prefix),
-    :global(.uui-input-suffix) {
+    :global(.uui-input-suffix),
+    :global(.uui-input) {
         @include text-size($size);
     }
 
     :global(.uui-input) {
-        @include text-size($size);
-
         @if ($size == 24px) {
             padding-top: 0;
             padding-bottom: 0;
@@ -47,7 +46,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     :global(.uui-input-prefix),
     :global(.uui-input-suffix) {
-        @include prefix-suffix($gray10, $gray40);
+        @include prefix-suffix-input($gray10, $gray40);
         border-top: none;
         border-bottom: none;
     }
