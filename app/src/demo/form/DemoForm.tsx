@@ -105,7 +105,6 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
             <LabeledInput htmlFor="status" label='Status' { ...lens.prop('status').toProps() }>
                 <TextInput
                     { ...lens.prop('status').toProps() }
-                    prefix='Status'
                     placeholder='Select Status'
                     id="status"
                 />
@@ -134,7 +133,6 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                         <TextInput
                             { ...lens.prop('jobFunction').toProps() }
                             id="jobFunction"
-                            suffix='Job'
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -209,7 +207,6 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                 <LabeledInput htmlFor="faculty" label='Faculty' { ...lens.prop('faculty').toProps() }>
                     <TextInput
                         { ...lens.prop('faculty').toProps() }
-                        suffix='Faculty'
                         placeholder='Faculty Name'
                         id="faculty"
                     />
