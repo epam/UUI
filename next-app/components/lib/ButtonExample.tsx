@@ -1,22 +1,8 @@
-import {
-    Badge,
-    Button,
-    Dropdown,
-    FlexCell,
-    FlexRow, LinkButton,
-    MultiSwitch,
-    NotificationCard,
-    Panel,
-    Text,
-    Tooltip,
-} from '@epam/promo';
-import {
-    IDropdownToggler,
-    INotification, useUuiContext,
-} from "@epam/uui-core";
-import React, {useState} from "react";
-import {BasicModalExample} from "../Modal";
-import Link from 'next/link';
+import React, { useState } from 'react';
+import { IDropdownToggler, INotification, useUuiContext } from '@epam/uui-core';
+import { Badge, Button, Dropdown, FlexCell, FlexRow, LinkButton, NotificationCard, Panel, Text, Tooltip } from '@epam/uui';
+import { MultiSwitch } from '@epam/promo';
+import { BasicModalExample } from '../Modal';
 
 export const ButtonExample = () => {
     const [isDisabled, setIsDisabled] = useState(false);
@@ -26,8 +12,8 @@ export const ButtonExample = () => {
     const handleSuccess = () => {
         console.log('Success Click');
         svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard id={ 1 } key={ 'keyProps' } color='gray60' onClose={ () => null } onSuccess={ () => null } >
-                Common notification
+            <NotificationCard id={ 1 } key={ 'keyProps' } color='info' onClose={ () => null } onSuccess={ () => null } >
+                <Text>Common notification</Text>
             </NotificationCard>);
         svc.uuiAnalytics.sendEvent({
             name: "click",
@@ -38,7 +24,7 @@ export const ButtonExample = () => {
 
     const renderDropdownBody = () => {
         return (
-            <Panel background='white' shadow={ true }>
+            <Panel background shadow={ true }>
             <FlexRow padding='12' vPadding='12'>
                 <Text>
                     Dropdown body content.
@@ -109,9 +95,9 @@ export const ButtonExample = () => {
                 />
             </FlexRow>
             <FlexRow cx={ 'withGap' }>
-                <Badge color='blue' fill='solid' caption='Status' />
-                <Badge color='blue' fill='semitransparent' caption='Status' />
-                <Badge color='blue' fill='transparent' caption='Status' />
+                <Badge color='info' fill='solid' caption='Status' />
+                <Badge color='success' fill='solid' caption='Status' />
+                <Badge color='error' fill='solid' caption='Status' />
             </FlexRow>
         </Panel>
     );

@@ -2,6 +2,7 @@ import 'normalize.css';
 import '../styles/globals.scss';
 import '@epam/uui-components/styles.css';
 import '@epam/promo/styles.css';
+import '@epam/uui/styles.css';
 import '@epam/uui-editor/styles.css';
 import { DragGhost } from "@epam/uui-core";
 import { Snackbar, Modals } from "@epam/uui-components";
