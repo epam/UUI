@@ -1,4 +1,4 @@
-import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../types';
+import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange, LazyDataSourceApiResponse } from '../types';
 
 export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mode
 
@@ -59,6 +59,68 @@ export class LazyTree<TItem, TId, TFilter> {
         return result;
     }
 
+    public static fromArray<TItem, TId, TFilter>(params: LazyTreeParams<TItem, TId, TFilter>, items: TItem[]) {
+        return LazyTree.blank<TItem, TId, TFilter>(params).appendItemsToByIdMaps(items);
+    }
+
+    public buildTreeFromMaps(
+        loadParams: LazyTreeLoadParams<TItem, TId>,
+        value: Readonly<DataSourceState>
+    ) {
+        const buildRec = (parentId?: TId) => {
+            const items = this.byParentId.get(parentId);
+
+            if (!items || items.length === 0) {
+                return null;
+            }
+
+            const treeItems: LazyTreeItem<TItem, TId>[] = [];
+
+            let recursiveCount = 0;
+
+            for (let item of items) {
+                const id = this.params.getId(item);
+
+                const node: LazyTreeItem<TItem, TId> = {
+                    id,
+                    item,
+                }
+
+                if (this.params.getParentId) {
+                    const children = buildRec(id);
+
+                    if (children) {
+                        node.children = children;
+                    }
+                }
+
+                if (true) { // TBD: recursive filter check
+                    treeItems.push(node);
+                    recursiveCount ++;
+
+                    if (node.children) {
+                        recursiveCount += node.children.recursiveCount;
+                    }
+                }
+            }
+
+            return {
+                items: treeItems,
+                count: treeItems.length,
+                recursiveCount,
+            } as LazyTreeList<TItem, TId>;
+        }
+
+        const newRootList = buildRec(undefined);
+
+        return new LazyTree<TItem, TId, TFilter>(
+            this.params,
+            newRootList,
+            this.byId,
+            this.byParentId,
+        );
+    }
+
     private async loadNodes(
         loadParams: LazyTreeLoadParams<TItem, TId>,
         value: Readonly<DataSourceState>,
@@ -109,11 +171,17 @@ export class LazyTree<TItem, TId, TFilter> {
             return this;
         }
 
+        let isChanged = false;
+
         const newById = new Map(this.byId);
 
         itemsToAdd.forEach(node => {
             const id = this.params.getId(node);
-            newById.set(id, node);
+            const existing = this.byId.get(id);
+            if (existing !== node) {
+                newById.set(id, node);
+                isChanged = true;
+            }
         })
 
         const newByParentId = new Map(this.byParentId); // shallow clone, still need to copy arrays inside!
@@ -129,7 +197,12 @@ export class LazyTree<TItem, TId, TFilter> {
                     list = [...list];
                 }
                 list.push(node);
+                isChanged = true;
             });
+        }
+
+        if (!isChanged) {
+            return this;
         }
 
         return new LazyTree(
@@ -329,4 +402,4 @@ export class LazyTree<TItem, TId, TFilter> {
             }
         }
     }
-}
+  }
