@@ -132,6 +132,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                     <LabeledInput htmlFor="jobFunction" label='Job Function' { ...lens.prop('jobFunction').toProps() }>
                         <TextInput
                             { ...lens.prop('jobFunction').toProps() }
+                            placeholder='Select Job Function'
                             id="jobFunction"
                         />
                     </LabeledInput>
