@@ -441,8 +441,9 @@ function getLocalIdent(
                     svgoConfig: {
                         plugins: {
                             removeViewBox: false
-                        }
-                    }
+                        },
+                    },
+                    ref: true
                 }},
                 {
                     loader: 'file-loader',
