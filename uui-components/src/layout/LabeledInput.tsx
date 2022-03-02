@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as css from './LabeledInput.scss';
 import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui-core';
 import { TooltipProps } from '../overlays/Tooltip';
-import { Svg } from '../widgets/Svg';
+import { IconContainer } from "./IconContainer";
 import { i18n } from '../../i18n';
 
 export interface LabeledInputProps extends LabeledInputCoreProps {
@@ -30,7 +30,7 @@ export class LabeledInput extends React.Component<LabeledInputProps> {
                             { this.props.isRequired && <span className={ uuiLabeledInput.asterisk } >*</span> }
                             { this.props.info && Tooltip &&
                                 <Tooltip content={ this.props.info }>
-                                    <Svg svg={ this.props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
+                                    <IconContainer icon={ this.props.infoIcon } cx={ uuiLabeledInput.infoIcon } />
                                 </Tooltip>
                             }
                             { isCanBeOptional &&
