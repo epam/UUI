@@ -62,7 +62,6 @@ export const DemoTable: React.FC = () => {
     const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
         rowOptions,
         isFoldedByDefault: () => true,
-        cascadeSelection: true,
     });
 
     return (
