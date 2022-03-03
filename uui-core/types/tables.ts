@@ -93,10 +93,7 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** ID of the TItem rows displays */
     id: TId;
 
-    /** Key of the TItem row displays. This is the ID converted to string.
-     * We use this internally to identify rows, and hold rows them in various hash-tables.
-     * ID can't be used for this, as it is not guaranteed to be comparable. E.g. one can use TID=[int, string] to hold composite IDs.
-     * */
+    /** Key to be used as component's key when rendering. Usually, it's stringified ID */
     rowKey: string;
 
     /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
@@ -119,13 +116,13 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
      */
     indent?: number;
 
-    /** True if row is in loading state. Value is empty in this case */
+    /** True if row is in loading state. 'value' is empty in this case */
     isLoading?: boolean;
 
-    /** True if row contains children and so it can be folded or unfolded */
+    /** True if row be folded or unfolded (usually because it contains children) */
     isFoldable?: boolean;
 
-    /** True if row is currently unfolded */
+    /** True if row is currently folded */
     isFolded?: boolean;
 
     /** True if row is checked with checkbox */
@@ -173,7 +170,6 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     onSelect?(rowProps: DataRowProps<TItem, TId>): void;
 
     /** Handles row focusing.
-     * We demand to pass the row as well, to avoid creating closures for each row.
      */
     onFocus?(focusedIndex: number): void;
 };
