@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
 import { DataTable, DataTableRow, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataRowProps, DataTableState, LazyDataSourceApi, useLazyDataSource } from "@epam/uui";
+import { DataQueryFilter, DataRowOptions, DataRowProps, DataTableState, LazyDataSourceApi, useLazyDataSource } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "../table/types";

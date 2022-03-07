@@ -1,16 +1,8 @@
-import {
-    Checkbox,
-    DatePicker, FlexCell,
-    FlexRow,
-    LabeledInput,
-    NumericInput,
-    Panel,
-    PickerInput,
-    Switch, TextInput,
-} from "@epam/promo";
-import React, {useCallback, useState} from "react";
-import {LazyDataSourceApiRequest, useArrayDataSource, useLazyDataSource, useUuiContext} from "@epam/uui";
-import {Person} from "@epam/uui-docs";
+import { DatePicker, NumericInput } from "@epam/promo";
+import { Checkbox, FlexCell, FlexRow, LabeledInput, Panel, PickerInput, Switch, TextInput } from "@epam/uui";
+import React, { useCallback, useState } from "react";
+import { LazyDataSourceApiRequest, useArrayDataSource, useLazyDataSource, useUuiContext } from "@epam/uui-core";
+import { Person } from "@epam/uui-docs";
 
 const languageLevels = [
     { "id": 2, "level": "A1" },

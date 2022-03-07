@@ -1,15 +1,12 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { VirtualList as uuiVirtualList, VirtualListProps } from '@epam/uui-components';
 import * as css from './VirtualList.scss';
 
-export interface VirtualListMods {
-    shadow?: 'dark' | 'white' | false;
-}
+export interface VirtualListMods {}
 
 function applyVirtualListMods(mods: VirtualListMods) {
     return [
         css.root,
-        mods.shadow && css['shadow-' + (mods.shadow || 'dark')],
     ];
 }
 

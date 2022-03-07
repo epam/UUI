@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps } from "@epam/uui";
+import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -123,8 +123,16 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
+    hasSelection() {
+        if (Array.isArray(this.props.value)) {
+            return this.props.value.length !== 0;
+        } else {
+            return this.props.value !== undefined && this.props.value !== null;
+        }
+    }
+
     getSelectedRows() {
-        if (this.props.value !== undefined && this.props.value !== []) {
+        if (this.hasSelection()) {
             const view = this.getView();
             return view.getSelectedRows();
         }

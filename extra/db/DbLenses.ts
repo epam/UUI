@@ -1,6 +1,6 @@
 import { DbRef } from "./DbRef";
 import { IQueryable } from './types';
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 
 export class DbEntityLens<TEntities, TEntityName extends keyof TEntities> {
     constructor(private ref: DbRef<TEntities>, private entityName: TEntityName, private pattern: Partial<TEntities[TEntityName]>) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataColumnProps } from '@epam/uui';
+import { DataRowProps, DataColumnProps } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';

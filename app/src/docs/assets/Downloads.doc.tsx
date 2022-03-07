@@ -52,9 +52,9 @@ const libraries = {
             libraryType: 'figma',
         },
         {
-            title: 'UUI Illustartions',
+            title: 'UUI Illustrations',
             additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations',
+            link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',
             image: Artbord,
             libraryType: 'figma',
         },
@@ -89,9 +89,9 @@ const libraries = {
             libraryType: 'figma',
         },
         {
-            title: 'UUI Illustartions',
+            title: 'UUI Illustrations',
             additionalInfo: 'Requires Figma 97 or greater',
-            link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations',
+            link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',
             image: Artbord,
             libraryType: 'figma',
         },
@@ -103,13 +103,13 @@ const assets = {
         fonts: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Fonts_UUI3.7z',
         logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Logotypes_UUI3.7z',
         icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI3/Icons_UUI3.7z',
-        illustrations: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/uui-illustrations/UUI_Illustrations.zip',
+        illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
     },
     UUI4: {
         fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
         logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
         icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
-        illustrations: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/uui-illustrations/UUI_Illustrations.zip',
+        illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
     },
 };
 
@@ -132,7 +132,27 @@ export class DownloadsDoc extends BaseDocsBlock {
                 <FlexRow spacing='12'>
                     <IconContainer icon={ image } />
                     <FlexCell width='auto'>
-                        <LinkButton href={ link } size='24' captionCX={ css.libraryLinkTitle } caption={ title }  iconPosition='right' icon={ libraryType === 'sketch' ? DownloadFileIcon : ContentLinkIcon } />
+                        {
+                            title === 'UUI Illustrations'
+                                ? <Tooltip content='For internal use only' offset={ [0, 10] } >
+                                    <LinkButton
+                                        href={ link }
+                                        size='24'
+                                        captionCX={ css.libraryLinkTitle }
+                                        caption={ title }
+                                        iconPosition='right'
+                                        icon={ LockIcon }
+                                    />
+                                </Tooltip>
+                                : <LinkButton
+                                    href={ link }
+                                    size='24'
+                                    captionCX={ css.libraryLinkTitle }
+                                    caption={ title }
+                                    iconPosition='right'
+                                    icon={ libraryType === 'sketch' ? DownloadFileIcon : ContentLinkIcon }
+                                />
+                        }
                         <Text size='18' fontSize='12' lineHeight='18' color='gray60' >{ additionalInfo }</Text>
                     </FlexCell>
                 </FlexRow>
@@ -173,7 +193,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <Text size='24' fontSize='16' font='museo-sans' >Font Pack</Text>
                                     {
                                         isUUI4Skin
-                                            ? <Tooltip content='For internal use only' offset={ [0, -1] } >
+                                            ? <Tooltip content='For internal use only' offset={ [0, 10] } >
                                                 <LinkButton
                                                     iconPosition='right'
                                                     icon={ LockIcon }
@@ -233,13 +253,19 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <IconContainer icon={ IllustrationsIcon } />
                                 </div>
                                 <FlexCell width='auto'>
-                                    <Text size='24' fontSize='16' font='museo-sans' >UUI Illustartions (SVG pack & Guidline)</Text>
-                                    <LinkButton
-                                        caption='Download'
-                                        size='24'
-                                        href={ isUUI4Skin ? assets.UUI4.illustrations : assets.UUI3.illustrations }
-                                        captionCX={ css.assetsLinkCaption }
-                                    />
+                                    <Text size='24' fontSize='16' font='museo-sans' >UUI Illustrations (SVG pack & Guidelines)</Text>
+                                    <FlexRow>
+                                        <Tooltip content='For internal use only' offset={ [0, 10] } >
+                                            <LinkButton
+                                                iconPosition='right'
+                                                icon={ LockIcon }
+                                                caption='Download'
+                                                size='24'
+                                                href={ isUUI4Skin ? assets.UUI4.illustrations : assets.UUI3.illustrations }
+                                                captionCX={ css.assetsLinkCaption }
+                                            />
+                                        </Tooltip>
+                                    </FlexRow>
                                 </FlexCell>
                             </FlexRow>
                         </FlexCell>

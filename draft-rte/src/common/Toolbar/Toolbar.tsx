@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from '../../RichTextEditor.scss';
 import { FlexRow } from '@epam/loveship';
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 import { EditorState } from 'draft-js';
 import { buttonsMap } from './buttons';
 import { ToolbarButton, ToolbarTextColor } from '../../types';

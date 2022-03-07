@@ -5,10 +5,6 @@ import { dataSource } from "./dataMocks";
 import { DataPickerBody } from "../DataPickerBody";
 import { DataPickerRow } from "../DataPickerRow";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("DataPickerBody", () => {
     const value = {};
     const onValueChange = jest.fn();
@@ -18,8 +14,7 @@ describe("DataPickerBody", () => {
     };
 
     it("should be rendered correctly", () => {
-        const view = dataSource.getView({ topIndex: 0, visibleCount: 10, focusedIndex: 1 }, () => {
-        });
+        const view = dataSource.getView({ topIndex: 0, visibleCount: 10, focusedIndex: 1 }, () => {});
 
         const tree = renderer
             .create(<DataPickerBody

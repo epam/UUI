@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { DataColumnProps, IEditable, ILens, FilterConfig, useUuiContext } from "@epam/uui";
+import { DataColumnProps, IEditable, ILens, FilterConfig, useUuiContext } from "@epam/uui-core";
 
 export const useColumnsWithFilters = <TFilter extends Record<string, any>>(columns: DataColumnProps[], filters: FilterConfig<TFilter>[] | undefined) => {
     const columnsRef = useRef(columns);

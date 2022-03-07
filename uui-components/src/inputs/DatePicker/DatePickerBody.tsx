@@ -19,10 +19,10 @@ export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
 export const uuiDatePickerBody = {
     wrapper: 'uui-datepickerBody-wrapper',
     separator: 'uui-datepickerBody-separator',
-};
+} as const;
 
 export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyProps> {
-    constructor(props: any) {
+    constructor(props: DatePickerBodyProps) {
         super(props);
         dayjs.locale("en");
         dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });

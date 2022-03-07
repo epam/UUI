@@ -1,7 +1,6 @@
-import isEqual from "lodash.isequal";
-import { ColumnsConfig } from "@epam/uui";
-import { ITablePreset } from "../types";
-import { parseFilterUrl } from "./parseFilterUrl";
+import isEqual from 'lodash.isequal';
+import { ColumnsConfig, ITablePreset } from '@epam/uui';
+import { parseFilterUrl } from './parseFilterUrl';
 
 export const hasPresetChanged = (preset: ITablePreset | undefined, columnsConfig: ColumnsConfig) => {
     const filter = parseFilterUrl();

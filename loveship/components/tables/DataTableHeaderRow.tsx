@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
-import { DataTableHeaderRowProps, withMods } from '@epam/uui';
+import { DataTableHeaderRowProps, withMods } from '@epam/uui-core';
 import { ReactComponent as GearIcon } from './../icons/settings-18.svg';
 import * as css from './DataTableHeaderRow.scss';
 import { DataTableHeaderCell } from './DataTableHeaderCell';
@@ -12,10 +12,10 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
     mods => [css.root],
     mods => ({
         renderCell: props => <DataTableHeaderCell
-            key={ props.column.key }
             { ...props }
             size={ mods.size }
             textCase={ mods.textCase || 'normal' }
+            key={ props.column.key }
         />,
         renderConfigButton: () => <LinkButton
             key='configuration'

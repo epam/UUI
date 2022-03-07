@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, IHasRawProps } from '@epam/uui';
+import { cx, IHasRawProps } from '@epam/uui-core';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
 import * as css from './DropSpot.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '../';
@@ -22,13 +22,14 @@ export class DropSpot extends React.Component<DropSpotProps> {
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                     <FlexRow size='24' spacing='6' >
                         <IconContainer color='blue' icon={ ShapeIcon } />
-                        <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> {i18n.fileUpload.label} </Text>
+                        <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> { i18n.fileUpload.labelStart } </Text>
                         <UploadFileToggler
                             onFilesAdded={ this.props.onUploadFiles }
                             render={ (props) => <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold' ><Anchor { ...props } cx={ css.link }>{ i18n.fileUpload.browse }</Anchor></Text> }
                             accept={ this.props.accept }
                             single={ this.props.single }
                         />
+                        <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'>{ i18n.fileUpload.labelEnd }</Text>
                     </FlexRow>
                     { this.props.infoText && <Text lineHeight='24' size='24' fontSize='14' color='gray60'>{ this.props.infoText }</Text> }
                 </div>

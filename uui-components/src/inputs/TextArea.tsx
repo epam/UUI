@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, IHasForwardedRef, CX, cx } from '@epam/uui-core';
 import * as css from './TextArea.scss';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, CX, IHasRawProps, cx } from '@epam/uui';
 
-export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLDivElement> {
+export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     rows?: number;
     autoSize?: boolean;
     onBlur?(e?: any): void;
@@ -86,7 +86,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render () {
         return (
-            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } { ...this.props.rawProps }>
+            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <textarea
                     autoFocus={ this.props.autoFocus }
                     placeholder={ this.props.placeholder }

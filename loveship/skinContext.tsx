@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui';
+import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
 import { Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, LabeledInput, IconButton, EpamColor, IconButtonProps, ColumnPickerFilter, DatePicker, RangeDatePicker } from "./components";
 
 const buttonTypeToColor: { [key: string]: EpamColor } = {

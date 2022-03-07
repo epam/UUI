@@ -7,81 +7,80 @@ import ReactMarkdown from 'react-markdown';
 import dayjs from 'dayjs';
 import { ContentSection } from '../../common';
 
+interface ReleaseInfo {
+    date: string;
+    number: string;
+}
+
 interface ReleaseNotesDocState {
     isLoading: boolean;
     markdown: any | null;
+    release: ReleaseInfo;
 }
 
-export class ReleaseNotesDoc extends React.Component<any, ReleaseNotesDocState> {
-    constructor(props: Readonly<{containerRef: any}>) {
-        super(props);
+export class ReleaseNotesDoc extends React.Component {
+    state: ReleaseNotesDocState = {
+        isLoading: true,
+        markdown: null,
+        release: { number: '', date: '' }
+    };
 
-        svc.api.getChangelog()
-            .then(response => response)
-            .then(data => {
-                this.setState({
-                    markdown: data.markdown.split('#').filter((el: any) => el !== '').map((el: any) => '#'.concat(el)),
-                    isLoading: false,
-                });
+    componentDidMount() {
+        svc.api.getChangelog().then(data => {
+            const [releaseVersion, releaseDate] = data.markdown.split('\n')[0].split(' - ');
+
+            this.setState({
+                markdown: data.markdown.split('# ').filter((el: any) => el !== '').map((el: any) => '#'.concat(el)),
+                isLoading: false,
+                release: {
+                    number: releaseVersion.trim().slice(2),
+                    date: releaseDate.trim(),
+                }
             });
-
-        this.state = {
-            isLoading: true,
-            markdown: null,
-        };
+        });
     }
 
     componentDidUpdate() {
         const query = new URLSearchParams(window.location.search);
         const release = query.get('release');
-        if (release) {
-            document.getElementById(release).scrollIntoView();
-        }
+        document.getElementById(release)?.scrollIntoView({ behavior: 'smooth' });
     }
 
     renderHeader(release: any) {
-        let releaseNumber = release.children[0].props.value.split('-')[0].trim();
-        let releaseDate = release.children[0].props.value.split('-')[1] && release.children[0].props.value.split('-')[1].trim();
-
         return (
             <FlexCell minWidth={ 246 } alignSelf='start' >
-                { React.createElement(`h1`, getCoreProps(release), ['# ', releaseNumber]) }
-                <Text color='gray60' size='24' >{ releaseDate }</Text>
+                { React.createElement(`h1`, getCoreProps(release), ['# ', this.state.release.number]) }
+                <Text color='gray60' size='24' >{ this.state.release.date }</Text>
             </FlexCell>
         );
     }
 
-    renderReleaseRow(release: any, index: number) {
-        const [header, date] = release.split('*')[0].split('-').map((i: any) => i.trim());
-        const content = release.substr(release.search(/\*/), release.length);
+    renderReleaseRow(release: string, index: number) {
+        const [header, date] = release.split('*')[0].split('-').map(i => i.trim());
+        const content = release.substring(release.search(/\*/), release.length);
 
         return (
-            <FlexRow key={ index } cx={ css.releaseRow } >
+            <FlexRow key={ index } cx={ css.releaseRow } rawProps={ { id: header.split('#')[1] } }>
                 <FlexCell minWidth={ 246 } alignSelf='start' >
                     <Text font='museo-sans' fontSize='24' lineHeight='30' cx={ css.releaseHeader } >{ header }</Text>
                     <Text color='gray60' fontSize='16' lineHeight='24' cx={ css.releaseDate } >
                         { dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
                     </Text>
                 </FlexCell>
-                <div id={ header.split(' ')[1] } className={ css.releaseContent }>
+                <div className={ css.releaseContent }>
                     <RichTextView>
                         <ReactMarkdown
                             source={ content }
-                            renderers={
-                                {
-                                    heading: (release) => {
-                                        return this.renderHeader(release);
-                                    },
-                                    strong: (release) => {
-                                        return <b>{ release.children[0] }</b>;
-                                    },
-                                    linkReference: (release) => {
-                                        if (!release.href) {
-                                            return <span>{ `[${ release.children[0].props.value }]` }</span>;
-                                        }
+                            renderers={ {
+                                heading: (release) => this.renderHeader(release),
+                                strong: (release) => <b>{ release.children[0] }</b>,
+                                linkReference: (release) => {
+                                    if (!release.href) {
+                                        return <span>{ `[${ release.children[0].props.value }]` }</span>;
+                                    } else {
                                         return <a href={ release.$ref } >{ release.children[0] }</a>;
-                                    },
-                                }
+                                    }
+                                } }
                             }
                         />
                     </RichTextView>
@@ -91,7 +90,9 @@ export class ReleaseNotesDoc extends React.Component<any, ReleaseNotesDocState> 
     }
 
     render() {
-        const { markdown, isLoading } = this.state;
+        const { markdown, isLoading, release } = this.state;
+
+        if (Object.keys(release).some(key => !key)) return null;
 
         return (
             <ContentSection>

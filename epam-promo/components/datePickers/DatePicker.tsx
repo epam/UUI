@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './DatePicker.scss';
-import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui";
+import { Dayjs } from "dayjs";
+import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
 import { BaseDatePicker } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';

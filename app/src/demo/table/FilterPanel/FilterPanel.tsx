@@ -1,15 +1,12 @@
-import React from "react";
-import { FlexRow, IconButton, ScrollBars, Text } from "@epam/promo";
-import { FlexSpacer } from "@epam/uui-components";
-import { DataColumnProps, FilterConfig } from "@epam/uui";
-import { ReactComponent as CloseIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
+import React from 'react';
+import { DataColumnProps, FilterConfig } from '@epam/uui-core';
+import { FlexRow, IconButton, ScrollBars, Text, FlexSpacer } from '@epam/uui';
+import { ReactComponent as CloseIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
 import { ITableState } from "../types";
 import { PresetsBlock } from "./PresetsBlock";
 import { FiltersBlock } from "./FiltersBlock";
 import { ColumnsBlock } from "./ColumnsBlock";
-
-// import { GroupingBlock } from "./GroupingBlock";
 
 export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState {
     columns: DataColumnProps[];
@@ -20,8 +17,8 @@ export interface IFilterPanelProps<TFilter extends Record<string, any>> extends 
 const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelProps<TFilter>) => {
     return (
         <>
-            <FlexRow background="white" borderBottom size="48" padding="18">
-                <Text fontSize="18" font="sans-semibold">Views</Text>
+            <FlexRow borderBottom size='48' padding='18'>
+                <Text fontSize='18' font='semibold'>Views</Text>
                 <FlexSpacer/>
                 <IconButton icon={ CloseIcon } onClick={ props.closePanel }/>
             </FlexRow>

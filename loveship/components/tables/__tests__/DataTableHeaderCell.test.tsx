@@ -1,15 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { renderWithContextAsync } from '@epam/test-utils';
 import {DataTableHeaderCell} from "../DataTableHeaderCell";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("DataTableHeaderCell", () => {
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<DataTableHeaderCell
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(
+            <DataTableHeaderCell
                 column={ {
                     key: "test",
                     caption: "Test",
@@ -22,8 +18,9 @@ describe("DataTableHeaderCell", () => {
                 isLastColumn={ false }
                 value={ {  } }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });
