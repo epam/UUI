@@ -181,7 +181,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         const selectedRows = this.getSelectedRows();
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
-            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition
+            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition, prefix, suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
@@ -199,6 +199,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             autoFocus,
             icon,
             iconPosition,
+            prefix,
+            suffix,
             onFocus: this.onFocus,
             onBlur: this.onBlur,
             onClear: this.handleClearSelection,

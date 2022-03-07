@@ -120,13 +120,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 icon={ props.cancelIcon }
                 onClick={ handleCancel }
             /> }
-            { props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{ props.suffix }</span> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
                 cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, uuiMarkers.clickable) }
                 icon={ props.dropdownIcon }
                 flipY={ props.isOpen }
             /> }
+            { props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{ props.suffix }</span> }
         </div>
     );
 });

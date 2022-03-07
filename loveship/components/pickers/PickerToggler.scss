@@ -40,25 +40,15 @@
     fill: $night500;
     box-sizing: border-box;
 
-    :global(.uui-input-prefix),
-    :global(.uui-input-suffix) {
-        @include prefix-suffix-input($night100, $night400);
-        border-top: none;
-        border-bottom: none;
-    }
 
     :global(.uui-input-prefix) {
-        border-left: none;
-        margin: -2px 4px 0 -5px;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
+        @include input-prefix();
+        margin-top: -2px;
     }
 
     :global(.uui-input-suffix) {
-        border-right: none;
-        margin: -2px -5px 0 4px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
+        @include input-sufix();
+        margin-top: -2px;
     }
 
     :global(.uui-input) {
@@ -123,7 +113,21 @@
     }
 
     &.mode-inline { @include control-inline-mode(); }
-    &.mode-cell { @include control-cell-mode(); }
+    &.mode-cell {
+        @include control-cell-mode();
+
+        &:global(.uui-focus) {
+            :global(.uui-input-prefix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 2px 0 0); //to hide right side of the shadow
+            }
+
+            :global(.uui-input-suffix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 0 0 2px); //to hide left side of the shadow
+            }
+        }
+    }
 
     &.mode-inline, &.mode-cell {
         :global(.uui-input-prefix) {
