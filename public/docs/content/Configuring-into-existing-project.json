@@ -762,7 +762,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "import { CommonContexts } from '@epam/uui';",
+                "text": "import { CommonContexts } from '@epam/uui-core';",
                 "marks": [
                   {
                     "object": "mark",

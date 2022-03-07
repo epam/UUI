@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import css from "./Filter.scss";
+import { IEditable, FilterConfig } from '@epam/uui-core';
 import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/promo";
-import { FilterConfig, IEditable } from "@epam/uui";
 import { RangeDatePickerValue } from "@epam/uui-components";
 import { ReactComponent as ArrowDown } from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 

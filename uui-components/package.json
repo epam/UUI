@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.5.1",
+  "version": "4.6.0-alpha.1",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.5.1",
+    "@epam/uui-core": "4.6.0-alpha.1",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
@@ -49,7 +49,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
   "publishConfig": {
     "directory": "build"
   }

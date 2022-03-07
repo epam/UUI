@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { cx, uuiMarkers } from '@epam/uui';
+import { cx, uuiMarkers } from '@epam/uui-core';
 import * as css from './Checkbox.scss';
-import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui';
+import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
 export interface CheckboxProps extends CheckboxCoreProps {
@@ -12,7 +12,7 @@ export interface CheckboxProps extends CheckboxCoreProps {
     id?: string;
 }
 
-export class Checkbox extends React.Component<CheckboxProps, any> {
+export class Checkbox extends React.Component<CheckboxProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -36,6 +36,7 @@ export class Checkbox extends React.Component<CheckboxProps, any> {
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>

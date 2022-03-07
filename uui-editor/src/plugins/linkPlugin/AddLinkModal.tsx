@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IModal, uuiSkin } from '@epam/uui';
+import { IModal, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import * as css from './link.scss';
 

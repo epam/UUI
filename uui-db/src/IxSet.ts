@@ -1,6 +1,6 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
-import { SortingOption, DataQueryFilterCondition, DataQueryFilter, getPatternPredicate } from '@epam/uui';
+import { SortingOption, DataQueryFilterCondition, DataQueryFilter, getPatternPredicate } from '@epam/uui-core';
 import orderBy from 'lodash.orderby';
 
 export interface IxSetIndexDefinition<TEntity> {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps } from '@epam/uui-components';
 import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { getTextClasses, TextSettings } from '../../helpers/textLayout';

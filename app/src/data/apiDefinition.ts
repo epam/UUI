@@ -1,7 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { IProcessRequest, CommonContexts, UuiContexts } from "@epam/uui";
-import { ITablePreset } from "../demo/table/types";
-// import { delay } from "@epam/test-utils";
+import type { IProcessRequest, CommonContexts, UuiContexts, ITablePreset } from "@epam/uui";
 
 export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
     setTimeout(resolve, ms);
@@ -18,26 +16,26 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: IProcessRequest, origin: string = "") {
+export function getApi(processRequest: IProcessRequest, origin: string = '') {
     return {
         demo: getDemoApi(processRequest, origin),
         success: {
-            validateForm: <T>(formState: T) => processRequest(origin.concat("api/success/validate-form"), "POST", formState),
+            validateForm: <T>(formState: T) => processRequest(origin.concat('api/success/validate-form'), 'POST', formState),
         },
         errors: {
-            status: (status: number) => processRequest(origin.concat(`api/error/status/${ status }`), "POST"),
-            setServerStatus: (status: number) => processRequest(origin.concat(`api//error/set-server-status/${ status }`), "POST"),
-            mock: () => processRequest(origin.concat(`api//error/mock`), "GET"),
-            authLost: () => processRequest(origin.concat(`api//error/auth-lost`), "POST"),
+            status: (status: number) => processRequest(origin.concat(`api/error/status/${ status }`), 'POST'),
+            setServerStatus: (status: number) => processRequest(origin.concat(`api//error/set-server-status/${ status }`), "'POST'"),
+            mock: () => processRequest(origin.concat('api/error/mock'), 'GET'),
+            authLost: () => processRequest(origin.concat('api/error/auth-lost'), 'POST'),
         },
         getChangelog(): Promise<any> {
-            return processRequest(origin.concat("/api/get-changelog"), "GET");
+            return processRequest(origin.concat('/api/get-changelog'), 'GET');
         },
         getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(origin.concat(`/api/get-code`), "POST", rq);
+            return processRequest(origin.concat('/api/get-code'), 'POST', rq);
         },
         getProps(): Promise<any> {
-            return processRequest(origin.concat(`/api/get-props/`), "GET");
+            return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {

@@ -1,4 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
+@use 'themePromo';
+@use 'themeLoveshipDark';
 
 html, body {
   padding: 0;
@@ -37,5 +39,5 @@ a {
 .mainContainer {
   grid-area: main;
   padding: 2em;
-  background: $gray10;
+  background: var(--surface-color);
 }

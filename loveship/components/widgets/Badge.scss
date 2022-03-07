@@ -3,6 +3,7 @@
 .root {
     cursor: default;
     flex-shrink: 0;
+    font-family: $font-sans;
 
     :global(.uui-count) {
         font-family: $font-sans-semibold;
@@ -19,10 +20,6 @@
         &:not(:first-child) {
             margin-left: 6px;
         }
-    }
-
-    &.font-sans {
-        font-family: $font-sans;
     }
 
     &:focus {
@@ -278,8 +275,7 @@
     }
 
     &.fill-transparent {
-        @include button-colors(transparent, var(--uui-color-700), transparent);
-        color: $night800;
+        @include button-colors(transparent, $night800, transparent);
 
         &::before {
             position: absolute;

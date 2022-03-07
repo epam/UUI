@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import { uuiSlider } from './SliderBase';
 
 interface SliderScaleElementProps {

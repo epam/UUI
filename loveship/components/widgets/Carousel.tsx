@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Carousel as uuiCarousel, CarouselProps } from '@epam/uui-components';
 import { ReactComponent as ArrowIcon } from '../icons/folding-arrow-24.svg';
 import * as types from '../types';

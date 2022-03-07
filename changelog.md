@@ -1,9 +1,43 @@
 # 4.?.? - ??.??.2022
 
+**Breaking Change**
+* [Tooltip]: the Tooltip target needs to accept ref correctly
+* [Dropdown]: renderTarget now returns a ref, that needs to passed correctly to the target component
+* [DndActor]: ref needs to be passed to the root node in the render prop
+* [RawProps]: checks more strict
+* uui package moved to uui-core, uui-v package moved to uui, uui-core reexported to uui
+
+# 4.5.4 - 10.02.2022
+
+**What’s Fixed**
+* [DataTable]: bug fixes
+* [NumericInput] doesn't allow entering letters in safari
+* [Portal]: fix portal crashing when it's try to remove portal child from root and root doesn't already exist in DOM
+* [FileUpload]: update labels
+* [Tree]: Re-create dataSource based on new props
+* [Text]: add typography class to have possibility use Anchor inside Text with skin styles
+* [FileCard]: fix progress behavior, remove extension from name
+* [Form]: fix isChanged reset to false on form revert
+
+# 4.5.3 - 20.01.2022
+
+**What’s Fixed**
+* [DataTable]: bug fixes
+* [DataPickerFooter]: remove switch duplication in loveship
+* [Badge]: removed redundant prop font for Badge
+
+# 4.5.2 - 18.01.2022
+
 **What's New**
+* [Form]: Add isBeforeLeave param to onSuccess callback
+* [MainMenuSearch]: add IEditableDebouncer
+* [PickerInput]: add hideShowOnlySelected props for DataPickerFooter component
 * [ModalFooter]: add cx prop
 
 **What’s Fixed**
+* [DataTable]: bug fixes
+* [PickerModal]: renderFooter props type fix
+* [DnD]: fix drag ending on not draggable element
 
 # 4.5.1 - 12.01.2022
 
@@ -24,7 +58,7 @@
 * [Breaking Change]: Changed VirtualList component api. Introduced new useVirtualList hook.
     More information here - https://uui.epam.com/documents?category=components&id=virtualList#advanced
 
-* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.  
+* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.
 * Added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
 * [FileCard]: Added extension to file card. Bugfixes.
 * [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute

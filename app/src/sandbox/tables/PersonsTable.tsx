@@ -1,34 +1,99 @@
 import * as React from 'react';
-import { DataTable, DataTableRow } from '@epam/loveship';
+import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, useLens, DataRowProps } from '@epam/uui';
+import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState } from '@epam/uui';
 import { getColumns } from './columns';
+import type { VirtualListRenderRowsParams } from '@epam/uui-components';
+import type { PersonsSummary } from './PersonsTableDemo';
+import type{ TApi } from '../../data';
+import * as css from './PersonsTable.scss';
 
-export interface PersonsTableProps extends IEditable<DataSourceState> {
+export interface PersonsTableProps extends IEditable<DataTableState> {
     view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
+    summary: PersonsSummary;
 }
 
 export const PersonsTable = (props: PersonsTableProps) => {
-    const tableLens = useLens(props, b => b.onChange((o , n) => ({ ...n, topIndex: 0 })));
-
-    const columnsSet = React.useMemo(() => getColumns(), []);
+    const { uuiModals } = useUuiContext<TApi, UuiContexts>();
+    const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+    const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
+    const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
+    const { exactRowsCount, totalCount } = props.view.getListProps();
 
     const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={  String(props.id) } { ...props } columns={ columns } />;
+        const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
+        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
     };
 
+    const getRows = () => {
+        return props.view.getVisibleRows().map(row => renderRow({ ...row, columns: personColumns }));
+    };
+
+    const onConfigurationButtonClick = () => {
+        uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ personColumns }
+                columnsConfig={ config }
+                defaultConfig={ defaultConfig }
+            />
+        ))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
+            .catch(() => null);
+    };
+
+    const renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+        <>
+            <div className={ css.stickyHeader }>
+                <DataTableHeaderRow
+                    columns={ personColumnsSync }
+                    textCase='upper'
+                    onConfigButtonClick={ onConfigurationButtonClick }
+                    selectAll={ props.view.selectAll }
+                    allowColumnsReordering
+                    allowColumnsResizing
+                    value={ props.value }
+                    onValueChange={ props.onValueChange }
+                />
+                <div className={ cx(uuiScrollShadows.top, {
+                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
+                }) } />
+            </div>
+            { props.view.getListProps().exactRowsCount !== 0 && (
+                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                    <div
+                        ref={ listContainerRef }
+                        role='rowgroup'
+                        style={ { marginTop: offsetY } }
+                        children={ getRows() }
+                    />
+                </div>
+            ) }
+            <DataTableRow
+                columns={ summaryColumnsSync }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ props.summary }
+            />
+        </>
+    );
+
     return (
-        <DataTable<PersonTableRecord, PersonTableRecordId>
-            getRows={ () => props.view.getVisibleRows() }
-            columns={ columnsSet.personColumns }
-            renderRow={ renderRow }
-            selectAll={ { value: false, isDisabled: true, onValueChange: null } }
-            allowColumnsResizing={ true }
-            allowColumnsReordering={ true }
-            showColumnsConfig={ true }
-            { ...tableLens }
-            { ... props.view.getListProps() }
+        <VirtualList
+            value={ props.value }
+            onValueChange={ props.onValueChange }
+            rows={ getRows() }
+            rowsCount={ exactRowsCount }
+            focusedIndex={ props.value?.focusedIndex }
+            renderRows={ renderRowsContainer }
+            cx={ cx(css.table) }
+            rawProps={ {
+                role: 'table',
+                'aria-colcount': personColumns.length,
+                'aria-rowcount': totalCount,
+            } }
         />
     );
 };

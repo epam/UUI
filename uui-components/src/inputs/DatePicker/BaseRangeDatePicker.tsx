@@ -1,9 +1,10 @@
 import React from 'react';
-import dayjs from "dayjs";
-import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat } from "../..";
-import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from "@epam/uui";
+import dayjs from 'dayjs';
+import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat } from '../../';
+import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
-import customParseFormat from "dayjs/plugin/customParseFormat";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
 dayjs.extend(customParseFormat);
 
 
@@ -38,15 +39,15 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     static contextType = UuiContext;
     context: UuiContexts;
 
+    toTextInput = React.createRef<HTMLInputElement>();
+    inFocus: RangeDatePickerInputType;
+
     state: RangeDatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
         ...getStateFromValue(this.props.value, this.props.format),
         inFocus: null,
     };
-    toTextInput: any;
-    inFocus: RangeDatePickerInputType = null;
-
 
     static getDerivedStateFromProps(props: BaseRangeDatePickerProps, state: RangeDatePickerState): RangeDatePickerState {
         if (!props.value || (props.value.from !== state.selectedDate.from || props.value.to !== state.selectedDate.to)) {
@@ -131,7 +132,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
-        let isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const isFromValueChanged = this.props.value.from != value.selectedDate.from;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
         } else {
@@ -179,15 +180,15 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         }
     }
 
-    abstract renderInput(props: any): React.ReactElement;
+    abstract renderInput(props: IDropdownToggler): React.ReactElement;
 
     abstract renderBody(props: DropdownBodyProps): React.ReactElement;
 
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props: DropdownBodyProps) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderBody={ props => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
                 onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }

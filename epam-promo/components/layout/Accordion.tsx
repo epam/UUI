@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Accordion as uuiAccordion, AccordionProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import * as styles from '../../assets/styles/colorvars/layout/accordion-colorvars.scss';

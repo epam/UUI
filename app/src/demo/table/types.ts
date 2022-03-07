@@ -5,7 +5,6 @@ type PersonTableRecord = Person | PersonGroup | Location;
 
 type PersonTableRecordId = [PersonTableRecord["__typename"], string | number];
 
-// type PersonTableFilter = DataQueryFilter<Person> & { groupBy?: string };
 type PersonTableFilter = { [key: string]: any, groupBy?: string };
 
 interface PersonsTableState extends DataTableState {

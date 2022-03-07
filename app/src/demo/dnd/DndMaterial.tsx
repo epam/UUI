@@ -33,9 +33,9 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
     handleOnDrop = (params: DropParams<MaterialItem, MaterialItem>) => {
         const { srcData, dstData, position } = params;
         if (srcData.sectionId === dstData.sectionId) {
-            let newOrder = position === 'bottom'
-                           ? getOrderBetween(dstData.order, this.props.nextMaterial?.order)
-                           : getOrderBetween(this.props.prevMaterial?.order, dstData.order);
+            const newOrder = position === 'bottom'
+                ? getOrderBetween(dstData.order, this.props.nextMaterial?.order)
+                : getOrderBetween(this.props.prevMaterial?.order, dstData.order);
 
             this.props.onValueChange({ ...srcData, order: newOrder });
         } else {
@@ -51,25 +51,23 @@ export class DndMaterial extends React.Component<DndMaterialProps> {
             dstData={ item }
             canAcceptDrop={ this.handleCanAcceptDrop }
             onDrop={ this.handleOnDrop }
-            render={ props => {
-                return (
-                    <div { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
-                        <Panel background='white' cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) } >
-                            <FlexRow cx={ css.materialRow }>
-                                <FlexCell width='auto'  shrink={ 0 } cx={ css.iconWrapper }>
-                                    <DragHandle cx={ [css.dragHandle] } />
-                                    <IconContainer size={ 48 } icon={ FileIcon } />
-                                </FlexCell>
-                                <FlexCell width="100%" cx={ css.textWrapper }>
-                                    <Text cx={ css.text } size='24' lineHeight='24' fontSize='16' font='sans-semibold' >{ item.name }</Text>
-                                    <Text cx={ css.text } size='24' lineHeight='24' fontSize='14' color='gray60'>{ item.description }</Text>
-                                </FlexCell>
-                            </FlexRow>
-                        </Panel>
-                        <DropMarker { ...props } />
-                    </div>
-                );
-            } }
+            render={ props => (
+                <div { ...props.eventHandlers } ref={ props.ref } className={ cx(css.dragElement, props.classNames) }>
+                    <Panel background='white' cx={ cx(css.dndItem, props.isDragGhost && uuiDndState.dragGhost) }>
+                        <FlexRow cx={ css.materialRow }>
+                            <FlexCell width='auto' shrink={ 0 } cx={ css.iconWrapper }>
+                                <DragHandle cx={ [css.dragHandle] } />
+                                <IconContainer size={ 48 } icon={ FileIcon } />
+                            </FlexCell>
+                            <FlexCell width="100%" cx={ css.textWrapper }>
+                                <Text cx={ css.text } size='24' lineHeight='24' fontSize='16' font='sans-semibold'>{ item.name }</Text>
+                                <Text cx={ css.text } size='24' lineHeight='24' fontSize='14' color='gray60'>{ item.description }</Text>
+                            </FlexCell>
+                        </FlexRow>
+                    </Panel>
+                    <DropMarker { ...props } />
+                </div>
+            ) }
         />;
     }
 }

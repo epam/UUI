@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';

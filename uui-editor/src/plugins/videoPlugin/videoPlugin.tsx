@@ -1,10 +1,10 @@
-import { Editor } from "slate-react";
-import * as React from "react";
-import { useUuiContext } from '@epam/uui';
-import { AddVideoModal } from "./AddVideoModal";
-import { ReactComponent as VideoIcon } from "../../icons/video.svg";
+import { Editor } from 'slate-react';
+import * as React from 'react';
+import { useUuiContext } from '@epam/uui-core';
+import { AddVideoModal } from './AddVideoModal';
+import { ReactComponent as VideoIcon } from '../../icons/video.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { isTextSelected } from "../../helpers";
+import { isTextSelected } from '../../helpers';
 
 export const videoPlugin = () => {
 

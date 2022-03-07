@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dayjs } from 'dayjs';
-import { IHasCX, Icon, cx, IHasRawProps, RangeDatePickerPresets } from '@epam/uui';
+import { IHasCX, Icon, cx, IHasRawProps, RangeDatePickerPresets, IHasForwardedRef } from "@epam/uui-core";
 
 export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
@@ -9,9 +9,9 @@ export const valueFormat = 'YYYY-MM-DD';
 
 export const uuiDatePickerBodyBase = {
     container: 'uui-datepicker-container',
-};
+} as const;
 
-export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
     changeIsOpen?(newValue: boolean): void;
     presets?: RangeDatePickerPresets;
@@ -45,7 +45,7 @@ export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Compo
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps }>
+            <div ref={ this.props.forwardedRef } className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps }>
                 { this.renderDatePicker() }
             </div>
         );

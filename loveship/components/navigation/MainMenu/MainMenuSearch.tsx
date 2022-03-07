@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInputProps, TextInput } from '@epam/uui-components';
 import { ReactComponent as LensIcon } from '../../icons/search-18.svg';
 import { ReactComponent as CancelIcon } from '../../icons/menu_input_cancel.svg';
-import { cx, IAdaptiveItem } from '@epam/uui';
+import { cx, IAdaptiveItem } from '@epam/uui-core';
 import * as css from './MainMenuSearch.scss';
 
 export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {

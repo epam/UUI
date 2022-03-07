@@ -20,18 +20,18 @@ export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (p
     }, [props.wordsCount]);
 
     return (
-        <div aria-busy={true} className={css.container}>{
-            text.map((it:string, index:number)=> (
+        <div aria-busy={ true } className={ css.container }>{
+            text.map((it: string, index: number) => (
                 <span
-                    key={index}
+                    key={ index }
                     className={ cx([
                         css.loadingWord,
                         css['text-placeholder-color-' + (props.color || 'gray40')],
                         !props.isNotAnimated && css.animatedLoading,
                     ]) }
-                    dangerouslySetInnerHTML={{__html: it}}
+                    dangerouslySetInnerHTML={ {__html: it} }
                 />
-            ))}
+            )) }
         </div>
     );
-}
+};

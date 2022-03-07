@@ -1,7 +1,7 @@
 import * as b from 'benny';
 import { Person } from './testData';
 import range from 'lodash.range';
-import { getPatternPredicate } from '@epam/uui';
+import { getPatternPredicate } from '@epam/uui-core';
 
 const testPersons = range(0, 1e4).
     map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));

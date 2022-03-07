@@ -1,6 +1,6 @@
 import { ITablePreset } from "../types";
 import { hasPresetChanged } from "../helpers";
-import { FilterConfig, getDefaultColumnsConfig } from "@epam/uui";
+import { FilterConfig, getDefaultColumnsConfig } from "@epam/uui-core";
 import { getColumns } from "../columns";
 import { setMockedUrl, clearMockedUrl } from "./utils";
 

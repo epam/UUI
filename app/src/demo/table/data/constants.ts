@@ -1,7 +1,7 @@
-import { ITablePreset } from "../types";
+import { ITablePreset } from '@epam/uui';
 
 const defaultPreset: ITablePreset<any> = {
-    name: "Default",
+    name: 'Default',
     id: null,
     filter: undefined,
     columnsConfig: undefined,

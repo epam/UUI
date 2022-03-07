@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { FilterConfig } from "@epam/uui";
+import { FilterConfig } from "@epam/uui-core";
 
 interface IFiltersProps<TFilter extends Record<string, any>> {
     filter: TFilter;

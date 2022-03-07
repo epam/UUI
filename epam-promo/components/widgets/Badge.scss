@@ -257,7 +257,7 @@
     &.fill-transparent {
         background-color: transparent;
         color: var(--caption-color-transparent);
-        fill: var(--background-color);
+        fill: var(--caption-color-transparent);
         border-color: transparent;
 
         &:global(.-clickable) {

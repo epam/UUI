@@ -24,7 +24,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ? undefined
             : JSON.parse(decodeURIComponent(oldQuery.filter));
         const isFilterEqual = isEqual(parsedFilter, newValue.filter);
-        console.log(parsedFilter, newValue.filter, isFilterEqual);
 
         setTableStateValue(prevValue => ({
             ...prevValue,
