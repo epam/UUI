@@ -9,23 +9,12 @@
     padding-left: 5px;
     padding-right: 5px;
 
-    :global(.uui-input-prefix),
-    :global(.uui-input-suffix) {
-        @include prefix-suffix-input($gray10, $gray40);
-    }
-
     :global(.uui-input-prefix) {
-        margin-left: -5px;
-        border-left: none;
-        border-top: none;
-        border-bottom: none;
+        @include input-prefix();
     }
 
     :global(.uui-input-suffix) {
-        margin-right: -5px;
-        border-top: none;
-        border-right: none;
-        border-bottom: none;
+        @include input-sufix();
     }
 
     :global(.uui-input) {
