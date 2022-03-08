@@ -21,6 +21,8 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
+    prefix?: React.ReactNode;
+    suffix?: React.ReactNode;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -126,12 +128,12 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         />;
     }
 
-    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLInputElement>) => {
+    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled || props.isReadonly) return;
         e.preventDefault();
         if (inFocus && props.value && !props.disableSearch) return;
         props.onClick?.();
-    }
+    };
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
 
@@ -155,13 +157,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
+            { props.prefix && <span className={ uuiElement.prefixInput }>{ props.prefix }</span> }
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
                 { props.iconPosition !== 'right' && icon }
                 { props.pickerMode !== 'single' && renderItems() }
                 { renderInput() }
                 { props.iconPosition === 'right' && icon }
             </div>
-            <div className={ cx(css.actions) }>
+            <div className={ css.actions }>
                 { !props.disableClear && (props.value || props.selection && props.selection.length > 0) && (
                     <IconContainer
                         cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
@@ -179,6 +182,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     />
                 ) }
             </div>
+            { props.suffix && <span className={ uuiElement.suffixInput }>{ props.suffix }</span> }
         </div>
     );
 };

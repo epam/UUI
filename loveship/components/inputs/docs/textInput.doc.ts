@@ -8,6 +8,8 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('size', { examples: ['60', '48', '42', '36', '30', '24'], defaultValue: '36' })
     .implements([textSettingsDoc, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, modeDoc])
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
+    .prop('prefix', { examples: [ { value: 'Prefix: ' } ]})
+    .prop('suffix', { examples: [ { value: 'Suffix' } ] })
     .prop('value', { examples: [
         { value: 'Hello, World!', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
