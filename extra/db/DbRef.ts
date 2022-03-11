@@ -6,7 +6,7 @@ import * as I from "immutable";
 import { objectKeys } from './helpers';
 
 export interface DbSaveRequest<T> {
-    patch: DbPatch<T>;    
+    patch: DbPatch<T>;
 }
 
 export interface ServerError {
@@ -119,7 +119,7 @@ export class DbRef<T> {
 
                         if (this.autoSave) {
                             this.isSaveThrottled = true;
-                            setTimeout(() => {                        
+                            setTimeout(() => {
                                 this.isSaveThrottled = false;
                                 if (this.savedPoint < this.log.length) {
                                     this.enqueueSave();
@@ -127,7 +127,7 @@ export class DbRef<T> {
                             }, this.throttleSaveMs);
                         }
                     }
-                    this.onUpdate();                    
+                    this.onUpdate();
                 })
                 .catch(() => {
                     this.isSaveInProgress = false;
@@ -138,7 +138,7 @@ export class DbRef<T> {
 
     makeCumulativePatch(updatedDb: Db<T>, patches: DbPatch<T>[]): DbPatch<T> {
         const result: DbPatch<T> = {};
-    
+
         objectKeys(this.schema.entitySchemas).map(entityName => {
             const entitySchema = this.schema.entitySchemas[entityName];
             let ids = I.Set();
@@ -151,7 +151,7 @@ export class DbRef<T> {
                 return entityWithPatchedIds as any;
             }).toArray();
         });
-        
+
         return result;
     }
 
