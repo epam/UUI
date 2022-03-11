@@ -10,6 +10,9 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('step', { examples: [5, 10, 100] })
     .prop('min', { examples: [-10, 0, 10], isRequired: true })
     .prop('max', { examples: [20, 50, 500], isRequired: true })
+    .prop('mode', { examples: ["form", "cell"] })
+    .prop('align', { examples: ["left", "right"] })
+    .prop('disableArrows', { examples: [true, false] })
     .withContexts(DefaultContext, FormContext);
 
 export = NumericInputDoc;

@@ -31,5 +31,6 @@ export const NumericInput = withMods<NumericInputProps, NumericInputMods>(
             lineHeight: props.lineHeight,
             fontSize: props.fontSize,
         }, true),
+        align: props.align ?? (props.mode === "cell" ? "right" : "left"),
     }),
 );
