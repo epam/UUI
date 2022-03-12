@@ -211,7 +211,7 @@ describe('useForm', () => {
             expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
         });
 
-        it('Should call beforeLeave after component unmount', async () => {
+        it.skip('Should call beforeLeave after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
             const { result, unmount } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 value: testData,
