@@ -4,14 +4,14 @@ import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
 import { SearchInput } from '../../inputs';
-import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../../docs';
+import { iconOptionsDoc, iEditable, isDisabledDoc } from '../../../docs';
+import { DefaultContext, IHasEditModeDoc } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
-    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
+    .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconOptionsDoc])
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .prop('value', { examples: [
             { name: '1', value: 1 },
@@ -23,8 +23,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('maxItems', { examples: [0, 1, 5, 10, 50, 100, 1000] })
     .prop('minCharsToSearch', { examples: [0, 1, 3, 5] })
-    .prop('prefix', { examples: [ { value: 'Prefix: ' } ] })
-    .prop('suffix', { examples: [ { value: 'Suffix' } ] })
     .prop('editMode', { examples: ['dropdown', 'modal'], isRequired: false, defaultValue: 'dropdown' })
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })
@@ -53,6 +51,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                 value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
-    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
+    .withContexts(DefaultContext);
 
 export = PickerInputDoc;

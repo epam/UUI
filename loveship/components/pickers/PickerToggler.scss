@@ -1,4 +1,4 @@
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss'  as *;
 
 @mixin picker-toggler-vertical-layout($size, $borderWidth) {
     &:global(.uui-input-box) {
@@ -6,9 +6,13 @@
         border-width: $borderWidth;
     }
 
+    :global(.uui-input-prefix),
+    :global(.uui-input-suffix),
     :global(.uui-input) {
         @include text-size($size);
+    }
 
+    :global(.uui-input) {
         @if ($size == 24px) {
             padding-top: 0;
             padding-bottom: 0;
@@ -35,6 +39,17 @@
     width: 100%;
     fill: $night500;
     box-sizing: border-box;
+
+
+    :global(.uui-input-prefix) {
+        @include input-prefix();
+        margin-top: -2px;
+    }
+
+    :global(.uui-input-suffix) {
+        @include input-sufix();
+        margin-top: -2px;
+    }
 
     :global(.uui-input) {
         padding-left: 6px;
@@ -98,7 +113,37 @@
     }
 
     &.mode-inline { @include control-inline-mode(); }
-    &.mode-cell { @include control-cell-mode(); }
+    &.mode-cell {
+        @include control-cell-mode();
+
+        &:global(.uui-focus) {
+            :global(.uui-input-prefix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 2px 0 0); //to hide right side of the shadow
+            }
+
+            :global(.uui-input-suffix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 0 0 2px); //to hide left side of the shadow
+            }
+        }
+    }
+
+    &.mode-inline, &.mode-cell {
+        :global(.uui-input-prefix) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-right: none;
+            margin-left: 0;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+            margin-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
 
     &:global(.uui-disabled) {
         @include disabled-input();

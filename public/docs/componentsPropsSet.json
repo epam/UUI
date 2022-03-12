@@ -94,12 +94,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -165,7 +173,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -266,12 +278,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -384,12 +404,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
@@ -494,12 +522,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
@@ -529,7 +565,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "renderDay",
@@ -599,7 +635,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; to?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ from?: any; to?: any; body?: any; }"
       },
       {
         "name": "format",
@@ -753,7 +789,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -811,7 +851,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/numericInput.doc.ts": [
@@ -897,7 +937,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -967,7 +1011,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -1049,7 +1097,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -1119,7 +1171,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "text | none | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -1198,6 +1250,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -1207,7 +1263,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -1281,7 +1337,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -1367,7 +1427,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -1393,7 +1457,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "renderInput",
@@ -1441,7 +1505,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "text | none | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -1453,7 +1517,7 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "onClick",
@@ -1520,6 +1584,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -1529,7 +1597,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -1538,6 +1606,14 @@
       {
         "name": "mode",
         "value": "form | cell"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/timePicker.doc.ts": [
@@ -1551,7 +1627,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "id",
@@ -1661,11 +1737,15 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "mode",
-        "value": "inline | block"
+        "value": "block | inline"
       },
       {
         "name": "padding",
@@ -1695,7 +1775,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
@@ -1745,11 +1829,15 @@
       },
       {
         "name": "direction",
-        "value": "horizontal | vertical"
+        "value": "vertical | horizontal"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
@@ -1763,7 +1851,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
@@ -1805,7 +1897,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "color",
@@ -1867,7 +1959,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -1885,7 +1981,7 @@
       },
       {
         "name": "radioInputProps",
-        "value": "any"
+        "value": "RadioInputProps & { key: React.ReactText; }"
       },
       {
         "name": "cx",
@@ -1925,11 +2021,15 @@
       },
       {
         "name": "direction",
-        "value": "horizontal | vertical"
+        "value": "vertical | horizontal"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
@@ -2019,7 +2119,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/alert.doc.tsx": [
@@ -2049,7 +2153,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
@@ -2063,7 +2167,7 @@
       },
       {
         "name": "onClose",
-        "value": "() => any"
+        "value": "() => void"
       },
       {
         "name": "isNotUnfoldable",
@@ -2197,7 +2301,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
@@ -2251,7 +2355,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
@@ -2301,7 +2405,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
@@ -2521,7 +2625,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "size",
@@ -2724,6 +2828,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -2781,11 +2889,11 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -2794,6 +2902,14 @@
       {
         "name": "mode",
         "value": "form | cell"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
@@ -2812,6 +2928,14 @@
       {
         "name": "role",
         "value": "string"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "cx",
+        "value": "any"
       },
       {
         "name": "size",
@@ -2914,6 +3038,10 @@
       {
         "name": "toggleDropdownOpening",
         "value": "(value: boolean) => void"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>"
       },
       {
         "name": "caption",
@@ -3041,7 +3169,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "alignItems",
@@ -3199,7 +3327,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -3225,7 +3353,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -3285,7 +3417,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
@@ -3311,6 +3447,10 @@
       },
       {
         "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
         "value": "any"
       }
     ],
@@ -3408,12 +3548,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "fill",
@@ -3425,7 +3573,7 @@
       },
       {
         "name": "color",
-        "value": "blue | green | red | amber | cyan | orange | purple | violet"
+        "value": "blue | green | red | amber | gray30 | cyan | orange | purple | violet"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/widgets/docs/paginator.doc.tsx": [
@@ -3485,7 +3633,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -3586,12 +3738,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -3692,12 +3852,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -3775,7 +3943,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -3876,12 +4048,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -4010,12 +4190,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
@@ -4124,12 +4312,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/datePickers/docs/calendar.doc.ts": [
@@ -4171,7 +4367,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/datePickers/docs/datePicker.doc.tsx": [
@@ -4201,7 +4401,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "renderDay",
@@ -4269,7 +4469,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
@@ -4279,7 +4479,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; to?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ from?: any; to?: any; body?: any; }"
       },
       {
         "name": "format",
@@ -4371,7 +4571,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/checkbox.doc.tsx": [
@@ -4445,7 +4645,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -4507,7 +4711,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/numericInput.doc.ts": [
@@ -4593,11 +4797,15 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       },
       {
         "name": "size",
@@ -4675,7 +4883,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -4765,7 +4977,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -4839,7 +5055,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "text | none | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -4918,6 +5134,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -4927,7 +5147,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -4935,7 +5155,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       },
       {
         "name": "lineHeight",
@@ -5067,7 +5287,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -5161,7 +5385,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -5169,7 +5397,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       },
       {
         "name": "lineHeight",
@@ -5195,7 +5423,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "renderInput",
@@ -5243,7 +5471,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "text | none | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -5255,7 +5483,7 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "onClick",
@@ -5322,6 +5550,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -5331,7 +5563,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -5339,7 +5571,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       },
       {
         "name": "lineHeight",
@@ -5348,6 +5580,14 @@
       {
         "name": "fontSize",
         "value": "18 | 12 | 10 | 14 | 16"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/timePicker.doc.ts": [
@@ -5409,7 +5649,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/accordion.doc.tsx": [
@@ -5467,11 +5707,15 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "mode",
-        "value": "inline | block"
+        "value": "block | inline"
       },
       {
         "name": "padding",
@@ -5501,7 +5745,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/checkboxGroup.doc.ts": [
@@ -5551,11 +5799,15 @@
       },
       {
         "name": "direction",
-        "value": "horizontal | vertical"
+        "value": "vertical | horizontal"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/controlGroup.doc.tsx": [
@@ -5569,7 +5821,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/layout/docs/iconContainer.doc.tsx": [
@@ -5611,7 +5867,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "color",
@@ -5673,7 +5929,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -5695,7 +5955,7 @@
       },
       {
         "name": "radioInputProps",
-        "value": "any"
+        "value": "RadioInputProps & { key: React.ReactText; }"
       },
       {
         "name": "cx",
@@ -5735,11 +5995,15 @@
       },
       {
         "name": "direction",
-        "value": "horizontal | vertical"
+        "value": "vertical | horizontal"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/navigation/docs/mainMenu.doc.tsx": [
@@ -5829,7 +6093,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/alert.doc.tsx": [
@@ -5859,7 +6127,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/dropdown.doc.tsx": [
@@ -5873,7 +6141,7 @@
       },
       {
         "name": "onClose",
-        "value": "() => any"
+        "value": "() => void"
       },
       {
         "name": "isNotUnfoldable",
@@ -5994,6 +6262,10 @@
       {
         "name": "toggleDropdownOpening",
         "value": "(value: boolean) => void"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>"
       },
       {
         "name": "caption",
@@ -6015,7 +6287,7 @@
       },
       {
         "name": "onClose",
-        "value": "() => any"
+        "value": "() => void"
       },
       {
         "name": "isNotUnfoldable",
@@ -6136,6 +6408,10 @@
       {
         "name": "toggleDropdownOpening",
         "value": "(value: boolean) => void"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>"
       },
       {
         "name": "caption",
@@ -6240,12 +6516,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -6311,7 +6595,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/modalHeader.doc.tsx": [
@@ -6369,7 +6653,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/notificationCard.doc.tsx": [
@@ -6419,7 +6703,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
@@ -6453,6 +6737,10 @@
       },
       {
         "name": "children",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
         "value": "any"
       }
     ],
@@ -6673,7 +6961,7 @@
       },
       {
         "name": "rawProps",
-        "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; body?: React.HTMLAttributes<HTMLDivElement> & Record<string, any>; }"
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "size",
@@ -6681,7 +6969,7 @@
       },
       {
         "name": "mode",
-        "value": "form | none | inline | cell"
+        "value": "form | none | cell | inline"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/pickers/docs/pickerList.doc.tsx": [
@@ -7026,6 +7314,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -7083,11 +7375,19 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "rawProps",
         "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/tables/docs/dataTableCell.doc.tsx": [
@@ -7106,6 +7406,14 @@
       {
         "name": "role",
         "value": "string"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number"
+      },
+      {
+        "name": "cx",
+        "value": "any"
       },
       {
         "name": "size",
@@ -7208,6 +7516,10 @@
       {
         "name": "toggleDropdownOpening",
         "value": "(value: boolean) => void"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>"
       },
       {
         "name": "caption",
@@ -7335,7 +7647,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "alignItems",
@@ -7497,7 +7809,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "theme",
@@ -7527,7 +7839,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -7566,6 +7882,10 @@
       {
         "name": "cx",
         "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/widgets/docs/avatar.doc.tsx": [
@@ -7591,7 +7911,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/widgets/docs/avatarStack.doc.tsx": [
@@ -7617,6 +7941,10 @@
       },
       {
         "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
         "value": "any"
       }
     ],
@@ -7714,12 +8042,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "shape",
@@ -7761,7 +8097,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -7825,7 +8165,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -7926,12 +8270,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "fill",
@@ -7946,7 +8298,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/buttons/docs/button.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8040,12 +8392,20 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -8060,7 +8420,7 @@
         "value": "accent | primary | secondary | negative"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/buttons/docs/linkButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8154,19 +8514,27 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "placeholder",
         "value": "any"
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/checkbox.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -8237,7 +8605,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
@@ -8248,7 +8620,7 @@
         "value": "light | dark"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/radioInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -8311,14 +8683,18 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
         "value": "18 | 12"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/switch.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -8373,14 +8749,18 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "size",
         "value": "24 | 18 | 12"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/inputs/docs/textInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -8443,7 +8823,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "text | none | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -8522,6 +8902,10 @@
         "value": "(value: boolean) => void"
       },
       {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -8531,7 +8915,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "size",
@@ -8542,7 +8926,355 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui-v/components/typography/docs/textPlaceholder.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/pickers/docs/pickerInput.doc.tsx": [
+      {
+        "name": "entityName",
+        "value": "string"
+      },
+      {
+        "name": "entityPluralName",
+        "value": "string"
+      },
+      {
+        "name": "dataSource",
+        "value": "IDataSource<TItem, TId, any>"
+      },
+      {
+        "name": "getName",
+        "value": "(item: TItem) => string"
+      },
+      {
+        "name": "renderRow",
+        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      {
+        "name": "getRowOptions",
+        "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      {
+        "name": "renderNotFound",
+        "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      {
+        "name": "emptyValue",
+        "value": "[]"
+      },
+      {
+        "name": "sortBy",
+        "value": "(item: TItem, sorting: SortingOption<any>) => any"
+      },
+      {
+        "name": "filter",
+        "value": "any"
+      },
+      {
+        "name": "sorting",
+        "value": "SortingOption<any>"
+      },
+      {
+        "name": "cascadeSelection",
+        "value": "boolean"
+      },
+      {
+        "name": "isFoldedByDefault",
+        "value": "(item: TItem) => boolean"
+      },
+      {
+        "name": "getSearchFields",
+        "value": "(item: TItem) => string[]"
+      },
+      {
+        "name": "renderFooter",
+        "value": "(props: PickerFooterProps<TItem, TId>) => React.ReactNode"
+      },
+      {
+        "name": "selectionMode",
+        "value": "\"single\""
+      },
+      {
+        "name": "valueType",
+        "value": "\"id\""
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "placeholder",
+        "value": "any"
+      },
+      {
+        "name": "icon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
+      },
+      {
+        "name": "editMode",
+        "value": "dropdown | modal"
+      },
+      {
+        "name": "maxItems",
+        "value": "number"
+      },
+      {
+        "name": "minBodyWidth",
+        "value": "number"
+      },
+      {
+        "name": "isSingleLine",
+        "value": "boolean"
+      },
+      {
+        "name": "dropdownPlacement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
+      },
+      {
+        "name": "renderToggler",
+        "value": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+      },
+      {
+        "name": "searchPosition",
+        "value": "input | body | none"
+      },
+      {
+        "name": "disableClear",
+        "value": "boolean"
+      },
+      {
+        "name": "minCharsToSearch",
+        "value": "number"
+      },
+      {
+        "name": "dropdownHeight",
+        "value": "number"
+      },
+      {
+        "name": "autoFocus",
+        "value": "boolean"
+      },
+      {
+        "name": "onFocus",
+        "value": "(e?: React.SyntheticEvent<HTMLElement, Event>) => void"
+      },
+      {
+        "name": "onBlur",
+        "value": "(e: React.SyntheticEvent<HTMLElement, Event>) => void"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: any; body?: any; }"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48"
+      },
+      {
+        "name": "mode",
+        "value": "form | cell"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/pickers/docs/pickerToggler.doc.tsx": [
+      {
+        "name": "cancelIcon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "dropdownIcon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "autoFocus",
+        "value": "boolean"
+      },
+      {
+        "name": "renderItem",
+        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      {
+        "name": "getName",
+        "value": "(item: DataRowProps<TItem, TId>) => string"
+      },
+      {
+        "name": "entityName",
+        "value": "string"
+      },
+      {
+        "name": "maxItems",
+        "value": "number"
+      },
+      {
+        "name": "isSingleLine",
+        "value": "boolean"
+      },
+      {
+        "name": "pickerMode",
+        "value": "single | multi"
+      },
+      {
+        "name": "searchPosition",
+        "value": "input | body | none"
+      },
+      {
+        "name": "onKeyDown",
+        "value": "(e: React.KeyboardEvent<HTMLElement>) => void"
+      },
+      {
+        "name": "onBlur",
+        "value": "(e: React.FocusEvent<HTMLElement>) => void"
+      },
+      {
+        "name": "onFocus",
+        "value": "(e?: React.FocusEvent<HTMLElement>) => void"
+      },
+      {
+        "name": "disableSearch",
+        "value": "boolean"
+      },
+      {
+        "name": "disableClear",
+        "value": "boolean"
+      },
+      {
+        "name": "minCharsToSearch",
+        "value": "number"
+      },
+      {
+        "name": "selection",
+        "value": "DataRowProps<TItem, TId>[]"
+      },
+      {
+        "name": "onClear",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
+        "name": "isDropdown",
+        "value": "boolean"
+      },
+      {
+        "name": "toggleDropdownOpening",
+        "value": "(value: boolean) => void"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<any>"
+      },
+      {
+        "name": "caption",
+        "value": "any"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void"
+      },
+      {
+        "name": "value",
+        "value": "T"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean"
+      },
+      {
+        "name": "placeholder",
+        "value": "any"
+      },
+      {
+        "name": "icon",
+        "value": "React.FC<any>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48"
+      },
+      {
+        "name": "mode",
+        "value": "form | cell"
+      }
+    ],
+    "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/uui/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -8567,7 +9299,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "alignItems",
@@ -8625,7 +9357,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "clickAnalyticsEvent",
@@ -8711,7 +9447,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -8781,7 +9521,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "color",
@@ -8803,7 +9547,7 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
       },
       {
         "name": "alignItems",
@@ -8865,7 +9609,11 @@
       },
       {
         "name": "rawProps",
-        "value": "React.HTMLAttributes<T> & Record<string, any>"
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
       },
       {
         "name": "clickAnalyticsEvent",

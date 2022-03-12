@@ -23,6 +23,8 @@ export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBa
     autoFocus?: boolean;
     onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
     onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+    prefix?: React.ReactNode;
+    suffix?: React.ReactNode;
     rawProps?: {
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
@@ -179,7 +181,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
         const selectedRows = this.getSelectedRows();
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
-            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition
+            validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition, prefix, suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
@@ -197,6 +199,8 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
             autoFocus,
             icon,
             iconPosition,
+            prefix,
+            suffix,
             onFocus: this.onFocus,
             onBlur: this.onBlur,
             onClear: this.handleClearSelection,
@@ -258,18 +262,13 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
     }
 
     getRows() {
-        if (this.shouldShowBody()) {
-            const view = this.getView();
+        if (!this.shouldShowBody()) return [];
 
-            if (this.state.showSelected) {
-                const topIndex = this.state.dataSourceState.topIndex;
-                return view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount);
-            } else {
-                return view.getVisibleRows();
-            }
-        } else {
-            return [];
-        }
+        const { showSelected, dataSourceState: { topIndex, visibleCount } } = this.state;
+        const { getVisibleRows, getSelectedRows } = this.getView();
+
+        if (!showSelected) return getVisibleRows();
+        return getSelectedRows().slice(topIndex, topIndex + visibleCount);
     }
 
     render() {
