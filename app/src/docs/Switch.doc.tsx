@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUIV } from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI } from '../common';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
@@ -8,7 +8,7 @@ export class SwitchDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/inputs/docs/switch.doc.ts',
             [UUI4]: './epam-promo/components/inputs/docs/switch.doc.ts',
-            [UUIV]: './uui-v/components/inputs/docs/switch.doc.ts',
+            [UUI]: './uui/components/inputs/docs/switch.doc.ts',
         };
     }
 

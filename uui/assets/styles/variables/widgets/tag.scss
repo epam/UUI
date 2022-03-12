@@ -1,4 +1,4 @@
-.tag-vars {
+:global(.tag-vars) {
     --tag-bg-color: var(--tag-color);
     --tag-bg-color-hover: var(--tag-hover-color);
     --tag-caption-color: var(--text-primary-color);

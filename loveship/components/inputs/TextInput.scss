@@ -1,9 +1,17 @@
-@use '../../assets/styles/scss/index'  as *;
+@use '../../assets/styles/scss' as *;
 
 .root {
     color: $night800;
     fill: $night600;
     box-sizing: border-box;
+
+    :global(.uui-input-prefix) {
+        @include input-prefix();
+    }
+
+    :global(.uui-input-suffix) {
+        @include input-sufix();
+    }
 
     :global(.uui-input) {
         color: $night800;
@@ -44,6 +52,20 @@
     &.mode-inline {
         @include control-inline-mode();
 
+        :global(.uui-input-prefix) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-right: none;
+            margin-left: 0;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+            margin-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
         :global(.uui-input) {
             padding-left: 5px;
             padding-right: 5px;
@@ -53,6 +75,26 @@
     &.mode-cell {
         @include control-cell-mode();
         padding: 0 6px;
+
+        :global(.uui-input-prefix) {
+            border-right: none;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+        }
+
+        &:global(.uui-focus) {
+            :global(.uui-input-prefix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 2px 0 0); //to hide right side of the shadow
+            }
+
+            :global(.uui-input-suffix) {
+                box-shadow: inset 0 0 0 2px rgba(48, 182, 221, 0.4);
+                clip-path: inset(0 0 0 2px); //to hide left side of the shadow
+            }
+        }
 
         :global(.uui-input) {
             padding-left: 5px;
