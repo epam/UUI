@@ -14,7 +14,7 @@ export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const { lens } = useForm<EditableState>({
-        value: { items: {} },
+        value: { items: { 1: { ProductID: 1, Name: "!Changed!" } as any } },
         onSave: (value) => svc.uuiNotifications.show(() =>
             <NotificationCard onClose={null} onSuccess={null} color='blue' id={1} key='1'>
                 <Text>{ JSON.stringify(value) }</Text>

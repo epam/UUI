@@ -7,7 +7,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     {
         key: 'Name',
         caption: 'Name',
-        render: p => <TextInput mode='cell' value={ p.Name } onValueChange={ () => {} } />,
+        renderCell: ({ rowProps }) => <TextInput mode='cell' value={ rowProps.value?.Name } onValueChange={ () => {} } />,
         width: 200,
         fix: 'left',
         isSortable: true,

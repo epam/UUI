@@ -1,8 +1,6 @@
-import { SortingOption, VirtualListState } from '../../types';
+import { SortingOption, VirtualListState, DataSourceItemId } from '../../types';
 import { IDataSourceView } from "./views";
 import { ListApiResponse } from "./ListApiCache";
-
-export type DataSourceItemId = string | number | boolean | null;
 
 export interface IDataSource<TItem, TId extends DataSourceItemId, TFilter> {
     getId(item: TItem): TId;
