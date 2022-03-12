@@ -1,6 +1,6 @@
 import React from 'react';
 import * as props from './props';
-import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams} from '../types';
+import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
 import { DataSourceListProps, DataSourceState } from '../data/processing';
 import { ILens } from '..';
 import { Link } from '../types';

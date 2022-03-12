@@ -1,4 +1,4 @@
-import { DataSourceItemId } from ".";
+import { DataSourceItemId } from "../../types";
 import { DataSourceState, IDataSource } from "./types";
 import { BaseListViewProps, IDataSourceView } from './views';
 

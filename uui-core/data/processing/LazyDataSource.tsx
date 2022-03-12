@@ -1,8 +1,9 @@
-import { LazyDataSourceApiRequestOptions, DataSourceState, ILazyDataSource, DataSourceItemId } from './types';
+import { LazyDataSourceApiRequestOptions, DataSourceState, ILazyDataSource } from './types';
 import { LazyListView, LazyListViewProps } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from "./BaseDataSource";
 import { useEffect } from "react";
+import { DataSourceItemId } from '../../types';
 
 export interface LazyDataSourceProps<TItem, TId extends DataSourceItemId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {
 }
