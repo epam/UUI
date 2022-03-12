@@ -1,10 +1,10 @@
 import { DataTableRow } from '../DataTableRow';
 import { DocBuilder, demoData } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext } from '../../../docs';
-import { DataTableRowProps } from '@epam/uui-components';
 import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
 import { DataTableRowMods } from '../..';
+import { DataTableRowProps } from '@epam/uui-core';
 
 const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
     .implements([ColumnsHeaderRowDoc])

@@ -1,6 +1,6 @@
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import {DataRowProps} from "./tables";
+import { DataRowProps } from "./dataSources";
 import {AnalyticsEvent} from "./contexts";
 import * as types from "../index";
 import * as React from "react";

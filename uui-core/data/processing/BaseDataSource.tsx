@@ -1,6 +1,4 @@
-import { DataSourceItemId } from "../../types";
-import { DataSourceState, IDataSource } from "./types";
-import { BaseListViewProps, IDataSourceView } from './views';
+import { BaseListViewProps, DataSourceItemId,  DataSourceState, IDataSource, IDataSourceView } from "../../types";
 
 export abstract class BaseDataSource<TItem, TId extends DataSourceItemId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
 

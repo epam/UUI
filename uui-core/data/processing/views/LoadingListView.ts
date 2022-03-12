@@ -1,7 +1,5 @@
-import { IEditable } from "../../../types";
+import { IEditable, DataSourceState, DataSourceListCounts } from "../../../types";
 import { BaseListView } from "./BaseListView";
-import { DataSourceState } from '../types';
-import { DataSourceListCounts } from './types';
 
 export class LoadingListView<TId> extends BaseListView<any, any, any> {
     value: DataSourceState<any>;

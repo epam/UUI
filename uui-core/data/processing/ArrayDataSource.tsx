@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { DataSourceItemId } from '../../types';
+import { DataSourceItemId, IDataSourceView, DataSourceState, IArrayDataSource, TreeNode } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState, IArrayDataSource, TreeNode } from './types';
-import { ArrayListView, ArrayListViewProps, IDataSourceView } from './views';
+import { ArrayListView, ArrayListViewProps,  } from './views';
 
 export type ArrayDataSourceProps<TItem, TId, TFilter> = ArrayListViewProps<TItem, TId, TFilter> & {
     items: TItem[];

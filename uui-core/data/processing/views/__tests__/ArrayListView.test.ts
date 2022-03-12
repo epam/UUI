@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState } from "../../types";
+import { DataSourceState } from "../../../../types";
 
 interface TItem {
     id: number;

@@ -1,16 +1,11 @@
 import React, { ReactNode, Component } from "react";
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers } from '@epam/uui-core';
+import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps } from '@epam/uui-core';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
 } as const;
-
-export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
-    renderCell?: (props: DataTableCellProps<TItem, TId>) => ReactNode;
-    renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
-}
 
 export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem, TId>> {
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {

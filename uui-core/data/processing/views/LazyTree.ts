@@ -1,4 +1,4 @@
-import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange, LazyDataSourceApiResponse } from '../types';
+import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../types';
 
 export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mode
 
