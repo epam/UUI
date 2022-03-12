@@ -3,7 +3,7 @@ import { ArrayListViewProps } from './views/ArrayListView';
 import { LoadingListView } from './views/LoadingListView';
 import { DataSourceState } from './types';
 import { IDataSourceView } from './views/types';
-import { DataSourceItemId } from ".";
+import { DataSourceItemId } from "../../types";
 
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {

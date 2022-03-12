@@ -1,11 +1,10 @@
-import { DataRowProps, IEditable } from "../../../types";
-import { DataSourceState, LazyDataSourceApi, DataSourceItemId } from '../types';
+import { DataRowProps, IEditable, DataSourceItemId } from "../../../types";
+import { DataSourceState, LazyDataSourceApi } from '../types';
 import { DataSourceListProps, IDataSourceView } from './types';
 import isEqual from 'lodash.isequal';
 import { BaseListView, BaseListViewProps } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
 import { LazyTree, LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, LazyTreeLoadParams } from './LazyTree';
-import { ToDoItem } from "uui-editor/src/plugins/toDoListPlugin/ToDoItem";
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 

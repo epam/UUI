@@ -1,7 +1,7 @@
 import { LazyLoadedMap } from '../../helpers';
 import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRequest } from './types';
 import { batchOnNextTick } from '../../helpers/batchOnNextTick';
-import { DataSourceItemId } from '.';
+import { DataSourceItemId } from '../../types';
 
 export interface ListApiSettings<TItem, TId extends DataSourceItemId, TFilter> {
 
