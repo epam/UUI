@@ -1,1 +1,320 @@
+import { SortingOption } from "./dataQuery";
+import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable } from "./props";
+import { IDndActor } from './dnd';
+import { Link } from './objects';
+import { DataColumnProps } from "./tables"; // TBD: remove cyclic dependency?
+
+/** A type of IDs of an item in Data Sources. Restricted to be usable as Set/Map keys.  */
 export type DataSourceItemId = string | number | boolean | null;
+
+/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
+export interface VirtualListState {
+    /** Index of the topmost visible item */
+    topIndex?: number;
+
+    /** Estimated numbers of currently visible items  */
+    visibleCount?: number;
+}
+
+export interface IDataSource<TItem, TId extends DataSourceItemId, TFilter> {
+    getId(item: TItem): TId;
+    getById(id: TId): TItem;
+    setItem(item: TItem): void;
+    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
+    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
+    unsubscribeView(onValueChange: (val: DataSourceState<any, TId>) => any): void;
+}
+
+/** Holds state of a components displaying lists - like tables. Holds virtual list position, filter, search, selection, etc. */
+export interface DataSourceState<TFilter = Record<string, any>, TId = any> extends VirtualListState {
+    search?: string;
+    checked?: TId[];
+    folded?: Record<string, boolean>;
+    filter?: TFilter;
+    sorting?: SortingOption[];
+    selectedId?: TId;
+    focusedIndex?: number;
+}
+
+/** Holds parent info for data rows */
+export interface DataRowPathItem<TId, TItem> {
+    id: TId;
+    value: TItem;
+    isLastChild: boolean;
+}
+
+/** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
+ * Other props in DataRowProps are computed when generating rows.
+ */
+export interface DataRowOptions<TItem, TId> extends IDisableable {
+    /** If row needs a checkbox, this field should be specified and it props can be configured here */
+    checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
+
+    /** True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop) */
+    isSelectable?: boolean;
+
+    /** Configures row drag-n-drop options - if it can be dragged, can rows can be dropped into it, etc. */
+    dnd?: IDndActor<any, any>;
+
+    /** Row click handler */
+    onClick?(rowProps: DataRowProps<TItem, TId>): void;
+
+    /** Can be specified to make row act as a link (plain or SPA) */
+    link?: Link;
+}
+
+/** DataRowProps is a base shape of props, passed to items in various lists or trees.
+ *
+ * Despite 'Row' in it's name, it doesn't directly connected to a table.
+ * We use DataRowProps as a base for DataTableRowProps and DataPickerRowProps.
+ * But it can also be used for any user-built list, tree, custom picker rows, or even a grid of cards.
+ *
+ * Array of DataRowProps describes a part of hierarchical list, while still being a flat array (not a tree of some kind).
+ * We use depth, indent, path, and other props to show row's place in the hierarchy.
+ * This is very handy to handle rendering, especially in virtual scrolling scenarios.
+ *
+ * DataSources primary job is to convert various data stores into arrays of DataRowProps.
+ */
+export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId> & {
+    /** ID of the TItem rows displays */
+    id: TId;
+
+    /** Key to be used as component's key when rendering. Usually, it's stringified ID */
+    rowKey: string;
+
+    /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
+    index: number;
+
+    /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
+    value?: TItem;
+
+    /** Hierarchical path from the root node to the item (excluding the item itself) */
+    path?: DataRowPathItem<TId, TItem>[];
+
+    /* visual */
+
+    /** Depth of the row in tree, 0 for the top-level */
+    depth?: number;
+
+    /** Indent of the item, to show hierarchy.
+     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
+     *  if all children of node has no children, all nodes would get the same indent as parent.
+     */
+    indent?: number;
+
+    /** True if row is in loading state. 'value' is empty in this case */
+    isLoading?: boolean;
+
+    /** True if row be folded or unfolded (usually because it contains children) */
+    isFoldable?: boolean;
+
+    /** True if row is currently folded */
+    isFolded?: boolean;
+
+    /** True if row is checked with checkbox */
+    isChecked?: boolean;
+
+    /** True if row has checkbox and can be checkable */
+    isCheckable?: boolean;
+
+    /** True if some of row's children are checked.
+     * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
+    isChildrenChecked?: boolean;
+
+    /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
+    isSelected?: boolean;
+
+    /** True if any of row's children is selected. */
+    isChildrenSelected?: boolean;
+
+    /** True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row */
+    isFocused?: boolean;
+
+    /** True if row is the last child of his parent */
+    isLastChild?: boolean;
+
+    /* events */
+
+    /** Handles row folding change.
+     * We demand to pass the row as well, to avoid creating closures for each row.
+     */
+    onFold?(rowProps: DataRowProps<TItem, TId>): void;
+
+    /** Handles row click.
+     * We demand to pass the row as well, to avoid creating closures for each row.
+     */
+    onClick?(rowProps: DataRowProps<TItem, TId>): void;
+
+    /** Handles row checkbox change.
+     * We demand to pass the row as well, to avoid creating closures for each row.
+     */
+    onCheck?(rowProps: DataRowProps<TItem, TId>): void;
+
+    /** Handles row selection.
+     * We demand to pass the row as well, to avoid creating closures for each row.
+     */
+    onSelect?(rowProps: DataRowProps<TItem, TId>): void;
+
+    /** Handles row focusing.
+     */
+    onFocus?(focusedIndex: number): void;
+};
+
+export interface BaseListViewProps<TItem, TId, TFilter> {
+    /**
+     * Should return unique ID of the TItem
+     * If omitted, we assume that every TItem has and unique id in its 'id' field.
+     * @param item An item to get ID of
+     */
+    getId?(item: TItem): TId;
+
+    /** Should return ID of the Item's parent. Usually it's i => i.parentId.
+     * If specified, Data Source will build items hierarchy.
+     *
+     * Also, it is used by LazyDataSource to pre-fetch missing parents of loaded items. This is required in following cases:
+     * - when a child item is pre-selected, but not yet loaded at start. We need to load it's parent chain
+     *   to highlight parents with selected children
+     * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
+     *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
+     */
+     getParentId?(item: TItem): TId;
+
+    /**
+     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
+     * See DataRowOptions for more details.
+     * If your options depends on the item itself, use getRowOptions.
+     * However, specifying both rowOptions and getRowOptions might help to render better loading skeletons
+     * - we use only rowOptions in this case, as we haven't loaded an item yet.
+     * @param item An item to get options for
+     */
+    rowOptions?: DataRowOptions<TItem, TId>;
+
+    /**
+     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
+     * See DataRowOptions for more details.
+     * If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.
+     * @param item An item to get options for
+     */
+    getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
+
+    /**
+     * Can be specified to unfold all or some items at start.
+     * If not specified, all rows would be folded.
+     */
+    isFoldedByDefault?(item: TItem): boolean;
+
+    /**
+     * If selection (checking items) of a parent node should select all children, and vice versa
+     */
+    cascadeSelection?: boolean;
+
+    /**
+     * Disables select all behavior. Default is false.
+     */
+    selectAll?: true | false;
+}
+
+export type IDataSourceView<TItem, TId, TFilter> = {
+    getById(id: TId, index: number): DataRowProps<TItem, TId>;
+    getListProps(): DataSourceListProps;
+    getVisibleRows(): DataRowProps<TItem, TId>[];
+    getSelectedRows(): DataRowProps<TItem, TId>[];
+    destroy(): void;
+    _forceUpdate(): void;
+    selectAll?: ICheckable;
+};
+
+export type DataSourceListCounts = {
+    /**
+     * Count of rows, after applying filter, and folding on tree nodes.
+     * Obsolete! Please switch to exactRowsCount / knownRowsCount
+     */
+    rowsCount?: number;
+
+    /** Count of rows, if all rows loaded. Can be null while initial loading, or if API doesn't return count  */
+    exactRowsCount?: number;
+
+    /**
+     * There's at least knownRowsCount rows. There can be more if list is lazy loaded.
+     * Equals to exactRowsCount if all rows are loaded, or if API returns rows count
+     * Otherwise, exactRowsCount will be null, and knownRowsCount will specify number of loaded rows.
+     */
+    knownRowsCount?: number;
+
+    /** Total count of items, before applying the filter. If there's a tree, it counts all nodes, including folded children  */
+    totalCount?: number;
+};
+
+export interface DataSourceListProps extends DataSourceListCounts {
+    selectAll?: ICheckable;
+}
+
+
+// Lazy Data Source API
+
+
+/** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
+export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
+    filter?: TFilter;
+    sorting?: SortingOption[];
+    search?: string;
+}
+
+/** The range (from/count) of required rows for LazyDataSourceApiRequest */
+export interface LazyDataSourceApiRequestRange {
+    from: number;
+    count?: number;
+}
+
+/** Defines input arguments for Lazy Data Source APIs */
+export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> extends LazyDataSourceApiRequestOptions<TItem, TFilter> {
+    range?: LazyDataSourceApiRequestRange;
+    ids?: TId[];
+}
+
+/** Defines Lazy Data Source APIs response shape */
+export interface LazyDataSourceApiResponse<TItem> {
+    /** List of items which was requested via API */
+    items: TItem[];
+
+    /**
+     * API can set 'from' field if it wants to return more items than what was requested in request.range.
+     * This can be used to return all items at once (with from:0, count: totalCount), or align response to pages.
+     */
+    from?: number;
+
+    /** Total count of items which match current filter. If not specified, total count will be detected only when user scrolls to the end of the list. */
+    count?: number;
+}
+
+/** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */
+export interface LazyDataSourceApiRequestContext<TItem, TId> {
+    parentId?: TId;
+    parent?: TItem;
+}
+
+/** Defines API to retrieve data for DataSources */
+export type LazyDataSourceApi<TItem, TId, TFilter> =
+    (
+        request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
+        context?: LazyDataSourceApiRequestContext<TItem, TId>,
+    ) => Promise<LazyDataSourceApiResponse<TItem>>;
+
+export interface IArrayDataSource<TItem, TId extends DataSourceItemId, TFilter> extends IDataSource<TItem, TId, TFilter> {
+    byKey: { [key: string]: TreeNode<TItem, TId> };
+    byParentKey: { [key: string]: TreeNode<TItem, TId>[] };
+    nodes: TreeNode<TItem, TId>[];
+    rootNodes: TreeNode<TItem, TId>[];
+    maxDepth: number;
+}
+
+export interface TreeNode<TItem, TId> {
+    item: TItem;
+    id: TId;
+    key: string;
+    parentId: TId;
+    parentKey: string;
+    path: string[];
+    index: number;
+    children: TreeNode<TItem, TId>[];
+}

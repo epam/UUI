@@ -1,8 +1,7 @@
-import { DataRowProps, SortingOption, IEditable, DataSourceItemId } from "../../../types";
+import { DataRowProps, SortingOption, IEditable, DataSourceItemId, DataSourceState, IArrayDataSource, TreeNode,
+    DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import { getSearchFilter } from '../../querying';
-import { DataSourceState, IArrayDataSource, TreeNode } from "../types";
-import { DataSourceListProps, IDataSourceView } from './types';
-import { BaseListView, BaseListViewProps } from './BaseListView';
+import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {

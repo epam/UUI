@@ -1,6 +1,6 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListViewProps } from "../LazyListView";
-import { DataSourceState } from "../../types";
+import { DataSourceState } from "../../../../types";
 
 interface TItem {
     id: number;

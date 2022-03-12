@@ -1,10 +1,9 @@
-import { DataRowProps, IEditable, DataSourceItemId } from "../../../types";
-import { DataSourceState, LazyDataSourceApi } from '../types';
-import { DataSourceListProps, IDataSourceView } from './types';
+import { DataRowProps, IEditable, DataSourceItemId, DataSourceState,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import isEqual from 'lodash.isequal';
-import { BaseListView, BaseListViewProps } from "./BaseListView";
+import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { LazyTree, LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, LazyTreeLoadParams } from './LazyTree';
+import { LazyTree, LazyTreeFetchStrategy, LazyTreeList, LazyTreeLoadParams } from './LazyTree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
