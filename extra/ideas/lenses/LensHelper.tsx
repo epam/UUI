@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 import { TextInput } from '@epam/loveship';
 
 type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;

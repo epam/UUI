@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { uuiMod, cx } from '@epam/uui';
+import { uuiMod, cx } from '@epam/uui-core';
 import { SliderBase, uuiSlider } from './SliderBase';
 import * as css from './SliderBase.scss';
 import { SliderHandle } from './SliderHandle';
@@ -45,7 +45,8 @@ export class Slider extends SliderBase<number, any> {
                 ) }
                 onClick={ e => this.props.onValueChange(this.getValue(e.clientX, valueWidth)) }
                 onMouseDown={ this.handleMouseDown }
-                {...this.props.rawProps}
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <div
                     ref={ slider => this.slider = slider }
@@ -70,13 +71,13 @@ export class Slider extends SliderBase<number, any> {
                     onUpdate={ (mouseX: number) => this.props.onValueChange(this.getValue(mouseX, valueWidth)) }
                     handleActiveState={ (newValue) => this.setState({ isActive: newValue }) }
                     showTooltip={ this.props.showTooltip !== undefined ? this.props.showTooltip : true }
-                    rawProps={{
+                    rawProps={ {
                         'aria-label': this.props.rawProps ? this.props.rawProps['aria-label'] : undefined,
                         'aria-valuenow': this.props.value,
                         'aria-valuemin': this.props.min,
                         'aria-valuemax': this.props.max,
                         role: 'slider',
-                    }}
+                    } }
                 />
             </div>
         );

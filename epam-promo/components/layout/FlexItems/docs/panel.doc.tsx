@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PanelMods, Panel, FlexRow, Text, FlexCell} from '../../../../components';
 import { DocBuilder } from '@epam/uui-docs';
-import { VPanelProps } from '@epam/uui';
+import { VPanelProps } from '@epam/uui-core';
 import { DefaultContext, onClickDoc } from '../../../../docs';
 
 const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', component: Panel })

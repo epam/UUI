@@ -12,6 +12,7 @@ export const DbDemoImpl = () => {
     const dbRef = useDemoDbRef();
 
     (window as any).dbRef = dbRef;
+    dbRef.setAutoSave(false);
 
     const api: LazyDataSourceApi<PersonTableRecord, number, DataQueryFilter<Person>> = React.useMemo(() => async (rq, ctx) => {
         if (!ctx.parent) {
@@ -48,13 +49,15 @@ export const DbDemoImpl = () => {
         getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
     });
-
     return <div className={ css.container }>
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
             <FlexCell width={ 200 }>
                 <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
             </FlexCell>
             <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption="Revert" onClick={ () => dbRef.revert() } size='30'/>
+            </FlexCell>
             <FlexCell width='auto'>
                 <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
             </FlexCell>

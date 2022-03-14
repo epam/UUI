@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui';
+import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
@@ -74,10 +74,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return this.props.renderFooter
             ? this.props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ this.props.size }/>;
+            : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
     }
 
-    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode {
+    renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         return (
@@ -90,7 +90,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((props: DataRowProps<TItem, TId>) => this.renderRow({ ...props }));
+        const renderedDataRows = rows.map(props => this.renderRow({ ...props }));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 

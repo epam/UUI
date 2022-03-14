@@ -1,7 +1,7 @@
 import React from "react";
 import * as css from './Switch.scss';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 
 export interface SwitchMods {
     size?: '12' | '18' | '24';

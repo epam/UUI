@@ -1,7 +1,7 @@
 import React from 'react';
+import { useUuiContext } from '@epam/uui';
 import { Button, RichTextView, SuccessNotification, WarningNotification } from '@epam/promo';
 import { BasicModalExample } from '../modals/Basic.example';
-import { useUuiContext } from 'uui';
 
 
 export default function ModalContextExample() {

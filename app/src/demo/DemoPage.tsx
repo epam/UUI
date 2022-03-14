@@ -46,7 +46,7 @@ export class DemoPage extends React.Component {
 
     renderSecondaryMenu(source: string) {
         return (
-            <FlexRow rawProps={{ role: 'tablist' }} background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
+            <FlexRow rawProps={ { role: 'tablist' } } background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 { demoItems.map(item => {
                     return(
                         <TabButton

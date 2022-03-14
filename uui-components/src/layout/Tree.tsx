@@ -3,18 +3,15 @@ import {
     IHasCX,
     IHasChildren,
     IEditable,
-    ArrayDataSource,
     TreeNode,
     getSearchFilter,
     IAnalyticableOnChange,
-    UuiContexts,
-    UuiContext,
-} from "@epam/uui";
-import clone from 'lodash.clone';
-import isEqual from 'lodash.isequal';
+    useUuiContext,
+    useArrayDataSource,
+} from "@epam/uui-core";
 
-export interface TreeNodeProps<TItem = TreeListItem> extends TreeNode<TItem, string> {
-    data: any;
+export interface TreeNodeProps<TItem extends TreeListItem = TreeListItem> extends TreeNode<TItem, string> {
+    data: TItem;
     depth: number;
     isDropdown?: boolean;
     isOpen?: boolean;
@@ -22,9 +19,10 @@ export interface TreeNodeProps<TItem = TreeListItem> extends TreeNode<TItem, str
 }
 
 export interface TreeListItem {
-    id?: any;
-    data?: any;
+    id: string;
+    data?: TreeListItem;
     parentId?: string;
+    name?: string;
 }
 
 export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren, IEditable<string[]>, IAnalyticableOnChange<string[]> {
@@ -33,67 +31,56 @@ export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChild
     search?: string;
 }
 
-interface TreeState<TItem> {
-    list: TreeNodeProps<TItem>[];
-}
+export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
+    const context = useUuiContext();
 
-export class Tree<TItem extends TreeListItem> extends React.Component<TreeProps<TItem>, TreeState<TItem>> {
-    static contextType = UuiContext;
-    context: UuiContexts;
+    const dataSource = useArrayDataSource<TItem, string, unknown>({
+        items: props.items as TItem[],
+    }, [props.items]);
 
-    dataSource: ArrayDataSource;
+    const [list, setList] = React.useState<TreeNodeProps<TItem>[]>([]);
 
-    constructor(props: TreeProps<TItem>) {
-        super(props);
-        this.dataSource = new ArrayDataSource({ items: this.props.items });
-        this.state = { list: this.getListRecursive() };
-    }
+    React.useEffect(() => {
+        setList(getListRecursive());
+    }, [props.search, props.value]);
 
-    public componentDidUpdate(prevProps: TreeProps<TItem>) {
-        if (prevProps.search !== this.props.search || !isEqual(prevProps.value, this.props.value)) {
-            this.setState({list: this.getListRecursive()});
-        }
-    }
+    function getListRecursive() {
+        return dataSource.rootNodes.flatMap(node => getNodes(node, 0));
+    };
 
-    toggleFolding = (item: TreeListItem) => {
-        const isUnfolded = this.props.value.includes(item.id);
-        let value: string[];
-
+    function toggleValue(item: TreeNode<TItem, string>) {
+        const isUnfolded = props.value.includes(item.id);
         if (isUnfolded) {
-            value = this.props.value.filter(i => i !== item.id);
-            this.props.onValueChange(value);
+            return props.value.filter(i => i !== item.id);
         } else {
-            value = clone(this.props.value);
-            value.push(item.id);
-            this.props.onValueChange(value);
-        }
-
-        if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
-            this.context.uuiAnalytics.sendEvent(event);
+            return [...props.value, item.id];
         }
     }
 
-    getListRecursive() {
-        const flatList: TreeNodeProps<TItem>[] = [];
-        this.dataSource.rootNodes.forEach(i => flatList.push(...this.getNodes(i, 0)));
-        return flatList;
+    function toggleFolding(item: TreeNode<TItem, string>) {
+        const valueAfterToggle = toggleValue(item);
+        props.onValueChange(valueAfterToggle);
+
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(valueAfterToggle, props.value);
+            context.uuiAnalytics.sendEvent(event);
+        }
     }
 
-    getNodes(item: TreeNode<TItem & { name?: string }, string>, depth: number) {
+    function getNodes(item: TreeNode<TItem, string>, depth: number) {
         const items: TreeNodeProps<TItem>[] = [];
-        const isUnfolded = this.props.value.includes(item.id);
-        const applySearch = this.props.search && getSearchFilter(this.props.search);
-        const isPassedSearch = applySearch ? applySearch([item.item.name]) : true;
         const children: TreeNodeProps<TItem>[] = [];
+        const isUnfolded = props.value.includes(item.id);
+        const applySearch = props.search && getSearchFilter(props.search);
+        const isPassedSearch = applySearch ? applySearch([item.item.name]) : true;
 
-        if (item.children && item.children.length) {
-            item.children.forEach(i => children.push(...this.getNodes(i, depth + 1)));
+        if (item.children?.length) {
+            item.children.forEach(i => children.push(...getNodes(i, depth + 1)));
         }
 
-        if (!this.props.value.includes(item.id)) {
+        if (!props.value.includes(item.id)) {
             if (applySearch && children.length > 0) {
-                this.props.onValueChange([...this.props.value, item.id]);
+                props.onValueChange([...props.value, item.id]);
             }
         }
 
@@ -101,26 +88,25 @@ export class Tree<TItem extends TreeListItem> extends React.Component<TreeProps<
             items.push({
                 ...item,
                 data: item.item,
-                depth: depth,
+                depth,
                 isDropdown: item.children && !!item.children.length,
                 isOpen: isUnfolded,
-                onClick: () => this.toggleFolding(item),
+                onClick: () => toggleFolding(item),
             });
         }
 
-
-        if (item.children && item.children.length && isUnfolded) {
+        if (item.children?.length && isUnfolded) {
             items.push(...children);
         }
 
         return items;
-    }
+    };
 
-    render() {
-        return (
-            <>
-                { this.state.list.map((i) => <React.Fragment key={ i.id }> { this.props.renderRow(i) }</React.Fragment>) }
-            </>
-        );
-    }
+    if (list.length === 0) return null;
+
+    return (
+        <>
+            { list.map(i => <React.Fragment key={ i.id }> { props.renderRow(i) } </React.Fragment> ) }
+        </>
+    );
 }

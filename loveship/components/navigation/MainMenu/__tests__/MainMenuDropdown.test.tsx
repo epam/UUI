@@ -3,10 +3,6 @@ import renderer from 'react-test-renderer';
 import { MainMenuDropdown } from '../MainMenuDropdown';
 import { MainMenuButton } from '../MainMenuButton';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('MainMenuDropdown', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

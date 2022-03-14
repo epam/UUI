@@ -1,4 +1,4 @@
-import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui";
+import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui-core";
 import amplitude from "amplitude-js";
 
 export class AmplitudeListener implements IAnalyticsListener {

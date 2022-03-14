@@ -1,7 +1,7 @@
 import * as types from '../types';
 import * as css from './Checkbox.scss';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { ReactComponent as TickIcon } from '../icons/checkbox-checked.svg';
 import { ReactComponent as IndeterminateIcon } from '../icons/checkbox-partial.svg';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
@@ -20,4 +20,8 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     ];
 }
 
-export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, () => ({ icon: TickIcon, IndeterminateIcon }));
+export const Checkbox = withMods<CheckboxProps, CheckboxMods>(
+    uuiCheckbox,
+    applyCheckboxMods,
+    () => ({ icon: TickIcon, indeterminateIcon: IndeterminateIcon })
+);

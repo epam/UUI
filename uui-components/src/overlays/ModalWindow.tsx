@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { uuiElement, ModalWindowProps, cx } from '@epam/uui';
+import { uuiElement, ModalWindowProps, cx } from '@epam/uui-core';
 import { VPanel } from '../layout';
 
-export class ModalWindow extends React.Component<ModalWindowProps, any> {
+export class ModalWindow extends React.Component<ModalWindowProps> {
     render() {
         return (
             <VPanel
                 style={ this.props.style }
                 cx={ cx(uuiElement.modalWindow, this.props.cx) }
-                rawProps={{
+                forwardedRef={ this.props.forwardedRef }
+                rawProps={ {
                     'aria-modal': true,
                     'role': 'modal',
                     ...this.props.rawProps,
-                }}
+                } }
             >
                 { this.props.children }
             </VPanel>

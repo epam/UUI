@@ -1,39 +1,40 @@
 import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
-import { DataSourceState, useLens, IEditable, LazyDataSourceApi, useArrayDataSource, useLazyDataSource } from '@epam/uui';
+import { Person, PersonGroup } from '@epam/uui-docs';
+import { DataSourceState, useLens, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse } from '@epam/uui';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-
-const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = (request, ctx) => {
-    const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
-
-    const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
-
-    if (request.search) {
-        return svc.api.demo.persons({ ...rq, filter, ids });
-    } else if (groupBy == 'location') {
-        if (!ctx.parent) {
-            return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }}, ids });
-        } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-            return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }, ids  });
-        } else {
-            return svc.api.demo.persons({ range: rq.range, filter: { locationId: ctx.parent.id }, ids  });
-        }
-    } else if (groupBy && !ctx.parent) {
-        return svc.api.demo.personGroups({ ...rq, filter: { groupBy }, search: null, itemsRequest: { filter, search: rq.search }, ids } as any);
-    } else {
-        const parentFilter = ctx.parent && { [groupBy + 'Id']: ctx.parent.id };
-        return svc.api.demo.persons({ ...rq, filter: { ...filter, ...parentFilter }, ids });
-    }
-};
 
 interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;
 }
 
+interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGroup> {
+    summary: PersonsSummary;
+    totalCount: number;
+}
+
+export interface PersonsSummary extends Pick<PersonsApiResponse, 'totalCount'> {
+    totalSalary: string;
+}
+
+
+const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 1,
+        currency: 'USD',
+        style: 'currency',
+    }).format(value);
+};
+
 export const PersonsTableDemo = () => {
+    const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
+        totalCount: undefined,
+        totalSalary: '',
+    });
+
     const groupings = React.useMemo(() => [
         { id: 'jobTitle', name: "Job Title" },
         { id: 'department', name: "Department" },
@@ -53,9 +54,61 @@ export const PersonsTableDemo = () => {
 
     const editable: IEditable<DataSourceState> = { value, onValueChange };
 
-    const dataSource = useLazyDataSource({
-        api,
-        getId: (i) => [i.__typename, i.id] as PersonTableRecordId,
+    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+        api(request, ctx) {
+            const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
+            const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
+
+            const updateSummary = (response: PersonsApiResponse) => {
+                const { summary, totalCount } = response;
+                const totalSalary = formatCurrency(Number(summary.totalSalary));
+                setSummary({ totalCount, totalSalary });
+            };
+
+            const getPersons = (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+                if (groupBy && !ctx.parent) {
+                    return svc.api.demo.personGroups({
+                        ...rq,
+                        filter: { groupBy },
+                        search: null,
+                        itemsRequest: { filter, search: rq.search },
+                        ids,
+                    } as any).then(res => {
+                        updateSummary(res as PersonsApiResponse);
+                        return res;
+                    });
+                } else {
+                    return svc.api.demo.persons(rq).then(res => {
+                        updateSummary(res as PersonsApiResponse);
+                        return res;
+                    });
+                }
+            };
+
+            if (request.search) {
+                return getPersons({ ...rq, filter, ids });
+            } else if (groupBy == 'location') {
+                if (!ctx.parent) {
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }}, ids });
+                } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }, ids  });
+                } else {
+                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }, ids  });
+                }
+            } else if (groupBy && !ctx.parent) {
+                return getPersons({
+                    ...rq,
+                    filter: { groupBy },
+                    search: null,
+                    itemsRequest: { filter, search: rq.search },
+                    ids,
+                } as any);
+            } else {
+                const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                return getPersons({ ...rq, ids, filter: { ...filter, ...parentFilter } });
+            }
+        },
+        getId: i => [i.__typename, i.id],
         getChildCount: item =>
             item.__typename === 'PersonGroup'
             ? item.count
@@ -82,23 +135,32 @@ export const PersonsTableDemo = () => {
                     <Text size='30'>Group By:</Text>
                 </FlexCell>
                 <FlexCell width={ 130 }>
-                    <PickerInput { ...useLens(editable, b => b.prop('filter').prop('groupBy')) } dataSource={ groupingDataSource } selectionMode='single' valueType='id' size='30' />
+                    <PickerInput
+                        { ...useLens(editable, b => b.prop('filter').prop('groupBy')) }
+                        dataSource={ groupingDataSource }
+                        selectionMode='single'
+                        valueType='id'
+                        size='30'
+                    />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width='auto'>
-                    <Button caption={ value.isFolded ? "Unfold All" : "Fold All" } onClick={ () => {
-                        onValueChange({
-                            ...value,
-                            folded: {},
-                            isFolded: !value.isFolded,
-                        });
-                    } } size='30'/>
+                    <Button
+                        caption={ value.isFolded ? "Unfold All" : "Fold All" }
+                        onClick={ () => onValueChange({ ...value, folded: {}, isFolded: !value.isFolded }) }
+                        size='30'
+                    />
                 </FlexCell>
                 <FlexCell width='auto'>
                     <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
                 </FlexCell>
             </FlexRow>
-            <PersonsTable { ...useLens(editable, b => b) } view={ personsDataView } />
+            <PersonsTable
+                value={ value }
+                onValueChange={ onValueChange }
+                summary={ summary }
+                view={ personsDataView }
+            />
         </div>
     );
 };

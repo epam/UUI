@@ -1,4 +1,4 @@
-import { FileUploadResponse } from '@epam/uui';
+import { FileUploadResponse } from '@epam/uui-core';
 
 export interface PersonalInfo {
     fullName?: string;
@@ -73,6 +73,5 @@ export interface PersonDetails {
     travelVisas: PersonTravelVisas;
     otherInfo: PersonOtherInfo;
 }
-
 
 export type Attachment = Partial<FileUploadResponse> & { progress?: number };

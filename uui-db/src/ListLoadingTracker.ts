@@ -1,4 +1,4 @@
-import { DataQuery, LazyDataSourceApiResponse, DataQueryRange } from '@epam/uui';
+import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { ILoadingTracker } from './types';
 
 interface ListRecord<TItem> {
@@ -78,7 +78,7 @@ export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQ
     }
 
     public count(request: TRequest) {
-        const { options, range, unknownFields, entry } = this.prepare(request);
+        const { entry } = this.prepare(request);
 
         return { knownCount: Math.max(entry.count, entry.maxCount), exactCount: entry.maxCount };
     }

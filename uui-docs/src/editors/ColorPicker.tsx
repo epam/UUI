@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import * as css from './ColorPicker.scss';
-import { IEditable } from '@epam/uui';
+import { IEditable } from '@epam/uui-core';
 import { Tooltip } from '@epam/uui-components';
 
 interface Color {
@@ -23,12 +23,12 @@ export class ColorPicker extends React.Component<ColorPickerProps, any> {
                         className={ cx(css.colorItem) }
                         onClick={ () => this.props.onValueChange(color.value) }
                         style={ {
-                            borderColor: this.props.value === color.value && 'white' || color.hex,
+                            borderColor: this.props.value === color.value && 'white' || color.hex || `var(--${color.value}-color)`,
                             borderWidth: this.props.value === color.value && '2px',
-                            backgroundColor: color.hex || "transparent",
+                            backgroundColor: color.hex || `var(--${color.value}-color)`,
                             width: this.props.value === color.value && '14px',
                             height: this.props.value === color.value && '14px',
-                            boxShadow: this.props.value === color.value && `0 0 0 1px ${ color.hex }` } }
+                            boxShadow: this.props.value === color.value && `0 0 0 1px ${ color.hex || `var(--${color.value}-color)` }` } }
                     />
                 </Tooltip>) }
             </div>

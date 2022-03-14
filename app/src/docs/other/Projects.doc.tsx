@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Icon } from '@epam/uui';
-import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text, Tooltip } from '@epam/promo';
+import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text } from '@epam/promo';
 import { ContentSection } from '../../common';
 import * as css from './ProjectsDoc.scss';
 

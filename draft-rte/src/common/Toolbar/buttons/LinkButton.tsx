@@ -2,7 +2,7 @@ import { EditorState, Modifier, SelectionState, ContentState } from 'draft-js';
 import EditorUtils from 'draft-js-plugins-utils';
 import { IconButton } from '@epam/loveship';
 import * as React from 'react';
-import { UuiContexts, UuiContext, prependHttp } from '@epam/uui';
+import { UuiContexts, UuiContext, prependHttp } from '@epam/uui-core';
 import { ReactComponent as LinkIcon } from '../../../icons/insert_link.svg';
 import { DraftButtonProps } from '../../../types';
 import { getEntityRange, getSelectionText } from '../../../utils';

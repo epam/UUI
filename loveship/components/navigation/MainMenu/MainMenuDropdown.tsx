@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
+import { IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
-import {IDropdownToggler, IHasCaption, ICanRedirect, CX, IHasCX} from '@epam/uui';
-import * as css from './MainMenuDropdown.scss';
 import { DropdownMenuBody } from '../../overlays';
 import { MainMenuButton } from './MainMenuButton';
+import * as css from './MainMenuDropdown.scss';
 
-interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX {}
+interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
 class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps> {
     render() {
@@ -29,12 +29,13 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                         caption={ this.props.caption }
                         cx={ this.props.cx }
                         { ...props }
+                        rawProps={ this.props.rawProps }
                         isLinkActive={ this.props.isLinkActive }
                         isDropdown
                     />
                     ) }
                 renderBody={ (props) => (
-                    <DropdownMenuBody color="night" inMainMenu>
+                    <DropdownMenuBody color='night' inMainMenu>
                         { React.Children.map(this.props.children, (item: any) => {
                             if (!item) {
                                 return item;
@@ -51,7 +52,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                         }) }
                     </DropdownMenuBody>
                 ) }
-                placement="bottom-start"
+                placement='bottom-start'
             />
         );
     }

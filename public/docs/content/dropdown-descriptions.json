@@ -144,6 +144,45 @@
             ]
           }
         ]
+      },
+      {
+        "object": "block",
+        "type": "note-warning",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " Make sure the target of your Dropdown work correctly with refs. The ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderTarget  ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "callback returns an object, containing a ref property for your target component. If the ref is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
+            "marks": []
+          }
+        ]
       }
     ]
   }

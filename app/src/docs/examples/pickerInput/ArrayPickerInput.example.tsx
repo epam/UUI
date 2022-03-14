@@ -17,7 +17,8 @@ const languageLevels = [
 ];
 
 export default function LanguagesMultiPicker() {
-    const [value, onValueChange] = useState(null);
+    const [singlePickerValue, singleOnValueChange] = useState(null);
+    const [multiPickerValue, multiOnValueChange] = useState(null);
 
     // Create DataSource outside the Picker, by calling useArrayDataSource hook
     const dataSource = useArrayDataSource({
@@ -29,8 +30,8 @@ export default function LanguagesMultiPicker() {
             <FlexRow spacing='12' >
                 <PickerInput
                     dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    value={ multiPickerValue }
+                    onValueChange={ multiOnValueChange }
                     getName={ item => item.level }
                     entityName='Language level'
                     selectionMode='multi'
@@ -39,8 +40,8 @@ export default function LanguagesMultiPicker() {
                 />
                 <PickerInput
                     dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    value={ singlePickerValue }
+                    onValueChange={ singleOnValueChange }
                     getName={ item => item.level }
                     entityName='Language level'
                     selectionMode='single'

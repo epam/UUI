@@ -1,7 +1,7 @@
 import * as css from './TabButton.scss';
 import * as styles from '../../assets/styles/colorvars/buttons/tabButton-colorvars.scss';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 

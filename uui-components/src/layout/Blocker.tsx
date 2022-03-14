@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Blocker.scss';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui';
 
 // TBD: move to loveship-specific mods
 //import { EpamColor, SpinnerMods } from '@epam/oswald';
 
-export interface BlockerProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface BlockerProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     isEnabled: boolean;
     hideSpinner?: boolean;
     spacerHeight?: number;
@@ -22,13 +22,14 @@ const uuiBlocker = {
     exitActive: 'uui-blocker-exit-active',
 };
 
-export class Blocker extends React.Component<BlockerProps, any> {
+export class Blocker extends React.Component<BlockerProps> {
     render() {
         return (
             <div
                 className={ cx(css.container, uuiBlocker.container, this.props.cx) }
                 style={ { minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined } }
-                {...this.props.rawProps}
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <TransitionGroup>
                     { this.props.isEnabled && <CSSTransition classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>

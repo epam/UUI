@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { IClickable, IDropdownToggler, IDisableable, IBasicPickerToggler, ICanBeInvalid, ICanRedirect, IHasLabel, IEditable, IHasPlaceholder, ICanBeReadonly } from '@epam/uui';
+import { IClickable, IDropdownToggler, IDisableable, IBasicPickerToggler, ICanBeInvalid, ICanRedirect, IHasLabel, IEditable, IHasPlaceholder, ICanBeReadonly } from '@epam/uui-core';
 import { DocBuilder } from '../DocBuilder';
 import { ICanBeFormatted } from '@epam/uui-components';
 

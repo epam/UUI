@@ -15,11 +15,11 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.Rule = void 0;
 var Lint = require("tslint");
-var regexpNoSumboduleImport = /^@epam\/[\w-]+\//i;
+var regexpNoSubmoduleImport = /^@epam\/[\w-]+\//i;
 var regexpAssetsException = /^@epam\/assets\/\w+(\/\w+)?(\/\w+)?(\/[\w-]+\.[a-z]+)?$/i;
 var regexpInternalException = /^@epam\/internal/i;
 var epamModules = ['epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
-    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app'];
+    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app', 'uui-v', 'uui-core'];
 var getNoModuleOutsideRegExp = function (url) {
     var urlArr = url.split('/');
     var maxNesting;
@@ -57,7 +57,7 @@ var NoImportsWalker = /** @class */ (function (_super) {
     }
     NoImportsWalker.prototype.visitImportDeclaration = function (node) {
         var str = node.moduleSpecifier.getText().replace(/('|\")/g, "");
-        if (regexpNoSumboduleImport.test(str) && !regexpAssetsException.test(str) && !regexpInternalException.test(str)) {
+        if (regexpNoSubmoduleImport.test(str) && !regexpAssetsException.test(str) && !regexpInternalException.test(str)) {
             this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING_SUBMODULE_IMPORT));
         }
         if (getNoModuleOutsideRegExp(node.moduleSpecifier.getSourceFile().fileName).test(str)) {

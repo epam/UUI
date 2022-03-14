@@ -1,7 +1,7 @@
 import { render, RenderOptions } from "@testing-library/react";
 import React, { ReactElement } from 'react';
 import uuiAppData from '../demoData/uuiAppData.json';
-import { UuiContext } from "@epam/uui";
+import { UuiContext } from "@epam/uui-core";
 import { useServices } from "../hooks/useServices";
 
 type ProviderProps = {

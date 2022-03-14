@@ -6,7 +6,7 @@ import {
     UuiContexts,
     ColumnsConfig,
     UuiContext,
-} from '@epam/uui';
+} from '@epam/uui-core';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';

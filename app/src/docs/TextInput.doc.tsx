@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
@@ -8,6 +8,7 @@ export class TextInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/inputs/docs/textInput.doc.ts',
             [UUI4]: './epam-promo/components/inputs/docs/textInput.doc.ts',
+            [UUI]: './uui/components/inputs/docs/textInput.doc.ts',
         };
     }
 

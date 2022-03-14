@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
@@ -18,7 +18,7 @@ const mapSizeToIconSize = {
     '12': '18',
 };
 
-export interface BadgeMods extends types.ColorMod, types.FontMod {
+export interface BadgeMods extends types.ColorMod {
     shape?: types.ControlShape;
     fill?: types.FillStyle  | 'semitransparent' | 'transparent';
     size?: '12' | '18' | '24' | '30' | '36' | '42' | '48';
@@ -27,7 +27,6 @@ export interface BadgeMods extends types.ColorMod, types.FontMod {
 export function applyBadgeMods(mods: BadgeMods) {
     return [
         buttonCss.root,
-        css['font-' + (mods.font || 'sans')],
         css['style-' + (mods.shape || 'square')],
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@epam/promo": "latest",
-    "@epam/uui": "latest",
+    "@epam/uui-core": "latest",
     "@epam/uui-components": "latest",
     "next": "^12.0.7",
     "react": "^17.0.2",
