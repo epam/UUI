@@ -32,5 +32,6 @@ export const NumericInput = withMods<NumericInputProps, NumericInputMods>(
             fontSize: props.fontSize,
         }, true),
         align: props.align ?? (props.mode === "cell" ? "right" : "left"),
+        disableArrows: props.disableArrows ?? props.mode === "cell",
     }),
 );
