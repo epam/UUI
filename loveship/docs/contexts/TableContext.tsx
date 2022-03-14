@@ -48,7 +48,7 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
                 key: 'demo_first',
                 caption: 'Demo',
                 render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
-                renderCell: propsCell => <DataTableCell padding='12' isFirstColumn={ true } { ...propsCell } />,
+                renderCell: propsCell => <DataTableCell padding='24' isFirstColumn={ true } { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
                 grow: 0, shrink: 0, width: 200,
