@@ -29,5 +29,6 @@ export const NumericInput = withMods<NumericInputProps, NumericInputMods>(
         upIcon: systemIcons[props.size || defaultSize].foldingArrow,
         downIcon: systemIcons[props.size || defaultSize].foldingArrow,
         align: props.align ?? (props.mode === "cell" ? "right" : "left"),
+        disableArrows: props.disableArrows ?? props.mode === "cell",
     }),
 );
