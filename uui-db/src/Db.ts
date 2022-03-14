@@ -16,7 +16,8 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
     }
 
     private update(mutate: (db: this) => void): this {
-        const clone = new (this.constructor as any)({ ...this.tables }, this.viewCache);
+        const clone = new (this.constructor as any)(this.tables, this.viewCache);
+        clone.tables = { ...this.tables };
         mutate(clone);
         return clone;
     }
@@ -30,7 +31,6 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
             });
         });
     }
-
 
     /* Views (cached db projections) */
 
