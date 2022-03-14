@@ -1,7 +1,7 @@
 # 4.6.0 - 14.03.2022
 
 **What's New**
-* `@epam/uui` package was moved to the `@epam/uui-core`. We re-export `@epam/uui-core` form `@epam/uui`, so it's not needed to replace imports in your code.
+* `@epam/uui` package was moved to the `@epam/uui-core`. We re-export `@epam/uui-core` form `@epam/uui`, so no need to replace imports in your code.
 * Remove deprecated react `findDomNode` usage:
   * Breaking changes:
     * [Dropdown]: need to pass `ref` from `renderTarget` callback params to the target node
