@@ -1,4 +1,4 @@
-# 4.6.0 - ??.??.2022 (Draft)
+# 4.6.0 - 14.03.2022
 
 **What's New**
 * `@epam/uui` package was moved to the `@epam/uui-core`. We re-export `@epam/uui-core` form `@epam/uui`, so it's not needed to replace imports in your code.
@@ -10,6 +10,7 @@
 * Stronger types for `rawProps` prop for all components. Now it's accept only `React.HTMLAttributes<T>` and `data-${string}` attributes.
 * [PickerInput], [TextInput]: Added prefix and suffix props
 * [SlateEditor]: added ScrollBars to Editor
+* [NumericInput]: added 'cell' mode
 
 **What’s Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
@@ -19,7 +20,6 @@
 * [NumericInput]: Fixed handling float numbers
 * [Form]: release Lock on form unmount
 * [LazyDataSource]: rework cascade selection logic
-
 
 
 # 4.5.4 - 10.02.2022
