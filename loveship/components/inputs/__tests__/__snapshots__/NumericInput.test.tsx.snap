@@ -53,7 +53,7 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-18 font-size-12 v-padding-2"
+    className="uui-input line-height-18 font-size-12 v-padding-2 alignRight"
     inputMode="numeric"
     max={10}
     min={1}
@@ -63,27 +63,5 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
     type="number"
     value="5"
   />
-  <div
-    className="uui-numeric-input-button-group"
-  >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-  </div>
 </div>
 `;
