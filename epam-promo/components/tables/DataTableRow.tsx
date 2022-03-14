@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTableRow as uuiDataTableRow, DataTableRowProps } from '@epam/uui-components';
-import { withMods, DataTableCellProps, DndActorRenderParams } from '@epam/uui';
+import { withMods, DataTableCellProps, DndActorRenderParams } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
 import { DropMarker } from '../';

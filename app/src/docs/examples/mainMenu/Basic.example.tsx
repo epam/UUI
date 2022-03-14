@@ -37,8 +37,8 @@ export default function MainMenuBasicExample() {
                                 { ...props }
                             />
                         ) }
-                        renderBody={ () => (
-                            <DropdownMenuBody onClose={ () => {} }>
+                        renderBody={ props => (
+                            <DropdownMenuBody { ...props }>
                                 <DropdownMenuButton caption="Settings" />
                                 <DropdownMenuSplitter />
                                 <DropdownMenuButton caption="Log out" />

@@ -1,20 +1,20 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as css from './ControlWrapper.scss';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as types from '../types';
-import { IHasCX } from '@epam/uui';
+import * as css from './ControlWrapper.scss';
 
-interface ControlWrapperProps extends IHasCX {
+interface ControlWrapperProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     size: types.ControlSize;
+    children: React.ReactNode;
 }
 
-export class ControlWrapper extends React.Component<ControlWrapperProps, any> {
-
-    render() {
-        return (
-            <div className={ cx(css.root, css['size-' + this.props.size], this.props.cx) }>
-                { this.props.children }
-            </div>
-        );
-    }
-}
+export const ControlWrapper = React.forwardRef<HTMLDivElement, ControlWrapperProps>((props, ref) => (
+    <div
+        ref={ ref }
+        className={ cx(css.root, css['size-' + props.size], props.cx) }
+        { ...props.rawProps }
+    >
+        { props.children }
+    </div>
+));

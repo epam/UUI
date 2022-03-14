@@ -2,10 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { DataPickerRow } from '../DataPickerRow';
 
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe('DataPickerRow', () => {
     it('should be rendered correctly', () => {
         const tree = renderer

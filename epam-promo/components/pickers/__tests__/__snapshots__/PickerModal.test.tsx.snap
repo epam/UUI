@@ -66,7 +66,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
         />
         <div
           className="flexCell"
-          onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,
@@ -98,7 +97,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
       <div
         className="flexCell subHeaderWrapper"
-        onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
@@ -150,8 +148,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root scrollContainer root"
+          cx="scrollContainer root"
           style={
             Object {
               "display": "flex",
@@ -163,7 +161,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="root"
+            className=""
             style={
               Object {
                 "WebkitOverflowScrolling": "touch",
@@ -179,14 +177,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
               }
             }
           >
-            <div
-              className="verticalIntersectingRect"
-              style={
-                Object {
-                  "top": "0px",
-                }
-              }
-            />
             <div
               className="listContainer"
               style={
@@ -212,7 +202,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -245,7 +234,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -278,7 +266,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -311,7 +298,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -344,7 +330,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -377,7 +362,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -410,7 +394,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -443,7 +426,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -476,7 +458,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -509,7 +490,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -542,7 +522,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -568,14 +547,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="horizontalIntersectingRect"
-              style={
-                Object {
-                  "bottom": "0px",
-                }
-              }
-            />
           </div>
           <div
             className="uui-track-horizontal"
@@ -726,7 +697,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
         />
         <div
           className="flexCell"
-          onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,
@@ -758,7 +728,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
       </div>
       <div
         className="flexCell subHeaderWrapper"
-        onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
@@ -835,8 +804,8 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root scrollContainer"
-          cx="scrollContainer"
+          className="root scrollContainer root"
+          cx="scrollContainer root"
           style={
             Object {
               "display": "flex",
@@ -848,7 +817,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           }
         >
           <div
-            className="root"
+            className=""
             style={
               Object {
                 "WebkitOverflowScrolling": "touch",
@@ -864,14 +833,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
               }
             }
           >
-            <div
-              className="verticalIntersectingRect"
-              style={
-                Object {
-                  "top": "0px",
-                }
-              }
-            />
             <div
               className="listContainer"
               style={
@@ -897,7 +858,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -947,7 +907,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -997,7 +956,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1047,7 +1005,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1097,7 +1054,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1147,7 +1103,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1197,7 +1152,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1247,7 +1201,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1297,7 +1250,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1347,7 +1299,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1397,7 +1348,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="flexCell cell wrapper size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1440,14 +1390,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="horizontalIntersectingRect"
-              style={
-                Object {
-                  "bottom": "0px",
-                }
-              }
-            />
           </div>
           <div
             className="uui-track-horizontal"

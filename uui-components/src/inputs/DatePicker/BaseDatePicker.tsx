@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {
-    IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler, UuiContext,
-    isChildFocusable,
-} from '@epam/uui';
+import { IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
+    IDropdownToggler, UuiContext, isChildFocusable } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
-import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '..';
+import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
-import { Dropdown } from '../..';
+import { Dropdown } from '../../';
+
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
@@ -145,7 +144,7 @@ export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends
     render() {
         return (
             <Dropdown
-                renderTarget={ (props: IDropdownToggler) => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
+                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
                 renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }

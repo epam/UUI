@@ -2,10 +2,6 @@ import * as React from "react";
 import renderer from "react-test-renderer";
 import {DataTableCell} from "../DataTableCell";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 class ResizeObserverMock {
     observe = () => jest.fn();
     unobserve = () => jest.fn();

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Lens, DataSourceState, isMobile, cx } from '@epam/uui';
+import * as React from 'react';
+import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
@@ -19,13 +19,12 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     searchLens = this.lens.prop('search');
 
     renderNoFound() {
-        if (this.props.renderNotFound) {
-            return this.props.renderNotFound();
-        }
-
-        return <FlexCell grow={ 1 } textAlign='center'>
-            <Text>{ i18n.dataPickerBody.noResultsMessage }</Text>
-        </FlexCell>;
+        if (this.props.renderNotFound) return this.props.renderNotFound();
+        else return (
+            <FlexCell grow={ 1 } textAlign='center'>
+                <Text>{ i18n.dataPickerBody.noResultsMessage }</Text>
+            </FlexCell>
+        );
     }
 
     render() {
@@ -56,7 +55,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 { this.props.rowsCount > 0
                     ? <VirtualList
                         { ...this.lens.toProps() }
-                        shadow='white'
                         role="listbox"
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }

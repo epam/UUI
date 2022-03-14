@@ -6,7 +6,7 @@ import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
 import { ToolbarButton } from './ToolbarButton';
 import { Editor } from 'slate-react';
 import {DropdownBodyProps } from '@epam/uui-components';
-import { uuiSkin } from "@epam/uui";
+import { uuiSkin } from "@epam/uui-core";
 
 const { FlexRow } = uuiSkin;
 

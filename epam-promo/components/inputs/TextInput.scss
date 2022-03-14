@@ -9,6 +9,14 @@
     padding-left: 5px;
     padding-right: 5px;
 
+    :global(.uui-input-prefix) {
+        @include input-prefix();
+    }
+
+    :global(.uui-input-suffix) {
+        @include input-sufix();
+    }
+
     :global(.uui-input) {
         color: var(--text-color);
         font-family: $font-sans;
@@ -52,6 +60,14 @@
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
+
+        :global(.uui-input-prefix) {
+            border-right: none;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+        }
 
         :global(.uui-icon):first-child {
             padding-left: 6px;

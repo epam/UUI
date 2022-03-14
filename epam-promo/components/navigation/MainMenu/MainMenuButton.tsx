@@ -1,6 +1,6 @@
 import * as css from './MainMenuButton.scss';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { IAdaptiveItem, withMods } from '@epam/uui';
+import { IAdaptiveItem, withMods } from '@epam/uui-core';
 import { ReactComponent as SvgTriangle } from '../../../icons/chevron-down-24.svg';
 
 export interface MainMenuButtonMods {

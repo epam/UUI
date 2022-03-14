@@ -1,6 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    position: relative;
     background: $gray5;
     border-bottom: 1px solid $gray30;
 

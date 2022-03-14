@@ -1,12 +1,12 @@
 import * as Lint from "tslint";
 import * as ts from "typescript";
 
-const regexpNoSumboduleImport = /^@epam\/[\w-]+\//i;
+const regexpNoSubmoduleImport = /^@epam\/[\w-]+\//i;
 const regexpAssetsException = /^@epam\/assets\/\w+(\/\w+)?(\/\w+)?(\/[\w-]+\.[a-z]+)?$/i;
 const regexpInternalException = /^@epam\/internal/i;
 
 const epamModules = ['epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
-    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app'];
+    'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app', 'uui-v', 'uui-core'];
 
 const getNoModuleOutsideRegExp = (url: string) => {
     let urlArr: string[] = url.split('/');
@@ -42,7 +42,7 @@ class NoImportsWalker extends Lint.RuleWalker {
     public visitImportDeclaration(node: ts.ImportDeclaration) {
         let str = node.moduleSpecifier.getText().replace(/('|\")/g, "");
 
-        if (regexpNoSumboduleImport.test(str) && !regexpAssetsException.test(str) && !regexpInternalException.test(str)) {
+        if (regexpNoSubmoduleImport.test(str) && !regexpAssetsException.test(str) && !regexpInternalException.test(str)) {
             this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING_SUBMODULE_IMPORT));
         }
 

@@ -1,4 +1,4 @@
-import { SortDirection, SortingOption, DataQueryFilter, DataQuery } from '@epam/uui';
+import { DataQuery } from '@epam/uui-core';
 import { DbTable } from "./DbTable";
 import { IClientIdsMap } from './tempIds';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayDataSource } from '@epam/uui';
+import { ArrayDataSource } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerModalProps } from '@epam/uui-components';
 import { PickerModal } from '../PickerModal';

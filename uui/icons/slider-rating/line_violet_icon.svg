@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="151px" height="8px" viewBox="0 0 151 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Violet line</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#7A7AF6" offset="0%"></stop>
+            <stop stop-color="#49B4EE" offset="50.5719866%"></stop>
+            <stop stop-color="#454DBF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#477AD4" offset="0%"></stop>
+            <stop stop-color="#49AFEC" offset="52.7503189%"></stop>
+            <stop stop-color="#777DF5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="criteria/grade/excellent" transform="translate(-5.000000, -6.000000)">
+            <g id="radio" transform="translate(4.000000, -17.000000)">
+                <g id="Violet-line" transform="translate(0.000000, 23.000000)">
+                    <rect id="gray_base" fill="#E5E5E5" x="4" y="3" width="143" height="2"></rect>
+                    <polygon id="gradient_line" fill="url(#linearGradient-1)" points="76 3 147 3 147 5 76 5"></polygon>
+                    <circle id="Oval-2" stroke-opacity="0" stroke="#FFFFFF" stroke-width="2" fill-opacity="0" fill="#FFFFFF" cx="148" cy="4" r="3"></circle>
+                    <path d="M4,7 C2.34314575,7 1,5.65685425 1,4 C1,2.34314575 2.34314575,1 4,1 C5.65685425,1 7,2.34314575 7,4 C7,5.65685425 5.65685425,7 4,7 Z M40,7 C38.3431458,7 37,5.65685425 37,4 C37,2.34314575 38.3431458,1 40,1 C41.6568542,1 43,2.34314575 43,4 C43,5.65685425 41.6568542,7 40,7 Z M76,7 C74.3431458,7 73,5.65685425 73,4 C73,2.34314575 74.3431458,1 76,1 C77.6568542,1 79,2.34314575 79,4 C79,5.65685425 77.6568542,7 76,7 Z M148,7 C146.343146,7 145,5.65685425 145,4 C145,2.34314575 146.343146,1 148,1 C149.656854,1 151,2.34314575 151,4 C151,5.65685425 149.656854,7 148,7 Z" id="base" fill="#E5E5E5"></path>
+                    <circle id="Oval-2" fill="#E5E5E5" cx="112" cy="4" r="3"></circle>
+                    <path d="M76,7 C77.6568542,7 79,5.65685425 79,4 C79,2.34314575 77.6568542,1 76,1 C74.3431458,1 73,2.34314575 73,4 C73,5.65685425 74.3431458,7 76,7 Z M112,7 C113.656854,7 115,5.65685425 115,4 C115,2.34314575 113.656854,1 112,1 C110.343146,1 109,2.34314575 109,4 C109,5.65685425 110.343146,7 112,7 Z M148,7 C149.656854,7 151,5.65685425 151,4 C151,2.34314575 149.656854,1 148,1 C146.343146,1 145,2.34314575 145,4 C145,5.65685425 146.343146,7 148,7 Z" id="base" stroke="url(#linearGradient-2)" stroke-width="2" fill="#FFFFFF"></path>
+                    <circle id="Oval-2" stroke-opacity="0" stroke="#FFFFFF" stroke-width="2" fill-opacity="0" fill="#FFFFFF" cx="4" cy="4" r="3"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

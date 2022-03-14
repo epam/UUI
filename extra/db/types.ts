@@ -1,7 +1,7 @@
 import { QueryBuilder } from './QueryBuilder';
 import { DbSchema, DbEntitySchema } from './DbSchema';
 import { Map } from 'immutable';
-import { SortDirection } from '@epam/uui';
+import { SortDirection } from '@epam/uui-core';
 
 /* Metadata */
 

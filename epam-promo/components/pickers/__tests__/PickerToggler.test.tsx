@@ -7,6 +7,7 @@ describe('PickerToggler', () => {
         const tree = renderer
             .create(<PickerToggler
                 pickerMode='single'
+                searchPosition='none'
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -33,6 +34,7 @@ describe('PickerToggler', () => {
                 ] }
                 onBlur={ jest.fn }
                 onClear={ jest.fn }
+                searchPosition='none'
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

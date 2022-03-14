@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -12,22 +12,42 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-};
+}
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
 
-    const renderRow = (rowProps: DataRowProps<TItem, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
             borderBottom={ props.border }
             { ...rowProps }
         />
-    );
+    ), [props.size, props.border]);
 
-    const renderRowsContainer = ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+
+    const renderNoResultsBlock = React.useCallback(() => {
+        // need default behavior
+        return props.renderNoResultsBlock?.() || undefined;
+    }, [props.renderNoResultsBlock]);
+
+    const onConfigurationButtonClick = React.useCallback(() => {
+        uuiModals.show<ColumnsConfig>(modalProps => (
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                columns={ props.columns }
+                columnsConfig={ config }
+                defaultConfig={ defaultConfig }
+            />
+        ))
+            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
+            .catch(() => null);
+    }, [props.columns, config, defaultConfig, props.value, props.onValueChange]);
+
+    const renderRowsContainer = React.useCallback(({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
         <>
             <div className={ css.stickyHeader }>
                 <DataTableHeaderRow
@@ -51,47 +71,23 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         ref={ listContainerRef }
                         role='rowgroup'
                         style={ { marginTop: offsetY } }
-                        children={ getRows() }
+                        children={ rows }
                     />
                 </div>
             ) : renderNoResultsBlock?.() }
         </>
-    );
-
-    const getRows = () => {
-        const rowRenderer = props.renderRow || renderRow;
-        return props.getRows().map(row => rowRenderer({ ...row, columns }));
-    };
-
-    const renderNoResultsBlock = () => {
-        // need default behavior
-        return props.renderNoResultsBlock?.() || undefined;
-    };
-
-    const onConfigurationButtonClick = () => {
-        uuiModals.show<ColumnsConfig>(modalProps => (
-            <ColumnsConfigurationModal
-                { ...modalProps }
-                columns={ props.columns }
-                columnsConfig={ config }
-                defaultConfig={ defaultConfig }
-            />
-        ))
-            .then(columnsConfig => props.onValueChange({ ...props.value, columnsConfig }))
-            .catch(() => null);
-    };
+    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
         <VirtualList
             value={ props.value }
             onValueChange={ props.onValueChange }
             onScroll={ props.onScroll }
-            rows={ getRows() }
+            rows={ rows }
             rowsCount={ props.rowsCount }
             focusedIndex={ props.value?.focusedIndex }
-            shadow='dark'
             renderRows={ renderRowsContainer }
-            cx={ cx(css.table, css.shadowDark) }
+            cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': columns.length,

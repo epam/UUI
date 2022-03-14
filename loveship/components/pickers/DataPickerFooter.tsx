@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import cx from 'classnames';
-import { isMobile, uuiMarkers } from '@epam/uui';
+import { isMobile } from '@epam/uui-core';
 import { PickerFooterProps } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
@@ -31,7 +31,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper, uuiMarkers.clickable) }>
+        <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper) }>
             {
                 !props.hideShowOnlySelected && <Switch
                     size={ switchSize }
@@ -41,13 +41,6 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                     label={ i18n.pickerInput.showOnlySelectedLabel }
                 />
             }
-            <Switch
-                size={ switchSize }
-                value={ showSelected.value }
-                isDisabled={ !hasSelection }
-                onValueChange={ showSelected.onValueChange }
-                label={ i18n.pickerInput.showOnlySelectedLabel }
-            />
 
             <FlexSpacer/>
 

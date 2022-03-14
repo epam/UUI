@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-docs",
-  "version": "4.5.1",
+  "version": "4.6.0-alpha.1",
   "description": "EPAM UUI Documentation infrastructure",
   "author": "EPAM",
   "license": "MIT",
@@ -11,8 +11,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "4.5.1",
-    "@epam/uui-components": "4.5.1",
+    "@epam/uui-components": "4.6.0-alpha.1",
+    "@epam/uui-core": "4.6.0-alpha.1",
     "@types/classnames": "2.2.6",
     "classnames": "^2.2.6"
   },
@@ -25,7 +25,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
+  "gitHead": "41609f0fcd234b99185dfb83a32a54914795f78c",
   "publishConfig": {
     "directory": "build"
   }

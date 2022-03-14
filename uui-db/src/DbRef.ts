@@ -5,7 +5,7 @@ import { TempIdMap, IClientIdsMap } from './tempIds';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEmpty from 'lodash.isempty';
 import { Loader, LoaderOptions } from './Loader';
-import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui';
+import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { SimpleLoadingTracker } from './SimpleLoadingTracker';
 import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTracker';
 
@@ -46,6 +46,13 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
             this.enqueueSave();
             this.update();
         }
+    }
+
+    public revert() {
+        this.db = this.base;
+        this.errors = [];
+        this.log = this.log.slice(0, this.savedPoint);
+        this.update();
     }
 
     /** Concrete DbRef instances should override and implement their save logic in this method */

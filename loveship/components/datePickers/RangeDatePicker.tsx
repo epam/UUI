@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, EditMode, RangeDatePickerBody } from '../index';
-import { IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui';
+import { IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui-core';
 import cx from 'classnames';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
@@ -54,6 +54,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                 ) }
                 onClick={ props.onClick }
                 onBlur={ this.handleWrapperBlur }
+                ref={ props.ref }
             >
                 <TextInput
                     icon={ systemIcons[this.props.size || '36'].calendar }
@@ -90,7 +91,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onFocus={ () => this.handleFocus('to') }
                     onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
-                    ref={ (el) => this.toTextInput = el } /* to make the first picker to be the target of dropdown */
+                    ref={ this.toTextInput } /* to make the first picker to be the target of dropdown */
                     rawProps={ this.props.rawProps?.to }
                 />
             </div>

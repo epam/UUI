@@ -1,6 +1,6 @@
 import React from 'react';
 import * as css from './Blocker.scss';
-import { withMods } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
 import { Blocker as uuiBlocker, BlockerProps } from '@epam/uui-components';
 import { Spinner } from '../widgets';
 import * as types from '../types';

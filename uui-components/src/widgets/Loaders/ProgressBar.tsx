@@ -1,22 +1,22 @@
-import React from 'react';
-import { IHasCX } from "@epam/uui";
+import * as React from 'react';
 import cx from 'classnames';
+import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as css from './ProgressBar.scss';
 
-export interface IProgressBarProps extends IHasCX {
+export interface IProgressBarProps extends IHasCX, IHasRawProps<HTMLDivElement> {
     progress: number;
     label?: string;
     hideLabel?: boolean;
 }
 
-export const ProgressBar = (props: IProgressBarProps) => {
+export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((props, ref) => {
     const { hideLabel = false, progress, label  } = props;
     const barLabel = label || `${ props.progress || 0 }%`;
 
     return (
-        <div className={ cx(props.cx, css.container) } >
+        <div ref={ ref } className={ cx(props.cx, css.container) } { ...props.rawProps }>
             <div
-                role="progressbar"
+                role='progressbar'
                 className={ cx(css.bar, 'bar') }
                 style={ { width: `${ props.progress || 0 }%` } }
                 aria-valuenow={ progress }
@@ -28,9 +28,7 @@ export const ProgressBar = (props: IProgressBarProps) => {
                     <div className={ cx(css.label, 'label') } >
                         { barLabel }
                     </div>
-                    <div className={ cx(css.label, 'topLabel') }
-                         style={ { clipPath: `inset(0 0 0 ${ props.progress }%)` } }
-                    >
+                    <div className={ cx(css.label, 'topLabel') } style={ { clipPath: `inset(0 0 0 ${ props.progress }%)` } }>
                         { barLabel }
                     </div>
                 </>
@@ -38,4 +36,4 @@ export const ProgressBar = (props: IProgressBarProps) => {
             }
         </div>
     );
-};
+});
