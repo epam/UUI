@@ -35,7 +35,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container fromPicker"
           >
             <div
-              className="uui-datepickerBody-wrapper"
+              className="uui-datepickerBody-wrapper fromPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
@@ -615,7 +615,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
             className="uui-datepicker-container toPicker"
           >
             <div
-              className="uui-datepickerBody-wrapper"
+              className="uui-datepickerBody-wrapper toPicker"
             >
               <div
                 className="container uui-datepickerheader-container"
