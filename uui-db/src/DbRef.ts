@@ -48,6 +48,13 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
         }
     }
 
+    public revert() {
+        this.db = this.base;
+        this.errors = [];
+        this.log = this.log.slice(0, this.savedPoint);
+        this.update();
+    }
+
     /** Concrete DbRef instances should override and implement their save logic in this method */
     protected savePatch(patch: DbPatch<TTables>): Promise<DbSaveResponse<TTables>> {
         return Promise.resolve({ submit: {} });
