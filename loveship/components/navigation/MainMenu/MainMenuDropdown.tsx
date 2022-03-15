@@ -1,37 +1,21 @@
 import React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
 import { DropdownMenuBody } from '../../overlays';
 import { MainMenuButton } from './MainMenuButton';
 import * as css from './MainMenuDropdown.scss';
-
-interface MainMenuDropdownButtonProps extends IDropdownToggler, IHasCaption, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
-
-class MainMenuDropdownButton extends React.Component<MainMenuDropdownButtonProps> {
-    render() {
-        return (
-            <MainMenuButton
-                { ...this.props }
-                cx={ cx(this.props.isOpen && css.open, this.props.cx) }
-                isDropdown
-            />
-        );
-    }
-}
 
 export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {
         return (
             <Dropdown
                 renderTarget={ props => (
-                    <MainMenuDropdownButton
-                        caption={ this.props.caption }
-                        cx={ this.props.cx }
+                    <MainMenuButton
                         { ...props }
+                        caption={ this.props.caption }
+                        cx={ cx(props.isOpen && css.open, this.props.cx) }
                         rawProps={ this.props.rawProps }
                         isLinkActive={ this.props.isLinkActive }
-                        isDropdown
                     />
                     ) }
                 renderBody={ (props) => (
