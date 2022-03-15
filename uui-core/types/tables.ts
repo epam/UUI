@@ -216,3 +216,32 @@ type DatePickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigB
 
 export type FilterConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter>;
+
+export interface ITablePreset<TFilter = Record<string, any>> {
+    name: string;
+    id: number | null;
+    filter: TFilter;
+    isReadonly?: boolean;
+    columnsConfig: ColumnsConfig;
+}
+
+export interface IPresetsApi {
+    activePresetId: number | null;
+    isDefaultPresetActive: boolean;
+    choosePreset(preset: ITablePreset): void;
+    createNewPreset(name: string): void;
+    resetToDefault(): void;
+    hasPresetChanged(preset: ITablePreset): boolean;
+    duplicatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): void;
+    updatePreset(preset: ITablePreset): void;
+}
+
+export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
+    tableState: DataTableState;
+    setTableState(newState: DataTableState): void;
+    setFilter(filter: TFilter): void;
+    setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    presets: ITablePreset<TFilter>[];
+    setPage(page: number): void;
+}

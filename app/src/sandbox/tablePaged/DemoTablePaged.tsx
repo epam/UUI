@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
 import { DataTable, DataTableRow, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataRowProps, DataTableState, LazyDataSourceApi, useLazyDataSource } from "@epam/uui-core";
+import { DataQueryFilter, DataRowOptions, DataRowProps, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "../table/types";
-import { getFilters, mapFilter } from "../table/data";
-import { getColumns } from "../table/columns";
-import { useTableState } from "../table/hooks";
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
+import { getFilters, mapFilter } from "./data";
+import { getColumns } from "./columns";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);

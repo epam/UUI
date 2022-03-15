@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
 import { Presets, FlexRow } from '@epam/uui';
 import { DataTable, DataTableRow } from '@epam/promo';
 import css from './DemoTable.scss';
@@ -8,8 +8,7 @@ import css from './DemoTable.scss';
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
 import { getColumns } from './columns';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, ITablePreset } from './types';
-import { useTableState } from './hooks';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
