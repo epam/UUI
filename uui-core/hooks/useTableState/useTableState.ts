@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
-import { ColumnsConfig, DataColumnProps, DataTableState, getColumnsConfig } from "@epam/uui";
-import { svc } from "../../../services";
-import { ITablePreset, ITableState } from "../types";
-import { isDefaultColumnsConfig, normalizeFilter, parseFilterUrl } from "../helpers";
-import { constants } from "../data";
+import { ColumnsConfig, DataColumnProps, DataTableState, ITablePreset, ITableState } from "../../types";
+import { getColumnsConfig } from "../../helpers";
+import { useUuiContext } from "../../services";
+import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
+import { constants } from "./constants";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
+    const context = useUuiContext();
+    
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
@@ -19,7 +21,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const oldQuery = svc.uuiRouter.getCurrentLink().query;
+        const oldQuery = context.uuiRouter.getCurrentLink().query;
         const parsedFilter = !oldQuery.filter || oldQuery.filter === "undefined"
             ? undefined
             : JSON.parse(decodeURIComponent(oldQuery.filter));
@@ -30,6 +32,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ...newValue,
         }));
 
+        // TODO: should return to the first page on filter's change
         // setTableStateValue(prevValue => ({
         //     ...prevValue,
         //     ...newValue,
@@ -40,7 +43,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         
         if (!isFilterEqual || oldQuery.presetId !== +newValue.presetId) {
             const newQuery = {
-                ...svc.uuiRouter.getCurrentLink().query,
+                ...context.uuiRouter.getCurrentLink().query,
                 filter: encodeURIComponent(JSON.stringify(newValue.filter)),
                 presetId: newValue.presetId,
             };
@@ -48,7 +51,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
                 delete newQuery.presetId;
             }
 
-            svc.uuiRouter.redirect({
+            context.uuiRouter.redirect({
                 pathname: location.pathname,
                 query: newQuery,
             });
@@ -86,7 +89,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         const parsedFilter = parseFilterUrl() as TFilter;
         const hasFilterChanged = !isEqual(parsedFilter, tableStateValue.filter);
 
-        const presetId = +svc.uuiRouter.getCurrentLink().query.presetId;
+        const presetId = +context.uuiRouter.getCurrentLink().query.presetId;
         const activePreset = presets.find((p: ITablePreset) => p.id === presetId);
         const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, tableStateValue.columnsConfig);
 
@@ -106,7 +109,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [location.search]);
 
     const activePresetId = useMemo(() => {
-        const presetId = svc.uuiRouter.getCurrentLink().query?.presetId;
+        const presetId = context.uuiRouter.getCurrentLink().query?.presetId;
         return presetId ? +presetId : undefined;
     }, [location.search]);
 

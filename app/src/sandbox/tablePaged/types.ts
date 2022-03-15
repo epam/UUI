@@ -1,4 +1,4 @@
-import { ColumnsConfig, DataTableState, IDataSource, ITablePreset } from "@epam/uui";
+import { DataTableState, ITablePreset } from "@epam/uui";
 import { Person, PersonGroup, Location } from "@epam/uui-docs";
 
 type PersonTableRecord = Person | PersonGroup | Location;

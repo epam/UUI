@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { IDropdownToggler } from '@epam/uui-core';
+import { IDropdownToggler, ITablePreset } from "@epam/uui-core";
 import { DropdownBodyProps } from '@epam/uui-components';
-import { ITablePreset } from '../types';
 import { Button, Dropdown, TextInput, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, ControlGroup } from '../../';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
 import css from './Preset.scss';
