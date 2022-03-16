@@ -105,88 +105,12 @@
           },
           {
             "object": "text",
-            "text": "\"",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
+            "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\" ",
+            "marks": []
           },
           {
             "object": "text",
-            "text": "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\"",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " my-app\n\n",
+            "text": "my-app\n\n",
             "marks": [
               {
                 "object": "mark",
@@ -245,84 +169,8 @@
           },
           {
             "object": "text",
-            "text": "\"",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "\"",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "color": "rgb(106, 135, 89)",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "box-sizing": "border-box",
-                    "": null
-                  }
-                }
-              }
-            ]
+            "text": "\"https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template\"",
+            "marks": []
           },
           {
             "object": "text",
