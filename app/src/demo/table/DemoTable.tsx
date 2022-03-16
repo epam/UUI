@@ -89,6 +89,7 @@ export const DemoTable: React.FC = () => {
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }
+                    showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
                     { ...personsDataView.getListProps() }

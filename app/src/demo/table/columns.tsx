@@ -19,7 +19,6 @@ export function getColumns<TFilter extends Record<string, any>>(): DataColumnPro
             caption: 'Profile Status',
             render: p => p.profileStatus && <FlexRow>
                 <Badge
-                    cx={ css.status }
                     fill="transparent"
                     color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
                     caption={ p.profileStatus }/>
