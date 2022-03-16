@@ -24,7 +24,6 @@ export default function CitiesTable(props: unknown) {
             getName={ val => val.name }
             selectionMode='multi'
             valueType='id'
-            emptyValue={ null }
             { ...filterLens.prop('country').prop('$in').toProps() }
         />
     ), []);
