@@ -142,7 +142,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-
+        
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -150,6 +150,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.sorting, prevValue.sorting)
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
+            || this.value.page !== prevValue.page
+            || this.value.pageSize !== prevValue.pageSize
         ) {
             this.tree = this.resetTreeItems(this.tree);
             completeReset = true;

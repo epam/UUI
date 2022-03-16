@@ -7,6 +7,8 @@ export interface LazyTreeParams<TItem, TId, TFilter> {
     getId(item: TItem): TId;
     getParentId(item: TItem): TId;
     filter?: TFilter;
+    page?: number;
+    pageSize?: number;
     getChildCount?(item: TItem): number;
     isFolded?: (item: TItem) => boolean;
     fetchStrategy?: LazyTreeFetchStrategy;
@@ -165,6 +167,8 @@ async function loadNodeRec<TItem, TId, TFilter>(
             search: value.search,
             filter,
             range,
+            page: value.page,
+            pageSize: value.pageSize,
         }, requestContext);
 
         const from = (response.from == null) ? range.from : response.from;

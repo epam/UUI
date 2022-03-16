@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui-core';
-import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePickerProps, BaseRangeDatePicker } from '@epam/uui-components';
+import { IDropdownToggler, uuiMod, IHasRawProps, BaseRangeDatePickerProps } from "@epam/uui-core";
+import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
@@ -13,7 +13,7 @@ export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod 
         from?: IHasRawProps<HTMLDivElement>['rawProps'];
         to?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
-    }
+    };
 }
 
 export type InputType = 'from' | 'to';
