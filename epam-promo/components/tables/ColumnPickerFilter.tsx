@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PickerBase, PickerBaseProps, PickerBaseState } from '@epam/uui-components';
-import { DataRowProps, isMobile } from '@epam/uui-core';
+import { PickerBase, PickerBaseState } from '@epam/uui-components';
+import { DataRowProps, isMobile, PickerBaseProps } from '@epam/uui-core';
 import { DataPickerBody, DataPickerFooter, DataPickerRow } from '../pickers';
 import { Text, TextPlaceholder } from '../typography';
 
@@ -54,7 +54,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         }
     }
 
-    render() {;
+    render() {
         const renderedDataRows = this.getRows().map(this.renderRow);
         const maxHeight = isMobile() ? document.documentElement.clientHeight : pickerHeight;
 

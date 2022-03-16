@@ -1,29 +1,16 @@
-import * as React from 'react';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import * as css from './CalendarPresets.scss';
+import * as React from "react";
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue } from "@epam/uui-core";
+import * as css from "./CalendarPresets.scss";
 
 export const uuiPresets = {
-    container: 'uui-presets-container',
-    header: 'uui-presets-header',
-    item: 'uui-presets-item',
+    container: "uui-presets-container",
+    header: "uui-presets-header",
+    item: "uui-presets-item",
 } as const;
 
-interface PresetValue {
-    from: string,
-    to: string,
-    order?: number,
-};
-
-export interface Presets {
-    [key: string]: {
-        name: string,
-        getRange: () => PresetValue,
-    },
-};
-
 export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    presets: Presets;
-    onPresetSet: (nV: PresetValue) => void;
+    presets: RangeDatePickerPresets;
+    onPresetSet: (nV: RangeDatePickerPresetValue) => void;
 }
 
 export class CalendarPresets extends React.Component<CalendarPresetsProps> {
@@ -34,7 +21,7 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
             if (!this.props.presets[key]) return;
             presets.push({
                 ...this.props.presets[key].getRange(),
-                name: this.props.presets[key].name
+                name: this.props.presets[key].name,
             });
         }
 

@@ -1,33 +1,19 @@
-import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import { Placement } from '@popperjs/core';
-import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Presets, Dropdown, valueFormat } from '../../';
-import { IEditable, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, IDropdownToggler,
-    UuiContext, isChildFocusable } from '@epam/uui-core';
+import React from 'react';
+import dayjs from 'dayjs';
+import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat } from '../../';
+import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 dayjs.extend(customParseFormat);
 
-export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IHasCX, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {
-    format?: string;
-    filter?(day: Dayjs): boolean;
-    renderTarget?(props: IDropdownToggler): React.ReactNode;
-    renderFooter?(value: RangeDatePickerValue): React.ReactNode;
-    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
-    presets?: Presets;
-    disableClear?: boolean;
-    placement?: Placement;
-    isHoliday?: (day: Dayjs) => boolean;
-}
 
 interface RangeDatePickerState extends PickerBodyValue<RangeDatePickerValue> {
     isOpen: boolean;
     inputValue: RangeDatePickerValue;
-    inFocus: InputType;
+    inFocus: RangeDatePickerInputType;
 }
 
-export type InputType = 'from' | 'to';
 const defaultValue: RangeDatePickerValue = { from: null, to: null };
 
 const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
@@ -54,7 +40,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     context: UuiContexts;
 
     toTextInput = React.createRef<HTMLInputElement>();
-    inFocus: InputType;
+    inFocus: RangeDatePickerInputType;
 
     state: RangeDatePickerState = {
         isOpen: false,
@@ -86,7 +72,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         }
     }
 
-    valueIsValid(value: string, inputType: InputType) {
+    valueIsValid(value: string, inputType: RangeDatePickerInputType) {
         if (dayjs(value, this.getFormat(), true).isValid()) {
             if (inputType === 'from') {
                 return this.state.inputValue.to ? dayjs(value, this.getFormat(), true).valueOf() <= dayjs(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
@@ -97,11 +83,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return false;
     }
 
-    handleFocus = (inputType: InputType) => {
+    handleFocus = (inputType: RangeDatePickerInputType) => {
         this.toggleOpening(true, inputType);
     }
 
-    handleBlur = (inputType: InputType) => {
+    handleBlur = (inputType: RangeDatePickerInputType) => {
         if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
@@ -119,7 +105,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         this.setState({ ...this.state, inputValue: toCustomDateRangeFormat(value.selectedDate, this.getFormat()), ...value });
     }
 
-    getDisplayedDateOnOpening(focus: InputType) {
+    getDisplayedDateOnOpening(focus: RangeDatePickerInputType) {
         if (this.state.selectedDate?.from && this.state.selectedDate?.to) {
             return dayjs(this.state.selectedDate[focus]);
         } else if (this.state.selectedDate?.from) {
@@ -131,7 +117,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         }
     }
 
-    toggleOpening = (value: boolean, focus?: InputType) => {
+    toggleOpening = (value: boolean, focus?: RangeDatePickerInputType) => {
         this.setState({
             isOpen: value,
             view: 'DAY_SELECTION',
