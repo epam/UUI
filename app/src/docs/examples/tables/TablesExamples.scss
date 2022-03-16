@@ -7,14 +7,6 @@
     flex-direction: column;
 }
 
-.id-column {
-    background-color: $green-lightest;
-}
-
-.name-column {
-    background-color: $blue-lightest;
-}
-
 :global(.uui-table-row) {
     .configItem {
         visibility: hidden;
