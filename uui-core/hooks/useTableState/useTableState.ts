@@ -12,7 +12,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
-        sorting: [{ field: "name" }],
         filter: params.initialFilter ?? parseFilterUrl(),
         columnsConfig: getColumnsConfig(params.columns, {}),
         page: 1,
