@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataQueryFilter, DataColumnProps } from "@epam/uui";
-import {  Person, PersonGroup } from '@epam/uui-docs';
-import { PersonTableRecordId } from './types';
+import { DataColumnProps } from "@epam/uui";
 import * as css from './DemoTable.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
-export function getColumns<TFilter extends Record<string, any>>() {
-    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+export function getColumns<TFilter extends Record<string, any>>(): DataColumnProps[] {
+    return [
         {
             key: 'name',
             caption: "Name",
@@ -56,7 +54,7 @@ export function getColumns<TFilter extends Record<string, any>>() {
         {
             key: 'officeAddress',
             caption: "Office",
-            render: p => <Text cx={ css.office }>{ p.officeAddress }</Text>,
+            render: p => <Text>{ p.officeAddress }</Text>,
             grow: 0,
             shrink: 0,
             width: 150,
@@ -141,18 +139,4 @@ export function getColumns<TFilter extends Record<string, any>>() {
             fix: 'right',
         },
     ];
-
-    const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
-        {
-            key: 'name',
-            caption: "Name",
-            render: p => <FlexRow><Text>{ p.name }</Text><Tag cx={ css.counter } count={ p.count }/></FlexRow>,
-            grow: 1,
-        },
-    ];
-
-    return {
-        personColumns,
-        groupColumns,
-    };
 }

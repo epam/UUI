@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
-import { DataTable, DataTableRow, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataRowProps, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
+import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
+import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
@@ -13,7 +13,7 @@ export const DemoTablePaged: React.FC = () => {
     const columnsSet = useMemo(getColumns, []);
 
     const {tableState, setTableState, setPage} = useTableState({
-        columns: columnsSet.personColumns,
+        columns: columnsSet,
     });
     
     const [totalCount, setTotalCount] = useState(0);
@@ -51,11 +51,6 @@ export const DemoTablePaged: React.FC = () => {
         },
     };
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const columns = (props.isLoading || props.value?.__typename === "Person") ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.rowKey } { ...props } size="36" columns={ columns }/>;
-    };
-
     const viewTableState = useMemo(() => ({
         ...tableState,
         filter: appliedFilter,
@@ -71,9 +66,8 @@ export const DemoTablePaged: React.FC = () => {
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
-                columns={ columnsSet.personColumns }
+                columns={ columnsSet }
                 filters={ filters }
-                renderRow={ renderRow }
                 showColumnsConfig
                 value={ tableState }
                 onValueChange={ setTableState }
