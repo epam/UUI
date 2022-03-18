@@ -60,12 +60,14 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             const cellRect = this.cellRef.current.getBoundingClientRect();
             const newWidth = e.clientX - cellRect.left;
 
-            columnsConfig[this.props.column.key] = {
-                ...columnsConfig[this.props.column.key],
-                width: newWidth
-            };
+            if (newWidth >= (this.props.column.minWidth || 24)) {
+                columnsConfig[this.props.column.key] = {
+                    ...columnsConfig[this.props.column.key],
+                    width: newWidth,
+                };
 
-            this.props.onValueChange({ ...this.props.value, columnsConfig });
+                this.props.onValueChange({ ...this.props.value, columnsConfig });
+            }
 
             e.preventDefault();
         }
