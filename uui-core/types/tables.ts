@@ -18,6 +18,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     key: string;
     caption?: React.ReactNode;
     fix?: 'left' | 'right';
+    width?: number;
     isSortable?: boolean;
     isAlwaysVisible?: boolean;
     isHiddenByDefault?: boolean;
@@ -185,7 +186,7 @@ export type ColumnsConfig = {
 export type IColumnConfig =  {
     isVisible?: boolean;
     order?: string;
-    width?: number | 'auto' | '100%';
+    width?: number;
 };
 
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
