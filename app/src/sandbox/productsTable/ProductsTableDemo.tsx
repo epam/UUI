@@ -1,7 +1,6 @@
 import { DataTable, useForm, NotificationCard, Text } from 'epam-promo';
-import { number } from 'prop-types';
-import React, { useState } from 'react';
-import { DataQueryFilter, DataTableState, useLazyDataSource, useUuiContext, UuiContexts } from 'uui-core';
+import React from 'react';
+import { DataQueryFilter, useLazyDataSource, useTableState, useUuiContext, UuiContexts } from 'uui-core';
 import { Product } from 'uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -22,21 +21,21 @@ export const ProductsTableDemo: React.FC = (props) => {
         )
     });
 
-    const [state, setState] = useState<DataTableState>({});
+    const { tableState, setTableState } = useTableState<any>({ columns: productColumns });
 
     const dataSource = useLazyDataSource<Product, number, DataQueryFilter<Product>>({
         api: svc.api.demo.products,
         getId: i => i.ProductID,
     }, []);
 
-    const dataView = dataSource.useView(state, setState, {});
+    const dataView = dataSource.useView(tableState, setTableState, {});
 
     return <DataTable
         headerTextCase='upper'
         getRows={ dataView.getVisibleRows }
         columns={ productColumns }
-        value={ state }
-        onValueChange={ setState }
+        value={ tableState }
+        onValueChange={ setTableState }
         showColumnsConfig
         allowColumnsResizing
         allowColumnsReordering
