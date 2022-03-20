@@ -2,7 +2,6 @@ import { SortingOption } from "./dataQuery";
 import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { DataColumnProps } from "./tables"; // TBD: remove cyclic dependency?
 
 /** A type of IDs of an item in Data Sources. Restricted to be usable as Set/Map keys.  */
 export type DataSourceItemId = string | number | boolean | null;
