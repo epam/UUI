@@ -66,7 +66,7 @@ describe('useForm', () => {
         });
 
         it('Should start validation on save and keep validation state valid values passed', async () => {
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -119,7 +119,7 @@ describe('useForm', () => {
 
         it('Should return isInvalid as false for 1 or more invalid fields', async () => {
             const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 onError: jest.fn(),
@@ -160,7 +160,7 @@ describe('useForm', () => {
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: testData,
                 onSave: Promise.resolve,
                 beforeLeave: () => Promise.resolve(false),
@@ -211,7 +211,7 @@ describe('useForm', () => {
             expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
         });
 
-        it.skip('Should call beforeLeave after component unmount', async () => {
+        it('Should reset lock after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
             const { result, unmount } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 value: testData,
@@ -224,12 +224,13 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
 
             unmount();
-            expect(beforeLeaveMock).toHaveBeenCalled();
+            const currentLock = testSvc.uuiLocks.getCurrentLock();
+            expect(currentLock).toBeNull();
         });
 
         it('Should store unsaved data to localstorage', async () => {
             const settingsKey = 'form-test';
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: testData,
                 settingsKey,
                 onSave: Promise.resolve,

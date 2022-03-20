@@ -24,7 +24,6 @@ export default function CitiesTable(props: unknown) {
             getName={ val => val.name }
             selectionMode='multi'
             valueType='id'
-            emptyValue={ null }
             { ...filterLens.prop('country').prop('$in').toProps() }
         />
     ), []);
@@ -82,7 +81,7 @@ export default function CitiesTable(props: unknown) {
             key: 'actions',
             render: () => (
                 <Dropdown
-                    renderTarget={ props => <IconButton icon={ MoreIcon } color='gray60' { ...props } /> }
+                    renderTarget={ props => <IconButton icon={ MoreIcon } color='gray60' cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
                     renderBody={ renderMenu }
                     placement='bottom-end'
                 />

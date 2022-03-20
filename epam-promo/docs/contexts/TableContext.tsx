@@ -48,7 +48,7 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
                 key: 'demo_first',
                 caption: 'Demo',
                 render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
-                renderCell: propsCell => <DataTableCell padding='12' isFirstColumn={ true } { ...propsCell } />,
+                renderCell: propsCell => <DataTableCell padding='24' isFirstColumn={ true } { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
                 grow: 0, shrink: 0, width: 200,
@@ -56,7 +56,7 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
             {
                 key: 'name',
                 caption: 'Name',
-                render: item => <Text size={ props.size } color='gray80'>{ item.name }</Text>,
+                render: item => <Text size={ props.size }>{ item.name }</Text>,
                 isSortable: true,
                 grow: 0, minWidth: 170,
             },
@@ -72,7 +72,7 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
             {
                 key: 'phoneNumber',
                 caption: 'Phone Number',
-                render: item => <Text size={ props.size } color='gray80'>{ item.phoneNumber }</Text>,
+                render: item => <Text size={ props.size }>{ item.phoneNumber }</Text>,
                 grow: 1, shrink: 0, width: 150,
             },
             {

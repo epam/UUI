@@ -1,16 +1,18 @@
-import React, { useCallback } from 'react';
-import { Filter } from './Filter';
-import { Accordion } from '@epam/uui';
-import { ITableFilter } from '../../types';
+import React, { useCallback } from "react";
+import { Filter } from "./Filter";
+import { Accordion } from "@epam/promo";
+import { FilterConfig } from "@epam/uui-core";
 
-interface IFiltersProps {
-    filter: Record<string, any>;
-    onFilterChange(newFilter: Record<string, any>): void;
-    filters: ITableFilter[];
+interface IFiltersProps<TFilter extends Record<string, any>> {
+    filter: TFilter;
+    onFilterChange(newFilter: TFilter): void;
+    filters: FilterConfig<TFilter>[];
 }
 
-const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter, filters }) => {
-    const handleChange = useCallback((newFilter: { [key: string]: any[] }) => {
+const FiltersBlockImpl = <TFilter extends Record<string, any>>(props: IFiltersProps<TFilter>) => {
+    const { onFilterChange, filter, filters } = props;
+    
+    const handleChange = useCallback((newFilter: TFilter) => {
         onFilterChange({
             ...filter,
             ...newFilter,
@@ -18,14 +20,14 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
     }, [filter]);
     
     return (
-        <Accordion title='Filters' mode='inline' padding='18'>
+        <Accordion title="Filters" mode="inline" padding="18">
             { filters.map(f => {
                 return (
                     <Filter
                         { ...f }
                         value={ filter }
                         onValueChange={ handleChange }
-                        key={ f.id }
+                        columnKey={ f.columnKey }
                     />
                 );
             }) }
@@ -33,4 +35,4 @@ const FiltersBlockComponent: React.FC<IFiltersProps> = ({ onFilterChange, filter
     );
 };
 
-export const FiltersBlock = React.memo(FiltersBlockComponent);
+export const FiltersBlock = React.memo(FiltersBlockImpl) as typeof FiltersBlockImpl;

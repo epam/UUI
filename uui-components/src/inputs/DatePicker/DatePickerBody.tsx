@@ -8,6 +8,7 @@ import { YearSelection } from './YearSelection';
 import { i18n } from "../../../i18n";
 import { CalendarPresets } from './CalendarPresets';
 import updateLocale from 'dayjs/plugin/updateLocale';
+import { cx } from "@epam/uui-core";
 dayjs.extend(updateLocale);
 
 export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
@@ -67,7 +68,7 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
 
     renderDatePicker = () => {
         return (
-            <div className={ uuiDatePickerBody.wrapper }>
+            <div className={ cx(uuiDatePickerBody.wrapper, this.props.cx) }>
                 <DatePickerHeader
                     value={ this.props.value }
                     onValueChange={ (newValue) => this.props.setDisplayedDateAndView(newValue.displayedDate, newValue.view) }

@@ -10,7 +10,7 @@ describe("FlexSpacer", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it.skip("should be rendered correctly with props", () => {
+    it("should be rendered correctly with props", () => {
         const tree = renderer
             .create(<FlexSpacer
                 estimatedWidth={ 100 }

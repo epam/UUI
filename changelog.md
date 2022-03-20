@@ -1,11 +1,26 @@
-# 4.?.? - ??.??.2022
+# 4.6.0 - 14.03.2022
 
-**Breaking Change**
-* [Tooltip]: the Tooltip target needs to accept ref correctly
-* [Dropdown]: renderTarget now returns a ref, that needs to passed correctly to the target component
-* [DndActor]: ref needs to be passed to the root node in the render prop
-* [RawProps]: checks more strict
-* uui package moved to uui-core, uui-v package moved to uui, uui-core reexported to uui
+**What's New**
+* `@epam/uui` package was moved to the `@epam/uui-core`. We re-export `@epam/uui-core` form `@epam/uui`, so no need to replace imports in your code.
+* Remove deprecated react `findDomNode` usage:
+  * Breaking changes:
+    * [Dropdown]: need to pass `ref` from `renderTarget` callback params to the target node
+    * [DndActor]: need to pass `ref` from `render` callback params to the rendered root node
+    * [Tooltip]: children should accept `ref` prop
+* Stronger types for `rawProps` prop for all components. Now it's accept only `React.HTMLAttributes<T>` and `data-${string}` attributes.
+* [PickerInput], [TextInput]: Added prefix and suffix props
+* [SlateEditor]: added ScrollBars to Editor
+* [NumericInput]: added 'cell' mode
+
+**What’s Fixed**
+* [PickerToggler]: Remove redundant toggler focusing on tag clear
+* [PickerToggler]: If not enought chars clear picker input on blur
+* [PickerInput]: don't close picker in case when you remove search value 
+* [PickerInput]: don't load list on PickerInput mount
+* [NumericInput]: Fixed handling float numbers
+* [Form]: release Lock on form unmount
+* [LazyDataSource]: rework cascade selection logic
+
 
 # 4.5.4 - 10.02.2022
 

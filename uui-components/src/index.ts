@@ -10,4 +10,5 @@ export * from './navigation';
 export * from './RichTextView';
 export * from './pickers';
 export * from './errors';
+export * from './helpers';
 import './assets/styles/index.scss';
