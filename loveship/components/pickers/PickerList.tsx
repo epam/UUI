@@ -15,7 +15,7 @@ import { PickerListItem } from './PickerListItem';
 import { Theme, SizeMod, TextSize } from '../types';
 import { Text } from '../typography';
 
-export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
     theme?: Theme;
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;

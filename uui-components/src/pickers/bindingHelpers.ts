@@ -1,5 +1,4 @@
-import { IEditable, DataSourceState, IDataSource, DataSourceItemId } from '@epam/uui-core';
-import { PickerBaseProps } from "./PickerBase";
+import { IEditable, DataSourceState, IDataSource, PickerBaseProps, DataSourceItemId } from '@epam/uui-core';
 
 export type PickerBindingProps<TItem, TId> =
     (SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>);

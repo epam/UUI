@@ -7,7 +7,7 @@ import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
 
-export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };

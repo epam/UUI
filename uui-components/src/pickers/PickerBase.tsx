@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource,
-    IEditable, IAnalyticableOnChange, DataSourceListProps, DataSourceItemId,
+    IEditable, IAnalyticableOnChange, DataSourceListProps, DataSourceItemId
 } from '@epam/uui-core';
 import { PickerBindingProps } from './bindingHelpers';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';

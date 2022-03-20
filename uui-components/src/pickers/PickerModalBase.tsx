@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { DataSourceItemId, DataSourceState, IEditable, IHasCaption, IModal, Lens } from '@epam/uui-core';
-import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState, PickerFooterProps } from './index';
+import { DataSourceItemId, DataSourceState, IEditable, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { PickerBase, PickerBaseState } from './index';
 
-export interface PickerModalOptions<TItem, TId> {
+export interface PickerModalOptions<TItem, TId extends DataSourceItemId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
     renderFooter?: (props: PickerFooterProps<TItem, TId> & IModal<any>) => React.ReactNode;
     disallowClickOutside?: boolean;
