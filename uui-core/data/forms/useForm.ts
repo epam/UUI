@@ -51,7 +51,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
-    }), [props.value, formState.current.form, formState.current.validationState, formState.current.lastSentForm, formState.current.serverValidationState]);
+    }), []);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
