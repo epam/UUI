@@ -1,7 +1,8 @@
 import { SortingOption } from "./dataQuery";
-import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable } from "./props";
+import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
+import { ILens } from "uui-core/data/lenses/types";
 
 /** A type of IDs of an item in Data Sources. Restricted to be usable as Set/Map keys.  */
 export type DataSourceItemId = string | number | boolean | null;
@@ -159,6 +160,9 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     /** Handles row focusing.
      */
     onFocus?(focusedIndex: number): void;
+
+    /** Lens for editable rows */
+    lens?: ILens<TItem>;
 };
 
 export interface BaseListViewProps<TItem, TId, TFilter> {
@@ -178,7 +182,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
      *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
      */
-     getParentId?(item: TItem): TId;
+    getParentId?(item: TItem): TId;
 
     /**
      * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
@@ -210,9 +214,11 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     cascadeSelection?: boolean;
 
     /**
-     * Disables select all behavior. Default is false.
+     * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
+
+    getRowLens?: (id: TId) => ILens<TItem>;
 }
 
 export type IDataSourceView<TItem, TId, TFilter> = {
@@ -302,6 +308,11 @@ export type LazyDataSourceApi<TItem, TId, TFilter> =
         request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
         context?: LazyDataSourceApiRequestContext<TItem, TId>,
     ) => Promise<LazyDataSourceApiResponse<TItem>>;
+
+
+
+// Array Data Source related
+
 
 export interface IArrayDataSource<TItem, TId extends DataSourceItemId, TFilter> extends IDataSource<TItem, TId, TFilter> {
     byKey: { [key: string]: TreeNode<TItem, TId> };
