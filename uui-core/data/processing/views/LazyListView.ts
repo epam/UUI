@@ -69,7 +69,6 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
     private tree: LazyTree<TItem, TId, TFilter>;
-    private rows: DataRowProps<TItem, TId>[] = [];
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
@@ -115,6 +114,8 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
         this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
         this.props = props;
+
+        this.updateRowValuesAndLenses();
     }
 
     private updateRowsAndLoadMissing(): void {
@@ -129,7 +130,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
         this.isUpdatePending = false;
 
         let completeReset = false;
-        
+
         if (prevValue == null
             || prevProps == null
             || this.tree == null

@@ -28,7 +28,9 @@ export const ProductsTableDemo: React.FC = (props) => {
         getId: i => i.ProductID,
     }, []);
 
-    const dataView = dataSource.useView(tableState, setTableState, {});
+    const dataView = dataSource.useView(tableState, setTableState, {
+        getRowLens: (id) => lens.prop('items').prop(id)
+    });
 
     return <DataTable
         headerTextCase='upper'

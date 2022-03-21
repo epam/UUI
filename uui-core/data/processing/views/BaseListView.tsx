@@ -1,6 +1,7 @@
 import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+    protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -23,6 +24,24 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
         this.updateCheckedLookup(this.value && this.value.checked);
+    }
+
+    protected updateRowValuesAndLenses(): void {
+        if (this.props.getRowLens) {
+            this.rows.filter(row => !row.isLoading).forEach(row => {
+                let lens = this.props.getRowLens(row.id);
+
+                const lensValue = lens.get();
+
+                if (lensValue != null) {
+                    row.value = lensValue; // Lens value exists, and it overrides row's value
+                } else {
+                    lens = lens.default(row.value); // Lens value is missing. Existing row value acts as default of lens
+                }
+
+                row.lens = lens;
+            });
+        }
     }
 
     protected updateCheckedLookup(checked: TId[]) {

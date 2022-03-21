@@ -11,7 +11,6 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 }
 
 export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    visibleRows: DataRowProps<TItem, TId>[] = [];
     props: ArrayListViewProps<TItem, TId, TFilter>;
 
     constructor(
@@ -57,7 +56,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
     }
 
     private updateFocusedItem = () => {
-        this.visibleRows.forEach(row => {
+        this.rows.forEach(row => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
@@ -161,10 +160,10 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
             this.dataSource.maxDepth == 1 ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
-        this.visibleRows = all.rows;
+        this.rows = all.rows;
 
         // A hack to make focus and keyboard navigation work
-        this.visibleRows.forEach((row, index) => {
+        this.rows.forEach((row, index) => {
             row.index = index;
             row.isFocused = this.value.focusedIndex === index;
         });
@@ -224,14 +223,14 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
     }
 
     public getVisibleRows = () => {
-        return this.visibleRows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
+        return this.rows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
     }
 
     public getListProps(): DataSourceListProps {
         return {
-            rowsCount: this.visibleRows.length,
-            knownRowsCount: this.visibleRows.length,
-            exactRowsCount: this.visibleRows.length,
+            rowsCount: this.rows.length,
+            knownRowsCount: this.rows.length,
+            exactRowsCount: this.rows.length,
             totalCount: this.dataSource.nodes.length,
             selectAll: this.selectAll,
         };

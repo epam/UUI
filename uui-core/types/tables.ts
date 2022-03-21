@@ -19,7 +19,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     isHiddenByDefault?: boolean;
     info?: React.ReactNode;
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
-    render?(d: TItem, rowProps: DataRowProps<TItem, TId>): any;
+    render?(item: TItem, rowProps: DataRowProps<TItem, TId>): any;
     renderCell?(props: DataTableCellProps<TItem, TId>): any;
     renderDropdown?(): React.ReactNode;
     renderFilter?(lens: ILens<TFilter>): React.ReactNode;
