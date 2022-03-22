@@ -1,3 +1,11 @@
+# 4.6.1 - 22.03.2022
+
+**What’s Fixed**
+* [MainMenu]: fix 'More' dropdown crashing in loveship
+* [PickerInput]:  fix autofocus on search in loveship
+* [PickerInput]: fix crashing by clicking on'Show only selected' toggle
+* [Table]: fix row width for columns with minWidth value
+
 # 4.6.0 - 14.03.2022
 
 **What's New**
