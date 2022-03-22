@@ -160,7 +160,7 @@ export const slateInitialValue = {
                         "object": "inline",
                         "type": "link",
                         "data": {
-                            "url": "https://git.epam.com/epm-tmc/ui/tree/develop/uui-editor/src/plugins/toDoListPlugin"
+                            "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx"
                         },
                         "nodes": [
                             {
