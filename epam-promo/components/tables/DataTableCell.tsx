@@ -57,6 +57,7 @@ export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProp
         return (
             <FlexCell
                 { ...this.props.column }
+                minWidth={ this.props.column.width }
                 rawProps={ { role: this.props.role } }
                 cx={ cx(
                     css.cell,
