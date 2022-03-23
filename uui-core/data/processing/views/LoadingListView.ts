@@ -37,7 +37,7 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
         };
     }
 
-    getSelectedRows(): any {
+    getSelectedRows: () => any = () => {
         return [];
     }
 
