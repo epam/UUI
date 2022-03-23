@@ -1457,7 +1457,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "renderInput",
@@ -1517,7 +1517,7 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "onClick",
@@ -1606,6 +1606,14 @@
       {
         "name": "mode",
         "value": "form | cell"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/inputs/docs/timePicker.doc.ts": [
@@ -2881,7 +2889,7 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "rawProps",
@@ -2894,6 +2902,14 @@
       {
         "name": "mode",
         "value": "form | cell"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
@@ -5407,7 +5423,7 @@
       },
       {
         "name": "inputCx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "renderInput",
@@ -5467,7 +5483,7 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "onClick",
@@ -5564,6 +5580,14 @@
       {
         "name": "fontSize",
         "value": "18 | 12 | 10 | 14 | 16"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/inputs/docs/timePicker.doc.ts": [
@@ -7351,11 +7375,19 @@
       },
       {
         "name": "cx",
-        "value": "any"
+        "value": "CX"
       },
       {
         "name": "rawProps",
-        "value": "any"
+        "value": "React.HTMLAttributes<T> & Record<string, any>"
+      },
+      {
+        "name": "prefix",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "suffix",
+        "value": "React.ReactNode"
       }
     ],
     "C:/Users/Siarhei_Dzeraviannik/WebstormProjects/UUI/loveship/components/tables/docs/dataTableCell.doc.tsx": [

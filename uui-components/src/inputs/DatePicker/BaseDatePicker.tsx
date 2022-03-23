@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
-    IDropdownToggler, UuiContext, isChildFocusable } from '@epam/uui-core';
+    IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
@@ -10,16 +10,6 @@ import { Dropdown } from '../../';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
-
-export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
-    format: string;
-    filter?(day: Dayjs): boolean;
-    renderTarget?(props: IDropdownToggler): React.ReactNode;
-    iconPosition?: 'left' | 'right';
-    disableClear?: boolean;
-    renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => React.ReactElement<Element>;
-    isHoliday?: (day: Dayjs) => boolean;
-}
 
 interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
@@ -45,7 +35,7 @@ const getStateFromValue = (value: string | null, format: string) => {
     };
 };
 
-export abstract class BaseDatePicker<TProps extends BaseDatePickerProps> extends React.Component<TProps, DatePickerState> {
+export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends React.Component<TProps, DatePickerState> {
     static contextType = UuiContext;
     context: UuiContexts;
 

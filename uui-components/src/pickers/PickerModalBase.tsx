@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IModal, Lens } from '@epam/uui-core';
-import { PickerBase, PickerBaseOptions, PickerBaseProps, PickerBaseState, PickerFooterProps } from './index';
+import { DataSourceState, IEditable, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { PickerBase, PickerBaseState } from './index';
 
 export interface PickerModalOptions<TItem, TId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;

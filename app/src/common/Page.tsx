@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as css from './Page.scss';
 import { cx } from '@epam/uui';
+import { ErrorHandler } from '@epam/promo';
 
 export interface PageProps {
     renderHeader?: () => React.ReactNode;
@@ -15,12 +16,14 @@ export class Page extends React.Component<PageProps, any> {
                 <header>
                     { this.props.renderHeader && this.props.renderHeader() }
                 </header>
-                <main className={ cx(css.content, this.props.contentCx) } >
-                    { this.props.children }
-                </main>
-                <footer>
-                    { this.props.renderFooter && this.props.renderFooter() }
-                </footer>
+                <ErrorHandler >
+                    <main className={ cx(css.content, this.props.contentCx) } >
+                        { this.props.children }
+                    </main>
+                    <footer>
+                        { this.props.renderFooter && this.props.renderFooter() }
+                    </footer>
+                </ErrorHandler>
             </div>
         );
     }

@@ -71,7 +71,7 @@ export class LazyLoadedMap<TKey, TValue> {
             }
         });
 
-        this.runBatch(keys)
+        return this.runBatch(keys)
             .then(result => {
                 result.forEach(entry => {
                     this.set(entry[0], entry[1]);

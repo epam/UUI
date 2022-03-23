@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import cx from 'classnames';
-import { isMobile } from '@epam/uui-core';
-import { PickerFooterProps } from '@epam/uui-components';
+import { isMobile, PickerFooterProps } from "@epam/uui-core";
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';

@@ -16,27 +16,6 @@
     min-width: 0px;
     flex-grow: 1;
 
-    .counter {
-        &:global(.uui-button-box) {
-            background: transparent;
-
-            :global(.uui-count) {
-                background: $gray30;
-                font-family: $font-sans;
-            }
-        }
-    }
-
-    .status {
-        &:global(.uui-button-box) {
-            padding-left: 0;
-
-            :global(.uui-caption) {
-                font-family: $font-sans;
-            }
-        }
-    }
-
     :global(.uui-table-row) {
         .detailed-icon {
             visibility: hidden;
