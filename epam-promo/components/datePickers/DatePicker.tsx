@@ -1,24 +1,15 @@
-import * as React from 'react';
+import React from 'react';
+import css from './DatePicker.scss';
 import { Dayjs } from "dayjs";
-import { cx, IDropdownToggler, uuiMod, IHasRawProps } from '@epam/uui-core';
-import { BaseDatePicker, BaseDatePickerProps } from '@epam/uui-components';
+import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
+import { BaseDatePicker } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
-import * as css from './DatePicker.scss';
 
 const defaultMode = EditMode.FORM;
 
-export interface DatePickerProps extends BaseDatePickerProps, SizeMod, IHasEditMode {
-    format: string;
-    filter?(day: Dayjs): boolean;
-    renderTarget?(props: IDropdownToggler): React.ReactNode;
-    renderFooter?(): React.ReactNode;
-    iconPosition?: 'left' | 'right';
-    disableClear?: boolean;
-    rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
-    };
+export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
+    
 }
 
 export class DatePicker extends BaseDatePicker<DatePickerProps> {
@@ -58,6 +49,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 renderDay={ this.props.renderDay }
                 isHoliday={ this.props.isHoliday }
                 rawProps={ this.props.rawProps?.body }
+                cx={ css.body }
             />
             { this.props.renderFooter?.() }
         </DropdownContainer>;

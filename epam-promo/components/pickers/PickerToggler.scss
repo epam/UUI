@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles' as *;
 
 $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
@@ -8,9 +8,13 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         border-width: $borderWidth;
     }
 
+    :global(.uui-input-prefix),
+    :global(.uui-input-suffix),
     :global(.uui-input) {
         @include text-size($size);
+    }
 
+    :global(.uui-input) {
         @if ($size == 24px) {
             padding-top: 0;
             padding-bottom: 0;
@@ -39,6 +43,16 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     width: 100%;
     box-sizing: border-box;
     border-style: solid;
+
+    :global(.uui-input-prefix) {
+        @include input-prefix();
+        margin-top: -2px;
+    }
+
+    :global(.uui-input-suffix) {
+        @include input-sufix();
+        margin-top: -2px;
+    }
 
     &.mode-form {
         background-color: $white;
@@ -73,6 +87,14 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         background-color: transparent;
         border-color: transparent;
         fill: $gray50;
+
+        :global(.uui-input-prefix) {
+            border-right: none;
+        }
+
+        :global(.uui-input-suffix) {
+            border-left: none;
+        }
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             cursor: pointer;

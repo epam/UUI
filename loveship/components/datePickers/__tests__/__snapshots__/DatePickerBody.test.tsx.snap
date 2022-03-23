@@ -5,7 +5,7 @@ exports[`DatePickerBody should be rendered correctly 1`] = `
   className="uui-datepicker-container root root"
 >
   <div
-    className="uui-datepickerBody-wrapper"
+    className="uui-datepickerBody-wrapper root root"
   >
     <div
       className="container uui-datepickerheader-container"

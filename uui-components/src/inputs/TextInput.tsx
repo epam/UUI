@@ -105,8 +105,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             tabIndex={ -1 }
             { ...props.rawProps }
         >
+            { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }
             { props.iconPosition !== 'right' && icon }
-            { props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() }/> }
+            { props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } /> }
             { props.onAccept && showIconsOnAction && <IconContainer
                 cx={ cx('uui-icon-accept') }
                 isDisabled={ props.isDisabled }
@@ -125,6 +126,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 icon={ props.dropdownIcon }
                 flipY={ props.isOpen }
             /> }
+            { props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{ props.suffix }</span> }
         </div>
     );
 });

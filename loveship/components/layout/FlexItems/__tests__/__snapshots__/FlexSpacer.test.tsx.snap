@@ -9,9 +9,5 @@ exports[`FlexSpacer should be rendered correctly 1`] = `
 exports[`FlexSpacer should be rendered correctly with props 1`] = `
 <div
   className="flexSpacer"
-  collapseToMore={true}
-  estimatedWidth={100}
-  priority={3}
-  showInBurgerMenu={true}
 />
 `;

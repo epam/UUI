@@ -142,7 +142,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-
+        
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -150,6 +150,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.sorting, prevValue.sorting)
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
+            || this.value.page !== prevValue.page
+            || this.value.pageSize !== prevValue.pageSize
         ) {
             this.tree = this.resetTreeItems(this.tree);
             completeReset = true;
@@ -210,12 +212,35 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Wrap props.api to update items in the items store
     private api: LazyDataSourceApi<TItem, TId, TFilter> = async (rq, ctx) => {
+        const cachedItems: TItem[] = [];
+        if (this.cache && rq.ids && rq.ids.length > 0) {
+            const missingIds: TId[] = [];
+            rq.ids.forEach(id => {
+                const cachedItem = this.cache.byId(id, false);
+                if (cachedItem) {
+                    cachedItems.push(cachedItem);
+                } else {
+                    missingIds.push(id);
+                }
+            });
+
+            if (missingIds.length > 0) {
+                rq.ids = missingIds;
+            } else {
+                return { items: cachedItems }
+            }
+        }
+
         const response = await this.props.api(rq, ctx);
+
         if (this.cache && response.items) {
             response.items.forEach(item => {
                 this.cache.setItem(item);
             });
         }
+
+        response.items = [...response.items, ...cachedItems];
+
         return response;
     }
 
