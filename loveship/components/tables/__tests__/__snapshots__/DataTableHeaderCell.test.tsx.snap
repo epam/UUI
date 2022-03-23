@@ -12,7 +12,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
       "flexBasis": "200px",
       "flexGrow": undefined,
       "flexShrink": undefined,
-      "minWidth": 0,
+      "minWidth": "200px",
       "textAlign": undefined,
     }
   }
