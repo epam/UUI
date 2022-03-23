@@ -6,11 +6,11 @@ import * as css from './ScrollBars.scss';
 export interface ScrollbarProps extends IHasCX, Omit<CustomScrollBars.ScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
-};
+}
 
-export interface PositionValues extends CustomScrollBars.positionValues {};
+export interface PositionValues extends CustomScrollBars.positionValues {}
 
-export interface ScrollbarsApi extends Scrollbars {};
+export interface ScrollbarsApi extends Scrollbars {}
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
@@ -21,7 +21,7 @@ enum uuiScrollbars {
     uuiTrackHorizontal = 'uui-track-horizontal',
     uuiShadowTopVisible = 'uui-shadow-top-visible',
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
-};
+}
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style,
@@ -69,7 +69,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
             ) }
             renderView={ renderView }
             renderTrackHorizontal={ props => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
-            renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } />}
+            renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
             renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...style } }
