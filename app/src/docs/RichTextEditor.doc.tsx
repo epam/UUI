@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { BaseDocsBlock, DocExample } from '../common';
 
 export class RichTextEditorDoc extends BaseDocsBlock {
     title = 'Rich Text Editor';
@@ -10,6 +10,10 @@ export class RichTextEditorDoc extends BaseDocsBlock {
             <>
                 <DocExample
                     path='./examples/richTextEditor/Basic.example.tsx'
+                />
+                <DocExample
+                    title='Inner ScrollBars'
+                    path='./examples/richTextEditor/WithInnerScroll.example.tsx'
                 />
             </>
         );
