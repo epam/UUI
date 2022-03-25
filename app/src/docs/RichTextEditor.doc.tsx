@@ -12,7 +12,7 @@ export class RichTextEditorDoc extends BaseDocsBlock {
                     path='./examples/richTextEditor/Basic.example.tsx'
                 />
                 <DocExample
-                    title='Inner ScrollBars'
+                    title='Inner scroll behavior'
                     path='./examples/richTextEditor/WithInnerScroll.example.tsx'
                 />
             </>

@@ -121,7 +121,7 @@ export function getColumns<TFilter extends Record<string, any>>(): DataColumnPro
             key: 'titleLevel',
             caption: 'Track & Level',
             render: p => <Text>{ p.titleLevel }</Text>,
-            grow: 0,
+            grow: 1,
             shrink: 0,
             width: 100,
             isSortable: true,
