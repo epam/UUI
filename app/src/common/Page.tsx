@@ -16,7 +16,7 @@ export class Page extends React.Component<PageProps, any> {
                 <header>
                     { this.props.renderHeader && this.props.renderHeader() }
                 </header>
-                <ErrorHandler >
+                <ErrorHandler cx={ css.errorBlock }>
                     <main className={ cx(css.content, this.props.contentCx) } >
                         { this.props.children }
                     </main>
