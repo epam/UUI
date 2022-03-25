@@ -37,7 +37,7 @@ export function getColumns(filters: ITableFilter[]) {
             key: 'jobTitle',
             caption: "Title",
             render: r => <Text>{ r.jobTitle }</Text>,
-            grow: 1,
+            grow: 0,
             shrink: 0,
             width: 200,
             isSortable: true,
