@@ -6,17 +6,17 @@
     "nodes": [
       {
         "object": "block",
-        "type": "note-warning",
+        "type": "paragraph",
         "data": {},
         "nodes": [
           {
             "object": "text",
-            "text": "Important: To activate the UUI styled scrollbars, when placing a RTE in a container with a limited height, use the ",
+            "text": "You can placed scrollbars into Editor by passing ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "scrollbars",
+            "text": "scrollbars: true",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop with the value true.",
+            "text": " prop. Do not forget to limit editor container height, to make scrolls work.",
             "marks": []
           }
         ]
