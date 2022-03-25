@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Value } from 'slate';
-import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
+import { Panel } from '@epam/promo';
 import { useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
@@ -10,18 +10,12 @@ import {
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
-import * as css from './SlateEditorBasicExample.scss';
 
-type EditorFontSize = '14' | '16';
-type EditorMode = 'form' | 'inline';
-
-export default function SlateEditorBasicExample() {
+export default function WithInnerScrollExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
     const [value, setValue] = useState<Value>(Value.fromJSON(demoData.slateInitialValue));
-    const [isReadonly, setIsReadonly] = useState<boolean>(false);
-    const [mode, setMode] = useState<EditorMode>('form');
-    const [fontSize, setFontSize] = useState<EditorFontSize>('14');
+
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
@@ -62,37 +56,18 @@ export default function SlateEditorBasicExample() {
     ];
 
     return (
-        <Panel cx={ css.root }>
-            <FlexRow spacing='18' vPadding='12'>
-                <MultiSwitch
-                    items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
-                    value={ fontSize }
-                    onValueChange={ (value: EditorFontSize) => setFontSize(value) }
-                    color='blue'
-                />
-                <FlexSpacer />
-                <Switch
-                    value={ mode === 'inline' }
-                    onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') }
-                    label='Inline mode'
-                />
-                <Switch
-                    value={ isReadonly }
-                    onValueChange={ setIsReadonly }
-                    label='View mode'
-                />
-            </FlexRow>
-
+        <Panel rawProps={ { style: { height: '350px' } } }>
             <SlateEditor
                 value={ value }
                 onValueChange={ setValue }
-                isReadonly={ isReadonly }
+                isReadonly={ false }
                 autoFocus={ true }
                 plugins={ plugins }
-                mode={ mode }
+                mode='form'
                 placeholder='Add description'
                 minHeight={ 'none' }
-                fontSize={ fontSize }
+                fontSize='16'
+                scrollbars
             />
         </Panel>
     );
