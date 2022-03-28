@@ -66,7 +66,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
     }
 
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
-        ctx.clearRect(0, 0, window.outerWidth, this.canvasHeight);
+        ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
         this.props.stages.forEach(stage => this.renderStage(ctx, t, stage));
         // render today line on border
         this.renderTodayLine(ctx, t, this.canvasHeight - 2, this.canvasHeight);
