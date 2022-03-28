@@ -1,24 +1,25 @@
 import React, { useCallback, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
 import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
+import { DataQueryFilter, DataRowOptions, DataTableState, FiltersConfig, LazyDataSourceApi, useArrayDataSource, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
-import { getFilters, mapFilter } from "./data";
+import { filterItems, getFilters, mapFilter } from "./data";
 import { getColumns } from "./columns";
+import { DynamicFilters } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(getColumns, []);
 
-    const {tableState, setTableState, setPage} = useTableState({
+    const {tableState, setTableState, setPage, setFilter, setFiltersConfig} = useTableState({
         columns: columnsSet,
     });
     
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
-
+    
     const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async (request, ctx) => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
@@ -60,9 +61,22 @@ export const DemoTablePaged: React.FC = () => {
         isFoldedByDefault: () => true,
         cascadeSelection: true,
     });
-
+    
+    const filtersDataSource = useArrayDataSource({
+        items: filterItems,
+    }, []);
+    
     return (
         <div className={ css.container }>
+            <DynamicFilters
+                dataSource={ filtersDataSource } 
+                filters={ filters }
+                filter={ tableState.filter }
+                onFilterChange={ setFilter }
+                filtersConfig={ tableState.filtersConfig }
+                setFiltersConfig={ setFiltersConfig }
+            />
+            
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }

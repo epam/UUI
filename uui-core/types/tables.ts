@@ -12,6 +12,7 @@ export interface VirtualListState {
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
+    filtersConfig?: FiltersConfig;
     presetId?: number | null;
 }
 
@@ -189,6 +190,15 @@ export type IColumnConfig = {
     width?: number | "auto" | "100%";
 };
 
+export type FiltersConfig = {
+    [key: string]: IFilterConfig;  
+};
+
+export type IFilterConfig = {
+    isVisible: boolean;
+    order: string;
+};
+
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
     getRows(from: number, count: number): DataRowProps<TItem, TId>[];
     columns?: DataColumnProps<TItem, TId>[];
@@ -242,6 +252,7 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setTableState(newState: DataTableState): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    setFiltersConfig(filtersConfig: FiltersConfig): void;
     presets: ITablePreset<TFilter>[];
     setPage(page: number): void;
 }
