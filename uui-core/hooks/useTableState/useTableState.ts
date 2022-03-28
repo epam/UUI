@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
-import { ColumnsConfig, DataColumnProps, DataTableState, ITablePreset, ITableState } from "../../types";
+import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
 import { getColumnsConfig } from "../../helpers";
 import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
@@ -14,6 +14,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         visibleCount: 40,
         filter: params.initialFilter ?? parseFilterUrl(),
         columnsConfig: getColumnsConfig(params.columns, {}),
+        filtersConfig: {},
         page: 1,
         pageSize: 100,
     });
@@ -25,6 +26,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ? undefined
             : JSON.parse(decodeURIComponent(oldQuery.filter));
         const isFilterEqual = isEqual(parsedFilter, newValue.filter);
+        
+        const parsedFiltersConfig = !oldQuery.filtersConfig || oldQuery.filtersConfig === "undefined"
+            ? undefined
+            : JSON.parse(decodeURIComponent(oldQuery.filtersConfig));
+        const isFiltersConfigEqual = isEqual(parsedFiltersConfig, newValue.filtersConfig);
+        console.log(parsedFiltersConfig, newValue.filtersConfig);
 
         setTableStateValue(prevValue => ({
             ...prevValue,
@@ -40,12 +47,16 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         //         : 1,
         // }));
         
-        if (!isFilterEqual || oldQuery.presetId !== +newValue.presetId) {
+        if (!isFilterEqual || !isFiltersConfigEqual || oldQuery.presetId !== +newValue.presetId) {
             const newQuery = {
                 ...context.uuiRouter.getCurrentLink().query,
                 filter: encodeURIComponent(JSON.stringify(newValue.filter)),
                 presetId: newValue.presetId,
             };
+            if (newValue.filtersConfig) {
+                newQuery.filtersConfig = encodeURIComponent(JSON.stringify(newValue.filtersConfig));
+            }
+            
             if (!newValue.presetId) {
                 delete newQuery.presetId;
             }
@@ -61,6 +72,13 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         setTableState({
             ...tableStateValue,
             columnsConfig,
+        });
+    }, [tableStateValue]);
+    
+    const setFiltersConfig = useCallback((filtersConfig: FiltersConfig) => {
+        setTableState({
+            ...tableStateValue,
+            filtersConfig,
         });
     }, [tableStateValue]);
 
@@ -188,6 +206,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         tableState: tableStateValue,
         setTableState,
         setColumnsConfig,
+        setFiltersConfig,
         setFilter,
 
         presets,
