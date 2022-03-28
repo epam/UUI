@@ -5,10 +5,11 @@ import { getColumnsConfig } from "../../helpers";
 import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
 import { constants } from "./constants";
+import { getQueryFromLink } from "./getQueryFromLink";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
-    
+
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
@@ -20,10 +21,11 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
-        const parsedFilter = !oldQuery.filter || oldQuery.filter === "undefined"
+        const query = getQueryFromLink(context.uuiRouter.getCurrentLink());
+
+        const parsedFilter = !query.filter || query.filter === "undefined"
             ? undefined
-            : JSON.parse(decodeURIComponent(oldQuery.filter));
+            : JSON.parse(decodeURIComponent(query.filter));
         const isFilterEqual = isEqual(parsedFilter, newValue.filter);
 
         setTableStateValue(prevValue => ({
@@ -40,7 +42,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         //         : 1,
         // }));
         
-        if (!isFilterEqual || oldQuery.presetId !== +newValue.presetId) {
+        if (!isFilterEqual || query.presetId !== +newValue.presetId) {
             const newQuery = {
                 ...context.uuiRouter.getCurrentLink().query,
                 filter: encodeURIComponent(JSON.stringify(newValue.filter)),
