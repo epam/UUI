@@ -9,7 +9,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
     className="container"
     style={
       Object {
-        "flex": "0 0 96px",
+        "flex": "1 0 96px",
         "minWidth": "96px",
       }
     }
