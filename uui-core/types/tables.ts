@@ -244,5 +244,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     presets: ITablePreset<TFilter>[];
-    setPage(page: number): void;
 }

@@ -16,8 +16,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         visibleCount: 40,
         filter: params.initialFilter ?? parseFilterUrl(),
         columnsConfig: getColumnsConfig(params.columns, {}),
-        page: 1,
-        pageSize: 100,
     });
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
@@ -76,13 +74,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         });
     }, [tableStateValue]);
     
-    const setPage = useCallback((page: number) => {
-        setTableState({
-            ...tableStateValue,
-            page,
-        });
-    }, [tableStateValue]);
-
     useEffect(() => {
         if (presets?.length === 0 && params.initialPresets?.length > 0) {
             setPresets(params.initialPresets);
@@ -205,8 +196,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         duplicatePreset,
         deletePreset,
         updatePreset,
-        
-        setPage,
     };
 };
 

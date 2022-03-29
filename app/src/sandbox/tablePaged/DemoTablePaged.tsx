@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
 import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
 import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
@@ -12,9 +12,13 @@ export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(getColumns, []);
 
-    const {tableState, setTableState, setPage} = useTableState({
+    const {tableState, setTableState} = useTableState({
         columns: columnsSet,
     });
+    
+    useEffect(() => {
+        setTableState({...tableState, page: 1, pageSize: 100});
+    }, []);
     
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
@@ -79,7 +83,7 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer/>
                 <Paginator
                     value={ tableState.page }
-                    onValueChange={ setPage }
+                    onValueChange={ (page: number) => setTableState({...tableState, page}) }
                     totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />
