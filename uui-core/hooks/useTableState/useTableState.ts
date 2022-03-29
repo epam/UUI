@@ -6,6 +6,7 @@ import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
 import { constants } from "./constants";
 import { getQueryFromLink } from "./getQueryFromLink";
+import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
@@ -22,15 +23,17 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const setTableState = useCallback((newValue: DataTableState) => {
         const query = getQueryFromLink(context.uuiRouter.getCurrentLink());
+        const newFilter = normalizeFilter(newValue.filter);
 
         const parsedFilter = !query.filter || query.filter === "undefined"
             ? undefined
             : JSON.parse(decodeURIComponent(query.filter));
-        const isFilterEqual = isEqual(parsedFilter, newValue.filter);
+        const isFilterEqual = isEqual(parsedFilter, newFilter);
 
         setTableStateValue(prevValue => ({
             ...prevValue,
             ...newValue,
+            filter: newFilter,
         }));
 
         // TODO: should return to the first page on filter's change
@@ -45,7 +48,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         if (!isFilterEqual || query.presetId !== +newValue.presetId) {
             const newQuery = {
                 ...context.uuiRouter.getCurrentLink().query,
-                filter: encodeURIComponent(JSON.stringify(newValue.filter)),
+                filter: encodeURIComponent(JSON.stringify(newFilter)),
                 presetId: newValue.presetId,
             };
             if (!newValue.presetId) {
