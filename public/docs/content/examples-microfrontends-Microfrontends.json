@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this demo, we embed the widget, built as a part of this UUI website.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
