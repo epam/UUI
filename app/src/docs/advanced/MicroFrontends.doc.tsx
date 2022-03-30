@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../common';
+import { EditableDocContent, BaseDocsBlock, DocExample } from '../../common';
 
 export class MicroFrontendsDoc extends BaseDocsBlock {
     title = 'Micro-Frontends Support';
@@ -8,6 +8,11 @@ export class MicroFrontendsDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='microfrontends-intro' />
+
+                <DocExample
+                    title='Basic'
+                    path='./examples/microfrontends/MicroFrontends.example.tsx'
+                />
             </>
         );
     }

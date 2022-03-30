@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "TBD!!!!",
+            "text": "UUI has wide support for Micro-Frontends pattern.",
             "marks": []
           }
         ]
@@ -23,7 +23,518 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI Supports both providing and consuming Micro-Frontends. ",
+            "text": "We use two terms to define peers in Micro-Frontends scenario:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Guest - ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "front-end application which is embedded. This can be anything from a small widget, to a complete multi-paged part of an application",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Host - ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "front-end application, which embeds Guests. Note that Hosts and also be Guests, e.g. itself be embedded to another Host.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "A ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Guest ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "is defined a JavaScript file, defining System.js module. The module has to export one or more widgets, which follows this API:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "// TBD: describe exact API here (briefly), add a link to detailed description",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "{",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "  mount(domNode, props),",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "  unmount(domNode)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "  update?(props)",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "}",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item-child",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "A guest, within it's JS code:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "might load other required JS files. E.g. using WebPack async modules, to load only the code required for particular widget. ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "might inject it's CSS code into host's DOM",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "must isolate it's CSS code from host, via:",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "creating a shadowDomNode to not interfere with host's CSS",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "use CSS modules with reliable CSS selector caches, don't use global selectors",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "TBD - router, react portals, modals, etc.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To embed a guest, host must:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "load and execute guest's JS",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "wait for guest's module to be declared (via ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "TBD",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {
+                            "color": "#A72014"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ")",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "get particular widget's API, and call mount/update/unmount.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI provides two helpers:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "For hosts - we provide EmbeddedWidget, which can be used to load and mount a guest",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "For guests - we provide a helper script, to help converting a CRA SPA React App into a valid guest",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI also does a lot internally to work correctly both as Host and Guest.",
             "marks": []
           }
         ]

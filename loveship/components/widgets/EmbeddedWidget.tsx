@@ -65,7 +65,7 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
                 ];
                 Promise.all(loadTasks).then(() => {
                     this.setState({ isLoading: false });
-                    (window as any)[this.props.widgetName](this.widgetNode, this.props.props);
+                    (window as any)[this.props.widgetName].mount(this.widgetNode, this.props.props);
                 });
             });
         });
