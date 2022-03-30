@@ -5,30 +5,33 @@ import { getColumnsConfig } from "../../helpers";
 import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
 import { constants } from "./constants";
+import { getQueryFromLink } from "./getQueryFromLink";
+import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
-    
+
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
         filter: params.initialFilter ?? parseFilterUrl(),
         columnsConfig: getColumnsConfig(params.columns, {}),
-        page: 1,
-        pageSize: 100,
     });
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
-        const parsedFilter = !oldQuery.filter || oldQuery.filter === "undefined"
+        const query = getQueryFromLink(context.uuiRouter.getCurrentLink());
+        const newFilter = normalizeFilter(newValue.filter);
+
+        const parsedFilter = !query.filter || query.filter === "undefined"
             ? undefined
-            : JSON.parse(decodeURIComponent(oldQuery.filter));
-        const isFilterEqual = isEqual(parsedFilter, newValue.filter);
+            : JSON.parse(decodeURIComponent(query.filter));
+        const isFilterEqual = isEqual(parsedFilter, newFilter);
 
         setTableStateValue(prevValue => ({
             ...prevValue,
             ...newValue,
+            filter: newFilter,
         }));
 
         // TODO: should return to the first page on filter's change
@@ -40,10 +43,10 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         //         : 1,
         // }));
         
-        if (!isFilterEqual || oldQuery.presetId !== +newValue.presetId) {
+        if (!isFilterEqual || query.presetId !== +newValue.presetId) {
             const newQuery = {
                 ...context.uuiRouter.getCurrentLink().query,
-                filter: encodeURIComponent(JSON.stringify(newValue.filter)),
+                filter: encodeURIComponent(JSON.stringify(newFilter)),
                 presetId: newValue.presetId,
             };
             if (!newValue.presetId) {
@@ -71,13 +74,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         });
     }, [tableStateValue]);
     
-    const setPage = useCallback((page: number) => {
-        setTableState({
-            ...tableStateValue,
-            page,
-        });
-    }, [tableStateValue]);
-
     useEffect(() => {
         if (presets?.length === 0 && params.initialPresets?.length > 0) {
             setPresets(params.initialPresets);
@@ -200,8 +196,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         duplicatePreset,
         deletePreset,
         updatePreset,
-        
-        setPage,
     };
 };
 

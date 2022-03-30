@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { DataColumnProps, IEditable, ILens, FilterConfig, useUuiContext } from "@epam/uui-core";
 
-export const useColumnsWithFilters = <TFilter extends Record<string, any>>(columns: DataColumnProps[], filters: FilterConfig<TFilter>[] | undefined) => {
-    const columnsRef = useRef(columns);
+export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: FilterConfig<TFilter>[] | undefined) => {
+    const [columns, setColumns] = useState(initialColumns);
     const context = useUuiContext();
     
-    const makeFilterRenderCallback = (key: string) => {
+    const makeFilterRenderCallback = useCallback((key: string) => {
         const filter = filters.find(f => f.columnKey === key);
 
         const Filter = (props: IEditable<any>) => {
@@ -41,21 +41,24 @@ export const useColumnsWithFilters = <TFilter extends Record<string, any>>(colum
             const props = filterLens.prop(filter.field).toProps();
             return <Filter { ...props } />;
         };
-    };
+    }, [filters]);
 
-    if (filters) {
-        const filterKeys = filters.map(f => f.columnKey);
-        columnsRef.current = (columns.map(column => {
-            if (filterKeys.includes(column.key)) {
-                return {
-                    ...column,
-                    renderFilter: makeFilterRenderCallback(column.key),
-                };
-            } else {
-                return column;
-            }
-        }));
-    }
+    useEffect(() => {
+        if (filters) {
+            const filterKeys = filters.map(f => f.columnKey);
+            const newColumns = (initialColumns.map(column => {
+                if (filterKeys.includes(column.key)) {
+                    return {
+                        ...column,
+                        renderFilter: makeFilterRenderCallback(column.key),
+                    };
+                } else {
+                    return column;
+                }
+            }));
+            setColumns(newColumns);
+        }
+    }, [filters, makeFilterRenderCallback]);
     
-    return columnsRef.current;
+    return columns;
 };
