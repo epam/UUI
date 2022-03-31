@@ -36,3 +36,5 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
         </div>
     );
 });
+
+IconContainer.displayName = 'IconContainer';
