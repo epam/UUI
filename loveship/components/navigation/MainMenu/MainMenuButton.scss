@@ -8,15 +8,16 @@
     cursor: pointer;
 
     :global(.uui-caption), :global(.uui-input) {
-        padding-top: 22px;
-        padding-bottom: 22px;
+        padding: 22px 6px;
         line-height: 16px;
-        margin-bottom: -2px;
+        margin-bottom: -3px;
         font-family: $font-sans-semibold;
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {
         min-height: 60px;
+        padding-right: 6px;
+        padding-left: 6px;
     }
 
     :global(.uui-caption) {
@@ -24,24 +25,30 @@
         font-size: 16px;
     }
 
+    :global(.uui-icon) {
+        svg {
+            width: 18px;
+        }
+    }
+
     &.type-primary {
-        @include icon-layout(42px);
-        @include control-horizontal-layout(54px, 0);
+        @include icon-layout(36px);
     }
 
     &.type-secondary {
         @include icon-layout(36px);
-        @include control-horizontal-layout(54px, 0);
     }
 
     &:hover, &:focus {
-        color: $sky;
-        fill: $sky;
+        background-color: $night900;
+        color: $white;
+        fill: $white;
     }
 
     &:global(.uui-active) {
-        border-bottom: 2px solid $sky;
-        color: $sky;
-        fill: $sky;
+        background-color: $night900;
+        border-bottom: 3px solid #008ACE;
+        color: $white;
+        fill: $white;
     }
 }
