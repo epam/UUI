@@ -12,6 +12,7 @@ export const MainMenuButton = withMods<ButtonProps, MainMenuButtonMods & IAdapti
     mods => [
         css.root,
         css['type-' + (mods.type || 'primary')],
+        css.fontSansSemibold,
     ],
     () => ({ dropdownIcon: TriangleIcon }),
 );

@@ -2,7 +2,7 @@
 
 exports[`MainMenuDropdown should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
   href={null}
   onClick={[Function]}
   role="button"
@@ -21,7 +21,7 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
 
 exports[`MainMenuDropdown should be rendered correctly with props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
   href={null}
   onClick={[Function]}
   role="button"

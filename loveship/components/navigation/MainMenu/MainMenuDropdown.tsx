@@ -21,15 +21,20 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                     ) }
                 renderBody={ (props) => (
                     <DropdownMenuBody color='night' inMainMenu>
-                        { React.Children.map(this.props.children, (item: any) => 
-                             !!item && React.createElement(item.type, {
-                                 ...item.props,
-                                 onClick: () => {
-                                     item.props.onClick?.();
-                                     props.onClose();
-                                 },
-                             }),
-                        ) }
+                        { React.Children.map(this.props.children, (item: any) => {
+                            if (!item) {
+                                return item;
+                            }
+                            const itemProps = {
+                                ...item.props,
+                                onClick: () => {
+                                    item.props.onClick && item.props.onClick();
+                                    props.onClose();
+                                },
+                            };
+
+                            return React.createElement(item.type, itemProps);
+                        }) }
                     </DropdownMenuBody>
                 ) }
                 placement='bottom-start'
