@@ -28,7 +28,9 @@ const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
     constructor(props: DocExampleProps) {
         super(props);
+    }
 
+    componentDidMount(): void {
         requireContext(this.props.path).then((module: any) => {
             this.setState({ component: module.default });
         });
@@ -73,7 +75,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             });
         }
     }
-    
+
     private onSwitchValueChange = (val: boolean) => {
         this.setState({ showCode: val });
     }
@@ -120,7 +122,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
                         <IconButton cx={ css.anchor } icon={ AnchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
                     </FlexRow>
-                ) } 
+                ) }
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
 
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>
