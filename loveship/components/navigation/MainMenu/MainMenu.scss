@@ -19,7 +19,7 @@
         border: 2px solid $white;
         border-radius: 5px 5px 0 0;
         border-bottom: 0;
-        font-family: $font-sans-bold;
+        font-family: $font-sans-semibold;
         font-size: 9px;
         text-transform: uppercase;
     }
@@ -32,8 +32,8 @@
 
             &:hover, &:active {
                 background-color: transparent;
-                color: $sky;
-                fill: $sky;
+                color: darkblue;
+                fill: darkblue;
             }
         }
     }
