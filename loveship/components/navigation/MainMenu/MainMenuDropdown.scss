@@ -1,12 +1,10 @@
 @use '../../../assets/styles/scss/index'  as *;
 
-.dropdown-body {
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
+.open {
     background-color: $night900;
 
-    :global(.uui-button-box):hover {
-        background-color: $sky;
+    :global(.uui-caption), :global(.uui-icon) {
+        color: $white;
+        fill: $white;
     }
 }
