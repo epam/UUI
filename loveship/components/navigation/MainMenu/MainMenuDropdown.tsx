@@ -16,7 +16,6 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                         cx={ cx(props.isOpen && css.open, this.props.cx) }
                         rawProps={ this.props.rawProps }
                         isLinkActive={ this.props.isLinkActive }
-                        isDropdown
                     />
                     ) }
                 renderBody={ (props) => (
