@@ -47,7 +47,7 @@
 
     &:global(.uui-active) {
         background-color: $night900;
-        border-bottom: 3px solid #008ACE;
+        border-bottom: 3px solid $sky;
         color: $white;
         fill: $white;
     }
