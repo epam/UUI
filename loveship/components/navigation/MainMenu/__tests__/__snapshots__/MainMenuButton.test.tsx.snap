@@ -2,7 +2,7 @@
 
 exports[`MainMenuButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root type-primary"
+  className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
   href={null}
   onClick={[Function]}
   role="button"
@@ -12,7 +12,7 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
 
 exports[`MainMenuButton should be rendered correctly with props 1`] = `
 <a
-  className="container uui-button-box uui-enabled -clickable root type-primary"
+  className="container uui-button-box uui-enabled -clickable root type-primary fontSansSemibold"
   onClick={[Function]}
   role="link"
   tabIndex={-1}
