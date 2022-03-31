@@ -4,7 +4,6 @@ import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui';
 import { Snackbar, Modals } from '@epam/uui-components';
-import { ErrorHandler } from '@epam/promo';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
