@@ -31,3 +31,5 @@ export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
 
     return React.createElement(svg, { ...svgProps, ref });
 });
+
+Svg.displayName = 'Svg';
