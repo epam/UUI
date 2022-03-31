@@ -93,7 +93,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
         <FlexCell
             { ...this.props.column }
-            minWidth={ this.props.column.width }
+            minWidth={ this.props.column.width || this.props.column.minWidth }
             ref={ ref => {
                 (props.ref as React.RefCallback<HTMLElement>)(ref);
                 (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
