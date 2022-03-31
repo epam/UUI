@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The main component which you need for Drag&Drop is ",
+            "text": "The primary component for Drag&Drop is ",
             "marks": []
           },
           {
@@ -107,7 +107,7 @@
           },
           {
             "object": "text",
-            "text": " to the your component for correct d&d work.",
+            "text": " to your component for correct d&d work.",
             "marks": []
           }
         ]
@@ -119,7 +119,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DragActor can play role of drop destination or drag source or both. You can configure it by ",
+            "text": "DragActor can play role of drop destination, drag source or both. You can configure it by ",
             "marks": []
           },
           {
@@ -223,7 +223,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "When drag started DragActor recalculate ",
+            "text": "When drag started, DragActor recalculates ",
             "marks": []
           },
           {
@@ -255,7 +255,7 @@
           },
           {
             "object": "text",
-            "text": " callback with new values. So you can change your component base on this props. For example, when component is in drag, we use the same DragActor ",
+            "text": " callback with new values. So you can change your component base on this props. When component is dragged, we use the same DragActor ",
             "marks": []
           },
           {
@@ -376,34 +376,6 @@
           {
             "object": "text",
             "text": ". ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "We recommend to use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "getOrderBetween",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " helper to receive new order between two items. This helper return string value between two string, it's avoid problem with JS floating point number.",
             "marks": []
           }
         ]
