@@ -5,7 +5,7 @@ import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, codeBlockPlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
-import { initialValue } from './state';
+import { demoData } from '@epam/uui-docs';
 import * as css from './RichTextEditorDemo.scss';
 
 
@@ -15,7 +15,7 @@ interface SlateEditorBasicExampleState {
 
 export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExampleState> {
     state: SlateEditorBasicExampleState = {
-        value: Value.fromJSON(initialValue),
+        value: Value.fromJSON(demoData.slateInitialValue),
     };
 
     onChange = (value: Value) => {

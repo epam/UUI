@@ -46,6 +46,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "flex": "0 0 96px",
+              "minWidth": "96px",
             }
           }
         >
@@ -101,7 +102,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           className="container"
           style={
             Object {
-              "flex": "1 0 470px",
+              "flex": "2 0 470px",
               "minWidth": "470px",
             }
           }
@@ -161,7 +162,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 "flexBasis": "150px",
                 "flexGrow": undefined,
                 "flexShrink": undefined,
-                "minWidth": "200px",
+                "minWidth": "150px",
                 "textAlign": undefined,
               }
             }
@@ -270,6 +271,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -299,7 +301,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -331,7 +333,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -370,6 +372,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -399,7 +402,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -431,7 +434,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -470,6 +473,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -499,7 +503,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -531,7 +535,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -570,6 +574,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -599,7 +604,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -631,7 +636,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -670,6 +675,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -699,7 +705,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -731,7 +737,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -770,6 +776,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -799,7 +806,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -831,7 +838,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -870,6 +877,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -899,7 +907,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -931,7 +939,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -970,6 +978,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -999,7 +1008,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -1031,7 +1040,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -1070,6 +1079,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -1099,7 +1109,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -1131,7 +1141,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
@@ -1170,6 +1180,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             style={
               Object {
                 "flex": "0 0 96px",
+                "minWidth": "96px",
               }
             }
           >
@@ -1199,7 +1210,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="container"
             style={
               Object {
-                "flex": "1 0 470px",
+                "flex": "2 0 470px",
                 "minWidth": "470px",
               }
             }
@@ -1231,7 +1242,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "minWidth": "200px",
+                  "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }

@@ -79,6 +79,7 @@ interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps
     fontSize?: '14' | '16';
     onKeyDown?: (event: KeyboardEvent, value: Editor['value'] | null) => void;
     onBlur?: (event: FocusEvent, value: Editor['value'] | null) => void;
+    scrollbars?: boolean;
 }
 
 interface SlateEditorState {
@@ -146,6 +147,34 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         return next();
     }
 
+    renderEditor = () => (<>
+        <Editor
+            readOnly={ this.props.isReadonly }
+            className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
+            renderInline={ (pr, ed, next) => next() }
+            onKeyDown={ this.onKeyDown as any }
+            autoFocus={ this.props.autoFocus }
+            plugins={ this.props.plugins }
+            schema={ schema }
+            onFocus={ this.onFocus }
+            onBlur={ this.onBlur }
+            value={ this.props.value || slateEditorEmptyValue }
+            onChange={ this.onChange }
+            style={ { minHeight: this.props.minHeight || 350, padding: '0 23px', overflow: 'hidden' } }
+            ref={ (editor) => this.editor = editor }
+            onPaste={ this.onPaste }
+            spellCheck={ true }
+        />
+        { this.isEmpty() &&
+            (
+                <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
+                    { this.props.placeholder }
+                </div>
+            )
+        }
+        <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
+        <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
+    </>)
 
     render() {
         return (
@@ -156,37 +185,16 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
                     css['mode-' + (this.props.mode || 'form')],
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.isReadonly && uuiMod.readonly,
+                    this.props.scrollbars && css.withScrollbars,
                 ) }
                 { ...this.props.rawProps }
             >
-                <ScrollBars cx={ css.scrollbars }>
-                    <Editor
-                        readOnly={ this.props.isReadonly }
-                        className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
-                        renderInline={ (pr, ed, next) => next() }
-                        onKeyDown={ this.onKeyDown as any }
-                        autoFocus={ this.props.autoFocus }
-                        plugins={ this.props.plugins }
-                        schema={ schema }
-                        onFocus={ this.onFocus }
-                        onBlur={ this.onBlur }
-                        value={ this.props.value || slateEditorEmptyValue }
-                        onChange={ this.onChange }
-                        style={ { minHeight: this.props.minHeight || 350, padding: '0 23px', overflow: 'hidden' } }
-                        ref={ (editor) => this.editor = editor }
-                        onPaste={ this.onPaste }
-                        spellCheck={ true }
-                    />
-                    { this.isEmpty() &&
-                        (
-                            <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
-                                { this.props.placeholder }
-                            </div>
-                        )
-                    }
-                    <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
-                    <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
-                </ScrollBars>
+                { this.props.scrollbars
+                    ? <ScrollBars cx={ css.scrollbars }>
+                        { this.renderEditor() }
+                    </ScrollBars>
+                    : this.renderEditor()
+                }
             </div>
         );
     }

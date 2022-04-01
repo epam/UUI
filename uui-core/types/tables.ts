@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDropdownToggler, IHasCX, FlexCellProps } from './props';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps } from './props';
 import { SortDirection } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
@@ -13,7 +13,8 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends FlexCellProps {
     key: string;
     caption?: React.ReactNode;
-    fix?: "left" | "right";
+    fix?: 'left' | 'right';
+    width?: number;
     isSortable?: boolean;
     isAlwaysVisible?: boolean;
     isHiddenByDefault?: boolean;
@@ -68,10 +69,10 @@ export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
 
-export type IColumnConfig =  {
+export type IColumnConfig = {
     isVisible?: boolean;
     order?: string;
-    width?: number | "auto" | "100%";
+    width?: number;
 };
 
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
@@ -128,5 +129,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     presets: ITablePreset<TFilter>[];
-    setPage(page: number): void;
 }

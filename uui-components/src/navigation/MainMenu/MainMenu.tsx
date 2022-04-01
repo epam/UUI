@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import Measure from 'react-measure';
+import Measure, { MeasuredComponentProps } from 'react-measure';
 import orderBy from 'lodash.orderby';
 import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
 import { ButtonProps } from '../../buttons';
@@ -114,8 +114,8 @@ function isCollapsibleToMore(item: ItemProps) {
     return item.collapseToMore && !!item.caption;
 }
 
-export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
-    constructor(props: MainMenuProps) {
+class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProps, MainMenuState> {
+    constructor(props: MainMenuProps & MeasuredComponentProps) {
         super(props);
 
         this.state = {
@@ -207,6 +207,11 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
         });
     }
 
+    handleRef = (node: HTMLElement) => {
+        this.props.measureRef(node as HTMLElement);
+        (this.props.forwardedRef as React.RefCallback<HTMLElement>)?.(node);
+    }
+
     render() {
         return (
             <Measure bounds>
@@ -295,10 +300,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                     return (
                         <nav
                             key='uuiMainMenu'
-                            ref={ node => {
-                                measureRef(node as HTMLElement);
-                                (this.props.forwardedRef as React.RefCallback<HTMLElement>)?.(node);
-                            } }
+                            ref={ this.handleRef }
                             className={ cx(
                                 this.props.cx,
                                 uuiMainMenu.container,
@@ -317,3 +319,9 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
         );
     }
 }
+
+export const MainMenu: React.FC<MainMenuProps> = (props) => (
+    <Measure bounds>
+        { (measureProps) => <MainMenuImpl { ...props } { ...measureProps } /> }
+    </Measure>
+)

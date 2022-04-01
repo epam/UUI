@@ -68,7 +68,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return { ...object, [key]: value };
     }
 
-    public getSelectedRows(): DataRowProps<TItem, TId>[] {
+    public getSelectedRows: () => DataRowProps<TItem, TId>[] = () => {
         if (this.value.selectedId !== null && this.value.selectedId !== undefined) {
             return [this.getById(this.value.selectedId, 0)];
         } else if (this.value.checked) {
