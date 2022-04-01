@@ -8,7 +8,7 @@ import * as css from './Anchor.scss';
 
 export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
 
-export class Anchor extends ButtonBase<AnchorProps> {
+export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -49,3 +49,9 @@ export class Anchor extends ButtonBase<AnchorProps> {
         }, this.props.children);
     }
 }
+
+export const Anchor = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorProps>(
+    (props, ref) => <AnchorImpl { ...props } forwardedRef={ ref } />
+);
+
+Anchor.displayName = 'Anchor';

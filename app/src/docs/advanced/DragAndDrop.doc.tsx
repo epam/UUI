@@ -13,6 +13,8 @@ export class DragAndDropDoc extends BaseDocsBlock {
                     title='Basic'
                     path='./examples/dnd/Basic.example.tsx'
                 />
+
+                <EditableDocContent fileName='DragAndDrop-stateManagement' />
             </>
         );
     }

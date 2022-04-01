@@ -71,7 +71,7 @@ export class AppHeader extends React.Component {
     renderThemeSwitcher = () => {
         const { theme: thisTheme } = this.state;
         return (
-            <MainMenuCustomElement priority={ 10 } estimatedWidth={ 84 }>
+            <MainMenuCustomElement priority={ 3 } estimatedWidth={ 84 }>
                 <Dropdown
                     renderTarget={ props => (
                         <MainMenuButton
