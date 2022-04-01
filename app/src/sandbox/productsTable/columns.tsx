@@ -29,7 +29,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     {
         key: 'DaysToManufacture',
         caption: 'Days To Manufacture',
-        render: p => <NumericInput value={ p.DaysToManufacture } onValueChange={ () => {} }  min={ 0 } max={ 100500 } />,
+        render: p => <NumericInput mode='cell' value={ p.DaysToManufacture } onValueChange={ () => {} }  min={ 0 } max={ 100500 } />,
         width: 200,
         isSortable: true,
     },
@@ -50,7 +50,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     {
         key: 'ListPrice',
         caption: 'List Price',
-        render: p => <NumericInput value={ p.ListPrice } onValueChange={ () => {} } min={ 0 } max={ 100500 } />,
+        render: p => <NumericInput mode='cell' value={ p.ListPrice } onValueChange={ () => {} } min={ 0 } max={ 100500 } />,
         width: 100,
         isSortable: true,
     },
@@ -99,7 +99,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     {
         key: 'StandardCost',
         caption: 'Standard Cost',
-        render: p => <NumericInput value={ p.StandardCost } onValueChange={ () => {} } min={ 0 } max={ 100500 } />,
+        render: p => <NumericInput mode='cell' value={ p.StandardCost } onValueChange={ () => {} } min={ 0 } max={ 100500 } />,
         width: 150,
         isSortable: true,
     },
