@@ -39,7 +39,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         if (props.autoFocus && !props.disableSearch) {
             handleFocus();
-        };
+        }
 
         return () => window.document.removeEventListener('click', handleActive);
     }, []);
@@ -50,7 +50,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (!shouldFocus) return;
         setInFocus(true);
         inputContainer.current?.focus();
-    }
+    };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onBlur?.(e);
@@ -64,7 +64,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
         if (!shouldCloseOnBlur) return;
         props.toggleDropdownOpening(false);
-    }
+    };
 
     const handleActive = (e: Event) => {
         if (closest((e.target as HTMLElement), toggleContainer.current)) {
@@ -74,7 +74,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
             setIsActive(false);
         }
-    }
+    };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {
@@ -82,7 +82,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             props.onValueChange('');
         }
         e.stopPropagation();
-    }
+    };
 
     const renderItems = () => {
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
@@ -95,7 +95,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         } else {
             return props.selection?.map(row => props.renderItem?.(row));
         }
-    }
+    };
 
     const renderInput = () => {
         const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
@@ -126,7 +126,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             readOnly={ props.isReadonly || props.disableSearch }
             onChange={ e => props.onValueChange?.(e.target.value) }
         />;
-    }
+    };
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled || props.isReadonly) return;
@@ -151,7 +151,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 (!props.isReadonly && !props.isDisabled && isActive) && uuiMod.active,
                 props.cx,
             ) }
-            tabIndex={ inFocus ? -1 : 0 }
+            tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
             onKeyDown={ props.onKeyDown }
@@ -185,6 +185,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             { props.suffix && <span className={ uuiElement.suffixInput }>{ props.suffix }</span> }
         </div>
     );
-};
+}
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;
