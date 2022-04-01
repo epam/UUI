@@ -228,9 +228,9 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
-        if (this.props.isDisabled || this.props.editMode === 'modal') return;
+        if (this.props.isDisabled || this.props.isReadonly || this.props.editMode === 'modal') return;
 
-        if (e.key === 'Enter' && !this.props.isReadonly && !this.state.opened) {
+        if (e.key === 'Enter' && !this.state.opened) {
             return this.toggleDropdownOpening(true);
         }
 
