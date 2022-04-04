@@ -51,6 +51,11 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         )
     );
 
+    const scrollBarsRef = React.useCallback(scrollbars => {
+        if (!scrollbars?.container?.firstChild) return;
+        scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
+    }, []);
+
     return (
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx) }
@@ -66,10 +71,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                     { ...props.rawProps }
                 />
             ) }
-            ref={ scrollbars => {
-                if (!scrollbars?.container?.firstChild) return;
-                scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
-            } }
+            ref={ scrollBarsRef }
         >
             { renderRows() }
         </ScrollBars>

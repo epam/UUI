@@ -54,12 +54,12 @@ export class LazyTree<TItem, TId, TFilter> {
 
     public async loadMissing(
         loadParams: LazyTreeLoadParams<TItem, TId>,
-    value: Readonly<DataSourceState>,
+        value: Readonly<DataSourceState>,
     ): Promise<LazyTree<TItem, TId, TFilter>> {
         let result = await this.loadNodes(loadParams, value);
         result = await result.loadMissingIdsAndParents(value.checked, true);
         return result;
-            }
+    }
 
     public static fromArray<TItem, TId, TFilter>(params: LazyTreeParams<TItem, TId, TFilter>, items: TItem[]) {
         return LazyTree.blank<TItem, TId, TFilter>(params).appendItemsToByIdMaps(items);
@@ -98,7 +98,7 @@ export class LazyTree<TItem, TId, TFilter> {
 
                 if (true) { // TBD: recursive filter check
                     treeItems.push(node);
-                    recursiveCount ++;
+                    recursiveCount++;
 
                     if (node.children) {
                         recursiveCount += node.children.recursiveCount;
@@ -135,10 +135,10 @@ export class LazyTree<TItem, TId, TFilter> {
 
         const apiWithCashing: LazyDataSourceApi<TItem, TId, TFilter> = (req, ctx) => params.api(req, ctx).then(res => {
             newlyLoadedNodes.push(...res.items);
-        return res;
-    });
+            return res;
+        });
 
-    const requiredRowsCount = value.topIndex + value.visibleCount;
+        const requiredRowsCount = value.topIndex + value.visibleCount;
 
         let newRootList = await this.loadNodeRec(
             originalRootList,
@@ -159,14 +159,14 @@ export class LazyTree<TItem, TId, TFilter> {
                 this.byId,
                 this.byParentId,
             );
-    }
+        }
 
         if (newlyLoadedNodes.length > 0) {
             result = result.appendItemsToByIdMaps(newlyLoadedNodes);
         }
 
         return result;
-}
+    }
 
     private appendItemsToByIdMaps(itemsToAdd: TItem[]) {
         if (!itemsToAdd || itemsToAdd.length === 0) {
@@ -200,12 +200,12 @@ export class LazyTree<TItem, TId, TFilter> {
                 }
                 list.push(node);
                 isChanged = true;
-    });
+            });
         }
 
         if (!isChanged) {
             return this;
-    }
+        }
 
         return new LazyTree(
             this.params,
@@ -213,154 +213,152 @@ export class LazyTree<TItem, TId, TFilter> {
             newById,
             newByParentId,
         )
-}
+    }
 
     private async loadNodeRec(
         inputNode: Readonly<LazyTreeList<TItem, TId>>,
         api: LazyDataSourceApi<TItem, TId, TFilter>,
-    parent: Readonly<LazyTreeItem<TItem, TId>>,
+        parent: Readonly<LazyTreeItem<TItem, TId>>,
         loadParams: LazyTreeLoadParams<TItem, TId>,
-    value: Readonly<DataSourceState>,
-    requiredRowsCount: number,
-    parentLoadAll: boolean,
-) {
+        value: Readonly<DataSourceState>,
+        requiredRowsCount: number,
+        parentLoadAll: boolean,
+    ) {
         let node: LazyTreeList<TItem, TId> = inputNode
-        ? { ...inputNode, items: [...inputNode.items] }
-        : { items: [] };
+            ? { ...inputNode, items: [...inputNode.items] }
+            : { items: [] };
 
         const flatten = value.search && this.params.flattenSearchResults;
 
-    // The function should return the same node, if it haven't changed.
-    // I found no good way to do this in pure style, so we just track if there was any change, and return the same node if there's none
-    let isChanged = false;
+        // The function should return the same node, if it haven't changed.
+        // I found no good way to do this in pure style, so we just track if there was any change, and return the same node if there's none
+        let isChanged = false;
 
-    // Selection cascading forces to load all nodes under particular node
-    let loadAll = false;
-    if (parentLoadAll) {
-        loadAll = true;
-        requiredRowsCount = Number.MAX_SAFE_INTEGER;
-    }
+        // Selection cascading forces to load all nodes under particular node
+        let loadAll = false;
+        if (parentLoadAll) {
+            loadAll = true;
+            requiredRowsCount = Number.MAX_SAFE_INTEGER;
+        }
 
-    let missingCount = requiredRowsCount - node.items.length;
+        let missingCount = requiredRowsCount - node.items.length;
 
-    let availableCount = node.count != null ? (node.count - node.items.length) : missingCount;
+        let availableCount = node.count != null ? (node.count - node.items.length) : missingCount;
 
-    const range: LazyDataSourceApiRequestRange = { from: node.items.length };
+        const range: LazyDataSourceApiRequestRange = { from: node.items.length };
 
-    if (!loadAll) {
-        range.count = missingCount;
-    }
+        if (!loadAll) {
+            range.count = missingCount;
+        }
 
-    if (missingCount > 0 && availableCount > 0) {
-        // Need to load additional items in the current layer
-
+        if (missingCount > 0 && availableCount > 0) { // Need to load additional items in the current layer
             let filter = { ...this.params.filter, ...value.filter } as TFilter;
 
-        let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
+            let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
 
-        if (!flatten) {
-            if (parent != null) {
-                requestContext.parentId = parent.id;
-                requestContext.parent = parent.item;
-            } else {
-                requestContext.parentId = null;
-                requestContext.parent = null;
-            }
-        } // in flatten mode, we don't set parent and parentId even for root - as we don't want to limit results to top-level nodes only
+            if (!flatten) {
+                if (parent != null) {
+                    requestContext.parentId = parent.id;
+                    requestContext.parent = parent.item;
+                } else {
+                    requestContext.parentId = null;
+                    requestContext.parent = null;
+                }
+            } // in flatten mode, we don't set parent and parentId even for root - as we don't want to limit results to top-level nodes only
 
             const response = await api({
-            sorting: value.sorting,
-            search: value.search,
-            filter,
-            range,
-            page: value.page,
-            pageSize: value.pageSize,
-        }, requestContext);
+                sorting: value.sorting,
+                search: value.search,
+                filter,
+                range,
+                page: value.page,
+                pageSize: value.pageSize,
+            }, requestContext);
 
-        const from = (response.from == null) ? range.from : response.from;
+            const from = (response.from == null) ? range.from : response.from;
 
-        for (let n = 0; n < response.items.length; n++) {
-            const item = response.items[n];
+            for (let n = 0; n < response.items.length; n++) {
+                const item = response.items[n];
                 const id = this.params.getId(item);
-            node.items[n + from] = { id, item };
-        }
+                node.items[n + from] = { id, item };
+            }
 
-        if (response.count !== null && response.count !== undefined) {
-            node.count = response.count;
-        } else if (response.items.length < missingCount) {
-            node.count = from + response.items.length;
-        }
+            if (response.count !== null && response.count !== undefined) {
+                node.count = response.count;
+            } else if (response.items.length < missingCount) {
+                node.count = from + response.items.length;
+            }
 
-        isChanged = true;
-    }
+            isChanged = true;
+        }
 
         if (!flatten && this.params.getChildCount) {
-        // Load children
+            // Load children
 
-        const childrenPromises: Promise<any>[] = [];
-        let remainingRowsCount = requiredRowsCount;
+            const childrenPromises: Promise<any>[] = [];
+            let remainingRowsCount = requiredRowsCount;
 
-        for (let n = 0; n < node.items.length; n++) {
-            const item = node.items[n];
+            for (let n = 0; n < node.items.length; n++) {
+                const item = node.items[n];
                 let childrenCount = this.params.getChildCount(item.item);
-            let isFoldable = !!childrenCount;
+                let isFoldable = !!childrenCount;
 
-            remainingRowsCount--; // count the row itself
+                remainingRowsCount--; // count the row itself
 
-            if (isFoldable) {
+                if (isFoldable) {
                     let isFolded = loadParams.isFolded(item.item);
 
                     let loadAll = parentLoadAll || (loadParams.loadAllChildren && loadParams.loadAllChildren(item));
 
-                if ((!isFolded && remainingRowsCount > 0) || loadAll) {
+                    if ((!isFolded && remainingRowsCount > 0) || loadAll) {
                         const childUpdatePromise = this.loadNodeRec(item.children, api, item, loadParams, value, remainingRowsCount, loadAll)
-                        .then(updatedChild => {
-                            if (updatedChild !== item.children) {
-                                item.children = updatedChild;
-                                isChanged = true;
-                            }
-                            childrenPromises.splice(childrenPromises.indexOf(childUpdatePromise), 1);
-                        });
+                            .then(updatedChild => {
+                                if (updatedChild !== item.children) {
+                                    item.children = updatedChild;
+                                    isChanged = true;
+                                }
+                                childrenPromises.splice(childrenPromises.indexOf(childUpdatePromise), 1);
+                            });
 
-                    childrenPromises.push(childUpdatePromise);
+                        childrenPromises.push(childUpdatePromise);
 
                         if (loadParams.fetchStrategy == 'sequential') {
-                        await childUpdatePromise;
-                    }
+                            await childUpdatePromise;
+                        }
 
-                    if (item.children?.recursiveCount != null) {
-                        // We loaded all children recursively, so we know exact count
-                        remainingRowsCount -= item.children.recursiveCount;
-                    } else {
-                        // Children are loading, we can only safely assume there was at least childrenCount rows (which is not recursive count)
-                        remainingRowsCount -= childrenCount;
+                        if (item.children?.recursiveCount != null) {
+                            // We loaded all children recursively, so we know exact count
+                            remainingRowsCount -= item.children.recursiveCount;
+                        } else {
+                            // Children are loading, we can only safely assume there was at least childrenCount rows (which is not recursive count)
+                            remainingRowsCount -= childrenCount;
+                        }
                     }
                 }
             }
+
+            await Promise.all(childrenPromises);
         }
 
-        await Promise.all(childrenPromises);
-    }
+        let recursiveCount = node.count != null ? node.count : node.items.length;
 
-    let recursiveCount = node.count != null ? node.count : node.items.length;
-
-    for (let n = 0; n < node.items.length; n++) {
-        const item = node.items[n];
-        if (item.children && item.children.recursiveCount != null) {
-            recursiveCount += item.children.recursiveCount;
+        for (let n = 0; n < node.items.length; n++) {
+            const item = node.items[n];
+            if (item.children && item.children.recursiveCount != null) {
+                recursiveCount += item.children.recursiveCount;
+            }
         }
-    }
 
-    if (node.recursiveCount !== recursiveCount) {
-        node.recursiveCount = recursiveCount;
-        isChanged = true;
-    }
+        if (node.recursiveCount !== recursiveCount) {
+            node.recursiveCount = recursiveCount;
+            isChanged = true;
+        }
 
-    if (isChanged) {
-        return node;
-    } else {
-        return inputNode;
-    }
+        if (isChanged) {
+            return node;
+        } else {
+            return inputNode;
+        }
     }
 
     private async loadMissingIdsAndParents(
@@ -369,7 +367,7 @@ export class LazyTree<TItem, TId, TFilter> {
     ): Promise<LazyTree<TItem, TId, TFilter>> {
         let result: LazyTree<TItem, TId, TFilter> = this;
         let iteration = 0;
-        while(true) {
+        while (true) {
             let missingIds = new Set<TId>();
 
             if (idsToLoad && idsToLoad.length > 0) {
