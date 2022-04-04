@@ -42,8 +42,9 @@ export const i18n = {
     tables: {
         columnsConfigurationModal: {
             applyButton: 'Apply',
-            checkAllButton: 'CHECK ALL',
-            uncheckAllButton: 'UNCHECK ALL',
+            cancelButton: 'Cancel',
+            checkAllButton: 'Check All',
+            uncheckAllButton: 'Uncheck All',
             configureColumnsTitle: 'Configure columns',
             resetToDefaultButton: 'Reset to Default',
         },
