@@ -13,6 +13,7 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('mode', { examples: ["form", "cell"] })
     .prop('align', { examples: ["left", "right"] })
     .prop('disableArrows', { examples: [true, false] })
+    .prop('isInvalid', { examples: [true] })
     .withContexts(DefaultContext, FormContext, TableContext);
 
 export = NumericInputDoc;
