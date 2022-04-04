@@ -24,7 +24,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 > If you want to ask a question, we assume that you have read the available [Documentation](https://uui.epam.com/documents?id=gettingStarted).
 
-Before you ask a question, it is best to search for existing [Issues](https://github.com/epam/UUI/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
+Before you ask a question, it is best to search for existing [Issues](https://github.com/epam/UUI/issues) or [discussions](https://github.com/epam/UUI/discussions) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
 If you then still feel the need to ask a question and need clarification, we recommend the following:
 
