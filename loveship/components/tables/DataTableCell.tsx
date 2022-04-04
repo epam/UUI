@@ -9,9 +9,7 @@ import * as css from './DataTableCell.scss';
 export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProps<TItem, TId> & DataTableCellMods> {
     hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);
 
-    isDraggable = () => {
-        return !!this.props.rowProps?.dnd?.srcData;
-    }
+    isDraggable = () => !!this.props.rowProps?.dnd?.srcData;
 
     getContent = () => {
         const row = this.props.rowProps;

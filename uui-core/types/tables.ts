@@ -61,6 +61,8 @@ export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
     rowProps: DataTableRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index?: number;
+    isFirstColumn: boolean;
+    isLastColumn: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
