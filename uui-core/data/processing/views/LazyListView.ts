@@ -402,10 +402,6 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             }
 
             const isAnyChildren = layerRows.some(r => r.isFoldable);
-            /*
-                ? layerRows.some(r => r.isFoldable)
-                : (parents.length === 0 && this.props.getChildCount != null); // if there's no rows - guess that there will be children on 1st layer, if getChildCount is passed
-                */
             const indent = isAnyChildren ? (parents.length + 1) : parents.length;
             layerRows.forEach(r => r.indent = indent);
 
@@ -599,9 +595,17 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             rowsCount = this.rows.length;
             exactRowsCount = this.rows.length;
             totalCount = rootList.recursiveCount;
-        }  else {
-            // We definitely have more rows to show below the last visible row. Let's tell that we have at least one more than is visible.
-            rowsCount = Math.max(this.rows.length, lastVisibleIndex + 1);
+        } else {
+            // We definitely have more rows to show below the last visible row.
+            // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
+            // We have to balance this number.
+            // To big - would make scrollbar size to shrink when we hit bottom
+            // To small - and VirtualList will re-request rows until it will fill it's last block.
+            // So, it should be at least greater than VirtualList block size (default is 20)
+            // Probably, we'll move this const to props later if needed;
+            const rowsToAddBelowLastKnown = 20;
+
+            rowsCount = Math.max(this.rows.length, lastVisibleIndex + rowsToAddBelowLastKnown);
         }
 
         return {

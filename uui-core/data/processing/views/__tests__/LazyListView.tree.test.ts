@@ -111,7 +111,7 @@ describe('LazyListView', () => {
             { isLoading: true, depth: 1, indent: 1 },
             { id: 200, depth: 0, indent: 1 },
             { id: 300, depth: 0, indent: 1 },
-        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
+        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
 
         await delay();
 
@@ -135,7 +135,7 @@ describe('LazyListView', () => {
             { isLoading: true, depth: 2, indent: 2 },
             { isLoading: true, depth: 2, indent: 2 },
             { id: 200, depth: 0, indent: 1 },
-        ], 7);
+        ]);
 
         await delay();
 
@@ -146,7 +146,7 @@ describe('LazyListView', () => {
             { id: 121, depth: 2, indent: 2, isFoldable: false },
             { id: 122, depth: 2, indent: 2, isFoldable: false },
             { id: 200, depth: 0, indent: 1 },
-        ], 7);
+        ]);
 
         // Scroll down to bottom
         value.topIndex = 5;

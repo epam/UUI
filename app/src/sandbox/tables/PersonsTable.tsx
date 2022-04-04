@@ -19,7 +19,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
     const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
-    const { exactRowsCount, totalCount } = props.view.getListProps();
+    const { rowsCount } = props.view.getListProps();
 
     const renderRow = (props: DataTableRowProps<PersonTableRecord, string>) => {
         const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
@@ -60,7 +60,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
-            { props.view.getListProps().exactRowsCount !== 0 && (
+            { props.view.getListProps().rowsCount !== 0 && (
                 <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
                         ref={ listContainerRef }
@@ -86,14 +86,14 @@ export const PersonsTable = (props: PersonsTableProps) => {
             value={ props.value }
             onValueChange={ props.onValueChange }
             rows={ getRows() }
-            rowsCount={ exactRowsCount }
+            rowsCount={ rowsCount }
             focusedIndex={ props.value?.focusedIndex }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': personColumns.length,
-                'aria-rowcount': totalCount,
+                'aria-rowcount': rowsCount,
             } }
         />
     );
