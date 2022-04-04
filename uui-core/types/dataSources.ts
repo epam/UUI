@@ -77,7 +77,7 @@ export interface DataRowOptions<TItem, TId> extends IDisableable {
  *
  * DataSources primary job is to convert various data stores into arrays of DataRowProps.
  */
-export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId> & {
+export type DataRowProps<TItem, TId> = FlexRowProps & ICanBeInvalid & DataRowOptions<TItem, TId> & {
     /** ID of the TItem rows displays */
     id: TId;
 
