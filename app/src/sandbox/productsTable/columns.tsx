@@ -1,4 +1,4 @@
-import { Text, Checkbox, DatePicker, NumericInput, TextInput } from "epam-promo";
+import { Text, Checkbox, DatePicker, NumericInput, TextInput, DataTableCell } from "epam-promo";
 import React from "react";
 import { DataColumnProps, DataQueryFilter } from "uui-core";
 import { Product } from "uui-docs";
@@ -7,7 +7,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     {
         key: 'Name',
         caption: 'Name',
-        render: (item, rowProps) => <TextInput mode='cell' { ...rowProps.lens.prop('Name').toProps() } />,
+        render: (item, { lens }) => <TextInput mode='cell' { ...lens.prop('Name').toProps() } />,
+        //renderCell: (props) => <DataTableCell {...props } padding='0'  />,
         width: 200,
         fix: 'left',
         isSortable: true,
@@ -28,8 +29,14 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
     },
     {
         key: 'DaysToManufacture',
+        textAlign: 'right',
         caption: 'Days To Manufacture',
-        render: p => <NumericInput mode='cell' value={ p.DaysToManufacture } onValueChange={ () => {} }  min={ 0 } max={ 100500 } />,
+        render: (p, { lens }) => <NumericInput mode='cell' { ...lens.prop('DaysToManufacture').toProps() } min={ 0 } max={ 100500 } />,
+        renderCell: (props) => <DataTableCell
+            { ...props }
+            //{ ...props.rowProps.lens.prop('DaysToManufacture').toProps() }
+            padding='0'
+        />,
         width: 200,
         isSortable: true,
     },
