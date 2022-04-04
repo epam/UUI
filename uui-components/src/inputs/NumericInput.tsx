@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
-    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from '@epam/uui-core';
+    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, uuiMarkers } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
@@ -122,6 +122,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
+                    (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                     this.props.cx,
                 ) }
                 onClick={ this.props.onClick }
