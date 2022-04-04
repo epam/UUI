@@ -31,10 +31,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             this.rows.filter(row => !row.isLoading).forEach(row => {
                 let lens = this.props.getRowLens(row.id);
 
-                const lensValue = lens.get();
+                const lensProps = lens.toProps();
 
-                if (lensValue != null) {
-                    row.value = lensValue; // Lens value exists, and it overrides row's value
+                if (lensProps.value != null) {
+                    row.value = lensProps.value; // Lens value exists, and it overrides row's value
+                    row.isInvalid = lensProps.isInvalid;
+                    row.validationMessage = lensProps.validationMessage;
+                    row.validationProps = lensProps.validationProps;
                 } else {
                     lens = lens.default(row.value); // Lens value is missing. Existing row value acts as default of lens
                 }
