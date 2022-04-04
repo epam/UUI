@@ -21,32 +21,30 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
 }
 
 export class DatePicker extends BaseDatePicker<DatePickerProps> {
-    renderInput = ({ ref, ...props }: IDropdownToggler) => {
+    renderInput = (props: IDropdownToggler) => {
         return (
-            <div ref={ ref }>
-                <TextInput
-                    { ...props }
-                    onClick={ null }
-                    isDropdown={ false }
-                    cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
-                    icon={ systemIcons[this.props.size || '36'].calendar }
-                    iconPosition={ this.props.iconPosition || 'left' }
-                    placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
-                    size={ this.props.size || '36' }
-                    lineHeight={ this.props.lineHeight }
-                    fontSize={ this.props.fontSize }
-                    mode={ this.props.mode || 'form' }
-                    value={ this.state.inputValue }
-                    onValueChange={ this.handleInputChange }
-                    onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
-                    isInvalid={ this.props.isInvalid }
-                    isDisabled={ this.props.isDisabled }
-                    isReadonly={ this.props.isReadonly }
-                    onFocus={ this.handleFocus }
-                    onBlur={ this.handleBlur }
-                    rawProps={ this.props.rawProps?.input }
-                />
-            </div>
+            <TextInput
+                { ...props }
+                onClick={ null }
+                isDropdown={ false }
+                cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
+                icon={ systemIcons[this.props.size || '36'].calendar }
+                iconPosition={ this.props.iconPosition || 'left' }
+                placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
+                size={ this.props.size || '36' }
+                lineHeight={ this.props.lineHeight }
+                fontSize={ this.props.fontSize }
+                mode={ this.props.mode || 'form' }
+                value={ this.state.inputValue }
+                onValueChange={ this.handleInputChange }
+                onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
+                isInvalid={ this.props.isInvalid }
+                isDisabled={ this.props.isDisabled }
+                isReadonly={ this.props.isReadonly }
+                onFocus={ this.handleFocus }
+                onBlur={ this.handleBlur }
+                rawProps={ this.props.rawProps?.input }
+            />
         );
     }
 
