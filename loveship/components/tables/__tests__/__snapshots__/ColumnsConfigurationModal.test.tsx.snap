@@ -389,7 +389,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </button>
           <button
-            className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
+            className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -402,7 +402,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </button>
           <button
-            className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLinkButton"
+            className="container uui-button-box uui-enabled -clickable root size-36 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon"
             href={null}
             onClick={[Function]}
             role="button"
