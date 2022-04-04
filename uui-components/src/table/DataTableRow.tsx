@@ -12,13 +12,18 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
         return !isEqual(this.props, nextProps);
     }
 
-    renderCell = (columnProps: DataColumnProps<TItem, TId>, idx: number) => {
-        const renderCellCallback = columnProps.renderCell || this.props.renderCell;
-        return renderCellCallback?.({ column: columnProps, rowProps: this.props, index: idx, role: 'cell' });
-    }
-
-    renderCellContent(columnProps: DataColumnProps<TItem, TId>, rowProps: DataRowProps<TItem, TId>) {
-        return columnProps.render(this.props.value, rowProps);
+    renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+        const renderCellCallback = column.renderCell || this.props.renderCell;
+        const isFirstColumn = idx === 0;
+        const isLastColumn = !this.props.columns || idx === this.props.columns.length - 1;
+        return renderCellCallback?.({
+            column,
+            rowProps: this.props,
+            index: idx,
+            role: 'cell',
+            isFirstColumn,
+            isLastColumn
+        });
     }
 
     renderRow(params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) {

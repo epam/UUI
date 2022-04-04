@@ -10,16 +10,12 @@ import { DropMarker } from '../dnd';
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
-    const isFirstColumn = props.index === 0;
-    const isLastColumn = !props.rowProps.columns || props.index === props.rowProps.columns.length - 1;
     return <DataTableCell
         key={ props.column.key }
         size={ mods.size }
         role="cell"
         padding={ mods.padding }
         { ...props }
-        isFirstColumn={ isFirstColumn }
-        isLastColumn={ isLastColumn }
     />;
 };
 
