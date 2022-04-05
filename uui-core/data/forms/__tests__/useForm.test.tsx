@@ -172,6 +172,7 @@ describe('useForm', () => {
 
             act(() => result.current.undo());
             expect(result.current.value.dummy).toBe(testData['dummy']);
+            expect(result.current.isChanged).toBe(false);
 
             act(() => result.current.redo());
             expect(result.current.value.dummy).toBe('hi');
@@ -193,6 +194,73 @@ describe('useForm', () => {
             act(() => result.current.revert());
             expect(result.current.value.dummy).toBe(testData.dummy);
             expect(result.current.isChanged).toBe(false);
+        });
+
+        it('Should revert to the last saved value', async () => {
+            const props: UseFormProps<IFoo> = {
+                value: testData,
+                onSave: async (value) => {
+                    props.value = value;
+                },
+                beforeLeave: () => Promise.resolve(false),
+                getMetadata: () => testMetadata,
+            }
+
+            const { result, rerender } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(
+                () => useForm<IFoo>(props)
+            );
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.value.dummy).toBe('hi');
+
+            await act(() => result.current.save());
+            rerender(props);
+
+            act(() => result.current.lens.prop('dummy').set('hi again'));
+
+            act(() => result.current.revert());
+            expect(result.current.value.dummy).toBe('hi');
+            expect(result.current.isChanged).toBe(false);
+        });
+
+        it('Should clear undo buffer after save', async () => {
+            const props: UseFormProps<IFoo> = {
+                value: testData,
+                onSave: async (value) => {
+                    props.value = value;
+                },
+                beforeLeave: () => Promise.resolve(false),
+                getMetadata: () => testMetadata,
+            }
+
+            const { result, rerender } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(
+                () => useForm<IFoo>(props)
+            );
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            await act(() => result.current.save());
+            rerender(props);
+            expect(result.current.isChanged).toBe(false);
+            expect(result.current.canUndo).toBe(false);
+            expect(result.current.canRedo).toBe(false);
+
+            act(() => result.current.lens.prop('dummy').set('hi again'));
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.canUndo).toBe(true);
+            expect(result.current.canRedo).toBe(false);
+
+            act(() => result.current.undo());
+            expect(result.current.isChanged).toBe(false);
+            expect(result.current.canUndo).toBe(false);
+            expect(result.current.canRedo).toBe(true);
+            expect(result.current.value.dummy).toBe('hi');
+
+            act(() => result.current.redo());
+            expect(result.current.isChanged).toBe(true)
+            expect(result.current.canUndo).toBe(true);
+            expect(result.current.canRedo).toBe(false);
+            expect(result.current.value.dummy).toBe('hi again');
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
