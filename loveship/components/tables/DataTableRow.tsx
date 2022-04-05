@@ -11,7 +11,6 @@ import { DropMarker } from '../dnd';
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
     return <DataTableCell
-        key={ props.column.key }
         size={ mods.size }
         role="cell"
         padding={ mods.padding }

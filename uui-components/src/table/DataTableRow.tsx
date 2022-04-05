@@ -33,6 +33,7 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
         const isFirstColumn = idx === 0;
         const isLastColumn = !this.props.columns || idx === this.props.columns.length - 1;
         return renderCellCallback?.({
+            key: column.key,
             column,
             rowProps: this.props,
             index: idx,

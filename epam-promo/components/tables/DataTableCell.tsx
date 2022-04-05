@@ -17,12 +17,12 @@ export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProp
         const row = this.props.rowProps;
         const additionalItemSize = +this.props.size < 30 ? '12' : '18';
         const cellContent = row.isLoading
-            ? <Text size={ this.props.size != '60' ? this.props.size : '48' }><TextPlaceholder /></Text>
+            ? <Text key='t' size={ this.props.size != '60' ? this.props.size : '48' }><TextPlaceholder /></Text>
             : this.props.column.render(this.props.rowProps.value, this.props.rowProps);
 
         return (
             <>
-                { this.props.isFirstColumn && this.isDraggable() && <DragHandle cx={ css.dragHandle } /> }
+                { this.props.isFirstColumn && this.isDraggable() && <DragHandle key='dh' cx={ css.dragHandle } /> }
                 { this.props.isFirstColumn && row?.checkbox?.isVisible && <Checkbox
                     key='cb'
                     cx={ css.checkbox }
