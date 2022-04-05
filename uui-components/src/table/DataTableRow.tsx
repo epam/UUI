@@ -9,7 +9,23 @@ const uuiDataTableRow = {
 
 export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem, TId>> {
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
-        return !isEqual(this.props, nextProps);
+        const isDeepEqual = isEqual(this.props, nextProps);
+
+        // Debug code to find props differences. Please don't remove, and keep commented out
+        //
+        // const shallowDiffKeys = [];
+        // const compareDeep = (a: any, b: any, prefix = "") => {
+        //     const keys = Object.keys({ ...a, ...b });
+        //     keys.forEach(key => {
+        //         if (a[key] !== b[key]) {
+        //             shallowDiffKeys.push(prefix + key);
+        //             compareDeep(a[key], b[key], prefix + key + '.');
+        //         }
+        //     });
+        // }
+        // compareDeep(this.props, nextProps);
+
+        return !isDeepEqual;
     }
 
     renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
