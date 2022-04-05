@@ -13,7 +13,6 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
             { ...props }
             size={ mods.size }
             textCase={ mods.textCase || 'normal' }
-            key={ props.column.key }
         />,
         renderConfigButton: () => <IconButton
             key='configuration'

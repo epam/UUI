@@ -27,6 +27,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
+    key: string;
     column: DataColumnProps<TItem, TId>;
     isFirstColumn: boolean;
     isLastColumn: boolean;
@@ -58,6 +59,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
 }
 
 export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
+    key: string;
     rowProps: DataTableRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index?: number;

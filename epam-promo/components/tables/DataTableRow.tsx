@@ -11,7 +11,6 @@ import * as css from './DataTableRow.scss';
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
     return <DataTableCell
-        key={ props.column.key }
         size={ mods.size }
         { ...props }
         role="cell"
