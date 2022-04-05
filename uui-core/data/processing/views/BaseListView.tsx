@@ -30,19 +30,16 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (this.props.getRowLens) {
             this.rows.filter(row => !row.isLoading).forEach(row => {
                 let lens = this.props.getRowLens(row.id);
+                lens = lens.default(row.value);
+
+                row.lens = lens;
 
                 const lensProps = lens.toProps();
 
-                if (lensProps.value != null) {
-                    row.value = lensProps.value; // Lens value exists, and it overrides row's value
-                    row.isInvalid = lensProps.isInvalid;
-                    row.validationMessage = lensProps.validationMessage;
-                    row.validationProps = lensProps.validationProps;
-                } else {
-                    lens = lens.default(row.value); // Lens value is missing. Existing row value acts as default of lens
-                }
-
-                row.lens = lens;
+                (row as any).changedValue = lensProps.value; // Temp hack to overcome shouldComponentUpdate in DataTableRow
+                row.isInvalid = lensProps.isInvalid;
+                row.validationMessage = lensProps.validationMessage;
+                row.validationProps = lensProps.validationProps;
             });
         }
     }
