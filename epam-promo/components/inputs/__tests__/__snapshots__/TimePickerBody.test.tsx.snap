@@ -17,7 +17,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
@@ -72,7 +72,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
@@ -172,7 +172,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
@@ -227,7 +227,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
