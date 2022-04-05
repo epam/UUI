@@ -38,12 +38,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         // setTableStateValue(prevValue => ({
         //     ...prevValue,
         //     ...newValue,
-        //     page: isFilterEqual 
+        //     page: isFilterEqual
         //         ? newValue.page
         //         : 1,
         // }));
-        
-        if (!isFilterEqual || query.presetId !== +newValue.presetId) {
+
+        if (!isFilterEqual || query.presetId != newValue.presetId) {
             const newQuery = {
                 ...context.uuiRouter.getCurrentLink().query,
                 filter: encodeURIComponent(JSON.stringify(newFilter)),
@@ -59,7 +59,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             });
         }
     }, []);
-    
+
     const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
         setTableState({
             ...tableStateValue,
@@ -73,7 +73,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter,
         });
     }, [tableStateValue]);
-    
+
     useEffect(() => {
         if (presets?.length === 0 && params.initialPresets?.length > 0) {
             setPresets(params.initialPresets);
