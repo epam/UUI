@@ -29,11 +29,11 @@ const metadata: Metadata<FormState> = {
 export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
 
-    const { lens, save, isChanged, revert, canRevert } = useForm<FormState>({
+    const { lens, save, isChanged, revert } = useForm<FormState>({
         value: { items: { 1: { ProductID: 1, Name: "!Changed!" } as any } },
         onSave: (value) => svc.uuiNotifications.show(props =>
             <NotificationCard { ...props } color='blue' id={1} key='1'>
-                <Text>{ JSON.stringify(value) }</Text>
+                <pre>{ JSON.stringify(value, null, 2) }</pre>
             </NotificationCard>
         ),
         getMetadata: () => metadata,
@@ -57,7 +57,7 @@ export const ProductsTableDemo: React.FC = (props) => {
                 <Button caption="Save" onClick={ save } isDisabled={ !isChanged } />
             </FlexCell>
             <FlexCell width='auto'>
-            <Button caption="Revert" onClick={ revert } isDisabled={ !canRevert } />
+            <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
             </FlexCell>
         </FlexRow>
         <DataTable
