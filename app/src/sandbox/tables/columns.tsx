@@ -83,6 +83,13 @@ export function getColumns() {
             width: 150,
             isSortable: true,
         },
+
+        {
+            key: 'сonfig',
+            render: p => {},
+            width: 48,
+            fix: 'right',
+        },
     ];
 
     const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
