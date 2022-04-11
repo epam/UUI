@@ -30,7 +30,6 @@
   },
   "workspaces": [
     "app",
-    "edu-core-routing",
     "epam-assets",
     "loveship",
     "epam-promo",
