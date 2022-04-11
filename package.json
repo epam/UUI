@@ -21,7 +21,8 @@
     "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
-    "generate-components-api": "cd uui-build && yarn generate-components-api"
+    "generate-components-api": "cd uui-build && yarn generate-components-api",
+    "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter"
   },
   "repository": {
     "type": "git",

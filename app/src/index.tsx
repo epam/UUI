@@ -12,6 +12,7 @@ import { getApi, TApi } from './data';
 import qhistory from 'qhistory';
 import '@epam/internal/styles.css';
 import './index.scss';
+import './themes/index.css';
 
 import { stringify, parse } from 'query-string';
 
