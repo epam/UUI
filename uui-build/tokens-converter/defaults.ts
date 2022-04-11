@@ -344,7 +344,7 @@ export const defaultTokens: TokensObject = {
             "value": "$palette.gray.gray30",
             "type": "color",
         },
-        "iconButton-disabled-color": {
+        "icon-disabled-color": {
             "value": "$palette.gray.gray50",
             "type": "color",
         },
@@ -604,7 +604,6 @@ export const defaultTokens: TokensObject = {
             "button-border-color-disabled": {
                 "value": "$core.disabled-color",
                 "type": "color",
-                "description": "Text & Icon color",
             },
             "button-caption-color": {
                 "value": "$core.contrast-color",
@@ -660,6 +659,10 @@ export const defaultTokens: TokensObject = {
                 "description": "Only for FE developers for Solid buttons",
             },
             "button-bg-color-disabled": {
+                "value": "$core.disabled-color",
+                "type": "color",
+            },
+            "button-border-color-disabled": {
                 "value": "$core.disabled-color",
                 "type": "color",
             },
@@ -719,6 +722,10 @@ export const defaultTokens: TokensObject = {
                 "value": "$core.disabled-color",
                 "type": "color",
             },
+            "button-border-color-disabled": {
+                "value": "$core.disabled-color",
+                "type": "color",
+            },
             "button-caption-color": {
                 "value": "$core.contrast-color",
                 "type": "color",
@@ -772,6 +779,10 @@ export const defaultTokens: TokensObject = {
                 "description": "Only for FE developers for Solid buttons",
             },
             "button-bg-color-disabled": {
+                "value": "$core.disabled-color",
+                "type": "color",
+            },
+            "button-border-color-disabled": {
                 "value": "$core.disabled-color",
                 "type": "color",
             },
@@ -1491,6 +1502,10 @@ export const defaultTokens: TokensObject = {
             "tooltip-text-color": {
                 "value": "#FFFFFF",
                 "type": "color",
+            },
+            "tooltip-border-radius": {
+                "value": "{core.border-radius}",
+                "type": "borderRadius",
             },
         },
     },
