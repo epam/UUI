@@ -23,7 +23,7 @@ To add UUI to an existing project, read more [here](https://uui.epam.com/documen
 ## Quick start:
 
 Try our pre-configured template on
-    <a href="https://codesandbox.io/s/uui-w4i61" target="_blank">
+    <a href="https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx" target="_blank">
         Codesandbox
         <img
             width="24"
