@@ -2,28 +2,14 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
-    :global(.uui-table-loading-row) {
-        background-color: $night50;
-        height: 10px;
-        display: inline-block;
-    }
-
     &:global(.uui-table-row) {
-        background: $white;
-
-        :global(.uui-table-fixed-section-left),
-        :global(.uui-table-fixed-section-right) {
-            z-index: 2;
-            background: $white;
-        }
+        --uui-data-table-row-background: white;
 
         &:global(.-clickable) {
             cursor: pointer;
 
-            &:hover,
-            &:hover > *:global(.uui-table-fixed-section-left),
-            &:hover > *:global(.uui-table-fixed-section-right) {
-                background-color: $night100;
+            &:hover {
+                --uui-data-table-row-background: #{$night100};
             }
         }
 
@@ -40,7 +26,7 @@
         }
 
         &:global(.uui-focus) {
-            background-color: $night100;
+            --uui-data-table-row-background: #{$night100};
         }
 
         &.size-24 { min-height: 24px; }
@@ -55,16 +41,16 @@
     }
 
     &.background-night50 {
-        background: $night50;
+        --uui-data-table-row-background: #{$night50};
     }
 
     &.background-white {
-        background: $white;
+        --uui-data-table-row-background: #{$white};
     }
 
     // Border
     &.border-night300 {
-        &:global(.uui-table-row) {
+        :global(.uui-table-fixed-section), :global(.uui-table-scrolling-section) {
             border-bottom: 1px solid $night300; // TODO: add new border
         }
     }

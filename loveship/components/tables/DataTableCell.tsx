@@ -6,7 +6,7 @@ import { DataTableCellMods } from './types';
 import { ReactComponent as FoldingArrow } from '../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 
-export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProps<TItem, TId> & DataTableCellMods> {
+export class DataTableCell<TItem, TId, TCellValue> extends React.Component<DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods> {
     hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);
 
     isDraggable = () => !!this.props.rowProps?.dnd?.srcData;
@@ -55,7 +55,7 @@ export class DataTableCell<TItem, TId> extends React.Component<DataTableCellProp
         return (
             <FlexCell
                 { ...this.props.column }
-                minWidth={ this.props.column.width || this.props.column.minWidth }
+                minWidth={ this.props.column.width }
                 rawProps={ { role: this.props.role } }
                 cx={ cx(
                     css.cell,

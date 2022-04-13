@@ -3,19 +3,29 @@
 .container {
     position: relative;
     display: flex;
-    min-width: min-content;
     align-items: stretch;
+    background-color: var(--uui-data-table-row-background);
+}
+
+.scrolling-section {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    background-color: var(--uui-data-table-row-background);
+}
+
+.fixed-columns-section-left, .fixed-columns-section-right {
+    display: flex;
+    position: sticky;
+    z-index: 5;
+    background-color: var(--uui-data-table-row-background);
 }
 
 .fixed-columns-section-left {
-    display: flex;
-    position: sticky;
     left: 0;
 }
 
 .fixed-columns-section-right {
-    display: flex;
-    position: sticky;
     right: 0;
 }
 
