@@ -4,6 +4,7 @@ import {
     getColumnsConfig, DropParams, getOrderBetween,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
+import * as css from './DataTableHeaderRow.scss';
 
 const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',
@@ -61,7 +62,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
     render() {
         return (
             <DataTableRowContainer
-                cx={ [this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow] }
+                cx={[ css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow ]}
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 rawProps={ { role: 'row' } }
