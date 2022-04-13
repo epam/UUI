@@ -27,7 +27,7 @@ export const transformTokensFromJsonToCss = async function () {
     }
 
     async function writeCssFile(file: string, data: string) {
-        await writeFile(file, data, { flag: 'as+' });
+        await writeFile(file, data);
     }
 
     function createCssVariables(palletObj: UuiComponent | PaletteToken | CoreTokens | TokenObject) {
