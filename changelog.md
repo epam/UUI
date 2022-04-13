@@ -1,3 +1,16 @@
+# Editable DataTables
+
+* [DataTable] Added facilities to make tables editable
+* Breaking changes:
+  * DataTableColumn props no longer accepts shrink prop.
+    Is actually wasn't supported before this change, so you can safely remove them.
+    Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    'width' prop is now required (was optional)
+    'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
+
+
+
+
 # 4.6.1 - 22.03.2022
 
 **What’s Fixed**
@@ -23,7 +36,7 @@
 **What’s Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
 * [PickerToggler]: If not enought chars clear picker input on blur
-* [PickerInput]: don't close picker in case when you remove search value 
+* [PickerInput]: don't close picker in case when you remove search value
 * [PickerInput]: don't load list on PickerInput mount
 * [NumericInput]: Fixed handling float numbers
 * [Form]: release Lock on form unmount
