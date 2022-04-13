@@ -26,6 +26,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
     }
 
     render() {
+        let label = this.props.label;
+        if (this.props.renderLabel) {
+            label = this.props.renderLabel();
+        }
+
         return (
             <label
                 className={ cx(
@@ -57,11 +62,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
                 </div>
-                { (this.props.renderLabel || this.props.label) && (
-                    <div className={ uuiElement.inputLabel }>
-                        { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                    </div>
-                ) }
+                { label && <div className={ uuiElement.inputLabel }>{ label }</div> }
             </label>
         );
     }
