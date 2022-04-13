@@ -15,23 +15,28 @@ Please answer the following questions for yourself before submitting an issue. *
 - [ ] I checked the documentation and found no answer
 - [ ] I checked to make sure that this issue has not already been filed
 
-# Expected Behavior
 
-Please describe the behavior you are expecting
-
-# Current Behavior
-
-What is the current behavior?
+# Description
 
 ## Steps to Reproduce
 
-Please provide detailed steps for reproducing the issue. Provide screenshots or minimal code snippet where appropriate.
+Please provide detailed steps for reproducing the issue.
+
+To provide more details include screenshots, video, [UUI Codesandbox](https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx) example or minimal code snippet where appropriate.
 
 1. step 1
 2. step 2
-3. you get it...
+3. ...
 
-## Context
+## Actual result
+
+What is the current behavior?
+
+## Expected result
+
+Please describe the behavior you are expecting
+
+# Environment
 
 Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
 
