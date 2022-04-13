@@ -15,7 +15,8 @@ export default function TreeTableExample({ size }: DataTableMods) {
             key: 'name',
             caption: 'NAME',
             render: location => <Text size={ size }>{ location.name }</Text>,
-            grow: 1, minWidth: 336,
+            grow: 1,
+            width: 336,
             isSortable: true,
             fix: 'left',
         },
@@ -24,14 +25,14 @@ export default function TreeTableExample({ size }: DataTableMods) {
             caption: 'COUNTRY',
             render: location => <Text size={ size }>{ location.countryName }</Text>,
             isSortable: true,
-            grow: 0, shrink: 0, width: 164,
+            width: 164,
         },
         {
             key: 'type',
             caption: 'TYPE',
             render: location => (location.featureCode && <Text size={ size }>{ location.featureCode }</Text>),
             isSortable: true,
-            grow: 0, shrink: 0, width: 84,
+            width: 84,
         },
         {
             key: 'lat/long',
@@ -42,7 +43,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
                 href={ `https://www.google.com/maps/search/?api=1&query=${ location.lat },${ location.lon }` }
                 target='_blank'
             />,
-            grow: 0, shrink: 0, width: 150,
+            width: 150,
             textAlign: 'center',
         },
         {
@@ -50,7 +51,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
             caption: 'POPULATION',
             render: location => <Text size={ size }>{ location.population }</Text>,
             isSortable: true,
-            grow: 0, shrink: 0, width: 130,
+            width: 130,
             textAlign: 'right',
         },
     ], []);

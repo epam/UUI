@@ -1,28 +1,82 @@
-import React, { ReactNode } from 'react';
-import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps } from './props';
+import React, { Attributes, ReactNode } from 'react';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps, IClickable, IHasRawProps } from './props';
 import { SortDirection } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
-import { ILens } from '..';
+import { ILens } from '../data/lenses';
+import * as CSS from 'csstype';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
     presetId?: number | null;
 }
 
-export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends FlexCellProps {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
+    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes
+{
+    /** Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
+     * Also, used as React key for cells, header cells, and other components inside tables.
+     */
     key: string;
+
+    /** Column caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
+
+    /** If specified, will make column fixed - it would not scroll horizontally */
     fix?: 'left' | 'right';
-    width?: number;
+
+    /** The width of the column. Usually, columns has exact this width.
+     * When all columns fit, and there's spare horizontal space, you can use 'grow' prop to use this space for certain columns.
+     * DataTable's columns can't shrink below width - table will add horizontal scrolling instead of shrinking columns  */
+    width: number;
+
+    /** Minimal width to which column can be resized manually */
+    minWidth?: number;
+
+    /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
+    grow?: number;
+
+    /** Aligns cell content horizontally */
+    textAlign?: 'left' | 'center' | 'right';
+
+    /** Align cell content vertically */
+    alignSelf?: CSS.AlignSelfProperty;
+
+    /** Enables sorting arrows on the column.
+     * Sorting state is kept in DataSourceState.sorting  */
     isSortable?: boolean;
+
+    /** Disallows to hide column via ColumnsConfiguration */
     isAlwaysVisible?: boolean;
+
+    /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */
     isHiddenByDefault?: boolean;
+
+    /** Info tooltip displayed in the table header */
     info?: React.ReactNode;
+
+    /** Should return true, if current filter affects the column.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
-    render?(item: TItem, rowProps: DataRowProps<TItem, TId>): any;
-    renderCell?(props: DataTableCellProps<TItem, TId>): any;
+
+    /** Render the cell content. The item props is the value of the whole row (TItem). */
+    render?(item: TItem, props: DataRowProps<TItem, TId>): any;
+
+    /** Overrides rendering of the whole cell */
+    renderCell?(props: DataTableCellProps<TItem, TId, any>): any;
+
+    /** Renders column header dropdown.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     renderDropdown?(): React.ReactNode;
+
+    /** Renders column filter.
+     * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
+     * You can use this prop to render a custom filter component.
+     */
     renderFilter?(lens: ILens<TFilter>): React.ReactNode;
 }
 
@@ -54,11 +108,17 @@ export interface DataTableColumnsConfigOptions {
 
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     columns?: DataColumnProps<TItem, TId>[];
-    renderCell?: (props: DataTableCellProps<TItem, TId>) => ReactNode;
+    renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
+export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TItem, TId> {
+    cellValue?: TCellValue;
+    cellLens?: ILens<TCellValue>;
+    editorProps?: IEditable<TCellValue>;
+}
+
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX {
     key: string;
     rowProps: DataTableRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
@@ -67,6 +127,14 @@ export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
     isLastColumn: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    addons?: React.ReactNode;
+    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
+    // There's a problem with type inheritance in objects, and TCellValue is not inferred.
+    // In TypeScript 4.7, TCellValue should start to be inferred.
+    // Here's the test code (works in 4.7, broken on earlier versions): https://bit.ly/3jkBDfx
+    getLens?(lens: ILens<TItem>): ILens<TCellValue>;
+    renderEditor?(props: RenderCellProps<TItem, TId, TCellValue>): React.ReactNode;
 }
 
 export type ColumnsConfig = {
