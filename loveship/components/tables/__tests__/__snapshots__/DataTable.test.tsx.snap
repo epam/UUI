@@ -38,11 +38,17 @@ exports[`DataTable should be rendered correctly 1`] = `
       className="stickyHeader"
     >
       <div
-        className="container uui-table-row-container root uui-table-header-row container align-items-center"
+        className="container uui-table-row-container root root uui-table-header-row container align-items-center"
         role="row"
+        style={
+          Object {
+            "flex": "2 0 566px",
+            "minWidth": "566px",
+          }
+        }
       >
         <div
-          className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+          className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
           style={
             Object {
               "flex": "0 0 96px",
@@ -99,7 +105,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           />
         </div>
         <div
-          className="container"
+          className="scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "2 0 470px",
@@ -265,9 +271,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -298,7 +310,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -366,9 +378,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -399,7 +417,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -467,9 +485,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -500,7 +524,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -568,9 +592,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -601,7 +631,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -669,9 +699,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -702,7 +738,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -770,9 +806,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -803,7 +845,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -871,9 +913,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -904,7 +952,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -972,9 +1020,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1005,7 +1059,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1073,9 +1127,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1106,7 +1166,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1174,9 +1234,15 @@ exports[`DataTable should be rendered correctly 1`] = `
           aria-expanded={true}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "flex": "2 0 566px",
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1207,7 +1273,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",

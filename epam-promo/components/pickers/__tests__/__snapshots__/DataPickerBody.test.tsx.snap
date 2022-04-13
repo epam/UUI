@@ -151,7 +151,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -179,7 +179,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -207,7 +207,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -235,7 +235,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -263,7 +263,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -291,7 +291,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -319,7 +319,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -347,7 +347,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -375,7 +375,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -403,7 +403,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -431,7 +431,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,

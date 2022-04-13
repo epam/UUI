@@ -21,6 +21,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
         super(editable, props);
         this.props = props;
         this.updateNodes();
+        this.updateRowValuesAndLenses();
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -34,6 +35,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
                 this.updateFocusedItem();
             }
         }
+        this.updateRowValuesAndLenses();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {
@@ -48,7 +50,6 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
         }
         return false;
     }
-
 
     public getById = (id: TId, index: number) => {
         const item = this.dataSource.getById(id);
