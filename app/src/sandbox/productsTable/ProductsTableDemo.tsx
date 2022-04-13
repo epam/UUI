@@ -16,12 +16,10 @@ const metadata: Metadata<FormState> = {
         items: {
             all: {
                 props: {
-                    Name: {
-                        isRequired: true,
-                    },
-                    DaysToManufacture: {
-                        minValue: 1
-                    }
+                    Name: { isRequired: true },
+                    Class: { isRequired: true },
+                    Color: { isRequired: true },
+                    DaysToManufacture: { minValue: 1 }
                 }
             }
         }
@@ -53,8 +51,7 @@ export const ProductsTableDemo: React.FC = (props) => {
         getRowLens: (id) => lens.prop('items').prop(id)
     });
 
-    return <Panel>
-
+    return <Panel style={{ width: '100%' }}>
         <DataTable
             headerTextCase='upper'
             getRows={ dataView.getVisibleRows }

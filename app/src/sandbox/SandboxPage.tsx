@@ -13,6 +13,7 @@ import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
+import { ProjectDemo } from './project/ProjectDemo';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -20,6 +21,7 @@ export const SandboxPage = () => {
         { id: 'dbDemo', name: 'DB demo', component: DbDemo },
         { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
         { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
+        { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },

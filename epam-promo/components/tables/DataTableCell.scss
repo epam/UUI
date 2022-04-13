@@ -1,15 +1,6 @@
 @use '../../assets/styles/colors' as *;
 
 .cell {
-    position: relative;
-    box-sizing: border-box;
-    width: 0;
-
-    &.wrapper {
-        display: flex;
-        align-items: flex-start;
-    }
-
     &.align-widgets-top {
         &.size-24, &.size-30 {
             :global(.uui-checkbox), .folding-arrow {
@@ -51,6 +42,33 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    :global(.uui-cell-editor-outline) {
+        visibility: hidden;
+        border: 2px solid transparent;
+        left: -1px;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+    }
+
+    &:hover :global(.uui-cell-editor-outline) {
+        z-index: 1;
+        visibility: visible;
+        border-color: $gray40;
+    }
+
+    &:global(.uui-invalid) :global(.uui-cell-editor-outline) {
+        z-index: 2;
+        visibility: visible;
+        border-color: $red;
+    }
+
+    &:global(.uui-focus) :global(.uui-cell-editor-outline) {
+        z-index: 3;
+        visibility: visible;
+        border-color: $blue;
+    }
 }
 
 .drag-handle {

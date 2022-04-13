@@ -9,10 +9,15 @@ export type DataSourceItemId = string | number | boolean | null;
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
-    /** Index of the topmost visible item */
+    /** Index of the topmost item, in rendered batch.
+     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list */
     topIndex?: number;
 
-    /** Estimated numbers of currently visible items  */
+    /** Number of currently rendered items.
+     * Virtual list updates this value automatically, if it too small.
+     * Note Virtual List renders more items, that actually visible,
+     * as it need maintain some reserve of rows on top / at the bottom of the list.
+     */
     visibleCount?: number;
 }
 
