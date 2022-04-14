@@ -58,6 +58,7 @@ export const DemoTablePaged: React.FC = () => {
     const viewTableState = useMemo(() => ({
         ...tableState,
         filter: appliedFilter,
+        indexToScroll: 0,
     }), [tableState, appliedFilter]);
     const personsDataView = dataSource.useView(viewTableState, setTableState, {
         rowOptions,

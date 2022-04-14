@@ -5,9 +5,24 @@ import { DataSourceListProps, DataSourceState, IDataSource } from '../data/proce
 import { ILens } from '..';
 import { Link } from '../types';
 
+
+/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
+    /** Index of the topmost item, in rendered batch.
+     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list */
     topIndex?: number;
+    /** Number of currently rendered items.
+     * Virtual list updates this value automatically, if it too small.
+     * Note Virtual List renders more items, that actually visible,
+     * as it need maintain some reserve of rows on top / at the bottom of the list.
+     */
     visibleCount?: number;
+    /** Virtual list ensures that this row is within the visible area.
+     * Virtual list updates this value on scroll, along with topIndex, to be somewhere withing the visible area (somewhere in center).
+     * If this value is updated manually, Virtual List would scroll to the specified items.
+     * It would attempt to put scroll so this item will be at the top of the list.
+     */
+    indexToScroll?: number;
 }
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
