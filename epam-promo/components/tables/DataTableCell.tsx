@@ -1,12 +1,23 @@
 import * as React from 'react';
-import { cx, uuiMarkers, DataTableCellProps, withMods, DataRowProps } from '@epam/uui-core';
-import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell, Tooltip } from '@epam/uui-components';
+import { uuiMarkers, DataTableCellProps, withMods, DataTableCellOverlayProps, ICanBeInvalid, TooltipCoreProps } from '@epam/uui-core';
+import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell,
+    DataTableCellOverlay as UuiDataTableCellOverlay } from '@epam/uui-components';
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
-import { FlexCell } from '../layout';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
+import { Tooltip } from '../overlays/Tooltip';
+
+function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
+    return <Tooltip color='red' { ...props } />
+}
+
+const DataTableCellOverlay = withMods<DataTableCellOverlayProps, {}>(
+    UuiDataTableCellOverlay,
+    () => [ css.overlay ],
+    props => ({ renderTooltip }),
+);
 
 function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     const row = props.rowProps;
@@ -42,7 +53,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
     </>;
 }
 
-export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) => {
+export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     props = { ...props };
 
     if (props.isFirstColumn) {
@@ -67,9 +78,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         css[`align-widgets-${ props.alignActions || 'top' }`],
     ];
 
-    // if (isFocused) {
-    //     return <Tooltip content="Test">{ cell }</Tooltip>;
-    // }
+    props.renderOverlay = (props => <DataTableCellOverlay {...props} />)
 
     return <UuiDataTableCell {...props } />
 }

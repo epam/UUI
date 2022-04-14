@@ -2,15 +2,13 @@ import * as React from 'react';
 import { cx, DataTableCellProps, RenderCellProps, uuiMod, IEditable } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/flexItems/FlexCell';
-import { Manager, Popper, PopperChildrenProps, Reference, ReferenceChildrenProps } from 'react-popper';
-import { Portal } from '../overlays/Portal';
 
 interface DataTableCellState {
-    inFocus: boolean;
+    hasFocus: boolean;
 }
 
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
-    const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
+    const [state, setState] = React.useState<DataTableCellState>({ hasFocus: false });
     const row = props.rowProps;
 
     let content: React.ReactNode;
@@ -26,11 +24,11 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         editorProps = cellLens.toProps();
 
         // TEMP HACK FOR FOCUS
-        (editorProps as any).onFocus = () => setState({ ...state, inFocus: true });
-        (editorProps as any).onBlur = () => setState({ ...state, inFocus: false });
-        (editorProps as any).rawProps = {};
-        (editorProps as any).rawProps.onFocus = () => setState({ ...state, inFocus: true });
-        (editorProps as any).rawProps.onBlur = () => setState({ ...state, inFocus: false });
+        (editorProps as any).onFocus = () => setState({ ...state, hasFocus: true });
+        (editorProps as any).onBlur = () => setState({ ...state, hasFocus: false });
+        // (editorProps as any).rawProps = {};
+        // (editorProps as any).rawProps.onFocus = () => setState({ ...state, hasFocus: true });
+        // (editorProps as any).rawProps.onBlur = () => setState({ ...state, hasFocus: false });
 
         renderCellProps = {
             ...renderCellProps,
@@ -39,63 +37,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             editorProps,
         };
 
-        let outline: React.ReactNode;
-
-        const renderOutline = (referenceProps?: ReferenceChildrenProps) => (
-            <div
-                className={ cx(css.editorOutline, 'uui-cell-editor-outline') }
-                ref={ referenceProps?.ref }
-            />
-        );
-
-        // Wrap and add validation tooltip
-        if (state.inFocus) {
-            const popperModifiers = [
-                {
-                    name: 'preventOverflow',
-                    options: {
-                        rootBoundary: 'viewport',
-                        //boundary: this.props.boundaryElement,
-                    },
-                },
-                {
-                    name: 'hide',
-                    enabled: true,
-                },
-            ];
-
-            const renderTooltip = (childProps: PopperChildrenProps) => (
-                <div
-                    ref={ childProps.ref }
-                    style={{ background: 'red', zIndex: 100500, ...childProps.style }}
-                >
-                    { editorProps.validationMessage }
-                </div>
-            )
-
-            outline = <Manager>
-                <Reference>
-                    { renderOutline }
-                </Reference>
-                { editorProps?.isInvalid && (
-                    <Portal>
-                        <Popper
-                            placement={ 'top-start' }
-                            strategy={ 'fixed' }
-                            modifiers={ popperModifiers }
-                        >
-                            { renderTooltip }
-                        </Popper>
-                    </Portal>
-                ) }
-            </Manager>
-        } else {
-            outline = renderOutline();
-        }
-
-        return <div className={ css.editorWrapper } >
+        content = <div className={ css.editorWrapper } >
             { props.renderEditor(renderCellProps) }
-            { outline }
+            { props.renderOverlay({ ...editorProps, hasFocus: state.hasFocus }) }
         </div>
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);
@@ -113,7 +57,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.column.cx,
                 props.cx,
                 editorProps?.isInvalid && uuiMod.invalid,
-                state.inFocus && uuiMod.focus,
+                state.hasFocus && uuiMod.focus,
             ]}
         >
             { props.addons }
