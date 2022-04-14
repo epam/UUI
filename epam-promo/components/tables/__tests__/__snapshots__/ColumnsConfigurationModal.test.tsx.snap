@@ -300,7 +300,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             <div
               className="uui-caption"
             >
-              Check All
+              Uncheck All
             </div>
           </button>
           <button
@@ -313,7 +313,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             <div
               className="uui-caption"
             >
-              Uncheck All
+              Check All
             </div>
           </button>
           <div
