@@ -1,10 +1,12 @@
 import React, { Attributes, ReactNode } from 'react';
-import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps, IClickable, IHasRawProps } from './props';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps, IClickable, IHasRawProps, ICanBeInvalid } from './props';
 import { SortDirection } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data/lenses';
 import * as CSS from 'csstype';
+import { PopperChildrenProps } from 'react-popper';
+import { TooltipCoreProps } from './components/Overlays';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -118,6 +120,11 @@ export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TI
     editorProps?: IEditable<TCellValue>;
 }
 
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+    hasFocus: boolean;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
 export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX {
     key: string;
     rowProps: DataTableRowProps<TItem, TId>;
@@ -129,6 +136,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     addons?: React.ReactNode;
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
 
     // There's a problem with type inheritance in objects, and TCellValue is not inferred.
     // In TypeScript 4.7, TCellValue should start to be inferred.

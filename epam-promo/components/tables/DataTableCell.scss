@@ -1,4 +1,4 @@
-@use '../../assets/styles/colors' as *;
+@use  '../../assets/styles/index.scss' as *;
 
 .cell {
     &.align-widgets-top {
@@ -42,33 +42,6 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
-
-    :global(.uui-cell-editor-outline) {
-        visibility: hidden;
-        border: 2px solid transparent;
-        left: -1px;
-        top: -1px;
-        right: -1px;
-        bottom: -1px;
-    }
-
-    &:hover :global(.uui-cell-editor-outline) {
-        z-index: 1;
-        visibility: visible;
-        border-color: $gray40;
-    }
-
-    &:global(.uui-invalid) :global(.uui-cell-editor-outline) {
-        z-index: 2;
-        visibility: visible;
-        border-color: $red;
-    }
-
-    &:global(.uui-focus) :global(.uui-cell-editor-outline) {
-        z-index: 3;
-        visibility: visible;
-        border-color: $blue;
-    }
 }
 
 .drag-handle {
@@ -125,4 +98,30 @@
     }
 }
 
+.cell:hover .overlay {
+    z-index: 1;
+    visibility: visible;
+    border-color: $gray40;
+}
+
+.overlay {
+    visibility: hidden;
+    border: 2px solid transparent;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+
+    .cell &:global(.uui-invalid) {
+        z-index: 2;
+        visibility: visible;
+        border-color: $red;
+    }
+
+    .cell &:global(.uui-focus) {
+        z-index: 3;
+        visibility: visible;
+        border-color: $blue;
+    }
+}
 
