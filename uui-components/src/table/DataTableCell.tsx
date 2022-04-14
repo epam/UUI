@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { cx, uuiMarkers, DataTableCellProps, FlexCellProps, RenderCellProps, ILens, uuiMod, IEditable } from '@epam/uui-core';
+import { cx, DataTableCellProps, RenderCellProps, uuiMod, IEditable } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/flexItems/FlexCell';
-import { Placement, Boundary } from '@popperjs/core';
+import { Manager, Popper, PopperChildrenProps, Reference, ReferenceChildrenProps } from 'react-popper';
+import { Portal } from '../overlays/Portal';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -12,7 +13,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
 
-    let content;
+    let content: React.ReactNode;
 
     let renderCellProps: RenderCellProps<TItem, TId, any> = props.rowProps;
     let editorProps: IEditable<any>;
@@ -38,10 +39,64 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             editorProps,
         };
 
-        content = <div className={ css.editorWrapper }>
+        let outline: React.ReactNode;
+
+        const renderOutline = (referenceProps?: ReferenceChildrenProps) => (
+            <div
+                className={ cx(css.editorOutline, 'uui-cell-editor-outline') }
+                ref={ referenceProps?.ref }
+            />
+        );
+
+        // Wrap and add validation tooltip
+        if (state.inFocus) {
+            const popperModifiers = [
+                {
+                    name: 'preventOverflow',
+                    options: {
+                        rootBoundary: 'viewport',
+                        //boundary: this.props.boundaryElement,
+                    },
+                },
+                {
+                    name: 'hide',
+                    enabled: true,
+                },
+            ];
+
+            const renderTooltip = (childProps: PopperChildrenProps) => (
+                <div
+                    ref={ childProps.ref }
+                    style={{ background: 'red', zIndex: 100500, ...childProps.style }}
+                >
+                    { editorProps.validationMessage }
+                </div>
+            )
+
+            outline = <Manager>
+                <Reference>
+                    { renderOutline }
+                </Reference>
+                { editorProps?.isInvalid && (
+                    <Portal>
+                        <Popper
+                            placement={ 'top-start' }
+                            strategy={ 'fixed' }
+                            modifiers={ popperModifiers }
+                        >
+                            { renderTooltip }
+                        </Popper>
+                    </Portal>
+                ) }
+            </Manager>
+        } else {
+            outline = renderOutline();
+        }
+
+        return <div className={ css.editorWrapper } >
             { props.renderEditor(renderCellProps) }
-            <div className={ cx(css.editorOutline, 'uui-cell-editor-outline') } />
-        </div>;
+            { outline }
+        </div>
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);
     }
