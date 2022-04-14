@@ -7,3 +7,4 @@ export * from './LabeledInput';
 export * from './ColumnPickerFilter';
 export * from './PickerBase';
 export * from './datePicker';
+export * from './Overlays';
