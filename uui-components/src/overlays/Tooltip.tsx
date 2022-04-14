@@ -1,24 +1,14 @@
 import * as React from 'react';
-import { Placement, Boundary } from '@popperjs/core';
 import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
-import type { Options } from '@popperjs/core/lib/modifiers/offset';
-import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui-core';
+import { uuiElement, LayoutLayer, closest, cx, useUuiContext, TooltipCoreProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 import * as css from './Tooltip.scss';
 
-export interface TooltipProps extends IHasCX, IHasChildren {
-    content?: any;
-    renderContent?(): any;
-    placement?: Placement;
-    trigger?: 'click' | 'press' | 'hover';
-    portalTarget?: HTMLElement;
-    offset?: Options['offset'];
-    children?: React.ReactNode;
-    boundaryElement?: Boundary;
-}
-
 export interface TooltipState {
     isOpen: boolean;
+}
+
+export interface TooltipProps extends TooltipCoreProps {
 }
 
 export function Tooltip(props: TooltipProps) {
@@ -50,6 +40,8 @@ export function Tooltip(props: TooltipProps) {
                 break;
             }
 
+            case 'manual': break;
+
             default: {
                 node.addEventListener('mouseenter', mouseEnterHandler);
                 node.addEventListener('mouseleave', mouseLeaveHandler);
@@ -72,6 +64,8 @@ export function Tooltip(props: TooltipProps) {
                 node.removeEventListener('mouseup', mouseUpHandler);
                 break;
             }
+
+            case 'manual': break;
 
             default: {
                 node.removeEventListener('mouseenter', mouseEnterHandler);
@@ -146,7 +140,7 @@ export function Tooltip(props: TooltipProps) {
                     });
                 }) }
             </Reference>
-            { isTooltipExist() && isOpen && <Portal target={ props.portalTarget }>
+            { isTooltipExist() && (isOpen || props.isVisible) && <Portal target={ props.portalTarget }>
                 <Popper
                     placement={ props.placement || 'top' }
                     modifiers={ [
