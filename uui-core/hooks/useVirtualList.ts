@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { IEditable, DataTableState } from '../';
-import { isValueWithinRange } from '../';
+import { isValueWithinRange } from '../helpers';
 import debounce from "lodash.debounce";
 
 interface UuiScrollPositionValues {
