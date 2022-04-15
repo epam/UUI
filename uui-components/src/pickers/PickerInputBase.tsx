@@ -64,18 +64,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         } else return null;
     }
 
-    componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
-        const { search } = this.state.dataSourceState;
-        const isSearchingStarted = !prevState.dataSourceState.search && search;
-        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
-        if (isSearchingStarted && prevState.showSelected) {
-            this.setState({ showSelected: false });
-        }
-        if (search && isSwitchIsBeingTurnedOn) {
-            this.handleTogglerSearchChange('');
-        }
-    }
-
     getInitialState() {
         const base = super.getInitialState();
         return {
