@@ -99,7 +99,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                                 ? this.props.renderFooter({
                                     view,
                                     showSelected: this.lens.prop('showSelected').toProps(),
-                                    clearSelection: this.clearSelection
+                                    clearSelection: this.clearSelection,
                                 })
                                 : this.renderFooter(selectedDataRows)
                         }
