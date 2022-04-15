@@ -50,6 +50,20 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
             ? view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount)
             : view.getVisibleRows();
     }
+
+    getFooterProps(): PickerFooterProps<TItem, TId> & IModal<any> {
+        const footerProps = super.getFooterProps();
+
+        return {
+            ...footerProps,
+            key: this.props.key,
+            success: this.props.success,
+            abort: this.props.abort,
+            disallowClickOutside: this.props.disallowClickOutside,
+            isActive: this.props.isActive,
+            zIndex: this.props.zIndex,
+        };
+    }
 }
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId>
