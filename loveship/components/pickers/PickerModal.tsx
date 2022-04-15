@@ -98,11 +98,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                     <FlexRow padding='24' vPadding='24' spacing='12' cx={ css.modalFooter }>
                         {
                             this.props.renderFooter
-                                ? this.props.renderFooter({
-                                    view,
-                                    showSelected: this.lens.prop('showSelected').toProps(),
-                                    clearSelection: this.clearSelection
-                                })
+                                ? this.props.renderFooter(this.getFooterProps())
                                 : this.renderFooter(selectedDataRows)
                         }
                     </FlexRow>

@@ -166,7 +166,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
-    getFooterProps = (): PickerFooterProps<TItem, TId> => {
+    getFooterProps(): PickerFooterProps<TItem, TId> {
         return {
             view: this.getView(),
             showSelected: {
