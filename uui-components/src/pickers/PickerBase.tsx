@@ -21,6 +21,15 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     componentDidUpdate(prevProps: Readonly<TProps>, prevState: Readonly<TState>): void {
+        const { search } = this.state.dataSourceState;
+        const isSearchingStarted = !prevState.dataSourceState.search && search;
+        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
+        if (isSearchingStarted && prevState.showSelected) {
+            this.setState(state => ({ ...state, showSelected: false }));
+        }
+        if (search && isSwitchIsBeingTurnedOn) {
+            this.setState(state => ({ ...state, dataSourceState: { ...state.dataSourceState, search: '' } }));
+        }
         if (this.props.dataSource !== prevProps.dataSource) {
             prevProps.dataSource.unsubscribeView(this.handleDataSourceValueChange);
         }
