@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useUuiContext } from "../../";
 
 export interface UseLockProps {
-    handleLeave: () => Promise<boolean>;
+    handleLeave: () => Promise<void>;
     isEnabled?: boolean;
 }
 

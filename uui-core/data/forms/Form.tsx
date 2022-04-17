@@ -20,7 +20,7 @@ export interface FormProps<T> {
 }
 
 export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
-    save(): void;
+    save(): Promise<void>;
     undo(): void;
     redo(): void;
     revert(): void;

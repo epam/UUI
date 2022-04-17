@@ -106,7 +106,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         return uuiValidate(valueToValidate, metadata);
     };
 
-    const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
+    const handleSave = useCallback((isSavedBeforeLeave?: boolean): Promise<void> => {
         const validationState = handleValidate();
         setFormState({ ...formState.current, validationState });
         if (!validationState.isInvalid) {
