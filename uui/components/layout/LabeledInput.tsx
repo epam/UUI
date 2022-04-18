@@ -13,7 +13,7 @@ export interface LabeledInputMods extends types.SizeMod {}
 
 function applyLabeledInputMods(mods: LabeledInputMods) {
     return [
-        'labeled-input-color',
+        'labeled-input-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
     ];

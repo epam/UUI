@@ -9,6 +9,7 @@
         box-shadow: var(--tooltip-shadow);
         max-width: 300px;
         word-wrap: break-word;
+        border-radius: var(--tooltip-border-radius);
     }
 
     :global(.uui-tooltip-arrow) {
