@@ -42,7 +42,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const getVisibleIndexesRange = (): [number, number] => {
         const { scrollTop, clientHeight } = scrollContainer.current;
         let firstVisibleIndex = value.topIndex;
-        while (scrollTop >= rowOffsets.current[firstVisibleIndex]) {
+        while (scrollTop + listOffset > rowOffsets.current[firstVisibleIndex]) {
             firstVisibleIndex += 1;
         }
         let bottomVisibleIndex = firstVisibleIndex || 0;
