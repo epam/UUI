@@ -29,8 +29,12 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     }
-    renderFooter?: (props: PickerFooterProps<TItem, TId> & { onClose: () => void }) => React.ReactNode;
+    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
 };
+
+interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
+    onClose: () => void;
+}
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
