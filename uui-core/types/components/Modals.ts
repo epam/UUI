@@ -3,7 +3,9 @@ import { IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps, IHasForwardedR
 
 export interface ModalWindowProps extends VPanelProps, IHasForwardedRef<HTMLDivElement> {}
 
-export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {}
+export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+    disableFocusLock?: boolean;
+}
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
     onClose?: () => any;
