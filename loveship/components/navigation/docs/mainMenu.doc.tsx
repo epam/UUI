@@ -29,7 +29,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
             {
                 value: [
                     <MainMenuLogo key='appLogo2' logoUrl='/static/images/app-logos/grow_logo.svg' priority={ 100500 } estimatedWidth={ 142 }/>,
-                    <MainMenuButton caption='Me' collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu key='me'/>,
+                    <MainMenuButton caption='Me' collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu key='me' isLinkActive/>,
                     <MainMenuButton caption='My Team' collapseToMore priority={ 2 } estimatedWidth={ 92 } showInBurgerMenu key='my team'/>,
                     <MainMenuButton caption='Skill Matrices' collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key='skill'/>,
                     <FlexSpacer priority={ 100500 } key='spacer'/>,

@@ -20,9 +20,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>();
-    const inputContainer = React.useRef<HTMLDivElement>();
-
-    React.useImperativeHandle(ref, () => inputElement.current, [inputElement.current]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onValueChange(e.target.value);
@@ -89,7 +86,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
-        <div onClick={ props.onClick && handleClick } ref={ inputContainer } className={
+        <div onClick={ props.onClick && handleClick } ref={ ref } className={
             cx(
                 css.container,
                 uuiElement.inputBox,

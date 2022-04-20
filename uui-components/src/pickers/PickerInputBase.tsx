@@ -3,9 +3,9 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps,
+    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps,
 } from '@epam/uui-core';
-import { PickerBase, PickerBaseState, PickerBaseProps, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
@@ -29,7 +29,12 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     }
+    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
 };
+
+interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
+    onClose: () => void;
+}
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
@@ -61,18 +66,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 opened: false,
             };
         } else return null;
-    }
-
-    componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
-        const { search } = this.state.dataSourceState;
-        const isSearchingStarted = !prevState.dataSourceState.search && search;
-        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
-        if (isSearchingStarted && prevState.showSelected) {
-            this.setState({ showSelected: false });
-        }
-        if (search && isSwitchIsBeingTurnedOn) {
-            this.handleTogglerSearchChange('');
-        }
     }
 
     getInitialState() {
@@ -228,10 +221,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
-        if (this.props.isDisabled || this.props.editMode === 'modal') return;
+        if (this.props.isDisabled || this.props.isReadonly || this.props.editMode === 'modal') return;
 
         if (e.key === 'Enter' && !this.state.opened) {
-            return this.toggleDropdownOpening(!this.state.opened);
+            return this.toggleDropdownOpening(true);
         }
 
         if (e.key === 'Escape' && this.state.opened) {
@@ -269,6 +262,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
         if (!showSelected) return getVisibleRows();
         return getSelectedRows().slice(topIndex, topIndex + visibleCount);
+    }
+
+    getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
+        const footerProps = super.getFooterProps();
+
+        return { ...footerProps, onClose: () => this.toggleBodyOpening(false) };
     }
 
     render() {

@@ -160,7 +160,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
             onBlur={ this.onBlur }
             value={ this.props.value || slateEditorEmptyValue }
             onChange={ this.onChange }
-            style={ { minHeight: this.props.minHeight || 350, padding: '0 23px', overflow: 'hidden' } }
+            style={ { minHeight: this.props.minHeight || 350, padding: '0 24px', overflow: 'hidden' } }
             ref={ (editor) => this.editor = editor }
             onPaste={ this.onPaste }
             spellCheck={ true }

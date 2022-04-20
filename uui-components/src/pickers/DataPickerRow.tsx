@@ -21,7 +21,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     }
 
     handleMouseEnter = () => {
-        this.props.onFocus(this.props.index);
+        this.props.onFocus && this.props.onFocus(this.props.index);
     }
 
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {

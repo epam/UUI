@@ -26,7 +26,7 @@ describe('PickerInput', () => {
 
     beforeEach(() => {
         windowSpy = jest.spyOn(window, "window", "get")
-            .mockImplementation(() => windowMock);
+            .mockImplementation(() => windowMock as any);
     });
 
     afterEach(() => {

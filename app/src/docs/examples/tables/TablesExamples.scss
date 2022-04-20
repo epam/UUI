@@ -7,10 +7,18 @@
     flex-direction: column;
 }
 
-.id-column {
-    background-color: $green-lightest;
-}
+:global(.uui-table-row) {
+    .configItem {
+        visibility: hidden;
 
-.name-column {
-    background-color: $blue-lightest;
+        &.showButton {
+            visibility: visible;
+        }
+    }
+
+    &:hover {
+        .configItem {
+            visibility: visible;
+        }
+    }
 }

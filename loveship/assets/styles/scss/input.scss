@@ -20,10 +20,12 @@
     &.mode-form {
         background: $night50;
         border-color: $night300;
+        pointer-events: none;
     }
 
     &.mode-cell {
         background: transparent;
+        pointer-events: none;
     }
 
     &.mode-form:hover {
