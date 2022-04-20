@@ -115,10 +115,7 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** Depth of the row in tree, 0 for the top-level */
     depth?: number;
 
-    /** Indent of the item, to show hierarchy.
-     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
-     *  if all children of node has no children, all nodes would get the same indent as parent.
-     */
+    /** Indent of the item, to show hierarchy */
     indent?: number;
 
     /** True if row is in loading state. Value is empty in this case */
