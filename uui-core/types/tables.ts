@@ -1,6 +1,6 @@
 import React from 'react';
 import * as props from './props';
-import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams, } from '../types';
+import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
 import { ILens } from '..';
 import { Link } from '../types';
@@ -8,21 +8,30 @@ import { Link } from '../types';
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
-    /** Index of the topmost item, in rendered batch.
-     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list */
+    /**
+     * Index of the topmost item, in rendered batch.
+     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list
+     */
     topIndex?: number;
-    /** Number of currently rendered items.
+    /**
+     * Number of currently rendered items.
      * Virtual list updates this value automatically, if it too small.
      * Note Virtual List renders more items, that actually visible,
      * as it need maintain some reserve of rows on top / at the bottom of the list.
      */
     visibleCount?: number;
-    /** Virtual list ensures that this row is within the visible area.
-     * Virtual list updates this value on scroll, along with topIndex, to be somewhere withing the visible area (somewhere in center).
+    /**
+     * Virtual list ensures that row with this Index is within the visible area, if not Virtual List .
+     * Virtual list updates this value on scroll to null when appear in the visible area.
      * If this value is updated manually, Virtual List would scroll to the specified items.
      * It would attempt to put scroll so this item will be at the top of the list.
      */
     indexToScroll?: number;
+    /**
+     * Virtual List manually scroll to this Index when it appears not within the visible area.
+     * It would attempt to put scroll so this item will be in the middle of the list.
+     */
+    focusedIndex?: number;
 }
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
