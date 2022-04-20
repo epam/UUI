@@ -1,37 +1,7 @@
-import * as React from 'react';
-import {
-    DataSourceState, DataRowOptions, DataRowProps, Lens, IDataSourceView, SortingOption, IDataSource,
-    IEditable, IAnalyticableOnChange, DataSourceListProps,
-} from '@epam/uui-core';
-import { PickerBindingProps } from './bindingHelpers';
+import React from 'react';
+import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
-
-export type PickerBaseOptions<TItem, TId> = {
-    entityName?: string;
-    entityPluralName?: string;
-    dataSource: IDataSource<TItem, TId, any>;
-    getName?: (item: TItem) => string;
-    renderRow?: (props: DataRowProps<TItem, TId>) => React.ReactNode;
-    getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
-    renderNotFound?: (props: { search: string, onClose: () => void }) => React.ReactNode;
-    emptyValue?: undefined | null | [];
-    sortBy?(item: TItem, sorting: SortingOption): any;
-    filter?: any;
-    sorting?: SortingOption;
-    cascadeSelection?: boolean;
-    isFoldedByDefault?(item: TItem): boolean;
-    getSearchFields?(item: TItem): string[];
-    renderFooter?: (props: PickerFooterProps<TItem, TId>) => React.ReactNode;
-};
-
-export type PickerFooterProps<TItem, TId> = {
-    view: IDataSourceView<TItem, TId, any>;
-    showSelected: IEditable<boolean>;
-    clearSelection: () => void;
-};
-
-export type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
 
 export interface PickerBaseState {
     dataSourceState: DataSourceState;
@@ -51,6 +21,15 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     componentDidUpdate(prevProps: Readonly<TProps>, prevState: Readonly<TState>): void {
+        const { search } = this.state.dataSourceState;
+        const isSearchingStarted = !prevState.dataSourceState.search && search;
+        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
+        if (isSearchingStarted && prevState.showSelected) {
+            this.setState(state => ({ ...state, showSelected: false }));
+        }
+        if (search && isSwitchIsBeingTurnedOn) {
+            this.setState(state => ({ ...state, dataSourceState: { ...state.dataSourceState, search: '' } }));
+        }
         if (this.props.dataSource !== prevProps.dataSource) {
             prevProps.dataSource.unsubscribeView(this.handleDataSourceValueChange);
         }
@@ -196,7 +175,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
-    getFooterProps = (): PickerFooterProps<TItem, TId> => {
+    getFooterProps(): PickerFooterProps<TItem, TId> {
         return {
             view: this.getView(),
             showSelected: {

@@ -7,6 +7,7 @@ import { getQuery } from '../helpers';
 import { ComplexForm } from './forms/ComplexForm';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
+import { DemoTablePaged } from './tablePaged';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
@@ -21,6 +22,7 @@ export const SandboxPage = () => {
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
+        { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {

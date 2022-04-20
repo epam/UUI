@@ -142,7 +142,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-
+        
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -150,6 +150,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || !isEqual(this.value.sorting, prevValue.sorting)
             || !isEqual(this.value.filter, prevValue.filter)
             || !isEqual(this.props.filter, prevProps.filter)
+            || this.value.page !== prevValue.page
+            || this.value.pageSize !== prevValue.pageSize
         ) {
             this.tree = this.resetTreeItems(this.tree);
             completeReset = true;
@@ -370,7 +372,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < reportedChildCount && index < lastIndex; m++) {
                                     const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
-                                    row.indent = parentsWithRow.length;
+                                    row.indent = parentsWithRow.length + 1;
                                     row.isLastChild = m == (reportedChildCount - 1);
                                     rows.push(row);
                                     index++;
@@ -413,12 +415,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
             }
 
-            const isAnyChildren = layerRows.some(r => r.isFoldable);
             /*
                 ? layerRows.some(r => r.isFoldable)
                 : (parents.length === 0 && this.props.getChildCount != null); // if there's no rows - guess that there will be children on 1st layer, if getChildCount is passed
                 */
-            const indent = isAnyChildren ? (parents.length + 1) : parents.length;
+            const indent = parents.length + 1;
             layerRows.forEach(r => r.indent = indent);
 
             return stats;

@@ -66,18 +66,16 @@
     position: absolute;
     color: $gray60;
     font-family: $font-sans;
-    line-height: 24px;
+    line-height: 1.5;
+    top: 8px;
+    padding: 0 24px;
 }
 
 .placeholder-14 {
-    top: 5px;
-    left: 24px;
     font-size: 14px;
 }
 
 .placeholder-16 {
-    top: 18px;
-    left: 24px;
     font-size: 16px;
 }
 

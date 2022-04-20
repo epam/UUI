@@ -8,8 +8,9 @@ import * as css from './MainMenuSearch.scss';
 export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {
 }
 
-export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props: MainMenuSearchProps) => (
+export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props: MainMenuSearchProps, ref) => (
     <TextInput
+        ref={ ref }
         iconPosition='left'
         icon={ LensIcon }
         cancelIcon={ props.value.length > 0 && CancelIcon }
@@ -17,3 +18,5 @@ export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchP
         cx={ cx(css.searchInput, props.cx) }
     />
 ));
+
+MainMenuSearch.displayName = 'MainMenuSearch';

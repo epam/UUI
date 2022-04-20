@@ -19,3 +19,5 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
         { props.children }
     </div>
 ));
+
+FlexCell.displayName = 'FlexCell';

@@ -113,6 +113,11 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         };
     }
 
+    handleRef = (container: HTMLDivElement) => {
+        this.container = container;
+        (this.props.forwardedRef as React.RefCallback<HTMLDivElement>)?.(container);
+    }
+
     render () {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
@@ -129,10 +134,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
                 onTouchEnd={ (e) => !isReadonly && this.onTouchEnd(e) }
-                ref={ (container) => {
-                    this.container = container;
-                    (this.props.forwardedRef as React.RefCallback<HTMLDivElement>)?.(container);
-                } }
+                ref={ this.handleRef }
                 { ...this.props.rawProps }
             >
                 { this.props.renderRating(this.state.rating, this.getMarkWidth(), this.getNumberOfMarks()) }

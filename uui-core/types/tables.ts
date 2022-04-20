@@ -1,7 +1,7 @@
 import React from 'react';
 import * as props from './props';
-import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams} from '../types';
-import { DataSourceListProps, DataSourceState } from '../data/processing';
+import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams, } from '../types';
+import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
 import { ILens } from '..';
 import { Link } from '../types';
 
@@ -12,6 +12,7 @@ export interface VirtualListState {
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
+    presetId?: number | null;
 }
 
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends props.FlexCellProps {
@@ -114,10 +115,7 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** Depth of the row in tree, 0 for the top-level */
     depth?: number;
 
-    /** Indent of the item, to show hierarchy.
-     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
-     *  if all children of node has no children, all nodes would get the same indent as parent.
-     */
+    /** Indent of the item, to show hierarchy */
     indent?: number;
 
     /** True if row is in loading state. Value is empty in this case */
@@ -198,3 +196,49 @@ export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSou
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
+
+type FilterConfigBase<TFilter extends Record<string, any>> = {
+    title: string;
+    field: keyof TFilter;
+    columnKey?: string;
+};
+
+type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+    type: "singlePicker" | "multiPicker";
+    dataSource: IDataSource<any, any, any>;
+};
+
+type DatePickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+    type: "datePicker" | "rangeDatePicker";
+};
+
+export type FilterConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
+    | DatePickerFilterConfig<TFilter>;
+
+export interface ITablePreset<TFilter = Record<string, any>> {
+    name: string;
+    id: number | null;
+    filter: TFilter;
+    isReadonly?: boolean;
+    columnsConfig: ColumnsConfig;
+}
+
+export interface IPresetsApi {
+    activePresetId: number | null;
+    isDefaultPresetActive: boolean;
+    choosePreset(preset: ITablePreset): void;
+    createNewPreset(name: string): void;
+    resetToDefault(): void;
+    hasPresetChanged(preset: ITablePreset): boolean;
+    duplicatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): void;
+    updatePreset(preset: ITablePreset): void;
+}
+
+export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
+    tableState: DataTableState;
+    setTableState(newState: DataTableState): void;
+    setFilter(filter: TFilter): void;
+    setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    presets: ITablePreset<TFilter>[];
+}

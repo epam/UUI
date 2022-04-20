@@ -1,3 +1,9 @@
+# 4.6.? - ??.04.2022
+
+**What's New**
+* [PickerInput]: add prop onClose to renderFooter
+* [PickerModal]: add success & abort props to renderFooter
+
 # 4.6.1 - 22.03.2022
 
 **What’s Fixed**

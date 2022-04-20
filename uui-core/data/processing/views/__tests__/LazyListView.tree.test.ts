@@ -83,9 +83,9 @@ describe('LazyListView', () => {
         let ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { isLoading: true, depth: 0, indent: 0, path: [] },
-            { isLoading: true, depth: 0, indent: 0, path: [] },
-            { isLoading: true, depth: 0, indent: 0, path: [] },
+            { isLoading: true, depth: 0, indent: 1, path: [] },
+            { isLoading: true, depth: 0, indent: 1, path: [] },
+            { isLoading: true, depth: 0, indent: 1, path: [] },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
@@ -107,8 +107,8 @@ describe('LazyListView', () => {
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
             { id: 100, depth: 0, indent: 1 },
-            { isLoading: true, depth: 1, indent: 1 },
-            { isLoading: true, depth: 1, indent: 1 },
+            { isLoading: true, depth: 1, indent: 2 },
+            { isLoading: true, depth: 1, indent: 2 },
             { id: 200, depth: 0, indent: 1 },
             { id: 300, depth: 0, indent: 1 },
         ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
@@ -132,8 +132,8 @@ describe('LazyListView', () => {
             { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
             { id: 110, depth: 1, indent: 2, isFoldable: false },
             { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { isLoading: true, depth: 2, indent: 2 },
-            { isLoading: true, depth: 2, indent: 2 },
+            { isLoading: true, depth: 2, indent: 3 },
+            { isLoading: true, depth: 2, indent: 3 },
             { id: 200, depth: 0, indent: 1 },
         ], 7);
 
@@ -143,8 +143,8 @@ describe('LazyListView', () => {
             { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
             { id: 110, depth: 1, indent: 2, isFoldable: false },
             { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { id: 121, depth: 2, indent: 2, isFoldable: false },
-            { id: 122, depth: 2, indent: 2, isFoldable: false },
+            { id: 121, depth: 2, indent: 3, isFoldable: false },
+            { id: 122, depth: 2, indent: 3, isFoldable: false },
             { id: 200, depth: 0, indent: 1 },
         ], 7);
 

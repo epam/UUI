@@ -240,15 +240,13 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
     }
 
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
-        let maxWidth = window.outerWidth;
-
-        ctx.clearRect(0, 0, maxWidth, 60);
+        ctx.clearRect(0, 0, t.widthMs, 60);
 
         // bottom border scale
         ctx.strokeStyle = "#999";
         ctx.beginPath();
         ctx.moveTo(0, 60);
-        ctx.lineTo(maxWidth, 60);
+        ctx.lineTo(t.widthMs, 60);
         ctx.stroke();
 
         ctx.font = '12px Sans Regular';

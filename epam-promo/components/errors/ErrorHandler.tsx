@@ -30,7 +30,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         const { title, subtitle } = errorInfo;
 
         return (
-            <ModalBlocker cx={ css.modalBlocker } blockerShadow='dark' key='auth-lost' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
+            <ModalBlocker key='recovery-blocker' cx={ css.modalBlocker } blockerShadow='dark' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ title } />
                     <Spinner cx={ css.recoverySpinner } color='blue' />
@@ -48,28 +48,17 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         return <ErrorPage cx={ props.cx } { ...errorInfo } />;
     };
 
-    const renderApp = () => {
-        switch (errorType) {
-            case 'recovery':
-                return <>
-                    { props.children }
-                    { renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
-                </>;
-            case 'error':
-                uuiModals.closeAll();
-                return <>
-                    { renderErrorPage(errorInfo as UuiErrorInfo) }
-                </>;
-            case 'notification':
-                showNotifications(errorInfo as ApiCallInfo[]);
-            default:
-                return <>
-                    { props.children }
-                </>;
-        }
-    };
+    if (errorType == 'error') {
+        uuiModals.closeAll();
+        return renderErrorPage(errorInfo as UuiErrorInfo);
+    }
+
+    if (errorType == 'notification') {
+        showNotifications(errorInfo as ApiCallInfo[]);
+    }
 
     return <ErrorCatch>
-        { renderApp() }
+        { props.children }
+        { errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
     </ErrorCatch>;
 };

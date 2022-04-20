@@ -42,14 +42,12 @@ export class Timeline extends React.Component {
         this.forceUpdate();
 
         window.onresize = () => {
-            if (this.timelineController.currentViewport.pxPerMs > (200 / msPerDay)) {
-                this.timelineController.setViewport({
-                    center: this.timelineController.currentViewport.center,
-                    pxPerMs: this.timeline.clientWidth / msPerDay,
-                    widthPx: this.timeline.clientWidth,
-                }, false);
-                this.forceUpdate();
-            }
+            this.timelineController.setViewport({
+                center: this.timelineController.currentViewport.center,
+                pxPerMs: this.timeline.clientWidth / msPerDay,
+                widthPx: this.timeline.clientWidth,
+            }, false);
+            this.forceUpdate();
         };
     }
 

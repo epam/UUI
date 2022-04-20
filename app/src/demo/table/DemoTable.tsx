@@ -1,15 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { DataRowProps, DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { Presets, ITablePreset, FlexRow } from '@epam/uui';
-import { DataTable, DataTableRow } from '@epam/promo';
+import { DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
+import { Presets, FlexRow } from '@epam/uui';
+import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
-
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
 import { getColumns } from './columns';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { useTableState } from './hooks';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
@@ -23,7 +21,7 @@ export const DemoTable: React.FC = () => {
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(() => getColumns(filters), []);
+    const columnsSet = useMemo(getColumns, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -32,7 +30,7 @@ export const DemoTable: React.FC = () => {
     }, []);
 
     const tableStateApi = useTableState({
-        columns: columnsSet.personColumns,
+        columns: columnsSet,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
@@ -54,12 +52,7 @@ export const DemoTable: React.FC = () => {
         },
     });
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const columns = (props.isLoading || props.value?.__typename === 'Person') ? props.columns : columnsSet.groupColumns;
-        return <DataTableRow key={ props.rowKey } { ...props } size='36' columns={ columns } />;
-    };
-
-    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.onTableStateChange, {
+    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions,
         isFoldedByDefault: () => true,
         cascadeSelection: true,
@@ -76,7 +69,7 @@ export const DemoTable: React.FC = () => {
                 <FilterPanel
                     { ...tableStateApi }
                     filters={ filters }
-                    columns={ columnsSet.personColumns }
+                    columns={ columnsSet }
                     closePanel={ () => setIsFilterPanelOpened(false) }
                 />
             </SlidingPanel>
@@ -92,11 +85,11 @@ export const DemoTable: React.FC = () => {
                 <DataTable
                     headerTextCase='upper'
                     getRows={ personsDataView.getVisibleRows }
-                    columns={ columnsSet.personColumns }
-                    renderRow={ renderRow }
+                    columns={ columnsSet }
+                    filters={ filters }
                     value={ tableStateApi.tableState }
-                    onValueChange={ tableStateApi.onTableStateChange }
-                    showColumnsConfig
+                    onValueChange={ tableStateApi.setTableState }
+                    showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
                     { ...personsDataView.getListProps() }
