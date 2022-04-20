@@ -1,8 +1,28 @@
-# 4.6.? - ??.04.2022
+# 4.6.2 - 20.04.2022
 
 **What's New**
-* [PickerInput]: add prop onClose to renderFooter
-* [PickerModal]: add success & abort props to renderFooter
+* [PickerInput]: add prop onClose to renderFooter callback
+* [PickerModal]: add success & abort props to renderFooter callback
+* [RTE]: added scrollbars prop to RTE to support internal and external scrollbars
+* [MainMenu]: update styles in loveship
+* [ApiContext] allow to customize /auth/login and /auth/ping endpoint addresses
+* [ModalBlocker]: add possibility to disable focus locking inside modal
+
+**What’s Fixed**
+* [MainMenuIcon]: wrap into forwardRef
+* [Anchor]: wrap with forwardRef
+* [Tables]: set minimal flex-grow: 1 for scrolling section, to stretch it in case when all columns grow is not set or has '0' value
+* [ErrorHandler]: change errors image source from http to https
+* [Timeline] fixed issues when user zooms in/out in browser
+* [DataTable]: fix column width in case when in columnsConfig there are columns only minWidth
+* [PickerInput]: fix focus in readonly mode
+* [ErrorHandler]: fixed am issue, which causes page re-render on errors
+* [ErrorHandler]: fix error codes handling in loveship
+* [RTE]: fix the position of the placeholder to match the position of the inner text
+* [DataPickerRow]: do not call onFocus callback when it's not passed
+* [PickerModal]: fixed issue when search is not working if 'Show only selected' applied
+* [Button]: fixed text color for "fill:light" props in Promo skin
+* [LazyDataSource]: fix indent for nested children
 
 # 4.6.1 - 22.03.2022
 
