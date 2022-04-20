@@ -1,5 +1,25 @@
 @use '~@epam/assets/scss/index' as *;
 
+/*
+    Table z-indexes layout.
+
+    Header - 10 + isolate
+
+    Rows
+        Left fixed: 5
+        Center
+        Right fixed: 5
+
+    Cell:
+        Overlay
+        * borders can overlay cell on top, impossible to overlay bottom cells because position: sticky creates isolation context:
+            Hover: 1
+            Focus: 2
+            Invalid: 3
+
+    DropMarker: 10
+*/
+
 .container {
     position: relative;
     display: flex;

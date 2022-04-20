@@ -12,6 +12,7 @@
 .marker {
     position: absolute;
     pointer-events: none;
+    z-index: 10; // see \uui-components\src\table\DataTableRowContainer.scss for z-indexes order
 }
 
 $drop-marker-width: 2px;
