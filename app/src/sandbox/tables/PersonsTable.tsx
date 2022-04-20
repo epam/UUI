@@ -85,7 +85,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
             value={ props.value }
             onValueChange={ props.onValueChange }
             rows={ getRows() }
-            rowsCount={ 10000 }
+            rowsCount={ exactRowsCount }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
