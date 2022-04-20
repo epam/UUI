@@ -112,16 +112,16 @@
     right: -1px;
     bottom: -1px;
 
-    .cell &:global(.uui-invalid) {
+    .cell &:global(.uui-focus) {
         z-index: 2;
         visibility: visible;
-        border-color: $red;
+        border-color: $blue;
     }
 
-    .cell &:global(.uui-focus) {
+    .cell &:global(.uui-invalid) {
         z-index: 3;
         visibility: visible;
-        border-color: $blue;
+        border-color: $red;
     }
 }
 

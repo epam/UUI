@@ -23,7 +23,12 @@ export const PersonsTable = (props: PersonsTableProps) => {
 
     const renderRow = (props: DataTableRowProps<PersonTableRecord, string>) => {
         const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
-        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
+        return <DataTableRow
+            key={ String(props.id) }
+            { ...props }
+            columns={ cols }
+            background={ (props.isLoading || props.value?.__typename === 'Person') ? 'white' : 'night50' }
+        />;
     };
 
     const getRows = () => {
