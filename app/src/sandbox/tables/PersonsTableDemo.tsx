@@ -154,20 +154,6 @@ export const PersonsTableDemo = () => {
                 <FlexCell width='auto'>
                     <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
                 </FlexCell>
-                <FlexCell width='auto'>
-                    <Button
-                        caption={ "Scroll To Bottom" }
-                        onClick={ () => onValueChange({ ...value, indexToScroll: 9999 }) }
-                        size='30'
-                    />
-                </FlexCell>
-                <FlexCell width='auto'>
-                    <Button
-                        caption={ "Scroll To Top" }
-                        onClick={ () => onValueChange({ ...value, indexToScroll: 0 }) }
-                        size='30'
-                    />
-                </FlexCell>
             </FlexRow>
             <PersonsTable
                 value={ value }
