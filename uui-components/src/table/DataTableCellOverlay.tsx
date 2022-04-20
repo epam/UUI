@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { cx, ICanBeInvalid, IHasCX, uuiMod } from '@epam/uui-core';
 import * as css from './DataTableCellOverlay.scss';
-import { Manager, Popper, Reference, ReferenceChildrenProps } from 'react-popper';
-import { Portal } from '../overlays/Portal';
 import { TooltipProps } from '../overlays';
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
@@ -22,7 +20,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         />
     );
 
-    // Wrap and add validation tooltip
+    // Wrap to add validation tooltip
     if (props.hasFocus) {
         return props.renderTooltip({
             trigger: 'manual',

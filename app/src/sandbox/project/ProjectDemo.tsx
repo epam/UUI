@@ -88,7 +88,7 @@ export const ProjectDemo = () => {
                 dstData: row.id,
                 canAcceptDrop: (params) => ({ bottom: true, top: true, inside: true }),
                 onDrop: (data) => console.log(data),
-            }
+            },
         }),
     });
 

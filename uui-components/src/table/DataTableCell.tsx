@@ -23,12 +23,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         const cellLens = props.getLens(row.lens);
         editorProps = cellLens.toProps();
 
-        // TEMP HACK FOR FOCUS
+        // TEMP HACK FOR FOCUS (remove 'as any' after ICanFocus implementation)
         (editorProps as any).onFocus = () => setState({ ...state, hasFocus: true });
         (editorProps as any).onBlur = () => setState({ ...state, hasFocus: false });
-        // (editorProps as any).rawProps = {};
-        // (editorProps as any).rawProps.onFocus = () => setState({ ...state, hasFocus: true });
-        // (editorProps as any).rawProps.onBlur = () => setState({ ...state, hasFocus: false });
 
         renderCellProps = {
             ...renderCellProps,
