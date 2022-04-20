@@ -4,10 +4,20 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 12px;
+    height: 12px;
+    cursor: crosshair;
+}
+
+.root::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
     width: 7px;
     height: 7px;
     background-color: $blue;
-    cursor: crosshair;
 }
 
 .root-selected {

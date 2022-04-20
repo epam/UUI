@@ -2,9 +2,7 @@ import React, { createContext, Dispatch, FC, SetStateAction, useContext, useMemo
 
 export interface DataItemExample {
     column0: string;
-    column1: {
-        value: string;
-    };
+    column1: string;
     column2: string;
     column3: string;
     column4: string;
@@ -18,9 +16,7 @@ export type TableDataContextState = [
 const initialValue: DataItemExample[] = Array(20)
     .fill({
         column0: '1',
-        column1: {
-            value: '2',
-        },
+        column1: '2',
         column2: '3',
         column3: '4',
         column4: '5',

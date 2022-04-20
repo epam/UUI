@@ -12,9 +12,7 @@ export interface ReplicationMarkerProps {
     isBottom: boolean;
 }
 
-export const ReplicationMarker: FC<ReplicationMarkerProps> = (
-    { isHovered, handlePointerDown, isSelectedForReplication, isLeft, isRight, isTop, isBottom },
-) => {
+export const ReplicationMarker: FC<ReplicationMarkerProps> = ({ isHovered, handlePointerDown, isSelectedForReplication, isLeft, isRight, isTop, isBottom }) => {
     if (isSelectedForReplication) {
         return <div className={
             classNames(
