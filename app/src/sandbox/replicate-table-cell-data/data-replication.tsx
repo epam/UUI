@@ -1,51 +1,34 @@
 import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useMemo, useState } from "react";
-import { ReplicationContainerComponent, ReplicationContainerProps } from "./ReplicationContainer";
+import { getReplicationHook } from "./getReplicationHook";
 
-interface ReplicationRange<RowId = any, ColumnId = any> {
+interface ReplicationRange<Value = any> {
     startColumnIndex: number;
     startRowIndex: number;
     endColumnIndex: number;
     endRowIndex: number;
-    startRowId: RowId;
-    startColumnId: ColumnId;
+    startRowId: string;
+    startColumnId: string;
+    value: Value;
 }
 
-export type ReplicationHandler<RowId = any, ColumnId = any> = (replicationRange: ReplicationRange, idsMaps?: { rowIds?: RowId[], columnIds?: ColumnId[] }) => void;
-export type GetValueToReplicate<RowId = any, ColumnId = any, Value = any> = (startRowId: RowId, startColumnId: ColumnId) => Value;
+export type ReplicationHandler = (replicationRange: ReplicationRange) => void;
+export type GetValueToReplicate<Value = any> = (startRowId: string, startColumnId: string) => Value;
 
 export interface ReplicationContextState<Value = any> {
     replicationRange: ReplicationRange;
     setReplicationRange: Dispatch<SetStateAction<ReplicationRange>>;
-    valueToReplicate?: Value;
 }
 
-export interface ReplicationContextProviderProps<RowId = any, ColumnId = any, Value = any> {
-    onReplicate: ReplicationHandler<RowId, ColumnId>;
-    getValueToReplicate?: GetValueToReplicate<RowId, ColumnId, Value>;
+export interface ReplicationContextProviderProps<Value = any> {
+    onReplicate: ReplicationHandler;
 }
 
-export function defineReplication<RowId = any, ColumnId = any, Value = any>() {
+export function defineReplication<Value = any>() {
     const Context = createContext<ReplicationContextState<Value>>(null);
 
-    const ContextProvider: FC<ReplicationContextProviderProps<RowId, ColumnId, Value>> = (
-        {
-            children,
-            onReplicate,
-            getValueToReplicate,
-        },
-    ) => {
-        const [replicationRange, setReplicationRange] = useState<ReplicationRange<RowId, ColumnId>>(null);
-
-        const valueToReplicate = useMemo(
-            () => getValueToReplicate?.(replicationRange?.startRowId, replicationRange?.startColumnId),
-            [getValueToReplicate, replicationRange?.startRowId, replicationRange?.startColumnId],
-        );
-
-        const value = useMemo<ReplicationContextState<Value>>(() => ({
-            replicationRange,
-            setReplicationRange,
-            valueToReplicate,
-        }), [replicationRange, valueToReplicate]);
+    const ContextProvider: FC<ReplicationContextProviderProps<Value>> = ({ onReplicate, children }) => {
+        const [replicationRange, setReplicationRange] = useState<ReplicationRange>(null);
+        const value = useMemo<ReplicationContextState<Value>>(() => ({ replicationRange, setReplicationRange }), [replicationRange]);
 
         useEffect(() => {
             const handlePointerUp = () => {
@@ -60,8 +43,5 @@ export function defineReplication<RowId = any, ColumnId = any, Value = any>() {
         return <Context.Provider value={ value }>{ children }</Context.Provider>;
     };
 
-    const ReplicationContainer: FC<Omit<ReplicationContainerProps<RowId, ColumnId, Value>, 'replicationContext'>> = props =>
-        <ReplicationContainerComponent { ...props } replicationContext={ Context } />;
-
-    return { ContextProvider, ReplicationContainer, Context };
+    return [ContextProvider, getReplicationHook(Context)] as const;
 }
