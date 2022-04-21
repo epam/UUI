@@ -58,6 +58,7 @@ export const DemoTablePaged: React.FC = () => {
     const viewTableState = useMemo(() => ({
         ...tableState,
         filter: appliedFilter,
+        indexToScroll: 0,
     }), [tableState, appliedFilter]);
     const personsDataView = dataSource.useView(viewTableState, setTableState, {
         rowOptions,
@@ -83,7 +84,7 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer/>
                 <Paginator
                     value={ tableState.page }
-                    onValueChange={ (page: number) => setTableState({...tableState, page}) }
+                    onValueChange={ (page: number) => setTableState({...tableState, page, indexToScroll: 0 }) }
                     totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />
