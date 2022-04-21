@@ -87,7 +87,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             onScroll={ props.onScroll }
             rows={ rows }
             rowsCount={ props.rowsCount }
-            focusedIndex={ props.value?.focusedIndex }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
