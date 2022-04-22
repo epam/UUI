@@ -1,38 +1,32 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
 import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
-import { getColumnsConfig } from "../../helpers";
+import { getColumnsConfig, getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
-import { isDefaultColumnsConfig, parseFilterUrl } from "./helpers";
+import { isDefaultColumnsConfig, parseUrlParam } from "./helpers";
 import { constants } from "./constants";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
-    
+
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
-        filter: params.initialFilter ?? parseFilterUrl(),
+        filter: params.initialFilter ?? parseUrlParam("filter"),
         columnsConfig: getColumnsConfig(params.columns, {}),
-        filtersConfig: {},
+        filtersConfig: parseUrlParam("filtersConfig") ?? {
+            profileStatus: {
+                isAlwaysVisible: true,
+                isVisible: true,
+                order: getOrderBetween(null, null),
+            },
+        },
         page: 1,
         pageSize: 100,
     });
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
-        const parsedFilter = !oldQuery.filter || oldQuery.filter === "undefined"
-            ? undefined
-            : JSON.parse(decodeURIComponent(oldQuery.filter));
-        const isFilterEqual = isEqual(parsedFilter, newValue.filter);
-        
-        const parsedFiltersConfig = !oldQuery.filtersConfig || oldQuery.filtersConfig === "undefined"
-            ? undefined
-            : JSON.parse(decodeURIComponent(oldQuery.filtersConfig));
-        const isFiltersConfigEqual = isEqual(parsedFiltersConfig, newValue.filtersConfig);
-        console.log(parsedFiltersConfig, newValue.filtersConfig);
-
         setTableStateValue(prevValue => ({
             ...prevValue,
             ...newValue,
@@ -46,35 +40,32 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         //         ? newValue.page
         //         : 1,
         // }));
-        
-        if (!isFilterEqual || !isFiltersConfigEqual || oldQuery.presetId !== +newValue.presetId) {
-            const newQuery = {
-                ...context.uuiRouter.getCurrentLink().query,
-                filter: encodeURIComponent(JSON.stringify(newValue.filter)),
-                presetId: newValue.presetId,
-            };
-            if (newValue.filtersConfig) {
-                newQuery.filtersConfig = encodeURIComponent(JSON.stringify(newValue.filtersConfig));
-            }
-            
-            if (!newValue.presetId) {
-                delete newQuery.presetId;
-            }
 
-            context.uuiRouter.redirect({
-                pathname: location.pathname,
-                query: newQuery,
-            });
+        const newQuery = {
+            ...context.uuiRouter.getCurrentLink().query,
+            filter: JSON.stringify(newValue.filter),
+            presetId: newValue.presetId,
+            filtersConfig: newValue.filtersConfig ? JSON.stringify(newValue.filtersConfig) : {},
+        };
+
+        if (!newValue.presetId) {
+            delete newQuery.presetId;
         }
+
+        // двойной encode
+        context.uuiRouter.redirect({
+            pathname: location.pathname,
+            query: newQuery, // to search
+        });
     }, []);
-    
+
     const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
         setTableState({
             ...tableStateValue,
             columnsConfig,
         });
     }, [tableStateValue]);
-    
+
     const setFiltersConfig = useCallback((filtersConfig: FiltersConfig) => {
         setTableState({
             ...tableStateValue,
@@ -88,7 +79,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter,
         });
     }, [tableStateValue]);
-    
+
     const setPage = useCallback((page: number) => {
         setTableState({
             ...tableStateValue,
@@ -102,28 +93,30 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         }
     }, [params.initialPresets]);
 
-    useEffect(() => {
-        const parsedFilter = parseFilterUrl() as TFilter;
-        const hasFilterChanged = !isEqual(parsedFilter, tableStateValue.filter);
-
-        const presetId = +context.uuiRouter.getCurrentLink().query.presetId;
-        const activePreset = presets.find((p: ITablePreset) => p.id === presetId);
-        const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, tableStateValue.columnsConfig);
-
-        if (!hasFilterChanged && !hasColumnsConfigChanged) return;
-
-        const newState: Partial<DataTableState> & { presetId?: number | null } = {
-            filter: parsedFilter,
-        };
-        if (activePreset?.columnsConfig) {
-            newState.columnsConfig = activePreset.columnsConfig;
-        }
-        if (presetId) {
-            newState.presetId = presetId;
-        }
-
-        setTableState(newState);
-    }, [location.search]);
+    // useEffect(() => {
+    //     const parsedFilter = parseUrlParam("filter") as TFilter;
+    //     const parsedFiltersConfig = parseUrlParam("filtersConfig");
+    //     const hasFilterChanged = !isEqual(parsedFilter, tableStateValue.filter);
+    //     const hasFiltersConfigChanged = !isEqual(parsedFiltersConfig, tableStateValue.filtersConfig);
+    //
+    //     const presetId = +context.uuiRouter.getCurrentLink().query.presetId;
+    //     const activePreset = presets.find((p: ITablePreset) => p.id === presetId);
+    //     const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, tableStateValue.columnsConfig);
+    //
+    //     if (!hasFilterChanged && !hasFiltersConfigChanged && !hasColumnsConfigChanged) return;
+    //
+    //     const newState: Partial<DataTableState> & { presetId?: number | null } = {
+    //         filter: parsedFilter,
+    //     };
+    //     if (activePreset?.columnsConfig) {
+    //         newState.columnsConfig = activePreset.columnsConfig;
+    //     }
+    //     if (presetId) {
+    //         newState.presetId = presetId;
+    //     }
+    //
+    //     setTableState(newState);
+    // }, [location.search]);
 
     const activePresetId = useMemo(() => {
         const presetId = context.uuiRouter.getCurrentLink().query?.presetId;
@@ -172,7 +165,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [choosePreset]);
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const filter = parseFilterUrl();
+        const filter = parseUrlParam("filter");
 
         return !isEqual(preset?.filter, filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
@@ -219,7 +212,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         duplicatePreset,
         deletePreset,
         updatePreset,
-        
+
         setPage,
     };
 };

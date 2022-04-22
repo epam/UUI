@@ -197,6 +197,7 @@ export type FiltersConfig = {
 export type IFilterConfig = {
     isVisible: boolean;
     order: string;
+    isAlwaysVisible?: boolean;
 };
 
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
