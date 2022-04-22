@@ -15,11 +15,11 @@ export type TableDataContextState = [
 
 const initialValue: DataItemExample[] = Array(20)
     .fill({
-        column0: '1',
-        column1: '2',
-        column2: '3',
-        column3: '4',
-        column4: '5',
+        column0: '"1"',
+        column1: '2%',
+        column2: '"3"',
+        column3: '4%',
+        column4: '"5"',
     });
 
 const TableDataContext = createContext<TableDataContextState>(null);
