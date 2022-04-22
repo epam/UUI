@@ -5,7 +5,7 @@ import { DataQueryFilter, DataRowOptions, DataTableState, FiltersConfig, LazyDat
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
-import { filterItems, getFilters, mapFilter } from "./data";
+import { getFilters, mapFilter } from "./data";
 import { getColumns } from "./columns";
 import { DynamicFilters } from "./DynamicFilters";
 
@@ -13,7 +13,7 @@ export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const columnsSet = useMemo(getColumns, []);
 
-    const {tableState, setTableState, setPage, setFilter, setFiltersConfig} = useTableState({
+    const {tableState, setTableState, setPage} = useTableState({
         columns: columnsSet,
     });
     
@@ -62,19 +62,12 @@ export const DemoTablePaged: React.FC = () => {
         cascadeSelection: true,
     });
     
-    const filtersDataSource = useArrayDataSource({
-        items: filterItems,
-    }, []);
-    
     return (
         <div className={ css.container }>
             <DynamicFilters
-                dataSource={ filtersDataSource } 
                 filters={ filters }
-                filter={ tableState.filter }
-                onFilterChange={ setFilter }
-                filtersConfig={ tableState.filtersConfig }
-                setFiltersConfig={ setFiltersConfig }
+                tableState={ tableState }
+                setTableState={ setTableState }
             />
             
             <DataTable
@@ -99,8 +92,10 @@ export const DemoTablePaged: React.FC = () => {
                 />
                 <FlexSpacer/>
             </FlexRow>
-            
-            <Button caption="Apply filter" onClick={ applyFilter }/>
+
+            <FlexRow vPadding="12" background="white">
+                <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>
+            </FlexRow>
         </div>
     );
 };

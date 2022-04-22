@@ -1,2 +1,2 @@
-export {parseFilterUrl} from "./parseFilterUrl";
+export {parseUrlParam} from "./parseUrlParam";
 export {isDefaultColumnsConfig} from "./isDefaultColumnsConfig";
