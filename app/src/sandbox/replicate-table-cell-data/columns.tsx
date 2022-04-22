@@ -6,6 +6,7 @@ import { ReplicationMarker } from "./ReplicationMarker";
 import { useReplication } from "./Table";
 
 export const COLUMN_IDS: (keyof DataItemExample)[] = ['column0', 'column1', 'column2', 'column3', 'column4'];
+export const COLUMNS_DATA_TYPES: string[] = ['text', 'percent', 'text', 'percent', 'text'];
 
 interface CellProps {
     columnIndex: number;
@@ -16,7 +17,7 @@ interface CellProps {
 
 const Cell: FC<CellProps> = ({ columnIndex, columnId, rowIndex, value }) => {
     const { replicationContainerEventHandlers, ReplicationMarker, valueToReplicate, isSelectedForReplication } =
-        useReplication({ columnIndex, columnId, rowIndex, rowId: `${ rowIndex }`, value});
+        useReplication({ columnIndex, columnId, rowIndex, rowId: `${ rowIndex }`, value, dataType: COLUMNS_DATA_TYPES[columnIndex]});
 
     return <div { ...replicationContainerEventHandlers } style={ { userSelect: 'none', position: 'relative' } }>
         <TextInput value={ isSelectedForReplication ? valueToReplicate : value } onValueChange={ () => {} }/>
