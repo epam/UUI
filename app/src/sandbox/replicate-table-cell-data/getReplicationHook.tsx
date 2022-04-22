@@ -8,6 +8,7 @@ interface Params<Value> {
     rowId: string;
     columnId: string;
     value: Value;
+    dataType?: string;
 }
 
 interface ReplicationContainerHandlers {
@@ -22,8 +23,8 @@ type GetReplicationHook = <Value>(context: Context<ReplicationContextState<Value
     isSelectedForReplication: boolean;
 };
 
-export const getReplicationHook: GetReplicationHook = context => ({ columnIndex, rowIndex, rowId, columnId, value }) => {
-    const { replicationRange, setReplicationRange } = useContext(context);
+export const getReplicationHook: GetReplicationHook = context => ({ columnIndex, rowIndex, rowId, columnId, value, dataType }) => {
+    const { replicationRange, setReplicationRange, canReplicate } = useContext(context);
     const [isHovered, setHoverState] = useState(false);
 
     const handlePointerEnter: PointerEventHandler = () => {
@@ -35,7 +36,7 @@ export const getReplicationHook: GetReplicationHook = context => ({ columnIndex,
     };
 
     const handlePointerDown: PointerEventHandler = () => {
-        setReplicationRange({ value, startRowIndex: rowIndex, startColumnIndex: columnIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, startRowId: rowId, startColumnId: columnId });
+        setReplicationRange({ value, startRowIndex: rowIndex, startColumnIndex: columnIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, startRowId: rowId, startColumnId: columnId, dataType });
     };
 
     const handlePointerLeave: PointerEventHandler = () => {
@@ -50,9 +51,11 @@ export const getReplicationHook: GetReplicationHook = context => ({ columnIndex,
     const topRowIndex = isVerticalDirectionABS ? replicationRange?.startRowIndex : replicationRange?.endRowIndex;
     const bottomRowIndex = isVerticalDirectionABS ? replicationRange?.endRowIndex : replicationRange?.startRowIndex;
 
-    const isSelectedForReplication =
+    const isInRange =
         columnIndex >= leftColumnIndex && columnIndex <= rightColumnIndex
         && rowIndex >= topRowIndex && rowIndex <= bottomRowIndex;
+
+    const isSelectedForReplication = isInRange && canReplicate(rowIndex, columnIndex);
 
     useEffect(() => {
         if (!isSelectedForReplication) {
@@ -60,10 +63,15 @@ export const getReplicationHook: GetReplicationHook = context => ({ columnIndex,
         }
     }, [isSelectedForReplication]);
 
-    const isLeft = columnIndex === leftColumnIndex;
-    const isRight = columnIndex === rightColumnIndex;
-    const isTop = rowIndex === topRowIndex;
-    const isBottom = rowIndex === bottomRowIndex;
+    const { isLeft, isRight, isTop, isBottom } = useMemo(() => isSelectedForReplication
+        ? ({
+            isLeft: columnIndex === leftColumnIndex || !canReplicate(rowIndex, columnIndex - 1),
+            isRight: columnIndex === rightColumnIndex || !canReplicate(rowIndex, columnIndex + 1),
+            isTop: rowIndex === topRowIndex || !canReplicate(rowIndex - 1, columnIndex),
+            isBottom: rowIndex === bottomRowIndex || !canReplicate(rowIndex + 1, columnIndex),
+        })
+        : {},
+        [replicationRange]);
 
     const markerParams = { isHovered, handlePointerDown, isSelectedForReplication, isLeft, isRight, isTop, isBottom };
 

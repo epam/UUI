@@ -9,16 +9,17 @@ export const [ReplicationContextProvider, useReplication] = defineReplication<st
 export const Table: FC = () => {
     const [data, setData] = useTableDataContext();
 
-    const handleReplicate = useCallback<ReplicationHandler>(({ startRowIndex, startColumnIndex, endRowIndex, endColumnIndex }) => {
-        setData(data.map((item, index) => {
-            const isRowInRange = (index <= endRowIndex && index >= startRowIndex) || (index <= startRowIndex && index >= endRowIndex);
+    const handleReplicate = useCallback<ReplicationHandler>(({ startRowIndex, startColumnIndex, endRowIndex, endColumnIndex }, canReplicate) => {
+        setData(data.map((item, rowIndex) => {
+            const isRowInRange = (rowIndex <= endRowIndex && rowIndex >= startRowIndex) || (rowIndex <= startRowIndex && rowIndex >= endRowIndex);
 
             if (isRowInRange) {
-                return COLUMN_IDS.reduce((result, current, index) => {
+                return COLUMN_IDS.reduce((result, current, columnIndex) => {
                     const nextResult = { ...result };
-                    const isColumnInRange = (index <= endColumnIndex && index >= startColumnIndex) || (index <= startColumnIndex && index >= endColumnIndex);
+                    const isColumnInRange = (columnIndex <= endColumnIndex && columnIndex >= startColumnIndex) || (columnIndex <= startColumnIndex && columnIndex >= endColumnIndex);
+                    const shouldReplicate = isColumnInRange && canReplicate(rowIndex, columnIndex);
 
-                    if (isColumnInRange) {
+                    if (shouldReplicate) {
                         nextResult[current] = data[startRowIndex][COLUMN_IDS[startColumnIndex]];
                     }
 
@@ -30,7 +31,7 @@ export const Table: FC = () => {
         }));
     }, [setData, data]);
 
-    return <ReplicationContextProvider onReplicate={ handleReplicate }>
+    return <ReplicationContextProvider onReplicate={ handleReplicate } allowedDirections={ { bottom: true, left: true } } columnDataTypes={ ['text', 'percent', 'text', 'percent', 'text'] }>
         <div>
             { data.map((item, i) =>
                 <DataTableRow key={ i } id={ i } rowKey={ `row${i}` } index={ i } value={ item } columns={ columns } />)
