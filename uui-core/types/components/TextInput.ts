@@ -1,12 +1,22 @@
-import { ICanBeReadonly, IClickable, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange, IHasRawProps } from "../props";
+import {
+    ICanBeReadonly,
+    IClickable,
+    IDisableable,
+    IDropdownToggler,
+    IEditable,
+    IHasCX,
+    IHasIcon,
+    IHasPlaceholder,
+    IAnalyticableOnChange,
+    IHasRawProps,
+    ICanFocus,
+} from "../props";
 
 export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IEditable<string | undefined>, IHasPlaceholder,
-    IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string>, IHasRawProps<HTMLDivElement> {
+    IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string>, IHasRawProps<HTMLDivElement>, ICanFocus<HTMLInputElement> {
     onCancel?(): void;
     onAccept?(): void;
     onKeyDown?(e?: any): void;
-    onFocus?(e?: any): void;
-    onBlur?(e?: any): void;
     autoFocus?: boolean;
     type?: string;
     autoComplete?: string;

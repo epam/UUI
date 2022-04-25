@@ -36,14 +36,16 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         else if (e.key === ESCAPE) props.onCancel?.();
     };
 
-    const handleFocus = () => {
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(true);
-        props.onFocus?.();
+        inputElement.current?.focus();
+        props.onFocus?.(event);
     };
 
-    const handleBlur = (e: React.SyntheticEvent<HTMLElement>) => {
-        !props.isReadonly && props.onBlur?.(e);
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
+        inputElement.current?.blur();
+        props.onBlur?.(event);
     };
 
     const handleClick = (e: any) => {
