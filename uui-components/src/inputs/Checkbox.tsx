@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { cx, uuiMarkers } from '@epam/uui-core';
+import { cx, ICanFocus, uuiMarkers } from '@epam/uui-core';
 import * as css from './Checkbox.scss';
 import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
-export interface CheckboxProps extends CheckboxCoreProps {
+export interface CheckboxProps extends CheckboxCoreProps, ICanFocus<HTMLInputElement> {
     icon?: Icon;
     indeterminateIcon?: Icon;
     renderLabel?(): React.ReactNode;
@@ -25,6 +25,14 @@ export class Checkbox extends React.Component<CheckboxProps> {
         }
     }
 
+    handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        this.props.onFocus?.(event);
+    }
+
+    handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        this.props.onBlur?.(event);
+    }
+
     render() {
         return (
             <label
@@ -39,7 +47,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
+                <div
+                    className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
+                    onFocus={ this.handleOnFocus }
+                    onBlur={ this.handleOnBlur }
+                >
                     <input
                         type="checkbox"
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
