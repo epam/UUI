@@ -44,7 +44,13 @@ export interface ICanBeRequired {
     isRequired?: boolean;
 }
 
-/** Component has caption. E.g. Button */
+/** Component can be focused */
+export interface ICanFocus<T> {
+    onFocus?: (e: React.FocusEvent<T>) => void;
+    onBlur?: (e: React.FocusEvent<T>) => void;
+}
+
+/** Component has a caption. E.g. Button */
 export interface IHasCaption {
     caption?: any;
 }
