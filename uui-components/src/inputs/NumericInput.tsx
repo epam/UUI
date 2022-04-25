@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
-    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
+    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, ICanFocus,
+} from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
@@ -8,7 +10,7 @@ export interface ICanBeFormatted<T> {
     formatter?(value: T): T;
 }
 
-export interface NumericInputProps extends IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     max: number;
     min: number;
     upIcon?: Icon;
@@ -64,9 +66,12 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         }
     }
 
-    handleFocus = () => this.setState({ inFocus: true });
+    handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        this.setState({ inFocus: true });
+        this.props.onFocus?.(event);
+    }
 
-    handleBlur = () => {
+    handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         let value: number | null;
 
         if (this.state.value === "") {
@@ -82,7 +87,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             this.setState({ value: value.toString() });
         }
         this.setState({ inFocus: false });
-
+        this.props.onBlur?.(event);
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
