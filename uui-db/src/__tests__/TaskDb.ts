@@ -12,6 +12,7 @@ export interface Task {
     tags?: string[];
     details?: any;
     estimate?: number;
+    isDeleted?: boolean;
 }
 
 export interface User {
@@ -60,6 +61,7 @@ const tasks = new DbTable<Task, number, any>({
         isDraft: { isClientOnly: true },
     },
     indexes:  ['createdBy', 'assignedTo'],
+    deleteFlag: 'isDeleted',
 });
 
 const users = new DbTable<User, string, any>({

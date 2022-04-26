@@ -39,7 +39,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         }
     }
 
-    protected keyToImmutable(id: TId) {
+    protected keyToImmutable(id: TId): any {
         if (Array.isArray(id)) {
             return I.List(id);
         } else {
@@ -71,15 +71,26 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
             const id = this.getId(entityPatch);
             const immId = this.keyToImmutable(id);
             const existing = this.state.pk.get(immId);
+            let isDeleted = false;
             let updated = entityPatch as TEntity;
             if (existing) {
                 updated = { ...existing, ...entityPatch };
+
+                if (this.schema.deleteFlag) {
+                    isDeleted = (updated[this.schema.deleteFlag] as unknown) === true;
+                }
             }
-            return { id, immId, patch: entityPatch, existing, updated, updatedFieldsisNew: !existing };
+
+            return { id, immId, patch: entityPatch, existing, updated, isNew: !existing, isDeleted };
         });
 
         const idVal = Seq.Keyed<TId, TEntity>(updates.map(entity => [entity.immId, entity.updated]));
-        const newPk = this.state.pk.merge(idVal);
+        let newPk = this.state.pk.merge(idVal);
+
+        // TBD: replace with deleteAll after migrating to immutable 4
+        updates.filter(u => u.isDeleted).forEach(u => {
+            newPk = newPk.delete(u.immId);
+        });
 
         const newIndexes = this.state.indexes.map(index => {
             let newMap = index.map;
@@ -92,12 +103,14 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                 if (update.existing) {
                     const oldKey = update.existing[index.field];
 
-                    if (oldKey !== newKey) {
+                    if (oldKey !== newKey || update.isDeleted) {
                         newMap = newMap.update(oldKey, set => set.remove(update.immId));
                     }
                 }
 
-                newMap = newMap.update(newKey, I.Set(), set => set.add(update.immId));
+                if (!update.isDeleted) {
+                    newMap = newMap.update(newKey, I.Set(), set => set.add(update.immId));
+                }
             }
 
             return { ...index, map: newMap };
