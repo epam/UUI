@@ -1,4 +1,6 @@
+import { DbRef } from '../DbRef';
 import { Db, DbTable, DbRelationType, DbView } from '../index';
+import { DbPatch, DbSaveResponse } from '../types';
 
 export interface Task {
     id: number;
@@ -137,3 +139,14 @@ export const sampleData = {
 export const sampleDb = emptyDb.with(sampleData);
 
 export type TaskDbView<TResult, TParams, TDependencies = void> = DbView<TaskDb, TResult, TParams, TDependencies>;
+
+export class TasksDbRef extends DbRef<TaskDbTables, TaskDb> {
+    constructor(private savePatchHandler: (patch: DbPatch<TaskDbTables>) => Promise<DbSaveResponse<TaskDbTables>>) {
+        super(emptyDb);
+        this.throttleSaveMs = 1;
+    }
+
+    override savePatch(patch: DbPatch<TaskDbTables>) {
+        return this.savePatchHandler?.(patch);
+    }
+}
