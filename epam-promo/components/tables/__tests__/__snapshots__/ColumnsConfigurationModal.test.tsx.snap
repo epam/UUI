@@ -166,6 +166,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     >
                       <div
                         className="uui-checkbox uui-checked"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={true}
@@ -216,6 +218,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     >
                       <div
                         className="uui-checkbox uui-checked"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={true}

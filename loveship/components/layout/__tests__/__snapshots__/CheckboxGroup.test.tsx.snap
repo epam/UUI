@@ -9,6 +9,8 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
   >
     <div
       className="uui-checkbox"
+      onBlur={[Function]}
+      onFocus={[Function]}
     >
       <input
         aria-checked={false}
@@ -30,6 +32,8 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
   >
     <div
       className="uui-checkbox uui-checked"
+      onBlur={[Function]}
+      onFocus={[Function]}
     >
       <input
         aria-checked={true}
@@ -66,6 +70,8 @@ exports[`CheckboxGroup should render with default props 1`] = `
   >
     <div
       className="uui-checkbox uui-checked"
+      onBlur={[Function]}
+      onFocus={[Function]}
     >
       <input
         aria-checked={true}
@@ -93,6 +99,8 @@ exports[`CheckboxGroup should render with default props 1`] = `
   >
     <div
       className="uui-checkbox"
+      onBlur={[Function]}
+      onFocus={[Function]}
     >
       <input
         aria-checked={false}
