@@ -57,6 +57,7 @@ export type DbEntitySchema<TEntity, TId extends DbPkFieldType, TTables extends D
     beforeUpdate?: (entity: TEntity, context: BeforeUpdateContext<TEntity, TId, TTables>) => DbEntityBeforeUpdateResult<TEntity, TTables>;
     primaryKey: TId extends any[] ? KeysOfType<TEntity, string | number>[] : KeysOfType<TEntity, string | number>;
     indexes?: DbTableIndexDefinition<TEntity>[];
+    deleteFlag?: (keyof TEntity);
 };
 
 export type DbSchema<TTables extends DbTablesSet<TTables>> = {
