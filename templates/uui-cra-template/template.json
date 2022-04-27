@@ -5,21 +5,21 @@
       "@epam/promo": "latest",
       "@epam/uui-core": "latest",
       "@epam/uui-components": "latest",
-      "react-router-dom": "5.2.0",
-      "history": "4.10.1",
-      "typescript": "^4.5.4",
       "dart-sass": "1.25.0",
+      "history": "4.10.1",
+      "react-router-dom": "5.2.0",
+      "typescript": "4.6.3",
       "node-sass": "npm:sass"
     },
     "devDependencies": {
+      "@testing-library/jest-dom": "^5.16.4",
+      "@testing-library/react": "^13.1.1",
       "@types/history": "4.7.9",
-      "@types/node": "^12.0.0",
-      "@types/react": "^17.0.0",
-      "@types/react-dom": "^17.0.0",
-      "@types/react-router-dom": "5.1.7",
-      "@types/jest": "^26.0.15",
-      "@testing-library/react": "^12.1.2",
-      "@testing-library/jest-dom": "^5.16.1"
+      "@types/jest": "27.4.1",
+      "@types/node": "14.0.27",
+      "@types/react": "18.0.5",
+      "@types/react-dom": "18.0.1",
+      "@types/react-router-dom": "5.1.7"
     },
     "eslintConfig": {
       "extends": ["react-app", "react-app/jest"]
