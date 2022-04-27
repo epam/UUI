@@ -3,19 +3,14 @@ import React from 'react';
 import { DataColumnProps, DataQueryFilter, Metadata, useArrayDataSource, useTableState } from 'uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
-
-interface Task {
-    id: number;
-    parentId?: number;
-    name: string;
-    estimate?: number;
-}
+import { Task } from './types';
+import { getDemoTasks } from './demoData';
 
 const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
     {
         key: 'name',
         caption: 'Name',
-        width: 200,
+        width: 500,
         fix: 'left',
         isSortable: true,
         renderCell: (props) => <DataTableCell
@@ -29,7 +24,7 @@ const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         textAlign: 'right',
         caption: 'Estimate',
         info: "Estimate in man/days",
-        width: 200,
+        width: 120,
         isSortable: true,
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('estimate') }
@@ -55,11 +50,7 @@ const metadata: Metadata<FormState> = {
     }
 }
 
-let savedValue: FormState = { items: {
-    1: { id: 1, name: "Parent" },
-    2: { id: 2, name: "Child 1", parentId: 1 },
-    3: { id: 3, name: "Child 2", parentId: 1 },
-} };
+let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
     const { lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
