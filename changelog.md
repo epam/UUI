@@ -1,3 +1,12 @@
+# Next
+
+**What's New**
+* uui-db:
+  * dbRef.save() now returns a Promise. It also passes thru errors returned from savePatch() method. This opens ways for a custom error handling, or to execute certain actions after saving changes.
+  * auto-save scheduling is refactored. How it can batch sync commits, and throttles calls more accurately. We don't expect breaking changes, however you might want to double-check this.
+  * records deletion support. To enable deletion, set 'deleteFlag' prop in Table metadata. E.g. deleteFlag: 'isDeleted'. Deleted records will be removed from tables when committing changes setting this flag. The flag will be passed as is to dbRef.savePatch, it's up to application to decide how to handle it while saving changes to server.
+
+
 # 4.6.2 - 20.04.2022
 
 **What's New**
@@ -49,7 +58,7 @@
 **What’s Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
 * [PickerToggler]: If not enought chars clear picker input on blur
-* [PickerInput]: don't close picker in case when you remove search value 
+* [PickerInput]: don't close picker in case when you remove search value
 * [PickerInput]: don't load list on PickerInput mount
 * [NumericInput]: Fixed handling float numbers
 * [Form]: release Lock on form unmount
