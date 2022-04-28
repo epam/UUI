@@ -60,7 +60,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
                         rawProps={ this.props.rawProps }
-                        focusedIndex={ value && value.focusedIndex || 0 }
                     />
                     : this.renderNoFound()
                 }
