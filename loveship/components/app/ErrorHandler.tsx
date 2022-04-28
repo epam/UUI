@@ -17,6 +17,7 @@ export interface ErrorConfig {
 export interface ErrorPageProps extends IHasCX {
     errorPageConfig?: ErrorConfig;
     theme?: Theme;
+    children: React.ReactNode;
 }
 
 const imageUrl = {

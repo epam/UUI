@@ -73,7 +73,7 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
         api: svc.api.demo.cities,
     }, []);
 
-    const handleTableStateChange = useCallback(newState => {
+    const handleTableStateChange = useCallback((newState: any) => {
         // Set columns config to localStorage
         svc.uuiUserSettings.set(LOCAL_STORAGE_KEY, newState.columnsConfig || {});
         setTableState(newState);

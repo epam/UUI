@@ -1,5 +1,6 @@
 import { EditorState, DraftInlineStyleType, DraftBlockType, ContentState } from 'draft-js';
 import { Icon, IEditable } from '@epam/uui-core';
+import React from 'react';
 
 export interface DraftButtonProps  extends IEditable<EditorState> {}
 
@@ -21,6 +22,7 @@ export interface DecoratorComponentProps {
     offsetKey?: string;
     decoratedText?: string;
     contentState?: ContentState;
+    children: React.ReactNode;
 }
 
 export type ToolbarButton = 'bold' | 'italic' | 'underline' | 'header' | 'header-dropdown' | 'unordered-list' | 'ordered-list' | 'link' | 'image' | 'undo' | 'redo' | 'separator' | 'clear-format';

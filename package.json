@@ -28,26 +28,29 @@
     "type": "git",
     "url": "git@git.epam.com:epm-tmc/ui.git"
   },
-  "workspaces": [
-    "app",
-    "epam-assets",
-    "loveship",
-    "epam-promo",
-    "uui",
-    "uui-core",
-    "uui-components",
-    "uui-build",
-    "uui-docs",
-    "uui-db",
-    "uui-timeline",
-    "uui-editor",
-    "extra",
-    "draft-rte"
-  ],
+  "workspaces": {
+    "packages": [
+      "app",
+      "epam-assets",
+      "loveship",
+      "epam-promo",
+      "uui",
+      "uui-core",
+      "uui-components",
+      "uui-build",
+      "uui-docs",
+      "uui-db",
+      "uui-timeline",
+      "uui-editor",
+      "extra",
+      "draft-rte"
+    ]
+  },
   "author": "",
   "license": "MIT",
   "resolutions": {
     "@types/react": "17.0.3",
+    "@types/history": "4.7.9",
     "@types/chai": "4.1.1",
     "prop-types": "15.7.2",
     "moment": "2.19.3",

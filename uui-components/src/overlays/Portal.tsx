@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 export interface PortalProps {
     target?: HTMLElement;
     key?: string;
+    children: React.ReactNode;
 }
 
 interface PortalState {
