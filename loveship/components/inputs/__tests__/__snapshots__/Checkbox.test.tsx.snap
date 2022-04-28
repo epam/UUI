@@ -6,8 +6,6 @@ exports[`Checkbox should be rendered correctly 1`] = `
 >
   <div
     className="uui-checkbox uui-checked"
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <input
       aria-checked={true}
@@ -33,8 +31,6 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
 >
   <div
     className="uui-checkbox uui-checked"
-    onBlur={[Function]}
-    onFocus={[Function]}
   >
     <input
       aria-checked={true}
