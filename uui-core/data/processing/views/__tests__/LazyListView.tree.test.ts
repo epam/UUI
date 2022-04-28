@@ -83,9 +83,9 @@ describe('LazyListView', () => {
         let ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { isLoading: true, depth: 0, indent: 1, path: [] },
-            { isLoading: true, depth: 0, indent: 1, path: [] },
-            { isLoading: true, depth: 0, indent: 1, path: [] },
+            { isLoading: true, depth: 0, indent: 0, path: [] },
+            { isLoading: true, depth: 0, indent: 0, path: [] },
+            { isLoading: true, depth: 0, indent: 0, path: [] },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 

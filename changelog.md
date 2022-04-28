@@ -1,11 +1,16 @@
-# Next
+# 4.6.3 - 27.04.2022
 
 **What's New**
-* uui-db:
+* [uui-db]:
   * dbRef.save() now returns a Promise. It also passes thru errors returned from savePatch() method. This opens ways for a custom error handling, or to execute certain actions after saving changes.
   * auto-save scheduling is refactored. How it can batch sync commits, and throttles calls more accurately. We don't expect breaking changes, however you might want to double-check this.
   * records deletion support. To enable deletion, set 'deleteFlag' prop in Table metadata. E.g. deleteFlag: 'isDeleted'. Deleted records will be removed from tables when committing changes setting this flag. The flag will be passed as is to dbRef.savePatch, it's up to application to decide how to handle it while saving changes to server.
-* [useVirtualList]: added the ability to scroll the list to the item by the index passed to indexToScroll   
+* [VirtualList]: added `scrollToIndex` property for `DataTableState`. Use it for manual scrolling to some index in the list. For example for scrolling to top of the DataTable on filter or page change.
+* [Timeline]: more customization options: renderOnTop callback, most render-methods made protected to allow overrides
+
+**What’s Fixed**
+* [LazyListView]: fix indent for flat lists
+* [MainMenu]: fix MainMenu responsive
 
 # 4.6.2 - 20.04.2022
 
