@@ -874,8 +874,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -925,8 +923,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -976,8 +972,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1027,8 +1021,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1078,8 +1070,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1129,8 +1119,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1180,8 +1168,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1231,8 +1217,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1282,8 +1266,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1333,8 +1315,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}
@@ -1384,8 +1364,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     >
                       <div
                         className="uui-checkbox"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
                       >
                         <input
                           aria-checked={false}

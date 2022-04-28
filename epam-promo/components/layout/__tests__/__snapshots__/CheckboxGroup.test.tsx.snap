@@ -9,8 +9,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   >
     <div
       className="uui-checkbox"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <input
         aria-checked={false}
@@ -30,8 +28,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   >
     <div
       className="uui-checkbox"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <input
         aria-checked={false}
@@ -58,8 +54,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   >
     <div
       className="uui-checkbox"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <input
         aria-checked={false}
@@ -81,8 +75,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   >
     <div
       className="uui-checkbox"
-      onBlur={[Function]}
-      onFocus={[Function]}
     >
       <input
         aria-checked={false}
