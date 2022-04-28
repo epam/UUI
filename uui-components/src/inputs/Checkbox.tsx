@@ -25,14 +25,6 @@ export class Checkbox extends React.Component<CheckboxProps> {
         }
     }
 
-    handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-        this.props.onFocus?.(event);
-    }
-
-    handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-        this.props.onBlur?.(event);
-    }
-
     render() {
         return (
             <label
@@ -49,8 +41,8 @@ export class Checkbox extends React.Component<CheckboxProps> {
             >
                 <div
                     className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
-                    onFocus={ this.handleOnFocus }
-                    onBlur={ this.handleOnBlur }
+                    onFocus={ this.props.onFocus }
+                    onBlur={ this.props.onBlur }
                 >
                     <input
                         type="checkbox"
