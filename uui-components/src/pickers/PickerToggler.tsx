@@ -40,63 +40,52 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
-    const [isActive, setIsActive] = React.useState<boolean>(false);
 
     const toggleContainer = React.useRef<HTMLDivElement>();
     const inputContainer = React.useRef<HTMLInputElement>();
 
-    React.useEffect(() => {
-        const isClosest = closest(document.activeElement as HTMLElement, toggleContainer.current);
-        if (!props.isOpen && !isClosest && inFocus) {
-            toggleContainer.current.focus();
-            toggleContainer.current.blur();
-        }
-    }, [props.isOpen, inFocus]);
-
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
     React.useEffect(() => {
-        window.document.addEventListener('click', handleActive);
+        window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current.focus();
         }
 
-        return () => window.document.removeEventListener('click', handleActive);
+        return () => window.document.removeEventListener('click', handleClick);
     }, []);
+
+    const blur = (e?: React.FocusEvent<HTMLElement>) => {
+        setInFocus(false);
+        props.onBlur?.(e);
+        inputContainer.current?.blur();
+    };
+
+    const handleClick = (event: Event) => {
+        if (props.isInteractedOutside(event)) {
+            blur();
+        }
+    };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onFocus?.(e);
-        const shouldFocus = e.target === inputContainer.current || e.target === toggleContainer.current;
-        if (!shouldFocus) return;
         setInFocus(true);
         inputContainer.current?.focus();
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
-        if (!props.isOpen && props.value) props.onValueChange('');
+        if (!props.isOpen) {
+            blur();
+            // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
+            props.value && props.onValueChange('');
+        }
         const blurTrigger = e.relatedTarget as HTMLElement;
         const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
-        if (!isPickerChildTriggerBlur) {
-            props.onBlur?.(e);
-            setInFocus(false);
-            inputContainer.current?.blur();
-        }
         const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
         if (!shouldCloseOnBlur) return;
+        blur();
         props.toggleDropdownOpening(false);
-    };
-
-    const handleActive = (e: MouseEvent) => {
-
-        if (closest((e.target as HTMLElement), toggleContainer.current)) {
-            setIsActive(true);
-        }
-
-        if (isActive && !closest((e.target as HTMLElement), toggleContainer.current)) {
-            setIsActive(false);
-        }
     };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
@@ -171,7 +160,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.isInvalid && uuiMod.invalid,
                 (!props.isReadonly && !props.isDisabled && props.onClick) && uuiMarkers.clickable,
                 (!props.isReadonly && !props.isDisabled && inFocus) && uuiMod.focus,
-                (!props.isReadonly && !props.isDisabled && isActive) && uuiMod.active,
                 props.cx,
             ) }
             tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, isInteractionOutsideRelated, UuiContext } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -25,7 +25,6 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
     onClose?: () => void;
     isNotUnfoldable?: boolean;
-    stopCloseSelectors?: string[];
     zIndex?: number;
     placement?: DropdownPlacement;
     modifiers?: Modifier<any>[];
@@ -185,6 +184,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             isDropdown: true,
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
+            isInteractedOutside: (e) => isInteractionOutsideRelated(e, [this.bodyNode, this.targetNode]),
         });
     }
 
@@ -229,19 +229,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private isInteractedOutside = (e: Event) => {
         if (!this.isOpened()) return false;
-
-        const target = e.target as HTMLElement;
-        const stopNodes = [this.bodyNode, this.targetNode, ...(this.props.stopCloseSelectors || [])];
-
-        if (stopNodes.some(node => node && typeof node !== 'string' && closest(target, node))) {
-            return false;
-        }
-
-        if (closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (this.bodyNode !== null ? +this.bodyNode.style.zIndex : 0)) {
-            return false;
-        }
-
-        return true;
+        return isInteractionOutsideRelated(e, [this.bodyNode, this.targetNode]);
     }
 
     private clickOutsideHandler = (e: Event) => {
