@@ -22,8 +22,6 @@ Please answer the following questions for yourself before submitting an issue. *
 
 Please provide detailed steps for reproducing the issue.
 
-To provide more details include screenshots, video, [UUI Codesandbox](https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx) example or minimal code snippet where appropriate.
-
 1. step 1
 2. step 2
 3. ...
@@ -31,6 +29,8 @@ To provide more details include screenshots, video, [UUI Codesandbox](https://co
 ## Actual result
 
 What is the current behavior?
+
+To provide more details include screenshots, video, [UUI Codesandbox](https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx) example or minimal code snippet where appropriate.
 
 ## Expected result
 
