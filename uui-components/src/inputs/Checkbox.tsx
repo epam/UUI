@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { cx, ICanFocus, uuiMarkers } from '@epam/uui-core';
+import { cx, uuiMarkers } from '@epam/uui-core';
 import * as css from './Checkbox.scss';
 import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
-export interface CheckboxProps extends CheckboxCoreProps, ICanFocus<HTMLInputElement> {
+export interface CheckboxProps extends CheckboxCoreProps {
     icon?: Icon;
     indeterminateIcon?: Icon;
     renderLabel?(): React.ReactNode;
