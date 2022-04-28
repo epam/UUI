@@ -119,14 +119,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onFocus?.(e);
-    }
-
-    onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onBlur?.(e);
-    }
-
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.toggleDropdownOpening(false);
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
@@ -205,8 +197,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             iconPosition,
             prefix,
             suffix,
-            onFocus: this.onFocus,
-            onBlur: this.onBlur,
+            onFocus: this.props.onFocus,
+            onBlur: this.props.onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
