@@ -18,6 +18,7 @@ import {
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
+import { useCallback } from "react";
 
 export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement> {
     cancelIcon?: Icon;
@@ -46,26 +47,26 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
+    const handleClick = useCallback((event: Event) => {
+        if (props.isInteractedOutside(event) && inFocus) {
+            blur();
+        }
+    }, [inFocus]);
+
     React.useEffect(() => {
-        window.document.addEventListener('click', handleClick);
+        props.isOpen && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
             inputContainer.current.focus();
         }
 
-        return () => window.document.removeEventListener('click', handleClick);
-    }, []);
+        return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
+    }, [props.isOpen]);
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
         props.onBlur?.(e);
         inputContainer.current?.blur();
-    };
-
-    const handleClick = (event: Event) => {
-        if (props.isInteractedOutside(event)) {
-            blur();
-        }
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
