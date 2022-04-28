@@ -7,6 +7,7 @@ export interface PageProps {
     renderHeader?: () => React.ReactNode;
     renderFooter?: () => React.ReactNode;
     contentCx?: string;
+    children: React.ReactNode;
 }
 
 export class Page extends React.Component<PageProps, any> {

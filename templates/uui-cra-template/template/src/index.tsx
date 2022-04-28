@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { ContextProvider } from '@epam/uui-core';
@@ -34,7 +34,4 @@ const RoutedApp = () => (
     </Router>
 );
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
-
-root.render(<RoutedApp />);
+ReactDOM.render(<RoutedApp />, document.getElementById('root'));

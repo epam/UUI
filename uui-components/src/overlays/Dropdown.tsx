@@ -206,6 +206,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             return null;
         }
 
+        // @ts-ignore
         return (
             <FreeFocusInside>
                 <div
