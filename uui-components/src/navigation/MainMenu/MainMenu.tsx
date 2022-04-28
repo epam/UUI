@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent , useCallback} from 'react';
 import Measure, { MeasuredComponentProps } from 'react-measure';
 import orderBy from 'lodash.orderby';
 import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
@@ -213,109 +213,102 @@ class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProp
     }
 
     render() {
+        const childrenItems = convertReactChildrenToItems(this.props.children);
+
+        const appLogoItem: ItemProps = {
+            width: this.props.logoWidth || 201,
+            priority: 100500,
+            type: 'appLogo',
+        };
+
+        const customerLogoItem: ItemProps = {
+            width: this.props.customerLogoWidth,
+            priority: 100499,
+            type: 'customerLogo',
+        };
+
+        const burger: ItemProps = {
+            width: 60,
+            priority: 100501,
+            type: 'burger',
+        };
+
+        let menuItems = [...childrenItems];
+
+        if (this.props.appLogoUrl) {
+            menuItems.unshift(appLogoItem);
+        }
+
+        if (this.props.customerLogoUrl) {
+            menuItems.unshift(customerLogoItem);
+        }
+
+        if (this.props.alwaysShowBurger) {
+            menuItems.unshift(burger);
+        }
+
+        const staticWidth = 0;
+        const containerWidth = this.props.contentRect.bounds.width - staticWidth;
+        const firstStep = adaptItems(menuItems, containerWidth);
+        const moreWidth = 70;
+        let hiddenItems: ItemProps[] = [];
+        let itemsToRender: ItemProps[] = [];
+
+        if (firstStep.hiddenItems.length === 0) {
+            itemsToRender = firstStep.visibleItems;
+        } else {
+            const secondStep = adaptItems(firstStep.visibleItems, containerWidth - moreWidth);
+            hiddenItems = [...secondStep.hiddenItems, ...firstStep.hiddenItems];
+            if (
+                hiddenItems.every(item => isCollapsibleToMore(item)) &&
+                secondStep.visibleItems.some(item => isCollapsibleToMore(item))
+            ) {
+                itemsToRender = [];
+                let isMoreCollapsibleFound = false;
+                let isMoreInjected = false;
+
+                secondStep.visibleItems.forEach(i => {
+                    const isCollapsible = isCollapsibleToMore(i);
+                    isMoreCollapsibleFound = isMoreCollapsibleFound || isCollapsible;
+                    if (isMoreCollapsibleFound && !isCollapsible && !isMoreInjected) {
+                        isMoreInjected = true;
+                        itemsToRender.push({
+                            width: moreWidth,
+                            priority: 0,
+                            type: 'moreButton',
+                        });
+                    }
+                    itemsToRender.push(i);
+                });
+            } else {
+                const thirdStep = adaptItems(
+                    menuItems.filter(i => !isCollapsibleToMore(i)),
+                    this.props.alwaysShowBurger ? containerWidth : containerWidth - 60,
+                );
+
+                if (this.props.alwaysShowBurger) {
+                    itemsToRender = thirdStep.visibleItems;
+                } else {
+                    itemsToRender = [burger, ...thirdStep.visibleItems];
+                }
+            }
+        }
+
         return (
-            <Measure bounds>
-                { ({ measureRef, contentRect }: { measureRef: (instance: HTMLElement) => any, contentRect: any }) => {
-                    const childrenItems = convertReactChildrenToItems(this.props.children);
-
-                    const appLogoItem: ItemProps = {
-                        width: this.props.logoWidth || 201,
-                        priority: 100500,
-                        type: 'appLogo',
-                    };
-
-                    const customerLogoItem: ItemProps = {
-                        width: this.props.customerLogoWidth,
-                        priority: 100499,
-                        type: 'customerLogo',
-                    };
-
-                    const burger: ItemProps = {
-                        width: 60,
-                        priority: 100501,
-                        type: 'burger',
-                    };
-
-                    let menuItems = [...childrenItems];
-
-                    if (this.props.appLogoUrl) {
-                        menuItems.unshift(appLogoItem);
-                    }
-
-                    if (this.props.customerLogoUrl) {
-                        menuItems.unshift(customerLogoItem);
-                    }
-
-                    if (this.props.alwaysShowBurger) {
-                        menuItems.unshift(burger);
-                    }
-
-                    const staticWidth = 0;
-                    const containerWidth = contentRect.bounds.width - staticWidth;
-                    const firstStep = adaptItems(menuItems, containerWidth);
-                    const moreWidth = 70;
-                    let hiddenItems: ItemProps[] = [];
-                    let itemsToRender: ItemProps[] = [];
-
-                    if (firstStep.hiddenItems.length === 0) {
-                        itemsToRender = firstStep.visibleItems;
-                    } else {
-                        const secondStep = adaptItems(firstStep.visibleItems, containerWidth - moreWidth);
-                        hiddenItems = [...secondStep.hiddenItems, ...firstStep.hiddenItems];
-                        if (
-                            hiddenItems.every(item => isCollapsibleToMore(item)) &&
-                            secondStep.visibleItems.some(item => isCollapsibleToMore(item))
-                        ) {
-                            itemsToRender = [];
-                            let isMoreCollapsibleFound = false;
-                            let isMoreInjected = false;
-
-                            secondStep.visibleItems.forEach(i => {
-                                const isCollapsible = isCollapsibleToMore(i);
-                                isMoreCollapsibleFound = isMoreCollapsibleFound || isCollapsible;
-                                if (isMoreCollapsibleFound && !isCollapsible && !isMoreInjected) {
-                                    isMoreInjected = true;
-                                    itemsToRender.push({
-                                        width: moreWidth,
-                                        priority: 0,
-                                        type: 'moreButton',
-                                    });
-                                }
-                                itemsToRender.push(i);
-                            });
-                        } else {
-                            const thirdStep = adaptItems(
-                                menuItems.filter(i => !isCollapsibleToMore(i)),
-                                this.props.alwaysShowBurger ? containerWidth : containerWidth - 60,
-                            );
-
-                            if (this.props.alwaysShowBurger) {
-                                itemsToRender = thirdStep.visibleItems;
-                            } else {
-                                itemsToRender = [burger, ...thirdStep.visibleItems];
-                            }
-                        }
-                    }
-
-                    return (
-                        <nav
-                            key='uuiMainMenu'
-                            ref={ this.handleRef }
-                            className={ cx(
-                                this.props.cx,
-                                uuiMainMenu.container,
-                                css.container,
-                                this.props.isTransparent && uuiMainMenu.transparent
-                            ) }
-                            { ...this.props.rawProps }
-                        >
-                            { this.renderMenuItems(itemsToRender, hiddenItems, containerWidth) }
-                            { this.renderServerBadge() }
-                        </nav>
-                    );
-                }
-                }
-            </Measure>
+            <nav
+                key='uuiMainMenu'
+                ref={ this.handleRef }
+                className={ cx(
+                    this.props.cx,
+                    uuiMainMenu.container,
+                    css.container,
+                    this.props.isTransparent && uuiMainMenu.transparent
+                ) }
+                { ...this.props.rawProps }
+            >
+                { this.renderMenuItems(itemsToRender, hiddenItems, containerWidth) }
+                { this.renderServerBadge() }
+            </nav>
         );
     }
 }

@@ -18,7 +18,6 @@ export interface DataSourceState<TFilter = Record<string, any>, TId = any> exten
     filter?: TFilter;
     sorting?: SortingOption[];
     selectedId?: TId;
-    focusedIndex?: number;
     page?: number;
     pageSize?: number;
 }
