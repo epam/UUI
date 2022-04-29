@@ -25,6 +25,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
       onChange={[Function]}
       onKeyDown={[Function]}
       placeholder="From:"
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -43,6 +44,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
       onChange={[Function]}
       onKeyDown={[Function]}
       placeholder="To:"
+      tabIndex={0}
       type="text"
       value=""
     />
@@ -80,6 +82,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
       onKeyDown={[Function]}
       placeholder=""
       readOnly={true}
+      tabIndex={-1}
       type="text"
       value=""
     />
@@ -103,6 +106,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
       onKeyDown={[Function]}
       placeholder=""
       readOnly={true}
+      tabIndex={-1}
       type="text"
       value=""
     />
