@@ -75,7 +75,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        tabIndex: props.tabIndex,
+        tabIndex: props.tabIndex || (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0,
         id: props.id,
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
@@ -99,9 +99,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 (!props.isReadonly && inFocus) && uuiMod.focus,
                 props.cx,
             ) }
+            tabIndex={ -1 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
-            tabIndex={ -1 }
             { ...props.rawProps }
         >
             { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }

@@ -36,6 +36,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                tabIndex={ -1 }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
@@ -55,7 +56,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }
-                        tabIndex={ this.props.tabIndex }
+                        tabIndex={ this.props.tabIndex || (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                         id={ this.props.id }
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
