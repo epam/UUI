@@ -1,3 +1,8 @@
+# 4.6.? - ?.04.2022
+
+**What's New**
+* [ICanFocus]: implement interface ICanFocus anf fix handling in components TextInput, NumericInput, PickerInput, Checkbox, DatePicker
+
 # 4.6.3 - 27.04.2022
 
 **What's New**
