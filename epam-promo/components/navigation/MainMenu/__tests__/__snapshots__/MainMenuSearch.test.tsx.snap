@@ -19,6 +19,7 @@ exports[`MainMenuSearch should be rendered correctly 1`] = `
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
+    tabIndex={0}
     type="text"
     value=""
   />
@@ -44,6 +45,7 @@ exports[`MainMenuSearch should be rendered correctly 2`] = `
     className="uui-input"
     onChange={[Function]}
     onKeyDown={[Function]}
+    tabIndex={0}
     type="primary"
     value="test"
   />

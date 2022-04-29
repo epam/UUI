@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import {
-    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps,
-} from '@epam/uui-core';
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
-export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
     editMode?: 'dropdown' | 'modal';
     maxItems?: number;
     minBodyWidth?: number;
@@ -21,8 +18,6 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHa
     minCharsToSearch?: number;
     dropdownHeight?: number;
     autoFocus?: boolean;
-    onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
-    onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
     rawProps?: {
@@ -108,14 +103,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onFocus?.(e);
-    }
-
-    onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onBlur?.(e);
-    }
-
     onSelect = (row: DataRowProps<TItem, TId>) => {
         this.toggleDropdownOpening(false);
         this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
@@ -194,8 +181,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             iconPosition,
             prefix,
             suffix,
-            onFocus: this.onFocus,
-            onBlur: this.onBlur,
+            onFocus: this.props.onFocus,
+            onBlur: this.props.onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
