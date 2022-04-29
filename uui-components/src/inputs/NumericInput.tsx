@@ -142,6 +142,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
+                    tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                     aria-required={ this.props.isRequired }
                     value={ this.state.value }
                     inputMode="numeric"
