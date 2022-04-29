@@ -2,15 +2,7 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import {
-    isClickableChildClicked,
-    IEditable,
-    LayoutLayer,
-    IDropdownToggler,
-    UuiContexts,
-    UuiContext,
-    closest,
-} from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -50,7 +42,7 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     closeBodyOnTogglerHidden?: boolean; // default: true; Set false if you do not want to hide the dropdown body in case Toggler is out of the viewport
 }
 
-export function isInteractedOutsideDropdown(e: Event, stopNodes: HTMLElement[]) {
+const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
     const [relatedNode] = stopNodes;
     const target = e.target as HTMLElement;
 
