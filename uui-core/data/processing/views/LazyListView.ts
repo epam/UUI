@@ -415,11 +415,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
             }
 
-            /*
-                ? layerRows.some(r => r.isFoldable)
-                : (parents.length === 0 && this.props.getChildCount != null); // if there's no rows - guess that there will be children on 1st layer, if getChildCount is passed
-                */
-            const indent = parents.length + 1;
+            const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
+
+            const indent = isListFlat ? 0 : parents.length + 1;
             layerRows.forEach(r => r.indent = indent);
 
             return stats;
