@@ -14,7 +14,7 @@ export class Modals extends React.Component {
         this.context.uuiModals.subscribe(() => this.forceUpdate());
     }
 
-    public render() {
+    public render(): React.ReactNode {
         return this.context.uuiModals.getOperations().map(modalOperation => {
             return React.createElement(modalOperation.component, modalOperation.props);
         });

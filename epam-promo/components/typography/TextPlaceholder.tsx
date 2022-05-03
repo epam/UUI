@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as css from './TextPlaceholder.scss';
 import cx from 'classnames';
+import { PropsWithChildren } from 'react';
 
 export interface TextPlaceholderProps {
     wordsCount?: number;
@@ -8,7 +9,7 @@ export interface TextPlaceholderProps {
     isNotAnimated?: boolean;
 }
 
-export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (props) => {
+export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<TextPlaceholderProps>> = (props) => {
     const pattern = `0`;
     const text = React.useMemo(() => {
         const words = [];
