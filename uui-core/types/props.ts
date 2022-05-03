@@ -1,4 +1,4 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef } from "react";
+import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import {DataRowProps} from "./tables";
@@ -110,7 +110,7 @@ export interface IHasIcon {
 }
 
 export interface IHasChildren {
-    children?: any;
+    children?: ReactNode;
 }
 
 export interface IHasPlaceholder {

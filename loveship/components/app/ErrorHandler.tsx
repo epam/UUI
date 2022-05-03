@@ -1,5 +1,13 @@
 import React from 'react';
-import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui-core';
+import {
+    UuiContexts,
+    ApiRecoveryReason,
+    UuiError,
+    UuiErrorInfo,
+    IHasCX,
+    UuiContext,
+    IHasChildren
+} from '@epam/uui-core';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';
@@ -14,7 +22,7 @@ export interface ErrorConfig {
     getInfo?: (errorCode: number) => UuiErrorInfo;
 }
 
-export interface ErrorPageProps extends IHasCX {
+export interface ErrorPageProps extends IHasCX, IHasChildren {
     errorPageConfig?: ErrorConfig;
     theme?: Theme;
 }

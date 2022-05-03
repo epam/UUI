@@ -54,7 +54,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx) }
             onScroll={ handleScroll }
-            renderView={ ({ style, ...rest }) => (
+            renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ { ...style, position: 'relative', flex: '1 1 auto' } }
                     className={ cx({
