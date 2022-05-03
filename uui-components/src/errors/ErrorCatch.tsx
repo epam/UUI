@@ -1,9 +1,7 @@
 import React from 'react';
-import { UuiContext, UuiContexts } from '@epam/uui-core';
+import { IHasChildren, UuiContext, UuiContexts } from '@epam/uui-core';
 
-interface ErrorCatchProps {
-    children: React.ReactNode;
-}
+interface ErrorCatchProps extends IHasChildren {}
 
 export class ErrorCatch extends React.Component<ErrorCatchProps> {
     static contextType = UuiContext;
