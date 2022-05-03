@@ -1,16 +1,16 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo } from '@epam/uui-core';
+import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren } from '@epam/uui-core';
 import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../';
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
 import * as css from './ErrorHandler.scss';
 
-export interface ErrorHandlerProps extends IHasCX {
+export interface ErrorHandlerProps extends IHasCX, IHasChildren {
     getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
 }
 
-export const ErrorHandler: FC<PropsWithChildren<ErrorHandlerProps>> = (props) => {
+export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     const { uuiNotifications, uuiModals } = useUuiContext();
     const { errorType, errorInfo } = useUuiError({
         getErrorInfo: props.getErrorInfo,
