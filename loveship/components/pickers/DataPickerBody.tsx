@@ -38,6 +38,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     <FlexCell grow={ 1 }>
                         <SearchInput
                             cx={ css.search }
+                            ref={ this.searchRef }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             { ...this.searchLens.toProps() }
                             onKeyDown={ this.searchKeyDown }
@@ -59,7 +60,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         rows={ this.props.rows }
                         rowsCount={ this.props.rowsCount }
                         rawProps={ this.props.rawProps }
-                        focusedIndex={ value && value.focusedIndex || 0 }
                     />
                     : this.renderNoFound()
                 }

@@ -1,6 +1,6 @@
 import { LazyLoadedMap } from '../../helpers';
 import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRequest } from './types';
-import { batchOnNextTick } from '../../helpers/batchOnNextTick';
+import { batch } from '../../helpers/batch';
 
 export interface ListApiSettings<TItem, TId, TFilter> {
 
@@ -58,7 +58,7 @@ export class ListApiCache<TItem, TId, TFilter> {
     constructor(options: ListApiSettings<TItem, TId, TFilter>) {
         this.api = options.api;
         this.getId = options.getId;
-        this.onUpdate = batchOnNextTick(() => options.onUpdate && options.onUpdate());
+        this.onUpdate = batch(() => options.onUpdate && options.onUpdate());
         this.itemsById = new LazyLoadedMap(ids => this.loadByIds(ids), this.onUpdate);
         this.maxCacheSize = options.maxCacheSize || 100;
     }

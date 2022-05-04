@@ -4,7 +4,7 @@ import { cx, DataColumnProps, DndActor } from '@epam/uui-core';
 import { DragHandle, ColumnsConfigurationModalBase } from '@epam/uui-components';
 import {
     ModalBlocker, ModalWindow, ModalFooter, FlexSpacer, Button, Panel, Checkbox, LinkButton, ModalHeader,
-    ScrollBars, FlexRow, DropMarker
+    ScrollBars, FlexRow, DropMarker,
 } from '../';
 import * as styles from './ColumnsConfigurationModal.scss';
 import { i18n } from '../../i18n';
@@ -29,7 +29,7 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                 </div>
             ) }
         />
-    );
+    )
 
     render() {
         const { columns, ...modalProps } = this.props;
@@ -59,9 +59,10 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                         </ScrollBars>
                         <ModalFooter borderTop >
                             <LinkButton caption={ i18n.tables.columnsConfigurationModal.resetToDefaultButton } color="blue" onClick={ () => this.setState({columnsConfig: this.props.defaultConfig}) } />
+                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.uncheckAllButton } color="blue" onClick={ this.handleMarkAllAsUnchecked } />
+                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="blue" onClick={ this.handleMarkAllAsChecked } />
                             <FlexSpacer />
-                            <LinkButton cx={ styles.actionLinkButton } caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="blue" onClick={ this.handleMarkAllAsChecked } />
-                            <LinkButton cx={ styles.actionLinkButton } caption={ i18n.tables.columnsConfigurationModal.uncheckAllButton } color="blue" onClick={ this.handleMarkAllAsUnchecked } />
+                            <Button fill="white" color="gray50" caption={ i18n.tables.columnsConfigurationModal.cancelButton } onClick={ () => modalProps.abort() } />
                             <Button cx={ styles.actionButton } caption={ i18n.tables.columnsConfigurationModal.applyButton } color="green" onClick={ () => modalProps.success(this.state.columnsConfig) } />
                         </ModalFooter>
                     </Panel>

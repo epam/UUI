@@ -10,6 +10,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     style={
       Object {
         "flex": "0 0 96px",
+        "minWidth": "96px",
       }
     }
   >
@@ -36,6 +37,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     >
       <label
         className="container root size-12 theme-light color-sky -clickable"
+        tabIndex={-1}
       >
         <div
           className="uui-checkbox"
@@ -44,6 +46,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             aria-checked={false}
             checked={false}
             onChange={[Function]}
+            tabIndex={0}
             type="checkbox"
           />
         </div>
@@ -88,7 +91,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="container"
     style={
       Object {
-        "flex": "1 0 470px",
+        "flex": "2 0 470px",
         "minWidth": "470px",
       }
     }
@@ -164,7 +167,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           "flexBasis": "150px",
           "flexGrow": undefined,
           "flexShrink": undefined,
-          "minWidth": "200px",
+          "minWidth": "150px",
           "textAlign": undefined,
         }
       }
@@ -269,6 +272,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     style={
       Object {
         "flex": "0 0 96px",
+        "minWidth": "96px",
       }
     }
   >
@@ -324,7 +328,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="container"
     style={
       Object {
-        "flex": "1 0 470px",
+        "flex": "2 0 470px",
         "minWidth": "470px",
       }
     }
@@ -384,7 +388,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           "flexBasis": "150px",
           "flexGrow": undefined,
           "flexShrink": undefined,
-          "minWidth": "200px",
+          "minWidth": "150px",
           "textAlign": undefined,
         }
       }

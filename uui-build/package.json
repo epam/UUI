@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.6.1-alpha.0",
+  "version": "4.6.3",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -12,6 +12,7 @@
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "25.2.2",
+    "@types/lodash.defaultsdeep": "4.6.6",
     "@types/lodash.uniqueid": "4.0.6",
     "@types/node": "14.0.1",
     "babel-eslint": "10.1.0",
@@ -49,6 +50,7 @@
     "jest-watch-typeahead": "0.4.2",
     "less": "3.11.1",
     "less-loader": "6.1.0",
+    "lodash.defaultsdeep": "4.6.1",
     "lodash.uniqueid": "4.0.1",
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",

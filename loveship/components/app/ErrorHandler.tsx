@@ -1,5 +1,13 @@
 import React from 'react';
-import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui-core';
+import {
+    UuiContexts,
+    ApiRecoveryReason,
+    UuiError,
+    UuiErrorInfo,
+    IHasCX,
+    UuiContext,
+    IHasChildren
+} from '@epam/uui-core';
 import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
 import { FlexRow, FlexCell } from './../layout';
 import { RichTextView, Text } from './../typography';
@@ -14,7 +22,7 @@ export interface ErrorConfig {
     getInfo?: (errorCode: number) => UuiErrorInfo;
 }
 
-export interface ErrorPageProps extends IHasCX {
+export interface ErrorPageProps extends IHasCX, IHasChildren {
     errorPageConfig?: ErrorConfig;
     theme?: Theme;
 }
@@ -170,7 +178,11 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
     render() {
         let page: any = null;
         let firstCallWithError = this.context.uuiApi.getActiveCalls().filter(c => c.status === 'error' && c.options.errorHandling === 'page')[0];
-        if (this.context.uuiErrors.currentError != null) {
+
+        if (firstCallWithError != null) {
+            page = this.renderErrorPage(firstCallWithError.httpStatus);
+            this.context.uuiModals.closeAll();
+        } else if (this.context.uuiErrors.currentError != null) {
             const error = this.context.uuiErrors.currentError;
             let status;
             let info: UuiErrorInfo = {};
@@ -180,9 +192,6 @@ export class ErrorHandler extends React.Component<ErrorPageProps> {
             }
 
             page = this.renderErrorPage(status, info);
-            this.context.uuiModals.closeAll();
-        } else if (firstCallWithError != null) {
-            page = this.renderErrorPage(firstCallWithError.httpStatus);
             this.context.uuiModals.closeAll();
         } else {
             page = this.props.children;

@@ -20,9 +20,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>();
-    const inputContainer = React.useRef<HTMLDivElement>();
-
-    React.useImperativeHandle(ref, () => inputElement.current, [inputElement.current]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onValueChange(e.target.value);
@@ -39,14 +36,16 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         else if (e.key === ESCAPE) props.onCancel?.();
     };
 
-    const handleFocus = () => {
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(true);
-        props.onFocus?.();
+        inputElement.current?.focus();
+        props.onFocus?.(event);
     };
 
-    const handleBlur = (e: React.SyntheticEvent<HTMLElement>) => {
-        !props.isReadonly && props.onBlur?.(e);
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
+        inputElement.current?.blur();
+        props.onBlur?.(event);
     };
 
     const handleClick = (e: any) => {
@@ -76,7 +75,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        tabIndex: props.tabIndex,
+        tabIndex: props.tabIndex || (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0,
         id: props.id,
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
@@ -89,7 +88,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
-        <div onClick={ props.onClick && handleClick } ref={ inputContainer } className={
+        <div onClick={ props.onClick && handleClick } ref={ ref } className={
             cx(
                 css.container,
                 uuiElement.inputBox,
@@ -100,9 +99,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 (!props.isReadonly && inFocus) && uuiMod.focus,
                 props.cx,
             ) }
+            tabIndex={ -1 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
-            tabIndex={ -1 }
             { ...props.rawProps }
         >
             { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }

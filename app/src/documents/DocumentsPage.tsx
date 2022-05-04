@@ -38,6 +38,8 @@ export const DocumentsPage = () => {
         return () => codesandboxService.clearFiles();
     }, []);
 
+    const PageComponent = items.find(item => item.id === getQuery('id')).component;
+
     return (
         <Page renderHeader={ () => <AppHeader /> } >
             <FlexRow alignItems='stretch'>
@@ -55,7 +57,7 @@ export const DocumentsPage = () => {
                         },
                     } }
                 />
-                { React.createElement(items.find(item => item.id === getQuery('id')).component) }
+                <PageComponent />
             </FlexRow>
         </Page>
     );

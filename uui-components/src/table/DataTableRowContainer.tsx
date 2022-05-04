@@ -7,7 +7,7 @@ import * as css from './DataTableRowContainer.scss';
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
+    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[]): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -25,10 +25,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         return columns.reduce<React.ReactNode[]>((cells, column) => {
             const idx = props.columns?.indexOf(column) || 0;
-            cells.push(props.renderCell({
-                ...column,
-                minWidth: column.minWidth || (typeof column.width !== 'number' ? 0 : column.width),
-            }, idx));
+            cells.push(props.renderCell(column, idx));
             return cells;
         }, []);
     }
@@ -36,11 +33,17 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     function getSectionWidth(cells: DataColumnProps<TItem, TId, TFilter>[]) {
         return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
     }
+    function getSectionGrow(cells: DataColumnProps<TItem, TId, TFilter>[]) {
+        return cells.reduce((grow, cell) => grow + (cell.grow || 0), 0);
+    }
 
     function wrapFixedSection(cells: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right') {
         return (
             <div
-                style={ { flex: `0 0 ${getSectionWidth(cells)}px` } }
+                style={ {
+                    flex: `${getSectionGrow(cells)} 0 ${getSectionWidth(cells)}px`,
+                    minWidth: `${getSectionWidth(cells)}px`,
+                } }
                 className={ cx({
                     [css.fixedColumnsSectionLeft]: direction === 'left',
                     [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
@@ -52,15 +55,15 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
                 { direction === 'right' && props.renderConfigButton?.() }
             </div>
-        )
-    };
+        );
+    }
 
     function wrapScrollingSection(cells: DataColumnProps<TItem, TId, TFilter>[]) {
         if (props.wrapScrollingSection) return props.wrapScrollingSection(cells);
         return (
-            <div className={ css.container } style= {{
-                flex: `1 0 ${getSectionWidth(cells)}px`,
-                minWidth: `${getSectionWidth(cells)}px`
+            <div className={ css.container } style={ {
+                flex: `${getSectionGrow(cells) || 1} 0 ${getSectionWidth(cells)}px`,
+                minWidth: `${getSectionWidth(cells)}px`,
             } }>
                 { renderCells(cells) }
             </div>
@@ -107,5 +110,5 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 { getRowContent() }
             </FlexRow>
         )
-    )
+    );
 });

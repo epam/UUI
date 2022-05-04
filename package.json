@@ -21,43 +21,36 @@
     "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
-    "generate-components-api": "cd uui-build && yarn generate-components-api"
+    "generate-components-api": "cd uui-build && yarn generate-components-api",
+    "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter"
   },
   "repository": {
     "type": "git",
     "url": "git@git.epam.com:epm-tmc/ui.git"
   },
-  "workspaces": [
-    "app",
-    "edu-core-routing",
-    "epam-assets",
-    "loveship",
-    "epam-promo",
-    "uui",
-    "uui-core",
-    "uui-components",
-    "uui-build",
-    "uui-docs",
-    "uui-db",
-    "uui-timeline",
-    "uui-editor",
-    "extra",
-    "draft-rte"
-  ],
+  "workspaces": {
+    "packages": [
+      "app",
+      "epam-assets",
+      "loveship",
+      "epam-promo",
+      "uui",
+      "uui-core",
+      "uui-components",
+      "uui-build",
+      "uui-docs",
+      "uui-db",
+      "uui-timeline",
+      "uui-editor",
+      "extra",
+      "draft-rte"
+    ]
+  },
   "author": "",
   "license": "MIT",
   "resolutions": {
     "@types/react": "17.0.3",
-    "@types/chai": "4.1.1",
-    "prop-types": "15.7.2",
-    "moment": "2.19.3",
-    "lodash": "4.17.20",
-    "mixin-deep": "2.0.1",
-    "tar": "6.0.5",
-    "extend-shallow": "3.0.2",
-    "braces": "3.0.2",
-    "set-value": "3.0.2",
-    "y18n": "5.0.5"
+    "@types/history": "4.7.9"
   },
   "browserslist": [
     ">0.2%",

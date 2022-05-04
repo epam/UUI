@@ -1,13 +1,37 @@
-import React from "react";
-import * as props from "./props";
-import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from "../types";
-import { DataSourceListProps, DataSourceState, IDataSource } from "../data/processing";
-import { ILens } from "..";
-import { Link } from "../types";
+import React from 'react';
+import * as props from './props';
+import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
+import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
+import { ILens } from '..';
+import { Link } from '../types';
 
+
+/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
+    /**
+     * Index of the topmost item, in rendered batch.
+     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list
+     */
     topIndex?: number;
+    /**
+     * Number of currently rendered items.
+     * Virtual list updates this value automatically, if it too small.
+     * Note Virtual List renders more items, that actually visible,
+     * as it need maintain some reserve of rows on top / at the bottom of the list.
+     */
     visibleCount?: number;
+    /**
+     * Virtual list ensures that row with this Index is within the visible area, if not Virtual List .
+     * Virtual list updates this value on scroll to null when appear in the visible area.
+     * If this value is updated manually, Virtual List would scroll to the specified items.
+     * It would attempt to put scroll so this item will be at the top of the list.
+     */
+    indexToScroll?: number;
+    /**
+     * Virtual List manually scroll to this Index when it appears not within the visible area.
+     * It would attempt to put scroll so this item will be in the middle of the list.
+     */
+    focusedIndex?: number;
 }
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
@@ -19,7 +43,8 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends props.FlexCellProps {
     key: string;
     caption?: React.ReactNode;
-    fix?: "left" | "right";
+    fix?: 'left' | 'right';
+    width?: number;
     isSortable?: boolean;
     isAlwaysVisible?: boolean;
     isHiddenByDefault?: boolean;
@@ -115,10 +140,7 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** Depth of the row in tree, 0 for the top-level */
     depth?: number;
 
-    /** Indent of the item, to show hierarchy.
-     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
-     *  if all children of node has no children, all nodes would get the same indent as parent.
-     */
+    /** Indent of the item, to show hierarchy */
     indent?: number;
 
     /** True if row is in loading state. Value is empty in this case */
@@ -184,10 +206,10 @@ export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
 
-export type IColumnConfig = {
+export type IColumnConfig =  {
     isVisible?: boolean;
     order?: string;
-    width?: number | "auto" | "100%";
+    width?: number;
 };
 
 export type FiltersConfig = {
@@ -255,5 +277,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
     presets: ITablePreset<TFilter>[];
-    setPage(page: number): void;
 }

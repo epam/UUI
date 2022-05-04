@@ -28,7 +28,6 @@ export type PickerBaseOptions<TItem, TId> = {
     cascadeSelection?: boolean;
     isFoldedByDefault?(item: TItem): boolean;
     getSearchFields?(item: TItem): string[];
-    renderFooter?: (props: PickerFooterProps<TItem, TId>) => ReactNode;
 };
 
 export type PickerFooterProps<TItem, TId> = {

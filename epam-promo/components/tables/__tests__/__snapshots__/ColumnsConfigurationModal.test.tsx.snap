@@ -163,6 +163,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -173,6 +174,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
+                          tabIndex={-1}
                           type="checkbox"
                         />
                         <div
@@ -213,6 +215,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -223,6 +226,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
+                          tabIndex={-1}
                           type="checkbox"
                         />
                         <div
@@ -290,11 +294,37 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               Reset to Default
             </div>
           </button>
+          <button
+            className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+            href={null}
+            onClick={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="uui-caption"
+            >
+              Uncheck All
+            </div>
+          </button>
+          <button
+            className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+            href={null}
+            onClick={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <div
+              className="uui-caption"
+            >
+              Check All
+            </div>
+          </button>
           <div
             className="flexSpacer"
           />
           <button
-            className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLinkButton"
+            className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
             href={null}
             onClick={[Function]}
             role="button"
@@ -303,20 +333,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             <div
               className="uui-caption"
             >
-              CHECK ALL
-            </div>
-          </button>
-          <button
-            className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLinkButton"
-            href={null}
-            onClick={[Function]}
-            role="button"
-            tabIndex={0}
-          >
-            <div
-              className="uui-caption"
-            >
-              UNCHECK ALL
+              Cancel
             </div>
           </button>
           <button
