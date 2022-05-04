@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as css from './Page.scss';
-import { cx } from '@epam/uui';
+import { cx, IHasChildren } from '@epam/uui';
 import { ErrorHandler } from '@epam/promo';
 
-export interface PageProps {
+export interface PageProps extends IHasChildren {
     renderHeader?: () => React.ReactNode;
     renderFooter?: () => React.ReactNode;
     contentCx?: string;
@@ -16,7 +16,7 @@ export class Page extends React.Component<PageProps, any> {
                 <header>
                     { this.props.renderHeader && this.props.renderHeader() }
                 </header>
-                <ErrorHandler >
+                <ErrorHandler cx={ css.errorBlock }>
                     <main className={ cx(css.content, this.props.contentCx) } >
                         { this.props.children }
                     </main>

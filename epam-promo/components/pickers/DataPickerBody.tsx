@@ -63,7 +63,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         role='listbox'
                         rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
-                        focusedIndex={ value && value.focusedIndex || 0 }
                     />
                     : this.renderNoFound()
                 }

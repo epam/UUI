@@ -3,6 +3,7 @@ import { ErrorContext } from './ErrorContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
 import { getCookie, isClientSide } from '../helpers';
+import { ApiContextProps } from './ContextProvider';
 
 interface ApiCall extends ApiCallInfo {
     resolve: (value?: any) => any;
@@ -33,8 +34,6 @@ export type IProcessRequest = (url: string, method: string, data?: any, options?
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 
-const reloginPath = '/auth/login';
-
 export class ApiContext extends BaseContext implements IApiContext {
     private queue: ApiCall[] = [];
     private isRunScheduled = false;
@@ -42,16 +41,17 @@ export class ApiContext extends BaseContext implements IApiContext {
     public recoveryReason: ApiRecoveryReason | null = null;
     public lastHttpStatus?: number;
 
-    constructor(private errorCtx: ErrorContext, private serverUrl = '', private analyticsCtx?: AnalyticsContext) {
+    constructor(private props: ApiContextProps, private errorCtx: ErrorContext, private analyticsCtx?: AnalyticsContext) {
         super();
-        this.errorCtx = errorCtx;
-        this.analyticsCtx = analyticsCtx;
+        this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
+        this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
+        this.props.apiServerUrl = this.props.apiServerUrl ?? '';
         isClientSide && this.runListeners();
     }
 
     private runListeners() {
         // If this window is opened by another app in another window to re-login, tell it that Auth was passed ok
-        window.opener && window.location.pathname === reloginPath && window.opener.postMessage("authSuccess", "*");
+        window.opener && window.location.pathname === this.props.apiReloginPath && window.opener.postMessage("authSuccess", "*");
 
         // If we opened another window to relogin and check auth - close this window and resume
         window.addEventListener('message', (e) => {
@@ -59,6 +59,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
                     this.setStatus('running');
                     this.runQueue();
+                    this.errorCtx.recover();
                 }
                 (e.source as any).close();
             }
@@ -90,7 +91,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             }
             this.setStatus('recovery', reason);
             this.errorCtx.reportError(new ApiCallError(call));
-            reason === 'auth-lost' ? window.open(reloginPath) : this.recoverConnection();
+            reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
         } else {
             const error = new ApiCallError(call);
             call.status = 'error';
@@ -114,7 +115,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         call.attemptsCount += 1;
         call.status = 'running';
         call.startedAt = new Date();
-        fetch(this.serverUrl + call.url, {
+        fetch(this.props.apiServerUrl + call.url, {
             headers,
             method: call.method,
             body: call.requestData && JSON.stringify(call.requestData),
@@ -218,7 +219,7 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     private recoverConnection() {
         const retry = () => setTimeout(() => this.recoverConnection(), 2000);
-        fetch('/auth/ping', {
+        fetch(this.props.apiPingPath, {
             method: 'GET',
             credentials: 'include',
         }).then(response => {

@@ -1,3 +1,56 @@
+# 4.6.? - ?.04.2022
+
+**What's New**
+* [ICanFocus]: implement interface ICanFocus anf fix handling in components TextInput, NumericInput, PickerInput, Checkbox, DatePicker
+
+# 4.6.3 - 27.04.2022
+
+**What's New**
+* [uui-db]:
+  * dbRef.save() now returns a Promise. It also passes thru errors returned from savePatch() method. This opens ways for a custom error handling, or to execute certain actions after saving changes.
+  * auto-save scheduling is refactored. How it can batch sync commits, and throttles calls more accurately. We don't expect breaking changes, however you might want to double-check this.
+  * records deletion support. To enable deletion, set 'deleteFlag' prop in Table metadata. E.g. deleteFlag: 'isDeleted'. Deleted records will be removed from tables when committing changes setting this flag. The flag will be passed as is to dbRef.savePatch, it's up to application to decide how to handle it while saving changes to server.
+* [VirtualList]: added `scrollToIndex` property for `DataTableState`. Use it for manual scrolling to some index in the list. For example for scrolling to top of the DataTable on filter or page change.
+* [Timeline]: more customization options: renderOnTop callback, most render-methods made protected to allow overrides
+
+**What’s Fixed**
+* [LazyListView]: fix indent for flat lists
+* [MainMenu]: fix MainMenu responsive
+
+# 4.6.2 - 20.04.2022
+
+**What's New**
+* [PickerInput]: add prop onClose to renderFooter callback
+* [PickerModal]: add success & abort props to renderFooter callback
+* [RTE]: added scrollbars prop to RTE to support internal and external scrollbars
+* [MainMenu]: update styles in loveship
+* [ApiContext] allow to customize /auth/login and /auth/ping endpoint addresses
+* [ModalBlocker]: add possibility to disable focus locking inside modal
+
+**What’s Fixed**
+* [MainMenuIcon]: wrap into forwardRef
+* [Anchor]: wrap with forwardRef
+* [Tables]: set minimal flex-grow: 1 for scrolling section, to stretch it in case when all columns grow is not set or has '0' value
+* [ErrorHandler]: change errors image source from http to https
+* [Timeline] fixed issues when user zooms in/out in browser
+* [DataTable]: fix column width in case when in columnsConfig there are columns only minWidth
+* [PickerInput]: fix focus in readonly mode
+* [ErrorHandler]: fixed am issue, which causes page re-render on errors
+* [ErrorHandler]: fix error codes handling in loveship
+* [RTE]: fix the position of the placeholder to match the position of the inner text
+* [DataPickerRow]: do not call onFocus callback when it's not passed
+* [PickerModal]: fixed issue when search is not working if 'Show only selected' applied
+* [Button]: fixed text color for "fill:light" props in Promo skin
+* [LazyDataSource]: fix indent for nested children
+
+# 4.6.1 - 22.03.2022
+
+**What’s Fixed**
+* [MainMenu]: fix 'More' dropdown crashing in loveship
+* [PickerInput]:  fix autofocus on search in loveship
+* [PickerInput]: fix crashing by clicking on'Show only selected' toggle
+* [Table]: fix row width for columns with minWidth value
+
 # 4.6.0 - 14.03.2022
 
 **What's New**
@@ -15,7 +68,7 @@
 **What’s Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
 * [PickerToggler]: If not enought chars clear picker input on blur
-* [PickerInput]: don't close picker in case when you remove search value 
+* [PickerInput]: don't close picker in case when you remove search value
 * [PickerInput]: don't load list on PickerInput mount
 * [NumericInput]: Fixed handling float numbers
 * [Form]: release Lock on form unmount

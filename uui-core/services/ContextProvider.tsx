@@ -8,8 +8,13 @@ import { IProcessRequest } from "./ApiContext";
 import { useUuiServices } from "../hooks";
 import { GAListener } from "./analytics";
 
-export interface IUuiServicesProps<TApi> {
+export interface ApiContextProps {
+    apiReloginPath?: string;
+    apiPingPath?: string;
     apiServerUrl?: string;
+}
+
+export interface IUuiServicesProps<TApi> extends ApiContextProps {
     apiDefinition?: (processRequest: IProcessRequest) => TApi;
     skinContext?: ISkin;
 }

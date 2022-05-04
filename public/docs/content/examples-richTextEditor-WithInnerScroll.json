@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can placed scrollbars into Editor by passing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scrollbars: true",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop. Do not forget to limit editor container height, to make scrolls work.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

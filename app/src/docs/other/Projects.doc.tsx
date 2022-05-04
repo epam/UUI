@@ -26,6 +26,7 @@ import { ReactComponent as MenuIcon } from '../../icons/menu.svg';
 import { ReactComponent as DeskIcon } from '../../icons/desk.svg';
 import { ReactComponent as TalkIcon } from '../../icons/talk-logo.svg';
 import { ReactComponent as TelescopeIcon } from '@epam/assets/icons/common/communication-telescope-24.svg';
+import { ReactComponent as BillingIcon } from '../../icons/billing.svg';
 
 export const projectsList: Array<{ projectName: string, projectCode: string, icon: Icon, url: string }> = [
     { projectName: 'Learn', projectCode: 'EPM-TMC', icon: LearnIcon, url: 'https://learn.epam.com' },
@@ -38,7 +39,7 @@ export const projectsList: Array<{ projectName: string, projectCode: string, ico
     { projectName: 'Onboarding', projectCode: 'EPM-ADPT', icon: OnboardingIcon, url: 'https://onboarding.epam.com/' },
     { projectName: 'Vacations', projectCode: 'EPM-VTS', icon: VacationIcon, url: 'https://vacation.epam.com/' },
     { projectName: 'Feedback', projectCode: 'EPM-RVM', icon: FeedbackIcon, url: 'https://feedback.epam.com' },
-    { projectName: 'Billing', projectCode: 'EPM-BSRV', icon: DefaultIcon, url: 'https://billing.epam.com/' },
+    { projectName: 'Billing', projectCode: 'EPM-BSRV', icon: BillingIcon, url: 'https://billing.epam.com/' },
     { projectName: 'Eco Toolkit', projectCode: 'EPM-ECO', icon: DefaultIcon, url: '' },
     { projectName: 'Employment Verification Letter', projectCode: 'EPM-GOOG', icon: EmploymentVerificationLetterIcon, url: 'https://letter.epam.com/' },
     { projectName: 'EPAM Anywhere', projectCode: 'EPM-COSR', icon: AnywhereIcon, url: 'https://anywhere.epam.com/' },
