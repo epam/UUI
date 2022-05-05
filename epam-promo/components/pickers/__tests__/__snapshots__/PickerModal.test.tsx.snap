@@ -133,6 +133,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               onChange={[Function]}
               onKeyDown={[Function]}
               placeholder="Type text for quick search"
+              tabIndex={0}
               type="search"
               value=""
             />
@@ -764,6 +765,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
               onChange={[Function]}
               onKeyDown={[Function]}
               placeholder="Type text for quick search"
+              tabIndex={0}
               type="search"
               value=""
             />
@@ -871,6 +873,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -920,6 +923,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -969,6 +973,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1018,6 +1023,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1067,6 +1073,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1116,6 +1123,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1165,6 +1173,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1214,6 +1223,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1263,6 +1273,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1312,6 +1323,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"
@@ -1361,6 +1373,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   >
                     <label
                       className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox"

@@ -92,7 +92,6 @@ export const PersonsTable = (props: PersonsTableProps) => {
             onValueChange={ props.onValueChange }
             rows={ getRows() }
             rowsCount={ rowsCount }
-            focusedIndex={ props.value?.focusedIndex }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {

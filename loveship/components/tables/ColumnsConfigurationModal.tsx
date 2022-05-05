@@ -64,8 +64,8 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                         </ScrollBars>
                         <ModalFooter borderTop>
                             <LinkButton caption={ i18n.tables.columnsConfigurationModal.resetToDefaultButton } color="sky" onClick={ () => this.setState({ columnsConfig: this.props.defaultConfig }) } />
-                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="sky" onClick={ this.handleMarkAllAsChecked } />
                             <LinkButton caption={ i18n.tables.columnsConfigurationModal.uncheckAllButton } color="sky" onClick={ this.handleMarkAllAsUnchecked } />
+                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="sky" onClick={ this.handleMarkAllAsChecked } />
                             <FlexSpacer />
                             <Button fill="white" color="night600" caption={ i18n.tables.columnsConfigurationModal.cancelButton } onClick={ () => modalProps.abort() } />
                             <Button cx={ styles.actionButton } caption={ i18n.tables.columnsConfigurationModal.applyButton } color="grass" onClick={ () => modalProps.success(this.state.columnsConfig) } />

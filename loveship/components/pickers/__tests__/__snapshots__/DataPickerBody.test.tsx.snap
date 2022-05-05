@@ -101,6 +101,7 @@ Array [
           onChange={[Function]}
           onKeyDown={[Function]}
           placeholder="Search"
+          tabIndex={0}
           type="search"
           value=""
         />

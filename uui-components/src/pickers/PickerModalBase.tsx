@@ -4,7 +4,7 @@ import { PickerBase, PickerBaseState } from './index';
 
 export interface PickerModalOptions<TItem, TId extends DataSourceItemId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
-    renderFooter?: (props: PickerFooterProps<TItem, TId> & IModal<any>) => React.ReactNode;
+    renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
     disallowClickOutside?: boolean;
 }
 
@@ -49,6 +49,16 @@ export class PickerModalBase<TItem, TId extends DataSourceItemId> extends Picker
         return this.state.showSelected
             ? view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount)
             : view.getVisibleRows();
+    }
+
+    getFooterProps(): PickerFooterProps<TItem, TId> & Partial<IModal<any>> {
+        const footerProps = super.getFooterProps();
+
+        return {
+            ...footerProps,
+            success: this.props.success,
+            abort: this.props.abort,
+        };
     }
 }
 

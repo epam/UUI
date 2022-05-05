@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PickerBase, PickerBaseProps, PickerBaseState } from './PickerBase';
-import { UuiContexts, DataRowProps, UuiContext, DataSourceItemId } from '@epam/uui-core';
+import { PickerBase, PickerBaseState } from './PickerBase';
+import { UuiContexts, DataRowProps, UuiContext, DataSourceItemId, PickerBaseProps } from '@epam/uui-core';
 import { i18n } from "../../i18n";
 
 export type PickerListBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & {

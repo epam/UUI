@@ -19,8 +19,9 @@ const pickerWidth = 360;
 
 export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
+        const { renderFooter, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
-            { ...this.props }
+            { ...restProps }
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }

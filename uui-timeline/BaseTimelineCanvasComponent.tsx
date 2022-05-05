@@ -6,6 +6,7 @@ import { TimelineTransform } from './TimelineTransform';
 export interface BaseTimelineCanvasComponentProps {
     className?: string;
     timelineController: TimelineController;
+    renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 }
 
 export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}>
@@ -31,6 +32,7 @@ export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCan
         ctx.save();
         ctx.scale(devicePixelRatio, devicePixelRatio);
         this.renderCanvas(ctx, t);
+        this.props.renderOnTop?.(ctx, t);
         ctx.restore();
     };
 
