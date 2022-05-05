@@ -13,7 +13,7 @@ export type TableDataContextState = [
     setValue: Dispatch<SetStateAction<DataItemExample[]>>
 ];
 
-const initialValue: DataItemExample[] = Array(20)
+const initialValue1: DataItemExample[] = Array(20)
     .fill({
         column0: '"1"',
         column1: '2%',
@@ -22,14 +22,34 @@ const initialValue: DataItemExample[] = Array(20)
         column4: '"5"',
     });
 
-const TableDataContext = createContext<TableDataContextState>(null);
+const initialValue2: DataItemExample[] = Array(20)
+    .fill({
+        column0: '1',
+        column1: '2',
+        column2: '3',
+        column3: '4',
+        column4: '5',
+    });
 
-export const TableDataContextProvider: FC = ({ children }) => {
-    const [value, setValue] = useState<TableDataContextState[0]>(initialValue);
+const TableDataContext1 = createContext<TableDataContextState>(null);
+
+const TableDataContext2 = createContext<TableDataContextState>(null);
+
+export const TableDataContextProvider1: FC = ({ children }) => {
+    const [value, setValue] = useState<TableDataContextState[0]>(initialValue1);
 
     const state = useMemo<TableDataContextState>(() => ([value, setValue]), [value]);
 
-    return <TableDataContext.Provider value={ state }>{ children }</TableDataContext.Provider>;
+    return <TableDataContext1.Provider value={ state }>{ children }</TableDataContext1.Provider>;
 };
 
-export const useTableDataContext = () => useContext(TableDataContext);
+export const TableDataContextProvider2: FC = ({ children }) => {
+    const [value, setValue] = useState<TableDataContextState[0]>(initialValue2);
+
+    const state = useMemo<TableDataContextState>(() => ([value, setValue]), [value]);
+
+    return <TableDataContext2.Provider value={ state }>{ children }</TableDataContext2.Provider>;
+};
+
+export const useTableDataContext1 = () => useContext(TableDataContext1);
+export const useTableDataContext2 = () => useContext(TableDataContext2);
