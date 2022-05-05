@@ -3,9 +3,8 @@ import isEqual from "lodash.isequal";
 import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
 import { getColumnsConfig, getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
-import { isDefaultColumnsConfig, parseUrlParam } from "./helpers";
+import { isDefaultColumnsConfig, parseUrlFilter, parseUrlFiltersConfig } from "./helpers";
 import { constants } from "./constants";
-import { getQueryFromLink } from "./getQueryFromLink";
 import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
@@ -14,9 +13,9 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [tableStateValue, setTableStateValue] = useState<DataTableState>({
         topIndex: 0,
         visibleCount: 40,
-        filter: params.initialFilter ?? parseUrlParam("filter"),
+        filter: params.initialFilter ?? parseUrlFilter(),
         columnsConfig: getColumnsConfig(params.columns, {}),
-        filtersConfig: parseUrlParam("filtersConfig") ?? {
+        filtersConfig: parseUrlFiltersConfig() ?? {
             profileStatus: {
                 isAlwaysVisible: true,
                 isVisible: true,
@@ -29,13 +28,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const query = getQueryFromLink(context.uuiRouter.getCurrentLink());
         const newFilter = normalizeFilter(newValue.filter);
-
-        const parsedFilter = !query.filter || query.filter === "undefined"
-            ? undefined
-            : JSON.parse(decodeURIComponent(query.filter));
-        const isFilterEqual = isEqual(parsedFilter, newFilter);
 
         setTableStateValue(prevValue => ({
             ...prevValue,
@@ -63,10 +56,9 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             delete newQuery.presetId;
         }
 
-        // двойной encode
         context.uuiRouter.redirect({
             pathname: location.pathname,
-            query: newQuery, // to search
+            query: newQuery,
         });
     }, []);
 
@@ -88,13 +80,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         setTableState({
             ...tableStateValue,
             filter,
-        });
-    }, [tableStateValue]);
-
-    const setPage = useCallback((page: number) => {
-        setTableState({
-            ...tableStateValue,
-            page,
         });
     }, [tableStateValue]);
 
@@ -176,7 +161,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [choosePreset]);
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const filter = parseUrlParam("filter");
+        const filter = parseUrlFilter();
 
         return !isEqual(preset?.filter, filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
@@ -223,8 +208,6 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         duplicatePreset,
         deletePreset,
         updatePreset,
-
-        setPage,
     };
 };
 

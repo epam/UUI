@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import css from "./DynamicFilters.scss";
 import sortBy from "lodash.sortby";
 import { Button, FlexRow, PickerInput } from "@epam/promo";
-import { FilterConfig, FiltersConfig, getOrderBetween, ITableState, useArrayDataSource } from "@epam/uui-core";
+import { DataRowOptions, FilterConfig, FiltersConfig, getOrderBetween, ITableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps } from "@epam/uui-components";
 import { DynamicFilter } from "./DynamicFilter";
 
@@ -84,8 +84,12 @@ const DynamicFiltersImpl = <TFilter extends Record<string, any>>(props: DynamicF
         return <Button caption="Choose filter" onClick={ props.onClick }/>;
     }, []);
     
-    const getRowOptions = useCallback((item: typeof filterItems[number]) => ({
+    const getRowOptions = useCallback((item: typeof filterItems[number]): DataRowOptions<any, any> => ({
         isDisabled: item.isDisabled,
+        checkbox: {
+            isVisible: true,
+            isDisabled: item.isDisabled,
+        },
     }), []);
 
     return (

@@ -24,7 +24,7 @@ export const DemoTablePaged: React.FC = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
     
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async (request, ctx) => {
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
             page: request.page - 1,
@@ -41,6 +41,11 @@ export const DemoTablePaged: React.FC = () => {
         setAppliedFilter(tableState.filter);
         setTableState({ ...tableState, indexToScroll: 0 });
     }, [tableState.filter]);
+    
+    // applying filter after parsing initial filter data from url
+    useEffect(() => {
+        applyFilter();
+    }, []);
     
     const dataSource = useLazyDataSource({
         api,
