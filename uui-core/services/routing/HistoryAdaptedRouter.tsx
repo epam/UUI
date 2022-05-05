@@ -10,20 +10,19 @@ export interface IHistory4 {
 }
 
 export class HistoryAdaptedRouter implements IRouterContext {
-
     constructor(private history: IHistory4) {
     }
 
     public getCurrentLink(): Link {
-        return this.history.location;
+        return HistoryAdaptedRouter.withQuery(this.history.location);
     }
 
     public redirect(link: Link): void {
-        this.history.push(link);
+        this.history.push(HistoryAdaptedRouter.withSearch(link));
     }
 
     public transfer(link: Link): void {
-        this.history.replace(link);
+        this.history.replace(HistoryAdaptedRouter.withSearch(link));
     }
 
     public isActive(link: Link): boolean {
@@ -32,7 +31,7 @@ export class HistoryAdaptedRouter implements IRouterContext {
     }
 
     public createHref(link: Link): string {
-        return this.history.createHref(link);
+        return this.history.createHref(HistoryAdaptedRouter.withSearch(link));
     }
 
     public listen(listener: (link: Link) => void) {
@@ -44,5 +43,28 @@ export class HistoryAdaptedRouter implements IRouterContext {
             listener(location);
             return false;
         });
+    }
+    
+    private static withQuery(link: Link): Link {
+        if (link.query !== undefined) return link;
+
+        const query = {} as any;
+        new URLSearchParams(link.search).forEach((value, key) => {
+            query[key] = value;
+        });
+        
+        return {
+            ...link,
+            query,
+        };
+    }
+    
+    private static withSearch(link: Link): Link {
+        if (!link.query) return link;
+        
+        return {
+            ...link,
+            search: new URLSearchParams(link.query).toString(),
+        };
     }
 }
