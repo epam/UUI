@@ -130,7 +130,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
         this.isUpdatePending = false;
 
         let completeReset = false;
-
+        
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -356,7 +356,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < reportedChildCount && index < lastIndex; m++) {
                                     const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
-                                    row.indent = parentsWithRow.length;
+                                    row.indent = parentsWithRow.length + 1;
                                     row.isLastChild = m == (reportedChildCount - 1);
                                     rows.push(row);
                                     index++;
@@ -401,8 +401,9 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
                 }
             }
 
-            const isAnyChildren = layerRows.some(r => r.isFoldable);
-            const indent = isAnyChildren ? (parents.length + 1) : parents.length;
+            const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
+
+            const indent = isListFlat ? 0 : parents.length + 1;
             layerRows.forEach(r => r.indent = indent);
 
             return stats;
@@ -595,7 +596,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             rowsCount = this.rows.length;
             exactRowsCount = this.rows.length;
             totalCount = rootList.recursiveCount;
-        } else {
+        }  else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
             // We have to balance this number.

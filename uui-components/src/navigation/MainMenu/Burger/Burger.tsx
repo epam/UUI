@@ -37,7 +37,7 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
 
     state: BurgerState = {
         isOpen: false,
-    }
+    };
 
     private toggleBurgerMenu = () => {
         this.setState(prevState => ({
@@ -72,7 +72,7 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
                                     background: (this.props.bg !== 'transparent' && this.props.bg) || '#303240',
                                 } }
                             >
-                                <img className={ uuiBurger.logo } src={ this.props.logoUrl } />
+                                <img className={ uuiBurger.logo } src={ this.props.logoUrl } alt='burger logo' />
                             </div>
                         ) }
                 </div>

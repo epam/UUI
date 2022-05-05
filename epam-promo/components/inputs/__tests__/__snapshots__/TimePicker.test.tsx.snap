@@ -13,6 +13,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="hh:mm A"
+    tabIndex={0}
     type="text"
     value=""
   />
@@ -34,6 +35,7 @@ exports[`TimePicker should be rendered correctly 2`] = `
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="HH:mm"
+    tabIndex={-1}
     type="text"
     value="01:05"
   />

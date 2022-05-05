@@ -163,6 +163,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -173,6 +174,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
+                          tabIndex={-1}
                           type="checkbox"
                         />
                         <div
@@ -213,6 +215,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                     <label
                       className="container root size-18 checkbox-color-blue uui-disabled"
+                      tabIndex={-1}
                     >
                       <div
                         className="uui-checkbox uui-checked"
@@ -223,6 +226,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           checked={true}
                           disabled={true}
                           onChange={[Function]}
+                          tabIndex={-1}
                           type="checkbox"
                         />
                         <div
@@ -300,7 +304,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             <div
               className="uui-caption"
             >
-              Check All
+              Uncheck All
             </div>
           </button>
           <button
@@ -313,7 +317,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             <div
               className="uui-caption"
             >
-              Uncheck All
+              Check All
             </div>
           </button>
           <div

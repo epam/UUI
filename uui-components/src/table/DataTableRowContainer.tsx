@@ -7,7 +7,7 @@ import * as css from './DataTableRowContainer.scss';
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
+    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[]): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -70,8 +70,8 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 { hasScrollingSection && direction === 'left' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowRight } /> }
                 { direction === 'right' && props.renderConfigButton?.() }
             </div>
-        )
-    };
+        );
+    }
 
     function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         if (props.wrapScrollingSection) return props.wrapScrollingSection(columns);
@@ -130,5 +130,5 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 { getRowContent() }
             </FlexRow>
         )
-    )
+    );
 });
