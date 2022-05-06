@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState } from '@epam/uui';
+import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows,
+    useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
@@ -9,7 +10,7 @@ import type{ TApi } from '../../data';
 import * as css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataTableState> {
-    view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
+    view: IDataSourceView<PersonTableRecord, string, DataQueryFilter<PersonTableFilter>>;
     summary: PersonsSummary;
 }
 
@@ -18,11 +19,16 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
     const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
-    const { exactRowsCount, totalCount } = props.view.getListProps();
+    const { rowsCount } = props.view.getListProps();
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
+    const renderRow = (props: DataTableRowProps<PersonTableRecord, string>) => {
         const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
-        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
+        return <DataTableRow
+            key={ String(props.id) }
+            { ...props }
+            columns={ cols }
+            background={ (props.isLoading || props.value?.__typename === 'Person') ? 'white' : 'night50' }
+        />;
     };
 
     const getRows = () => {
@@ -59,7 +65,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
-            { props.view.getListProps().exactRowsCount !== 0 && (
+            { props.view.getListProps().rowsCount !== 0 && (
                 <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
                         ref={ listContainerRef }
@@ -85,14 +91,13 @@ export const PersonsTable = (props: PersonsTableProps) => {
             value={ props.value }
             onValueChange={ props.onValueChange }
             rows={ getRows() }
-            rowsCount={ exactRowsCount }
-            focusedIndex={ props.value?.focusedIndex }
+            rowsCount={ rowsCount }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': personColumns.length,
-                'aria-rowcount': totalCount,
+                'aria-rowcount': rowsCount,
             } }
         />
     );

@@ -122,8 +122,8 @@
 
 .fill-light {
     background-color: transparent;
-    color: var(--background-color);
-    fill: var(--background-color);
+    color: var(--caption-color);
+    fill: var(--caption-color);
     border-color: transparent;
 
     &:global(.-clickable) {

@@ -2,7 +2,7 @@
 
 exports[`NumericInput should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box root root size-36 size-36 mode-form"
+  className="container uui-input-box -clickable root root size-36 size-36 mode-form"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
@@ -16,6 +16,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
     onChange={[Function]}
     placeholder="0"
     step={1}
+    tabIndex={0}
     type="number"
     value=""
   />
@@ -46,7 +47,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
 
 exports[`NumericInput should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box root root size-36 size-36 mode-form"
+  className="container uui-input-box -clickable root root size-36 size-36 mode-form"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
@@ -60,6 +61,7 @@ exports[`NumericInput should be rendered correctly 2`] = `
     onChange={[Function]}
     placeholder="0"
     step={1}
+    tabIndex={0}
     type="number"
     value=""
   />

@@ -1,29 +1,46 @@
 import React, { ReactNode, Component } from "react";
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers } from '@epam/uui-core';
+import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps } from '@epam/uui-core';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
 } as const;
 
-export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
-    renderCell?: (props: DataTableCellProps<TItem, TId>) => ReactNode;
-    renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
-}
-
 export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem, TId>> {
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
-        return !isEqual(this.props, nextProps);
+        const isDeepEqual = isEqual(this.props, nextProps);
+
+        // Debug code to find props differences. Please don't remove, and keep commented out
+        //
+        // const shallowDiffKeys = [];
+        // const compareDeep = (a: any, b: any, prefix = "") => {
+        //     const keys = Object.keys({ ...a, ...b });
+        //     keys.forEach(key => {
+        //         if (a[key] !== b[key]) {
+        //             shallowDiffKeys.push(prefix + key);
+        //             compareDeep(a[key], b[key], prefix + key + '.');
+        //         }
+        //     });
+        // }
+        // compareDeep(this.props, nextProps);
+
+        return !isDeepEqual;
     }
 
-    renderCell = (columnProps: DataColumnProps<TItem, TId>, idx: number) => {
-        const renderCellCallback = columnProps.renderCell || this.props.renderCell;
-        return renderCellCallback?.({ column: columnProps, rowProps: this.props, index: idx, role: 'cell' });
-    }
-
-    renderCellContent(columnProps: DataColumnProps<TItem, TId>, rowProps: DataRowProps<TItem, TId>) {
-        return columnProps.render(this.props.value, rowProps);
+    renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+        const renderCellCallback = column.renderCell || this.props.renderCell;
+        const isFirstColumn = idx === 0;
+        const isLastColumn = !this.props.columns || idx === this.props.columns.length - 1;
+        return renderCellCallback?.({
+            key: column.key,
+            column,
+            rowProps: this.props,
+            index: idx,
+            role: 'cell',
+            isFirstColumn,
+            isLastColumn
+        });
     }
 
     renderRow(params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) {

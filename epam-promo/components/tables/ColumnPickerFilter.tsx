@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { PickerBase, PickerBaseState } from '@epam/uui-components';
-import { DataRowProps, isMobile, PickerBaseProps } from '@epam/uui-core';
+import { DataRowProps, DataSourceItemId, isMobile, PickerBaseProps } from '@epam/uui-core';
 import { DataPickerBody, DataPickerFooter, DataPickerRow } from '../pickers';
 import { Text, TextPlaceholder } from '../typography';
 
-export type PickerFilterProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
+export type PickerFilterProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & {
     size?: '30' | '36';
     showSearch?: boolean;
     close?: () => void;
@@ -14,7 +14,7 @@ export interface PickerFilterState extends PickerBaseState {}
 
 const pickerHeight = 300;
 
-export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
+export class ColumnPickerFilter<TItem, TId extends DataSourceItemId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         const size = isMobile() ? "48" : (this.props.size || '30');
 

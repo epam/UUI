@@ -19,7 +19,6 @@ export interface VirtualListProps<List extends HTMLElement = any, ScrollContaine
     rowsCount?: number;
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     renderRows?: (config: VirtualListRenderRowsParams<List>) => React.ReactNode;
-    focusedIndex?: number;
     onScroll?(value: PositionValues): void;
 }
 
@@ -51,11 +50,16 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         )
     );
 
+    const scrollBarsRef = React.useCallback(scrollbars => {
+        if (!scrollbars?.container?.firstChild) return;
+        scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
+    }, []);
+
     return (
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx) }
             onScroll={ handleScroll }
-            renderView={ ({ style, ...rest }) => (
+            renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ { ...style, position: 'relative', flex: '1 1 auto' } }
                     className={ cx({
@@ -66,12 +70,11 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                     { ...props.rawProps }
                 />
             ) }
-            ref={ scrollbars => {
-                if (!scrollbars?.container?.firstChild) return;
-                scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
-            } }
+            ref={ scrollBarsRef }
         >
             { renderRows() }
         </ScrollBars>
     );
 });
+
+VirtualList.displayName = "VirtualList";

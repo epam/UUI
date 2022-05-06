@@ -19,7 +19,7 @@ export default function BasicExample() {
         <>
             <RichTextView>
                 <h3>
-                    <strong>Standart Headlines</strong>
+                    <strong>Standard Headlines</strong>
                 </h3>
                 <h1>H1 - Heading (for page hero-headers)</h1>
                 <h2>H2 - Heading (for areas smaller than hero-headers)</h2>

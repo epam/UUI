@@ -4,14 +4,15 @@
     position: sticky;
     top: 0;
     min-width: min-content;
-    z-index: 3;
+    z-index: 10;
 }
 
 .sticky-footer {
     position: sticky;
     bottom: 0;
     min-width: min-content;
-    z-index: 3;
+    isolation: isolate;
+    z-index: 10;
     border-top: 1px solid $night300;
 
     & > * {

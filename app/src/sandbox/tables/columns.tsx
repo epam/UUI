@@ -28,12 +28,13 @@ export function getColumns() {
 
     const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
 
-    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+    const personColumns: DataColumnProps<Person, string, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
             width: 250,
+            grow: 1,
             fix: 'left',
             isSortable: true,
         },
@@ -42,6 +43,7 @@ export function getColumns() {
             caption: "Job Title",
             render: r => <Text>{ r.jobTitle }</Text>,
             width: 200,
+            grow: 1,
             isSortable: true,
             renderFilter: renderJobTitlesFilter,
             isFilterActive: f => !!f.jobTitle,
@@ -51,6 +53,7 @@ export function getColumns() {
             caption: "Department",
             render: p => <Text>{ p.departmentName }</Text>,
             width: 200,
+            grow: 1,
             isSortable: true,
             renderFilter: renderDepartmentFilter,
             isFilterActive: f => !!f.departmentId,
@@ -73,7 +76,8 @@ export function getColumns() {
             key: 'locationName',
             caption: "Location",
             render: p => <Text>{ p.locationName }</Text>,
-            width: 120,
+            width: 180,
+            grow: 1,
             isSortable: true,
         },
         {
@@ -82,6 +86,13 @@ export function getColumns() {
             render: p => <Text color='night900'>{ p.salary }</Text>,
             width: 150,
             isSortable: true,
+            textAlign: 'right',
+        },
+        {
+            key: 'сonfig',
+            render: p => null,
+            width: 48,
+            fix: 'right',
         },
     ];
 
@@ -90,8 +101,9 @@ export function getColumns() {
             key: 'name',
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
-            grow: 1,
-        },
+            width: 500,
+            fix: 'left',
+        }
     ];
 
     const summaryColumns: DataColumnProps<PersonsSummary>[] = [
@@ -101,6 +113,7 @@ export function getColumns() {
             fix: 'left',
             textAlign: 'right',
             width: 250,
+            grow: 1,
             render: p => (
                 <FlexRow background='night50'>
                     <Text fontSize='14' font='sans-semibold'>Total</Text>
@@ -111,11 +124,13 @@ export function getColumns() {
         {
             key: 'jobTitle',
             width: 200,
+            grow: 1,
             render: () => <Text fontSize='14'>-</Text>,
         },
         {
             key: 'departmentName',
             width: 200,
+            grow: 1,
             render: () => <Text fontSize='14' font='sans-semibold'>-</Text>,
         },
         {
@@ -131,13 +146,21 @@ export function getColumns() {
         {
             key: 'locationName',
             render: () => <Text fontSize='14'>-</Text>,
-            width: 120,
+            width: 180,
+            grow: 1,
         },
         {
             key: 'salary',
             caption: "Total Salary",
             render: p => <Text font='sans-semibold' fontSize='14'>{ p.totalSalary }</Text>,
             width: 150,
+            textAlign: 'right',
+        },
+        {
+            key: 'сonfig',
+            render: p => null,
+            width: 48,
+            fix: 'right',
         },
     ];
 

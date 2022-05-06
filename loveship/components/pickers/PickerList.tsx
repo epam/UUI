@@ -7,6 +7,7 @@ import {
     IHasCaption,
     IHasPlaceholder,
     UuiContext,
+    DataSourceItemId,
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
@@ -14,13 +15,13 @@ import { PickerListItem } from './PickerListItem';
 import { Theme, SizeMod, TextSize } from '../types';
 import { Text } from '../typography';
 
-export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
     theme?: Theme;
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };
 
-export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
+export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
     static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;

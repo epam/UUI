@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataTableRow as uuiDataTableRow, DataTableRowProps } from '@epam/uui-components';
-import { withMods, DataTableCellProps, DndActorRenderParams } from '@epam/uui-core';
+import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
+import { withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
 import { DropMarker } from '../';
@@ -10,15 +10,10 @@ import * as css from './DataTableRow.scss';
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
-    const isFirstColumn = props.index === 0;
-    const isLastColumn = !props.rowProps.columns || props.index === props.rowProps.columns.length - 1;
     return <DataTableCell
-        key={ props.column.key }
         size={ mods.size }
         { ...props }
         role="cell"
-        isFirstColumn={ isFirstColumn }
-        isLastColumn={ isLastColumn }
     />;
 };
 
@@ -32,6 +27,7 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
         css.root,
         css['border-' + (mods.borderBottom || 'gray30')],
         css['size-' + (mods.size || '30')],
+        css['background-' + (mods.background || 'red')],
     ],
     () => propsMods,
 );

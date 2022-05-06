@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataSourceState, useLens, IEditable, LazyDataSource, LazyDataSourceApi, DataQueryFilter } from '@epam/uui';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button } from '@epam/loveship';
+import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text } from '@epam/loveship';
 import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
@@ -13,6 +13,24 @@ export const DbDemoImpl = () => {
 
     (window as any).dbRef = dbRef;
     dbRef.setAutoSave(false);
+
+    const handleSave = () => {
+        dbRef.save()
+            .then((patch) => {
+                svc.uuiNotifications.show((props) =>
+                    <SuccessNotification { ...props } >
+                        <Text size="24" font='sans' fontSize='14'>Data has been saved! See console for details.</Text>
+                    </SuccessNotification>, { duration: 2 }
+                );
+            })
+            .catch((e) => {
+                svc.uuiNotifications.show((props) =>
+                    <ErrorNotification { ...props } >
+                        <Text size="24" font='sans' fontSize='14'>Error saving data</Text>
+                    </ErrorNotification>, { duration: 2 }
+                );
+            })
+    }
 
     const api: LazyDataSourceApi<PersonTableRecord, number, DataQueryFilter<Person>> = React.useMemo(() => async (rq, ctx) => {
         if (!ctx.parent) {
@@ -55,6 +73,9 @@ export const DbDemoImpl = () => {
                 <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
             </FlexCell>
             <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption="Save" onClick={ handleSave } size='30'/>
+            </FlexCell>
             <FlexCell width='auto'>
                 <Button caption="Revert" onClick={ () => dbRef.revert() } size='30'/>
             </FlexCell>

@@ -4,16 +4,15 @@ import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
 import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
+import { PersonTableFilter, PersonTableRecord } from "./types";
 import { getFilters, mapFilter } from "./data";
-import { getColumns } from "./columns";
+import { personColumns } from "./columns";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(getColumns, []);
 
     const {tableState, setTableState} = useTableState({
-        columns: columnsSet,
+        columns: personColumns,
     });
     
     useEffect(() => {
@@ -23,7 +22,7 @@ export const DemoTablePaged: React.FC = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
 
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async (request, ctx) => {
+    const api: LazyDataSourceApi<PersonTableRecord, number, PersonTableFilter> = useCallback(async (request, ctx) => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
             page: request.page - 1,
@@ -38,16 +37,15 @@ export const DemoTablePaged: React.FC = () => {
     
     const applyFilter = useCallback(() => {
         setAppliedFilter(tableState.filter);
+        setTableState({ ...tableState, indexToScroll: 0 });
     }, [tableState.filter]);
     
     const dataSource = useLazyDataSource({
         api,
-        getId: i => [i.__typename, i.id] as PersonTableRecordId,
-        getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
+        getId: i => i.id,
     }, [api]);
     
-
-    const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
+    const rowOptions: DataRowOptions<PersonTableRecord, number> = {
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
@@ -59,18 +57,15 @@ export const DemoTablePaged: React.FC = () => {
         ...tableState,
         filter: appliedFilter,
     }), [tableState, appliedFilter]);
-    const personsDataView = dataSource.useView(viewTableState, setTableState, {
-        rowOptions,
-        isFoldedByDefault: () => true,
-        cascadeSelection: true,
-    });
+
+    const personsDataView = dataSource.useView(viewTableState, setTableState, { rowOptions });
 
     return (
         <div className={ css.container }>
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
-                columns={ columnsSet }
+                columns={ personColumns }
                 filters={ filters }
                 showColumnsConfig
                 value={ tableState }
@@ -83,7 +78,7 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer/>
                 <Paginator
                     value={ tableState.page }
-                    onValueChange={ (page: number) => setTableState({...tableState, page}) }
+                    onValueChange={ (page: number) => setTableState({...tableState, page, indexToScroll: 0 }) }
                     totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />

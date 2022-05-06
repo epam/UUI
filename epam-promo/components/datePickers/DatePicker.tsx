@@ -1,6 +1,5 @@
 import React from 'react';
 import css from './DatePicker.scss';
-import { Dayjs } from "dayjs";
 import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
 import { BaseDatePicker } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
@@ -30,6 +29,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                tabIndex={ (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 mode={ this.props.mode || defaultMode }

@@ -54,7 +54,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         return !!link;
     }
 
-    render() {
+    render(): any {
         let isAnchor = false;
         let isLinkActive = null;
         let href: string | null = null;

@@ -23,6 +23,17 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         historyIndex: 0,
     });
 
+    if (initialForm.current.form !== props.value) {
+        // TBD: do we need to do something additional here?
+        // If the value of the form is changed while we editing - probably we'd need to ask to save changes,
+        // and then reset to the new value?
+        // This can happen in master-detail screens, if the form is displayed for a selected item, which can be changed by user.
+
+        // Anyway, we need to set this new value as a base point to revert to.
+        initialForm.current.form = props.value;
+        initialForm.current.formHistory = [props.value];
+    }
+
     const formState = useRef(initialForm.current);
 
     const forceUpdate = useForceUpdate();
@@ -51,7 +62,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
-    }), [props.value, formState.current.form, formState.current.validationState, formState.current.lastSentForm, formState.current.serverValidationState]);
+    }), []);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -118,10 +129,13 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, [formState.current.validationState, formState.current.form, formState.current.isInProgress, props.onSave, props.onError]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
+        const newFormValue = response && response.form || formState.current.form;
         const newState: UseFormState<T> = {
             ...formState.current,
+            historyIndex: 0,
+            formHistory: [newFormValue],
             isChanged: false,
-            form: response && response.form || formState.current.form,
+            form: newFormValue,
             isInProgress: false,
             serverValidationState: response && response.validation || formState.current.serverValidationState,
             lastSentForm: response && response.validation?.isInvalid ? (response.form || formState.current.form) : formState.current.lastSentForm,
@@ -135,23 +149,27 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const handleUndo = useCallback(() => {
         const { formHistory, historyIndex, validationState } = formState.current;
-        const previousIndex = historyIndex > 0 ? historyIndex - 1 : 0;
-        const previousItem = formHistory[previousIndex];
-        if (previousIndex === 0) return resetForm({ ...formState.current, form: previousItem, formHistory });
-        setFormState({
-            ...formState.current,
-            form: previousItem,
-            historyIndex: previousIndex,
-            validationState: validationState.isInvalid ? handleValidate(previousItem) : {},
-        });
+        const previousIndex = historyIndex - 1;
+
+        if (previousIndex >= 0) {
+            const previousItem = formHistory[previousIndex];
+            setFormState({
+                ...formState.current,
+                isChanged: previousIndex !== 0,
+                form: previousItem,
+                historyIndex: previousIndex,
+                validationState: validationState.isInvalid ? handleValidate(previousItem) : {},
+            });
+        }
     }, [formState.current.formHistory, formState.current.historyIndex, formState.current.validationState, formState.current.form]);
 
     const handleRedo = useCallback(() => {
         const { formHistory, historyIndex } = formState.current;
-        const lastIndex = formHistory.length - 1;
-        const nextIndex = historyIndex < lastIndex ? historyIndex + 1 : lastIndex;
-        const nextItem = formHistory[nextIndex];
-        setFormState({ ...formState.current, form: nextItem, historyIndex: nextIndex, isChanged: true });
+        const nextIndex = historyIndex + 1;
+        if (nextIndex < formState.current.formHistory.length) {
+            const nextItem = formHistory[nextIndex];
+            setFormState({ ...formState.current, form: nextItem, historyIndex: nextIndex, isChanged: true });
+        }
     }, [formState.current.formHistory, formState.current.historyIndex, formState.current.form, formState.current.isChanged]);
 
     const validate = useCallback(() => {
@@ -174,8 +192,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         redo: handleRedo,
         revert: handleRevert,
         validate,
-        canUndo: formState.current.historyIndex !== 0,
-        canRedo: formState.current.historyIndex !== formState.current.formHistory.length - 1,
+        canUndo: formState.current.historyIndex > 0,
+        canRedo: formState.current.historyIndex < (formState.current.formHistory.length - 1),
         canRevert: formState.current.form !== props.value,
         value: formState.current.form,
         onValueChange: handleValueChange,

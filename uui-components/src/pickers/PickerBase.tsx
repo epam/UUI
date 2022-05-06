@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataSourceItemId } from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -8,7 +8,8 @@ export interface PickerBaseState {
     showSelected?: boolean;
 }
 
-export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
+export abstract class PickerBase<TItem, TId extends DataSourceItemId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
+    public context: UuiContexts;
     state: TState = this.getInitialState();
     lens = Lens.onState<PickerBaseState>(this);
 
@@ -21,6 +22,15 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     componentDidUpdate(prevProps: Readonly<TProps>, prevState: Readonly<TState>): void {
+        const { search } = this.state.dataSourceState;
+        const isSearchingStarted = !prevState.dataSourceState.search && search;
+        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
+        if (isSearchingStarted && prevState.showSelected) {
+            this.setState(state => ({ ...state, showSelected: false }));
+        }
+        if (search && isSwitchIsBeingTurnedOn) {
+            this.setState(state => ({ ...state, dataSourceState: { ...state.dataSourceState, search: '' } }));
+        }
         if (this.props.dataSource !== prevProps.dataSource) {
             prevProps.dataSource.unsubscribeView(this.handleDataSourceValueChange);
         }
@@ -166,7 +176,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
-    getFooterProps = (): PickerFooterProps<TItem, TId> => {
+    getFooterProps(): PickerFooterProps<TItem, TId> {
         return {
             view: this.getView(),
             showSelected: {

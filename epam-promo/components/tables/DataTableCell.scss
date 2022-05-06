@@ -1,15 +1,6 @@
-@use '../../assets/styles/colors' as *;
+@use  '../../assets/styles/index.scss' as *;
 
 .cell {
-    position: relative;
-    box-sizing: border-box;
-    width: 0;
-
-    &.wrapper {
-        display: flex;
-        align-items: flex-start;
-    }
-
     &.align-widgets-top {
         &.size-24, &.size-30 {
             :global(.uui-checkbox), .folding-arrow {
@@ -107,4 +98,30 @@
     }
 }
 
+.cell:hover .overlay {
+    z-index: 1;
+    visibility: visible;
+    border-color: $gray40;
+}
+
+.overlay {
+    visibility: hidden;
+    border: 2px solid transparent;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+
+    .cell &:global(.uui-focus) {
+        z-index: 2;
+        visibility: visible;
+        border-color: $blue;
+    }
+
+    .cell &:global(.uui-invalid) {
+        z-index: 3;
+        visibility: visible;
+        border-color: $red;
+    }
+}
 

@@ -1,5 +1,4 @@
-import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { IHasChildren } from '@epam/uui-core';
+import { MutableRefObject, useCallback, useEffect, useRef, useState, ReactNode } from 'react';
 
 export interface IScrollSpyProps {
     elements?: Readonly<string[]>;
@@ -13,11 +12,11 @@ export interface IScrollSpyApi {
     setRef: (ref: HTMLElement) => void;
 }
 
-export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
+export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
     const ref: MutableRefObject<HTMLElement> = useRef();
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
     const [currentActive, setCurrentActive] = useState<string>(
-        props.initialActive || (Array.isArray(props.elements) && props.elements.length > 0 && props.elements[0])
+        props.initialActive || (Array.isArray(props.elements) && props.elements.length > 0 && props.elements[0]),
     );
 
     const setRef = useCallback((selectedRef: HTMLElement) => ref.current = selectedRef, [ref]);
@@ -46,7 +45,7 @@ export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
             setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
         }, {
             ...props.options,
-            root: props?.options?.root || document.querySelector('body')
+            root: props?.options?.root || document.querySelector('body'),
         });
 
         observedNodes.forEach(element => element ? observer.observe(element) : null);
@@ -59,11 +58,13 @@ export function useScrollSpy(props?: IScrollSpyProps) : IScrollSpyApi {
         currentActive,
         setRef,
     };
-};
+}
 
-interface IScrollSpyComponentProps extends IScrollSpyProps, IHasChildren {}
+interface IScrollSpyComponentProps extends IScrollSpyProps {
+    children?: (params: IScrollSpyApi) => ReactNode;
+}
 
-export function ScrollSpy({ elements, children } : IScrollSpyComponentProps) {
+export function ScrollSpy({ elements, children }: IScrollSpyComponentProps) {
     const { currentActive, scrollToElement, setRef } = useScrollSpy({ elements });
     return children({ scrollToElement, currentActive, setRef });
-};
+}

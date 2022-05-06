@@ -76,7 +76,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 </div>
             </Tooltip>
         </div>
-    );
+    )
 
     renderHeaderCheckbox = () => this.props.selectAll && this.props.isFirstColumn && (
         <Checkbox
@@ -84,16 +84,16 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             { ...this.props.selectAll }
             cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
         />
-    );
+    )
 
     renderResizeMark = (props: HeaderCellContentProps) => (
         <div onMouseDown={ props.onResizeStart } className={ cx(css.resizeMark, uuiMarkers.draggable) } />
-    );
+    )
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownToggler) => (
         <FlexCell
             { ...this.props.column }
-            minWidth={ this.props.column.width || this.props.column.minWidth }
+            minWidth={ this.props.column.width }
             ref={ ref => {
                 (props.ref as React.RefCallback<HTMLElement>)(ref);
                 (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
@@ -122,7 +122,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             { this.getColumnCaption() }
             { this.props.allowColumnsResizing && this.renderResizeMark(props) }
         </FlexCell>
-    );
+    )
 
     renderCellWithFilter = (props: HeaderCellContentProps) => (
         <ColumnHeaderDropdown
@@ -135,7 +135,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             onOpenChange={ isDropdownOpen => this.setState({ isDropdownOpen }) }
             title={ this.props.column.caption as string }
         />
-    );
+    )
 
     render() {
         return (
