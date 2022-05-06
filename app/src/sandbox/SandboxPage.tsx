@@ -12,13 +12,17 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
+import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
+import { ProjectDemo } from './project/ProjectDemo';
 import { TableWithReplicationFeature } from "./replicate-table-cell-data/TableWithReplicationFeature";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
         { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
         { id: 'dbDemo', name: 'DB demo', component: DbDemo },
-        { id: 'tableDemo', name: 'Table Demo', component: PersonsTableDemo },
+        { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
+        { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
+        { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },

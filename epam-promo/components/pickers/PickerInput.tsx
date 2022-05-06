@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceItemId, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
@@ -17,10 +17,11 @@ export type PickerInputProps = SizeMod & IHasEditMode & {};
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
+export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
+        const { renderFooter, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
-            { ...this.props }
+            { ...restProps }
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -74,7 +75,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return this.props.renderFooter
             ? this.props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
+            : <DataPickerFooter { ...footerProps } size={ this.props.size }/>;
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {

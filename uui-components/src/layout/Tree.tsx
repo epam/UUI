@@ -46,7 +46,7 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
 
     function getListRecursive() {
         return dataSource.rootNodes.flatMap(node => getNodes(node, 0));
-    };
+    }
 
     function toggleValue(item: TreeNode<TItem, string>) {
         const isUnfolded = props.value.includes(item.id);
@@ -100,13 +100,17 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
         }
 
         return items;
-    };
+    }
 
     if (list.length === 0) return null;
 
     return (
         <>
-            { list.map(i => <React.Fragment key={ i.id }> { props.renderRow(i) } </React.Fragment> ) }
+            { list.map(i => <React.Fragment key={ i.id }>
+                <>
+                    { props.renderRow(i) }
+                </>
+            </React.Fragment>) }
         </>
     );
 }

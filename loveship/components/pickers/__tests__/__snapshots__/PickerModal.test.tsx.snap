@@ -133,6 +133,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
               onChange={[Function]}
               onKeyDown={[Function]}
               placeholder="Type text for quick search"
+              tabIndex={0}
               type="search"
               value=""
             />

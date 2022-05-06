@@ -1,9 +1,9 @@
 import { DocBuilder, demoData } from '@epam/uui-docs';
-import { DataTableRowProps } from '@epam/uui-components';
 import { DefaultContext, ResizableContext } from '../../../docs';
 import { DataTableRow, DataTableRowMods } from '../';
 import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
+import { DataTableRowProps } from '@epam/uui-core';
 
 const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
     .implements([ColumnsHeaderRowDoc])

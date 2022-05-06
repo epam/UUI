@@ -2,7 +2,8 @@
     position: sticky;
     top: 0;
     min-width: min-content;
-    z-index: 3;
+    isolation: isolate;
+    z-index:10;
 }
 
 .listContainer {

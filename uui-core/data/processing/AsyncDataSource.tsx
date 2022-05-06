@@ -1,15 +1,13 @@
 import { ArrayDataSource } from "./ArrayDataSource";
 import { ArrayListViewProps } from './views/ArrayListView';
 import { LoadingListView } from './views/LoadingListView';
-import { DataSourceState } from './types';
-import { IDataSourceView } from './views/types';
-
+import { DataSourceItemId, DataSourceState, IDataSourceView } from "../../types";
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
 }
 
-export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
+export class AsyncDataSource<TItem = any, TId extends DataSourceItemId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
 
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {

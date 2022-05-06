@@ -1,8 +1,7 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApiRequest } from "../../types";
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { DataQueryFilter, DataRowProps, IEditable } from '../../../..';
 
 const delay = () => new Promise(resolve => setTimeout(resolve, 1));
 

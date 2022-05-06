@@ -1,3 +1,5 @@
+import ButtonWithIconExample from 'app/src/docs/examples/button/Icon.example';
+import { getMarkDeserializer } from 'uui-editor';
 import { ICanBeInvalid, Metadata } from '../../types';
 import { blankValidationState } from '../validation';
 
@@ -8,12 +10,18 @@ export interface ILensImpl<TBig, TSmall> {
     getMetadata?(big?: Metadata<TBig>): Metadata<TSmall> | undefined;
 }
 
-export const identityLens = {
+export const identityLens: ILensImpl<any, any> = {
     get(big: any) {
         return big;
     },
     set(big: any, small: any) {
         return small;
+    },
+    getValidationState(big: ICanBeInvalid) {
+        return big;
+    },
+    getMetadata(big: Metadata<any>) {
+        return big;
     },
 };
 

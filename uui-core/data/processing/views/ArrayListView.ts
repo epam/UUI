@@ -1,19 +1,16 @@
-import { DataRowProps, SortingOption, IEditable } from "../../../types";
+import { DataRowProps, SortingOption, IEditable, DataSourceItemId, DataSourceState, IArrayDataSource, TreeNode,
+    DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import { getSearchFilter } from '../../querying';
-import { DataSourceState, IArrayDataSource, TreeNode } from "../types";
-import { DataSourceListProps, IDataSourceView } from './types';
-import { BaseListView, BaseListViewProps } from './BaseListView';
+import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
-    getParentId?(item: TItem): TId;
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
-export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    visibleRows: DataRowProps<TItem, TId>[] = [];
+export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
 
     constructor(
@@ -24,6 +21,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         super(editable, props);
         this.props = props;
         this.updateNodes();
+        this.updateRowValuesAndLenses();
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -37,6 +35,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 this.updateFocusedItem();
             }
         }
+        this.updateRowValuesAndLenses();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {
@@ -52,14 +51,13 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         return false;
     }
 
-
     public getById = (id: TId, index: number) => {
         const item = this.dataSource.getById(id);
         return this.getRowProps(item, index, []);
     }
 
     private updateFocusedItem = () => {
-        this.visibleRows.forEach(row => {
+        this.rows.forEach(row => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
@@ -163,10 +161,10 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             this.dataSource.maxDepth == 1 ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
-        this.visibleRows = all.rows;
+        this.rows = all.rows;
 
         // A hack to make focus and keyboard navigation work
-        this.visibleRows.forEach((row, index) => {
+        this.rows.forEach((row, index) => {
             row.index = index;
             row.isFocused = this.value.focusedIndex === index;
         });
@@ -226,14 +224,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     public getVisibleRows = () => {
-        return this.visibleRows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
+        return this.rows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
     }
 
     public getListProps(): DataSourceListProps {
         return {
-            rowsCount: this.visibleRows.length,
-            knownRowsCount: this.visibleRows.length,
-            exactRowsCount: this.visibleRows.length,
+            rowsCount: this.rows.length,
+            knownRowsCount: this.rows.length,
+            exactRowsCount: this.rows.length,
             totalCount: this.dataSource.nodes.length,
             selectAll: this.selectAll,
         };

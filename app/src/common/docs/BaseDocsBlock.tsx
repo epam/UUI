@@ -85,6 +85,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             key: 'value',
             caption: 'Type',
             render: prop => <Text color='gray80'><span style={ { whiteSpace: "pre-wrap" } }>{ prop.value }</span></Text>,
+            width: 200,
             grow: 1,
             isSortable: true,
         },
@@ -139,7 +140,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderPropEditor() {
         if (!this.getPropsDocPath()) {
-            return svc.uuiRouter.redirect({
+            svc.uuiRouter.redirect({
                 pathname: '/documents',
                 query: {
                     category: getQuery('category'),

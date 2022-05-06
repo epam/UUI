@@ -1,4 +1,4 @@
-import { IEditable, DataSourceState, IDataSource, PickerBaseProps } from '@epam/uui-core';
+import { IEditable, DataSourceState, IDataSource, PickerBaseProps, DataSourceItemId } from '@epam/uui-core';
 
 export type PickerBindingProps<TItem, TId> =
     (SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>);
@@ -9,13 +9,13 @@ export type SinglePickerProps<TId, TItem> = ({ selectionMode: 'single', valueTyp
 export type ArrayPickerProps<TId, TItem> = ({ selectionMode: 'multi', valueType: 'id', emptyValue?: [] | null } & IEditable<TId[]>)
     | ({ selectionMode: 'multi', valueType: 'entity', emptyValue?: [] | null } & IEditable<TItem[]>);
 
-export interface PickerBindingHelper<TItem, TId, TValue> {
-    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): any;
-    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId>;
+export interface PickerBindingHelper<TItem, TId extends DataSourceItemId, TValue> {
+    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>): any;
+    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId>;
 }
 
-class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, TId[]> {
-    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
+class ArrayBindingHelper<TItem, TId extends DataSourceItemId> implements PickerBindingHelper<TItem, TId, TId[]> {
+    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
             if (props.valueType === 'entity') {
                 return dsState.checked.map(id => dataSource && dataSource.getById(id));
@@ -26,7 +26,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
         }
     }
 
-    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
+    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
         value = Array.isArray(value) && value || [];
         if (props.valueType === 'entity') {
             value = value.map((entity: any) => { dataSource && dataSource.setItem(entity); return dataSource && dataSource.getId(entity); });
@@ -42,15 +42,15 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
     }
 }
 
-class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, TId> {
-    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
+class ScalarBindingHelper<TItem, TId extends DataSourceItemId> implements PickerBindingHelper<TItem, TId, TId> {
+    dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState.selectedId != null && props.valueType === 'entity') {
             return dataSource && dataSource.getById(dsState.selectedId);
         }
 
         return dsState.selectedId;
     }
-    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
+    applyValueToDataSourceState(dsState: DataSourceState<any, TId>, value: any, props: PickerBaseProps<TItem, TId>, dataSource: IDataSource<TItem, TId, any>): DataSourceState<any, TId> {
         const id = props.valueType === 'entity' ? dataSource && dataSource.getId(value) : value;
 
         if (value && props.valueType === 'entity') {
@@ -72,10 +72,10 @@ const lookup: Record<string, PickerBindingHelper<any, any, any>> = {
     'single': new ScalarBindingHelper(),
 };
 
-export function dataSourceStateToValue<TId, TItem>(props: any, dsState: DataSourceState<any, TItem>, dataSource: IDataSource<TItem, TId, any>): any {
+export function dataSourceStateToValue<TId extends DataSourceItemId, TItem>(props: any, dsState: DataSourceState<any, TItem>, dataSource: IDataSource<TItem, TId, any>): any {
     return lookup[props.selectionMode].dataSourceStateToValue(dsState, props, dataSource);
 }
 
-export function applyValueToDataSourceState<TId, TItem>(props: any, dsState: DataSourceState<any, TItem>, value: any, dataSource: IDataSource<TItem, TId, any>): DataSourceState<TItem, any> {
+export function applyValueToDataSourceState<TId extends DataSourceItemId, TItem>(props: any, dsState: DataSourceState<any, TItem>, value: any, dataSource: IDataSource<TItem, TId, any>): DataSourceState<TItem, any> {
     return lookup[props.selectionMode].applyValueToDataSourceState(dsState, value, props, dataSource);
 }

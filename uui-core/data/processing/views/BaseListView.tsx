@@ -1,51 +1,7 @@
-import { DataRowOptions, DataRowProps, ICheckable, IEditable, SortingOption } from "../../../types";
-import { DataSourceState } from "../types";
-import { DataSourceListProps, IDataSourceView } from './types';
-
-export interface BaseListViewProps<TItem, TId, TFilter> {
-    /**
-     * Should return unique ID of the TItem
-     * If omitted, we assume that every TItem has and unique id in its 'id' field.
-     * @param item An item to get ID of
-     */
-    getId?(item: TItem): TId;
-
-    /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
-     * See DataRowOptions for more details.
-     * If your options depends on the item itself, use getRowOptions.
-     * However, specifying both rowOptions and getRowOptions might help to render better loading skeletons
-     * - we use only rowOptions in this case, as we haven't loaded an item yet.
-     * @param item An item to get options for
-     */
-    rowOptions?: DataRowOptions<TItem, TId>;
-
-    /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
-     * See DataRowOptions for more details.
-     * If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.
-     * @param item An item to get options for
-     */
-    getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
-
-    /**
-     * Can be specified to unfold all or some items at start.
-     * If not specified, all rows would be folded.
-     */
-    isFoldedByDefault?(item: TItem): boolean;
-
-    /**
-     * If selection (checking items) of a parent node should select all children, and vice versa
-     */
-    cascadeSelection?: boolean;
-
-    /**
-     * Disables select all behaviour. Default is false.
-     */
-    selectAll?: true | false;
-}
+import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+    protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -68,6 +24,24 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
         this.updateCheckedLookup(this.value && this.value.checked);
+    }
+
+    protected updateRowValuesAndLenses(): void {
+        if (this.props.getRowLens) {
+            this.rows.filter(row => !row.isLoading).forEach(row => {
+                let lens = this.props.getRowLens(row.id);
+                lens = lens.default(row.value);
+
+                row.lens = lens;
+
+                const lensProps = lens.toProps();
+
+                (row as any).changedValue = lensProps.value; // Temp hack to overcome shouldComponentUpdate in DataTableRow
+                row.isInvalid = lensProps.isInvalid;
+                row.validationMessage = lensProps.validationMessage;
+                row.validationProps = lensProps.validationProps;
+            });
+        }
     }
 
     protected updateCheckedLookup(checked: TId[]) {

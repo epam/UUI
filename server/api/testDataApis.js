@@ -3,13 +3,6 @@ const router = Router();
 const helpers = require("../helpers");
 const _ = require("lodash");
 
-function calculateTotal(totalData, result) {
-    const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
-    result.summary = { totalSalary };
-    result.totalCount = totalData.length;
-    return result;
-}
-
 function filterAndSort(request, allItems, typeName) {
     let items = allItems || [];
     request = request || {};
@@ -108,6 +101,13 @@ router.post("/schedules", async (req, res) => {
     const data = await helpers.getData("schedules");
     res.json(data);
 });
+
+function calculateTotal(totalData, result) {
+    const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
+    result.summary = { totalSalary };
+    result.totalCount = totalData.length;
+    return result;
+}
 
 router.post("/persons", async (req, res) => {
     const data = await helpers.getPersons();

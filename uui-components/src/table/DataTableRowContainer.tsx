@@ -1,25 +1,49 @@
 import * as React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
-import { FlexRow } from '../layout';
+import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: React.ReactNode): React.ReactNode;
+    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[]): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
 }
 
-const uuiDataTableRowContainer = {
+const uuiDataTableRowCssMarkers = {
     uuiTableRowContainer: 'uui-table-row-container',
+    uuiTableFixedSection: 'uui-table-fixed-section',
+    uuiTableScrollingSection: 'uui-table-scrolling-section',
     uuiTableFixedSectionLeft: 'uui-table-fixed-section-left',
     uuiTableFixedSectionRight: 'uui-table-fixed-section-right',
     uuiScrollShadowLeft: 'uui-scroll-shadow-left',
     uuiScrollShadowRight: 'uui-scroll-shadow-right',
 } as const;
+
+// Scrolling/Fixed sections wrappers, as well as the whole row itself, has to have matching flex-item parameters.
+// This is required to have the same width, as the sum of column's width, and grow in the same proportion, as columns inside.
+// E.g. for 2 columns: { width: 100, grow: 0 }, { width: 200, grow: 1 } we compute { width: 300, grow: 1 }
+// For scrollingSection and for the whole table, we put at least grow=1 - to make the table occupy full width, even if there's no columns with grow > 0.
+function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
+    let grow = 0;
+    let width = 0;
+
+    columns.forEach(column => {
+        const columnWidth = (typeof column.width === 'number' ? column.width : (column.minWidth || 0));
+        width += columnWidth;
+        grow += typeof column.grow === 'number' ? column.grow : 0;
+    })
+
+    grow = Math.max(grow, minGrow);
+
+    return {
+        flex: `${grow} 0 ${width}px`,
+        minWidth: `${width}px`,
+    }
+}
 
 export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
     function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
@@ -30,42 +54,32 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         }, []);
     }
 
-    function getSectionWidth(cells: DataColumnProps<TItem, TId, TFilter>[]) {
-        return cells.reduce((width, cell) => width + (typeof cell.width !== 'number' ? (cell.minWidth || 0) : cell.width), 0);
-    }
-    function getSectionGrow(cells: DataColumnProps<TItem, TId, TFilter>[]) {
-        return cells.reduce((grow, cell) => grow + (cell.grow || 0), 0);
-    }
-
-    function wrapFixedSection(cells: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right') {
+    function wrapFixedSection(columns: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right', hasScrollingSection: boolean) {
         return (
             <div
-                style={ {
-                    flex: `${getSectionGrow(cells)} 0 ${getSectionWidth(cells)}px`,
-                    minWidth: `${getSectionWidth(cells)}px`,
-                } }
+                style={ getSectionStyle(columns) }
                 className={ cx({
+                    [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
                     [css.fixedColumnsSectionLeft]: direction === 'left',
-                    [uuiDataTableRowContainer.uuiTableFixedSectionLeft]: direction === 'left',
+                    [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
                     [css.fixedColumnsSectionRight]: direction === 'right',
-                    [uuiDataTableRowContainer.uuiTableFixedSectionRight]: direction === 'right',
+                    [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
                 }) }>
-                { renderCells(cells) }
-                { direction === 'right' && <div className={ uuiDataTableRowContainer.uuiScrollShadowLeft } /> }
-                { direction === 'left' && <div className={ uuiDataTableRowContainer.uuiScrollShadowRight } /> }
+                { renderCells(columns) }
+                { hasScrollingSection && direction === 'right' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowLeft } /> }
+                { hasScrollingSection && direction === 'left' && <div className={ uuiDataTableRowCssMarkers.uuiScrollShadowRight } /> }
                 { direction === 'right' && props.renderConfigButton?.() }
             </div>
-        )
-    };
+        );
+    }
 
-    function wrapScrollingSection(cells: DataColumnProps<TItem, TId, TFilter>[]) {
-        if (props.wrapScrollingSection) return props.wrapScrollingSection(cells);
+    function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[]) {
+        if (props.wrapScrollingSection) return props.wrapScrollingSection(columns);
         return (
-            <div className={ css.container } style={ {
-                flex: `${getSectionGrow(cells) || 1} 0 ${getSectionWidth(cells)}px`,
-                minWidth: `${getSectionWidth(cells)}px`,
-            } }>
-                { renderCells(cells) }
+            <div
+                className={ cx(css.scrollingSection, uuiDataTableRowCssMarkers.uuiTableScrollingSection) }
+                style={ getSectionStyle(columns, 1) }>
+                { renderCells(columns) }
             </div>
         );
     }
@@ -73,42 +87,48 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     function getRowContent() {
         const fixedLeftColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
         const fixedRightColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
-        const staticColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
+        const scrollingColumns: DataColumnProps<TItem, TId, TFilter>[] = [];
 
         for (const column of props.columns) {
             if (column.fix === 'left') fixedLeftColumns.push(column);
             else if (column.fix === 'right') fixedRightColumns.push(column);
-            else staticColumns.push(column);
+            else scrollingColumns.push(column);
         }
 
-        return (
-            <>
-                { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left') }
-                { wrapScrollingSection(staticColumns) }
-                { fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right') }
-                { props.overlays }
-            </>
-        );
+        const hasScrollingSection = scrollingColumns.length > 0;
+
+        return <>
+            { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left', hasScrollingSection) }
+            { wrapScrollingSection(scrollingColumns) }
+            { fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right', hasScrollingSection) }
+            { props.overlays }
+        </>;
+    }
+
+    const rowStyle = getSectionStyle(props.columns, 1);
+    const rawProps = {
+        ...props.rawProps,
+        style: { ...props?.rawProps?.style, ...rowStyle },
     }
 
     return (
         props.link ? (
             <Anchor
                 link={ props.link }
-                cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
-                rawProps={ props.rawProps }
+                cx={ [css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
+                rawProps={ rawProps }
             >
                 { getRowContent() }
             </Anchor>
         ) : (
             <FlexRow
                 onClick={ props.onClick }
-                cx={ [css.container, uuiDataTableRowContainer.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
-                rawProps={ props.rawProps }
+                cx={ [css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx] }
+                rawProps={ rawProps }
                 ref={ ref }
             >
                 { getRowContent() }
             </FlexRow>
         )
-    )
+    );
 });

@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { DataSourceItemId, DataSourceState, IEditable, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
 import { PickerBase, PickerBaseState } from './index';
 
-export interface PickerModalOptions<TItem, TId> {
+export interface PickerModalOptions<TItem, TId extends DataSourceItemId> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
-    renderFooter?: (props: PickerFooterProps<TItem, TId> & IModal<any>) => React.ReactNode;
+    renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
     disallowClickOutside?: boolean;
 }
 
-export type PickerModalImplProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
+export type PickerModalImplProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
 
 interface PickerModalState extends PickerBaseState {
     showSelected: boolean;
@@ -20,7 +20,7 @@ const initialStateValues: DataSourceState = {
     focusedIndex: -1, // we don't want to focus the 1st item from the start, as it confuses and people would rarely use keyboard in modals
 };
 
-export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerModalImplProps<TItem, TId>, PickerModalState> {
+export class PickerModalBase<TItem, TId extends DataSourceItemId> extends PickerBase<TItem, TId, PickerModalImplProps<TItem, TId>, PickerModalState> {
     stateLens = Lens.onState<PickerBaseState & PickerModalState>(this);
     showSelectionLens = this.stateLens
         .onChange((oldVal, newVal) => ({
@@ -50,9 +50,19 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
             ? view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount)
             : view.getVisibleRows();
     }
+
+    getFooterProps(): PickerFooterProps<TItem, TId> & Partial<IModal<any>> {
+        const footerProps = super.getFooterProps();
+
+        return {
+            ...footerProps,
+            success: this.props.success,
+            abort: this.props.abort,
+        };
+    }
 }
 
-export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId>
+export type PickerModalProps<TItem, TId extends DataSourceItemId> = PickerBaseOptions<TItem, TId>
     & IHasCaption
     & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>)
     & PickerModalOptions<TItem, TId>;

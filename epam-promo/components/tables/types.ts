@@ -12,13 +12,12 @@ export interface DataTableMods {
 
 export interface DataTableRowMods extends DataTableCellMods {
     borderBottom?: 'none' | 'gray30';
+    background?: 'white' | 'gray5' | 'red';
 }
 
 export interface DataTableCellMods {
     size?: ControlSize | '60';
     padding?: '0' | '12' | '24';
-    isFirstColumn?: boolean;
-    isLastColumn?: boolean;
     alignActions?: 'top' | 'center';
 }
 

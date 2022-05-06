@@ -10,7 +10,7 @@ React-based components and accelerators library built by EPAM Systems.
 - :black_joker: Rich set of components: from buttons to data tables
 - :rocket: Common services: modals, notifications, error, monitoring, and more
 - :wrench: State-management primitives: Forms with validation, Lists and Tables with lazy-loading
-- :octocat: Open for contribution, actively evolving, supported, and used by 25+ EPAM internal production projects
+- :octocat: Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects
 - :lipstick: Allows deep customization to build your own brand UI components set on top
 - :memo: Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
@@ -23,7 +23,7 @@ To add UUI to an existing project, read more [here](https://uui.epam.com/documen
 ## Quick start:
 
 Try our pre-configured template on
-    <a href="https://codesandbox.io/s/uui-w4i61" target="_blank">
+    <a href="https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx" target="_blank">
         Codesandbox
         <img
             width="24"

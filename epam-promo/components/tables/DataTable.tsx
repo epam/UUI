@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, FilterConfig } from '@epam/uui-core';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, DataTableRowProps, FilterConfig } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -8,7 +8,7 @@ import * as css from './DataTable.scss';
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
+    renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
@@ -26,6 +26,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             size={ props.size }
             borderBottom={ props.border }
             { ...rowProps }
+            background={ rowProps.isInvalid ? 'red' : 'white' }
         />
     ), [props.size, props.border]);
 
@@ -87,7 +88,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             onScroll={ props.onScroll }
             rows={ rows }
             rowsCount={ props.rowsCount }
-            focusedIndex={ props.value?.focusedIndex }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {

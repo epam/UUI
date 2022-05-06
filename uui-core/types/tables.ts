@@ -1,37 +1,89 @@
-import React from 'react';
-import * as props from './props';
-import {IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams, } from '../types';
-import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
-import { ILens } from '..';
-import { Link } from '../types';
-
-export interface VirtualListState {
-    topIndex?: number;
-    visibleCount?: number;
-}
+import React, { Attributes, ReactNode } from 'react';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps, IClickable, IHasRawProps, ICanBeInvalid } from './props';
+import { SortDirection } from './dataQuery';
+import { DndActorRenderParams, DropParams } from './dnd';
+import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
+import { ILens } from '../data/lenses';
+import * as CSS from 'csstype';
+import { PopperChildrenProps } from 'react-popper';
+import { TooltipCoreProps } from './components/Overlays';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
     presetId?: number | null;
 }
 
-export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends props.FlexCellProps {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
+    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes
+{
+    /** Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
+     * Also, used as React key for cells, header cells, and other components inside tables.
+     */
     key: string;
+
+    /** Column caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
+
+    /** If specified, will make column fixed - it would not scroll horizontally */
     fix?: 'left' | 'right';
-    width?: number;
+
+    /** The width of the column. Usually, columns has exact this width.
+     * When all columns fit, and there's spare horizontal space, you can use 'grow' prop to use this space for certain columns.
+     * DataTable's columns can't shrink below width - table will add horizontal scrolling instead of shrinking columns  */
+    width: number;
+
+    /** Minimal width to which column can be resized manually */
+    minWidth?: number;
+
+    /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
+    grow?: number;
+
+    /** Aligns cell content horizontally */
+    textAlign?: 'left' | 'center' | 'right';
+
+    /** Align cell content vertically */
+    alignSelf?: CSS.AlignSelfProperty;
+
+    /** Enables sorting arrows on the column.
+     * Sorting state is kept in DataSourceState.sorting  */
     isSortable?: boolean;
+
+    /** Disallows to hide column via ColumnsConfiguration */
     isAlwaysVisible?: boolean;
+
+    /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */
     isHiddenByDefault?: boolean;
+
+    /** Info tooltip displayed in the table header */
     info?: React.ReactNode;
+
+    /** Should return true, if current filter affects the column.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
-    render?(d: TItem, rowProps: DataRowProps<TItem, TId>): any;
-    renderCell?(props: DataTableCellProps<TItem, TId>): any;
+
+    /** Render the cell content. The item props is the value of the whole row (TItem). */
+    render?(item: TItem, props: DataRowProps<TItem, TId>): any;
+
+    /** Overrides rendering of the whole cell */
+    renderCell?(props: DataTableCellProps<TItem, TId, any>): any;
+
+    /** Renders column header dropdown.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     renderDropdown?(): React.ReactNode;
+
+    /** Renders column filter.
+     * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
+     * You can use this prop to render a custom filter component.
+     */
     renderFilter?(lens: ILens<TFilter>): React.ReactNode;
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
+    key: string;
     column: DataColumnProps<TItem, TId>;
     isFirstColumn: boolean;
     isLastColumn: boolean;
@@ -56,135 +108,48 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
-    rowProps: DataRowProps<TItem, TId>;
+export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
+    columns?: DataColumnProps<TItem, TId>[];
+    renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
+    renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
+}
+
+export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TItem, TId> {
+    cellValue?: TCellValue;
+    cellLens?: ILens<TCellValue>;
+    editorProps?: IEditable<TCellValue>;
+}
+
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+    hasFocus: boolean;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX {
+    key: string;
+    rowProps: DataTableRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index?: number;
+    isFirstColumn: boolean;
+    isLastColumn: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    addons?: React.ReactNode;
+    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
+
+    // There's a problem with type inheritance in objects, and TCellValue is not inferred.
+    // In TypeScript 4.7, TCellValue should start to be inferred.
+    // Here's the test code (works in 4.7, broken on earlier versions): https://bit.ly/3jkBDfx
+    getLens?(lens: ILens<TItem>): ILens<TCellValue>;
+    renderEditor?(props: RenderCellProps<TItem, TId, TCellValue>): React.ReactNode;
 }
-
-export interface DataRowOptions<TItem, TId> extends IDisableable {
-    checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
-    isSelectable?: boolean;
-    dnd?: IDndActor<any, any>;
-    onClick?(rowProps: DataRowProps<TItem, TId>): void;
-    link?: Link;
-    columns?: DataColumnProps<TItem, TId>[];
-}
-
-export interface DataRowPathItem<TId, TItem> {
-    id: TId;
-    value: TItem;
-    isLastChild: boolean;
-}
-
-/** DataRowProps is a base shape of props, passed to items in various lists or trees.
- *
- * Despite 'Row' in it's name, it doesn't directly connected to a table.
- * We use DataRowProps as a base for DataTableRowProps and DataPickerRowProps.
- * But it can also be used for any user-built list, tree, custom picker rows, or even a grid of cards.
- *
- * Array of DataRowProps describes a part of hierarchical list, while still being a flat array (not a tree of some kind).
- * We use depth, indent, path, and other props to show row's place in the hierarchy.
- * This is very handy to handle rendering, especially in virtual scrolling scenarios.
- *
- * DataSources primary job is to convert various data stores into arrays of DataRowProps.
- */
-export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem, TId> & {
-    /** ID of the TItem rows displays */
-    id: TId;
-
-    /** Key of the TItem row displays. This is the ID converted to string.
-     * We use this internally to identify rows, and hold rows them in various hash-tables.
-     * ID can't be used for this, as it is not guaranteed to be comparable. E.g. one can use TID=[int, string] to hold composite IDs.
-     * */
-    rowKey: string;
-
-    /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
-    index: number;
-
-    /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
-    value?: TItem;
-
-    /** Hierarchical path from the root node to the item (excluding the item itself) */
-    path?: DataRowPathItem<TId, TItem>[];
-
-    /* visual */
-
-    /** Depth of the row in tree, 0 for the top-level */
-    depth?: number;
-
-    /** Indent of the item, to show hierarchy.
-     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
-     *  if all children of node has no children, all nodes would get the same indent as parent.
-     */
-    indent?: number;
-
-    /** True if row is in loading state. Value is empty in this case */
-    isLoading?: boolean;
-
-    /** True if row contains children and so it can be folded or unfolded */
-    isFoldable?: boolean;
-
-    /** True if row is currently unfolded */
-    isFolded?: boolean;
-
-    /** True if row is checked with checkbox */
-    isChecked?: boolean;
-
-    /** True if row has checkbox and can be checkable */
-    isCheckable?: boolean;
-
-    /** True if some of row's children are checked.
-     * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
-    isChildrenChecked?: boolean;
-
-    /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
-    isSelected?: boolean;
-
-    /** True if any of row's children is selected. */
-    isChildrenSelected?: boolean;
-
-    /** True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row */
-    isFocused?: boolean;
-
-    /** True if row is the last child of his parent */
-    isLastChild?: boolean;
-
-    /* events */
-
-    /** Handles row folding change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onFold?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row click.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onClick?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row checkbox change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onCheck?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row selection.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onSelect?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row focusing.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onFocus?(focusedIndex: number): void;
-};
 
 export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
 
-export type IColumnConfig =  {
+export type IColumnConfig = {
     isVisible?: boolean;
     order?: string;
     width?: number;

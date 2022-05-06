@@ -1,7 +1,7 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef } from "react";
+import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import {DataRowProps} from "./tables";
+import { DataRowProps } from "./dataSources";
 import {AnalyticsEvent} from "./contexts";
 
 /** Component value can be invalid */
@@ -44,7 +44,13 @@ export interface ICanBeRequired {
     isRequired?: boolean;
 }
 
-/** Component has caption. E.g. Button */
+/** Component can be focused */
+export interface ICanFocus<T> {
+    onFocus?: (e: React.FocusEvent<T>) => void;
+    onBlur?: (e: React.FocusEvent<T>) => void;
+}
+
+/** Component has a caption. E.g. Button */
 export interface IHasCaption {
     caption?: any;
 }
@@ -64,6 +70,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     isOpen?: boolean;
     isDropdown?: boolean;
     toggleDropdownOpening?: (value: boolean) => void;
+    isInteractedOutside?: (event: Event) => boolean;
     ref?: React.Ref<any>;
 }
 
@@ -103,7 +110,7 @@ export interface IHasIcon {
 }
 
 export interface IHasChildren {
-    children?: any;
+    children?: ReactNode;
 }
 
 export interface IHasPlaceholder {

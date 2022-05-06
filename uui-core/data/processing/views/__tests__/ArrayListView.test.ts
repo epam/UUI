@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState } from "../../types";
+import { DataSourceState } from "../../../../types";
 
 interface TItem {
     id: number;
@@ -53,7 +53,7 @@ describe('ArrayListView', () => {
     });
 
     it('should create visibleRows on constructor', () => {
-        expect(view.visibleRows).toHaveLength(rootNodesCount);
+        expect(view.rows).toHaveLength(rootNodesCount);
     });
 
     describe('setValue logic', () => {
@@ -105,7 +105,7 @@ describe('ArrayListView', () => {
             },
         );
 
-        expect(view.visibleRows).toHaveLength(totalRowsCount);
+        expect(view.rows).toHaveLength(totalRowsCount);
     });
 
     describe('sorting', () => {

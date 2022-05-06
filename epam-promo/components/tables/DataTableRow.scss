@@ -2,58 +2,51 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
-    :global(.uui-table-loading-row) {
-        background-color: $gray5;
-        height: 10px;
-        display: inline-block;
+    --uui-data-table-row-background: white;
+
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        &:hover {
+            --uui-data-table-row-background: #{$gray20};
+        }
     }
 
-    &:global(.uui-table-row) {
-        background: $white;
-
-        :global(.uui-table-fixed-section-left),
-        :global(.uui-table-fixed-section-right) {
-            z-index: 2;
-            background: $white;
-        }
-
-        &:global(.-clickable) {
-            cursor: pointer;
-
-            &:hover,
-            &:hover > *:global(.uui-table-fixed-section-left),
-            &:hover > *:global(.uui-table-fixed-section-right) {
-                background-color: $gray20;
-            }
-        }
-
-        &:global(.-draggable) {
-            @include dnd-cursor-style();
-        }
-
-        &:global(.uui-dragged-out) {
-            opacity: 0.5;
-        }
-
-        &:global(.uui-drag-ghost) {
-            @include dnd-ghost-shadow();
-        }
-
-        &:global(.uui-focus) {
-            border: 1px solid $blue;
-        }
-
-        &.size-24 { min-height: 24px; }
-        &.size-30 { min-height: 30px; }
-        &.size-36 { min-height: 36px; }
-        &.size-48 { min-height: 48px; }
-        &.size-60 { min-height: 60px; }
+    &:global(.-draggable) {
+        @include dnd-cursor-style();
     }
 
-    // Border
-    &.border-gray30 {
-        &:global(.uui-table-row) {
-            border-bottom: 1px solid $gray30;
-        }
+    &:global(.uui-dragged-out) {
+        opacity: 0.5;
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include dnd-ghost-shadow();
+    }
+
+    &:global(.uui-focus) {
+        border: 1px solid $blue; // Do we use row focus somewhere? Setting border might break layout a lot
+    }
+
+    &.size-24 { min-height: 24px; }
+    &.size-30 { min-height: 30px; }
+    &.size-36 { min-height: 36px; }
+    &.size-48 { min-height: 48px; }
+    &.size-60 { min-height: 60px; }
+}
+
+// Backgrounds
+.background-gray5 {
+    --uui-data-table-row-background: #{$gray5};
+}
+
+.background-red {
+    --uui-data-table-row-background: #FEF7F6;
+}
+
+// Borders
+.border-gray30 {
+    :global(.uui-table-fixed-section), :global(.uui-table-scrolling-section) {
+        border-bottom: 1px solid $gray30;
     }
 }

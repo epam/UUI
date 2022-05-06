@@ -1,8 +1,7 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApiRequest } from "../../types";
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { DataQueryFilter, DataRowProps } from '../../../..';
 
 const delay = () => new Promise(resolve => setTimeout(resolve, 1));
 
@@ -42,6 +41,7 @@ describe('LazyListView', () => {
             ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
             : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
+        getParentId: i => i.parentId,
     });
 
     beforeEach(() => {
@@ -107,11 +107,11 @@ describe('LazyListView', () => {
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
             { id: 100, depth: 0, indent: 1 },
-            { isLoading: true, depth: 1, indent: 1 },
-            { isLoading: true, depth: 1, indent: 1 },
+            { isLoading: true, depth: 1, indent: 2 },
+            { isLoading: true, depth: 1, indent: 2 },
             { id: 200, depth: 0, indent: 1 },
             { id: 300, depth: 0, indent: 1 },
-        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
+        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
 
         await delay();
 
@@ -132,10 +132,10 @@ describe('LazyListView', () => {
             { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
             { id: 110, depth: 1, indent: 2, isFoldable: false },
             { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { isLoading: true, depth: 2, indent: 2 },
-            { isLoading: true, depth: 2, indent: 2 },
+            { isLoading: true, depth: 2, indent: 3 },
+            { isLoading: true, depth: 2, indent: 3 },
             { id: 200, depth: 0, indent: 1 },
-        ], 7);
+        ]);
 
         await delay();
 
@@ -143,10 +143,10 @@ describe('LazyListView', () => {
             { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
             { id: 110, depth: 1, indent: 2, isFoldable: false },
             { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { id: 121, depth: 2, indent: 2, isFoldable: false },
-            { id: 122, depth: 2, indent: 2, isFoldable: false },
+            { id: 121, depth: 2, indent: 3, isFoldable: false },
+            { id: 122, depth: 2, indent: 3, isFoldable: false },
             { id: 200, depth: 0, indent: 1 },
-        ], 7);
+        ]);
 
         // Scroll down to bottom
         value.topIndex = 5;
@@ -672,6 +672,7 @@ describe('LazyListView', () => {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
+                getParentId: i => i.parentId,
             });
 
         let view = getView();

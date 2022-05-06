@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext, IHasForwardedRef,
-    IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx
+    IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
 import * as css from './Anchor.scss';
@@ -34,7 +34,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                 this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                 (this.props.isLinkActive || isActive) && uuiMod.active,
                 uuiMarkers.clickable,
-                this.props.cx
+                this.props.cx,
             ),
             tabIndex: 0,
             href,
@@ -51,7 +51,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
 }
 
 export const Anchor = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorProps>(
-    (props, ref) => <AnchorImpl { ...props } forwardedRef={ ref } />
+    (props, ref) => <AnchorImpl { ...props } forwardedRef={ ref } />,
 );
 
 Anchor.displayName = 'Anchor';
