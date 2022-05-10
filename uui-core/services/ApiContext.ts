@@ -39,7 +39,6 @@ export class ApiContext extends BaseContext implements IApiContext {
     private isRunScheduled = false;
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
-    public lastHttpStatus?: number;
 
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
@@ -71,7 +70,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     public reset() {
-        if (this.status === 'error') {
+        if (this.status === 'error' || this.status === 'recovery') {
             this.queue = [];
             this.status = 'running';
         }
@@ -160,7 +159,6 @@ export class ApiContext extends BaseContext implements IApiContext {
                     /* Problem with response JSON parsing */
                     call.status = 'error';
                     this.setStatus('error');
-                    // this.errorCtx.reportError(e);
                     call.reject(e);
                 });
         } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
