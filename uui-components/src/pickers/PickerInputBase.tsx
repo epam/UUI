@@ -3,13 +3,13 @@ import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import {
     UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, DataSourceItemId, PickerFooterProps,
+    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, DataSourceItemId, PickerFooterProps, ICanFocus,
 } from '@epam/uui-core';
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
-export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
     editMode?: 'dropdown' | 'modal';
     maxItems?: number;
     minBodyWidth?: number;

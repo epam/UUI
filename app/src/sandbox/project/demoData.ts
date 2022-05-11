@@ -1,7 +1,7 @@
-import { Task } from "./types";
+import { Task, Resource } from "./types";
 
 const tasks: Task[] = [
-    { id: 1, name: "Infrastructure" },
+    { id: 1, name: "Infrastructure", __typename: 'Task' },
     { id: 101, name: "Devops" },
     { id: 10101, name: "GIT Repository init" },
     { id: 10102, name: "CI - build code, publish artifacts" },
@@ -12,19 +12,19 @@ const tasks: Task[] = [
     { id: 10201, name: "Init CRA project" },
     { id: 10202, name: "Decide and document coding practices and processes" },
 
-    { id: 2, name: "Shared services" },
+    { id: 2, name: "Shared services", __typename: 'Task' },
     { id: 201, name: "Authentication" },
     { id: 202, name: "Integration with API" },
     { id: 203, name: "Routing" },
     { id: 204, name: "Localization" },
 
-    { id: 3, name: "UUI Customization" },
+    { id: 3, name: "UUI Customization", __typename: 'Task' },
     { id: 301, name: "Color palette" },
     { id: 302, name: "Core color tokens" },
     { id: 303, name: "Components tuning" },
     { id: 304, name: "Custom components modifiers" },
 
-    { id: 4, name: "Shared Components" },
+    { id: 4, name: "Shared Components", __typename: 'Task' },
     { id: 401, name: "Accordion (foldable panel/section)" },
     { id: 402, name: "Alert" },
     { id: 403, name: "Attribute/Value section" },
@@ -40,7 +40,7 @@ const tasks: Task[] = [
     { id: 413, name: "User card" },
     { id: 414, name: "Top-level navigation" },
 
-    { id: 5, name: "Pages Template Components" },
+    { id: 5, name: "Pages Template Components", __typename: 'Task' },
 
     { id: 501, name: "Page layout components" },
     { id: 502, name: "Master-detail" },
@@ -49,7 +49,7 @@ const tasks: Task[] = [
     { id: 505, name: "Dashboard" },
     { id: 506, name: "Catalog" },
 
-    { id: 6, name: "Pages" },
+    { id: 6, name: "Pages", __typename: 'Task' },
     { id: 601, name: "Home" },
     { id: 602, name: "Catalog" },
     { id: 603, name: "Product Details" },
@@ -62,7 +62,7 @@ const tasks: Task[] = [
     { id: 60703, name: "Sales report" },
     { id: 60704, name: "Marketing dashboard" },
     { id: 60705, name: "Categories list editor" },
-]
+];
 
 export const getDemoTasks = () => {
     const byId: Record<number, Task> = {};
@@ -77,7 +77,16 @@ export const getDemoTasks = () => {
                 throw new Error(`Can't find task with parent id=${t.parentId} for task id=${t.id}`);
             }
         }
-    })
+    });
 
     return byId;
-}
+};
+
+export const resources: Resource[] = [
+    { id: 1, name: "Front-end Developer" },
+    { id: 2, name: "Back-end Developer" },
+    { id: 3, name: "QA" },
+    { id: 4, name: "Designer" },
+    { id: 5, name: "BA" },
+    { id: 6, name: "Tester" },
+];
