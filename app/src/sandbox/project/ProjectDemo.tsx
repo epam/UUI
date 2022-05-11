@@ -1,38 +1,11 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, DataTableCell, TextInput, NumericInput  } from 'epam-promo';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, DataTableRow } from '@epam/promo';
 import React from 'react';
-import { DataColumnProps, DataQueryFilter, Metadata, useArrayDataSource, useTableState } from 'uui-core';
+import { DataQueryFilter, DataTableRowProps, Metadata, useArrayDataSource, useTableState} from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-
-const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
-    {
-        key: 'name',
-        caption: 'Name',
-        width: 500,
-        fix: 'left',
-        isSortable: true,
-        renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('name') }
-            renderEditor={({ editorProps }) => <TextInput mode='cell' { ...editorProps } /> }
-            { ...props }
-        />,
-    },
-    {
-        key: 'estimate',
-        textAlign: 'right',
-        caption: 'Estimate',
-        info: "Estimate in man/days",
-        width: 120,
-        isSortable: true,
-        renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('estimate') }
-            renderEditor={({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } max={ 100500 } /> }
-            { ...props }
-        />,
-    },
-];
+import { columns, taskColumns } from './columns';
 
 interface FormState {
     items: Record<number, Task>;
@@ -83,7 +56,17 @@ export const ProjectDemo = () => {
         }),
     });
 
-    return <Panel style={{ width: '100%' }}>
+    const renderRow = (props: DataTableRowProps<Task, number>) => {
+        const cols = (props.isLoading || props.value?.__typename === 'Task') ? taskColumns : columns;
+        return <DataTableRow
+            key={ props.id }
+            { ...props }
+            columns={ cols }
+            background={ 'white' }
+        />;
+    };
+
+    return <Panel style={ { width: '100%' } }>
         <DataTable
             headerTextCase='upper'
             getRows={ dataView.getVisibleRows }
@@ -94,6 +77,7 @@ export const ProjectDemo = () => {
             allowColumnsResizing
             allowColumnsReordering
             { ...dataView.getListProps() }
+            renderRow={ renderRow }
         />
         {
             isChanged && <FlexRow spacing='12' margin='12'>
@@ -113,4 +97,4 @@ export const ProjectDemo = () => {
             </FlexRow>
         }
     </Panel>;
-}
+};

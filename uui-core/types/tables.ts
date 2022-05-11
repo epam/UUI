@@ -5,7 +5,6 @@ import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data/lenses';
 import * as CSS from 'csstype';
-import { PopperChildrenProps } from 'react-popper';
 import { TooltipCoreProps } from './components/Overlays';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
@@ -14,9 +13,9 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
 }
 
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
-    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes
-{
-    /** Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
+    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
+    /** 
+     * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
      * Also, used as React key for cells, header cells, and other components inside tables.
      */
     key: string;
@@ -27,9 +26,11 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     /** If specified, will make column fixed - it would not scroll horizontally */
     fix?: 'left' | 'right';
 
-    /** The width of the column. Usually, columns has exact this width.
+    /** 
+     * The width of the column. Usually, columns has exact this width.
      * When all columns fit, and there's spare horizontal space, you can use 'grow' prop to use this space for certain columns.
-     * DataTable's columns can't shrink below width - table will add horizontal scrolling instead of shrinking columns  */
+     * DataTable's columns can't shrink below width - table will add horizontal scrolling instead of shrinking columns
+     */
     width: number;
 
     /** Minimal width to which column can be resized manually */
@@ -44,8 +45,10 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     /** Align cell content vertically */
     alignSelf?: CSS.AlignSelfProperty;
 
-    /** Enables sorting arrows on the column.
-     * Sorting state is kept in DataSourceState.sorting  */
+    /** 
+     * Enables sorting arrows on the column.
+     * Sorting state is kept in DataSourceState.sorting
+     */
     isSortable?: boolean;
 
     /** Disallows to hide column via ColumnsConfiguration */
@@ -57,7 +60,8 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     /** Info tooltip displayed in the table header */
     info?: React.ReactNode;
 
-    /** Should return true, if current filter affects the column.
+    /**
+     *  Should return true, if current filter affects the column.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */
@@ -69,13 +73,15 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     /** Overrides rendering of the whole cell */
     renderCell?(props: DataTableCellProps<TItem, TId, any>): any;
 
-    /** Renders column header dropdown.
+    /** 
+     * Renders column header dropdown.
      * Usually, this prop is filled automatically by the useTableState hook.
      * If you use the useTableState hook, you don't need to specify it manually.
      */
     renderDropdown?(): React.ReactNode;
 
-    /** Renders column filter.
+    /** 
+     * Renders column filter.
      * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
      * You can use this prop to render a custom filter component.
      */
@@ -121,7 +127,7 @@ export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TI
 }
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    hasFocus: boolean;
+    inFocus: boolean;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 

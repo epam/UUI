@@ -10,12 +10,12 @@ import * as css from './DataTableCell.scss';
 import { Tooltip } from '../overlays/Tooltip';
 
 function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
-    return <Tooltip color='red' { ...props } />
+    return <Tooltip color='red' { ...props } />;
 }
 
 const DataTableCellOverlay = withMods<DataTableCellOverlayProps, {}>(
     UuiDataTableCellOverlay,
-    () => [ css.overlay ],
+    () => [css.overlay],
     props => ({ renderTooltip }),
 );
 
@@ -78,7 +78,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         css[`align-widgets-${ props.alignActions || 'top' }`],
     ];
 
-    props.renderOverlay = (props => <DataTableCellOverlay {...props} />)
+    props.renderOverlay = (props => <DataTableCellOverlay { ...props } />);
 
-    return <UuiDataTableCell {...props } />
+    return <UuiDataTableCell { ...props } />;
 }

@@ -20,7 +20,8 @@ interface UseVirtualListApi<List, ScrollContainer> {
 interface UseVirtualListProps extends IEditable<VirtualListState> {
     rowsCount: number;
 
-    /** Virtual list will align topIndex and visibleCount to the block size.
+    /**
+     * Virtual list will align topIndex and visibleCount to the block size.
      * E.g. with block size = 10, even if we have rows 2 to 12 visible, the range will be aligned to 0-20
      * This is done to not re-render rows on each scroll.
      * When scrolling, re-render will happen only when we scroll over the next blockSize rows.
@@ -28,7 +29,8 @@ interface UseVirtualListProps extends IEditable<VirtualListState> {
      */
     blockSize?: number;
 
-    /** Number of rows to draw before the top and after the bottom of the list.
+    /**
+     * Number of rows to draw before the top and after the bottom of the list.
      * This is required to hide blank areas while scrolling.
      * Default is 20.
      */
@@ -69,7 +71,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current || !value) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         onScroll?.(scrollContainer.current);
-        const scrollBottom = scrollTop + clientHeight - listOffset;
 
         let topIndex = 0;
         while (topIndex < rowsCount && rowOffsets.current[topIndex] < scrollTop) {
@@ -83,7 +84,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
         bottomIndex = bottomIndex + overdrawRows; // draw more rows at the bottom to remove visible blank areas while scrolling down
         bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
-        bottomIndex = Math.min(bottomIndex, rowsCount) // clamp to rowsCount
+        bottomIndex = Math.min(bottomIndex, rowsCount); // clamp to rowsCount
 
         const visibleCount = bottomIndex - topIndex;
 
