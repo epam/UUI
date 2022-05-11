@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { cx, DataTableCellProps, RenderCellProps, uuiMod, IEditable } from '@epam/uui-core';
+import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/flexItems/FlexCell';
 
 interface DataTableCellState {
-    hasFocus: boolean;
+    inFocus: boolean;
 }
 
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
-    const [state, setState] = React.useState<DataTableCellState>({ hasFocus: false });
+    const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
 
     let content: React.ReactNode;
 
     let renderCellProps: RenderCellProps<TItem, TId, any> = props.rowProps;
-    let editorProps: IEditable<any>;
+    let editorProps: IEditable<any> & ICanFocus<HTMLElement>;
     let outline: React.ReactNode = null;
 
     if (props.rowProps.isLoading) {
@@ -23,9 +23,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         const cellLens = props.getLens(row.lens);
         editorProps = cellLens.toProps();
 
-        // TEMP HACK FOR FOCUS (remove 'as any' after ICanFocus implementation)
-        (editorProps as any).onFocus = () => setState({ ...state, hasFocus: true });
-        (editorProps as any).onBlur = () => setState({ ...state, hasFocus: false });
+        editorProps.onFocus = () => { console.log("DataTableCell_onFocus"); setState({ ...state, inFocus: true })};
+        editorProps.onBlur = () => setState({ ...state, inFocus: false });
 
         renderCellProps = {
             ...renderCellProps,
@@ -36,8 +35,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } >
             { props.renderEditor(renderCellProps) }
-            { props.renderOverlay({ ...editorProps, hasFocus: state.hasFocus }) }
-        </div>
+            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus }) }
+        </div>;
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);
     }
@@ -49,13 +48,13 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             rawProps={ {
                 role: props.role,
             } }
-            cx={[
+            cx={ [
                 css.cell,
                 props.column.cx,
                 props.cx,
                 editorProps?.isInvalid && uuiMod.invalid,
-                state.hasFocus && uuiMod.focus,
-            ]}
+                state.inFocus && uuiMod.focus,
+            ] }
         >
             { props.addons }
             { content }

@@ -12,11 +12,10 @@ import {
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
-import { Theme, SizeMod, TextSize } from '../types';
+import { SizeMod, TextSize } from '../types';
 import { Text } from '../typography';
 
 export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
-    theme?: Theme;
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };
@@ -27,7 +26,7 @@ export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListB
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem theme={ this.props.theme } getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
     }
 
     handleShowPicker = () => {
@@ -65,7 +64,7 @@ export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListB
             <div>
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
-                    <Text color={ this.props.theme === 'dark' ? 'night300' : 'night500'  } size={ this.props.size as TextSize }>No options available</Text>) }
+                    <Text color={ 'secondary' } size={ this.props.size as TextSize }>No options available</Text>) }
                 { rows.map(row => renderRow(row)) }
                 { showPicker && renderToggler({ onClick: this.handleShowPicker, caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length) }, selectedRows) }
             </div>
