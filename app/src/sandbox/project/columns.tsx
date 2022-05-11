@@ -95,7 +95,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('description') }
             renderEditor={ ({ editorProps }) => (
-                <TextArea { ...editorProps } autoSize={ true } />
+                <TextArea { ...editorProps } autoSize={ true } mode='cell' />
             ) }
             { ...props }
         />,
