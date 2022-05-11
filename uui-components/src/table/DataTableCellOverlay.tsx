@@ -4,7 +4,7 @@ import * as css from './DataTableCellOverlay.scss';
 import { TooltipProps } from '../overlays';
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    hasFocus: boolean;
+    inFocus: boolean;
     renderTooltip?: (props: ICanBeInvalid & TooltipProps) => React.ReactElement;
 }
 
@@ -14,14 +14,14 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             className={ cx(
                 css.root,
                 props.isInvalid && uuiMod.invalid,
-                props.hasFocus && uuiMod.focus,
+                props.inFocus && uuiMod.focus,
                 props.cx,
             ) }
         />
     );
 
     // Wrap to add validation tooltip
-    if (props.hasFocus) {
+    if (props.inFocus) {
         return props.renderTooltip({
             trigger: 'manual',
             placement: 'top',
@@ -32,4 +32,4 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     } else {
         return overlay;
     }
-};
+}
