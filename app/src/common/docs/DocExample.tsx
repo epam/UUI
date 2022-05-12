@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
-import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
+import type { FilesRecord } from '../../data/codesandbox/types';
 import { codesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
