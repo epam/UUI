@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
-import { FlexCell } from '../layout/flexItems/FlexCell';
+import { FlexCell } from '../layout/';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -23,7 +23,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         const cellLens = props.getLens(row.lens);
         editorProps = cellLens.toProps();
 
-        editorProps.onFocus = () => { console.log("DataTableCell_onFocus"); setState({ ...state, inFocus: true })};
+        editorProps.onFocus = () => setState({ ...state, inFocus: true });
         editorProps.onBlur = () => setState({ ...state, inFocus: false });
 
         renderCellProps = {
