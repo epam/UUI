@@ -2,8 +2,6 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
-    --uui-data-table-row-background: white;
-
     &:global(.-clickable) {
         cursor: pointer;
 
@@ -36,6 +34,10 @@
 }
 
 // Backgrounds
+.background-white {
+    --uui-data-table-row-background: white;
+}
+
 .background-gray5 {
     --uui-data-table-row-background: #{$gray5};
 }
