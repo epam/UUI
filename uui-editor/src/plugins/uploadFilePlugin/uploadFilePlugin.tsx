@@ -18,7 +18,7 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
         }
         editor.insertBlock('loader');
         const loaderKey = editor.value.anchorBlock.key;
-        options.uploadFile(file, (process) => { })
+        options.uploadFile(file, () => { })
             .then((res: FileUploadResponse) => {
                 const block = (editor as any).createBlock({
                     ...res,
@@ -30,7 +30,7 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
             });
     };
 
-    const onDrop = (event: Event, editor: CoreEditor, next: () => any) => {
+    const onDrop = (event: Event, editor: CoreEditor) => {
         const transfer: any = getEventTransfer(event);
         const range = getEventRange(event, editor);
 
