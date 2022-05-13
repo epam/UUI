@@ -3,7 +3,6 @@ import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Ico
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
-import { useCallback } from "react";
 
 export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement> {
     cancelIcon?: Icon;
@@ -32,7 +31,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
-    const handleClick = useCallback((event: Event) => {
+    const handleClick = React.useCallback((event: Event) => {
         if (props.isInteractedOutside(event) && inFocus) {
             blur();
         }
@@ -131,6 +130,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         e.preventDefault();
         if (inFocus && props.value && !props.disableSearch) return;
         props.onClick?.();
+        if (!inFocus) toggleContainer.current.focus();
     };
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;

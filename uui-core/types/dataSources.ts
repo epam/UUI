@@ -1,8 +1,8 @@
 import { SortingOption } from "./dataQuery";
-import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
+import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { ILens } from "uui-core/data/lenses/types";
+import { ILens } from "@epam/uui-core";
 
 /** A type of IDs of an item in Data Sources. Restricted to be usable as Set/Map keys.  */
 export type DataSourceItemId = string | number | boolean | null;
