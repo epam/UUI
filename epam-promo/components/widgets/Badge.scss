@@ -246,7 +246,7 @@
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--border-color-semitransparent);
+                background-color: var(--background-color-semitransparent-hover);
                 color: var(--caption-color-semitransparent-hover);
                 fill: var(--caption-color-semitransparent-hover);
                 cursor: pointer;
