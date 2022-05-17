@@ -144,5 +144,9 @@
             border-left-color: $blue;
         }
     }
+
+    & :global(.uui-replication-marker) {
+        background-color: $blue;
+    }
 }
 

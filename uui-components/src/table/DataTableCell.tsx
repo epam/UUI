@@ -47,7 +47,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(renderCellProps) }
-            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index }) }
+            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, canCopyPaste: props.canCopyPaste }) }
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);

@@ -1,19 +1,20 @@
 import * as React from 'react';
 import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
 import * as css from './DataTableCellOverlay.scss';
-import { TooltipProps } from '../overlays';
 import { useSelectionParams } from "./useSelectionParams";
-
-// export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-//     inFocus: boolean;
-//     // canReplicating?: boolean;
-//     // isReplicating?: boolean;
-//     // isSelecting?: boolean;
-//     renderTooltip?: (props: ICanBeInvalid & TooltipProps) => React.ReactElement;
-// }
+import { PointerEventHandler, useContext } from "react";
+import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
-    const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex: props.rowIndex, columnIndex: props.columnIndex });
+    const { columnIndex, rowIndex } = props;
+    const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex: rowIndex, columnIndex: columnIndex });
+    const { setSelectionRange } = useContext(DataTableSelectionContext);
+
+    const handleReplicationMarkerPointerDown: PointerEventHandler = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex });
+    };
 
     const borderClassNames = isSelected && cx(
         'uui-selected-cell',
@@ -32,7 +33,12 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                     props.cx,
                     borderClassNames,
                 ) }
-            />
+            >
+                { props.inFocus && props.canCopyPaste && <div
+                    className={ cx(css.replicationMarker, 'uui-replication-marker') }
+                   onPointerDown={ handleReplicationMarkerPointerDown } onClick={ e => e.stopPropagation() }
+                /> }
+            </div>
     );
 
     // Wrap to add validation tooltip
