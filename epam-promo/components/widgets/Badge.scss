@@ -54,8 +54,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 8px;
+                padding-left: 8px;
             }
 
             &::before {
@@ -80,8 +83,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
+                padding-left: 9px;
             }
 
             &::before {
@@ -106,8 +112,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
+                padding-left: 9px;
             }
 
             &::before {
@@ -132,8 +141,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
+                padding-left: 9px;
             }
 
             &::before {
@@ -166,8 +178,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
+                padding-left: 15px;
             }
 
             &::before {
@@ -200,8 +215,11 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
+                padding-left: 15px;
             }
 
             &::before {

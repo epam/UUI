@@ -66,6 +66,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -103,6 +105,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -127,6 +131,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -151,6 +157,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -175,6 +183,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -207,6 +217,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 18px;
             }
@@ -239,6 +251,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 18px;
             }
