@@ -1,6 +1,5 @@
 import { DataQuery } from '@epam/uui-core';
-import { DbTable } from "./DbTable";
-import { IClientIdsMap } from './tempIds';
+import { IClientIdsMap, DbTable } from './';
 
 export type DbTablesSet<TTables extends DbTablesSet<TTables>> = { [TEntityName in keyof TTables]: DbTable<any, any, TTables> };
 
