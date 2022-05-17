@@ -1,5 +1,11 @@
 @use  '../../assets/styles/index' as *;
 
+@mixin transparent-button-layout() {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 6px;
+}
+
 .root {
     :global(.uui-count) {
         font-family: $font-sans-semibold;
@@ -57,8 +63,7 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 8px;
-                padding-left: 8px;
+                margin-left: 12px;
             }
 
             &::before {
@@ -87,7 +92,6 @@
 
             :global(.uui-caption) {
                 margin-left: 12px;
-                padding-left: 9px;
             }
 
             &::before {
@@ -116,7 +120,6 @@
 
             :global(.uui-caption) {
                 margin-left: 12px;
-                padding-left: 9px;
             }
 
             &::before {
@@ -145,7 +148,6 @@
 
             :global(.uui-caption) {
                 margin-left: 12px;
-                padding-left: 9px;
             }
 
             &::before {
@@ -181,8 +183,7 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
-                padding-left: 15px;
+                margin-left: 18px;
             }
 
             &::before {
@@ -218,8 +219,7 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
-                padding-left: 15px;
+                margin-left: 18px;
             }
 
             &::before {
