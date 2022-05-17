@@ -123,5 +123,26 @@
         visibility: visible;
         border-color: $red;
     }
+
+    .cell &:global(.uui-selected-cell) {
+        z-index: 3;
+        visibility: visible;
+
+        &:global(.uui-selected-cell-top) {
+            border-top-color: $blue;
+        }
+
+        &:global(.uui-selected-cell-right) {
+            border-right-color: $blue;
+        }
+
+        &:global(.uui-selected-cell-bottom) {
+            border-bottom-color: $blue;
+        }
+
+        &:global(.uui-selected-cell-left) {
+            border-left-color: $blue;
+        }
+    }
 }
 

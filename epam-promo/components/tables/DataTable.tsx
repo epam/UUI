@@ -4,6 +4,7 @@ import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumn
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
+import { DataTableSelectionProvider } from "@epam/uui-components/src/table/DataTableSelectionProvider";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -82,19 +83,21 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
-        <VirtualList
-            value={ props.value }
-            onValueChange={ props.onValueChange }
-            onScroll={ props.onScroll }
-            rows={ rows }
-            rowsCount={ props.rowsCount }
-            renderRows={ renderRowsContainer }
-            cx={ cx(css.table) }
-            rawProps={ {
-                role: 'table',
-                'aria-colcount': columns.length,
-                'aria-rowcount': props.rowsCount,
-            } }
-        />
+        <DataTableSelectionProvider>
+            <VirtualList
+                value={ props.value }
+                onValueChange={ props.onValueChange }
+                onScroll={ props.onScroll }
+                rows={ rows }
+                rowsCount={ props.rowsCount }
+                renderRows={ renderRowsContainer }
+                cx={ cx(css.table) }
+                rawProps={ {
+                    role: 'table',
+                    'aria-colcount': columns.length,
+                    'aria-rowcount': props.rowsCount,
+                } }
+            />
+        </DataTableSelectionProvider>
     );
 }
