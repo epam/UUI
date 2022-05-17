@@ -2,6 +2,8 @@ import * as React from 'react';
 import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/flexItems/FlexCell';
+import { PointerEventHandler, useContext } from "react";
+import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -10,6 +12,8 @@ interface DataTableCellState {
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
+
+    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
 
@@ -33,9 +37,17 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             editorProps,
         };
 
-        content = <div className={ css.editorWrapper } >
+        const handlePointerEnter: PointerEventHandler =  props.canCopyPaste ? () => {
+            if (!selectionRange) {
+                return;
+            }
+
+            setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
+        } : null;
+
+        content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(renderCellProps) }
-            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus }) }
+            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index }) }
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);

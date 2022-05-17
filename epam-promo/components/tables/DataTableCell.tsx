@@ -8,6 +8,7 @@ import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 import { Tooltip } from '../overlays/Tooltip';
+import { ReplicationMarker } from "@epam/uui-components/src/table/ReplicationMarker";
 
 function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
     return <Tooltip color='red' { ...props } />;
@@ -78,7 +79,13 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         css[`align-widgets-${ props.alignActions || 'top' }`],
     ];
 
-    props.renderOverlay = (props => <DataTableCellOverlay { ...props } />);
+    const rowIndex = props.rowProps.index;
+    const { canCopyPaste, index: columnIndex } = props;
+
+    props.renderOverlay = (props => <>
+        <DataTableCellOverlay { ...props } />
+        { canCopyPaste && props.inFocus && <ReplicationMarker columnIndex={ columnIndex } rowIndex={ rowIndex } color="var(--blue)" /> }
+    </>);
 
     return <UuiDataTableCell { ...props } />;
 }

@@ -27,6 +27,7 @@ export const taskColumns: DataColumnProps<Task, number, DataQueryFilter<Task>>[]
         width: 120,
         isSortable: true,
         renderCell: (props) => <DataTableCell
+            canCopyPaste
             getLens={ l => l.prop('estimate') }
             renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } max={ 100500 } /> }
             { ...props }

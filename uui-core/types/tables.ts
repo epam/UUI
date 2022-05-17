@@ -128,6 +128,8 @@ export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TI
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
+    columnIndex: number;
+    rowIndex: number;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
@@ -138,6 +140,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     index?: number;
     isFirstColumn: boolean;
     isLastColumn: boolean;
+    canCopyPaste?: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     addons?: React.ReactNode;
