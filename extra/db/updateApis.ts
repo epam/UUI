@@ -1,7 +1,6 @@
 import { DbState, DbPatch, EntitiesState, EntityState, Db } from './types';
-import { DbEntitySchema } from './DbSchema';
+import { DbEntitySchema } from './';
 import { Map, Seq, Set } from 'immutable';
-import { DbSchema } from './DbSchema';
 import { objectKeys } from './helpers';
 
 function entitiesWith(

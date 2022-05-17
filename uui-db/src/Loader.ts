@@ -1,4 +1,4 @@
-import { DbRef } from './DbRef';
+import { DbRef } from './';
 import { DbPatch, DbTablesSet, LoadingState, ILoadingTracker } from './types';
 
 export interface LoaderOptions<TTables extends DbTablesSet<TTables>, TResult, TRequest> {

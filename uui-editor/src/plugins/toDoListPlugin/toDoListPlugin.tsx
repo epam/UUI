@@ -1,9 +1,7 @@
 import { Editor, RenderBlockProps } from "slate-react";
-import Lists from "@convertkit/slate-lists";
-import { Block, Editor as CoreEditor, KeyUtils, TextJSON } from "slate";
+import { Block, Editor as CoreEditor, KeyUtils } from "slate";
 import { ToDoItem } from "./ToDoItem";
 import * as React from "react";
-import { List } from "immutable";
 import { ReactComponent as CheckboxListIcon } from "../../icons/to-do.svg";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 

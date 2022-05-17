@@ -1,5 +1,4 @@
-import { ModuleItem } from './DndModule';
-import { SectionItem } from './DndSection';
+import { ModuleItem, SectionItem } from './';
 import { getOrderBetween } from '@epam/uui';
 
 const demoText = 'So you have your new digital camera and clicking away to glory anything and\n' +

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useForm } from './useForm';
+import { useForm } from './';
 import { IEditable, ILens, Metadata, FormState, ICanBeInvalid } from '../../';
 
 export interface FormSaveResponse<T> {
