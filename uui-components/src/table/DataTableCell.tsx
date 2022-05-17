@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { MouseEvent } from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX } from '@epam/uui-core';
+import {
+    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
+    TooltipCoreProps, IHasCX
+} from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
+import { PointerEventHandler, useContext } from "react";
+import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -15,6 +19,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const ref = React.useRef<HTMLDivElement>();
 
     //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
+
+    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
@@ -46,9 +52,18 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
+        const handlePointerEnter: PointerEventHandler = props.canCopyPaste ? () => {
+            if (!selectionRange) {
+                return;
+            }
+
+            setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
+        } : null;
+
         content = <div
             className={ css.editorWrapper }
-            onClick={ handleEditorClick }
+            // onClick={ handleEditorClick }
+            onPointerEnter={ handlePointerEnter }
         >
             { props.renderEditor(editorProps) }
             <DataTableCellOverlay
@@ -83,9 +98,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={{
+            style={ {
                 justifyContent
-            }}
+            } }
         >
             { props.addons }
             { content }
@@ -104,14 +119,14 @@ interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
 
 function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const overlay = (
-            <div
-                className={ cx(
-                    css.overlay,
-                    props.isInvalid && uuiMod.invalid,
-                    props.inFocus && uuiMod.focus,
-                    props.cx,
-                ) }
-            />
+        <div
+            className={ cx(
+                css.overlay,
+                props.isInvalid && uuiMod.invalid,
+                props.inFocus && uuiMod.focus,
+                props.cx,
+            ) }
+        />
     );
 
     if (props.inFocus) {

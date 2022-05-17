@@ -186,6 +186,35 @@ export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOp
     rowLens: ILens<TItem>;
 }
 
+
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+    inFocus: boolean;
+    columnIndex: number;
+    rowIndex: number;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX {
+    key: string;
+    rowProps: DataTableRowProps<TItem, TId>;
+    column: DataColumnProps<TItem, TId>;
+    index?: number;
+    isFirstColumn: boolean;
+    isLastColumn: boolean;
+    canCopyPaste?: boolean;
+    role?: React.HTMLAttributes<HTMLElement>['role'];
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    addons?: React.ReactNode;
+    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
+
+    // There's a problem with type inheritance in objects, and TCellValue is not inferred.
+    // In TypeScript 4.7, TCellValue should start to be inferred.
+    // Here's the test code (works in 4.7, broken on earlier versions): https://bit.ly/3jkBDfx
+    getLens?(lens: ILens<TItem>): ILens<TCellValue>;
+    renderEditor?(props: RenderCellProps<TItem, TId>): React.ReactNode;
+}
+
 export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
