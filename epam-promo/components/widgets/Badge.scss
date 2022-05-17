@@ -1,5 +1,11 @@
 @use  '../../assets/styles/index' as *;
 
+@mixin transparent-button-layout() {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 6px;
+}
+
 .root {
     :global(.uui-count) {
         font-family: $font-sans-semibold;
@@ -54,8 +60,10 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 8px;
+                margin-left: 12px;
             }
 
             &::before {
@@ -80,6 +88,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -106,6 +116,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -132,6 +144,8 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
                 margin-left: 12px;
             }
@@ -166,8 +180,10 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 18px;
             }
 
             &::before {
@@ -200,8 +216,10 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 18px;
             }
 
             &::before {
@@ -246,7 +264,7 @@
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--border-color-semitransparent);
+                background-color: var(--background-color-semitransparent-hover);
                 color: var(--caption-color-semitransparent-hover);
                 fill: var(--caption-color-semitransparent-hover);
                 cursor: pointer;
