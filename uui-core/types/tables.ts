@@ -130,6 +130,7 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
+    canCopyPaste?: boolean;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
