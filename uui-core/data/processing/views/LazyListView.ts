@@ -227,7 +227,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             if (missingIds.length > 0) {
                 rq.ids = missingIds;
             } else {
-                return { items: cachedItems }
+                return { items: cachedItems };
             }
         }
 
