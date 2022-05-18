@@ -40,24 +40,15 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
 
     const [list, setList] = React.useState<TreeNodeProps<TItem>[]>([]);
 
-    React.useEffect(() => {
-        setList(getListRecursive());
-    }, [props.search, props.value]);
-
-    function getListRecursive() {
-        return dataSource.rootNodes.flatMap(node => getNodes(node, 0));
-    }
-
-    function toggleValue(item: TreeNode<TItem, string>) {
+    const toggleValue = React.useCallback((item: TreeNode<TItem, string>) => {
         const isUnfolded = props.value.includes(item.id);
         if (isUnfolded) {
-            return props.value.filter(i => i !== item.id);
-        } else {
-            return [...props.value, item.id];
+            return props.value.filter((i) => i !== item.id);
         }
-    }
+        return [...props.value, item.id];
+    }, [props]);
 
-    function toggleFolding(item: TreeNode<TItem, string>) {
+    const toggleFolding = React.useCallback((item: TreeNode<TItem, string>) => {
         const valueAfterToggle = toggleValue(item);
         props.onValueChange(valueAfterToggle);
 
@@ -65,9 +56,9 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
             const event = props.getValueChangeAnalyticsEvent(valueAfterToggle, props.value);
             context.uuiAnalytics.sendEvent(event);
         }
-    }
+    }, [context.uuiAnalytics, props, toggleValue]);
 
-    function getNodes(item: TreeNode<TItem, string>, depth: number) {
+    const getNodes = React.useCallback((item: TreeNode<TItem, string>, depth: number) => {
         const items: TreeNodeProps<TItem>[] = [];
         const children: TreeNodeProps<TItem>[] = [];
         const isUnfolded = props.value.includes(item.id);
@@ -75,7 +66,7 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
         const isPassedSearch = applySearch ? applySearch([item.item.name]) : true;
 
         if (item.children?.length) {
-            item.children.forEach(i => children.push(...getNodes(i, depth + 1)));
+            item.children.forEach((i) => children.push(...getNodes(i, depth + 1)));
         }
 
         if (!props.value.includes(item.id)) {
@@ -100,7 +91,13 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
         }
 
         return items;
-    }
+    }, [props, toggleFolding]);
+
+    const getListRecursive = React.useCallback(() => dataSource.rootNodes.flatMap((node) => getNodes(node, 0)), [dataSource.rootNodes, getNodes]);
+
+    React.useEffect(() => {
+        setList(getListRecursive());
+    }, [getListRecursive, props.search, props.value]);
 
     if (list.length === 0) return null;
 
