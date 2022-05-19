@@ -1,11 +1,11 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, DataTableRow } from '@epam/promo';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/promo';
 import React from 'react';
-import { DataQueryFilter, DataTableRowProps, Metadata, useArrayDataSource, useTableState} from '@epam/uui-core';
+import { DataQueryFilter, Metadata, useArrayDataSource, useTableState} from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-import { columns, taskColumns } from './columns';
+import { columns } from './columns';
 
 interface FormState {
     items: Record<number, Task>;
@@ -56,16 +56,6 @@ export const ProjectDemo = () => {
         }),
     });
 
-    const renderRow = (props: DataTableRowProps<Task, number>) => {
-        const cols = (props.isLoading || props.value?.__typename === 'Task') ? taskColumns : columns;
-        return <DataTableRow
-            key={ props.id }
-            { ...props }
-            columns={ cols }
-            background={ 'white' }
-        />;
-    };
-
     return <Panel style={ { width: '100%' } }>
         <DataTable
             headerTextCase='upper'
@@ -77,7 +67,6 @@ export const ProjectDemo = () => {
             allowColumnsResizing
             allowColumnsReordering
             { ...dataView.getListProps() }
-            renderRow={ renderRow }
         />
         {
             isChanged && <FlexRow spacing='12' margin='12'>
