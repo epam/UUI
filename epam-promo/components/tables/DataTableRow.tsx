@@ -27,7 +27,7 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
         css.root,
         css['border-' + (mods.borderBottom || 'gray30')],
         css['size-' + (mods.size || '30')],
-        css['background-' + (mods.background || 'red')],
+        css['background-' + (mods.background || 'white')],
     ],
     () => propsMods,
 );
