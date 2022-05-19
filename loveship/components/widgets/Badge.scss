@@ -3,7 +3,6 @@
 @mixin transparent-button-layout() {
     padding-left: 0;
     padding-right: 0;
-    margin-left: 6px;
 }
 
 .root {
@@ -75,7 +74,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -114,7 +115,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -140,7 +143,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -166,7 +171,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -192,7 +199,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -226,7 +235,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 18px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -260,7 +271,9 @@
             @include transparent-button-layout;
 
             :global(.uui-caption) {
-                margin-left: 18px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
