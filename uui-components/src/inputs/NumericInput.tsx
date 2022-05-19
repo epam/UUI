@@ -39,6 +39,7 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     id?: string;
     disableArrows?: boolean;
     align?: "left" | "right";
+    withThousandSeparator?: boolean;
 }
 
 export interface NumericInputState {
@@ -69,8 +70,9 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     componentDidUpdate(prevProps: Readonly<NumericInputProps>, prevState: Readonly<NumericInputState>): void {
         const { value } = this.props;
         if (prevProps.value !== value && !this.state.inFocus) {
-            const stateValue = this.getFormattedValues(value)[1];
-            this.setState({ value: stateValue});
+            const [formattedValue, stateValue] = this.getFormattedValues(value);
+            this.setState({ value: stateValue });
+            this.props.onValueChange(formattedValue);
         }
     }
 
@@ -88,12 +90,12 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         let formattedValue: number = null;
         let stateValue: string = this.props.placeholder || "";
         if (!value && value !== 0) return [formattedValue, stateValue];
-        const { min, max, formatter } = this.props;
+        const { min, max, formatter, withThousandSeparator } = this.props;
         formattedValue = getMinMaxValidatedValue({ value, min, max });
         if (formatter) {
             formattedValue = formatter(formattedValue);
         }
-        stateValue = getSeparatedValue(formattedValue);
+        stateValue = withThousandSeparator ? getSeparatedValue(formattedValue) : formattedValue.toString();
         return [formattedValue, stateValue];
     }
 
