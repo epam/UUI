@@ -32,9 +32,9 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
             renderEditor={ ({ editorProps }) => <NumericInput
                 mode='cell'
                 { ...editorProps }
-                min={ 0 }
                 max={ 10000000500 }
                 formatter={ numberFormatter }
+                withThousandSeparator={ true }
             /> }
             { ...props }
         />,
@@ -85,7 +85,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('complete') }
             renderEditor={ ({ editorProps }) => (
-                <NumericInput mode={ 'cell' } min={ 0 } max={ 100 } { ...editorProps } />
+                <NumericInput mode={ 'cell' } max={ 100 } { ...editorProps } />
             ) }
             { ...props }
         />,
