@@ -1,6 +1,6 @@
 import Lists from "@convertkit/slate-lists";
-import { Editor as CoreEditor, Editor } from "slate";
-import { RenderBlockProps } from "slate-react";
+import { Editor as CoreEditor } from "slate";
+import { RenderBlockProps, Editor } from "slate-react";
 import { ReactComponent as ListBulletIcon } from "../../icons/bullet-list.svg";
 import { ReactComponent as ListNumberIcon } from "../../icons/numbered-list.svg";
 import * as React from "react";
