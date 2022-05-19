@@ -1,7 +1,26 @@
 import * as React from 'react';
 import {
-    IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
-    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, ICanFocus, uuiMarkers,
+    IHasRawProps,
+    cx,
+    getCalculatedValue,
+    IHasCX,
+    IClickable,
+    IDisableable,
+    IEditable,
+    IHasPlaceholder,
+    Icon,
+    uuiMod,
+    uuiElement,
+    CX,
+    ICanBeReadonly,
+    IAnalyticableOnChange,
+    UuiContexts,
+    UuiContext,
+    IHasForwardedRef,
+    ICanFocus,
+    uuiMarkers,
+    getMinMaxValidatedValue,
+    getSeparatedValue,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
@@ -11,8 +30,8 @@ export interface ICanBeFormatted<T> {
 }
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    max: number;
-    min: number;
+    max?: number;
+    min?: number;
     upIcon?: Icon;
     downIcon?: Icon;
     step?: number;
@@ -33,37 +52,31 @@ export const uuiNumericInput = {
     buttonGroup: "uui-numeric-input-button-group",
 } as const;
 
+const getInitStateValue = (value: number, placeholder?: string) => {
+    if (!value && value !== 0) return placeholder || "0";
+    return value.toString();
+};
+
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
     static contextType = UuiContext;
     context: UuiContexts;
 
     state = {
-        value: this.props.value !== null && this.props.value !== undefined && !Number.isNaN(this.props.value) ? this.props.value.toString() : "",
+        value: getInitStateValue(this.props.value, this.props.placeholder),
         inFocus: false,
     };
 
     componentDidUpdate(prevProps: Readonly<NumericInputProps>, prevState: Readonly<NumericInputState>): void {
-        if (prevProps.value !== this.props.value && this.props.value !== +prevState.value) {
-            this.setState({ value: this.props.value ? this.getValidatedValue(this.props.value).toString() : "" });
-        }
-    }
-
-    getValidatedValue = (value: number) => {
-        const { min, max } = this.props;
-
-        if (value > max) {
-            return max;
-        } else if (value < min) {
-            return min;
-        } else {
-            return value;
+        const { value } = this.props;
+        if (prevProps.value !== value && !this.state.inFocus) {
+            const stateValue = this.getFormattedValues(value)[1];
+            this.setState({ value: stateValue});
         }
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === "" || /^-?\d*[,.]?\d*$/.test(e.target.value)) {
-            this.setState({ value: e.target.value });
-        }
+        const value = e.target.value === "" ? null : +e.target.value;
+        this.props.onValueChange(value);
     }
 
     handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -71,22 +84,23 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         this.props.onFocus?.(event);
     }
 
-    handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-        let value: number | null;
-
-        if (this.state.value === "") {
-            value = null;
-            this.props.onValueChange(value);
-            this.setState({ value: "" });
-        } else {
-            value = this.getValidatedValue(+this.state.value);
-            if (this.props.formatter) {
-                value = this.props.formatter(value);
-            }
-            this.props.onValueChange(value);
-            this.setState({ value: value.toString() });
+    getFormattedValues = (value?: number | null): [number, string] => {
+        let formattedValue: number = null;
+        let stateValue: string = this.props.placeholder || "";
+        if (!value && value !== 0) return [formattedValue, stateValue];
+        const { min, max, formatter } = this.props;
+        formattedValue = getMinMaxValidatedValue({ value, min, max });
+        if (formatter) {
+            formattedValue = formatter(formattedValue);
         }
-        this.setState({ inFocus: false });
+        stateValue = getSeparatedValue(formattedValue);
+        return [formattedValue, stateValue];
+    }
+
+    handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        const [value, stateValue] = this.getFormattedValues(this.props.value);
+        this.setState({ value: stateValue, inFocus: false });
+        if (value !== this.props.value) this.props.onValueChange(value);
         this.props.onBlur?.(event);
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
@@ -95,15 +109,17 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleIncreaseValue = () => {
-        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr" });
-        const value = this.getValidatedValue(increasedValue);
+        const { value: propsValue = null, min, max, step } = this.props;
+        const increasedValue = getCalculatedValue({ value: +propsValue, step, action: "incr" });
+        const value = getMinMaxValidatedValue({ value: increasedValue, min, max });
         this.props.onValueChange(value);
         this.setState({ value: value.toString() });
     }
 
     handleDecreaseValue = () => {
-        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr" });
-        const value = this.getValidatedValue(decreasedValue);
+        const { value: propsValue = null, min, max, step } = this.props;
+        const decreasedValue = getCalculatedValue({ value: +propsValue, step, action: "decr" });
+        const value = getMinMaxValidatedValue({ value: decreasedValue, min, max });
         this.props.onValueChange(value);
         this.setState({ value: value.toString() });
     }
@@ -120,6 +136,11 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     render() {
+        const { placeholder: placeholderProps, value: propsValue } = this.props;
+        const { inFocus, value: stateValue } = this.state;
+        const value = inFocus ? propsValue : '';
+        const placeholder = !inFocus ? stateValue : placeholderProps;
+        const isPlaceholderColored = propsValue || propsValue === 0;
         return (
             <div
                 className={ cx(css.container, uuiElement.inputBox,
@@ -140,14 +161,14 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             >
                 <input
                     type="number"
-                    className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight) }
+                    className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight, isPlaceholderColored && uuiElement.placeholderColored) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
                     tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                     aria-required={ this.props.isRequired }
-                    value={ this.state.value }
+                    value={ value }
                     inputMode="numeric"
-                    placeholder={ this.props.placeholder || "0" }
+                    placeholder={ placeholder || "0" }
                     onChange={ this.handleChange }
                     min={ this.props.min || 0 }
                     max={ this.props.max }

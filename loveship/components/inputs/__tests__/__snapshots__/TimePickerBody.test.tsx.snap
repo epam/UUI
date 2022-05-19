@@ -24,16 +24,16 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-placeholder-colored"
         inputMode="numeric"
         max={12}
         min={0}
         onChange={[Function]}
-        placeholder="0"
+        placeholder="12"
         step={1}
         tabIndex={0}
         type="number"
-        value="12"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -80,16 +80,16 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-placeholder-colored"
         inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
-        placeholder="0"
+        placeholder="30"
         step={1}
         tabIndex={0}
         type="number"
-        value="30"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -182,16 +182,16 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-placeholder-colored"
         inputMode="numeric"
         max={12}
         min={1}
         onChange={[Function]}
-        placeholder="0"
+        placeholder="12"
         step={1}
         tabIndex={0}
         type="number"
-        value="12"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -238,16 +238,16 @@ exports[`TimePickerBody should be rendered correctly with extra props 1`] = `
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-placeholder-colored"
         inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
-        placeholder="0"
+        placeholder="30"
         step={1}
         tabIndex={0}
         type="number"
-        value="30"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"

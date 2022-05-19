@@ -26,6 +26,12 @@
             }
         }
 
+        :global(.uui-input.uui-placeholder-colored) {
+            &::placeholder {
+                color: var(--text-color);
+            }
+        }
+
         :global(.uui-icon) svg {
             margin-top: -2px;
         }
