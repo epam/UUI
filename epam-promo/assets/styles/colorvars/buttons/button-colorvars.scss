@@ -15,6 +15,21 @@
     --caption-color-disabled: #{$gray50};
 }
 
+.button-color-gray60 {
+    --background-color: #{$blue};
+    --background-color-hover: #{$gray50};
+    --background-color-active: #{$blue-darkest};
+    --background-color-light-hover: #{$gray20};
+    --background-color-light-active: #{$blue-light};
+    --background-color-contrast: white;
+    --border-color: #{$gray60};
+    --border-color-hover: #{$gray50};
+    --border-color-active: #{$blue-darkest};
+    --background-color-disabled: #{$gray30};
+    --caption-color: #{$gray60};
+    --caption-color-disabled: #{$gray50};
+}
+
 .button-color-green {
     --background-color: #{$green};
     --background-color-hover: #{$green-dark};
