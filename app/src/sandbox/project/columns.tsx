@@ -5,8 +5,9 @@ import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkb
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
+const numberFormatter = (value: number): number => Number(value.toFixed(2));
 
-export const taskColumns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
+export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
     {
         key: 'name',
         caption: 'Name',
@@ -28,14 +29,16 @@ export const taskColumns: DataColumnProps<Task, number, DataQueryFilter<Task>>[]
         isSortable: true,
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('estimate') }
-            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } max={ 100500 } /> }
+            renderEditor={ ({ editorProps }) => <NumericInput
+                mode='cell'
+                { ...editorProps }
+                min={ 0 }
+                max={ 10000000500 }
+                formatter={ numberFormatter }
+            /> }
             { ...props }
         />,
     },
-];
-
-export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
-    ...taskColumns,
     {
         key: 'resource',
         caption: 'Resource',
