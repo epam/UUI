@@ -31,7 +31,8 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }
-                acceptReplication="vertical"
+                canCopyTo={ ({ rowIndex }) => !!(rowIndex % 2) } // Just Example
+                getLens={ l => l.prop('estimate') }
                 renderEditor={ props => <NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }
