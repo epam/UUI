@@ -5,15 +5,14 @@ import { ControlGroup } from '../layout';
 import { Button, ButtonColor, ButtonMods } from '../buttons';
 import { SizeMod } from '../types';
 
-interface MultiSwitchItem<TValue> extends ButtonProps {
+interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
     id: TValue;
 }
 
 export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
-    color?: "blue" | 'gray50';
+    color?: ButtonColor;
 }
-
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
@@ -25,7 +24,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                     key={ index + '-' + item.id }
                     onClick={ () => props.onValueChange(item.id) }
                     fill={ props.value === item.id ? 'solid' : 'white' }
-                    color={ props.color === 'gray50' && props.value === item.id ? 'blue' : props.color || 'blue' }
+                    color={ item.color || 'blue' }
                     size={ props.size }
                     rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
                 />
