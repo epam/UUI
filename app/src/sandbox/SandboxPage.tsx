@@ -18,7 +18,6 @@ import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
-import { TableWithReplicationFeature } from "./replicate-table-cell-data";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -35,7 +34,6 @@ export const SandboxPage = () => {
         { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
         { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
         { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
-        { id: 'cellsDataReplication', name: 'Table with cells data replication feature', component: TableWithReplicationFeature },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
