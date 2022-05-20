@@ -5,10 +5,10 @@ export interface CopyCheckParams {
     startRowIndex: number;
     columnIndex: number;
     rowIndex: number;
-    allowedDirection: DataTableCellProps["acceptReplication"];
+    allowedDirection: DataTableCellProps["acceptCopyDirection"];
 }
 
-export const canReplicateByDirection = ({ startColumnIndex, startRowIndex, columnIndex, rowIndex, allowedDirection }: Omit<CopyCheckParams, 'canCopy'>) => {
+export const canCopyByDirection = ({ startColumnIndex, startRowIndex, columnIndex, rowIndex, allowedDirection }: Omit<CopyCheckParams, 'canCopy'>) => {
     if (!allowedDirection) {
         return false;
     }

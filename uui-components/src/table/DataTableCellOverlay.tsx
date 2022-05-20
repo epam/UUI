@@ -4,7 +4,7 @@ import * as css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
 import { PointerEventHandler, useContext } from "react";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
-import { canReplicateByDirection, CopyCheckParams } from "./canReplicateByDirection";
+import { canCopyByDirection, CopyCheckParams } from "./canCopyByDirection";
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
@@ -14,15 +14,15 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex, columnIndex });
 
     const canCopy = (currentCoordinates: Pick<CopyCheckParams, 'columnIndex' | 'rowIndex'>) =>
-        (!props.canCopyTo || props.canCopyTo(null /* The place for contexts of current and start of copying cell */)) && canReplicateByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptReplication, ... currentCoordinates });
+        (!props.canCopyTo || props.canCopyTo(currentCoordinates /* Just Example. The place for contexts of current and start of copying cell */)) && canCopyByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ... currentCoordinates });
 
-    const handleReplicationMarkerPointerDown: PointerEventHandler = e => {
+    const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
         e.preventDefault();
         e.stopPropagation();
-        setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isReplicating: true });
+        setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
     };
 
-    const borderClassNames = isSelected && (!selectionRange?.isReplicating
+    const borderClassNames = isSelected && (!selectionRange?.isCopying
         ? cx(
             'uui-selected-cell',
             isTop && 'uui-selected-cell-top',
@@ -48,9 +48,9 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                     borderClassNames,
                 ) }
             >
-                { props.inFocus && !!props.acceptReplication && <div
-                    className={ cx(css.replicationMarker, 'uui-replication-marker') }
-                    onPointerDown={ handleReplicationMarkerPointerDown } onClick={ e => e.stopPropagation() }
+                { props.inFocus && !!props.acceptCopyDirection && <div
+                    className={ cx(css.copyingMarker, 'uui-copying-marker') }
+                    onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
                 /> }
             </div>
     );

@@ -130,7 +130,7 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
-    acceptReplication?: DataTableCellProps["acceptReplication"];
+    acceptCopyDirection?: DataTableCellProps["acceptCopyDirection"];
     canCopyTo?: DataTableCellProps["canCopyTo"];
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
@@ -142,7 +142,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     index?: number;
     isFirstColumn: boolean;
     isLastColumn: boolean;
-    acceptReplication?: 'horizontal' | 'vertical' | 'both';
+    acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
     canCopyTo?: (someCellContext: any) => boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
