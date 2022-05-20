@@ -117,7 +117,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                     rowProps.isFoldable = isFoldable;
                     rowProps.onFold = isFoldable ? this.handleOnFold : undefined;
 
-                    if (rowProps.checkbox && rowProps.checkbox.isVisible) {
+                    if (rowProps.checkbox && rowProps.checkbox.isVisible && !rowProps.checkbox.isDisabled) {
                         if (rowProps.checkbox.isDisabled) {
                             if (rowProps.isChecked) {
                                 fullSelection.push(rowProps.id);
