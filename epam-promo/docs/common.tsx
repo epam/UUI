@@ -20,6 +20,9 @@ export const fontDoc = new DocBuilder<FontMod>({ name: 'Font' })
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allEpamPrimaryColors });
 
+export const multiSwitchColorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['blue', 'gray50'] });
+
 export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('icon', {
         renderEditor: (editable: any, examples) => <IconPicker icons={ examples } { ...editable }/>,
