@@ -1,10 +1,11 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 
-export interface SelectionRange<Value = any> {
+export interface SelectionRange {
     startColumnIndex: number;
     startRowIndex: number;
     endColumnIndex: number;
     endRowIndex: number;
+    isReplicating?: boolean;
 }
 
 export interface SelectionContextState {

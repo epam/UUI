@@ -31,6 +31,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }
+                acceptReplication="vertical"
                 renderEditor={ props => <NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }
@@ -99,6 +100,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 130,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('complete').toProps() }
+                acceptReplication="vertical"
                 renderEditor={ props => (
                     <NumericInput max={ 100 } { ...props } formatOptions={ { maximumFractionDigits: 0 } } />
                 ) }

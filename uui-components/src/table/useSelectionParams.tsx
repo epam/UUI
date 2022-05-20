@@ -1,21 +1,23 @@
 import React, { useContext, useMemo } from "react";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
-export interface ReplicationHookParams<Value> {
+export interface CellConfig {
     columnIndex: number;
     rowIndex: number;
+    canSelect?: (coordinates: Pick<CellConfig, 'columnIndex' | 'rowIndex'>) => boolean;
 }
 
-export function useSelectionParams<Value = any>({ columnIndex, rowIndex }: ReplicationHookParams<Value>) {
+export function useSelectionParams({ columnIndex, rowIndex }: CellConfig) {
     const { selectionRange } = useContext(DataTableSelectionContext);
+    const { startColumnIndex, startRowIndex, endColumnIndex, endRowIndex } = selectionRange || {};
 
-    const isHorizontalDirectionABS = selectionRange?.startColumnIndex <= selectionRange?.endColumnIndex;
-    const isVerticalDirectionABS = selectionRange?.startRowIndex <= selectionRange?.endRowIndex;
+    const isHorizontalDirectionABS = startColumnIndex <= endColumnIndex;
+    const isVerticalDirectionABS = startRowIndex <= endRowIndex;
 
-    const leftColumnIndex = isHorizontalDirectionABS ? selectionRange?.startColumnIndex : selectionRange?.endColumnIndex;
-    const rightColumnIndex = isHorizontalDirectionABS ? selectionRange?.endColumnIndex : selectionRange?.startColumnIndex;
-    const topRowIndex = isVerticalDirectionABS ? selectionRange?.startRowIndex : selectionRange?.endRowIndex;
-    const bottomRowIndex = isVerticalDirectionABS ? selectionRange?.endRowIndex : selectionRange?.startRowIndex;
+    const leftColumnIndex = isHorizontalDirectionABS ? startColumnIndex : endColumnIndex;
+    const rightColumnIndex = isHorizontalDirectionABS ? endColumnIndex : startColumnIndex;
+    const topRowIndex = isVerticalDirectionABS ? startRowIndex : endRowIndex;
+    const bottomRowIndex = isVerticalDirectionABS ? endRowIndex : startRowIndex;
 
     const isSelected =
         columnIndex >= leftColumnIndex && columnIndex <= rightColumnIndex

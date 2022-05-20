@@ -134,6 +134,7 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
+
 export interface DataTableCellOptions<TItem = any, TId = any> {
     /** Key to use as component's key */
     key: string;
@@ -159,6 +160,15 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     canCopyPaste?: boolean;
 }
 
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+    inFocus: boolean;
+    columnIndex: number;
+    rowIndex: number;
+    acceptReplication?: DataTableCellProps["acceptReplication"];
+    canCopyTo?: DataTableCellProps["canCopyTo"];
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
 export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
@@ -178,7 +188,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
+    acceptReplication?: 'horizontal' | 'vertical' | 'both';
+    canCopyTo?: (someCellContext: any) => boolean;
 
     // There's a problem with type inheritance in objects, and TCellValue is not inferred.
     // In TypeScript 4.7, TCellValue should start to be inferred.
