@@ -37,7 +37,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             editorProps,
         };
 
-        const handlePointerEnter: PointerEventHandler =  props.canCopyPaste ? () => {
+        const handlePointerEnter: PointerEventHandler =  props.acceptReplication ? () => {
             if (!selectionRange) {
                 return;
             }
@@ -47,7 +47,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(renderCellProps) }
-            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, canCopyPaste: props.canCopyPaste }) }
+            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, acceptReplication: props.acceptReplication, canCopyTo: props.canCopyTo }) }
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);
