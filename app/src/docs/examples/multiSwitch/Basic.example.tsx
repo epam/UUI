@@ -26,16 +26,6 @@ export default function BasicExample() {
                 value={ value }
                 onValueChange={ onValueChange }
             />
-            <MultiSwitch
-                size='42'
-                items={ [
-                    { 'id': 1, 'caption': 'Mentee' },
-                    { 'id': 2, 'caption': 'Mentor' },
-                    { 'id': 3, 'caption': 'Coordinator' },
-                ] }
-                value={ value }
-                onValueChange={ onValueChange }
-            />
             <Text>With Grey border</Text>
             <MultiSwitch
                 size='36'
