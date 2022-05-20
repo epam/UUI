@@ -5,7 +5,7 @@ export interface SelectionRange {
     startRowIndex: number;
     endColumnIndex: number;
     endRowIndex: number;
-    isReplicating?: boolean;
+    isCopying?: boolean;
 }
 
 export interface SelectionContextState {
