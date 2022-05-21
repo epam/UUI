@@ -1,10 +1,10 @@
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
 import { DocBuilder } from '@epam/uui-docs';
-import { DefaultContext, FormContext, multiSwitchColorDoc } from '../../../docs';
+import { DefaultContext, FormContext, doubleColorDoc } from '../../../docs';
 import { sizeDoc, iEditable, isDisabledDoc } from '../../../docs';
 
 const multiSwitchDoc = new DocBuilder<MultiSwitchProps<any>>({ name: 'MultiSwitch', component: MultiSwitch })
-    .implements([sizeDoc, iEditable, isDisabledDoc, multiSwitchColorDoc])
+    .implements([sizeDoc, iEditable, isDisabledDoc, doubleColorDoc])
     .prop('items', { examples: [
         {
             name: 'Context Switch',

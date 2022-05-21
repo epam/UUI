@@ -2,7 +2,16 @@ import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, IconPicker } from '../docs';
 import { DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors, EditMode } from '../components';
+import {
+    allSizes,
+    SizeMod,
+    FontMod,
+    ColorMod,
+    allFontStyles,
+    commonControlColors,
+    EditMode,
+    DoubleColors,
+} from '../components';
 import { TextSettings } from '../helpers/textLayout';
 import { getIconList } from '@epam/assets/icons/helpers';
 import { colors } from '../helpers/colorMap';
@@ -19,6 +28,9 @@ export const fontDoc = new DocBuilder<FontMod>({ name: 'Font' })
 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: commonControlColors });
+
+export const doubleColorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: DoubleColors });
 
 export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('icon', {

@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors, IHasEditMode } from '../components';
+import {
+    allSizes,
+    SizeMod,
+    FontMod,
+    ColorMod,
+    allFontStyles,
+    allEpamPrimaryColors,
+    IHasEditMode,
+    doubleColors,
+} from '../components';
 import { getIconList } from '@epam/assets/icons/helpers';
 import { IconPicker } from './editors';
 import { TextSettings } from "../helpers/textLayout";
@@ -20,8 +29,8 @@ export const fontDoc = new DocBuilder<FontMod>({ name: 'Font' })
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allEpamPrimaryColors });
 
-export const multiSwitchColorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
-    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['blue', 'gray50'] });
+export const doubleColorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: doubleColors });
 
 export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('icon', {
