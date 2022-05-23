@@ -1,3 +1,4 @@
+import React from 'react';
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { FormContext, GridContext, DefaultContext } from '../../../docs';
@@ -26,7 +27,7 @@ const multiSwitchDoc = new DocBuilder<MultiSwitchProps<{}>>({ name: 'MultiSwitch
                 ],
         },
     ], isRequired: true })
-    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['sky', 'night600'] });
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['sky', 'night600'] })
     .withContexts(DefaultContext, FormContext, GridContext);
 
 export = multiSwitchDoc;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
 import { DefaultContext, FormContext, sizeDoc, iEditable, isDisabledDoc } from '../../../docs';
