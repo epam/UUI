@@ -1,10 +1,11 @@
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
-import { DocBuilder } from '@epam/uui-docs';
-import { FormContext, GridContext, DefaultContext, doubleColorDoc } from '../../../docs';
+import { ColorPicker, DocBuilder } from '@epam/uui-docs';
+import { FormContext, GridContext, DefaultContext } from '../../../docs';
 import { sizeDoc, iEditable } from '../../../docs';
+import { colors } from "../../../helpers/colorMap";
 
 const multiSwitchDoc = new DocBuilder<MultiSwitchProps<{}>>({ name: 'MultiSwitch', component: MultiSwitch })
-    .implements([sizeDoc, doubleColorDoc, iEditable])
+    .implements([sizeDoc, iEditable])
     .prop('items', { examples: [
         {
             name: 'Context Switch',
@@ -25,6 +26,7 @@ const multiSwitchDoc = new DocBuilder<MultiSwitchProps<{}>>({ name: 'MultiSwitch
                 ],
         },
     ], isRequired: true })
+    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['sky', 'night600'] });
     .withContexts(DefaultContext, FormContext, GridContext);
 
 export = multiSwitchDoc;
