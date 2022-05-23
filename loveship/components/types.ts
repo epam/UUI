@@ -25,8 +25,6 @@ export const allEpamGrayscaleColors: EpamGrayscaleColor[] = ['white', 'night50',
 export type EpamColor = EpamPrimaryColor | EpamAdditionalColor | EpamGrayscaleColor;
 export const commonControlColors: EpamColor[] = [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600'];
 
-export const DoubleColors: EpamColor[] = ['sky', 'night600'];
-
 export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light' ;
 export const allFontStyles: FontStyle[] = ['sans', 'sans-semibold', 'sans-light'];
 

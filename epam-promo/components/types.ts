@@ -16,8 +16,6 @@ export const allRowSizes: RowSize[] = [null, '24', '30', '36', '42', '48'];
 export type EpamPrimaryColor = 'blue' | 'green' | 'amber' | 'red';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = ['blue', 'green', 'amber', 'red'];
 
-export const doubleColors: (EpamPrimaryColor | 'gray50')[] = ['blue', 'gray50'];
-
 export type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple' | 'violet';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [...allEpamPrimaryColors, 'cyan', 'orange', 'purple', 'violet'];
 
