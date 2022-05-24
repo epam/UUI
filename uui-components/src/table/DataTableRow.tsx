@@ -36,8 +36,8 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
                 rawProps={ {
                     ...params.eventHandlers,
                     role: 'row',
-                    'aria-expanded': this.props.isFolded == undefined ? undefined : this.props.isFolded,
-                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected } )
+                    'aria-expanded': this.props.isFolded == undefined ? true : !this.props.isFolded,
+                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
                 } }
                 cx={ [
                     params.classNames,
