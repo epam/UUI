@@ -12,6 +12,7 @@ interface MultiSwitchItem<TValue> extends ButtonProps, types.ColorMod {
 
 export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.ColorMod, types.SizeMod, IHasRawProps<HTMLDivElement> {
     items: MultiSwitchItem<TValue>[];
+    color?: 'sky' | 'night600';
 }
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
@@ -27,7 +28,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                         onClick={ () => props.onValueChange(item.id) }
                         shape="square"
                         fill={ isActive ? 'solid' : 'white' }
-                        color={ item.color || props.color }
+                        color={ props.color === 'night600' && props.value === item.id ? 'sky' : props.color || 'sky' }
                         size={ props.size }
                         rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
                     />
@@ -35,6 +36,6 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
             }) }
         </ControlGroup>
     );
-};
+}
 
 export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
