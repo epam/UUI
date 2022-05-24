@@ -25,7 +25,6 @@ exports[`DataPicker should be rendered correctly 1`] = `
     type="text"
     value=""
   />
-  
 </div>
 `;
 
@@ -54,6 +53,5 @@ exports[`DataPicker should be rendered correctly 2`] = `
     type="text"
     value=""
   />
-  
 </div>
 `;
