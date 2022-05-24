@@ -25,7 +25,7 @@ export class InstanceItem extends React.Component<InstanceItemProps> {
                 window.location.reload();
             } }
             size='30'
-            color="night700"
+            color="night600"
             items={ this.props.instances }
         />;
     }
