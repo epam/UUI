@@ -262,7 +262,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       >
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -363,7 +363,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -464,7 +464,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -565,7 +565,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -666,7 +666,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -767,7 +767,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -868,7 +868,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -969,7 +969,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -1070,7 +1070,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
@@ -1171,7 +1171,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
         >
