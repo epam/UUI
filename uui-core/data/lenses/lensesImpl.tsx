@@ -1,5 +1,3 @@
-import ButtonWithIconExample from 'app/src/docs/examples/button/Icon.example';
-import { getMarkDeserializer } from 'uui-editor';
 import { ICanBeInvalid, Metadata } from '../../types';
 import { blankValidationState } from '../validation';
 
