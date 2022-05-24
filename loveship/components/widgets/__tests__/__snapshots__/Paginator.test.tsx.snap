@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Paginator should be rendered correctly 1`] = `
-<div
+<nav
   className="root"
+  role="navigation"
 >
   <button
     aria-disabled={true}
@@ -130,5 +131,5 @@ exports[`Paginator should be rendered correctly 1`] = `
       />
     </div>
   </button>
-</div>
+</nav>
 `;
