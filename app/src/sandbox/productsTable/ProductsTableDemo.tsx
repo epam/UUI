@@ -1,7 +1,7 @@
-import { DataTable, useForm, NotificationCard, Text, Panel, Button, FlexCell, FlexRow, FlexSpacer  } from 'epam-promo';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer  } from '@epam/promo';
 import React from 'react';
-import { DataQueryFilter, Metadata, useLazyDataSource, useTableState, useUuiContext, UuiContexts } from 'uui-core';
-import { Product } from 'uui-docs';
+import { DataQueryFilter, Metadata, useLazyDataSource, useTableState, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
@@ -19,12 +19,12 @@ const metadata: Metadata<FormState> = {
                     Name: { isRequired: true },
                     Class: { isRequired: true },
                     Color: { isRequired: true },
-                    DaysToManufacture: { minValue: 1 }
-                }
-            }
-        }
-    }
-}
+                    DaysToManufacture: { minValue: 1 },
+                },
+            },
+        },
+    },
+};
 
 let savedValue: FormState = { items: {} };
 
@@ -48,10 +48,10 @@ export const ProductsTableDemo: React.FC = (props) => {
     }, []);
 
     const dataView = dataSource.useView(tableState, setTableState, {
-        getRowLens: (id) => lens.prop('items').prop(id)
+        getRowLens: (id) => lens.prop('items').prop(id),
     });
 
-    return <Panel style={{ width: '100%' }}>
+    return <Panel style={ { width: '100%' } }>
         <DataTable
             headerTextCase='upper'
             getRows={ dataView.getVisibleRows }
@@ -81,4 +81,4 @@ export const ProductsTableDemo: React.FC = (props) => {
             </FlexRow>
         }
     </Panel>;
-}
+};
