@@ -38,3 +38,15 @@
         transition: display 200ms;
     }
 }
+
+.no-results {
+    position: sticky;
+    left: 0;
+    height: calc(100% - 36px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    padding: 0 24px;
+}
