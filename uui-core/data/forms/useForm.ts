@@ -97,7 +97,9 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const resetForm = (withNewState: UseFormState<T>) => {
-        setFormState({ ...initialForm.current, ...withNewState });
+        const newFormState = { ...initialForm.current, ...withNewState } ;
+        initialForm.current = newFormState;
+        setFormState(newFormState);
     };
 
     const handleValidate = (newVal?: T) => {
