@@ -15,14 +15,6 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     filters?: FilterConfig<any>[];
 }
 
-function DataTableNoResults(component: React.ReactNode) {
-    return (
-        <div className={ css.noResults }>
-            { component }
-        </div>
-    );
-}
-
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
@@ -41,7 +33,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderNoResultsBlock = React.useCallback(() => {
         // need default behavior
-        return DataTableNoResults(props.renderNoResultsBlock?.()) || undefined;
+        return (<div className={ css.noResults }>{ props.renderNoResultsBlock?.() }</div>) || undefined;
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {
