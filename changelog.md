@@ -2,6 +2,11 @@
 
 **What's New**
 * [ICanFocus]: implement interface ICanFocus anf fix handling in components TextInput, NumericInput, PickerInput, Checkbox, DatePicker
+* [DataTable]: fix NoResultBlock into center of the table layout
+* [DataTableRow]: fix area-expended value
+* [Paginator]: fix layout
+* [MultiSwitch]: added greyBorder style
+* [Badge]: fix layout
 
 # 4.6.3 - 27.04.2022
 
