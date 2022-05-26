@@ -25,7 +25,7 @@ const multiSwitchDoc = new DocBuilder<MultiSwitchProps<any>>({ name: 'MultiSwitc
                     { id: 2, caption: 'Off' },
                 ],
         },
-    ] })
+    ], isRequired: true })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['blue', 'gray50'] })
     .withContexts(DefaultContext, FormContext);
 
