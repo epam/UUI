@@ -15,12 +15,17 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     showColumnsConfig?: boolean;
 }
 
-function DataTableNoResults() {
+function DataTableNoResults(component?: React.ReactNode) {
     return (
         <div className={ css.noResults }>
-            <IconButton icon={ SearchIcon } cx={ css.noResultsIcon } />
-            <Text fontSize='16' font='sans-semibold'>No Results Found</Text>
-            <Text fontSize='14'>We can't find any item matching your request</Text>
+            {
+                component ? component :
+                    <>
+                        <IconButton icon={ SearchIcon } cx={ css.noResultsIcon }/>
+                        <Text fontSize="16" font="sans-semibold">No Results Found</Text>
+                        <Text fontSize="14">We can't find any item matching your request</Text>
+                    </>
+            }
         </div>
     );
 }
@@ -40,7 +45,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     ), [props.border, props.size, props.rowBackground]);
 
     const renderNoResultsBlock = React.useCallback(() => {
-        return props.renderNoResultsBlock?.() || <DataTableNoResults />;
+        return DataTableNoResults(props.renderNoResultsBlock?.()) || DataTableNoResults();
     }, [props.renderNoResultsBlock]);
 
     const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
