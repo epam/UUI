@@ -167,7 +167,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
               Object {
                 "WebkitOverflowScrolling": "touch",
                 "bottom": 0,
+                "display": "flex",
                 "flex": "1 1 auto",
+                "flexDirection": "column",
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
@@ -824,7 +826,9 @@ exports[`PickerModal should be rendered correctly 2`] = `
               Object {
                 "WebkitOverflowScrolling": "touch",
                 "bottom": 0,
+                "display": "flex",
                 "flex": "1 1 auto",
+                "flexDirection": "column",
                 "left": 0,
                 "marginBottom": 0,
                 "marginRight": 0,
