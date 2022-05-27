@@ -7,11 +7,7 @@ import {
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
-export interface ICanBeFormatted<T> {
-    formatter?(value: T): T;
-}
-
-export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     max?: number;
     min?: number;
     upIcon?: Icon;
@@ -23,6 +19,11 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     align?: "left" | "right";
     disableThousandSeparator?: boolean;
     formatOptions?: Intl.NumberFormatOptions;
+    // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
+    /**
+     * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
+     */
+    formatter?(value: number): number;
 }
 
 export const uuiNumericInput = {
