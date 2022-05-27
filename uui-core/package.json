@@ -20,7 +20,6 @@
     "@types/lodash.orderby": "4.6.6",
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.trimend": "4.5.6",
-    "@types/query-string": "6.3.0",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
     "jsurl": "0.1.5",
@@ -33,7 +32,6 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "query-string": "7.1.1",
     "react-popper": "2.2.5"
   },
   "devDependencies": {

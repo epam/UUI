@@ -1,29 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
 import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
-import { getColumnsConfig, getOrderBetween } from "../../helpers";
+import { getColumnsConfig } from "../../helpers";
 import { useUuiContext } from "../../services";
-import { isDefaultColumnsConfig, parseUrlFilter, parseUrlFiltersConfig } from "./helpers";
+import { isDefaultColumnsConfig } from "./helpers";
 import { constants } from "./constants";
 import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
 
-    const [tableStateValue, setTableStateValue] = useState<DataTableState>({
-        topIndex: 0,
-        visibleCount: 40,
-        filter: params.initialFilter ?? parseUrlFilter(),
-        columnsConfig: getColumnsConfig(params.columns, {}),
-        filtersConfig: parseUrlFiltersConfig() ?? {
-            profileStatus: {
-                isAlwaysVisible: true,
-                isVisible: true,
-                order: getOrderBetween(null, null),
-            },
-        },
-        page: 1,
-        pageSize: 100,
+    const [tableStateValue, setTableStateValue] = useState<DataTableState>(() => {
+        const urlParams = context.uuiRouter.getCurrentLink().query;
+
+        return {
+            topIndex: 0,
+            visibleCount: 40,
+            filter: params.initialFilter ?? urlParams.filter,
+            columnsConfig: getColumnsConfig(params.columns, {}),
+            filtersConfig: urlParams.filtersConfig,
+        };
     });
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
@@ -36,25 +32,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: newFilter,
         }));
 
-        // TODO: should return to the first page on filter's change
-        // setTableStateValue(prevValue => ({
-        //     ...prevValue,
-        //     ...newValue,
-        //     page: isFilterEqual 
-        //         ? newValue.page
-        //         : 1,
-        // }));
-
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
-            filter: JSON.stringify(newValue.filter),
+            filter: newValue.filter,
             presetId: newValue.presetId,
-            filtersConfig: newValue.filtersConfig ? JSON.stringify(newValue.filtersConfig) : {},
+            filtersConfig: newValue.filtersConfig,
         };
-
-        if (!newValue.presetId) {
-            delete newQuery.presetId;
-        }
 
         context.uuiRouter.redirect({
             pathname: location.pathname,
@@ -84,35 +67,27 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [tableStateValue]);
 
     useEffect(() => {
-        if (presets?.length === 0 && params.initialPresets?.length > 0) {
-            setPresets(params.initialPresets);
-        }
-    }, [params.initialPresets]);
+        const urlParams = context.uuiRouter.getCurrentLink().query;
+        const paramKeys = Object.keys(urlParams);
+        const stateKeys = Object.keys(tableStateValue).filter(key => paramKeys.includes(key));
+        
+        const haveUrlParamsChanged = stateKeys.some(param => {
+            return !isEqual(urlParams[param], tableStateValue[param as keyof typeof tableStateValue]);
+        });
 
-    // useEffect(() => {
-    //     const parsedFilter = parseUrlParam("filter") as TFilter;
-    //     const parsedFiltersConfig = parseUrlParam("filtersConfig");
-    //     const hasFilterChanged = !isEqual(parsedFilter, tableStateValue.filter);
-    //     const hasFiltersConfigChanged = !isEqual(parsedFiltersConfig, tableStateValue.filtersConfig);
-    //
-    //     const presetId = +context.uuiRouter.getCurrentLink().query.presetId;
-    //     const activePreset = presets.find((p: ITablePreset) => p.id === presetId);
-    //     const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, tableStateValue.columnsConfig);
-    //
-    //     if (!hasFilterChanged && !hasFiltersConfigChanged && !hasColumnsConfigChanged) return;
-    //
-    //     const newState: Partial<DataTableState> & { presetId?: number | null } = {
-    //         filter: parsedFilter,
-    //     };
-    //     if (activePreset?.columnsConfig) {
-    //         newState.columnsConfig = activePreset.columnsConfig;
-    //     }
-    //     if (presetId) {
-    //         newState.presetId = presetId;
-    //     }
-    //
-    //     setTableState(newState);
-    // }, [location.search]);
+        const presetId = +context.uuiRouter.getCurrentLink().query.presetId;
+        const activePreset = presets.find((p: ITablePreset) => p.id === presetId);
+        const hasColumnsConfigChanged = !isEqual(activePreset?.columnsConfig, tableStateValue.columnsConfig);
+
+        if (!haveUrlParamsChanged && !hasColumnsConfigChanged) return;
+
+        setTableState({
+            ...tableStateValue,
+            filter: urlParams.filter,
+            presetId: urlParams.presetId,
+            filtersConfig: urlParams.filtersConfig,
+        });
+    }, [location.search]);
 
     const activePresetId = useMemo(() => {
         const presetId = context.uuiRouter.getCurrentLink().query?.presetId;
@@ -144,7 +119,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             } as ITablePreset<TFilter>
             : {
                 ...preset,
-                name: preset.name + "_copy",
+                name: preset.name + "_copy", // TODO: temporary naming logic, need to be reworked
             } as ITablePreset<TFilter>;
 
         newPreset.id = await params?.onPresetCreate?.(newPreset);
@@ -161,7 +136,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [choosePreset]);
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const filter = parseUrlFilter();
+        const { filter } = context.uuiRouter.getCurrentLink().query;
 
         return !isEqual(preset?.filter, filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);

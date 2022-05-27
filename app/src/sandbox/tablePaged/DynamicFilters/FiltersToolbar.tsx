@@ -1,94 +1,90 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DynamicFilters.scss";
 import sortBy from "lodash.sortby";
 import { Button, FlexRow, PickerInput } from "@epam/promo";
 import { DataRowOptions, FilterConfig, FiltersConfig, getOrderBetween, ITableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps } from "@epam/uui-components";
-import { DynamicFilter } from "./DynamicFilter";
+import { FiltersToolbarItem } from "./FiltersToolbarItem";
 
-interface DynamicFiltersProps<TFilter extends Record<string, any>> {
+interface FiltersToolbarProps<TFilter extends Record<string, any>> {
     filters: FilterConfig<TFilter>[];
     tableState: ITableState["tableState"];
     setTableState: ITableState["setTableState"];
 }
 
-const DynamicFiltersImpl = <TFilter extends Record<string, any>>(props: DynamicFiltersProps<TFilter>) => {
+const FiltersToolbarImpl = <TFilter extends Record<string, any>>(props: FiltersToolbarProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
     
-    const mapFilterToPickerValue = useCallback((f: FilterConfig<TFilter>) => {
-        return {
-            id: f.columnKey,
-            columnKey: f.columnKey,
-            title: f.title,
-            isDisabled: tableState.filtersConfig[f.columnKey]?.isAlwaysVisible,
-        };
-    }, [tableState.filtersConfig]);
-    
-    const [value, setValue] = useState(() => {
-        const activeFilters = Object.keys(tableState.filtersConfig);
-        return filters.filter(f => activeFilters.includes(f.columnKey)).map(mapFilterToPickerValue);
-    });
-
-    const filterItems = useMemo(() => {
-        return filters.map(mapFilterToPickerValue);
-    }, [filters, mapFilterToPickerValue]);
+    // const [value, setValue] = useState([]);
+    const alwaysVisibleFilters = useMemo(() => filters.filter(f => f.isAlwaysVisible), [filters]);
 
     const dataSource = useArrayDataSource({
-        items: filterItems,
+        items: filters.map(f => ({ ...f, id: f.columnKey })),
     }, []);
-    
-    const onChange = useCallback((newValue: typeof filterItems) => {
-        setValue(newValue);
 
+    const onChange = useCallback((newValue: FilterConfig<TFilter>[]) => {
         const newActiveFilterKeys = newValue.map(nv => nv.columnKey);
         const newConfig = {} as FiltersConfig;
 
         let order: string | null = null;
         newActiveFilterKeys.forEach(key => {
-            if (tableState.filtersConfig[key]?.isAlwaysVisible) {
-                newConfig[key] = tableState.filtersConfig[key];
+            if (filters.find(f => f.columnKey === key)?.isAlwaysVisible) {
+                newConfig[key] = tableState.filtersConfig?.[key]
+                    ?? { isVisible: true, order: getOrderBetween(null, null) };
                 return;
             }
-            
+
             const newOrder = getOrderBetween(order, null);
             order = newOrder;
             newConfig[key] = { isVisible: true, order: newOrder };
         });
-        
+
         setTableState({
             ...tableState,
             filtersConfig: newConfig,
         });
     }, [tableState, setTableState]);
 
+    const pickerValue = useMemo(() => {
+        let result;
+        if (!tableState.filtersConfig) {
+            result = alwaysVisibleFilters;
+        } else {
+            const activeFilters = Object.keys(tableState.filtersConfig);
+            result = filters.filter(f => {
+                return alwaysVisibleFilters.find(avf => avf.columnKey === f.columnKey) || activeFilters.includes(f.columnKey);
+            });
+        }
+        return result.map(f => ({ ...f, id: f.columnKey }));
+    }, [tableState.filtersConfig, alwaysVisibleFilters]);
+    
     const handleFilterChange = useCallback((newFilter: any) => {
-        const result = {
-            ...tableState.filter,
-            ...newFilter,
-        };
-        Object.keys(result).forEach(key => {
-            if (result[key] === undefined) delete result[key];
-        });
         setTableState({
             ...tableState,
-            filter: result,
+            filter: {
+                ...tableState.filter,
+                ...newFilter,
+            },
         });
     }, [tableState, setTableState]);
 
     const activeFilters = useMemo((): FilterConfig<TFilter>[] => {
-        const newFilters = filters.filter(f => tableState.filtersConfig[f.columnKey]?.isVisible);
-        return sortBy(newFilters, f => tableState.filtersConfig[f.columnKey]?.order);
+        const newFilters = filters.filter(f => {
+            return alwaysVisibleFilters.find(avf => avf.columnKey === f.columnKey)
+                || tableState.filtersConfig?.[f.columnKey]?.isVisible;
+        });
+        return sortBy(newFilters, f => tableState.filtersConfig?.[f.columnKey]?.order);
     }, [filters, tableState.filtersConfig]);
 
     const renderToggler = useCallback((props: PickerTogglerProps) => {
         return <Button caption="Choose filter" onClick={ props.onClick }/>;
     }, []);
-    
-    const getRowOptions = useCallback((item: typeof filterItems[number]): DataRowOptions<any, any> => ({
-        isDisabled: item.isDisabled,
+
+    const getRowOptions = useCallback((item: FilterConfig<TFilter>): DataRowOptions<any, any> => ({
+        isDisabled: item.isAlwaysVisible,
         checkbox: {
             isVisible: true,
-            isDisabled: item.isDisabled,
+            isDisabled: item.isAlwaysVisible,
         },
     }), []);
 
@@ -97,7 +93,7 @@ const DynamicFiltersImpl = <TFilter extends Record<string, any>>(props: DynamicF
             <div className={ css.cell }>
                 <PickerInput
                     dataSource={ dataSource }
-                    value={ value }
+                    value={ pickerValue }
                     onValueChange={ onChange }
                     selectionMode="multi"
                     valueType="entity"
@@ -110,7 +106,7 @@ const DynamicFiltersImpl = <TFilter extends Record<string, any>>(props: DynamicF
             </div>
 
             { activeFilters.map(f => (
-                <DynamicFilter
+                <FiltersToolbarItem
                     { ...f }
                     value={ tableState.filter }
                     onValueChange={ handleFilterChange }
@@ -121,4 +117,4 @@ const DynamicFiltersImpl = <TFilter extends Record<string, any>>(props: DynamicF
     );
 };
 
-export const DynamicFilters = React.memo(DynamicFiltersImpl) as typeof DynamicFiltersImpl;
+export const FiltersToolbar = React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;

@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import css from "./DynamicFilters.scss";
 import { FilterConfig, IEditable } from "@epam/uui-core";
-import { DatePicker, FlexRow, PickerInput, RangeDatePicker } from "@epam/promo";
+import { DatePicker, PickerInput, RangeDatePicker } from "@epam/promo";
 import { RangeDatePickerValue } from "@epam/uui-components";
 
-type DynamicFilterProps<TFilter extends Record<string, any>> = FilterConfig<TFilter> & IEditable<TFilter>;
+type FiltersToolbarItemProps<TFilter extends Record<string, any>> = FilterConfig<TFilter> & IEditable<TFilter>;
 
-const DynamicFilterImpl = (props: DynamicFilterProps<any>) => {
+const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps<any>) => {
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
     }, [props.field, props.onValueChange]);
@@ -60,4 +60,4 @@ const DynamicFilterImpl = (props: DynamicFilterProps<any>) => {
     );
 };
 
-export const DynamicFilter = React.memo(DynamicFilterImpl);
+export const FiltersToolbarItem = React.memo(FiltersToolbarItemImpl);

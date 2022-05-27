@@ -7,7 +7,7 @@ import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
 import { getFilters, mapFilter } from "./data";
 import { getColumns } from "./columns";
-import { DynamicFilters } from "./DynamicFilters";
+import { FiltersToolbar } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
@@ -40,7 +40,7 @@ export const DemoTablePaged: React.FC = () => {
     const applyFilter = useCallback(() => {
         setAppliedFilter(tableState.filter);
         setTableState({ ...tableState, indexToScroll: 0 });
-    }, [tableState.filter]);
+    }, [tableState]);
     
     // applying filter after parsing initial filter data from url
     useEffect(() => {
@@ -53,7 +53,6 @@ export const DemoTablePaged: React.FC = () => {
         getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, [api]);
     
-
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
         isSelectable: true,
@@ -74,7 +73,7 @@ export const DemoTablePaged: React.FC = () => {
     
     return (
         <div className={ css.container }>
-            <DynamicFilters
+            <FiltersToolbar
                 filters={ filters }
                 tableState={ tableState }
                 setTableState={ setTableState }
