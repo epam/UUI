@@ -8,4 +8,5 @@ export const i18n = {
             greaterThanMaximumLengthMessage: (maxLength: number) => `Maximum length is ${maxLength} characters`,
         },
     },
+    locale: undefined as string,
 };
