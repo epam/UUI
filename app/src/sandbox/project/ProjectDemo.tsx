@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/promo';
 import React from 'react';
-import { DataQueryFilter, Metadata, useArrayDataSource, useTableState} from '@epam/uui-core';
+import { DataQueryFilter, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { Task } from './types';

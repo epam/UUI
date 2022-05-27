@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
     CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
+    i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
@@ -20,7 +21,8 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     id?: string;
     disableArrows?: boolean;
     align?: "left" | "right";
-    withThousandSeparator?: boolean;
+    disableThousandSeparator?: boolean;
+    formatOptions?: Intl.NumberFormatOptions;
 }
 
 export const uuiNumericInput = {
@@ -29,19 +31,26 @@ export const uuiNumericInput = {
     buttonGroup: "uui-numeric-input-button-group",
 } as const;
 
+const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
+    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
+    return maximumFractionDigits;
+};
+
 export const NumericInput = (props: NumericInputProps) => {
     const context = useUuiContext();
 
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
-    React.useEffect(() => {
-        if (props.value !== formattedValue && !inFocus) {
-            props.onValueChange(formattedValue);
-        }
-    }, [props.value, inFocus]);
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value === "" ? null : +event.target.value;
+        const { formatter, formatOptions } = props;
+        let value = event.target.value === "" ? null : +event.target.value;
+        const fractionDigits = getFractionDigits(formatOptions);
+        if (value !== null) {
+            value = +value.toFixed(fractionDigits);
+        }
+        if (formatter) {
+            value = formatter(value);
+        }
         props.onValueChange(value);
         if (props.getValueChangeAnalyticsEvent) {
             const event = props.getValueChangeAnalyticsEvent(value, props.value);
@@ -54,22 +63,11 @@ export const NumericInput = (props: NumericInputProps) => {
         props.onFocus?.(event);
     };
 
-    const [formattedValue, placeholderValue] = React.useMemo((): [number, string] => {
-        const { placeholder = "0", value, min, max, formatter, withThousandSeparator } = props;
-        let formattedValue: number = null;
-        let placeholderValue: string = placeholder;
-        if (!value && value !== 0) return [formattedValue, placeholderValue];
-        formattedValue = getMinMaxValidatedValue({ value, min, max });
-        if (formatter) {
-            formattedValue = formatter(formattedValue);
-        }
-        placeholderValue = withThousandSeparator ? getSeparatedValue(formattedValue) : formattedValue.toString();
-        return [formattedValue, placeholderValue];
-    }, [props.value, props.max, props.min, props.formatter, props.withThousandSeparator, props.placeholder, inFocus]);
-
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        const { value, min, max } = props;
         setInFocus(false);
-        props.onValueChange(formattedValue);
+        const validatedValue = getMinMaxValidatedValue({ value, min, max });
+        if (validatedValue !== value) props.onValueChange(validatedValue);
         props.onBlur?.(event);
     };
 
@@ -100,6 +98,12 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);
+
+    const placeholderValue = React.useMemo(() => {
+        const { placeholder, value, formatOptions, disableThousandSeparator } = props;
+        if (!value && value !== 0) return placeholder || "0";
+        return  disableThousandSeparator ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+    }, [props.placeholder, props.value, props.formatOptions, props.disableThousandSeparator]);
 
     return (
         <div

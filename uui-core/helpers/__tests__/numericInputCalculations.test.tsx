@@ -31,9 +31,13 @@ describe('numericInputCalculations', () => {
     });
 
     it('getSeparatedValue return validated value within min max range', () => {
-        expect(getSeparatedValue(45521)).toBe('45 521');
-        expect(getSeparatedValue(1)).toBe('1');
-        expect(getSeparatedValue(10000.56)).toBe('10 000.56');
+        const locale = 'en-EU';
+        const formatOptions = {};
+        expect(getSeparatedValue(45521, formatOptions, locale)).toBe('45,521');
+        expect(getSeparatedValue(1, formatOptions, locale)).toBe('1');
+        expect(getSeparatedValue(10000.56, formatOptions, locale)).toBe('10,000.56');
+        expect(getSeparatedValue(1.5645514, formatOptions, locale)).toBe('1.565');
+        expect(getSeparatedValue(1.5645514, { maximumFractionDigits: 2 }, locale)).toBe('1.56');
         expect(getSeparatedValue(null)).toBe(null);
     });
 });

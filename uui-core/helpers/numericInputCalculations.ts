@@ -10,8 +10,6 @@ type validationDTO = {
     max?: number
 };
 
-const THOUSAND_SEPARATOR = " ";
-
 export const  getMinMaxValidatedValue = ({ value, min = 0, max = Number.MAX_SAFE_INTEGER }: validationDTO): number => {
     if (value > max) {
         return max;
@@ -47,9 +45,7 @@ export const getDecimalLength = (value: number): number => {
     return splitedValue[1].length;
 };
 
-export const getSeparatedValue = (value: number): string => {
+export const getSeparatedValue = (value: number, formatOptions: Intl.NumberFormatOptions = {}, locale?: string): string => {
     if (!value && value !== 0) return null;
-    let parts = value.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, THOUSAND_SEPARATOR);
-    return parts.join(".");
-}
+    return value.toLocaleString(locale, formatOptions);
+};

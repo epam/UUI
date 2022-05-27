@@ -5,7 +5,6 @@ import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkb
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
-const numberFormatter = (value: number): number => Number(value.toFixed(2));
 
 export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
     {
@@ -33,8 +32,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
                 mode='cell'
                 { ...editorProps }
                 max={ 10000000500 }
-                formatter={ numberFormatter }
-                withThousandSeparator={ true }
+                formatOptions={ { maximumFractionDigits: 2 } }
             /> }
             { ...props }
         />,
@@ -85,7 +83,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('complete') }
             renderEditor={ ({ editorProps }) => (
-                <NumericInput mode={ 'cell' } max={ 100 } { ...editorProps } />
+                <NumericInput mode={ 'cell' } max={ 100 } { ...editorProps } formatOptions={ { maximumFractionDigits: 0 } }/>
             ) }
             { ...props }
         />,
