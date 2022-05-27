@@ -79,7 +79,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         this.onToggle(false);
         if (!this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
-            this.setState({ inputValue: null });
+            this.setState({ inputValue: null, selectedDate: null });
         }
     }
 
