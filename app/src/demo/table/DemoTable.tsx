@@ -40,7 +40,6 @@ export const DemoTable: React.FC = () => {
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api,
         getId: i => [i.__typename, i.id],
-        getChildCount: item => item.__typename === 'PersonGroup' ? item.count : null,
     }, []);
 
     const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
@@ -97,7 +96,7 @@ export const DemoTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ dataSource.getById(["Person", tableStateApi.tableState.selectedId?.[1]]) as Person }
+                data={ tableStateApi.tableState.selectedId && dataSource.getById(["Person", tableStateApi.tableState.selectedId[1]]) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />

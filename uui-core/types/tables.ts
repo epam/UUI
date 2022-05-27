@@ -219,7 +219,6 @@ export type FiltersConfig = {
 export type IFilterConfig = {
     isVisible: boolean;
     order: string;
-    isAlwaysVisible?: boolean;
 };
 
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
@@ -236,6 +235,7 @@ type FilterConfigBase<TFilter extends Record<string, any>> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
+    isAlwaysVisible?: boolean;
 };
 
 type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {

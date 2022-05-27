@@ -1,1 +1,1 @@
-export * from "./DynamicFilters";
+export * from "./FiltersToolbar";

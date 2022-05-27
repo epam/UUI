@@ -1,17 +1,6 @@
 import { FilterConfig, LazyDataSource } from "@epam/uui-core";
 import { svc } from "../../../services";
 
-const filtersConfig = {
-    profileStatus: {
-        isVisible: false,
-        order: 1,
-    },
-    jobTitle: {
-        isVisible: false,
-        order: 2,
-    },
-};
-
 export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<TFilter>[] => {
     return [
         {
@@ -20,6 +9,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<
             title: "Profile Status",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
+            isAlwaysVisible: true,
         },
         {
             field: "jobTitleId",
