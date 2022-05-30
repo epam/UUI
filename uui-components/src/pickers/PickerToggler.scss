@@ -19,6 +19,14 @@
             flex: 1 1 auto;
         }
     }
+    
+    :global(.uui-input-prefix) {
+        white-space: nowrap;
+    }
+    
+    :global(.uui-input-suffix) {
+        white-space: nowrap;
+    }
 }
 
 .body {
