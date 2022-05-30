@@ -40,22 +40,18 @@ export const DemoTable: React.FC = () => {
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api,
         getId: i => [i.__typename, i.id],
-        getChildCount: item => item.__typename === 'PersonGroup' ? item.count : null,
     }, []);
 
-    const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
-        checkbox: { isVisible: true },
-        isSelectable: true,
-        onClick(rowProps) {
-            rowProps.onSelect(rowProps);
-            setIsInfoPanelOpened(true);
-        },
-    });
 
-    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-        rowOptions,
-        isFoldedByDefault: () => true,
-        cascadeSelection: true,
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+        rowOptions: {
+            checkbox: { isVisible: true },
+            isSelectable: true,
+            onClick(rowProps) {
+                rowProps.onSelect(rowProps);
+                setIsInfoPanelOpened(true);
+            },
+        },
     });
 
     return (
@@ -84,7 +80,7 @@ export const DemoTable: React.FC = () => {
 
                 <DataTable
                     headerTextCase='upper'
-                    getRows={ personsDataView.getVisibleRows }
+                    getRows={ view.getVisibleRows }
                     columns={ columnsSet }
                     filters={ filters }
                     value={ tableStateApi.tableState }
@@ -92,12 +88,12 @@ export const DemoTable: React.FC = () => {
                     showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
-                    { ...personsDataView.getListProps() }
+                    { ...view.getListProps() }
                 />
             </div>
 
             <InfoSidebarPanel
-                data={ dataSource.getById(["Person", tableStateApi.tableState.selectedId?.[1]]) as Person }
+                data={ tableStateApi.tableState.selectedId && dataSource.getById(["Person", tableStateApi.tableState.selectedId[1]]) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
