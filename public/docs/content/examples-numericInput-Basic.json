@@ -32,7 +32,30 @@
           },
           {
             "object": "text",
-            "text": "value, onValueChange, min, max",
+            "text": "value, onValueChange",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "min = 0, max = Number.MAX_SAFE_INTEGER",
             "marks": [
               {
                 "object": "mark",

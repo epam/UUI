@@ -32,7 +32,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
                 mode='cell'
                 { ...editorProps }
                 max={ 10000000500 }
-                formatOptions={ { maximumFractionDigits: 2 } }
+                formatOptions={ { maximumFractionDigits: 2, minimumFractionDigits: 2 } }
             /> }
             { ...props }
         />,

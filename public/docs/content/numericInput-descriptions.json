@@ -1,1 +1,65 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"NumericInput is used to let the user enter a number. It includes built-in validation to reject non-numerical entries.","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "NumericInput is used to let the user enter a number. It includes built-in validation to reject non-numerical entries.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default NumericInput uses ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "toLocalString()",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to show formatted numbers according you system locale ( also you can reset locale value within i18n ). To disable this behavior  set  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "disableThousandSeparator: false",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " . ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
