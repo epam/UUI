@@ -28,6 +28,8 @@ export class NumericInputDoc extends BaseDocsBlock {
                     title='With formatter'
                     path='./examples/numericInput/Formatter.example.tsx'
                 />
+                { this.renderSectionTitle('Localization') }
+                <EditableDocContent fileName='numericInput-localization' />
             </>
         );
     }
