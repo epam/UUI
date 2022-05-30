@@ -25,6 +25,13 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
             ],
         },
     )
+    .prop("target", { examples: ["_blank"] })
+    .prop("isDisabled", {
+        examples: [
+            { value: true },
+            { value: false, isDefault: true },
+        ],
+    })
     .withContexts(DefaultContext);
 
 export = AnchorDoc;
