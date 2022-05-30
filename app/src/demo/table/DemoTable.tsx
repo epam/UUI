@@ -42,19 +42,16 @@ export const DemoTable: React.FC = () => {
         getId: i => [i.__typename, i.id],
     }, []);
 
-    const { current: rowOptions } = React.useRef<DataRowOptions<PersonTableRecord, PersonTableRecordId>>({
-        checkbox: { isVisible: true },
-        isSelectable: true,
-        onClick(rowProps) {
-            rowProps.onSelect(rowProps);
-            setIsInfoPanelOpened(true);
-        },
-    });
 
-    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-        rowOptions,
-        isFoldedByDefault: () => true,
-        cascadeSelection: true,
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+        rowOptions: {
+            checkbox: { isVisible: true },
+            isSelectable: true,
+            onClick(rowProps) {
+                rowProps.onSelect(rowProps);
+                setIsInfoPanelOpened(true);
+            },
+        },
     });
 
     return (
@@ -83,7 +80,7 @@ export const DemoTable: React.FC = () => {
 
                 <DataTable
                     headerTextCase='upper'
-                    getRows={ personsDataView.getVisibleRows }
+                    getRows={ view.getVisibleRows }
                     columns={ columnsSet }
                     filters={ filters }
                     value={ tableStateApi.tableState }
@@ -91,7 +88,7 @@ export const DemoTable: React.FC = () => {
                     showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
-                    { ...personsDataView.getListProps() }
+                    { ...view.getListProps() }
                 />
             </div>
 
