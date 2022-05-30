@@ -111,7 +111,7 @@ export const NumericInput = (props: NumericInputProps) => {
         const fractionsDigits = getFractionDigits(props.formatOptions);
         if (!fractionsDigits) return 1;
         return `${(0).toFixed(getFractionDigits(props.formatOptions) - 1)}1`;
-    }, [props.formatOptions]);
+    }, [props.formatOptions, props.step]);
 
     return (
         <div
