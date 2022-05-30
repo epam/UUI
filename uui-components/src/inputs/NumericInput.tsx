@@ -106,6 +106,13 @@ export const NumericInput = (props: NumericInputProps) => {
         return  disableThousandSeparator ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableThousandSeparator]);
 
+    const step = React.useMemo(() => {
+        if (props.step) return props.step;
+        const fractionsDigits = getFractionDigits(props.formatOptions);
+        if (!fractionsDigits) return 1;
+        return `0.${Array(getFractionDigits(props.formatOptions) - 1).fill('0').join("")}1`;
+    }, [props.formatOptions]);
+
     return (
         <div
             className={ cx(css.container, uuiElement.inputBox,
@@ -137,7 +144,7 @@ export const NumericInput = (props: NumericInputProps) => {
                 onChange={ handleChange }
                 min={ props.min || 0 }
                 max={ props.max }
-                step={ props.step || 'any' }
+                step={ step }
                 id={ props.id }
             />
 
