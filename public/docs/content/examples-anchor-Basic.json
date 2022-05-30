@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic Anchor usage. In this example we wrap some icons and setup href attributes for getting target sources.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
