@@ -32,6 +32,7 @@ export default function FileUploadExample() {
             attachments.push({ id: tempId, name: file.name, size: file.size });
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: progress => trackProgress(progress, tempId),
+                getXHR: xhr => xhr.setRequestHeader('my-header', 'value'),
             }).then(res => updateFile({ ...res, progress: 100 }, tempId));
         });
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import { UuiContext, UuiContexts } from '@epam/uui-core';
+import { IHasChildren, UuiContext, UuiContexts } from '@epam/uui-core';
 
-export class ErrorCatch extends React.Component {
+interface ErrorCatchProps extends IHasChildren {}
+
+export class ErrorCatch extends React.Component<ErrorCatchProps> {
     static contextType = UuiContext;
     public context: UuiContexts;
 
-    constructor(props: {}) {
+    constructor(props: ErrorCatchProps) {
         super(props);
     }
 

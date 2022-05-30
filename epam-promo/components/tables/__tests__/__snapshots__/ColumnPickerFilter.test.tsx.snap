@@ -29,7 +29,9 @@ Array [
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "display": "flex",
             "flex": "1 1 auto",
+            "flexDirection": "column",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
@@ -505,7 +507,9 @@ Array [
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "display": "flex",
             "flex": "1 1 auto",
+            "flexDirection": "column",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,

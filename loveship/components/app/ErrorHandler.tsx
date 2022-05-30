@@ -1,23 +1,15 @@
-import React from 'react';
-import { UuiContexts, ApiRecoveryReason, UuiError, UuiErrorInfo, IHasCX, UuiContext } from '@epam/uui-core';
-import { ModalBlocker, ModalWindow, ModalHeader, SnackbarCard } from './../overlays';
-import { FlexRow, FlexCell } from './../layout';
-import { RichTextView, Text } from './../typography';
-import { Spinner } from './../widgets';
+import React, { FC } from 'react';
+import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren,
+    ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
+import { ModalBlocker, ModalHeader, ModalWindow, SnackbarCard } from '../overlays';
+import { FlexCell, FlexRow } from '../layout';
+import { RichTextView, Text } from '../typography';
+import { Spinner } from '../widgets';
+import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
 import * as css from './ErrorHandler.scss';
 
 type Theme = 'light' | 'dark';
-
-export interface ErrorConfig {
-    getAction?: (errorCode: number) => JSX.Element;
-    getInfo?: (errorCode: number) => UuiErrorInfo;
-}
-
-export interface ErrorPageProps extends IHasCX {
-    errorPageConfig?: ErrorConfig;
-    theme?: Theme;
-}
 
 const imageUrl = {
     light: {
@@ -34,8 +26,29 @@ const imageUrl = {
     },
 };
 
-export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<string, UuiErrorInfo> => {
-    const defaultErrorPageProps: Record<string, UuiErrorInfo> = {
+const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
+
+export const recoveryConfig: Record<ApiRecoveryReason, { title: string, subtitle: string }> = {
+    'auth-lost': {
+        title: 'Your session has expired.',
+        subtitle: 'Attempting to log you in.',
+    },
+    'connection-lost': {
+        title: 'Network connection down',
+        subtitle: 'Please check your network connection.',
+    },
+    'maintenance': {
+        title: 'Server maintenance',
+        subtitle: 'We apologize for the inconvenience. Our site is currently under maintenance. Will come back as soon as possible.',
+    },
+    'server-overload': {
+        title: 'Server overloaded',
+        subtitle: 'We are trying to recover. Please wait.',
+    },
+};
+
+const defaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType, UuiErrorInfo> => {
+    return {
         notFound: {
             imageUrl: imageUrl[theme][404],
             title: "Oooops! We couldn’t find this page",
@@ -51,163 +64,83 @@ export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<string,
             title: "500 Error! Something went wrong",
             subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
         },
-        badGateway: {
-            imageUrl: imageUrl[theme][502],
-            title: "502 Error! The server encountered a temporary error and could not complete your request.",
-            subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
-        },
         serviceUnavailable: {
             imageUrl:imageUrl[theme][502],
             title: "The page request was canceled, because it took too long to complete",
             subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
         },
-        somethingWentWrong: {
+        default: {
             imageUrl: imageUrl[theme][500],
             title: "Something went wrong",
             subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
         },
     };
-
-    return defaultErrorPageProps;
 };
 
-export const recoveryWordings: Record<ApiRecoveryReason, { title: string, text: string }> = {
-    'auth-lost': {
-        title: 'Your session has expired.',
-        text: 'Attempting to log you in.',
-    },
-    'connection-lost': {
-        title: 'Network connection down',
-        text: 'Please check your network connection.',
-    },
-    'maintenance': {
-        title: 'Server maintenance',
-        text: 'We apologize for the inconvenience. Our site is currently under maintenance. Will come back as soon as possible.',
-    },
-    'server-overload': {
-        title: 'Server overloaded',
-        text: 'We are trying to recover. Please wait.',
-    },
-};
+export interface ErrorConfig {
+    getInfo?: (errorCode: number) => UuiErrorInfo;
+}
 
-const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
+export interface ErrorPageProps extends IHasCX, IHasChildren {
+    errorPageConfig?: ErrorConfig;
+    theme?: Theme;
+}
 
-export class ErrorHandler extends React.Component<ErrorPageProps> {
-    static contextType = UuiContext;
-    public context: UuiContexts;
-    public state: { jsError: Error, jsErrorInfo: React.ErrorInfo } = { jsError: null, jsErrorInfo: null };
+export const ErrorHandler: FC<ErrorPageProps> = (props) => {
+    const { uuiNotifications, uuiModals } = useUuiContext();
+    const { errorType, errorInfo } = useUuiError({
+        getErrorInfo: props.errorPageConfig?.getInfo,
+        options: {
+            errorConfig: defaultErrorPageProps(props.theme),
+            recoveryConfig: recoveryConfig,
+        },
+    });
 
-    constructor(props: ErrorPageProps) {
-        super(props);
-    }
 
-    componentDidMount() {
-        if (!this.context) return;
-        this.context.uuiApi.subscribe(this.onApiChange);
-        this.context.uuiErrors.onError(() => this.forceUpdate());
-        this.context.uuiRouter.listen(this.onRouteChange);
-    }
+    const showNotifications = (errors: ApiCallInfo[]) => {
+        errors.forEach(c => {
+            uuiNotifications.show(props =>
+                <SnackbarCard { ...props } snackType='danger'>
+                    <FlexRow padding='24' vPadding='12'>
+                        <Text size='36'>{ (c.responseData?.errorMessage) || defaultNotificationErrorMessage }</Text>
+                    </FlexRow>
+                </SnackbarCard>,
+            );
+            c.dismissError();
+        });
+    };
 
-    defaultErrorPageProps = getDefaultErrorPageProps(this.props?.theme);
-
-    onApiChange = () => {
-        this.context.uuiApi.getActiveCalls()
-            .filter(c => c.options.errorHandling === 'notification')
-            .forEach(c => {
-                this.context.uuiNotifications.show(props =>
-                    <SnackbarCard { ...props } snackType='danger'>
-                        <FlexRow padding='24' vPadding='12'>
-                            <Text size='36'>{ (c.responseData?.errorMessage) || defaultNotificationErrorMessage }</Text>
-                        </FlexRow>
-                    </SnackbarCard>,
-                );
-                c.dismissError();
-            });
-        this.forceUpdate();
-    }
-
-    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        this.context.uuiErrors.reportError(error);
-    }
-
-    getDefaultInfo = (errorCode: number): UuiErrorInfo => {
-        switch (errorCode) {
-            case 404: return this.defaultErrorPageProps.notFound;
-            case 403: return this.defaultErrorPageProps.permissionDenied;
-            case 500: return this.defaultErrorPageProps.serverError;
-            case 502: return this.defaultErrorPageProps.badGateway;
-            case 503: return this.defaultErrorPageProps.serviceUnavailable;
-            default: return this.defaultErrorPageProps.somethingWentWrong;
-        }
-    }
-
-    onRouteChange = () => {
-        let hasError = false;
-        if (this.context.uuiApi.getActiveCalls().some(c => c.status === 'error')) {
-            this.context.uuiApi.reset();
-            hasError = true;
-        }
-
-        if (this.context.uuiErrors.currentError !== null) {
-            this.context.uuiErrors.recover();
-            hasError = true;
-        }
-
-        hasError && this.forceUpdate();
-    }
-
-    renderErrorPage(errorCode: number, customInfo?: UuiErrorInfo) {
-        let getInfo = (this.props.errorPageConfig && this.props.errorPageConfig.getInfo) || this.getDefaultInfo;
-        let pageInfo = getInfo(errorCode);
-
-        if (customInfo) {
-            pageInfo = { ...pageInfo, ...customInfo };
-        }
-
-        return <ErrorPage theme={ this.props?.theme } cx={ this.props.cx } { ...pageInfo } />;
-    }
-
-    render() {
-        let page: any = null;
-        let firstCallWithError = this.context.uuiApi.getActiveCalls().filter(c => c.status === 'error' && c.options.errorHandling === 'page')[0];
-
-        if (firstCallWithError != null) {
-            page = this.renderErrorPage(firstCallWithError.httpStatus);
-            this.context.uuiModals.closeAll();
-        } else if (this.context.uuiErrors.currentError != null) {
-            const error = this.context.uuiErrors.currentError;
-            let status;
-            let info: UuiErrorInfo = {};
-            if (error instanceof UuiError) {
-                status = error.info?.status;
-                info = error.info;
-            }
-
-            page = this.renderErrorPage(status, info);
-            this.context.uuiModals.closeAll();
-        } else {
-            page = this.props.children;
-        }
-
-        let recoveryMessage = this.context.uuiApi.status === 'recovery' && recoveryWordings[this.context.uuiApi.recoveryReason];
-
-        const blocker = recoveryMessage && (
+    const renderRecoveryBlocker = (errorInfo: UuiRecoveryErrorInfo) => {
+        return (
             <ModalBlocker cx={ css.modalBlocker } blockerShadow='dark' key='auth-lost' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
                 <ModalWindow>
-                    <ModalHeader borderBottom title={ recoveryMessage.title } />
+                    <ModalHeader borderBottom title={ errorInfo.title } />
                     <Spinner cx={ css.recoverySpinner } color='fire' />
                     <FlexRow padding='24' cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
-                            <RichTextView>{ recoveryMessage.text }</RichTextView>
+                            <RichTextView>{ errorInfo.subtitle }</RichTextView>
                         </FlexCell>
                     </FlexRow>
                 </ModalWindow>
             </ModalBlocker>
         );
+    };
 
-        return <>
-            { page }
-            { blocker }
-        </>;
+    const renderErrorPage = (errorInfo: UuiErrorInfo) => {
+        return <ErrorPage cx={ props.cx } { ...errorInfo } />;
+    };
+
+    if (errorType == 'error') {
+        uuiModals.closeAll();
+        return renderErrorPage(errorInfo as UuiErrorInfo);
     }
-}
+
+    if (errorType == 'notification') {
+        showNotifications(errorInfo as ApiCallInfo[]);
+    }
+
+    return <ErrorCatch>
+        { props.children }
+        { errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
+    </ErrorCatch>;
+};

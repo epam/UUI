@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from "react";
 import { Dayjs } from "dayjs";
-import { IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasPlaceholder } from "../../props";
+import { IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasPlaceholder } from "../../props";
 
-export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
+export interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus<HTMLInputElement>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
     format: string;
     filter?(day: Dayjs): boolean;
     renderTarget?(props: IDropdownToggler): ReactNode;
@@ -10,4 +10,5 @@ export interface BaseDatePickerProps extends IEditable<string | null>, IHasCX, I
     disableClear?: boolean;
     renderDay?: (day: Dayjs, onDayClick: (day: Dayjs) => void) => ReactElement<Element>;
     isHoliday?: (day: Dayjs) => boolean;
+    onBlur?: (e?: React.FocusEvent<HTMLInputElement>) => void;
 }

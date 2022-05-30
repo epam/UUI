@@ -1,4 +1,4 @@
-import React, { MouseEvent , useCallback} from 'react';
+import React, { MouseEvent } from 'react';
 import Measure, { MeasuredComponentProps } from 'react-measure';
 import orderBy from 'lodash.orderby';
 import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
@@ -10,7 +10,7 @@ import * as css from './MainMenu.scss';
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
 export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    children: any;
+    children?: any;
     externalGap?: number;
     appLogoUrl?: string;
     appLogoBgColor?: string;
@@ -302,7 +302,7 @@ class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProp
                     this.props.cx,
                     uuiMainMenu.container,
                     css.container,
-                    this.props.isTransparent && uuiMainMenu.transparent
+                    this.props.isTransparent && uuiMainMenu.transparent,
                 ) }
                 { ...this.props.rawProps }
             >
@@ -315,6 +315,6 @@ class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProp
 
 export const MainMenu: React.FC<MainMenuProps> = (props) => (
     <Measure bounds>
-        { (measureProps) => <MainMenuImpl { ...props } { ...measureProps } /> }
+        { (measureProps: MeasuredComponentProps) => <MainMenuImpl { ...props } { ...measureProps } /> }
     </Measure>
-)
+);

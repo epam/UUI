@@ -32,21 +32,7 @@ export class ModalContext extends BaseContext implements IModalContext {
         super();
     }
 
-    private hideBodyScroll() {
-        if (document.body.classList.contains('body-scroll-page')) {
-            document.body.classList.add('hidden-scroll');
-        }
-    }
-
-    private showBodyScroll() {
-        if (this.operations.length === 0) {
-            document.body.classList.remove('hidden-scroll');
-        }
-    }
-
     public show<TResult, TParameters = {}>(render: (props: IModal<TResult>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
-        this.hideBodyScroll();
-
         const ModalAdapter = class extends React.Component<ModalComponentProps<{}, TResult>> {
             render() {
                 return render(this.props);
@@ -58,7 +44,6 @@ export class ModalContext extends BaseContext implements IModalContext {
 
     public closeAll() {
         this.operations = [];
-        this.showBodyScroll();
         this.update({});
     }
 
@@ -71,14 +56,12 @@ export class ModalContext extends BaseContext implements IModalContext {
             const modalProps: ModalComponentProps<TParameters, TResult> = {
                 success: r => {
                     this.operations.pop();
-                    this.showBodyScroll();
                     this.layoutCtx.releaseLayer(layer);
                     resolve(r);
                     this.update({});
                 },
                 abort: () => {
                     this.operations.pop();
-                    this.showBodyScroll();
                     this.layoutCtx.releaseLayer(layer);
                     reject(new ModalOperationCancelled());
                     this.update({});

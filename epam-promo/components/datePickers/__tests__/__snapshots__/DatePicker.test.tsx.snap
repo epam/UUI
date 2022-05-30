@@ -21,10 +21,10 @@ exports[`DataPicker should be rendered correctly 1`] = `
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="MMM D, YYYY"
+    tabIndex={0}
     type="text"
     value=""
   />
-  
 </div>
 `;
 
@@ -49,9 +49,9 @@ exports[`DataPicker should be rendered correctly 2`] = `
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="Test"
+    tabIndex={0}
     type="text"
     value=""
   />
-  
 </div>
 `;
