@@ -15,6 +15,7 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import * as css from './DemoForm.scss';
+import { useState } from "react";
 
 const tShirtSizes = [
     { id: 1, caption: 'XS' },
@@ -447,10 +448,11 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 
 export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
+    const [value, setValue] = useState(defaultData)
 
-    const { lens, validate, save } = useForm<PersonDetails>({
+    const { lens, revert, save, isChanged } = useForm<PersonDetails>({
         settingsKey: 'form-test',
-        value: defaultData,
+        value: value,
         getMetadata: personDetailsSchema,
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
@@ -481,7 +483,6 @@ export function DemoForm() {
                     <hr className={ css.divider } />
                     <FlexRow spacing='12'>
                         <FlexSpacer />
-                        <Button caption='Validate' color='blue' onClick={ validate } />
                         <Button caption='Save' color='green' onClick={ save } />
                     </FlexRow>
                 </FlexCell>
