@@ -103,7 +103,11 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
 
     return (
         <>
-            { list.map(i => <React.Fragment key={ i.id }> { props.renderRow(i) } </React.Fragment> ) }
+            { list.map(i => <React.Fragment key={ i.id }>
+                <>
+                    { props.renderRow(i) }
+                </>
+            </React.Fragment>) }
         </>
     );
 }

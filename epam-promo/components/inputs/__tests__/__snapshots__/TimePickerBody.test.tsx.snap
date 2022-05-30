@@ -31,6 +31,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         onChange={[Function]}
         placeholder="0"
         step={1}
+        tabIndex={0}
         type="number"
         value="12"
       />
@@ -86,6 +87,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         onChange={[Function]}
         placeholder="0"
         step={1}
+        tabIndex={0}
         type="number"
         value="30"
       />
@@ -138,6 +140,7 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         onChange={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
+        tabIndex={-1}
         type="text"
         value="PM"
       />
@@ -186,6 +189,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         onChange={[Function]}
         placeholder="0"
         step={1}
+        tabIndex={0}
         type="number"
         value="12"
       />
@@ -241,6 +245,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         onChange={[Function]}
         placeholder="0"
         step={1}
+        tabIndex={0}
         type="number"
         value="30"
       />
@@ -293,6 +298,7 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         onChange={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
+        tabIndex={-1}
         type="text"
         value="PM"
       />

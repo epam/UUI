@@ -68,8 +68,8 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
             renderView={ renderView }
-            renderTrackHorizontal={ props => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
-            renderTrackVertical={ props => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
+            renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
+            renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
             renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...style } }

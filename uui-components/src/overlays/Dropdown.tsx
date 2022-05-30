@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, closest, UuiContext } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -25,7 +25,6 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
     onClose?: () => void;
     isNotUnfoldable?: boolean;
-    stopCloseSelectors?: string[];
     zIndex?: number;
     placement?: DropdownPlacement;
     modifiers?: Modifier<any>[];
@@ -41,6 +40,20 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     boundaryElement?: Boundary;
 
     closeBodyOnTogglerHidden?: boolean; // default: true; Set false if you do not want to hide the dropdown body in case Toggler is out of the viewport
+}
+
+const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
+    const [relatedNode] = stopNodes;
+    const target = e.target as HTMLElement;
+
+    if (stopNodes.some(node => node && closest(target, node))) {
+        return false;
+    }
+
+    if (closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0)) {
+        return false;
+    }
+    return true;
 }
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -185,6 +198,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             isDropdown: true,
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
+            isInteractedOutside: (e) => isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]),
         });
     }
 
@@ -206,6 +220,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             return null;
         }
 
+        // @ts-ignore
         return (
             <FreeFocusInside>
                 <div
@@ -229,19 +244,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private isInteractedOutside = (e: Event) => {
         if (!this.isOpened()) return false;
-
-        const target = e.target as HTMLElement;
-        const stopNodes = [this.bodyNode, this.targetNode, ...(this.props.stopCloseSelectors || [])];
-
-        if (stopNodes.some(node => node && typeof node !== 'string' && closest(target, node))) {
-            return false;
-        }
-
-        if (closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (this.bodyNode !== null ? +this.bodyNode.style.zIndex : 0)) {
-            return false;
-        }
-
-        return true;
+        return isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]);
     }
 
     private clickOutsideHandler = (e: Event) => {

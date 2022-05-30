@@ -36,6 +36,7 @@ export interface VirtualListState {
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
+    filtersConfig?: FiltersConfig;
     presetId?: number | null;
 }
 
@@ -211,6 +212,15 @@ export type IColumnConfig =  {
     width?: number;
 };
 
+export type FiltersConfig = {
+    [key: string]: IFilterConfig;  
+};
+
+export type IFilterConfig = {
+    isVisible: boolean;
+    order: string;
+};
+
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
     getRows(from: number, count: number): DataRowProps<TItem, TId>[];
     columns?: DataColumnProps<TItem, TId>[];
@@ -225,6 +235,7 @@ type FilterConfigBase<TFilter extends Record<string, any>> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
+    isAlwaysVisible?: boolean;
 };
 
 type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
@@ -264,5 +275,6 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setTableState(newState: DataTableState): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
+    setFiltersConfig(filtersConfig: FiltersConfig): void;
     presets: ITablePreset<TFilter>[];
 }

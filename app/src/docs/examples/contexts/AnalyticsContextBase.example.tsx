@@ -29,7 +29,7 @@ class AmplitudeListener implements IAnalyticsListener {
 const AnalyticsContextBase: React.FC = () => {
     const loadAppContext = useCallback(() => Promise.resolve(), []);
 
-    const onInitCompleted = useCallback((context) => {
+    const onInitCompleted = useCallback((context: any) => {
         Object.assign(svc, context);
 
         /**Here you can create AmplitudeClient and add it to the listener*/

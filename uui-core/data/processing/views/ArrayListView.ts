@@ -117,7 +117,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                     rowProps.isFoldable = isFoldable;
                     rowProps.onFold = isFoldable ? this.handleOnFold : undefined;
 
-                    if (rowProps.checkbox && rowProps.checkbox.isVisible) {
+                    if (rowProps.checkbox && rowProps.checkbox.isVisible && !rowProps.checkbox.isDisabled) {
                         if (rowProps.checkbox.isDisabled) {
                             if (rowProps.isChecked) {
                                 fullSelection.push(rowProps.id);
@@ -240,8 +240,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
-        let checked: TId[];
+        let checked = this.value && this.value.checked || [];
         let isChecked = !rowProps.isChecked;
+        let checkedKeysSet = new Set(checked.map(id => this.idToKey(id)));
 
         const checkedNode = this.dataSource.byKey[rowProps.rowKey];
 
@@ -258,27 +259,44 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             walkChildrenRec(checkedNode);
         };
 
+        const checkParentsRecursively = (node: TreeNode<TItem, TId>) => {
+            const children = this.dataSource.byParentKey[node.parentKey];
+
+            if (children && children.every(i => checkedKeysSet.has(i.key))) {
+                const parentNode = this.dataSource.byKey[node.parentKey];
+                checkedKeysSet.add(parentNode.key);
+                checkParentsRecursively(parentNode);
+            }
+        };
+
         if (isChecked) {
-            this.checkedByKey[checkedNode.key] = true;
+            checkedKeysSet.add(checkedNode.key);
 
             if (this.props.cascadeSelection) {
-                if (isChecked) {
-                    // check all children recursively
-                    forEachChildren(key => this.checkedByKey[key] = true);
-                }
+                // check all children recursively
+                forEachChildren(key => checkedKeysSet.add(key));
+
+                // check parents if all children is checked
+                [...checkedNode.path].reverse().forEach(nodeKey => {
+                    const children = this.dataSource.byParentKey[nodeKey];
+
+                    if (children && children.every(i => checkedKeysSet.has(i.key))) {
+                        checkedKeysSet.add(nodeKey);
+                    }
+                });
+
             }
         } else {
-            delete this.checkedByKey[checkedNode.key];
+            checkedKeysSet.delete(checkedNode.key);
 
             if (this.props.cascadeSelection) {
                 // uncheck all parents recursively
-                checkedNode.path.forEach(key => delete this.checkedByKey[key]);
+                checkedNode.path.forEach(key => checkedKeysSet.delete(key));
                 // uncheck all children recursively
-                forEachChildren(key => delete this.checkedByKey[key]);
+                forEachChildren(key => checkedKeysSet.delete(key));
             }
         }
 
-        checked = Object.keys(this.checkedByKey).filter(key => this.checkedByKey[key]).map(key => this.dataSource.byKey[key].id);
-        this.onValueChange({...this.value, checked});
+        this.handleCheckedChange(Array.from(checkedKeysSet).map(key => this.keyToId(key)));
     }
 }

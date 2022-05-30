@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange, UuiContexts,
-    IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
+import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
@@ -72,6 +71,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
 
     handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         this.onToggle(true);
+        this.props.onFocus?.(e);
     }
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -79,7 +79,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         this.onToggle(false);
         if (!this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
-            this.setState({ inputValue: null });
+            this.setState({ inputValue: null, selectedDate: null });
         }
     }
 
@@ -120,6 +120,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
             view: 'DAY_SELECTION',
             displayedDate: this.state.selectedDate ? dayjs(this.state.selectedDate) : dayjs(),
         });
+        if (!value) this.props.onBlur?.();
     }
 
     handleValueChange = (newValue: string | null) => {

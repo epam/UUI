@@ -89,4 +89,4 @@ This would open the uui.epam.com web-site locally, in watch mode.
 
 ## License
 
-[MIT](./LICENCE.MD)
+[MIT](./LICENSE.md)

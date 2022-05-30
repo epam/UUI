@@ -37,6 +37,14 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
 
     state: BurgerState = {
         isOpen: false,
+    };
+
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'visible';
     }
 
     private toggleBurgerMenu = () => {
@@ -72,7 +80,7 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
                                     background: (this.props.bg !== 'transparent' && this.props.bg) || '#303240',
                                 } }
                             >
-                                <img className={ uuiBurger.logo } src={ this.props.logoUrl } />
+                                <img className={ uuiBurger.logo } src={ this.props.logoUrl } alt='burger logo' />
                             </div>
                         ) }
                 </div>

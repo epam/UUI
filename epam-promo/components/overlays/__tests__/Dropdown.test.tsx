@@ -20,7 +20,6 @@ describe('Dropdown', () => {
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
                 renderBody={ props => jest.fn() }
                 onClose={ jest.fn }
-                stopCloseSelectors={ ['test-selector'] }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
