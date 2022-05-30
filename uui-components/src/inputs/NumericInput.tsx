@@ -110,7 +110,7 @@ export const NumericInput = (props: NumericInputProps) => {
         if (props.step) return props.step;
         const fractionsDigits = getFractionDigits(props.formatOptions);
         if (!fractionsDigits) return 1;
-        return `0.${Array(getFractionDigits(props.formatOptions) - 1).fill('0').join("")}1`;
+        return `${(0).toFixed(getFractionDigits(props.formatOptions) - 1)}1`;
     }, [props.formatOptions]);
 
     return (
