@@ -7,6 +7,7 @@ import { svc } from "../../services";
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
 import { getFilters, mapFilter } from "./data";
 import { getColumns } from "./columns";
+import { FiltersToolbar } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
@@ -22,8 +23,8 @@ export const DemoTablePaged: React.FC = () => {
     
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
-
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async (request, ctx) => {
+    
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
             page: request.page - 1,
@@ -39,7 +40,12 @@ export const DemoTablePaged: React.FC = () => {
     const applyFilter = useCallback(() => {
         setAppliedFilter(tableState.filter);
         setTableState({ ...tableState, indexToScroll: 0 });
-    }, [tableState.filter]);
+    }, [tableState]);
+    
+    // applying filter after parsing initial filter data from url
+    useEffect(() => {
+        applyFilter();
+    }, []);
     
     const dataSource = useLazyDataSource({
         api,
@@ -47,7 +53,6 @@ export const DemoTablePaged: React.FC = () => {
         getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, [api]);
     
-
     const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
         isSelectable: true,
@@ -65,9 +70,15 @@ export const DemoTablePaged: React.FC = () => {
         isFoldedByDefault: () => true,
         cascadeSelection: true,
     });
-
+    
     return (
         <div className={ css.container }>
+            <FiltersToolbar
+                filters={ filters }
+                tableState={ tableState }
+                setTableState={ setTableState }
+            />
+            
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
@@ -90,8 +101,10 @@ export const DemoTablePaged: React.FC = () => {
                 />
                 <FlexSpacer/>
             </FlexRow>
-            
-            <Button caption="Apply filter" onClick={ applyFilter }/>
+
+            <FlexRow vPadding="12" background="white">
+                <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>
+            </FlexRow>
         </div>
     );
 };

@@ -33,8 +33,8 @@ const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelPro
                     choosePreset={ props.choosePreset }
                 />
                 <FiltersBlock
-                    filter={ props.tableState.filter }
-                    onFilterChange={ props.setFilter }
+                    value={ props.tableState.filter }
+                    onValueChange={ props.setFilter }
                     filters={ props.filters }
                 />
                 <ColumnsBlock

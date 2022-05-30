@@ -1,33 +1,31 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { FilterConfig } from "@epam/uui-core";
+import { FilterConfig, IEditable } from "@epam/uui-core";
 
-interface IFiltersProps<TFilter extends Record<string, any>> {
-    filter: TFilter;
-    onFilterChange(newFilter: TFilter): void;
+interface IFiltersProps<TFilter extends Record<string, any>> extends IEditable<TFilter> {
     filters: FilterConfig<TFilter>[];
 }
 
 const FiltersBlockImpl = <TFilter extends Record<string, any>>(props: IFiltersProps<TFilter>) => {
-    const { onFilterChange, filter, filters } = props;
+    const { value, onValueChange, filters } = props;
     
     const handleChange = useCallback((newFilter: TFilter) => {
-        onFilterChange({
-            ...filter,
+        onValueChange({
+            ...value,
             ...newFilter,
         });
-    }, [filter]);
+    }, [value]);
     
     return (
         <Accordion title="Filters" mode="inline" padding="18">
             { filters.map(f => {
                 return (
                     <Filter
-                        { ...f }
-                        value={ filter }
+                        filterConfig={ f }
+                        value={ value }
                         onValueChange={ handleChange }
-                        columnKey={ f.columnKey }
+                        key={ f.columnKey }
                     />
                 );
             }) }
