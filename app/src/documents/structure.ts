@@ -61,7 +61,7 @@ const componentsStructure = sortBy([
     { id: 'spinner', name: 'Spinner', component: SpinnerDoc, parentId: 'components' },
     { id: 'switch', name: 'Switch', component: SwitchDoc, parentId: 'components' },
     { id: 'tabButton', name: 'Tab Button', component: TabButtonDoc, parentId: 'components' },
-    { id: 'tables', name: 'Tables', component: TablesDoc, parentId: 'components' },
+    { id: 'tables', name: 'Data Tables', component: TablesDoc, parentId: 'components' },
     { id: 'tag', name: 'Tag', component: TagDoc, parentId: 'components' },
     { id: 'text', name: 'Text', component: TextDoc, parentId: 'components' },
     { id: 'textArea', name: 'Text Area', component: TextAreaDoc, parentId: 'components' },
