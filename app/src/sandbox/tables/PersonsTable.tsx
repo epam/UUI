@@ -75,14 +75,15 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     />
                 </div>
             ) }
-            <DataTableRow
-                columns={ summaryColumnsSync }
-                cx={ css.stickyFooter }
-                id="footer"
-                rowKey="footer"
-                index={ 100500 }
-                value={ props.summary }
-            />
+            <div className={ css.stickyFooter }>
+                <DataTableRow
+                    columns={ summaryColumnsSync }
+                    id="footer"
+                    rowKey="footer"
+                    index={ 100500 }
+                    value={ props.summary }
+                />
+            </div>
         </>
     );
 
