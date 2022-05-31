@@ -23,7 +23,12 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
                 }
 
                 e.preventDefault();
-                this.context.uuiRouter.redirect(this.props.link);
+                if (e.ctrlKey || e.metaKey) {
+                    const href = this.context.uuiRouter.createHref(this.props.link);
+                    href && window.open(href, '_blank');
+                } else {
+                    this.context.uuiRouter.redirect(this.props.link);
+                }
             }
 
             this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
