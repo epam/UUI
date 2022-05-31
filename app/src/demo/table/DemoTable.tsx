@@ -91,7 +91,7 @@ export const DemoTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ tableStateApi.tableState.selectedId && dataSource.getById(tableStateApi.tableState.selectedId[1]) as Person }
+                data={ tableStateApi.tableState.selectedId && dataSource.getById(tableStateApi.tableState.selectedId) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
