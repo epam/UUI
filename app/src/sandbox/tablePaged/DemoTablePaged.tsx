@@ -65,7 +65,6 @@ export const DemoTablePaged: React.FC = () => {
     const personsDataView = dataSource.useView(viewTableState, setTableState, {
         rowOptions,
         isFoldedByDefault: () => true,
-        cascadeSelection: true,
     });
     
     return (
