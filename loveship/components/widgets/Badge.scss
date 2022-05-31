@@ -1,5 +1,10 @@
 @use '../../assets/styles/scss/index'  as *;
 
+@mixin transparent-button-layout() {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .root {
     cursor: default;
     flex-shrink: 0;
@@ -66,8 +71,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -103,8 +112,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -127,8 +140,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -151,8 +168,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -175,8 +196,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -207,8 +232,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 18px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -239,8 +268,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 18px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {

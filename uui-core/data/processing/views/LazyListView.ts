@@ -216,7 +216,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             if (missingIds.length > 0) {
                 rq.ids = missingIds;
             } else {
-                return { items: cachedItems }
+                return { items: cachedItems };
             }
         }
 

@@ -9,6 +9,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<
             title: "Profile Status",
             type: "multiPicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
+            isAlwaysVisible: true,
         },
         {
             field: "jobTitleId",
@@ -19,7 +20,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<
         },
         {
             field: "departmentId",
-            columnKey: 'departmentName',
+            columnKey: "departmentName",
             title: "Department",
             type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),

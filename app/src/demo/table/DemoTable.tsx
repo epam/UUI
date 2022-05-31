@@ -6,8 +6,8 @@ import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
-import { personColumns } from './columns';
-import { PersonTableFilter } from './types';
+import { getColumns } from './columns';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
@@ -21,6 +21,7 @@ export const DemoTable: React.FC = () => {
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(getFilters, []);
+    const columnsSet = useMemo(getColumns, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -29,30 +30,28 @@ export const DemoTable: React.FC = () => {
     }, []);
 
     const tableStateApi = useTableState({
-        columns: personColumns,
+        columns: columnsSet,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const dataSource = useLazyDataSource<Person, number, PersonTableFilter>({
+    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api,
-        getId: i => i.id,
+        getId: i => [i.__typename, i.id],
     }, []);
 
-    const { current: rowOptions } = React.useRef<DataRowOptions<Person, number>>({
-        checkbox: { isVisible: true },
-        isSelectable: true,
-        onClick(rowProps) {
-            rowProps.onSelect(rowProps);
-            setIsInfoPanelOpened(true);
-        },
-    });
 
-    const personsDataView = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-        rowOptions,
-        isFoldedByDefault: () => true,
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+        rowOptions: {
+            checkbox: { isVisible: true },
+            isSelectable: true,
+            onClick(rowProps) {
+                rowProps.onSelect(rowProps);
+                setIsInfoPanelOpened(true);
+            },
+        },
     });
 
     return (
@@ -66,7 +65,7 @@ export const DemoTable: React.FC = () => {
                 <FilterPanel
                     { ...tableStateApi }
                     filters={ filters }
-                    columns={ personColumns }
+                    columns={ columnsSet }
                     closePanel={ () => setIsFilterPanelOpened(false) }
                 />
             </SlidingPanel>
@@ -81,20 +80,20 @@ export const DemoTable: React.FC = () => {
 
                 <DataTable
                     headerTextCase='upper'
-                    getRows={ personsDataView.getVisibleRows }
-                    columns={ personColumns }
+                    getRows={ view.getVisibleRows }
+                    columns={ columnsSet }
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }
                     showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
-                    { ...personsDataView.getListProps() }
+                    { ...view.getListProps() }
                 />
             </div>
 
             <InfoSidebarPanel
-                data={ dataSource.getById(tableStateApi.tableState.selectedId) }
+                data={ tableStateApi.tableState.selectedId && dataSource.getById(["Person", tableStateApi.tableState.selectedId[1]]) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />

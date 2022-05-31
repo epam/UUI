@@ -1,5 +1,10 @@
 @use  '../../assets/styles/index' as *;
 
+@mixin transparent-button-layout() {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .root {
     :global(.uui-count) {
         font-family: $font-sans-semibold;
@@ -54,8 +59,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 8px;
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -80,8 +89,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -106,8 +119,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -132,8 +149,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 23px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -166,8 +187,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -200,8 +225,12 @@
         }
 
         &.fill-transparent {
+            @include transparent-button-layout;
+
             :global(.uui-caption) {
-                margin-left: 12px;
+                margin-left: 29px;
+                padding-right: 0;
+                padding-left: 0;
             }
 
             &::before {
@@ -246,7 +275,7 @@
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--border-color-semitransparent);
+                background-color: var(--background-color-semitransparent-hover);
                 color: var(--caption-color-semitransparent-hover);
                 fill: var(--caption-color-semitransparent-hover);
                 cursor: pointer;
