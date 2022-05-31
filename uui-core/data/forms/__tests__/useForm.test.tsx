@@ -21,7 +21,6 @@ describe('useForm', () => {
         Object.assign(testSvc, {});
     });
 
-
     describe('Client validation', () => {
         interface IFoo {
             dummy: string;
@@ -36,7 +35,7 @@ describe('useForm', () => {
                 onSave: () => Promise.resolve(),
                 onError: () => Promise.resolve(),
                 value: testData,
-                getMetadata: () => testMetadata
+                getMetadata: () => testMetadata,
             }));
 
             act(() => result.current.lens.prop('dummy').set('hello'));
@@ -137,6 +136,22 @@ describe('useForm', () => {
             expect(result.current.isInvalid).toBe(false);
         });
 
+        it('Should set isChange=false after form saved', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
+                value: testData,
+                onSave: (form) => Promise.resolve({form: form}),
+                onError: jest.fn(),
+                getMetadata: () => testMetadata,
+            }));
+
+            act(() => result.current.lens.prop('dummy').set('hello'));
+            expect(result.current.isChanged).toBe(true);
+
+            await handleSave(result.current.save);
+
+            expect(result.current.isChanged).toBe(false);
+        });
+
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
@@ -192,7 +207,7 @@ describe('useForm', () => {
             expect(result.current.value.dummy).toBe('hi');
 
             act(() => result.current.revert());
-            expect(result.current.value.dummy).toBe(testData.dummy);
+            expect(result.current.value).toBe(testData);
             expect(result.current.isChanged).toBe(false);
         });
 

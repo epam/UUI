@@ -37,7 +37,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 mode={ this.props.mode || 'form' }
                 value={ this.state.inputValue }
                 onValueChange={ this.handleInputChange }
-                onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
+                onCancel={ (this.props.disableClear || !this.state.inputValue) ? undefined : this.handleCancel }
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }

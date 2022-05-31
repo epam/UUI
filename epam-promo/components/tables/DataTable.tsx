@@ -34,7 +34,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderNoResultsBlock = React.useCallback(() => {
         // need default behavior
-        return props.renderNoResultsBlock?.() || undefined;
+        return (<div className={ css.noResults }>{ props.renderNoResultsBlock?.() }</div>) || undefined;
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {

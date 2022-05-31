@@ -4,15 +4,17 @@ import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
 import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter, PersonTableRecord } from "./types";
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
 import { getFilters, mapFilter } from "./data";
-import { personColumns } from "./columns";
+import { getColumns } from "./columns";
+import { FiltersToolbar } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
+    const columnsSet = useMemo(getColumns, []);
 
     const {tableState, setTableState} = useTableState({
-        columns: personColumns,
+        columns: columnsSet,
     });
     
     useEffect(() => {
@@ -21,8 +23,8 @@ export const DemoTablePaged: React.FC = () => {
     
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
-
-    const api: LazyDataSourceApi<PersonTableRecord, number, PersonTableFilter> = useCallback(async (request, ctx) => {
+    
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
             page: request.page - 1,
@@ -38,14 +40,20 @@ export const DemoTablePaged: React.FC = () => {
     const applyFilter = useCallback(() => {
         setAppliedFilter(tableState.filter);
         setTableState({ ...tableState, indexToScroll: 0 });
-    }, [tableState.filter]);
+    }, [tableState]);
+    
+    // applying filter after parsing initial filter data from url
+    useEffect(() => {
+        applyFilter();
+    }, []);
     
     const dataSource = useLazyDataSource({
         api,
-        getId: i => i.id,
+        getId: i => [i.__typename, i.id] as PersonTableRecordId,
+        getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, [api]);
     
-    const rowOptions: DataRowOptions<PersonTableRecord, number> = {
+    const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
@@ -57,15 +65,24 @@ export const DemoTablePaged: React.FC = () => {
         ...tableState,
         filter: appliedFilter,
     }), [tableState, appliedFilter]);
-
-    const personsDataView = dataSource.useView(viewTableState, setTableState, { rowOptions });
-
+    const personsDataView = dataSource.useView(viewTableState, setTableState, {
+        rowOptions,
+        isFoldedByDefault: () => true,
+        cascadeSelection: true,
+    });
+    
     return (
         <div className={ css.container }>
+            <FiltersToolbar
+                filters={ filters }
+                tableState={ tableState }
+                setTableState={ setTableState }
+            />
+            
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
-                columns={ personColumns }
+                columns={ columnsSet }
                 filters={ filters }
                 showColumnsConfig
                 value={ tableState }
@@ -84,8 +101,10 @@ export const DemoTablePaged: React.FC = () => {
                 />
                 <FlexSpacer/>
             </FlexRow>
-            
-            <Button caption="Apply filter" onClick={ applyFilter }/>
+
+            <FlexRow vPadding="12" background="white">
+                <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>
+            </FlexRow>
         </div>
     );
 };

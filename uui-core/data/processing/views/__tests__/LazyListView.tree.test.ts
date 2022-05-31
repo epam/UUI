@@ -1,9 +1,8 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
+import { delay } from "@epam/test-utils";
 import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-
-const delay = () => new Promise(resolve => setTimeout(resolve, 1));
 
 interface TestItem {
     id: number;

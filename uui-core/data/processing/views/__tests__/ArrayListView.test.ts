@@ -136,17 +136,18 @@ describe('ArrayListView', () => {
     });
 
     describe('row handlers', () => {
-        // it('onCheck handler shout set id to checked array in value', async () => {
-        //     const row1 = view.getById(6, 6);
-        //     row1.onCheck(row1);
-        //     expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
-        //
-        //     view._setValue({...initialValue, checked: [6]});
-        //
-        //     const row2 = view.getById(7, 7);
-        //     row2.onCheck(row2);
-        //     expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
-        // });
+        it('onCheck handler shout set id to checked array in value', async () => {
+            const row1 = view.getById(6, 6);
+            row1.onCheck(row1);
+            expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
+
+            view.update({ ...initialValue, checked: [6] }, viewProps);
+
+            const row2 = view.getById(7, 7);
+            row2.onCheck(row2);
+
+            expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
+        });
 
         it('should check all children when parent checked with cascadeSelection true', () => {
             view = new ArrayListView<TItem, number>(
@@ -165,6 +166,25 @@ describe('ArrayListView', () => {
             row1.onCheck(row1);
 
             expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6, 7, 8, 9] });
+        });
+
+        it('should check parent if all siblings checked', () => {
+            view = new ArrayListView<TItem, number>(
+                dataSource,
+                { value: { ...initialValue, checked: [7, 8] }, onValueChange },
+                {
+                    getId: i => i.id,
+                    cascadeSelection: true,
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                },
+            );
+
+            const row = view.getById(9, 9);
+            row.onCheck(row);
+
+            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
         });
     });
 

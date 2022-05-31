@@ -39,6 +39,14 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
         isOpen: false,
     };
 
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'visible';
+    }
+
     private toggleBurgerMenu = () => {
         this.setState(prevState => ({
             isOpen: !prevState.isOpen,

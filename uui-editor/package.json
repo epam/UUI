@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "4.6.3",
+  "version": "4.7.0",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -12,9 +12,9 @@
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
     "@convertkit/slate-lists": "0.2.2",
-    "@epam/assets": "4.6.3",
-    "@epam/uui-components": "4.6.3",
-    "@epam/uui-core": "4.6.3",
+    "@epam/assets": "4.7.0",
+    "@epam/uui-components": "4.7.0",
+    "@epam/uui-core": "4.7.0",
     "@mercuriya/slate-linkify": "0.1.2",
     "@popperjs/core": "2.9.0",
     "@types/lodash.flatten": "4.4.6",
@@ -23,20 +23,18 @@
     "classnames": "2.2.6",
     "get-video-id": "3.1.3",
     "htmlclean": "3.0.8",
-    "immutable": "*",
     "lodash.flatten": "4.4.0",
     "re-resizable": "6.0.0",
     "react-broadcast": "0.7.1",
-    "react-popper": "2.2.4",
+    "react-popper": "2.2.5",
     "slate": "0.47.9",
     "slate-drop-or-paste-images": "0.9.1",
     "slate-html-serializer": "0.8.5",
     "slate-react": "0.22.10",
     "slate-soft-break": "0.9.0",
-    "slate-uui-table-plugin": "^1.0.6"
+    "slate-uui-table-plugin": "1.0.6"
   },
   "peerDependencies": {
-    "prop-types": "*",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
