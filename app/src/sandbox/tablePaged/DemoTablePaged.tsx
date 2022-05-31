@@ -4,17 +4,16 @@ import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
 import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from "./types";
+import { PersonTableFilter } from "./types";
 import { getFilters, mapFilter } from "./data";
-import { getColumns } from "./columns";
+import { personColumns } from "./columns";
 import { FiltersToolbar } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(getColumns, []);
 
     const {tableState, setTableState} = useTableState({
-        columns: columnsSet,
+        columns: personColumns,
     });
     
     useEffect(() => {
@@ -24,7 +23,7 @@ export const DemoTablePaged: React.FC = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
     
-    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = useCallback(async request => {
+    const api: LazyDataSourceApi<Person, number, PersonTableFilter> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
             filter: mapFilter(request.filter) as DataQueryFilter<Person>,
             page: request.page - 1,
@@ -49,11 +48,9 @@ export const DemoTablePaged: React.FC = () => {
     
     const dataSource = useLazyDataSource({
         api,
-        getId: i => [i.__typename, i.id] as PersonTableRecordId,
-        getChildCount: item => item.__typename === "PersonGroup" ? item.count : null,
     }, [api]);
     
-    const rowOptions: DataRowOptions<PersonTableRecord, PersonTableRecordId> = {
+    const rowOptions: DataRowOptions<Person, number> = {
         checkbox: { isVisible: true },
         isSelectable: true,
         onClick(rowProps) {
@@ -82,7 +79,7 @@ export const DemoTablePaged: React.FC = () => {
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
-                columns={ columnsSet }
+                columns={ personColumns }
                 filters={ filters }
                 showColumnsConfig
                 value={ tableState }
