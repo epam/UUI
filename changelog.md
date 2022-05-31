@@ -1,12 +1,30 @@
-# 4.6.? - ?.04.2022
+# 4.7.0 - 30.05.2022
 
 **What's New**
-* [ICanFocus]: implement interface ICanFocus anf fix handling in components TextInput, NumericInput, PickerInput, Checkbox, DatePicker
-* [DataTable]: fix NoResultBlock into center of the table layout
-* [DataTableRow]: fix area-expended value
-* [Paginator]: fix layout
-* [MultiSwitch]: added greyBorder style
-* [Badge]: fix layout
+* Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/DemoTable.tsx.
+
+  Note: this hook in WIP stage now, so there may be some changes in api and functionality
+
+* [uuiRouter][Breaking Change]: added 'query' param parse/stringify handling inside `uuiRouter`. If you use some helpers for this, like 'qhistory', please remove it, now it will work out of the box with uuiRouter
+* [ICanFocus]: implement ICanFocus interface in TextInput, NumericInput, PickerInput, Checkbox, DatePicker. Fix focus/blur behavior for PickerInput.
+* [MultiSwitch]: added 'gray' color style
+* [VirtualList]: add vertical flex context for scroll container
+* [ArrayDataSource]: check parent if all siblings is checked
+
+
+**What’s Fixed**
+* [Badge]: fix layout for 'transparent' fill
+* [Paginator]: fix layout in loveship
+* [DataTableRow]: fix 'area-expended' value
+* [DataTable]: fix no results block layout
+* [useForm]: update initialForm value in case when new prop.value received, after successful save and revert action
+* [MainMenuBurger]: set overflow: hidden on body when burger opens to prevent scroll
+* [PickerItem]: fix paddings for text
+* [DataPicker]: fix outdated picker value  after invalid date was typed in input
+* [ArrayDataSource]: fix selectAll checkbox behavior in case when all row checkboxes disabled
+* [Alert]: fix paddings
+* [Paginator]: fix focus hold after page change
+
 
 # 4.6.3 - 27.04.2022
 
