@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { DataRowOptions, cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
+import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
 import { Presets, FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
-import { getColumns } from './columns';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
+import { personColumns } from './columns';
+import { PersonTableFilter } from './types';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
@@ -21,7 +21,6 @@ export const DemoTable: React.FC = () => {
 
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
     const filters = useMemo(getFilters, []);
-    const columnsSet = useMemo(getColumns, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -30,16 +29,15 @@ export const DemoTable: React.FC = () => {
     }, []);
 
     const tableStateApi = useTableState({
-        columns: columnsSet,
+        columns: personColumns,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+    const dataSource = useLazyDataSource<Person, number, PersonTableFilter>({
         api,
-        getId: i => [i.__typename, i.id],
     }, []);
 
 
@@ -65,7 +63,7 @@ export const DemoTable: React.FC = () => {
                 <FilterPanel
                     { ...tableStateApi }
                     filters={ filters }
-                    columns={ columnsSet }
+                    columns={ personColumns }
                     closePanel={ () => setIsFilterPanelOpened(false) }
                 />
             </SlidingPanel>
@@ -81,7 +79,7 @@ export const DemoTable: React.FC = () => {
                 <DataTable
                     headerTextCase='upper'
                     getRows={ view.getVisibleRows }
-                    columns={ columnsSet }
+                    columns={ personColumns }
                     filters={ filters }
                     value={ tableStateApi.tableState }
                     onValueChange={ tableStateApi.setTableState }
@@ -93,7 +91,7 @@ export const DemoTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ tableStateApi.tableState.selectedId && dataSource.getById(["Person", tableStateApi.tableState.selectedId[1]]) as Person }
+                data={ tableStateApi.tableState.selectedId && dataSource.getById(tableStateApi.tableState.selectedId[1]) as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
