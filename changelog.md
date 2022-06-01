@@ -1,17 +1,12 @@
-# 4.?.? - ?.0?.2022
+# Editable DataTables branch
 
-# Editable DataTables
+* [Breaking Change] DataTableColumn props simplified
+  * DataTableColumn props no longer accepts shrink prop.
+    Is actually wasn't supported before this change, so you can safely remove them.
+    Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+  * 'width' prop is now required (was optional)
+  * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
 
-* [DataTable] Added facilities to make tables editable
-* Breaking changes:
-    * DataTableColumn props no longer accepts shrink prop.
-      Is actually wasn't supported before this change, so you can safely remove them.
-      Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
-      'width' prop is now required (was optional)
-      'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
-
-
-# 4.7.0 - 30.05.2022
 
 **What's New**
 * Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/DemoTable.tsx.
@@ -38,6 +33,8 @@
 * [Alert]: fix paddings
 * [Paginator]: fix focus hold after page change
 
+**What's New**
+* [ICanFocus]: implement interface ICanFocus anf fix handling in components TextInput, NumericInput, PickerInput, Checkbox, DatePicker
 
 # 4.6.3 - 27.04.2022
 
