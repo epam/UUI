@@ -168,10 +168,14 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         setFormState({ ...formState.current, form: newVal });
     }, [formState.current.form]);
 
+    const saveCallback = useCallback(() => {
+        handleSave().catch(() => {});
+    }, [handleSave]);
+
     return {
         isChanged: formState.current.isChanged,
         lens,
-        save: handleSave,
+        save: saveCallback,
         undo: handleUndo,
         redo: handleRedo,
         revert: handleRevert,
