@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers,
-    UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
+import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
@@ -17,17 +16,13 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             }
 
             if (this.hasLink(this.props.link)) {
-                if (this.props.target || (e.button && e.button !== 0) || (e.keyCode && e.keyCode !== 32)) {
+                if (this.props.target || (e.button && e.button !== 0) || (e.keyCode && e.keyCode !== 32) || e.ctrlKey || e.metaKey) {
                     e.stopPropagation();
                     return;
                 }
 
-                if (e.ctrlKey || e.metaKey) {
-                    return;
-                } else {
-                    e.preventDefault();
-                    this.context.uuiRouter.redirect(this.props.link);
-                }
+                e.preventDefault();
+                this.context.uuiRouter.redirect(this.props.link);
             }
 
             this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
