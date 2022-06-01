@@ -56,6 +56,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
     onDragOver = (e: React.DragEvent) => {
         e.preventDefault();
+        this.setState({ isDragStart: true, isDraggingOver: true });
     }
 
     onDragEnter = (e: React.DragEvent) => {
@@ -78,7 +79,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
         return this.props.render({
             ...this.state,
-            eventHandlers
+            eventHandlers,
         });
     }
 }
