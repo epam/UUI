@@ -7,38 +7,25 @@ import type { FormComponentState, FormProps, FormSaveResponse, RenderFormProps }
 import { useLock } from './useLock';
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
-type UseFormState<T> = Omit<FormComponentState<T>, 'prevProps'> & { prevProps: UseFormProps<T> };
 
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
 
-    const initialForm = useRef<UseFormState<T>>({
+    const initialForm = useRef<FormComponentState<T>>({
         isChanged: false,
         isInProgress: false,
         form: props.value,
         validationState: { isInvalid: false },
         serverValidationState: { isInvalid: false },
         formHistory: [props.value],
-        prevProps: props,
         historyIndex: 0,
     });
-
-    if (initialForm.current.form !== props.value) {
-        // TBD: do we need to do something additional here?
-        // If the value of the form is changed while we editing - probably we'd need to ask to save changes,
-        // and then reset to the new value?
-        // This can happen in master-detail screens, if the form is displayed for a selected item, which can be changed by user.
-
-        // Anyway, we need to set this new value as a base point to revert to.
-        initialForm.current.form = props.value;
-        initialForm.current.formHistory = [props.value];
-    }
 
     const formState = useRef(initialForm.current);
 
     const forceUpdate = useForceUpdate();
 
-    const setFormState = (newValue: UseFormState<T>) => {
+    const setFormState = (newValue: FormComponentState<T>) => {
         formState.current = newValue;
         forceUpdate();
     };
@@ -71,7 +58,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, []);
 
     useEffect(() => {
-        if (!isEqual(props.value, initialForm.current.prevProps.value)) {
+        if (!isEqual(props.value, initialForm.current.form)) {
             resetForm({
                 ...formState.current,
                 form: props.value,
@@ -107,7 +94,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const resetForm = (withNewState: UseFormState<T>) => {
+    const resetForm = (withNewState: FormComponentState<T>) => {
         const newFormState = { ...initialForm.current, ...withNewState } ;
         initialForm.current = newFormState;
         setFormState(newFormState);
@@ -132,7 +119,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = response && response.form || formState.current.form;
-        const newState: UseFormState<T> = {
+        const newState: FormComponentState<T> = {
             ...formState.current,
             historyIndex: 0,
             formHistory: [newFormValue],
