@@ -1,11 +1,11 @@
 import React, { Attributes, ReactNode } from 'react';
-import { IEditable, ICheckable, IDropdownToggler, IHasCX, FlexCellProps, IClickable, IHasRawProps, ICanBeInvalid } from './props';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid } from './props';
 import { SortDirection } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
-import { ILens } from '../data/lenses';
+import { ILens } from '../data';
 import * as CSS from 'csstype';
-import { TooltipCoreProps } from './components/Overlays';
+import { TooltipCoreProps } from './components';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -129,6 +129,10 @@ export interface RenderCellProps<TItem, TId, TCellValue> extends DataRowProps<TI
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
+    columnIndex: number;
+    rowIndex: number;
+    acceptCopyDirection?: DataTableCellProps["acceptCopyDirection"];
+    canCopyTo?: DataTableCellProps["canCopyTo"];
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
@@ -139,6 +143,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     index?: number;
     isFirstColumn: boolean;
     isLastColumn: boolean;
+    acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
+    canCopyTo?: (someCellContext: any) => boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     addons?: React.ReactNode;
