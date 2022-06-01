@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Anchor it's a wrapper over any blocks.",
+            "text": "Anchor component is using to wrap anything which will have the link behavior",
             "marks": []
           }
         ]
