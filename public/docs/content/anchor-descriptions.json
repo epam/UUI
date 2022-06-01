@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Anchor component is using to wrap anything which will have the link behavior",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
