@@ -6,3 +6,24 @@
     right: 0;
     pointer-events: none;
 }
+
+.copying-marker {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 7px;
+    height: 7px;
+    cursor: crosshair;
+    background-color: blue;
+    pointer-events: all;
+
+    &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        bottom: 0;
+        right: 0;
+        width: 12px;
+        height: 12px;
+    }
+}
