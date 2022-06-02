@@ -144,7 +144,7 @@ exports[`Modals should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className="flexCell"
+          className=""
           style={
             Object {
               "alignSelf": undefined,

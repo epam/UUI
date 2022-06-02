@@ -54,7 +54,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -111,7 +111,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -155,7 +155,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -199,7 +199,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -278,7 +278,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -309,7 +309,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -327,7 +327,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -345,7 +345,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -379,7 +379,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -410,7 +410,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -428,7 +428,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -446,7 +446,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -480,7 +480,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -511,7 +511,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -529,7 +529,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -547,7 +547,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -581,7 +581,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -612,7 +612,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -630,7 +630,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -648,7 +648,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -682,7 +682,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -713,7 +713,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -731,7 +731,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -749,7 +749,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -783,7 +783,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -814,7 +814,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -832,7 +832,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -850,7 +850,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -884,7 +884,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -915,7 +915,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -933,7 +933,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -951,7 +951,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -985,7 +985,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1016,7 +1016,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1034,7 +1034,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1052,7 +1052,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1086,7 +1086,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1117,7 +1117,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1135,7 +1135,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1153,7 +1153,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1187,7 +1187,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1218,7 +1218,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1236,7 +1236,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1254,7 +1254,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
