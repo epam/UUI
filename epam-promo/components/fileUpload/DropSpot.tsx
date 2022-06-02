@@ -18,7 +18,7 @@ export interface DropSpotProps {
 export class DropSpot extends React.Component<DropSpotProps> {
     renderAttachmentArea = (props: DropSpotRenderParams) => {
         return (
-            <div className={ cx(css.root, this.props.cx, props.isDraggingOver && css.dropStart) } { ...this.props.rawProps }>
+            <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart) } { ...this.props.rawProps }>
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                     <FlexRow size='24' spacing='6' >
                         <IconContainer color='blue' icon={ ShapeIcon } />
