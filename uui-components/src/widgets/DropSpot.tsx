@@ -3,7 +3,7 @@ import * as React from 'react';
 interface EventHandlers {
     onDrop: (e: React.DragEvent) => void;
     onDragOver: (e: React.DragEvent) => void;
-    onDragEnter: (e: React.DragEvent) => void;
+    onDragStart: (e: React.DragEvent) => void;
     onDragLeave: (e: React.DragEvent) => void;
 }
 
@@ -26,40 +26,34 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
     entriesCount = 0;
 
     componentDidMount() {
-        window.addEventListener('dragenter', this.onDragStart);
-        window.addEventListener('dragleave', this.onDragEnd);
+        window.addEventListener('dragenter', this.onDragStart as any);
+        window.addEventListener('dragleave', this.onDragLeave as any);
+        window.addEventListener('drop', this.onDrop as any);
+        window.addEventListener('dragover', this.onDragOver as any);
+
     }
 
     componentWillUnmount() {
-        window.removeEventListener('dragenter', this.onDragStart);
-        window.removeEventListener('dragleave', this.onDragEnd);
+        window.removeEventListener('dragenter', this.onDragStart as any);
+        window.removeEventListener('dragleave', this.onDragLeave as any);
+        window.removeEventListener('drop', this.onDrop as any);
+        window.removeEventListener('dragover', this.onDragOver  as any);
     }
 
-    onDragStart = (e: DragEvent) => {
+    onDragStart = (e: React.DragEvent) => {
         e.preventDefault();
-        this.entriesCount++;
+        this.entriesCount !== 1 && this.entriesCount++;
         this.entriesCount === 1 && e.dataTransfer?.types.includes('Files') && this.setState({ isDragStart: true });
-    }
-
-    onDragEnd = (e: DragEvent) => {
-        e.preventDefault();
-        this.entriesCount--;
-        this.entriesCount === 0 && e.dataTransfer?.types.includes('Files') && this.setState({ isDragStart: false });
     }
 
     onDrop = (e: React.DragEvent) => {
         e.preventDefault();
         this.entriesCount--;
         this.setState({ isDragStart: false, isDraggingOver: false });
-        this.props.onFilesDropped(Array.prototype.slice.call(e.dataTransfer.files, 0));
+        this.state.isDraggingOver && this.props.onFilesDropped(Array.prototype.slice.call(e.dataTransfer.files, 0));
     }
 
     onDragOver = (e: React.DragEvent) => {
-        e.preventDefault();
-        this.setState({ isDragStart: true, isDraggingOver: true });
-    }
-
-    onDragEnter = (e: React.DragEvent) => {
         e.preventDefault();
         this.setState({ isDraggingOver: true });
     }
@@ -71,7 +65,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
     render() {
         const eventHandlers: EventHandlers = {
-            onDragEnter: this.onDragEnter,
+            onDragStart: this.onDragStart,
             onDragLeave: this.onDragLeave,
             onDragOver: this.onDragOver,
             onDrop: this.onDrop,
