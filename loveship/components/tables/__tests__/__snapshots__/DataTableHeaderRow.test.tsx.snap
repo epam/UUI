@@ -16,7 +16,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       onPointerEnter={[Function]}
       onPointerLeave={[Function]}
@@ -98,7 +98,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="ascending"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -152,7 +152,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     </div>
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -206,7 +206,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     </div>
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -278,7 +278,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -335,7 +335,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="ascending"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -379,7 +379,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -423,7 +423,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="flexCell -clickable"
+      className="-clickable"
       onClick={[Function]}
       role="columnheader"
       style={
