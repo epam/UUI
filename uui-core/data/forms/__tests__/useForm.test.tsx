@@ -186,7 +186,7 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
 
             act(() => result.current.undo());
-            expect(result.current.value.dummy).toBe(testData['dummy']);
+            expect(result.current.value.dummy).toBe(testData.dummy);
 
             act(() => result.current.redo());
             expect(result.current.value.dummy).toBe('hi');
@@ -299,7 +299,7 @@ describe('useForm', () => {
         });
 
         it('Should restore data from local storage after leaving form without saving changes', async () => {
-            const props = {
+            const props: UseFormProps<IFoo> = {
                 value: testData,
                 settingsKey: 'form-test',
                 onSave: () => Promise.resolve(),
