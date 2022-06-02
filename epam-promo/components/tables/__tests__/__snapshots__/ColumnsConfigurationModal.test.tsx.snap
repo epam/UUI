@@ -73,7 +73,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             className="flexSpacer"
           />
           <div
-            className="flexCell"
+            className=""
             style={
               Object {
                 "alignSelf": undefined,
