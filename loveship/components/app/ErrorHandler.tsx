@@ -28,7 +28,7 @@ const imageUrl = {
 
 const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
 
-export const recoveryConfig: Record<ApiRecoveryReason, { title: string, subtitle: string }> = {
+export const recoveryWordings: Record<ApiRecoveryReason, { title: string, subtitle: string }> = {
     'auth-lost': {
         title: 'Your session has expired.',
         subtitle: 'Attempting to log you in.',
@@ -92,7 +92,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
         getErrorInfo: props.errorPageConfig?.getInfo,
         options: {
             errorConfig: getDefaultErrorPageProps(props.theme),
-            recoveryConfig: recoveryConfig,
+            recoveryConfig: recoveryWordings,
         },
     });
 
