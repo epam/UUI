@@ -49,7 +49,7 @@ export const DemoTable: React.FC = () => {
                 rowProps.onSelect(rowProps);
                 setIsInfoPanelOpened(true);
             },
-        },
+        }
     });
 
     return (
