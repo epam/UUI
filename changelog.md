@@ -6,7 +6,6 @@
 * [DropSpot]: fix drag&drop area view
 * [PickerInput]: fix the first item layout in multi mode, or if it has a prefix
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
-* 
 
 # 4.7.0 - 30.05.2022
 
