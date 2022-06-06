@@ -6,7 +6,7 @@
 **What’s Fixed**
 * [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
 * [PickerInput]: fix the second line tag margin in multi mode
-* [NumericInput]: fix arrows layout hidden when input disabled or readonly
+* [NumericInput]: hide arrows when input disabled or readonly
 * [DataTable]: added missing sizes styles for header 
 * [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
 * [useForm]: handle rejected promise after save
