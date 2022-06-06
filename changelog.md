@@ -1,3 +1,10 @@
+# 4.7.?
+
+**What's New**
+* [Anchor]: implement open Anchor links with Ctrl or Command in new window
+* [Checkbox]: fix removed unused colors from docs in loveship
+* [DropSpot]: fix drag&drop area view
+
 # 4.7.0 - 30.05.2022
 
 **What's New**
