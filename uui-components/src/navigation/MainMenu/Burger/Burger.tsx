@@ -50,7 +50,10 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
         } else {
             document.body.style.overflow = null;
         }
+    }
 
+    componentWillUnmount() {
+        document.body.style.overflow = null;
     }
 
     private isBurgerWide() {
