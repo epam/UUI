@@ -142,6 +142,11 @@
         }
     }
 
+    &:global(.uui-opened) {
+        background-color: $gray30;
+        fill: $gray80;
+    }
+
     & > *:not(:last-child) {
         margin: 0 0.5em 0 0;
     }

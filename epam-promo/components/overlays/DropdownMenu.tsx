@@ -91,6 +91,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         onClick,
         toggleDropdownOpening,
         isDropdown,
+        isOpen,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -129,6 +130,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         css.itemRoot,
         isDisabled && uuiMod.disabled,
         isSelected && uuiMod.selected,
+        isOpen && uuiMod.opened,
     );
 
     return isAnchor ? (
