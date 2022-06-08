@@ -25,15 +25,15 @@
 @mixin fillColor($fill, $color: null) {
     @if ($color) {
         color: $color;
-        fill: $fill;
+        fill: $fill !important;
     } @else {
         color: $fill;
-        fill: $fill;
+        fill: $fill !important;
     }
 }
 
-@mixin withSelected {
-    &:global(.uui-selected) {
+@mixin withActive {
+    &:global(.uui-active) {
         @include fillColor($blue);
 
         &:hover, &:focus {
@@ -42,6 +42,20 @@
 
         .iconCheck {
             @include fillColor($blue);
+        }
+    }
+}
+
+@mixin withSelected {
+    &:global(.uui-selected) {
+        @include fillColor($blue, $gray80);
+
+        &:hover, &:focus {
+            @include fillColor($blue, $gray80);
+        }
+
+        .iconCheck {
+            @include fillColor($blue, $gray80);
         }
     }
 }
@@ -108,6 +122,7 @@
 .itemRoot {
     @include icon-layout(36px);
     @include withSelected;
+    @include withActive;
     @include itemRoot;
 
     .icon {
@@ -116,6 +131,7 @@
 
     &.link {
         @include withSelected;
+        @include withActive;
         @include fillColor($gray60, $gray80);
         display: flex;
         align-items: center;
