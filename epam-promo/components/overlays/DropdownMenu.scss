@@ -47,9 +47,11 @@
 }
 
 @mixin itemRoot {
-    padding: 0.5em 1em;
-    line-height: 1.5;
     box-sizing: border-box;
+    font-family: $font-sans;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0.5em 1em;
     width: 100%;
 
     &:focus {
