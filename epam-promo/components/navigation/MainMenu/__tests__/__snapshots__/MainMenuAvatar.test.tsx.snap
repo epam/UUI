@@ -7,7 +7,6 @@ exports[`MainMenuAvatar should be rendered correctly 1`] = `
   <img
     className="avatar"
     height="36"
-    onClick={[Function]}
     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
     width="36"
   />
@@ -21,7 +20,6 @@ exports[`MainMenuAvatar should be rendered correctly 2`] = `
   <img
     className="avatar"
     height="36"
-    onClick={[Function]}
     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
     width="36"
   />

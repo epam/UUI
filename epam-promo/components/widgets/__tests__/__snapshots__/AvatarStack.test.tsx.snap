@@ -17,7 +17,6 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
-      onClick={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />
@@ -25,7 +24,6 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
-      onClick={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />
@@ -33,7 +31,6 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
-      onClick={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />

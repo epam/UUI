@@ -13,7 +13,7 @@ export interface AvatarProps extends IHasCX, IHasRawProps<HTMLImageElement>, IHa
 const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) => {
     return (
             <img
-                onClick={ () => props.onClick() }
+                onClick={ props.onClick }
                 ref={ ref }
                 className={ cx(css.avatar, props.cx) }
                 width={ props.size }
