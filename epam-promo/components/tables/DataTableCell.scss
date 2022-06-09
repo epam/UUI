@@ -51,10 +51,28 @@
         border-color: $gray30;
     }
     &:global(.uui-invalid) {
-        --uui-data-table-cell-background: #{$red-lightest};
+        --uui-data-table-cell-background: #{$red-transparent};
     }
     &:global(.uui-focus):not(&:global(.uui-invalid)) {
         --uui-data-table-cell-background: #{$white};
+    }
+
+    &:not(&:global(.uui-invalid), &:global(.uui-focus)) {
+        &.background-blue {
+            --uui-data-table-cell-background: #{$blue-transparent};
+        }
+        &.background-green {
+            --uui-data-table-cell-background: #{$green-transparent};
+        }
+        &.background-amber {
+            --uui-data-table-cell-background: #{$amber-transparent};
+        }
+        &.background-red {
+            --uui-data-table-cell-background: #{$red-transparent};
+        }
+        &.background-gray5 {
+            --uui-data-table-cell-background: #{$gray5};
+        }
     }
 }
 

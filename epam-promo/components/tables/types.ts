@@ -10,15 +10,19 @@ export interface DataTableMods {
     headerTextCase?: 'upper' | 'normal';
 }
 
-export interface DataTableRowMods extends DataTableCellMods {
+interface TableSizesAndPositionMods {
+    size?: ControlSize | '60';
+    padding?: '0' | '12' | '24';
+    alignActions?: 'top' | 'center';
+}
+
+export interface DataTableRowMods extends TableSizesAndPositionMods {
     borderBottom?: 'none' | 'gray30';
     background?: 'white' | 'gray5' | 'red';
 }
 
-export interface DataTableCellMods {
-    size?: ControlSize | '60';
-    padding?: '0' | '12' | '24';
-    alignActions?: 'top' | 'center';
+export interface DataTableCellMods extends TableSizesAndPositionMods {
+    background?: 'gray5' | 'red' | 'blue' | 'green' | 'amber';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {

@@ -67,6 +67,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.isFirstColumn && css[`padding-left-${ props.padding || '24' }`],
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${ props.alignActions || 'top' }`],
+        props.background && css[`background-${props.background}`],
     ];
 
     return <UuiDataTableCell { ...props } />;
