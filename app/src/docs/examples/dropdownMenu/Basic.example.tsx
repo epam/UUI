@@ -33,29 +33,23 @@ export default function BasicDropdownMenuExample() {
     const [status, setStatus] = useState(initialStatusState);
     const [layer, setLayer] = useState(initialLayerState);
 
-    const statusSetter = (state: typeof initialStatusState | typeof initialLayerState, id: number, isChecked: boolean) => {
-        return state.map(item => {
+    const setStatusHandler = (id: number, isChecked: boolean) => {
+        setStatus((prevState) => prevState.map(item => {
             item.checked = item.id === id ? !isChecked : false;
             return item;
-        });
+        }));
     };
 
-    const setStatusHandler = (id: number, isChecked: boolean, type: string) => {
-        switch (type) {
-            case 'layer':
-                setLayer((prevState) => statusSetter(prevState, id, isChecked));
-                break;
-            case 'status':
-                setStatus((prevState) => statusSetter(prevState, id, isChecked));
-                break;
-            default:
-                return;
-        }
+    const setLayerHandler = (id: number, isActive: boolean) => {
+        setLayer((prevState) => prevState.map(item => {
+            item.checked = item.id === id ? !isActive : false;
+            return item;
+        }));
     };
 
     const getSubmenuLayer = () => layer.map(item => <DropdownMenuButton
         caption={ item.caption }
-        onClick={ () => setStatusHandler(item.id, item.checked, 'layer') }
+        onClick={ () => setLayerHandler(item.id, item.checked) }
         isActive={ item.checked }/>);
 
     const DropdownBody = ({ onClose }: DropdownBodyProps) => {
@@ -67,7 +61,7 @@ export default function BasicDropdownMenuExample() {
                 <DropdownSubMenu caption="Status">
                     { status.map(item => <DropdownMenuButton
                         caption={ item.caption }
-                        onClick={ () => setStatusHandler(item.id, item.checked, 'status') }
+                        onClick={ () => setStatusHandler(item.id, item.checked) }
                         isSelected={ item.checked }/>) }
                 </DropdownSubMenu>
                 <DropdownMenuButton caption="Activities"/>
