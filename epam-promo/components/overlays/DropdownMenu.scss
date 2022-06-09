@@ -25,10 +25,10 @@
 @mixin fillColor($fill, $color: null) {
     @if ($color) {
         color: $color;
-        fill: $fill !important;
+        fill: $fill;
     } @else {
         color: $fill;
-        fill: $fill !important;
+        fill: $fill;
     }
 }
 
@@ -42,20 +42,6 @@
 
         .iconCheck {
             @include fillColor($blue);
-        }
-    }
-}
-
-@mixin withSelected {
-    &:global(.uui-selected) {
-        @include fillColor($blue, $gray80);
-
-        &:hover, &:focus {
-            @include fillColor($blue, $gray80);
-        }
-
-        .iconCheck {
-            @include fillColor($blue, $gray80);
         }
     }
 }
@@ -121,7 +107,6 @@
 
 .itemRoot {
     @include icon-layout(36px);
-    @include withSelected;
     @include withActive;
     @include itemRoot;
 
@@ -130,7 +115,6 @@
     }
 
     &.link {
-        @include withSelected;
         @include withActive;
         @include fillColor($gray60, $gray80);
         display: flex;
@@ -165,5 +149,14 @@
 
     & > *:not(:last-child) {
         margin: 0 0.5em 0 0;
+    }
+}
+
+.selected-checkmark {
+    margin-left: auto;
+    fill: $blue;
+
+    &:hover, &:focus {
+        fill: $blue;
     }
 }

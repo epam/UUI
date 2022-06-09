@@ -7,11 +7,7 @@ import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation
 const DropdownMenuSwitchButtonElement = (props: IDropdownMenuItemProps) => {
     const [selected, setSelected] = useState(false);
     return (
-        <DropdownMenuSwitchButton
-            { ...props }
-            onValueChange={ setSelected }
-            isSelected={ selected }
-        />
+        <DropdownMenuSwitchButton { ...props } onValueChange={ setSelected } isSelected={ selected } />
     );
 };
 
@@ -35,32 +31,29 @@ export default function BasicDropdownMenuExample() {
     const [status, setStatus] = useState(initialStatusState);
     const [layer, setLayer] = useState(initialLayerState);
 
-
-    const setStatusHandler = (id: number, isChecked: boolean) => {
-        setStatus((prevState) => prevState.map(item => {
-            if (item.id == id) {
-                item.checked = !isChecked;
-            } else {
-                item.checked = false;
-            }
+    const statusSetter = (state: typeof initialStatusState | typeof initialLayerState, id: number, isChecked: boolean) => {
+        return state.map(item => {
+            item.checked = item.id === id ? !isChecked : false;
             return item;
-        }));
+        });
     };
 
-    const setLayerHandler = (id: number, isActive: boolean) => {
-        setLayer((prevState) => prevState.map(item => {
-            if (item.id == id) {
-                item.checked = !isActive;
-            } else {
-                item.checked = false;
-            }
-            return item;
-        }));
+    const setStatusHandler = (id: number, isChecked: boolean, type: string) => {
+        switch (type) {
+            case 'layer':
+                setLayer((prevState) => statusSetter(prevState, id, isChecked));
+                break;
+            case 'status':
+                setStatus((prevState) => statusSetter(prevState, id, isChecked));
+                break;
+            default:
+                return;
+        }
     };
 
     const getSubmenuLayer = () => layer.map(item => <DropdownMenuButton
         caption={ item.caption }
-        onClick={ () => setLayerHandler(item.id, item.checked) }
+        onClick={ () => setStatusHandler(item.id, item.checked, 'layer') }
         isActive={ item.checked }/>);
 
     const DropdownBody = ({ onClose }: DropdownBodyProps) => {
@@ -72,7 +65,7 @@ export default function BasicDropdownMenuExample() {
                 <DropdownSubMenu caption="Status">
                     { status.map(item => <DropdownMenuButton
                         caption={ item.caption }
-                        onClick={ () => setStatusHandler(item.id, item.checked) }
+                        onClick={ () => setStatusHandler(item.id, item.checked, 'status') }
                         isSelected={ item.checked }/>) }
                 </DropdownSubMenu>
                 <DropdownMenuButton caption="Activities"/>
