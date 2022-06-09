@@ -118,6 +118,7 @@ export interface DataTableColumnsConfigOptions {
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     columns?: DataColumnProps<TItem, TId>[];
     renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
+    showCellDivider?: boolean;
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
@@ -156,6 +157,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     // Here's the test code (works in 4.7, broken on earlier versions): https://bit.ly/3jkBDfx
     getLens?(lens: ILens<TItem>): ILens<TCellValue>;
     renderEditor?(props: RenderCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
 export type ColumnsConfig = {

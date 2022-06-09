@@ -1,20 +1,31 @@
 .root {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
     pointer-events: none;
+    border: 2px solid transparent;
+    visibility: hidden;
+    &:global(.uui-table-cell-overlay) {
+        z-index: 1;
+        visibility: visible;
+    }
+    &:global(.uui-focus) {
+        z-index: 2;
+        visibility: visible;
+    }
+    &:global(.uui-selected-cell) {
+        z-index: 3;
+        visibility: visible;
+    }
 }
 
 .copying-marker {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 7px;
-    height: 7px;
+    bottom: -1px;
+    right: -1px;
     cursor: crosshair;
-    background-color: blue;
     pointer-events: all;
 
     &::after {
@@ -23,7 +34,5 @@
         display: block;
         bottom: 0;
         right: 0;
-        width: 12px;
-        height: 12px;
     }
 }

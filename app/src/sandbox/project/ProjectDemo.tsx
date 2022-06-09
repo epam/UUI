@@ -16,12 +16,12 @@ const metadata: Metadata<FormState> = {
         items: {
             all: {
                 props: {
-                    name: { isRequired: true }
-                }
-            }
-        }
-    }
-}
+                    name: { isRequired: true },
+                },
+            },
+        },
+    },
+};
 
 let savedValue: FormState = { items: getDemoTasks() };
 
@@ -66,6 +66,7 @@ export const ProjectDemo = () => {
             showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering
+            showCellDivider={ false }
             { ...dataView.getListProps() }
         />
         {
