@@ -10,7 +10,7 @@
 # 4.7.0 - 30.05.2022
 
 **What's New**
-* Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/DemoTable.tsx.
+* Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/FilteredTable.tsx.
 
   Note: this hook in WIP stage now, so there may be some changes in api and functionality
 
