@@ -30,6 +30,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
             acceptCopyDirection="vertical"
             canCopyTo={ ({ rowIndex }) => !!(rowIndex % 2) } // Just Example
             getLens={ l => l.prop('estimate') }
+            background={ 'blue' }
             renderEditor={ ({ editorProps }) => <NumericInput
                 mode='cell'
                 { ...editorProps }
