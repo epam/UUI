@@ -133,7 +133,6 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         css.itemRoot,
         isDisabled && uuiMod.disabled,
         isActive && uuiMod.active,
-        isSelected && uuiMod.selected,
         isOpen && uuiMod.opened,
     );
 
@@ -161,7 +160,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
-            { isSelected && <CheckIcon style={ {marginLeft: 'auto'} } /> }
+            { isSelected && <CheckIcon className={ cx(css.selectedCheckmark) } /> }
         </FlexRow>
     );
 });
