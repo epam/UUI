@@ -1,23 +1,12 @@
 import * as React from 'react';
-import { uuiMarkers, DataTableCellProps, withMods, DataTableCellOverlayProps, ICanBeInvalid, TooltipCoreProps } from '@epam/uui-core';
-import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell,
-    DataTableCellOverlay as UuiDataTableCellOverlay } from '@epam/uui-components';
+import { uuiMarkers, DataTableCellProps } from '@epam/uui-core';
+import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
 import * as css from './DataTableCell.scss';
 import { Tooltip } from '../overlays';
-
-function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
-    return <Tooltip color='red' { ...props } />;
-}
-
-const DataTableCellOverlay = withMods<DataTableCellOverlayProps, {}>(
-    UuiDataTableCellOverlay,
-    () => [css.overlay],
-    props => ({ renderTooltip }),
-);
 
 function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     const row = props.rowProps;
@@ -66,6 +55,8 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         </Text>
     ));
 
+    props.renderTooltip = (tooltipProps) => <Tooltip color='red' { ...tooltipProps } />;
+
     const isEditable = !!props.getLens;
 
     props.cx = [
@@ -77,11 +68,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${ props.alignActions || 'top' }`],
     ];
-
-    const rowIndex = props.rowProps.index;
-    const { index: columnIndex } = props;
-
-    props.renderOverlay = (props => <DataTableCellOverlay { ...props } rowIndex={ rowIndex } columnIndex={ columnIndex } />);
 
     return <UuiDataTableCell { ...props } />;
 }
