@@ -8,6 +8,7 @@ import { ComplexForm } from './forms/ComplexForm';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
+import { FilteredTable } from './filteredTable/FilteredTable';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
@@ -23,6 +24,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'DemoWithFilters', name: 'Table with filters', component: FilteredTable },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
