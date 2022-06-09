@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Avatar, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu, IDropdownMenuItemProps, Button, ControlGroup, Dropdown, Panel } from '@epam/promo';
 import { DropdownBodyProps } from "@epam/uui-components";
 import { ReactComponent as LogoutIcon } from '@epam/assets/icons/common/navigation-logout-24.svg';
-import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
+import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
+import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-12.svg';
 
 const DropdownMenuSwitchButtonElement = (props: IDropdownMenuItemProps) => {
     const [selected, setSelected] = useState(false);
@@ -104,6 +106,15 @@ export default function BasicDropdownMenuExample() {
         );
     };
 
+    const renderSecondBody = () => {
+        return (
+            <Panel background="white" shadow={ true }>
+                <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} }/>
+                <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} }/>
+            </Panel>
+        );
+    };
+
     return (
         <>
             <Dropdown
@@ -118,9 +129,18 @@ export default function BasicDropdownMenuExample() {
                 <Dropdown
                     renderBody={ renderBody }
                     renderTarget={ (props) =>
-                        <Button { ...props } fill="solid" icon={ menuIcon } size="36" isDropdown={ false }/>
+                        <Button { ...props } fill="solid" icon={ MenuIcon } size="36" isDropdown={ false }/>
                     }
-                    placement="top-end"
+                    placement="bottom-end"
+                />
+            </ControlGroup>
+            <ControlGroup>
+                <Dropdown
+                    renderBody={ renderSecondBody }
+                    renderTarget={ (props) =>
+                        <Button { ...props } fill="white" icon={ MenuIcon } size="36" isDropdown={ false }/>
+                    }
+                    placement="bottom-end"
                 />
             </ControlGroup>
         </>
