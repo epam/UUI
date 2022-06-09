@@ -34,7 +34,6 @@ export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
 }
 
 export interface FormComponentState<T> extends FormState<T> {
-    prevProps?: FormProps<T>;
     formHistory: T[];
     historyIndex: number;
     isInProgress: boolean;
