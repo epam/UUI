@@ -76,7 +76,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "highlight menu item as selected passing 'isSelected' prop.\r",
+                    "text": "highlight menu item as selected passing 'isActive' prop.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "check menu item as checked passing 'isChecked' prop.\r",
                     "marks": []
                   }
                 ]
