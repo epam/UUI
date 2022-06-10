@@ -71,8 +71,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
             getName={ row => props.getName ? props.getName(row.value as unknown as DataRowProps<TItem, TId>) : row.value }
-            cancelIcon={ systemIcons[props.size || defaultSize].clear }
-            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
+            cancelIcon={ (!props.isDisabled && !props.isReadonly) && systemIcons[props.size || defaultSize].clear }
+            dropdownIcon={ (!props.isDisabled && !props.isReadonly) && systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
 }
