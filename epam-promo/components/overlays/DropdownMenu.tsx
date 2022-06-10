@@ -8,10 +8,12 @@ import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownCon
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import * as css from './DropdownMenu.scss';
+import { ReactComponent as CheckIcon } from "../../icons/accept-18.svg";
 
 const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
+    isActive?: boolean;
 }
 
 export interface IDropdownMenuContainer extends VPanelProps {
@@ -86,11 +88,13 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         caption,
         isDisabled,
         isSelected,
+        isActive,
         link,
         href,
         onClick,
         toggleDropdownOpening,
         isDropdown,
+        isOpen,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -128,7 +132,8 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         props.cx,
         css.itemRoot,
         isDisabled && uuiMod.disabled,
-        isSelected && uuiMod.selected,
+        isActive && uuiMod.active,
+        isOpen && uuiMod.opened,
     );
 
     return isAnchor ? (
@@ -155,6 +160,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
+            { isSelected && <CheckIcon className={ cx(css.selectedCheckmark) } /> }
         </FlexRow>
     );
 });
@@ -163,7 +169,7 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export const DropdownMenuSplitter = (props: IHasCX) => (
     <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter } />
+        <hr className={ css.splitter }/>
     </div>
 );
 
