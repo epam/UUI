@@ -119,9 +119,9 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         />,
     },
     {
-        key: 'LONG TEXT',
+        key: 'ID',
         caption: 'ID',
-        render: p => <Text>Asa</Text>,
+        render: p => <Text>{ p.ProductID }</Text>,
         width: 200,
         isSortable: true,
     },
