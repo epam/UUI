@@ -18,6 +18,7 @@ router.post("/uploadFileMock", function(req, res) {
         type: fileType,
         extension: req.files.file.name.split('.').pop()
     });
+    // res.status(400).send({error: 'Something went wrong...'});
 });
 
 // router.post("/uploadFile", function(req, res) {
