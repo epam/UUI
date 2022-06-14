@@ -11,6 +11,10 @@
     }
 }
 
+.error-card-wrapper {
+    border: 1px solid $red;
+}
+
 :global(.uui-loading) {
 
     .default-color,
@@ -50,4 +54,15 @@
 .drop-start {
     border: 2px dashed $blue;
     background-color: $blue-lightest;
+}
+
+.error-block {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+
+    svg {
+        margin-right: 4px;
+        fill: $red;
+    }
 }
