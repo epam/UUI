@@ -24,18 +24,18 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
 
     const borderClassNames = isSelected && (!selectionRange?.isCopying
         ? cx(
-            'uui-selected-cell',
-            isTop && 'uui-selected-cell-top',
-            isRight && 'uui-selected-cell-right',
-            isBottom && 'uui-selected-cell-bottom',
-            isLeft && 'uui-selected-cell-left',
+            css.selected,
+            isTop && css.top,
+            isRight && css.right,
+            isBottom && css.bottom,
+            isLeft && css.left,
         )
         : canCopy({ columnIndex, rowIndex }) && cx(
-            'uui-selected-cell',
-            (isTop || !canCopy({ columnIndex, rowIndex: rowIndex - 1 })) && 'uui-selected-cell-top',
-            (isRight || !canCopy({ columnIndex: columnIndex + 1, rowIndex })) && 'uui-selected-cell-right',
-            (isBottom || !canCopy({ columnIndex, rowIndex: rowIndex + 1 })) && 'uui-selected-cell-bottom',
-            (isLeft || !canCopy({ columnIndex: columnIndex - 1, rowIndex })) && 'uui-selected-cell-left',
+            css.selected,
+            (isTop || !canCopy({ columnIndex, rowIndex: rowIndex - 1 })) && css.top,
+            (isRight || !canCopy({ columnIndex: columnIndex + 1, rowIndex })) && css.right,
+            (isBottom || !canCopy({ columnIndex, rowIndex: rowIndex + 1 })) && css.bottom,
+            (isLeft || !canCopy({ columnIndex: columnIndex - 1, rowIndex })) && css.left,
         ));
 
     const overlay = (

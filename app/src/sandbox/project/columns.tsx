@@ -28,7 +28,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         isSortable: true,
         renderCell: (props) => <DataTableCell
             acceptCopyDirection="vertical"
-            canCopyTo={ ({ rowIndex }) => !!(rowIndex % 2) } // Just Example
+            canCopyTo={ ({ rowIndex }) => true } // Just Example
             getLens={ l => l.prop('estimate') }
             background={ 'blue' }
             renderEditor={ ({ editorProps }) => <NumericInput

@@ -1,6 +1,8 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .cell {
+    --uui-table-cell-focus-border: #{$blue};
+
     &.align-widgets-top {
         &.size-24, &.size-30 {
             :global(.uui-checkbox), .folding-arrow {
@@ -130,39 +132,12 @@
     }
 }
 
-:global(.uui-table-cell-overlay) {
-
-    &:global(.uui-focus) {
-        border-color: $blue;
-    }
-
-    &:global(.uui-selected-cell) {
-
-        &:global(.uui-selected-cell-top) {
-            border-top-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-right) {
-            border-right-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-bottom) {
-            border-bottom-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-left) {
-            border-left-color: $blue;
-        }
-    }
-
-    :global(.uui-table-cell-copying-marker) {
-        background-color: $blue;
-        width: 7px;
-        height: 7px;
-        &::after {
-            width: 12px;
-            height: 12px;
-        }
+:global(.uui-table-cell-copying-marker) {
+    width: 7px;
+    height: 7px;
+    &::after {
+        width: 12px;
+        height: 12px;
     }
 }
 
