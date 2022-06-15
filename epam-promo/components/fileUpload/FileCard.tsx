@@ -68,7 +68,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
 
     return (
         <FlexCell ref={ ref }
-                  cx={ cx(css.fileCardWrapper, isLoading && uuiMod.loading, componentCx, uploadError.isError && css.errorCardWrapper) }
+                  cx={ cx(css.fileCardWrapper, isLoading && uuiMod.loading, componentCx, uploadError?.isError && css.errorCardWrapper) }
                   minWidth={ width }
                   width={ !width ? '100%' : undefined } >
             <FlexRow cx={ css.fileCardRow } size='36' alignItems='top' spacing='6'>
@@ -77,7 +77,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
                     <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName }>
                         { fileName }
                     </Text>
-                    { file.uploadError.isError
+                    { file.uploadError?.isError
                         ? <Tooltip trigger="hover" content={ file.uploadError.message } placement="bottom-start">
                             <Text cx={ css.errorBlock } fontSize="12" lineHeight="12" color="red-darkest">
                                 <ErrorIcon/>
