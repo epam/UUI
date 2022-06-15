@@ -78,16 +78,5 @@
                 background-color: transparent;
             }
         }
-
-        :global(.uui-input) {
-            padding-right: 12px;
-        }
-    }
-
-    &:global(.uui-readonly) {
-
-        :global(.uui-input) {
-            padding-right: 12px;
-        }
     }
 }

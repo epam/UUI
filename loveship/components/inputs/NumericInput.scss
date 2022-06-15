@@ -78,17 +78,9 @@
                 background-color: transparent;
             }
         }
-
-        :global(.uui-input) {
-            padding-right: 12px;
-        }
     }
 
     &:global(.uui-readonly) {
         @include readonly-input();
-
-        :global(.uui-input) {
-            padding-right: 12px;
-        }
     }
 }
