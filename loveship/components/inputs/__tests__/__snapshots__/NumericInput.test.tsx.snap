@@ -65,5 +65,8 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
     type="number"
     value="5"
   />
+  <div
+    className="uui-numeric-input-button-group noArrows"
+  />
 </div>
 `;
