@@ -8,7 +8,7 @@ export interface Task {
     isDone?: boolean;
     complete?: number;
     description?: string;
-    __typename?: string;
+    order?: string;
 }
 
 export interface Resource {

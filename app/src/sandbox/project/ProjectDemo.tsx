@@ -1,8 +1,10 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/promo';
-import React from 'react';
-import { DataQueryFilter, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
+import React, { useCallback } from 'react';
+import { AcceptDropParams, DataQueryFilter, DropParams, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
+import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
+import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { columns } from './columns';
@@ -23,10 +25,12 @@ const metadata: Metadata<FormState> = {
     },
 };
 
+let lastId = -1;
+
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
-    const { lens, value, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
@@ -35,28 +39,60 @@ export const ProjectDemo = () => {
         getMetadata: () => metadata,
     });
 
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
+
+    const handleDrop = useCallback((params: DropParams<Task, Task>) => console.log(params), []);
+
+    const insertNew = (parentId: number) => {
+        const newTask: Task = { id: lastId--, name: '', parentId };
+        onValueChange({ ...value, items: { ...value.items, [newTask.id]: newTask }});
+    }
+
     const { tableState, setTableState } = useTableState<any>({ columns });
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),
         getId: i => i.id,
         getParentId: i => i.parentId,
-    }, [value.items]);
+    }, []);
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowLens: (id) => lens.prop('items').prop(id),
         getRowOptions: (row) => ({
-            checkbox: { isVisible: true },
+            //checkbox: { isVisible: true },
+            isSelectable: true,
             dnd: {
                 srcData: row.id,
                 dstData: row.id,
-                canAcceptDrop: (params) => ({ bottom: true, top: true, inside: true }),
-                onDrop: (data) => console.log(data),
+                canAcceptDrop: handleCanAcceptDrop,
+                onDrop: handleDrop,
             },
         }),
+        sortBy: t => t.order,
     });
 
     return <Panel style={ { width: '100%' } }>
+        <FlexRow spacing='12' margin='12'>
+            <FlexCell width='auto'>
+                <IconButton icon={ insertAfter } onClick={() => insertNew(null)} />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <IconButton icon={ insertBefore } onClick={() => {}} />
+            </FlexCell>
+            <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button size='30' icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' caption="Save" onClick={ save } isDisabled={ !isChanged } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
+            </FlexCell>
+        </FlexRow>
         <DataTable
             headerTextCase='upper'
             getRows={ dataView.getVisibleRows }
@@ -69,22 +105,5 @@ export const ProjectDemo = () => {
             showCellDivider={ false }
             { ...dataView.getListProps() }
         />
-        {
-            isChanged && <FlexRow spacing='12' margin='12'>
-                <FlexSpacer />
-                <FlexCell width='auto'>
-                    <Button icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-                </FlexCell>
-                <FlexCell width='auto'>
-                    <Button icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-                </FlexCell>
-                <FlexCell width='auto'>
-                    <Button caption="Save" onClick={ save } />
-                </FlexCell>
-                <FlexCell width='auto'>
-                    <Button caption="Revert" onClick={ revert } />
-                </FlexCell>
-            </FlexRow>
-        }
     </Panel>;
 };
