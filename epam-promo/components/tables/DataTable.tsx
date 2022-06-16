@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters } from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters, DataTableSelectionProvider } from '@epam/uui-components';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, DataTableRowProps, FilterConfig } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
-import { DataTableSelectionProvider } from "@epam/uui-components/src/table/DataTableSelectionProvider";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -14,6 +13,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: FilterConfig<any>[];
+    showCellDivider?: boolean;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -31,7 +31,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns, showCellDivider: props.showCellDivider }));
 
     const renderNoResultsBlock = React.useCallback(() => {
         // need default behavior

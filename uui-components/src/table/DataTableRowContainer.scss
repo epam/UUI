@@ -25,6 +25,14 @@
     display: flex;
     align-items: stretch;
     background-color: var(--uui-data-table-row-background);
+    &:nth-of-type(1) {
+        :global(.uui-table-scrolling-section) {
+            padding-top: 1px;
+        }
+        :global(.uui-table-fixed-section) {
+            padding-top: 1px;
+        }
+    }
 }
 
 .scrolling-section {
@@ -32,6 +40,7 @@
     display: flex;
     align-items: stretch;
     background-color: var(--uui-data-table-row-background);
+    margin: 0 1px;
 }
 
 .fixed-columns-section-left, .fixed-columns-section-right {
