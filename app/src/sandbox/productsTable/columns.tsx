@@ -56,7 +56,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('DaysToManufacture') }
             background={ props.rowProps.value?.DaysToManufacture > 0 ? 'green' : undefined }
-            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } max={ 100500 } /> }
+            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } /> }
             { ...props }
         />,
     },
@@ -90,7 +90,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         isSortable: true,
         renderCell: (props) => <DataTableCell
             getLens={ l => l.prop('ListPrice') }
-            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } max={ 100500 } /> }
+            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } /> }
             { ...props }
         />,
     },

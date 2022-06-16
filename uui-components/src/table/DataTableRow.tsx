@@ -12,16 +12,22 @@ export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem,
         const isDeepEqual = isEqual(this.props, nextProps);
 
         // Debug code to find props differences. Please don't remove, and keep commented out
-        //
+        // //
         // const shallowDiffKeys = [];
-        // const compareDeep = (a: any, b: any, prefix = "") => {
-        //     const keys = Object.keys({ ...a, ...b });
-        //     keys.forEach(key => {
-        //         if (a[key] !== b[key]) {
-        //             shallowDiffKeys.push(prefix + key);
-        //             compareDeep(a[key], b[key], prefix + key + '.');
-        //         }
-        //     });
+        // const compareDeep = (left: any, right: any, prefix = "") => {
+        //     if (prefix.length > 1000) {
+        //         return; // cyclic references?
+        //     } else if (left && right) {
+        //         const keys = Object.keys({ ...left, ...right });
+        //         keys.forEach(key => {
+        //             if (left[key] !== right[key]) {
+        //                 shallowDiffKeys.push({ path: prefix + key, left: left[key], right: right[key] });
+        //                 compareDeep(left[key], right[key], prefix + key + '.');
+        //             }
+        //         });
+        //     } else {
+        //         shallowDiffKeys.push({ path: prefix, left: left, right: right });
+        //     }
         // }
         // compareDeep(this.props, nextProps);
 
