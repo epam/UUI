@@ -3,6 +3,8 @@
     box-sizing: border-box;
     display: flex;
     align-items: flex-start;
+    border-right: 1px solid transparent;
+    background-color: var(--uui-data-table-cell-background);
 }
 
 .editor-wrapper {

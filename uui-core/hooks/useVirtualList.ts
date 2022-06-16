@@ -77,8 +77,13 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             topIndex += 1;
         }
 
+        topIndex = topIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+        topIndex = Math.floor(topIndex / blockSize) * blockSize; // Align to blockSize
+        topIndex = Math.max(0, topIndex);
+
         let bottomIndex = topIndex;
-        while (bottomIndex < rowsCount && rowOffsets.current[Math.min(bottomIndex, rowsCount)] < (scrollTop + clientHeight)) {
+        let scrollBottom = scrollTop + clientHeight;
+        while (bottomIndex < rowsCount && rowOffsets.current[bottomIndex] < scrollBottom) {
             bottomIndex++;
         }
 
@@ -86,7 +91,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
         bottomIndex = Math.min(bottomIndex, rowsCount); // clamp to rowsCount
 
-        const visibleCount = bottomIndex - topIndex;
+        // We never reduce visible count intentionally - it can be set so a larger value intentionally.
+        // Also, reducing it can cause bouncing between two near values, causing unnecessary re-renders.
+        const visibleCount = Math.max(value.visibleCount, bottomIndex - topIndex);
 
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount || value.indexToScroll != null) {
             onValueChange({ ...value, topIndex, visibleCount, indexToScroll: null });

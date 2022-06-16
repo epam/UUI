@@ -1,6 +1,8 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .cell {
+    --uui-table-cell-focus-border: #{$blue};
+
     &.align-widgets-top {
         &.size-24, &.size-30 {
             :global(.uui-checkbox), .folding-arrow {
@@ -42,6 +44,38 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
+        border-color: $gray80;
+    }
+
+    &:global(.uui-table-cell-vertical-border) {
+        border-color: $gray30;
+    }
+    &:global(.uui-invalid) {
+        --uui-data-table-cell-background: #{$red-transparent};
+    }
+    &:global(.uui-focus):not(&:global(.uui-invalid)) {
+        --uui-data-table-cell-background: #{$white};
+    }
+
+    &:not(&:global(.uui-invalid), &:global(.uui-focus)) {
+        &.background-blue {
+            --uui-data-table-cell-background: #{$blue-transparent};
+        }
+        &.background-green {
+            --uui-data-table-cell-background: #{$green-transparent};
+        }
+        &.background-amber {
+            --uui-data-table-cell-background: #{$amber-transparent};
+        }
+        &.background-red {
+            --uui-data-table-cell-background: #{$red-transparent};
+        }
+        &.background-gray5 {
+            --uui-data-table-cell-background: #{$gray5};
+        }
+    }
 }
 
 .drag-handle {
@@ -98,55 +132,12 @@
     }
 }
 
-.cell:hover .overlay {
-    z-index: 1;
-    visibility: visible;
-    border-color: $gray40;
-}
-
-.overlay {
-    visibility: hidden;
-    border: 2px solid transparent;
-    left: -1px;
-    top: -1px;
-    right: -1px;
-    bottom: -1px;
-
-    .cell &:global(.uui-focus) {
-        z-index: 2;
-        visibility: visible;
-        border-color: $blue;
-    }
-
-    .cell &:global(.uui-invalid) {
-        z-index: 3;
-        visibility: visible;
-        border-color: $red;
-    }
-
-    .cell &:global(.uui-selected-cell) {
-        z-index: 3;
-        visibility: visible;
-
-        &:global(.uui-selected-cell-top) {
-            border-top-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-right) {
-            border-right-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-bottom) {
-            border-bottom-color: $blue;
-        }
-
-        &:global(.uui-selected-cell-left) {
-            border-left-color: $blue;
-        }
-    }
-
-    & :global(.uui-copying-marker) {
-        background-color: $blue;
+:global(.uui-table-cell-copying-marker) {
+    width: 7px;
+    height: 7px;
+    &::after {
+        width: 12px;
+        height: 12px;
     }
 }
 

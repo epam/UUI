@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus } from '@epam/uui-core';
+import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus, uuiDataTableCell } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 import { PointerEventHandler, useContext } from "react";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
+import { DataTableSelectionContext, DataTableCellOverlay } from "./index";
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -47,7 +47,15 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(renderCellProps) }
-            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, acceptCopyDirection: props.acceptCopyDirection, canCopyTo: props.canCopyTo }) }
+            <DataTableCellOverlay
+                { ...editorProps }
+                renderTooltip={ props.renderTooltip }
+                inFocus={ state.inFocus }
+                rowIndex={ row.index }
+                columnIndex={ props.index }
+                acceptCopyDirection={ props.acceptCopyDirection }
+                canCopyTo={ props.canCopyTo }
+            />
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, renderCellProps);
@@ -64,6 +72,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 css.cell,
                 props.column.cx,
                 props.cx,
+                props.renderEditor && props.rowProps.showCellDivider !== false && uuiDataTableCell.uuiTableCellVerticalBorder,
                 editorProps?.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }

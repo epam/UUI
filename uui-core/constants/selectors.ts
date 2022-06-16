@@ -77,6 +77,12 @@ export const uuiDataTableHeaderCell = {
     uuiTableHeaderDropdownIcon: 'uui-table-header-dropdown-icon',
 } as const;
 
+export const uuiDataTableCell = {
+    uuiTableCellOverlay: 'uui-table-cell-overlay',
+    uuiTableCellVerticalBorder: 'uui-table-cell-vertical-border',
+    uuiTableCellCopyingMarker: 'uui-table-cell-copying-marker',
+} as const;
+
 export const uuiScrollShadows = {
     top: 'uui-scroll-shadow-top',
     topVisible: 'uui-scroll-shadow-top-visible',
