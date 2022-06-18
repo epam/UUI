@@ -8,7 +8,7 @@ import { getTextClasses, TextSettings } from '../../helpers/textLayout';
 export interface TextMods extends TextSettings {
     size?: types.TextSize | '42';
     font?: types.FontStyle;
-    color?: 'gray5' | 'gray60' | 'gray80' | 'gray90' | 'red' | 'red-darkest';
+    color?: 'gray5' | 'gray60' | 'gray80' | 'gray90' | 'red';
 }
 
 function applyTextMods(mods: TextMods) {
