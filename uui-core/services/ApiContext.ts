@@ -1,5 +1,4 @@
 import { BaseContext } from './BaseContext';
-import { ErrorContext } from './ErrorContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
 import { getCookie, isClientSide } from '../helpers';
@@ -308,7 +307,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 }
 
                 removeAllListeners();
-                resolve(JSON.parse(xhr.response));
+                resolve(xhr.response && JSON.parse(xhr.response || null));
             };
             xhr.send(formData);
         });
