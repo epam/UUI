@@ -72,11 +72,23 @@
     }
 
     &:global(.uui-disabled) {
+
+        &:global(.uui-input-box) {
+            padding-right: 5px;
+        }
+
         :global(.uui-numeric-input-button-group) {
             > *:hover, > *:focus {
                 cursor: default;
                 background-color: transparent;
             }
+        }
+    }
+
+    &:global(.uui-readonly) {
+
+        &:global(.uui-input-box) {
+            padding-right: 5px;
         }
     }
 }
