@@ -21,26 +21,22 @@ exports[`NumericInput should be rendered correctly 1`] = `
     value=""
   />
   <div
-    className="uui-numeric-input-button-group"
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+    onClick={[Function]}
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
+    <svg
+      className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
   </div>
 </div>
 `;
@@ -66,26 +62,22 @@ exports[`NumericInput should be rendered correctly 2`] = `
     value=""
   />
   <div
-    className="uui-numeric-input-button-group"
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+    onClick={[Function]}
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
+    <svg
+      className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
   </div>
 </div>
 `;
