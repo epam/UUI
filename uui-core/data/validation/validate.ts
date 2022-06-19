@@ -1,4 +1,4 @@
-import { ICanBeInvalid } from '../../types';
+import { ICanBeChanged, ICanBeInvalid } from '../../types';
 import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
 
@@ -89,4 +89,36 @@ function validateValue(value: any, path: any[], meta: Metadata<any>): any {
     return {
         isInvalid: false,
     };
+}
+
+
+export const getChanges = <T>(initValues?: T, value?: T, key?: any, meta?: Metadata<T>): ICanBeChanged => {
+    let resultPath = [key] as [any];
+    // console.log("meta", meta.props, "key", key)
+    getChangesPath(key, resultPath, meta);
+    if (resultPath?.length) {
+        const initValue = resultPath.reduce((acc, value) => {
+            return acc?.[value];
+        }, initValues);
+        // console.log("initValue", initValue, "value", value);
+        return { isChanged: value !== initValue };
+    }
+    return { isChanged: false };
+};
+
+export const getChangesPath = <T>(key?: any, path?: [any], meta?: Metadata<T>) => {
+    let metadata = meta.props || meta.all?.props;
+    if (metadata) {
+        for (let childKey in metadata) {
+            if (metadata.hasOwnProperty(path[path.length - 1])) {
+                path.unshift(key);
+                break;
+            } else {
+                const childMeta = (metadata as any)[childKey];
+                if (childMeta) {
+                    getChangesPath(childKey, path, childMeta);
+                }
+            }
+        }
+    }
 }

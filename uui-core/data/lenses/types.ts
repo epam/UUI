@@ -1,4 +1,4 @@
-import { IEditable } from '../../types';
+import { ICanBeChanged, IEditable } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
 
@@ -10,5 +10,5 @@ export interface ILens<TFocused> {
     index(index: number): ILens<ArrayElement<TFocused>>;
     onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): ILens<TFocused>;
     default(value: TFocused): ILens<TFocused>;
-    toProps(): IEditable<TFocused>;
+    toProps(withChangeState?: boolean): IEditable<TFocused>;
 }
