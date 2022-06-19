@@ -31,6 +31,7 @@ export const uuiNumericInput = {
     upButton: "uui-numeric-input-up-button",
     downButton: "uui-numeric-input-down-button",
     buttonGroup: "uui-numeric-input-button-group",
+    withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
@@ -120,6 +121,8 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     render() {
+        const isIconsShow = !this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled;
+
         return (
             <div
                 className={ cx(css.container, uuiElement.inputBox,
@@ -128,6 +131,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.cx,
+                    this.props.disableArrows && uuiNumericInput.withoutArrows,
                 ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }
@@ -153,25 +157,23 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     step={ this.props.step || 1 }
                     id={ this.props.id }
                 />
-                <div className={ cx(uuiNumericInput.buttonGroup, (this.props.disableArrows || this.props.isReadonly || this.props.isDisabled) && css.noArrows) }>
-                    {
-                        (!this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled) &&
-                        <>
-                            <IconContainer
-                                cx={ cx(uuiNumericInput.upButton) }
-                                icon={ this.props.upIcon }
-                                onClick={ this.handleIncreaseValue }
-                                isDisabled={ this.props.isDisabled }
-                            />
-                            <IconContainer
-                                cx={ cx(uuiNumericInput.downButton) }
-                                icon={ this.props.downIcon }
-                                onClick={ this.handleDecreaseValue }
-                                isDisabled={ this.props.isDisabled }
-                            />
-                        </>
-                    }
-                </div>
+                {
+                    isIconsShow &&
+                    <>
+                        <IconContainer
+                            cx={ cx(uuiNumericInput.upButton) }
+                            icon={ this.props.upIcon }
+                            onClick={ this.handleIncreaseValue }
+                            isDisabled={ this.props.isDisabled }
+                        />
+                        <IconContainer
+                            cx={ cx(uuiNumericInput.downButton) }
+                            icon={ this.props.downIcon }
+                            onClick={ this.handleDecreaseValue }
+                            isDisabled={ this.props.isDisabled }
+                        />
+                    </>
+                }
             </div>
         );
     }
