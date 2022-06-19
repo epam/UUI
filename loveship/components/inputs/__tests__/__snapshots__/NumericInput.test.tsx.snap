@@ -21,33 +21,29 @@ exports[`NumericInput should be rendered correctly 1`] = `
     value="5"
   />
   <div
-    className="uui-numeric-input-button-group"
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+    onClick={[Function]}
+    style={Object {}}
   >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
+    <svg
+      className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
   </div>
 </div>
 `;
 
 exports[`NumericInput should be rendered correctly with new props 1`] = `
 <div
-  className="container uui-input-box colorSky root size-24 mode-cell"
+  className="container uui-input-box colorSky root size-24 mode-cell uui-numeric-input-without-arrows"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
@@ -64,9 +60,6 @@ exports[`NumericInput should be rendered correctly with new props 1`] = `
     tabIndex={0}
     type="number"
     value="5"
-  />
-  <div
-    className="uui-numeric-input-button-group noArrows"
   />
 </div>
 `;
