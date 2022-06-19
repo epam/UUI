@@ -5,15 +5,21 @@ import {DataRowProps} from "./tables";
 import {AnalyticsEvent} from "./contexts";
 
 /** Component value can be invalid */
-export interface ICanBeInvalid {
+export interface ICanBeInvalid extends ICanBeChanged {
     isInvalid?: boolean;
     validationMessage?: string;
     /** If T is a complex value (object or array), this property contains validation states of inner items */
     validationProps?: { [key: string]: ICanBeInvalid };
 }
 
+/** Component value can be changed */
+export interface ICanBeChanged {
+    isChanged?: boolean;
+    // changedProps?: { [key: string]: ICanBeChanged };
+}
+
 /** Components has an editable value. Text Input is a basic example. */
-export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
+export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, ICanBeChanged {
     value: T;
     onValueChange(newValue: T): void;
 }

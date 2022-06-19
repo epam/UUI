@@ -1,4 +1,4 @@
-import { ICanBeInvalid, Metadata } from '../../types';
+import { ICanBeInvalid, Metadata, ICanBeChanged } from '../../types';
 import { blankValidationState } from '../validation';
 
 export interface ILensImpl<TBig, TSmall> {
@@ -6,6 +6,7 @@ export interface ILensImpl<TBig, TSmall> {
     set(big: TBig | null, small: TSmall): TBig;
     getValidationState?(big?: ICanBeInvalid): ICanBeInvalid | undefined;
     getMetadata?(big?: Metadata<TBig>): Metadata<TSmall> | undefined;
+    getChanges?(small?: TSmall, key?: any): ICanBeChanged;
 }
 
 export const identityLens = {
@@ -127,6 +128,10 @@ export function compose<TBig, TMiddle, TSmall>(left: ILensImpl<TBig, TMiddle>, r
         getMetadata(big?: Metadata<TBig>) {
             const middle = left.getMetadata && left.getMetadata(big);
             const small  = right.getMetadata && right.getMetadata(middle);
+            return small;
+        },
+        getChanges(big, key) {
+            const small  = right.getChanges && right.getChanges(big, key);
             return small;
         },
     };

@@ -68,7 +68,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
             <FlexRow vPadding='12' spacing='18' alignItems='top'>
                 <LabeledInput htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
                     <PickerInput
-                        { ...lens.prop('country').toProps() }
+                        { ...lens.prop('country').toProps(true) }
                         dataSource={ countriesDS }
                         selectionMode='single'
                         valueType='id'
@@ -79,7 +79,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                 </LabeledInput>
                 <LabeledInput htmlFor="city" label='City' { ...lens.prop('city').toProps() }>
                     <PickerInput
-                        { ...lens.prop('city').toProps() }
+                        { ...lens.prop('city').toProps(true) }
                         selectionMode='single'
                         valueType='id'
                         rawProps={ { input: { id: 'city' } } }
