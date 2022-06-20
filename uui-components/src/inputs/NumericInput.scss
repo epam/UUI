@@ -10,10 +10,6 @@
         display: flex;
         outline: none;
 
-        &:global(.uui-numeric-input-without-arrows) {
-            padding-right: 5px;
-        }
-
         :global(.uui-input) {
             -moz-appearance: textfield;
             flex: 1 1 auto;

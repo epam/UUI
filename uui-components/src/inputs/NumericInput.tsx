@@ -126,8 +126,8 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         return (
             <div
                 className={ cx(css.container, uuiElement.inputBox,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.isDisabled && uuiMod.disabled,
+                    this.props.isReadonly && cx(uuiMod.readonly, uuiNumericInput.withoutArrows),
+                    this.props.isDisabled && cx(uuiMod.disabled, uuiNumericInput.withoutArrows),
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.cx,
@@ -159,7 +159,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                 />
                 {
                     isIconsShow &&
-                    <>
+                    <div className={ uuiNumericInput.buttonGroup }>
                         <IconContainer
                             cx={ cx(uuiNumericInput.upButton) }
                             icon={ this.props.upIcon }
@@ -172,7 +172,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                             onClick={ this.handleDecreaseValue }
                             isDisabled={ this.props.isDisabled }
                         />
-                    </>
+                    </div>
                 }
             </div>
         );
