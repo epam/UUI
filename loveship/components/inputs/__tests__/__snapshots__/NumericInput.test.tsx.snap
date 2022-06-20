@@ -21,22 +21,26 @@ exports[`NumericInput should be rendered correctly 1`] = `
     value="5"
   />
   <div
-    className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-    onClick={[Function]}
-    style={Object {}}
+    className="uui-numeric-input-button-group"
   >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-    onClick={[Function]}
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
   </div>
 </div>
 `;

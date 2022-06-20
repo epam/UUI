@@ -36,15 +36,19 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         value="12"
       />
       <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
-      <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+      </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
@@ -88,15 +92,19 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
         value="30"
       />
       <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
-      <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+      </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
@@ -186,15 +194,19 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         value="12"
       />
       <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
-      <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+      </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
@@ -238,15 +250,19 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
         value="30"
       />
       <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
-      <div
-        className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-        onClick={[Function]}
-        style={Object {}}
-      />
+        className="uui-numeric-input-button-group"
+      >
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+        <div
+          className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+          onClick={[Function]}
+          style={Object {}}
+        />
+      </div>
     </div>
     <div
       className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
