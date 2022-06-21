@@ -15,6 +15,8 @@ export abstract class BaseDataSource<TItem, TId extends DataSourceItemId, TFilte
         this.views.forEach(view => view._forceUpdate());
     }
 
+    public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
+
     public unsubscribeView(onValueChange: (val: any) => void) {
         this.views.delete(onValueChange);
     }

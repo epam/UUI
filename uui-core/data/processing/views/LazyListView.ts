@@ -52,7 +52,7 @@ export interface LazyListViewProps<TItem, TId extends DataSourceItemId, TFilter>
      *
      * If enabled, and search is active:
      * - API will be called with parentId and parent undefined
-     * - getChildCount is ignore, all nodes are assumed to have no children
+     * - getChildCount is ignored, all nodes are assumed to have no children
      *
      * See more here: https://github.com/epam/UUI/issues/8
      */
@@ -130,7 +130,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
         this.isUpdatePending = false;
 
         let completeReset = false;
-        
+
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -454,14 +454,14 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             let result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: i => i?.id === id });
             let tree = result.tree;
 
-            const node = tree.byId.get(id);
+            const node = tree.getById(id);
 
             if (!isRoot && !node) {
                 throw new Error(`LazyListView: attempt to check/uncheck unknown node id=${id}`);
             }
 
             const appendChildIds = (parentId: TId) => {
-                const children = tree.byParentId.get(parentId);
+                const children = tree.getByParentId(parentId);
 
                 if (children?.length > 0) {
                     children.forEach(item => {
@@ -482,7 +482,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
                 !isRoot && checkedIdsSet.add(id);
 
                 childIds.forEach(childId => {
-                    const item = tree.byId.get(childId);
+                    const item = tree.getById(childId);
                     const { isCheckable } = this.getRowProps(item, null, []);
                     if (isCheckable) {
                         checkedIdsSet.add(childId);
@@ -493,7 +493,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
                 !isRoot && idsToUnset.add(id);
 
                 idsToUnset.forEach(itemToUnsetId => {
-                    const item = tree.byId.get(itemToUnsetId);
+                    const item = tree.getById(itemToUnsetId);
                     const { isCheckable } = this.getRowProps(item, null, []);
                     if (isCheckable || idsToUnset.has(itemToUnsetId)) {
                         checkedIdsSet.delete(itemToUnsetId);
@@ -505,7 +505,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
                 const parentIds: TId[] = [];
 
                 const appendParentIds = (id: TId) => {
-                    const node = tree.byId.get(id);
+                    const node = tree.getById(id);
                     const parentId = this.props.getParentId(node);
                     if (parentId != null) {
                         parentIds.push(parentId);
@@ -520,7 +520,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
             // check/uncheck parents if all/no siblings checked
             if (!isRoot) {
                 getParentIds(id).forEach(parentId => {
-                    const children = tree.byParentId.get(parentId);
+                    const children = tree.getByParentId(parentId);
                     const isAllChildrenChecked = children.every(i => checkedIdsSet.has(this.props.getId(i)));
 
                     if (isAllChildrenChecked) {
