@@ -23,6 +23,7 @@ router.post("/uploadFileMock", function(req, res) {
         type: fileType,
         extension: req.files.file.name.split('.').pop()
     });
+    // res.status(400).send({ error: {message: 'some error message'}});
 });
 
 // router.post("/uploadFile", function(req, res) {
