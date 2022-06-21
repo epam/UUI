@@ -52,7 +52,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
-    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Partial<PickerBodyBaseProps>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {

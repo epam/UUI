@@ -241,13 +241,14 @@ type FilterConfigBase<TFilter extends Record<string, any>> = {
 type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
     type: "singlePicker" | "multiPicker";
     dataSource: IDataSource<any, any, any>;
+    getName?: (item: any) => string;
 };
 
 type DatePickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
     type: "datePicker" | "rangeDatePicker";
 };
 
-export type FilterConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
+export type TableFiltersConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = Record<string, any>> {

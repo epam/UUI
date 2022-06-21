@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 import css from "./Filter.scss";
 import { DatePicker, IconContainer, PickerList, RangeDatePicker } from "@epam/promo";
-import { FilterConfig, IEditable, RangeDatePickerValue } from "@epam/uui-core";
+import { TableFiltersConfig, IEditable, RangeDatePickerValue } from "@epam/uui-core";
 import { ReactComponent as ArrowDown } from "@epam/assets/icons/common/navigation-chevron-down-18.svg";
 
 interface IFilterProps<TFilter extends Record<string, any>> extends IEditable<TFilter> {
-    filterConfig: FilterConfig<TFilter> | undefined;
+    filterConfig: TableFiltersConfig<TFilter> | undefined;
 }
 
 const FilterImpl = <TFilter extends Record<string, any>>(props: IFilterProps<TFilter>) => {
