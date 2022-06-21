@@ -62,11 +62,10 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         }
     };
 
-    const { cx: componentCx, width, file: { progress, size, name, extension, uploadError }, onClick } = props;
+    const { cx: componentCx, width, file: { progress, size, name, extension, uploadError, abortXHR }, onClick } = props;
     const fileExtension = extension || name?.split('.').pop();
     const fileName = name?.split('.').slice(0, -1).join('');
     const isLoading = progress < 100;
-    const mainWrapperStyles = cx(css.fileCardWrapper, isLoading && uuiMod.loading, componentCx, uploadError?.isError && css.errorCardWrapper);
     const isCrossShow = ((!isLoadingShow && isLoading) || !isLoading) && onClick;
 
     const mouseLeaveHandler = (e: React.MouseEvent) => {
@@ -96,8 +95,21 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         </Text>
     );
 
+    const removeHandler = () => {
+        (progress && progress < 100) && abortXHR();
+        onClick();
+    };
+
     return (
-        <FlexCell ref={ ref } cx={ mainWrapperStyles } minWidth={ width } width={ !width ? '100%' : undefined }>
+        <FlexCell
+            ref={ ref }
+            cx={
+                cx(css.fileCardWrapper,
+                    isLoading && uuiMod.loading,
+                    componentCx,
+                    uploadError?.isError && css.errorCardWrapper) }
+            minWidth={ width }
+            width={ !width ? '100%' : undefined }>
             <FlexRow cx={ css.fileCardRow } size="36" alignItems="top" spacing="6">
                 { fileExtension && getIcon(fileExtension) }
                 <FlexCell width="100%">
@@ -106,12 +118,10 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
                     </Text>
                     { file.uploadError?.isError ? renderErrorContent() : renderSuccessfulContent() }
                 </FlexCell>
-                <FlexCell minWidth={ 18 }>
-                    <div onMouseEnter={ mouseEnterHandler } onMouseLeave={ mouseLeaveHandler }>
-                        { (isLoadingShow && isLoading) && <SvgCircleProgress progress={ progress } size={ 18 }/> }
-                        { isCrossShow && <IconButton icon={ RemoveIcon } onClick={ onClick }/> }
-                    </div>
-                </FlexCell>
+                <div className={ cx(css.iconsBlock) } onMouseEnter={ mouseEnterHandler } onMouseLeave={ mouseLeaveHandler }>
+                    { (isLoadingShow && isLoading) && <SvgCircleProgress progress={ progress } size={ 18 }/> }
+                    { isCrossShow && <IconButton icon={ RemoveIcon } onClick={ removeHandler }/> }
+                </div>
             </FlexRow>
         </FlexCell>
     );

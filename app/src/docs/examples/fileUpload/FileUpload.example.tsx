@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { DropSpot, FileCard } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
+import { useUuiContext, FileUploadResponse } from '@epam/uui';
 import * as css from './FileUpload.scss';
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
 
-interface NewFile extends Partial<File> {
-    id: number;
+interface NewFile extends Partial<File & FileUploadResponse> {
     progress?: number;
     abortXHR?: () => void;
-    uploadError: { isError: boolean, message?: string };
 }
 
 let tempIdCount = 0;
@@ -27,7 +25,6 @@ export default function FileUploadExample() {
     };
 
     const deleteFile = (file: NewFile) => {
-        (file.progress && file.progress < 100) && file.abortXHR();
         setAttachments((attachments) => attachments.filter((item) => item.id !== file.id));
     };
 
