@@ -31,6 +31,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                         color={ props.color === 'night600' && props.value === item.id ? 'sky' : props.color || 'sky' }
                         size={ props.size }
                         rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
+                        isDisabled={ props.isDisabled }
                     />
                 );
             }) }
