@@ -1,21 +1,35 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import css from "./DynamicFilters.scss";
-import { FilterConfig, IEditable } from "@epam/uui-core";
-import { DatePicker, PickerInput, RangeDatePicker } from "@epam/promo";
-import { RangeDatePickerValue } from "@epam/uui-components";
+import {
+    TableFiltersConfig,
+    IDropdownToggler,
+    IEditable,
+    isMobile,
+    useForceUpdate,
+    IDataSourceView, DataRowProps
+} from "@epam/uui-core";
+import { PickerToggler } from "@epam/promo";
+import { FilterPickerBody } from './FilterPickerBody';
+import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 
-type FiltersToolbarItemProps<TFilter extends Record<string, any>> = FilterConfig<TFilter> & IEditable<TFilter>;
+type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
+    autoFocus?: boolean;
+};
 
-const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps<any>) => {
+const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+    const [isOpen, isOpenChange] = useState(props.autoFocus);
+    const forceUpdate = useForceUpdate();
+
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
     }, [props.field, props.onValueChange]);
 
-    const renderPicker = () => {
+    const getBody = (dropdownProps: DropdownBodyProps) => {
         switch (props.type) {
             case "singlePicker":
                 return (
-                    <PickerInput
+                    <FilterPickerBody
+                        { ...dropdownProps }
                         dataSource={ props.dataSource }
                         selectionMode="single"
                         value={ props.value?.[props.field] }
@@ -26,7 +40,8 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps<any>) => {
                 );
             case "multiPicker":
                 return (
-                    <PickerInput
+                    <FilterPickerBody
+                        { ...dropdownProps }
                         dataSource={ props.dataSource }
                         selectionMode="multi"
                         value={ props.value?.[props.field] }
@@ -35,28 +50,73 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps<any>) => {
                         prefix={ props.title }
                     />
                 );
-            case "datePicker":
-                return (
-                    <DatePicker
-                        format="DD/MM/YYYY"
-                        value={ props.value?.[props.field] as string }
-                        onValueChange={ handleChange }
-                    />
-                );
-            case "rangeDatePicker":
-                return (
-                    <RangeDatePicker
-                        value={ props.value?.[props.field] as RangeDatePickerValue }
-                        onValueChange={ handleChange }
-                    />
-                );
+            // case "datePicker":
+            //     return (
+            //         <DatePicker
+            //             format="DD/MM/YYYY"
+            //             value={ props.value?.[props.field] as string }
+            //             onValueChange={ handleChange }
+            //         />
+            //     );
+            // case "rangeDatePicker":
+            //     return (
+            //         <RangeDatePicker
+            //             value={ props.value?.[props.field] as RangeDatePickerValue }
+            //             onValueChange={ handleChange }
+            //         />
+            //     );
         }
     };
 
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
+        return (
+            <div>
+                header
+                { getBody(dropdownProps) }
+            </div>
+        );
+    };
+
+    const getSelection = () => {
+        switch (props.type) {
+            case "multiPicker": {
+                const view = props.dataSource.getView({}, forceUpdate);
+                return props.value?.[props.field]?.map((i: any) => {
+                    return view.getById(i, null);
+                });
+            }
+            case "singlePicker": {
+                const view = props.dataSource.getView({}, forceUpdate);
+                return props.value?.[props.field] && [view.getById(props.value?.[props.field], null)];
+            }
+        }
+    };
+
+    const renderTarget = (dropdownProps: IDropdownToggler) => {
+        return <PickerToggler
+            { ...dropdownProps }
+            pickerMode={ 'multi' }
+            value={ null }
+            onValueChange={ () => {} }
+            searchPosition='none'
+            selection={ getSelection() }
+            getName={ (i: any) => {
+                if (props.type === 'multiPicker' || props.type === 'singlePicker') {
+                    return props.getName ? props.getName(i) : i.name;
+                }
+            } }
+            placeholder={ props.title }
+        />;
+    };
+
     return (
-        <div className={ css.cell }>
-            { renderPicker() }
-        </div>
+        <Dropdown
+            renderTarget={ renderTarget }
+            renderBody={ renderBody }
+            closeBodyOnTogglerHidden={ !isMobile() }
+            value={ isOpen }
+            onValueChange={ isOpenChange }
+        />
     );
 };
 

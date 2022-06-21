@@ -16,6 +16,7 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
+    isOpen: boolean;
 }
 
 export type DropdownPlacement = Placement;
@@ -236,6 +237,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
                         scheduleUpdate: update,
+                        isOpen: this.isOpened(),
                     }) }
                 </div>
             </FreeFocusInside>

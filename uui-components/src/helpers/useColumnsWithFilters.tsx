@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { DataColumnProps, IEditable, ILens, FilterConfig, useUuiContext } from "@epam/uui-core";
+import { DataColumnProps, IEditable, ILens, TableFiltersConfig, useUuiContext } from "@epam/uui-core";
 
-export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: FilterConfig<TFilter>[] | undefined) => {
+export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: TableFiltersConfig<TFilter>[] | undefined) => {
     const [columns, setColumns] = useState(initialColumns);
     const context = useUuiContext();
     

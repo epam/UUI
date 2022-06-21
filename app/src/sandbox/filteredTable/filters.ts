@@ -1,13 +1,15 @@
-import { FilterConfig, LazyDataSource } from "@epam/uui-core";
+import { TableFiltersConfig, LazyDataSource } from "@epam/uui-core";
 import { svc } from "../../services";
+import { Person } from "@epam/uui-docs";
 
-export const getFilters = <TFilter extends Record<string, any>>(): FilterConfig<TFilter>[] => {
+export const getFilters = (): TableFiltersConfig<Person>[] => {
     return [
         {
             field: "profileStatusId",
             columnKey: "profileStatus",
             title: "Profile Status",
             type: "multiPicker",
+            isAlwaysVisible: true,
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
         },
         {
