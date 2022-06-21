@@ -109,6 +109,9 @@ export type DataRowProps<TItem, TId> = FlexRowProps & ICanBeInvalid & DataRowOpt
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
     value?: TItem;
 
+    /** ID of the parent TItem */
+    parentId?: TId;
+
     /** Hierarchical path from the root node to the item (excluding the item itself) */
     path?: DataRowPathItem<TId, TItem>[];
 
@@ -330,24 +333,3 @@ export type LazyDataSourceApi<TItem, TId, TFilter> =
 
 
 
-// Array Data Source related
-
-
-export interface IArrayDataSource<TItem, TId extends DataSourceItemId, TFilter> extends IDataSource<TItem, TId, TFilter> {
-    byKey: { [key: string]: TreeNode<TItem, TId> };
-    byParentKey: { [key: string]: TreeNode<TItem, TId>[] };
-    nodes: TreeNode<TItem, TId>[];
-    rootNodes: TreeNode<TItem, TId>[];
-    maxDepth: number;
-}
-
-export interface TreeNode<TItem, TId> {
-    item: TItem;
-    id: TId;
-    key: string;
-    parentId: TId;
-    parentKey: string;
-    path: string[];
-    index: number;
-    children: TreeNode<TItem, TId>[];
-}

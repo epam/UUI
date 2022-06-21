@@ -3,7 +3,7 @@ import trimEnd from 'lodash.trimend';
 export function getOrderBetween(inputA: string | null, inputB: string | null): string { // => uui utils
     const radix = 36;
     let a = trimEnd(inputA || '0', '0');
-    let b = trimEnd(inputB || 'z', '0');
+    let b = trimEnd(inputB || 'zzzz', '0');
 
     const throwError = () => { throw new Error(`getOrderBetween: can't find values between ${inputA} and ${inputB}`); };
 
