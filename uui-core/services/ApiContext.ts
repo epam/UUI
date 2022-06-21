@@ -27,6 +27,7 @@ export interface FileUploadResponse {
     path?: string;
     type?: BlockTypes;
     extension?: string;
+    uploadError?: { isError: boolean, message?: string };
 }
 
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
