@@ -27,7 +27,7 @@ export interface FileUploadResponse {
     path?: string;
     type?: BlockTypes;
     extension?: string;
-    uploadError?: { isError: boolean, message?: string };
+    error?: { isError: boolean, message?: string };
 }
 
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
@@ -304,11 +304,12 @@ export class ApiContext extends BaseContext implements IApiContext {
                 if (xhr.readyState !== 4) return;
                 if (!(new RegExp('^2[0-9][0-9]')).test(xhr.status.toString())) {
                     /*handle error*/
-                    reject(xhr.response);
+                    const errorMessage =  xhr.response ? JSON.parse(xhr.response)?.error?.message :  'Upload error';
+                    reject({...xhr.response, error: { isError: true, message: errorMessage }});
                 }
 
                 removeAllListeners();
-                resolve(xhr.response && JSON.parse(xhr.response || null));
+                resolve(xhr.response && { ...JSON.parse(xhr.response), error: { isError: false } } || null);
             };
             xhr.send(formData);
         });

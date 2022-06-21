@@ -1,30 +1,25 @@
 import * as React from 'react';
-import { DropSpot, FileCard } from '@epam/promo';
-import { useUuiContext, FileUploadResponse } from '@epam/uui';
+import { DropSpot, FileCard, FileCardItem } from '@epam/promo';
+import { useUuiContext } from '@epam/uui';
 import * as css from './FileUpload.scss';
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-
-interface NewFile extends Partial<File & FileUploadResponse> {
-    progress?: number;
-    abortXHR?: () => void;
-}
 
 let tempIdCount = 0;
 
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
-    const [attachments, setAttachments] = React.useState<NewFile[]>([]);
+    const [attachments, setAttachments] = React.useState<FileCardItem[]>([]);
 
     const trackProgress = (progress: number, id: number) => {
         setAttachments((attachments) => attachments.map(item => item.id === id ? { ...item, progress } : item));
     };
 
-    const updateFile = (file: NewFile, id: number) => {
+    const updateFile = (file: FileCardItem, id: number) => {
         setAttachments((attachments) => attachments.map((item) => item.id === id ? file : item));
     };
 
-    const deleteFile = (file: NewFile) => {
+    const deleteFile = (file: FileCardItem) => {
         setAttachments((attachments) => attachments.filter((item) => item.id !== file.id));
     };
 
@@ -34,7 +29,7 @@ export default function FileUploadExample() {
         files.map((file: File) => {
             const tempId = tempIdCount - 1;
             tempIdCount -= 1;
-            const newFile: NewFile = { id: tempId, name: file.name, progress: 0, size: file.size, uploadError: { isError: false } };
+            const newFile: FileCardItem = { id: tempId, name: file.name, progress: 0, size: file.size };
             newAttachments.push(newFile);
 
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
@@ -43,8 +38,8 @@ export default function FileUploadExample() {
                     newFile.abortXHR = () => xhr.abort();
                 },
             })
-                .then((res) => updateFile({ ...res, progress: 100, uploadError: { isError: false } }, tempId))
-                .catch(() => updateFile({ ...newFile, progress: 100, uploadError: { isError: true, message: 'Upload error' } }, tempId));
+                .then((res) => updateFile({ ...res, progress: 100 }, tempId))
+                .catch((err) => updateFile({ ...newFile, progress: 100, error: err.error }, tempId));
         });
 
         setAttachments(newAttachments);

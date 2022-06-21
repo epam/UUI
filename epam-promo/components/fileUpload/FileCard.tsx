@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './FileCard.scss';
 import { i18n } from '../..';
-import { cx, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
+import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
 import { SvgCircleProgress } from './';
 import { FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip } from '../';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
@@ -16,16 +16,13 @@ import { ReactComponent as MailIcon } from '../../icons/fileUpload/file-file_eml
 import { ReactComponent as FileIcon } from '../../icons/fileUpload/file-file-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-10.svg';
 
-interface NewFile extends Partial<File> {
-    id?: number;
+export interface FileCardItem extends Partial<File & FileUploadResponse> {
     progress?: number;
     abortXHR?: () => void;
-    uploadError?: { isError: boolean, message?: string };
-    extension?: string;
 }
 
 export interface FileCardProps extends IClickable, IHasCX {
-    file: NewFile;
+    file: FileCardItem;
     width?: number;
 }
 
@@ -62,7 +59,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
         }
     };
 
-    const { cx: componentCx, width, file: { progress, size, name, extension, uploadError, abortXHR }, onClick } = props;
+    const { cx: componentCx, width, file: { progress, size, name, extension, error, abortXHR }, onClick } = props;
     const fileExtension = extension || name?.split('.').pop();
     const fileName = name?.split('.').slice(0, -1).join('');
     const isLoading = progress < 100;
@@ -79,7 +76,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     };
 
     const renderErrorContent = () => (
-        <Tooltip trigger="hover" content={ file.uploadError.message } placement="bottom-start">
+        <Tooltip trigger="hover" content={ file.error.message } placement="bottom-start">
             <div className={ css.errorBlock }>
                 <ErrorIcon/>
                 { "Upload failed" }
@@ -107,7 +104,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
                 cx(css.fileCardWrapper,
                     isLoading && uuiMod.loading,
                     componentCx,
-                    uploadError?.isError && css.errorCardWrapper) }
+                    error?.isError && css.errorCardWrapper) }
             minWidth={ width }
             width={ !width ? '100%' : undefined }>
             <FlexRow cx={ css.fileCardRow } size="36" alignItems="top" spacing="6">
@@ -116,7 +113,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
                     <Text size="18" fontSize="14" lineHeight="18" color={ progress < 100 ? 'gray60' : 'gray80' } cx={ css.fileName }>
                         { fileName }
                     </Text>
-                    { file.uploadError?.isError ? renderErrorContent() : renderSuccessfulContent() }
+                    { error?.isError ? renderErrorContent() : renderSuccessfulContent() }
                 </FlexCell>
                 <div className={ cx(css.iconsBlock) } onMouseEnter={ mouseEnterHandler } onMouseLeave={ mouseLeaveHandler }>
                     { (isLoadingShow && isLoading) && <SvgCircleProgress progress={ progress } size={ 18 }/> }
