@@ -224,7 +224,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return (
             <div className={ css.container } >
                 { this.getPropsDocPath() && this.renderTabsNav() }
-                { getQuery('mode') === 'propsEditor' ? this.renderPropEditor() : this.renderDoc() }
+                { getQuery('mode') === 'propsEditor'
+                    ? this.getPropsDocPath()
+                        ? this.renderPropEditor()
+                        : this.renderNotSupportPropExplorer()
+                    : this.renderDoc() }
             </div>
         );
     }
