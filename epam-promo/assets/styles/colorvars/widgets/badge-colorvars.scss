@@ -4,6 +4,7 @@
     --background-color: #{$blue};
     --background-color-hover: #{darken($blue, 10%)};
     --background-color-semitransparent: #{lighten($blue, 50%)};
+    --background-color-semitransparent-hover: #{lighten($blue, 40%)};
     --border-color-semitransparent: #{lighten($blue, 40%)};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{darken($blue, 10%)};
@@ -17,6 +18,7 @@
     --background-color: #{$cyan};
     --background-color-hover: #{$cyan-dark};
     --background-color-semitransparent: #{$cyan-lightest};
+    --background-color-semitransparent-hover: #{$cyan-light};
     --border-color-semitransparent: #{$cyan-light};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{$cyan-dark};
@@ -30,6 +32,7 @@
     --background-color: #{$green};
     --background-color-hover: #{darken($green, 10%)};
     --background-color-semitransparent: #{lighten($green, 50%)};
+    --background-color-semitransparent-hover: #{lighten($green, 40%)};
     --border-color-semitransparent: #{lighten($green, 40%)};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{darken($green, 10%)};
@@ -43,6 +46,7 @@
     --background-color: #{$amber};
     --background-color-hover: #995A00;
     --background-color-semitransparent: #{lighten($amber, 40%)};
+    --background-color-semitransparent-hover: #{lighten($amber, 30%)};
     --border-color-semitransparent: #{lighten($amber, 30%)};
     --caption-color-solid: #{$gray80};
     --caption-color-semitransparent: #995A00;
@@ -56,6 +60,7 @@
     --background-color: #{$orange};
     --background-color-hover: #{$orange-dark};
     --background-color-semitransparent: #{$orange-lightest};
+    --background-color-semitransparent-hover:  #{$orange-light};
     --border-color-semitransparent: #{$orange-light};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{$orange-dark};
@@ -69,6 +74,7 @@
     --background-color: #{$red};
     --background-color-hover: #A72014;
     --background-color-semitransparent: #{lighten($red, 40%)};
+    --background-color-semitransparent-hover: #{lighten($red, 30%)};
     --border-color-semitransparent: #{lighten($red, 30%)};
     --caption-color-solid: white;
     --caption-color-semitransparent: #A72014;
@@ -82,6 +88,7 @@
     --background-color: #{$purple};
     --background-color-hover: #{$purple-dark};
     --background-color-semitransparent: #{$purple-lightest};
+    --background-color-semitransparent-hover: #{$purple-light};
     --border-color-semitransparent: #{$purple-light};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{$purple-dark};
@@ -95,6 +102,7 @@
     --background-color: #{$violet};
     --background-color-hover: #{$violet-dark};
     --background-color-semitransparent: #{$violet-lightest};
+    --background-color-semitransparent-hover: #{$violet-light};
     --border-color-semitransparent: #{$violet-light};
     --caption-color-solid: white;
     --caption-color-semitransparent: #{$violet-dark};
