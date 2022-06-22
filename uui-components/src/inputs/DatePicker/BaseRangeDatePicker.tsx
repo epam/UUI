@@ -42,12 +42,16 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     toTextInput = React.createRef<HTMLInputElement>();
     inFocus: RangeDatePickerInputType;
 
-    state: RangeDatePickerState = {
-        isOpen: false,
-        view: 'DAY_SELECTION',
-        ...getStateFromValue(this.props.value, this.props.format),
-        inFocus: null,
-    };
+    getInitialState(): RangeDatePickerState {
+        return {
+            isOpen: false,
+            view: 'DAY_SELECTION',
+            ...getStateFromValue(this.props.value, this.props.format),
+            inFocus: null,
+        };
+    }
+
+    state = this.getInitialState();
 
     static getDerivedStateFromProps(props: BaseRangeDatePickerProps, state: RangeDatePickerState): RangeDatePickerState {
         if (!props.value || (props.value.from !== state.selectedDate.from || props.value.to !== state.selectedDate.to)) {

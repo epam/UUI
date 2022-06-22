@@ -49,7 +49,6 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 renderDay={ this.props.renderDay }
                 isHoliday={ this.props.isHoliday }
                 rawProps={ this.props.rawProps?.body }
-                cx={ css.body }
             />
             { this.props.renderFooter?.() }
         </DropdownContainer>;
