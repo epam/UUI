@@ -55,6 +55,12 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
         },
         {
+            field: "hireDate",
+            columnKey: "hireDate",
+            title: "Hire Date",
+            type: "datePicker",
+        },
+        {
             field: "birthDate",
             columnKey: "birthDate",
             title: "Birth Date",

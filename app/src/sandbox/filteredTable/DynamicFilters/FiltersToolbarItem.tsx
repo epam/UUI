@@ -1,16 +1,10 @@
 import React, { useCallback, useState } from "react";
-import css from "./DynamicFilters.scss";
-import {
-    TableFiltersConfig,
-    IDropdownToggler,
-    IEditable,
-    isMobile,
-    useForceUpdate,
-    IDataSourceView, DataRowProps
-} from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { PickerToggler } from "@epam/promo";
 import { FilterPickerBody } from './FilterPickerBody';
-import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
+import { FilterDataPickerBody } from './FilterDataPickerBody';
+import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
+import { Dropdown, DropdownBodyProps, RangeDatePickerValue } from "@epam/uui-components";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -50,21 +44,21 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                         prefix={ props.title }
                     />
                 );
-            // case "datePicker":
-            //     return (
-            //         <DatePicker
-            //             format="DD/MM/YYYY"
-            //             value={ props.value?.[props.field] as string }
-            //             onValueChange={ handleChange }
-            //         />
-            //     );
-            // case "rangeDatePicker":
-            //     return (
-            //         <RangeDatePicker
-            //             value={ props.value?.[props.field] as RangeDatePickerValue }
-            //             onValueChange={ handleChange }
-            //         />
-            //     );
+            case "datePicker":
+                return (
+                    <FilterDataPickerBody
+                        format="DD/MM/YYYY"
+                        value={ props.value?.[props.field] }
+                        onValueChange={ handleChange }
+                    />
+                );
+            case "rangeDatePicker":
+                return (
+                    <FilterRangeDatePickerBody
+                        value={ props.value?.[props.field] || { from: null, to: null } }
+                        onValueChange={ handleChange }
+                    />
+                );
         }
     };
 
