@@ -20,11 +20,6 @@ export interface FileUploadOptions {
     getXHR?: (xhr: XMLHttpRequest) => any; // get xhr to be able to cancel the request
 }
 
-interface IError {
-    isError: boolean;
-    message?: string ;
-}
-
 export interface FileUploadResponse {
     id: number;
     name: string;
@@ -32,7 +27,10 @@ export interface FileUploadResponse {
     path?: string;
     type?: BlockTypes;
     extension?: string;
-    error?: IError;
+    error?: {
+        isError: boolean;
+        message?: string ;
+    };
 }
 
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
@@ -308,12 +306,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
                 if (!(new RegExp('^2[0-9][0-9]')).test(xhr.status.toString())) {
-
-                    const error: IError = { isError: true };
-                    if (xhr.response && JSON.parse(xhr.response)?.error?.message) {
-                        error.message = JSON.parse(xhr.response)?.error?.message;
-                    }
-                    reject({...xhr.response, error});
+                    reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
                 }
 
                 removeAllListeners();
