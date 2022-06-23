@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
+import css from "./DynamicFilters.scss";
+import { PickerToggler, Button, FlexRow, ControlGroup } from "@epam/promo";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
-import { PickerToggler } from "@epam/promo";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
@@ -8,11 +9,14 @@ import { Dropdown, DropdownBodyProps, RangeDatePickerValue } from "@epam/uui-com
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
+    removeFilter?: (columnKey: string) => void;
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const forceUpdate = useForceUpdate();
+
+    // console.log('FiltersToolbarItemImpl', props);
 
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
@@ -62,10 +66,46 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         }
     };
 
+    const renderConditions = () => {
+        return (
+            <ControlGroup>
+                <Button
+                    caption="is"
+                    onClick={ () => null }/>
+                <Button
+                    caption="is not"
+                    fill={ "white" }
+                    onClick={ () => null }/>
+            </ControlGroup>
+        );
+    };
+
+    const removeOnclickHandler = () => {
+        console.log('removeOnclickHandler', props.columnKey);
+        props.removeFilter(props.columnKey);
+    };
+
+    const renderHeader = () => {
+        return (
+            <FlexRow cx={ css.header } background={ "white" }>
+                <div>
+                    { props.title }
+                    { renderConditions() }
+                </div>
+                <Button
+                    caption="REMOVE"
+                    fill="light"
+                    onClick={ removeOnclickHandler }
+                    isDisabled={ props?.isAlwaysVisible }
+                />
+            </FlexRow>
+        );
+    };
+
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         return (
             <div>
-                header
+                { renderHeader() }
                 { getBody(dropdownProps) }
             </div>
         );
