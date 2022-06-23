@@ -111,17 +111,31 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         );
     };
 
-    const getSelection = () => {
+    const getTogglerValue = () => {
         switch (props.type) {
             case "multiPicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
                 return props.value?.[props.field]?.map((i: any) => {
-                    return view.getById(i, null);
-                });
+                    const item = view.getById(i, null);
+                    return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+                }).join(', ');
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                return props.value?.[props.field] && [view.getById(props.value?.[props.field], null)];
+                const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
+                if (!item) {
+                    return null;
+                }
+                return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+            }
+            case "datePicker": {
+                return props.value?.[props.field];
+            }
+            case "rangeDatePicker": {
+                if (!props.value?.[props.field]) {
+                    return null;
+                }
+                return `${props.value?.[props.field]?.from || ''} - ${props.value?.[props.field]?.to || ''}`;
             }
         }
     };
@@ -130,16 +144,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         return <PickerToggler
             { ...dropdownProps }
             pickerMode={ 'multi' }
-            value={ null }
+            placeholder={ getTogglerValue() }
             onValueChange={ () => {} }
             searchPosition='none'
-            selection={ getSelection() }
             getName={ (i: any) => {
                 if (props.type === 'multiPicker' || props.type === 'singlePicker') {
                     return props.getName ? props.getName(i) : i.name;
                 }
             } }
-            placeholder={ props.title }
+            prefix={ props.title }
         />;
     };
 
@@ -149,7 +162,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             renderBody={ renderBody }
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
-            onValueChange={ isOpenChange }
+            onValueChange={ (val) =>  { debugger; isOpenChange(val); } }
         />
     );
 };

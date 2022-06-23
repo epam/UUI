@@ -21,6 +21,11 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         return <PickerItem title={ this.getName(item) } size='36' { ...rowProps } />;
     }
 
+    onSelect = (row: DataRowProps<TItem, TId>) => {
+        this.props.onClose();
+        this.handleDataSourceValueChange({ ...this.state.dataSourceState, search: '', selectedId: row.id });
+    }
+
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
             rowProps.onSelect = this.onSelect;
@@ -29,7 +34,6 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
-                //onSelect={ this.onSelect }
                 key={ rowProps.rowKey }
                 borderBottom='none'
                 size='36'

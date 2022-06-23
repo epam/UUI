@@ -14,8 +14,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
     };
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
-        const isFromValueChanged = this.props.value.from != value.selectedDate.from;
-        if (this.state.inFocus === 'from' && isFromValueChanged) {
+        if (this.state.inFocus === 'from') {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
         } else {
             this.setState({ inFocus: 'from' }, () => this.setValue(value));
@@ -27,7 +26,6 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
     }
 
     renderBody() {
-        console.log(this.state.inFocus);
         return (
             <DropdownContainer>
                 <FlexRow>
