@@ -13,6 +13,8 @@ interface FiltersToolbarProps {
     setTableState: (newState: DataTableState) => void;
 }
 
+const getNewTableState = (key: string, {[key]: deletedKey, ...others}) => others;
+
 const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
@@ -23,6 +25,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     }, []);
 
     const onFiltersChange = (newValue: TableFiltersConfig<any>[]) => {
+        console.log('onFiltersChange', newValue);
         const newConfig: FiltersConfig = {};
 
         let order: string | null = null;
@@ -48,6 +51,12 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
         });
     };
 
+    const removeFilter = (filterColumnKey: string) => {
+        console.log('removeFilter', filterColumnKey);
+        const newTableState = {...tableState, filtersConfig: getNewTableState(filterColumnKey, { ...tableState.filtersConfig })};
+        setTableState({ ...newTableState });
+    };
+
     const selectedFilters = useMemo(() => {
         const filtersConfig = tableState.filtersConfig || {};
         return filters.filter(filter => {
@@ -68,19 +77,20 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
         checkbox: {
             isVisible: true,
             isDisabled: item.isAlwaysVisible,
-        }
+        },
     }), []);
 
     return (
         <FlexRow size="36" background="gray5" vPadding="12" padding="6" cx={ css.filters } spacing='6' borderBottom>
             { sortedActiveFilters.map(f => (
-                <FlexCell width='auto'>
+                <FlexCell width='auto' key={ f.field as string }>
                     <FiltersToolbarItem
                         { ...f }
                         value={ tableState.filter }
                         onValueChange={ handleFilterChange }
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.columnKey }
+                        removeFilter={ removeFilter }
                     />
                 </FlexCell>
             )) }

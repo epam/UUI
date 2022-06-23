@@ -1,7 +1,16 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
 .container {
     padding: 6px;
 }
 
 .filters {
     flex-wrap: wrap;
+}
+
+.header {
+    padding: 9px 0 0 12px;
+    font-family: $font-sans;
+    justify-content: space-between;
 }
