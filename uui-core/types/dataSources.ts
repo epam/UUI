@@ -201,19 +201,21 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     getParentId?(item: TItem): TId;
 
     /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
+     * Specifies if rows are selectable, checkable, draggable, clickable, and more.
      * See DataRowOptions for more details.
-     * If your options depends on the item itself, use getRowOptions.
-     * However, specifying both rowOptions and getRowOptions might help to render better loading skeletons
-     * - we use only rowOptions in this case, as we haven't loaded an item yet.
+     * If options depends on the item itself, use getRowOptions.
+     * Specifying both rowOptions and getRowOptions might help to render better loading skeletons: we use only rowOptions in this case, as we haven't loaded an item yet.
+     * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
     rowOptions?: DataRowOptions<TItem, TId>;
 
     /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
+     * For each row, specify if row is selectable, editable, checkable, draggable, clickable, have its own set of columns, and more.
+     * To make rows editable, pass IEditable interface to each row. This works the same way as for other editable components.
      * See DataRowOptions for more details.
      * If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.
+     * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
     getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
