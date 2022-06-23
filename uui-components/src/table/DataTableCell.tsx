@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus, uuiDataTableCell } from '@epam/uui-core';
+import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus, uuiDataTableCell, Lens } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 import { PointerEventHandler, useContext } from "react";
@@ -24,7 +24,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
     } else if (props.getLens) {
-        const cellLens = props.getLens(row.lens);
+        const rowLens = Lens.onEditable(row as IEditable<TItem>);
+        const cellLens = props.getLens(rowLens);
         editorProps = cellLens.toProps();
 
         editorProps.onFocus = () => setState({ ...state, inFocus: true });

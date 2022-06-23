@@ -27,20 +27,21 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected updateRowValuesAndLenses(): void {
-        if (this.props.getRowLens) {
-            this.rows.filter(row => !row.isLoading).forEach(row => {
-                let lens = this.props.getRowLens(row.id);
-                lens = lens.default(row.value);
-
-                row.lens = lens;
-
-                const lensProps = lens.toProps();
-
-                (row as any).changedValue = lensProps.value; // Temp hack to overcome shouldComponentUpdate in DataTableRow
-                row.isInvalid = lensProps.isInvalid;
-                row.validationMessage = lensProps.validationMessage;
-                row.validationProps = lensProps.validationProps;
-            });
+        if (this.props.getRowOptions) {
+            for(let n = 0; n < this.rows.length; n++) {
+                const row = this.rows[n];
+                if (!row.isLoading) {
+                    const rowOptions = this.props.getRowOptions(row.value, n);
+                    row.value = rowOptions.value || row.value;
+                    row.onValueChange = rowOptions.onValueChange;
+                    row.isInvalid = rowOptions.isInvalid;
+                    row.isDisabled = rowOptions.isDisabled;
+                    row.isReadonly = rowOptions.isReadonly;
+                    row.isRequired = rowOptions.isRequired;
+                    row.validationMessage = rowOptions.validationMessage;
+                    row.validationProps = rowOptions.validationProps;
+                }
+            }
         }
     }
 

@@ -48,7 +48,9 @@ export const ProductsTableDemo: React.FC = (props) => {
     }, []);
 
     const dataView = dataSource.useView(tableState, setTableState, {
-        getRowLens: (id) => lens.prop('items').prop(id),
+        getRowOptions: product => ({
+            ...lens.prop('items').prop(product.ProductID).default(product).toProps()
+        })
     });
 
     return <Panel style={ { width: '100%' } }>
