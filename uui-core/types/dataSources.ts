@@ -1,5 +1,5 @@
 import { SortingOption } from "./dataQuery";
-import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable } from "./props";
+import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 import { ILens } from "@epam/uui-core";
@@ -67,7 +67,7 @@ export interface DataRowPathItem<TId, TItem> {
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
  */
-export interface DataRowOptions<TItem, TId> extends IDisableable {
+export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEditable<TItem>> {
     /** If row needs a checkbox, this field should be specified and it props can be configured here */
     checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
 
@@ -96,7 +96,7 @@ export interface DataRowOptions<TItem, TId> extends IDisableable {
  *
  * DataSources primary job is to convert various data stores into arrays of DataRowProps.
  */
-export type DataRowProps<TItem, TId> = FlexRowProps & ICanBeInvalid & DataRowOptions<TItem, TId> & {
+export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId> & {
     /** ID of the TItem rows displays */
     id: TId;
 
@@ -179,9 +179,6 @@ export type DataRowProps<TItem, TId> = FlexRowProps & ICanBeInvalid & DataRowOpt
     /** Handles row focusing.
      */
     onFocus?(focusedIndex: number): void;
-
-    /** Lens for editable rows */
-    lens?: ILens<TItem>;
 };
 
 export interface BaseListViewProps<TItem, TId, TFilter> {
@@ -236,8 +233,6 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
-
-    getRowLens?: (id: TId) => ILens<TItem>;
 }
 
 export type IDataSourceView<TItem, TId, TFilter> = {
