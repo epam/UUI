@@ -57,13 +57,13 @@ export const ProjectDemo = () => {
     }, []);
 
     const dataView = dataSource.useView(tableState, setTableState, {
-        getRowLens: (id) => lens.prop('items').prop(id),
-        getRowOptions: (row) => ({
+        getRowOptions: (task) => ({
+            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             //checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
-                srcData: row.id,
-                dstData: row.id,
+                srcData: task.id,
+                dstData: task.id,
                 canAcceptDrop: handleCanAcceptDrop,
                 onDrop: handleDrop,
             },
