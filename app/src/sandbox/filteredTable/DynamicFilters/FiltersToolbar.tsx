@@ -25,7 +25,6 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     }, []);
 
     const onFiltersChange = (newValue: TableFiltersConfig<any>[]) => {
-        console.log('onFiltersChange', newValue);
         const newConfig: FiltersConfig = {};
 
         let order: string | null = null;
@@ -52,7 +51,6 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     };
 
     const removeFilter = (filterColumnKey: string) => {
-        console.log('removeFilter', filterColumnKey);
         const newTableState = {...tableState, filtersConfig: getNewTableState(filterColumnKey, { ...tableState.filtersConfig })};
         setTableState({ ...newTableState });
     };

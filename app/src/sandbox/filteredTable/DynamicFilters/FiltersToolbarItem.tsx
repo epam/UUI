@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from "react";
 import css from "./DynamicFilters.scss";
-import { PickerToggler, Button, FlexRow, ControlGroup } from "@epam/promo";
+import { PickerToggler, Button, ControlGroup, FlexRow } from "@epam/promo";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
-import { Dropdown, DropdownBodyProps, RangeDatePickerValue } from "@epam/uui-components";
+import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
+import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -15,8 +16,6 @@ type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const forceUpdate = useForceUpdate();
-
-    // console.log('FiltersToolbarItemImpl', props);
 
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
@@ -81,7 +80,6 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const removeOnclickHandler = () => {
-        console.log('removeOnclickHandler', props.columnKey);
         props.removeFilter(props.columnKey);
     };
 
@@ -89,7 +87,6 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         return (
             <FlexRow cx={ css.header } background={ "white" }>
                 <div>
-                    { props.title }
                     { renderConditions() }
                 </div>
                 <Button
@@ -141,19 +138,29 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const renderTarget = (dropdownProps: IDropdownToggler) => {
-        return <PickerToggler
-            { ...dropdownProps }
-            pickerMode={ 'multi' }
-            placeholder={ getTogglerValue() }
-            onValueChange={ () => {} }
-            searchPosition='none'
-            getName={ (i: any) => {
-                if (props.type === 'multiPicker' || props.type === 'singlePicker') {
-                    return props.getName ? props.getName(i) : i.name;
-                }
-            } }
-            prefix={ props.title }
-        />;
+        // console.log('getTogglerValue', getTogglerValue());
+        return (<>
+            {/*<PickerToggler*/}
+            {/*    { ...dropdownProps }*/}
+            {/*    pickerMode={ 'multi' }*/}
+            {/*    placeholder={ getTogglerValue() }*/}
+            {/*    onValueChange={ () => {} }*/}
+            {/*    searchPosition="none"*/}
+            {/*    getName={ (i: any) => {*/}
+            {/*        if (props.type === 'multiPicker' || props.type === 'singlePicker') {*/}
+            {/*            return props.getName ? props.getName(i) : i.name;*/}
+            {/*        }*/}
+            {/*    } }*/}
+            {/*    prefix={ props.title }*/}
+            {/*/>*/}
+
+            <FilterToolbarItemToggler
+                { ...dropdownProps }
+                value={ getTogglerValue() }
+                title={ props.title }
+            />
+        </>);
+
     };
 
     return (
@@ -162,7 +169,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             renderBody={ renderBody }
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
-            onValueChange={ (val) =>  { debugger; isOpenChange(val); } }
+            onValueChange={ (val) =>  { isOpenChange(val); } }
         />
     );
 };
