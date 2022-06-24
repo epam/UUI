@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceListProps, IDropdownToggler, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, PickerToggler, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper } from '@epam/promo';
-//import css from './PickerInput.scss';
+import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper } from '@epam/promo';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
@@ -60,7 +59,6 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                 shadow
                 style={ { width: minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
-                // cx={ [css.panel, uuiMarkers.lockFocus] }
                 cx={ [uuiMarkers.lockFocus] }
             >
                 <MobileDropdownWrapper

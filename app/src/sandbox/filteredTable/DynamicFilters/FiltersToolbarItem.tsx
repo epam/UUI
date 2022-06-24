@@ -169,7 +169,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             renderBody={ renderBody }
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
-            onValueChange={ (val) =>  { isOpenChange(val); } }
+            onValueChange={ isOpenChange }
         />
     );
 };
