@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import css from "./DynamicFilters.scss";
-import { PickerToggler, Button, ControlGroup, FlexRow } from "@epam/promo";
+import { Button, ControlGroup, FlexRow } from "@epam/promo";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
@@ -138,29 +138,13 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const renderTarget = (dropdownProps: IDropdownToggler) => {
-        // console.log('getTogglerValue', getTogglerValue());
-        return (<>
-            {/*<PickerToggler*/}
-            {/*    { ...dropdownProps }*/}
-            {/*    pickerMode={ 'multi' }*/}
-            {/*    placeholder={ getTogglerValue() }*/}
-            {/*    onValueChange={ () => {} }*/}
-            {/*    searchPosition="none"*/}
-            {/*    getName={ (i: any) => {*/}
-            {/*        if (props.type === 'multiPicker' || props.type === 'singlePicker') {*/}
-            {/*            return props.getName ? props.getName(i) : i.name;*/}
-            {/*        }*/}
-            {/*    } }*/}
-            {/*    prefix={ props.title }*/}
-            {/*/>*/}
-
+        return (
             <FilterToolbarItemToggler
                 { ...dropdownProps }
                 value={ getTogglerValue() }
                 title={ props.title }
             />
-        </>);
-
+        );
     };
 
     return (
@@ -170,6 +154,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
+            isDisabled={ false }
         />
     );
 };

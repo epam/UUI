@@ -50,11 +50,14 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                 readOnly={ true }
                 value={ `${ props.title }: ${ props.value ?? '' }` }
             />
-            <IconContainer
-                icon={ systemIcons[props.size || defaultSize].foldingArrow }
-                flipY={ props.isOpen }
-                cx='uui-icon-dropdown'
-            />
+            {
+                !props.isDisabled &&
+                <IconContainer
+                    icon={ systemIcons[props.size || defaultSize].foldingArrow }
+                    flipY={ props.isOpen }
+                    cx='uui-icon-dropdown'
+                />
+            }
         </div>
     );
 });
