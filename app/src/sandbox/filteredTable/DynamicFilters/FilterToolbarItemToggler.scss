@@ -45,6 +45,10 @@
             background: none;
             cursor: pointer;
 
+            &:disabled {
+                color: $gray40;
+            }
+
             &::-ms-clear {
                 display: none;
             }
@@ -87,6 +91,15 @@
         :global(.uui-icon-dropdown) {
             align-self: center;
             fill: $gray60;
+        }
+
+        &:global(.uui-disabled) {
+            background-color: #fafafc;
+            color: #acafbf;
+            fill: #acafbf;
+            border-color: #e1e3eb;
+            cursor: default;
+            pointer-events: none;
         }
     }
 }

@@ -72,6 +72,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     toggleDropdownOpening?: (value: boolean) => void;
     isInteractedOutside?: (event: Event) => boolean;
     ref?: React.Ref<any>;
+    isDisabled?: boolean;
 }
 
 /**

@@ -51,11 +51,8 @@ const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
         return false;
     }
 
-    if (closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0)) {
-        return false;
-    }
-    return true;
-}
+    return !(closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0));
+};
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;
@@ -103,6 +100,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     handleOpenedChange = (opened: boolean) => {
+        if (this.props.isDisabled) {
+            //TODO: maybe needs to close dropdown before?
+            return;
+        }
+
         if (opened && this.props.closeOnMouseLeave === 'boundary') {
             window.addEventListener('mousemove', this.handleMouseMove);
         } else if (!opened && this.props.closeOnMouseLeave === 'boundary') {
@@ -185,7 +187,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
-        const { openOnClick, openOnHover } = this.props;
+        const { openOnClick, openOnHover, isDisabled } = this.props;
         const handleTargetClick =  (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
         const innerRef = (node: HTMLElement | null) => {
             if (!node) return;
@@ -200,6 +202,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
             isInteractedOutside: (e) => isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]),
+            isDisabled,
         });
     }
 
