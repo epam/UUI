@@ -1,91 +1,94 @@
 import React, { ReactNode, Component } from "react";
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps } from '@epam/uui-core';
+import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable } from '@epam/uui-core';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
 } as const;
 
-export class DataTableRow<TItem, TId> extends Component<DataTableRowProps<TItem, TId>> {
-    shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
-        const isDeepEqual = isEqual(this.props, nextProps);
+function compareProps(props: any, nextProps: any) {
+    const isDeepEqual = isEqual(props, nextProps);
 
-        // Debug code to find props differences. Please don't remove, and keep commented out
-        // //
-        // const shallowDiffKeys = [];
-        // const compareDeep = (left: any, right: any, prefix = "") => {
-        //     if (prefix.length > 1000) {
-        //         return; // cyclic references?
-        //     } else if (left && right) {
-        //         const keys = Object.keys({ ...left, ...right });
-        //         keys.forEach(key => {
-        //             if (left[key] !== right[key]) {
-        //                 shallowDiffKeys.push({ path: prefix + key, left: left[key], right: right[key] });
-        //                 compareDeep(left[key], right[key], prefix + key + '.');
-        //             }
-        //         });
-        //     } else {
-        //         shallowDiffKeys.push({ path: prefix, left: left, right: right });
-        //     }
-        // }
-        // compareDeep(this.props, nextProps);
+    // Debug code to find props differences. Please don't remove, and keep commented out
+    // //
+    // const shallowDiffKeys = [];
+    // const compareDeep = (left: any, right: any, prefix = "") => {
+    //     if (prefix.length > 1000) {
+    //         return; // cyclic references?
+    //     } else if (left && right) {
+    //         const keys = Object.keys({ ...left, ...right });
+    //         keys.forEach(key => {
+    //             if (left[key] !== right[key]) {
+    //                 shallowDiffKeys.push({ path: prefix + key, left: left[key], right: right[key] });
+    //                 compareDeep(left[key], right[key], prefix + key + '.');
+    //             }
+    //         });
+    //     } else {
+    //         shallowDiffKeys.push({ path: prefix, left: left, right: right });
+    //     }
+    // }
+    // compareDeep(this.props, nextProps);
 
-        return !isDeepEqual;
-    }
+    return isDeepEqual;
+}
 
-    renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
-        const renderCellCallback = column.renderCell || this.props.renderCell;
+export const DataTableRow = React.memo(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>) {
+    const rowLens = Lens.onEditable(props as IEditable<TItem>);
+
+    const renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+        const renderCellCallback = column.renderCell || props.renderCell;
         const isFirstColumn = idx === 0;
-        const isLastColumn = !this.props.columns || idx === this.props.columns.length - 1;
+        const isLastColumn = !props.columns || idx === props.columns.length - 1;
         return renderCellCallback?.({
             key: column.key,
             column,
-            rowProps: this.props,
+            rowProps: props,
             index: idx,
             role: 'cell',
             isFirstColumn,
-            isLastColumn
+            isLastColumn,
+            rowLens,
         });
     }
 
-    renderRow(params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) {
+    const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
             <DataTableRowContainer
-                columns={ this.props.columns }
+                columns={ props.columns }
                 ref={ params.ref }
-                renderCell={ this.renderCell }
-                onClick={ clickHandler && (() => clickHandler(this.props)) }
+                renderCell={ renderCell }
+                onClick={ clickHandler && (() => clickHandler(props)) }
                 rawProps={ {
                     ...params.eventHandlers,
                     role: 'row',
-                    'aria-expanded': this.props.isFolded == undefined ? undefined : !this.props.isFolded,
-                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
+                    'aria-expanded': props.isFolded == undefined ? undefined : !props.isFolded,
+                    ...(props.isSelectable && { 'aria-selected': props.isSelected }),
                 } }
                 cx={ [
                     params.classNames,
-                    this.props.isSelected && uuiMod.selected,
+                    props.isSelected && uuiMod.selected,
                     params.isDraggable && uuiMarkers.draggable,
                     uuiDataTableRow.uuiTableRow,
-                    this.props.cx,
-                    this.props.isFocused && uuiMod.focus,
+                    props.cx,
+                    props.isFocused && uuiMod.focus,
                 ] }
                 overlays={ overlays }
-                link={ this.props.link }
+                link={ props.link }
             />
         );
-    }
+    };
 
-    render() {
-        const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck;
+    const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
-        if (this.props.dnd && (this.props.dnd.srcData || this.props.dnd.canAcceptDrop)) {
-            return (
-                <DndActor
-                    { ...this.props.dnd }
-                    render={ params => this.renderRow(params, clickHandler, this.props.renderDropMarkers?.(params)) }
-                />
-            );
-        } else return this.renderRow({}, clickHandler);
+    if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
+        return (
+            <DndActor
+                { ...props.dnd }
+                render={ params => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
+            />
+        );
+    } else {
+        return renderRow({}, clickHandler);
     }
-}
+}, compareProps);

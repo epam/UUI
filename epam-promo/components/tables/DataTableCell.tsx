@@ -57,7 +57,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     props.renderTooltip = (tooltipProps) => <Tooltip color='red' { ...tooltipProps } />;
 
-    const isEditable = !!props.getLens;
+    const isEditable = !!props.onValueChange;
 
     props.cx = [
         props.cx,
