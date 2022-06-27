@@ -22,7 +22,7 @@ const contributors = [
     { name: 'Aleksandra Davydova', position: 'Designer', src: 'https://static.cdn.epam.com/avatar/a44025adcb733701630fb7d32a5007bc.jpg', link: 'https://telescope.epam.com/who/Aleksandra_Davydova' },
     { name: 'Vitali Paliakou', position: 'Designer', src: 'https://static.cdn.epam.com/avatar/1e9763236ec7507df1f6ee218b0620fd.jpg', link: 'https://telescope.epam.com/who/Vitali_Paliakou' },
     { name: 'Kanstantsin Babichau', position: 'Software Engineer', src: 'https://static.cdn.epam.com/avatar/e0c6801068d0771d698ee33e4ab645a3.jpg', link: 'https://telescope.epam.com/who/Kanstantsin_Babichau' },
-    { name: 'Nadzeya Nikolayonak', position: 'Software Engineer', src: 'https://static.cdn.epam.com/avatar/6eb026809e88444eb30dd4e6970d2bc7.jpg', link: 'https://telescope.epam.com/who/Nadzeya_Nikolayonak' },
+    { name: 'Nadzeya Nikalayonak', position: 'Software Engineer', src: 'https://static.cdn.epam.com/avatar/6eb026809e88444eb30dd4e6970d2bc7.jpg', link: 'https://telescope.epam.com/who/Nadzeya_Nikalayonak' },
 ];
 
 export class TeamDoc extends React.Component {
