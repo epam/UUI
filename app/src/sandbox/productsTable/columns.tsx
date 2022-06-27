@@ -1,6 +1,6 @@
 import { Text, Checkbox, DatePicker, NumericInput, TextInput, DataTableCell, PickerInput } from "@epam/promo";
 import React from "react";
-import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
+import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditable, ILens, Lens } from "@epam/uui-core";
 import { Product } from "@epam/uui-docs";
 
 const colors = [
@@ -20,8 +20,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         fix: 'left',
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('Name') }
-            renderEditor={ ({ editorProps }) => <TextInput mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('Name').toProps() }
+            renderEditor={ props => <TextInput { ...props } /> }
             { ...props }
         />,
     },
@@ -31,8 +31,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 85,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('Class') }
-            renderEditor={ ({ editorProps }) => <TextInput mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('Class').toProps() }
+            renderEditor={ props => <TextInput { ...props } /> }
             { ...props }
         />,
     },
@@ -42,8 +42,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 120,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('Color') }
-            renderEditor={ ({ editorProps }) => <PickerInput valueType="id" selectionMode="single" dataSource={ colorsDataSource } mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('Color').toProps() }
+            renderEditor={ props => <PickerInput valueType="id" selectionMode="single" dataSource={ colorsDataSource } { ...props } /> }
             { ...props }
         />,
     },
@@ -54,9 +54,9 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 200,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('DaysToManufacture') }
-            background={ props.rowProps.value?.DaysToManufacture > 0 ? 'green' : undefined }
-            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } /> }
+            { ...props.rowLens.prop('DaysToManufacture').toProps() }
+            background={ props.value?.DaysToManufacture > 0 ? 'green' : undefined }
+            renderEditor={ props => <NumericInput { ...props } min={ 0 } /> }
             { ...props }
         />,
     },
@@ -66,8 +66,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 200,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('DiscontinuedDate') }
-            renderEditor={ ({ editorProps }) => <DatePicker format='MMM D, YYYY' mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('DiscontinuedDate').toProps() }
+            renderEditor={ props => <DatePicker format='MMM D, YYYY' { ...props } /> }
             { ...props }
         />,
     },
@@ -78,8 +78,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         isSortable: true,
         textAlign: 'center',
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('FinishedGoodsFlag') }
-            renderEditor={ ({ editorProps }) => <Checkbox { ...editorProps } /> }
+            { ...props.rowLens.prop('FinishedGoodsFlag').toProps() }
+            renderEditor={ props => <Checkbox { ...props } /> }
             { ...props }
         />,
     },
@@ -89,8 +89,8 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 100,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('ListPrice') }
-            renderEditor={ ({ editorProps }) => <NumericInput mode='cell' { ...editorProps } min={ 0 } /> }
+            { ...props.rowLens.prop('ListPrice').toProps() }
+            renderEditor={ props => <NumericInput { ...props } min={ 0 } /> }
             { ...props }
         />,
     },
@@ -101,20 +101,20 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         isSortable: true,
         textAlign: 'center',
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('MakeFlag') }
-            renderEditor={ ({ editorProps }) => <Checkbox { ...editorProps } /> }
+            { ...props.rowLens.prop('MakeFlag').toProps() }
+            renderEditor={ props => <Checkbox { ...props } /> }
             { ...props }
         />,
     },
     {
         key: 'ModifiedDate',
         caption: 'Modified Date',
-        render: p => <DatePicker mode='cell' value={ p.ModifiedDate } onValueChange={ () => {} } format='MMM D, YYYY' />,
+        render: p => <DatePicker value={ p.ModifiedDate } onValueChange={ () => {} } format='MMM D, YYYY' />,
         width: 200,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('ModifiedDate') }
-            renderEditor={ ({ editorProps }) => <DatePicker format='MMM D, YYYY' mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('ModifiedDate').toProps() }
+            renderEditor={ props => <DatePicker format='MMM D, YYYY' { ...props } /> }
             { ...props }
         />,
     },

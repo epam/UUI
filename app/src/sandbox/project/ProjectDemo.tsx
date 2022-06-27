@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback } from 'react';
-import { AcceptDropParams, DataQueryFilter, DropParams, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
+import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -48,7 +48,8 @@ export const ProjectDemo = () => {
         onValueChange({ ...value, items: { ...value.items, [newTask.id]: newTask }});
     }
 
-    const { tableState, setTableState } = useTableState<any>({ columns });
+    //const { tableState, setTableState } = useTableState<any>({ columns });
+    const [ tableState, setTableState] = React.useState<DataTableState>({});
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),

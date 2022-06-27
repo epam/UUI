@@ -115,7 +115,7 @@ export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> ex
 
         this.props = props;
 
-        this.updateRowValuesAndLenses();
+        this.updateRowOptions();
     }
 
     private updateRowsAndLoadMissing(): void {

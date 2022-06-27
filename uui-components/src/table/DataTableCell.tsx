@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTableCellProps, RenderCellProps, uuiMod, IEditable, ICanFocus, uuiDataTableCell, Lens } from '@epam/uui-core';
+import { DataTableCellProps, RenderEditorProps, uuiMod, IEditable, ICanFocus, uuiDataTableCell, Lens } from '@epam/uui-core';
 import * as css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 import { PointerEventHandler, useContext } from "react";
@@ -17,25 +17,28 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
     let content: React.ReactNode;
 
-    let renderCellProps: RenderCellProps<TItem, TId, any> = props.rowProps;
     let editorProps: IEditable<any> & ICanFocus<HTMLElement>;
     let outline: React.ReactNode = null;
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
-    } else if (props.getLens) {
-        const rowLens = Lens.onEditable(row as IEditable<TItem>);
-        const cellLens = props.getLens(rowLens);
-        editorProps = cellLens.toProps();
+    } else if (props.onValueChange) {
 
-        editorProps.onFocus = () => setState({ ...state, inFocus: true });
-        editorProps.onBlur = () => setState({ ...state, inFocus: false });
-
-        renderCellProps = {
-            ...renderCellProps,
-            cellLens,
-            cellValue: editorProps.value,
-            editorProps,
+        // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
+        // We don't use any helpers and/or deconstruction syntax, as this is performance-sensitive part of code
+        const editorProps: RenderEditorProps<TItem, TId, any> = {
+            value: props.value,
+            onValueChange: props.onValueChange,
+            isDisabled: props.isDisabled,
+            isInvalid: props.isInvalid,
+            isReadonly: props.isReadonly,
+            isRequired: props.isRequired,
+            validationMessage: props.validationMessage,
+            validationProps: props.validationProps,
+            onFocus: () => setState({ ...state, inFocus: true }),
+            onBlur: () => setState({ ...state, inFocus: false }),
+            rowProps: props.rowProps,
+            mode: 'cell',
         };
 
         const handlePointerEnter: PointerEventHandler =  props.acceptCopyDirection ? () => {
@@ -47,7 +50,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         } : null;
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
-            { props.renderEditor(renderCellProps) }
+            { props.renderEditor(editorProps) }
             <DataTableCellOverlay
                 { ...editorProps }
                 renderTooltip={ props.renderTooltip }
@@ -59,7 +62,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             />
         </div>;
     } else {
-        content = props.column.render(props.rowProps.value, renderCellProps);
+        content = props.column.render(props.rowProps.value, props.rowProps);
     }
 
     return (
