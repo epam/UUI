@@ -87,7 +87,8 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         return (
             <FlexRow cx={ css.header } background={ "white" }>
                 <div>
-                    { renderConditions() }
+                    { /*{ renderConditions() }*/ }
+                    <span className={ css.headerTitle }>{ props.title }</span>
                 </div>
                 <Button
                     caption="REMOVE"
@@ -111,28 +112,36 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const getTogglerValue = () => {
         switch (props.type) {
             case "multiPicker": {
+                const prefix = "is";
                 const view = props.dataSource.getView({}, forceUpdate);
-                return props.value?.[props.field]?.map((i: any) => {
+                const selected = props.value?.[props.field]?.map((i: any) => {
                     const item = view.getById(i, null);
                     return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
                 }).join(', ');
+                return { prefix, selected };
             }
             case "singlePicker": {
+                const prefix = "is";
                 const view = props.dataSource.getView({}, forceUpdate);
                 const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
                 if (!item) {
                     return null;
                 }
-                return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+                const selected = item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+                return { prefix, selected };
             }
             case "datePicker": {
-                return props.value?.[props.field];
+                const prefix = "on";
+                const selected = props.value?.[props.field];
+                return { prefix, selected };
             }
             case "rangeDatePicker": {
                 if (!props.value?.[props.field]) {
                     return null;
                 }
-                return `${props.value?.[props.field]?.from || ''} - ${props.value?.[props.field]?.to || ''}`;
+                const prefix = "on";
+                const selected = `${props.value?.[props.field]?.from || ''} - ${props.value?.[props.field]?.to || ''}`;
+                return { prefix, selected };
             }
         }
     };
@@ -143,6 +152,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 { ...dropdownProps }
                 value={ getTogglerValue() }
                 title={ props.title }
+                // width={ '250' }
             />
         );
     };

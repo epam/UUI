@@ -37,13 +37,26 @@
             font-family: $font-sans;
             color: $gray80;
             padding: 6px 5px;
-            margin-bottom: 2px;
+            margin: 0 0 1px 0;
             border: 0;
             flex: 1 1 auto;
             min-width: 0;
             outline: none;
             background: none;
             cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 400;
+            line-height: 18px;
+
+            .selected-title {
+                color: $gray60;
+            }
+
+            .selected {
+                color: $gray80;
+            }
 
             &:disabled {
                 color: $gray40;
@@ -61,30 +74,40 @@
         &:global(.size-24) {
             > * {
                 height: 12px;
+                font-size: 14px;
+                line-height: 18px;
             }
         }
 
         &:global(.size-30) {
             > * {
                 height: 15px;
+                font-size: 14px;
+                line-height: 18px;
             }
         }
 
         &:global(.size-36) {
             > * {
                 height: 17px;
+                font-size: 14px;
+                line-height: 18px;
             }
         }
 
         &:global(.size-42) {
             > * {
                 height: 21px;
+                font-size: 14px;
+                line-height: 18px;
             }
         }
 
         &:global(.size-48) {
             > * {
                 height: 23px;
+                font-size: 14px;
+                line-height: 18px;
             }
         }
 
@@ -95,11 +118,21 @@
 
         &:global(.uui-disabled) {
             background-color: #fafafc;
-            color: #acafbf;
             fill: #acafbf;
             border-color: #e1e3eb;
             cursor: default;
             pointer-events: none;
+
+            :global(.uui-input) {
+                cursor: default;
+                pointer-events: none;
+                text-overflow: clip;
+                white-space: break-spaces;
+
+                .selected, .selected-title {
+                    color: #acafbf;
+                }
+            }
         }
     }
 }
