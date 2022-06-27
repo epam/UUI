@@ -2,7 +2,6 @@ import { Text, Checkbox, DatePicker, NumericInput, TextInput, DataTableCell, Pic
 import React from "react";
 import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditable, ILens, Lens } from "@epam/uui-core";
 import { Product } from "@epam/uui-docs";
-import { LensBuilder } from "uui-core/data/lenses/LensBuilder";
 
 const colors = [
     { id: 'RED', name: "Red" },
@@ -12,10 +11,6 @@ const colors = [
 ];
 
 const colorsDataSource = new ArrayDataSource({ items: colors });
-
-function lens<TBig, TSmall>(props: Partial<IEditable<TBig>>, transform: (lens: ILens<TBig>) => ILens<TSmall>): IEditable<TSmall> {
-    return transform(Lens.onEditable(props as any)).toProps();
-}
 
 export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Product>>[] = [
     {
