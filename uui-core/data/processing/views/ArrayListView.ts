@@ -22,7 +22,8 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
     ) {
         super(editable, props);
         this.props = props;
-        this.update(editable.value, props);
+        this.updateNodes();
+        this.updateRowValuesAndLenses();
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -40,7 +41,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
                 this.updateFocusedItem();
             }
         }
-        this.updateRowValuesAndLenses();
+        this.updateRowOptions();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {

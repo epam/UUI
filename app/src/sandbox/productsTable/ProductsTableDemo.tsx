@@ -40,7 +40,7 @@ export const ProductsTableDemo: React.FC = (props) => {
         getMetadata: () => metadata,
     });
 
-    const { tableState, setTableState } = useTableState<any>({ columns: productColumns });
+    const [ tableState, setTableState ] = React.useState({});
 
     const dataSource = useLazyDataSource<Product, number, DataQueryFilter<Product>>({
         api: svc.api.demo.products,
