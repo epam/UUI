@@ -201,7 +201,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
      *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
      */
-    getParentId?(item: TItem): TId;
+    getParentId?(item: TItem): TId | undefined;
 
     /**
      * Specifies if rows are selectable, checkable, draggable, clickable, and more.
