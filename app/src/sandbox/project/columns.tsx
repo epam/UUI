@@ -14,8 +14,8 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         fix: 'left',
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('name') }
-            renderEditor={ ({ editorProps }) => <TextInput mode='cell' { ...editorProps } /> }
+            { ...props.rowLens.prop('name').toProps() }
+            renderEditor={ props => <TextInput { ...props } /> }
             { ...props }
         />,
     },
@@ -27,29 +27,29 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 120,
         isSortable: true,
         renderCell: (props) => <DataTableCell
+            { ...props.rowLens.prop('estimate').toProps() }
             acceptCopyDirection="vertical"
             canCopyTo={ ({ rowIndex }) => true } // Just Example
-            getLens={ l => l.prop('estimate') }
             background={ 'blue' }
-            renderEditor={ ({ editorProps }) => <NumericInput
-                mode='cell'
-                { ...editorProps }
+            renderEditor={ props => <NumericInput
+                { ...props }
                 formatOptions={ { maximumFractionDigits: 2, minimumFractionDigits: 2 } }
             /> }
             { ...props }
+
         />,
     },
     {
         key: 'resource',
-        caption: 'Resource',
-        width: 200,
+        caption: 'Resources',
+        width: 300,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-        getLens={ l => l.prop('resource') }
-        renderEditor={ ({ editorProps }) => (
-            <PickerInput mode='cell' valueType="id" selectionMode="multi" dataSource={ resourceDataSource } { ...editorProps } />
-        ) }
-        { ...props }
+            { ...props.rowLens.prop('resource').toProps() }
+            renderEditor={ props => (
+                <PickerInput valueType="id" selectionMode="multi" dataSource={ resourceDataSource } { ...props } />
+            ) }
+            { ...props }
         />,
     },
     {
@@ -58,9 +58,9 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 150,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('startDate') }
-            renderEditor={ ({ editorProps }) => (
-                <DatePicker mode='cell' format='MMM D, YYYY' { ...editorProps } />
+            { ...props.rowLens.prop('startDate').toProps() }
+            renderEditor={ props => (
+                <DatePicker format='MMM D, YYYY' { ...props } />
             ) }
             { ...props }
         />,
@@ -71,9 +71,9 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 100,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('isDone') }
-            renderEditor={ ({ editorProps }) => (
-                <Checkbox { ...editorProps } />
+            { ...props.rowLens.prop('isDone').toProps() }
+            renderEditor={ props => (
+                <Checkbox { ...props } />
             ) }
             { ...props }
         />,
@@ -83,10 +83,10 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         caption: '%, Complete',
         width: 130,
         renderCell: (props) => <DataTableCell
+            { ...props.rowLens.prop('complete').toProps() }
             acceptCopyDirection="vertical"
-            getLens={ l => l.prop('complete') }
-            renderEditor={ ({ editorProps }) => (
-                <NumericInput mode={ 'cell' } max={ 100 } { ...editorProps } formatOptions={ { maximumFractionDigits: 0 } }/>
+            renderEditor={ props => (
+                <NumericInput max={ 100 } { ...props } formatOptions={ { maximumFractionDigits: 0 } }/>
             ) }
             { ...props }
         />,
@@ -97,9 +97,9 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 200,
         grow: 1,
         renderCell: (props) => <DataTableCell
-            getLens={ l => l.prop('description') }
-            renderEditor={ ({ editorProps }) => (
-                <TextArea { ...editorProps } autoSize={ true } mode='cell' />
+            { ...props.rowLens.prop('description').toProps() }
+            renderEditor={ props => (
+                <TextArea { ...props } autoSize={ true } />
             ) }
             { ...props }
         />,

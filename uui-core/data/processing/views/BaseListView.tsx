@@ -1,3 +1,4 @@
+import { Lens } from "../../lenses";
 import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
@@ -26,20 +27,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.updateCheckedLookup(this.value && this.value.checked);
     }
 
-    protected updateRowValuesAndLenses(): void {
+    protected updateRowOptions(): void {
         if (this.props.getRowOptions) {
             for(let n = 0; n < this.rows.length; n++) {
                 const row = this.rows[n];
                 if (!row.isLoading) {
-                    const rowOptions = this.props.getRowOptions(row.value, n);
-                    row.value = rowOptions.value || row.value;
-                    row.onValueChange = rowOptions.onValueChange;
-                    row.isInvalid = rowOptions.isInvalid;
-                    row.isDisabled = rowOptions.isDisabled;
-                    row.isReadonly = rowOptions.isReadonly;
-                    row.isRequired = rowOptions.isRequired;
-                    row.validationMessage = rowOptions.validationMessage;
-                    row.validationProps = rowOptions.validationProps;
+                    this.applyRowOptions(row);
                 }
             }
         }
@@ -147,13 +140,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const id = this.props.getId(item);
         const key = this.idToKey(id);
 
-        const value = this.value;
-
-        const rowOptions = this.props.getRowOptions ? this.props.getRowOptions(item, index) : this.props.rowOptions;
-
-        const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
-        const isSelectable = rowOptions && rowOptions.isSelectable;
-
         const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
 
         const rowProps = {
@@ -163,17 +149,29 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             value: item,
             depth: parents.length,
             path,
-            ...rowOptions,
-            isFocused: value.focusedIndex === index,
-            isChecked: !!this.checkedByKey[key],
-            isSelected: value.selectedId === id,
-            isCheckable: isCheckable,
-            onCheck: isCheckable && this.handleOnCheck,
-            onSelect: rowOptions && rowOptions.isSelectable && this.handleOnSelect,
-            onFocus: (isSelectable || isCheckable) && this.handleOnFocus,
         } as DataRowProps<TItem, TId>;
 
+        this.applyRowOptions(rowProps);
+
         return rowProps;
+    }
+
+    protected applyRowOptions(row: DataRowProps<TItem, TId>) {
+        const rowOptions = this.props.getRowOptions ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
+        const isSelectable = rowOptions && rowOptions.isSelectable;
+        if (rowOptions != null) {
+            const rowValue = row.value;
+            Object.assign(row, rowOptions);
+            row.value = rowOptions.value ?? rowValue;
+        }
+        row.isFocused = this.value.focusedIndex === row.index;
+        row.isChecked = !!this.checkedByKey[row.rowKey];
+        row.isSelected = this.value.selectedId === row.id;
+        row.isCheckable = isCheckable;
+        row.onCheck = isCheckable && this.handleOnCheck;
+        row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
+        row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
     }
 
     protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<TItem, TId> {
