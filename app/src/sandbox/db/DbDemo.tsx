@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, useLens, IEditable, LazyDataSource, LazyDataSourceApi, DataQueryFilter } from '@epam/uui';
+import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens } from '@epam/uui';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text } from '@epam/loveship';
@@ -53,7 +53,8 @@ export const DbDemoImpl = () => {
         visibleCount: 30,
         sorting: [{ field: 'name' }],
     }));
-    const editable: IEditable<DataSourceState> = { value, onValueChange };
+
+    const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
     dbRef.jobTitlesLoader.load({});
     dbRef.departmentsLoader.load({});
@@ -67,10 +68,11 @@ export const DbDemoImpl = () => {
         getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
     });
+
     return <div className={ css.container }>
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
             <FlexCell width={ 200 }>
-                <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
+                <SearchInput { ...lens.prop('search').toProps() } size='30' />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
@@ -83,7 +85,7 @@ export const DbDemoImpl = () => {
                 <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
             </FlexCell>
         </FlexRow>
-        <PersonsTable { ...useLens(editable, b => b) } view={ personsDataView }/>
+        <PersonsTable { ...lens.toProps() } view={ personsDataView }/>
     </div>;
 };
 
