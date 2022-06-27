@@ -44,10 +44,14 @@ export class ArrayDataSource<TItem = any, TId extends DataSourceItemId = any, TF
         // TODO
     }
 
-    getView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>): IDataSourceView<TItem, TId, TFilter> {
+    getView(
+        value: DataSourceState<TFilter, TId>,
+        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+    ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
-            //...this.props,
+            ...this.props,
             items: this.tree,
             ...options,
             // This default is added for compatibility reasons. We require getId callback in other APIs
@@ -64,7 +68,11 @@ export class ArrayDataSource<TItem = any, TId extends DataSourceItemId = any, TF
         }
     }
 
-    useView(value: DataSourceState<TFilter, TId>, onValueChange: (val: DataSourceState<TFilter, TId>) => void, options?: ArrayListViewProps<TItem, TId, TFilter>): IDataSourceView<TItem, TId, TFilter> {
+    useView(
+        value: DataSourceState<TFilter, TId>,
+        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        options?: ArrayListViewProps<TItem, TId, TFilter>
+    ): IDataSourceView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 
         return this.getView(value, onValueChange, options);

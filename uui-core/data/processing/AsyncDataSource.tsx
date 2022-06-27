@@ -1,4 +1,4 @@
-import { ArrayDataSource } from "./ArrayDataSource";
+import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
 import { ArrayListViewProps } from './views/ArrayListView';
 import { LoadingListView } from './views/LoadingListView';
 import { DataSourceItemId, DataSourceState, IDataSourceView } from "../../types";
@@ -16,6 +16,14 @@ export class AsyncDataSource<TItem = any, TId extends DataSourceItemId = any, TF
             items: [],
         });
         this.api = props.api;
+    }
+
+    public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
+        const props = { ...newProps };
+         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
+         // so this tweak is required to not reset items on any update
+        props.items = newProps.items || this.props.items;
+        super.setProps(props);
     }
 
     isLoading: boolean = false;

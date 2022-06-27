@@ -22,8 +22,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
     ) {
         super(editable, props);
         this.props = props;
-        this.updateNodes();
-        this.updateRowValuesAndLenses();
+        this.update(editable.value, props);
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -32,7 +31,10 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
         this.props = newProps;
 
         const prevTree = this.tree;
-        this.tree = Tree.create(this.props, this.props.items);
+
+        if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
+            this.tree = Tree.create(this.props, this.props.items);
+        }
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
             this.updateNodes();
@@ -70,8 +72,6 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
     }
 
     private updateNodes() {
-        const folded = this.value.folded || {};
-        const isFoldedByDefault = this.props.isFoldedByDefault || (() => true);
         const applySearch = this.buildSearchFilter(this.value);
         const applyFilter = this.props.getFilter && this.props.getFilter(this.value.filter);
         const sortComparer = this.buildSortingComparer(this.props.sortBy);
@@ -108,13 +108,12 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
                     checkableCount += children.checkableCount;
                 }
 
-                let isFolded = folded[node.key];
-                if (isFolded == null) {
-                    isFolded = isFoldedByDefault(node.item);
-                }
+                let isFolded = this.isFolded(node.item);
+
                 if (applySearch && children.rows.length > 0) {
                     isFolded = false;
                 }
+
                 const isFoldable = children && children.rows.length > 0;
 
                 if ((isPassedSearch && isPassedFilter) || children.rows.length > 0) {

@@ -46,7 +46,12 @@ export class Tree<TItem, TId> {
     }
 
     public getById(id: TId) {
-        return this.byId.get(id).item;
+        const node = this.byId.get(id);
+        if (node) {
+            return node.item;
+        } else {
+            return undefined;
+        }
     }
 
     public getNodeById(id: TId) {
