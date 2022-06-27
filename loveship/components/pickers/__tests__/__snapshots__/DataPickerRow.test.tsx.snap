@@ -7,7 +7,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   role="option"
 >
   <div
-    className="flexCell cell size-36 padding-12 padding-left-12 align-widgets-top"
+    className="cell cell size-36 padding-12 padding-left-12 align-widgets-top"
     style={
       Object {
         "alignSelf": undefined,
@@ -40,7 +40,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
   role="option"
 >
   <div
-    className="flexCell cell size-48 padding-24 padding-left-24 align-widgets-top"
+    className="cell cell size-48 padding-24 padding-left-24 align-widgets-top"
     style={
       Object {
         "alignSelf": undefined,
