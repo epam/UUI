@@ -5,7 +5,7 @@ import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
 import { SearchInput } from '../../inputs';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../../docs';
+import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
@@ -53,6 +53,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                 value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
-    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = PickerInputDoc;
