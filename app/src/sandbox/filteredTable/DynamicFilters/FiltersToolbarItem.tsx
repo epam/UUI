@@ -91,8 +91,9 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     <span className={ css.headerTitle }>{ props.title }</span>
                 </div>
                 <Button
+                    size={ '24' }
                     cx={ css.removeBtn }
-                    caption="REMOVE"
+                    caption="Remove"
                     fill="light"
                     onClick={ removeOnclickHandler }
                     isDisabled={ props?.isAlwaysVisible }
