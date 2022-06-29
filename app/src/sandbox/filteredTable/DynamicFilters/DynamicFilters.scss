@@ -10,7 +10,7 @@
 }
 
 .header {
-    padding: 6px 0 0 12px;
+    padding: 6px 6px 0 24px;
     font-family: $font-sans;
     justify-content: space-between;
 
@@ -19,5 +19,17 @@
         font-size: 12px;
         line-height: 18px;
         color: $gray60;
+    }
+
+    .remove-btn {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+
+        &:hover:not([aria-disabled="true"]) {
+            background-color: transparent;
+            border-color: transparent;
+            color: $blue-darkest;
+        }
     }
 }
