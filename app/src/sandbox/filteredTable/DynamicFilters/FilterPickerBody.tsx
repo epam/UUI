@@ -56,7 +56,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
 
         return (
             <Panel
-                shadow
+                // shadow
                 style={ { width: minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
                 cx={ [uuiMarkers.lockFocus] }
