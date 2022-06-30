@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import css from "./DynamicFilters.scss";
-import { Button, ControlGroup, FlexRow } from "@epam/promo";
+import { Button, ControlGroup, FlexRow, Panel } from "@epam/promo";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
@@ -104,10 +104,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         return (
-            <div>
+            <Panel
+                shadow
+            >
                 { renderHeader() }
                 { getBody(dropdownProps) }
-            </div>
+            </Panel>
         );
     };
 
@@ -154,7 +156,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 { ...dropdownProps }
                 value={ getTogglerValue() }
                 title={ props.title }
-                // width={ '250' }
+                // width={ '270' }
             />
         );
     };
