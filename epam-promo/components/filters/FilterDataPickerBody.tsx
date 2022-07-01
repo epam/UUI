@@ -1,7 +1,7 @@
 import React from 'react';
 import { DatePickerCoreProps } from "@epam/uui-core";
-import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
-import { DropdownContainer, DatePickerBody } from '@epam/promo';
+import { BaseDatePicker } from '@epam/uui-components';
+import { DropdownContainer, DatePickerBody } from '../../index';
 
 export interface DatePickerProps extends DatePickerCoreProps {}
 

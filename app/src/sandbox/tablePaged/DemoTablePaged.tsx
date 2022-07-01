@@ -7,7 +7,6 @@ import { svc } from "../../services";
 import { PersonTableFilter } from "./types";
 import { getFilters, mapFilter } from "./data";
 import { personColumns } from "./columns";
-import { FiltersToolbar } from "../filteredTable/DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);

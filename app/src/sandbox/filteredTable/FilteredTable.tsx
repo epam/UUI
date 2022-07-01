@@ -1,14 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Person } from '@epam/uui-docs';
-import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
-import { DataTable } from '@epam/promo';
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState } from "@epam/uui-core";
+import { DataTable, FiltersToolbar } from '@epam/promo';
 import css from './FilteredTable.scss';
 import type { TApi } from '../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { mapFilter } from "../../demo/table/data";
-import { FiltersToolbar } from "./DynamicFilters";
-
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();

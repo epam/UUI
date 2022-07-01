@@ -1,5 +1,5 @@
-@use '~@epam/promo/assets/styles' as *;
-@use '~@epam/promo/assets/styles/colorvars/inputs/numericInput-colorvars.scss' as *;
+@use '../../../node_modules/@epam/promo/assets/styles/index' as *;
+@use '../../../node_modules/@epam/promo/assets/styles/colorvars/inputs/numericInput-colorvars' as *;
 
 .root {
     input::-webkit-outer-spin-button,

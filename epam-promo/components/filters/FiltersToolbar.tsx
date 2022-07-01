@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import css from "./DynamicFilters.scss";
 import sortBy from "lodash.sortby";
-import { Button, FlexRow, PickerInput, PickerItem, DataPickerRow } from "@epam/promo";
+import { Button, FlexRow, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersToolbarItem } from "./FiltersToolbarItem";
