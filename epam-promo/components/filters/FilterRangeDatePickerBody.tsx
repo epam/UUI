@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BaseRangeDatePickerProps, RangeDatePickerInputType } from "@epam/uui-core";
 import { RangeDatePickerValue, BaseRangeDatePicker, PickerBodyValue } from '@epam/uui-components';
-import { DropdownContainer, FlexRow, RangeDatePickerBody } from '@epam/promo';
+import { DropdownContainer, FlexRow, RangeDatePickerBody } from '../../index';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps {}
 

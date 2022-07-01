@@ -1,12 +1,13 @@
 import React, { useCallback, useState } from "react";
 import css from "./DynamicFilters.scss";
-import { Button, ControlGroup, FlexRow, Panel } from "@epam/promo";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
+import { ControlGroup, FlexRow, Panel } from "../layout";
+import { Button } from "../buttons";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -65,19 +66,19 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         }
     };
 
-    const renderConditions = () => {
-        return (
-            <ControlGroup>
-                <Button
-                    caption="is"
-                    onClick={ () => null }/>
-                <Button
-                    caption="is not"
-                    fill={ "white" }
-                    onClick={ () => null }/>
-            </ControlGroup>
-        );
-    };
+    // const renderConditions = () => {
+    //     return (
+    //         <ControlGroup>
+    //             <Button
+    //                 caption="is"
+    //                 onClick={ () => null }/>
+    //             <Button
+    //                 caption="is not"
+    //                 fill={ "white" }
+    //                 onClick={ () => null }/>
+    //         </ControlGroup>
+    //     );
+    // };
 
     const removeOnclickHandler = () => {
         props.removeFilter(props.columnKey);

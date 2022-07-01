@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceListProps, IDropdownToggler, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper } from '@epam/promo';
+import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper } from '../../index';
 
 const pickerHeight = 300;
 const pickerWidth = 360;

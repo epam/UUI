@@ -3,7 +3,7 @@ import { useRef } from "react";
 import css from './FilterToolbarItemToggler.scss';
 import cx from "classnames";
 import { IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
-import { systemIcons } from "@epam/promo/icons/icons";
+import { systemIcons } from "../../icons/icons";
 import { IconContainer } from "@epam/uui-components";
 
 const defaultSize = "30";
