@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRef } from "react";
 import css from './FilterToolbarItemToggler.scss';
 import cx from "classnames";
 import { IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
@@ -9,7 +8,7 @@ import { IconContainer } from "@epam/uui-components";
 const defaultSize = "30";
 const defaultWidth = "267";
 
-interface FilterToolbarItemTogglerProps {
+export interface FilterToolbarItemTogglerProps {
     value: { prefix: string, selected: string };
     title?: string;
     size?: '24' | '30' | '36' | '42' | '48';
@@ -23,9 +22,6 @@ interface FilterToolbarItemTogglerProps {
 
 export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
 
-    const toggleContainer = useRef();
-    React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
-
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled || props.isReadonly) return;
         e.preventDefault();
@@ -38,17 +34,15 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             className={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
-                props.isReadonly && uuiMod.readonly,
-                props.isDisabled && uuiMod.disabled,
                 ["size-" + (props.size || defaultSize)],
                 props.cx) }
             onClick={ togglerPickerOpened }
-            ref={ toggleContainer }
+            ref={ ref }
             { ...props }
         >
-            <p className={ cx(uuiElement.input) }>
+            <p className={ css.title }>
                 <span className={ css.selectedTitle }>{ `${ props.title } ${ props.value?.prefix } ` }</span>
-                <span className={ css.selected }>{ props.value?.selected ?? '' }</span>
+                <span className={ css.selected }>{ props.value?.selected ? props.value?.selected : '' }</span>
             </p>
             {
                 !props.isDisabled &&

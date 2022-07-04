@@ -1,5 +1,5 @@
 // import React, { useCallback } from "react";
-// import css from "./DynamicFilters.scss";
+// import css from "./FiltersToolbarItem.scss";
 // import { FilterConfig, IEditable } from "@epam/uui-core";
 // import { DatePicker, DataPickerBody, RangeDatePicker } from "@epam/promo";
 // import { RangeDatePickerValue } from "@epam/uui-components";

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import css from "./DynamicFilters.scss";
+import css from "./FiltersToolbarItem.scss";
 import sortBy from "lodash.sortby";
 import { Button, FlexRow, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
