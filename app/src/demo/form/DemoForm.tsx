@@ -50,7 +50,7 @@ const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
                     <DatePicker
                         filter={ (day: Dayjs) => day.valueOf() <= dayjs().subtract(0, 'day').valueOf() }
                         rawProps={ { input: { id: "birthDate" } } }
-                        format='MM/DD/YYYY'
+                        format='MMM D, YYYY'
                         { ...lens.prop('birthdayDate').toProps() } />
                 </LabeledInput>
             </FlexCell>
@@ -406,7 +406,7 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                         </FlexCell>
                         <FlexCell minWidth={ 294 }>
                             <LabeledInput label='Term' { ...visasLens.index(index).prop('term').toProps() } >
-                                <RangeDatePicker format='MM/DD/YYYY' { ...visasLens.index(index).prop('term').toProps() } />
+                                <RangeDatePicker format='MMM D, YYYY' { ...visasLens.index(index).prop('term').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
