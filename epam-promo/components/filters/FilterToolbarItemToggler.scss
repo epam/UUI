@@ -32,7 +32,7 @@
             border-color: $blue;
         }
 
-        :global(.uui-input) {
+        .title {
             -moz-appearance: textfield;
             font-family: $font-sans;
             color: $gray80;
@@ -56,10 +56,6 @@
 
             .selected {
                 color: $gray80;
-            }
-
-            &:disabled {
-                color: $gray40;
             }
 
             &::-ms-clear {
@@ -114,25 +110,6 @@
         :global(.uui-icon-dropdown) {
             align-self: center;
             fill: $gray60;
-        }
-
-        &:global(.uui-disabled) {
-            background-color: #fafafc;
-            fill: #acafbf;
-            border-color: #e1e3eb;
-            cursor: default;
-            pointer-events: none;
-
-            :global(.uui-input) {
-                cursor: default;
-                pointer-events: none;
-                text-overflow: clip;
-                white-space: break-spaces;
-
-                .selected, .selected-title {
-                    color: #acafbf;
-                }
-            }
         }
     }
 }

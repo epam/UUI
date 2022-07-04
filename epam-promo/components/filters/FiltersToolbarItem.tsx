@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
-import css from "./DynamicFilters.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
+import css from "./FiltersToolbarItem.scss";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile } from "@epam/uui-core";
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDataPickerBody } from './FilterDataPickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
-import { ControlGroup, FlexRow, Panel } from "../layout";
+import { FlexRow, Panel } from "../layout";
 import { Button } from "../buttons";
+import FilterItemBody from "./FilterItemBody";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -16,7 +17,6 @@ type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
-    const forceUpdate = useForceUpdate();
 
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
@@ -66,98 +66,43 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         }
     };
 
-    // const renderConditions = () => {
-    //     return (
-    //         <ControlGroup>
-    //             <Button
-    //                 caption="is"
-    //                 onClick={ () => null }/>
-    //             <Button
-    //                 caption="is not"
-    //                 fill={ "white" }
-    //                 onClick={ () => null }/>
-    //         </ControlGroup>
-    //     );
-    // };
-
     const removeOnclickHandler = () => {
         props.removeFilter(props.columnKey);
     };
 
     const renderHeader = () => {
         return (
-            <FlexRow cx={ css.header } background={ "white" }>
+            <FlexRow cx={ css.header }>
                 <div>
-                    { /*{ renderConditions() }*/ }
                     <span className={ css.headerTitle }>{ props.title }</span>
                 </div>
-                <Button
-                    size={ '24' }
-                    cx={ css.removeBtn }
-                    caption="Remove"
-                    fill="light"
-                    onClick={ removeOnclickHandler }
-                    isDisabled={ props?.isAlwaysVisible }
-                />
+                { !props?.isAlwaysVisible &&
+                    <Button
+                        size={ '24' }
+                        cx={ css.removeBtn }
+                        caption="Remove"
+                        fill="light"
+                        onClick={ removeOnclickHandler }
+                    /> }
             </FlexRow>
         );
     };
 
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         return (
-            <Panel
-                shadow
-            >
+            <Panel shadow background="white">
                 { renderHeader() }
                 { getBody(dropdownProps) }
             </Panel>
         );
     };
 
-    const getTogglerValue = () => {
-        switch (props.type) {
-            case "multiPicker": {
-                const prefix = "is";
-                const view = props.dataSource.getView({}, forceUpdate);
-                const selected = props.value?.[props.field]?.map((i: any) => {
-                    const item = view.getById(i, null);
-                    return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
-                }).join(', ');
-                return { prefix, selected };
-            }
-            case "singlePicker": {
-                const prefix = "is";
-                const view = props.dataSource.getView({}, forceUpdate);
-                const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
-                if (!item) {
-                    return null;
-                }
-                const selected = item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
-                return { prefix, selected };
-            }
-            case "datePicker": {
-                const prefix = "on";
-                const selected = props.value?.[props.field];
-                return { prefix, selected };
-            }
-            case "rangeDatePicker": {
-                if (!props.value?.[props.field]) {
-                    return null;
-                }
-                const prefix = "on";
-                const selected = `${props.value?.[props.field]?.from || ''} - ${props.value?.[props.field]?.to || ''}`;
-                return { prefix, selected };
-            }
-        }
-    };
-
     const renderTarget = (dropdownProps: IDropdownToggler) => {
         return (
             <FilterToolbarItemToggler
                 { ...dropdownProps }
-                value={ getTogglerValue() }
+                value={ FilterItemBody(props) }
                 title={ props.title }
-                // width={ '270' }
             />
         );
     };
