@@ -289,10 +289,10 @@ export class IconsDoc extends React.Component {
         return (
             <div className={ css.container }>
                 <ScrollBars cx={ css.contentContainer }>
-                    <FlexCell width='auto' cx={ css.iconsBlock } >
+                    <FlexCell width='100%' cx={ css.iconsBlock } >
                         <div className={ css.title } >Icons</div>
                         <SearchInput cx={ css.search } size='42' placeholder='Search icon' value={ this.state.search } onValueChange={ value => this.setState({ search: value }) } />
-                        <FlexCell width='100%'>{ this.renderIconsBox(items) }</FlexCell>
+                        <FlexCell>{ this.renderIconsBox(items) }</FlexCell>
                     </FlexCell>
                     { items.length > 0 && (
                         <FlexCell minWidth={ 380 } cx={ cx(css.stickyPanel, css[`sticky-panel-height-${this.state.isLocked ? '563' : '612'}`]) }>
