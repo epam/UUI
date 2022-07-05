@@ -1,44 +1,65 @@
-import { ICanBeChanged, ICanBeInvalid } from '../../types';
+import { ICanBeInvalid } from '../../types';
 import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
+import isEqual from "lodash.isequal";
 
+export type ValidationMode = "onchange" | "save";
 export const blankValidationState: ICanBeInvalid = {};
 
-export function validate<T>(value: T, meta: Metadata<T>): ICanBeInvalid {
-    return validateRec(value, [value], meta);
-}
+export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, mode: ValidationMode): ICanBeInvalid => {
+    const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
+        let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
+        const validateItem = (key: string, meta: Metadata<any>) => {
+            const childValue = value && (value as any)[key];
+            const newPath = [childValue, ...path];
+            const initChildValue = initValue && (initValue as any)[key];
+            const childResult = validateRec(childValue, newPath, meta, initChildValue);
+            const setResult = () => {
+                itemResult.isInvalid = childResult.isInvalid || itemResult.isInvalid;
+                itemResult.isChanged = childResult.isChanged || itemResult.isChanged;
+                itemResult.validationProps = itemResult.validationProps || {};
+                itemResult.validationProps[key] = childResult;
+            };
+            switch (mode) {
+                case "onchange": {
+                    if (childResult.isChanged) {
+                        setResult();
+                    }
+                    break;
+                }
+                default: {
+                    setResult();
+                }
+            }
 
-export function validateRec<T>(value: T, path: any[], meta: Metadata<T>): ICanBeInvalid {
-    let result: ICanBeInvalid = validateValue(value, path, meta);
+        };
 
-    const validateItem = (key: string, meta: Metadata<any>) => {
-        let childValue = value && (value as any)[key];
-        let newPath = [childValue, ...path];
-        const childResult = validateRec(childValue, newPath, meta);
-        result.isInvalid = result.isInvalid || childResult.isInvalid;
-        result.validationProps = result.validationProps || {};
-        result.validationProps[key] = childResult;
-    };
-
-    if (meta.props) {
-        for (let key in meta.props) {
-            const childMeta = meta.props[key];
-            if (childMeta) {
-                validateItem(key, childMeta);
+        if (meta.props) {
+            for (let key in meta.props) {
+                const childMeta = meta.props[key];
+                if (childMeta) {
+                    validateItem(key, childMeta);
+                }
             }
         }
-    }
 
-    if (meta.all && value != null) {
-        for (let key in value) {
-            validateItem(key, meta.all);
+        if (meta.all && value != null) {
+            for (let key in value) {
+                validateItem(key, meta.all);
+            }
         }
-    }
+        return itemResult;
+    };
+    return validateRec(value, [value], meta, initValue);
+};
 
-    return result;
-}
+const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
+    const isChanged = !isEqual(value, initValue);
+    const result: ICanBeInvalid = {
+        isInvalid: false,
+        isChanged,
+    };
 
-function validateValue(value: any, path: any[], meta: Metadata<any>): any {
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map(validator => validator.apply(null, path))
@@ -46,10 +67,9 @@ function validateValue(value: any, path: any[], meta: Metadata<any>): any {
             .filter((msg: string | null) => !!msg);
 
         if (customValidationMessages.length > 0) {
-            return {
-                isInvalid: true,
-                validationMessage: customValidationMessages[0],
-            };
+            result.isInvalid = true;
+            result.validationMessage = customValidationMessages[0];
+            return result;
         }
     }
 
@@ -58,67 +78,29 @@ function validateValue(value: any, path: any[], meta: Metadata<any>): any {
             || (typeof value === "string" && value.trim() === "")
             || (Array.isArray(value) && value.length == 0)
         ) {
-            return {
-                isInvalid: true,
-                validationMessage: i18n.lenses.validation.isRequiredMessage,
-            };
+            result.isInvalid = true;
+            result.validationMessage = i18n.lenses.validation.isRequiredMessage;
+            return result;
         }
     }
 
     if (meta.minValue != null && value != null && value < meta.minValue) {
-        return {
-            isInvalid: true,
-            validationMessage: i18n.lenses.validation.lessThanMinimumValueMessage(meta.minValue),
-        };
+        result.isInvalid = true;
+        result.validationMessage = i18n.lenses.validation.lessThanMinimumValueMessage(meta.minValue);
+        return result;
     }
 
     if (meta.maxValue != null && value != null && value > meta.maxValue) {
-        return {
-            isInvalid: true,
-            validationMessage: i18n.lenses.validation.greaterThanMaximumValueMessage(meta.maxValue),
-        };
+        result.isInvalid = true;
+        result.validationMessage = i18n.lenses.validation.greaterThanMaximumValueMessage(meta.maxValue);
+        return result;
     }
 
     if (meta.maxLength != null && value != null && value.length > meta.maxLength) {
-        return {
-            isInvalid: true,
-            validationMessage: i18n.lenses.validation.greaterThanMaximumLengthMessage(meta.maxLength),
-        };
+        result.isInvalid = true;
+        result.validationMessage = i18n.lenses.validation.greaterThanMaximumLengthMessage(meta.maxLength);
+        return result;
     }
 
-    return {
-        isInvalid: false,
-    };
-}
-
-
-export const getChanges = <T>(initValues?: T, value?: T, key?: any, meta?: Metadata<T>): ICanBeChanged => {
-    let resultPath = [key] as [any];
-    // console.log("meta", meta.props, "key", key)
-    getChangesPath(key, resultPath, meta);
-    if (resultPath?.length) {
-        const initValue = resultPath.reduce((acc, value) => {
-            return acc?.[value];
-        }, initValues);
-        // console.log("initValue", initValue, "value", value);
-        return { isChanged: value !== initValue };
-    }
-    return { isChanged: false };
+    return result;
 };
-
-export const getChangesPath = <T>(key?: any, path?: [any], meta?: Metadata<T>) => {
-    let metadata = meta.props || meta.all?.props;
-    if (metadata) {
-        for (let childKey in metadata) {
-            if (metadata.hasOwnProperty(path[path.length - 1])) {
-                path.unshift(key);
-                break;
-            } else {
-                const childMeta = (metadata as any)[childKey];
-                if (childMeta) {
-                    getChangesPath(childKey, path, childMeta);
-                }
-            }
-        }
-    }
-}

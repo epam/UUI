@@ -28,7 +28,6 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
 
     public static MAX_CACHE_SIZE = 1000;
     private cache = new Map();
-    private cacheKey: any;
 
     public compose<TSmall>(lens: ILensImpl<TFocused, TSmall>, cacheKey?: any): LensBuilder<TRoot, TSmall> {
         if (cacheKey != null && this.cache.has(cacheKey)) {
@@ -45,7 +44,7 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
             var { done, value } = this.cache.keys().next();
             this.cache.delete(value);
         }
-        result.cacheKey = cacheKey;
+
         return result;
     }
 
@@ -65,16 +64,11 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
         return this.compose(Impl.defaultValue(value), value);
     }
 
-    public toProps(withChangeState?: boolean): IEditable<TFocused> {
-        const value = this.lens.get(null);
+    public toProps(): IEditable<TFocused> {
         let validationState = this.lens.getValidationState && this.lens.getValidationState(null);
         let metadata = this.lens.getMetadata && this.lens.getMetadata(null);
-        // if (withChangeState) {
-            const changedState = this.lens.getChanges && this.lens.getChanges(value, this.cacheKey);
-            Object.assign(validationState, changedState);
-        // }
         return {
-            value,
+            value: this.lens.get(null),
             onValueChange: this.handleValueChange,
             ...validationState,
             ...metadata,

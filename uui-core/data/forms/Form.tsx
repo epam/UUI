@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import { IEditable, ILens, Metadata, FormState, ICanBeInvalid } from '../../';
+import { IEditable, ILens, Metadata, FormState, ICanBeInvalid, ValidationMode } from '../../';
 
 export interface FormSaveResponse<T> {
     form?: T;
@@ -16,6 +16,7 @@ export interface FormProps<T> {
     onSuccess?(state: T, isSavedBeforeLeave?: boolean): any;
     onError?(error: any): any;
     settingsKey?: string;
+    mode?: ValidationMode;
     value: T;
 }
 
@@ -43,4 +44,4 @@ export interface FormComponentState<T> extends FormState<T> {
 export function Form<T>({ renderForm, ...props }: FormProps<T>) {
     const useFormProps = useForm<T>(props);
     return <>{ renderForm(useFormProps) }</>;
-};
+}

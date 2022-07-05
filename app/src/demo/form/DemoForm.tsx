@@ -72,7 +72,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
             <FlexRow vPadding='12' spacing='18' alignItems='top'>
                 <LabeledInput htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
                     <PickerInput
-                        { ...lens.prop('country').toProps(true) }
+                        { ...lens.prop('country').toProps() }
                         dataSource={ countriesDS }
                         selectionMode='single'
                         valueType='id'
@@ -83,7 +83,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                 </LabeledInput>
                 <LabeledInput htmlFor="city" label='City' { ...lens.prop('city').toProps() }>
                     <PickerInput
-                        { ...lens.prop('city').toProps(true) }
+                        { ...lens.prop('city').toProps() }
                         selectionMode='single'
                         valueType='id'
                         rawProps={ { input: { id: 'city' } } }
@@ -465,6 +465,7 @@ export function DemoForm() {
     const { lens, revert, save, isChanged } = useForm<PersonDetails>({
         settingsKey: 'form-test',
         value: value,
+        mode: 'onchange',
         getMetadata: personDetailsSchema,
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
