@@ -9,6 +9,7 @@ import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
 import FilterItemBody from "./FilterItemBody";
 import { LinkButton } from "../buttons";
+import { Text } from "../typography";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -70,35 +71,27 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         props.removeFilter(props.columnKey);
     };
 
-    const renderHeader = () => {
-        return (
-            <FlexRow cx={ css.header }>
-                <div>
-                    <span className={ css.headerTitle }>{ props.title }</span>
-                </div>
-                { !props?.isAlwaysVisible && <LinkButton caption="Remove" onClick={ removeOnclickHandler } size="24"/> }
-            </FlexRow>
-        );
-    };
+    const renderHeader = () => (
+        <FlexRow cx={ css.header }>
+            <Text color="gray60" fontSize="12">{ props.title }</Text>
+            { !props?.isAlwaysVisible && <LinkButton caption="Remove" onClick={ removeOnclickHandler } size="24"/> }
+        </FlexRow>
+    );
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => {
-        return (
-            <Panel shadow background="white">
-                { renderHeader() }
-                { getBody(dropdownProps) }
-            </Panel>
-        );
-    };
+    const renderBody = (dropdownProps: DropdownBodyProps) => (
+        <Panel shadow background="white">
+            { renderHeader() }
+            { getBody(dropdownProps) }
+        </Panel>
+    );
 
-    const renderTarget = (dropdownProps: IDropdownToggler) => {
-        return (
-            <FilterToolbarItemToggler
-                { ...dropdownProps }
-                value={ FilterItemBody(props) }
-                title={ props.title }
-            />
-        );
-    };
+    const renderTarget = (dropdownProps: IDropdownToggler) => (
+        <FilterToolbarItemToggler
+            { ...dropdownProps }
+            value={ FilterItemBody(props) }
+            title={ props.title }
+        />
+    );
 
     return (
         <Dropdown

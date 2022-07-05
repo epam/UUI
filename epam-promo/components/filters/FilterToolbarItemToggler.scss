@@ -63,10 +63,6 @@
             }
         }
 
-        :global(.uui-icon) svg {
-            margin-top: -2px;
-        }
-
         &:global(.size-24) {
             > * {
                 height: 12px;
@@ -108,8 +104,9 @@
         }
 
         :global(.uui-icon-dropdown) {
-            align-self: center;
             fill: $gray60;
+            margin-top: auto;
+            margin-bottom: auto;
         }
     }
 }
