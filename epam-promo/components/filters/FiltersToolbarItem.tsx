@@ -7,8 +7,8 @@ import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
-import { Button } from "../buttons";
 import FilterItemBody from "./FilterItemBody";
+import { LinkButton } from "../buttons";
 
 type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -76,14 +76,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 <div>
                     <span className={ css.headerTitle }>{ props.title }</span>
                 </div>
-                { !props?.isAlwaysVisible &&
-                    <Button
-                        size={ '24' }
-                        cx={ css.removeBtn }
-                        caption="Remove"
-                        fill="light"
-                        onClick={ removeOnclickHandler }
-                    /> }
+                { !props?.isAlwaysVisible && <LinkButton caption="Remove" onClick={ removeOnclickHandler } size="24"/> }
             </FlexRow>
         );
     };
@@ -114,7 +107,6 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
-            isDisabled={ false }
         />
     );
 };
