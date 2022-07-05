@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useState } from "react";
-import css from "./FiltersToolbarItem.scss";
 import sortBy from "lodash.sortby";
 import { Button, FlexRow, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
@@ -88,7 +87,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     }), []);
 
     return (
-        <FlexRow size="36" background="gray5" vPadding="12" padding="6" cx={ css.filters } spacing='6' borderBottom>
+        <FlexRow size="36" background="gray5" vPadding="12" padding="6" rawProps={ {style:{flexWrap: 'wrap'}} } spacing='6' borderBottom>
             { sortedActiveFilters.map(f => (
                 <FlexCell width='auto' key={ f.field as string } rawProps={ {style:{margin: '0 6px 6px 0'}} }>
                     <FiltersToolbarItem
@@ -111,6 +110,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
                 renderRow={ (props) =>
                     <DataPickerRow
                         { ...props }
+                        padding='12'
                         key={ props.key }
                         onCheck={ (row) => { props.onCheck(row); !row.isChecked && setNewFilterId(row.value.columnKey); } }
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
