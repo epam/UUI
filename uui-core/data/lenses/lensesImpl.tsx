@@ -6,7 +6,6 @@ export interface ILensImpl<TBig, TSmall> {
     set(big: TBig | null, small: TSmall): TBig;
     getValidationState?(big?: ICanBeInvalid): ICanBeInvalid | undefined;
     getMetadata?(big?: Metadata<TBig>): Metadata<TSmall> | undefined;
-    getChanges?(small?: TSmall, key?: any): ICanBeChanged;
 }
 
 export const identityLens = {
@@ -39,7 +38,8 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return newObject;
         },
         getValidationState(big: ICanBeInvalid) {
-            let validationStateProps = (big || blankValidationState).validationProps || {[name]: {isInvalid: false}};
+            const isChanged = big?.isChanged || blankValidationState?.isChanged || false;
+            let validationStateProps = (big || blankValidationState).validationProps || {[name]: {isInvalid: false, isChanged }};
             return validationStateProps[name as string];
         },
         getMetadata(big: Metadata<TObject>) {
@@ -128,10 +128,6 @@ export function compose<TBig, TMiddle, TSmall>(left: ILensImpl<TBig, TMiddle>, r
         getMetadata(big?: Metadata<TBig>) {
             const middle = left.getMetadata && left.getMetadata(big);
             const small  = right.getMetadata && right.getMetadata(middle);
-            return small;
-        },
-        getChanges(big, key) {
-            const small  = right.getChanges && right.getChanges(big, key);
             return small;
         },
     };

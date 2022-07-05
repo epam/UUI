@@ -102,9 +102,11 @@ describe('mergeValidation', () => {
     it('should prefer clientValidation on collision', () => {
         clientValidation = {
             isInvalid: true,
+            isChanged: true,
             validationProps: {
                 name: {
                     isInvalid: true,
+                    isChanged: true,
                     validationMessage: "Wrong name",
                 },
             },

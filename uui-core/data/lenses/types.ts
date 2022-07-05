@@ -10,5 +10,5 @@ export interface ILens<TFocused> {
     index(index: number): ILens<ArrayElement<TFocused>>;
     onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): ILens<TFocused>;
     default(value: TFocused): ILens<TFocused>;
-    toProps(withChangeState?: boolean): IEditable<TFocused>;
+    toProps(): IEditable<TFocused>;
 }
