@@ -36,6 +36,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                 key={ rowProps.rowKey }
                 borderBottom='none'
                 size='36'
+                padding='12'
                 renderItem={ this.renderItem }
             />
         );
