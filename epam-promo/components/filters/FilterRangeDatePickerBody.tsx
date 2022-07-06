@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BaseRangeDatePickerProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
-import { RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
+import { BaseRangeDatePicker } from '@epam/uui-components';
 import { DropdownContainer, FlexRow, i18n, RangeDatePickerBody, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
 import cx from "classnames";
 import * as css from "../datePickers/RangeDatePicker.scss";

@@ -38,7 +38,9 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             cx={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
-                ["size-" + (props.size || defaultSize)],
+                //TODO should be implemented when we have a design
+                // ["size-" + (props.size || defaultSize)],
+                ["size-" + (defaultSize)],
                 props.cx) }
             onClick={ togglerPickerOpened }
             ref={ ref }
@@ -49,13 +51,18 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                     font="sans"
                     fontSize="14"
                     lineHeight="18"
-                    rawProps={ { style: { textOverflow: 'initial', overflow: 'visible' } } }
+                    cx={ css.contextLeft }
                 >
                     { `${ props.title } ${ props.value?.prefix }` }
                 </Text>
                 { props.value?.selected && (props.value?.selected === LOADING
                     ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
-                    : <Text color="gray90" font="sans" fontSize="14" lineHeight="18">&nbsp;{ props.value.selected }</Text>) }
+                    : <Text
+                        color="gray90"
+                        font="sans"
+                        fontSize="14"
+                        lineHeight="18"
+                        cx={ css.contextRight }>&nbsp;{ props.value.selected }</Text>) }
             </FlexRow>
             {
                 !props.isDisabled &&
