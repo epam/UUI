@@ -39,7 +39,6 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     static contextType = UuiContext;
     context: UuiContexts;
 
-    toTextInput = React.createRef<HTMLInputElement>();
     inFocus: RangeDatePickerInputType;
 
     getInitialState(): RangeDatePickerState {
