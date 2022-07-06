@@ -465,7 +465,6 @@ export function DemoForm() {
     const { lens, revert, save, isChanged } = useForm<PersonDetails>({
         settingsKey: 'form-test',
         value: value,
-        mode: 'onchange',
         getMetadata: personDetailsSchema,
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
