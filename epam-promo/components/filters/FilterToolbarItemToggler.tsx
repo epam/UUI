@@ -5,7 +5,8 @@ import { IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
 import { systemIcons } from "../../icons/icons";
 import { IconContainer, FlexRow } from "@epam/uui-components";
 import { Text, TextPlaceholder } from "../typography";
-import { LOADING } from "./FilterItemBody";
+import { LOADING } from "./FiltersToolbarItem";
+
 
 const defaultSize = "30";
 const defaultWidth = "267";

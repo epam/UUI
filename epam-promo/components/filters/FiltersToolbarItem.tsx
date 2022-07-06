@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from "react";
 import css from "./FiltersToolbarItem.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile } from "@epam/uui-core";
-import { FilterPickerBody } from './FilterPickerBody';
-import { FilterDataPickerBody } from './FilterDataPickerBody';
-import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
-import FilterItemBody from "./FilterItemBody";
 import { LinkButton } from "../buttons";
 import { Text } from "../typography";
+import FilterItemBody from "./FilterItemBody";
 
-type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
+export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (columnKey: string) => void;
 };
+
+export const LOADING = 'loading-placeholder';
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
@@ -22,50 +21,6 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
     }, [props.field, props.onValueChange]);
-
-    const getBody = (dropdownProps: DropdownBodyProps) => {
-        switch (props.type) {
-            case "singlePicker":
-                return (
-                    <FilterPickerBody
-                        { ...dropdownProps }
-                        dataSource={ props.dataSource }
-                        selectionMode="single"
-                        value={ props.value?.[props.field] }
-                        onValueChange={ handleChange }
-                        valueType="id"
-                        prefix={ props.title }
-                    />
-                );
-            case "multiPicker":
-                return (
-                    <FilterPickerBody
-                        { ...dropdownProps }
-                        dataSource={ props.dataSource }
-                        selectionMode="multi"
-                        value={ props.value?.[props.field] }
-                        onValueChange={ handleChange }
-                        valueType="id"
-                        prefix={ props.title }
-                    />
-                );
-            case "datePicker":
-                return (
-                    <FilterDataPickerBody
-                        format="DD/MM/YYYY"
-                        value={ props.value?.[props.field] }
-                        onValueChange={ handleChange }
-                    />
-                );
-            case "rangeDatePicker":
-                return (
-                    <FilterRangeDatePickerBody
-                        value={ props.value?.[props.field] || { from: null, to: null } }
-                        onValueChange={ handleChange }
-                    />
-                );
-        }
-    };
 
     const removeOnclickHandler = () => {
         props.removeFilter(props.columnKey);
@@ -81,14 +36,57 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <Panel shadow background="white">
             { renderHeader() }
-            { getBody(dropdownProps) }
+            { FilterItemBody({ sourceProps: props, handleChange, dropdownProps }) }
         </Panel>
     );
+
+    const getTogglerValue = () => {
+        const getStringResult = (prefix: string, value: string | undefined | null) => ({
+            prefix: value ? prefix : "",
+            selected: value ? value.includes(LOADING) ? LOADING : value : "",
+        });
+        const forceUpdate = useForceUpdate();
+
+        switch (props.type) {
+            case "multiPicker": {
+                const prefix = "is:";
+                const view = props.dataSource.getView({}, forceUpdate);
+                const selected = props.value?.[props.field]?.map((i: any) => {
+                    const item = view.getById(i, null);
+                    return item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
+                }).join(', ');
+                return getStringResult(prefix, selected);
+            }
+            case "singlePicker": {
+                const prefix = "is:";
+                const view = props.dataSource.getView({}, forceUpdate);
+                const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
+                if (!item) {
+                    return getStringResult(prefix, null);
+                }
+                const selected = item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
+                return getStringResult(prefix, selected);
+            }
+            case "datePicker": {
+                const prefix = "on:";
+                const selected = props.value?.[props.field];
+                return getStringResult(prefix, selected);
+            }
+            case "rangeDatePicker": {
+                const prefix = "on:";
+                if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
+                    return getStringResult(prefix, null);
+                }
+                const selected = `${ props.value?.[props.field]?.from } - ${ props.value?.[props.field]?.to }`;
+                return getStringResult(prefix, selected);
+            }
+        }
+    };
 
     const renderTarget = (dropdownProps: IDropdownToggler) => (
         <FilterToolbarItemToggler
             { ...dropdownProps }
-            value={ FilterItemBody(props) }
+            value={ getTogglerValue() }
             title={ props.title }
         />
     );
