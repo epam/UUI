@@ -6,7 +6,7 @@ import isEqual from "lodash.isequal";
 export type ValidationMode = "onchange" | "save";
 export const blankValidationState: ICanBeInvalid = {};
 
-export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, mode: ValidationMode): ICanBeInvalid => {
+export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
     const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
         let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
         const validateItem = (key: string, meta: Metadata<any>) => {
@@ -20,7 +20,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, mode: Val
                 itemResult.validationProps = itemResult.validationProps || {};
                 itemResult.validationProps[key] = childResult;
             };
-            switch (mode) {
+            switch (validateOn) {
                 case "onchange": {
                     if (childResult.isChanged) {
                         setResult();
