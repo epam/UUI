@@ -5,6 +5,7 @@ import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, Dat
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersToolbarItem } from "./FiltersToolbarItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import css from './FiltersToolbar.scss';
 
 interface FiltersToolbarProps {
     filters: TableFiltersConfig<any>[];
@@ -67,7 +68,6 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
 
     const renderToggler = useCallback((props: PickerTogglerProps) => {
         return <Button
-            rawProps={ {style:{margin: '0 6px 6px 0', borderColor: '#E1E3EB'}} }
             size='30'
             onClick={ props.onClick }
             ref={ props.ref }
@@ -87,9 +87,9 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
     }), []);
 
     return (
-        <FlexRow size="36" background="gray5" vPadding="12" padding="6" rawProps={ {style:{flexWrap: 'wrap'}} } spacing='6' borderBottom>
+        <FlexRow cx={ css.root } size="36" background="gray5" borderBottom>
             { sortedActiveFilters.map(f => (
-                <FlexCell width='auto' key={ f.field as string } rawProps={ {style:{margin: '0 6px 6px 0'}} }>
+                <FlexCell width='auto' key={ f.field as string } >
                     <FiltersToolbarItem
                         { ...f }
                         value={ tableState.filter }
