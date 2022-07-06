@@ -77,6 +77,7 @@ describe('mergeValidation', () => {
         const result = mergeValidation(clientValidation, serverValidation);
         expect(result).toStrictEqual({
             isInvalid: true,
+            isChanged: false,
             validationProps: {
                 name: {
                     isInvalid: true,
@@ -84,6 +85,7 @@ describe('mergeValidation', () => {
                 },
                 age: {
                     isInvalid: true,
+                    isChanged: false,
                     validationMessage: "Wrong age",
                 },
                 nested: {
