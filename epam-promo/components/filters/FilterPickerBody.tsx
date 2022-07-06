@@ -72,6 +72,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                         maxHeight={ maxHeight }
                         searchSize='36'
                         editMode='dropdown'
+                        showSearch={ true }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>

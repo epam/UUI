@@ -75,4 +75,3 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
         </FlexRow>
     );
 });
-
