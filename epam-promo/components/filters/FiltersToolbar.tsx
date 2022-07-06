@@ -74,8 +74,8 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
             caption="Add filter"
             icon={ addIcon }
             iconPosition='right'
-            fill='none'
-            color='gray50'/>;
+            fill='light'
+            color='blue'/>;
     }, []);
 
     const getRowOptions = useCallback((item: TableFiltersConfig<any>): DataRowOptions<any, any> => ({
