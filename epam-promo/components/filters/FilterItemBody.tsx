@@ -1,50 +1,57 @@
 import React from "react";
-import { FilterToolbarItemTogglerProps } from "./FilterToolbarItemToggler";
-import { IEditable, TableFiltersConfig, useForceUpdate } from "@epam/uui-core";
+import { DropdownBodyProps } from "@epam/uui-components";
+import { FilterPickerBody } from "./FilterPickerBody";
+import { FilterDataPickerBody } from "./FilterDataPickerBody";
+import { FilterRangeDatePickerBody } from "./FilterRangeDatePickerBody";
+import { FiltersToolbarItemProps } from "./FiltersToolbarItem";
 
-type IFilterItemBodyProps = FilterToolbarItemTogglerProps & TableFiltersConfig<any> & IEditable<any>;
-export const LOADING = 'loading-placeholder';
+interface IFilterItemBodyProps {
+    sourceProps: FiltersToolbarItemProps;
+    handleChange: (value: any) => void;
+    dropdownProps: DropdownBodyProps;
+}
 
-const FilterItemBody = (props: IFilterItemBodyProps) => {
-    const getStringResult = (prefix: string, value: string | undefined | null) => ({
-        prefix: value ? prefix : "",
-        selected: value ? value.includes(LOADING) ? LOADING : value : "",
-    });
-    const forceUpdate = useForceUpdate();
-
-    switch (props.type) {
-        case "multiPicker": {
-            const prefix = "is:";
-            const view = props.dataSource.getView({}, forceUpdate);
-            const selected = props.value?.[props.field]?.map((i: any) => {
-                const item = view.getById(i, null);
-                return item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
-            }).join(', ');
-            return getStringResult(prefix, selected);
-        }
-        case "singlePicker": {
-            const prefix = "is:";
-            const view = props.dataSource.getView({}, forceUpdate);
-            const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
-            if (!item) {
-                return getStringResult(prefix, null);
-            }
-            const selected = item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
-            return getStringResult(prefix, selected);
-        }
-        case "datePicker": {
-            const prefix = "on:";
-            const selected = props.value?.[props.field];
-            return getStringResult(prefix, selected);
-        }
-        case "rangeDatePicker": {
-            const prefix = "on:";
-            if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
-                return getStringResult(prefix, null);
-            }
-            const selected = `${ props.value?.[props.field]?.from } - ${ props.value?.[props.field]?.to }`;
-            return getStringResult(prefix, selected);
-        }
+const FilterItemBody = ({ sourceProps, handleChange, dropdownProps }: IFilterItemBodyProps) => {
+    switch (sourceProps.type) {
+        case "singlePicker":
+            return (
+                <FilterPickerBody
+                    { ...dropdownProps }
+                    dataSource={ sourceProps.dataSource }
+                    selectionMode="single"
+                    value={ sourceProps.value?.[sourceProps.field] }
+                    onValueChange={ handleChange }
+                    valueType="id"
+                    prefix={ sourceProps.title }
+                />
+            );
+        case "multiPicker":
+            return (
+                <FilterPickerBody
+                    { ...dropdownProps }
+                    dataSource={ sourceProps.dataSource }
+                    selectionMode="multi"
+                    value={ sourceProps.value?.[sourceProps.field] }
+                    onValueChange={ handleChange }
+                    valueType="id"
+                    prefix={ sourceProps.title }
+                />
+            );
+        case "datePicker":
+            return (
+                <FilterDataPickerBody
+                    format="DD/MM/YYYY"
+                    value={ sourceProps.value?.[sourceProps.field] }
+                    onValueChange={ handleChange }
+                />
+            );
+        case "rangeDatePicker":
+            return (
+                <FilterRangeDatePickerBody
+                    value={ sourceProps.value?.[sourceProps.field] || { from: null, to: null } }
+                    onValueChange={ handleChange }
+                />
+            );
     }
 };
 
