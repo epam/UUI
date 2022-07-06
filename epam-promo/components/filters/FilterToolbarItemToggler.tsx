@@ -4,7 +4,8 @@ import cx from "classnames";
 import { IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
 import { systemIcons } from "../../icons/icons";
 import { IconContainer, FlexRow } from "@epam/uui-components";
-import { Text } from "../typography";
+import { Text, TextPlaceholder } from "../typography";
+import { LOADING } from "./FilterItemBody";
 
 const defaultSize = "30";
 const defaultWidth = "267";
@@ -51,7 +52,9 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                 >
                     { `${ props.title } ${ props.value?.prefix }` }
                 </Text>
-                { props.value?.selected && <Text color="gray90" font="sans" fontSize="14" lineHeight="18">&nbsp;{ props.value.selected }</Text> }
+                { props.value?.selected && (props.value?.selected === LOADING
+                    ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
+                    : <Text color="gray90" font="sans" fontSize="14" lineHeight="18">&nbsp;{ props.value.selected }</Text>) }
             </FlexRow>
             {
                 !props.isDisabled &&
