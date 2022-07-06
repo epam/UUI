@@ -1,10 +1,15 @@
+import React from "react";
 import { FilterToolbarItemTogglerProps } from "./FilterToolbarItemToggler";
 import { IEditable, TableFiltersConfig, useForceUpdate } from "@epam/uui-core";
 
 type IFilterItemBodyProps = FilterToolbarItemTogglerProps & TableFiltersConfig<any> & IEditable<any>;
+export const LOADING = 'loading-placeholder';
 
 const FilterItemBody = (props: IFilterItemBodyProps) => {
-    const getStringResult = (prefix: string, value: string | undefined | null) => ({prefix: value ? prefix : "", selected: value ?? "" });
+    const getStringResult = (prefix: string, value: string | undefined | null) => ({
+        prefix: value ? prefix : "",
+        selected: value ? value.includes(LOADING) ? LOADING : value : "",
+    });
     const forceUpdate = useForceUpdate();
 
     switch (props.type) {
@@ -13,7 +18,7 @@ const FilterItemBody = (props: IFilterItemBodyProps) => {
             const view = props.dataSource.getView({}, forceUpdate);
             const selected = props.value?.[props.field]?.map((i: any) => {
                 const item = view.getById(i, null);
-                return item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+                return item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
             }).join(', ');
             return getStringResult(prefix, selected);
         }
@@ -24,7 +29,7 @@ const FilterItemBody = (props: IFilterItemBodyProps) => {
             if (!item) {
                 return getStringResult(prefix, null);
             }
-            const selected = item.isLoading ? 'loading-placeholder' : (props.getName ? props.getName(item) : item.value.name);
+            const selected = item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
             return getStringResult(prefix, selected);
         }
         case "datePicker": {
@@ -37,7 +42,7 @@ const FilterItemBody = (props: IFilterItemBodyProps) => {
             if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
                 return getStringResult(prefix, null);
             }
-            const selected = `${props.value?.[props.field]?.from} - ${props.value?.[props.field]?.to}`;
+            const selected = `${ props.value?.[props.field]?.from } - ${ props.value?.[props.field]?.to }`;
             return getStringResult(prefix, selected);
         }
     }

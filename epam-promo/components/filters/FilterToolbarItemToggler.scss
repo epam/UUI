@@ -109,4 +109,13 @@
             margin-bottom: auto;
         }
     }
+
+    .placeholder {
+        margin: 0 0 0 3px;
+        padding: 0;
+
+        & span {
+            margin: 2px 0 0 0;
+        }
+    }
 }
