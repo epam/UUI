@@ -90,7 +90,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             ...formState.current,
             form: newForm,
             isChanged: !isEqual(props.value, newForm),
-            validationState: validationState.isInvalid || props.mode === "onchange" ? handleValidate(newForm) : validationState,
+            validationState: validationState.isInvalid || props.validationOn === "onchange" ? handleValidate(newForm) : validationState,
             historyIndex: newHistoryIndex,
             formHistory: newFormHistory,
         });
@@ -102,10 +102,10 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         setFormState(newFormState);
     };
 
-    const handleValidate = (newVal?: T, mode?: ValidationMode) => {
+    const handleValidate = (newVal?: T, validateOn?: ValidationMode) => {
         const valueToValidate = newVal || formState.current.form;
         const metadata = props.getMetadata ? props.getMetadata(valueToValidate) : {};
-        const validationMode = mode || props.mode || "save";
+        const validationMode = validateOn || props.validationOn || "save";
         return  uuiValidate(valueToValidate, metadata, initialForm.current.form, validationMode);
     };
 

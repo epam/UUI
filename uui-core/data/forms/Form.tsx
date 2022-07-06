@@ -16,7 +16,7 @@ export interface FormProps<T> {
     onSuccess?(state: T, isSavedBeforeLeave?: boolean): any;
     onError?(error: any): any;
     settingsKey?: string;
-    mode?: ValidationMode;
+    validationOn?: ValidationMode;
     value: T;
 }
 
