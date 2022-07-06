@@ -5,7 +5,7 @@ import {DataRowProps} from "./tables";
 import {AnalyticsEvent} from "./contexts";
 
 /** Component value can be invalid */
-export interface ICanBeInvalid extends ICanBeChanged {
+export interface ICanBeInvalid {
     isInvalid?: boolean;
     isChanged?: boolean;
     validationMessage?: string;
@@ -13,14 +13,8 @@ export interface ICanBeInvalid extends ICanBeChanged {
     validationProps?: { [key: string]: ICanBeInvalid };
 }
 
-/** Component value can be changed */
-export interface ICanBeChanged {
-    isChanged?: boolean;
-    // changedProps?: { [key: string]: ICanBeChanged };
-}
-
 /** Components has an editable value. Text Input is a basic example. */
-export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired, ICanBeChanged {
+export interface IEditable<T> extends ICanBeInvalid, IDisableable, ICanBeReadonly, ICanBeRequired {
     value: T;
     onValueChange(newValue: T): void;
 }
