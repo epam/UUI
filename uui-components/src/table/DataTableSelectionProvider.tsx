@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
-import { DataTableSelectionContext, SelectionContextState, SelectionRange } from "./DataTableSelectionContext";
+import { DataTableSelectionContext, SelectionContextState } from "./DataTableSelectionContext";
+import { ColumnSelectionRange } from "@epam/uui-core";
 
 export function DataTableSelectionProvider({ children }: Parameters<FC>[0]) {
-    const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
+    const [selectionRange, setSelectionRange] = useState<ColumnSelectionRange>(null);
 
     const value = useMemo<SelectionContextState>(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
 

@@ -131,8 +131,8 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
-    acceptCopyDirection?: DataTableCellProps["acceptCopyDirection"];
-    canCopyTo?: DataTableCellProps["canCopyTo"];
+    canCopyTo?: (coords: ColumnSelectionRange) => boolean;
+    allowCopy?: boolean;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
@@ -143,8 +143,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     index?: number;
     isFirstColumn: boolean;
     isLastColumn: boolean;
-    acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
-    canCopyTo?: (someCellContext: any) => boolean;
+    canCopyTo?: (coords: ColumnSelectionRange) => boolean;
+    allowCopy?: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     addons?: React.ReactNode;
@@ -152,6 +152,14 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
+export interface ColumnSelectionRange {
+    startColumnIndex: number;
+    startRowIndex: number;
+    endColumnIndex: number;
+    endRowIndex: number;
+    isCopying?: boolean;
 }
 
 export interface RenderCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellProps<TItem, TId, TCellValue> {
