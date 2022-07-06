@@ -1,0 +1,8 @@
+.root {
+    flex-wrap: wrap;
+    padding: 12px 24px 6px 24px;
+
+    & > * {
+        margin: 0 6px 6px 0;
+    }
+}
