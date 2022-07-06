@@ -10,10 +10,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 121px);
+    height: 100%;
     transition: all 500ms;
     flex-basis: auto;
-    min-width: 0px;
+    min-width: 0;
     flex-grow: 1;
 
     :global(.uui-table-row) {

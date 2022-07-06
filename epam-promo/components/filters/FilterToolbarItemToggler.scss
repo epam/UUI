@@ -1,13 +1,7 @@
 @use '../../../node_modules/@epam/promo/assets/styles/index' as *;
-@use '../../../node_modules/@epam/promo/assets/styles/colorvars/inputs/numericInput-colorvars' as *;
+@use '../../../node_modules/@epam/promo/assets/styles/colorvars/inputs/textInput-colorvars' as *;
 
 .root {
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
     &:global(.uui-input-box) {
         width: 100%;
         box-sizing: border-box;
@@ -35,20 +29,24 @@
         .title {
             -moz-appearance: textfield;
             font-family: $font-sans;
-            color: $gray80;
-            padding: 6px 5px;
-            margin: 0 0 1px 0;
-            border: 0;
             flex: 1 1 auto;
             min-width: 0;
             outline: none;
             background: none;
             cursor: pointer;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: 400;
-            line-height: 18px;
+
+            .context-left {
+                text-overflow: initial;
+                overflow: visible;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .context-right {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
 
             .selected-title {
                 color: $gray60;
@@ -63,44 +61,9 @@
             }
         }
 
-        &:global(.size-24) {
-            > * {
-                height: 12px;
-                font-size: 14px;
-                line-height: 18px;
-            }
-        }
-
         &:global(.size-30) {
-            > * {
-                height: 15px;
-                font-size: 14px;
-                line-height: 18px;
-            }
-        }
-
-        &:global(.size-36) {
-            > * {
-                height: 17px;
-                font-size: 14px;
-                line-height: 18px;
-            }
-        }
-
-        &:global(.size-42) {
-            > * {
-                height: 21px;
-                font-size: 14px;
-                line-height: 18px;
-            }
-        }
-
-        &:global(.size-48) {
-            > * {
-                height: 23px;
-                font-size: 14px;
-                line-height: 18px;
-            }
+            @include control-vertical-layout(30px, 1px);
+            line-height: 18px;
         }
 
         :global(.uui-icon-dropdown) {
