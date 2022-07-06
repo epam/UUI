@@ -103,8 +103,6 @@ export class Tree<TItem, TId> {
             return this;
         }
 
-        let isChanged = false;
-
         const newById = new Map(this.byId);
         const newByParentId = new Map(this.byParentId); // shallow clone, still need to copy arrays inside!
 
@@ -121,7 +119,6 @@ export class Tree<TItem, TId> {
                     item: item,
                 }
                 newById.set(id, node);
-                isChanged = true;
 
                 const parentId = this.params.getParentId ? (this.params.getParentId(item) ?? undefined) : undefined;
 
@@ -138,8 +135,6 @@ export class Tree<TItem, TId> {
                     list.push(node);
 
                     // TBD: remove item from existing list (if we'll use this method to mutate existing list)
-
-                    isChanged = true;
                 }
             }
         });
