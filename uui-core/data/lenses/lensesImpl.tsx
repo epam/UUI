@@ -1,4 +1,4 @@
-import { ICanBeInvalid, Metadata, ICanBeChanged } from '../../types';
+import { ICanBeInvalid, Metadata } from '../../types';
 import { blankValidationState } from '../validation';
 
 export interface ILensImpl<TBig, TSmall> {

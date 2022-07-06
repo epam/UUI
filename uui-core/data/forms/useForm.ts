@@ -7,17 +7,19 @@ import type { FormComponentState, FormProps, FormSaveResponse, RenderFormProps }
 import { useLock } from './useLock';
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
+type UseFormState<T> = Omit<FormComponentState<T>, 'prevProps'> & { prevProps: UseFormProps<T> };
 
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
 
-    const initialForm = useRef<FormComponentState<T>>({
+    const initialForm = useRef<UseFormState<T>>({
         isChanged: false,
         isInProgress: false,
         form: props.value,
-        validationState: { isInvalid: false, isChanged: false },
-        serverValidationState: { isInvalid: false, isChanged: false },
+        validationState: { isInvalid: false },
+        serverValidationState: { isInvalid: false },
         formHistory: [props.value],
+        prevProps: props,
         historyIndex: 0,
     });
 
@@ -25,7 +27,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const forceUpdate = useForceUpdate();
 
-    const setFormState = (newValue: FormComponentState<T>) => {
+    const setFormState = (newValue: UseFormState<T>) => {
         formState.current = newValue;
         forceUpdate();
     };
@@ -49,7 +51,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
-    }), []);
+    }), [props.value, formState.current.form, formState.current.validationState, formState.current.lastSentForm, formState.current.serverValidationState]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
@@ -58,7 +60,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, []);
 
     useEffect(() => {
-        if (!isEqual(props.value, initialForm.current.form)) {
+        if (!isEqual(props.value, initialForm.current.prevProps.value)) {
             resetForm({
                 ...formState.current,
                 form: props.value,
@@ -94,7 +96,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const resetForm = (withNewState: FormComponentState<T>) => {
+    const resetForm = (withNewState: UseFormState<T>) => {
         const newFormState = { ...initialForm.current, ...withNewState } ;
         initialForm.current = newFormState;
         setFormState(newFormState);
@@ -108,7 +110,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
-        const validationState = handleValidate(null, "save");
+        const validationState = handleValidate();
         setFormState({ ...formState.current, validationState });
         if (!validationState.isInvalid) {
             setFormState({ ...formState.current, isInProgress: true });
@@ -120,7 +122,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = response && response.form || formState.current.form;
-        const newState: FormComponentState<T> = {
+        const newState: UseFormState<T> = {
             ...formState.current,
             historyIndex: 0,
             formHistory: [newFormValue],
@@ -174,10 +176,14 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         setFormState({ ...formState.current, form: newVal });
     }, [formState.current.form]);
 
+    const saveCallback = useCallback(() => {
+        handleSave().catch(() => {});
+    }, [handleSave]);
+
     return {
         isChanged: formState.current.isChanged,
         lens,
-        save: handleSave,
+        save: saveCallback,
         undo: handleUndo,
         redo: handleRedo,
         revert: handleRevert,

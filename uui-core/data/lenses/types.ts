@@ -1,4 +1,4 @@
-import { ICanBeChanged, IEditable } from '../../types';
+import { IEditable } from '../../types';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
 
