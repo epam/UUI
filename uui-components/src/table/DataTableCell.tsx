@@ -41,15 +41,15 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        const handlePointerEnter: PointerEventHandler =  props.acceptCopyDirection ? () => {
+        const handlePointerEnter: PointerEventHandler =  () => {
             if (!selectionRange) {
                 return;
             }
 
-            setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
-        } : null;
+            props.canCopyTo({...selectionRange, endRowIndex: row.index, endColumnIndex: props.index }) &&  setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
+        };
 
-        content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
+        content = <div className={ css.editorWrapper } onPointerEnter={ props.canCopyTo && handlePointerEnter } >
             { props.renderEditor(editorProps) }
             <DataTableCellOverlay
                 { ...editorProps }
@@ -57,7 +57,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 inFocus={ state.inFocus }
                 rowIndex={ row.index }
                 columnIndex={ props.index }
-                acceptCopyDirection={ props.acceptCopyDirection }
+                allowCopy={ props.allowCopy }
                 canCopyTo={ props.canCopyTo }
             />
         </div>;
