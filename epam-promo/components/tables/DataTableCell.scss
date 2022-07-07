@@ -46,14 +46,14 @@
     &.padding-right-24 { padding-right: 24px; }
 
     &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
-        border-color: $gray80;
+        border-color: $gray50;
     }
 
     &:global(.uui-table-cell-vertical-border) {
         border-color: $gray30;
     }
     &:global(.uui-invalid) {
-        --uui-data-table-cell-background: #{$red-transparent};
+        --uui-data-table-cell-background: #{$red-lightest};
     }
     &:global(.uui-focus):not(&:global(.uui-invalid)) {
         --uui-data-table-cell-background: #{$white};
@@ -71,6 +71,18 @@
         }
         &.background-red {
             --uui-data-table-cell-background: #{$red-transparent};
+        }
+        &.background-cyan {
+            --uui-data-table-cell-background: #{$cyan-transparent};
+        }
+        &.background-orange {
+            --uui-data-table-cell-background: #{$orange-transparent};
+        }
+        &.background-purple {
+            --uui-data-table-cell-background: #{$purple-transparent};
+        }
+        &.background-violet {
+            --uui-data-table-cell-background: #{$violet-transparent};
         }
         &.background-gray5 {
             --uui-data-table-cell-background: #{$gray5};

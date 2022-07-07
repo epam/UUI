@@ -22,7 +22,7 @@ export interface DataTableRowMods extends TableSizesAndPositionMods {
 }
 
 export interface DataTableCellMods extends TableSizesAndPositionMods {
-    background?: 'gray5' | 'red' | 'blue' | 'green' | 'amber';
+    background?: 'gray5' | 'red' | 'blue' | 'green' | 'amber' | 'cyan' | 'violet' | 'purple' | 'orange';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {
