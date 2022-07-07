@@ -90,7 +90,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             ...formState.current,
             form: newForm,
             isChanged: !isEqual(props.value, newForm),
-            validationState: validationState.isInvalid || props.validationOn === "onchange" ? handleValidate(newForm) : validationState,
+            validationState: validationState.isInvalid || props.validationOn === "change" ? handleValidate(newForm) : validationState,
             historyIndex: newHistoryIndex,
             formHistory: newFormHistory,
         });
@@ -110,7 +110,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     };
 
     const handleSave = useCallback((isSavedBeforeLeave?: boolean) => {
-        const validationState = handleValidate();
+        const validationState = handleValidate(formState.current.form, "save");
         setFormState({ ...formState.current, validationState });
         if (!validationState.isInvalid) {
             setFormState({ ...formState.current, isInProgress: true });

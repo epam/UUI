@@ -460,12 +460,13 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 
 export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
-    const [value, setValue] = useState(defaultData)
+    const [value, setValue] = useState(defaultData);
 
     const { lens, revert, save, isChanged } = useForm<PersonDetails>({
         settingsKey: 'form-test',
         value: value,
         getMetadata: personDetailsSchema,
+        validationOn: "change",
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
             <SuccessNotification { ...props }>
