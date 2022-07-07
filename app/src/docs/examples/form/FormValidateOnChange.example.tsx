@@ -10,7 +10,7 @@ import {
 interface Person {
     firstName?: string;
     lastName?: string;
-    countryId?: number | string;
+    countryId?: string | null;
 }
 
 export default function BasicFormExample() {
@@ -20,35 +20,30 @@ export default function BasicFormExample() {
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then(r => r.items),
     }, []);
 
-    const initFormValue = {
-        firstName: "Some Name",
+    const initFormValue: Person = {
+        firstName: "",
         lastName: "",
+        countryId: null,
     };
 
     const { lens, save } = useForm<Person>({
         value: initFormValue,
-        validationOn: 'onchange',
+        validationOn: 'change',
         onSave: person => Promise.resolve({ form: person }) /* place your save api call here */,
         onSuccess: result => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>
                 <Text>Form saved</Text>
             </SuccessNotification>
         )),
-        onError: error => svc.uuiNotifications.show(props => (
-            <ErrorNotification { ...props }>
-                <Text>Error on save</Text>
-            </ErrorNotification>
-        )),
         getMetadata: () => ({
             props: {
-                firstName: { isRequired: true },
-                lastName: { isRequired: true },
-                countryId: { isRequired: false },
+                firstName: { validators: [(val) => [val.length < 5 && "Value should be more than 5 symbols"]] },
+                lastName: { validators: [(val) => [val.length < 5 && "Value should be more than 5 symbols"]] },
+                countryId: { isRequired: true },
             },
         }),
-        settingsKey: 'form-validateOn-onchange',
     });
-
+    console.log(lens.get());
     return (
         <FlexCell width='100%'>
             <FlexRow vPadding='12'>

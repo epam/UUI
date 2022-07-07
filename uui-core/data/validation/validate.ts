@@ -3,7 +3,7 @@ import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
 import isEqual from "lodash.isequal";
 
-export type ValidationMode = "onchange" | "save";
+export type ValidationMode = "change" | "save";
 export const blankValidationState: ICanBeInvalid = {};
 
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
@@ -21,7 +21,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
                 itemResult.validationProps[key] = childResult;
             };
             switch (validateOn) {
-                case "onchange": {
+                case "change": {
                     if (childResult.isChanged) {
                         setResult();
                     }

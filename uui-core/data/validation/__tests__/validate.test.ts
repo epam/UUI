@@ -86,16 +86,16 @@ const filledBarValue: IBar = { name: 'hello' };
 describe('validate', () => {
     it('Empty required field should be invalid and not changed, filled - valid, and changed', () => {
         expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', true);
-        expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'onchange')).toHaveProperty('isChanged', false);
+        expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'change')).toHaveProperty('isChanged', false);
         expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', false);
-        expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'onchange')).toHaveProperty('isChanged', true);
+        expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'change')).toHaveProperty('isChanged', true);
     });
 
     it('If nested object has invalid fields - root should also be invalid', () => {
         expect(validate({ nested: emptyBarValue }, nestedMetadata, initFooValueNested, 'save')).toHaveProperty('isInvalid', true);
-        expect(validate({ nested: emptyBarValue }, nestedMetadata, initFooValueNested, 'onchange')).toHaveProperty('isChanged', false);
+        expect(validate({ nested: emptyBarValue }, nestedMetadata, initFooValueNested, 'change')).toHaveProperty('isChanged', false);
         expect(validate({ nested: filledBarValue }, nestedMetadata, initFooValueNested, 'save')).toHaveProperty('isInvalid', false);
-        expect(validate({ nested: filledBarValue }, nestedMetadata, initFooValueNested, 'onchange')).toHaveProperty('isChanged', true);
+        expect(validate({ nested: filledBarValue }, nestedMetadata, initFooValueNested, 'change')).toHaveProperty('isChanged', true);
     });
 
     it('If nested object is an array and "all" modifier is used in meta, result should have {[index]: ValidationState} structure', () => {
@@ -120,7 +120,7 @@ describe('validate', () => {
                 },
             },
         });
-        expect(validate({ array: [filledBarValue, emptyBarValue] }, arrayMetadata, initFooValueArray, 'onchange')).toMatchObject({
+        expect(validate({ array: [filledBarValue, emptyBarValue] }, arrayMetadata, initFooValueArray, 'change')).toMatchObject({
             isInvalid: false,
             isChanged: true,
             validationProps: {
@@ -162,7 +162,7 @@ describe('validate', () => {
                 },
             },
         });
-        expect(validate({ map: { user1: filledBarValue, user2: emptyBarValue } }, mapMetadata, initFooValueMap, 'onchange')).toMatchObject({
+        expect(validate({ map: { user1: filledBarValue, user2: emptyBarValue } }, mapMetadata, initFooValueMap, 'change')).toMatchObject({
             isInvalid: false,
             isChanged: true,
             validationProps: {
@@ -216,7 +216,7 @@ describe('validate', () => {
             all: { isRequired: true },
         };
         const resultDefault = validate(value, meta, initBarValue, 'save');
-        const resultOnChanged = validate(value, meta, initBarValue, 'onchange');
+        const resultOnChanged = validate(value, meta, initBarValue, 'change');
         expect(resultDefault).toEqual(expect.objectContaining({ isInvalid: false }));
         expect(resultOnChanged).toEqual(expect.objectContaining({ isInvalid: false, isChanged: true }));
     });
@@ -257,7 +257,7 @@ describe('validate', () => {
                     },
                 },
             },
-        }, initFooValueArray, "onchange");
+        }, initFooValueArray, "change");
 
         const resultWithNotChangedValue = validate<IFoo>(value, {
             props: {
@@ -271,7 +271,7 @@ describe('validate', () => {
                     },
                 },
             },
-        }, initValue, "onchange");
+        }, initValue, "change");
 
         expect(resultDefault).toMatchObject({
             isInvalid: true,
