@@ -38,6 +38,13 @@
             cursor: pointer;
             white-space: nowrap;
 
+            .context-wrapper {
+                display: flex;
+                overflow: hidden;
+                justify-content: space-between;
+                width: 100%;
+            }
+
             .context-left {
                 text-overflow: initial;
                 overflow: visible;
@@ -45,9 +52,14 @@
                 padding-bottom: 0;
             }
 
-            .context-right {
+            .context-right, .context-right-badge {
                 padding-top: 0;
                 padding-bottom: 0;
+            }
+
+            .context-right-badge {
+                overflow: visible;
+                padding-right: 3px;
             }
 
             .selected-title {

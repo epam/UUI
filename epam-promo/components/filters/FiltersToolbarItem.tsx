@@ -17,6 +17,7 @@ export const LOADING = 'loading-placeholder';
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
+    const forceUpdate = useForceUpdate();
 
     const handleChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
@@ -41,11 +42,11 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const getTogglerValue = () => {
-        const getStringResult = (prefix: string, value: string | null) => ({
+        const getStringResult = (prefix: string, value: string | null, badgeText: string | null) => ({
             prefix,
             selected: value ? value.includes(LOADING) ? LOADING : value : null,
+            badgeText,
         });
-        const forceUpdate = useForceUpdate();
 
         switch (props.type) {
             case "multiPicker": {
@@ -55,30 +56,37 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     const item = view.getById(i, null);
                     return item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
                 }).join(', ');
-                return getStringResult(prefix, selected);
+
+                const selectedArray = selected?.split(',') ?? selected;
+                if (selectedArray && selectedArray?.length && !selectedArray?.join(" ").includes(LOADING)) {
+                    const selectedText = [selectedArray[0], selectedArray[1]].join(', ');
+                    const badgeText = selectedArray.length > 2 ? ` +${(selectedArray.length - 2).toString()} items` : null;
+                    return getStringResult(prefix, selectedText, badgeText);
+                }
+                return getStringResult(prefix, selected, null);
             }
             case "singlePicker": {
                 const prefix = "All";
                 const view = props.dataSource.getView({}, forceUpdate);
                 const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
                 if (!item) {
-                    return getStringResult(prefix, null);
+                    return getStringResult(prefix, null, null);
                 }
                 const selected = item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
-                return getStringResult(prefix, selected);
+                return getStringResult(prefix, selected, null);
             }
             case "datePicker": {
                 const prefix = "Select date";
                 const selected = props.value?.[props.field];
-                return getStringResult(prefix, selected);
+                return getStringResult(prefix, selected, null);
             }
             case "rangeDatePicker": {
                 const prefix = "Select date";
                 if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
-                    return getStringResult(prefix, null);
+                    return getStringResult(prefix, null, null);
                 }
                 const selected = `${ props.value?.[props.field]?.from } - ${ props.value?.[props.field]?.to }`;
-                return getStringResult(prefix, selected);
+                return getStringResult(prefix, selected, null);
             }
         }
     };
