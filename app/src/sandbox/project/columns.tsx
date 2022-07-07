@@ -28,8 +28,8 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         isSortable: true,
         renderCell: (props) => <DataTableCell
             { ...props.rowLens.prop('estimate').toProps() }
-            acceptCopyDirection="vertical"
-            canCopyTo={ ({ rowIndex }) => true } // Just Example
+            allowCopy={ true }
+            canCopyTo={ ({ startColumnIndex}) => startColumnIndex === props.index }
             background={ 'blue' }
             renderEditor={ props => <NumericInput
                 { ...props }
@@ -46,6 +46,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         isSortable: true,
         renderCell: (props) => <DataTableCell
             { ...props.rowLens.prop('resource').toProps() }
+            canCopyTo={ ({ startRowIndex}) => startRowIndex === props.rowProps.index }
             renderEditor={ props => (
                 <PickerInput valueType="id" selectionMode="multi" dataSource={ resourceDataSource } { ...props } />
             ) }
@@ -84,7 +85,6 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 130,
         renderCell: (props) => <DataTableCell
             { ...props.rowLens.prop('complete').toProps() }
-            acceptCopyDirection="vertical"
             renderEditor={ props => (
                 <NumericInput max={ 100 } { ...props } formatOptions={ { maximumFractionDigits: 0 } }/>
             ) }

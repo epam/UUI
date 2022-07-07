@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
@@ -7,6 +6,8 @@ import { UUI4, UUI3 } from '../common';
 import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
+import { TreeListItem } from 'uui-components';
+import { DataRowProps } from 'uui-core';
 
 type DocsQuery = {
     id: string,
@@ -25,11 +26,11 @@ export const DocumentsPage = () => {
         redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 })
     }
 
-    const onChange = (val: TreeNodeProps) => {
-        if (val.parentId === 'components') {
-            redirectTo({ id: val.id, mode: getQuery('mode') || 'doc', skin: getQuery<DocsQuery['skin']>('skin') || UUI4, category: val.parentId });
+    const onChange = (row: DataRowProps<TreeListItem, string>) => {
+        if (row.parentId === 'components') {
+            redirectTo({ id: row.id, mode: getQuery('mode') || 'doc', skin: getQuery<DocsQuery['skin']>('skin') || UUI4, category: row.parentId });
         } else {
-            redirectTo({ id: val.id, category: val.parentId });
+            redirectTo({ id: row.id, category: row.parentId });
         }
     };
 
@@ -47,13 +48,13 @@ export const DocumentsPage = () => {
                     value={ getQuery('id') }
                     onValueChange={ onChange }
                     items={ items }
-                    getItemLink={ (item) => !item.isDropdown && {
+                    getItemLink={ (row) => !row.isFoldable && {
                         pathname: 'documents',
                         query: {
-                            id: item.id,
-                            mode: item.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
-                            skin: item.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
-                            category: item.parentId && item.parentId,
+                            id: row.id,
+                            mode: row.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
+                            skin: row.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
+                            category: row.parentId && row.parentId,
                         },
                     } }
                 />
