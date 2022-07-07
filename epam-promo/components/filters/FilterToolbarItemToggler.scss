@@ -19,11 +19,13 @@
         }
 
         &:hover {
-            border-color: $gray60;
+            border-color: $gray40;
+            background-color: $gray10;
         }
 
         &:global(.uui-opened) {
-            border-color: $blue;
+            border-color: $gray80;
+            background-color: $gray10;
         }
 
         .title {
@@ -61,9 +63,25 @@
             }
         }
 
+        &:global(.size-24) {
+            @include control-vertical-layout(24px, 1px);
+            font-size: 12px;
+        }
+
         &:global(.size-30) {
             @include control-vertical-layout(30px, 1px);
-            line-height: 18px;
+        }
+
+        &:global(.size-36) {
+            @include control-vertical-layout(36px, 1px);
+        }
+
+        &:global(.size-42) {
+            @include control-vertical-layout(42px, 1px);
+        }
+
+        &:global(.size-48) {
+            @include control-vertical-layout(48px, 1px);
         }
 
         :global(.uui-icon-dropdown) {
