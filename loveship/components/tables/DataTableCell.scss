@@ -54,6 +54,38 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
+        border-color: $night800;
+    }
+
+    &:global(.uui-table-cell-vertical-border) {
+        border-color: $night300;
+    }
+    &:global(.uui-invalid) {
+        --uui-data-table-cell-background: #{$fire-transparent};
+    }
+    &:global(.uui-focus):not(&:global(.uui-invalid)) {
+        --uui-data-table-cell-background: #{$white};
+    }
+
+    &:not(&:global(.uui-invalid), &:global(.uui-focus)) {
+        &.background-sky {
+            --uui-data-table-cell-background: #{$sky-transparent};
+        }
+        &.background-grass {
+            --uui-data-table-cell-background: #{$grass-transparent};
+        }
+        &.background-sun {
+            --uui-data-table-cell-background: #{$sun-transparent};
+        }
+        &.background-fire {
+            --uui-data-table-cell-background: #{$fire-transparent};
+        }
+        &.background-night50 {
+            --uui-data-table-cell-background: #{$night50};
+        }
+    }
 }
 
 .drag-handle {
@@ -107,5 +139,14 @@
         flex: 0 0 18px;
         width: 18px;
         height: 18px;
+    }
+}
+
+:global(.uui-table-cell-copying-marker) {
+    width: 7px;
+    height: 7px;
+    &::after {
+        width: 12px;
+        height: 12px;
     }
 }

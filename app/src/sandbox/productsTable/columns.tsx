@@ -55,7 +55,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         isSortable: true,
         renderCell: (props) => <DataTableCell
             { ...props.rowLens.prop('DaysToManufacture').toProps() }
-            background={ props.value?.DaysToManufacture > 0 ? 'green' : undefined }
+            background={ props.rowLens.get()?.DaysToManufacture > 0 ? 'green' : undefined }
             renderEditor={ props => <NumericInput { ...props } min={ 0 } /> }
             { ...props }
         />,

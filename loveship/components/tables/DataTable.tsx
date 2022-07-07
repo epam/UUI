@@ -14,6 +14,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
+    showCellDivider?: boolean;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -24,7 +25,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
-            background={ props.rowBackground }
+            background={ rowProps.isInvalid ? 'red' : props.rowBackground }
             borderBottom={ props.border }
             { ...rowProps }
         />
@@ -45,7 +46,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         );
     }, [props.renderNoResultsBlock]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns, showCellDivider: props.showCellDivider }));
 
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
