@@ -12,7 +12,7 @@ const defaultSize = "36";
 const defaultWidth = "267";
 
 export interface FilterToolbarItemTogglerProps {
-    value: { prefix: string, selected: string | null };
+    value: { prefix: string, selected: string | null, badgeText: string | null };
     title?: string;
     size?: '24' | '30' | '36' | '42' | '48';
     isDisabled?: boolean;
@@ -55,11 +55,23 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                 { props.value?.selected
                     ? props.value?.selected === LOADING
                         ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
-                        : <Text
-                            color="gray90"
-                            font="sans"
-                            size={ props.size || defaultSize }
-                            cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.selected }</Text>
+                        : <div className={ cx(css.contextWrapper) }>
+                            <Text
+                                color="gray90"
+                                font="sans"
+                                size={ props.size || defaultSize }
+                                cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.selected }
+                            </Text>
+                            {
+                                props.value.badgeText &&
+                                <Text
+                                    color="gray90"
+                                    font="sans"
+                                    size={ props.size || defaultSize }
+                                    cx={ css.contextRightBadge }>&nbsp;{ props.value.badgeText }
+                                </Text>
+                            }
+                        </div>
                     : <Text
                         color="gray90"
                         font="sans"
