@@ -48,6 +48,10 @@
         --uui-data-table-row-background: #{$white};
     }
 
+    &.background-red {
+        --uui-data-table-row-background: #{fade-out($fire, 0.95)};
+    }
+
     // Border
     &.border-night300 {
         :global(.uui-table-fixed-section), :global(.uui-table-scrolling-section) {

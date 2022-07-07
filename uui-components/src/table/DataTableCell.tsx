@@ -16,8 +16,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
-
-    let editorProps: IEditable<any> & ICanFocus<HTMLElement>;
     let outline: React.ReactNode = null;
 
     if (props.rowProps.isLoading) {
@@ -77,7 +75,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.column.cx,
                 props.cx,
                 props.renderEditor && props.rowProps.showCellDivider !== false && uuiDataTableCell.uuiTableCellVerticalBorder,
-                editorProps?.isInvalid && uuiMod.invalid,
+                props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
         >
