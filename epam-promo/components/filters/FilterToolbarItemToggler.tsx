@@ -12,7 +12,7 @@ const defaultSize = "36";
 const defaultWidth = "267";
 
 export interface FilterToolbarItemTogglerProps {
-    value: { prefix: string, selected: string };
+    value: { prefix: string, selected: string | null };
     title?: string;
     size?: '24' | '30' | '36' | '42' | '48';
     isDisabled?: boolean;
@@ -50,15 +50,22 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                     size={ props.size || defaultSize }
                     cx={ css.contextLeft }
                 >
-                    { `${ props.title } ${ props.value?.prefix }` }
+                    { `${ props.title }:` }
                 </Text>
-                { props.value?.selected && (props.value?.selected === LOADING
-                    ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
+                { props.value?.selected
+                    ? props.value?.selected === LOADING
+                        ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
+                        : <Text
+                            color="gray90"
+                            font="sans"
+                            size={ props.size || defaultSize }
+                            cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.selected }</Text>
                     : <Text
                         color="gray90"
                         font="sans"
                         size={ props.size || defaultSize }
-                        cx={ css.contextRight }>&nbsp;{ props.value.selected }</Text>) }
+                        cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.prefix }</Text>
+                }
             </FlexRow>
             {
                 !props.isDisabled &&

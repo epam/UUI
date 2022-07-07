@@ -41,15 +41,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const getTogglerValue = () => {
-        const getStringResult = (prefix: string, value: string | undefined | null) => ({
-            prefix: value ? prefix : "",
-            selected: value ? value.includes(LOADING) ? LOADING : value : "",
+        const getStringResult = (prefix: string, value: string | null) => ({
+            prefix,
+            selected: value ? value.includes(LOADING) ? LOADING : value : null,
         });
         const forceUpdate = useForceUpdate();
 
         switch (props.type) {
             case "multiPicker": {
-                const prefix = "is:";
+                const prefix = "All";
                 const view = props.dataSource.getView({}, forceUpdate);
                 const selected = props.value?.[props.field]?.map((i: any) => {
                     const item = view.getById(i, null);
@@ -58,7 +58,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 return getStringResult(prefix, selected);
             }
             case "singlePicker": {
-                const prefix = "is:";
+                const prefix = "All";
                 const view = props.dataSource.getView({}, forceUpdate);
                 const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
                 if (!item) {
@@ -68,12 +68,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 return getStringResult(prefix, selected);
             }
             case "datePicker": {
-                const prefix = "on:";
+                const prefix = "Select date";
                 const selected = props.value?.[props.field];
                 return getStringResult(prefix, selected);
             }
             case "rangeDatePicker": {
-                const prefix = "on:";
+                const prefix = "Select date";
                 if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
                     return getStringResult(prefix, null);
                 }
