@@ -8,7 +8,7 @@ import { Text, TextPlaceholder } from "../typography";
 import { LOADING } from "./FiltersToolbarItem";
 
 
-const defaultSize = "30";
+const defaultSize = "36";
 const defaultWidth = "267";
 
 export interface FilterToolbarItemTogglerProps {
@@ -38,9 +38,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             cx={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
-                //TODO should be implemented when we have a design
-                // ["size-" + (props.size || defaultSize)],
-                ["size-" + (defaultSize)],
+                ["size-" + (props.size || defaultSize)],
                 props.cx) }
             onClick={ togglerPickerOpened }
             ref={ ref }
@@ -49,8 +47,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                 <Text
                     color="gray60"
                     font="sans"
-                    fontSize="14"
-                    lineHeight="18"
+                    size={ props.size || defaultSize }
                     cx={ css.contextLeft }
                 >
                     { `${ props.title } ${ props.value?.prefix }` }
@@ -60,8 +57,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                     : <Text
                         color="gray90"
                         font="sans"
-                        fontSize="14"
-                        lineHeight="18"
+                        size={ props.size || defaultSize }
                         cx={ css.contextRight }>&nbsp;{ props.value.selected }</Text>) }
             </FlexRow>
             {

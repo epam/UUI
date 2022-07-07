@@ -68,7 +68,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
 
     const renderToggler = useCallback((props: PickerTogglerProps) => {
         return <Button
-            size='30'
+            size='36'
             onClick={ props.onClick }
             ref={ props.ref }
             caption="Add filter"
