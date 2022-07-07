@@ -3,7 +3,6 @@
 
 .root {
     &:global(.uui-table-row) {
-        --uui-data-table-row-background: white;
 
         &:global(.-clickable) {
             cursor: pointer;
@@ -49,7 +48,7 @@
     }
 
     &.background-red {
-        --uui-data-table-row-background: #{fade-out($fire, 0.95)};
+        --uui-data-table-row-background: #FEF7F6; // TODO: fix to color according new colors for loveship
     }
 
     // Border

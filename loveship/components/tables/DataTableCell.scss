@@ -56,14 +56,14 @@
     &.padding-right-24 { padding-right: 24px; }
 
     &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
-        border-color: $night800;
+        border-color: $night500;
     }
 
     &:global(.uui-table-cell-vertical-border) {
         border-color: $night300;
     }
     &:global(.uui-invalid) {
-        --uui-data-table-cell-background: #{$fire-transparent};
+        --uui-data-table-cell-background: #{$fire-lightest};
     }
     &:global(.uui-focus):not(&:global(.uui-invalid)) {
         --uui-data-table-cell-background: #{$white};

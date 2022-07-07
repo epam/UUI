@@ -34,24 +34,28 @@ $cyan-dark: darken($cyan, 10%);
 $cyan-darkest: darken($cyan, 20%);
 $cyan-light: lighten($cyan, 40%);
 $cyan-lightest: lighten($cyan, 50%);
+$cyan-transparent: transparentize($cyan, 0.9);
 
 $orange: #E67E17;
 $orange-dark: #89370E;
 $orange-darkest: #72250B;
 $orange-light: lighten($orange, 30%);
 $orange-lightest: lighten($orange, 40%);
+$orange-transparent: transparentize($orange, 0.9);
 
 $purple: #AD14CC;
 $purple-dark: darken($purple, 10%);
 $purple-darkest: darken($purple, 20%);
 $purple-light: lighten($purple, 35%);
 $purple-lightest: lighten($purple, 45%);
+$purple-transparent: transparentize($purple, 0.9);
 
 $violet: #5214CC;
 $violet-dark: darken($violet, 10%);
 $violet-darkest: darken($violet, 20%);
 $violet-light: lighten($violet, 35%);
 $violet-lightest: lighten($violet, 45%);
+$violet-transparent: transparentize($violet, 0.9);
 
 /* Gray */
 $gray5: #FAFAFC;

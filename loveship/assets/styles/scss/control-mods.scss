@@ -44,6 +44,32 @@
     &:hover {
         background-color: white;
         border-color: $night400;
+
+        :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
+            &:global(.uui-enabled) {
+                fill: $night600;
+
+                &:hover {
+                    fill: $night700;
+                }
+            }
+
+            &:global(.uui-disabled) {
+                fill: transparent;
+            }
+        }
+    }
+
+    :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
+        cursor: pointer;
+
+        &:global(.uui-enabled) {
+            fill: transparent;
+        }
+
+        &:global(.uui-disabled) {
+            fill: transparent;
+        }
     }
 
     &:global(.uui-focus) {
