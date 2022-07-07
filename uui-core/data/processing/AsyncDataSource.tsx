@@ -1,4 +1,4 @@
-import { ArrayDataSource } from "./ArrayDataSource";
+import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
 import { ArrayListViewProps } from './views/ArrayListView';
 import { LoadingListView } from './views/LoadingListView';
 import { DataSourceItemId, DataSourceState, IDataSourceView } from "../../types";
@@ -18,8 +18,24 @@ export class AsyncDataSource<TItem = any, TId extends DataSourceItemId = any, TF
         this.api = props.api;
     }
 
+    public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
+        const props = { ...newProps };
+         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
+         // so this tweak is required to not reset items on any update
+        props.items = newProps.items || this.props.items;
+        super.setProps(props);
+    }
+
     isLoading: boolean = false;
     isLoaded: boolean = false;
+
+    private recreateViews() {
+        // AsyncDataSource uses two different view - LoadingListView and ArrayList view.
+        // When we swap them, we need to force all views to update and clear them to get new views.
+        const existingViews = new Map(this.views);
+        this.views.clear();
+        existingViews.forEach(view => view._forceUpdate());
+    }
 
     private load() {
         if (!this.isLoading) {
@@ -27,10 +43,8 @@ export class AsyncDataSource<TItem = any, TId extends DataSourceItemId = any, TF
             this.api().then(res => {
                 this.isLoading = false;
                 this.isLoaded = true;
-                this.updateIndexes(res);
-                const loadingViews = new Map(this.views);
-                this.views.clear();
-                loadingViews.forEach(view => view._forceUpdate());
+                this.setProps({ ...this.props, items: res });
+                this.recreateViews();
             });
         }
     }
@@ -38,16 +52,8 @@ export class AsyncDataSource<TItem = any, TId extends DataSourceItemId = any, TF
     reload() {
         this.isLoading = false;
         this.isLoaded = false;
-
-        this.byKey = {};
-        this.byParentKey = {};
-        this.nodes = [];
-        this.rootNodes = [];
-        this.maxDepth = null;
-
-        const views = new Map(this.views);
-        this.views.clear();
-        views.forEach(view => view._forceUpdate());
+        this.setProps({ ...this.props, items: [] });
+        this.recreateViews();
     }
 
     getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: ArrayListViewProps<TItem, TId, TFilter>): IDataSourceView<TItem, TId, TFilter> {

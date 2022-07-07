@@ -1,16 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-
-export interface SelectionRange {
-    startColumnIndex: number;
-    startRowIndex: number;
-    endColumnIndex: number;
-    endRowIndex: number;
-    isCopying?: boolean;
-}
+import { ColumnSelectionRange } from "@epam/uui-core";
 
 export interface SelectionContextState {
-    selectionRange: SelectionRange;
-    setSelectionRange: Dispatch<SetStateAction<SelectionRange>>;
+    selectionRange: ColumnSelectionRange;
+    setSelectionRange: Dispatch<SetStateAction<ColumnSelectionRange>>;
 }
 
 export const DataTableSelectionContext = createContext<SelectionContextState>({ selectionRange: null, setSelectionRange: null });

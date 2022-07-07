@@ -141,9 +141,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const key = this.idToKey(id);
 
         const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
+        const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
 
         const rowProps = {
             id,
+            parentId,
             rowKey: key,
             index,
             value: item,

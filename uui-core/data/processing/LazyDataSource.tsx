@@ -17,6 +17,10 @@ export class LazyDataSource<TItem = any, TId extends DataSourceItemId = any, TFi
         this.initCache();
     }
 
+    public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
+    }
+
+
     public getById = (id: TId) => {
         return this.cache.byId(id);
     }

@@ -3,13 +3,13 @@ import { DataSourceState, LazyDataSourceApi, LazyDataSourceApiRequestContext, La
 export type LazyTreeFetchStrategy = 'sequential' | 'parallel'; // TBD: batch mode
 
 export interface LazyTreeParams<TItem, TId, TFilter> {
-    api: LazyDataSourceApi<TItem, TId, TFilter>;
+    api?: LazyDataSourceApi<TItem, TId, TFilter>;
     getId?(item: TItem): TId;
-    getParentId?(item: TItem): TId;
+    getParentId?(item: TItem): TId | undefined;
     filter?: TFilter;
     page?: number;
     pageSize?: number;
-    getChildCount?(item: TItem): number;
+    getChildCount?(item: TItem): number | undefined;
     flattenSearchResults?: boolean;
 }
 
@@ -50,6 +50,14 @@ export class LazyTree<TItem, TId, TFilter> {
     /** Clears the tree structure, keeping byIds and byParentIds map */
     public clearStructureAndUpdateParams(params: LazyTreeParams<TItem, TId, TFilter>) {
         return new LazyTree(params, { items: [] }, new Map<TId, TItem>(), new Map<TId, TItem[]>());
+    }
+
+    public getById(id: TId) {
+        return this.byId.get(id);
+    }
+
+    public getByParentId(parentId: TId) {
+        return this.byParentId.get(parentId);
     }
 
     public async loadMissing(
@@ -179,7 +187,7 @@ export class LazyTree<TItem, TId, TFilter> {
 
         itemsToAdd.forEach(node => {
             const id = this.params.getId(node);
-            const existing = this.byId.get(id);
+            const existing = this.getById(id);
             if (existing !== node) {
                 newById.set(id, node);
                 isChanged = true;
