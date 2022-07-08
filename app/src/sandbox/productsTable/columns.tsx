@@ -119,13 +119,13 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
             { ...props }
         />,
     },
-    // {
-    //     key: 'ID',
-    //     caption: 'ID',
-    //     render: p => <Text>{ p.ProductID }</Text>,
-    //     width: 200,
-    //     isSortable: true,
-    // },
+    {
+        key: 'ID',
+        caption: 'ID',
+        render: p => <Text>{ p.ProductID }</Text>,
+        width: 200,
+        isSortable: true,
+    },
     // {
     //     key: 'ProductLine',
     //     caption: 'Product Line',

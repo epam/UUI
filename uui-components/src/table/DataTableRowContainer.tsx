@@ -103,8 +103,8 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         }
 
         const hasScrollingSection = scrollingColumns.length > 0;
-        const withExtraRightBorder = fixedRightColumns.length > 0;
-        const withExtraLeftBorder = fixedLeftColumns.length > 0;
+        const withExtraRightBorder = hasScrollingSection && fixedRightColumns.length > 0;
+        const withExtraLeftBorder = hasScrollingSection && fixedLeftColumns.length > 0;
 
         return <>
             { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left', hasScrollingSection) }

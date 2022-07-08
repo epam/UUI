@@ -74,7 +74,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 css.cell,
                 props.column.cx,
                 props.cx,
-                props.rowProps.showCellDivider !== false && uuiDataTableCell.uuiTableCellVerticalBorder,
+                props.rowProps.showCellDivider && uuiDataTableCell.uuiTableCellVerticalBorder,
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
