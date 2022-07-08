@@ -20,7 +20,7 @@ export interface FilterToolbarItemTogglerProps {
     onClick?: () => void;
     cx?: IHasCX;
     isOpen?: boolean;
-    width?: string;
+    maxWidth?: string;
 }
 
 export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
@@ -34,7 +34,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
     return (
         <FlexRow
             { ...props }
-            rawProps={ { style: { width: `${ (props.width || defaultWidth) + 'px' }` } } }
+            rawProps={ { style: { maxWidth: `${ (props.maxWidth || defaultWidth) + 'px' }` } } }
             cx={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,

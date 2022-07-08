@@ -59,7 +59,6 @@
 
             .context-right-badge {
                 overflow: visible;
-                padding-right: 3px;
             }
 
             .selected-title {
@@ -100,6 +99,7 @@
             fill: $gray60;
             margin-top: auto;
             margin-bottom: auto;
+            padding-left: 3px;
         }
     }
 
