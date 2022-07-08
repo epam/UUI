@@ -5,4 +5,8 @@
     padding: 0 12px;
     font-family: $font-sans;
     justify-content: space-between;
+
+    button.removeButton {
+        padding-left: 6px;
+    }
 }
