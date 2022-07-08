@@ -59,7 +59,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
                 const selectedArray = selected?.split(',') ?? selected;
                 if (selectedArray && selectedArray?.length && !selectedArray?.join(" ").includes(LOADING)) {
-                    const selectedText = [selectedArray[0], selectedArray[1]].join(', ');
+                    const selectedText = selectedArray.length > 1 ? [selectedArray[0], selectedArray[1]].join(', ') : selectedArray[0];
                     const badgeText = selectedArray.length > 2 ? ` +${(selectedArray.length - 2).toString()} items` : null;
                     return getStringResult(prefix, selectedText, badgeText);
                 }
