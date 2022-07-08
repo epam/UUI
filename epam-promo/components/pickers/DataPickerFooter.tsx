@@ -30,7 +30,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper) }>
+        <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
             {
                 !props.hideShowOnlySelected && <Switch
                     size={ switchSize }
@@ -43,8 +43,8 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
             <FlexSpacer/>
 
-            { view.selectAll && (
-                <FlexCell width='auto' alignSelf='center'>
+            <FlexCell width="auto" alignSelf="center">
+                { view.selectAll ?
                     <LinkButton
                         size={ size }
                         caption={ hasSelection
@@ -57,8 +57,16 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         }
                         rawProps={ { onKeyDown: handleKeyDown } }
                     />
-                </FlexCell>
-            ) }
+                    :
+                    <LinkButton
+                        isDisabled={ !hasSelection }
+                        size={ size }
+                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
+                        onClick={ clearSelection }
+                        rawProps={ { onKeyDown: handleKeyDown } }
+                    />
+                }
+            </FlexCell>
         </FlexRow>
     );
 };

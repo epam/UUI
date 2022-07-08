@@ -38,7 +38,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <Panel shadow background="white">
             { renderHeader() }
-            { FilterItemBody({ sourceProps: props, handleChange, dropdownProps }) }
+            { <FilterItemBody  sourceProps={ props } handleChange={ handleChange } dropdownProps={ dropdownProps }/> }
         </Panel>
     );
 
@@ -83,10 +83,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             }
             case "rangeDatePicker": {
                 const prefix = "Select date";
-                if (!props.value?.[props.field] || !props.value?.[props.field]?.from || !props.value?.[props.field]?.to) {
+                if (!props.value?.[props.field]) {
                     return getStringResult(prefix, null, null);
                 }
-                const selected = `${ props.value?.[props.field]?.from } - ${ props.value?.[props.field]?.to }`;
+                const from = `${ props.value?.[props.field]?.from ?? 'not selected' }`;
+                const to = `${ props.value?.[props.field]?.to ?? 'not selected' }`;
+                const selected = from.includes('not selected') && to.includes('not selected') ? null : `${ from } - ${ to }`;
                 return getStringResult(prefix, selected, null);
             }
         }
