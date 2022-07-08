@@ -56,7 +56,7 @@
     &.padding-right-24 { padding-right: 24px; }
 
     &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
-        border-color: $night500;
+        border-color: $night600;
     }
 
     &:global(.uui-table-cell-vertical-border) {
