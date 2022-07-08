@@ -21,10 +21,18 @@
 */
 
 .container {
+    --uui-table-cell-overlay-border-width: 1px;
+    --uui-table-cell-overlay-extra-border-width: 2px;
+
     position: relative;
     display: flex;
     align-items: stretch;
     background-color: var(--uui-data-table-row-background);
+    &:nth-of-type(1) {
+        :global(.uui-table-cell-overlay) {
+            border-top-width: var(--uui-table-cell-overlay-extra-border-width);
+        }
+    }
 }
 
 .scrolling-section {
@@ -32,6 +40,12 @@
     display: flex;
     align-items: stretch;
     background-color: var(--uui-data-table-row-background);
+    &.extraOverlayBorderLeft > div:nth-of-type(1) :global(.uui-table-cell-overlay) {
+        border-left-width: var(--uui-table-cell-overlay-extra-border-width);
+    }
+    &.extraOverlayBorderRight > div:nth-last-of-type(1) :global(.uui-table-cell-overlay) {
+        border-right-width: var(--uui-table-cell-overlay-extra-border-width);
+    }
 }
 
 .fixed-columns-section-left, .fixed-columns-section-right {

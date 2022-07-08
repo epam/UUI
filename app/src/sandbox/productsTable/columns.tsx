@@ -78,6 +78,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         isSortable: true,
         textAlign: 'center',
         renderCell: (props) => <DataTableCell
+            background={ props.rowLens.get()?.FinishedGoodsFlag ? 'blue' : undefined }
             { ...props.rowLens.prop('FinishedGoodsFlag').toProps() }
             renderEditor={ props => <Checkbox { ...props } /> }
             { ...props }
@@ -118,13 +119,13 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
             { ...props }
         />,
     },
-    {
-        key: 'ID',
-        caption: 'ID',
-        render: p => <Text>{ p.ProductID }</Text>,
-        width: 200,
-        isSortable: true,
-    },
+    // {
+    //     key: 'ID',
+    //     caption: 'ID',
+    //     render: p => <Text>{ p.ProductID }</Text>,
+    //     width: 200,
+    //     isSortable: true,
+    // },
     // {
     //     key: 'ProductLine',
     //     caption: 'Product Line',

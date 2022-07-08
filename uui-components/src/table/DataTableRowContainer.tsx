@@ -4,10 +4,12 @@ import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
+type ExtraBordersFlags = { left: boolean, right: boolean };
+
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[]): React.ReactNode;
+    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[], extraBordersFlags?: ExtraBordersFlags): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -73,11 +75,16 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         );
     }
 
-    function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[]) {
+    function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[], borderFlags: ExtraBordersFlags) {
         if (props.wrapScrollingSection) return props.wrapScrollingSection(columns);
         return (
             <div
-                className={ cx(css.scrollingSection, uuiDataTableRowCssMarkers.uuiTableScrollingSection) }
+                className={ cx(
+                    css.scrollingSection,
+                    uuiDataTableRowCssMarkers.uuiTableScrollingSection,
+                    borderFlags.left && css.extraOverlayBorderLeft,
+                    borderFlags.right && css.extraOverlayBorderRight,
+                ) }
                 style={ getSectionStyle(columns, 1) }>
                 { renderCells(columns) }
             </div>
@@ -96,10 +103,12 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         }
 
         const hasScrollingSection = scrollingColumns.length > 0;
+        const withExtraRightBorder = fixedRightColumns.length > 0;
+        const withExtraLeftBorder = fixedLeftColumns.length > 0;
 
         return <>
             { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left', hasScrollingSection) }
-            { wrapScrollingSection(scrollingColumns) }
+            { wrapScrollingSection(scrollingColumns, { left: withExtraLeftBorder, right: withExtraRightBorder }) }
             { fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right', hasScrollingSection) }
             { props.overlays }
         </>;
