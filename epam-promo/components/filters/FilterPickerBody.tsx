@@ -42,9 +42,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         );
     }
 
-    renderFooter() {
-        return <DataPickerFooter { ...this.getFooterProps() } size='36' />;
-    }
+    renderFooter = () => <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36"/>;
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         return <div></div>;
@@ -74,7 +72,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                         editMode='dropdown'
                         showSearch={ true }
                     />
-                    { !this.isSingleSelect() && this.renderFooter() }
+                    { this.renderFooter() }
                 </MobileDropdownWrapper>
             </Panel>
         );

@@ -10,7 +10,7 @@ import { Dropdown } from '../../';
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
-interface DatePickerState extends PickerBodyValue<string> {
+export interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
     inputValue: string | null;
 }

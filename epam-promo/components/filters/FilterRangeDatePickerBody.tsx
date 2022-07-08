@@ -17,7 +17,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
     renderBody() {
         return (
             <DropdownContainer>
-                <FlexRow borderBottom='gray40'>
+                <FlexRow borderBottom="gray40">
                     <RangeDatePickerBody
                         value={ this.getValue() }
                         onValueChange={ this.onRangeChange }
@@ -25,8 +25,8 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         focusPart={ this.state.inFocus }
                     />
                 </FlexRow>
-                <FlexCell alignSelf='stretch'>
-                    <FlexRow padding='24' vPadding='12'>
+                <FlexCell alignSelf="stretch">
+                    <FlexRow padding="24" vPadding="12">
                         <div className={ cx(css.dateInputGroup, this.state.inFocus && uuiMod.focus) }>
                             <TextInput
                                 icon={ systemIcons['30'].calendar }
@@ -38,7 +38,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 onFocus={ () => this.handleFocus('from') }
                                 onBlur={ () => this.handleBlur('from') }
                             />
-                            <div className={ css.separator } />
+                            <div className={ css.separator }/>
                             <TextInput
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
@@ -50,8 +50,12 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 onBlur={ () => this.handleBlur('to') }
                             />
                         </div>
-                        <FlexSpacer />
-                        <LinkButton caption='Clear All' onClick={ this.handleCancel }/>
+                        <FlexSpacer/>
+                        <LinkButton
+                            isDisabled={ !this.state.inputValue.from && !this.state.inputValue.to }
+                            caption="CLEAR ALL"
+                            onClick={ this.handleCancel }
+                        />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>

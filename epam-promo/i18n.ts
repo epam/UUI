@@ -17,6 +17,7 @@ export const i18n = {
     pickerInput: {
         showOnlySelectedLabel: 'Show only selected',
         clearSelectionButton: 'CLEAR ALL',
+        clearSelectionButtonSingle: 'CLEAR',
         selectAllButton: 'SELECT ALL',
     },
     notificationCard: {
