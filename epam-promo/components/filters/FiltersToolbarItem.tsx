@@ -7,6 +7,7 @@ import { FlexRow, Panel } from "../layout";
 import { LinkButton } from "../buttons";
 import { Text } from "../typography";
 import FilterItemBody from "./FilterItemBody";
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -30,7 +31,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const renderHeader = () => (
         <FlexRow cx={ css.header }>
             <Text color="gray60" fontSize="12">{ props.title }</Text>
-            { !props?.isAlwaysVisible && <LinkButton caption="Remove" onClick={ removeOnclickHandler } size="24"/> }
+            { !props?.isAlwaysVisible && <LinkButton cx={ css.removeButton } caption="REMOVE FILTER" onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon }/> }
         </FlexRow>
     );
 
