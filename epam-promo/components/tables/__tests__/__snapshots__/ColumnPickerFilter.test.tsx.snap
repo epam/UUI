@@ -474,6 +474,35 @@ Array [
     <div
       className="flexSpacer"
     />
+    <div
+      className=""
+      style={
+        Object {
+          "alignSelf": "center",
+          "flexBasis": "auto",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <button
+        aria-disabled={true}
+        className="container uui-button-box uui-disabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <div
+          className="uui-caption"
+        >
+          CLEAR
+        </div>
+      </button>
+    </div>
   </div>,
 ]
 `;
@@ -952,6 +981,35 @@ Array [
     <div
       className="flexSpacer"
     />
+    <div
+      className=""
+      style={
+        Object {
+          "alignSelf": "center",
+          "flexBasis": "auto",
+          "flexGrow": undefined,
+          "flexShrink": undefined,
+          "minWidth": 0,
+          "textAlign": undefined,
+        }
+      }
+    >
+      <button
+        aria-disabled={true}
+        className="container uui-button-box uui-disabled -clickable root size-30 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
+        href={null}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={-1}
+      >
+        <div
+          className="uui-caption"
+        >
+          CLEAR
+        </div>
+      </button>
+    </div>
   </div>,
 ]
 `;
