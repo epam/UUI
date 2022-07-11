@@ -33,7 +33,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                 </FlexRow>
                 <FlexCell alignSelf="stretch">
                     <FlexRow padding="24" vPadding="12">
-                        <Text >{ this.state.selectedDate || "not selected" }</Text>
+                        <Text>{ this.state.selectedDate }</Text>
                         <FlexSpacer />
                         <LinkButton isDisabled={ !this.state.selectedDate } caption="CLEAR" onClick={ this.handleCancel }/>
                     </FlexRow>
