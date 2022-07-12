@@ -5,7 +5,7 @@ import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
 import { LinkButton } from "../buttons";
-import { Text } from "../typography";
+import { Text, TextPlaceholder } from "../typography";
 import FilterItemBody from "./FilterItemBody";
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
 
@@ -13,8 +13,6 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
     autoFocus?: boolean;
     removeFilter?: (columnKey: string) => void;
 };
-
-export const LOADING = 'loading-placeholder';
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
@@ -38,58 +36,49 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <Panel shadow background="white">
             { renderHeader() }
-            { <FilterItemBody  sourceProps={ props } handleChange={ handleChange } dropdownProps={ dropdownProps }/> }
+            { <FilterItemBody sourceProps={ props } handleChange={ handleChange } dropdownProps={ dropdownProps }/> }
         </Panel>
     );
 
-    const getTogglerValue = () => {
-        const getStringResult = (prefix: string, value: string | null, badgeText: string | null) => ({
-            prefix,
-            selected: value ? value.includes(LOADING) ? LOADING : value : null,
-            badgeText,
-        });
+    const getTogglerValue = (): { selection: string | null | JSX.Element, postfix: string | null | JSX.Element} => {
+        const currentValue = props.value?.[props.field];
 
         switch (props.type) {
             case "multiPicker": {
-                const prefix = "All";
                 const view = props.dataSource.getView({}, forceUpdate);
-                const selected = props.value?.[props.field]?.map((i: any) => {
-                    const item = view.getById(i, null);
-                    return item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
-                }).join(', ');
+                let postfix = currentValue?.length > 2 ? <span className={ css.placeholder }>{ ` +${ (currentValue.length - 2).toString() } items` }</span> : null;
 
-                const selectedArray = selected?.split(',') ?? selected;
-                if (selectedArray && selectedArray?.length && !selectedArray?.join(" ").includes(LOADING)) {
-                    const selectedText = selectedArray.length > 1 ? [selectedArray[0], selectedArray[1]].join(', ') : selectedArray[0];
-                    const badgeText = selectedArray.length > 2 ? ` +${(selectedArray.length - 2).toString()} items` : null;
-                    return getStringResult(prefix, selectedText, badgeText);
-                }
-                return getStringResult(prefix, selected, null);
+                const selection = currentValue?.slice(0, 2).map((i: any) => {
+                    const item = view.getById(i, null);
+                    return item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
+                });
+                const selectionText = currentValue
+                    ? typeof selection[0] === 'string'
+                        ? currentValue.length > 1 ? selection.join(', ') : selection[0]
+                        : currentValue.length > 1 ? <span className={ css.placeholder }>{ selection[0] },{ selection[1] }</span> : selection[0]
+                    : 'All';
+                return { selection: selectionText, postfix };
             }
             case "singlePicker": {
-                const prefix = "All";
                 const view = props.dataSource.getView({}, forceUpdate);
-                const item = props.value?.[props.field] && view.getById(props.value?.[props.field], null);
+                const item = currentValue && view.getById(currentValue, null);
                 if (!item) {
-                    return getStringResult(prefix, null, null);
+                    return { selection: 'All', postfix: null };
                 }
-                const selected = item.isLoading ? LOADING : (props.getName ? props.getName(item) : item.value.name);
-                return getStringResult(prefix, selected, null);
+                const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
+                return { selection, postfix: null };
             }
             case "datePicker": {
-                const prefix = "Select date";
-                const selected = props.value?.[props.field];
-                return getStringResult(prefix, selected, null);
+                return { selection: currentValue ?? "Select date", postfix: null };
             }
             case "rangeDatePicker": {
-                const prefix = "Select date";
-                if (!props.value?.[props.field]) {
-                    return getStringResult(prefix, null, null);
+                if (!currentValue) {
+                    return { selection: "Select period", postfix: null };
                 }
-                const from = `${ props.value?.[props.field]?.from ?? 'not selected' }`;
-                const to = `${ props.value?.[props.field]?.to ?? 'not selected' }`;
-                const selected = from.includes('not selected') && to.includes('not selected') ? null : `${ from } - ${ to }`;
-                return getStringResult(prefix, selected, null);
+                const from = `${ currentValue?.from ?? 'Select From' }`;
+                const to = `${ currentValue?.to ?? 'Select To' }`;
+                const selection = from.includes('Select From') && to.includes('Select To') ? `Select period` : `${ from } - ${ to }`;
+                return { selection, postfix: null };
             }
         }
     };

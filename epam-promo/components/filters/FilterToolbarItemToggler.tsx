@@ -1,32 +1,27 @@
 import * as React from 'react';
 import css from './FilterToolbarItemToggler.scss';
 import cx from "classnames";
-import { IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
+import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
 import { systemIcons } from "../../icons/icons";
 import { IconContainer, FlexRow } from "@epam/uui-components";
-import { Text, TextPlaceholder } from "../typography";
-import { LOADING } from "./FiltersToolbarItem";
+import { Text } from "../typography";
 
 
 const defaultSize = "36";
 const defaultWidth = "267";
 
-export interface FilterToolbarItemTogglerProps {
-    value: { prefix: string, selected: string | null, badgeText: string | null };
+export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
+    value: { selection: string | null | JSX.Element, postfix: string | null | JSX.Element };
     title?: string;
-    size?: '24' | '30' | '36' | '42' | '48';
-    isDisabled?: boolean;
-    isReadonly?: boolean;
-    onClick?: () => void;
-    cx?: IHasCX;
-    isOpen?: boolean;
     maxWidth?: string;
+    size?: '24' | '30' | '36' | '42' | '48';
+    cx?: IHasCX;
 }
 
 export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (props.isDisabled || props.isReadonly) return;
+        if (props.isDisabled) return;
         e.preventDefault();
         props.onClick?.();
     };
@@ -43,41 +38,33 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             onClick={ togglerPickerOpened }
             ref={ ref }
         >
-            <FlexRow cx={ css.title }>
+            <FlexRow cx={ css.titleWrapper }>
                 <Text
                     color="gray60"
                     font="sans"
-                    size={ props.size || defaultSize }
-                    cx={ css.contextLeft }
+                    cx={ css.title }
                 >
                     { `${ props.title }:` }
                 </Text>
-                { props.value?.selected
-                    ? props.value?.selected === LOADING
-                        ? <Text cx={ css.placeholder }>{ <TextPlaceholder color="gray40"/> }</Text>
-                        : <div className={ cx(css.contextWrapper) }>
+                { <div className={ cx(css.textWrapper) }>
+                        <Text
+                            color="gray90"
+                            font="sans"
+                            cx={ css.selection }
+                        >
+                            { props.value.selection }
+                        </Text>
+                        {
+                            props.value.postfix &&
                             <Text
                                 color="gray90"
                                 font="sans"
-                                size={ props.size || defaultSize }
-                                cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.selected }
+                                cx={ css.postfix }
+                            >
+                                { props.value.postfix }
                             </Text>
-                            {
-                                props.value.badgeText &&
-                                <Text
-                                    color="gray90"
-                                    font="sans"
-                                    size={ props.size || defaultSize }
-                                    cx={ css.contextRightBadge }>&nbsp;{ props.value.badgeText }
-                                </Text>
-                            }
-                        </div>
-                    : <Text
-                        color="gray90"
-                        font="sans"
-                        size={ props.size || defaultSize }
-                        cx={ css.contextRight }>&nbsp;&nbsp;{ props.value.prefix }</Text>
-                }
+                        }
+                    </div> }
             </FlexRow>
             {
                 !props.isDisabled &&

@@ -11,15 +11,19 @@ interface IFilterItemBodyProps {
     dropdownProps: DropdownBodyProps;
 }
 
-const FilterItemBody = ({ sourceProps, handleChange, dropdownProps }: IFilterItemBodyProps) => {
+const FilterItemBody = (props: IFilterItemBodyProps) => {
+    const { sourceProps, handleChange, dropdownProps } = props;
+    const value = sourceProps.value?.[sourceProps.field];
+
     switch (sourceProps.type) {
         case "singlePicker":
             return (
                 <FilterPickerBody
+                    { ...props }
                     { ...dropdownProps }
                     dataSource={ sourceProps.dataSource }
                     selectionMode="single"
-                    value={ sourceProps.value?.[sourceProps.field] }
+                    value={ value }
                     onValueChange={ handleChange }
                     valueType="id"
                     prefix={ sourceProps.title }
@@ -28,10 +32,11 @@ const FilterItemBody = ({ sourceProps, handleChange, dropdownProps }: IFilterIte
         case "multiPicker":
             return (
                 <FilterPickerBody
+                    { ...props }
                     { ...dropdownProps }
                     dataSource={ sourceProps.dataSource }
                     selectionMode="multi"
-                    value={ sourceProps.value?.[sourceProps.field] }
+                    value={ value }
                     onValueChange={ handleChange }
                     valueType="id"
                     prefix={ sourceProps.title }
@@ -41,14 +46,14 @@ const FilterItemBody = ({ sourceProps, handleChange, dropdownProps }: IFilterIte
             return (
                 <FilterDataPickerBody
                     format="DD/MM/YYYY"
-                    value={ sourceProps.value?.[sourceProps.field] }
+                    value={ value }
                     onValueChange={ handleChange }
                 />
             );
         case "rangeDatePicker":
             return (
                 <FilterRangeDatePickerBody
-                    value={ sourceProps.value?.[sourceProps.field] || { from: null, to: null } }
+                    value={ value || { from: null, to: null } }
                     onValueChange={ handleChange }
                 />
             );
