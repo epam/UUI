@@ -10,3 +10,13 @@
         padding-left: 6px;
     }
 }
+
+.placeholder {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    & > div:last-of-type {
+        padding-left: 3px;
+    }
+}
