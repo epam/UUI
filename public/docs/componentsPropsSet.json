@@ -9905,6 +9905,74 @@
         "name": "background",
         "value": "white | night50"
       }
+    ],
+    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
+      {
+        "name": "showArrow",
+        "value": "boolean"
+      },
+      {
+        "name": "vPadding",
+        "value": "6 | 12 | 18 | 24 | 30 | 48"
+      },
+      {
+        "name": "padding",
+        "value": "6 | 12 | 18 | 24 | 30"
+      },
+      {
+        "name": "width",
+        "value": "number"
+      },
+      {
+        "name": "maxWidth",
+        "value": "number | auto"
+      },
+      {
+        "name": "height",
+        "value": "number"
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties"
+      },
+      {
+        "name": "color",
+        "value": "white | gray70"
+      }
+    ],
+    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
+      {
+        "name": "showArrow",
+        "value": "boolean"
+      },
+      {
+        "name": "vPadding",
+        "value": "6 | 12 | 18 | 24 | 30 | 48"
+      },
+      {
+        "name": "padding",
+        "value": "6 | 12 | 18 | 24 | 30"
+      },
+      {
+        "name": "width",
+        "value": "number"
+      },
+      {
+        "name": "maxWidth",
+        "value": "number | auto"
+      },
+      {
+        "name": "height",
+        "value": "number"
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties"
+      },
+      {
+        "name": "color",
+        "value": "white | night700"
+      }
     ]
   }
 }
