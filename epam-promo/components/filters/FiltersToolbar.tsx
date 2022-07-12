@@ -66,7 +66,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
         return sortBy(selectedFilters, f => tableState.filtersConfig?.[f.columnKey]?.order);
     }, [filters, tableState.filtersConfig]);
 
-    const renderToggler = useCallback((props: PickerTogglerProps) => {
+    const renderAddFilterToggler = useCallback((props: PickerTogglerProps) => {
         return <Button
             size='36'
             onClick={ props.onClick }
@@ -75,7 +75,8 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
             icon={ addIcon }
             iconPosition='right'
             fill='light'
-            color='blue'/>;
+            color='blue'
+        />;
     }, []);
 
     const getRowOptions = useCallback((item: TableFiltersConfig<any>): DataRowOptions<any, any> => ({
@@ -116,9 +117,10 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                     /> }
                 getName={ i => i.title }
-                renderToggler={ renderToggler }
+                renderToggler={ renderAddFilterToggler }
                 emptyValue={ [] }
                 getRowOptions={ getRowOptions }
+                fixedBodyPosition={ true }
             />
         </FlexRow>
     );

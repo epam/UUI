@@ -25,6 +25,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     }
     renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
+    fixedBodyPosition?: boolean;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -154,6 +155,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 onClose: () => this.toggleBodyOpening(false),
             })),
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
+            fixedBodyPosition: this.props.fixedBodyPosition,
         };
     }
 
