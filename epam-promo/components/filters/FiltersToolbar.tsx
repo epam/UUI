@@ -93,7 +93,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
                 <FlexCell width='auto' key={ f.field as string } >
                     <FiltersToolbarItem
                         { ...f }
-                        value={ tableState.filter[f.field] }
+                        value={ tableState.filter }
                         onValueChange={ handleFilterChange }
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.columnKey }
@@ -120,6 +120,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
                 renderToggler={ renderAddFilterToggler }
                 emptyValue={ [] }
                 getRowOptions={ getRowOptions }
+                fixedBodyPosition={ true }
             />
         </FlexRow>
     );
