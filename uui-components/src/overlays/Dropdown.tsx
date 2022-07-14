@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest, IDropdownBodyProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -11,13 +11,7 @@ export interface DropdownState {
     closeDropdownTimerId: any;
 }
 
-export interface DropdownBodyProps {
-    onClose(): void;
-    togglerWidth: number;
-    togglerHeight: number;
-    scheduleUpdate: () => void;
-    isOpen: boolean;
-}
+export interface DropdownBodyProps extends IDropdownBodyProps {}
 
 export type DropdownPlacement = Placement;
 

@@ -75,6 +75,14 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     isDisabled?: boolean;
 }
 
+export interface IDropdownBodyProps {
+    onClose(): void;
+    togglerWidth: number;
+    togglerHeight: number;
+    scheduleUpdate: () => void;
+    isOpen: boolean;
+}
+
 /**
  * Component can be used as Toggler control for pickers.
  * This interface is enough for basic pickers.

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import css from "./FiltersToolbarItem.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, IDataSource } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
@@ -12,13 +12,14 @@ import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-d
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (columnKey: string) => void;
+    dataSource?: IDataSource<any, any, any>;
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const forceUpdate = useForceUpdate();
 
-    const handleChange = useCallback((value: any) => {
+    const onValueChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
     }, [props.field, props.onValueChange]);
 
@@ -33,12 +34,16 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         </FlexRow>
     );
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <Panel shadow background="white">
-            { renderHeader() }
-            { <FilterItemBody sourceProps={ props } handleChange={ handleChange } dropdownProps={ dropdownProps }/> }
-        </Panel>
-    );
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
+        const { dataSource, title, type, field } = props;
+        const value = props.value?.[field];
+        return (
+            <Panel shadow background="white">
+                { renderHeader() }
+                { <FilterItemBody { ...{ dataSource, value, title, type, dropdownProps, onValueChange } }  /> }
+            </Panel>
+        );
+    };
 
     const getTogglerValue = (): { selection: string | null | JSX.Element, postfix: string | null | JSX.Element} => {
         const currentValue = props.value?.[props.field];
