@@ -231,24 +231,24 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
 
-type FilterConfigBase<TFilter extends Record<string, any>> = {
+type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
     isAlwaysVisible?: boolean;
 };
 
-type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "singlePicker" | "multiPicker";
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
 };
 
-type DatePickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "datePicker" | "rangeDatePicker";
 };
 
-export type TableFiltersConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = Record<string, any>> {

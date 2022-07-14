@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import css from "./FiltersToolbarItem.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, IDataSource } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
@@ -12,7 +12,6 @@ import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-d
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (columnKey: string) => void;
-    dataSource?: IDataSource<any, any, any>;
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
@@ -35,55 +34,52 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => {
-        const { dataSource, title, type, field } = props;
-        const value = props.value?.[field];
+
         return (
             <Panel shadow background="white">
                 { renderHeader() }
-                { <FilterItemBody { ...{ dataSource, value, title, type, dropdownProps, onValueChange } }  /> }
+                { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }  /> }
             </Panel>
         );
     };
 
-    const getTogglerValue = (): { selection: string | null | JSX.Element, postfix: string | null | JSX.Element} => {
-        const currentValue = props.value?.[props.field];
+    const getTogglerValue = () => {
+        const currentValue = props.value;
 
         switch (props.type) {
             case "multiPicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                let postfix = currentValue?.length > 2 ? <span className={ css.placeholder }>{ ` +${ (currentValue.length - 2).toString() } items` }</span> : null;
+                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } items` : null;
+                let isLoading = false;
 
-                const selection = currentValue?.slice(0, 2).map((i: any) => {
+                const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
                     const item = view.getById(i, null);
+                    isLoading = item.isLoading;
                     return item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
-                });
-                const selectionText = currentValue
-                    ? typeof selection[0] === 'string'
-                        ? currentValue.length > 1 ? selection.join(', ') : selection[0]
-                        : currentValue.length > 1 ? <span className={ css.placeholder }>{ selection[0] },{ selection[1] }</span> : selection[0]
-                    : 'All';
+                }) : 'All';
+
+                const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
                 const item = currentValue && view.getById(currentValue, null);
                 if (!item) {
-                    return { selection: 'All', postfix: null };
+                    return { selection: 'All' };
                 }
                 const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
-                return { selection, postfix: null };
+                return { selection };
             }
             case "datePicker": {
-                return { selection: currentValue ?? "Select date", postfix: null };
+                return { selection: currentValue ?? "Select date" };
             }
             case "rangeDatePicker": {
-                if (!currentValue) {
-                    return { selection: "Select period", postfix: null };
+                if (!currentValue || (!currentValue.from && !currentValue.to)) {
+                    return { selection: "Select period" };
                 }
-                const from = `${ currentValue?.from ?? 'Select From' }`;
-                const to = `${ currentValue?.to ?? 'Select To' }`;
-                const selection = from.includes('Select From') && to.includes('Select To') ? `Select period` : `${ from } - ${ to }`;
-                return { selection, postfix: null };
+
+                const selection = `${ currentValue?.from ?? 'Select From' } - ${ currentValue?.to ?? 'Select To' }`;
+                return { selection };
             }
         }
     };
@@ -91,7 +87,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const renderTarget = (dropdownProps: IDropdownToggler) => (
         <FilterToolbarItemToggler
             { ...dropdownProps }
-            value={ getTogglerValue() }
+            { ...getTogglerValue() }
             title={ props.title }
         />
     );

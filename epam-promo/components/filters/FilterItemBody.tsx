@@ -5,46 +5,35 @@ import { FilterRangeDatePickerBody } from "./FilterRangeDatePickerBody";
 import { IFilterItemBodyProps } from "@epam/uui-core";
 
 const FilterItemBody = (props: IFilterItemBodyProps<any>) => {
-    const { onValueChange, dropdownProps, dataSource, value, title, type } = props;
-
-    switch (type) {
+    switch (props.type) {
         case "singlePicker":
             return (
                 <FilterPickerBody
-                    { ...dropdownProps }
-                    dataSource={ dataSource }
+                    { ...props }
                     selectionMode="single"
-                    value={ value }
-                    onValueChange={ onValueChange }
                     valueType="id"
-                    prefix={ title }
                 />
             );
         case "multiPicker":
             return (
                 <FilterPickerBody
-                    { ...dropdownProps }
-                    dataSource={ dataSource }
+                    { ...props }
                     selectionMode="multi"
-                    value={ value }
-                    onValueChange={ onValueChange }
                     valueType="id"
-                    prefix={ title }
                 />
             );
         case "datePicker":
             return (
                 <FilterDataPickerBody
+                    { ...props }
                     format="DD/MM/YYYY"
-                    value={ value }
-                    onValueChange={ onValueChange }
                 />
             );
         case "rangeDatePicker":
             return (
                 <FilterRangeDatePickerBody
-                    value={ value || { from: null, to: null } }
-                    onValueChange={ onValueChange }
+                    { ...props }
+                    value={ props.value || { from: null, to: null } }
                 />
             );
     }
