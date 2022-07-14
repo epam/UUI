@@ -40,32 +40,11 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text
-                    color="gray60"
-                    font="sans"
-                    cx={ css.title }
-                >
-                    { `${ props.title }:` }
-                </Text>
-                { <div className={ cx(css.textWrapper) }>
-                        <Text
-                            color="gray90"
-                            font="sans"
-                            cx={ css.selection }
-                        >
-                            { props.selection }
-                        </Text>
-                        {
-                            props.postfix &&
-                            <Text
-                                color="gray90"
-                                font="sans"
-                                cx={ css.postfix }
-                            >
-                                { props.postfix }
-                            </Text>
-                        }
-                    </div> }
+                <Text color="gray60" cx={ css.title }>{ `${ props.title }:` }</Text>
+                <div className={ css.textWrapper }>
+                    <Text color="gray90" cx={ css.selection }>{ props.selection }</Text>
+                    { props.postfix && <Text color="gray90" cx={ css.postfix }>{ props.postfix }</Text> }
+                </div>
             </FlexRow>
             {
                 !props.isDisabled &&
