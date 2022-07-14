@@ -38,8 +38,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return newObject;
         },
         getValidationState(big: ICanBeInvalid) {
-            const isChanged = big?.isChanged || blankValidationState?.isChanged || false;
-            let validationStateProps = (big || blankValidationState).validationProps || {[name]: {isInvalid: false, isChanged }};
+            let validationStateProps = (big || blankValidationState).validationProps || {[name]: { isInvalid: false }};
             return validationStateProps[name as string];
         },
         getMetadata(big: Metadata<TObject>) {

@@ -1,9 +1,7 @@
 import { ICanBeInvalid } from "../../types";
 
 export function mergeValidation<T>(clientValidation: ICanBeInvalid, serverValidation: ICanBeInvalid) {
-    const isChanged = !!clientValidation.isChanged;
     const result = serverValidation.isInvalid ? serverValidation : clientValidation;
-    result.isChanged = isChanged;
 
     if (clientValidation.isInvalid) mergeValidationProps(clientValidation.validationProps, result);
 
@@ -17,7 +15,6 @@ function mergeValidationProps(validationProps: ICanBeInvalid["validationProps"],
     Object.keys(validationProps).forEach(key => {
         const prop = validationProps[key];
         const isInvalid = prop.isInvalid || resultPart.validationProps[key]?.isInvalid || false;
-        const isChanged = !!prop.isChanged;
         const validationMessage = prop.validationMessage
             ?? resultPart.validationProps[key]?.validationMessage;
 
@@ -25,11 +22,9 @@ function mergeValidationProps(validationProps: ICanBeInvalid["validationProps"],
             ? {
                 isInvalid,
                 validationMessage,
-                isChanged,
             }
             : {
                 isInvalid,
-                isChanged,
             };
 
         if (prop.isInvalid) {
