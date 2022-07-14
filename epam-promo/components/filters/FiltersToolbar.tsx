@@ -7,15 +7,15 @@ import { FiltersToolbarItem } from "./FiltersToolbarItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import css from './FiltersToolbar.scss';
 
-interface FiltersToolbarProps {
-    filters: TableFiltersConfig<any>[];
+interface FiltersToolbarProps<TFilter> {
+    filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState;
     setTableState: (newState: DataTableState) => void;
 }
 
 const getNewTableState = (key: string, {[key]: deletedKey, ...others}) => others;
 
-const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
+const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
@@ -24,7 +24,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
         getId: item => item.columnKey,
     }, []);
 
-    const onFiltersChange = (newValue: TableFiltersConfig<any>[]) => {
+    const onFiltersChange = (newValue: TableFiltersConfig<TFilter>[]) => {
         const newConfig: FiltersConfig = {};
 
         let order: string | null = null;
@@ -40,7 +40,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
         });
     };
 
-    const handleFilterChange = (newFilter: any) => {
+    const handleFilterChange = (newFilter: TFilter) => {
         setTableState({
             ...tableState,
             filter: {
@@ -93,7 +93,7 @@ const FiltersToolbarImpl = (props: FiltersToolbarProps) => {
                 <FlexCell width='auto' key={ f.field as string } >
                     <FiltersToolbarItem
                         { ...f }
-                        value={ tableState.filter }
+                        value={ tableState.filter?.[f.field] }
                         onValueChange={ handleFilterChange }
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.columnKey }

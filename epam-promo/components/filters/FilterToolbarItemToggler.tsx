@@ -11,7 +11,8 @@ const defaultSize = "36";
 const defaultWidth = "267";
 
 export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
-    value: { selection: string | null | JSX.Element, postfix: string | null | JSX.Element };
+    selection: string | null | JSX.Element;
+    postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: string;
     size?: '24' | '30' | '36' | '42' | '48';
@@ -52,16 +53,16 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
                             font="sans"
                             cx={ css.selection }
                         >
-                            { props.value.selection }
+                            { props.selection }
                         </Text>
                         {
-                            props.value.postfix &&
+                            props.postfix &&
                             <Text
                                 color="gray90"
                                 font="sans"
                                 cx={ css.postfix }
                             >
-                                { props.value.postfix }
+                                { props.postfix }
                             </Text>
                         }
                     </div> }
