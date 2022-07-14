@@ -7,7 +7,6 @@ import {AnalyticsEvent} from "./contexts";
 /** Component value can be invalid */
 export interface ICanBeInvalid {
     isInvalid?: boolean;
-    isChanged?: boolean;
     validationMessage?: string;
     /** If T is a complex value (object or array), this property contains validation states of inner items */
     validationProps?: { [key: string]: ICanBeInvalid };

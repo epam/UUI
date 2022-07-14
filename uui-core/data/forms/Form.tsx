@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import { IEditable, ILens, Metadata, FormState, ICanBeInvalid, ValidationMode } from '../../';
+import { IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode } from '../../';
 
 export interface FormSaveResponse<T> {
     form?: T;
@@ -31,13 +31,6 @@ export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
     canRevert: boolean;
     lens: ILens<T>;
     isChanged: boolean;
-    isInProgress: boolean;
-}
-
-export interface FormComponentState<T> extends FormState<T> {
-    prevProps?: FormProps<T>;
-    formHistory: T[];
-    historyIndex: number;
     isInProgress: boolean;
 }
 

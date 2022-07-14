@@ -1,7 +1,6 @@
 import { ICanBeInvalid } from '../../types';
 import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
-import isEqual from "lodash.isequal";
 
 export type ValidationMode = "change" | "save";
 export const blankValidationState: ICanBeInvalid = {};
@@ -13,25 +12,22 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
             const childValue = value && (value as any)[key];
             const newPath = [childValue, ...path];
             const initChildValue = initValue && (initValue as any)[key];
-            const childResult = validateRec(childValue, newPath, meta, initChildValue);
-            const setResult = () => {
-                itemResult.isInvalid = childResult.isInvalid || itemResult.isInvalid;
-                itemResult.isChanged = childResult.isChanged || itemResult.isChanged;
-                itemResult.validationProps = itemResult.validationProps || {};
-                itemResult.validationProps[key] = childResult;
-            };
+            const isChildChanged = childValue !== initChildValue;
+
+            let childResult;
             switch (validateOn) {
                 case "change": {
-                    if (childResult.isChanged) {
-                        setResult();
-                    }
+                    childResult = isChildChanged ? validateRec(childValue, newPath, meta, initChildValue) : {};
                     break;
                 }
-                default: {
-                    setResult();
+                case "save": {
+                    childResult = validateRec(childValue, newPath, meta, initChildValue);
                 }
             }
 
+            itemResult.isInvalid = childResult.isInvalid || itemResult.isInvalid;
+            itemResult.validationProps = itemResult.validationProps || {};
+            itemResult.validationProps[key] = childResult;
         };
 
         if (meta.props) {
@@ -54,12 +50,6 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
 };
 
 const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
-    const isChanged = !isEqual(value, initValue);
-    const result: ICanBeInvalid = {
-        isInvalid: false,
-        isChanged,
-    };
-
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map(validator => validator.apply(null, path))
@@ -67,9 +57,10 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: 
             .filter((msg: string | null) => !!msg);
 
         if (customValidationMessages.length > 0) {
-            result.isInvalid = true;
-            result.validationMessage = customValidationMessages[0];
-            return result;
+            return {
+                isInvalid: true,
+                validationMessage: customValidationMessages[0],
+            };
         }
     }
 
@@ -78,29 +69,35 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: 
             || (typeof value === "string" && value.trim() === "")
             || (Array.isArray(value) && value.length == 0)
         ) {
-            result.isInvalid = true;
-            result.validationMessage = i18n.lenses.validation.isRequiredMessage;
-            return result;
+            return {
+                isInvalid: true,
+                validationMessage: i18n.lenses.validation.isRequiredMessage,
+            };
         }
     }
 
     if (meta.minValue != null && value != null && value < meta.minValue) {
-        result.isInvalid = true;
-        result.validationMessage = i18n.lenses.validation.lessThanMinimumValueMessage(meta.minValue);
-        return result;
+        return {
+            isInvalid: true,
+            validationMessage: i18n.lenses.validation.lessThanMinimumValueMessage(meta.minValue),
+        };
     }
 
     if (meta.maxValue != null && value != null && value > meta.maxValue) {
-        result.isInvalid = true;
-        result.validationMessage = i18n.lenses.validation.greaterThanMaximumValueMessage(meta.maxValue);
-        return result;
+        return {
+            isInvalid: true,
+            validationMessage: i18n.lenses.validation.greaterThanMaximumValueMessage(meta.maxValue),
+        };
     }
 
     if (meta.maxLength != null && value != null && value.length > meta.maxLength) {
-        result.isInvalid = true;
-        result.validationMessage = i18n.lenses.validation.greaterThanMaximumLengthMessage(meta.maxLength);
-        return result;
+        return {
+            isInvalid: true,
+            validationMessage: i18n.lenses.validation.greaterThanMaximumLengthMessage(meta.maxLength),
+        };
     }
 
-    return result;
+    return {
+        isInvalid: false,
+    };
 };
