@@ -2,43 +2,54 @@ import { ICanBeInvalid } from '../../types';
 import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
 
+export type ValidationMode = "change" | "save";
 export const blankValidationState: ICanBeInvalid = {};
 
-export function validate<T>(value: T, meta: Metadata<T>): ICanBeInvalid {
-    return validateRec(value, [value], meta);
-}
+export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
+    const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
+        let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
+        const validateItem = (key: string, meta: Metadata<any>) => {
+            const childValue = value && (value as any)[key];
+            const newPath = [childValue, ...path];
+            const initChildValue = initValue && (initValue as any)[key];
+            const isChildChanged = childValue !== initChildValue;
 
-export function validateRec<T>(value: T, path: any[], meta: Metadata<T>): ICanBeInvalid {
-    let result: ICanBeInvalid = validateValue(value, path, meta);
+            let childResult;
+            switch (validateOn) {
+                case "change": {
+                    childResult = isChildChanged ? validateRec(childValue, newPath, meta, initChildValue) : {};
+                    break;
+                }
+                case "save": {
+                    childResult = validateRec(childValue, newPath, meta, initChildValue);
+                }
+            }
 
-    const validateItem = (key: string, meta: Metadata<any>) => {
-        let childValue = value && (value as any)[key];
-        let newPath = [childValue, ...path];
-        const childResult = validateRec(childValue, newPath, meta);
-        result.isInvalid = result.isInvalid || childResult.isInvalid;
-        result.validationProps = result.validationProps || {};
-        result.validationProps[key] = childResult;
-    };
+            itemResult.isInvalid = childResult.isInvalid || itemResult.isInvalid;
+            itemResult.validationProps = itemResult.validationProps || {};
+            itemResult.validationProps[key] = childResult;
+        };
 
-    if (meta.props) {
-        for (let key in meta.props) {
-            const childMeta = meta.props[key];
-            if (childMeta) {
-                validateItem(key, childMeta);
+        if (meta.props) {
+            for (let key in meta.props) {
+                const childMeta = meta.props[key];
+                if (childMeta) {
+                    validateItem(key, childMeta);
+                }
             }
         }
-    }
 
-    if (meta.all && value != null) {
-        for (let key in value) {
-            validateItem(key, meta.all);
+        if (meta.all && value != null) {
+            for (let key in value) {
+                validateItem(key, meta.all);
+            }
         }
-    }
+        return itemResult;
+    };
+    return validateRec(value, [value], meta, initValue);
+};
 
-    return result;
-}
-
-function validateValue(value: any, path: any[], meta: Metadata<any>): any {
+const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
     if (meta.validators) {
         const customValidationMessages = meta.validators
             .map(validator => validator.apply(null, path))
@@ -89,4 +100,4 @@ function validateValue(value: any, path: any[], meta: Metadata<any>): any {
     return {
         isInvalid: false,
     };
-}
+};
