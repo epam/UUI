@@ -84,18 +84,14 @@ const emptyBarValue: IBar = initBarValue;
 const filledBarValue: IBar = { name: 'hello' };
 
 describe('validate', () => {
-    it('Empty required field should be invalid and not changed, filled - valid, and changed', () => {
+    it('Empty required field should be invalid, filled - valid', () => {
         expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', true);
-        expect(validate(emptyFooValue, fooMetadata, initFooValueSimple, 'change')).toHaveProperty('isChanged', false);
         expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'save')).toHaveProperty('isInvalid', false);
-        expect(validate(filledFooValue, fooMetadata, initFooValueSimple, 'change')).toHaveProperty('isChanged', true);
     });
 
     it('If nested object has invalid fields - root should also be invalid', () => {
         expect(validate({ nested: emptyBarValue }, nestedMetadata, initFooValueNested, 'save')).toHaveProperty('isInvalid', true);
-        expect(validate({ nested: emptyBarValue }, nestedMetadata, initFooValueNested, 'change')).toHaveProperty('isChanged', false);
         expect(validate({ nested: filledBarValue }, nestedMetadata, initFooValueNested, 'save')).toHaveProperty('isInvalid', false);
-        expect(validate({ nested: filledBarValue }, nestedMetadata, initFooValueNested, 'change')).toHaveProperty('isChanged', true);
     });
 
     it('If nested object is an array and "all" modifier is used in meta, result should have {[index]: ValidationState} structure', () => {
@@ -122,17 +118,14 @@ describe('validate', () => {
         });
         expect(validate({ array: [filledBarValue, emptyBarValue] }, arrayMetadata, initFooValueArray, 'change')).toMatchObject({
             isInvalid: false,
-            isChanged: true,
             validationProps: {
                 array: {
                     isInvalid: false,
-                    isChanged: true,
                     validationProps: {
                         0: {
                             isInvalid: false,
-                            isChanged: true,
                             validationProps: {
-                                name: { isInvalid: false, isChanged: true },
+                                name: { isInvalid: false },
                             },
                         },
                     },
@@ -164,19 +157,16 @@ describe('validate', () => {
         });
         expect(validate({ map: { user1: filledBarValue, user2: emptyBarValue } }, mapMetadata, initFooValueMap, 'change')).toMatchObject({
             isInvalid: false,
-            isChanged: true,
             validationProps: {
                 map: {
                     isInvalid: false,
-                    isChanged: true,
                     validationProps: {
                         user1: {
                             isInvalid: false,
-                            isChanged: true,
                             validationProps: {
                                 name: {
                                     isInvalid: false,
-                                    isChanged: true },
+                                },
                             },
                         },
                     },
@@ -196,11 +186,9 @@ describe('validate', () => {
         };
         expect(validate(value, meta, initBarValue, 'save')).toEqual({
             isInvalid: true,
-            isChanged: true,
             validationProps: {
                 name: {
                     isInvalid: true,
-                    isChanged: true,
                     validationMessage: "expect anything but bar",
                 },
             },
@@ -218,7 +206,7 @@ describe('validate', () => {
         const resultDefault = validate(value, meta, initBarValue, 'save');
         const resultOnChanged = validate(value, meta, initBarValue, 'change');
         expect(resultDefault).toEqual(expect.objectContaining({ isInvalid: false }));
-        expect(resultOnChanged).toEqual(expect.objectContaining({ isInvalid: false, isChanged: true }));
+        expect(resultOnChanged).toEqual(expect.objectContaining({ isInvalid: false }));
     });
 
 
@@ -298,24 +286,20 @@ describe('validate', () => {
 
         expect(resultWithOnChanged).toMatchObject({
             isInvalid: true,
-            isChanged: true,
             validationProps: {
                 array: {
                     isInvalid: true,
-                    isChanged: true,
                     validationProps: {
                         0: {
                             isInvalid: true,
-                            isChanged: true,
                             validationProps: {
-                                name: { isInvalid: true, isChanged: true, validationMessage: 'error' },
+                                name: { isInvalid: true, validationMessage: 'error' },
                             },
                         },
                         1: {
                             isInvalid: true,
-                            isChanged: true,
                             validationProps: {
-                                name: { isInvalid: true, isChanged: true, validationMessage: 'error' },
+                                name: { isInvalid: true, validationMessage: 'error' },
                             },
                         },
                     },
@@ -325,7 +309,6 @@ describe('validate', () => {
 
         expect(resultWithNotChangedValue).toMatchObject({
             isInvalid: false,
-            isChanged: false,
         });
     });
 });
