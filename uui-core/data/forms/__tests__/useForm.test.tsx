@@ -152,6 +152,40 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(false);
         });
 
+        it('Should validate all fields when call save action in validateOn: "change" mode', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
+                value: { dummy: 'hello' },
+                onSave: (form) => Promise.resolve({form: form}),
+                onError: jest.fn(),
+                getMetadata: () => ({ props: { dummy: { isRequired: true }, tummy: { isRequired: true } } }),
+                validationOn: 'change',
+            }));
+
+            act(() => result.current.lens.prop('dummy').set(null));
+            expect(result.current.lens.toProps().validationProps).toStrictEqual({
+                dummy: {
+                    isInvalid: true,
+                    validationMessage: "The field is mandatory",
+                },
+                tummy: {
+                    isInvalid: false,
+                },
+            });
+
+            await handleSave(result.current.save);
+
+            expect(result.current.lens.toProps().validationProps).toStrictEqual({
+                dummy: {
+                    isInvalid: true,
+                    validationMessage: "The field is mandatory",
+                },
+                tummy: {
+                    isInvalid: true,
+                    validationMessage: "The field is mandatory",
+                },
+            });
+        });
+
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
