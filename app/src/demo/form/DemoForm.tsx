@@ -466,7 +466,6 @@ export function DemoForm() {
         settingsKey: 'form-test',
         value: value,
         getMetadata: personDetailsSchema,
-        validationOn: "change",
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
             <SuccessNotification { ...props }>
