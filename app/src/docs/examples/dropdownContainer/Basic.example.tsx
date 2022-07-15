@@ -10,7 +10,7 @@ import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communica
 export default function BasicExample() {
     const renderFirstDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" showArrow={ true } { ...props }>
+            <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
                     <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">Some Title</Text>
                     <Text fontSize="14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem beatae delectus
@@ -29,8 +29,8 @@ export default function BasicExample() {
 
     const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer width='auto' { ...props }>
-                <Panel >
+            <DropdownContainer showArrow={ true } width="auto" { ...props }>
+                <Panel>
                     <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {
                     } }/>
                     <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {
@@ -44,12 +44,12 @@ export default function BasicExample() {
 
     return (
         <>
-            <Dropdown renderBody={ (props) => renderFirstDropdownBody(props) } placement="bottom"
+            <Dropdown renderBody={ (props) => renderFirstDropdownBody(props) }
+                      renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Simple"
+                                                                              size="36" { ...props }/> }/>
+            <Dropdown renderBody={ (props) => renderSecondDropdownBody(props) } placement='right-start'
                       modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
                       renderTarget={ (props: IDropdownToggler) => <LinkButton caption="With Arrow"
-                                                                              size="36" { ...props }/> }/>
-            <Dropdown renderBody={ (props) => renderSecondDropdownBody(props) } placement="right-start"
-                      renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Simple"
                                                                               size="36" { ...props }/> }/>
         </>
     );

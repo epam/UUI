@@ -2,18 +2,8 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier, PopperArrowProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import {
-    isClickableChildClicked,
-    IEditable,
-    LayoutLayer,
-    IDropdownToggler,
-    UuiContexts,
-    UuiContext,
-    closest,
-    cx,
-} from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest} from '@epam/uui-core';
 import { Portal } from './Portal';
-import * as css from './Dropdown.scss';
 
 export interface DropdownState {
     opened: boolean;
@@ -27,6 +17,7 @@ export interface DropdownBodyProps {
     togglerHeight: number;
     scheduleUpdate: () => void;
     arrowProps?: PopperArrowProps;
+    placement: DropdownPlacement;
 }
 
 export type DropdownPlacement = Placement;
@@ -235,7 +226,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return (
             <FreeFocusInside>
                 <div
-                    className={ cx(css.uuiPopper, 'uui-dropdown-container') }
+                    className='uui-popper'
                     aria-hidden={ !this.isOpened() }
                     aria-expanded={ this.isOpened() }
                     ref={ setRef }
@@ -248,6 +239,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         togglerHeight: this.togglerHeight,
                         scheduleUpdate: update,
                         arrowProps: arrowProps,
+                        placement: placement,
                     }) }
                 </div>
 
