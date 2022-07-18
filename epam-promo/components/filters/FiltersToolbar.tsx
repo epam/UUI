@@ -1,11 +1,10 @@
 import React, { useCallback, useMemo, useState } from "react";
 import sortBy from "lodash.sortby";
-import { Button, FlexRow, PickerInput, PickerItem, DataPickerRow } from "../../index";
+import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersToolbarItem } from "./FiltersToolbarItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
-import css from './FiltersToolbar.scss';
 
 interface FiltersToolbarProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
@@ -88,7 +87,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     }), []);
 
     return (
-        <FlexRow cx={ css.root } size="36" background="gray5" borderBottom>
+        <>
             { sortedActiveFilters.map(f => (
                 <FlexCell width='auto' key={ f.field as string } >
                     <FiltersToolbarItem
@@ -122,7 +121,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                 getRowOptions={ getRowOptions }
                 fixedBodyPosition={ true }
             />
-        </FlexRow>
+        </>
     );
 };
 
