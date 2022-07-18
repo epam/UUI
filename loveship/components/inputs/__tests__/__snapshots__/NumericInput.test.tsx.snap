@@ -2,23 +2,23 @@
 
 exports[`NumericInput should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box colorSky root size-36 mode-form"
+  className="container uui-input-box -clickable colorSky root size-36 mode-form"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-18 font-size-14 v-padding-8"
+    className="uui-input line-height-18 font-size-14 v-padding-8 uui-placeholder-colored"
     inputMode="numeric"
     max={10}
     min={1}
     onChange={[Function]}
-    placeholder="0"
-    step={1}
+    placeholder="5"
+    step="0.001"
     tabIndex={0}
     type="number"
-    value="5"
+    value=""
   />
   <div
     className="uui-numeric-input-button-group"
@@ -47,23 +47,23 @@ exports[`NumericInput should be rendered correctly 1`] = `
 
 exports[`NumericInput should be rendered correctly with new props 1`] = `
 <div
-  className="container uui-input-box colorSky root size-24 mode-cell uui-numeric-input-without-arrows"
+  className="container uui-input-box -clickable uui-numeric-input-without-arrows colorSky root size-24 mode-cell"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   tabIndex={-1}
 >
   <input
-    className="uui-input line-height-18 font-size-12 v-padding-2 alignRight"
+    className="uui-input line-height-18 font-size-12 v-padding-2 alignRight uui-placeholder-colored"
     inputMode="numeric"
     max={10}
     min={1}
     onChange={[Function]}
-    placeholder="0"
-    step={1}
+    placeholder="5"
+    step="0.001"
     tabIndex={0}
     type="number"
-    value="5"
+    value=""
   />
 </div>
 `;
