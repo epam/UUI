@@ -1,0 +1,61 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you need to get form validation when fields change, set prop ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "validateOn: 'onchange'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " .",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this validation mode the initial value and the changed value are compared, and a validation message are displayed for invalid and changed fields only. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Rest fields are validate on the save.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
