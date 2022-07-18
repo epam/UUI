@@ -50,7 +50,7 @@ const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../*
 docsFiles.map(i => {
     const exportExpression = i.getExportAssignment(() => true).getStructure().expression;
     const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop));
-    const docPath = i.getFilePath().replace(/.*\/ui/g, '');
+    const docPath = i.getFilePath().replace(/.*\/uui/g, '');
     docsProps[docPath] = props;
 });
 

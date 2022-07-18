@@ -2,6 +2,7 @@
 
 **What's New**
 * [Anchor]: implement open Anchor links with Ctrl or Command in new window
+* [useForm]: implement possibility run form validation on change.
 * [Checkbox]: fix removed unused colors from docs in loveship
 * [DropSpot]: fix drag&drop area view
 * [PickerInput]: fix the first item layout in multi mode, or if it has a prefix

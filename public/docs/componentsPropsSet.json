@@ -1,6 +1,6 @@
 {
   "props": {
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/buttons/docs/button.doc.tsx": [
+    "/epam-promo/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -126,7 +126,7 @@
         "value": "blue | green | red | gray50"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
+    "/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -188,7 +188,7 @@
         "value": "blue | green | red | gray50 | amber | gray30 | gray60"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/buttons/docs/linkButton.doc.ts": [
+    "/epam-promo/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -310,7 +310,7 @@
         "value": "blue | green | red | amber"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/buttons/docs/tabButton.doc.ts": [
+    "/epam-promo/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -432,7 +432,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
+    "/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -554,7 +554,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
+    "/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "renderFooter",
         "value": "() => React.ReactNode"
@@ -608,6 +608,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -652,7 +656,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -710,6 +714,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -742,7 +750,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/checkbox.doc.ts": [
+    "/epam-promo/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -773,6 +781,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -836,7 +848,7 @@
         "value": "light | dark"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
+    "/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -855,6 +867,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -886,7 +902,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/numericInput.doc.ts": [
+    "/epam-promo/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -960,6 +976,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -1000,7 +1020,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/radioInput.doc.ts": [
+    "/epam-promo/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1035,6 +1055,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1074,7 +1098,7 @@
         "value": "18 | 12"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/rating.doc.ts": [
+    "/epam-promo/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -1132,6 +1156,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -1160,7 +1188,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/searchInput.doc.ts": [
+    "/epam-promo/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1255,6 +1283,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1346,7 +1378,7 @@
         "value": "number"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/switch.doc.ts": [
+    "/epam-promo/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -1373,6 +1405,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1412,7 +1448,7 @@
         "value": "24 | 18 | 12"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/textArea.doc.ts": [
+    "/epam-promo/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -1466,6 +1502,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -1506,7 +1546,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/textInput.doc.ts": [
+    "/epam-promo/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1604,6 +1644,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -1684,7 +1728,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/inputs/docs/timePicker.doc.ts": [
+    "/epam-promo/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -1715,6 +1759,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1750,7 +1798,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/accordion.doc.tsx": [
+    "/epam-promo/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -1773,6 +1821,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1820,7 +1872,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/blocker.doc.ts": [
+    "/epam-promo/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -1850,7 +1902,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
+    "/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -1861,6 +1913,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -1908,7 +1964,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
+    "/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -1926,7 +1982,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
+    "/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1972,7 +2028,7 @@
         "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray5 | gray10 | gray20 | gray40 | gray70 | gray80 | gray90 | cyan | orange | purple | violet"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
+    "/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -1999,6 +2055,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -2038,7 +2098,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/docs/radioGroup.doc.ts": [
+    "/epam-promo/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -2065,6 +2125,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -2100,7 +2164,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/navigation/docs/anchor.doc.tsx": [
+    "/epam-promo/components/navigation/docs/anchor.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -2142,7 +2206,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+    "/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -2236,7 +2300,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/alert.doc.tsx": [
+    "/epam-promo/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -2266,7 +2330,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
+    "/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -2340,6 +2404,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -2360,73 +2428,7 @@
         "value": "boolean"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
-      {
-        "name": "width",
-        "value": "auto"
-      },
-      {
-        "name": "maxWidth",
-        "value": "number"
-      },
-      {
-        "name": "height",
-        "value": "number"
-      },
-      {
-        "name": "showArrow",
-        "value": "boolean"
-      },
-      {
-        "name": "style",
-        "value": "React.CSSProperties"
-      },
-      {
-        "name": "arrowProps",
-        "value": "PopperArrowProps"
-      },
-      {
-        "name": "placement",
-        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
-      },
-      {
-        "name": "cx",
-        "value": "any"
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode"
-      },
-      {
-        "name": "rawProps",
-        "value": "any"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>"
-      },
-      {
-        "name": "vPadding",
-        "value": "24 | 30 | 48 | 18 | 12 | 6"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 30 | 18 | 12 | 6"
-      },
-      {
-        "name": "color",
-        "value": "white | gray70"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<T>"
-      },
-      {
-        "name": "key",
-        "value": "React.ReactText"
-      }
-    ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
+    "/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2476,7 +2478,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
+    "/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2530,7 +2532,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
+    "/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -2580,7 +2582,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
+    "/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -2622,7 +2624,7 @@
         "value": "white | gray90"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
+    "/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2697,6 +2699,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -2816,7 +2822,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
+    "/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2922,7 +2928,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -3036,6 +3042,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -3096,7 +3106,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
+    "/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -3142,7 +3152,7 @@
         "value": "top | center"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -3189,6 +3199,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -3260,7 +3274,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -3291,6 +3305,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -3334,7 +3352,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
+    "/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -3500,7 +3518,7 @@
         "value": "top | center"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/typography/docs/richTextView.doc.tsx": [
+    "/epam-promo/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -3522,7 +3540,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/typography/docs/text.doc.tsx": [
+    "/epam-promo/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3568,7 +3586,7 @@
         "value": "24 | 18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -3582,7 +3600,7 @@
         "value": "boolean"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/avatar.doc.tsx": [
+    "/epam-promo/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -3616,7 +3634,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
+    "/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -3646,7 +3664,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/badge.doc.tsx": [
+    "/epam-promo/components/widgets/docs/badge.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3772,7 +3790,7 @@
         "value": "blue | green | red | amber | gray30 | cyan | orange | purple | violet"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/paginator.doc.tsx": [
+    "/epam-promo/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -3795,6 +3813,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -3822,7 +3844,7 @@
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/spinner.doc.tsx": [
+    "/epam-promo/components/widgets/docs/spinner.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3840,7 +3862,7 @@
         "value": "white | blue | gray50"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/widgets/docs/tag.doc.tsx": [
+    "/epam-promo/components/widgets/docs/tag.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3958,7 +3980,7 @@
         "value": "24 | 30 | 36 | 42 | 48 | 18"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/buttons/docs/button.doc.tsx": [
+    "/loveship/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4096,7 +4118,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/buttons/docs/iconButton.doc.ts": [
+    "/loveship/components/buttons/docs/iconButton.doc.ts": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -4158,7 +4180,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/buttons/docs/linkButton.doc.tsx": [
+    "/loveship/components/buttons/docs/linkButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4292,7 +4314,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/buttons/docs/tabButton.doc.ts": [
+    "/loveship/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4418,7 +4440,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
+    "/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4544,7 +4566,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/datePickers/docs/calendar.doc.ts": [
+    "/loveship/components/datePickers/docs/calendar.doc.ts": [
       {
         "name": "value",
         "value": "TSelection"
@@ -4590,7 +4612,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/datePickers/docs/datePicker.doc.tsx": [
+    "/loveship/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "format",
         "value": "string"
@@ -4641,6 +4663,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -4696,7 +4722,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -4754,6 +4780,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -4798,7 +4828,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/checkbox.doc.tsx": [
+    "/loveship/components/inputs/docs/checkbox.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -4829,6 +4859,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -4896,7 +4930,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
+    "/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -4915,6 +4949,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -4946,7 +4984,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/numericInput.doc.ts": [
+    "/loveship/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -5020,6 +5058,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -5068,7 +5110,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/radioInput.doc.tsx": [
+    "/loveship/components/inputs/docs/radioInput.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -5103,6 +5145,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -5150,7 +5196,7 @@
         "value": "light | dark"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/rating.doc.ts": [
+    "/loveship/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -5208,6 +5254,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -5240,7 +5290,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/searchInput.doc.ts": [
+    "/loveship/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5335,6 +5385,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -5434,7 +5488,7 @@
         "value": "number"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/sliderRating.doc.tsx": [
+    "/loveship/components/inputs/docs/sliderRating.doc.tsx": [
       {
         "name": "renderTooltip",
         "value": "(value: TValue) => React.ReactNode"
@@ -5472,6 +5526,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -5492,7 +5550,7 @@
         "value": "boolean"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/switch.doc.ts": [
+    "/loveship/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -5519,6 +5577,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -5566,7 +5628,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/textArea.doc.ts": [
+    "/loveship/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -5620,6 +5682,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -5668,7 +5734,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/textInput.doc.ts": [
+    "/loveship/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5766,6 +5832,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -5854,7 +5924,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/docs/timePicker.doc.ts": [
+    "/loveship/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -5881,6 +5951,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -5916,7 +5990,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/accordion.doc.tsx": [
+    "/loveship/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -5939,6 +6013,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -5986,7 +6064,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/blocker.doc.ts": [
+    "/loveship/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -6016,7 +6094,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/checkboxGroup.doc.ts": [
+    "/loveship/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -6027,6 +6105,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -6074,7 +6156,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/controlGroup.doc.tsx": [
+    "/loveship/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -6092,7 +6174,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/iconContainer.doc.tsx": [
+    "/loveship/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -6138,7 +6220,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/labeledInput.doc.tsx": [
+    "/loveship/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -6165,6 +6247,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -6208,7 +6294,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/docs/radioGroup.doc.ts": [
+    "/loveship/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -6235,6 +6321,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -6270,7 +6360,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+    "/loveship/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -6364,7 +6454,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/alert.doc.tsx": [
+    "/loveship/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -6394,7 +6484,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/dropdown.doc.tsx": [
+    "/loveship/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6465,6 +6555,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -6540,73 +6634,7 @@
         "value": "(e?: any) => void"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
-      {
-        "name": "width",
-        "value": "auto"
-      },
-      {
-        "name": "maxWidth",
-        "value": "number"
-      },
-      {
-        "name": "height",
-        "value": "number"
-      },
-      {
-        "name": "showArrow",
-        "value": "boolean"
-      },
-      {
-        "name": "style",
-        "value": "React.CSSProperties"
-      },
-      {
-        "name": "arrowProps",
-        "value": "PopperArrowProps"
-      },
-      {
-        "name": "placement",
-        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
-      },
-      {
-        "name": "cx",
-        "value": "any"
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode"
-      },
-      {
-        "name": "rawProps",
-        "value": "any"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>"
-      },
-      {
-        "name": "vPadding",
-        "value": "24 | 30 | 48 | 18 | 12 | 6"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 30 | 18 | 12 | 6"
-      },
-      {
-        "name": "color",
-        "value": "white | night700"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<T>"
-      },
-      {
-        "name": "key",
-        "value": "React.ReactText"
-      }
-    ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
+    "/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6677,6 +6705,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -6752,7 +6784,7 @@
         "value": "(e?: any) => void"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
+    "/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -6878,7 +6910,7 @@
         "value": "boolean"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/modalFooter.doc.tsx": [
+    "/loveship/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6932,7 +6964,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/modalHeader.doc.tsx": [
+    "/loveship/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6990,7 +7022,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/notificationCard.doc.tsx": [
+    "/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -7040,7 +7072,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
+    "/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
       {
         "name": "snackType",
         "value": "info | success | warning | danger"
@@ -7078,7 +7110,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/overlays/docs/tooltip.doc.tsx": [
+    "/loveship/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -7120,7 +7152,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/pickers/docs/pickerInput.doc.tsx": [
+    "/loveship/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7195,6 +7227,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -7314,7 +7350,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/pickers/docs/pickerList.doc.tsx": [
+    "/loveship/components/pickers/docs/pickerList.doc.tsx": [
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
@@ -7424,6 +7460,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -7464,7 +7504,7 @@
         "value": "string"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/pickers/docs/pickerModal.doc.tsx": [
+    "/loveship/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7570,7 +7610,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -7684,6 +7724,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -7736,7 +7780,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/tables/docs/dataTableCell.doc.tsx": [
+    "/loveship/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -7782,7 +7826,7 @@
         "value": "top | center"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -7829,6 +7873,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -7900,7 +7948,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -7931,6 +7979,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -7974,7 +8026,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/tables/docs/dataTableRow.doc.tsx": [
+    "/loveship/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -8144,7 +8196,7 @@
         "value": "top | center"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/typography/docs/richTextView.doc.tsx": [
+    "/loveship/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -8170,7 +8222,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/typography/docs/text.doc.tsx": [
+    "/loveship/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -8216,7 +8268,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -8238,7 +8290,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/avatar.doc.tsx": [
+    "/loveship/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -8272,7 +8324,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/avatarStack.doc.tsx": [
+    "/loveship/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -8302,7 +8354,7 @@
         "value": "any"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/badge.doc.ts": [
+    "/loveship/components/widgets/docs/badge.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8432,7 +8484,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/carousel.doc.tsx": [
+    "/loveship/components/widgets/docs/carousel.doc.tsx": [
       {
         "name": "items",
         "value": "Record<string, any>[]"
@@ -8466,7 +8518,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/paginator.doc.tsx": [
+    "/loveship/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -8489,6 +8541,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -8516,7 +8572,7 @@
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/spinner.doc.ts": [
+    "/loveship/components/widgets/docs/spinner.doc.ts": [
       {
         "name": "cx",
         "value": "any"
@@ -8534,7 +8590,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/widgets/docs/tag.doc.ts": [
+    "/loveship/components/widgets/docs/tag.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8660,7 +8716,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/buttons/docs/button.doc.tsx": [
+    "/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8786,7 +8842,7 @@
         "value": "accent | primary | secondary | negative"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/buttons/docs/linkButton.doc.ts": [
+    "/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8904,7 +8960,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/inputs/docs/checkbox.doc.ts": [
+    "/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -8935,6 +8991,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -8998,7 +9058,7 @@
         "value": "light | dark"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/inputs/docs/radioInput.doc.ts": [
+    "/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -9033,6 +9093,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -9072,7 +9136,7 @@
         "value": "18 | 12"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/inputs/docs/switch.doc.ts": [
+    "/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -9099,6 +9163,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -9138,7 +9206,7 @@
         "value": "24 | 18 | 12"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/inputs/docs/textInput.doc.ts": [
+    "/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -9236,6 +9304,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -9316,7 +9388,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/pickers/docs/pickerInput.doc.tsx": [
+    "/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -9391,6 +9463,10 @@
       },
       {
         "name": "isInvalid",
+        "value": "boolean"
+      },
+      {
+        "name": "isChanged",
         "value": "boolean"
       },
       {
@@ -9510,7 +9586,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -9624,6 +9700,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -9684,7 +9764,7 @@
         "value": "form | cell"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/uui/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -9694,7 +9774,7 @@
         "value": "boolean"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9752,7 +9832,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9794,7 +9874,7 @@
         "value": "white | gray90"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
+    "/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9836,6 +9916,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -9868,7 +9952,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/inputs/Slider/docs/slider.doc.ts": [
+    "/loveship/components/inputs/Slider/docs/slider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9910,6 +9994,10 @@
         "value": "boolean"
       },
       {
+        "name": "isChanged",
+        "value": "boolean"
+      },
+      {
         "name": "validationMessage",
         "value": "string"
       },
@@ -9942,7 +10030,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -10004,7 +10092,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "C:/Users/Igor_Zakharov3/Documents/uui-work/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"

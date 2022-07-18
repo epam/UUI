@@ -201,8 +201,8 @@ export class IconsDoc extends React.Component {
                     <FlexCell width='100%'>
                         { !Object.keys(recommendedSizes).every(i => iconSizesList.includes(i)) && (
                             <FlexRow size='24' spacing='6' alignItems='bottom'>
-                                <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://kb.epam.com/pages/viewpage.action?pageId=717764058' />
-                                &nbsp;<Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
+                                <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=14983%3A274834' />
+                                <Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
                             </FlexRow>
                         ) }
                     </FlexCell>
