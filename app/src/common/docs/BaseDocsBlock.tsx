@@ -140,7 +140,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderPropEditor() {
         if (!this.getPropsDocPath()) {
-            svc.uuiRouter.redirect({
+            return svc.uuiRouter.redirect({
                 pathname: '/documents',
                 query: {
                     category: getQuery('category'),
@@ -201,7 +201,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         svc.uuiRouter.redirect({
             pathname: '/documents',
             query: {
-                category: 'components',
+                category: getQuery('category'),
                 id: getQuery('id'),
                 mode: getQuery('mode'),
                 skin: skin,

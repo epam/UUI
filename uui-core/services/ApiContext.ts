@@ -1,5 +1,4 @@
 import { BaseContext } from './BaseContext';
-import { ErrorContext } from './ErrorContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
 import { getCookie, isClientSide } from '../helpers';
@@ -28,6 +27,10 @@ export interface FileUploadResponse {
     path?: string;
     type?: BlockTypes;
     extension?: string;
+    error?: {
+        isError: boolean;
+        message?: string ;
+    };
 }
 
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
@@ -303,12 +306,11 @@ export class ApiContext extends BaseContext implements IApiContext {
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
                 if (!(new RegExp('^2[0-9][0-9]')).test(xhr.status.toString())) {
-                    /*handle error*/
-                    reject(xhr.response);
+                    reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
                 }
 
                 removeAllListeners();
-                resolve(JSON.parse(xhr.response));
+                resolve(xhr.response && { ...JSON.parse(xhr.response) } || null);
             };
             xhr.send(formData);
         });

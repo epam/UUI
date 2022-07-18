@@ -34,6 +34,11 @@ export class FormDoc extends BaseDocsBlock {
                     title='Usage with class components'
                     path='./examples/form/FormWIthClasses.example.tsx'
                 />
+
+                <DocExample
+                    title='Usage with validateOn: "onchange" '
+                    path='./examples/form/FormValidateOnChange.example.tsx'
+                />
             </>
         );
     }

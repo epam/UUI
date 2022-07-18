@@ -3,7 +3,7 @@ import { IHasCX, CX } from '../types';
 
 export function withMods<TProps extends IHasCX, TMods = {}>(
     Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
-    getCx: (props: Readonly<TProps & TMods>) => CX,
+    getCx?: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ) {
     const wrappedComponent = React.forwardRef<any, TProps & TMods>((props, ref) => {
@@ -17,7 +17,7 @@ export function withMods<TProps extends IHasCX, TMods = {}>(
             Object.assign(allProps, getProps?.(props));
         }
 
-        allProps.cx = [getCx(props), props.cx];
+        allProps.cx = [getCx?.(props), props.cx];
 
         if (Component.prototype instanceof React.Component) {
             allProps.forwardedRef = ref;

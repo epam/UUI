@@ -30,6 +30,7 @@ export const uuiNumericInput = {
     upButton: "uui-numeric-input-up-button",
     downButton: "uui-numeric-input-down-button",
     buttonGroup: "uui-numeric-input-button-group",
+    withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
 const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
@@ -113,6 +114,7 @@ export const NumericInput = (props: NumericInputProps) => {
         return `${(0).toFixed(getFractionDigits(props.formatOptions) - 1)}1`;
     }, [props.formatOptions, props.step]);
 
+    const showArrows = !props.disableArrows && !props.isReadonly && !this.props.isDisabled;
     return (
         <div
             className={ cx(css.container, uuiElement.inputBox,
@@ -121,6 +123,7 @@ export const NumericInput = (props: NumericInputProps) => {
                 props.isInvalid && uuiMod.invalid,
                 (!props.isReadonly && inFocus) && uuiMod.focus,
                 (!props.isReadonly && !props.isDisabled) && uuiMarkers.clickable,
+                !showArrows && uuiNumericInput.withoutArrows,
                 props.cx,
             ) }
             onClick={ props.onClick }
@@ -148,16 +151,16 @@ export const NumericInput = (props: NumericInputProps) => {
                 id={ props.id }
             />
 
-            { !props.disableArrows && (
+            { showArrows && (
                 <div className={ uuiNumericInput.buttonGroup }>
                     <IconContainer
-                        cx={ cx(uuiNumericInput.upButton, (props.isReadonly || props.isDisabled) && css.hidden) }
+                        cx={ cx(uuiNumericInput.upButton }
                         icon={ props.upIcon }
                         onClick={ handleIncreaseValue }
                         isDisabled={ props.isDisabled }
                     />
                     <IconContainer
-                        cx={ cx(uuiNumericInput.downButton, (props.isReadonly || props.isDisabled) && css.hidden) }
+                        cx={ cx(uuiNumericInput.downButton }
                         icon={ props.downIcon }
                         onClick={ handleDecreaseValue }
                         isDisabled={ props.isDisabled }

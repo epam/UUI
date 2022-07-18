@@ -99,7 +99,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
         <Panel>
             <FlexRow type='form'>
                 <FlexCell grow={ 1 }>
-                    <LabeledInput htmlFor='city' label='City' { ...this.props.lens.prop('countryId').toProps() }>
+                    <LabeledInput htmlFor='city' label='City' { ...this.props.lens.prop('city').toProps() }>
                         <PickerInput<City, string>
                             { ...this.props.lens.prop('city').toProps() }
                             selectionMode='multi'

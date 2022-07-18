@@ -8,11 +8,12 @@ import {
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
-    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc
+    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
+import { AnchorDoc } from "../docs/Anchor.doc";
 
 export interface DocItem {
     id: string;
@@ -24,6 +25,7 @@ export interface DocItem {
 const componentsStructure = sortBy([
     { id: 'accordion', name: 'Accordion', component: AccordionDoc, parentId: 'components' },
     { id: 'alert', name: 'Alert', component: AlertDoc, parentId: 'components' },
+    { id: 'anchor', name: 'Anchor', component: AnchorDoc, parentId: 'components' },
     { id: 'avatar', name: 'Avatar', component: AvatarDoc, parentId: 'components' },
     { id: 'avatarStack', name: 'Avatar Stack', component: AvatarStackDoc, parentId: 'components' },
     { id: 'badge', name: 'Badge', component: BadgeDoc, parentId: 'components' },

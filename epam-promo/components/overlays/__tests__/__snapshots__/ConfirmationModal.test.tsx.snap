@@ -65,7 +65,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <div
-          className="flexCell"
+          className=""
           style={
             Object {
               "alignSelf": undefined,
@@ -279,7 +279,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className="flexCell"
+          className=""
           style={
             Object {
               "alignSelf": undefined,

@@ -14,7 +14,7 @@ const AvatarDoc = new DocBuilder<AvatarProps>({ name: 'Avatar', component: Avata
         isRequired: true,
     })
     .prop('size', {
-        examples: ['24', '36', { name: '48', value: '48', isDefault: true }, '144'],
+        examples: ['24', '36', { name: '48', value: '48', isDefault: true }, '144'], isRequired: true, defaultValue: '48',
     })
     .prop('isLoading', {
         examples: [true],
