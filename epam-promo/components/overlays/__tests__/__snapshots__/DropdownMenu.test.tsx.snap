@@ -41,7 +41,7 @@ Array [
     tabIndex={-1}
   >
     <div
-      className="uui-dropdown-body bodyRoot -lock-focus containerPopover uui-dropdown-container container"
+      className="uui-dropdown-body bodyRoot -lock-focus container"
       style={
         Object {
           "maxWidth": undefined,

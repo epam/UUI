@@ -5,7 +5,6 @@ import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui-core';
 import { Portal } from './Portal';
 import * as css from './Tooltip.scss';
-import * as arrCss from './PopoverArrow.scss';
 import { useCallback } from "react";
 import PopoverArrow from "./PopoverArrow";
 
@@ -110,12 +109,12 @@ export function Tooltip(props: TooltipProps) {
             <div
                 ref={ ref }
                 style={ { ...style, zIndex: layer.current?.zIndex } }
-                className={ cx(props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper, arrCss.containerPopover, 'uui-dropdown-container') }
+                className={ cx(props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
                 data-placement={ placement }
                 data-popper-reference-hidden={ isReferenceHidden }
             >
                 { renderTooltip() }
-                <PopoverArrow ref={ arrowProps.ref } style={ arrowProps.style }/>
+                <PopoverArrow ref={ arrowProps.ref } arrowProps={ arrowProps } placement={ placement }/>
             </div>
         );
     };
