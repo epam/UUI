@@ -11,34 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can also create your own version of the content area with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DropdownContainer",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
             "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "depending on the use case, arrow tips can be added to the ",
             "marks": []
           },
           {
@@ -54,12 +27,12 @@
           },
           {
             "object": "text",
-            "text": " to help show with ",
+            "text": " it's a wrapper for your content that are provided as a children. You can configure vertical and horizontal paddings in container via ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "showArrow",
+            "text": "padding",
             "marks": [
               {
                 "object": "mark",
@@ -70,37 +43,40 @@
           },
           {
             "object": "text",
-            "text": " the relationship between the popover and where it was triggered from",
+            "text": " and ",
             "marks": []
           },
           {
             "object": "text",
-            "text": ".",
+            "text": "vPadding",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+          },
           {
             "object": "text",
-            "text": "",
+            "text": " props. Also you can enable arrow tip by providing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "showArrow={ true }",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-bold",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
+          },
+          {
+            "object": "text",
+            "text": " prop",
+            "marks": []
           }
         ]
       },
