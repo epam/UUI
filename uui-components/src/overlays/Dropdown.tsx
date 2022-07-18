@@ -11,13 +11,16 @@ export interface DropdownState {
     closeDropdownTimerId: any;
 }
 
-export interface DropdownBodyProps {
+export interface DropdownBodyProps extends IDropdownBody {
     onClose(): void;
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
+}
+
+export interface IDropdownBody {
     arrowProps?: PopperArrowProps;
-    placement: DropdownPlacement;
+    placement?: DropdownPlacement;
 }
 
 export type DropdownPlacement = Placement;

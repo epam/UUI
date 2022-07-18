@@ -2,7 +2,7 @@
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
 <div
-  className="uui-dropdown-body root background-white -lock-focus containerPopover uui-dropdown-container container"
+  className="uui-dropdown-body root background-white -lock-focus container"
   style={
     Object {
       "maxWidth": undefined,
@@ -24,7 +24,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
 
 exports[`DropdownContainer should be rendered correctly 2`] = `
 <div
-  className="uui-dropdown-body root background-gray70 -lock-focus containerPopover uui-dropdown-container container"
+  className="uui-dropdown-body root background-gray70 -lock-focus container"
   style={
     Object {
       "maxWidth": undefined,
