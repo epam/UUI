@@ -114,7 +114,7 @@ export const NumericInput = (props: NumericInputProps) => {
         return `${(0).toFixed(getFractionDigits(props.formatOptions) - 1)}1`;
     }, [props.formatOptions, props.step]);
 
-    const showArrows = !props.disableArrows && !props.isReadonly && !this.props.isDisabled;
+    const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
     return (
         <div
             className={ cx(css.container, uuiElement.inputBox,
@@ -154,13 +154,13 @@ export const NumericInput = (props: NumericInputProps) => {
             { showArrows && (
                 <div className={ uuiNumericInput.buttonGroup }>
                     <IconContainer
-                        cx={ cx(uuiNumericInput.upButton }
+                        cx={ uuiNumericInput.upButton }
                         icon={ props.upIcon }
                         onClick={ handleIncreaseValue }
                         isDisabled={ props.isDisabled }
                     />
                     <IconContainer
-                        cx={ cx(uuiNumericInput.downButton }
+                        cx={ uuiNumericInput.downButton }
                         icon={ props.downIcon }
                         onClick={ handleDecreaseValue }
                         isDisabled={ props.isDisabled }

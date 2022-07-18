@@ -16,7 +16,6 @@ export interface UseFormState<T> {
     formHistory: T[];
     historyIndex: number;
     isInProgress: boolean;
-    prevProps: UseFormProps<T>;
     isInSaveMode: boolean;
 }
 
@@ -30,7 +29,7 @@ export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     const context: UuiContexts = useUuiContext();
 
-    const initialForm = useRef<FormComponentState<T>>({
+    const initialForm = useRef<UseFormState<T>>({
         isChanged: false,
         isInProgress: false,
         form: props.value,
@@ -45,7 +44,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
 
     const forceUpdate = useForceUpdate();
 
-    const setFormState = (newValue: FormComponentState<T>) => {
+    const setFormState = (newValue: UseFormState<T>) => {
         formState.current = newValue;
         forceUpdate();
     };
@@ -135,7 +134,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         });
     };
 
-    const resetForm = (withNewState: FormComponentState<T>) => {
+    const resetForm = (withNewState: UseFormState<T>) => {
         const newFormState = { ...initialForm.current, ...withNewState } ;
         initialForm.current = newFormState;
         setFormState(newFormState);
