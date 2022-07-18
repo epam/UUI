@@ -28,7 +28,7 @@ const imageUrl = {
 
 const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
 
-export const recoveryConfig: Record<ApiRecoveryReason, { title: string, subtitle: string }> = {
+export const recoveryWordings: Record<ApiRecoveryReason, { title: string, subtitle: string }> = {
     'auth-lost': {
         title: 'Your session has expired.',
         subtitle: 'Attempting to log you in.',
@@ -47,7 +47,7 @@ export const recoveryConfig: Record<ApiRecoveryReason, { title: string, subtitle
     },
 };
 
-const defaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType, UuiErrorInfo> => {
+export const getDefaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType, UuiErrorInfo> => {
     return {
         notFound: {
             imageUrl: imageUrl[theme][404],
@@ -78,7 +78,7 @@ const defaultErrorPageProps = (theme: Theme = 'light'): Record<ApiCallErrorType,
 };
 
 export interface ErrorConfig {
-    getInfo?: (errorCode: number) => UuiErrorInfo;
+    getInfo?: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
 }
 
 export interface ErrorPageProps extends IHasCX, IHasChildren {
@@ -91,8 +91,8 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     const { errorType, errorInfo } = useUuiError({
         getErrorInfo: props.errorPageConfig?.getInfo,
         options: {
-            errorConfig: defaultErrorPageProps(props.theme),
-            recoveryConfig: recoveryConfig,
+            errorConfig: getDefaultErrorPageProps(props.theme),
+            recoveryConfig: recoveryWordings,
         },
     });
 

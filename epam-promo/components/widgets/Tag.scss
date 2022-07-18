@@ -2,10 +2,6 @@
 @import '../../assets/styles/colorvars/widgets/tag-colorvars';
 
 .root {
-    &:first-child {
-        margin-left: 3px;
-    }
-    
     &:global(.uui-button-box) {
         background-color: var(--background-color);
         fill: var(--fill);

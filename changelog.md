@@ -1,12 +1,39 @@
 # Editable DataTables branch
 
 * [Breaking Change] DataTableColumn props simplified
-  * DataTableColumn props no longer accepts shrink prop.
-    Is actually wasn't supported before this change, so you can safely remove them.
-    Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
-  * 'width' prop is now required (was optional)
-  * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
+    * DataTableColumn props no longer accepts shrink prop.
+      Is actually wasn't supported before this change, so you can safely remove them.
+      Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional)
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
 
+
+# 4.7.?
+
+**What's New**
+* [Anchor]: implement open Anchor links with Ctrl or Command in new window
+* [useForm]: implement possibility run form validation on change.
+* [Checkbox]: fix removed unused colors from docs in loveship
+* [DropSpot]: fix drag&drop area view
+* [PickerInput]: fix the first item layout in multi mode, or if it has a prefix
+* [NumericInput]: fix arrows layout hidden when input disabled or readonly
+
+# 4.7.1 - 06.06.2022
+
+**What's New**
+* [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
+
+**What’s Fixed**
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
+* [PickerInput]: fix the second line tag margin in multi mode
+* [NumericInput]: hide arrows when input disabled or readonly
+* [DataTable]: added missing sizes styles for header 
+* [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
+* [useForm]: handle rejected promise after save
+* [Burger]: fix scroll on body when burger closes
+* [VirtualList]: fix auto scroll onHover on top or bottom item
+
+# 4.7.0 - 30.05.2022
 
 **What's New**
 * Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/DemoTable.tsx.
