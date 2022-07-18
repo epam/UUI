@@ -94,7 +94,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     />
   </div>
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
     style={
       Object {
         "flex": "2 0 470px",
@@ -337,7 +337,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     />
   </div>
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
     style={
       Object {
         "flex": "2 0 470px",
