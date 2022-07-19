@@ -1,7 +1,8 @@
 import { Metadata } from '@epam/uui';
 import { PersonDetails } from './types';
+import dayjs from "dayjs";
 
-const fullNameRegExp = /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/;
+const fullNameRegExp = /^[a-zA-Z0-9\s'-]+$/;
 
 export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetails> => ({
     props: {
@@ -10,10 +11,15 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 fullName: {
                     isRequired: true,
                     validators: [
-                        (value: string) => [!fullNameRegExp.exec(value)?.length && 'Please type correct name!'],
+                        (value: string) => [!fullNameRegExp.exec(value)?.length && 'Full Name should contain only Latin alphabet characters and numbers!'],
                     ],
                 },
-                birthdayDate: { isRequired: true },
+                birthdayDate: {
+                    isRequired: true,
+                    validators: [
+                        (value: string) => [!(dayjs(value).valueOf() <= dayjs().subtract(16, 'year').valueOf()) && 'User cannot be under 16 years old!'],
+                    ],
+                },
             },
         },
         location: {

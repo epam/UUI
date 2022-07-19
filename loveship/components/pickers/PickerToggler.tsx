@@ -51,6 +51,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
         return (
             <Tag
+                isDisabled={ props.isDisabled || props.isReadonly }
                 key={ row.rowKey }
                 caption={ getCaption(row) }
                 color="night300"
@@ -61,7 +62,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                     e.stopPropagation();
                 } }
             />
-        )
+        );
     };
 
     return (
@@ -76,6 +77,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
-};
+}
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;

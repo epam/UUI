@@ -13,6 +13,14 @@ export const defaultData: PersonDetails = {
         timeReporting: true,
         remoteStatus: true,
     },
+    personalInfo: {
+        fullName: "",
+        birthdayDate: null,
+    },
+    location: {
+        city: null,
+        country: null,
+    },
 };
 
 export const emptyInfo = {

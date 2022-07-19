@@ -1,6 +1,6 @@
 {
   "props": {
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/buttons/docs/button.doc.tsx": [
+    "-work/epam-promo/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -126,7 +126,7 @@
         "value": "blue | green | red | gray50"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
+    "-work/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -188,7 +188,7 @@
         "value": "blue | green | red | gray50 | amber | gray30 | gray60"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/buttons/docs/linkButton.doc.ts": [
+    "-work/epam-promo/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -310,7 +310,7 @@
         "value": "blue | green | red | amber"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/buttons/docs/tabButton.doc.ts": [
+    "-work/epam-promo/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -432,7 +432,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
+    "-work/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -554,7 +554,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
+    "-work/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "renderFooter",
         "value": "() => React.ReactNode"
@@ -652,7 +652,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "-work/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -742,7 +742,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/checkbox.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -836,7 +836,7 @@
         "value": "light | dark"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
+    "-work/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -886,7 +886,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/numericInput.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -1000,7 +1000,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/radioInput.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1074,7 +1074,7 @@
         "value": "18 | 12"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/rating.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -1160,7 +1160,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/searchInput.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1215,7 +1215,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | search | tel | url | email | numeric | decimal"
+        "value": "none | text | tel | url | email | numeric | decimal | search"
       },
       {
         "name": "tabIndex",
@@ -1346,7 +1346,7 @@
         "value": "number"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/switch.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -1412,7 +1412,7 @@
         "value": "24 | 18 | 12"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/textArea.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -1506,7 +1506,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/textInput.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1561,7 +1561,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | search | tel | url | email | numeric | decimal"
+        "value": "none | text | tel | url | email | numeric | decimal | search"
       },
       {
         "name": "tabIndex",
@@ -1684,7 +1684,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/inputs/docs/timePicker.doc.ts": [
+    "-work/epam-promo/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -1750,7 +1750,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/accordion.doc.tsx": [
+    "-work/epam-promo/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -1820,7 +1820,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/blocker.doc.ts": [
+    "-work/epam-promo/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -1850,7 +1850,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
+    "-work/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -1908,7 +1908,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
+    "-work/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -1926,7 +1926,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
+    "-work/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1972,7 +1972,7 @@
         "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray5 | gray10 | gray20 | gray40 | gray70 | gray80 | gray90 | cyan | orange | purple | violet"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
+    "-work/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -2038,7 +2038,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/docs/radioGroup.doc.ts": [
+    "-work/epam-promo/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -2100,7 +2100,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/navigation/docs/anchor.doc.tsx": [
+    "-work/epam-promo/components/navigation/docs/anchor.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -2142,7 +2142,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+    "-work/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -2236,7 +2236,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/alert.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -2266,7 +2266,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -2360,7 +2360,73 @@
         "value": "boolean"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
+      {
+        "name": "width",
+        "value": "auto"
+      },
+      {
+        "name": "maxWidth",
+        "value": "number"
+      },
+      {
+        "name": "height",
+        "value": "number"
+      },
+      {
+        "name": "showArrow",
+        "value": "boolean"
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
+      },
+      {
+        "name": "arrowProps",
+        "value": "PopperArrowProps"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 30 | 48 | 18 | 12 | 6"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 30 | 18 | 12 | 6"
+      },
+      {
+        "name": "color",
+        "value": "white | gray70"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<T>"
+      },
+      {
+        "name": "key",
+        "value": "React.ReactText"
+      }
+    ],
+    "-work/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2410,7 +2476,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2464,7 +2530,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -2514,7 +2580,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
+    "-work/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -2556,7 +2622,7 @@
         "value": "white | gray90"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
+    "-work/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2750,7 +2816,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
+    "-work/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2856,7 +2922,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
+    "-work/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -3030,7 +3096,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
+    "-work/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -3076,7 +3142,7 @@
         "value": "top | center"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "-work/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -3194,7 +3260,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "-work/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -3268,7 +3334,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
+    "-work/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -3434,7 +3500,7 @@
         "value": "top | center"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/typography/docs/richTextView.doc.tsx": [
+    "-work/epam-promo/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -3456,7 +3522,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/typography/docs/text.doc.tsx": [
+    "-work/epam-promo/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3502,7 +3568,7 @@
         "value": "24 | 18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
+    "-work/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -3516,7 +3582,7 @@
         "value": "boolean"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/avatar.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -3534,6 +3600,10 @@
         "value": "boolean"
       },
       {
+        "name": "onClick",
+        "value": "() => void"
+      },
+      {
         "name": "cx",
         "value": "any"
       },
@@ -3546,7 +3616,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -3576,7 +3646,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/badge.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/badge.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3702,7 +3772,7 @@
         "value": "blue | green | red | amber | gray30 | cyan | orange | purple | violet"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/paginator.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -3752,7 +3822,7 @@
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/spinner.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/spinner.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3770,7 +3840,7 @@
         "value": "white | blue | gray50"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/widgets/docs/tag.doc.tsx": [
+    "-work/epam-promo/components/widgets/docs/tag.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3888,7 +3958,7 @@
         "value": "24 | 30 | 36 | 42 | 48 | 18"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/buttons/docs/button.doc.tsx": [
+    "-work/loveship/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4026,7 +4096,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/buttons/docs/iconButton.doc.ts": [
+    "-work/loveship/components/buttons/docs/iconButton.doc.ts": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -4088,7 +4158,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/buttons/docs/linkButton.doc.tsx": [
+    "-work/loveship/components/buttons/docs/linkButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4222,7 +4292,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/buttons/docs/tabButton.doc.ts": [
+    "-work/loveship/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4348,7 +4418,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
+    "-work/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4474,7 +4544,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/datePickers/docs/calendar.doc.ts": [
+    "-work/loveship/components/datePickers/docs/calendar.doc.ts": [
       {
         "name": "value",
         "value": "TSelection"
@@ -4520,7 +4590,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/datePickers/docs/datePicker.doc.tsx": [
+    "-work/loveship/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "format",
         "value": "string"
@@ -4626,7 +4696,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "-work/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -4728,7 +4798,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/checkbox.doc.tsx": [
+    "-work/loveship/components/inputs/docs/checkbox.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -4826,7 +4896,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
+    "-work/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -4876,7 +4946,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/numericInput.doc.ts": [
+    "-work/loveship/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -4998,7 +5068,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/radioInput.doc.tsx": [
+    "-work/loveship/components/inputs/docs/radioInput.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -5080,7 +5150,7 @@
         "value": "light | dark"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/rating.doc.ts": [
+    "-work/loveship/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -5170,7 +5240,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/searchInput.doc.ts": [
+    "-work/loveship/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5225,7 +5295,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | search | tel | url | email | numeric | decimal"
+        "value": "none | text | tel | url | email | numeric | decimal | search"
       },
       {
         "name": "tabIndex",
@@ -5364,7 +5434,7 @@
         "value": "number"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/sliderRating.doc.tsx": [
+    "-work/loveship/components/inputs/docs/sliderRating.doc.tsx": [
       {
         "name": "renderTooltip",
         "value": "(value: TValue) => React.ReactNode"
@@ -5422,7 +5492,7 @@
         "value": "boolean"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/switch.doc.ts": [
+    "-work/loveship/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -5496,7 +5566,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/textArea.doc.ts": [
+    "-work/loveship/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -5598,7 +5668,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/textInput.doc.ts": [
+    "-work/loveship/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5653,7 +5723,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | search | tel | url | email | numeric | decimal"
+        "value": "none | text | tel | url | email | numeric | decimal | search"
       },
       {
         "name": "tabIndex",
@@ -5784,7 +5854,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/docs/timePicker.doc.ts": [
+    "-work/loveship/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -5846,7 +5916,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/accordion.doc.tsx": [
+    "-work/loveship/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -5916,7 +5986,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/blocker.doc.ts": [
+    "-work/loveship/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -5946,7 +6016,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/checkboxGroup.doc.ts": [
+    "-work/loveship/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -6004,7 +6074,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/controlGroup.doc.tsx": [
+    "-work/loveship/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -6022,7 +6092,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/iconContainer.doc.tsx": [
+    "-work/loveship/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -6068,7 +6138,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/labeledInput.doc.tsx": [
+    "-work/loveship/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -6138,7 +6208,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/docs/radioGroup.doc.ts": [
+    "-work/loveship/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -6200,7 +6270,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+    "-work/loveship/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -6294,7 +6364,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/alert.doc.tsx": [
+    "-work/loveship/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -6324,7 +6394,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/dropdown.doc.tsx": [
+    "-work/loveship/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6470,7 +6540,73 @@
         "value": "(e?: any) => void"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
+    "-work/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
+      {
+        "name": "width",
+        "value": "auto"
+      },
+      {
+        "name": "maxWidth",
+        "value": "number"
+      },
+      {
+        "name": "height",
+        "value": "number"
+      },
+      {
+        "name": "showArrow",
+        "value": "boolean"
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties"
+      },
+      {
+        "name": "cx",
+        "value": "any"
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>"
+      },
+      {
+        "name": "arrowProps",
+        "value": "PopperArrowProps"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 30 | 48 | 18 | 12 | 6"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 30 | 18 | 12 | 6"
+      },
+      {
+        "name": "color",
+        "value": "white | night700"
+      },
+      {
+        "name": "ref",
+        "value": "React.Ref<T>"
+      },
+      {
+        "name": "key",
+        "value": "React.ReactText"
+      }
+    ],
+    "-work/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6616,7 +6752,7 @@
         "value": "(e?: any) => void"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
+    "-work/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -6742,7 +6878,7 @@
         "value": "boolean"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/modalFooter.doc.tsx": [
+    "-work/loveship/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6796,7 +6932,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/modalHeader.doc.tsx": [
+    "-work/loveship/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6854,7 +6990,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/notificationCard.doc.tsx": [
+    "-work/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -6904,7 +7040,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
+    "-work/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
       {
         "name": "snackType",
         "value": "info | success | warning | danger"
@@ -6942,7 +7078,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/overlays/docs/tooltip.doc.tsx": [
+    "-work/loveship/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -6984,7 +7120,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/pickers/docs/pickerInput.doc.tsx": [
+    "-work/loveship/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7178,7 +7314,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/pickers/docs/pickerList.doc.tsx": [
+    "-work/loveship/components/pickers/docs/pickerList.doc.tsx": [
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
@@ -7328,7 +7464,7 @@
         "value": "string"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/pickers/docs/pickerModal.doc.tsx": [
+    "-work/loveship/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7434,7 +7570,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
+    "-work/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -7600,7 +7736,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/tables/docs/dataTableCell.doc.tsx": [
+    "-work/loveship/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -7646,7 +7782,7 @@
         "value": "top | center"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "-work/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -7764,7 +7900,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "-work/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -7838,7 +7974,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/tables/docs/dataTableRow.doc.tsx": [
+    "-work/loveship/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -8008,7 +8144,7 @@
         "value": "top | center"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/typography/docs/richTextView.doc.tsx": [
+    "-work/loveship/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -8034,7 +8170,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/typography/docs/text.doc.tsx": [
+    "-work/loveship/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -8080,7 +8216,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
+    "-work/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -8102,7 +8238,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/avatar.doc.tsx": [
+    "-work/loveship/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -8120,6 +8256,10 @@
         "value": "boolean"
       },
       {
+        "name": "onClick",
+        "value": "() => void"
+      },
+      {
         "name": "cx",
         "value": "any"
       },
@@ -8132,7 +8272,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/avatarStack.doc.tsx": [
+    "-work/loveship/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -8162,7 +8302,7 @@
         "value": "any"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/badge.doc.ts": [
+    "-work/loveship/components/widgets/docs/badge.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8292,7 +8432,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/carousel.doc.tsx": [
+    "-work/loveship/components/widgets/docs/carousel.doc.tsx": [
       {
         "name": "items",
         "value": "Record<string, any>[]"
@@ -8326,7 +8466,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/paginator.doc.tsx": [
+    "-work/loveship/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -8376,7 +8516,7 @@
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/spinner.doc.ts": [
+    "-work/loveship/components/widgets/docs/spinner.doc.ts": [
       {
         "name": "cx",
         "value": "any"
@@ -8394,7 +8534,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/widgets/docs/tag.doc.ts": [
+    "-work/loveship/components/widgets/docs/tag.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8520,7 +8660,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/buttons/docs/button.doc.tsx": [
+    "/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8646,7 +8786,7 @@
         "value": "accent | primary | secondary | negative"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/buttons/docs/linkButton.doc.ts": [
+    "/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8764,7 +8904,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/inputs/docs/checkbox.doc.ts": [
+    "/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -8858,7 +8998,7 @@
         "value": "light | dark"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/inputs/docs/radioInput.doc.ts": [
+    "/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -8932,7 +9072,7 @@
         "value": "18 | 12"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/inputs/docs/switch.doc.ts": [
+    "/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -8998,7 +9138,7 @@
         "value": "24 | 18 | 12"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/inputs/docs/textInput.doc.ts": [
+    "/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -9053,7 +9193,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | search | tel | url | email | numeric | decimal"
+        "value": "none | text | tel | url | email | numeric | decimal | search"
       },
       {
         "name": "tabIndex",
@@ -9176,7 +9316,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/pickers/docs/pickerInput.doc.tsx": [
+    "/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -9370,7 +9510,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -9544,7 +9684,7 @@
         "value": "form | cell"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/uui/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -9554,7 +9694,7 @@
         "value": "boolean"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "-work/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9612,7 +9752,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "-work/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9654,7 +9794,7 @@
         "value": "white | gray90"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
+    "-work/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9728,7 +9868,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/inputs/Slider/docs/slider.doc.ts": [
+    "-work/loveship/components/inputs/Slider/docs/slider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9802,7 +9942,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "-work/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9864,7 +10004,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "/Users/ihorkorenets/Job/UUI/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "-work/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"

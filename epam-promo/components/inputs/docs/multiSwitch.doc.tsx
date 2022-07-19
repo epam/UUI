@@ -1,7 +1,7 @@
 import React from 'react';
-import { ColorPicker, DocBuilder } from '@epam/uui-docs';
+import { ColorPicker, DocBuilder, isDisabledDoc } from '@epam/uui-docs';
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
-import { DefaultContext, FormContext, sizeDoc, iEditable, isDisabledDoc } from '../../../docs';
+import { DefaultContext, FormContext, sizeDoc, iEditable } from '../../../docs';
 import { colors } from "../../../helpers/colorMap";
 
 const multiSwitchDoc = new DocBuilder<MultiSwitchProps<any>>({ name: 'MultiSwitch', component: MultiSwitch })
