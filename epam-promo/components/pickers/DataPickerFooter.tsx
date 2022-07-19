@@ -43,8 +43,8 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
             <FlexSpacer/>
 
-            <FlexCell width="auto" alignSelf="center">
-                { view.selectAll ?
+            { view.selectAll && (
+                <FlexCell width='auto' alignSelf='center'>
                     <LinkButton
                         size={ size }
                         caption={ hasSelection
@@ -57,16 +57,8 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                         }
                         rawProps={ { onKeyDown: handleKeyDown } }
                     />
-                    :
-                    <LinkButton
-                        isDisabled={ !hasSelection }
-                        size={ size }
-                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
-                        onClick={ clearSelection }
-                        rawProps={ { onKeyDown: handleKeyDown } }
-                    />
-                }
-            </FlexCell>
+                </FlexCell>
+            ) }
         </FlexRow>
     );
 };
