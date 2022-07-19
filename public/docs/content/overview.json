@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI stands for \"Unified User Interface\".",
+            "text": "UUI stands for \"Unified User Interface.\"",
             "marks": []
           }
         ]
@@ -153,7 +153,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
+                    "text": "Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
                     "marks": []
                   }
                 ]
@@ -169,7 +169,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you need a jump-in, welcome to the ",
+            "text": "If you are ready to jump in, visit the ",
             "marks": []
           },
           {
@@ -219,7 +219,7 @@
           },
           {
             "object": "text",
-            "text": " to get an overview what's UUI is capable to.",
+            "text": " to get an overview of UUI's capabilities.",
             "marks": []
           }
         ]
@@ -243,7 +243,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI started somewhere in 2013. We were building an app for EPAM, and we feel in love with the just born React and TypeScript so hard, that we were among the first production users of them. There were no UI libraries these days, so we built our own components set.",
+            "text": "UUI started somewhere in 2013. We were building an app for EPAM, and we fell in love with the newly born React and TypeScript. We were among the first production users. There were no UI libraries these days, so we built our own sets of components.",
             "marks": []
           }
         ]
@@ -255,7 +255,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Components set from these days, were growing, traveling via tens of projects. We tried different approaches, picking the best fit. At some point, at 2016, we extracted them into a separate GIT repo. Later, we almost completely re-visit all the shortcomings and mistakes we've done. Twice. We changed the look-n-feel, three times.",
+            "text": "Component sets from those early days were growing, traveling via tens of projects. We tried different approaches, picking the best fit. At some point in 2016, we extracted them into a separate GIT repo. Later, we almost completely re-visited all the shortcomings and mistakes we've done. Twice. We changed the look and feel, three times.",
             "marks": []
           }
         ]
@@ -267,7 +267,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The current code base is a result of 7 years of evolution, each piece is 3-4 times rewritten from scratch. The team behind UUI built 3 comprehensive UI/UX Design Systems, and 10th of applications.",
+            "text": "The current code base is the result of 7 years of evolution, each piece has been rewritten from scratch 3-4 times. The team behind UUI built 3 comprehensive UI/UX Design Systems, and 10 applications.",
             "marks": []
           }
         ]
@@ -291,7 +291,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI's value is not in lines of code, it's in 7 years of experience that lead to them.",
+            "text": "UUI's value is not in lines of code, it's in the 7 years of experience that led to them.",
             "marks": []
           }
         ]
@@ -303,7 +303,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Along the way, we looked into evolving marked of UI frameworks. Material UI, Ant.Design, and alike - where making great progress getting more stable and mature. But we were always a bit ahead in many aspects, and UUI match our needs better. ",
+            "text": "Along the way, we watched the evolving UI frameworks (Material UI, Ant Design, and similar) making great progress getting more stable and mature. But we were always a bit ahead in many aspects, and UUI match our needs better. ",
             "marks": []
           }
         ]
@@ -327,7 +327,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI is designed to build apps for our Employees. These apps are balancing between complexity of processes, and a strive to make UX better. In our apps, user interacts with app a lot. For us, user is not an observer, he's one who needs to get enough insight to make confident decisions. And to implement this decision without any ceremony.",
+            "text": "UUI is designed to build apps for our Employees. These apps are balancing between complexity of processes and striving to make UX better. In our apps, there is a lot of user interaction. For us, users are not merely observers, they are the ones who needs to get enough insight to make confident decisions. And to implement this decision without any ceremony.",
             "marks": []
           }
         ]
@@ -339,7 +339,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "There are lots of apps which doesn't work this way. Instagram, Twitter, news sites - are intended to consume content, not for interaction.",
+            "text": "There are lots of apps that don't work this way. Instagram, Twitter, news sites - are intended to consume content, not for interaction.",
             "marks": []
           }
         ]
@@ -363,7 +363,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "So UUI is the best fit for apps, which evolves end-user interaction to explore and change. Think of Trello as a good example.  UUI fits great for issue trackers, HRMS, MDM, ERP, and CMS systems.",
+            "text": "So UUI is the best fit for apps that enable end-user interactions, exploration, and change. Think of Trello as a good example.  UUI fits great for issue trackers, HRMS, MDM, ERP, and CMS systems.",
             "marks": []
           }
         ]
@@ -430,7 +430,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Some component libraries, build around the concept to not being a \"Framework\", but a \"Library\". React itself is an example. Being \"just a Library\" means not being opinionated, at all cost: do not dictate how you build your app, structure your code, do your state management. It's up to developer or architect to decide how to build particular app.",
+            "text": "Some component libraries build around the concept to not being a \"Framework\", but a \"Library\". React itself is an example. Being \"just a Library\" means not being opinionated at all cost: do not dictate how you build your app, structure your code, do your state management. It's up to the developers or architect to decide how to build their app.",
             "marks": []
           }
         ]
@@ -442,7 +442,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In opposite, there is a \"Frameworks\" camp, like Angular. They see that it's really beneficial to have something that guides your team to success, with guidelines how to structure your code, how to manage state, and even in which folder to put each type of file. They often push this idea to the limits.",
+            "text": "On the other hand, there is a \"Frameworks\" camp, like Angular. They see that it's really beneficial to have something that guides your team to success, with guidelines how to structure your code, how to manage state, and even in which folder to put each type of file. They often push this idea to the limits.",
             "marks": []
           }
         ]
@@ -454,7 +454,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI goes somewhere in between of two approaches. We don't completely drop an idea to help with some common application-wide tasks, like state-management, API calls, and error handing. But we doesn't force you to use any of this.",
+            "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state-management, API calls, and error handing, but we doesn't force you to use any of it.",
             "marks": []
           }
         ]
@@ -478,7 +478,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We have tons of helpers which helps with:",
+            "text": "We have tons of helpers for:",
             "marks": []
           }
         ]
@@ -519,7 +519,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "List/Table/Tree state management - including lazy-loading, filtering, paging, etc.",
+                    "text": "List/Table/Tree state management - including lazy-loading, filtering and paging",
                     "marks": []
                   }
                 ]
@@ -576,7 +576,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Examples and guidelines how to combine this to build your UI",
+                    "text": "Examples and guidelines illustrating how to combine these to build your app",
                     "marks": []
                   }
                 ]
@@ -592,7 +592,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "However, if you want to have your own approach - UUI works just fine as a visual components library. The only thing we need, is to provide some context to it via our ContextProvider - as some components needs to know how, for example, use your Routing approach.",
+            "text": "However, if you want to take your own approach, then UUI works just fine as a visual components library. The only thing required is to provide some context via our ContextProvider - as some components need to know how, for example, to use your Routing approach.",
             "marks": []
           }
         ]
@@ -604,7 +604,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "But if you'll get into our helpers, you'll find that 80% of your screens can be build our of it like a breeze, without any complicated solution like Redux.",
+            "text": "But if you use our helpers, you'll find that 80% of your screens can be built in a breeze, without any complicated solutions like Redux.",
             "marks": []
           }
         ]
