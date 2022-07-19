@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, IDropdownToggler, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper } from '../../index';
+import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton, i18n } from '../../index';
+import cx from "classnames";
+import css from "./FilterPickerBody.scss";
 
 const pickerHeight = 300;
 const pickerWidth = 360;
@@ -42,7 +44,33 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         );
     }
 
-    renderFooter = () => <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36"/>;
+    renderFooter = (isSelectAll: (IEditable<boolean> & IDisableable & {indeterminate?: boolean}) | undefined) => {
+        if (isSelectAll) {
+            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36"/>;
+        }
+
+        const { clearSelection, view } = this.getFooterProps();
+        const size = isMobile() ? '48' : '36';
+        const hasSelection = view.getSelectedRows().length > 0;
+
+        const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+            if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
+        };
+
+        return (
+            <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
+                <FlexCell width="auto" alignSelf="center">
+                    <LinkButton
+                        isDisabled={ !hasSelection }
+                        size={ size }
+                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
+                        onClick={ clearSelection }
+                        rawProps={ { onKeyDown: handleKeyDown } }
+                    />
+                </FlexCell>
+            </FlexRow>
+        );
+    }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         return <div></div>;
@@ -72,7 +100,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                         editMode='dropdown'
                         showSearch={ true }
                     />
-                    { this.renderFooter() }
+                    { this.renderFooter(props.selectAll) }
                 </MobileDropdownWrapper>
             </Panel>
         );
