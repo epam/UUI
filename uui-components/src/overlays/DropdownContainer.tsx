@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef } from '@epam/uui-core';
+import { uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from "./PopoverArrow";
-import { DropdownBodyProps } from "./Dropdown";
 
-export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement>, DropdownBodyProps {
+export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {
     width?: number | 'auto';
     maxWidth?: number;
     height?: number;

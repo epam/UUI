@@ -3,6 +3,8 @@ import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import {DataRowProps} from "./tables";
 import {AnalyticsEvent} from "./contexts";
+import { PopperArrowProps } from "react-popper";
+import { Placement} from '@popperjs/core';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -76,11 +78,13 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
 }
 
 export interface IDropdownBodyProps {
-    onClose(): void;
-    togglerWidth: number;
-    togglerHeight: number;
-    scheduleUpdate: () => void;
-    isOpen: boolean;
+    onClose?:() => void;
+    togglerWidth?: number;
+    togglerHeight?: number;
+    scheduleUpdate?: () => void;
+    isOpen?: boolean;
+    arrowProps?: PopperArrowProps;
+    placement?: Placement;
 }
 
 /**
