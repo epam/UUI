@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable, DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions } from '@epam/uui-core';
-import { PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable, DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions, TableFiltersConfig } from '@epam/uui-core';
+import { PositionValues, useColumnsWithFilters, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -13,11 +13,13 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
+    filters?: TableFiltersConfig<any>[];
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
-    const { columns, config, defaultConfig } = useColumnsConfig(props.columns, props.value?.columnsConfig);
+    const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
+    const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
