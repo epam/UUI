@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Person } from '@epam/uui-docs';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState } from "@epam/uui-core";
-import { DataTable, FiltersToolbar } from '@epam/promo';
+import { DataTable, FiltersToolbar, FlexRow } from '@epam/promo';
 import css from './FilteredTable.scss';
 import type { TApi } from '../../data';
 import { getFilters } from './filters';
@@ -31,11 +31,13 @@ export const FilteredTable: React.FC = () => {
 
     return (
             <div className={ css.container }>
-                <FiltersToolbar
-                    filters={ filters }
-                    tableState={ tableStateApi.tableState }
-                    setTableState={ tableStateApi.setTableState }
-                />
+                <FlexRow cx={ css.filterPanel } background="gray5" borderBottom={ true }>
+                    <FiltersToolbar
+                        filters={ filters }
+                        tableState={ tableStateApi.tableState }
+                        setTableState={ tableStateApi.setTableState }
+                    />
+                </FlexRow>
 
                 <DataTable
                     headerTextCase='upper'
