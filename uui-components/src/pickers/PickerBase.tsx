@@ -128,7 +128,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     clearSelection = () => {
         this.handleDataSourceValueChange({
             ...this.state.dataSourceState,
-            selectedId: null,
+            selectedId: this.props.emptyValue,
             checked: [],
         });
     }
