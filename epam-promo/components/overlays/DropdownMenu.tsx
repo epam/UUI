@@ -4,18 +4,19 @@ import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
     IDisableable, IAnalyticableClick, IHasCX, IClickable,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import * as css from './DropdownMenu.scss';
+import { ReactComponent as CheckIcon } from "../../icons/accept-18.svg";
 
 const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
+    isActive?: boolean;
 }
 
-export interface IDropdownMenuContainer extends VPanelProps {
-    onClose(): void;
+export interface IDropdownMenuContainer extends VPanelProps, DropdownBodyProps {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
 }
 
@@ -28,7 +29,7 @@ export enum IDropdownControlKeys {
     DOWN_ARROW = 'ArrowDown',
 }
 
-const DropdownMenuContainer = ({ onClose, closeOnKey = IDropdownControlKeys.ESCAPE, ...props }: IDropdownMenuContainer) => {
+const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(-1);
     const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
@@ -53,8 +54,8 @@ const DropdownMenuContainer = ({ onClose, closeOnKey = IDropdownControlKeys.ESCA
             changeFocus(currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex);
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
-        } else if (e.key === closeOnKey && onClose) {
-            onClose();
+        } else if (e.key === props.closeOnKey && props.onClose) {
+            props.onClose();
         }
     };
 
@@ -74,7 +75,7 @@ const DropdownMenuContainer = ({ onClose, closeOnKey = IDropdownControlKeys.ESCA
 export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
-    ({ style }) => ({ style }),
+    ({ style}) => ({ style }),
 );
 
 export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
@@ -86,11 +87,13 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         caption,
         isDisabled,
         isSelected,
+        isActive,
         link,
         href,
         onClick,
         toggleDropdownOpening,
         isDropdown,
+        isOpen,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -128,7 +131,8 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         props.cx,
         css.itemRoot,
         isDisabled && uuiMod.disabled,
-        isSelected && uuiMod.selected,
+        isActive && uuiMod.active,
+        isOpen && uuiMod.opened,
     );
 
     return isAnchor ? (
@@ -155,6 +159,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
+            { isSelected && <CheckIcon className={ cx(css.selectedCheckmark) } /> }
         </FlexRow>
     );
 });
@@ -163,7 +168,7 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export const DropdownMenuSplitter = (props: IHasCX) => (
     <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter } />
+        <hr className={ css.splitter }/>
     </div>
 );
 
@@ -185,11 +190,10 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             openOnHover={ props.openOnHover || true }
             closeOnMouseLeave="boundary"
             placement="right-start"
-            renderBody={ ({ onClose }) => (
+            renderBody={ (props) => (
                 <DropdownMenuBody
-                    { ...props }
                     closeOnKey={ IDropdownControlKeys.LEFT_ARROW }
-                    onClose={ onClose }
+                    { ...props }
                 />
             ) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (

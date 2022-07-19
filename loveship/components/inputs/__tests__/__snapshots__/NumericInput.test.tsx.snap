@@ -47,7 +47,7 @@ exports[`NumericInput should be rendered correctly 1`] = `
 
 exports[`NumericInput should be rendered correctly with new props 1`] = `
 <div
-  className="container uui-input-box colorSky root size-24 mode-cell"
+  className="container uui-input-box colorSky root size-24 mode-cell uui-numeric-input-without-arrows"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}

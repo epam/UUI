@@ -94,9 +94,10 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
             ref={ (ref) => { attributes.ref.current = ref; } }
             src={ src }
             onLoad={ (e: any) => {
-                const sizes = this.props.node.data.get('imageSize');
-                this.setSize(sizes || this.getDefaultSizes(e.target.naturalWidth, e.target.naturalHeight));
-                this.forceUpdate();
+                if (!this.props.node.data.get('imageSize')) {
+                    this.setSize(this.getDefaultSizes(e.target.naturalWidth, e.target.naturalHeight));
+                    this.forceUpdate();
+                }
             } }
         />
             <div className={ cx(css.leftTopDot, css.dot) } /><div className={ cx(css.rightTopDot, css.dot) } /><div className={ cx(css.leftBotDot, css.dot) } /><div className={ cx(css.rightBotDot, css.dot) } />
