@@ -23,7 +23,7 @@ const defaultValue: RangeDatePickerValue = { from: null, to: null };
 export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return (
-            <DropdownContainer cx={ this.props.cx }>
+            <DropdownContainer { ...props } cx={ this.props.cx }>
                 <FlexRow>
                     <RangeDatePickerBody
                         value={ this.getValue() }

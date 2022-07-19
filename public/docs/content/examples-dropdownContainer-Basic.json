@@ -1,0 +1,156 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropdownContainer",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " it's a wrapper for your content that are provided as a children. You can configure vertical and horizontal paddings in container via ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "padding",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "vPadding",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props. Also you can enable arrow tip by providing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "showArrow={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-warning",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " Also you can select a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "placement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " for arrow and add offset with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "modifiers",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Dropdown",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
