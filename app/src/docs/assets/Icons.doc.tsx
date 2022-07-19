@@ -201,8 +201,8 @@ export class IconsDoc extends React.Component {
                     <FlexCell width='100%'>
                         { !Object.keys(recommendedSizes).every(i => iconSizesList.includes(i)) && (
                             <FlexRow size='24' spacing='6' alignItems='bottom'>
-                                <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://kb.epam.com/pages/viewpage.action?pageId=717764058' />
-                                &nbsp;<Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
+                                <LinkButton cx={ css.bottomText } caption='Contact us' size='24' href='https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=14983%3A274834' target="_blank" />
+                                <Text size='30' cx={ css.bottomText }> if you need more icon sizes</Text>
                             </FlexRow>
                         ) }
                     </FlexCell>
@@ -289,10 +289,10 @@ export class IconsDoc extends React.Component {
         return (
             <div className={ css.container }>
                 <ScrollBars cx={ css.contentContainer }>
-                    <FlexCell width='auto' cx={ css.iconsBlock } >
+                    <FlexCell width='100%' cx={ css.iconsBlock } >
                         <div className={ css.title } >Icons</div>
                         <SearchInput cx={ css.search } size='42' placeholder='Search icon' value={ this.state.search } onValueChange={ value => this.setState({ search: value }) } />
-                        <FlexCell width='100%'>{ this.renderIconsBox(items) }</FlexCell>
+                        <FlexCell>{ this.renderIconsBox(items) }</FlexCell>
                     </FlexCell>
                     { items.length > 0 && (
                         <FlexCell minWidth={ 380 } cx={ cx(css.stickyPanel, css[`sticky-panel-height-${this.state.isLocked ? '563' : '612'}`]) }>

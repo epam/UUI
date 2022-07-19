@@ -169,8 +169,6 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     }
 
     renderEditForm = (props: RenderFormProps<PersonDetails>) => {
-        let lens = props.lens;
-
         return <PersonDetailEditor isBlocked={ this.state.isBlocked || props.isInProgress } lens={ props.lens } isDisabled={ this.state.isDisabled } isReadOnly={ this.state.isReadOnly } />;
     }
 

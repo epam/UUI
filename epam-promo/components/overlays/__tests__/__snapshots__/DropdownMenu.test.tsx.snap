@@ -41,10 +41,10 @@ Array [
     tabIndex={-1}
   >
     <div
-      className="container uui-dropdown-body bodyRoot -lock-focus container"
+      className="uui-dropdown-body bodyRoot -lock-focus container"
       style={
         Object {
-          "maxWidth": "250px",
+          "maxWidth": undefined,
           "minHeight": undefined,
           "minWidth": undefined,
         }

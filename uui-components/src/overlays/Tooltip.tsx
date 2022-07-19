@@ -5,6 +5,8 @@ import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiContext } from '@epam/uui-core';
 import { Portal } from './Portal';
 import * as css from './Tooltip.scss';
+import { useCallback } from "react";
+import PopoverArrow from "./PopoverArrow";
 
 export interface TooltipProps extends IHasCX, IHasChildren {
     content?: any;
@@ -33,7 +35,7 @@ export function Tooltip(props: TooltipProps) {
     const mouseLeaveHandler = (e: MouseEvent) => setOpen(false);
     const mouseUpHandler = (e: Event) => setOpen(false);
     const mouseDownHandler = (e: MouseEvent) => setOpen(!isOpen);
-    const mouseClickHandler = (e: MouseEvent) => setOpen(closest((e.target as HTMLElement), node.current) ? !isOpen : false);
+    const mouseClickHandler = (e: MouseEvent) => setOpen((value) => closest((e.target as HTMLElement), node.current) ? !value : false);
 
     const attachHandlers = (node: HTMLElement | null) => {
         if (!node) return;
@@ -58,10 +60,10 @@ export function Tooltip(props: TooltipProps) {
         }
     };
 
-    const detachHandlers = (node: HTMLElement | null, prevProps: TooltipProps) => {
+    const detachHandlers = (node: HTMLElement | null) => {
         if (!node) return;
 
-        switch (prevProps.trigger) {
+        switch (props.trigger) {
             case 'click': {
                 node.removeEventListener('click', mouseClickHandler);
                 break;
@@ -82,20 +84,10 @@ export function Tooltip(props: TooltipProps) {
     };
 
     React.useEffect(() => {
-        if (node.current && node.current !== prevNode.current || prevProps.current.trigger !== props.trigger) {
-            detachHandlers(prevNode.current, prevProps.current);
-            attachHandlers(node.current);
-        }
-
-        prevNode.current = node.current;
-        prevProps.current = props;
-    }, [props]);
-
-    React.useEffect(() => {
         layer.current = uuiLayout?.getLayer();
 
         return () => {
-            detachHandlers(node.current, props);
+            detachHandlers(node.current);
             layer.current && uuiLayout?.releaseLayer(layer.current);
         };
     }, []);
@@ -122,19 +114,20 @@ export function Tooltip(props: TooltipProps) {
                 data-popper-reference-hidden={ isReferenceHidden }
             >
                 { renderTooltip() }
-                <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
+                <PopoverArrow ref={ arrowProps.ref } arrowProps={ arrowProps } placement={ placement }/>
             </div>
         );
     };
 
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
-    const getInnerRef = (nodeRef: typeof node.current, callbackRef: React.Ref<typeof node.current>) => {
+    const getInnerRef = useCallback((nodeRef: typeof node.current, callbackRef: React.Ref<typeof node.current>) => {
         if (node.current !== nodeRef) prevNode.current = node.current;
         node.current = nodeRef;
+        detachHandlers(prevNode.current);
         attachHandlers(node.current);
         (callbackRef as React.RefCallback<typeof nodeRef>)(nodeRef);
-    };
+    }, []);
 
     return (
         <Manager>

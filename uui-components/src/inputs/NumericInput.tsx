@@ -31,6 +31,7 @@ export const uuiNumericInput = {
     upButton: "uui-numeric-input-up-button",
     downButton: "uui-numeric-input-down-button",
     buttonGroup: "uui-numeric-input-button-group",
+    withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
@@ -120,6 +121,8 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     render() {
+        const showArrows = !this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled;
+
         return (
             <div
                 className={ cx(css.container, uuiElement.inputBox,
@@ -128,6 +131,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
                     this.props.cx,
+                    !showArrows && uuiNumericInput.withoutArrows,
                 ) }
                 onClick={ this.props.onClick }
                 onBlur={ this.handleBlur }
@@ -153,8 +157,8 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     step={ this.props.step || 1 }
                     id={ this.props.id }
                 />
-
-                { (!this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled) && (
+                {
+                    showArrows &&
                     <div className={ uuiNumericInput.buttonGroup }>
                         <IconContainer
                             cx={ cx(uuiNumericInput.upButton) }
@@ -169,7 +173,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                             isDisabled={ this.props.isDisabled }
                         />
                     </div>
-                ) }
+                }
             </div>
         );
     }

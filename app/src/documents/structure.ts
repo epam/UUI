@@ -8,7 +8,7 @@ import {
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
-    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc,
+    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -76,6 +76,7 @@ const componentsStructure = sortBy([
     { id: 'virtualList', name: 'Virtual List', component: VirtualListDoc, parentId: 'components' },
     { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
     { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
+    { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
 ], ['name']);
 
 export const items: DocItem[] = [
