@@ -6,7 +6,7 @@ import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { FlexRow, Panel } from "../layout";
 import { LinkButton } from "../buttons";
 import { Text, TextPlaceholder } from "../typography";
-import FilterItemBody from "./FilterItemBody";
+import { FilterItemBody } from "./FilterItemBody";
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {

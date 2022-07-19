@@ -1,14 +1,13 @@
 import React from "react";
-import { FilterPickerBody } from "./FilterPickerBody";
-import { FilterDataPickerBody } from "./FilterDataPickerBody";
-import { FilterRangeDatePickerBody } from "./FilterRangeDatePickerBody";
 import { IFilterItemBodyProps } from "@epam/uui-core";
+import { ColumnPickerFilter } from "../ColumnPickerFilter";
+import { DatePicker, RangeDatePicker } from "../../datePickers";
 
 export const FilterItemBody = (props: IFilterItemBodyProps<any>) => {
     switch (props.type) {
         case "singlePicker":
             return (
-                <FilterPickerBody
+                <ColumnPickerFilter
                     { ...props }
                     selectionMode="single"
                     valueType="id"
@@ -16,7 +15,7 @@ export const FilterItemBody = (props: IFilterItemBodyProps<any>) => {
             );
         case "multiPicker":
             return (
-                <FilterPickerBody
+                <ColumnPickerFilter
                     { ...props }
                     selectionMode="multi"
                     valueType="id"
@@ -24,16 +23,15 @@ export const FilterItemBody = (props: IFilterItemBodyProps<any>) => {
             );
         case "datePicker":
             return (
-                <FilterDataPickerBody
+                <DatePicker
                     { ...props }
                     format="DD/MM/YYYY"
                 />
             );
         case "rangeDatePicker":
             return (
-                <FilterRangeDatePickerBody
+                <RangeDatePicker
                     { ...props }
-                    value={ props.value || { from: null, to: null } }
                 />
             );
     }
