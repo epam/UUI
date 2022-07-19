@@ -11,12 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can change the time format from 12 hour to 24 hour by using the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "format",
+            "text": "DropdownContainer",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +22,23 @@
           },
           {
             "object": "text",
-            "text": "prop. The default is 12 hour format.",
+            "text": " component is used as a wrapper over the content in ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Dropdown",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]

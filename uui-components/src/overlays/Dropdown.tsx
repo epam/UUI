@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier, PopperArrowProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest} from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -16,6 +16,8 @@ export interface DropdownBodyProps {
     togglerWidth: number;
     togglerHeight: number;
     scheduleUpdate: () => void;
+    arrowProps?: PopperArrowProps;
+    placement?: DropdownPlacement;
 }
 
 export type DropdownPlacement = Placement;
@@ -202,7 +204,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
-    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
+    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden, arrowProps }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
             (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
@@ -236,8 +238,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
                         scheduleUpdate: update,
+                        arrowProps: arrowProps,
+                        placement: placement,
                     }) }
                 </div>
+
             </FreeFocusInside>
         );
     }

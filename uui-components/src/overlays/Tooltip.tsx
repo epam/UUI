@@ -6,6 +6,7 @@ import { uuiElement, IHasCX, LayoutLayer, IHasChildren, closest, cx, useUuiConte
 import { Portal } from './Portal';
 import * as css from './Tooltip.scss';
 import { useCallback } from "react";
+import PopoverArrow from "./PopoverArrow";
 
 export interface TooltipProps extends IHasCX, IHasChildren {
     content?: any;
@@ -113,7 +114,7 @@ export function Tooltip(props: TooltipProps) {
                 data-popper-reference-hidden={ isReferenceHidden }
             >
                 { renderTooltip() }
-                <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
+                <PopoverArrow ref={ arrowProps.ref } arrowProps={ arrowProps } placement={ placement }/>
             </div>
         );
     };

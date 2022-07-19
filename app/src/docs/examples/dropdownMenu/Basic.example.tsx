@@ -52,9 +52,9 @@ export default function BasicDropdownMenuExample() {
         onClick={ () => setLayerHandler(item.id, item.checked) }
         isActive={ item.checked }/>);
 
-    const DropdownBody = ({ onClose }: DropdownBodyProps) => {
+    const DropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownMenuBody onClose={ onClose } style={ { maxWidth: "250px" } }>
+            <DropdownMenuBody { ...props } style={ { maxWidth: "250px" } }>
                 <DropdownMenuHeader caption="Alex Smith"/>
                 <DropdownMenuSplitter/>
                 <DropdownMenuButton caption="Profile"/>
