@@ -161,7 +161,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 { renderInput() }
                 { props.iconPosition === 'right' && icon }
             </div>
-            <div className={ css.actions }>
+            { (!props.isDisabled && !props.isReadonly) && <div className={ css.actions }>
                 { !props.disableClear && (props.value || props.selection && props.selection.length > 0) && (
                     <IconContainer
                         cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
@@ -178,7 +178,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                         cx='uui-icon-dropdown'
                     />
                 ) }
-            </div>
+            </div> }
             { props.suffix && <span className={ uuiElement.suffixInput }>{ props.suffix }</span> }
         </div>
     );

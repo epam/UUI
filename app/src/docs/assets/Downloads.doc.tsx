@@ -138,6 +138,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <LinkButton
                                         href={ link }
                                         size='24'
+                                        target="_blank"
                                         captionCX={ css.libraryLinkTitle }
                                         caption={ title }
                                         iconPosition='right'
@@ -147,6 +148,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                 : <LinkButton
                                     href={ link }
                                     size='24'
+                                    target="_blank"
                                     captionCX={ css.libraryLinkTitle }
                                     caption={ title }
                                     iconPosition='right'

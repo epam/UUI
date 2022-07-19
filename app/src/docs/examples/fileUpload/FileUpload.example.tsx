@@ -1,39 +1,45 @@
 import * as React from 'react';
-import { DropSpot, FileCard } from '@epam/promo';
-import { FileUploadResponse, useUuiContext } from '@epam/uui';
+import { DropSpot, FileCard, FileCardItem } from '@epam/promo';
+import { useUuiContext } from '@epam/uui';
 import * as css from './FileUpload.scss';
-
-type AttachmentType = FileUploadResponse & { progress?: number };
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
 
+let tempIdCount = 0;
+
 export default function FileUploadExample() {
     const { uuiApi } = useUuiContext();
-    const [attachments, setAttachments] = React.useState<AttachmentType[]>([]);
+    const [attachments, setAttachments] = React.useState<FileCardItem[]>([]);
 
     const trackProgress = (progress: number, id: number) => {
-        const file = attachments.find(i => i.id === id);
-        setAttachments(attachments.map(f => f.id === file.id ? { ...file, progress } : f));
+        setAttachments((attachments) => attachments.map(item => item.id === id ? { ...item, progress } : item));
     };
 
-    const updateFile = (file: AttachmentType, id: number) => {
-        setAttachments(attachments.map(f => f.id === id ? file : f));
+    const updateFile = (file: FileCardItem, id: number) => {
+        setAttachments((attachments) => attachments.map((item) => item.id === id ? file : item));
     };
 
-    const deleteFile = (index: number) => {
-        setAttachments(attachments.filter((_, i) => i !== index));
+    const deleteFile = (file: FileCardItem) => {
+        setAttachments((attachments) => attachments.filter((item) => item.id !== file.id));
     };
 
     const uploadFile = (files: File[]) => {
-        const newAttachments = attachments.slice();
+        const newAttachments = [...attachments];
 
-        files.map((file, index) => {
-            const tempId = index - 1;
-            attachments.push({ id: tempId, name: file.name, size: file.size });
+        files.map((file: File) => {
+            const tempId = tempIdCount - 1;
+            tempIdCount -= 1;
+            const newFile: FileCardItem = { id: tempId, name: file.name, progress: 0, size: file.size };
+            newAttachments.push(newFile);
+
             uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
                 onProgress: progress => trackProgress(progress, tempId),
-                getXHR: xhr => xhr.setRequestHeader('my-header', 'value'),
-            }).then(res => updateFile({ ...res, progress: 100 }, tempId));
+                getXHR: (xhr) => {
+                    newFile.abortXHR = () => xhr.abort();
+                },
+            })
+                .then((res) => updateFile({ ...res, progress: 100 }, tempId))
+                .catch((err) => updateFile({ ...newFile, progress: 100, error: err.error }, tempId));
         });
 
         setAttachments(newAttachments);
@@ -41,14 +47,10 @@ export default function FileUploadExample() {
 
     return (
         <div className={ css.container }>
-            <DropSpot onUploadFiles={ uploadFile } />
+            <DropSpot onUploadFiles={ uploadFile }/>
             <div className={ css.attachmentBlock }>
                 { attachments.map((file, index) => (
-                    <FileCard
-                        key={ index }
-                        file={ file }
-                        onClick={ () => deleteFile(index) }
-                    />
+                    <FileCard key={ index } file={ file } onClick={ () => deleteFile(file) }/>
                 )) }
             </div>
         </div>

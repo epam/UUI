@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier, PopperArrowProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest, IDropdownBodyProps } from '@epam/uui-core';
@@ -200,7 +200,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
-    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
+    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden, arrowProps }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
             (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
@@ -235,8 +235,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         togglerHeight: this.togglerHeight,
                         scheduleUpdate: update,
                         isOpen: this.isOpened(),
+                        arrowProps: arrowProps,
+                        placement: placement,
                     }) }
                 </div>
+
             </FreeFocusInside>
         );
     }

@@ -45,6 +45,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
             background: var(--background-color);
             box-shadow: $shadow;
             border-top: 1px solid var(--border-color);
+            overflow-wrap: anywhere;
         }
 
         &:global(.uui-opened) {

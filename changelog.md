@@ -2,10 +2,26 @@
 
 **What's New**
 * [Anchor]: implement open Anchor links with Ctrl or Command in new window
+* [useForm]: implement possibility run form validation on change.
 * [Checkbox]: fix removed unused colors from docs in loveship
 * [DropSpot]: fix drag&drop area view
 * [PickerInput]: fix the first item layout in multi mode, or if it has a prefix
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
+
+# 4.7.1 - 06.06.2022
+
+**What's New**
+* [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
+
+**What’s Fixed**
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
+* [PickerInput]: fix the second line tag margin in multi mode
+* [NumericInput]: hide arrows when input disabled or readonly
+* [DataTable]: added missing sizes styles for header 
+* [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
+* [useForm]: handle rejected promise after save
+* [Burger]: fix scroll on body when burger closes
+* [VirtualList]: fix auto scroll onHover on top or bottom item
 
 # 4.7.0 - 30.05.2022
 
