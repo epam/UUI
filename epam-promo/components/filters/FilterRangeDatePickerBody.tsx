@@ -16,7 +16,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
 
     renderBody() {
         return (
-            <DropdownContainer>
+            <>
                 <FlexRow borderBottom="gray40">
                     <RangeDatePickerBody
                         value={ this.getValue() }
@@ -58,7 +58,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         />
                     </FlexRow>
                 </FlexCell>
-            </DropdownContainer>
+            </>
         );
     }
 

@@ -18,7 +18,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
 
     renderBody() {
         return (
-            <DropdownContainer>
+            <>
                 <FlexRow borderBottom="gray40">
                     <DatePickerBody
                         filter={ this.props.filter }
@@ -38,7 +38,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                         <LinkButton isDisabled={ !this.state.selectedDate } caption="CLEAR" onClick={ this.handleCancel }/>
                     </FlexRow>
                 </FlexCell>
-            </DropdownContainer>
+            </>
         );
     }
 

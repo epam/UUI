@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier, PopperArrowProps } from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
 import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest, IDropdownBodyProps } from '@epam/uui-core';
@@ -94,11 +94,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     handleOpenedChange = (opened: boolean) => {
-        if (this.props.isDisabled) {
-            //TODO: maybe needs to close dropdown before?
-            return;
-        }
-
         if (opened && this.props.closeOnMouseLeave === 'boundary') {
             window.addEventListener('mousemove', this.handleMouseMove);
         } else if (!opened && this.props.closeOnMouseLeave === 'boundary') {
@@ -181,7 +176,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
-        const { openOnClick, openOnHover, isDisabled } = this.props;
+        const { openOnClick, openOnHover } = this.props;
         const handleTargetClick =  (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
         const innerRef = (node: HTMLElement | null) => {
             if (!node) return;
@@ -196,7 +191,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
             isInteractedOutside: (e) => isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]),
-            isDisabled,
         });
     }
 
