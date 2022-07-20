@@ -2,7 +2,7 @@
 
 exports[`DataPickerBody should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-white body undefined container align-items-center"
+  className="root size-36 background-white body editMode-undefined container align-items-center"
   style={
     Object {
       "maxHeight": undefined,
@@ -33,7 +33,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 
 exports[`DataPickerBody should be rendered correctly 2`] = `
 <div
-  className="root size-36 background-white body undefined container align-items-center"
+  className="root size-36 background-white body editMode-undefined container align-items-center"
   style={
     Object {
       "maxHeight": undefined,
@@ -93,7 +93,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white body modal container align-items-center"
+    className="root size-36 background-white body editMode-modal container align-items-center"
     style={
       Object {
         "maxHeight": 800,
@@ -114,7 +114,7 @@ Array [
       }
     >
       <div
-        className="scrollListWrapper"
+        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",

@@ -24,7 +24,7 @@ Array [
       }
     >
       <div
-        className="scrollListWrapper"
+        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
@@ -490,7 +490,7 @@ Array [
       }
     >
       <div
-        className="scrollListWrapper"
+        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",

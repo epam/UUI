@@ -15,7 +15,7 @@ exports[`VirtualList should be rendered correctly 1`] = `
   }
 >
   <div
-    className="scrollListWrapper"
+    className=""
     style={
       Object {
         "WebkitOverflowScrolling": "touch",
