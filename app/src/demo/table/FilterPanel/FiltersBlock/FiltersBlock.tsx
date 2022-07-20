@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import { Filter } from "./Filter";
 import { Accordion } from "@epam/promo";
-import { FilterConfig, IEditable } from "@epam/uui-core";
+import { TableFiltersConfig, IEditable } from "@epam/uui-core";
 
 interface IFiltersProps<TFilter extends Record<string, any>> extends IEditable<TFilter> {
-    filters: FilterConfig<TFilter>[];
+    filters: TableFiltersConfig<TFilter>[];
 }
 
 const FiltersBlockImpl = <TFilter extends Record<string, any>>(props: IFiltersProps<TFilter>) => {

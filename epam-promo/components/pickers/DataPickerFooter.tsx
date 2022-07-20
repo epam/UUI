@@ -30,7 +30,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper) }>
+        <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
             {
                 !props.hideShowOnlySelected && <Switch
                     size={ switchSize }

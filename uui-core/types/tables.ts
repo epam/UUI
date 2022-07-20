@@ -2,6 +2,7 @@ import React from 'react';
 import * as props from './props';
 import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
+import { IDropdownBodyProps } from "./props";
 import { ILens } from '..';
 import { Link } from '../types';
 
@@ -53,7 +54,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     render?(d: TItem, rowProps: DataRowProps<TItem, TId>): any;
     renderCell?(props: DataTableCellProps<TItem, TId>): any;
     renderDropdown?(): React.ReactNode;
-    renderFilter?(lens: ILens<TFilter>): React.ReactNode;
+    renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
@@ -65,7 +66,7 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     sortDirection?: SortDirection;
     onSort(dir: SortDirection): void;
     onDrop?(params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>): void;
-    renderFilter?: () => React.ReactNode;
+    renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
 }
 
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
@@ -231,23 +232,24 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
 
-type FilterConfigBase<TFilter extends Record<string, any>> = {
+type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
     isAlwaysVisible?: boolean;
 };
 
-type PickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "singlePicker" | "multiPicker";
     dataSource: IDataSource<any, any, any>;
+    getName?: (item: any) => string;
 };
 
-type DatePickerFilterConfig<TFilter extends Record<string, any>> = FilterConfigBase<TFilter> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "datePicker" | "rangeDatePicker";
 };
 
-export type FilterConfig<TFilter extends Record<string, any>> = PickerFilterConfig<TFilter>
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = Record<string, any>> {

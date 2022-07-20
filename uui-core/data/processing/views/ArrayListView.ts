@@ -229,7 +229,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         return this.visibleRows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
     }
 
-    public getListProps(): DataSourceListProps {
+    public getListProps = (): DataSourceListProps => {
         return {
             rowsCount: this.visibleRows.length,
             knownRowsCount: this.visibleRows.length,

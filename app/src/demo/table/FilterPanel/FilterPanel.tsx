@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataColumnProps, FilterConfig, ITableState } from "@epam/uui-core";
+import { DataColumnProps, TableFiltersConfig, ITableState } from "@epam/uui-core";
 import { FlexRow, IconButton, ScrollBars, Text, FlexSpacer } from '@epam/uui';
 import { ReactComponent as CloseIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 
@@ -9,7 +9,7 @@ import { ColumnsBlock } from "./ColumnsBlock";
 
 export interface IFilterPanelProps<TFilter extends Record<string, any>> extends ITableState {
     columns: DataColumnProps[];
-    filters: FilterConfig<TFilter>[];
+    filters: TableFiltersConfig<TFilter>[];
     closePanel(): void;
 }
 
