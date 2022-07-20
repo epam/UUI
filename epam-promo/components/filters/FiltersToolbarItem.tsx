@@ -33,15 +33,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         </FlexRow>
     );
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => {
-
-        return (
-            <Panel shadow background="white">
-                { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }  /> }
-            </Panel>
-        );
-    };
+    const renderBody = (dropdownProps: DropdownBodyProps) => (
+        <Panel shadow background="white">
+            { renderHeader() }
+            { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
+        </Panel>
+    );
 
     const getTogglerValue = () => {
         const currentValue = props.value;
