@@ -57,9 +57,10 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ { ...style, position: 'relative', flex: '1 1 auto', display: 'flex', flexDirection: 'column' } }
-                    className={ cx({
+                    className={ cx(css.scrollListWrapper, {
                         [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
                         [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
+                        [uuiMarkers.scrolledVertical]: scrollShadows.vertical,
                     }) }
                     { ...rest }
                     { ...props.rawProps }
