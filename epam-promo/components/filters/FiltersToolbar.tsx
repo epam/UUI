@@ -4,7 +4,7 @@ import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersToolbarItem } from "./FiltersToolbarItem";
-import { ReactComponent as addIcon } from '@epam/assets/icons/common/action-add-18.svg';
+import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
 interface FiltersToolbarProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
