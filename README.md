@@ -12,7 +12,7 @@ React-based components and accelerators library built by EPAM Systems.
 - :wrench: State-management primitives: Forms with validation, Lists and Tables with lazy-loading
 - :octocat: Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects
 - :lipstick: Allows deep customization to build your own brand UI components set on top
-- :memo: Not opinionated, you don't have to all-in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
+- :memo: Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
 ## Documentation
 
