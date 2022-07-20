@@ -16,7 +16,7 @@ exports[`DataTable should be rendered correctly 1`] = `
 >
   <div
     aria-colcount={0}
-    className="scrollListWrapper"
+    className=""
     role="table"
     style={
       Object {
