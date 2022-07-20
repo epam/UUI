@@ -7,7 +7,6 @@ import css from './DemoTable.scss';
 import type { TApi } from '../../data';
 import { getFilters, api } from './data';
 import { personColumns } from './columns';
-import { PersonTableFilter } from './types';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
@@ -36,7 +35,7 @@ export const DemoTable: React.FC = () => {
         onPresetDelete: svc.api.presets.deletePreset,
     });
 
-    const dataSource = useLazyDataSource<Person, number, PersonTableFilter>({
+    const dataSource = useLazyDataSource<Person, number, Person>({
         api,
     }, []);
 

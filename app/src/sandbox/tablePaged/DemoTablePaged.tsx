@@ -7,7 +7,6 @@ import { svc } from "../../services";
 import { PersonTableFilter } from "./types";
 import { getFilters, mapFilter } from "./data";
 import { personColumns } from "./columns";
-import { FiltersToolbar } from "./DynamicFilters";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
@@ -70,12 +69,6 @@ export const DemoTablePaged: React.FC = () => {
     
     return (
         <div className={ css.container }>
-            <FiltersToolbar
-                filters={ filters }
-                tableState={ tableState }
-                setTableState={ setTableState }
-            />
-            
             <DataTable
                 headerTextCase="upper"
                 getRows={ personsDataView.getVisibleRows }
@@ -99,9 +92,9 @@ export const DemoTablePaged: React.FC = () => {
                 <FlexSpacer/>
             </FlexRow>
 
-            <FlexRow vPadding="12" background="white">
-                <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>
-            </FlexRow>
+            {/*<FlexRow vPadding="12" background="white">*/}
+            {/*    <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>*/}
+            {/*</FlexRow>*/}
         </div>
     );
 };

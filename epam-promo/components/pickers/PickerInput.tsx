@@ -56,7 +56,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 key={ rowProps.rowKey }
                 borderBottom='none'
                 size={ this.getRowSize() }
-                rawProps={ { 'aria-selected': rowProps.isSelectable && rowProps.isSelected, role: 'option' } }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />

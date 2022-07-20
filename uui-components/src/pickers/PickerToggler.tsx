@@ -10,7 +10,7 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     dropdownIcon?: Icon;
     autoFocus?: boolean;
     renderItem?(props: DataRowProps<TItem, TId>): React.ReactNode;
-    getName?: (item: DataRowProps<TItem, TId>) => string;
+    getName?: (item: TItem) => string;
     entityName?: string;
     maxItems?: number;
     isSingleLine?: boolean;
@@ -97,7 +97,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const placeholder = isActivePlaceholder ? props.getName(props.selection[0]) : props.placeholder;
+        const placeholder = isActivePlaceholder ? props.getName(props.selection[0].value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
 
         if (props.disableSearch && props.pickerMode === 'multi' && props.selection.length > 0) {

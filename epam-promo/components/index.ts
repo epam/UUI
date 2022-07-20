@@ -13,3 +13,4 @@ export * from './tables';
 export * from './dnd';
 export * from './fileUpload';
 export * from './errors';
+export * from './filters';
