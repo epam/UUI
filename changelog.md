@@ -7,7 +7,6 @@
 * [DropSpot]: fix drag&drop area view
 * [PickerInput]: fix the first item layout in multi mode, or if it has a prefix
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
-* Documentation: light edits to improve readability and grammar of some of the most visible documentation
 
 # 4.7.1 - 06.06.2022
 
@@ -15,10 +14,10 @@
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
 **What’s Fixed**
-* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
-* [DataTable]: added missing sizes styles for header
+* [DataTable]: added missing sizes styles for header 
 * [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
 * [useForm]: handle rejected promise after save
 * [Burger]: fix scroll on body when burger closes
