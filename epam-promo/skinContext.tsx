@@ -37,7 +37,6 @@ export const skinContext: ISkin = {
     ModalFooter: skinComponent(ModalFooter),
     ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "gray40" as const, ...props })),
     LabeledInput: skinComponent(LabeledInput, props => ({ size: '36' as const, ...props })),
-    // @ts-ignore
     FilterItemBody: skinComponent(FilterItemBody),
     DatePicker: skinComponent(DatePicker),
     RangeDatePicker: skinComponent(RangeDatePicker),
