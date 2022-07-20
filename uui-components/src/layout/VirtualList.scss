@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
     align-self: stretch;
+
+    .scroll-list-wrapper {
+        &:global(.-scrolled-vertical) {
+            border-top: 1px solid var(--gray40);
+        }
+    }
 }
 
 .list-container {
