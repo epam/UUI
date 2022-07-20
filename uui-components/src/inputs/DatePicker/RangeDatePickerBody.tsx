@@ -223,8 +223,8 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
     renderDatePicker = () => {
         return (
-            <FlexRow cx={ [this.props.value?.view == 'DAY_SELECTION' && css.daySelection, css.container] }>
-                <FlexRow cx={ css.pickerWrapper } >
+            <FlexRow cx={ [this.props.value?.view == 'DAY_SELECTION' && css.daySelection, css.container] } alignItems='top'>
+                <FlexRow cx={ css.pickerWrapper }>
                     <FlexCell width='auto' >
                         <FlexRow cx={ css.bodesWrapper } alignItems='top' rawProps={ this.state.height ? { style: { 'height': `${ this.state.height }px` } } : null }>
                             <DatePickerBody

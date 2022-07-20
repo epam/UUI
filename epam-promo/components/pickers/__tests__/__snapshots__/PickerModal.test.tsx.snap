@@ -141,7 +141,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-white body modal container align-items-center"
+        className="root size-36 background-white body editMode-modal container align-items-center"
         style={
           Object {
             "maxHeight": undefined,
@@ -800,7 +800,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </label>
       </div>
       <div
-        className="root size-36 background-white body modal container align-items-center"
+        className="root size-36 background-white body editMode-modal container align-items-center"
         style={
           Object {
             "maxHeight": undefined,

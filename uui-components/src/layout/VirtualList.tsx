@@ -60,6 +60,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
                     className={ cx({
                         [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
                         [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
+                        [uuiMarkers.scrolledVertical]: scrollShadows.vertical,
                     }) }
                     { ...rest }
                     { ...props.rawProps }
