@@ -72,7 +72,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
             ref={ props.ref }
             caption="Add filter"
             icon={ addIcon }
-            iconPosition='right'
+            iconPosition='left'
             fill='light'
             color='blue'
         />;

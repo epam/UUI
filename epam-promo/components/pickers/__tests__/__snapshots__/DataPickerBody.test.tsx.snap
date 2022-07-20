@@ -114,7 +114,7 @@ Array [
       }
     >
       <div
-        className=""
+        className="scrollListWrapper"
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
