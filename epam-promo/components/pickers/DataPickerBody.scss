@@ -8,11 +8,18 @@
     width: 100%;
 }
 
+.search-wrapper ~ .body {
+    &:not(.editMode-modal) {
+        :global(.-scrolled-vertical) {
+            border-top: 1px solid var(--gray40);
+        }
+    }
+} // add border only if search exist and it's not modal
+
 .modal {
     border: 0;
 }
 
-// TBD: replace with search prop when it will be done
 .checkbox {
     padding: 6px 0;
 }
