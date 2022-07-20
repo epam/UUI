@@ -111,6 +111,7 @@
     @include icon-layout(36px);
     @include withActive;
     @include itemRoot;
+    @include fillColor($gray60, $gray80);
 
     .icon {
         justify-content: flex-start;
@@ -118,7 +119,6 @@
 
     &.link {
         @include withActive;
-        @include fillColor($gray60, $gray80);
         display: flex;
         align-items: center;
 
@@ -130,7 +130,6 @@
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover, &:focus {
             background-color: $gray30;
-            fill: $gray80;
             cursor: pointer;
         }
     }
