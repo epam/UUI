@@ -1,5 +1,5 @@
-@use '~@epam/promo/assets/styles/fonts' as *;
-@use '~@epam/promo/assets/styles/colors' as *;
+@use '../../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+@use '../../../../../node_modules/@epam/promo/assets/styles/colors' as *;
 
 @keyframes show-info-panel {
     0% {
