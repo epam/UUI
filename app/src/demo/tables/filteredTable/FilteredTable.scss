@@ -10,10 +10,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 121px);
+    height: 100%;
     transition: all 500ms;
     flex-basis: auto;
-    min-width: 0px;
+    min-width: 0;
     flex-grow: 1;
 
     :global(.uui-table-row) {
@@ -58,5 +58,26 @@
 
     &-with-filter {
         padding-left: 0;
+    }
+}
+
+.filter-panel-wrapper {
+    padding: 12px 24px 6px 24px;
+    background-color: var(--grey5);
+    border-bottom: 1px solid var(--grey40);
+
+    .filter-panel {
+        flex-wrap: wrap;
+        padding-right: 12px;
+
+        width: calc(100% - 295px);
+
+        & > * {
+            margin: 0 6px 6px 0;
+        }
+    }
+
+    .search {
+        align-self: flex-start;
     }
 }

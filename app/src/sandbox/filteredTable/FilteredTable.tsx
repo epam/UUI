@@ -6,7 +6,7 @@ import css from './FilteredTable.scss';
 import type { TApi } from '../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
-import { mapFilter } from "../../demo/table/data";
+import { mapFilter } from "../../demo/tables/masterDetailedTable/data";
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
