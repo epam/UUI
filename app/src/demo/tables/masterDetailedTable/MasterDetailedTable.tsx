@@ -4,7 +4,7 @@ import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTab
 import { Presets, FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
-import type { TApi } from '../../data';
+import type { TApi } from '../../../data';
 import { getFilters, api } from './data';
 import { personColumns } from './columns';
 import { FilterPanel } from './FilterPanel';
@@ -12,7 +12,7 @@ import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
 
-export const DemoTable: React.FC = () => {
+export const MasterDetailedTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
