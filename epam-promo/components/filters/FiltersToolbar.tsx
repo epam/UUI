@@ -49,8 +49,15 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         });
     };
 
-    const removeFilter = (filterColumnKey: string) => {
-        const newTableState = {...tableState, filtersConfig: getNewTableState(filterColumnKey, { ...tableState.filtersConfig })};
+    const removeFilter = (filterColumnKey: string, field: any) => {
+        const newTableState: DataTableState = {
+            ...tableState,
+            filtersConfig: getNewTableState(filterColumnKey, { ...tableState.filtersConfig }),
+            filter: {
+                ...tableState.filter,
+                [field]: undefined,
+            },
+        };
         setTableState({ ...newTableState });
     };
 
