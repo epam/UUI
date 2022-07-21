@@ -1,18 +1,26 @@
-import React from 'react';
-import { Dropdown } from '@epam/uui-components';
-import { Button, Panel, Text, FlexRow } from "@epam/promo";
-import { IDropdownToggler } from '@epam/uui';
+ import React from 'react';
+import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
+import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/promo';
+import * as css from './HandleStateExample.scss';
+import { Avatar, IDropdownToggler } from '@epam/uui';
 
 export default function CloseOpenModifiersExample() {
-    const renderDropdownBody = () => {
+    const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background='white' shadow={ true }>
-                <FlexRow padding='12' vPadding='12'>
-                    <Text>
-                        Dropdown body content.
-                    </Text>
+            <DropdownContainer vPadding='24' padding='18' { ...props }>
+                <FlexRow alignItems='center' spacing='12'>
+                    <Avatar
+                        size='48'
+                        alt='avatar'
+                        img='https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50'
+                    />
+
+                    <FlexCell width='100%'>
+                        <Text cx={ css.text } lineHeight='24' fontSize='16' color='gray80' font='sans-semibold'>John Doe</Text>
+                        <Text cx={ css.text } lineHeight='18' fontSize='12' color='gray60'>Corporate Function Management | L3</Text>
+                    </FlexCell>
                 </FlexRow>
-            </Panel>
+            </DropdownContainer>
         );
     };
 
@@ -20,20 +28,20 @@ export default function CloseOpenModifiersExample() {
         <div>
             <FlexRow spacing='12' >
                 <Dropdown
-                    renderBody={ () => renderDropdownBody() }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption='Hover to open (toggler mode)' { ...props } /> }
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (toggler mode)" { ...props } /> }
                     openOnHover={ true }
                     closeOnMouseLeave='toggler'
                 />
                 <Dropdown
-                    renderBody={ () => renderDropdownBody() }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption='Hover to open (boundary mode)' { ...props } /> }
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (boundary mode)" { ...props } /> }
                     openOnHover={ true }
                     closeOnMouseLeave='boundary'
                 />
                 <Dropdown
-                    renderBody={ () => renderDropdownBody() }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption='Hover to open (false mode)' { ...props } /> }
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (false mode)" { ...props } /> }
                     openOnHover={ true }
                     closeOnMouseLeave={ false }
                 />
@@ -41,12 +49,12 @@ export default function CloseOpenModifiersExample() {
 
             <FlexRow vPadding='12' spacing='12' >
                 <Dropdown
-                    renderBody={ () => renderDropdownBody() }
+                    renderBody={ (props) => renderDropdownBody(props) }
                     renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open(Don't close on click outside)" { ...props } /> }
                     closeOnClickOutside={ false }
                 />
                 <Dropdown
-                    renderBody={ () => renderDropdownBody() }
+                    renderBody={ (props) => renderDropdownBody(props) }
                     renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open(Don't close on target click)" { ...props } /> }
                     closeOnTargetClick={ false }
                 />
