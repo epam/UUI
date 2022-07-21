@@ -1,6 +1,6 @@
 import { LazyDataSourceApi, normalizeDataQueryFilter } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
-import { svc } from "../../../services";
+import { svc } from "../../../../services";
 
 export const mapFilter = (filter: any) => {
     return Object.keys(filter).reduce((acc: any, key) => {
