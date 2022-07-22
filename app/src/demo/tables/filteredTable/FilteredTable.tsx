@@ -1,32 +1,42 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState } from "@epam/uui-core";
-import { DataTable, FiltersToolbar, FlexRow, Text } from '@epam/promo';
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest } from "@epam/uui-core";
+import { DataTable, FiltersToolbar, FlexCell, FlexRow, Paginator, Text } from '@epam/promo';
 import css from './FilteredTable.scss';
-import type { TApi } from '../../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { mapFilter } from "../masterDetailedTable/data";
-import { FlexCell, FlexSpacer, Paginator } from "@epam/uui-components";
 import { SearchInput } from "@epam/uui";
+import { FlexSpacer } from "@epam/uui-components";
+import { TApi } from "../../../data";
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
-    const [searchValue, onSearchValueChange] = useState(null);
+    const [totalCount, setTotalCount] = useState(0);
+    const { tableState, setTableState } = useTableState({ columns: personColumns });
 
-    const tableStateApi = useTableState({ columns: personColumns });
-    const tableState = tableStateApi.tableState;
-
-    const dataSource = useLazyDataSource<Person, number, Person>({
-        api: request => {
-            const mappedFilter = mapFilter(request.filter || {});
-            return svc.api.demo.persons({ ...request, filter: mappedFilter } as any);
-        },
+    useEffect(() => {
+        setTableState({ ...tableState, page: 1, pageSize: 100 });
     }, []);
 
+    const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
+        const result = await svc.api.demo.personsPaged({
+            ...rq,
+            filter: mapFilter(rq.filter || {}),
+            page: rq.page - 1,
+            pageSize: rq.pageSize,
+        });
+        setTotalCount(result.totalCount);
+        result.count = result.items.length;
+        result.totalCount = result.items.length;
+        result.from = 0;
+        return result;
+    }, [tableState.page, tableState.pageSize]);
 
-    const view = dataSource.useView(tableState, tableStateApi.setTableState, {
+    const dataSource = useLazyDataSource<Person, number, Person>({ api }, [api]);
+
+    const view = dataSource.useView(tableState, setTableState, {
         rowOptions: {
             checkbox: { isVisible: true },
             isSelectable: true,
@@ -35,36 +45,48 @@ export const FilteredTable: React.FC = () => {
 
     return (
         <div className={ css.container }>
+            <FlexRow cx={ css.presetsPanel } background="gray5" borderBottom={ true }>
+                <Text fontSize="24">Profiles Dashboard</Text>
+            </FlexRow>
+
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
                     <FiltersToolbar
                         filters={ filters }
                         tableState={ tableState }
-                        setTableState={ tableStateApi.setTableState }
+                        setTableState={ setTableState }
                     />
                 </FlexRow>
                 <FlexCell cx={ css.search } width={ 295 }>
                     <SearchInput
                         value={ tableState.search }
-                        onValueChange={ (val) => tableStateApi.setTableState({ ...tableState, search: val }) }
+                        onValueChange={ (val) => setTableState({ ...tableState, search: val }) }
                         placeholder="Search"
                         debounceDelay={ 1000 }
                     />
                 </FlexCell>
             </FlexRow>
-
             <DataTable
                 headerTextCase="upper"
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }
                 filters={ filters }
                 value={ tableState }
-                onValueChange={ tableStateApi.setTableState }
+                onValueChange={ setTableState }
                 showColumnsConfig={ true }
                 allowColumnsResizing
                 allowColumnsReordering
                 { ...view.getListProps() }
             />
+            <FlexRow size="36" padding="24" vPadding="12" background="gray5">
+                <FlexSpacer/>
+                <Paginator
+                    value={ tableState.page }
+                    onValueChange={ newPage => setTableState({ ...tableState, page: newPage, indexToScroll: 0 }) }
+                    totalPages={ Math.ceil(totalCount / tableState.pageSize) }
+                    size="24"
+                />
+            </FlexRow>
         </div>
     );
 };
