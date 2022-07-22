@@ -12,7 +12,7 @@ import cx from "classnames";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
-    removeFilter?: (columnKey: string) => void;
+    removeFilter?: (columnKey: string, field: any) => void;
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
@@ -24,7 +24,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     }, [props.field, props.onValueChange]);
 
     const removeOnclickHandler = () => {
-        props.removeFilter(props.columnKey);
+        props.removeFilter(props.columnKey, props.field);
     };
 
     const renderHeader = () => (
