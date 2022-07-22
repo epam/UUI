@@ -1,12 +1,25 @@
-# 4.7.?
+# 4.8.0 - 21.07.2022
 
 **What's New**
+* Added new `FiltersToolbar` component, which creates table filtration toolbar according to the `TableFiltersConfig` object. See demo here - https://uui.epam.com/demo?id=filteredTable
+* [Form]: implement possibility ещ run form validation on field change, for this pass `validationOn: 'change'` to form props
+* [DropdownContainer]: reworked styles, add possibility to show arrow tip
 * [Anchor]: implement open Anchor links with Ctrl or Command in new window
-* [useForm]: implement possibility run form validation on change.
-* [Checkbox]: fix removed unused colors from docs in loveship
+* [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved
+* [FileUpload]: rework error states
+
+**What’s Fixed**
 * [DropSpot]: fix drag&drop area view
-* [PickerInput]: fix the first item layout in multi mode, or if it has a prefix
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
+* [DropdownMenu]: fixed item active state
+* [Avatar]: fix ref receiving
+* [RTE]: remove unnecessary editor state update on image load
+* [PickerInput]: remove close icon from tag in disabled/readonly mode
+* [PickerInput]: change styles for search in body
+* [Badge]: fixed semitransparent hover colors
+* [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
+* [RangeDatePicker]: fix preset styles
+* [MainMenuButton]: reworked styles for dropdown items 
 
 # 4.7.1 - 06.06.2022
 
