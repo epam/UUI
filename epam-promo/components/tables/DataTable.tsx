@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters } from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters, IconContainer } from '@epam/uui-components';
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
+import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
+import { Text } from "../typography";
 import * as css from './DataTable.scss';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
@@ -32,8 +34,17 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
-        // need default behavior
-        return (<div className={ css.noResults }>{ props.renderNoResultsBlock?.() }</div>) || undefined;
+        return (
+            <div className={ css.noResults }>
+                { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
+                    <>
+                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon }/>
+                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='museo-sans'>No results found</Text>
+                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>We can’t find any item matching your request</Text>
+                    </>
+                }
+            </div>
+        );
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {

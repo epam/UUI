@@ -2,6 +2,7 @@ export const i18n = {
     dataPickerBody: {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
+        noRecordsSubTitle: 'Check your spelling, or search for a different keyword',
     },
     fileCard: {
         fileSizeProgress: ' of ',
