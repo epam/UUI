@@ -5,7 +5,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
   className="uui-datepicker-container root root root root"
 >
   <div
-    className="daySelection container container align-items-center"
+    className="daySelection container container align-items-top"
   >
     <div
       className="pickerWrapper container align-items-center"

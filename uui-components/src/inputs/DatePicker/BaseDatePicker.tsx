@@ -5,12 +5,12 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
-import { Dropdown } from '../../';
+import { Dropdown, DropdownBodyProps } from '../../';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
-interface DatePickerState extends PickerBodyValue<string> {
+export interface DatePickerState extends PickerBodyValue<string> {
     isOpen: boolean;
     inputValue: string | null;
 }
@@ -45,7 +45,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     };
 
     abstract renderInput(props: IDropdownToggler): React.ReactNode;
-    abstract renderBody(): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps): React.ReactNode;
 
     static getDerivedStateFromProps(props: any, state: DatePickerState): DatePickerState | null {
         if (props.value !== state.selectedDate) {
@@ -136,7 +136,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         return (
             <Dropdown
                 renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ () => !this.props.isDisabled && !this.props.isReadonly && this.renderBody() }
+                renderBody={ (props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props) }
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }

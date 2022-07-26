@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './DatePicker.scss';
 import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
-import { BaseDatePicker } from '@epam/uui-components';
+import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
 
@@ -38,8 +38,8 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
         );
     }
 
-    renderBody() {
-        return <DropdownContainer>
+    renderBody(props: DropdownBodyProps) {
+        return <DropdownContainer { ...props }>
             <DatePickerBody
                 filter={ this.props.filter }
                 value={ this.getValue() }
@@ -49,7 +49,6 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 renderDay={ this.props.renderDay }
                 isHoliday={ this.props.isHoliday }
                 rawProps={ this.props.rawProps?.body }
-                cx={ css.body }
             />
             { this.props.renderFooter?.() }
         </DropdownContainer>;

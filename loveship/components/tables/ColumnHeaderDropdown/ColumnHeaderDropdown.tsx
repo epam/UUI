@@ -2,7 +2,7 @@ import React, { ReactNode, useCallback, useMemo } from "react";
 import css from "./ColumnHeaderDropdown.scss";
 import { Modifier } from "react-popper";
 import { IDropdownToggler, isMobile, mobilePopperModifier } from "@epam/uui-core";
-import { Dropdown } from "@epam/uui-components";
+import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { Panel } from "../../layout";
 import { MobileDropdownWrapper } from "../../pickers";
 import { SortingPanel, SortingPanelProps } from "./SortingPanel";
@@ -11,7 +11,7 @@ type ColumnHeaderDropdownProps = SortingPanelProps & {
     isOpen: boolean;
     isSortable: boolean;
     renderTarget: (props: IDropdownToggler) => ReactNode;
-    renderFilter?: () => ReactNode;
+    renderFilter?: (dropdownProps: DropdownBodyProps) => ReactNode;
     onOpenChange(nV: boolean): void;
     title: string;
 };
@@ -43,7 +43,7 @@ export const ColumnHeaderDropdown: React.FC<ColumnHeaderDropdownProps> = props =
                                 sortDirection={ props.sortDirection }
                             />
                         ) }
-                        { props.renderFilter() }
+                        { props.renderFilter(dropdownProps) }
                     </MobileDropdownWrapper>
                 </Panel>
             ) }

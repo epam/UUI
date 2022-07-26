@@ -31,7 +31,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     }
 
     render() {
-        const value = this.props.value;
         const searchSize = isMobile() ? '48' : (this.props.searchSize || '36');
         const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
 
@@ -52,7 +51,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             ) }
             <FlexRow
                 key='body'
-                cx={ cx(css.body, css[this.props.editMode]) }
+                cx={ cx(css.body, css['editMode-' + this.props.editMode]) }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
                 background='white'
             >

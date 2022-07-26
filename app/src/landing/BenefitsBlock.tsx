@@ -14,16 +14,16 @@ const benefits: any = {
         caption: 'Battle-Tested Solution',
         points: [
             '15+ products are already built, 10+ products are currently in development.',
-            'UUI design skins are complied with EPAM branding. So, every internal product promotes EPAM that way.',
-            '50 man/years of experience baked in. UUI is an essence of 5 years developing 20+ apps.',
+            'UUI design skins comply with EPAM branding. So, every internal product promotes EPAM in that way.',
+            '50 person-years of experience baked in. UUI is the product of 5 years developing 20+ apps.',
         ],
     },
     'SavesEfforts': {
         caption: 'Saves Efforts & Speeds Up Work',
         points: [
-            'Ready set of design elements allows designers and developers to create user interface 3-4x faster. More features for the less time.',
-            'Allows to spend more time for research, making new features and user testing.',
-            'Safe & easy on-boarding/rotation process: newcomers quickly dive into UX/UI on any internal project',
+            'Ready set of design elements allows designers and developers to create user interface 3-4x faster. More features in less time.',
+            'Allows spending more time on research, making new features and user testing.',
+            'Safe & easy on-boarding/rotation process: newcomers quickly dive into UX/UI on any internal project.',
         ],
     },
     'WorkInCooperation': {
@@ -41,7 +41,7 @@ const benefits: any = {
         points: [
             'Rich set of components: from buttons, to spinners.',
             'Common services: modals, notifications, error recovery, forms and data binding, monitoring, and more.',
-            'Not opinionated, you don\'t have to all-in: it\'s compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.',
+            'Not opinionated, you don\'t have to go all in: it\'s compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.',
         ],
     },
 };

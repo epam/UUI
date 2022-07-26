@@ -4,6 +4,7 @@ import { uuiElement, LayoutLayer, closest, cx, useUuiContext, TooltipCoreProps }
 import { Portal } from './Portal';
 import * as css from './Tooltip.scss';
 import { useCallback } from "react";
+import PopoverArrow from "./PopoverArrow";
 
 export interface TooltipState {
     isOpen: boolean;
@@ -107,7 +108,7 @@ export function Tooltip(props: TooltipProps) {
                 data-popper-reference-hidden={ isReferenceHidden }
             >
                 { renderTooltip() }
-                <div ref={ arrowProps.ref } style={ arrowProps.style } className={ uuiElement.tooltipArrow } />
+                <PopoverArrow ref={ arrowProps.ref } arrowProps={ arrowProps } placement={ placement }/>
             </div>
         );
     };

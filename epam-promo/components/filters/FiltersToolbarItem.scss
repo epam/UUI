@@ -1,0 +1,17 @@
+@use '../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+
+.header {
+    font-family: $font-sans;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 12px 0 12px;
+    min-height: 16px;
+    height: 16px;
+
+
+    button.removeButton {
+        padding-left: 6px;
+    }
+}

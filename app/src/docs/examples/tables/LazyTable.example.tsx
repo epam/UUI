@@ -1,8 +1,8 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { Text, DataTable, ColumnPickerFilter, Panel, IconButton } from '@epam/promo';
-import { DataSourceState, DataColumnProps, ILens, useUuiContext, useLazyDataSource } from '@epam/uui';
+import { Text, DataTable, Panel, IconButton } from '@epam/promo';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui';
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
-import { City, Country } from '@epam/uui-docs';
+import { City } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
 import * as css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
@@ -11,22 +11,6 @@ import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-
 export default function CitiesTable(props: unknown) {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>({});
-
-    // If you need some filters for your table, you need to create Picker which will change 'filter' field in DataSourceState object. And than pass it to the column renderFilter option.
-    // Look to the Pickers examples for more details about Picker configuration.
-    const countriesDS = useLazyDataSource<Country, string, unknown>({
-        api: (req) => svc.api.demo.countries(req),
-    }, []);
-
-    const handleRenderCountryPickerFilter = useCallback((filterLens: ILens<{ country: { $in: string[] } }>): ReactNode => (
-        <ColumnPickerFilter<Country, string>
-            dataSource={ countriesDS }
-            getName={ val => val.name }
-            selectionMode='multi'
-            valueType='id'
-            { ...filterLens.prop('country').prop('$in').toProps() }
-        />
-    ), []);
 
     const renderMenu = (): ReactNode => (
         <DropdownMenuBody color='white'>
@@ -62,7 +46,6 @@ export default function CitiesTable(props: unknown) {
             render: city => <Text color='gray80' fontSize='14'>{ city.countryName }</Text>,
             isSortable: true,
             width: 128,
-            renderFilter: handleRenderCountryPickerFilter,
             isFilterActive: filter => filter.country && filter.country.$in && !!filter.country.$in.length,
         },
         {

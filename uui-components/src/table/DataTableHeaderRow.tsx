@@ -5,6 +5,7 @@ import {
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import * as css from './DataTableHeaderRow.scss';
+import { DropdownBodyProps } from '../overlays/Dropdown';
 
 const uuiDataTableHeaderRow = {
     uuiTableHeaderRow: 'uui-table-header-row',
@@ -55,7 +56,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
                 sorting: (field !== column.key || direction !== dir) ? [{ field: column.key, direction: dir }] : [],
             }),
             onDrop: params => this.onCellDrop(params, idx),
-            renderFilter: () => column.renderFilter(this.filterLens),
+            renderFilter: (dropdownProps: DropdownBodyProps) => column.renderFilter(this.filterLens, dropdownProps),
         });
     }
 

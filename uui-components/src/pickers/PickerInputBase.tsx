@@ -28,6 +28,7 @@ export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBa
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     }
     renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
+    fixedBodyPosition?: boolean;
 };
 
 interface PickerInputFooterProps<TItem, TId extends DataSourceItemId> extends PickerFooterProps<TItem, TId> {
@@ -55,7 +56,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
 
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
-    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Partial<PickerBodyBaseProps>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps<TItem, TId extends DataSourceItemId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
@@ -157,6 +158,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
                 onClose: () => this.toggleBodyOpening(false),
             })),
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
+            fixedBodyPosition: this.props.fixedBodyPosition,
         };
     }
 
