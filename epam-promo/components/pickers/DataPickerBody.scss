@@ -8,21 +8,16 @@
     width: 100%;
 }
 
-.modal {
-    border: 0;
-}
-
-// TBD: replace with search prop when it will be done
-.search {
-    &:global(.uui-input-box) {
-        border: 0;
-        box-shadow: none;
-
-        &:global(.uui-focus) {
-            border-color: transparent;
-            box-shadow: none;
+.search-wrapper ~ .body {
+    &:not(.editMode-modal) {
+        :global(.-scrolled-vertical) {
+            border-top: 1px solid var(--gray40);
         }
     }
+} // add border only if search exist and it's not modal
+
+.modal {
+    border: 0;
 }
 
 .checkbox {
@@ -30,13 +25,8 @@
 }
 
 .search-wrapper {
-    border-bottom: 1px solid $gray40;
     background: white;
-    padding: 0 4px;
-}
-
-.search-size-24, .search-size-30, .search-size-36, .search-size-42 {
-    padding: 0 5px;
+    padding: 9px 12px;
 }
 
 .no-found-size-24 {

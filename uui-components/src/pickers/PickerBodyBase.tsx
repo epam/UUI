@@ -9,6 +9,7 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
     scheduleUpdate?: () => void;
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
+    fixedBodyPosition?: boolean;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {
@@ -21,7 +22,7 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
             this.needFocusSearch = false;
         }
 
-        if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked)) {
+        if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked) && !this.props.fixedBodyPosition) {
             this.props.scheduleUpdate?.();
         }
     }

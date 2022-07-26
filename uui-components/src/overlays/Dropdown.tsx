@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
 import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest } from '@epam/uui-core';
+import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest, IDropdownBodyProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 
 export interface DropdownState {
@@ -11,12 +11,7 @@ export interface DropdownState {
     closeDropdownTimerId: any;
 }
 
-export interface DropdownBodyProps {
-    onClose(): void;
-    togglerWidth: number;
-    togglerHeight: number;
-    scheduleUpdate: () => void;
-}
+export interface DropdownBodyProps extends IDropdownBodyProps {}
 
 export type DropdownPlacement = Placement;
 
@@ -50,11 +45,8 @@ const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
         return false;
     }
 
-    if (closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0)) {
-        return false;
-    }
-    return true;
-}
+    return !(closest(target, '.uui-popper') && +closest(target, '.uui-popper').style.zIndex > (relatedNode !== null ? +relatedNode.style.zIndex : 0));
+};
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;
@@ -202,7 +194,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
-    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden }: PopperChildrenProps) => {
+    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden, arrowProps }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
             (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
@@ -236,8 +228,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
                         scheduleUpdate: update,
+                        isOpen: this.isOpened(),
+                        arrowProps: arrowProps,
+                        placement: placement,
                     }) }
                 </div>
+
             </FreeFocusInside>
         );
     }

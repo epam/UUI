@@ -22,7 +22,7 @@ const defaultValue: RangeDatePickerValue = { from: null, to: null };
 export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return (
-            <DropdownContainer cx={ cx(css.dropdownContainer, this.props.cx) }>
+            <DropdownContainer { ...props } cx={ cx(css.dropdownContainer, this.props.cx) }>
                 <FlexRow>
                     <RangeDatePickerBody
                         value={ this.getValue() }
@@ -84,7 +84,6 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     onFocus={ () => this.handleFocus('to') }
                     onBlur={ () => this.handleBlur('to') }
                     isDropdown={ false }
-                    ref={ this.toTextInput } /* to make the first picker to be the target of dropdown */
                     rawProps={ this.props.rawProps?.to }
                 />
             </div>

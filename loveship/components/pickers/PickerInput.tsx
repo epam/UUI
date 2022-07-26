@@ -54,7 +54,6 @@ export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInpu
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                rawProps={ { 'aria-selected': rowProps.isSelectable && rowProps.isSelected, role: 'option' } }
                 borderBottom='none'
                 size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }

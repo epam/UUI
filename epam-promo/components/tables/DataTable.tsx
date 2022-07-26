@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters, DataTableSelectionProvider } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, DataTableRowProps, FilterConfig } from '@epam/uui-core';
+import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
+    DataTableSelectionProvider } from '@epam/uui-components';
+import { ColumnsConfig, DataRowProps, DataTableRowProps, useUuiContext, uuiScrollShadows,
+    useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
+    DataSourceListProps, DataColumnProps, cx, TableFiltersConfig } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
 import * as css from './DataTable.scss';
@@ -12,7 +15,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-    filters?: FilterConfig<any>[];
+    filters?: TableFiltersConfig<any>[];
     showCellDivider?: boolean;
 }
 
