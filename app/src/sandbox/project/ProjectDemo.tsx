@@ -30,7 +30,7 @@ let lastId = -1;
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
-    const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
@@ -39,14 +39,16 @@ export const ProjectDemo = () => {
         getMetadata: () => metadata,
     });
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
+    const handleCanAcceptDrop = useCallback(
+        (params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true })
+    , []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => console.log(params), []);
 
-    const insertNew = (parentId: number) => {
+    const insertNew = useCallback((parentId: number) => setValue(currentValue => {
         const newTask: Task = { id: lastId--, name: '', parentId };
-        onValueChange({ ...value, items: { ...value.items, [newTask.id]: newTask }});
-    }
+        return { ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }};
+    }), []);
 
     //const { tableState, setTableState } = useTableState<any>({ columns });
     const [ tableState, setTableState] = React.useState<DataTableState>({});

@@ -13,6 +13,14 @@ async function handleSave(save: () => void) {
     }
 }
 
+interface IFoo {
+    dummy: string;
+    tummy?: string;
+}
+
+const testMetadata = { props: { dummy: { isRequired: true } } };
+const testData: IFoo = { dummy: '', tummy: '' };
+
 describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
     afterEach(cleanup);
@@ -21,14 +29,65 @@ describe('useForm', () => {
         Object.assign(testSvc, {});
     });
 
-    describe('Client validation', () => {
-        interface IFoo {
-            dummy: string;
-            tummy?: string;
-        }
+    describe('Basic updates handing', () => {
+        it('Should update form value with onValueChange', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<string>, RenderFormProps<string>>(() => useForm({
+                onSave: () => Promise.resolve(),
+                onError: () => Promise.resolve(),
+                value: 'a',
+            }));
 
-        const testMetadata = { props: { dummy: { isRequired: true } } };
-        const testData: IFoo = { dummy: '', tummy: '' };
+            act(() => result.current.onValueChange(('b')));
+            expect(result.current.value).toBe('b');
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
+        it('Should update form value with setValue (plain value)', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<string>, RenderFormProps<string>>(() => useForm({
+                onSave: () => Promise.resolve(),
+                onError: () => Promise.resolve(),
+                value: 'a',
+            }));
+
+            act(() => result.current.setValue(('b')));
+            expect(result.current.value).toBe('b');
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
+        it('Should update form value with setValue (callback)', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<number>, RenderFormProps<number>>(() => useForm({
+                onSave: () => Promise.resolve(),
+                onError: () => Promise.resolve(),
+                value: 1,
+            }));
+
+            act(() => result.current.setValue(x => x + 1));
+            expect(result.current.value).toBe(2);
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
+        it('Should update form value with setValue (callback, 2 immediate updates)', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<number>, RenderFormProps<number>>(() => useForm({
+                onSave: () => Promise.resolve(),
+                onError: () => Promise.resolve(),
+                value: 1,
+            }));
+
+            act(() => {
+                result.current.setValue(x => x + 1);
+                result.current.setValue(x => x + 1);
+            });
+            expect(result.current.value).toBe(3);
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+    });
+
+    describe('Client validation', () => {
+
 
         it('Should return isChanged as true whenever the lens is changed', async () => {
             const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({

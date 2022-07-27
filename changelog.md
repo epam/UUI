@@ -1,11 +1,20 @@
 # Editable DataTables branch
 
+**What's New**
+
 * [Breaking Change] DataTableColumn props simplified
     * DataTableColumn props no longer accepts shrink prop.
       Is actually wasn't supported before this change, so you can safely remove them.
       Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
     * 'width' prop is now required (was optional)
     * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
+
+* useForm now return a new callback - setValue. It works the same way as setState of React.useState.
+    Besides a plain new form value, it can accept a function (currentValue: T) => T.
+    This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
+
+**What’s Fixed**
+* useForm onValueChange and the new setValue callbacks now triggers validation, set isChanges, and creates undo checkpoints.
 
 
 # 4.8.0 - 21.07.2022
@@ -29,7 +38,7 @@
 * [Badge]: fixed semitransparent hover colors
 * [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
 * [RangeDatePicker]: fix preset styles
-* [MainMenuButton]: reworked styles for dropdown items 
+* [MainMenuButton]: reworked styles for dropdown items
 
 # 4.7.1 - 06.06.2022
 
@@ -37,10 +46,10 @@
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
 **What’s Fixed**
-* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
-* [DataTable]: added missing sizes styles for header 
+* [DataTable]: added missing sizes styles for header
 * [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
 * [useForm]: handle rejected promise after save
 * [Burger]: fix scroll on body when burger closes
