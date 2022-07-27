@@ -21,6 +21,7 @@ export interface FormProps<T> {
 }
 
 export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
+    setValue: (s: React.SetStateAction<T>) => void;
     save(): void;
     undo(): void;
     redo(): void;
