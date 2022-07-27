@@ -2,7 +2,7 @@
 
 **What's New**
 * Added new `FiltersToolbar` component, which creates table filtration toolbar according to the `TableFiltersConfig` object. See demo here - https://uui.epam.com/demo?id=filteredTable
-* [Form]: implement possibility ещ run form validation on field change, for this pass `validationOn: 'change'` to form props
+* [Form]: implement possibility to run form validation on field change, for this pass `validationOn: 'change'` to form props
 * [DropdownContainer]: reworked styles, add possibility to show arrow tip
 * [Anchor]: implement open Anchor links with Ctrl or Command in new window
 * [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved
