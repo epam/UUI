@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/action-pin_on</title>
-    <g id="Icons/18/action-pin_on" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="icon" fill="#45FF00" points="12 9 12 3 13 3 13 2 5 2 5 3 6 3 6 9 4 10 4 11 8 11 8 16 10 16 10 11 14 11 14 10"></polygon>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 9V3H13V2H5V3H6V9L4 10V11H8V16H10V11H14V10L12 9Z" fill="#6C6F80"/>
 </svg>

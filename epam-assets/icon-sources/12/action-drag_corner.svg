@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/12/action-drag_corner</title>
-    <g id="Icons/12/action-drag_corner" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M11,11 L9,11 L9,9 L11,9 L11,11 L11,11 Z M11,7 L9,7 L9,5 L11,5 L11,7 L11,7 Z M7,11 L5,11 L5,9 L7,9 L7,11 L7,11 Z M7,7 L5,7 L5,5 L7,5 L7,7 L7,7 Z M3,11 L1,11 L1,9 L3,9 L3,11 L3,11 Z M11,3 L9,3 L9,1 L11,1 L11,3 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 3H11V1H9V3Z" fill="#6C6F80"/>
+<path d="M9 7H11V5H9V7Z" fill="#6C6F80"/>
+<path d="M9 11H11V9H9V11Z" fill="#6C6F80"/>
+<path d="M7 11H5V9H7V11Z" fill="#6C6F80"/>
+<path d="M5 7H7V5H5V7Z" fill="#6C6F80"/>
+<path d="M3 11H1V9H3V11Z" fill="#6C6F80"/>
 </svg>

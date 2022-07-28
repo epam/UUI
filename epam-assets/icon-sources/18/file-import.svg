@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/file-import</title>
-    <g id="Icons/18/file-import" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M4,9 L4,14 L14,14 L14,9 L16,9 L16,14.4444444 C16,15.3 15.3,16 14.4444444,16 L14.4444444,16 L3.55555556,16 C2.7,16 2,15.3 2,14.4444444 L2,14.4444444 L2,9 L4,9 Z M9,1.5 L13,5.5 L11.59,6.91 L10,5.33 L10,12 L8,12 L8,5.33 L6.41,6.91 L5,5.5 L9,1.5 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.41 6.91L8 5.33V12H10V5.33L11.59 6.91L13 5.5L9 1.5L5 5.5L6.41 6.91Z" fill="#6C6F80"/>
+<path d="M14 14V9H16V14.4444C16 15.3 15.3 16 14.4444 16H3.55556C2.7 16 2 15.3 2 14.4444V9H4V14H14Z" fill="#6C6F80"/>
 </svg>
