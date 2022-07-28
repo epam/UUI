@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
-import { FlexCell, PickerBodyBase, PickerBodyBaseProps, IconContainer } from '@epam/uui-components';
-import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
+import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
-import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import * as css from './DataPickerBody.scss';
@@ -20,28 +18,9 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     searchLens = this.lens.prop('search');
 
     renderNoFound() {
-        if (this.props.renderNotFound) {
-            return this.props.renderNotFound();
-        }
-
-        const renderDefaultBody =  () => {
-            switch (this.props.editMode) {
-                case 'modal':
-                    return (
-                        <div className={ css.noFoundModalContainer }>
-                            <IconContainer  cx={ css.noFoundModalContainerIcon } icon={ SearchIcon }/>
-                            <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
-                            <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
-                        </div>
-                    );
-                default:
-                    return <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>;
-            }
-        };
-
         return (
             <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
-                { renderDefaultBody() }
+                { this.props.renderNotFound && this.props.renderNotFound(this.props?.searchSize) }
             </FlexCell>
         );
     }

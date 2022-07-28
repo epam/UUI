@@ -20,7 +20,7 @@ export type PickerBaseOptions<TItem, TId> = {
     getName?: (item: TItem) => string;
     renderRow?: (props: DataRowProps<TItem, TId>) => ReactNode;
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
-    renderNotFound?: (props: { search: string, onClose: () => void }) => ReactNode;
+    renderNotFound?: (props?: { search: string, onClose: () => void }) => ReactNode;
     emptyValue?: undefined | null | [];
     sortBy?(item: TItem, sorting: SortingOption): any;
     filter?: any;
