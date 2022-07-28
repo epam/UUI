@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/24/file-attachment</title>
-    <g id="Icons/24/file-attachment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M18,16.5 L6.5,16.5 C4.29,16.5 2.5,14.71 2.5,12.5 C2.5,10.29 4.29,8.5 6.5,8.5 L19,8.5 C20.38,8.5 21.5,9.62 21.5,11 C21.5,12.38 20.38,13.5 19,13.5 L8.5,13.5 C7.95,13.5 7.5,13.05 7.5,12.5 C7.5,11.95 7.95,11.5 8.5,11.5 L18,11.5 L18,10 L8.5,10 C7.12,10 6,11.12 6,12.5 C6,13.88 7.12,15 8.5,15 L19,15 C21.21,15 23,13.21 23,11 C23,8.79 21.21,7 19,7 L6.5,7 C3.46,7 1,9.46 1,12.5 C1,15.54 3.46,18 6.5,18 L18,18 L18,16.5 Z" id="icon" fill="#45FF00" transform="translate(12.000000, 12.500000) rotate(-90.000000) translate(-12.000000, -12.500000) "></path>
-    </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 6.5V18C16 20.21 14.21 22 12 22C9.79 22 8 20.21 8 18L8 5.5C8 4.12 9.12 3 10.5 3C11.88 3 13 4.12 13 5.5V16C13 16.55 12.55 17 12 17C11.45 17 11 16.55 11 16V6.5H9.5V16C9.5 17.38 10.62 18.5 12 18.5C13.38 18.5 14.5 17.38 14.5 16L14.5 5.5C14.5 3.29 12.71 1.5 10.5 1.5C8.29 1.5 6.5 3.29 6.5 5.5L6.5 18C6.5 21.04 8.96 23.5 12 23.5C15.04 23.5 17.5 21.04 17.5 18V6.5H16Z" fill="#6C6F80"/>
 </svg>

@@ -1,5 +1,4 @@
-@use '../../../node_modules/@epam/promo/assets/styles/index' as *;
-@use '../../../node_modules/@epam/promo/assets/styles/colorvars/inputs/textInput-colorvars' as *;
+@use '../../assets/styles/index' as *;
 
 .root {
     &:global(.uui-input-box) {
