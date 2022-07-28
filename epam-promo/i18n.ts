@@ -100,4 +100,8 @@ export const i18n = {
             },
         },
     },
+    dataTable: {
+        title: 'No results found',
+        message: 'We can’t find any item matching your request',
+    },
 };

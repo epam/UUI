@@ -38,20 +38,3 @@
     padding-top: 23px;
     padding-bottom: 23px;
 }
-
-.no-found-modal-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-
-    &-icon {
-        align-items: center;
-        margin-bottom: 12px;
-    }
-
-    &-text {
-        padding: 0;
-        margin: 0;
-    }
-}

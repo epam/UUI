@@ -6,6 +6,7 @@ import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
 import * as css from './DataTable.scss';
+import { i18n } from "../../i18n";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -39,8 +40,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
                     <>
                         <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon }/>
-                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='museo-sans'>No results found</Text>
-                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>We can’t find any item matching your request</Text>
+                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18n.dataTable.title }</Text>
+                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18n.dataTable.message }</Text>
                     </>
                 }
             </div>
