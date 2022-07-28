@@ -43,22 +43,26 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -86,22 +90,26 @@ exports[`HintNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -129,22 +137,26 @@ exports[`NotificationCard should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -172,22 +184,26 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -215,22 +231,26 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -258,22 +278,26 @@ exports[`WarningNotification should be rendered correctly 1`] = `
     <div
       className="content"
     />
-    <button
-      className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-      href={null}
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
+    <div
+      className="closeWrapper"
     >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+      <button
+        className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
       >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </div>
 `;
