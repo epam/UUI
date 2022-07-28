@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/12/action-eye</title>
-    <g id="Icons/12/action-eye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M6,2 C8.209139,2 10.209139,3.33333333 12,6 C10.209139,8.66666667 8.209139,10 6,10 C3.790861,10 1.790861,8.66666667 2.22044605e-14,6 C1.790861,3.33333333 3.790861,2 6,2 Z M6,4 C4.8954305,4 4,4.8954305 4,6 C4,7.1045695 4.8954305,8 6,8 C7.1045695,8 8,7.1045695 8,6 C8,4.8954305 7.1045695,4 6,4 Z M6,5 C6.55228475,5 7,5.44771525 7,6 C7,6.55228475 6.55228475,7 6,7 C5.44771525,7 5,6.55228475 5,6 C5,5.44771525 5.44771525,5 6,5 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 7C6.55228 7 7 6.55228 7 6C7 5.44772 6.55228 5 6 5C5.44772 5 5 5.44772 5 6C5 6.55228 5.44772 7 6 7Z" fill="#6C6F80"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 6C12 6 9.31371 10 6 10C2.68629 10 0 6 0 6C0 6 2.68629 2 6 2C9.31371 2 12 6 12 6ZM8 6C8 7.10457 7.10457 8 6 8C4.89543 8 4 7.10457 4 6C4 4.89543 4.89543 4 6 4C7.10457 4 8 4.89543 8 6Z" fill="#6C6F80"/>
 </svg>

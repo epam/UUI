@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/24/editor-headline_h2</title>
-    <g id="Icons/24/editor-headline_h2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M3,5 L5,5 L5,11 L9,11 L9,5 L11,5 L11,19 L9,19 L9,13 L5,13 L5,19 L3,19 L3,5 M21,19 L15,19 C13.8954305,19 13,18.1045695 13,17 C13,16.47 13.2,16 13.54,15.64 L18.41,10.41 C18.78,10.05 19,9.55 19,9 C19,7.8954305 18.1045695,7 17,7 C15.8954305,7 15,7.8954305 15,9 L13,9 C13,6.790861 14.790861,5 17,5 C19.209139,5 21,6.790861 21,9 C21,10.1 20.55,11.1 19.83,11.83 L15,17 L21,17 L21,19 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3 5H5V11H9V5H11V19H9V13H5V19H3V5ZM21 19H15C13.8954 19 13 18.1046 13 17C13 16.47 13.2 16 13.54 15.64L18.41 10.41C18.78 10.05 19 9.55 19 9C19 7.89543 18.1046 7 17 7C15.8954 7 15 7.89543 15 9H13C13 6.79086 14.7909 5 17 5C19.2091 5 21 6.79086 21 9C21 10.1 20.55 11.1 19.83 11.83L15 17H21V19Z" fill="#6C6F80"/>
 </svg>
