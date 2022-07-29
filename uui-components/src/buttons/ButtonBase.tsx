@@ -42,7 +42,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
     }
 
     getTabIndex(): number {
-        if (!this.props.tabIndex && (this.props.isDisabled || !this.props.onClick)) {
+        if (!this.props.tabIndex && (this.props.isDisabled || (!this.props.onClick && !this.props.link && !this.props.href))) {
             return -1;
         }
 
@@ -66,7 +66,6 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             isAnchor = true;
             href = this.props.href;
         }
-
         return React.createElement(isAnchor ? 'a' : 'button', {
             className: cx(
                 this.getClassName(),
