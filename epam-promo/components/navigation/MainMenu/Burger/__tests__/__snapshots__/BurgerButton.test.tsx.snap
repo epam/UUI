@@ -16,7 +16,7 @@ exports[`BurgerButton should be rendered correctly 2`] = `
   href="#"
   onClick={[Function]}
   role="link"
-  tabIndex={-1}
+  tabIndex={0}
   target="_blank"
 >
   <div
