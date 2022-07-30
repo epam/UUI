@@ -121,7 +121,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === '+') {
+        if (e.key === '+' || e.code === 'KeyE') {
             e.preventDefault();
         }
         if (e.key === '-') {
