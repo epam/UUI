@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/notification-error-outline</title>
-    <g id="Icons/18/notification-error-outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M8,11 L10,11 L10,13 L8,13 L8,11 Z M8,5 L10,5 L10,10 L8,10 L8,5 Z M8.992,1 C4.576,1 1,4.584 1,9 C1,13.416 4.576,17 8.992,17 C13.416,17 17,13.416 17,9 C17,4.584 13.416,1 8.992,1 Z M9,16 C5.1325,16 2,12.8675 2,9 C2,5.1325 5.1325,2 9,2 C12.8675,2 16,5.1325 16,9 C16,12.8675 12.8675,16 9,16 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 11H10V13H8V11ZM8 5H10V10H8V5ZM8.992 1C4.576 1 1 4.584 1 9C1 13.416 4.576 17 8.992 17C13.416 17 17 13.416 17 9C17 4.584 13.416 1 8.992 1ZM9 16C5.1325 16 2 12.8675 2 9C2 5.1325 5.1325 2 9 2C12.8675 2 16 5.1325 16 9C16 12.8675 12.8675 16 9 16Z" fill="#6C6F80"/>
 </svg>

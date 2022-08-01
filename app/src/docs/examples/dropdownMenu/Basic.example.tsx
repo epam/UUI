@@ -52,7 +52,7 @@ export default function BasicDropdownMenuExample() {
         onClick={ () => setLayerHandler(item.id, item.checked) }
         isActive={ item.checked }/>);
 
-    const DropdownBody = (props: DropdownBodyProps) => {
+    const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownMenuBody { ...props } style={ { maxWidth: "250px" } }>
                 <DropdownMenuHeader caption="Alex Smith"/>
@@ -90,7 +90,7 @@ export default function BasicDropdownMenuExample() {
         );
     };
 
-    const renderBody = () => {
+    const renderSecondDropdownBody = () => {
         return (
             <Panel background="white" shadow={ true }>
                 <DropdownMenuButton caption="Cancel Data Loads" onClick={ () => {} }/>
@@ -100,7 +100,7 @@ export default function BasicDropdownMenuExample() {
         );
     };
 
-    const renderSecondBody = () => {
+    const renderThirdDropdownBody = () => {
         return (
             <Panel background="white" shadow={ true }>
                 <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} }/>
@@ -112,7 +112,7 @@ export default function BasicDropdownMenuExample() {
     return (
         <>
             <Dropdown
-                renderBody={ props => <DropdownBody { ...props } /> }
+                renderBody={ props => renderDropdownBody(props) }
                 renderTarget={ props => <Avatar
                     img={ 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50' }
                     size={ '36' } { ...props } /> }
@@ -121,7 +121,7 @@ export default function BasicDropdownMenuExample() {
                 <Button size="36" caption="Action with selected" fill={ 'solid' } onClick={ () => {
                 } }/>
                 <Dropdown
-                    renderBody={ renderBody }
+                    renderBody={ renderSecondDropdownBody }
                     renderTarget={ (props) =>
                         <Button { ...props } fill="solid" icon={ MenuIcon } size="36" isDropdown={ false }/>
                     }
@@ -130,7 +130,7 @@ export default function BasicDropdownMenuExample() {
             </ControlGroup>
             <ControlGroup>
                 <Dropdown
-                    renderBody={ renderSecondBody }
+                    renderBody={ renderThirdDropdownBody }
                     renderTarget={ (props) =>
                         <Button { ...props } fill="white" icon={ MenuIcon } size="36" isDropdown={ false }/>
                     }

@@ -23,9 +23,7 @@
 }
 
 .icon-wrapper {
-    height: 100%;
     padding: 6px 0;
-    margin-right: 14px;
 }
 
 .action-wrapper {
@@ -37,9 +35,7 @@
 }
 
 .close-icon {
-    height: 100%;
     padding: 6px 0;
-    margin-left: 17px;
 }
 
 .main-path {
@@ -51,6 +47,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0 12px;
     width: 100%;
 }
 
@@ -59,4 +56,9 @@
     align-items: center;
     height: 48px;
     padding: 0 18px;
+}
+
+.close-wrapper {
+    display: flex;
+    align-items: flex-start;
 }
