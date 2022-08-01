@@ -17,7 +17,10 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('name').toProps() }
-                renderEditor={ props => <TextInput { ...props } placeholder={ "Add New" }/> }
+                renderEditor={ props => <TextInput
+                    { ...props }
+                    placeholder={ props.rowProps.value.isPlaceholder ? "Add New" : "Task Name" }
+                /> }
                 { ...props }
             />,
         },
