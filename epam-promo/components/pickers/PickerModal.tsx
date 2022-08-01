@@ -9,7 +9,6 @@ import { SearchInput, Switch } from '../inputs';
 import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
-import { ControlSize } from '../types';
 import { i18n } from "../../i18n";
 import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
 
@@ -44,14 +43,14 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         </>;
     }
 
-    renderDefaultNoFound(searchSize: ControlSize) {
-        return (
-            <div className={ css.noFoundModalContainer }>
-                <IconContainer  cx={ css.noFoundModalContainerIcon } icon={ SearchIcon }/>
-                <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
-                <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ searchSize || '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
-            </div>
-        );
+    renderNoFound(props: { search: string, onClose: () => void }) {
+        return this.props.renderNotFound
+            ? this.props.renderNotFound(props)
+            :   <div className={ css.noFoundModalContainer }>
+                    <IconContainer  cx={ css.noFoundModalContainerIcon } icon={ SearchIcon }/>
+                    <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                    <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
+                </div>;
     }
 
     render() {
@@ -99,10 +98,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                         search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                         showSearch={ false }
                         rows={ rows }
-                        renderNotFound={ this.props.renderNotFound ? (() => this.props.renderNotFound({
-                            search: this.state.dataSourceState.search,
-                            onClose: () => this.props.success(selectedDataRows),
-                        })) : this.renderDefaultNoFound }
+                        renderNotFound={ () => this.renderNoFound({ search: this.state.dataSourceState.search, onClose: () => this.props.success(selectedDataRows) }) }
                         editMode='modal'
                     />
                     <ModalFooter borderTop padding='24' vPadding='24'>

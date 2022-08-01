@@ -20,7 +20,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     renderNoFound() {
         return (
             <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
-                { this.props.renderNotFound && this.props.renderNotFound(this.props?.searchSize) }
+                { this.props.renderNotFound && this.props.renderNotFound() }
             </FlexCell>
         );
     }
