@@ -1,13 +1,13 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback } from 'react';
-import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, DataTableRow } from '@epam/promo';
+import React, { useCallback, useMemo } from 'react';
+import { AcceptDropParams, DataQueryFilter, DataTableRowProps, DataTableState, DropParams, Metadata, Tree, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
 import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
-import { Task } from './types';
+import { InsertTaskCallback, Task } from './types';
 import { getDemoTasks } from './demoData';
-import { columns } from './columns';
+import { getColumns } from './columns';
 
 interface FormState {
     items: Record<number, Task>;
@@ -39,29 +39,52 @@ export const ProjectDemo = () => {
         getMetadata: () => metadata,
     });
 
+    const [ tableState, setTableState] = React.useState<DataTableState>({});
+
+    const insertTask: InsertTaskCallback = useCallback((task) => {
+        setValue(currentValue => {
+            const newTask: Task = {
+                ...task,
+                name: task.name ?? '',
+                id: task.id ?? lastId--
+            };
+            return { ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }};
+        });
+
+        setTableState(current => ({ ...current, folded: { ...current.folded, [task.parentId]: false }}))
+    }, []);
+
     const handleCanAcceptDrop = useCallback(
         (params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true })
     , []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => console.log(params), []);
 
-    const insertNew = useCallback((parentId: number) => setValue(currentValue => {
-        const newTask: Task = { id: lastId--, name: '', parentId };
-        return { ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }};
-    }), []);
+    const columns = useMemo(() => getColumns(insertTask), []);
 
-    //const { tableState, setTableState } = useTableState<any>({ columns });
-    const [ tableState, setTableState] = React.useState<DataTableState>({});
+    const tasks = Object.values(value.items);
+
+    let tree = Tree.create({ getId: i => i.id, getParentId: i => i.parentId }, tasks);
+
+    // TBD: New Row placeholders
+    // let lastPlaceholderId = lastId;
+    // tree.getAllParentNodes().reverse().forEach(parent => {
+    //     const children = tree.getItemsByParentId(parent.id);
+    //     const estimate = children.reduce((estimate, child) => estimate + (child.estimate || 0), 0);
+    //     if (parent.item.estimate != estimate) {
+    //         tree = tree.append([{ ...parent.item, estimate }]);
+    //     }
+    //     tree = tree.append([{ id: lastPlaceholderId--, parentId: parent.id, name: "" }]);
+    // })
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
-        items: Object.values(value.items),
-        getId: i => i.id,
-        getParentId: i => i.parentId,
+        items: tree,
     }, []);
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+            value: tree.getById(task.id),
             //checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
@@ -74,10 +97,16 @@ export const ProjectDemo = () => {
         sortBy: t => t.order,
     });
 
+    const renderRow =  useCallback((props: DataTableRowProps<Task, number>) => <DataTableRow
+        key={ props.rowKey }
+        {...props}
+        background={ props.isFoldable ? 'gray5' : 'white' }
+    />, []);
+
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
             <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={() => insertNew(null)} />
+                <IconButton icon={ insertAfter } onClick={() => insertTask({})} />
             </FlexCell>
             <FlexCell width='auto'>
                 <IconButton icon={ insertBefore } onClick={() => {}} />
@@ -106,6 +135,7 @@ export const ProjectDemo = () => {
             allowColumnsResizing
             allowColumnsReordering
             showCellDivider={ false }
+            renderRow={ renderRow }
             { ...dataView.getListProps() }
         />
     </Panel>;

@@ -15,3 +15,7 @@ export interface Resource {
     id: number;
     name: string;
 }
+
+export interface InsertTaskCallback {
+    (task: Partial<Task>): void;
+}
