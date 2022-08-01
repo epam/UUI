@@ -1,3 +1,6 @@
+import { items } from "app/src/documents/structure";
+import { bindKey } from "lodash";
+
 export interface TreeNode<TItem, TId> {
     id: TId;
     key: string;
@@ -92,15 +95,57 @@ export class Tree<TItem, TId> {
     //     return parents;
     // }
 
-    public forEachChildrenRecursively(id: TId, action: (node: TreeNode<TItem, TId>) => void) {
+    public forEach(
+        action: (node: TreeNode<TItem, TId>) => void,
+        options?: {
+            parentId?: TId,
+            direction?: 'bottom-up' | 'top-down',
+            includeRoot?: boolean,
+        }
+    ) {
+        options = { direction: 'top-down', includeRoot: false, ...options };
         const walkChildrenRec = (node: TreeNode<TItem, TId>) => {
-            action(node);
-            const children = this.getNodesByParentId(node.id);
+            if (options.direction === 'top-down' && node) {
+                action(node);
+            }
+            const children = this.getNodesByParentId(node ? node.id : undefined);
             children && children.forEach(walkChildrenRec);
+            if (options.direction === 'bottom-up' && node) {
+                action(node);
+            }
         };
 
-        const node = this.getNodeById(id);
+        const node = this.byId.get(options.parentId);
         walkChildrenRec(node);
+    }
+
+    public computeSubtotals<TSubtotals>(
+        get: (item: TItem, hasChildren: boolean) => TSubtotals,
+        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
+    ) {
+        const subtotalsMap = new Map<TId | undefined, TSubtotals>();
+
+        this.forEach(node => {
+            let itemSubtotals = get(node.item, this.byParentId.has(node.id));
+
+            // add already computed children subtotals
+            if (subtotalsMap.has(node.id)) {
+                itemSubtotals = add(itemSubtotals, subtotalsMap.get(node.id));
+            }
+
+            // store
+            subtotalsMap.set(node.id, itemSubtotals);
+
+            // add value to parent
+            let parentSubtotals: TSubtotals;
+            if (!subtotalsMap.has(node.parentId)) {
+                parentSubtotals = itemSubtotals;
+            } else {
+                parentSubtotals = add(itemSubtotals, subtotalsMap.get(node.parentId));
+            }
+            subtotalsMap.set(node.parentId, parentSubtotals);
+        }, { direction: 'bottom-up' })
+        return subtotalsMap;
     }
 
     public isFlatList() {
