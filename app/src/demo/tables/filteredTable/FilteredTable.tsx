@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, useArrayDataSource } from "@epam/uui-core";
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PageButton, Paginator, Text, LabeledInput, TextInput, PickerInput } from '@epam/promo';
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, useArrayDataSource, ITablePreset } from "@epam/uui-core";
+import { DataTable, FiltersToolbar, FlexCell, FlexRow, PageButton, Paginator, LabeledInput, TextInput, PickerInput } from '@epam/promo';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { mapFilter } from "../masterDetailedTable/data";
@@ -9,22 +9,38 @@ import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
 import css from './FilteredTable.scss';
 import { ReactComponent as ArrowRightIcon_24 } from "@epam/assets/icons/common/navigation-chevron-right-18.svg";
+import { PresetsBlock } from "./PresetsBlock";
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const { tableState, setTableState } = useTableState({ columns: personColumns });
     const [goToPage, setGoToPage] = useState('1');
+    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
 
-    const totalPages = () => tableState.pageSize ? Math.ceil(totalCount / tableState.pageSize) : 0;
+    useEffect(() => {
+        svc.api.presets.getPresets()
+            .then(setInitialPresets)
+            .catch(console.error);
+    }, []);
+
+    const tableStateApi = useTableState({
+        columns: personColumns,
+        initialPresets: initialPresets,
+        onPresetCreate: svc.api.presets.createPreset,
+        onPresetUpdate: svc.api.presets.updatePreset,
+        onPresetDelete: svc.api.presets.deletePreset,
+    });
+
+    const totalPages = () => tableStateApi.tableState.pageSize ? Math.ceil(totalCount / tableStateApi.tableState.pageSize) : 0;
 
     const itemsPerPageDataSource = useArrayDataSource({
         items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
     }, []);
 
     const setItemsPerPage = (itemsPerPage: number) => {
-        setTableState({ ...tableState, page: 1, pageSize: itemsPerPage });
+        tableStateApi.setTableState({ ...tableStateApi.tableState, page: 1, pageSize: itemsPerPage });
+        setGoToPage('1');
     };
 
     useEffect(() => {
@@ -36,18 +52,18 @@ export const FilteredTable: React.FC = () => {
             ...rq,
             filter: mapFilter(rq.filter || {}),
             page: rq.page - 1,
-            pageSize: rq.pageSize,
+            pageSize: tableStateApi.tableState.pageSize || rq.pageSize,
         });
         setTotalCount(() => result.totalCount);
         result.count = result.items.length;
         result.totalCount = result.items.length;
         result.from = 0;
         return result;
-    }, [tableState.page, tableState.pageSize]);
+    }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
     const dataSource = useLazyDataSource<Person, number, Person>({ api }, [api]);
 
-    const view = dataSource.useView(tableState, setTableState, {
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             checkbox: { isVisible: true },
             isSelectable: true,
@@ -62,21 +78,30 @@ export const FilteredTable: React.FC = () => {
 
     return (
         <div className={ css.container }>
-            <FlexRow cx={ css.presetsPanel } background="gray5" borderBottom={ true }>
-                <Text fontSize="24">Profiles Dashboard</Text>
-            </FlexRow>
+            <PresetsBlock
+                presets={ tableStateApi.presets }
+                createNewPreset={ tableStateApi.createNewPreset }
+                isDefaultPresetActive={ tableStateApi.isDefaultPresetActive }
+                resetToDefault={ tableStateApi.resetToDefault }
+                activePresetId={ tableStateApi.activePresetId }
+                hasPresetChanged={ tableStateApi.hasPresetChanged }
+                choosePreset={ tableStateApi.choosePreset }
+                duplicatePreset={ tableStateApi.duplicatePreset }
+                updatePreset={ tableStateApi.updatePreset }
+                deletePreset={ tableStateApi.deletePreset }
+            />
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
                     <FiltersToolbar
                         filters={ filters }
-                        tableState={ tableState }
-                        setTableState={ setTableState }
+                        tableState={ tableStateApi.tableState }
+                        setTableState={ tableStateApi.setTableState }
                     />
                 </FlexRow>
                 <FlexCell cx={ css.search } width={ 295 }>
                     <SearchInput
-                        value={ tableState.search }
-                        onValueChange={ (val) => setTableState({ ...tableState, search: val }) }
+                        value={ tableStateApi.tableState.search }
+                        onValueChange={ (val) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val }) }
                         placeholder="Search"
                         debounceDelay={ 1000 }
                     />
@@ -87,8 +112,8 @@ export const FilteredTable: React.FC = () => {
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }
                 filters={ filters }
-                value={ tableState }
-                onValueChange={ setTableState }
+                value={ tableStateApi.tableState }
+                onValueChange={ tableStateApi.setTableState }
                 showColumnsConfig={ true }
                 allowColumnsResizing
                 allowColumnsReordering
@@ -101,7 +126,7 @@ export const FilteredTable: React.FC = () => {
                             size="24"
                             placeholder="Select items per page"
                             dataSource={ itemsPerPageDataSource }
-                            value={ tableState.pageSize }
+                            value={ tableStateApi.tableState.pageSize }
                             onValueChange={ setItemsPerPage }
                             getName={ item => item.page }
                             selectionMode="single"
@@ -126,13 +151,13 @@ export const FilteredTable: React.FC = () => {
                     cx={ css.goToPageButton }
                     size="24"
                     icon={ ArrowRightIcon_24 }
-                    onClick={ () => setTableState({ ...tableState, page: +goToPage, indexToScroll: 0 }) }
+                    onClick={ () => tableStateApi.setTableState({ ...tableStateApi.tableState, page: +goToPage, indexToScroll: 0 }) }
                     fill="white"
                     color="gray50"
                 />
                 <Paginator
-                    value={ tableState.page }
-                    onValueChange={ newPage => setTableState({ ...tableState, page: newPage, indexToScroll: 0 }) }
+                    value={ tableStateApi.tableState.page }
+                    onValueChange={ newPage => tableStateApi.setTableState({ ...tableStateApi.tableState, page: newPage, indexToScroll: 0 }) }
                     totalPages={ totalPages() }
                     size="24"
                 />

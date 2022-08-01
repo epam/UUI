@@ -161,7 +161,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
         setPresets(prevValue => {
             const newPresets = [...prevValue];
-            newPresets.splice(presets.findIndex(p => p.id === preset.id), 1, newPreset);
+            newPresets.splice(prevValue.findIndex(p => p.id === newPreset.id), 1, newPreset);
             return newPresets;
         });
     }, [tableStateValue.filter, tableStateValue.columnsConfig]);
