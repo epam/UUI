@@ -11,6 +11,8 @@ import { getColumns } from './columns';
 
 interface FormState {
     items: Record<number, Task>;
+    totalEstimate: number;
+    maxId: number;
 }
 
 const metadata: Metadata<FormState> = {
@@ -25,30 +27,33 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-let lastId = -1;
-
-let savedValue: FormState = { items: getDemoTasks() };
-
 const blankTree = Tree.blank<Task, number>({ getId: task => task.id, getParentId: task => task.parentId });
 
 function updateSubtotals(state: FormState) {
     const tree = blankTree.append(Object.values(state.items));
     const subtotals = tree.computeSubtotals(
         (task, hasChildren) => ({
-            estimate: hasChildren ? 0 : (task.estimate || 0)
+            estimate: hasChildren ? 0 : (task.estimate || 0),
+            maxId: task.id,
         }),
         (a, b) => ({
-            estimate: a.estimate + b.estimate
+            estimate: a.estimate + b.estimate,
+            maxId: Math.max(a.maxId, b.maxId),
         })
     )
     const total = subtotals.get(undefined);
     subtotals.delete(undefined);
-    Array.from(subtotals.entries()).forEach(([id, subtotals]) => state.items[id] = ({ ...state.items[id], ...subtotals }));
+    Array.from(subtotals.entries()).forEach(([id, subtotals]) => {
+        state.items[id] = ({ ...state.items[id], estimate: subtotals.estimate })
+    });
     return {
         ...state,
-        total,
+        totalEstimate: total.estimate,
+        maxId: total.maxId,
     };
 }
+
+let savedValue: FormState = updateSubtotals({ items: getDemoTasks(), maxId: 0, totalEstimate: 0 });
 
 export const ProjectDemo = () => {
     const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
@@ -67,7 +72,7 @@ export const ProjectDemo = () => {
             const newTask: Task = {
                 ...task,
                 name: task.name ?? '',
-                id: task.id ?? lastId--
+                id: task.id ?? (currentValue.maxId + 1)
             };
             return updateSubtotals({ ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }});
         });
@@ -99,16 +104,11 @@ export const ProjectDemo = () => {
 
     let tree = Tree.create({ getId: i => i.id, getParentId: i => i.parentId }, tasks);
 
-    // TBD: New Row placeholders
-    // let lastPlaceholderId = lastId;
-    // tree.getAllParentNodes().reverse().forEach(parent => {
-    //     const children = tree.getItemsByParentId(parent.id);
-    //     const estimate = children.reduce((estimate, child) => estimate + (child.estimate || 0), 0);
-    //     if (parent.item.estimate != estimate) {
-    //         tree = tree.append([{ ...parent.item, estimate }]);
-    //     }
-    //     tree = tree.append([{ id: lastPlaceholderId--, parentId: parent.id, name: "" }]);
-    // })
+    // generate 'add item' placeholders
+    let lastPlaceholderId = value.maxId + 1;
+    tree.getAllParentNodes().reverse().forEach(parent => {
+        tree = tree.append([{ id: lastPlaceholderId++, parentId: parent.id, name: "" }]);
+    });
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: tree,
@@ -116,7 +116,11 @@ export const ProjectDemo = () => {
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
-            ...lens.onChange(handleOnChange).prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+            ...lens
+                .onChange(handleOnChange)
+                .prop('items')
+                .prop(task.id)
+                .toProps(), // pass IEditable to each row to allow editing
             value: tree.getById(task.id),
             //checkbox: { isVisible: true },
             isSelectable: true,

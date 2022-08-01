@@ -39,6 +39,14 @@ describe('Tree', () => {
                 { id: 120, key: '120', parentId: 100, index: 1, item: testTree.getById(120) },
             ]);
         })
+
+        it('can retrieve all parent nodes', () => {
+            const parents = testTree.getAllParentNodes();
+            const parentIds = parents.map(node => node.id);
+            expect(parentIds).toContain(100);
+            expect(parentIds).toContain(300);
+            expect(parentIds).toContain(120);
+        })
     });
 
     describe('append', () => {
@@ -67,18 +75,6 @@ describe('Tree', () => {
             // expect(newTree.getNodesByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
         })
     });
-
-    // it('can retrieve all parent nodes', () => {
-    //     const parents = testTree.getAllParentNodes();
-    //     expect(parents.map(node => node.id)).toEqual([
-    //         [100, 300, 120]
-    //     ]);
-    //     // TBD
-    //     // expect(newTree.getNodeById(130)).toEqual(
-    //     //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}
-    //     // );
-    //     // expect(newTree.getNodesByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
-    // })
 
     describe('forEachChildrenRecursively', () => {
         it('can iterate empty tree', () => {
