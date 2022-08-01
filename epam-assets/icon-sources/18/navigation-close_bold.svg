@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/navigation-close_bold</title>
-    <g id="Icons/18/navigation-close_bold" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Path" fill="#45FF00" points="14.3033009 5.81801948 11.1213203 9 14.3033009 12.1819805 12.1819805 14.3033009 9 11.1213203 5.81801948 14.3033009 3.69669914 12.1819805 6.87867966 9 3.69669914 5.81801948 5.81801948 3.69669914 9 6.87867966 12.1819805 3.69669914"></polygon>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.3033 5.81801L11.1213 8.99999L14.3033 12.182L12.182 14.3033L9 11.1213L5.81802 14.3033L3.6967 12.182L6.87868 8.99999L3.6967 5.81801L5.81802 3.69669L9 6.87867L12.182 3.69669L14.3033 5.81801Z" fill="#6C6F80"/>
 </svg>
