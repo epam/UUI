@@ -54,13 +54,21 @@ export const ProjectDemo = () => {
         setTableState(current => ({ ...current, folded: { ...current.folded, [task.parentId]: false }}))
     }, []);
 
+    const deleteTask = useCallback((id: number) => {
+        setValue(currentValue => {
+            const items = { ...currentValue.items };
+            delete items[id];
+            return { ...currentValue, items };
+        });
+    }, []);
+
     const handleCanAcceptDrop = useCallback(
         (params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true })
     , []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => console.log(params), []);
 
-    const columns = useMemo(() => getColumns(insertTask), []);
+    const columns = useMemo(() => getColumns({ insertTask, deleteTask }), []);
 
     const tasks = Object.values(value.items);
 

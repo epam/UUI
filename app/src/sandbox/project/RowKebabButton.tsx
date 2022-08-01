@@ -4,15 +4,14 @@ import { DropdownMenuBody, DropdownMenuButton,
     IconButton} from '@epam/promo';
 import { DropdownBodyProps } from "@epam/uui-components";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
-import { InsertTaskCallback, Task } from './types';
+import { ColumnsProps, InsertTaskCallback, Task } from './types';
 import { DataRowProps } from 'uui-core';
 
-export interface RowKebabProps {
+export interface RowKebabProps extends ColumnsProps {
     row: DataRowProps<Task, number>;
-    insertTask: InsertTaskCallback;
 }
 
-export function RowKebabButton({ row, insertTask }: RowKebabProps) {
+export function RowKebabButton({ row, insertTask, deleteTask }: RowKebabProps) {
     const renderBody = React.useCallback((props: DropdownBodyProps) => {
         return (
             <DropdownMenuBody { ...props } style={ { maxWidth: "250px" } }>
@@ -29,6 +28,7 @@ export function RowKebabButton({ row, insertTask }: RowKebabProps) {
                     props.onClose();
                 }}/>
                 <DropdownMenuButton caption="Delete" onClick={() => {
+                    deleteTask(row.id);
                     props.onClose();
                 }}/>
             </DropdownMenuBody>
