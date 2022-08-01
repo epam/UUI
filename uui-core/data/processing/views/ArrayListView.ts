@@ -247,12 +247,12 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
         const checkedNode = this.tree.getNodeById(rowProps.id);
 
         const forEachChildren = (action: (id: TId) => void) => {
-            this.tree.forEachChildrenRecursively(checkedNode.id, node => {
+            this.tree.forEach(node => {
                 const { isCheckable } = this.getRowProps(node.item, null, []);
                 if (isCheckable) { /* filter && isSelectable */
                     action(node.id);
                 }
-            });
+            }, { parentId: checkedNode.id });
         };
 
         const checkParentsRecursively = (node: TreeNode<TItem, TId>) => {

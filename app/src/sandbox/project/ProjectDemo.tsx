@@ -29,6 +29,27 @@ let lastId = -1;
 
 let savedValue: FormState = { items: getDemoTasks() };
 
+const blankTree = Tree.blank<Task, number>({ getId: task => task.id, getParentId: task => task.parentId });
+
+function updateSubtotals(state: FormState) {
+    const tree = blankTree.append(Object.values(state.items));
+    const subtotals = tree.computeSubtotals(
+        (task, hasChildren) => ({
+            estimate: hasChildren ? 0 : (task.estimate || 0)
+        }),
+        (a, b) => ({
+            estimate: a.estimate + b.estimate
+        })
+    )
+    const total = subtotals.get(undefined);
+    subtotals.delete(undefined);
+    Array.from(subtotals.entries()).forEach(([id, subtotals]) => state.items[id] = ({ ...state.items[id], ...subtotals }));
+    return {
+        ...state,
+        total,
+    };
+}
+
 export const ProjectDemo = () => {
     const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
@@ -48,7 +69,7 @@ export const ProjectDemo = () => {
                 name: task.name ?? '',
                 id: task.id ?? lastId--
             };
-            return { ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }};
+            return updateSubtotals({ ...currentValue, items: { ...currentValue.items, [newTask.id]: newTask }});
         });
 
         setTableState(current => ({ ...current, folded: { ...current.folded, [task.parentId]: false }}))
@@ -67,6 +88,10 @@ export const ProjectDemo = () => {
     , []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => console.log(params), []);
+
+    const handleOnChange = useCallback((prev, next) => {
+        return updateSubtotals(next);
+    }, []);
 
     const columns = useMemo(() => getColumns({ insertTask, deleteTask }), []);
 
@@ -91,7 +116,7 @@ export const ProjectDemo = () => {
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
-            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+            ...lens.onChange(handleOnChange).prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             value: tree.getById(task.id),
             //checkbox: { isVisible: true },
             isSelectable: true,
