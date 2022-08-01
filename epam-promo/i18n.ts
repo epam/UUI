@@ -2,6 +2,7 @@ export const i18n = {
     dataPickerBody: {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
+        noRecordsSubTitle: 'Check your spelling, or search for a different keyword',
     },
     fileCard: {
         fileSizeProgress: ' of ',
@@ -98,5 +99,9 @@ export const i18n = {
                 subtitle: 'We are trying to recover. Please wait.',
             },
         },
+    },
+    dataTable: {
+        title: 'No results found',
+        message: 'We can’t find any item matching your request',
     },
 };

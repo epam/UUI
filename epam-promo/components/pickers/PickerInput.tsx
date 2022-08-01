@@ -11,6 +11,8 @@ import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import css from './PickerInput.scss';
+import { Text } from "../typography";
+import { i18n } from "../../i18n";
 
 export type PickerInputProps = SizeMod & IHasEditMode & {};
 
@@ -77,6 +79,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
     }
 
+    renderNoFound(props: { search: string, onClose: () => void }) {
+        return this.props.renderNotFound
+            ? this.props.renderNotFound(props)
+            : <Text size={ this.props.size || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>;
+    }
+
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
@@ -111,6 +119,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         maxHeight={ maxHeight }
                         searchSize={ this.props.size }
                         editMode='dropdown'
+                        renderNotFound={ () => this.renderNoFound({search: this.state.dataSourceState.search, onClose: () => this.toggleBodyOpening(false)}) }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>
