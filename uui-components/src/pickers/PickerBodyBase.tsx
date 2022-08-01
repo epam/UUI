@@ -1,11 +1,10 @@
 import * as React from 'react';
 import isEqual from 'lodash.isequal';
 import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
-import { ControlSize } from "../types";
 
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<HTMLDivElement> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
-    renderNotFound?: (searchSize?: ControlSize) => React.ReactNode;
+    renderNotFound?: () => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
     search: IEditable<string>;
