@@ -19,13 +19,17 @@ export class ArrayDataSource<TItem = any, TId extends DataSourceItemId = any, TF
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         this.props = props;
-        this.tree = Tree.create({
-                ...this.props,
-                // This default is added for compatibility reasons. We require getId callback in other APIs
-                getId: this.getId,
-            },
-            this.props.items
-        );
+        if (this.props.items instanceof Tree) {
+            this.tree = this.props.items;
+        } else {
+            this.tree = Tree.create({
+                    ...this.props,
+                    // This default is added for compatibility reasons. We require getId callback in other APIs
+                    getId: this.getId,
+                },
+                this.props.items
+            );
+        }
     }
 
     public getById = (id: TId) => {
