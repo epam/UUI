@@ -3,7 +3,7 @@ export interface TreeNode<TItem, TId> {
     key: string;
     item: TItem;
     parentId: TId;
-    originalIndex: number;
+    index: number;
 }
 
 export interface TreeParams<TItem, TId> {
@@ -62,15 +62,15 @@ export class Tree<TItem, TId> {
         return this.byParentId.get(parentId ?? undefined) || [];
     }
 
-    public getChildrenNodes(node: TreeNode<TItem, TId>) {
-        return this.byParentId.get(node.id) || [];
+    public getItemsByParentId(parentId: TId) {
+        return this.getNodesByParentId(parentId).map(i => i.item);
     }
 
     public getTotalRecursiveCount() {
         return this.byId.size;
     }
 
-    public getParents(id: TId) {
+    public getParentNodesRecursive(id: TId) {
         const parents: TreeNode<TItem, TId>[] = [];
         let node = this.getNodeById(id);
         while (true) {
@@ -83,10 +83,19 @@ export class Tree<TItem, TId> {
         return parents;
     }
 
+    /** Returns all nodes which has children.
+     * The list is sorted topologically, so top-level nodes are returned first.
+     */
+    // public getAllParentNodes(): TreeNode<TItem, TId>[] {
+    //     const parentIds = Array.from(this.byParentId.keys());
+    //     const parents = parentIds.map(id => this.byId.get(id)).filter(i => i !== undefined);
+    //     return parents;
+    // }
+
     public forEachChildrenRecursively(id: TId, action: (node: TreeNode<TItem, TId>) => void) {
         const walkChildrenRec = (node: TreeNode<TItem, TId>) => {
             action(node);
-            const children = this.getChildrenNodes(node);
+            const children = this.getNodesByParentId(node.id);
             children && children.forEach(walkChildrenRec);
         };
 
@@ -106,7 +115,7 @@ export class Tree<TItem, TId> {
         const newById = new Map(this.byId);
         const newByParentId = new Map(this.byParentId); // shallow clone, still need to copy arrays inside!
 
-        itemsToAdd.forEach((item, itemIndex) => {
+        itemsToAdd.forEach((item) => {
             const id = this.params.getId(item);
             const existingNode = this.getNodeById(id);
             if (!existingNode || existingNode.item !== item) {
@@ -114,7 +123,7 @@ export class Tree<TItem, TId> {
                 const node: TreeNode<TItem, TId> = {
                     id,
                     key: JSON.stringify(id),
-                    originalIndex: itemIndex,
+                    index: 0, // set later, when inserting to the parent
                     parentId: this.params.getParentId && this.params.getParentId(item),
                     item: item,
                 }
@@ -131,8 +140,10 @@ export class Tree<TItem, TId> {
                         newByParentId.set(parentId, list);
                     } else if (list === this.byParentId.get(parentId)) { // need to create shallow copy
                         list = [...list];
+                        newByParentId.set(parentId, list);
                     }
                     list.push(node);
+                    node.index = list.length - 1;
 
                     // TBD: remove item from existing list (if we'll use this method to mutate existing list)
                 }

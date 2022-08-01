@@ -89,12 +89,12 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
             let selectedCount = 0;
             let checkableCount = 0;
             let rows: DataRowProps<TItem, TId>[] = [];
-            nodes = nodes.sort(sortComparer);
+            nodes.sort(sortComparer);
 
             for (let n = 0; n < nodes.length; n++) {
                 currentIndex = currentIndex + 1;
                 const node = nodes[n];
-                const childrenNodes = this.tree.getChildrenNodes(node);
+                const childrenNodes = this.tree.getNodesByParentId(node.id);
                 const rowProps = this.getRowProps(node.item, currentIndex, parents);
                 rowProps.isLastChild = n === (nodes.length - 1);
                 let children = empty;
@@ -207,7 +207,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
         });
 
         // to make sort stable, always compare by default sorting, or by IDs at the last step
-        const baseSortBy = (i: TreeNode<TItem, TId>) => i.originalIndex.toString();
+        const baseSortBy = (i: TreeNode<TItem, TId>) => i.index.toString();
         comparers.push((a, b) => compareScalars(baseSortBy(a), baseSortBy(b)));
 
         let fn = (a: TreeNode<TItem, TId>, b: TreeNode<TItem, TId>) => {
@@ -273,8 +273,8 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
                 forEachChildren(key => checkedIdsSet.add(key));
 
                 // check parents if all children is checked
-                this.tree.getParents(checkedNode.id).reverse().forEach(node => {
-                    const children = this.tree.getChildrenNodes(node);
+                this.tree.getParentNodesRecursive(checkedNode.id).reverse().forEach(node => {
+                    const children = this.tree.getNodesByParentId(node.id);
 
                     if (children && children.every(i => checkedIdsSet.has(i.id))) {
                         checkedIdsSet.add(node.id);
@@ -287,7 +287,7 @@ export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> e
 
             if (this.props.cascadeSelection) {
                 // uncheck all parents recursively
-                this.tree.getParents(checkedNode.id).forEach(node => checkedIdsSet.delete(node.id));
+                this.tree.getParentNodesRecursive(checkedNode.id).forEach(node => checkedIdsSet.delete(node.id));
                 // uncheck all children recursively
                 forEachChildren(id => checkedIdsSet.delete(id));
             }
