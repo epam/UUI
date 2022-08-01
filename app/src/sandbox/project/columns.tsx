@@ -1,4 +1,4 @@
-import { Task, InsertTaskCallback } from "./types";
+import { Task, InsertTaskCallback, ColumnsProps } from "./types";
 import { resources } from './demoData';
 import React from "react";
 import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea } from '@epam/promo';
@@ -7,7 +7,7 @@ import { RowKebabButton } from "./RowKebabButton";
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 
-export function getColumns(insertTask: InsertTaskCallback) {
+export function getColumns(columnsProps: ColumnsProps) {
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         {
             key: 'name',
@@ -108,7 +108,7 @@ export function getColumns(insertTask: InsertTaskCallback) {
         },
         {
             key: 'actions',
-            render: (item, row) => <RowKebabButton row={ row } insertTask={ insertTask } />,
+            render: (item, row) => <RowKebabButton row={ row } { ...columnsProps } />,
             width: 54,
             fix: 'right',
             alignSelf: 'center',

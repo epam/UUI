@@ -19,3 +19,12 @@ export interface Resource {
 export interface InsertTaskCallback {
     (task: Partial<Task>): void;
 }
+
+export interface DeleteTaskCallback {
+    (id: number): void;
+}
+
+export interface ColumnsProps {
+    insertTask: InsertTaskCallback;
+    deleteTask: DeleteTaskCallback;;
+}
