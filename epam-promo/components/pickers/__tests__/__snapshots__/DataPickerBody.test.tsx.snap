@@ -21,13 +21,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
         "textAlign": "center",
       }
     }
-  >
-    <div
-      className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-    >
-      No records found
-    </div>
-  </div>
+  />
 </div>
 `;
 
@@ -40,8 +34,22 @@ exports[`DataPickerBody should be rendered correctly 2`] = `
     }
   }
 >
-  <div>
-    Not found
+  <div
+    className="no-found-size-36"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div>
+      Not found
+    </div>
   </div>
 </div>
 `;
