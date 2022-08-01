@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/social-person</title>
-    <g id="Icons/18/social-person" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M9,9 C10.6575,9 12,7.6575 12,6 C12,4.3425 10.6575,3 9,3 C7.3425,3 6,4.3425 6,6 C6,7.6575 7.3425,9 9,9 Z M9,10.5 C6.9975,10.5 3,11.505 3,13.5 L3,15 L15,15 L15,13.5 C15,11.505 11.0025,10.5 9,10.5 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9 9C10.6575 9 12 7.6575 12 6C12 4.3425 10.6575 3 9 3C7.3425 3 6 4.3425 6 6C6 7.6575 7.3425 9 9 9ZM9 10.5C6.9975 10.5 3 11.505 3 13.5V15H15V13.5C15 11.505 11.0025 10.5 9 10.5Z" fill="#6C6F80"/>
 </svg>
