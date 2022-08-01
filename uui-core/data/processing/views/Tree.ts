@@ -86,14 +86,12 @@ export class Tree<TItem, TId> {
         return parents;
     }
 
-    /** Returns all nodes which has children.
-     * The list is sorted topologically, so top-level nodes are returned first.
-     */
-    // public getAllParentNodes(): TreeNode<TItem, TId>[] {
-    //     const parentIds = Array.from(this.byParentId.keys());
-    //     const parents = parentIds.map(id => this.byId.get(id)).filter(i => i !== undefined);
-    //     return parents;
-    // }
+    /** Returns all nodes which has children. */
+    public getAllParentNodes(): TreeNode<TItem, TId>[] {
+        const parentIds = Array.from(this.byParentId.keys());
+        const parents = parentIds.map(id => this.byId.get(id)).filter(i => i !== undefined);
+        return parents;
+    }
 
     public forEach(
         action: (node: TreeNode<TItem, TId>) => void,
