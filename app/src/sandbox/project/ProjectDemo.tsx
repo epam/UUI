@@ -107,7 +107,7 @@ export const ProjectDemo = () => {
     // generate 'add item' placeholders
     let lastPlaceholderId = value.maxId + 1;
     tree.getAllParentNodes().reverse().forEach(parent => {
-        tree = tree.append([{ id: lastPlaceholderId++, parentId: parent.id, name: "" }]);
+        tree = tree.append([{ id: lastPlaceholderId++, parentId: parent.id, name: "", isPlaceholder: true }]);
     });
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
