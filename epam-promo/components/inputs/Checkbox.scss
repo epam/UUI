@@ -2,8 +2,8 @@
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     :global(.uui-checkbox) {
-        width: $size;
-        height: $size;
+        width: calc($size - 2px);
+        height: calc($size - 2px);
 
         :global(.uui-icon) {
             svg {
