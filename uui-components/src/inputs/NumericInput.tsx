@@ -62,7 +62,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value !== "" && /^-?\d*[,.]?\d*$/.test(e.target.value)) {
+        if (e.target.value !== "" || /^-?\d*[,.]?\d*$/.test(e.target.value)) {
             this.setState({ value: e.target.value });
         }
     }
@@ -74,7 +74,6 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
 
     handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         let value: number | null;
-
         if (this.state.value === "") {
             value = null;
             this.props.onValueChange(value);
@@ -124,24 +123,6 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         if (e.key === '+' || e.code === 'KeyE') {
             e.preventDefault();
         }
-        if (e.key === '-') {
-            if ((e.target as HTMLInputElement).value === '') {
-                e.preventDefault();
-            }
-        }
-    }
-
-    handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if ((e.target as HTMLInputElement).value.length === 1) {
-            if (e.key === 'Backspace') {
-                this.setState({ value: "" });
-            }
-        }
-        if ((e.target as HTMLInputElement).value.length === 2 && (e.target as HTMLInputElement).value.charAt(0) === '-') {
-            if (e.key === 'Backspace') {
-                this.setState({ value: "" });
-            }
-        }
     }
 
     render() {
@@ -171,7 +152,6 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }
-                    onKeyDown={ this.handleKeyDown }
                     tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                     aria-required={ this.props.isRequired }
                     value={ this.state.value }
