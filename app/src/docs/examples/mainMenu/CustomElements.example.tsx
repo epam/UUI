@@ -7,6 +7,20 @@ import { ReactComponent as LogOutIcon } from "@epam/assets/icons/common/navigati
 
 export default function MainMenuCustomElementsExample() {
     const [value, setValue] = useState('');
+    const [dropDownMenu, setDropDownMenu] = useState([{
+        title: 'Impact',
+        isClicked: false,
+        id: 1,
+    }, {
+        title: 'ENGX',
+        isClicked: false,
+        id: 2,
+    }, {
+        title: 'Cloud',
+        isClicked: false,
+        id: 3,
+    }]);
+
     const renderBurger = () => (
         <>
             <BurgerButton caption="News" />
@@ -21,6 +35,13 @@ export default function MainMenuCustomElementsExample() {
         </>
     );
 
+    const handleClickDropdownItem = (id: number) => {
+        setDropDownMenu(prevState => prevState.map(item => {
+            item.isClicked = item.id === id ? !item.isClicked : false;
+            return item;
+        }));
+    };
+
     return (
         <FlexCell grow={ 1 }>
             <MainMenu
@@ -30,9 +51,7 @@ export default function MainMenuCustomElementsExample() {
                 <MainMenuButton collapseToMore caption="News" priority={ 5 } estimatedWidth={ 67 } />
                 <MainMenuButton collapseToMore caption="My Profile" priority={ 2 } estimatedWidth={ 102 } />
                 <MainMenuDropdown caption="Dashboards" priority={ 2 } estimatedWidth={ 128 }>
-                    <MainMenuButton collapseToMore caption="Impact" />
-                    <MainMenuButton collapseToMore caption="ENGX" />
-                    <MainMenuButton collapseToMore caption="Cloud" />
+                    { dropDownMenu.map(item => <MainMenuButton key={ item.id } onClick={ () => handleClickDropdownItem(item.id) } collapseToMore caption={ item.title } isLinkActive={ item.isClicked } />) }
                 </MainMenuDropdown>
 
                 <FlexSpacer priority={ 100500 } />
