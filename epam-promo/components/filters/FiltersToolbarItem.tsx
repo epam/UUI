@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import dayjs from "dayjs";
 import css from "./FiltersToolbarItem.scss";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
@@ -35,7 +36,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <Panel shadow background="white">
+        <Panel shadow background="white" cx={ css.dropdownPanel }>
             { renderHeader() }
             { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
         </Panel>
@@ -69,14 +70,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 return { selection };
             }
             case "datePicker": {
-                return { selection: currentValue ?? "Select date" };
+                return { selection: currentValue ? dayjs(currentValue).format('MMM DD, YYYY') : "Select date" };
             }
             case "rangeDatePicker": {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
                     return { selection: "Select period" };
                 }
-
-                const selection = `${ currentValue?.from ?? 'Select From' } - ${ currentValue?.to ?? 'Select To' }`;
+                const currentValueFrom = currentValue?.from ? dayjs(currentValue?.from).format('MMM DD, YYYY') : 'Select From';
+                const currentValueTo = currentValue?.to ? dayjs(currentValue?.to).format('MMM DD, YYYY') : 'Select To';
+                const selection = `${ currentValueFrom } - ${ currentValueTo }`;
                 return { selection };
             }
         }
