@@ -2,6 +2,7 @@
 
 @mixin icon-sizes($size, $font-size, $line-height) {
     :global(.uui-checkbox) {
+        box-sizing: border-box;
         width: $size;
         height: $size;
 
