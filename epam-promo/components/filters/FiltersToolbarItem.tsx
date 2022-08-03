@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
+import cx from "classnames";
 import css from "./FiltersToolbarItem.scss";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
@@ -8,8 +9,8 @@ import { Panel } from "../layout";
 import { LinkButton } from "../buttons";
 import { Text, TextPlaceholder } from "../typography";
 import { FilterItemBody } from "./FilterItemBody";
+import { DropdownContainer } from "../overlays";
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
-import cx from "classnames";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -36,10 +37,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <Panel shadow background="white" cx={ css.dropdownPanel }>
-            { renderHeader() }
-            { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
-        </Panel>
+        <DropdownContainer>
+            <Panel background="white">
+                { renderHeader() }
+                { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
+            </Panel>
+        </DropdownContainer>
     );
 
     const getTogglerValue = () => {
@@ -99,6 +102,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
+            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
         />
     );
 };
