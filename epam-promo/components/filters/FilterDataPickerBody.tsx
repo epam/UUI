@@ -1,7 +1,8 @@
 import React from 'react';
+import dayjs from "dayjs";
 import { DatePickerCoreProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
-import { DropdownContainer, DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
+import { DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
 
 export interface DatePickerProps extends DatePickerCoreProps {}
 
@@ -33,7 +34,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                 </FlexRow>
                 <FlexCell alignSelf="stretch">
                     <FlexRow padding="24" vPadding="12">
-                        <Text >{ this.state.selectedDate }</Text>
+                        <Text >{ this.state.selectedDate ? dayjs(this.state.selectedDate).format('MMM DD, YYYY') : '' }</Text>
                         <FlexSpacer />
                         <LinkButton isDisabled={ !this.state.selectedDate } caption="CLEAR" onClick={ this.handleCancel }/>
                     </FlexRow>
