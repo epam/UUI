@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, DataTableCellOverlayProps, uuiDataTableCell, uuiMod } from '@epam/uui-core';
+import { cx, DataTableCellOverlayProps, uuiMod, uuiDataTableCell } from '@epam/uui-core';
 import * as css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
 import { PointerEventHandler, useContext } from "react";
@@ -18,7 +18,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     };
 
     const borderClassNames = isSelected && cx(
-        css.selected,
+        uuiMod.selected,
         isTop && css.top,
         isRight && css.right,
         isBottom && css.bottom,
@@ -28,7 +28,6 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const overlay = (
             <div
                 className={ cx(
-                    css.root,
                     props.isInvalid && uuiMod.invalid,
                     props.inFocus && uuiMod.focus,
                     props.cx,
@@ -37,7 +36,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 ) }
             >
                 { props.inFocus && props.allowCopy && <div
-                    className={ cx(css.copyingMarker, uuiDataTableCell.uuiTableCellCopyingMarker) }
+                    className={  uuiDataTableCell.uuiTableCellCopyingMarker }
                     onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
                 /> }
             </div>

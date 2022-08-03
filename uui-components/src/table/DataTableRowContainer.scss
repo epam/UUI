@@ -21,8 +21,8 @@
 */
 
 .container {
-    --uui-table-cell-overlay-border-width: 1px;
-    --uui-table-cell-overlay-extra-border-width: 2px;
+    --uui-table-cell-overlay-border-width: 2px;
+    --uui-table-cell-overlay-extra-border-width: 3px;
 
     position: relative;
     display: flex;
@@ -40,26 +40,26 @@
     display: flex;
     align-items: stretch;
     background-color: var(--uui-data-table-row-background);
-    &.extraOverlayBorderLeft > div:nth-of-type(1) :global(.uui-table-cell-overlay) {
+}
+
+:global(.uui-table-fixed-section-left) ~ .scrolling-section {
+    > div:nth-of-type(1) :global(.uui-table-cell-overlay) {
         border-left-width: var(--uui-table-cell-overlay-extra-border-width);
-    }
-    &.extraOverlayBorderRight > div:nth-last-of-type(1) :global(.uui-table-cell-overlay) {
-        border-right-width: var(--uui-table-cell-overlay-extra-border-width);
     }
 }
 
-.fixed-columns-section-left, .fixed-columns-section-right {
+:global(.uui-table-fixed-section-left), :global(.uui-table-fixed-section-right) {
     display: flex;
     position: sticky;
     z-index: 5;
     background-color: var(--uui-data-table-row-background);
 }
 
-.fixed-columns-section-left {
+:global(.uui-table-fixed-section-left) {
     left: 0;
 }
 
-.fixed-columns-section-right {
+:global(.uui-table-fixed-section-right) {
     right: 0;
 }
 

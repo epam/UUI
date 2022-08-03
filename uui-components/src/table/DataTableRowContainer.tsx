@@ -9,7 +9,6 @@ type ExtraBordersFlags = { left: boolean, right: boolean };
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
-    wrapScrollingSection?(content: DataColumnProps<TItem, TId, TFilter>[], extraBordersFlags?: ExtraBordersFlags): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -37,14 +36,14 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
         const columnWidth = (typeof column.width === 'number' ? column.width : (column.minWidth || 0));
         width += columnWidth;
         grow += typeof column.grow === 'number' ? column.grow : 0;
-    })
+    });
 
     grow = Math.max(grow, minGrow);
 
     return {
         flex: `${grow} 0 ${width}px`,
         minWidth: `${width}px`,
-    }
+    };
 }
 
 export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
@@ -62,9 +61,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
                 style={ getSectionStyle(columns) }
                 className={ cx({
                     [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
-                    [css.fixedColumnsSectionLeft]: direction === 'left',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
-                    [css.fixedColumnsSectionRight]: direction === 'right',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
                 }) }>
                 { renderCells(columns) }
@@ -75,15 +72,12 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         );
     }
 
-    function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[], borderFlags: ExtraBordersFlags) {
-        if (props.wrapScrollingSection) return props.wrapScrollingSection(columns);
+    function wrapScrollingSection(columns: DataColumnProps<TItem, TId, TFilter>[]) {
         return (
             <div
                 className={ cx(
                     css.scrollingSection,
                     uuiDataTableRowCssMarkers.uuiTableScrollingSection,
-                    borderFlags.left && css.extraOverlayBorderLeft,
-                    borderFlags.right && css.extraOverlayBorderRight,
                 ) }
                 style={ getSectionStyle(columns, 1) }>
                 { renderCells(columns) }
@@ -103,12 +97,10 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         }
 
         const hasScrollingSection = scrollingColumns.length > 0;
-        const withExtraRightBorder = hasScrollingSection && fixedRightColumns.length > 0;
-        const withExtraLeftBorder = hasScrollingSection && fixedLeftColumns.length > 0;
 
         return <>
             { fixedLeftColumns.length > 0 && wrapFixedSection(fixedLeftColumns, 'left', hasScrollingSection) }
-            { wrapScrollingSection(scrollingColumns, { left: withExtraLeftBorder, right: withExtraRightBorder }) }
+            { wrapScrollingSection(scrollingColumns) }
             { fixedRightColumns.length > 0 && wrapFixedSection(fixedRightColumns, 'right', hasScrollingSection) }
             { props.overlays }
         </>;

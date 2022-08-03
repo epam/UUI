@@ -84,6 +84,7 @@ export const uuiDataTableCell = {
     uuiTableCellCopyingMarker: 'uui-table-cell-copying-marker',
 } as const;
 
+
 export const uuiScrollShadows = {
     top: 'uui-scroll-shadow-top',
     topVisible: 'uui-scroll-shadow-top-visible',

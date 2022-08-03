@@ -69,6 +69,7 @@ export const DataTableRow = React.memo(function DataTableRow<TItem, TId>(props: 
                     params.classNames,
                     props.isSelected && uuiMod.selected,
                     params.isDraggable && uuiMarkers.draggable,
+                    props.isInvalid && uuiMod.invalid,
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
                     props.isFocused && uuiMod.focus,
