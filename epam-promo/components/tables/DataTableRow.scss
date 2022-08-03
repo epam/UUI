@@ -6,12 +6,16 @@
         cursor: pointer;
 
         &:hover {
-            --uui-data-table-row-background: #{$gray20};
+            --uui-data-table-row-background: #{$gray10};
         }
     }
 
     &:global(.-draggable) {
         @include dnd-cursor-style();
+    }
+
+    &:global(.uui-invalid) {
+        --uui-data-table-row-background: #FEF7F6; //TODO: fix to use color from variable when this color is added to promo palette
     }
 
     &:global(.uui-dragged-out) {

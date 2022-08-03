@@ -28,7 +28,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
-            background={ rowProps.isInvalid ? 'red' : props.rowBackground }
+            background={ props.rowBackground }
             borderBottom={ props.border }
             { ...rowProps }
         />

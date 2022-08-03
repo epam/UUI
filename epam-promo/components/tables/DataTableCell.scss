@@ -1,8 +1,6 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .cell {
-    --uui-table-cell-focus-border: #{$blue};
-
     &.align-widgets-top {
         &.size-24, &.size-30 {
             :global(.uui-checkbox), .folding-arrow {
@@ -45,6 +43,12 @@
 
     &.padding-right-24 { padding-right: 24px; }
 
+    :global(.uui-table-cell-overlay) {
+        &:global(.uui-focus), &:global(.uui-selected) {
+            border-color: $blue;
+        }
+    }
+
     &:hover :global(.uui-table-cell-overlay):not(:global(.uui-focus)) {
         border-color: $gray60;
     }
@@ -53,39 +57,39 @@
         border-color: $gray30;
     }
     &:global(.uui-invalid) {
-        --uui-data-table-cell-background: #{$red-lightest};
+        background-color: #{$red-lightest};
     }
     &:global(.uui-focus):not(&:global(.uui-invalid)) {
-        --uui-data-table-cell-background: #{$white};
+        background-color: #{$white};
     }
 
     &:not(&:global(.uui-invalid), &:global(.uui-focus)) {
         &.background-blue {
-            --uui-data-table-cell-background: #{$blue-transparent};
+            background-color: #{$blue-transparent};
         }
         &.background-green {
-            --uui-data-table-cell-background: #{$green-transparent};
+            background-color: #{$green-transparent};
         }
         &.background-amber {
-            --uui-data-table-cell-background: #{$amber-transparent};
+            background-color: #{$amber-transparent};
         }
         &.background-red {
-            --uui-data-table-cell-background: #{$red-transparent};
+            background-color: #{$red-transparent};
         }
         &.background-cyan {
-            --uui-data-table-cell-background: #{$cyan-transparent};
+            background-color: #{$cyan-transparent};
         }
         &.background-orange {
-            --uui-data-table-cell-background: #{$orange-transparent};
+            background-color: #{$orange-transparent};
         }
         &.background-purple {
-            --uui-data-table-cell-background: #{$purple-transparent};
+            background-color: #{$purple-transparent};
         }
         &.background-violet {
-            --uui-data-table-cell-background: #{$violet-transparent};
+            background-color: #{$violet-transparent};
         }
         &.background-gray5 {
-            --uui-data-table-cell-background: #{$gray5};
+            background-color: #{$gray5};
         }
     }
 }
@@ -145,6 +149,7 @@
 }
 
 :global(.uui-table-cell-copying-marker) {
+    background-color: $blue;
     width: 7px;
     height: 7px;
     &::after {
