@@ -44,7 +44,7 @@ Array [
         className="root shadow background-white container"
         style={
           Object {
-            "width": 360,
+            "width": undefined,
           }
         }
       >
