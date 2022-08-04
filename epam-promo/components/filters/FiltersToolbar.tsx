@@ -24,6 +24,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     }, []);
 
     const onFiltersChange = (newValue: TableFiltersConfig<TFilter>[]) => {
+        //TODO make new logic to create order for new filters
         const newConfig: FiltersConfig = {};
 
         let order: string | null = null;
