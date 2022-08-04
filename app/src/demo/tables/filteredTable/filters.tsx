@@ -1,4 +1,6 @@
+import React from 'react';
 import { TableFiltersConfig, LazyDataSource } from "@epam/uui-core";
+import { Badge, DataPickerRow, EpamAdditionalColor } from "@epam/promo";
 import { svc } from "../../../services";
 import { Person } from "@epam/uui-docs";
 
@@ -11,6 +13,13 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             type: "multiPicker",
             isAlwaysVisible: true,
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
+            renderRow: (props) =>
+                <DataPickerRow
+                    { ...props }
+                    size='36'
+                    key={ props.rowKey }
+                    renderItem={ (item: any) => <Badge fill='transparent' color={ item.name.toLowerCase() } caption={ item.name } /> }
+                />,
         },
         {
             field: "jobTitleId",
