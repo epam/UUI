@@ -51,7 +51,7 @@ function getPatternPredicate(filter) {
                         return;
                     } else if (dateFrom !== null && dateTo !== null) {
                         dayjs.extend(isBetween)
-                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isBetween(dateFrom, dateTo, 'date'); });
+                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isBetween(dateFrom, dateTo, null, '[]'); });
                         return;
                     }
                 }
