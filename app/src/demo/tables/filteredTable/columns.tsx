@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton } from '@epam/promo';
+import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
 import { DataColumnProps } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
 import * as css from './FilteredTable.scss';
-import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
 export const personColumns = [
     {
@@ -127,10 +126,7 @@ export const personColumns = [
     },
     {
         key: 'detailed',
-        render: () => <IconButton
-            cx={ css.detailedIcon }
-            icon={ ViewIcon }
-        />,
+        render: () => {},
         width: 54,
         alignSelf: 'center',
         fix: 'right',
