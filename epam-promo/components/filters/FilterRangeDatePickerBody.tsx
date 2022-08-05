@@ -1,7 +1,8 @@
 import * as React from 'react';
+import dayjs from "dayjs";
 import { BaseRangeDatePickerProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
 import { BaseRangeDatePicker } from '@epam/uui-components';
-import { DropdownContainer, FlexRow, i18n, RangeDatePickerBody, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
+import { FlexRow, i18n, RangeDatePickerBody, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
 import cx from "classnames";
 import * as css from "../datePickers/RangeDatePicker.scss";
 import { systemIcons } from "../../icons/icons";
@@ -33,7 +34,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
                                 size={ '30' }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }
-                                value={ this.state.inputValue.from }
+                                value={ dayjs(this.state.inputValue.from).format('MMM DD, YYYY') }
                                 onValueChange={ this.getChangeHandler('from') }
                                 onFocus={ () => this.handleFocus('from') }
                                 onBlur={ () => this.handleBlur('from') }
@@ -43,7 +44,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
                                 size={ '30' }
-                                value={ this.state.inputValue.to }
+                                value={ dayjs(this.state.inputValue.to).format('MMM DD, YYYY') }
                                 onCancel={ this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                                 onValueChange={ this.getChangeHandler('to') }
                                 onFocus={ () => this.handleFocus('to') }
