@@ -36,6 +36,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isInteractedOutside(event) && inFocus) {
             blur();
         }
+
+        if (props.pickerMode === 'single' && props.searchPosition === 'none') {
+            setInFocus(false);
+        }
+
     }, [inFocus]);
 
     React.useEffect(() => {
@@ -99,7 +104,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const placeholder = isActivePlaceholder ? props.getName(props.selection[0].value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
-
         if (props.disableSearch && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
         }
