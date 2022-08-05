@@ -6,6 +6,7 @@ import { FlexRow, VirtualList } from '../layout';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import * as css from './DataPickerBody.scss';
+import { Text } from "../typography";
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;
@@ -20,7 +21,10 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     renderNoFound() {
         return (
             <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
-                { this.props.renderNotFound && this.props.renderNotFound() }
+                { this.props.renderNotFound ?
+                    this.props.renderNotFound() :
+                    <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                }
             </FlexCell>
         );
     }
