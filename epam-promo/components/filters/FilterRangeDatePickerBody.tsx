@@ -34,7 +34,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
                                 size={ '30' }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }
-                                value={ dayjs(this.state.inputValue.from).format('MMM DD, YYYY') }
+                                value={ dayjs(this.state.inputValue.from).isValid() ? dayjs(this.state.inputValue.from).format('MMM DD, YYYY') : this.state.inputValue.from }
                                 onValueChange={ this.getChangeHandler('from') }
                                 onFocus={ () => this.handleFocus('from') }
                                 onBlur={ () => this.handleBlur('from') }
@@ -44,7 +44,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
                                 size={ '30' }
-                                value={ dayjs(this.state.inputValue.to).format('MMM DD, YYYY') }
+                                value={ dayjs(this.state.inputValue.to).isValid() ? dayjs(this.state.inputValue.to).format('MMM DD, YYYY') : this.state.inputValue.to }
                                 onCancel={ this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                                 onValueChange={ this.getChangeHandler('to') }
                                 onFocus={ () => this.handleFocus('to') }
