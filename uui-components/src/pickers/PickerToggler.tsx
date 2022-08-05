@@ -36,11 +36,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.isInteractedOutside(event) && inFocus) {
             blur();
         }
-
-        if (props.pickerMode === 'single' && props.searchPosition === 'none') {
-            setInFocus(false);
-        }
-
     }, [inFocus]);
 
     React.useEffect(() => {
@@ -120,7 +115,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             className={ cx(
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
-                isActivePlaceholder && (!inFocus || props.isReadonly) && uuiElement.placeholder)
+                isActivePlaceholder && !props.isOpen && !props.isReadonly && uuiElement.placeholder)
             }
             disabled={ props.isDisabled }
             placeholder={ placeholder }
