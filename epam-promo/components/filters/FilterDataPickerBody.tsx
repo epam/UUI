@@ -4,7 +4,9 @@ import { DatePickerCoreProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
 import { DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
 
-export interface DatePickerProps extends DatePickerCoreProps {}
+export interface DatePickerProps extends DatePickerCoreProps {
+    onClose?: () => void;
+}
 
 export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
     state: DatePickerState = {
@@ -31,7 +33,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                         value={ this.getValue() }
                         setSelectedDate={ this.setSelectedDate }
                         setDisplayedDateAndView={ this.setDisplayedDateAndView }
-                        changeIsOpen={ val => this.onToggleHandler(val) }
+                        changeIsOpen={ this.onToggleHandler }
                         renderDay={ this.props.renderDay }
                         isHoliday={ this.props.isHoliday }
                         rawProps={ this.props.rawProps?.body }
