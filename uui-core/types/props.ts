@@ -78,7 +78,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
 }
 
 export interface IDropdownBodyProps {
-    onClose?:() => void;
+    onClose?: () => void;
     togglerWidth?: number;
     togglerHeight?: number;
     scheduleUpdate?: () => void;
