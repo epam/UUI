@@ -1,12 +1,10 @@
 import React from 'react';
 import dayjs from "dayjs";
-import { DatePickerCoreProps } from "@epam/uui-core";
+import { DatePickerCoreProps, IDropdownBodyProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
 import { DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
 
-export interface DatePickerProps extends DatePickerCoreProps {
-    onClose?: () => void;
-}
+export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
     state: DatePickerState = {
