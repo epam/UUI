@@ -1,6 +1,3 @@
-import { items } from "app/src/documents/structure";
-import { bindKey } from "lodash";
-
 export interface TreeNode<TItem, TId> {
     id: TId;
     key: string;
