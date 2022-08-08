@@ -21,7 +21,13 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
         "textAlign": "center",
       }
     }
-  />
+  >
+    <div
+      className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+    >
+      No records found
+    </div>
+  </div>
 </div>
 `;
 
