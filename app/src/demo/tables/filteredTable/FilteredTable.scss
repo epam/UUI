@@ -16,18 +16,6 @@
     min-width: 0;
     flex-grow: 1;
 
-    :global(.uui-table-row) {
-        .detailed-icon {
-            visibility: hidden;
-        }
-
-        &:hover {
-            .detailed-icon {
-                visibility: visible;
-            }
-        }
-    }
-
     .manager-cell {
         font-family: $font-sans;
     }
