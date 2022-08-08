@@ -8,4 +8,5 @@ export interface DatePickerCoreProps extends BaseDatePickerProps {
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     };
+    onClose?: () => void;
 }
