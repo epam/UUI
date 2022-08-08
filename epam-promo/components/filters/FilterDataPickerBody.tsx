@@ -17,6 +17,11 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
         return null;
     }
 
+    onToggleHandler = (val: boolean) => {
+        this.onToggle(val);
+        this.props.onClose();
+    }
+
     renderBody() {
         return (
             <>
@@ -26,7 +31,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                         value={ this.getValue() }
                         setSelectedDate={ this.setSelectedDate }
                         setDisplayedDateAndView={ this.setDisplayedDateAndView }
-                        changeIsOpen={ this.onToggle }
+                        changeIsOpen={ val => this.onToggleHandler(val) }
                         renderDay={ this.props.renderDay }
                         isHoliday={ this.props.isHoliday }
                         rawProps={ this.props.rawProps?.body }
