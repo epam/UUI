@@ -50,7 +50,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+          className="uui-table-fixed-section uui-table-fixed-section-left"
           style={
             Object {
               "flex": "0 0 96px",
@@ -107,7 +107,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           />
         </div>
         <div
-          className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+          className="scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "2 0 470px",
@@ -281,7 +281,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -312,7 +312,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -388,7 +388,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -419,7 +419,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -495,7 +495,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -526,7 +526,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -602,7 +602,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -633,7 +633,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -709,7 +709,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -740,7 +740,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -816,7 +816,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -847,7 +847,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -923,7 +923,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -954,7 +954,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1030,7 +1030,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1061,7 +1061,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1137,7 +1137,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1168,7 +1168,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1244,7 +1244,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1275,7 +1275,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="scrollingSection uui-table-scrolling-section extraOverlayBorderLeft"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
