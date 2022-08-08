@@ -32,35 +32,6 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 `;
 
 exports[`DataPickerBody should be rendered correctly 2`] = `
-<div
-  className="root size-36 background-white body editMode-undefined container align-items-center"
-  style={
-    Object {
-      "maxHeight": undefined,
-    }
-  }
->
-  <div
-    className="no-found-size-36"
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": "center",
-      }
-    }
-  >
-    <div>
-      Not found
-    </div>
-  </div>
-</div>
-`;
-
-exports[`DataPickerBody should be rendered correctly 3`] = `
 Array [
   <div
     className="searchWrapper search-size-48"
@@ -504,4 +475,33 @@ Array [
     </div>
   </div>,
 ]
+`;
+
+exports[`DataPickerBody should be rendered correctly without rows 1`] = `
+<div
+  className="root size-36 background-white body editMode-undefined container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div
+    className="no-found-size-36"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div>
+      Not found
+    </div>
+  </div>
+</div>
 `;
