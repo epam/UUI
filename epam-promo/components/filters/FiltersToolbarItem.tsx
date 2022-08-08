@@ -23,7 +23,10 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const onValueChange = useCallback((value: any) => {
         props.onValueChange({ [props.field]: value });
-    }, [props.field, props.onValueChange]);
+        if (props.type === 'datePicker') {
+            isOpenChange(() => false);
+        }
+    }, [props.field, props.type, props.onValueChange]);
 
     const removeOnclickHandler = () => {
         props.removeFilter(props.columnKey, props.field);
