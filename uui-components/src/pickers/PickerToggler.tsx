@@ -115,7 +115,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             className={ cx(
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
-                isActivePlaceholder && !props.isOpen && !props.isReadonly && uuiElement.placeholder)
+                isActivePlaceholder &&
+                (!props.isOpen || props.isOpen && (props.searchPosition === 'none' || props.searchPosition === 'body'))
+                && !props.isReadonly && uuiElement.placeholder)
             }
             disabled={ props.isDisabled }
             placeholder={ placeholder }

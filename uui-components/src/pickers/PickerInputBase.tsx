@@ -159,7 +159,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         };
     }
 
-    getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
+    getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
@@ -193,7 +193,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition: this.props.searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: this.props.searchPosition === 'none' || !dropdownProps.isOpen,
+            disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
@@ -265,7 +265,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return (
             <Dropdown
                 renderTarget={ dropdownProps => {
-                    const targetProps = this.getTogglerProps(rows, dropdownProps);
+                    const targetProps = this.getTogglerProps(rows);
                     const targetRef = this.getTargetRef({ ...targetProps, ...dropdownProps });
                     return this.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
                 } }
