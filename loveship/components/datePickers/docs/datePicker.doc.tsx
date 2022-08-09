@@ -32,6 +32,13 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
                 return <Day renderDayNumber={ getCustomDay } value={ day } onValueChange={ onDayClick } isSelected={ day && day.isSame(ctx.getSelectedProps().value) } filter={ ctx.getSelectedProps().filter } />;
             },
         }] })
+    .prop('placement', {
+        examples: [
+            'auto-start', 'auto', 'auto-end', 'top-start',
+            'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end',
+            'bottom', {value: 'bottom-start', isDefault: true }, 'left-end', 'left', 'left-start',
+        ],
+    })
     .prop('disableClear', { examples: [true], defaultValue: false})
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: day => false }] })
     .prop('renderFooter', {
