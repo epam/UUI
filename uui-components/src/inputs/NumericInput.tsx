@@ -74,7 +74,6 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
 
     handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         let value: number | null;
-
         if (this.state.value === "") {
             value = null;
             this.props.onValueChange(value);
@@ -120,6 +119,12 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
         }
     }
 
+    handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === '+' || e.code === 'KeyE') {
+            e.preventDefault();
+        }
+    }
+
     render() {
         const showArrows = !this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled;
 
@@ -143,6 +148,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
             >
                 <input
                     type="number"
+                    onKeyPress={ this.handleKeyPress }
                     className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight) }
                     disabled={ this.props.isDisabled }
                     readOnly={ this.props.isReadonly }

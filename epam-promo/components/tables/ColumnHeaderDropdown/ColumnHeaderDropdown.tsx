@@ -26,7 +26,7 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = props => {
     ], []);
 
     const style = useMemo(() => ({
-        width: isMobile() ? document.documentElement.clientWidth : 360,
+        width: isMobile() ? document.documentElement.clientWidth : undefined,
     }), []);
 
     const closeDropdown = useCallback(() => props.onOpenChange(false), [props.onOpenChange]);

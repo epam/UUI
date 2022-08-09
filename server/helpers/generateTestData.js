@@ -83,7 +83,7 @@ const getPersons = cached("persons", async () => {
             birthDate: c.birthday().toISOString(),
             cityId: city.id,
             cityName: city.name,
-            countryId: city.countryId,
+            countryId: city.country,
             countryName: city.countryName,
             departmentId: department.id,
             departmentName: department.name,

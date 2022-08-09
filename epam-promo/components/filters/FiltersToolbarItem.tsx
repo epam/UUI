@@ -1,4 +1,6 @@
 import React, { useCallback, useState } from "react";
+import dayjs from "dayjs";
+import cx from "classnames";
 import css from "./FiltersToolbarItem.scss";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
@@ -7,8 +9,8 @@ import { Panel } from "../layout";
 import { LinkButton } from "../buttons";
 import { Text, TextPlaceholder } from "../typography";
 import { FilterItemBody } from "./FilterItemBody";
+import { DropdownContainer } from "../overlays";
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
-import cx from "classnames";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -35,10 +37,12 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <Panel shadow background="white">
-            { renderHeader() }
-            { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
-        </Panel>
+        <DropdownContainer>
+            <Panel background="white">
+                { renderHeader() }
+                { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
+            </Panel>
+        </DropdownContainer>
     );
 
     const getTogglerValue = () => {
@@ -69,14 +73,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 return { selection };
             }
             case "datePicker": {
-                return { selection: currentValue ?? "Select date" };
+                return { selection: currentValue ? dayjs(currentValue).format('MMM DD, YYYY') : "Select date" };
             }
             case "rangeDatePicker": {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
                     return { selection: "Select period" };
                 }
-
-                const selection = `${ currentValue?.from ?? 'Select From' } - ${ currentValue?.to ?? 'Select To' }`;
+                const currentValueFrom = currentValue?.from ? dayjs(currentValue?.from).format('MMM DD, YYYY') : 'Select From';
+                const currentValueTo = currentValue?.to ? dayjs(currentValue?.to).format('MMM DD, YYYY') : 'Select To';
+                const selection = `${ currentValueFrom } - ${ currentValueTo }`;
                 return { selection };
             }
         }
@@ -97,6 +102,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
+            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
         />
     );
 };

@@ -119,7 +119,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         maxHeight={ maxHeight }
                         searchSize={ this.props.size }
                         editMode='dropdown'
-                        renderNotFound={ () => this.renderNoFound({search: this.state.dataSourceState.search, onClose: () => this.toggleBodyOpening(false)}) }
+                        renderNotFound={ this.props.renderNotFound ?
+                            () => this.props.renderNotFound({
+                                search: this.state.dataSourceState.search,
+                                onClose: () => this.toggleBodyOpening(false),
+                            }) : undefined
+                    }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>
