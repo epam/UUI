@@ -1,20 +1,18 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Person } from '@epam/uui-docs';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState } from "@epam/uui-core";
-import { DataTable, FiltersToolbar, FlexRow, Text } from '@epam/promo';
+import { DataTable, FiltersToolbar, FlexRow } from '@epam/promo';
 import css from './FilteredTable.scss';
 import type { TApi } from '../../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { mapFilter } from "../masterDetailedTable/data";
-import { FlexCell, FlexSpacer, Paginator } from "@epam/uui-components";
+import { FlexCell } from "@epam/uui-components";
 import { SearchInput } from "@epam/uui";
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
-    const [searchValue, onSearchValueChange] = useState(null);
-
     const tableStateApi = useTableState({ columns: personColumns });
     const tableState = tableStateApi.tableState;
 
