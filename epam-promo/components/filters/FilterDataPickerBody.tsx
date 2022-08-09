@@ -1,10 +1,10 @@
 import React from 'react';
 import dayjs from "dayjs";
-import { DatePickerCoreProps } from "@epam/uui-core";
+import { DatePickerCoreProps, IDropdownBodyProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
 import { DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
 
-export interface DatePickerProps extends DatePickerCoreProps {}
+export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
 export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
     state: DatePickerState = {
@@ -17,6 +17,11 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
         return null;
     }
 
+    onToggleHandler = (val: boolean) => {
+        this.onToggle(val);
+        this.props.onClose();
+    }
+
     renderBody() {
         return (
             <>
@@ -26,7 +31,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
                         value={ this.getValue() }
                         setSelectedDate={ this.setSelectedDate }
                         setDisplayedDateAndView={ this.setDisplayedDateAndView }
-                        changeIsOpen={ this.onToggle }
+                        changeIsOpen={ this.onToggleHandler }
                         renderDay={ this.props.renderDay }
                         isHoliday={ this.props.isHoliday }
                         rawProps={ this.props.rawProps?.body }
