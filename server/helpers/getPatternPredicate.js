@@ -1,4 +1,10 @@
 "use strict";
+const _ = require("lodash");
+const dayjs = require("dayjs");
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
+const isBetween = require('dayjs/plugin/isBetween');
+
 exports.__esModule = true;
 var truePredicate = function () { return true; };
 function getPatternPredicate(filter) {
@@ -21,6 +27,34 @@ function getPatternPredicate(filter) {
             }
             if ('in' in condition && Array.isArray(condition["in"]) && condition["in"].length) {
                 var values_1 = condition["in"];
+
+                if (key === 'hireDate' && filter[key] !== undefined) {
+                    if (filter[key]?.in[0] === null) {
+                        return truePredicate
+                    }
+                    predicates.push(function (item) { return dayjs(values_1[0]).isSame(dayjs(item[key]), 'date'); });
+                    return;
+                }
+                if (key === 'birthDate' && _.isPlainObject(values_1[0])) {
+                    const dateFrom = values_1[0]?.from ;
+                    const dateTo = values_1[0]?.to;
+
+                    if (dateFrom === null && dateTo === null) {
+                        return truePredicate
+                    } else if (dateFrom === null && dateTo !== null) {
+                        dayjs.extend(isSameOrBefore);
+                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isSameOrBefore(dateTo, 'date'); });
+                        return;
+                    } else if (dateFrom !== null && dateTo === null) {
+                        dayjs.extend(isSameOrAfter);
+                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isSameOrAfter(dateFrom, 'date'); });
+                        return;
+                    } else if (dateFrom !== null && dateTo !== null) {
+                        dayjs.extend(isBetween)
+                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isBetween(dateFrom, dateTo, null, '[]'); });
+                        return;
+                    }
+                }
                 predicates.push(function (item) { return values_1.includes(item[key]); });
             }
             if (condition.gte != null) {

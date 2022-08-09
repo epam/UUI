@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import * as props from './props';
 import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
@@ -243,6 +243,7 @@ type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "singlePicker" | "multiPicker";
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
+    renderRow?: (props: DataRowProps<any, any>) => ReactNode;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {

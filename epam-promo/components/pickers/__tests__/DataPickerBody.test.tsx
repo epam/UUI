@@ -38,7 +38,7 @@ describe('DataPickerBody', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly without rows', async () => {
         const tree = await renderWithContextAsync(
             <DataPickerBody
                 { ...requiredProps }
