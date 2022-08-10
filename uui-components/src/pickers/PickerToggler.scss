@@ -14,9 +14,14 @@
         border: 0;
         outline: none;
         background: none;
+        cursor: pointer;
 
         &.single-input {
             flex: 1 1 auto;
+        }
+
+        &.cursor-text {
+            cursor: text;
         }
     }
     
