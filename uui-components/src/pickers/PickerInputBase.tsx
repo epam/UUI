@@ -191,7 +191,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             getName: (i: any) => this.getName(i),
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
-            searchPosition: this.props.searchPosition,
+            searchPosition: this.props.searchPosition ? this.props.searchPosition : searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             disableSearch: !dropdownProps.isOpen || searchPosition !== 'input',
             disableClear: disableClear,
