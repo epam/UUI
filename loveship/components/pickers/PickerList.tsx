@@ -6,7 +6,7 @@ import {
     IClickable,
     IHasCaption,
     IHasPlaceholder,
-    UuiContext,
+    UuiContext, IHasRawProps,
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
@@ -14,7 +14,7 @@ import { PickerListItem } from './PickerListItem';
 import { Theme, SizeMod, TextSize } from '../types';
 import { Text } from '../typography';
 
-export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & IHasRawProps<HTMLDivElement> & {
     theme?: Theme;
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
@@ -61,7 +61,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
         const renderRow = this.props.renderRow || this.renderRow;
 
         return (
-            <div>
+            <div { ...this.props.rawProps }>
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
                     <Text color={ this.props.theme === 'dark' ? 'night300' : 'night500'  } size={ this.props.size as TextSize }>No options available</Text>) }
