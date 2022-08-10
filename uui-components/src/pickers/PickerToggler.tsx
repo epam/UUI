@@ -97,7 +97,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderInput = () => {
         const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const placeholder = isActivePlaceholder ? props.getName(props.selection[0].value) : props.placeholder;
+        const placeholder = isActivePlaceholder ? props.getName(props.selection[0]?.value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
         if (props.disableSearch && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
@@ -115,6 +115,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             className={ cx(
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
+                props.pickerMode === 'single' && (props.searchPosition === undefined || props.searchPosition === 'input') && css.cursorText,
                 isActivePlaceholder &&
                 (!props.isOpen || props.isOpen && (props.searchPosition === 'none' || props.searchPosition === 'body'))
                 && !props.isReadonly && uuiElement.placeholder)
