@@ -14,7 +14,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
     <input
       aria-haspopup={true}
       autoComplete="no"
-      className="uui-input singleInput"
+      className="uui-input singleInput cursorText"
       onChange={[Function]}
       tabIndex={-1}
       type="text"
