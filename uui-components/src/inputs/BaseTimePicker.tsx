@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler } from '@epam/uui-core';
+import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps } from '@epam/uui-core';
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Dropdown, DropdownBodyProps } from '../overlays';
 dayjs.extend(customParseFormat);
@@ -10,6 +10,10 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue>, IDisabl
     format?: 12 | 24;
     id?: string;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    };
 }
 
 interface TimePickerState {
