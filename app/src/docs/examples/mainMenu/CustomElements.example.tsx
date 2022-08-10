@@ -7,6 +7,7 @@ import { ReactComponent as LogOutIcon } from "@epam/assets/icons/common/navigati
 
 export default function MainMenuCustomElementsExample() {
     const [value, setValue] = useState('');
+
     const renderBurger = () => (
         <>
             <BurgerButton caption="News" />
@@ -31,7 +32,7 @@ export default function MainMenuCustomElementsExample() {
                 <MainMenuButton collapseToMore caption="My Profile" priority={ 2 } estimatedWidth={ 102 } />
                 <MainMenuDropdown caption="Dashboards" priority={ 2 } estimatedWidth={ 128 }>
                     <MainMenuButton collapseToMore caption="Impact" />
-                    <MainMenuButton collapseToMore caption="ENGX" />
+                    <MainMenuButton collapseToMore caption="ENGX" isLinkActive={ true } />
                     <MainMenuButton collapseToMore caption="Cloud" />
                 </MainMenuDropdown>
 

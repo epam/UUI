@@ -19,6 +19,7 @@
 * [Badge]: fixed semitransparent hover colors
 * [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
 * [RangeDatePicker]: fix preset styles
+* [MainMenuButton]: reworked styles for dropdown items 
 
 # 4.7.1 - 06.06.2022
 
