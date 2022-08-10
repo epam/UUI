@@ -140,6 +140,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
                 onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
                 value={ this.state.isOpen }
                 modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
+                placement={ this.props.placement }
             />
         );
     }

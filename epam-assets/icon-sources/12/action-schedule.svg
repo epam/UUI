@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/12/action-schedule</title>
-    <g id="Icons/12/action-schedule" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M6,1 C8.76142375,1 11,3.23857625 11,6 C11,8.76142375 8.76142375,11 6,11 C3.23857625,11 1,8.76142375 1,6 C1,3.23857625 3.23857625,1 6,1 Z M6,2 C3.790861,2 2,3.790861 2,6 C2,8.209139 3.790861,10 6,10 C8.209139,10 10,8.209139 10,6 C10,3.790861 8.209139,2 6,2 Z M6,3.5 L6,6.19 L7.72539925,7.05269848 L7.27853752,7.94730152 L5,6.80915292 L5,3.5 L6,3.5 Z" id="icon" fill="#45FF00"></path>
-    </g>
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6.19V3.5H5V6.80915L7.27854 7.9473L7.7254 7.0527L6 6.19Z" fill="#6C6F80"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6 1C8.76142 1 11 3.23858 11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1ZM6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2Z" fill="#6C6F80"/>
 </svg>

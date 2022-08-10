@@ -10,4 +10,12 @@
     :global(.uui-button-box):hover {
         background-color: var(--dropdown-item-background-color);
     }
+
+    :global(.uui-button-box) {
+        &:global(.uui-active) {
+            border: none;
+            border-left: 3px solid var(--border-color-active);
+            background-color: var(--dropdown-item-background-color);
+        }
+    }
 }

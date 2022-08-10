@@ -12,7 +12,7 @@ interface FiltersToolbarProps<TFilter> {
     setTableState: (newState: DataTableState) => void;
 }
 
-const getNewTableState = (key: string, {[key]: deletedKey, ...others}) => others;
+const getNewTableState = (key: string, { [key]: deletedKey, ...others }) => others;
 
 const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
@@ -23,14 +23,18 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         getId: item => item.columnKey,
     }, []);
 
-    const onFiltersChange = (newValue: TableFiltersConfig<TFilter>[]) => {
+    const onFiltersChange = (filters: TableFiltersConfig<TFilter>[]) => {
         const newConfig: FiltersConfig = {};
-
-        let order: string | null = null;
-        newValue.forEach(filter => {
-            const newOrder = getOrderBetween(order, null);
-            order = newOrder;
-            newConfig[filter.columnKey] = { isVisible: true, order: newOrder };
+        const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, f => f?.order);
+        let order: string | null = sortedOrders ? sortedOrders[sortedOrders.length - 1].order : null;
+        filters.forEach(filter => {
+            if (tableState.filtersConfig && tableState?.filtersConfig[filter?.columnKey]) {
+                newConfig[filter.columnKey] = tableState?.filtersConfig[filter?.columnKey];
+            } else {
+                const newOrder = getOrderBetween(order, null);
+                order = newOrder;
+                newConfig[filter.columnKey] = { isVisible: true, order: newOrder };
+            }
         });
 
         setTableState({
@@ -74,14 +78,14 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
 
     const renderAddFilterToggler = useCallback((props: PickerTogglerProps) => {
         return <Button
-            size='36'
+            size="36"
             onClick={ props.onClick }
             ref={ props.ref }
             caption="Add filter"
             icon={ addIcon }
-            iconPosition='left'
-            fill='light'
-            color='blue'
+            iconPosition="left"
+            fill="light"
+            color="blue"
         />;
     }, []);
 
@@ -96,7 +100,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     return (
         <>
             { sortedActiveFilters.map(f => (
-                <FlexCell width='auto' key={ f.field as string } >
+                <FlexCell width="auto" key={ f.field as string }>
                     <FiltersToolbarItem
                         { ...f }
                         value={ tableState.filter?.[f.field] }
@@ -117,7 +121,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                 renderRow={ (props) =>
                     <DataPickerRow
                         { ...props }
-                        padding='12'
+                        padding="12"
                         key={ props.key }
                         onCheck={ (row) => { props.onCheck(row); !row.isChecked && setNewFilterId(row.value.columnKey); } }
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }

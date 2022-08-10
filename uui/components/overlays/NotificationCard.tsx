@@ -62,7 +62,7 @@ export class NotificationCard extends React.Component<NotificationCardProps> {
                             }) }
                         </div> }
                     </div>
-                    { this.props.onClose && <IconButton icon={ CrossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /> }
+                    { this.props.onClose && <div className={ css.closeWrapper }><IconButton icon={ CrossIcon } color='default' onClick={ this.props.onClose } cx={ css.closeIcon } /></div> }
                 </div>
             </div>
         );

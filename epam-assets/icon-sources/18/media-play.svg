@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/media-play</title>
-    <g id="Icons/18/media-play" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="icon" fill="#45FF00" points="6 3.855 6 14.355 14.25 9.105"></polygon>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6 3.855V14.355L14.25 9.105L6 3.855Z" fill="#6C6F80"/>
 </svg>
