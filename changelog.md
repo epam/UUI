@@ -1,3 +1,25 @@
+# 4.8.1 - 10.08.2022
+
+**What's New**
+* Add `rawProps` prop for the rest part of the components
+* Updated icon pack
+* [PickerItem]: add possibility to pass icon
+* [FiltersPanel]: add possibility to provide your own renderRow callback
+* [DatePicker]: add placement props 
+* [DataTable]: add default 'not results found' state
+* [PickerModal]: add default 'not results found' state
+* [FilterToolbar]: small improvements and bugfixes
+
+
+**What’s Fixed**
+* [PickerInput]: rework styles for selected value in toggler
+* [DataTable]: fix table rerender when columns prop changed 
+* [NumericInput]: don't allow '+' and 'e' symbols
+* [LinkButton]: fix focus state
+* [RangeDatePicker]: fix error when preset is null
+* [NotificationCard]: rework styles
+
+
 # 4.8.0 - 21.07.2022
 
 **What's New**
