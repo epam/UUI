@@ -6,13 +6,12 @@ import { Anchor, FlexRow, IconContainer, Text } from '../';
 import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from "../../i18n";
 
-export interface DropSpotProps {
+export interface DropSpotProps extends IHasRawProps<HTMLDivElement> {
     cx?: string;
     infoText?: string;
     onUploadFiles(files: File[]): any;
     accept?: string;
     single?: boolean;
-    rawProps?: IHasRawProps<HTMLDivElement>;
 }
 
 export class DropSpot extends React.Component<DropSpotProps> {

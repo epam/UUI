@@ -596,6 +596,10 @@
         "value": "(e?: React.FocusEvent<HTMLInputElement>) => void"
       },
       {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
+      },
+      {
         "name": "value",
         "value": "T"
       },
@@ -2398,6 +2402,26 @@
         "value": "React.ForwardedRef<T>"
       },
       {
+        "name": "onClose",
+        "value": "() => void"
+      },
+      {
+        "name": "togglerWidth",
+        "value": "number"
+      },
+      {
+        "name": "togglerHeight",
+        "value": "number"
+      },
+      {
+        "name": "scheduleUpdate",
+        "value": "() => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
         "name": "arrowProps",
         "value": "PopperArrowProps"
       },
@@ -2808,6 +2832,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -2941,7 +2969,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -3016,6 +3044,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -3042,10 +3074,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
@@ -3177,7 +3205,7 @@
       },
       {
         "name": "renderFilter",
-        "value": "() => React.ReactNode"
+        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       {
         "name": "value",
@@ -4630,6 +4658,10 @@
       {
         "name": "onBlur",
         "value": "(e?: React.FocusEvent<HTMLInputElement>) => void"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
       },
       {
         "name": "value",
@@ -6578,6 +6610,26 @@
         "value": "React.ForwardedRef<T>"
       },
       {
+        "name": "onClose",
+        "value": "() => void"
+      },
+      {
+        "name": "togglerWidth",
+        "value": "number"
+      },
+      {
+        "name": "togglerHeight",
+        "value": "number"
+      },
+      {
+        "name": "scheduleUpdate",
+        "value": "() => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
         "name": "arrowProps",
         "value": "PopperArrowProps"
       },
@@ -7306,6 +7358,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -7589,7 +7645,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -7664,6 +7720,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -7690,10 +7750,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
@@ -7817,7 +7873,7 @@
       },
       {
         "name": "renderFilter",
-        "value": "() => React.ReactNode"
+        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       {
         "name": "value",
@@ -9502,6 +9558,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -9529,7 +9589,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -9604,6 +9664,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -9630,10 +9694,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
