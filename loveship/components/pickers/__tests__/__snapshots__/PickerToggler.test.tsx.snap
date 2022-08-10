@@ -59,7 +59,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
     <input
       aria-haspopup={true}
       autoComplete="no"
-      className="uui-input"
+      className="uui-input cursorText"
       onChange={[Function]}
       tabIndex={-1}
       type="text"
