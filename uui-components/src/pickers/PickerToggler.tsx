@@ -98,10 +98,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const renderInput = () => {
         const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const isSearchNeeded = !props.isOpen || props.isOpen && props.searchPosition !== 'input';
-        const placeholder = isActivePlaceholder ? props.getName(props.selection[0]?.value) : props.placeholder;
+        let placeholder = isActivePlaceholder ? props.getName(props.selection[0]?.value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
         if (props.disableSearch && props.pickerMode === 'multi' && props.selection.length > 0) {
-            return null;
+            placeholder = '';
         }
 
         return <input
