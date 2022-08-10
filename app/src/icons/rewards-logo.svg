@@ -1,6 +1,26 @@
-<svg width="700pt" height="700pt" version="1.0" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(0 700) scale(.1 -.1)" fill="#1669a8">
-  <path d="m0 3500v-3500h3500 3500v3500 3500h-3500-3500v-3500zm3860 2885c693-93 1238-615 1366-1310 28-149 25-442-5-584-46-217-131-427-238-591-110-167-283-346-437-450-74-51-670-288-838-334-230-63-344-78-633-83-309-6-352 0-625 82-150 46-821 306-1097 425l-43 19v1420 1421h1223c999 0 1241-3 1327-15zm-2081-3534c244-173 445-319 447-325s-62-445-143-976l-148-965-313-3-312-2v1300c0 1086 2 1300 13 1293 8-4 213-149 456-322zm3402-1038 506-1228-720-3c-396-1-721-1-722 0-4 5-295 1922-295 1938 1 12 703 520 720 520 3 0 233-552 511-1227zm-1966-609c72-20 146-66 195-121 23-26 100-151 171-278l128-230-616-3c-339-1-618 0-620 2-9 9 260 473 295 510 70 73 178 128 272 139 48 5 115-2 175-19z"/>
-  <path d="m3050 5473c-340-43-615-282-706-613-25-91-25-328 0-420 76-282 302-507 584-582 109-28 287-28 397 1 282 74 496 282 581 566 23 78 27 107 27 225s-4 147-27 225c-86 287-286 487-566 568-84 25-223 39-290 30z"/>
+<svg id="Logo_Grad" width="72" height="72" version="1.1" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style>.cls-1{fill:url(#linear-gradient);}.cls-2{fill:#334052;}.cls-3{fill:url(#linear-gradient-8);}.cls-4{fill:url(#linear-gradient-9);}.cls-5{fill:url(#linear-gradient-3);}.cls-6{fill:url(#linear-gradient-4);}.cls-7{fill:url(#linear-gradient-2);}.cls-8{fill:url(#linear-gradient-6);}.cls-9{fill:url(#linear-gradient-7);}.cls-10{fill:url(#linear-gradient-5);}.cls-11{fill:url(#linear-gradient-10);}.cls-12{fill:url(#linear-gradient-11);}</style>
+  <linearGradient id="linear-gradient" x1="30.33" x2="113.13" y1="65.33" y2="-73.34" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#0089bc" offset="0"/>
+   <stop stop-color="#493885" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linear-gradient-2" x1="37.73" x2="120.53" y1="69.75" y2="-68.92" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-3" x1="105.21" x2="188.01" y1="110.04" y2="-28.63" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-4" x1="81.95" x2="164.76" y1="96.16" y2="-42.51" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-5" x1="135.41" x2="218.21" y1="104.64" y2="-34.03" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-6" x1="166.76" x2="249.57" y1="123.36" y2="-15.31" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-7" x1="201.02" x2="283.82" y1="143.81" y2="5.14" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-8" x1="247.83" x2="330.64" y1="171.77" y2="33.1" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-9" x1="276.57" x2="359.37" y1="188.93" y2="50.26" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-10" x1="307.1" x2="389.9" y1="207.16" y2="68.49" xlink:href="#linear-gradient"/>
+  <linearGradient id="linear-gradient-11" x1="343.33" x2="426.13" y1="228.79" y2="90.12" xlink:href="#linear-gradient"/>
+  <linearGradient id="linearGradient1148" x1="30.33" x2="113.13" y1="65.33" y2="-73.34" gradientUnits="userSpaceOnUse" xlink:href="#linear-gradient"/>
+ </defs>
+ <g transform="matrix(.46827 0 0 .46827 8.2972 .14229)">
+  <path class="cls-1" d="m23.72 84.14c2.93 1.14 5.92 2.07 8.94 2.78 1.01 0.24 2.02 0.45 3.04 0.64 2.03 0.38 4.08 0.67 6.13 0.86s4.11 0.29 6.17 0.29c4.12 0 8.24-0.38 12.31-1.14s8.08-1.9 11.98-3.43l14.6-5.7s0.02 0 0.04-0.01c11.54-7.66 19.16-20.76 19.16-35.65 0-23.62-19.16-42.78-42.79-42.78h-63.3v74.93c0.12 0.04 0.24 0.06 0.37 0.11l23.35 9.11zm25.45-59.79c12.1 0 21.92 9.81 21.92 21.92s-9.81 21.92-21.92 21.92-21.92-9.81-21.92-21.92 9.81-21.92 21.92-21.92z" fill="url(#linearGradient1148)"/>
+  <polygon class="cls-7" points="0 153.15 16.7 153.15 24.76 101.89 0 84.74" fill="url(#linear-gradient-2)"/>
+  <polygon class="cls-5" points="79.3 153.15 118.32 153.15 90.81 88.33 71.22 101.89" fill="url(#linear-gradient-3)"/>
+  <path class="cls-6" d="m37.83 141.83-6.6 11.32h33.54l-6.6-11.32c-4.54-7.8-15.81-7.8-20.35 0z" fill="url(#linear-gradient-4)"/>
  </g>
 </svg>

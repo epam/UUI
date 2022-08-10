@@ -4,11 +4,11 @@ import { FlexCell, FlexRow, Text } from '@epam/promo';
 import * as css from './InfoBlock.scss';
 
 const infoData = [
-    { caption: 'Clients', value: '25', pulse: false },
+    { caption: 'Clients', value: '40+', pulse: false },
     { caption: 'Years in Live', value: '6+', pulse: true },
-    { caption: 'Design Skins', value: '2', pulse: false },
-    { caption: 'Components', value: '100+', pulse: false },
-    { caption: 'Downloads', value: '25K', pulse: false },
+    { caption: 'Design Skins', value: '3', pulse: false },
+    { caption: 'Components', value: '150+', pulse: false },
+    { caption: 'Downloads pre month', value: '25K+', pulse: false },
 ];
 
 

@@ -62,6 +62,7 @@ export const projectsList: Array<{ projectName: string, projectCode: string, ico
     { projectName: 'Training center', projectCode: 'EPM-RDPT', icon: TrainingCenterIcon, url: 'https://training.by' },
     { projectName: 'Rewards', projectCode: 'EPM-RCGN', icon: RewardsIcon, url: 'https://rewards.epam.com/' },
     { projectName: 'Invite', projectCode: 'EPM-REF', icon: InviteIcon, url: 'https://invite.epam.com/' },
+    { projectName: 'Experts', projectCode: 'EPMD-CERT', icon: InviteIcon, url: 'https://experts.epam.com/' },
 ];
 
 export class ProjectsDoc extends React.Component {
