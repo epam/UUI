@@ -18,6 +18,10 @@ export const FilteredTable: React.FC = () => {
     const [goToPage, setGoToPage] = useState('1');
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
 
+    const itemsPerPageDataSource = useArrayDataSource({
+        items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
+    }, []);
+
     useEffect(() => {
         svc.api.presets.getPresets()
             .then(setInitialPresets)
@@ -33,10 +37,6 @@ export const FilteredTable: React.FC = () => {
     });
 
     const totalPages = () => tableStateApi.tableState.pageSize ? Math.ceil(totalCount / tableStateApi.tableState.pageSize) : 0;
-
-    const itemsPerPageDataSource = useArrayDataSource({
-        items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
-    }, []);
 
     const setItemsPerPage = (itemsPerPage: number) => {
         tableStateApi.setTableState({ ...tableStateApi.tableState, page: 1, pageSize: itemsPerPage });

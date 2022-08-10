@@ -2,17 +2,82 @@
 @use '~@epam/promo/assets/styles/fonts' as *;
 
 .presets-panel {
-    padding: 15px 24px;
+    padding: 0 24px;
+
+    .presets-title {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .presets-wrapper {
+        margin: 0 12px;
+        align-self: stretch;
+
+        & > *:not(:first-child) {
+            margin-left: 0;
+        }
+
+        & > *:not(:last-child) {
+            margin-right: 0;
+        }
+
+        button {
+            align-self: center;
+        }
+    }
 }
 
 .preset-border {
+    align-self: stretch;
     border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+
+    .preset-tab-button {
+        align-self: center;
+    }
+
+    .preset-dropdown {
+        visibility: hidden;
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
+
+.preset-button-wrapper {
+    align-self: stretch;
+    display: flex;
+
+    .rename-input-cell {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 }
 
 .active-preset-border {
     border-bottom: 3px solid var(--blue);
 
+    .preset-dropdown {
+        visibility: visible;
+        background-color: transparent;
+        border-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+
     :global(.uui-caption) {
         color: var(--blue);
+    }
+}
+
+.delete-row {
+    svg {
+        fill: $red-darkest;
+    }
+
+    .delete-button {
+        color: $red-darkest;
     }
 }

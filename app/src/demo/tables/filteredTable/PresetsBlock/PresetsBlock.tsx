@@ -1,22 +1,18 @@
 import React, { useCallback, useState } from "react";
+import cx from "classnames";
 import { ControlGroup, Dropdown, DropdownMenuButton, FlexRow, Panel, Text, Button, TextInput, FlexCell } from "@epam/promo";
 import css from "./PresetsBlock.scss";
 import { IPresetsApi, ITablePreset } from "@epam/uui-core";
 import { TabButton } from "@epam/uui";
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
 import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
-import cx from "classnames";
-
-const enum PresetCommand {
-    'DEFAULT' = 'DEFAULT',
-    'ADD_PRESET' = 'ADD_PRESET',
-    'SAVE_NEW_PRESET' = 'SAVE_NEW_PRESET',
-    'CANCEL_NEW_PRESET' = 'CANCEL_NEW_PRESET',
-    'CHOOSE_PRESET' = 'CHOOSE_PRESET',
-    'DELETE_PRESET' = 'DELETE_PRESET',
-    'RENAME_PRESET' = 'RENAME_PRESET',
-    'CANCEL_RENAMING_PRESET' = 'CANCEL_RENAMING_PRESET',
-}
+import { ReactComponent as RenameIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+import { ReactComponent as CopyIcon } from '@epam/assets/icons/common/action-copy_content-18.svg';
+import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
+import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
+import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
+import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/common/save-outline-18.svg';
+import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/common/action-update-18.svg';
 
 interface IPresetsBlockProps {
     presets: ITablePreset[];
@@ -57,70 +53,20 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
         setNewPresetCaption("");
     }, [newPresetCaption, createNewPreset]);
 
-    const presetBtnHandler = (commandName: PresetCommand, preset?: ITablePreset<Record<string, any>>) => {
-        switch (commandName) {
-            case PresetCommand.DEFAULT: {
-                if (!isDefaultPresetActive) {
-                    resetToDefault();
-                }
-                break;
-            }
-            case PresetCommand.ADD_PRESET: {
-                setIsAddingPreset(true);
-                break;
-            }
-            case PresetCommand.SAVE_NEW_PRESET: {
-                saveNewPreset();
-                break;
-            }
-            case PresetCommand.CANCEL_NEW_PRESET: {
-                setNewPresetCaption('');
-                setIsInvalidPresetCaption(false);
-                setIsAddingPreset(false);
-                break;
-            }
-            case PresetCommand.CHOOSE_PRESET: {
-                choosePreset(preset);
-                break;
-            }
-            case PresetCommand.DELETE_PRESET: {
-                if (isActivePreset && isActivePreset.id === preset.id) {
-                    resetToDefault();
-                }
-                deletePreset(preset);
-                break;
-            }
-            case PresetCommand.RENAME_PRESET: {
-                if (!renamedPreset) {
-                    setRenamedPresetCaption(preset.name);
-                    setRenamedPreset(preset);
-                    break;
-                } else if (renamedPreset) {
-                    const isPresetCaptionRepeat = presets.filter(p => p.name === renamedPresetCaption).length > 0;
-                    if (isPresetCaptionRepeat) {
-                        setIsInvalidPresetCaption(true);
-                        break;
-                    }
-                    const newPreset: ITablePreset = {
-                        ...renamedPreset,
-                        name: renamedPresetCaption,
-                    };
-                    updatePreset(newPreset);
-                    setRenamedPreset(null);
-                    setRenamedPresetCaption("");
-                    setIsInvalidPresetCaption(false);
-                }
-                break;
-            }
-            case PresetCommand.CANCEL_RENAMING_PRESET: {
-                setRenamedPresetCaption("");
-                setRenamedPreset(null);
-                break;
-            }
-            default:
-                const _: never = commandName;
-                console.error(`Wrong command ${ commandName } in presetBtnHandler`);
+    const setDefaultPreset = () => {
+        if (!isDefaultPresetActive) {
+            resetToDefault();
         }
+    };
+
+    const addPreset = () => {
+        setIsAddingPreset(true);
+    };
+
+    const cancelNewPreset = () => {
+        setNewPresetCaption('');
+        setIsInvalidPresetCaption(false);
+        setIsAddingPreset(false);
     };
 
     const newPresetOnBlurHandler = () => {
@@ -137,28 +83,84 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
         setRenamedPreset(null);
     };
 
+    const cancelRenamePreset = () => {
+        setRenamedPresetCaption("");
+        setRenamedPreset(null);
+    };
+
+    const deletePresetHandler = (preset: ITablePreset) => {
+        if (isActivePreset && isActivePreset.id === preset.id) {
+            resetToDefault();
+        }
+        deletePreset(preset);
+    };
+
+    const renamePreset = (preset?: ITablePreset) => {
+        if (!renamedPreset && preset) {
+            setRenamedPresetCaption(preset.name);
+            setRenamedPreset(preset);
+        } else if (renamedPreset) {
+            const isPresetCaptionRepeat = presets.filter(p => p.name === renamedPresetCaption).length > 0;
+            if (isPresetCaptionRepeat) {
+                setIsInvalidPresetCaption(true);
+                return;
+            }
+            const newPreset: ITablePreset = {
+                ...renamedPreset,
+                name: renamedPresetCaption,
+            };
+            updatePreset(newPreset);
+            setRenamedPreset(null);
+            setRenamedPresetCaption("");
+            setIsInvalidPresetCaption(false);
+        }
+    };
+
+    const saveInCurrent = (preset: ITablePreset) => {
+        createNewPreset(preset.name);
+        deletePreset(preset);
+    };
+
     const renderPresetBody = (preset: ITablePreset) => {
         return (
             <Panel background="white" shadow={ true }>
-                <DropdownMenuButton key={ `${ preset.id }-duplicate` } caption="Duplicate" onClick={ () => duplicatePreset(preset) }/>
-                <DropdownMenuButton key={ `${ preset.id }-rename` } caption="Rename" onClick={ () => presetBtnHandler(PresetCommand.RENAME_PRESET, preset) }/>
-                <DropdownMenuButton key={ `${ preset.id }-delete` } caption="Delete" onClick={ () => presetBtnHandler(PresetCommand.DELETE_PRESET, preset) }/>
+                <FlexRow key={ `${ preset.id }-save-in-current` } >
+                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ () => saveInCurrent(preset) }/>
+                </FlexRow>
+                <FlexRow key={ `${ preset.id }-save-as-new` } >
+                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ SaveAsNewIcon } caption="Save as new" onClick={ addPreset }/>
+                </FlexRow>
+                <FlexRow key={ `${ preset.id }-discard` } borderBottom="gray40">
+                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ () => choosePreset(preset) }/>
+                </FlexRow>
+                <FlexRow key={ `${ preset.id }-duplicate` }>
+                    <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ () => duplicatePreset(preset) }/>
+                </FlexRow>
+                <FlexRow key={ `${ preset.id }-rename` }>
+                    <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ () => renamePreset(preset) }/>
+                </FlexRow>
+                <FlexRow borderBottom="gray40" key={ `${ preset.id }-copyLink` }>
+                    <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ () => {} }/>
+                </FlexRow>
+                <FlexRow key={ `${ preset.id }-delete` } cx={ css.deleteRow }>
+                    <DropdownMenuButton icon={ DeleteIcon } caption="Delete" cx={ css.deleteButton } onClick={ () => deletePresetHandler(preset) }/>
+                </FlexRow>
             </Panel>
         );
     };
 
     const renderPreset = (preset: ITablePreset) => {
         return (
-            <div key={ preset.id }>
+            <div key={ preset.id } className={ css.presetButtonWrapper }>
                 {
                     (renamedPreset?.id === preset.id)
                         ?
-                        <FlexCell minWidth={ 180 }>
+                        <FlexCell cx={ css.renameInputCell } minWidth={ 180 } alignSelf="center">
                             <TextInput
                                 onValueChange={ setRenamedPresetCaption }
                                 value={ renamedPresetCaption }
-                                onCancel={ () => presetBtnHandler(PresetCommand.CANCEL_RENAMING_PRESET) }
-                                onAccept={ () => presetBtnHandler(PresetCommand.RENAME_PRESET) }
+                                onCancel={ cancelRenamePreset }
+                                onAccept={ renamePreset }
                                 isInvalid={ isInvalidPresetCaption }
                                 onBlur={ renamePresetOnBlurHandler }
                                 autoFocus
@@ -169,22 +171,27 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
                                 [css.activePresetBorder]: isActivePreset?.id === preset.id,
                             }) }>
                             <TabButton
+                                cx={ css.presetTabButton }
                                 caption={ preset.name }
-                                onClick={ () => presetBtnHandler(PresetCommand.CHOOSE_PRESET, preset) }
+                                onClick={ () => choosePreset(preset) }
                                 size="36"
+                                withNotify={ isActivePreset?.id === preset.id && hasPresetChanged(preset) }
                             />
-                            <Dropdown
-                                renderBody={ () => renderPresetBody(preset) }
-                                renderTarget={ (props) =>
-                                    <Button { ...props }
-                                            fill="light"
-                                            icon={ menuIcon }
-                                            size="36"
-                                            isDropdown={ false }
-                                    />
-                                }
-                                placement="bottom-end"
-                            />
+                            { isActivePreset?.id === preset.id &&
+                                <Dropdown
+                                    renderBody={ () => renderPresetBody(preset) }
+                                    renderTarget={ (props) =>
+                                        <Button { ...props }
+                                                cx={ css.presetDropdown }
+                                                fill="light"
+                                                icon={ menuIcon }
+                                                size="36"
+                                                isDropdown={ false }
+                                        />
+                                    }
+                                    placement="bottom-end"
+                                />
+                            }
                         </ControlGroup>
                 }
             </div>
@@ -193,8 +200,8 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
 
     return (
         <FlexRow cx={ css.presetsPanel } background="gray5" borderBottom={ true }>
-            <Text fontSize="24">Profiles Dashboard</Text>
-            <FlexRow margin="12" spacing="12">
+            <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
+            <FlexRow spacing="12" cx={ css.presetsWrapper }>
                 <ControlGroup
                     key="default-preset"
                     cx={ cx(css.presetBorder, {
@@ -202,18 +209,18 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
                     }) }>
                     <TabButton
                         caption={ 'Default Preset' }
-                        onClick={ () => presetBtnHandler(PresetCommand.DEFAULT) }
+                        onClick={ setDefaultPreset }
                         size="36"
                     />
                 </ControlGroup>
 
-                { presets.map(preset => renderPreset(preset)) }
+                { presets.map(renderPreset) }
 
                 { !isAddingPreset
                     ? <ControlGroup key="add-preset">
                         <TabButton
                             caption={ 'Add Preset' }
-                            onClick={ () => presetBtnHandler(PresetCommand.ADD_PRESET) }
+                            onClick={ addPreset }
                             size="36"
                             icon={ PlusIcon }
                             iconPosition="left"
@@ -223,8 +230,8 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewP
                         <TextInput
                             onValueChange={ setNewPresetCaption }
                             value={ newPresetCaption }
-                            onCancel={ () => presetBtnHandler(PresetCommand.CANCEL_NEW_PRESET) }
-                            onAccept={ () => presetBtnHandler(PresetCommand.SAVE_NEW_PRESET) }
+                            onCancel={ cancelNewPreset }
+                            onAccept={ saveNewPreset }
                             isInvalid={ isInvalidPresetCaption }
                             onBlur={ newPresetOnBlurHandler }
                             autoFocus
