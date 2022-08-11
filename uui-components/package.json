@@ -23,7 +23,7 @@
     "@types/react-transition-group": "4.4.4",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
-    "dayjs": "^1.10.6",
+    "dayjs": "1.10.7",
     "lodash.clone": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.orderby": "4.6.0",
