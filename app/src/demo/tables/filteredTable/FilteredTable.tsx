@@ -89,6 +89,7 @@ export const FilteredTable: React.FC = () => {
                 duplicatePreset={ tableStateApi.duplicatePreset }
                 updatePreset={ tableStateApi.updatePreset }
                 deletePreset={ tableStateApi.deletePreset }
+                tableState={ tableStateApi.tableState }
             />
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
