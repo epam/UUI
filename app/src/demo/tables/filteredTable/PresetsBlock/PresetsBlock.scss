@@ -27,6 +27,7 @@
 
         .add-new-preset,
         .rename-preset {
+            margin-left: 6px;
             padding-left: 3px;
             padding-right: 3px;
 
@@ -77,6 +78,10 @@
     }
 }
 
+.preset-dropdown-panel {
+    min-width: 150px;
+}
+
 .preset-button-wrapper {
     align-self: stretch;
     display: flex;
@@ -90,19 +95,27 @@
 .active-preset-border {
     border-bottom: 3px solid var(--blue);
 
-    .preset-dropdown {
-        visibility: visible;
-        background-color: transparent;
-        border-color: transparent;
+    .preset-tab-button {
 
-        &:hover {
+        .preset-dropdown {
+            visibility: visible;
             background-color: transparent;
             border-color: transparent;
+
+            &:hover {
+                background-color: transparent;
+                border-color: transparent;
+            }
         }
     }
 
-    :global(.uui-caption) {
+    :global(.uui-has-right-icon) :global(.uui-caption) {
         color: var(--blue);
+        padding-right: 5px;
+    }
+
+    :global(.uui-icon) :global(.uui-enabled) {
+        padding: 0;
     }
 }
 

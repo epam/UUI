@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 import cx from "classnames";
-import { ControlGroup, Dropdown, DropdownMenuButton, FlexRow, Panel, Text, Button, TextInput, FlexCell } from "@epam/promo";
+import { ControlGroup, Dropdown, DropdownMenuButton, FlexRow, Panel, Text, Button, TextInput, FlexCell, SuccessNotification } from "@epam/promo";
 import css from "./PresetsBlock.scss";
-import { DataTableState, IPresetsApi, ITablePreset } from "@epam/uui-core";
+import { DataTableState, IPresetsApi, ITablePreset, useUuiContext } from "@epam/uui-core";
 import { TabButton } from "@epam/uui";
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
-import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
+import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as RenameIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 import { ReactComponent as CopyIcon } from '@epam/assets/icons/common/action-copy_content-18.svg';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
@@ -39,6 +39,7 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
     const [newPresetCaption, setNewPresetCaption] = useState('');
     const [isInvalidPresetCaption, setIsInvalidPresetCaption] = useState(false);
     const isActivePreset = presets.find(p => p.id === activePresetId);
+    const { uuiNotifications } = useUuiContext();
 
     const saveNewPreset = useCallback(() => {
         const isPresetCaptionRepeat = presets.filter(p => p.name === newPresetCaption).length > 0;
@@ -128,24 +129,38 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
             columnsConfig: tableState.columnsConfig,
         };
         updatePreset(newPreset);
+        successNotificationHandler('Changes saved!');
     };
 
     const copyUrlToClipboard = async () => {
         await navigator.clipboard.writeText(location.href);
+        successNotificationHandler('Link copied!');
+    };
+
+    const successNotificationHandler = (text: string) => {
+        uuiNotifications.show((props) => (
+            <SuccessNotification { ...props } >
+                <Text size="36" font="sans" fontSize="14">{ text }</Text>
+            </SuccessNotification>
+        ), { position: 'top-right', duration: 3 }).catch(() => null);
     };
 
     const renderPresetBody = (preset: ITablePreset) => {
         return (
-            <Panel background="white" shadow={ true }>
-                <FlexRow key={ `${ preset.id }-save-in-current` }>
-                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ () => saveInCurrent(preset) }/>
-                </FlexRow>
-                <FlexRow key={ `${ preset.id }-save-as-new` }>
-                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ SaveAsNewIcon } caption="Save as new" onClick={ addPreset }/>
-                </FlexRow>
-                <FlexRow key={ `${ preset.id }-discard` } borderBottom="gray40">
-                    <DropdownMenuButton isDisabled={ !(isActivePreset?.id === preset.id && hasPresetChanged(preset)) } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ () => choosePreset(preset) }/>
-                </FlexRow>
+            <Panel background="white" shadow={ true } cx={ css.presetDropdownPanel }>
+                { (isActivePreset?.id === preset.id && hasPresetChanged(preset)) &&
+                    <>
+                        <FlexRow key={ `${ preset.id }-save-in-current` }>
+                            <DropdownMenuButton icon={ SaveInCurrentIcon } caption="Save in current" onClick={ () => saveInCurrent(preset) }/>
+                        </FlexRow>
+                        <FlexRow key={ `${ preset.id }-save-as-new` }>
+                            <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ addPreset }/>
+                        </FlexRow>
+                        <FlexRow key={ `${ preset.id }-discard` } borderBottom="gray40">
+                            <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ () => choosePreset(preset) }/>
+                        </FlexRow>
+                    </>
+                }
                 <FlexRow key={ `${ preset.id }-duplicate` }>
                     <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ () => duplicatePreset(preset) }/>
                 </FlexRow>
@@ -161,6 +176,26 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
             </Panel>
         );
     };
+
+    const TubButtonDropdown = (preset: ITablePreset) => (
+        <>
+            { isActivePreset?.id === preset.id &&
+                <Dropdown
+                    renderBody={ () => renderPresetBody(preset) }
+                    renderTarget={ (props) =>
+                        <Button { ...props }
+                                cx={ css.presetDropdown }
+                                fill="light"
+                                icon={ menuIcon }
+                                size="36"
+                                isDropdown={ false }
+                        />
+                    }
+                    placement="auto"
+                />
+            }
+        </>
+    );
 
     const renderPreset = (preset: ITablePreset) => {
         return (
@@ -190,22 +225,9 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                                 onClick={ () => choosePreset(preset) }
                                 size="36"
                                 withNotify={ isActivePreset?.id === preset.id && hasPresetChanged(preset) }
+                                icon={ () => TubButtonDropdown(preset) }
+                                iconPosition="right"
                             />
-                            { isActivePreset?.id === preset.id &&
-                                <Dropdown
-                                    renderBody={ () => renderPresetBody(preset) }
-                                    renderTarget={ (props) =>
-                                        <Button { ...props }
-                                                cx={ css.presetDropdown }
-                                                fill="light"
-                                                icon={ menuIcon }
-                                                size="36"
-                                                isDropdown={ false }
-                                        />
-                                    }
-                                    placement="bottom-end"
-                                />
-                            }
                         </ControlGroup>
                 }
             </div>
