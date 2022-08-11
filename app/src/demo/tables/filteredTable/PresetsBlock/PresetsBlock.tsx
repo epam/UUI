@@ -170,6 +170,7 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                         ?
                         <FlexCell cx={ css.renameInputCell } minWidth={ 180 } alignSelf="center">
                             <TextInput
+                                cx={ css.renamePreset }
                                 onValueChange={ setRenamedPresetCaption }
                                 value={ renamedPresetCaption }
                                 onCancel={ cancelRenamePreset }
@@ -241,6 +242,7 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                     </ControlGroup>
                     : <FlexCell minWidth={ 180 } key="add-input">
                         <TextInput
+                            cx={ css.addNewPreset }
                             onValueChange={ setNewPresetCaption }
                             value={ newPresetCaption }
                             onCancel={ cancelNewPreset }

@@ -24,6 +24,40 @@
         button {
             align-self: center;
         }
+
+        .add-new-preset,
+        .rename-preset {
+            padding-left: 3px;
+            padding-right: 3px;
+
+            :global(.uui-icon-accept),
+            :global(.uui-icon-cancel) {
+                width: 30px;
+                height: 30px;
+                align-self: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            :global(.uui-icon-accept) {
+                fill: $white;
+                background-color: $green;
+
+                &:hover {
+                    background-color: darken($green, 2%);
+                }
+            }
+
+            :global(.uui-icon-cancel) {
+                background-color: $gray20;
+                margin-left: 1px;
+
+                &:hover {
+                    background-color: darken($gray20, 2%);
+                }
+            }
+        }
     }
 }
 
