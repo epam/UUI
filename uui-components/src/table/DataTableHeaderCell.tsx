@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-    AcceptDropParams,
-    DataColumnProps,
-    DndActor,
-    DataTableHeaderCellProps,
-    DndActorRenderParams,
-    isClickableChildClicked,
-    SortDirection
-} from "@epam/uui-core";
+import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked, SortDirection } from "@epam/uui-core";
 
 interface DataTableRenderProps {
     renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;
@@ -35,7 +27,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         if (isClickableChildClicked(e) || !this.props.column.isSortable) return;
 
         let dir: SortDirection;
-        if (this.props.sortDirection === null) dir = 'asc';
+        if (!this.props.sortDirection) dir = 'asc';
         else if (this.props.sortDirection === 'asc') dir = 'desc';
         else if (this.props.sortDirection === 'desc') dir = undefined;
         this.props.onSort(dir);

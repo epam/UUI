@@ -14,7 +14,7 @@ export interface SortingPanelProps {
 }
 
 const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
-    const sortAscDesc = useCallback((dir: SortDirection) => props.onSort(dir === props.sortDirection ? undefined : dir), [props.onSort]);
+    const sortAscDesc = (dir: SortDirection) => props.onSort(dir === props.sortDirection ? undefined : dir);
     const size = isMobile() ? "48" : undefined;
     
     return (
@@ -28,7 +28,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
                     caption={ i18n.pickerFilterHeader.sortAscending }
                     icon={ SortIcon }
                     font="sans"
-                    onClick={ () => sortAscDesc('asc') }
+                    onClick={ useCallback(() => sortAscDesc('asc'), [props.onSort]) }
                     cx={ css.filterSortButton }
                 />
 
@@ -48,7 +48,7 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
                     caption={ i18n.pickerFilterHeader.sortDescending }
                     icon={ SortIconDesc }
                     font="sans"
-                    onClick={ () => sortAscDesc('desc') }
+                    onClick={ useCallback(() => sortAscDesc('desc'), [props.onSort]) }
                     cx={ css.filterSortButton }
                 />
 
