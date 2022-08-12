@@ -3,69 +3,85 @@
 
 .presets-panel {
     padding: 0 24px;
+    display: grid;
+    grid-template-columns: 200px auto minmax(auto, 1fr);
+    background-color: $white;
+    border-bottom: 1px solid $gray40;
 
     .presets-title {
-        padding-top: 18px;
-        padding-bottom: 18px;
+        min-width: 192px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
-    .presets-wrapper {
-        margin: 0 12px;
+    & > *:not(:first-child) {
+        margin-left: 0;
+    }
+
+    & > *:not(:last-child) {
+        margin-right: 0;
+    }
+
+    button {
+        align-self: center;
+    }
+
+    .dynamic-presets-wrapper {
         align-self: stretch;
+        overflow-x: auto;
+    }
 
-        & > *:not(:first-child) {
-            margin-left: 0;
-        }
+    .add-new-preset,
+    .rename-preset {
+        margin-left: 6px;
+        padding-left: 3px;
+        padding-right: 3px;
 
-        & > *:not(:last-child) {
-            margin-right: 0;
-        }
-
-        button {
+        :global(.uui-icon-accept),
+        :global(.uui-icon-cancel) {
+            width: 30px;
+            height: 30px;
             align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .add-new-preset,
-        .rename-preset {
-            margin-left: 6px;
-            padding-left: 3px;
-            padding-right: 3px;
+        :global(.uui-icon-accept) {
+            fill: $white;
+            background-color: $green;
 
-            :global(.uui-icon-accept),
-            :global(.uui-icon-cancel) {
-                width: 30px;
-                height: 30px;
-                align-self: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            &:hover {
+                background-color: darken($green, 2%);
             }
+        }
 
-            :global(.uui-icon-accept) {
-                fill: $white;
-                background-color: $green;
+        :global(.uui-icon-cancel) {
+            background-color: $gray20;
+            margin-left: 1px;
 
-                &:hover {
-                    background-color: darken($green, 2%);
-                }
-            }
-
-            :global(.uui-icon-cancel) {
-                background-color: $gray20;
-                margin-left: 1px;
-
-                &:hover {
-                    background-color: darken($gray20, 2%);
-                }
+            &:hover {
+                background-color: darken($gray20, 2%);
             }
         }
     }
+
+    .right-block {
+        :global(.uui-caption) {
+            white-space: nowrap;
+        }
+    }
+
 }
 
-.preset-border {
+.preset-control-group {
     align-self: stretch;
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+    }
 
     .preset-tab-button {
         align-self: center;

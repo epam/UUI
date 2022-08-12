@@ -191,7 +191,7 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                                 isDropdown={ false }
                         />
                     }
-                    placement="auto"
+                    placement="bottom"
                 />
             }
         </>
@@ -216,7 +216,7 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                             />
                         </FlexCell>
                         : <ControlGroup
-                            cx={ cx(css.presetBorder, {
+                            cx={ cx(css.presetControlGroup, {
                                 [css.activePresetBorder]: isActivePreset?.id === preset.id,
                             }) }>
                             <TabButton
@@ -235,12 +235,12 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
     };
 
     return (
-        <FlexRow cx={ css.presetsPanel } background="gray5" borderBottom={ true }>
+        <div className={ css.presetsPanel }>
             <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
-            <FlexRow spacing="12" cx={ css.presetsWrapper }>
+            <FlexRow cx={ css.dynamicPresetsWrapper } spacing="12">
                 <ControlGroup
                     key="default-preset"
-                    cx={ cx(css.presetBorder, {
+                    cx={ cx(css.presetControlGroup, {
                         [css.activePresetBorder]: !isActivePreset?.id,
                     }) }>
                     <TabButton
@@ -249,9 +249,9 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                         size="36"
                     />
                 </ControlGroup>
-
                 { presets.map(renderPreset) }
-
+            </FlexRow>
+            <FlexRow cx={ css.rightBlock }>
                 { !isAddingPreset
                     ? <ControlGroup key="add-preset">
                         <TabButton
@@ -275,6 +275,6 @@ export const PresetsBlock: React.FC<IPresetsBlockProps> = (props) => {
                         />
                     </FlexCell> }
             </FlexRow>
-        </FlexRow>
+        </div>
     );
 };
