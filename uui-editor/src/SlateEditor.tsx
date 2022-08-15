@@ -1,24 +1,37 @@
-import * as React from 'react';
-import { Editor, Plugin, getEventTransfer } from 'slate-react';
+import React, { useCallback, useMemo } from 'react';
+import isHotkey from 'is-hotkey';
+import { Editable, withReact, useSlate, Slate } from 'slate-react';
+import {
+    Editor,
+    Transforms,
+    createEditor,
+    Descendant,
+    Element as SlateElement,
+} from 'slate';
+import { withHistory } from 'slate-history';
+
 import SoftBreak from "slate-soft-break";
-import htmlclean from 'htmlclean';
-import { KeyUtils, SchemaProperties, Value } from 'slate';
-import { ScrollBars } from '@epam/uui-components';
+//import htmlclean from 'htmlclean';
+//import { Descendant, Editor } from 'slate';
+//import { ScrollBars } from '@epam/uui-components';
+
 import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui-core';
-import {Toolbar} from "./implementation/Toolbar";
-import {Sidebar} from './implementation/Sidebar';
-import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
-import { getSerializer, isEditorEmpty } from './helpers';
+
+// import {Toolbar} from "./implementation/Toolbar";
+// import {Sidebar} from './implementation/Sidebar';
+//import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
+//import { getSerializer, isEditorEmpty } from './helpers';
+
 import * as style from '@epam/assets/scss/promo/typography.scss';
 import * as css from './SlateEditor.scss';
 
-export const slateEditorEmptyValue: any = Value.fromJS({
+export const slateEditorEmptyValue: Descendant = {
     document: {
         nodes: [
             {
                 object: 'block',
                 type: 'paragraph',
-                key: KeyUtils.create(),
+                //key: KeyUtils.create(),
                 nodes: [
                     {
                         object: 'text',
@@ -28,9 +41,9 @@ export const slateEditorEmptyValue: any = Value.fromJS({
             },
         ],
     },
-} as any);
+} as any;
 
-const schema: SchemaProperties = {
+const schema: any = {
     blocks: {
         attachment: {
             isVoid: true,
@@ -60,16 +73,16 @@ const schema: SchemaProperties = {
 
 export const defaultPlugins = [
     SoftBreak({ shift: true }),
-    paragraphPlugin(),
-    utilsPlugin(),
+    // paragraphPlugin(),
+    // utilsPlugin(),
 ];
 
 export const basePlugins = [
-    baseMarksPlugin(),
+    //baseMarksPlugin(),
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<HTMLDivElement> {
+interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement> {
     isReadonly?: boolean;
     plugins?: Plugin[];
     autoFocus?: boolean;
@@ -77,8 +90,8 @@ interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps
     placeholder?: string;
     mode?: 'form' | 'inline';
     fontSize?: '14' | '16';
-    onKeyDown?: (event: KeyboardEvent, value: Editor['value'] | null) => void;
-    onBlur?: (event: FocusEvent, value: Editor['value'] | null) => void;
+    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
+    onBlur?: (event: FocusEvent, value: any | null) => void;
     scrollbars?: boolean;
 }
 
@@ -86,116 +99,147 @@ interface SlateEditorState {
     inFocus?: boolean;
 }
 
-export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorState> {
-    editor: Editor;
-    static contextType = UuiContext;
-    context: UuiContexts;
-    serializer = getSerializer(this.props.plugins);
+const HOTKEYS = {
+    'mod+b': 'bold',
+    'mod+i': 'italic',
+    'mod+u': 'underline',
+    'mod+`': 'code',
+};
 
-    state = {
-        inFocus: !!this.props.autoFocus,
-    };
+const LIST_TYPES = ['numbered-list', 'bulleted-list'];
+const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify'];
 
-    onPaste = (event: any, editor: Editor, next: () => any) => {
-        const transfer: any = getEventTransfer(event);
-        if (transfer.type !== 'html') return next();
-        const html = htmlclean(transfer.html);
-        const { document } = this.serializer.deserialize(html);
-        editor.insertFragment(document);
-        event.preventDefault();
+const Leaf = ({ attributes, children, leaf }: any) => {
+    if (leaf.bold) {
+        children = <strong>{ children }</strong>;
     }
 
-    onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-        if (event.keyCode === 9 && !((this.editor as any).isList('unordered-list') || (this.editor as any).isList('ordered-list'))) {
-            event.preventDefault();
-            return;
-        }
-
-        this.props.onKeyDown && this.props.onKeyDown(event, editor.value);
-
-        return next();
+    if (leaf.code) {
+        children = <code>{ children }</code>;
     }
 
-    isEmpty = () => {
-        if (!this.editor || !this.props.value) {
-            return true;
-        }
-
-        return isEditorEmpty(this.props.value);
+    if (leaf.italic) {
+        children = <em>{ children }</em>;
     }
 
-    onChange = (props: any) => {
-        if (props.value.selection.isFocused !== this.state.inFocus) {
-            this.setState({ inFocus: props.value.selection.isFocused });
-        }
-
-        this.props.onValueChange(props.value);
+    if (leaf.underline) {
+        children = <u>{ children }</u>;
     }
 
-    onBlur = (e: any, editor: Editor, next: () => any) => {
-        if (!editor.value.selection.isFocused) return;
-        if (e.relatedTarget && e.relatedTarget.closest('.slate-prevent-blur')) {
-            return e.preventDefault();
-        }
+    return <span { ...attributes }>{ children }</span>;
+};
 
-        this.props.onBlur?.(e, editor.value);
-        return next();
+const Element = ({ attributes, children, element }: any) => {
+    const style = { textAlign: element.align };
+    switch (element.type) {
+        case 'block-quote':
+            return (
+                <blockquote style={ style } { ...attributes }>
+                    { children }
+                </blockquote>
+            );
+        case 'bulleted-list':
+            return (
+                <ul style={ style } { ...attributes }>
+                    { children }
+                </ul>
+            );
+        case 'heading-one':
+            return (
+                <h1 style={ style } { ...attributes }>
+                    { children }
+                </h1>
+            );
+        case 'heading-two':
+            return (
+                <h2 style={ style } { ...attributes }>
+                    { children }
+                </h2>
+            );
+        case 'list-item':
+            return (
+                <li style={ style } { ...attributes }>
+                    { children }
+                </li>
+            );
+        case 'numbered-list':
+            return (
+                <ol style={ style } { ...attributes }>
+                    { children }
+                </ol>
+            );
+        default:
+            return (
+                <p style={ style } { ...attributes }>
+                    { children }
+                </p>
+            );
     }
-    
-    onFocus = (e: any, editor: Editor, next: () => any) => {
-        if (editor.value.selection.isFocused) return;
-        return next();
-    }
+};
 
-    renderEditor = () => (<>
-        <Editor
-            readOnly={ this.props.isReadonly }
-            className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
-            renderInline={ (pr, ed, next) => next() }
-            onKeyDown={ this.onKeyDown as any }
-            autoFocus={ this.props.autoFocus }
-            plugins={ this.props.plugins }
-            schema={ schema }
-            onFocus={ this.onFocus }
-            onBlur={ this.onBlur }
-            value={ this.props.value || slateEditorEmptyValue }
-            onChange={ this.onChange }
-            style={ { minHeight: this.props.minHeight || 350, padding: '0 24px', overflow: 'hidden' } }
-            ref={ (editor) => this.editor = editor }
-            onPaste={ this.onPaste }
-            spellCheck={ true }
-        />
-        { this.isEmpty() &&
-            (
-                <div className={ cx(css.placeholder, this.props.fontSize === '16' ? css.placeholder16 : css.placeholder14) }>
-                    { this.props.placeholder }
-                </div>
-            )
-        }
-        <Toolbar plugins={ this.props.plugins } editor={ this.editor } />
-        <Sidebar plugins={ this.props.plugins } editor={ this.editor } isReadonly={ this.props.isReadonly } />
-    </>)
+const initialValue: any[] = [
+    {
+        type: 'paragraph',
+        children: [
+            { text: 'This is editable ' },
+            { text: 'rich', bold: true },
+            { text: ' text, ' },
+            { text: 'much', italic: true },
+            { text: ' better than a ' },
+            { text: '<textarea>', code: true },
+            { text: '!' },
+        ],
+    },
+    {
+        type: 'paragraph',
+        children: [
+            {
+                text:
+                    "Since it's rich text, you can do things like turn a selection of text ",
+            },
+            { text: 'bold', bold: true },
+            {
+                text:
+                    ', or add a semantically rendered block quote in the middle of the page, like this:',
+            },
+        ],
+    },
+    {
+        type: 'block-quote',
+        children: [{ text: 'A wise quote.' }],
+    },
+    {
+        type: 'paragraph',
+        align: 'center',
+        children: [{ text: 'Try it out for yourself!' }],
+    },
+];
 
-    render() {
-        return (
-            <div
-                className={ cx(
-                    this.props.cx,
-                    css.container,
-                    css['mode-' + (this.props.mode || 'form')],
-                    (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.scrollbars && css.withScrollbars,
-                ) }
-                { ...this.props.rawProps }
-            >
-                { this.props.scrollbars
-                    ? <ScrollBars cx={ css.scrollbars }>
-                        { this.renderEditor() }
-                    </ScrollBars>
-                    : this.renderEditor()
-                }
-            </div>
-        );
-    }
+
+export function SlateEditor() {
+    const renderElement = useCallback(props => <Element { ...props } />, []);
+    const renderLeaf = useCallback(props => <Leaf { ...props } />, []);
+    //@ts-ignore
+    const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+
+    return (
+        <Slate editor={ editor } value={ initialValue }>
+            <Editable
+                renderElement={ renderElement }
+                renderLeaf={ renderLeaf }
+                placeholder="Enter some rich text…"
+                spellCheck
+                autoFocus
+                onKeyDown={ event => {
+                    // for (const hotkey in HOTKEYS) {
+                    //     if (isHotkey(hotkey, event as any)) {
+                    //         event.preventDefault();
+                    //         const mark = HOTKEYS[hotkey];
+                    //         toggleMark(editor, mark);
+                    //     }
+                    // }
+                } }
+            />
+        </Slate>
+    );
 }
