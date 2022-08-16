@@ -1,15 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, useArrayDataSource, ITablePreset } from "@epam/uui-core";
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PageButton, Paginator, LabeledInput, TextInput, PickerInput } from '@epam/promo';
+import { DataTable, FiltersToolbar, FlexCell, FlexRow, PageButton, Paginator, LabeledInput, TextInput, PickerInput, PresetPanel } from '@epam/promo';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { mapFilter } from "../masterDetailedTable/data";
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
-import css from './FilteredTable.scss';
 import { ReactComponent as ArrowRightIcon_24 } from "@epam/assets/icons/common/navigation-chevron-right-18.svg";
-import { PresetsBlock } from "./PresetsBlock";
+import css from './FilteredTable.scss';
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
@@ -78,19 +77,21 @@ export const FilteredTable: React.FC = () => {
 
     return (
         <div className={ css.container }>
-            <PresetsBlock
-                presets={ tableStateApi.presets }
-                createNewPreset={ tableStateApi.createNewPreset }
-                isDefaultPresetActive={ tableStateApi.isDefaultPresetActive }
-                resetToDefault={ tableStateApi.resetToDefault }
-                activePresetId={ tableStateApi.activePresetId }
-                hasPresetChanged={ tableStateApi.hasPresetChanged }
-                choosePreset={ tableStateApi.choosePreset }
-                duplicatePreset={ tableStateApi.duplicatePreset }
-                updatePreset={ tableStateApi.updatePreset }
-                deletePreset={ tableStateApi.deletePreset }
-                tableState={ tableStateApi.tableState }
-            />
+            <div className={ css.presetsPanel }>
+                <PresetPanel
+                    presets={ tableStateApi.presets }
+                    createNewPreset={ tableStateApi.createNewPreset }
+                    isDefaultPresetActive={ tableStateApi.isDefaultPresetActive }
+                    resetToDefault={ tableStateApi.resetToDefault }
+                    activePresetId={ tableStateApi.activePresetId }
+                    hasPresetChanged={ tableStateApi.hasPresetChanged }
+                    choosePreset={ tableStateApi.choosePreset }
+                    duplicatePreset={ tableStateApi.duplicatePreset }
+                    updatePreset={ tableStateApi.updatePreset }
+                    deletePreset={ tableStateApi.deletePreset }
+                    tableState={ tableStateApi.tableState }
+                />
+            </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
                     <FiltersToolbar

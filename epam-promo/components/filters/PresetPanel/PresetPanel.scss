@@ -1,77 +1,62 @@
-@use '~@epam/promo/assets/styles/colors' as *;
-@use '~@epam/promo/assets/styles/fonts' as *;
+@use '../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
 
-.presets-panel {
-    padding: 0 24px;
-    display: grid;
-    grid-template-columns: 200px auto minmax(auto, 1fr);
-    background-color: $white;
-    border-bottom: 1px solid $gray40;
+.presets-title {
+    min-width: 192px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
-    .presets-title {
-        min-width: 192px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
 
-    & > *:not(:first-child) {
-        margin-left: 0;
-    }
+.dynamic-presets-wrapper {
+    align-self: stretch;
+    overflow-x: auto;
+}
 
-    & > *:not(:last-child) {
-        margin-right: 0;
-    }
+.add-new-preset,
+.rename-preset {
+    margin-left: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
 
-    button {
+    :global(.uui-icon-accept),
+    :global(.uui-icon-cancel) {
+        width: 30px;
+        height: 30px;
         align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
 
-    .dynamic-presets-wrapper {
-        align-self: stretch;
-        overflow-x: auto;
-    }
+    :global(.uui-icon-accept) {
 
-    .add-new-preset,
-    .rename-preset {
-        margin-left: 6px;
-        padding-left: 3px;
-        padding-right: 3px;
-
-        :global(.uui-icon-accept),
-        :global(.uui-icon-cancel) {
-            width: 30px;
-            height: 30px;
-            align-self: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        :global(.uui-icon-accept) {
+        &:global(.-clickable) {
             fill: $white;
             background-color: $green;
 
             &:hover {
+                fill: $white;
                 background-color: darken($green, 2%);
             }
         }
-
-        :global(.uui-icon-cancel) {
-            background-color: $gray20;
-            margin-left: 1px;
-
-            &:hover {
-                background-color: darken($gray20, 2%);
-            }
-        }
     }
 
-    .right-block {
-        :global(.uui-caption) {
-            white-space: nowrap;
+    :global(.uui-icon-cancel) {
+        background-color: $gray20;
+        margin-left: 1px;
+
+        &:hover {
+            background-color: darken($gray20, 2%);
         }
     }
+}
 
+.right-block {
+    :global(.uui-caption) {
+        white-space: nowrap;
+    }
 }
 
 .preset-control-group {
