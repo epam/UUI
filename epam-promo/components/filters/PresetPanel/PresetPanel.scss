@@ -7,8 +7,7 @@
     padding-bottom: 20px;
 }
 
-
-.dynamic-presets-wrapper {
+.presets-wrapper {
     align-self: stretch;
     overflow-x: auto;
 }
@@ -59,7 +58,7 @@
     }
 }
 
-.preset-control-group {
+.default-preset-button {
     align-self: stretch;
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
@@ -93,7 +92,7 @@
     }
 }
 
-.active-preset-border {
+.preset-tub-wrapper {
     border-bottom: 3px solid var(--blue);
 
     .preset-tab-button {

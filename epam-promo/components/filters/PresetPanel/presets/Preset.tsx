@@ -44,8 +44,8 @@ export const Preset = (props: IPresetProps) => (
                     />
                 </FlexCell>
                 : <ControlGroup
-                    cx={ cx(css.presetControlGroup, {
-                        [css.activePresetBorder]: props.isActivePreset?.id === props.preset.id,
+                    cx={ cx(css.defaultPresetButton, {
+                        [css.presetTubWrapper]: props.isActivePreset?.id === props.preset.id,
                     }) }>
                     <TabButton
                         cx={ css.presetTabButton }

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as props from './props';
 import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
-import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
+import { DataSourceListProps, DataSourceState, IDataSource } from '../data';
 import { IDropdownBodyProps } from "./props";
 import { ILens } from '..';
 import { Link } from '../types';
@@ -271,6 +271,7 @@ export interface IPresetsApi {
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): void;
     updatePreset(preset: ITablePreset): void;
+    presets: ITablePreset[];
 }
 
 export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
@@ -279,5 +280,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    presets: ITablePreset<TFilter>[];
 }
