@@ -6,24 +6,13 @@ import { DataTableState, IPresetsApi, ITablePreset, useUuiContext } from "@epam/
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
 import { Preset } from "./presets/Preset";
 
-export interface IPresetsBlockProps {
-    presets: ITablePreset[];
-    createNewPreset: IPresetsApi["createNewPreset"];
-    isDefaultPresetActive: IPresetsApi["isDefaultPresetActive"];
-    resetToDefault: IPresetsApi["resetToDefault"];
-    activePresetId: IPresetsApi["activePresetId"];
-    hasPresetChanged: IPresetsApi["hasPresetChanged"];
-    choosePreset: IPresetsApi["choosePreset"];
-    duplicatePreset: (preset: ITablePreset) => void;
-    deletePreset: (preset: ITablePreset) => void;
-    updatePreset: (preset: ITablePreset) => void;
+export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
 }
 
 export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [renamedPreset, setRenamedPreset] = useState<ITablePreset | null>(null);
-    const [renamedPresetCaption, setRenamedPresetCaption] = useState('');
     const [newPresetCaption, setNewPresetCaption] = useState('');
     const [isInvalidPresetCaption, setIsInvalidPresetCaption] = useState(false);
     const isActivePreset = props.presets.find(p => p.id === props.activePresetId);
@@ -71,14 +60,14 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
     };
 
     const renamePresetOnBlurHandler = () => {
-        if (renamedPresetCaption.length) {
+        if (newPresetCaption.length) {
             return;
         }
         setRenamedPreset(null);
     };
 
     const cancelRenamePreset = () => {
-        setRenamedPresetCaption("");
+        setNewPresetCaption("");
         setRenamedPreset(null);
     };
 
@@ -91,21 +80,21 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
 
     const renamePreset = (preset?: ITablePreset) => {
         if (!renamedPreset && preset) {
-            setRenamedPresetCaption(preset.name);
+            setNewPresetCaption(preset.name);
             setRenamedPreset(preset);
         } else if (renamedPreset) {
-            const isPresetCaptionRepeat = props.presets.filter(p => p.name === renamedPresetCaption).length > 0;
+            const isPresetCaptionRepeat = props.presets.filter(p => p.name === newPresetCaption).length > 0;
             if (isPresetCaptionRepeat) {
                 setIsInvalidPresetCaption(true);
                 return;
             }
             const newPreset: ITablePreset = {
                 ...renamedPreset,
-                name: renamedPresetCaption,
+                name: newPresetCaption,
             };
             props.updatePreset(newPreset);
             setRenamedPreset(null);
-            setRenamedPresetCaption("");
+            setNewPresetCaption("");
             setIsInvalidPresetCaption(false);
         }
     };
@@ -133,14 +122,32 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
         ), { position: 'top-right', duration: 3 }).catch(() => null);
     };
 
+    const presetApi = {
+        renamedPreset,
+        setRenamedPresetCaption: setNewPresetCaption,
+        renamedPresetCaption: newPresetCaption,
+        cancelRenamePreset,
+        renamePreset,
+        isInvalidPresetCaption,
+        renamePresetOnBlurHandler,
+        isActivePreset,
+        choosePreset: props.choosePreset,
+        hasPresetChanged: props.hasPresetChanged,
+        addPreset,
+        copyUrlToClipboard,
+        deletePresetHandler,
+        duplicatePreset: props.duplicatePreset,
+        saveInCurrent,
+    };
+
     return (
         <>
             <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
-            <FlexRow cx={ css.dynamicPresetsWrapper } spacing="12">
+            <FlexRow cx={ css.presetsWrapper } spacing="12">
                 <ControlGroup
                     key="default-preset"
-                    cx={ cx(css.presetControlGroup, {
-                        [css.activePresetBorder]: !isActivePreset?.id,
+                    cx={ cx(css.defaultPresetButton, {
+                        [css.presetButtonWrapper]: !isActivePreset?.id,
                     }) }>
                     <TabButton
                         caption={ 'Default Preset' }
@@ -148,25 +155,7 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
                         size="36"
                     />
                 </ControlGroup>
-                { props.presets.map(preset => <Preset
-                    key={ preset.id }
-                    preset={ preset }
-                    renamedPreset={ renamedPreset }
-                    setRenamedPresetCaption={ setRenamedPresetCaption }
-                    renamedPresetCaption={ renamedPresetCaption }
-                    cancelRenamePreset={ cancelRenamePreset }
-                    renamePreset={ renamePreset }
-                    isInvalidPresetCaption={ isInvalidPresetCaption }
-                    renamePresetOnBlurHandler={ renamePresetOnBlurHandler }
-                    isActivePreset={ isActivePreset }
-                    choosePreset={ props.choosePreset }
-                    hasPresetChanged={ props.hasPresetChanged }
-                    addPreset={ addPreset }
-                    copyUrlToClipboard={ copyUrlToClipboard }
-                    deletePresetHandler={ deletePresetHandler }
-                    duplicatePreset={ props.duplicatePreset }
-                    saveInCurrent={ saveInCurrent }
-                />) }
+                { props.presets.map(preset => <Preset key={ preset.id } preset={ preset } { ...presetApi }/>) }
             </FlexRow>
             <FlexRow cx={ css.rightBlock }>
                 { !isAddingPreset
