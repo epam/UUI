@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from "react";
 import sortBy from "lodash.sortby";
 import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
-import { DataRowOptions, TableFiltersConfig, FiltersConfig, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
+import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
+    getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersToolbarItem } from "./FiltersToolbarItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
@@ -12,7 +13,41 @@ interface FiltersToolbarProps<TFilter> {
     setTableState: (newState: DataTableState) => void;
 }
 
-const getNewTableState = (key: string, { [key]: deletedKey, ...others }) => others;
+const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
+    if (!filter) {
+        return {};
+    }
+    const result: DataQueryFilter<TFilter> = filter;
+    const keys = Object.keys(filter) as (keyof TFilter)[];
+    for (let n = 0; n < keys.length; n++) {
+        const key = keys[n];
+        const filterValue: any = filter[key];
+        if (filterValue && typeof filterValue === "object") {
+            if ('in' in filterValue && (!Array.isArray(filterValue.in) || !filterValue.in.length)) {
+                delete filter[key];
+            }
+            if ('nin' in filterValue && (!Array.isArray(filterValue.nin) || !filterValue.nin.length)) {
+                delete filter[key];
+            }
+            if ('inRange' in filterValue) {
+                if (!filterValue.inRange.from && !filterValue.inRange.to) {
+                    delete filter[key];
+                }
+            }
+            if ('notInRange' in filterValue) {
+                if (!filterValue.notInRange.from && !filterValue.notInRange.to) {
+                    delete filter[key];
+                }
+            }
+            Object.keys(filterValue).forEach(predicate => {
+                if (filterValue[predicate] === null || filterValue[predicate] === undefined) {
+                    delete filter[key];
+                }
+            });
+        }
+    }
+    return result;
+};
 
 const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
@@ -44,23 +79,23 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     };
 
     const handleFilterChange = (newFilter: TFilter) => {
+        const filter = normalizeFilterWithPredicates({...tableState.filter, ...newFilter});
         setTableState({
             ...tableState,
-            filter: {
-                ...tableState.filter,
-                ...newFilter,
-            },
+            filter: filter,
         });
     };
 
     const removeFilter = (filterColumnKey: string, field: any) => {
+        const filterConfig = { ...tableState.filtersConfig };
+        delete filterConfig[filterColumnKey];
+        const filter = { ...tableState.filter };
+        delete filter[field];
+
         const newTableState: DataTableState = {
             ...tableState,
-            filtersConfig: getNewTableState(filterColumnKey, { ...tableState.filtersConfig }),
-            filter: {
-                ...tableState.filter,
-                [field]: undefined,
-            },
+            filtersConfig: filterConfig,
+            filter: filter,
         };
         setTableState({ ...newTableState });
     };

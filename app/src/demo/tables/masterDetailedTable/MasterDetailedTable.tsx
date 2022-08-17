@@ -5,7 +5,7 @@ import { Presets, FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
 import type { TApi } from '../../../data';
-import { getFilters, api } from './data';
+import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
@@ -36,7 +36,7 @@ export const MasterDetailedTable: React.FC = () => {
     });
 
     const dataSource = useLazyDataSource<Person, number, Person>({
-        api,
+        api: request => svc.api.demo.persons(request),
     }, []);
 
 
@@ -48,7 +48,7 @@ export const MasterDetailedTable: React.FC = () => {
                 rowProps.onSelect(rowProps);
                 setIsInfoPanelOpened(true);
             },
-        }
+        },
     });
 
     return (

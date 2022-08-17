@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, ColumnPickerFilter, FlexRow } from '@epam/loveship';
-import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens } from '@epam/uui';
+import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, ILens } from '@epam/uui';
 import { svc } from '../../services';
 import type { Person, PersonGroup } from '@epam/uui-docs';
 import type { PersonTableRecordId } from './types';
@@ -21,7 +21,7 @@ export function getColumns() {
             />
         );
 
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
+        return (filterLens: ILens<any>) => <Filter { ...filterLens.toProps() } />;
     }
 
     const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);

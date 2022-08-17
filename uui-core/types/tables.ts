@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as props from './props';
-import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
+import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection,
+    IDropdownToggler, IHasCX, DropParams, QueryPredicateName } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
 import { IDropdownBodyProps } from "./props";
 import { ILens } from '..';
@@ -232,11 +233,18 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
 
+export type IFilterPredicate = {
+    name: string;
+    predicate: QueryPredicateName;
+    isDefault?: boolean;
+};
+
 type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
     isAlwaysVisible?: boolean;
+    predicates?: IFilterPredicate[]
 };
 
 type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
