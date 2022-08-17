@@ -1,21 +1,40 @@
-import React from "react";
-import css from "./FilteredTable.scss";
+import React, { useEffect, useState } from "react";
+import css from "./FilteredTableFooter.scss";
 import { FlexRow, LabeledInput, PageButton, Paginator, PickerInput, TextInput } from "@epam/promo";
+import { DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { ReactComponent as ArrowRightIcon_24 } from "@epam/assets/icons/common/navigation-chevron-right-18.svg";
-import { ArrayDataSource, ITableState } from "@epam/uui-core";
 
 interface IFilteredTableFooterProps {
-    itemsPerPageDataSource: ArrayDataSource;
-    tableStateApi: ITableState;
-    setItemsPerPage: (itemsPerPage: number) => void;
-    goToPage: string;
-    setGoToPageHandler: (newValue: string) => void;
-    goToPageHandler: () => void;
-    paginatorHandler: (newPage: number) => void;
-    totalPages: () => number;
+    tableState: DataTableState;
+    setTableState: (newState: DataTableState) => void;
+    totalCount: number;
 }
 
 export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
+    const [goToPage, setGoToPage] = useState('1');
+    const totalPages = () => props.tableState.pageSize ? Math.ceil(props.totalCount / props.tableState.pageSize) : 0;
+    const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, indexToScroll: 0 });
+    const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, indexToScroll: 0 });
+
+    const itemsPerPageDataSource = useArrayDataSource({
+        items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
+    }, []);
+
+    useEffect(() => {
+        setItemsPerPage(40);
+    }, []);
+
+    const setGoToPageHandler = (newValue: string) => {
+        if (typeof +newValue === 'number' && !isNaN(+newValue) && +newValue <= totalPages() && +newValue > 0) {
+            setGoToPage(() => newValue);
+        }
+    };
+
+    const setItemsPerPage = (itemsPerPage: number) => {
+        props.setTableState({ ...props.tableState, page: 1, pageSize: itemsPerPage });
+        setGoToPage('1');
+    };
+
     return (
         <FlexRow cx={ css.paginatorWrapper } padding="24" vPadding="12" background="gray5">
             <div className={ css.itemsPerPage }>
@@ -23,9 +42,9 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
                     <PickerInput
                         size="24"
                         placeholder="Select items per page"
-                        dataSource={ props.itemsPerPageDataSource }
-                        value={ props.tableStateApi.tableState.pageSize }
-                        onValueChange={ props.setItemsPerPage }
+                        dataSource={ itemsPerPageDataSource }
+                        value={ props.tableState.pageSize }
+                        onValueChange={ setItemsPerPage }
                         getName={ item => item.page }
                         selectionMode="single"
                         valueType={ 'id' }
@@ -40,8 +59,8 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
                     <TextInput
                         cx={ css.goToPage }
                         size="24"
-                        value={ props.goToPage }
-                        onValueChange={ props.setGoToPageHandler }
+                        value={ goToPage }
+                        onValueChange={ setGoToPageHandler }
                     />
                 </LabeledInput>
             </div>
@@ -49,14 +68,14 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
                 cx={ css.goToPageButton }
                 size="24"
                 icon={ ArrowRightIcon_24 }
-                onClick={ props.goToPageHandler }
+                onClick={ goToPageHandler }
                 fill="white"
                 color="gray50"
             />
             <Paginator
-                value={ props.tableStateApi.tableState.page }
-                onValueChange={ props.paginatorHandler }
-                totalPages={ props.totalPages() }
+                value={ props.tableState.page }
+                onValueChange={ paginatorHandler }
+                totalPages={ totalPages() }
                 size="24"
             />
         </FlexRow>

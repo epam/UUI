@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, useArrayDataSource, ITablePreset } from "@epam/uui-core";
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel } from '@epam/promo';
 import { getFilters } from './filters';
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -14,12 +14,7 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [goToPage, setGoToPage] = useState('1');
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
-
-    const itemsPerPageDataSource = useArrayDataSource({
-        items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
-    }, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -34,17 +29,6 @@ export const FilteredTable: React.FC = () => {
         onPresetUpdate: svc.api.presets.updatePreset,
         onPresetDelete: svc.api.presets.deletePreset,
     });
-
-    const totalPages = () => tableStateApi.tableState.pageSize ? Math.ceil(totalCount / tableStateApi.tableState.pageSize) : 0;
-
-    const setItemsPerPage = (itemsPerPage: number) => {
-        tableStateApi.setTableState({ ...tableStateApi.tableState, page: 1, pageSize: itemsPerPage });
-        setGoToPage('1');
-    };
-
-    useEffect(() => {
-        setItemsPerPage(40);
-    }, []);
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
         const result = await svc.api.demo.personsPaged({
@@ -69,19 +53,22 @@ export const FilteredTable: React.FC = () => {
         },
     });
 
-    const setGoToPageHandler = (newValue: string) => {
-        if (typeof +newValue === 'number' && !isNaN(+newValue) && +newValue <= totalPages() && +newValue > 0) {
-            setGoToPage(() => newValue);
-        }
-    };
-
-    const goToPageHandler = () => tableStateApi.setTableState({ ...tableStateApi.tableState, page: +goToPage, indexToScroll: 0 });
-
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
-    const paginatorHandler = (newPage: number) => tableStateApi.setTableState({ ...tableStateApi.tableState, page: newPage, indexToScroll: 0 });
-
     const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
+
+    const dataTableApi = {
+        headerTextCase: "upper" as "upper" | "normal",
+        getRows: () => view.getVisibleRows(),
+        columns: personColumns,
+        filters: filters,
+        value: tableStateApi.tableState,
+        onValueChange: tableStateApi.setTableState,
+        showColumnsConfig: true,
+        allowColumnsResizing: true,
+        allowColumnsReordering: true,
+        ...view.getListProps(),
+    };
 
     return (
         <div className={ css.container }>
@@ -105,27 +92,12 @@ export const FilteredTable: React.FC = () => {
                     />
                 </FlexCell>
             </FlexRow>
-            <DataTable
-                headerTextCase="upper"
-                getRows={ view.getVisibleRows }
-                columns={ personColumns }
-                filters={ filters }
-                value={ tableStateApi.tableState }
-                onValueChange={ tableStateApi.setTableState }
-                showColumnsConfig={ true }
-                allowColumnsResizing
-                allowColumnsReordering
-                { ...view.getListProps() }
-            />
+            <DataTable { ...dataTableApi }/>
             <FilteredTableFooter
-                itemsPerPageDataSource={ itemsPerPageDataSource }
-                tableStateApi={ tableStateApi }
-                setItemsPerPage={ setItemsPerPage }
-                goToPage={ goToPage }
-                setGoToPageHandler={ setGoToPageHandler }
-                goToPageHandler={ goToPageHandler }
-                paginatorHandler={ paginatorHandler }
-                totalPages={ totalPages }/>
+                tableState={ tableStateApi.tableState }
+                setTableState={ tableStateApi.setTableState }
+                totalCount={ totalCount }
+            />
         </div>
     );
 };
