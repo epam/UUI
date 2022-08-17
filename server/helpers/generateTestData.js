@@ -61,6 +61,7 @@ const getPersons = cached("persons", async () => {
     const statuses = profileStatuses;
     const managers = c.unique(c.name, 30).map((i, index) => ({ id: index, name: i }));
     const offices = c.unique(c.address, 30).map((i, index) => ({ id: index, name: i }));
+    const workload = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
     const persons = [];
 
     for (let n = 0; n < size; n++) {
@@ -112,6 +113,7 @@ const getPersons = cached("persons", async () => {
             salary: c.dollar({ max: 700 }),
             titleLevel: `${c.character({ pool: "AB" })}${c.character({ pool: "1234" })}`,
             uid: c.ssn({ dashes: false }),
+            workload: workload[c.integer({min: 0, max: 10})]
         });
     }
 

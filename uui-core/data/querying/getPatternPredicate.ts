@@ -1,29 +1,56 @@
 import { DataQueryFilter, DataQueryFilterCondition } from "../../types/dataQuery";
+import dayjs from "dayjs";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
 
-const truePredicate = () => true;
-
-export function normalizeDataQueryFilter<T>(filter: DataQueryFilter<T>) {
+export function convertPredicates<T>(filter: DataQueryFilter<T>) {
     if (!filter) {
         return {};
     }
-    const result: DataQueryFilter<T> = {};
+    const result: DataQueryFilter<T> = filter;
     const keys = Object.keys(filter) as (keyof T)[];
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
         const condition = filter[key] as DataQueryFilterCondition<T, any>;
-        if (condition) {
-            if (typeof condition === "object" && 'in' in condition && (!Array.isArray(condition.in) || !condition.in.length)) {
-                delete condition.in;
+        if (condition != null && typeof condition === "object") {
+            if ('inRange' in condition) {
+                const value = condition.inRange;
+
+                result[key] = {
+                    gt: value.from,
+                    lt: value.to,
+                };
             }
-            if (Object.keys(condition).length != 0) {
-                result[key] = condition;
+            if ('notInRange' in condition) {
+                result[key] = {
+                    lt: condition.from,
+                    gt: condition.to,
+                };
+            }
+
+            if (Array.isArray(condition)) {
+                result[key] = {
+                    in: condition,
+                };
             }
         }
+
     }
     return result;
 }
 
+function isDate(val: string) {
+    return dayjs(val).isValid();
+}
+
+
+const truePredicate = () => true;
+
 export function getPatternPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boolean {
+    filter = convertPredicates(filter);
+
     if (filter == null) {
         return truePredicate;
     }
@@ -35,6 +62,7 @@ export function getPatternPredicate<T>(filter: DataQueryFilter<T>): (e: T) => bo
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
         const condition = filter[key] as DataQueryFilterCondition<T, any>;
+
         if (condition != null && typeof condition === "object") {
             if ('isNull' in condition) {
                 if (condition.isNull) {
@@ -43,38 +71,71 @@ export function getPatternPredicate<T>(filter: DataQueryFilter<T>): (e: T) => bo
                     predicates.push((item: T) => item[key] != null);
                 }
             }
+
             if ('in' in condition && Array.isArray(condition.in) && condition.in.length) {
                 const values = condition.in as (any[]);
                 predicates.push((item: T) => values.includes(item[key]));
             }
+
+            if ('nin' in condition && Array.isArray(condition.nin) && condition.nin.length) {
+                const values = condition.nin as (any[]);
+                predicates.push((item: T) => !values.includes(item[key]));
+            }
+
             if (condition.gte != null) {
                 const conditionValue = condition.gte;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    return !value || value >= conditionValue;
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isSameOrAfter(conditionValue);
+                    }
+                    return value >= conditionValue;
                 });
             }
+
             if (condition.lte != null) {
                 const conditionValue = condition.lte;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    return !value || value <= conditionValue;
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isSameOrBefore(conditionValue);
+                    }
+                    return value <= conditionValue;
                 });
             }
+
             if (condition.gt != null) {
                 const conditionValue = condition.gt;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    return !value || value > conditionValue;
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isAfter(conditionValue);
+                    }
+                    return value > conditionValue;
                 });
             }
+
             if (condition.lt != null) {
                 const conditionValue = condition.lt;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    return !value || value < conditionValue;
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isBefore(conditionValue);
+                    }
+                    return value < conditionValue;
                 });
             }
+
+            if (condition.eq) {
+                const conditionValue = condition.eq;
+                predicates.push((item: T) => item[key] === conditionValue);
+            }
+
+            if (condition.neq) {
+                const conditionValue = condition.neq;
+                predicates.push((item: T) => item[key] !== conditionValue);
+            }
+
         } else {
             predicates.push((item: T) => item[key] === condition);
         }

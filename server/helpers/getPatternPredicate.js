@@ -1,13 +1,53 @@
 "use strict";
-const _ = require("lodash");
-const dayjs = require("dayjs");
-const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
-const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
-const isBetween = require('dayjs/plugin/isBetween');
-
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
+exports.getPatternPredicate = exports.convertPredicates = void 0;
+var dayjs_1 = __importDefault(require("dayjs"));
+var isSameOrBefore_1 = __importDefault(require("dayjs/plugin/isSameOrBefore"));
+var isSameOrAfter_1 = __importDefault(require("dayjs/plugin/isSameOrAfter"));
+dayjs_1["default"].extend(isSameOrBefore_1["default"]);
+dayjs_1["default"].extend(isSameOrAfter_1["default"]);
+function convertPredicates(filter) {
+    if (!filter) {
+        return {};
+    }
+    var result = filter;
+    var keys = Object.keys(filter);
+    for (var n = 0; n < keys.length; n++) {
+        var key = keys[n];
+        var condition = filter[key];
+        if (condition != null && typeof condition === "object") {
+            if ('inRange' in condition) {
+                var value = condition.inRange;
+                result[key] = {
+                    gt: value.from,
+                    lt: value.to
+                };
+            }
+            if ('notInRange' in condition) {
+                result[key] = {
+                    lt: condition.from,
+                    gt: condition.to
+                };
+            }
+            if (Array.isArray(condition)) {
+                result[key] = {
+                    "in": condition
+                };
+            }
+        }
+    }
+    return result;
+}
+exports.convertPredicates = convertPredicates;
+function isDate(val) {
+    return (0, dayjs_1["default"])(val).isValid();
+}
 var truePredicate = function () { return true; };
 function getPatternPredicate(filter) {
+    filter = convertPredicates(filter);
     if (filter == null) {
         return truePredicate;
     }
@@ -27,63 +67,59 @@ function getPatternPredicate(filter) {
             }
             if ('in' in condition && Array.isArray(condition["in"]) && condition["in"].length) {
                 var values_1 = condition["in"];
-
-                if (key === 'hireDate' && filter[key] !== undefined) {
-                    if (filter[key]?.in[0] === null) {
-                        return truePredicate
-                    }
-                    predicates.push(function (item) { return dayjs(values_1[0]).isSame(dayjs(item[key]), 'date'); });
-                    return;
-                }
-                if (key === 'birthDate' && _.isPlainObject(values_1[0])) {
-                    const dateFrom = values_1[0]?.from ;
-                    const dateTo = values_1[0]?.to;
-
-                    if (dateFrom === null && dateTo === null) {
-                        return truePredicate
-                    } else if (dateFrom === null && dateTo !== null) {
-                        dayjs.extend(isSameOrBefore);
-                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isSameOrBefore(dateTo, 'date'); });
-                        return;
-                    } else if (dateFrom !== null && dateTo === null) {
-                        dayjs.extend(isSameOrAfter);
-                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isSameOrAfter(dateFrom, 'date'); });
-                        return;
-                    } else if (dateFrom !== null && dateTo !== null) {
-                        dayjs.extend(isBetween)
-                        predicates.push(function (item) { return dayjs(dayjs(item[key]).format('YYYY-MM-DD')).isBetween(dateFrom, dateTo, null, '[]'); });
-                        return;
-                    }
-                }
                 predicates.push(function (item) { return values_1.includes(item[key]); });
+            }
+            if ('nin' in condition && Array.isArray(condition.nin) && condition.nin.length) {
+                var values_2 = condition.nin;
+                predicates.push(function (item) { return !values_2.includes(item[key]); });
             }
             if (condition.gte != null) {
                 var conditionValue_1 = condition.gte;
                 predicates.push(function (item) {
                     var value = item[key];
-                    return !value || value >= conditionValue_1;
+                    if (typeof value === "string" && isDate(conditionValue_1)) {
+                        return (0, dayjs_1["default"])(value).isSameOrAfter(conditionValue_1);
+                    }
+                    return value >= conditionValue_1;
                 });
             }
             if (condition.lte != null) {
                 var conditionValue_2 = condition.lte;
                 predicates.push(function (item) {
                     var value = item[key];
-                    return !value || value <= conditionValue_2;
+                    if (typeof value === "string" && isDate(conditionValue_2)) {
+                        return (0, dayjs_1["default"])(value).isSameOrBefore(conditionValue_2);
+                    }
+                    return value <= conditionValue_2;
                 });
             }
             if (condition.gt != null) {
                 var conditionValue_3 = condition.gt;
                 predicates.push(function (item) {
                     var value = item[key];
-                    return !value || value > conditionValue_3;
+                    if (typeof value === "string" && isDate(conditionValue_3)) {
+                        return (0, dayjs_1["default"])(value).isAfter(conditionValue_3);
+                    }
+                    return value > conditionValue_3;
                 });
             }
             if (condition.lt != null) {
                 var conditionValue_4 = condition.lt;
                 predicates.push(function (item) {
                     var value = item[key];
-                    return !value || value < conditionValue_4;
+                    if (typeof value === "string" && isDate(conditionValue_4)) {
+                        return (0, dayjs_1["default"])(value).isBefore(conditionValue_4);
+                    }
+                    return value < conditionValue_4;
                 });
+            }
+            if (condition.eq) {
+                var conditionValue_5 = condition.eq;
+                predicates.push(function (item) { return item[key] === conditionValue_5; });
+            }
+            if (condition.neq) {
+                var conditionValue_6 = condition.neq;
+                predicates.push(function (item) { return item[key] !== conditionValue_6; });
             }
         }
         else {
