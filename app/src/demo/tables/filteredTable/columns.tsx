@@ -125,6 +125,14 @@ export const personColumns = [
         isHiddenByDefault: true,
     },
     {
+        key: 'workload',
+        caption: 'Workload',
+        render: p => <Text>{ p.workload }%</Text>,
+        width: 120,
+        textAlign: 'right',
+        isSortable: true,
+    },
+    {
         key: 'detailed',
         render: () => {},
         width: 54,
