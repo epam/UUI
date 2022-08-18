@@ -48,6 +48,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
     }, [props.isOpen]);
 
+    const isActivePlaceholder = (): Boolean => {
+        if (props.isReadonly) return  false;
+        else if (props.isOpen && props.searchPosition === 'input') return false;
+        else if (props.minCharsToSearch && inFocus) return false;
+        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
+        else return false;
+    };
+
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
         props.onBlur?.(e);
@@ -96,17 +104,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isActivePlaceholder = (): Boolean => {
-            let isActive: Boolean = false;
-            if (props.isReadonly) isActive = false;
-            else if (props.isOpen && props.searchPosition === 'input') isActive = false;
-            else if (props.minCharsToSearch && inFocus) isActive = false;
-            else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) isActive = true;
-            return isActive;
-        };
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
-
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
