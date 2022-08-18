@@ -49,88 +49,6 @@ function isDate(val: string): boolean {
 
 const truePredicate = () => true;
 
-function getConditionPredicate<T>(condition: DataQueryFilterCondition<T, any>, key: keyof T) {
-    const predicates: ((item: T) => boolean)[] = [];
-
-    if (condition != null && typeof condition === "object") {
-        if ('isNull' in condition) {
-            if (condition.isNull) {
-                predicates.push((item: T) => item[key] == null);
-            } else {
-                predicates.push((item: T) => item[key] != null);
-            }
-        }
-
-        if ('in' in condition && Array.isArray(condition.in)) {
-            const values = condition.in as (any[]);
-            predicates.push((item: T) => values.includes(item[key]));
-        }
-
-        if ('nin' in condition && Array.isArray(condition.nin)) {
-            const values = condition.nin as (any[]);
-            predicates.push((item: T) => !values.includes(item[key]));
-        }
-
-        if (condition.gte != null) {
-            const conditionValue = condition.gte;
-            predicates.push((item: T) => {
-                const value = item[key];
-                if (typeof value === "string" && isDate(conditionValue)) {
-                    return dayjs(value).isSameOrAfter(conditionValue);
-                }
-                return value >= conditionValue;
-            });
-        }
-
-        if (condition.lte != null) {
-            const conditionValue = condition.lte;
-            predicates.push((item: T) => {
-                const value = item[key];
-                if (typeof value === "string" && isDate(conditionValue)) {
-                    return dayjs(value).isSameOrBefore(conditionValue);
-                }
-                return value <= conditionValue;
-            });
-        }
-
-        if (condition.gt != null) {
-            const conditionValue = condition.gt;
-            predicates.push((item: T) => {
-                const value = item[key];
-                if (typeof value === "string" && isDate(conditionValue)) {
-                    return dayjs(value).isAfter(conditionValue);
-                }
-                return value > conditionValue;
-            });
-        }
-
-        if (condition.lt != null) {
-            const conditionValue = condition.lt;
-            predicates.push((item: T) => {
-                const value = item[key];
-                if (typeof value === "string" && isDate(conditionValue)) {
-                    return dayjs(value).isBefore(conditionValue);
-                }
-                return value < conditionValue;
-            });
-        }
-
-        if (condition.eq) {
-            const conditionValue = condition.eq;
-            predicates.push((item: T) => item[key] === conditionValue);
-        }
-
-        if (condition.neq) {
-            const conditionValue = condition.neq;
-            predicates.push((item: T) => item[key] !== conditionValue);
-        }
-    } else {
-        predicates.push((item: T) => item[key] === condition);
-    }
-
-    return predicates;
-};
-
 export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boolean {
     filter = simplifyPredicates(filter);
 
@@ -144,11 +62,86 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
         const condition = filter[key] as DataQueryFilterCondition<T, any>;
-        predicates.push(...getConditionPredicate(condition, key));
 
-        if (typeof condition === 'object' && 'not' in condition) {
-            const predicate = getFilterPredicate({ [key]: condition.not });
-            predicates.push(i => !predicate(i));
+        if (condition != null && typeof condition === "object") {
+            if ('isNull' in condition) {
+                if (condition.isNull) {
+                    predicates.push((item: T) => item[key] == null);
+                } else {
+                    predicates.push((item: T) => item[key] != null);
+                }
+            }
+
+            if ('in' in condition && Array.isArray(condition.in)) {
+                const values = condition.in as (any[]);
+                predicates.push((item: T) => values.includes(item[key]));
+            }
+
+            if ('nin' in condition && Array.isArray(condition.nin)) {
+                const values = condition.nin as (any[]);
+                predicates.push((item: T) => !values.includes(item[key]));
+            }
+
+            if (condition.gte != null) {
+                const conditionValue = condition.gte;
+                predicates.push((item: T) => {
+                    const value = item[key];
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isSameOrAfter(conditionValue);
+                    }
+                    return !value || value >= conditionValue;
+                });
+            }
+
+            if (condition.lte != null) {
+                const conditionValue = condition.lte;
+                predicates.push((item: T) => {
+                    const value = item[key];
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isSameOrBefore(conditionValue);
+                    }
+                    return !value || value <= conditionValue;
+                });
+            }
+
+            if (condition.gt != null) {
+                const conditionValue = condition.gt;
+                predicates.push((item: T) => {
+                    const value = item[key];
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isAfter(conditionValue);
+                    }
+                    return !value || value > conditionValue;
+                });
+            }
+
+            if (condition.lt != null) {
+                const conditionValue = condition.lt;
+                predicates.push((item: T) => {
+                    const value = item[key];
+                    if (typeof value === "string" && isDate(conditionValue)) {
+                        return dayjs(value).isBefore(conditionValue);
+                    }
+                    return !value || value < conditionValue;
+                });
+            }
+
+            if (condition.eq) {
+                const conditionValue = condition.eq;
+                predicates.push((item: T) => item[key] === conditionValue);
+            }
+
+            if (condition.neq) {
+                const conditionValue = condition.neq;
+                predicates.push((item: T) => item[key] !== conditionValue);
+            }
+
+            if ('not' in condition) {
+                const predicate = getFilterPredicate({ [key]: condition.not });
+                predicates.push(i => !predicate(i));
+            }
+        } else {
+            predicates.push((item: T) => item[key] === condition);
         }
     }
 
