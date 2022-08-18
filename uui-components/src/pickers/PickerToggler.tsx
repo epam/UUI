@@ -42,7 +42,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.isOpen && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
-            inputContainer.current.focus();
+            inputContainer.current?.focus();
         }
 
         return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
@@ -101,7 +101,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             if (props.isReadonly) isActive = false;
             else if (props.isOpen && props.searchPosition === 'input') isActive = false;
             else if (props.minCharsToSearch && inFocus) isActive = false;
-            else if (props.pickerMode === 'single' && props.selection.length > 0) isActive = true;
+            else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) isActive = true;
             return isActive;
         };
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
