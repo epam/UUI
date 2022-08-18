@@ -1,5 +1,6 @@
 @use '../../../../node_modules/@epam/promo/assets/styles/colors' as *;
 @use '../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+@import "defaultPresetButton";
 
 .presets-title {
     min-width: 192px;
@@ -12,119 +13,8 @@
     overflow-x: auto;
 }
 
-.add-new-preset,
-.rename-preset {
-    margin-left: 6px;
-    padding-left: 3px;
-    padding-right: 3px;
-
-    :global(.uui-icon-accept),
-    :global(.uui-icon-cancel) {
-        width: 30px;
-        height: 30px;
-        align-self: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    :global(.uui-icon-accept) {
-
-        &:global(.-clickable) {
-            fill: $white;
-            background-color: $green;
-
-            &:hover {
-                fill: $white;
-                background-color: darken($green, 2%);
-            }
-        }
-    }
-
-    :global(.uui-icon-cancel) {
-        background-color: $gray20;
-        margin-left: 1px;
-
-        &:hover {
-            background-color: darken($gray20, 2%);
-        }
-    }
-}
-
 .right-block {
     :global(.uui-caption) {
         white-space: nowrap;
-    }
-}
-
-.default-preset-button {
-    align-self: stretch;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid transparent;
-
-    :global(.uui-caption) {
-        white-space: nowrap;
-    }
-
-    .preset-tab-button {
-        align-self: center;
-    }
-
-    .preset-dropdown {
-        visibility: hidden;
-        background-color: transparent;
-        border-color: transparent;
-    }
-}
-
-.preset-dropdown-panel {
-    min-width: 150px;
-}
-
-.preset-button-wrapper {
-    align-self: stretch;
-    display: flex;
-
-    .rename-input-cell {
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-}
-
-.preset-tub-wrapper {
-    border-bottom: 3px solid var(--blue);
-
-    .preset-tab-button {
-
-        .preset-dropdown {
-            visibility: visible;
-            background-color: transparent;
-            border-color: transparent;
-
-            &:hover {
-                background-color: transparent;
-                border-color: transparent;
-            }
-        }
-    }
-
-    :global(.uui-has-right-icon) :global(.uui-caption) {
-        color: var(--blue);
-        padding-right: 5px;
-    }
-
-    :global(.uui-icon) :global(.uui-enabled) {
-        padding: 0;
-    }
-}
-
-.delete-row {
-    svg {
-        fill: $red-darkest;
-    }
-
-    .delete-button {
-        color: $red-darkest;
     }
 }

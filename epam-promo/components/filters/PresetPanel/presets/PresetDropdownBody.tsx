@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import css from "../PresetPanel.scss";
+import css from "./PresetDropdownBody.scss";
 import { ITablePreset } from "@epam/uui-core";
 import { FlexRow, Panel } from "../../../layout";
 import { DropdownMenuButton } from "../../../overlays";

@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from "react";
 import cx from "classnames";
 import css from "./PresetPanel.scss";
-import { ControlGroup, FlexRow, Text, TextInput, FlexCell, SuccessNotification, TabButton } from "../../index";
-import { DataTableState, IPresetsApi, ITablePreset, useUuiContext } from "@epam/uui-core";
-import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
+import { ControlGroup, FlexRow, Text, TabButton } from "../../index";
+import { DataTableState, IPresetsApi } from "@epam/uui-core";
 import { Preset } from "./presets/Preset";
+import { PresetInput } from "./presets/PresetInput";
+import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
 
 export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
@@ -12,132 +13,56 @@ export interface IPresetsBlockProps extends IPresetsApi {
 
 export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
-    const [renamedPreset, setRenamedPreset] = useState<ITablePreset | null>(null);
     const [newPresetCaption, setNewPresetCaption] = useState('');
-    const [isInvalidPresetCaption, setIsInvalidPresetCaption] = useState(false);
     const isActivePreset = props.presets.find(p => p.id === props.activePresetId);
-    const { uuiNotifications } = useUuiContext();
 
     const saveNewPreset = useCallback(() => {
-        const isPresetCaptionRepeat = props.presets.filter(p => p.name === newPresetCaption).length > 0;
-
         if (!newPresetCaption) {
             setIsAddingPreset(false);
             return;
         }
-        if (isPresetCaptionRepeat) {
-            setIsInvalidPresetCaption(true);
-            return;
-        }
 
-        setIsInvalidPresetCaption(false);
         props.createNewPreset(newPresetCaption);
         setIsAddingPreset(false);
         setNewPresetCaption("");
     }, [newPresetCaption, props.createNewPreset]);
 
-    const setDefaultPreset = () => {
+    const setDefaultPreset = useCallback(() => {
         if (!props.isDefaultPresetActive) {
             props.resetToDefault();
         }
-    };
+    }, [props.isDefaultPresetActive]);
 
-    const addPreset = () => {
+    const addPreset = useCallback(() => {
         setIsAddingPreset(true);
-    };
+    }, [setIsAddingPreset]);
 
-    const cancelNewPreset = () => {
+    const cancelNewPreset = useCallback(() => {
         setNewPresetCaption('');
-        setIsInvalidPresetCaption(false);
         setIsAddingPreset(false);
-    };
+    }, [setNewPresetCaption, setIsAddingPreset]);
 
-    const newPresetOnBlurHandler = () => {
+    const newPresetOnBlurHandler = useCallback(() => {
         if (newPresetCaption.length) {
             return;
         }
         setIsAddingPreset(false);
-    };
-
-    const renamePresetOnBlurHandler = () => {
-        if (newPresetCaption.length) {
-            return;
-        }
-        setRenamedPreset(null);
-    };
-
-    const cancelRenamePreset = () => {
-        setNewPresetCaption("");
-        setRenamedPreset(null);
-    };
-
-    const deletePresetHandler = (preset: ITablePreset) => {
-        if (isActivePreset && isActivePreset.id === preset.id) {
-            props.resetToDefault();
-        }
-        props.deletePreset(preset);
-    };
-
-    const renamePreset = (preset?: ITablePreset) => {
-        if (!renamedPreset && preset) {
-            setNewPresetCaption(preset.name);
-            setRenamedPreset(preset);
-        } else if (renamedPreset) {
-            const isPresetCaptionRepeat = props.presets.filter(p => p.name === newPresetCaption).length > 0;
-            if (isPresetCaptionRepeat) {
-                setIsInvalidPresetCaption(true);
-                return;
-            }
-            const newPreset: ITablePreset = {
-                ...renamedPreset,
-                name: newPresetCaption,
-            };
-            props.updatePreset(newPreset);
-            setRenamedPreset(null);
-            setNewPresetCaption("");
-            setIsInvalidPresetCaption(false);
-        }
-    };
-
-    const saveInCurrent = (preset: ITablePreset) => {
-        const newPreset = {
-            ...preset,
-            filter: props.tableState.filter,
-            columnsConfig: props.tableState.columnsConfig,
-        };
-        props.updatePreset(newPreset);
-        successNotificationHandler('Changes saved!');
-    };
-
-    const copyUrlToClipboard = async () => {
-        await navigator.clipboard.writeText(location.href);
-        successNotificationHandler('Link copied!');
-    };
-
-    const successNotificationHandler = (text: string) => {
-        uuiNotifications.show((props) => (
-            <SuccessNotification { ...props } >
-                <Text size="36" font="sans" fontSize="14">{ text }</Text>
-            </SuccessNotification>
-        ), { position: 'top-right', duration: 3 }).catch(() => null);
-    };
+    }, [newPresetCaption.length]);
 
     const presetApi = {
-        renamedPreset,
         setRenamedPresetCaption: setNewPresetCaption,
         renamedPresetCaption: newPresetCaption,
-        cancelRenamePreset,
-        renamePreset,
-        isInvalidPresetCaption,
-        renamePresetOnBlurHandler,
         isActivePreset,
+        addPreset,
         choosePreset: props.choosePreset,
         hasPresetChanged: props.hasPresetChanged,
-        addPreset,
-        copyUrlToClipboard,
-        deletePresetHandler,
         duplicatePreset: props.duplicatePreset,
-        saveInCurrent,
+        updatePreset: props.updatePreset,
+        tableState: props.tableState,
+        resetToDefault: props.resetToDefault,
+        deletePreset: props.deletePreset,
+        newPresetCaption,
+        setNewPresetCaption,
     };
 
     return (
@@ -168,18 +93,13 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
                             iconPosition="left"
                         />
                     </ControlGroup>
-                    : <FlexCell minWidth={ 180 } key="add-input">
-                        <TextInput
-                            cx={ css.addNewPreset }
-                            onValueChange={ setNewPresetCaption }
-                            value={ newPresetCaption }
-                            onCancel={ cancelNewPreset }
-                            onAccept={ saveNewPreset }
-                            isInvalid={ isInvalidPresetCaption }
-                            onBlur={ newPresetOnBlurHandler }
-                            autoFocus
-                        />
-                    </FlexCell> }
+                    : <PresetInput
+                        value={ newPresetCaption }
+                        onValueChange={ setNewPresetCaption }
+                        onAccept={ saveNewPreset }
+                        onCancel={ cancelNewPreset }
+                        onBlur={ newPresetOnBlurHandler }
+                    /> }
             </FlexRow>
         </>
     );
