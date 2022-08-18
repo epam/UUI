@@ -91,17 +91,6 @@ exports[`PickerInput should be rendered correctly 2`] = `
         />
       </div>
     </button>
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input"
-      onChange={[Function]}
-      placeholder=""
-      readOnly={true}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
   </div>
   <div
     className="actions"

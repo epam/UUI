@@ -56,15 +56,6 @@ exports[`PickerToggler should be rendered correctly 2`] = `
         />
       </div>
     </button>
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input"
-      onChange={[Function]}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
   </div>
   <div
     className="actions"
