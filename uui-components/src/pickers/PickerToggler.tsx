@@ -96,9 +96,17 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const isSearchNeeded = !props.isOpen || props.isOpen && props.searchPosition !== 'input';
-        let placeholder = isActivePlaceholder ? props.getName(props.selection[0]?.value) : props.placeholder;
+        const isActivePlaceholder = (): Boolean => {
+            let isActive: Boolean = false;
+            if (props.isReadonly) isActive = false;
+            else if (props.isOpen && props.searchPosition === 'input') isActive = false;
+            else if (props.minCharsToSearch && inFocus) isActive = false;
+            else if (props.pickerMode === 'single' && props.selection.length > 0) isActive = true;
+            return isActive;
+        };
+        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
+        const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
+
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
@@ -117,8 +125,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
                 props.searchPosition === 'input' && css.cursorText,
-                isActivePlaceholder && isSearchNeeded && !props.isReadonly && uuiElement.placeholder)
-            }
+                isActivePlaceholder() && uuiElement.placeholder,
+            )}
             disabled={ props.isDisabled }
             placeholder={ placeholder }
             value={ value || '' }
