@@ -90,8 +90,8 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             predicates: [
                 { predicate: 'eq', name: '=' },
                 { predicate: 'neq', name: '≠'},
-                { predicate: 'lt', name: '<'},
-                { predicate: 'gt', name: '>'},
+                { predicate: 'lte', name: '≤'},
+                { predicate: 'gte', name: '≥'},
             ],
         },
         {
@@ -106,8 +106,8 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: "Birth Date",
             type: "rangeDatePicker",
             predicates: [
-                { predicate: 'inRange', name: 'In Range' },
-                { predicate: 'notInRange', name: 'Not in Range', isDefault: true },
+                { predicate: 'inRange', name: 'In Range', isDefault: true },
+                { predicate: 'notInRange', name: 'Not in Range' },
             ],
         },
     ];

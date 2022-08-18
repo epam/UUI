@@ -11,11 +11,14 @@ export type DataQueryFilter<T> = {
 
 type RangeValue = { from: string, to: string };
 
-export type DataQueryFilterCondition<TEntity, TField> = TField
-     | { in?: TField[]; nin?: TField[]; isNull?: boolean; gt?: TField; gte?: TField;
-    lt?: TField; lte?: TField; inRange?: RangeValue; notInRange?: RangeValue, eq?: TField, neq?: TField };
+export type DataQueryFilterCondition<TEntity, TField> = TField | FilterPredicate<TField>;
 
-export type QueryPredicateName = 'eq'| 'neq' |'in' | 'nin' | 'isNull' | 'gt' | 'gte' | 'lt' | 'lte' | 'inRange' | 'notInRange';
+export type FilterPredicate<TField> = { in?: TField[]; nin?: TField[]; isNull?: boolean; gt?: TField; gte?: TField;
+    lt?: TField; lte?: TField; inRange?: RangeValue; notInRange?: RangeValue,
+    eq?: TField, neq?: TField, not?: FilterPredicate<TField>
+};
+
+export type FilterPredicateName = keyof FilterPredicate<any>;
 
 export interface DataQueryRange {
     from: number;

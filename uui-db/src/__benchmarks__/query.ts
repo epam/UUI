@@ -5,7 +5,7 @@ import orderBy from 'lodash.orderby';
 import sortBy from 'lodash.sortby';
 import range from 'lodash.range';
 import { Person, blankIxSet, blankIxSetNoIndex } from './testData';
-import { getPatternPredicate, getOrderComparer } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import { string } from 'prop-types';
 import { DbTable } from '..';
 
@@ -14,7 +14,7 @@ import { DbTable } from '..';
         .map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * size / 10) }));
     const pairs = testPersons.map(p => [p.id, p] as [number, Person]);
     const person = testPersons[0];
-    const filterPredicate = getPatternPredicate<Person>({ departmentId: 5 });
+    const filterPredicate = getFilterPredicate<Person>({ departmentId: 5 });
     const orderComparer = getOrderComparer<Person>([{ field: 'name' }]);
 
     const personTableNoIndex = new DbTable<any, any, any>({
