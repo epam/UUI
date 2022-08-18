@@ -31,7 +31,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ...newValue,
             filter: newFilter,
         }));
-
+        const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
@@ -39,10 +39,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filtersConfig: newValue.filtersConfig,
         };
 
-        context.uuiRouter.redirect({
-            pathname: location.pathname,
-            query: newQuery,
-        });
+        // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
+        if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
+            context.uuiRouter.redirect({
+                pathname: location.pathname,
+                query: newQuery,
+            });
+        }
+
     }, []);
 
     const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {

@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
-import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
+import { DataTable, FlexRow, Paginator,  FlexSpacer } from "@epam/promo";
+import { DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter } from "./types";
-import { getFilters, mapFilter } from "./data";
+import { getFilters } from "./data";
 import { personColumns } from "./columns";
 
 export const DemoTablePaged: React.FC = () => {
@@ -22,9 +21,9 @@ export const DemoTablePaged: React.FC = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
     
-    const api: LazyDataSourceApi<Person, number, PersonTableFilter> = useCallback(async request => {
+    const api: LazyDataSourceApi<Person, number, Person> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
-            filter: mapFilter(request.filter) as DataQueryFilter<Person>,
+            filter: request.filter,
             page: request.page - 1,
             pageSize: request.pageSize,
         });

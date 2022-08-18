@@ -6,7 +6,6 @@ import css from './FilteredTable.scss';
 import type { TApi } from '../../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
-import { mapFilter } from "../masterDetailedTable/data";
 import { FlexCell } from "@epam/uui-components";
 import { SearchInput } from "@epam/uui";
 
@@ -18,8 +17,7 @@ export const FilteredTable: React.FC = () => {
 
     const dataSource = useLazyDataSource<Person, number, Person>({
         api: request => {
-            const mappedFilter = mapFilter(request.filter || {});
-            return svc.api.demo.persons({ ...request, filter: mappedFilter } as any);
+            return svc.api.demo.persons(request);
         },
     }, []);
 
