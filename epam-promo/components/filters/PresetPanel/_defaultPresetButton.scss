@@ -1,0 +1,19 @@
+.default-preset-button {
+    align-self: stretch;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+    }
+
+    .preset-tab-button {
+        align-self: center;
+    }
+
+    .preset-dropdown {
+        visibility: hidden;
+        background-color: transparent;
+        border-color: transparent;
+    }
+}

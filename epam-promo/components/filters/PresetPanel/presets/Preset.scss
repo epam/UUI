@@ -1,0 +1,55 @@
+@use '../../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+@import "../defaultPresetButton";
+
+.preset-button-wrapper {
+    align-self: stretch;
+    display: flex;
+}
+
+.default-preset-button {
+    align-self: stretch;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+
+    :global(.uui-caption) {
+        white-space: nowrap;
+    }
+
+    .preset-tab-button {
+        align-self: center;
+    }
+
+    .preset-dropdown {
+        visibility: hidden;
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
+
+.preset-tub-wrapper {
+    border-bottom: 3px solid var(--blue);
+
+    .preset-tab-button {
+
+        .preset-dropdown {
+            visibility: visible;
+            background-color: transparent;
+            border-color: transparent;
+
+            &:hover {
+                background-color: transparent;
+                border-color: transparent;
+            }
+        }
+    }
+
+    :global(.uui-has-right-icon) :global(.uui-caption) {
+        color: var(--blue);
+        padding-right: 5px;
+    }
+
+    :global(.uui-icon) :global(.uui-enabled) {
+        padding: 0;
+    }
+}

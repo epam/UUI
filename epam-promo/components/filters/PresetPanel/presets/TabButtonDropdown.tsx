@@ -14,12 +14,13 @@ interface ITubButtonDropdownProps {
     duplicatePreset: (preset: ITablePreset) => void;
     renamePreset: (preset: ITablePreset) => void;
     copyUrlToClipboard: () => void;
-    deletePresetHandler: (preset: ITablePreset) => void;
     addPreset: () => void;
     saveInCurrent: (preset: ITablePreset) => void;
+    resetToDefault: () => void;
+    deletePreset: (preset: ITablePreset) => void;
 }
 
-export const TubButtonDropdown = (props: ITubButtonDropdownProps) => {
+export const TabButtonDropdown = (props: ITubButtonDropdownProps) => {
 
     const renderTarget = useCallback((props: IDropdownToggler) => {
         return (
@@ -33,8 +34,14 @@ export const TubButtonDropdown = (props: ITubButtonDropdownProps) => {
         );
     }, [props]);
 
-    const renderBody = useCallback(() => {
-        return (
+    const deletePresetHandler = useCallback((preset: ITablePreset) => {
+        if (props.isActivePreset && props.isActivePreset.id === preset.id) {
+            props.resetToDefault();
+        }
+        props.deletePreset(preset);
+    }, [props.isActivePreset, props.deletePreset, props.resetToDefault]);
+
+    const renderBody = useCallback(() => (
             <PresetDropdownBody
                 preset={ props.preset }
                 isActivePreset={ props.isActivePreset }
@@ -43,12 +50,11 @@ export const TubButtonDropdown = (props: ITubButtonDropdownProps) => {
                 duplicatePreset={ props.duplicatePreset }
                 renamePreset={ props.renamePreset }
                 copyUrlToClipboard={ props.copyUrlToClipboard }
-                deletePresetHandler={ props.deletePresetHandler }
+                deletePresetHandler={ deletePresetHandler }
                 addPreset={ props.addPreset }
                 saveInCurrent={ props.saveInCurrent }
             />
-        );
-    }, [props]);
+        ), [props]);
 
     return (
         <>
