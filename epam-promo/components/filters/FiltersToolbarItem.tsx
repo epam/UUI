@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
 import css from "./FiltersToolbarItem.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, QueryPredicateName } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { Panel } from "../layout";
@@ -42,7 +42,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         props.removeFilter(props.columnKey, props.field);
     };
 
-    const changePredicate = (val: QueryPredicateName) => {
+    const changePredicate = (val: FilterPredicateName) => {
         setPredicate(val);
         props.onValueChange({ [props.field]: { [val]: getValue() } });
     };

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as props from './props';
 import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection,
-    IDropdownToggler, IHasCX, DropParams, QueryPredicateName } from '../types';
+    IDropdownToggler, IHasCX, DropParams, FilterPredicateName } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
 import { IDropdownBodyProps } from "./props";
 import { ILens } from '..';
@@ -235,7 +235,7 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
 
 export type IFilterPredicate = {
     name: string;
-    predicate: QueryPredicateName;
+    predicate: FilterPredicateName;
     isDefault?: boolean;
 };
 

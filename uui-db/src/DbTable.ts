@@ -1,6 +1,6 @@
 import { DbTablePatch, DbQuery, DbEntitySchema, DbPkFieldType, DbTablesSet } from './types';
 import * as I from 'immutable';
-import { SortDirection, getPatternPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui-core';
+import { SortDirection, getFilterPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui-core';
 import { Seq, Iterable } from 'immutable';
 
 interface ApplyQueryOptions {
@@ -241,7 +241,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         }
 
         if (filter) {
-            let predicate = getPatternPredicate<TEntity>(q.filter);
+            let predicate = getFilterPredicate<TEntity>(q.filter);
             result = result.filter(predicate);
         }
 
