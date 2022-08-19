@@ -1,28 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel } from '@epam/promo';
 import { getFilters } from './filters';
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
-import { mapFilter } from "../masterDetailedTable/data";
 import { Person } from '@epam/uui-docs';
 import { personColumns } from './columns';
-import { FlexCell } from "@epam/uui-components";
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
-import { personColumns } from './columns';
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
-
-    const dataSource = useLazyDataSource<Person, number, Person>({
-        api: request => {
-            return svc.api.demo.persons(request);
-        },
-    }, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -41,7 +32,7 @@ export const FilteredTable: React.FC = () => {
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
         const result = await svc.api.demo.personsPaged({
             ...rq,
-            filter: mapFilter(rq.filter || {}),
+            filter: rq.filter || {},
             page: rq.page - 1,
             pageSize: tableStateApi.tableState.pageSize || rq.pageSize,
         });
@@ -52,7 +43,9 @@ export const FilteredTable: React.FC = () => {
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>({ api }, [api]);
+    const dataSource = useLazyDataSource<Person, number, Person>({
+        api: api,
+    }, []);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
