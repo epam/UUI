@@ -42,11 +42,19 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.isOpen && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
-            inputContainer.current.focus();
+            inputContainer.current?.focus();
         }
 
         return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
     }, [props.isOpen]);
+
+    const isActivePlaceholder = (): Boolean => {
+        if (props.isReadonly) return  false;
+        else if (props.isOpen && props.searchPosition === 'input') return false;
+        else if (props.minCharsToSearch && inFocus) return false;
+        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
+        else return false;
+    };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
@@ -96,9 +104,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const isSearchNeeded = !props.isOpen || props.isOpen && props.searchPosition !== 'input';
-        let placeholder = isActivePlaceholder ? props.getName(props.selection[0]?.value) : props.placeholder;
+        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
+        const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
@@ -117,8 +124,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
                 props.searchPosition === 'input' && css.cursorText,
-                isActivePlaceholder && isSearchNeeded && !props.isReadonly && uuiElement.placeholder)
-            }
+                isActivePlaceholder() && uuiElement.placeholder,
+            )}
             disabled={ props.isDisabled }
             placeholder={ placeholder }
             value={ value || '' }
