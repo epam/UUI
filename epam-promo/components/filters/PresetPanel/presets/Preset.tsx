@@ -1,89 +1,41 @@
 import React, { useCallback, useState } from "react";
 import cx from "classnames";
 import css from "./Preset.scss";
-import { DataTableState, ITablePreset, useUuiContext } from "@epam/uui-core";
+import { DataTableState, ITablePreset } from "@epam/uui-core";
 import { ControlGroup } from "../../../layout";
 import { TabButton } from "../../../buttons";
 import { TabButtonDropdown } from "./TabButtonDropdown";
-import { PresetInput } from "./PresetInput";
-import { SuccessNotification } from "../../../overlays";
-import { Text } from "../../../typography";
+import { InputActionType, PresetInput } from "./PresetInput";
 
 interface IPresetProps {
     preset: ITablePreset;
-    setRenamedPresetCaption: React.Dispatch<React.SetStateAction<string>>;
     choosePreset: (preset: ITablePreset) => void;
     hasPresetChanged: (preset: ITablePreset) => boolean;
     duplicatePreset: (preset: ITablePreset) => void;
     updatePreset: (preset: ITablePreset) => void;
     isActivePreset: ITablePreset;
     addPreset: () => void;
-    renamedPresetCaption: string;
     tableState: DataTableState;
     resetToDefault: () => void;
     deletePreset: (preset: ITablePreset) => void;
-    newPresetCaption: string;
-    setNewPresetCaption: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Preset = (props: IPresetProps) => {
-    const { uuiNotifications } = useUuiContext();
     const [renamedPreset, setRenamedPreset] = useState<ITablePreset | null>(null);
+    const choosePresetHandler = useCallback(() => props.choosePreset(props.preset), [props]);
 
-    const renamePresetOnBlurHandler = useCallback(() => {
-        if (props.newPresetCaption.length) {
-            return;
-        }
+    const cancelRenamePreset = () => {
         setRenamedPreset(null);
-    }, [props.newPresetCaption.length]);
+    };
 
-    const cancelRenamePreset = useCallback(() => {
-        props.setNewPresetCaption("");
-        setRenamedPreset(null);
-    }, [props.setNewPresetCaption]);
-
-    const renamePreset = (preset?: ITablePreset) => {
+    const setPresetForRename = (preset: ITablePreset) => {
         if (!renamedPreset && preset) {
-            props.setNewPresetCaption(preset.name);
             setRenamedPreset(preset);
-        } else if (renamedPreset) {
-            const newPreset: ITablePreset = {
-                ...renamedPreset,
-                name: props.newPresetCaption,
-            };
-            props.updatePreset(newPreset);
-            setRenamedPreset(null);
-            props.setNewPresetCaption("");
         }
     };
-
-    const saveInCurrent = useCallback((preset: ITablePreset) => {
-        const newPreset = {
-            ...preset,
-            filter: props.tableState.filter,
-            columnsConfig: props.tableState.columnsConfig,
-        };
-        props.updatePreset(newPreset);
-        successNotificationHandler('Changes saved!');
-    }, [props.tableState.filter, props.tableState.columnsConfig]);
-
-    const copyUrlToClipboard = async () => {
-        await navigator.clipboard.writeText(location.href);
-        successNotificationHandler('Link copied!');
-    };
-
-    const successNotificationHandler = useCallback((text: string) => {
-        uuiNotifications.show((props) => (
-            <SuccessNotification { ...props } >
-                <Text size="36" font="sans" fontSize="14">{ text }</Text>
-            </SuccessNotification>
-        ), { position: 'top-right', duration: 3 }).catch(() => null);
-    }, [props]);
 
     const tabButtonDropdownApi = {
-        copyUrlToClipboard: copyUrlToClipboard,
-        saveInCurrent: saveInCurrent,
-        renamePreset: renamePreset,
+        renamePreset: setPresetForRename,
         addPreset: props.addPreset,
         choosePreset: props.choosePreset,
         duplicatePreset: props.duplicatePreset,
@@ -92,18 +44,22 @@ export const Preset = (props: IPresetProps) => {
         resetToDefault: props.resetToDefault,
         deletePreset: props.deletePreset,
         preset: props.preset,
+        tableStateFilter: props.tableState.filter,
+        tableStateColumnConfig: props.tableState.columnsConfig,
+        updatePreset: props.updatePreset,
     };
+
+    const renderTabButtonDropdown = useCallback(() => <TabButtonDropdown { ...tabButtonDropdownApi }/>, [tabButtonDropdownApi]);
 
     return (
         <div key={ props.preset.id } className={ css.presetButtonWrapper }>
             {
                 (renamedPreset?.id === props.preset.id)
                     ? <PresetInput
-                        onValueChange={ props.setRenamedPresetCaption }
-                        value={ props.renamedPresetCaption }
-                        onAccept={ renamePreset }
+                        actionType={ InputActionType.RENAME }
                         onCancel={ cancelRenamePreset }
-                        onBlur={ renamePresetOnBlurHandler }
+                        renameAction={ props.updatePreset }
+                        renamedPreset={ renamedPreset }
                     />
                     : <ControlGroup
                         cx={ cx(css.defaultPresetButton, {
@@ -112,10 +68,10 @@ export const Preset = (props: IPresetProps) => {
                         <TabButton
                             cx={ css.presetTabButton }
                             caption={ props.preset.name }
-                            onClick={ () => props.choosePreset(props.preset) }
+                            onClick={ choosePresetHandler }
                             size="36"
                             withNotify={ props.isActivePreset?.id === props.preset.id && props.hasPresetChanged(props.preset) }
-                            icon={ () => <TabButtonDropdown { ...tabButtonDropdownApi }/> }
+                            icon={ renderTabButtonDropdown }
                             iconPosition="right"
                         />
                     </ControlGroup>
