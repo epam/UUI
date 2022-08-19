@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react";
-import cx from "classnames";
-import css from "./Preset.scss";
+import css from "../PresetPanel.scss";
 import { DataTableState, ITablePreset } from "@epam/uui-core";
-import { ControlGroup } from "../../../layout";
 import { TabButton } from "../../../buttons";
 import { TabButtonDropdown } from "./TabButtonDropdown";
 import { InputActionType, PresetInput } from "./PresetInput";
@@ -61,20 +59,17 @@ export const Preset = (props: IPresetProps) => {
                         renameAction={ props.updatePreset }
                         renamedPreset={ renamedPreset }
                     />
-                    : <ControlGroup
-                        cx={ cx(css.defaultPresetButton, {
-                            [css.presetTubWrapper]: props.isActivePreset?.id === props.preset.id,
-                        }) }>
-                        <TabButton
-                            cx={ css.presetTabButton }
-                            caption={ props.preset.name }
-                            onClick={ choosePresetHandler }
-                            size="36"
-                            withNotify={ props.isActivePreset?.id === props.preset.id && props.hasPresetChanged(props.preset) }
-                            icon={ renderTabButtonDropdown }
-                            iconPosition="right"
-                        />
-                    </ControlGroup>
+                    :
+                    <TabButton
+                        cx={ css.presetTabButton }
+                        caption={ props.preset.name }
+                        onClick={ choosePresetHandler }
+                        size="36"
+                        withNotify={ props.isActivePreset?.id === props.preset.id && props.hasPresetChanged(props.preset) }
+                        icon={ renderTabButtonDropdown }
+                        iconPosition="right"
+                        isLinkActive={ props.isActivePreset?.id === props.preset.id }
+                    />
             }
         </div>
     );

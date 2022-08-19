@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
-import cx from "classnames";
 import css from "./PresetPanel.scss";
-import { ControlGroup, FlexRow, Text, TabButton } from "../../index";
+import { FlexRow, Text, TabButton } from "../../index";
 import { DataTableState, IPresetsApi } from "@epam/uui-core";
 import { Preset } from "./presets/Preset";
 import { InputActionType, PresetInput } from "./presets/PresetInput";
@@ -16,9 +15,7 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
     const isActivePreset = props.presets.find(p => p.id === props.activePresetId);
 
     const setDefaultPreset = useCallback(() => {
-        if (!props.isDefaultPresetActive) {
-            props.resetToDefault();
-        }
+        props.resetToDefault();
     }, [props]);
 
     const setAddingPreset = useCallback(() => {
@@ -27,7 +24,7 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
 
     const cancelAddingPreset = useCallback(() => {
         setIsAddingPreset(false);
-    }, [setIsAddingPreset]);
+    }, [setIsAddingPreset, props]);
 
     const presetApi = {
         isActivePreset,
@@ -45,30 +42,27 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
         <>
             <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
             <FlexRow cx={ css.presetsWrapper } spacing="12">
-                <ControlGroup
-                    key="default-preset"
-                    cx={ cx(css.defaultPresetButton, {
-                        [css.defaultPresetActive]: !isActivePreset?.id,
-                    }) }>
+                <div className={ css.presetButtonWrapper }>
                     <TabButton
+                        cx={ css.presetTabButton }
                         caption={ 'Default Preset' }
                         onClick={ setDefaultPreset }
                         size="36"
+                        isLinkActive={ !isActivePreset?.id }
                     />
-                </ControlGroup>
+                </div>
                 { props.presets.map(preset => <Preset key={ preset.id } preset={ preset } { ...presetApi }/>) }
             </FlexRow>
             <FlexRow cx={ css.rightBlock }>
                 { !isAddingPreset
-                    ? <ControlGroup key="add-preset">
-                        <TabButton
-                            caption={ 'Add Preset' }
-                            onClick={ setAddingPreset }
-                            size="36"
-                            icon={ PlusIcon }
-                            iconPosition="left"
-                        />
-                    </ControlGroup>
+                    ?
+                    <TabButton
+                        caption={ 'Add Preset' }
+                        onClick={ setAddingPreset }
+                        size="36"
+                        icon={ PlusIcon }
+                        iconPosition="left"
+                    />
                     : <PresetInput
                         actionType={ InputActionType.SAVE_NEW }
                         onCancel={ cancelAddingPreset }

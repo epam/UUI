@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import css from "../PresetPanel.scss";
+import css from "./TabButtonDropdown.scss";
 import { ColumnsConfig, IDropdownToggler, ITablePreset, useUuiContext } from "@epam/uui-core";
 import { Dropdown, SuccessNotification } from "../../../overlays";
 import { PresetDropdownBody } from "./PresetDropdownBody";

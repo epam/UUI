@@ -1,19 +1,16 @@
-.default-preset-button {
+.preset-button-wrapper {
     align-self: stretch;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid transparent;
-
-    :global(.uui-caption) {
-        white-space: nowrap;
-    }
+    display: flex;
 
     .preset-tab-button {
-        align-self: center;
-    }
+        &:global(.uui-button-box) {
+            height: calc(100% - 1px);
+            align-self: stretch;
+        }
 
-    .preset-dropdown {
-        visibility: hidden;
-        background-color: transparent;
-        border-color: transparent;
+        :global(.uui-caption) {
+            white-space: nowrap;
+        }
+
     }
 }
