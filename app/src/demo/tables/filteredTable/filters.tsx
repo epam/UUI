@@ -1,10 +1,11 @@
 import React from 'react';
-import { TableFiltersConfig, LazyDataSource } from "@epam/uui-core";
+import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from "@epam/uui-core";
 import { Country } from "@epam/uui-docs";
 import { Badge, DataPickerRow, PickerItem } from "@epam/promo";
-import { ReactComponent as myIcon } from '@epam/assets/icons/common/action-account-18.svg';
+import { demoData } from "@epam/uui-docs";
 import { svc } from "../../../services";
 import { Person } from "@epam/uui-docs";
+
 
 export const getFilters = (): TableFiltersConfig<Person>[] => {
     return [
@@ -22,6 +23,10 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                     key={ props.rowKey }
                     renderItem={ (item: any) => <Badge fill='transparent' color={ item.name.toLowerCase() } caption={ item.name } /> }
                 />,
+            predicates: [
+                { predicate: 'in', name: 'is' },
+                { predicate: 'nin', name: 'is not', isDefault: true},
+            ],
         },
         {
             field: "countryId",
@@ -50,6 +55,10 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: "Department",
             type: "singlePicker",
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
+            predicates: [
+                { predicate: 'eq', name: 'is' },
+                { predicate: 'neq', name: 'is not'},
+            ],
         },
         {
             field: "officeId",
@@ -73,6 +82,19 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
         },
         {
+            field: "workload",
+            columnKey: "workload",
+            title: "Workload",
+            type: "singlePicker",
+            dataSource: new ArrayDataSource({items: demoData.workloadItems}),
+            predicates: [
+                { predicate: 'eq', name: '=' },
+                { predicate: 'neq', name: '≠'},
+                { predicate: 'lte', name: '≤'},
+                { predicate: 'gte', name: '≥'},
+            ],
+        },
+        {
             field: "hireDate",
             columnKey: "hireDate",
             title: "Hire Date",
@@ -83,6 +105,10 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: "birthDate",
             title: "Birth Date",
             type: "rangeDatePicker",
+            predicates: [
+                { predicate: 'inRange', name: 'In Range', isDefault: true },
+                { predicate: 'notInRange', name: 'Not in Range' },
+            ],
         },
     ];
 };

@@ -2,11 +2,12 @@ import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
 import css from "./FiltersToolbarItem.scss";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { Panel } from "../layout";
 import { LinkButton } from "../buttons";
+import { MultiSwitch } from "../inputs";
 import { Text, TextPlaceholder } from "../typography";
 import { FilterItemBody } from "./FilterItemBody";
 import { DropdownContainer } from "../overlays";
@@ -18,20 +19,44 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+    const getDefaultPredicate = () => {
+        if (!props.predicates) {
+            return null;
+        }
+        return Object.keys(props.value || {})[0] || props.predicates.find(i => i.isDefault)?.predicate || props.predicates?.[0].predicate;
+    };
+
     const [isOpen, isOpenChange] = useState(props.autoFocus);
+    const [predicate, setPredicate] = useState(getDefaultPredicate());
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
-        props.onValueChange({ [props.field]: value });
+        if (props.predicates) {
+            props.onValueChange({ [props.field]: { [predicate]: value } });
+        } else {
+            props.onValueChange({ [props.field]: value });
+        }
     }, [props.field, props.onValueChange]);
 
     const removeOnclickHandler = () => {
         props.removeFilter(props.columnKey, props.field);
     };
 
+    const changePredicate = (val: FilterPredicateName) => {
+        setPredicate(val);
+        props.onValueChange({ [props.field]: { [val]: getValue() } });
+    };
+
     const renderHeader = () => (
         <div className={ cx(css.header) }>
-            <Text color="gray60" fontSize="12">{ props.title }</Text>
+            {
+                props.predicates ? <MultiSwitch
+                    items={ props.predicates.map(i => ({id: i.predicate, caption: i.name})) }
+                    value={ predicate }
+                    onValueChange={ changePredicate }
+                    size='24'
+                /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
+            }
             { !props?.isAlwaysVisible && <LinkButton cx={ css.removeButton } caption="REMOVE FILTER" onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon }/> }
         </div>
     );
@@ -40,13 +65,17 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <DropdownContainer>
             <Panel background="white">
                 { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } onValueChange={ onValueChange }/> }
+                { <FilterItemBody { ...props } { ...dropdownProps } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>
         </DropdownContainer>
     );
 
+    const getValue = () => {
+        return predicate ? props.value?.[predicate] : props.value;
+    };
+
     const getTogglerValue = () => {
-        const currentValue = props.value;
+        const currentValue = getValue();
 
         switch (props.type) {
             case "multiPicker": {

@@ -6,6 +6,8 @@ import { getFilters } from './filters';
 import { FilteredTableFooter } from "./FilteredTableFooter";
 import { mapFilter } from "../masterDetailedTable/data";
 import { Person } from '@epam/uui-docs';
+import { personColumns } from './columns';
+import { FlexCell } from "@epam/uui-components";
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
 import { personColumns } from './columns';
@@ -15,6 +17,12 @@ export const FilteredTable: React.FC = () => {
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
     const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
+
+    const dataSource = useLazyDataSource<Person, number, Person>({
+        api: request => {
+            return svc.api.demo.persons(request);
+        },
+    }, []);
 
     useEffect(() => {
         svc.api.presets.getPresets()

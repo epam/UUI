@@ -193,7 +193,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: !dropdownProps.isOpen || searchPosition !== 'input',
+            disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,

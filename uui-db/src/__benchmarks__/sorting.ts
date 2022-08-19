@@ -1,7 +1,7 @@
 import * as b from 'benny';
 import orderBy from 'lodash.orderby';
 import { Person } from './testData';
-import { getPatternPredicate, getOrderComparer } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import range from 'lodash.range';
 
 const testPersons = range(0, 1e4)
