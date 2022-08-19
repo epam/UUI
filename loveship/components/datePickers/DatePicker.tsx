@@ -8,7 +8,7 @@ import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSettings, EditMode {
-    format: string;
+    format?: string;
     filter?(day: Dayjs): boolean;
     renderTarget?(props: any): React.ReactNode;
     renderFooter?(): React.ReactNode;

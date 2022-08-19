@@ -11,8 +11,8 @@ export interface ICanBeFormatted<T> {
 }
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    max: number;
-    min: number;
+    max?: number;
+    min?: number;
     upIcon?: Icon;
     downIcon?: Icon;
     step?: number;
@@ -34,6 +34,8 @@ export const uuiNumericInput = {
     withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
+const defaultMinValue = -10;
+
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
     static contextType = UuiContext;
     context: UuiContexts;
@@ -54,8 +56,8 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
 
         if (value > max) {
             return max;
-        } else if (value < min) {
-            return min;
+        } else if (value < (min || defaultMinValue)) {
+            return min || defaultMinValue;
         } else {
             return value;
         }
@@ -158,7 +160,7 @@ export class NumericInput extends React.Component<NumericInputProps, NumericInpu
                     inputMode="numeric"
                     placeholder={ this.props.placeholder || "0" }
                     onChange={ this.handleChange }
-                    min={ this.props.min || 0 }
+                    min={ this.props.min || defaultMinValue }
                     max={ this.props.max }
                     step={ this.props.step || 1 }
                     id={ this.props.id }
