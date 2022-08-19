@@ -9,7 +9,6 @@
 }
 
 .presets-wrapper {
-    align-self: stretch;
     overflow-x: auto;
 }
 
@@ -17,8 +16,4 @@
     :global(.uui-caption) {
         white-space: nowrap;
     }
-}
-
-.default-preset-active button {
-    color: var(--blue);
 }
