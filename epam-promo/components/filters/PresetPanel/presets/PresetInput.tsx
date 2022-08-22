@@ -12,40 +12,38 @@ export const enum InputActionType {
 interface IPresetInputProps {
     onCancel: () => void;
     actionType: InputActionType;
-    createNewAction?: (name: string) => void;
-    renameAction?: (preset: ITablePreset) => void;
-    renamedPreset?: ITablePreset;
+    createNewPreset?: (name: string) => Promise<number>;
+    renamePreset?: (preset: ITablePreset) => Promise<void>;
+    preset?: ITablePreset;
 }
 
 export const PresetInput = (props: IPresetInputProps) => {
-    const [presetCaption, setPresetCaption] = useState(props.actionType === InputActionType.SAVE_NEW ? "" : props?.renamedPreset.name);
+    const [presetCaption, setPresetCaption] = useState(props.actionType === InputActionType.SAVE_NEW ? "" : props.preset.name);
 
     const cancelActionHandler = useCallback(() => {
         setPresetCaption('');
         props.onCancel();
     }, [props.onCancel]);
 
-    const acceptActionHandler = useCallback(() => {
+    const acceptActionHandler = useCallback(async () => {
         switch (props.actionType) {
             case InputActionType.SAVE_NEW: {
                 if (!presetCaption) {
                     props.onCancel();
                     return;
                 }
-                props?.createNewAction(presetCaption);
+                await props?.createNewPreset(presetCaption);
                 props.onCancel();
-                setPresetCaption("");
                 break;
             }
             case InputActionType.RENAME: {
-                if (props?.renamedPreset) {
+                if (props.preset) {
                     const newPreset: ITablePreset = {
-                        ...props.renamedPreset,
+                        ...props.preset,
                         name: presetCaption,
                     };
-                    props?.renameAction(newPreset);
+                    await props?.renamePreset(newPreset);
                     props.onCancel();
-                    setPresetCaption("");
                 }
                 break;
             }

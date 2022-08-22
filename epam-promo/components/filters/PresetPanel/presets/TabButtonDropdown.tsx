@@ -30,13 +30,13 @@ export const TabButtonDropdown = (props: ITubButtonDropdownProps) => {
         successNotificationHandler('Link copied!');
     };
 
-    const saveInCurrent = useCallback((preset: ITablePreset) => {
+    const saveInCurrent = useCallback(async (preset: ITablePreset) => {
         const newPreset = {
             ...preset,
             filter: props.tableStateFilter,
             columnsConfig: props.tableStateColumnConfig,
         };
-        props.updatePreset(newPreset);
+        await props.updatePreset(newPreset);
         successNotificationHandler('Changes saved!');
     }, [props.tableStateFilter, props.tableStateColumnConfig]);
 

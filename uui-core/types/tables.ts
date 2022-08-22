@@ -273,12 +273,12 @@ export interface IPresetsApi {
     activePresetId: number | null;
     isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
+    createNewPreset(name: string): Promise<number>;
     resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): Promise<void>;
+    updatePreset(preset: ITablePreset): Promise<void>;
     presets: ITablePreset[];
 }
 

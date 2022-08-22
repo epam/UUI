@@ -66,7 +66,7 @@ export const PresetPanel: React.FC<IPresetsBlockProps> = (props) => {
                     : <PresetInput
                         actionType={ InputActionType.SAVE_NEW }
                         onCancel={ cancelAddingPreset }
-                        createNewAction={ props.createNewPreset }
+                        createNewPreset={ props.createNewPreset }
                     /> }
             </FlexRow>
         </>
