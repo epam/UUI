@@ -10,27 +10,27 @@ interface IPresetProps {
     choosePreset: (preset: ITablePreset) => void;
     hasPresetChanged: (preset: ITablePreset) => boolean;
     duplicatePreset: (preset: ITablePreset) => void;
-    updatePreset: (preset: ITablePreset) => void;
+    updatePreset: (preset: ITablePreset) => Promise<void>;
     isActivePreset: ITablePreset;
     addPreset: () => void;
     tableState: DataTableState;
     resetToDefault: () => void;
-    deletePreset: (preset: ITablePreset) => void;
+    deletePreset: (preset: ITablePreset) => Promise<void>;
 }
 
 export const Preset = (props: IPresetProps) => {
-    const [renamedPreset, setRenamedPreset] = useState<ITablePreset | null>(null);
+    const [isRenamePreset, setIsRenamePreset] = useState<Boolean>(false);
     const choosePresetHandler = useCallback(() => props.choosePreset(props.preset), [props]);
 
-    const cancelRenamePreset = () => {
-        setRenamedPreset(null);
-    };
+    const cancelRenamePreset = useCallback(() => {
+        setIsRenamePreset(() => false);
+    }, []);
 
-    const setPresetForRename = (preset: ITablePreset) => {
-        if (!renamedPreset && preset) {
-            setRenamedPreset(preset);
+    const setPresetForRename = useCallback(() => {
+        if (!isRenamePreset) {
+            setIsRenamePreset(() => true);
         }
-    };
+    }, []);
 
     const tabButtonDropdownApi = {
         renamePreset: setPresetForRename,
@@ -52,12 +52,12 @@ export const Preset = (props: IPresetProps) => {
     return (
         <div key={ props.preset.id } className={ css.presetButtonWrapper }>
             {
-                (renamedPreset?.id === props.preset.id)
+                isRenamePreset
                     ? <PresetInput
                         actionType={ InputActionType.RENAME }
                         onCancel={ cancelRenamePreset }
-                        renameAction={ props.updatePreset }
-                        renamedPreset={ renamedPreset }
+                        renamePreset={ props.updatePreset }
+                        preset={ props.preset }
                     />
                     :
                     <TabButton

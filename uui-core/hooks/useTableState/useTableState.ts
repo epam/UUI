@@ -130,6 +130,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
         setPresets(prevValue => [...prevValue, newPreset]);
         choosePreset(newPreset);
+        return newPreset.id;
     }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
 
     const resetToDefault = useCallback(() => {

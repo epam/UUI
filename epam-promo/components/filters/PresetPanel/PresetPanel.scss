@@ -10,6 +10,15 @@
 
 .presets-wrapper {
     overflow-x: auto;
+
+    .preset-button-wrapper:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .preset-button-wrapper:not(:first-child) {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .right-block {
