@@ -1,4 +1,4 @@
-# 4.8.2 - 19.08.2022
+# 4.8.2 - 22.08.2022
 
 **What's New**
 * [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
