@@ -1,3 +1,12 @@
+# 4.8.2 - 19.08.2022
+
+**What's New**
+* [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
+* [DataTable]: add possibility to reset sorting to default value
+
+**What’s Fixed**
+* [PickerInput]: fix input with minCharsToSearch props. Fix toggler input size in 'multi' mode
+
 # 4.8.1 - 10.08.2022
 
 **What's New**
