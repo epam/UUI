@@ -1,0 +1,9 @@
+@import '~@epam/assets/scss/index';
+
+.main-wrapper {
+    font-family: $font-sans;
+
+    & > * {
+        box-sizing: border-box;
+    }
+}

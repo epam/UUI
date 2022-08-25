@@ -1,0 +1,14 @@
+@import '~@epam/assets/scss/index';
+
+.test-wrapper {
+    display: inline-block;
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+    //z-index: 1000;
+    //border: 3px solid lightblue;
+
+    & > * {
+        box-sizing: border-box;
+    }
+}

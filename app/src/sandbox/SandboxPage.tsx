@@ -12,6 +12,7 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
+import { AdoptivePanel } from "./responsive-container/AdoptivePanel";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -23,6 +24,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'AdoptivePanel', name: 'Adoptive Panel', component: AdoptivePanel },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
