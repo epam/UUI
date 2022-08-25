@@ -2,7 +2,7 @@
 
 **What’s Fixed**
 * [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
-
+* [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
 
 # 4.8.1 - 10.08.2022
 
