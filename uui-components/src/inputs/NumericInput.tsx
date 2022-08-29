@@ -34,7 +34,7 @@ export const uuiNumericInput = {
     withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
-const defaultMinValue = -10;
+const defaultMinValue = 0;
 
 export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
     static contextType = UuiContext;
