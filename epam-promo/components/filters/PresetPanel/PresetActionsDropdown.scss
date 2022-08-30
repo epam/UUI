@@ -1,5 +1,5 @@
-@use '../../../../../node_modules/@epam/promo/assets/styles/colors' as *;
-@use '../../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+@use '../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
 
 .preset-dropdown-panel {
     min-width: 150px;
@@ -14,3 +14,5 @@
         color: $red-darkest;
     }
 }
+
+
