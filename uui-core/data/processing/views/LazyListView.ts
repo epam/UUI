@@ -142,7 +142,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        
+
         if (prevValue == null
             || prevProps == null
             || this.tree == null
@@ -470,7 +470,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             let tree = result.tree;
 
             const appendChildIds = (key: string) => {
-                const children = tree.byParentKey[key];
+                const children = key != null
+                    ? tree.byParentKey[key]
+                    : tree.items.map(i => i.item);
 
                 if (children?.length > 0) {
                     children.forEach(item => {
@@ -483,11 +485,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
             };
 
-            const addAllIds = () => {
-                Object.keys(tree.byKey).forEach(key => childKeys.push(key));
-            };
-
-            isRoot ? addAllIds() : appendChildIds(key);
+            appendChildIds(key);
 
             if (isChecked) {
                 !isRoot && checkedKeysSet.add(key);

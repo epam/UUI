@@ -85,7 +85,6 @@ export const FilteredTable: React.FC = () => {
                 headerTextCase={ "upper" as "upper" | "normal" }
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }
-                filters={ filters }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }
                 showColumnsConfig={ true }
