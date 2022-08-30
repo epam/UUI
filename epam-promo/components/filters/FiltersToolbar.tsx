@@ -63,7 +63,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         const newFilter: any = {};
 
         const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, f => f?.order);
-        let order: string | null = sortedOrders ? sortedOrders[sortedOrders.length - 1].order : null;
+        let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1].order : null;
         filters.forEach(filter => {
             if (tableState.filtersConfig && tableState?.filtersConfig[filter?.columnKey]) {
                 newConfig[filter.columnKey] = tableState?.filtersConfig[filter?.columnKey];
