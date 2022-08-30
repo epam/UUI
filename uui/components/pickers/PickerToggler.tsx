@@ -62,6 +62,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                 row.onCheck && row.onCheck(row);
                 e.stopPropagation();
             } }
+            isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
     );
 

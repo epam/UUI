@@ -86,7 +86,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
                     const item = view.getById(i, null);
                     isLoading = item.isLoading;
-                    return item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
+                    return item.isLoading ? <TextPlaceholder key={ item.rowKey } color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
                 }) : ['All'];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
