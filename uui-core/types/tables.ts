@@ -273,12 +273,13 @@ export interface IPresetsApi {
     activePresetId: number | null;
     isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
+    createNewPreset(name: string): Promise<number>;
     resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): Promise<void>;
+    updatePreset(preset: ITablePreset): Promise<void>;
+    presets: ITablePreset[];
 }
 
 export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
@@ -287,5 +288,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    presets: ITablePreset<TFilter>[];
 }

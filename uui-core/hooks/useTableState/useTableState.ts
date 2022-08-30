@@ -130,6 +130,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
         setPresets(prevValue => [...prevValue, newPreset]);
         choosePreset(newPreset);
+        return newPreset.id;
     }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
 
     const resetToDefault = useCallback(() => {
@@ -156,19 +157,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, []);
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
-        const newPreset = {
-            ...preset,
-            filter: tableStateValue.filter,
-            columnsConfig: tableStateValue.columnsConfig,
-        };
-        await params?.onPresetUpdate(newPreset);
+        await params?.onPresetUpdate(preset);
 
         setPresets(prevValue => {
             const newPresets = [...prevValue];
-            newPresets.splice(presets.findIndex(p => p.id === preset.id), 1, newPreset);
+            newPresets.splice(prevValue.findIndex(p => p.id === preset.id), 1, preset);
             return newPresets;
         });
-    }, [tableStateValue.filter, tableStateValue.columnsConfig]);
+    }, []);
 
     return {
         tableState: tableStateValue,
