@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel } from '@epam/promo';
+import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -58,22 +58,10 @@ export const FilteredTable: React.FC = () => {
 
     const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
 
-    const dataTableApi = {
-        headerTextCase: "upper" as "upper" | "normal",
-        getRows: () => view.getVisibleRows(),
-        columns: personColumns,
-        filters: filters,
-        value: tableStateApi.tableState,
-        onValueChange: tableStateApi.setTableState,
-        showColumnsConfig: true,
-        allowColumnsResizing: true,
-        allowColumnsReordering: true,
-        ...view.getListProps(),
-    };
-
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
+                <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
                 <PresetPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
@@ -93,7 +81,18 @@ export const FilteredTable: React.FC = () => {
                     />
                 </FlexCell>
             </FlexRow>
-            <DataTable { ...dataTableApi }/>
+            <DataTable
+                headerTextCase={ "upper" as "upper" | "normal" }
+                getRows={ view.getVisibleRows }
+                columns={ personColumns }
+                filters={ filters }
+                value={ tableStateApi.tableState }
+                onValueChange={ tableStateApi.setTableState }
+                showColumnsConfig={ true }
+                allowColumnsResizing={ true }
+                allowColumnsReordering={ true }
+                { ...view.getListProps() }
+            />
             <FilteredTableFooter
                 tableState={ tableStateApi.tableState }
                 setTableState={ tableStateApi.setTableState }
