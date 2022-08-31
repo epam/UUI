@@ -94,7 +94,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                const item = currentValue && view.getById(currentValue, null);
+                const item = (currentValue !== null && currentValue !== undefined) && view.getById(currentValue, null);
                 if (!item) {
                     return { selection: 'All' };
                 }
