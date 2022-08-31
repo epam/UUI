@@ -62,7 +62,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      *
      * If enabled, and search is active:
      * - API will be called with parentId and parent undefined
-     * - getChildCount is ignore, all nodes are assumed to have no children
+     * - getChildCount is ignored, all nodes are assumed to have no children
      *
      * See more here: https://github.com/epam/UUI/issues/8
      */
@@ -300,8 +300,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         const iterateNode = (
             node: LazyTreeList<TItem, TId>,
-            appendRows: boolean,
-            parents: DataRowProps<TItem, TId>[],
+            appendRows: boolean, // Will be false, if we are iterating folded nodes.
+                                 // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
+            parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
             estimatedCount: number = null,
         ) => {
             let addedCount = 0;
@@ -387,15 +388,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             if (appendRows) {
                 let missingCount: number;
 
-                if (node.count != null) { // exact count known
+                // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
+
+                if (node.count != null) { // Exact count known
                     missingCount = node.count - addedCount;
-                } else if (estimatedCount == null && rows.length < lastIndex) { // top-level rows, add loading rows up to lastIndex
-                    missingCount = lastIndex - rows.length;
-                } else if (estimatedCount > addedCount) {
-                    // believe getChildCount
+                } else if (estimatedCount == null && rows.length < lastIndex) { // estimatedCount = null for top-level rows only.
+                    missingCount = lastIndex - rows.length; // let's put placeholders down to the bottom of visible list
+                } else if (estimatedCount > addedCount) { // According to getChildCount (put into estimatedCount), there are more rows on this level
                     missingCount = estimatedCount - addedCount;
                 } else {
-                    // we have a bad estimate - it even less that actual items we have
+                    // We have a bad estimate - it even less that actual items we have
                     // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
                     // let's guess we have at least 1 item more than loaded
                     missingCount = 1;
@@ -405,6 +407,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     stats.hasMoreRows = true;
                 }
 
+                // Append loading rows, stop at lastIndex (last row visible)
                 while (index < lastIndex && missingCount > 0) {
                     const row = this.getLoadingRow('_loading_' + index, index, parents);
                     rows.push(row);
@@ -606,8 +609,16 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             exactRowsCount = this.rows.length;
             totalCount = this.tree.recursiveCount;
         }  else {
-            // We definitely have more rows to show below the last visible row. Let's tell that we have at least one more than is visible.
-            rowsCount = Math.max(this.rows.length, lastVisibleIndex + 1);
+            // We definitely have more rows to show below the last visible row.
+            // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
+            // We have to balance this number.
+            // To big - would make scrollbar size to shrink when we hit bottom
+            // To small - and VirtualList will re-request rows until it will fill it's last block.
+            // So, it should be at least greater than VirtualList block size (default is 20)
+            // Probably, we'll move this const to props later if needed;
+            const rowsToAddBelowLastKnown = 20;
+
+            rowsCount = Math.max(this.rows.length, lastVisibleIndex + rowsToAddBelowLastKnown);
         }
 
         return {
