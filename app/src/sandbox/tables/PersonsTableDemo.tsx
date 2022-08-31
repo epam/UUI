@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useLens, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse } from '@epam/uui';
+import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
@@ -52,7 +52,7 @@ export const PersonsTableDemo = () => {
         isFolded: true,
     }));
 
-    const editable: IEditable<DataSourceState> = { value, onValueChange };
+    const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api(request, ctx) {
@@ -129,14 +129,14 @@ export const PersonsTableDemo = () => {
         <div className={ css.container }>
             <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
                 <FlexCell width={ 200 }>
-                    <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
+                    <SearchInput { ...lens.prop('search').toProps() } size='30' />
                 </FlexCell>
                 <FlexCell width='auto'>
                     <Text size='30'>Group By:</Text>
                 </FlexCell>
                 <FlexCell width={ 130 }>
                     <PickerInput
-                        { ...useLens(editable, b => b.prop('filter').prop('groupBy')) }
+                        { ...lens.prop('filter').prop('groupBy').toProps() }
                         dataSource={ groupingDataSource }
                         selectionMode='single'
                         valueType='id'
