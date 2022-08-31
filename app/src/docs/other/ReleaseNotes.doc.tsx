@@ -33,8 +33,8 @@ export class ReleaseNotesDoc extends React.Component {
                 markdown: data.markdown.split('# ').filter((el: any) => el !== '').map((el: any) => '#'.concat(el)),
                 isLoading: false,
                 release: {
-                    number: releaseVersion.trim().slice(2),
-                    date: releaseDate.trim(),
+                    number: releaseVersion?.trim().slice(2),
+                    date: releaseDate?.trim(),
                 },
             });
         });
