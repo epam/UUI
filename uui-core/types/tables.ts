@@ -134,6 +134,9 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
     value?: TItem;
 
+    /** ID of the parent TItem */
+    parentId?: TId;
+
     /** Hierarchical path from the root node to the item (excluding the item itself) */
     path?: DataRowPathItem<TId, TItem>[];
 
@@ -215,7 +218,7 @@ export type IColumnConfig =  {
 };
 
 export type FiltersConfig = {
-    [key: string]: IFilterConfig;  
+    [key: string]: IFilterConfig;
 };
 
 export type IFilterConfig = {
