@@ -1,0 +1,17 @@
+@import '~@epam/assets/scss/index';
+
+.main-wrapper {
+    font-family: $font-sans;
+    width: 100%;
+    border: 3px solid lightgreen;
+    overflow: hidden;
+
+    .adoptive-row {
+        min-width: 100%;
+        width: max-content;
+
+        * > {
+            box-sizing: border-box;
+        }
+    }
+}
