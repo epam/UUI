@@ -1,5 +1,4 @@
 import React, { useMemo, createElement } from 'react';
-import { TreeNodeProps } from '@epam/uui-components';
 import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
@@ -13,6 +12,8 @@ import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { AdoptivePanel } from "./adoptivePanel/AdoptivePanel";
+import { TreeListItem } from 'uui-components';
+import { DataRowProps } from 'uui-core';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -31,7 +32,7 @@ export const SandboxPage = () => {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
     }
 
-    const onChange = (val: TreeNodeProps) => {
+    const onChange = (val: DataRowProps<TreeListItem, string>) => {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: val.id } });
     };
 
@@ -41,7 +42,7 @@ export const SandboxPage = () => {
                 <Sidebar
                     value={ getQuery('id') }
                     onValueChange={ onChange }
-                    getItemLink={ (item) => !item.isDropdown && {
+                    getItemLink={ (item) => !item.isFoldable && {
                         pathname: 'sandbox',
                         query: { id: item.id },
                     } }
