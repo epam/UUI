@@ -10,6 +10,9 @@
   We also render more rows above and below visible area to avoid blank areas and loading rows when scrolling at normal speed. This is also configurable with `overdrawRows` setting (defaults to 20, meaning at least 20 rows above/below the visible area are rendered)
 
   This change also fixes the problem when lazy-loading stops, while the end of the list is not reached.
+* [FilterPanel]: fix filter toggler value if selected item id === 0
+* [FilterPanel]: fix add new filter error after all filters was cleared
+* [FilterPanel]: remove filter value when uncheck filter from 'Add filter' dropdown
 
 # 4.8.2 - 22.08.2022
 
