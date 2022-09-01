@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.8.2",
+  "version": "4.8.3",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
