@@ -1,0 +1,18 @@
+@use '../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+
+.preset-dropdown-panel {
+    min-width: 150px;
+}
+
+.delete-row {
+    svg {
+        fill: $red-darkest;
+    }
+
+    .delete-button {
+        color: $red-darkest;
+    }
+}
+
+

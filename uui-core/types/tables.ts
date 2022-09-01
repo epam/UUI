@@ -134,6 +134,9 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
     value?: TItem;
 
+    /** ID of the parent TItem */
+    parentId?: TId;
+
     /** Hierarchical path from the root node to the item (excluding the item itself) */
     path?: DataRowPathItem<TId, TItem>[];
 
@@ -215,7 +218,7 @@ export type IColumnConfig =  {
 };
 
 export type FiltersConfig = {
-    [key: string]: IFilterConfig;  
+    [key: string]: IFilterConfig;
 };
 
 export type IFilterConfig = {
@@ -273,12 +276,13 @@ export interface IPresetsApi {
     activePresetId: number | null;
     isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
+    createNewPreset(name: string): Promise<number>;
     resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): Promise<void>;
+    updatePreset(preset: ITablePreset): Promise<void>;
+    presets: ITablePreset[];
 }
 
 export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
@@ -287,5 +291,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    presets: ITablePreset<TFilter>[];
 }

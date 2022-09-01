@@ -1,3 +1,16 @@
+# 4.8.3 - 01.09.2022
+
+**What’s Fixed**
+* [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
+* [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
+* [useVirtual]: Improved visible range computation:
+
+  Virtual lists now adjust visible area in fixed-sized 'blocks'. E.g. topIndex, visibleCount, and from/count in LazyDataSource requests will be always divisible by Block Size. This helps to avoid cases when only several rows are requested on small scrolls. This also can help with pageNo/pageSize-oriented API. Block size defaults to 20, and configurable with `blockSize` prop.
+
+  We also render more rows above and below visible area to avoid blank areas and loading rows when scrolling at normal speed. This is also configurable with `overdrawRows` setting (defaults to 20, meaning at least 20 rows above/below the visible area are rendered)
+
+  This change also fixes the problem when lazy-loading stops, while the end of the list is not reached.
+
 # 4.8.2 - 22.08.2022
 
 **What's New**
@@ -14,7 +27,7 @@
 * Updated icon pack
 * [PickerItem]: add possibility to pass icon
 * [FiltersPanel]: add possibility to provide your own `renderRow` callback
-* [DatePicker]: add `placement` props 
+* [DatePicker]: add `placement` props
 * [DataTable]: add default 'not results found' state
 * [PickerModal]: add default 'not results found' state
 * [FilterToolbar]: small improvements and bugfixes
@@ -22,7 +35,7 @@
 
 **What’s Fixed**
 * [PickerInput]: rework styles for selected value in toggler
-* [DataTable]: fix table rerender when columns prop changed 
+* [DataTable]: fix table rerender when columns prop changed
 * [NumericInput]: don't allow '+' and 'e' symbols
 * [LinkButton]: fix focus state
 * [RangeDatePicker]: fix error when preset is `null`
@@ -50,7 +63,7 @@
 * [Badge]: fixed semitransparent hover colors
 * [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
 * [RangeDatePicker]: fix preset styles
-* [MainMenuButton]: reworked styles for dropdown items 
+* [MainMenuButton]: reworked styles for dropdown items
 
 # 4.7.1 - 06.06.2022
 
@@ -58,10 +71,10 @@
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
 **What’s Fixed**
-* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
-* [DataTable]: added missing sizes styles for header 
+* [DataTable]: added missing sizes styles for header
 * [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
 * [useForm]: handle rejected promise after save
 * [Burger]: fix scroll on body when burger closes
