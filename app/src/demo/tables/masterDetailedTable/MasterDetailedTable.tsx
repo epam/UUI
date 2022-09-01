@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
+import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps } from "@epam/uui-core";
 import { Presets, FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
@@ -39,16 +39,18 @@ export const MasterDetailedTable: React.FC = () => {
         api: request => svc.api.demo.persons(request),
     }, []);
 
+    const clickHandler = useCallback((rowProps: DataRowProps<Person, number>) => {
+        rowProps.onSelect(rowProps);
+        setIsInfoPanelOpened(true);
+    }, []);
+
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             checkbox: { isVisible: true },
             isSelectable: true,
-            onClick(rowProps) {
-                rowProps.onSelect(rowProps);
-                setIsInfoPanelOpened(true);
+            onClick: clickHandler,
             },
-        },
     });
 
     return (
