@@ -19,7 +19,23 @@ interface UseVirtualListApi<List, ScrollContainer> {
 
 interface UseVirtualListProps extends IEditable<VirtualListState> {
     rowsCount: number;
-    blockAlign?: number;
+
+    /**
+     * Virtual list will align topIndex and visibleCount to the block size.
+     * E.g. with block size = 10, even if we have rows 2 to 12 visible, the range will be aligned to 0-20
+     * This is done to not re-render rows on each scroll.
+     * When scrolling, re-render will happen only when we scroll over the next blockSize rows.
+     * Default is 20.
+     */
+    blockSize?: number;
+
+    /**
+     * Number of rows to draw before the top and after the bottom of the list.
+     * This is required to hide blank areas while scrolling.
+     * Default is 20.
+     */
+    overdrawRows?: number;
+
     onScroll?(value: Partial<UuiScrollPositionValues>): void;
 }
 
@@ -28,7 +44,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     value,
     rowsCount,
     onScroll,
-    blockAlign = 20,
+    blockSize = 20,
+    overdrawRows = 20,
 }: UseVirtualListProps): UseVirtualListApi<List, ScrollContainer> {
     const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
     const [listOffset, setListOffset] = React.useState<number>();
@@ -54,29 +71,34 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current || !value) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         onScroll?.(scrollContainer.current);
-        const scrollBottom = scrollTop + clientHeight - listOffset;
 
         let topIndex = 0;
-        while (topIndex < rowsCount && rowOffsets.current[Math.min(topIndex + blockAlign, rowsCount)] < scrollTop) {
-            topIndex += blockAlign;
+        while (topIndex < rowsCount && rowOffsets.current[topIndex] < scrollTop) {
+            topIndex += 1;
         }
-        let firstVisible = topIndex;
-        while ((scrollTop + listOffset) > rowOffsets.current[firstVisible]) {
-            firstVisible += 1;
-        }
+
+        topIndex = topIndex - overdrawRows; // draw more rows at the top to remove visible blank areas while scrolling up
+        topIndex = Math.floor(topIndex / blockSize) * blockSize; // Align to blockSize
+        topIndex = Math.max(0, topIndex);
+
         let bottomIndex = topIndex;
+        let scrollBottom = scrollTop + clientHeight;
         while (bottomIndex < rowsCount && rowOffsets.current[bottomIndex] < scrollBottom) {
             bottomIndex++;
         }
-        if (value.indexToScroll != null && firstVisible !== topIndex) {
-            onValueChange({ ...value, indexToScroll: null });
-        }
 
-        if (topIndex !== value.topIndex || (bottomIndex - topIndex) > value.visibleCount) {
-            const visibleCount = bottomIndex - topIndex + blockAlign * 2;
+        bottomIndex = bottomIndex + overdrawRows; // draw more rows at the bottom to remove visible blank areas while scrolling down
+        bottomIndex = Math.floor(bottomIndex / blockSize) * blockSize; // Align to block size
+        bottomIndex = Math.min(bottomIndex, rowsCount); // clamp to rowsCount
+
+        // We never reduce visible count intentionally - it can be set so a larger value intentionally.
+        // Also, reducing it can cause bouncing between two near values, causing unnecessary re-renders.
+        const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
+
+        if (topIndex !== value.topIndex || visibleCount > value.visibleCount || value.indexToScroll != null) {
             onValueChange({ ...value, topIndex, visibleCount, indexToScroll: null });
         }
-    }, [onValueChange, blockAlign, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
+    }, [onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
 
     const updateRowHeights = React.useCallback(() => {
         if (!scrollContainer.current || !listContainer.current || listOffset == null || !value) return;
