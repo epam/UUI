@@ -105,6 +105,8 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
 
         let size = this.props.node.data.get('imageSize') || {width: 0, height: 0};
         let imageRatio = size.width / size.height;
+        const maxWidth = this.getImageMaxWidth();
+        const maxHeight = maxWidth ? maxWidth / imageRatio : '100%';
         return <Resizable
             size={ { width: size.width, height: size.height} }
             onResizeStop={ (e: MouseEvent | TouchEvent, d: any, ref: HTMLDivElement) => {
@@ -114,8 +116,8 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
                 });
             } }
             onResize={ () => this.state.isOpened && this.setState({ isOpened: false }) }
-            maxWidth={ this.getImageMaxWidth() }
-            maxHeight={ this.getImageMaxWidth() / imageRatio }
+            maxWidth={ maxWidth }
+            maxHeight={ maxHeight }
             lockAspectRatio={ true }
             enable={ this.props.readOnly ? {} : undefined }
         >
