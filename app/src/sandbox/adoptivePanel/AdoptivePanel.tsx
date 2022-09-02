@@ -72,7 +72,8 @@ export const AdoptivePanel = () => {
 
 
     const sortElements = () => {
-        let sumChildrenWidth = 0;
+        //150 это я поставил ширину селекта
+        let sumChildrenWidth = sortedItems.hiddenChildren.length ? 150 : 0;
         const wrapperWidth = wrapperRef?.current ? Math.ceil(wrapperRef.current.getBoundingClientRect().width) : 0;
         const allChildren = [...Array.from(shownRowRef.current.children), ...Array.from(hiddenRowRef.current.children)];
 
@@ -115,6 +116,9 @@ export const AdoptivePanel = () => {
             <h1>Shown Children</h1>
             <FlexRow cx={ css.adoptiveRow } background="gray5" ref={ shownRowRef }>
                 { sortedItems.shownChildren }
+                { !!sortedItems.hiddenChildren.length && <select name="shownItemsSelect" style={ { display: "block", minWidth: '150px' } }>
+                    { [<option hidden selected>More</option>, ...sortedItems.hiddenChildren.map((i, index) => <option value={ i.props.caption }>{ i.props.caption }</option>)] }
+                </select> }
             </FlexRow>
             <h1>Hidden Children</h1>
             <FlexRow background="gray5" ref={ hiddenRowRef }>
