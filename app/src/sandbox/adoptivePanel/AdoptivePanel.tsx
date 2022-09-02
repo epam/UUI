@@ -43,12 +43,13 @@ const buttonsArray = buttons.map((button) => (
     />
 ));
 
-const itemsByPriority = (items: JSX.Element[]) => orderBy(items, item => item.props["data-priority"], 'desc');
+// const itemsByPriority = (items: JSX.Element[]) => orderBy(items, item => item.props["data-priority"], 'desc');
 
 export const AdoptivePanel = () => {
     const addNewHandler = () => {
         const tempButton = getTempButton();
         setSortedItems((prevState) => ({ shownChildren: [...prevState.shownChildren, tempButton], hiddenChildren: [...prevState.hiddenChildren] }));
+        // setChangeState(prev => !prev);
     };
 
     const addNewButtonEl = <Button
@@ -63,70 +64,27 @@ export const AdoptivePanel = () => {
     const [changeState, setChangeState] = useState(false);
     const [sortedItems, setSortedItems] = useState<IItemsState>({ shownChildren: [addNewButtonEl, ...buttonsArray], hiddenChildren: [] });
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const adoptiveRowRef = useRef<HTMLDivElement>(null);
+    const shownRowRef = useRef<HTMLDivElement>(null);
     const hiddenRowRef = useRef<HTMLDivElement>(null);
-    const requestRef = useRef(null);
     // const spacing = "6";
 
-    // const resizeHandler = () => {
-    //     const sortedByPriorityItems = itemsByPriority([...sortedItems.shownChildren, ...sortedItems.hiddenChildren]);
-    //     console.log('tempItems', sortedByPriorityItems);
-    //
-    //     const wrapperWidth = wrapperRef?.current ? Math.ceil(wrapperRef.current.getBoundingClientRect().width) : 0;
-    //
-    //     // if (adoptiveRowRef.current.getBoundingClientRect().width < wrapperWidth) {
-    //     //     setSortedItems(() => ({ shownChildren: sortedByPriorityItems, hiddenChildren: [] }));
-    //     //     return;
-    //     // }
-    //
-    //     console.log('wrapperWidth', wrapperWidth);
-    //     let sumChildrenWidth = 0;
-    //
-    //     const children = Array.from(adoptiveRowRef.current.children);
-    //     console.log('children', children);
-    //
-    //     if (children.length) {
-    //         setSortedItems(() => ({ shownChildren: [], hiddenChildren: [] }));
-    //     } else {
-    //         return;
-    //     }
-    //
-    //     children.length && children.forEach((item, index) => {
-    //         const itemWidth = Math.ceil(item.getBoundingClientRect().width) + +spacing;
-    //         console.log('itemWidth', itemWidth);
-    //         if (sumChildrenWidth + itemWidth < wrapperWidth) {
-    //             sumChildrenWidth += itemWidth;
-    //             setSortedItems((i) => ({ shownChildren: [...i.shownChildren, sortedByPriorityItems[index]], hiddenChildren: [...i.hiddenChildren] }));
-    //         } else {
-    //             setSortedItems((i) => ({ shownChildren: [...i.shownChildren], hiddenChildren: [...i.hiddenChildren, sortedByPriorityItems[index]] }));
-    //         }
-    //         console.log('sumChildrenWidth', sumChildrenWidth);
-    //     });
-    // };
+    console.log('changeState', changeState);
+
 
     const sortElements = () => {
-        console.log('sortedItems', sortedItems);
-
         let sumChildrenWidth = 0;
         const wrapperWidth = wrapperRef?.current ? Math.ceil(wrapperRef.current.getBoundingClientRect().width) : 0;
-        // console.log('wrapperWidth', wrapperWidth);
-
-        const allChildren = [...Array.from(adoptiveRowRef.current.children), ...Array.from(hiddenRowRef.current.children)];
-        console.log('allChildren.length', allChildren.length);
+        const allChildren = [...Array.from(shownRowRef.current.children), ...Array.from(hiddenRowRef.current.children)];
 
         if (!allChildren.length) return;
 
-        const tempAllItems = sortedItems.shownChildren.concat(sortedItems.hiddenChildren);
-        console.log('tempAllItems', tempAllItems);
-
-        const itemsWidth = allChildren.map(child => Math.ceil(child.getBoundingClientRect().width));
-        // console.log('itemsWidth', itemsWidth);
-
+        const tempAllItems = [...sortedItems.shownChildren, ...sortedItems.hiddenChildren];
+        const itemsWidthArray = allChildren.map(child => Math.ceil(child.getBoundingClientRect().width));
         const tempSortedItems: IItemsState = { shownChildren: [], hiddenChildren: [] };
 
         tempAllItems.forEach((item, index) => {
-            if (sumChildrenWidth + itemsWidth[index] < wrapperWidth) {
-                sumChildrenWidth += itemsWidth[index];
+            if (sumChildrenWidth + itemsWidthArray[index] < wrapperWidth) {
+                sumChildrenWidth += itemsWidthArray[index];
                 tempSortedItems.shownChildren.push(tempAllItems[index]);
             } else {
                 tempSortedItems.hiddenChildren.push(tempAllItems[index]);
@@ -139,20 +97,15 @@ export const AdoptivePanel = () => {
 
     useLayoutEffect(() => {
         sortElements();
-        // requestRef.current = requestAnimationFrame(sortElements);
-        // return () => {
-        //     cancelAnimationFrame(requestRef.current);
-        // };
     }, [changeState]);
 
     useEffect(() => {
-        // const resizeObserver = new ResizeObserver(sortElements);
         const resizeObserver = new ResizeObserver(() => setChangeState(prev => !prev));
 
-        resizeObserver.observe(adoptiveRowRef.current);
+        resizeObserver.observe(shownRowRef.current);
         resizeObserver.observe(wrapperRef.current);
         return () => {
-            resizeObserver.unobserve(adoptiveRowRef.current);
+            resizeObserver.unobserve(shownRowRef.current);
             resizeObserver.unobserve(wrapperRef.current);
         };
     }, []);
@@ -160,7 +113,7 @@ export const AdoptivePanel = () => {
     return (
         <div className={ css.mainWrapper } ref={ wrapperRef }>
             <h1>Shown Children</h1>
-            <FlexRow cx={ css.adoptiveRow } background="gray5" ref={ adoptiveRowRef }>
+            <FlexRow cx={ css.adoptiveRow } background="gray5" ref={ shownRowRef }>
                 { sortedItems.shownChildren }
             </FlexRow>
             <h1>Hidden Children</h1>
