@@ -8,7 +8,8 @@ import { ForwardedRef, forwardRef } from "react";
 const Sfc = forwardRef((props: any, ref: ForwardedRef<HTMLDivElement>) => <div ref={ ref }>123</div>);
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
-    .prop('trigger', { examples: [{ value: 'hover', isDefault: true }, 'click', 'press'] })
+    .prop('trigger', { examples: [{ value: 'hover', isDefault: true }, 'click', 'press', 'manual' ] })
+    .prop('isVisible', { examples: [ null, true, false ], description: "controls visibility in 'manual' trigger mode" })
     .prop('content', { examples: [{ value: 'Some text', isDefault: true },
             {value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }], type: 'string' })
     .prop('children', {
@@ -22,7 +23,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
         ],
     })
     .prop('renderContent', { examples: [() => <div style={ { border: '1px dashed black' } }>Component</div>] })
-    .prop('color', { examples: ['white', { name: 'gray90', value: 'gray90', isDefault: true }] })
+    .prop('color', { examples: ['white', { name: 'gray90', value: 'gray90', isDefault: true }, 'red'] })
     .withContexts(DefaultContext);
 
 export = tooltipDoc;
