@@ -61,7 +61,7 @@ export const FilteredTable: React.FC = () => {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
+                <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
                 <PresetPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
