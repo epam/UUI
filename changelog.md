@@ -9,9 +9,18 @@
     * 'width' prop is now required (was optional)
       * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
     * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
+* useForm now provides two new callbacks - setValue and replaceValue
+    They work the same way as setState of React.useState.
+    Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
+    setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
+    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state
 
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
+* useForm
+  * fixed revert/undo/redo behavior after save
+  * onValueChange now triggers internal validation logic (as with changes made with lenses)
+  * refactored to remove unnecessary re-renders in some cases
 
 # 4.8.3 - 01.09.2022
 
