@@ -1,4 +1,4 @@
-# next version
+# next version (Editable Tables Preparation)
 
 **What's New**
 * Metadata<T> type - 'all' prop now infer the type of array element or object key (was typed as 'any')
@@ -10,6 +10,8 @@
       * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
     * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
 
+**What’s Fixed**
+* DnD Actor - improved 'inside' position calculation
 
 # 4.8.3 - 01.09.2022
 
