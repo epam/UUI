@@ -150,7 +150,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
     renderEditor = () => (<>
         <Editor
             readOnly={ this.props.isReadonly }
-            className={ cx(style.typographyPromo, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
+            className={ cx(style.typographyPromo, css.contentEditable, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
             renderInline={ (pr, ed, next) => next() }
             onKeyDown={ this.onKeyDown as any }
             autoFocus={ this.props.autoFocus }
