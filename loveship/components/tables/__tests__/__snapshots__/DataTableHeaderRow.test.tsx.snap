@@ -4,9 +4,14 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
+  style={
+    Object {
+      "minWidth": "566px",
+    }
+  }
 >
   <div
-    className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+    className="uui-table-fixed-section uui-table-fixed-section-left"
     style={
       Object {
         "flex": "0 0 96px",
@@ -88,7 +93,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     />
   </div>
   <div
-    className="container"
+    className="scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "2 0 470px",
@@ -266,9 +271,14 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
   className="container uui-table-row-container root uui-table-header-row container align-items-center"
   role="row"
+  style={
+    Object {
+      "minWidth": "566px",
+    }
+  }
 >
   <div
-    className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+    className="uui-table-fixed-section uui-table-fixed-section-left"
     style={
       Object {
         "flex": "0 0 96px",
@@ -325,7 +335,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     />
   </div>
   <div
-    className="container"
+    className="scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "2 0 470px",

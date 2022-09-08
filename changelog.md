@@ -2,6 +2,13 @@
 
 **What's New**
 * Metadata<T> type - 'all' prop now infer the type of array element or object key (was typed as 'any')
+* [Breaking Change] DataTableColumn props simplified
+    * DataTableColumn props no longer accepts shrink prop.
+      Is actually wasn't supported before this change, so you can safely remove them.
+      Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional)
+      * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
 
 
 # 4.8.3 - 01.09.2022
