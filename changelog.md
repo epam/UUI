@@ -14,6 +14,9 @@
     Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
     setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
     replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state
+* Lenses now memoizes all methods calls (.prop, .item, etc.)
+    This allows to not re-create onValueChange callbacks on re-renders.
+    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components
 
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
