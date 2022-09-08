@@ -1,3 +1,9 @@
+# next version
+
+**What's New**
+* Metadata<T> type - 'all' prop now infer the type of array element or object key (was typed as 'any')
+
+
 # 4.8.3 - 01.09.2022
 
 **What’s Fixed**
