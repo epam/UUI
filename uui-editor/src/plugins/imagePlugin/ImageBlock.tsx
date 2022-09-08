@@ -114,8 +114,9 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
                     width: ref.clientWidth,
                     height: ref.clientHeight,
                 });
+                this.setState({ isOpened: false });
             } }
-            onResize={ () => this.state.isOpened && this.setState({ isOpened: false }) }
+            onResize={ () => this.setState({ isOpened: true }) }
             maxWidth={ maxWidth }
             maxHeight={ maxHeight }
             lockAspectRatio={ true }
