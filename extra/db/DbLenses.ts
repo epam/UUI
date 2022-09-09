@@ -1,4 +1,4 @@
-import { DbRef } from "./";
+import { DbRef } from "./DbRef";
 import { IQueryable } from './types';
 import { IEditable } from '@epam/uui-core';
 

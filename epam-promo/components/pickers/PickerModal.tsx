@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as css from './PickerModal.scss';
-import { DataRowProps, DataSourceItemId, Lens } from '@epam/uui-core';
-import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
+import { DataRowProps, Lens } from '@epam/uui-core';
+import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard, IconContainer } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
 import { ModalBlocker, ModalWindow, ModalHeader, ModalFooter } from '../overlays';
@@ -10,8 +10,9 @@ import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
+import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
 
-export class PickerModalImpl<TItem, TId extends DataSourceItemId> extends PickerModalBase<TItem, TId> {
+export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
@@ -40,6 +41,16 @@ export class PickerModalImpl<TItem, TId extends DataSourceItemId> extends Picker
             <Button fill='white' color='gray50' caption={ i18n.pickerModal.cancelButton } onClick={ () => this.props.abort() } />
             <Button color='green' caption={ i18n.pickerModal.selectButton } onClick={ () => this.props.success(null) } />
         </>;
+    }
+
+    renderNotFound = () => {
+        return this.props.renderNotFound
+            ? this.props.renderNotFound({ search: this.state.dataSourceState.search, onClose: () => this.props.success(null) })
+            :   <div className={ css.noFoundModalContainer }>
+                    <IconContainer  cx={ css.noFoundModalContainerIcon } icon={ SearchIcon }/>
+                    <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                    <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
+                </div>;
     }
 
     render() {
@@ -87,10 +98,7 @@ export class PickerModalImpl<TItem, TId extends DataSourceItemId> extends Picker
                         search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                         showSearch={ false }
                         rows={ rows }
-                        renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
-                            search: this.state.dataSourceState.search,
-                            onClose: () => this.props.success(selectedDataRows),
-                        })) }
+                        renderNotFound={ this.renderNotFound }
                         editMode='modal'
                     />
                     <ModalFooter borderTop padding='24' vPadding='24'>
@@ -106,7 +114,7 @@ export class PickerModalImpl<TItem, TId extends DataSourceItemId> extends Picker
     }
 }
 
-export class PickerModal<TItem, TId extends DataSourceItemId> extends React.Component<PickerModalProps<TItem, TId>> {
+export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>> {
     state = { selection: this.props.initialValue };
     lens = Lens.onState<any>(this);
 

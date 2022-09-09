@@ -1,26 +1,18 @@
 import React from 'react';
 import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
-import {
-    UuiContexts,
-    DataRowProps,
-    IClickable,
-    IHasCaption,
-    IHasPlaceholder,
-    UuiContext,
-    DataSourceItemId,
-} from '@epam/uui-core';
-import { PickerModal } from './PickerModal';
+import { DataRowProps, IClickable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
+import { Text } from '../typography';
+import { TextSize, SizeMod } from '../types';
 import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
-import { SizeMod, TextSize } from '../types';
-import { Text } from '../typography';
+import { PickerModal } from './PickerModal';
 
-export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };
 
-export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
+export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
     static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;
@@ -30,32 +22,35 @@ export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListB
     }
 
     handleShowPicker = () => {
-        this.context.uuiModals.show(props => <PickerModal<TItem, TId>
-                { ...props }
-                { ...this.props }
-                caption={ this.props.placeholder || `Please select ${ this.getEntityName() ? this.getEntityName() : "" }` }
-                initialValue={ this.props.value as any }
-                selectionMode={ this.props.selectionMode }
-                valueType={ this.props.valueType }
-            />)
+        this.context.uuiModals
+            .show(props => (
+                <PickerModal<TItem, TId>
+                    { ...props }
+                    { ...this.props }
+                    caption={ this.props.placeholder || `Please select ${ this.getEntityName() ? this.getEntityName() : "" }` }
+                    initialValue={ this.props.value as any }
+                    selectionMode={ this.props.selectionMode }
+                    valueType={ this.props.valueType }
+                />
+            ))
             .then((value: any) => {
                 this.appendLastSelected([...this.getSelectedIdsArray(value)]);
                 this.props.onValueChange(value);
-            })
-            .catch(() => null);
+            });
     }
 
-    defaultRenderToggler = (props: IClickable) => <LinkButton
-        caption='Show all'
-        { ...props }
-    />
+    defaultRenderToggler = (props: IClickable) => (
+        <LinkButton
+            caption='Show all'
+            { ...props }
+        />
+    )
 
     render() {
         const view = this.getView();
         const viewProps = view.getListProps();
         const selectedRows = view.getSelectedRows();
         const rows = this.buildRowsList();
-        // This is incorrect condition to hide Show More, it won't work for small tree. Added as a temporary solution.
         const showPicker = viewProps.totalCount == null || viewProps.totalCount > this.getMaxDefaultItems();
         const renderToggler = this.props.renderModalToggler || this.defaultRenderToggler;
         const renderRow = this.props.renderRow || this.renderRow;
@@ -64,9 +59,13 @@ export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListB
             <div>
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
-                    <Text color={ 'secondary' } size={ this.props.size as TextSize }>No options available</Text>) }
+                    <Text color={ 'secondary' }
+                          size={ this.props.size as TextSize }>No options available</Text>) }
                 { rows.map(row => renderRow(row)) }
-                { showPicker && renderToggler({ onClick: this.handleShowPicker, caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length) }, selectedRows) }
+                { showPicker && renderToggler({
+                    onClick: this.handleShowPicker,
+                    caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
+                }, selectedRows) }
             </div>
         );
     }

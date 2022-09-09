@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
-import { UuiContexts, DataRowProps, UuiContext, DataSourceItemId, PickerBaseProps } from '@epam/uui-core';
+import { UuiContexts, DataRowProps, UuiContext, PickerBaseProps } from '@epam/uui-core';
 import { i18n } from "../../i18n";
 
-export type PickerListBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & {
+export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /**
      * Number of default items to show initially, when nothing is selected.
      * Default it 10 items
@@ -39,7 +39,7 @@ interface LastUsedRec<TId> {
     selectionTime: number;
 }
 
-export abstract class PickerListBase<TItem, TId extends DataSourceItemId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
+export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
     static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;

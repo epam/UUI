@@ -10,7 +10,7 @@ import { ReactComponent as ArrowRightIcon_30 } from '@epam/assets/icons/common/n
 export class Paginator extends React.Component<PaginatorProps> {
     renderPaginator(params: PaginatorParams) {
         return (
-            <nav role="navigation" className={ css.root }>
+            <nav role="navigation" className={ css.root } { ...params.rawProps }>
                 <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowLeftIcon_30 : ArrowLeftIcon_24 }  onClick={ params.goToPrev } isDisabled={ params.isFirst } fill='white' color='gray50' />
                 {
                     params.pages.map((page, index) => {

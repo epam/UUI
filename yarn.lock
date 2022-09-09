@@ -1321,10 +1321,104 @@
   dependencies:
     normalize.css "^7.0.0"
 
+"@epam/assets@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.8.3.tgz#18cd6b6ccfbf01e973123ab75a147776620c6da6"
+  integrity sha512-h1QJg/PyIaxvM3j8F68Eu/OHQwX2dNBBqRoV4LKvQ9NVngkBS0jhtw4URJ8bQkAERTgvXjznDUmLA+PTAeIn7A==
+  dependencies:
+    normalize.css "^7.0.0"
+
 "@epam/internal@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@epam/internal/-/internal-0.0.1.tgz#742bbc31ef813264007346365aaf312c7b335a40"
   integrity sha512-gd+4xCPGAfDZf3I2DtV86pva9/LOaSWu2e+qAuqfkt2uQ0cOqq+xD7aZxHP6PZHr742/tsrRc5BZOW9q1630uQ==
+
+"@epam/uui-components@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/@epam/uui-components/-/uui-components-4.8.3.tgz#ca2ee76f9907c14458b1b31b97bb3a0bd0e660b0"
+  integrity sha512-gT1Bz3ZSQBzeUvGw4y1n28cuSxF1HBUbKQnGb9ScnJRBl4lMEaj/jgQFGtKWcD4FYmTyB8PD0kUDTwpBTv62Sw==
+  dependencies:
+    "@epam/uui-core" "4.8.3"
+    "@popperjs/core" "2.9.0"
+    "@types/classnames" "2.2.6"
+    "@types/lodash.clone" "4.5.6"
+    "@types/lodash.isequal" "4.5.5"
+    "@types/lodash.orderby" "4.6.6"
+    "@types/lodash.range" "3.2.6"
+    "@types/query-string" "6.1.0"
+    "@types/react-measure" "2.0.6"
+    "@types/react-transition-group" "4.4.4"
+    classnames "2.2.6"
+    csstype "2.6.10"
+    dayjs "1.10.7"
+    lodash.clone "4.5.0"
+    lodash.isequal "4.5.0"
+    lodash.orderby "4.6.0"
+    lodash.range "3.2.0"
+    react-custom-scrollbars-2 "^4.4.0"
+    react-focus-lock "2.7.1"
+    react-measure "2.5.2"
+    react-popper "2.2.5"
+    react-transition-group "4.4.2"
+
+"@epam/uui-core@4.8.3":
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/@epam/uui-core/-/uui-core-4.8.3.tgz#b147b6537d8b71747ae100e49e053678abe281fa"
+  integrity sha512-Mw1mStg362fBt4tMcmlZYanwL1ZGKv+mNI6o6PMOKaFsZZKQadcs2NSpX3vmk7+GoSAjhpIUjuxxV8XvK0oSGg==
+  dependencies:
+    "@popperjs/core" "2.9.0"
+    "@types/classnames" "2.2.6"
+    "@types/lodash.clone" "4.5.6"
+    "@types/lodash.debounce" "4.0.6"
+    "@types/lodash.isequal" "4.5.5"
+    "@types/lodash.maxby" "4.6.6"
+    "@types/lodash.memoize" "4.1.6"
+    "@types/lodash.orderby" "4.6.6"
+    "@types/lodash.sortby" "4.7.6"
+    "@types/lodash.trimend" "4.5.6"
+    classnames "2.2.6"
+    csstype "2.6.10"
+    dayjs "1.10.7"
+    jsurl "0.1.5"
+    lodash.clone "4.5.0"
+    lodash.debounce "4.0.8"
+    lodash.isempty "4.4.0"
+    lodash.isequal "4.5.0"
+    lodash.maxby "4.6.0"
+    lodash.memoize "4.1.2"
+    lodash.orderby "4.6.0"
+    lodash.sortby "4.7.0"
+    lodash.trimend "4.5.1"
+    react-popper "2.2.5"
+
+"@epam/uui-editor@4.8.1":
+  version "4.8.1"
+  resolved "https://registry.yarnpkg.com/@epam/uui-editor/-/uui-editor-4.8.1.tgz#78437d3baba8ced3042f61e048dbc1d710c85643"
+  integrity sha512-j/Sw9GqRpzVHQ6sRvkPZsDtE36/XzmXRgK9CoFvIkpHJO/qH8PJ6D4V1JKvJ8P1NaTi/LGDntlycpd/BKmK/gA==
+  dependencies:
+    "@braintree/sanitize-url" "4.0.1"
+    "@convertkit/slate-lists" "0.2.2"
+    "@epam/assets" "4.8.1"
+    "@epam/uui-components" "4.8.1"
+    "@epam/uui-core" "4.8.1"
+    "@mercuriya/slate-linkify" "0.1.2"
+    "@popperjs/core" "2.9.0"
+    "@types/lodash.flatten" "4.4.6"
+    "@types/slate" "0.47.9"
+    "@types/slate-react" "0.22.8"
+    classnames "2.2.6"
+    get-video-id "3.1.3"
+    htmlclean "3.0.8"
+    lodash.flatten "4.4.0"
+    re-resizable "6.0.0"
+    react-broadcast "0.7.1"
+    react-popper "2.2.5"
+    slate "0.47.9"
+    slate-drop-or-paste-images "0.9.1"
+    slate-html-serializer "0.8.5"
+    slate-react "0.22.10"
+    slate-soft-break "0.9.0"
+    slate-uui-table-plugin "1.0.6"
 
 "@eslint/eslintrc@^0.1.3":
   version "0.1.3"
@@ -5969,10 +6063,10 @@ dateformat@^3.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
-dayjs@^1.10.6, dayjs@^1.10.7:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.2.tgz#fa0f5223ef0d6724b3d8327134890cfe3d72fbe5"
-  integrity sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==
+dayjs@1.10.7:
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
+  integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"

@@ -1,8 +1,7 @@
 import { ArrayDataSource, ArrayDataSourceProps } from '../ArrayDataSource';
 import { useMemoWithDestructor } from "../../../helpers/useMemoWithDestructor";
-import { DataSourceItemId } from '../../../types';
 
-export function useArrayDataSource<TItem, TId extends DataSourceItemId, TFilter>(props: ArrayDataSourceProps<TItem, TId, TFilter>, deps: any[]) {
+export function useArrayDataSource<TItem, TId, TFilter>(props: ArrayDataSourceProps<TItem, TId, TFilter>, deps: any[]) {
     return useMemoWithDestructor(
         () => new ArrayDataSource({ ...props }),
         (dataSource) => dataSource.setProps(props),

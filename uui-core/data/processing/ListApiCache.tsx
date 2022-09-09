@@ -1,8 +1,8 @@
 import { LazyLoadedMap } from '../../helpers';
-import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRequest, DataSourceItemId } from '../../types';
+import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRequest } from '../../types';
 import { batch } from '../../helpers/batch';
 
-export interface ListApiSettings<TItem, TId extends DataSourceItemId, TFilter> {
+export interface ListApiSettings<TItem, TId, TFilter> {
 
     /** Lazy List API used to fetch items */
     api: LazyDataSourceApi<TItem, TId, TFilter>;
@@ -46,7 +46,7 @@ interface ListRecord<TItem> {
  *
  * The ListApiCache adds a caching and request batching layer on top of the list API.
  */
-export class ListApiCache<TItem, TId extends DataSourceItemId, TFilter> {
+export class ListApiCache<TItem, TId, TFilter> {
     itemsById: LazyLoadedMap<TId, TItem>;
     itemLists: Map<any, ListRecord<TItem>> = new Map();
 

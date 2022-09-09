@@ -1,4 +1,4 @@
-import { getPatternPredicate } from '../getPatternPredicate';
+import { getFilterPredicate } from '../getFilterPredicate';
 import { DataQueryFilter } from '../../../types';
 
 interface Person {
@@ -18,7 +18,7 @@ const william = { name: "William", departmentId: 4 } as Person;
 const persons = [alice, bob, edward, jack, pete, sandra, william];
 
 const run = (filter: DataQueryFilter<Person>) => {
-    const filterPredicate = getPatternPredicate(filter as any);
+    const filterPredicate = getFilterPredicate(filter as any);
     return persons.filter(filterPredicate);
 };
 

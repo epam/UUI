@@ -1,7 +1,7 @@
 import React, { Attributes, ReactNode } from 'react';
 import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
-import { SortDirection } from './dataQuery';
+import { FilterPredicateName, SortDirection } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
@@ -171,7 +171,7 @@ export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
 
-export type IColumnConfig = {
+export type IColumnConfig =  {
     isVisible?: boolean;
     order?: string;
     width?: number;
@@ -196,17 +196,25 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
 
+export type IFilterPredicate = {
+    name: string;
+    predicate: FilterPredicateName;
+    isDefault?: boolean;
+};
+
 type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
     columnKey?: string;
     isAlwaysVisible?: boolean;
+    predicates?: IFilterPredicate[]
 };
 
 type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "singlePicker" | "multiPicker";
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
+    renderRow?: (props: DataRowProps<any, any>) => ReactNode;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -228,12 +236,13 @@ export interface IPresetsApi {
     activePresetId: number | null;
     isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
+    createNewPreset(name: string): Promise<number>;
     resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): Promise<void>;
+    updatePreset(preset: ITablePreset): Promise<void>;
+    presets: ITablePreset[];
 }
 
 export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
@@ -242,5 +251,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    presets: ITablePreset<TFilter>[];
 }

@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/18/navigation-chevron-right_right</title>
-    <g id="Icons/18/navigation-chevron-right_right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M5.2575,4.5 L9.7575,9 L5.2575,13.5 L4.2,12.4425 L7.635,9 L4.2,5.5575 L5.2575,4.5 Z M10.4993331,4.5 L14.9993331,9 L10.4993331,13.5 L9.44183309,12.4425 L12.8768331,9 L9.44183309,5.5575 L10.4993331,4.5 Z" id="Icon" fill="#45FF00"></path>
-    </g>
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.2 5.5575L5.2575 4.5L9.7575 9L5.2575 13.5L4.2 12.4425L7.635 9L4.2 5.5575Z" fill="#6C6F80"/>
+<path d="M9.44183 5.5575L10.4993 4.5L14.9993 9L10.4993 13.5L9.44183 12.4425L12.8768 9L9.44183 5.5575Z" fill="#6C6F80"/>
 </svg>

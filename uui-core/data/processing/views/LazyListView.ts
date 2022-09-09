@@ -1,4 +1,4 @@
-import { DataRowProps, IEditable, DataSourceItemId, DataSourceState,
+import { DataRowProps, IEditable, DataSourceState,
     LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
@@ -7,7 +7,7 @@ import { LazyTree, LazyTreeFetchStrategy, LazyTreeList, LazyTreeLoadParams } fro
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
-export interface LazyListViewProps<TItem, TId extends DataSourceItemId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     /**
      * A function to retrieve the data, asynchronously.
      * This function usually performs a REST API call.
@@ -65,7 +65,7 @@ interface LoadResult<TItem, TId, TFilter> {
     tree: LazyTree<TItem, TId, TFilter>;
 }
 
-export class LazyListView<TItem, TId extends DataSourceItemId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
     private tree: LazyTree<TItem, TId, TFilter>;

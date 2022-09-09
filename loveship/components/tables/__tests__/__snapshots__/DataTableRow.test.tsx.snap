@@ -6,7 +6,6 @@ exports[`DataTableRow should be rendered correctly 1`] = `
   role="row"
   style={
     Object {
-      "flex": "1 0 96px",
       "minWidth": "96px",
     }
   }

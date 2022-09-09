@@ -44,7 +44,6 @@ exports[`DataTable should be rendered correctly 1`] = `
         role="row"
         style={
           Object {
-            "flex": "2 0 566px",
             "minWidth": "566px",
           }
         }
@@ -275,7 +274,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -382,7 +380,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -489,7 +486,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -596,7 +592,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -703,7 +698,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -810,7 +804,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -917,7 +910,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -1024,7 +1016,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -1131,7 +1122,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }
@@ -1238,7 +1228,6 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
-              "flex": "2 0 566px",
               "minWidth": "566px",
             }
           }

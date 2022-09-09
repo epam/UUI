@@ -1,5 +1,5 @@
-import { RenderMarkProps, Editor } from "slate-react";
-import { Editor as CoreEditor, Mark } from "slate";
+import { RenderMarkProps } from "slate-react";
+import { Editor as CoreEditor, Editor, Mark } from "slate";
 import * as React from "react";
 import { ReactComponent as BoldIcon } from "../../icons/bold.svg";
 import { ReactComponent as ItalicIcon } from "../../icons/italic.svg";

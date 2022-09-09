@@ -6,7 +6,6 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   role="row"
   style={
     Object {
-      "flex": "2 0 566px",
       "minWidth": "566px",
     }
   }
@@ -274,7 +273,6 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   role="row"
   style={
     Object {
-      "flex": "2 0 566px",
       "minWidth": "566px",
     }
   }

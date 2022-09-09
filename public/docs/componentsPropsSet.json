@@ -1,6 +1,6 @@
 {
   "props": {
-    "-work/epam-promo/components/buttons/docs/button.doc.tsx": [
+    "-dev/epam-promo/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -126,7 +126,7 @@
         "value": "blue | green | red | gray50"
       }
     ],
-    "-work/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
+    "-dev/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -188,7 +188,7 @@
         "value": "blue | green | red | gray50 | amber | gray30 | gray60"
       }
     ],
-    "-work/epam-promo/components/buttons/docs/linkButton.doc.ts": [
+    "-dev/epam-promo/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -310,7 +310,7 @@
         "value": "blue | green | red | amber"
       }
     ],
-    "-work/epam-promo/components/buttons/docs/tabButton.doc.ts": [
+    "-dev/epam-promo/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -432,7 +432,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
+    "-dev/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -554,7 +554,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
+    "-dev/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "renderFooter",
         "value": "() => React.ReactNode"
@@ -594,6 +594,10 @@
       {
         "name": "onBlur",
         "value": "(e?: React.FocusEvent<HTMLInputElement>) => void"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
       },
       {
         "name": "value",
@@ -652,7 +656,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "-dev/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -742,7 +746,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/checkbox.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -836,7 +840,7 @@
         "value": "light | dark"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
+    "-dev/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -886,7 +890,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/numericInput.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -1000,7 +1004,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/radioInput.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1074,7 +1078,7 @@
         "value": "18 | 12"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/rating.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -1160,7 +1164,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/searchInput.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1215,7 +1219,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "none | text | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -1346,7 +1350,7 @@
         "value": "number"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/switch.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -1412,7 +1416,7 @@
         "value": "24 | 18 | 12"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/textArea.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -1506,7 +1510,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/textInput.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -1561,7 +1565,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "none | text | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -1684,7 +1688,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/inputs/docs/timePicker.doc.ts": [
+    "-dev/epam-promo/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -1694,16 +1698,16 @@
         "value": "24 | 12"
       },
       {
-        "name": "rawProps",
-        "value": "{ input?: any; body?: any; }"
-      },
-      {
         "name": "id",
         "value": "string"
       },
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "value",
@@ -1750,7 +1754,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/layout/docs/accordion.doc.tsx": [
+    "-dev/epam-promo/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -1820,7 +1824,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "-work/epam-promo/components/layout/docs/blocker.doc.ts": [
+    "-dev/epam-promo/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -1850,7 +1854,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
+    "-dev/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -1908,7 +1912,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
+    "-dev/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -1926,7 +1930,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
+    "-dev/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -1972,7 +1976,7 @@
         "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray5 | gray10 | gray20 | gray40 | gray70 | gray80 | gray90 | cyan | orange | purple | violet"
       }
     ],
-    "-work/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
+    "-dev/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -2038,7 +2042,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "-work/epam-promo/components/layout/docs/radioGroup.doc.ts": [
+    "-dev/epam-promo/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -2100,7 +2104,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/navigation/docs/anchor.doc.tsx": [
+    "-dev/epam-promo/components/navigation/docs/anchor.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -2142,7 +2146,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+    "-dev/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -2236,7 +2240,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/alert.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -2266,7 +2270,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -2360,7 +2364,7 @@
         "value": "boolean"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
       {
         "name": "width",
         "value": "auto"
@@ -2398,6 +2402,26 @@
         "value": "React.ForwardedRef<T>"
       },
       {
+        "name": "onClose",
+        "value": "() => void"
+      },
+      {
+        "name": "togglerWidth",
+        "value": "number"
+      },
+      {
+        "name": "togglerHeight",
+        "value": "number"
+      },
+      {
+        "name": "scheduleUpdate",
+        "value": "() => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
         "name": "arrowProps",
         "value": "PopperArrowProps"
       },
@@ -2426,7 +2450,7 @@
         "value": "React.ReactText"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2476,7 +2500,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5"
@@ -2530,7 +2554,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -2580,7 +2604,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
+    "-dev/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -2595,7 +2619,11 @@
       },
       {
         "name": "trigger",
-        "value": "click | press | hover"
+        "value": "click | press | hover | manual"
+      },
+      {
+        "name": "isVisible",
+        "value": "boolean"
       },
       {
         "name": "portalTarget",
@@ -2619,10 +2647,10 @@
       },
       {
         "name": "color",
-        "value": "white | gray90"
+        "value": "white | red | gray90"
       }
     ],
-    "-work/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
+    "-dev/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2808,6 +2836,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -2816,7 +2848,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
+    "-dev/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -2922,7 +2954,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "-work/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
+    "-dev/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -2941,7 +2973,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -3016,6 +3048,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -3042,10 +3078,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
@@ -3096,7 +3128,7 @@
         "value": "form | cell"
       }
     ],
-    "-work/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
+    "-dev/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -3142,7 +3174,7 @@
         "value": "top | center"
       }
     ],
-    "-work/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "-dev/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -3177,7 +3209,7 @@
       },
       {
         "name": "renderFilter",
-        "value": "() => React.ReactNode"
+        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       {
         "name": "value",
@@ -3253,14 +3285,14 @@
       },
       {
         "name": "textCase",
-        "value": "upper | normal"
+        "value": "normal | upper"
       },
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "-work/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "-dev/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -3327,14 +3359,14 @@
       },
       {
         "name": "textCase",
-        "value": "upper | normal"
+        "value": "normal | upper"
       },
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "-work/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
+    "-dev/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -3406,6 +3438,10 @@
       {
         "name": "value",
         "value": "TItem"
+      },
+      {
+        "name": "parentId",
+        "value": "TId"
       },
       {
         "name": "path",
@@ -3500,7 +3536,7 @@
         "value": "top | center"
       }
     ],
-    "-work/epam-promo/components/typography/docs/richTextView.doc.tsx": [
+    "-dev/epam-promo/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -3522,7 +3558,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "-work/epam-promo/components/typography/docs/text.doc.tsx": [
+    "-dev/epam-promo/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3568,7 +3604,7 @@
         "value": "24 | 18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
+    "-dev/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -3580,9 +3616,13 @@
       {
         "name": "isNotAnimated",
         "value": "boolean"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/avatar.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -3616,7 +3656,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -3646,7 +3686,7 @@
         "value": "any"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/badge.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/badge.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3772,7 +3812,7 @@
         "value": "blue | green | red | amber | gray30 | cyan | orange | purple | violet"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/paginator.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -3820,9 +3860,13 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/spinner.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/spinner.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -3840,7 +3884,7 @@
         "value": "white | blue | gray50"
       }
     ],
-    "-work/epam-promo/components/widgets/docs/tag.doc.tsx": [
+    "-dev/epam-promo/components/widgets/docs/tag.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -3958,7 +4002,7 @@
         "value": "24 | 30 | 36 | 42 | 48 | 18"
       }
     ],
-    "-work/loveship/components/buttons/docs/button.doc.tsx": [
+    "-dev/loveship/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4096,7 +4140,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/buttons/docs/iconButton.doc.ts": [
+    "-dev/loveship/components/buttons/docs/iconButton.doc.ts": [
       {
         "name": "isLinkActive",
         "value": "boolean"
@@ -4158,7 +4202,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/buttons/docs/linkButton.doc.tsx": [
+    "-dev/loveship/components/buttons/docs/linkButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -4292,7 +4336,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/buttons/docs/tabButton.doc.ts": [
+    "-dev/loveship/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4418,7 +4462,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
+    "-dev/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60"
@@ -4544,7 +4588,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/datePickers/docs/calendar.doc.ts": [
+    "-dev/loveship/components/datePickers/docs/calendar.doc.ts": [
       {
         "name": "value",
         "value": "TSelection"
@@ -4590,7 +4634,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/datePickers/docs/datePicker.doc.tsx": [
+    "-dev/loveship/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "format",
         "value": "string"
@@ -4630,6 +4674,10 @@
       {
         "name": "onBlur",
         "value": "(e?: React.FocusEvent<HTMLInputElement>) => void"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end"
       },
       {
         "name": "value",
@@ -4696,7 +4744,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "-work/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "-dev/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string"
@@ -4798,7 +4846,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "-work/loveship/components/inputs/docs/checkbox.doc.tsx": [
+    "-dev/loveship/components/inputs/docs/checkbox.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -4896,7 +4944,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
+    "-dev/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]"
@@ -4946,7 +4994,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/inputs/docs/numericInput.doc.ts": [
+    "-dev/loveship/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number"
@@ -5068,7 +5116,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/inputs/docs/radioInput.doc.tsx": [
+    "-dev/loveship/components/inputs/docs/radioInput.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -5150,7 +5198,7 @@
         "value": "light | dark"
       }
     ],
-    "-work/loveship/components/inputs/docs/rating.doc.ts": [
+    "-dev/loveship/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any"
@@ -5240,7 +5288,7 @@
         "value": "18 | 24 | 30"
       }
     ],
-    "-work/loveship/components/inputs/docs/searchInput.doc.ts": [
+    "-dev/loveship/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5295,7 +5343,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "none | text | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -5434,7 +5482,7 @@
         "value": "number"
       }
     ],
-    "-work/loveship/components/inputs/docs/sliderRating.doc.tsx": [
+    "-dev/loveship/components/inputs/docs/sliderRating.doc.tsx": [
       {
         "name": "renderTooltip",
         "value": "(value: TValue) => React.ReactNode"
@@ -5490,9 +5538,13 @@
       {
         "name": "isRequired",
         "value": "boolean"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       }
     ],
-    "-work/loveship/components/inputs/docs/switch.doc.ts": [
+    "-dev/loveship/components/inputs/docs/switch.doc.ts": [
       {
         "name": "tabIndex",
         "value": "number"
@@ -5566,7 +5618,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/inputs/docs/textArea.doc.ts": [
+    "-dev/loveship/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number"
@@ -5668,7 +5720,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/inputs/docs/textInput.doc.ts": [
+    "-dev/loveship/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>"
@@ -5723,7 +5775,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "none | text | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -5854,7 +5906,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/inputs/docs/timePicker.doc.ts": [
+    "-dev/loveship/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number"
@@ -5870,6 +5922,10 @@
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
+      },
+      {
+        "name": "rawProps",
+        "value": "{ input?: any; body?: any; }"
       },
       {
         "name": "value",
@@ -5916,7 +5972,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "-work/loveship/components/layout/docs/accordion.doc.tsx": [
+    "-dev/loveship/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
         "value": "string"
@@ -5986,7 +6042,7 @@
         "value": "18 | 12 | 0 | 6"
       }
     ],
-    "-work/loveship/components/layout/docs/blocker.doc.ts": [
+    "-dev/loveship/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean"
@@ -6016,7 +6072,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/layout/docs/checkboxGroup.doc.ts": [
+    "-dev/loveship/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>"
@@ -6074,7 +6130,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/layout/docs/controlGroup.doc.tsx": [
+    "-dev/loveship/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -6092,7 +6148,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/layout/docs/iconContainer.doc.tsx": [
+    "-dev/loveship/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -6138,7 +6194,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/layout/docs/labeledInput.doc.tsx": [
+    "-dev/loveship/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>"
@@ -6208,7 +6264,7 @@
         "value": "none | 24 | 30 | 36 | 42 | 48"
       }
     ],
-    "-work/loveship/components/layout/docs/radioGroup.doc.ts": [
+    "-dev/loveship/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>"
@@ -6270,7 +6326,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+    "-dev/loveship/components/navigation/docs/mainMenu.doc.tsx": [
       {
         "name": "children",
         "value": "any"
@@ -6364,7 +6420,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/overlays/docs/alert.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]"
@@ -6394,7 +6450,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/overlays/docs/dropdown.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6540,7 +6596,7 @@
         "value": "(e?: any) => void"
       }
     ],
-    "-work/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
       {
         "name": "width",
         "value": "auto"
@@ -6578,6 +6634,26 @@
         "value": "React.ForwardedRef<T>"
       },
       {
+        "name": "onClose",
+        "value": "() => void"
+      },
+      {
+        "name": "togglerWidth",
+        "value": "number"
+      },
+      {
+        "name": "togglerHeight",
+        "value": "number"
+      },
+      {
+        "name": "scheduleUpdate",
+        "value": "() => void"
+      },
+      {
+        "name": "isOpen",
+        "value": "boolean"
+      },
+      {
         "name": "arrowProps",
         "value": "PopperArrowProps"
       },
@@ -6606,7 +6682,7 @@
         "value": "React.ReactText"
       }
     ],
-    "-work/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode"
@@ -6752,7 +6828,7 @@
         "value": "(e?: any) => void"
       }
     ],
-    "-work/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -6878,7 +6954,7 @@
         "value": "boolean"
       }
     ],
-    "-work/loveship/components/overlays/docs/modalFooter.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6932,7 +7008,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/overlays/docs/modalHeader.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100"
@@ -6990,7 +7066,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/overlays/docs/notificationCard.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>"
@@ -7040,7 +7116,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
       {
         "name": "snackType",
         "value": "info | success | warning | danger"
@@ -7078,7 +7154,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/overlays/docs/tooltip.doc.tsx": [
+    "-dev/loveship/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any"
@@ -7093,7 +7169,11 @@
       },
       {
         "name": "trigger",
-        "value": "click | press | hover"
+        "value": "click | press | hover | manual"
+      },
+      {
+        "name": "isVisible",
+        "value": "boolean"
       },
       {
         "name": "portalTarget",
@@ -7120,7 +7200,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/pickers/docs/pickerInput.doc.tsx": [
+    "-dev/loveship/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7306,6 +7386,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -7314,7 +7398,7 @@
         "value": "none | form | cell | inline"
       }
     ],
-    "-work/loveship/components/pickers/docs/pickerList.doc.tsx": [
+    "-dev/loveship/components/pickers/docs/pickerList.doc.tsx": [
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
@@ -7334,6 +7418,10 @@
       {
         "name": "disallowClickOutside",
         "value": "boolean"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       },
       {
         "name": "theme",
@@ -7464,7 +7552,7 @@
         "value": "string"
       }
     ],
-    "-work/loveship/components/pickers/docs/pickerModal.doc.tsx": [
+    "-dev/loveship/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string"
@@ -7570,7 +7658,7 @@
         "value": "(props: IModal<any>>) => React.ReactNode"
       }
     ],
-    "-work/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
+    "-dev/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>"
@@ -7589,7 +7677,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -7664,6 +7752,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -7690,10 +7782,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
@@ -7736,7 +7824,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/tables/docs/dataTableCell.doc.tsx": [
+    "-dev/loveship/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>"
@@ -7782,7 +7870,7 @@
         "value": "top | center"
       }
     ],
-    "-work/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "-dev/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>"
@@ -7817,7 +7905,7 @@
       },
       {
         "name": "renderFilter",
-        "value": "() => React.ReactNode"
+        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode"
       },
       {
         "name": "value",
@@ -7893,14 +7981,14 @@
       },
       {
         "name": "textCase",
-        "value": "upper | normal"
+        "value": "normal | upper"
       },
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "-work/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "-dev/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]"
@@ -7967,14 +8055,14 @@
       },
       {
         "name": "textCase",
-        "value": "upper | normal"
+        "value": "normal | upper"
       },
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48 | 60"
       }
     ],
-    "-work/loveship/components/tables/docs/dataTableRow.doc.tsx": [
+    "-dev/loveship/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode"
@@ -8046,6 +8134,10 @@
       {
         "name": "value",
         "value": "TItem"
+      },
+      {
+        "name": "parentId",
+        "value": "TId"
       },
       {
         "name": "path",
@@ -8144,7 +8236,7 @@
         "value": "top | center"
       }
     ],
-    "-work/loveship/components/typography/docs/richTextView.doc.tsx": [
+    "-dev/loveship/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any"
@@ -8170,7 +8262,7 @@
         "value": "12 | 14 | 16"
       }
     ],
-    "-work/loveship/components/typography/docs/text.doc.tsx": [
+    "-dev/loveship/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -8216,7 +8308,7 @@
         "value": "18 | 12 | 10 | 14 | 16"
       }
     ],
-    "-work/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
+    "-dev/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number"
@@ -8238,7 +8330,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/widgets/docs/avatar.doc.tsx": [
+    "-dev/loveship/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string"
@@ -8272,7 +8364,7 @@
         "value": "React.ForwardedRef<T>"
       }
     ],
-    "-work/loveship/components/widgets/docs/avatarStack.doc.tsx": [
+    "-dev/loveship/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144"
@@ -8302,7 +8394,7 @@
         "value": "any"
       }
     ],
-    "-work/loveship/components/widgets/docs/badge.doc.ts": [
+    "-dev/loveship/components/widgets/docs/badge.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -8432,7 +8524,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/widgets/docs/carousel.doc.tsx": [
+    "-dev/loveship/components/widgets/docs/carousel.doc.tsx": [
       {
         "name": "items",
         "value": "Record<string, any>[]"
@@ -8466,7 +8558,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/widgets/docs/paginator.doc.tsx": [
+    "-dev/loveship/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30"
@@ -8514,9 +8606,13 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }"
+      },
+      {
+        "name": "rawProps",
+        "value": "any"
       }
     ],
-    "-work/loveship/components/widgets/docs/spinner.doc.ts": [
+    "-dev/loveship/components/widgets/docs/spinner.doc.ts": [
       {
         "name": "cx",
         "value": "any"
@@ -8534,7 +8630,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/widgets/docs/tag.doc.ts": [
+    "-dev/loveship/components/widgets/docs/tag.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>"
@@ -9193,7 +9289,7 @@
       },
       {
         "name": "inputMode",
-        "value": "none | text | tel | url | email | numeric | decimal | search"
+        "value": "none | text | search | tel | url | email | numeric | decimal"
       },
       {
         "name": "tabIndex",
@@ -9502,6 +9598,10 @@
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
       },
       {
+        "name": "fixedBodyPosition",
+        "value": "boolean"
+      },
+      {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48"
       },
@@ -9529,7 +9629,7 @@
       },
       {
         "name": "getName",
-        "value": "(item: DataRowProps<TItem, TId>) => string"
+        "value": "(item: TItem) => string"
       },
       {
         "name": "entityName",
@@ -9604,6 +9704,10 @@
         "value": "React.Ref<any>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean"
+      },
+      {
         "name": "caption",
         "value": "any"
       },
@@ -9630,10 +9734,6 @@
       {
         "name": "validationProps",
         "value": "{ [key: string]: ICanBeInvalid; }"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean"
       },
       {
         "name": "isReadonly",
@@ -9694,7 +9794,7 @@
         "value": "boolean"
       }
     ],
-    "-work/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "-dev/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9752,7 +9852,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "-work/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "-dev/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -9794,7 +9894,7 @@
         "value": "white | gray90"
       }
     ],
-    "-work/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
+    "-dev/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9868,7 +9968,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/inputs/Slider/docs/slider.doc.ts": [
+    "-dev/loveship/components/inputs/Slider/docs/slider.doc.ts": [
       {
         "name": "min",
         "value": "number"
@@ -9942,7 +10042,7 @@
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900"
       }
     ],
-    "-work/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "-dev/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any"
@@ -10004,7 +10104,7 @@
         "value": "24 | 30 | 36 | 42 | 48"
       }
     ],
-    "-work/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "-dev/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any"

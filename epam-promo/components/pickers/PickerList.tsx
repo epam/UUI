@@ -2,7 +2,6 @@ import React from "react";
 import { PickerListBase, PickerModalOptions } from "@epam/uui-components";
 import {
     DataRowProps,
-    DataSourceItemId,
     IClickable,
     IHasCaption,
     IHasPlaceholder,
@@ -15,12 +14,12 @@ import { LinkButton } from "../buttons";
 import { PickerListItem } from "./PickerListItem";
 import { PickerModal } from "./PickerModal";
 
-export type PickerListProps<TItem, TId extends DataSourceItemId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
+export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };
 
-export class PickerList<TItem, TId extends DataSourceItemId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
+export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
     static contextType = UuiContext;
     sessionStartTime = (new Date()).getTime();
     context: UuiContexts;

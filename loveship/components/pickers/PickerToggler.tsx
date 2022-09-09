@@ -51,7 +51,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
         return (
             <Tag
-                isDisabled={ props.isDisabled || props.isReadonly }
                 key={ row.rowKey }
                 caption={ getCaption(row) }
                 color="night300"
@@ -61,6 +60,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                     row.onCheck?.(row);
                     e.stopPropagation();
                 } }
+                isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
             />
         );
     };

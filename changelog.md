@@ -1,12 +1,13 @@
 # Editable DataTables branch
 
 **What's New**
-
+* Metadata<T> type - 'all' prop now infer the type of array element or object key (was typed as 'any')
 * [Breaking Change] DataTableColumn props simplified
     * DataTableColumn props no longer accepts shrink prop.
       Is actually wasn't supported before this change, so you can safely remove them.
       Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
     * 'width' prop is now required (was optional)
+      * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
     * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
 
 * useForm now return a new callback - setValue. It works the same way as setState of React.useState.
@@ -17,11 +18,42 @@
 * useForm onValueChange and the new setValue callbacks now triggers validation, set isChanges, and creates undo checkpoints.
 
 
+
+
+# Next version
+
+**What’s Fixed**
+* [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
+* [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
+
+
+
+# 4.8.1 - 10.08.2022
+
+**What's New**
+* Add `rawProps` prop for the rest part of the components
+* Updated icon pack
+* [PickerItem]: add possibility to pass icon
+* [FiltersPanel]: add possibility to provide your own `renderRow` callback
+* [DatePicker]: add `placement` props
+* [DataTable]: add default 'not results found' state
+* [PickerModal]: add default 'not results found' state
+* [FilterToolbar]: small improvements and bugfixes
+
+
+**What’s Fixed**
+* [PickerInput]: rework styles for selected value in toggler
+* [DataTable]: fix table rerender when columns prop changed
+* [NumericInput]: don't allow '+' and 'e' symbols
+* [LinkButton]: fix focus state
+* [RangeDatePicker]: fix error when preset is `null`
+* [NotificationCard]: rework styles
+
 # 4.8.0 - 21.07.2022
 
 **What's New**
 * Added new `FiltersToolbar` component, which creates table filtration toolbar according to the `TableFiltersConfig` object. See demo here - https://uui.epam.com/demo?id=filteredTable
-* [Form]: implement possibility ещ run form validation on field change, for this pass `validationOn: 'change'` to form props
+* [Form]: implement possibility to run form validation on field change, for this pass `validationOn: 'change'` to form props
 * [DropdownContainer]: reworked styles, add possibility to show arrow tip
 * [Anchor]: implement open Anchor links with Ctrl or Command in new window
 * [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved

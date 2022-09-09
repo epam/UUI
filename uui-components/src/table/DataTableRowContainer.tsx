@@ -4,8 +4,6 @@ import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
-type ExtraBordersFlags = { left: boolean, right: boolean };
-
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
@@ -106,10 +104,12 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         </>;
     }
 
-    const rowStyle = getSectionStyle(props.columns, 1);
+    // We use only total minWidth here, grow is not needed (rows are placed in block or vertical flex contexts)
+    const minWidth = getSectionStyle(props.columns, 1).minWidth;
+
     const rawProps = {
         ...props.rawProps,
-        style: { ...props?.rawProps?.style, ...rowStyle },
+        style: { ...props?.rawProps?.style, minWidth },
     }
 
     return (

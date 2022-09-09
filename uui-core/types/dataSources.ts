@@ -3,9 +3,6 @@ import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 
-/** A type of IDs of an item in Data Sources. Restricted to be usable as Set/Map keys.  */
-export type DataSourceItemId = string | number | boolean | null;
-
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
     /**
@@ -34,7 +31,7 @@ export interface VirtualListState {
     focusedIndex?: number;
 }
 
-export interface IDataSource<TItem, TId extends DataSourceItemId, TFilter> {
+export interface IDataSource<TItem, TId, TFilter> {
     getId(item: TItem): TId;
     getById(id: TId): TItem;
     setItem(item: TItem): void;

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
 import { SortingOption } from "../dataQuery";
-import { DataRowOptions, DataRowProps, DataSourceItemId, IDataSource, IDataSourceView } from "../dataSources";
+import { DataRowOptions, DataRowProps, IDataSource, IDataSourceView } from "../dataSources";
 
 export type SinglePickerProps<TId, TItem> = ({ selectionMode: 'single', valueType: 'id'} & IEditable<TId>) | ({ selectionMode: 'single', valueType?: 'entity' } & IEditable<TItem>);
 export type ArrayPickerProps<TId, TItem> = ({ selectionMode: 'multi', valueType: 'id', emptyValue?: [] | null } & IEditable<TId[]>)
@@ -12,7 +12,7 @@ export type PickerBindingProps<TItem, TId> =
 
 export type PickerBindingValueType = 'scalar' | 'array';
 
-export type PickerBaseOptions<TItem, TId extends DataSourceItemId> = {
+export type PickerBaseOptions<TItem, TId> = {
     entityName?: string;
     entityPluralName?: string;
     dataSource: IDataSource<TItem, TId, any>;
@@ -29,11 +29,11 @@ export type PickerBaseOptions<TItem, TId extends DataSourceItemId> = {
     getSearchFields?(item: TItem): string[];
 };
 
-export type PickerFooterProps<TItem, TId extends DataSourceItemId> = {
+export type PickerFooterProps<TItem, TId> = {
     view: IDataSourceView<TItem, TId, any>;
     showSelected: IEditable<boolean>;
     clearSelection: () => void;
 };
 
-export type PickerBaseProps<TItem, TId extends DataSourceItemId> =
-    PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
+export type PickerBaseProps<TItem, TId> =
+	PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;

@@ -87,10 +87,6 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         }
     }, [props.value]);
 
-    const setUnsavedChanges = (form: T) => {
-        context.uuiUserSettings.set(props.settingsKey, form);
-    };
-
     const removeUnsavedChanges = () => {
         context.uuiUserSettings.set(props.settingsKey, null);
     };
@@ -118,19 +114,28 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     //     return getValueChangedState(newVal, initialVal);
     // };
 
-    const handleFormUpdate = (update: (current: T) => T) => updateFormState(currentState => {
+    const handleFormUpdate = (update: (current: T) => T, options?: { addCheckpoint?: boolean }) => updateFormState(currentState => {
+        options = options ?? {};
+        options.addCheckpoint = options.addCheckpoint ?? true;
+
         const newForm = update(currentState.form);
-        const { historyIndex, formHistory } = currentState;
-        const newHistoryIndex = historyIndex + 1;
-        const newFormHistory = formHistory.slice(0, newHistoryIndex).concat(newForm);
-        setUnsavedChanges(newForm);
+        let { historyIndex, formHistory, isChanged } = currentState;
+        if (options.addCheckpoint) {
+            historyIndex++;
+            isChanged = !isEqual(props.value, newForm);
+        }
+        formHistory = formHistory.slice(0, historyIndex).concat(newForm);
+
+        if(options.addCheckpoint || context.uuiUserSettings.get(props.settingsKey)) {
+            context.uuiUserSettings.set(props.settingsKey, newForm);
+        }
 
         let newState = {
             ...currentState,
             form: newForm,
-            isChanged: !isEqual(props.value, newForm),
-            historyIndex: newHistoryIndex,
-            formHistory: newFormHistory,
+            isChanged,
+            historyIndex,
+            formHistory,
         };
 
         if (currentState.isInSaveMode || props.validationOn === "change") {
@@ -265,12 +270,22 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         })
     }, []);
 
+    const handleReplaceValue = useCallback((value: React.SetStateAction<T>) => {
+        handleFormUpdate((currentValue) => {
+            let newValue: T = value instanceof Function
+                ? value(currentValue)
+                : value;
+            return newValue;
+        }, { addCheckpoint: false })
+    }, []);
+
     const saveCallback = useCallback(() => {
         handleSave().catch(() => {});
     }, [handleSave]);
 
     return {
         setValue: handleSetValue,
+        replaceValue: handleReplaceValue,
         isChanged: formState.current.isChanged,
         lens,
         save: saveCallback,

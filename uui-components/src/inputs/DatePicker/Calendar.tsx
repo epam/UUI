@@ -1,7 +1,7 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import { Day } from './';
+import { Day } from './Day';
 import { i18n } from '../../../i18n';
 import localeData from 'dayjs/plugin/localeData';
 import * as css from './Calendar.scss';

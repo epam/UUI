@@ -3,6 +3,7 @@ import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Ico
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
+import { useCallback } from "react";
 
 export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<HTMLElement> {
     cancelIcon?: Icon;
@@ -31,7 +32,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
-    const handleClick = React.useCallback((event: Event) => {
+    const handleClick = useCallback((event: Event) => {
         if (props.isInteractedOutside(event) && inFocus) {
             blur();
         }
@@ -41,11 +42,19 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.isOpen && window.document.addEventListener('click', handleClick);
 
         if (props.autoFocus && !props.disableSearch) {
-            inputContainer.current.focus();
+            inputContainer.current?.focus();
         }
 
         return () => !props.isOpen && window.document.removeEventListener('click', handleClick);
     }, [props.isOpen]);
+
+    const isActivePlaceholder = (): Boolean => {
+        if (props.isReadonly) return  false;
+        else if (props.isOpen && props.searchPosition === 'input') return false;
+        else if (props.minCharsToSearch && inFocus) return false;
+        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
+        else return false;
+    };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
@@ -95,11 +104,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderInput = () => {
-        const isActivePlaceholder = props.pickerMode === 'single' && props.selection && !!props.selection[0];
-        const placeholder = isActivePlaceholder ? props.getName(props.selection[0].value) : props.placeholder;
+        const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
+        const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
-
-        if (props.disableSearch && props.pickerMode === 'multi' && props.selection.length > 0) {
+        if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
         }
 
@@ -115,8 +123,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             className={ cx(
                 uuiElement.input,
                 props.pickerMode === 'single' && css.singleInput,
-                isActivePlaceholder && (!inFocus || props.isReadonly) && uuiElement.placeholder)
-            }
+                props.searchPosition === 'input' && css.cursorText,
+                isActivePlaceholder() && uuiElement.placeholder,
+            )}
             disabled={ props.isDisabled }
             placeholder={ placeholder }
             value={ value || '' }
@@ -130,7 +139,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         e.preventDefault();
         if (inFocus && props.value && !props.disableSearch) return;
         props.onClick?.();
-        if (!inFocus) toggleContainer.current.focus();
     };
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;

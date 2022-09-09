@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, ColumnPickerFilter, FlexRow } from '@epam/loveship';
-import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, normalizeDataQueryFilter, ILens } from '@epam/uui';
+import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, ILens } from '@epam/uui';
 import { svc } from '../../services';
 import type { Person, PersonGroup } from '@epam/uui-docs';
 import type { PersonTableRecordId } from './types';
@@ -21,14 +21,14 @@ export function getColumns() {
             />
         );
 
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.onChange((_, value) => normalizeDataQueryFilter(value)).prop(fieldName).prop('in').toProps() } />;
+        return (filterLens: ILens<any>) => <Filter { ...filterLens.toProps() } />;
     }
 
     const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);
 
     const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
 
-    const personColumns: DataColumnProps<Person, string, DataQueryFilter<Person>>[] = [
+    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
             caption: "Name",
@@ -103,7 +103,15 @@ export function getColumns() {
             render: p => <Text>{ p.name }</Text>,
             width: 500,
             fix: 'left',
-        }
+        },
+        {
+            key: 'сonfig',
+            caption: "Name",
+            render: p => <Text>{ p.name }</Text>,
+            width: 48,
+            grow: 1,
+            fix: 'right',
+        },
     ];
 
     const summaryColumns: DataColumnProps<PersonsSummary>[] = [

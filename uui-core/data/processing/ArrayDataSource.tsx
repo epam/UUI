@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { DataSourceItemId, IDataSourceView, DataSourceState } from '../../types';
+import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps,  } from './views';
 import { Tree } from './views/Tree';
@@ -8,7 +8,7 @@ export type ArrayDataSourceProps<TItem, TId, TFilter> = ArrayListViewProps<TItem
     items: TItem[] | Tree<TItem, TId>;
 };
 
-export class ArrayDataSource<TItem = any, TId extends DataSourceItemId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
+export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
     tree: Tree<TItem, TId>;
 

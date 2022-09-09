@@ -141,7 +141,7 @@
           },
           {
             "object": "text",
-            "text": "Value.toJSON(value)",
+            "text": "value.toJSON()",
             "marks": [
               {
                 "object": "mark",

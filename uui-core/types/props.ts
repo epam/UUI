@@ -78,7 +78,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
 }
 
 export interface IDropdownBodyProps {
-    onClose?:() => void;
+    onClose?: () => void;
     togglerWidth?: number;
     togglerHeight?: number;
     scheduleUpdate?: () => void;
@@ -147,8 +147,8 @@ export interface IModal<TResult> {
 }
 
 export interface INotification {
-    onClose(): void;
-    onSuccess(): void;
+    onClose?(): void;
+    onSuccess?(): void;
     clearTimer?(): void;
     refreshTimer?(): void;
     id: number;

@@ -1,7 +1,7 @@
 import { getOrderBetween } from "uui-core";
 import { Task, Resource } from "./types";
 
-const tasks: Task[] = [
+const tasks: Partial<Task>[] = [
     { id: 1, name: "Infrastructure" },
     { id: 101, name: "Devops" },
     { id: 10101, name: "GIT Repository init" },
@@ -71,7 +71,7 @@ export const getDemoTasks = () => {
     tasks.forEach((t, index) => {
         const prevTask = tasks[index - 1];
         t.order = getOrderBetween(prevTask?.order, null);
-        byId[t.id] = t;
+        byId[t.id] = t as Task;
     });
 
     tasks.forEach(t => {

@@ -36,7 +36,7 @@ export const uuiNumericInput = {
 const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
     return maximumFractionDigits;
-};
+    };
 
 export const NumericInput = (props: NumericInputProps) => {
     const context = useUuiContext();
@@ -57,7 +57,7 @@ export const NumericInput = (props: NumericInputProps) => {
         if (props.getValueChangeAnalyticsEvent) {
             const event = props.getValueChangeAnalyticsEvent(value, props.value);
             context.uuiAnalytics.sendEvent(event);
-        }
+    }
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -115,58 +115,58 @@ export const NumericInput = (props: NumericInputProps) => {
     }, [props.formatOptions, props.step]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
-    return (
-        <div
-            className={ cx(css.container, uuiElement.inputBox,
+        return (
+            <div
+                className={ cx(css.container, uuiElement.inputBox,
                 props.isReadonly && uuiMod.readonly,
                 props.isDisabled && uuiMod.disabled,
                 props.isInvalid && uuiMod.invalid,
                 (!props.isReadonly && inFocus) && uuiMod.focus,
                 (!props.isReadonly && !props.isDisabled) && uuiMarkers.clickable,
-                !showArrows && uuiNumericInput.withoutArrows,
+                    !showArrows && uuiNumericInput.withoutArrows,
                 props.cx,
-            ) }
+                ) }
             onClick={ props.onClick }
             onBlur={ handleBlur }
             onFocus={ handleFocus }
             onKeyDown={ handleArrowKeyDown }
-            tabIndex={ -1 }
+                tabIndex={ -1 }
             ref={ props.forwardedRef }
             { ...props.rawProps }
-        >
-            <input
-                type="number"
+            >
+                <input
+                    type="number"
                 className={ cx(uuiElement.input, props.inputCx, props.align === "right" && css.alignRight, isPlaceholderColored && uuiElement.placeholderColored) }
                 disabled={ props.isDisabled }
                 readOnly={ props.isReadonly }
                 tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
                 aria-required={ props.isRequired }
                 value={ inputValue }
-                inputMode="numeric"
+                    inputMode="numeric"
                 placeholder={ placeholderValue }
                 onChange={ handleChange }
                 min={ props.min || 0 }
                 max={ props.max }
                 step={ step }
                 id={ props.id }
-            />
+                />
 
             { showArrows && (
-                <div className={ uuiNumericInput.buttonGroup }>
-                    <IconContainer
+                    <div className={ uuiNumericInput.buttonGroup }>
+                        <IconContainer
                         cx={ uuiNumericInput.upButton }
                         icon={ props.upIcon }
                         onClick={ handleIncreaseValue }
                         isDisabled={ props.isDisabled }
-                    />
-                    <IconContainer
+                        />
+                        <IconContainer
                         cx={ uuiNumericInput.downButton }
                         icon={ props.downIcon }
                         onClick={ handleDecreaseValue }
                         isDisabled={ props.isDisabled }
-                    />
-                </div>
+                        />
+                    </div>
             ) }
-        </div>
-    );
+            </div>
+        );
 };

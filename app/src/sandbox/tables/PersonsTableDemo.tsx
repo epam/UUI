@@ -54,20 +54,10 @@ export const PersonsTableDemo = () => {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const groupBy = value.filter?.groupBy;
-
-    const dataSource = useLazyDataSource<PersonTableRecord, string, PersonTableFilter>({
-        // TBD: rework this, it's really scary. Probably we need a helper for such API transformation.
+    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         api(request, ctx) {
-            const { ids: clientIds, filter: requestFilter, ...rq } = request;
-
-            const complexIds = clientIds?.map(id => JSON.parse(id));
-
-            if (complexIds && complexIds.length > 0) {
-                console.log(complexIds);
-            }
-
-            const { groupBy, ...filter } = requestFilter;
+            const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
+            const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
 
             const updateSummary = (response: PersonsApiResponse) => {
                 const { summary, totalCount } = response;
@@ -82,6 +72,7 @@ export const PersonsTableDemo = () => {
                         filter: { groupBy },
                         search: null,
                         itemsRequest: { filter, search: rq.search },
+                        ids,
                     } as any).then(res => {
                         updateSummary(res as PersonsApiResponse);
                         return res;
@@ -95,14 +86,14 @@ export const PersonsTableDemo = () => {
             };
 
             if (request.search) {
-                return getPersons({ ...rq, filter });
+                return getPersons({ ...rq, filter, ids });
             } else if (groupBy == 'location') {
                 if (!ctx.parent) {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }} });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }}, ids });
                 } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }  });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }, ids  });
                 } else {
-                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }  });
+                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }, ids  });
                 }
             } else if (groupBy && !ctx.parent) {
                 return getPersons({
@@ -110,20 +101,14 @@ export const PersonsTableDemo = () => {
                     filter: { groupBy },
                     search: null,
                     itemsRequest: { filter, search: rq.search },
+                    ids,
                 } as any);
             } else {
                 const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
+                return getPersons({ ...rq, ids, filter: { ...filter, ...parentFilter } });
             }
         },
-        getId: i => JSON.stringify([i.__typename, i.id]),
-        getParentId: i =>
-            (groupBy && i.__typename === 'Person')
-            ? JSON.stringify([
-                groupBy === 'Location' ? 'Location' : 'PersonGroup',
-                (i as any)[`${groupBy}Id`]
-            ])
-            : null,
+        getId: i => [i.__typename, i.id],
         getChildCount: item =>
             item.__typename === 'PersonGroup'
             ? item.count
@@ -132,7 +117,7 @@ export const PersonsTableDemo = () => {
                 : 10
             : null,
         fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
-    }, [groupBy]);
+    }, [value.filter?.groupBy]);
 
     const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions: { checkbox: { isVisible: true } },
