@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceItemId, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
@@ -11,13 +11,15 @@ import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import css from './PickerInput.scss';
+import { Text } from "../typography";
+import { i18n } from "../../i18n";
 
 export type PickerInputProps = SizeMod & IHasEditMode & {};
 
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInputBase<TItem, TId, PickerInputProps> {
+export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
         const { renderFooter, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
@@ -77,6 +79,12 @@ export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInpu
             : <DataPickerFooter { ...footerProps } size={ this.props.size }/>;
     }
 
+    renderNoFound(props: { search: string, onClose: () => void }) {
+        return this.props.renderNotFound
+            ? this.props.renderNotFound(props)
+            : <Text size={ this.props.size || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>;
+    }
+
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
         const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
@@ -111,6 +119,12 @@ export class PickerInput<TItem, TId extends DataSourceItemId> extends PickerInpu
                         maxHeight={ maxHeight }
                         searchSize={ this.props.size }
                         editMode='dropdown'
+                        renderNotFound={ this.props.renderNotFound ?
+                            () => this.props.renderNotFound({
+                                search: this.state.dataSourceState.search,
+                                onClose: () => this.toggleBodyOpening(false),
+                            }) : undefined
+                    }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>

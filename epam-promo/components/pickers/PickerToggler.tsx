@@ -52,7 +52,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
     const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
-            isDisabled={ props.isDisabled || props.isReadonly }
             key={ row.rowKey }
             caption={ getCaption(row) }
             tabIndex={ -1 }
@@ -61,6 +60,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                 row.onCheck?.(row);
                 e.stopPropagation();
             } }
+            isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
     );
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import range from 'lodash.range';
-import { IAnalyticableOnChange, IEditable, UuiContext, UuiContexts } from "@epam/uui-core";
+import { IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts } from "@epam/uui-core";
 
-export interface PaginatorParams {
+export interface PaginatorParams extends IHasRawProps<HTMLElement> {
     size: '24' | '30';
     pages: PaginatorItem[];
     goToNext(): void;
@@ -18,7 +18,7 @@ interface PaginatorItem {
     onClick?(): void;
 }
 
-export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number> {
+export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<HTMLElement>  {
     size: '24' | '30';
     totalPages: number;
     render?(params: PaginatorParams): any;
@@ -128,6 +128,7 @@ export class Paginator extends React.Component<PaginatorProps> {
             goToPrev: this.goToPrev,
             isFirst: this.isFirst(),
             isLast: this.isLast(),
+            rawProps: this.props.rawProps,
         });
     }
 }

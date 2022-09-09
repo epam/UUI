@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import {
-    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, DataSourceItemId, PickerFooterProps, ICanFocus,
-} from '@epam/uui-core';
-import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './';
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
-export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
     editMode?: 'dropdown' | 'modal';
     maxItems?: number;
     minBodyWidth?: number;
@@ -31,7 +28,7 @@ export type PickerInputBaseProps<TItem, TId extends DataSourceItemId> = PickerBa
     fixedBodyPosition?: boolean;
 };
 
-interface PickerInputFooterProps<TItem, TId extends DataSourceItemId> extends PickerFooterProps<TItem, TId> {
+interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
     onClose: () => void;
 }
 
@@ -41,7 +38,7 @@ interface PickerInputState extends DropdownState, PickerBaseState {
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
-export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
+export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerInputBaseProps<TItem, TId> & TProps, PickerInputState> {
     static contextType = UuiContext;
     togglerRef = React.createRef<HTMLElement>();
     context: UuiContexts;
@@ -58,7 +55,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
-    static getDerivedStateFromProps<TItem, TId extends DataSourceItemId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
+    static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
             return {
                 ...state,
@@ -162,7 +159,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
         };
     }
 
-    getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
+    getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
@@ -194,9 +191,9 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
             getName: (i: any) => this.getName(i),
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
-            searchPosition: this.props.searchPosition,
+            searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: searchPosition !== 'input',
+            disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
@@ -268,7 +265,7 @@ export abstract class PickerInputBase<TItem, TId extends DataSourceItemId, TProp
         return (
             <Dropdown
                 renderTarget={ dropdownProps => {
-                    const targetProps = this.getTogglerProps(rows);
+                    const targetProps = this.getTogglerProps(rows, dropdownProps);
                     const targetRef = this.getTargetRef({ ...targetProps, ...dropdownProps });
                     return this.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
                 } }

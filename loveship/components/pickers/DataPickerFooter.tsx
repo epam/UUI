@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import cx from 'classnames';
-import { DataSourceItemId, isMobile, PickerFooterProps } from '@epam/uui-core';
+import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
@@ -8,7 +8,7 @@ import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
 import css from './DataPickerFooter.scss';
 
-type DataPickerFooterProps<TItem, TId extends DataSourceItemId> = PickerFooterProps<TItem, TId> & SizeMod & {
+type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod & {
     hideShowOnlySelected?: boolean;
 };
 
@@ -19,7 +19,7 @@ const switchSizes = {
     '48': '24',
 } as const;
 
-const DataPickerFooterImpl = <TItem, TId extends DataSourceItemId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) => {
+const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) => {
     const { clearSelection, view, showSelected } = props;
     const size = isMobile() ? '48' : (props.size || '36');
     const switchSize = switchSizes[size as keyof typeof switchSizes];

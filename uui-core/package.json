@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "4.9.0-alpha.0",
+  "version": "4.8.1",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -33,7 +33,8 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "react-popper": "2.2.5"
+    "react-popper": "2.2.5",
+    "dayjs": "1.10.7"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "7.0.2",

@@ -14,8 +14,8 @@ export interface SortingPanelProps {
 }
 
 const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
-    const sortAsc = useCallback(() => props.onSort('asc'), [props.onSort]);
-    const sortDesc = useCallback(() => props.onSort('desc'), [props.onSort]);
+    const sortAsc = useCallback(() => props.onSort(props.sortDirection === 'asc' ? undefined : 'asc'), [props.onSort]);
+    const sortDesc = useCallback(() => props.onSort(props.sortDirection === 'desc' ? undefined : 'desc'), [props.onSort]);
     const size = isMobile() ? "48" : undefined;
     
     return (

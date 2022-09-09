@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
-import { DataTable, FlexRow, Paginator, Button, FlexSpacer } from "@epam/promo";
-import { DataQueryFilter, DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
+import { DataTable, FlexRow, Paginator,  FlexSpacer, Button } from "@epam/promo";
+import { DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
-import { PersonTableFilter } from "./types";
-import { getFilters, mapFilter } from "./data";
+import { getFilters } from "./filters";
 import { personColumns } from "./columns";
+import { FlexCell } from "uui-components";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
@@ -22,9 +22,9 @@ export const DemoTablePaged: React.FC = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
     
-    const api: LazyDataSourceApi<Person, number, PersonTableFilter> = useCallback(async request => {
+    const api: LazyDataSourceApi<Person, number, Person> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
-            filter: mapFilter(request.filter) as DataQueryFilter<Person>,
+            filter: request.filter,
             page: request.page - 1,
             pageSize: request.pageSize,
         });
@@ -61,6 +61,7 @@ export const DemoTablePaged: React.FC = () => {
         ...tableState,
         filter: appliedFilter,
     }), [tableState, appliedFilter]);
+
     const personsDataView = dataSource.useView(viewTableState, setTableState, {
         rowOptions,
         isFoldedByDefault: () => true,
@@ -81,6 +82,9 @@ export const DemoTablePaged: React.FC = () => {
             />
 
             <FlexRow size="36" padding="12" background="gray5">
+                <FlexCell width='auto'>
+                    <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply } />
+                </FlexCell>
                 <FlexSpacer/>
                 <Paginator
                     value={ tableState.page }
@@ -90,10 +94,6 @@ export const DemoTablePaged: React.FC = () => {
                 />
                 <FlexSpacer/>
             </FlexRow>
-
-            {/*<FlexRow vPadding="12" background="white">*/}
-            {/*    <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply }/>*/}
-            {/*</FlexRow>*/}
         </div>
     );
 };

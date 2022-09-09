@@ -195,22 +195,6 @@ describe('useForm', () => {
             expect(result.current.isInvalid).toBe(false);
         });
 
-        it('Should set isChange=false after form saved', async () => {
-            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
-                value: testData,
-                onSave: (form) => Promise.resolve({form: form}),
-                onError: jest.fn(),
-                getMetadata: () => testMetadata,
-            }));
-
-            act(() => result.current.lens.prop('dummy').set('hello'));
-            expect(result.current.isChanged).toBe(true);
-
-            await handleSave(result.current.save);
-
-            expect(result.current.isChanged).toBe(false);
-        });
-
         it('Should validate all fields when call save action in validateOn: "change" mode', async () => {
             const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
                 value: { dummy: 'hello' },
@@ -243,6 +227,24 @@ describe('useForm', () => {
                     validationMessage: "The field is mandatory",
                 },
             });
+        });
+    });
+
+    describe('isChanged, redo/undo/revert handing', () => {
+        it('Should set isChange=false after form saved', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm<IFoo>({
+                value: testData,
+                onSave: (form) => Promise.resolve({form: form}),
+                onError: jest.fn(),
+                getMetadata: () => testMetadata,
+            }));
+
+            act(() => result.current.lens.prop('dummy').set('hello'));
+            expect(result.current.isChanged).toBe(true);
+
+            await handleSave(result.current.save);
+
+            expect(result.current.isChanged).toBe(false);
         });
 
         it('Should show the same value, if you: save => leave => come back', async () => {
@@ -368,6 +370,30 @@ describe('useForm', () => {
             expect(result.current.canUndo).toBe(true);
             expect(result.current.canRedo).toBe(false);
             expect(result.current.value.dummy).toBe('hi again');
+        });
+
+        it('Should allow to replaceValue', async () => {
+            const { result } = await mountHookWithContext<UseFormProps<string>, RenderFormProps<string>>(() => useForm<string>({
+                value: 'a',
+                onSave: (form) => Promise.resolve({form: form}),
+                onError: jest.fn(),
+            }));
+
+            act(() => result.current.replaceValue('b'));
+            expect(result.current.value).toBe('b');
+            expect(result.current.isChanged).toBe(false);
+            expect(result.current.canUndo).toBe(false);
+            expect(result.current.canRedo).toBe(false);
+
+            act(() => result.current.setValue('c'));
+            act(() => result.current.replaceValue('d'));
+            expect(result.current.value).toBe('d');
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.canUndo).toBe(true);
+            expect(result.current.canRedo).toBe(false);
+
+            await handleSave(result.current.save);
+            expect(result.current.isChanged).toBe(false);
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {

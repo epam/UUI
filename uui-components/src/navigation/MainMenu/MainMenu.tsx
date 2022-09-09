@@ -3,7 +3,7 @@ import Measure, { MeasuredComponentProps } from 'react-measure';
 import orderBy from 'lodash.orderby';
 import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
 import { ButtonProps } from '../../buttons';
-import { BurgerProps, MainMenuLogo } from './';
+import { BurgerProps, MainMenuLogo } from './index';
 import { i18n } from '../../../i18n';
 import * as css from './MainMenu.scss';
 

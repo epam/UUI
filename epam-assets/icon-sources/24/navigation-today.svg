@@ -1,7 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Icons/24/navigation-today</title>
-    <g id="Icons/24/navigation-today" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M20,14 L22,14 L22,16 L20,16 L20,19 L22,19 L22,21 C22,22.1 21.1,23 20,23 L4,23 C2.9,23 2,22.1 2,21 L2,5 C2,3.9 2.9,3 4,3 L5,3 L5,1 L7,1 L7,3 L17,3 L17,1 L19,1 L19,3 L20,3 C21.1,3 22,3.9 22,5 L22,11 L20,11 L20,14 L17,14 L17,11 L13,15 L17,19 L17,16 L20,16 L20,21 L4,21 L4,8 L20,8 L20,14 Z M6,13 L10,13 L10,17 L6,17 L6,13 Z" id="Shape" fill="#45FF00"></path>
-    </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 14H22V16H20V19H22V21C22 22.1 21.1 23 20 23H4C2.9 23 2 22.1 2 21V5C2 3.9 2.9 3 4 3H5V1H7V3H17V1H19V3H20C21.1 3 22 3.9 22 5V11H20V14H17V11L13 15L17 19V16H20V21H4V8H20V14ZM6 13H10V17H6V13Z" fill="#6C6F80"/>
 </svg>

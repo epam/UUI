@@ -18,11 +18,12 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
         const presets = [];
 
         for (const key in this.props.presets) {
-            if (!this.props.presets[key]) return;
-            presets.push({
-                ...this.props.presets[key].getRange(),
-                name: this.props.presets[key].name,
-            });
+            if (this.props.presets[key]) {
+                presets.push({
+                    ...this.props.presets[key].getRange(),
+                    name: this.props.presets[key].name,
+                });
+            }
         }
 
         return presets.sort((a, b) => a.order - b.order);

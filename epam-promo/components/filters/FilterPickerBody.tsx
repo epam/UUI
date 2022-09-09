@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceItemId, DataSourceListProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
 import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton, i18n } from '../../index';
 import cx from "classnames";
@@ -11,7 +11,7 @@ const pickerWidth = 360;
 interface FilterPickerBodyProps extends DropdownBodyProps {
 }
 
-export class FilterPickerBody<TItem, TId extends DataSourceItemId> extends PickerInputBase<TItem, TId, FilterPickerBodyProps> {
+export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, FilterPickerBodyProps> {
     shouldShowBody(): boolean {
         return this.props.isOpen;
     }

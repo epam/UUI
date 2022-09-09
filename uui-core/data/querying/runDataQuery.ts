@@ -1,6 +1,6 @@
 import { DataQuery } from "../../types";
 import { getOrderComparer } from "./getOrderComparer";
-import { getPatternPredicate } from "./getPatternPredicate";
+import { getFilterPredicate } from "./getFilterPredicate";
 import { getSearchFilter } from './getSearchFilter';
 import orderBy from 'lodash.orderby';
 
@@ -21,7 +21,7 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
     }
 
     if (request.filter) {
-        const predicate = getPatternPredicate(request.filter);
+        const predicate = getFilterPredicate(request.filter);
         items = items.filter(predicate);
     }
 

@@ -496,7 +496,6 @@ export function DemoForm() {
                     <FlexRow spacing='12'>
                         <FlexSpacer />
                         <Button caption='Save' color='green' onClick={ save } />
-                        <Button caption='set value' color='green' onClick={ () => setValue({personalInfo: { fullName: '2445' }}) } />
                     </FlexRow>
                 </FlexCell>
             </Panel>

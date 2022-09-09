@@ -6,7 +6,6 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   role="row"
   style={
     Object {
-      "flex": "1 0 0px",
       "minWidth": "0px",
     }
   }
@@ -29,7 +28,6 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   role="row"
   style={
     Object {
-      "flex": "1 0 0px",
       "minWidth": "0px",
     }
   }

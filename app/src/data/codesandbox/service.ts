@@ -1,7 +1,6 @@
 import { join } from "path";
 import { getParameters } from 'codesandbox/lib/api/define';
-import { getCodesandboxConfig } from "./getCodesandboxConfig";
-import type { CodesandboxFilesRecord, FilesRecord } from './types';
+import { FilesRecord, getCodesandboxConfig } from "./getCodesandboxConfig";
 import { svc } from "../../services";
 
 const CodesandboxFiles: Record<string, string> = {
@@ -12,6 +11,8 @@ const CodesandboxFiles: Record<string, string> = {
     'apiDefinitions.ts': join('..', 'data', 'apiDefinition.ts'),
     '.env': join('..', 'data', 'codesandbox', '.env'),
 };
+
+export type CodesandboxFilesRecord = Record<string, string>
 
 class CodesandboxService {
     files: CodesandboxFilesRecord;

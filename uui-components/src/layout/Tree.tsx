@@ -25,10 +25,16 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
     const dataSource = useArrayDataSource<TItem, string, unknown>({
         items: props.items as TItem[],
         getId: i => i.id,
-        getParentId: i => i.parentId,
     }, [props.items]);
 
-    const view = dataSource.useView({ ...props.value, topIndex: 0, visibleCount: Number.MAX_SAFE_INTEGER }, props.onValueChange, {});
+    const view = dataSource.useView(
+        { ...props.value, topIndex: 0, visibleCount: Number.MAX_SAFE_INTEGER },
+        props.onValueChange,
+        {
+            getParentId: i => i.parentId,
+            getSearchFields: i => [i.name],
+        },
+    );
 
     const rows = view.getVisibleRows();
 

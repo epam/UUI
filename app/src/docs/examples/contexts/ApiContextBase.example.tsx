@@ -10,8 +10,6 @@ export default function ApiContextBaseExample() {
         <div>
             <Text>Examples of error pages (reload page to recover):</Text>
 
-            <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${403}`), 'POST') } caption='403' />
-
             <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${404}`), 'POST') } caption='404' />
 
             <LinkButton onClick={ () => svc.uuiApi.processRequest(ORIGIN.concat(`api/error/status/${403}`), 'POST') } caption='403' />

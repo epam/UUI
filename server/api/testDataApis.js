@@ -18,7 +18,7 @@ function filterAndSort(request, allItems, typeName) {
     }
 
     if (request.filter) {
-        const predicate = helpers.getPatternPredicate(request.filter);
+        const predicate = helpers.getFilterPredicate(request.filter);
         items = items.filter(predicate);
     }
 

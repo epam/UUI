@@ -16,11 +16,6 @@ interface ServerResponseExample<T> {
     };
 }
 
-const initialValue = {
-    email: "Ivan_Ivanov@epam.com",
-    password: "",
-}
-
 export default function ServerValidationExample() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
@@ -45,7 +40,10 @@ export default function ServerValidationExample() {
     }
 
     const { lens, save, validate } = useForm<Login>({
-        value: initialValue,
+        value: {
+            email: "Ivan_Ivanov@epam.com",
+            password: "",
+        },
         onSave,
         onSuccess: () => svc.uuiNotifications.show(props => (
             <SuccessNotification { ...props }>

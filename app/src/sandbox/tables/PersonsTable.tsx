@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows,
-    useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui';
+import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
@@ -10,7 +9,7 @@ import type{ TApi } from '../../data';
 import * as css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataTableState> {
-    view: IDataSourceView<PersonTableRecord, string, DataQueryFilter<PersonTableFilter>>;
+    view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
     summary: PersonsSummary;
 }
 
@@ -19,16 +18,11 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
     const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
-    const { rowsCount } = props.view.getListProps();
+    const { exactRowsCount, totalCount } = props.view.getListProps();
 
-    const renderRow = (props: DataTableRowProps<PersonTableRecord, string>) => {
+    const renderRow = (props: DataTableRowProps<PersonTableRecord, PersonTableRecordId>) => {
         const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
-        return <DataTableRow
-            key={ String(props.id) }
-            { ...props }
-            columns={ cols }
-            background={ (props.isLoading || props.value?.__typename === 'Person') ? 'white' : 'night50' }
-        />;
+        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
     };
 
     const getRows = () => {
@@ -65,7 +59,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
-            { props.view.getListProps().rowsCount !== 0 && (
+            { props.view.getListProps().exactRowsCount !== 0 && (
                 <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
                     <div
                         ref={ listContainerRef }
@@ -75,15 +69,14 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     />
                 </div>
             ) }
-            <div className={ css.stickyFooter }>
-                <DataTableRow
-                    columns={ summaryColumnsSync }
-                    id="footer"
-                    rowKey="footer"
-                    index={ 100500 }
-                    value={ props.summary }
-                />
-            </div>
+            <DataTableRow
+                columns={ summaryColumnsSync }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ props.summary }
+            />
         </>
     );
 
@@ -92,13 +85,13 @@ export const PersonsTable = (props: PersonsTableProps) => {
             value={ props.value }
             onValueChange={ props.onValueChange }
             rows={ getRows() }
-            rowsCount={ rowsCount }
+            rowsCount={ exactRowsCount }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
                 role: 'table',
                 'aria-colcount': personColumns.length,
-                'aria-rowcount': rowsCount,
+                'aria-rowcount': totalCount,
             } }
         />
     );

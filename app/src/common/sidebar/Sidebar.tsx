@@ -22,9 +22,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
         const { parentId } = props.items.find(i => i.id == props.value);
         if (parentId != null) {
             const parentKey = JSON.stringify(parentId);
-            if (value.folded[parentKey]) {
-                setValue((value) => ({...value, folded: { ...value.folded, [ parentKey ]: false } }));
-            }
+            setValue((value) => ({...value, folded: { ...value.folded, [ parentKey ]: false } }));
         }
     }, [props.value]);
 

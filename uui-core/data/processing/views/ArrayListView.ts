@@ -1,4 +1,4 @@
-import { DataRowProps, SortingOption, IEditable, DataSourceItemId, DataSourceState,
+import { DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import { getSearchFilter } from '../../querying';
 import { BaseListView } from './BaseListView';
@@ -12,7 +12,7 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
-export class ArrayListView<TItem, TId extends DataSourceItemId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
     tree: Tree<TItem, TId>;
 

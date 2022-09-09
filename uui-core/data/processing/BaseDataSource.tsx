@@ -1,6 +1,6 @@
-import { BaseListViewProps, DataSourceItemId,  DataSourceState, IDataSource, IDataSourceView } from "../../types";
+import { BaseListViewProps, DataSourceState, IDataSource, IDataSourceView } from "../../types";
 
-export abstract class BaseDataSource<TItem, TId extends DataSourceItemId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
+export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
 
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
 
