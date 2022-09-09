@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import css from './AdaptivePanel.scss';
 import { Button, FlexRow } from "@epam/promo";
+import sortBy from "lodash.sortby";
 
 interface AdaptivePanelState {
     shown: React.ReactElement[];
@@ -31,18 +32,20 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
     const layoutItems = (items: AdoptiveItemProps[], containerWidth: number): MeasuredItems => {
         let sumChildrenWidth = 0;
-        const result: any = { shown: [], hidden: [] };
+        const itemsByPriority = sortBy(items, i => i.priority).reverse();
 
-        items.forEach((item, index) => {
-            if (sumChildrenWidth + itemsWidth[index] < containerWidth) {
-                result.shown.push(props.items[index]);
-            } else {
-                result.hidden.push(props.items[index]);
+        let maxHiddenItemPriority = 0;
+
+        itemsByPriority.forEach((item, index) => {
+            if (sumChildrenWidth + itemsWidth[item.id] > containerWidth) {
+                if (item.priority > maxHiddenItemPriority) {
+                    maxHiddenItemPriority = item.priority;
+                }
             }
-            sumChildrenWidth += itemsWidth[index];
+            sumChildrenWidth += itemsWidth[item.id];
         });
 
-        return result;
+        return { shown: items.filter(i => i.priority > maxHiddenItemPriority), hidden: items.filter(i => i.priority <= maxHiddenItemPriority) }
     };
 
     const measureItems = (): MeasuredItems => {
@@ -63,7 +66,7 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
         if (!children.length) return;
         const itemsWidth: Record<number, number> = {};
-        children.forEach((child, index) => { itemsWidth[index] = child.getBoundingClientRect().width; });
+        children.forEach((child, index) => { itemsWidth[props.items[index].id] = child.getBoundingClientRect().width; });
         console.log('items width', itemsWidth);
         return itemsWidth;
     };
