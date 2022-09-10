@@ -1,0 +1,137 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default NumericInput uses ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "toLocalString()",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to show formatted numbers according you system locale. You can override locale value by setting the i18n.locale global variable.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can control formatting options by passing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "formatOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop, see ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "Intl.NumberFormat()",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {}
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "for more details. NumericInput also uses some of this options to restrict what's can be entered, specifically minFractionalDigits and ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To disable this behavior  set  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "disableLocaleFormatting: true",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " - this will switch formatting back to Number.toString() behavior.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note, that value is get rounded and trimmed to min/max only on blur, so you can temporarily get out-of-range values via onValueChange while user is editing fields.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
