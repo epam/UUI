@@ -9,14 +9,22 @@
     * 'width' prop is now required (was optional)
       * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
     * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
-* useForm now provides two new callbacks - setValue and replaceValue
+
+* useForm now provides two new callbacks: setValue and replaceValue.
     They work the same way as setState of React.useState.
     Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
     setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
-    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state
-* Lenses now memoizes all methods calls (.prop, .item, etc.)
+    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state.
+
+* Lenses now memoizes all methods calls (.prop, .item, etc.).
     This allows to not re-create onValueChange callbacks on re-renders.
-    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components
+    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components.
+
+* Numeric Input - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
+  * Formatting can be disabled with the 'disableLocaleFormatting' prop
+  * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
+  * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
+  * See more at the [docs page](https://uui.epam.com/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
 
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
