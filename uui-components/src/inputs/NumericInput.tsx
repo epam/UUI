@@ -47,7 +47,7 @@ export const NumericInput = (props: NumericInputProps) => {
 
     min = min ?? 0;
     max = max ?? Number.MAX_SAFE_INTEGER;
-    formatOptions = { maximumFractionDigits: 0 };
+    formatOptions = formatOptions ?? { maximumFractionDigits: 0 };
 
     const context = useUuiContext();
 
