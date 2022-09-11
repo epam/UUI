@@ -33,7 +33,11 @@ function formatComment(comment: string) {
     return comment;
 }
 
-const getPropType = (prop: Symbol) => {
+let propsCount = 0;
+let JsDocCommentsCount = 0;
+let missingJsDocCommentsCount = 0;
+
+const getPropType = (prop: Symbol, path: string) => {
     const name = prop.getEscapedName();
 
     let htmlComment = null;
@@ -43,7 +47,12 @@ const getPropType = (prop: Symbol) => {
 
     if (jsDocComment) {
         htmlComment = formatComment(jsDocComment);
+        JsDocCommentsCount++;
+    } else {
+        console.debug(`Missing comment for ${name} in ${path}`)
+        missingJsDocCommentsCount++;
     }
+    propsCount++;
 
     const typeDeclarations = prop.getDeclarations();
     const type = typeDeclarations[0].getType();
@@ -81,10 +90,11 @@ const getPropType = (prop: Symbol) => {
 
 docsFiles.map(i => {
     const exportExpression = i.getExportAssignment(() => true).getStructure().expression;
-    const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop));
     const docPath = i.getFilePath().replace(/.*\/uui/g, '');
+    const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop, docPath));
     docsProps[docPath] = props;
 });
 
 
 fs.writeFile('../public/docs/componentsPropsSet.json', JSON.stringify({ props: docsProps }, null, 2), () => null);
+console.log(`Props: ${propsCount}. JsDoc exists: ${JsDocCommentsCount}, missing: ${missingJsDocCommentsCount}`);
