@@ -1,7 +1,7 @@
 import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import {DataRowProps} from "./tables";
+import { DataRowProps } from "./dataSources";
 import {AnalyticsEvent} from "./contexts";
 import { PopperArrowProps } from "react-popper";
 import { Placement} from '@popperjs/core';

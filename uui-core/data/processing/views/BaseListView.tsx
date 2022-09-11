@@ -1,51 +1,8 @@
-import { DataRowOptions, DataRowProps, ICheckable, IEditable, SortingOption } from "../../../types";
-import { DataSourceState } from "../types";
-import { DataSourceListProps, IDataSourceView } from './types';
-
-export interface BaseListViewProps<TItem, TId, TFilter> {
-    /**
-     * Should return unique ID of the TItem
-     * If omitted, we assume that every TItem has and unique id in its 'id' field.
-     * @param item An item to get ID of
-     */
-    getId?(item: TItem): TId;
-
-    /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
-     * See DataRowOptions for more details.
-     * If your options depends on the item itself, use getRowOptions.
-     * However, specifying both rowOptions and getRowOptions might help to render better loading skeletons
-     * - we use only rowOptions in this case, as we haven't loaded an item yet.
-     * @param item An item to get options for
-     */
-    rowOptions?: DataRowOptions<TItem, TId>;
-
-    /**
-     * Can be specified to set row options: if row is selectable, checkable, draggable, clickable, or have its own set of columns
-     * See DataRowOptions for more details.
-     * If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.
-     * @param item An item to get options for
-     */
-    getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
-
-    /**
-     * Can be specified to unfold all or some items at start.
-     * If not specified, all rows would be folded.
-     */
-    isFoldedByDefault?(item: TItem): boolean;
-
-    /**
-     * If selection (checking items) of a parent node should select all children, and vice versa
-     */
-    cascadeSelection?: boolean;
-
-    /**
-     * Disables select all behaviour. Default is false.
-     */
-    selectAll?: true | false;
-}
+import { Lens } from "../../lenses";
+import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+    protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -68,6 +25,17 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
         this.updateCheckedLookup(this.value && this.value.checked);
+    }
+
+    protected updateRowOptions(): void {
+        if (this.props.getRowOptions) {
+            for(let n = 0; n < this.rows.length; n++) {
+                const row = this.rows[n];
+                if (!row.isLoading) {
+                    this.applyRowOptions(row);
+                }
+            }
+        }
     }
 
     protected updateCheckedLookup(checked: TId[]) {
@@ -172,13 +140,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const id = this.props.getId(item);
         const key = this.idToKey(id);
 
-        const value = this.value;
-
-        const rowOptions = this.props.getRowOptions ? this.props.getRowOptions(item, index) : this.props.rowOptions;
-
-        const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
-        const isSelectable = rowOptions && rowOptions.isSelectable;
-
         const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
 
@@ -190,17 +151,29 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             value: item,
             depth: parents.length,
             path,
-            ...rowOptions,
-            isFocused: value.focusedIndex === index,
-            isChecked: !!this.checkedByKey[key],
-            isSelected: value.selectedId === id,
-            isCheckable: isCheckable,
-            onCheck: isCheckable && this.handleOnCheck,
-            onSelect: rowOptions && rowOptions.isSelectable && this.handleOnSelect,
-            onFocus: (isSelectable || isCheckable) && this.handleOnFocus,
         } as DataRowProps<TItem, TId>;
 
+        this.applyRowOptions(rowProps);
+
         return rowProps;
+    }
+
+    protected applyRowOptions(row: DataRowProps<TItem, TId>) {
+        const rowOptions = this.props.getRowOptions ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
+        const isSelectable = rowOptions && rowOptions.isSelectable;
+        if (rowOptions != null) {
+            const rowValue = row.value;
+            Object.assign(row, rowOptions);
+            row.value = rowOptions.value ?? rowValue;
+        }
+        row.isFocused = this.value.focusedIndex === row.index;
+        row.isChecked = !!this.checkedByKey[row.rowKey];
+        row.isSelected = this.value.selectedId === row.id;
+        row.isCheckable = isCheckable;
+        row.onCheck = isCheckable && this.handleOnCheck;
+        row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
+        row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
     }
 
     protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<TItem, TId> {

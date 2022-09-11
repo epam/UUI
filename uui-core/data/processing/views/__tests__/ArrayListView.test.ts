@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState } from "../../types";
+import { DataSourceState, IDataSourceView } from "../../../../types";
 
 interface TItem {
     id: number;
@@ -27,7 +27,7 @@ const totalRowsCount = 12;
 const rootNodesCount = 9;
 
 let dataSource: ArrayDataSource<{ id: number, level: string }, number, any> = null;
-let view: ArrayListView<any, any> = null;
+let view: IDataSourceView<TItem, number, any> = null;
 
 let onValueChange: () => any = null;
 let initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
@@ -38,7 +38,12 @@ describe('ArrayListView', () => {
     beforeEach(() => {
         onValueChange = jest.fn();
 
-        dataSource = new ArrayDataSource<TItem, number>({ items: testItems });
+        dataSource = new ArrayDataSource<TItem, number>({
+            items: testItems,
+            getId: i => i.id,
+            getParentId: i => i.parentId,
+        });
+
         viewProps = {
             getId: i => i.id,
             getSearchFields: (item) => [item.level],
@@ -49,11 +54,11 @@ describe('ArrayListView', () => {
                 isSelectable: true,
             }),
         };
-        view = new ArrayListView(dataSource, { value: initialValue, onValueChange }, viewProps);
+        view = dataSource.getView(initialValue, onValueChange, viewProps);
     });
 
     it('should create visibleRows on constructor', () => {
-        expect(view.visibleRows).toHaveLength(rootNodesCount);
+        expect(view.rows).toHaveLength(rootNodesCount);
     });
 
     describe('setValue logic', () => {
@@ -95,17 +100,17 @@ describe('ArrayListView', () => {
         expect(view.getVisibleRows()).toHaveLength(rootNodesCount - 2);
     });
 
-    it('should return all nodes, if isFoldedByDefault is true', () => {
-        view = new ArrayListView<TItem, number>(
-            dataSource,
-            { value: initialValue, onValueChange },
+    it('should return all nodes, if isFoldedByDefault is false', () => {
+        view = dataSource.getView(
+            initialValue,
+            () => {},
             {
                 getId: i => i.id,
                 isFoldedByDefault: () => false,
             },
         );
 
-        expect(view.visibleRows).toHaveLength(totalRowsCount);
+        expect(view.getVisibleRows()).toHaveLength(totalRowsCount);
     });
 
     describe('sorting', () => {
@@ -150,9 +155,9 @@ describe('ArrayListView', () => {
         });
 
         it('should check all children when parent checked with cascadeSelection true', () => {
-            view = new ArrayListView<TItem, number>(
-                dataSource,
-                { value: initialValue, onValueChange },
+            view = dataSource.getView(
+                initialValue,
+                onValueChange,
                 {
                     getId: i => i.id,
                     cascadeSelection: true,
@@ -169,9 +174,9 @@ describe('ArrayListView', () => {
         });
 
         it('should check parent if all siblings checked', () => {
-            view = new ArrayListView<TItem, number>(
-                dataSource,
-                { value: { ...initialValue, checked: [7, 8] }, onValueChange },
+            view = dataSource.getView(
+                { ...initialValue, checked: [7, 8] },
+                onValueChange,
                 {
                     getId: i => i.id,
                     cascadeSelection: true,

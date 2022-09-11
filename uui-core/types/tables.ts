@@ -1,41 +1,12 @@
 import React, { Attributes, ReactNode } from 'react';
-import * as props from './props';
-import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection,
-    IDropdownToggler, IHasCX, DropParams, FilterPredicateName } from '../types';
-import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
-import { IClickable, IDropdownBodyProps, IHasRawProps } from "./props";
-import { ILens } from '..';
-import { Link } from '../types';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
+    ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
+import { FilterPredicateName, SortDirection } from './dataQuery';
+import { DndActorRenderParams, DropParams } from './dnd';
+import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
+import { ILens } from '../data';
 import * as CSS from 'csstype';
-
-
-/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
-export interface VirtualListState {
-    /**
-     * Index of the topmost item, in rendered batch.
-     * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list
-     */
-    topIndex?: number;
-    /**
-     * Number of currently rendered items.
-     * Virtual list updates this value automatically, if it too small.
-     * Note Virtual List renders more items, that actually visible,
-     * as it need maintain some reserve of rows on top / at the bottom of the list.
-     */
-    visibleCount?: number;
-    /**
-     * Virtual list ensures that row with this Index is within the visible area, if not Virtual List .
-     * Virtual list updates this value on scroll to null when appear in the visible area.
-     * If this value is updated manually, Virtual List would scroll to the specified items.
-     * It would attempt to put scroll so this item will be at the top of the list.
-     */
-    indexToScroll?: number;
-    /**
-     * Virtual List manually scroll to this Index when it appears not within the visible area.
-     * It would attempt to put scroll so this item will be in the middle of the list.
-     */
-    focusedIndex?: number;
-}
+import { TooltipCoreProps } from './components';
 
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -102,7 +73,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
     /** Overrides rendering of the whole cell */
-    renderCell?(props: DataTableCellProps<TItem, TId>): any;
+    renderCell?(cellProps: RenderCellProps<TItem, TId, any>): any;
 
     /**
      * Renders column header dropdown.
@@ -120,6 +91,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
 }
 
 export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEditable<DataTableState>, IDropdownToggler, IHasCX, DataTableColumnsConfigOptions {
+    key: string;
     column: DataColumnProps<TItem, TId>;
     isFirstColumn: boolean;
     isLastColumn: boolean;
@@ -144,128 +116,44 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX, props.IHasTabIndex {
+export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
+    columns?: DataColumnProps<TItem, TId>[];
+    renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
+    showCellDivider?: boolean;
+    renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
+}
+
+export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
     rowProps: DataRowProps<TItem, TId>;
+    mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
+}
+
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+    inFocus: boolean;
+    columnIndex: number;
+    rowIndex: number;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+}
+
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, Partial<IEditable<TCellValue>> {
+    key: string;
+    rowProps: DataTableRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index?: number;
+    isFirstColumn: boolean;
+    isLastColumn: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
+    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+    // addons?: React.ReactNode;
+    // renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    // renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
+    // renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
+    // renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
-export interface DataRowOptions<TItem, TId> extends IDisableable {
-    checkbox?: { isVisible: boolean } & IDisableable & ICanBeInvalid;
-    isSelectable?: boolean;
-    dnd?: IDndActor<any, any>;
-    onClick?(rowProps: DataRowProps<TItem, TId>): void;
-    link?: Link;
-    columns?: DataColumnProps<TItem, TId>[];
+export interface RenderCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellProps<TItem, TId, TCellValue> {
+    rowLens: ILens<TItem>;
 }
-
-export interface DataRowPathItem<TId, TItem> {
-    id: TId;
-    value: TItem;
-    isLastChild: boolean;
-}
-
-/** DataRowProps is a base shape of props, passed to items in various lists or trees.
- *
- * Despite 'Row' in it's name, it doesn't directly connected to a table.
- * We use DataRowProps as a base for DataTableRowProps and DataPickerRowProps.
- * But it can also be used for any user-built list, tree, custom picker rows, or even a grid of cards.
- *
- * Array of DataRowProps describes a part of hierarchical list, while still being a flat array (not a tree of some kind).
- * We use depth, indent, path, and other props to show row's place in the hierarchy.
- * This is very handy to handle rendering, especially in virtual scrolling scenarios.
- *
- * DataSources primary job is to convert various data stores into arrays of DataRowProps.
- */
-export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem, TId> & {
-    /** ID of the TItem rows displays */
-    id: TId;
-
-    /** Key of the TItem row displays. This is the ID converted to string.
-     * We use this internally to identify rows, and hold rows them in various hash-tables.
-     * ID can't be used for this, as it is not guaranteed to be comparable. E.g. one can use TID=[int, string] to hold composite IDs.
-     * */
-    rowKey: string;
-
-    /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
-    index: number;
-
-    /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
-    value?: TItem;
-
-    /** ID of the parent TItem */
-    parentId?: TId;
-
-    /** Hierarchical path from the root node to the item (excluding the item itself) */
-    path?: DataRowPathItem<TId, TItem>[];
-
-    /* visual */
-
-    /** Depth of the row in tree, 0 for the top-level */
-    depth?: number;
-
-    /** Indent of the item, to show hierarchy */
-    indent?: number;
-
-    /** True if row is in loading state. Value is empty in this case */
-    isLoading?: boolean;
-
-    /** True if row contains children and so it can be folded or unfolded */
-    isFoldable?: boolean;
-
-    /** True if row is currently unfolded */
-    isFolded?: boolean;
-
-    /** True if row is checked with checkbox */
-    isChecked?: boolean;
-
-    /** True if row has checkbox and can be checkable */
-    isCheckable?: boolean;
-
-    /** True if some of row's children are checked.
-     * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
-    isChildrenChecked?: boolean;
-
-    /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
-    isSelected?: boolean;
-
-    /** True if any of row's children is selected. */
-    isChildrenSelected?: boolean;
-
-    /** True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row */
-    isFocused?: boolean;
-
-    /** True if row is the last child of his parent */
-    isLastChild?: boolean;
-
-    /* events */
-
-    /** Handles row folding change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onFold?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row click.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onClick?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row checkbox change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onCheck?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row selection.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onSelect?(rowProps: DataRowProps<TItem, TId>): void;
-
-    /** Handles row focusing.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
-    onFocus?(focusedIndex: number): void;
-};
 
 export type ColumnsConfig = {
     [key: string]: IColumnConfig,
