@@ -11,7 +11,7 @@ export interface TooltipCoreProps extends IHasCX, IHasChildren {
      * The function will only be called when content is shown, this can save performance. */
     renderContent?(): any;
 
-    /** Placement of the tooltip relative to the wrapped component */
+    /** Tooltip position relative to the wrapped content. See [Popper Docs](@link https://popper.js.org/) */
     placement?: Placement;
 
     /** Defines when to show the tooltip: 'hover' - default and usual, 'press' - only when mouse button is down, 'manual' - visibility is controlled with isVisible prop  */

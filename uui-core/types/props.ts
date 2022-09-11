@@ -112,6 +112,8 @@ export interface IDropdownBodyProps {
     scheduleUpdate?: () => void;
     isOpen?: boolean;
     arrowProps?: PopperArrowProps;
+
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
     placement?: Placement;
 }
 
@@ -239,11 +241,17 @@ export type ICheckable = IEditable<boolean> & IDisableable & {
 };
 
 export interface IAnalyticableClick {
-    /** An analytics event to send (via AnalyticsContext) when component is clicked */
+    /**
+     * An analytics event to send (via AnalyticsContext) when component is clicked.
+     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts).
+     */
     clickAnalyticsEvent?: AnalyticsEvent;
 }
 
 export interface IAnalyticableOnChange<T> {
-    /** Called when component's value is changed. Should return an analytics event to send via the AnalyticsContext */
+    /**
+     * Given a value, returns an analytics event to send when component is edited.
+     * See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts).
+     */
     getValueChangeAnalyticsEvent?: (newValue: T | null, oldValue: T | null) => AnalyticsEvent;
 }
