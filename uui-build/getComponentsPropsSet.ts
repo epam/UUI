@@ -14,11 +14,36 @@ const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../*
 
 const typeChecker = project.getTypeChecker().compilerObject;
 
+// Playground to modify and debug https://regex101.com/r/dd4hyi/1
+const linksRegex = /(?:\[(.*)\])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
+
+function escape(htmlStr: string) {
+    return htmlStr.replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+
+ }
+
+function formatComment(comment: string) {
+    comment = escape(comment);
+    comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}'>${a ?? b}</a>`);
+    comment = '<p>' + comment + '</p>'; // TBD split to lines?
+    return comment;
+}
+
 const getPropType = (prop: Symbol) => {
     const name = prop.getEscapedName();
 
+    let htmlComment = null;
+
     const commentSymbolDp = prop.compilerSymbol.getDocumentationComment(typeChecker);
-    const comment = ts.displayPartsToString(commentSymbolDp);
+    const jsDocComment = ts.displayPartsToString(commentSymbolDp);
+
+    if (jsDocComment) {
+        htmlComment = formatComment(jsDocComment);
+    }
 
     const typeDeclarations = prop.getDeclarations();
     const type = typeDeclarations[0].getType();
@@ -35,7 +60,7 @@ const getPropType = (prop: Symbol) => {
     return {
         name: name,
         value: typeName,
-        comment: comment || undefined,
+        comment: htmlComment,
     };
 };
 
