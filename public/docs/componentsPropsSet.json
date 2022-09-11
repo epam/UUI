@@ -390,12 +390,12 @@
       {
         "name": "size",
         "value": "36 | 48 | 60",
-        "comment": null
+        "comment": "<p>Tab button size</p>"
       },
       {
         "name": "withNotify",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Show notification red dot</p>"
       },
       {
         "name": "clearIcon",
@@ -542,12 +542,12 @@
       {
         "name": "size",
         "value": "36 | 48 | 60",
-        "comment": null
+        "comment": "<p>Tab button size</p>"
       },
       {
         "name": "withNotify",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Show notification red dot</p>"
       },
       {
         "name": "clearIcon",
@@ -3303,7 +3303,7 @@
       {
         "name": "color",
         "value": "white | red | gray90",
-        "comment": null
+        "comment": "<p>Tooltip color</p>"
       }
     ],
     "D:/dev/UUI-develop/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
@@ -4225,6 +4225,11 @@
         "comment": null
       },
       {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
         "name": "rawProps",
         "value": "any",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -4232,12 +4237,7 @@
       {
         "name": "alignItems",
         "value": "top | bottom | center | stretch",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "any",
-        "comment": null
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
         "name": "checkbox",
@@ -4520,27 +4520,27 @@
       {
         "name": "alt",
         "value": "string",
-        "comment": null
+        "comment": "<p>HTML alt attribute value</p>"
       },
       {
         "name": "img",
         "value": "string",
-        "comment": null
+        "comment": "<p>Image URL</p>"
       },
       {
         "name": "size",
         "value": "24 | 30 | 36 | 42 | 48 | 18 | 60 | 12 | 54 | 72 | 78 | 90 | 144",
-        "comment": null
+        "comment": "<p>Size</p>"
       },
       {
         "name": "isLoading",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>True to show placeholder</p>"
       },
       {
         "name": "onClick",
         "value": "() => void",
-        "comment": null
+        "comment": "<p>Click handler</p>"
       },
       {
         "name": "cx",
@@ -4756,17 +4756,17 @@
       {
         "name": "size",
         "value": "24 | 30",
-        "comment": null
+        "comment": "<p>Component size</p>"
       },
       {
         "name": "totalPages",
         "value": "number",
-        "comment": null
+        "comment": "<p>Total number of pages</p>"
       },
       {
         "name": "render",
         "value": "(params: PaginatorParams) => any",
-        "comment": null
+        "comment": "<p>Override default rendering, keeping the component behavior</p>"
       },
       {
         "name": "value",
@@ -10078,6 +10078,11 @@
         "comment": null
       },
       {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
         "name": "rawProps",
         "value": "any",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -10085,12 +10090,7 @@
       {
         "name": "alignItems",
         "value": "top | bottom | center | stretch",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "any",
-        "comment": null
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
         "name": "checkbox",
@@ -10388,27 +10388,27 @@
       {
         "name": "alt",
         "value": "string",
-        "comment": null
+        "comment": "<p>HTML alt attribute value</p>"
       },
       {
         "name": "img",
         "value": "string",
-        "comment": null
+        "comment": "<p>Image URL</p>"
       },
       {
         "name": "size",
         "value": "24 | 30 | 36 | 42 | 48 | 18 | 60 | 12 | 54 | 72 | 78 | 90 | 144",
-        "comment": null
+        "comment": "<p>Size</p>"
       },
       {
         "name": "isLoading",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>True to show placeholder</p>"
       },
       {
         "name": "onClick",
         "value": "() => void",
-        "comment": null
+        "comment": "<p>Click handler</p>"
       },
       {
         "name": "cx",
@@ -10607,17 +10607,17 @@
       {
         "name": "shape",
         "value": "square | round",
-        "comment": null
+        "comment": "<p>Badge shape: square or round</p>"
       },
       {
         "name": "fill",
         "value": "none | solid | white | light | transparent | semitransparent",
-        "comment": null
+        "comment": "<p>Badge fill style</p>"
       },
       {
         "name": "size",
         "value": "24 | 30 | 36 | 42 | 48 | 18 | 12",
-        "comment": null
+        "comment": "<p>Badge size</p>"
       },
       {
         "name": "color",
@@ -10671,17 +10671,17 @@
       {
         "name": "size",
         "value": "24 | 30",
-        "comment": null
+        "comment": "<p>Component size</p>"
       },
       {
         "name": "totalPages",
         "value": "number",
-        "comment": null
+        "comment": "<p>Total number of pages</p>"
       },
       {
         "name": "render",
         "value": "(params: PaginatorParams) => any",
-        "comment": null
+        "comment": "<p>Override default rendering, keeping the component behavior</p>"
       },
       {
         "name": "value",
@@ -12223,6 +12223,11 @@
         "comment": null
       },
       {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
         "name": "rawProps",
         "value": "any",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -12230,12 +12235,7 @@
       {
         "name": "alignItems",
         "value": "top | bottom | center | stretch",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "any",
-        "comment": null
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
         "name": "background",
@@ -12334,32 +12334,32 @@
       {
         "name": "min",
         "value": "number",
-        "comment": null
+        "comment": "<p>Min value (when slider is at leftmost position)</p>"
       },
       {
         "name": "max",
         "value": "number",
-        "comment": null
+        "comment": "<p>Max value (when slider is at rightmost position)</p>"
       },
       {
         "name": "step",
         "value": "number",
-        "comment": null
+        "comment": "<p>Value change step</p>"
       },
       {
         "name": "splitAt",
         "value": "number",
-        "comment": null
+        "comment": "<p>Slider renders a label at each splitAt position</p>"
       },
       {
         "name": "renderLabel",
         "value": "(value: number) => string",
-        "comment": null
+        "comment": "<p>Overrides rendering of values labels</p>"
       },
       {
         "name": "showTooltip",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Toggles rendering of tooltip with current value</p>"
       },
       {
         "name": "cx",
@@ -12426,32 +12426,32 @@
       {
         "name": "min",
         "value": "number",
-        "comment": null
+        "comment": "<p>Min value (when slider is at leftmost position)</p>"
       },
       {
         "name": "max",
         "value": "number",
-        "comment": null
+        "comment": "<p>Max value (when slider is at rightmost position)</p>"
       },
       {
         "name": "step",
         "value": "number",
-        "comment": null
+        "comment": "<p>Value change step</p>"
       },
       {
         "name": "splitAt",
         "value": "number",
-        "comment": null
+        "comment": "<p>Slider renders a label at each splitAt position</p>"
       },
       {
         "name": "renderLabel",
         "value": "(value: number) => string",
-        "comment": null
+        "comment": "<p>Overrides rendering of values labels</p>"
       },
       {
         "name": "showTooltip",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Toggles rendering of tooltip with current value</p>"
       },
       {
         "name": "cx",
@@ -12531,6 +12531,11 @@
         "comment": null
       },
       {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
         "name": "rawProps",
         "value": "any",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -12538,12 +12543,7 @@
       {
         "name": "alignItems",
         "value": "top | bottom | center | stretch",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "any",
-        "comment": null
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
         "name": "background",

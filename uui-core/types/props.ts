@@ -211,24 +211,31 @@ export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
 export type FlexRowProps = IHasCX
     & IClickable
     & Attributes
+    & IHasChildren
     & IHasRawProps<HTMLDivElement>
     & {
+        /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
-        children?: any;
     };
 
 export type FlexCellProps = IHasCX
     & IClickable
     & IHasRawProps<HTMLDivElement>
     & Attributes
+    & IHasChildren
     & {
+        /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
         width?: number | 'auto' | '100%';
+        /** CSS min-width */
         minWidth?: number;
+        /** Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow) */
         grow?: number;
+        /** Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink) */
         shrink?: number;
+        /** CSS text-align property */
         textAlign?: 'left' | 'center' | 'right';
+        /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
         alignSelf?: CSS.AlignSelfProperty;
-        children?: any;
     };
 
 export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLDivElement> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {

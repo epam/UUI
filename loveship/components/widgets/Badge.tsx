@@ -19,8 +19,11 @@ const mapSizeToIconSize = {
 };
 
 export interface BadgeMods extends types.ColorMod {
+    /** Badge shape: square or round */
     shape?: types.ControlShape;
+    /** Badge fill style */
     fill?: types.FillStyle  | 'semitransparent' | 'transparent';
+    /** Badge size */
     size?: '12' | '18' | '24' | '30' | '36' | '42' | '48';
 }
 
