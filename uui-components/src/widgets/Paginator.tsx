@@ -19,8 +19,13 @@ interface PaginatorItem {
 }
 
 export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<HTMLElement>  {
+    /** Component size */
     size: '24' | '30';
+
+    /** Total number of pages */
     totalPages: number;
+
+    /** Override default rendering, keeping the component behavior */
     render?(params: PaginatorParams): any;
 }
 
