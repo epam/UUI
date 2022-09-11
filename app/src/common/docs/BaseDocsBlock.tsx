@@ -91,7 +91,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         {
             key: 'comment',
             caption: 'Description',
-            render: prop => <Text color='gray80'>{ prop.comment }</Text>,
+            render: prop => <RichTextView htmlContent={ prop.comment } />,
             width: 200,
             grow: 1,
         },
