@@ -8,7 +8,9 @@ import { ReactComponent as PartlySelect_12 } from '../../icons/partly-select-12.
 import { ReactComponent as PartlySelect_18 } from '../../icons/partly-select-18.svg';
 
 export interface CheckboxMods {
+    /** Checkbox size */
     size?: '12' | '18';
+    /** Set to 'dark' to make component work on a dark background */
     theme?: 'light' | 'dark';
 }
 

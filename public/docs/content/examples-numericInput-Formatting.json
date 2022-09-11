@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default NumericInput uses ",
+            "text": "By default, NumericInput uses ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " to show formatted numbers according you system locale. You can override locale value by setting the i18n.locale global variable.",
+            "text": " to show formatted numbers according to system locale. You can override the locale value by setting the i18n.locale global variable.",
             "marks": []
           }
         ]
@@ -87,7 +87,7 @@
           },
           {
             "object": "text",
-            "text": "for more details. NumericInput also uses some of this options to restrict what's can be entered, specifically minFractionalDigits and ",
+            "text": "for more details. These options also controls what values can be entered into the NumericInput (e.g. maxFractionalDigits).",
             "marks": []
           }
         ]
@@ -127,7 +127,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Note, that value is get rounded and trimmed to min/max only on blur, so you can temporarily get out-of-range values via onValueChange while user is editing fields.",
+            "text": "Note, that value is rounded and trimmed to min/max only on blur, so you can temporarily get out-of-range values via onValueChange while the input is being edited.",
             "marks": []
           }
         ]

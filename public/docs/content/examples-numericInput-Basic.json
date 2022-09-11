@@ -55,7 +55,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default ",
+            "text": "By default, ",
             "marks": []
           },
           {
@@ -87,7 +87,7 @@
           },
           {
             "object": "text",
-            "text": " , and numbers are whole (can't contain fractional digits).",
+            "text": " , and numbers are whole (i.e. can't contain fractional digits).",
             "marks": []
           }
         ]
