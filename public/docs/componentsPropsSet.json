@@ -84,7 +84,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -211,7 +211,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -318,7 +318,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -480,7 +480,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -632,7 +632,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -744,7 +744,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "value",
@@ -804,7 +804,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "size",
@@ -831,47 +831,47 @@
       {
         "name": "format",
         "value": "string",
-        "comment": null
+        "comment": "<p>Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)</p>"
       },
       {
         "name": "filter",
         "value": "(day: Dayjs) => boolean",
-        "comment": null
+        "comment": "<p>Filter selectable days. Days, for which this callback returns false - will be disabled</p>"
       },
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach RangeDatePicker to other components, e.g. Buttons</p>"
       },
       {
         "name": "renderFooter",
         "value": "(value: RangeDatePickerValue) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allows to add a custom footer to the Picker&#39;s dropdown body</p>"
       },
       {
         "name": "renderDay",
         "value": "(day: Dayjs) => void) => React.ReactElement<Element, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
-        "comment": null
+        "comment": "<p>Overrides rendering of the single day. For example, to highlight certain days</p>"
       },
       {
         "name": "presets",
         "value": "RangeDatePickerPresets",
-        "comment": null
+        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\r\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
       },
       {
         "name": "disableClear",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disables clearing component (with the cross icon)</p>"
       },
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "isHoliday",
         "value": "(day: Dayjs) => boolean",
-        "comment": null
+        "comment": "<p>If this function returns true, the day will be highlighted as holiday</p>"
       },
       {
         "name": "value",
@@ -921,7 +921,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "size",
@@ -1018,7 +1018,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -1237,7 +1237,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -1334,7 +1334,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -1648,7 +1648,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -1750,7 +1750,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -2079,7 +2079,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -2198,17 +2198,17 @@
       {
         "name": "title",
         "value": "string",
-        "comment": null
+        "comment": "<p>Accordion title</p>"
       },
       {
         "name": "dropdownIcon",
         "value": "React.FC<any>",
-        "comment": null
+        "comment": "<p>Overrides the default dropdown (folding) icon</p>"
       },
       {
         "name": "renderAdditionalItems",
-        "value": "(isOpened: boolean) => React.ReactNode",
-        "comment": null
+        "value": "(isOpen: boolean) => React.ReactNode",
+        "comment": "<p>Renders additional items to component&#39;s header (after the title, and before the folding icon)</p>"
       },
       {
         "name": "value",
@@ -2278,7 +2278,7 @@
       {
         "name": "padding",
         "value": "18 | 12 | 0 | 6",
-        "comment": null
+        "comment": "<p>Padding inside the panel</p>"
       }
     ],
     "D:/dev/UUI-develop/epam-promo/components/layout/docs/blocker.doc.ts": [
@@ -2322,12 +2322,12 @@
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
-        "comment": null
+        "comment": "<p>Overrides the component to render a single checkbox</p>"
       },
       {
         "name": "items",
         "value": "CheckboxGroupItem<TValue>[]",
-        "comment": null
+        "comment": "<p>Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name</p>"
       },
       {
         "name": "isInvalid",
@@ -3030,7 +3030,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "vPadding",
@@ -3263,7 +3263,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": "<p>Placement of the tooltip relative to the wrapped component</p>"
+        "comment": "<p>Tooltip position relative to the wrapped content. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "trigger",
@@ -3310,82 +3310,82 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "selectionMode",
         "value": "\"single\"",
-        "comment": null
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
       },
       {
         "name": "valueType",
         "value": "\"id\"",
-        "comment": null
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       },
       {
         "name": "value",
@@ -3430,7 +3430,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "onFocus",
@@ -3465,82 +3465,82 @@
       {
         "name": "editMode",
         "value": "dropdown | modal",
-        "comment": null
+        "comment": "<p>dropdown (default) - show selection in dropdown; modal - opens modal window to select items</p>"
       },
       {
         "name": "maxItems",
         "value": "number",
-        "comment": null
+        "comment": "<p>Maximum number of tags to display in input, before collapsing to &quot;N items selected&quot; mode</p>"
       },
       {
         "name": "minBodyWidth",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum width of dropdown body</p>"
       },
       {
         "name": "isSingleLine",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Prevents selected items tags to occupy multiple lines</p>"
       },
       {
         "name": "dropdownPlacement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "renderToggler",
         "value": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Replaces default &#39;toggler&#39; - an input to which Picker attaches dropdown</p>"
       },
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": null
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "disableClear",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disallow to clear Picker value (cross icon)</p>"
       },
       {
         "name": "minCharsToSearch",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum characters to type, before search will trigger (default is 1)</p>"
       },
       {
         "name": "dropdownHeight",
         "value": "number",
-        "comment": null
+        "comment": "<p>Overrides default height of the dropdown body</p>"
       },
       {
         "name": "autoFocus",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
         "name": "prefix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Prefix text to add to the input</p>"
       },
       {
         "name": "suffix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Suffix text to add to the input</p>"
       },
       {
         "name": "rawProps",
         "value": "{ input?: any; body?: any; }",
-        "comment": null
+        "comment": "<p>HTML attributes to put directly to the input and body elements</p>"
       },
       {
         "name": "renderFooter",
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Adds custom footer to the dropdown body</p>"
       },
       {
         "name": "fixedBodyPosition",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to &#39;jump&#39; after adding a filter.</p>"
       },
       {
         "name": "size",
@@ -3557,72 +3557,72 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "caption",
@@ -4456,7 +4456,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -4679,7 +4679,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -4811,7 +4811,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -4925,7 +4925,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5072,7 +5072,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5147,7 +5147,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       },
       {
         "name": "lineHeight",
@@ -5214,7 +5214,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5234,7 +5234,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/buttons/docs/linkButton.doc.tsx": [
@@ -5321,7 +5321,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5503,7 +5503,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5660,7 +5660,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -5829,7 +5829,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "value",
@@ -5889,7 +5889,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "size",
@@ -5926,47 +5926,47 @@
       {
         "name": "format",
         "value": "string",
-        "comment": null
+        "comment": "<p>Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)</p>"
       },
       {
         "name": "filter",
         "value": "(day: Dayjs) => boolean",
-        "comment": null
+        "comment": "<p>Filter selectable days. Days, for which this callback returns false - will be disabled</p>"
       },
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach RangeDatePicker to other components, e.g. Buttons</p>"
       },
       {
         "name": "renderFooter",
         "value": "(value: RangeDatePickerValue) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allows to add a custom footer to the Picker&#39;s dropdown body</p>"
       },
       {
         "name": "renderDay",
         "value": "(day: Dayjs) => void) => React.ReactElement<Element, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
-        "comment": null
+        "comment": "<p>Overrides rendering of the single day. For example, to highlight certain days</p>"
       },
       {
         "name": "presets",
         "value": "RangeDatePickerPresets",
-        "comment": null
+        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\r\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
       },
       {
         "name": "disableClear",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disables clearing component (with the cross icon)</p>"
       },
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "isHoliday",
         "value": "(day: Dayjs) => boolean",
-        "comment": null
+        "comment": "<p>If this function returns true, the day will be highlighted as holiday</p>"
       },
       {
         "name": "value",
@@ -6016,7 +6016,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "size",
@@ -6128,7 +6128,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -6158,7 +6158,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
@@ -6170,7 +6170,7 @@
       {
         "name": "color",
         "value": "sky | night600",
-        "comment": null
+        "comment": "<p>Component color</p>"
       },
       {
         "name": "value",
@@ -6352,7 +6352,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -6459,7 +6459,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -6788,7 +6788,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -6977,7 +6977,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -7007,7 +7007,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/inputs/docs/textArea.doc.ts": [
@@ -7326,7 +7326,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -7455,17 +7455,17 @@
       {
         "name": "title",
         "value": "string",
-        "comment": null
+        "comment": "<p>Accordion title</p>"
       },
       {
         "name": "dropdownIcon",
         "value": "React.FC<any>",
-        "comment": null
+        "comment": "<p>Overrides the default dropdown (folding) icon</p>"
       },
       {
         "name": "renderAdditionalItems",
-        "value": "(isOpened: boolean) => React.ReactNode",
-        "comment": null
+        "value": "(isOpen: boolean) => React.ReactNode",
+        "comment": "<p>Renders additional items to component&#39;s header (after the title, and before the folding icon)</p>"
       },
       {
         "name": "value",
@@ -7579,12 +7579,12 @@
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
-        "comment": null
+        "comment": "<p>Overrides the component to render a single checkbox</p>"
       },
       {
         "name": "items",
         "value": "CheckboxGroupItem<TValue>[]",
-        "comment": null
+        "comment": "<p>Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name</p>"
       },
       {
         "name": "isInvalid",
@@ -7723,7 +7723,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/layout/docs/labeledInput.doc.tsx": [
@@ -7805,7 +7805,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       },
       {
         "name": "size",
@@ -8305,7 +8305,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "vPadding",
@@ -8599,7 +8599,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -8934,7 +8934,7 @@
       {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": "<p>Placement of the tooltip relative to the wrapped component</p>"
+        "comment": "<p>Tooltip position relative to the wrapped content. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "trigger",
@@ -8981,82 +8981,82 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "selectionMode",
         "value": "\"single\"",
-        "comment": null
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
       },
       {
         "name": "valueType",
         "value": "\"id\"",
-        "comment": null
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       },
       {
         "name": "value",
@@ -9101,7 +9101,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "onFocus",
@@ -9136,82 +9136,82 @@
       {
         "name": "editMode",
         "value": "dropdown | modal",
-        "comment": null
+        "comment": "<p>dropdown (default) - show selection in dropdown; modal - opens modal window to select items</p>"
       },
       {
         "name": "maxItems",
         "value": "number",
-        "comment": null
+        "comment": "<p>Maximum number of tags to display in input, before collapsing to &quot;N items selected&quot; mode</p>"
       },
       {
         "name": "minBodyWidth",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum width of dropdown body</p>"
       },
       {
         "name": "isSingleLine",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Prevents selected items tags to occupy multiple lines</p>"
       },
       {
         "name": "dropdownPlacement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "renderToggler",
         "value": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Replaces default &#39;toggler&#39; - an input to which Picker attaches dropdown</p>"
       },
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": null
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "disableClear",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disallow to clear Picker value (cross icon)</p>"
       },
       {
         "name": "minCharsToSearch",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum characters to type, before search will trigger (default is 1)</p>"
       },
       {
         "name": "dropdownHeight",
         "value": "number",
-        "comment": null
+        "comment": "<p>Overrides default height of the dropdown body</p>"
       },
       {
         "name": "autoFocus",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
         "name": "prefix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Prefix text to add to the input</p>"
       },
       {
         "name": "suffix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Suffix text to add to the input</p>"
       },
       {
         "name": "rawProps",
         "value": "{ input?: any; body?: any; }",
-        "comment": null
+        "comment": "<p>HTML attributes to put directly to the input and body elements</p>"
       },
       {
         "name": "renderFooter",
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Adds custom footer to the dropdown body</p>"
       },
       {
         "name": "fixedBodyPosition",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to &#39;jump&#39; after adding a filter.</p>"
       },
       {
         "name": "size",
@@ -9273,82 +9273,82 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "selectionMode",
         "value": "\"single\"",
-        "comment": null
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
       },
       {
         "name": "valueType",
         "value": "\"id\"",
-        "comment": null
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       },
       {
         "name": "value",
@@ -9393,7 +9393,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "maxDefaultItems",
@@ -9420,72 +9420,72 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "caption",
@@ -10319,7 +10319,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -10547,7 +10547,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -10622,7 +10622,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/widgets/docs/carousel.doc.tsx": [
@@ -10726,7 +10726,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -10753,7 +10753,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/widgets/docs/tag.doc.ts": [
@@ -10840,7 +10840,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -10910,7 +10910,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "/components/buttons/docs/button.doc.tsx": [
@@ -10997,7 +10997,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -11154,7 +11154,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "tabIndex",
@@ -11306,7 +11306,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -11408,7 +11408,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -11485,7 +11485,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -11697,7 +11697,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "rawProps",
@@ -11734,82 +11734,82 @@
       {
         "name": "entityName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
       },
       {
         "name": "entityPluralName",
         "value": "string",
-        "comment": null
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
       },
       {
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
-        "comment": null
+        "comment": "<p>Provides items to the Picker</p>"
       },
       {
         "name": "getName",
         "value": "(item: TItem) => string",
-        "comment": null
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
       },
       {
         "name": "renderRow",
         "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "getRowOptions",
         "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": null
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
       },
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "emptyValue",
         "value": "[]",
-        "comment": null
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
       },
       {
         "name": "sortBy",
         "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": null
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
       },
       {
         "name": "filter",
         "value": "any",
-        "comment": null
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
       },
       {
         "name": "sorting",
         "value": "SortingOption<any>",
-        "comment": null
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "cascadeSelection",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
       },
       {
         "name": "isFoldedByDefault",
         "value": "(item: TItem) => boolean",
-        "comment": null
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
         "name": "getSearchFields",
         "value": "(item: TItem) => string[]",
-        "comment": null
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
         "name": "selectionMode",
         "value": "\"single\"",
-        "comment": null
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
       },
       {
         "name": "valueType",
         "value": "\"id\"",
-        "comment": null
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       },
       {
         "name": "value",
@@ -11854,7 +11854,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Called when component&#39;s value is changed. Should return an analytics event to send via the AnalyticsContext</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "onFocus",
@@ -11889,82 +11889,82 @@
       {
         "name": "editMode",
         "value": "dropdown | modal",
-        "comment": null
+        "comment": "<p>dropdown (default) - show selection in dropdown; modal - opens modal window to select items</p>"
       },
       {
         "name": "maxItems",
         "value": "number",
-        "comment": null
+        "comment": "<p>Maximum number of tags to display in input, before collapsing to &quot;N items selected&quot; mode</p>"
       },
       {
         "name": "minBodyWidth",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum width of dropdown body</p>"
       },
       {
         "name": "isSingleLine",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Prevents selected items tags to occupy multiple lines</p>"
       },
       {
         "name": "dropdownPlacement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": null
+        "comment": "<p>Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)</p>"
       },
       {
         "name": "renderToggler",
         "value": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Replaces default &#39;toggler&#39; - an input to which Picker attaches dropdown</p>"
       },
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": null
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "disableClear",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disallow to clear Picker value (cross icon)</p>"
       },
       {
         "name": "minCharsToSearch",
         "value": "number",
-        "comment": null
+        "comment": "<p>Minimum characters to type, before search will trigger (default is 1)</p>"
       },
       {
         "name": "dropdownHeight",
         "value": "number",
-        "comment": null
+        "comment": "<p>Overrides default height of the dropdown body</p>"
       },
       {
         "name": "autoFocus",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Sets focus to component when it&#39;s mounted</p>"
       },
       {
         "name": "prefix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Prefix text to add to the input</p>"
       },
       {
         "name": "suffix",
         "value": "React.ReactNode",
-        "comment": null
+        "comment": "<p>Suffix text to add to the input</p>"
       },
       {
         "name": "rawProps",
         "value": "{ input?: any; body?: any; }",
-        "comment": null
+        "comment": "<p>HTML attributes to put directly to the input and body elements</p>"
       },
       {
         "name": "renderFooter",
         "value": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode",
-        "comment": null
+        "comment": "<p>Adds custom footer to the dropdown body</p>"
       },
       {
         "name": "fixedBodyPosition",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to &#39;jump&#39; after adding a filter.</p>"
       },
       {
         "name": "size",
@@ -12307,7 +12307,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "style",
@@ -12419,7 +12419,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/inputs/Slider/docs/slider.doc.ts": [
@@ -12511,7 +12511,7 @@
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": null
+        "comment": "<p>Component color</p>"
       }
     ],
     "D:/dev/UUI-develop/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
@@ -12620,7 +12620,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "style",
