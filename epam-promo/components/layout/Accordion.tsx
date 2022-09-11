@@ -5,6 +5,7 @@ import * as styles from '../../assets/styles/colorvars/layout/accordion-colorvar
 import * as css from './Accordion.scss';
 
 export interface AccordionMods {
+    /** 'block' mode: render as separate panel (with padding, borders, shadows). 'inline' mode - renders no outside panel, suitable for placing in a panel with other components  */
     mode?: 'block' | 'inline';
     padding?: '0' | '6' | '12' | '18';
 }

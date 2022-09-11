@@ -9,10 +9,15 @@ const ESCAPE = 'Escape';
 export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export interface TextInputProps extends TextInputCoreProps {
+    /** Overrides accept (check) icon */
     acceptIcon?: Icon;
+    /** Overrides cancel (cross) icon */
     cancelIcon?: Icon;
+    /** Overrides dropdown (chevron) icon */
     dropdownIcon?: Icon;
+    /** CSS class(es) to put to the HTML Input element */
     inputCx?: CX;
+    /** overrides rendering of HTML Input element  */
     renderInput?: (props: IRenderInputProps) => JSX.Element;
 }
 

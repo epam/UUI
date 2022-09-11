@@ -2,7 +2,7 @@ import { IClickable, IDropdownToggler, IDisableable, IBasicPickerToggler, ICanBe
 import { DocBuilder } from '../DocBuilder';
 
 export const onClickDoc = new DocBuilder<IClickable>({ name: 'onClick' })
-    .prop('onClick', { examples: ctx => [ctx.getCallback('onClick')] });
+    .prop('onClick', { examples: ctx => [{ value: ctx.getCallback('onClick'), isDefault: true }] });
 
 export const basicPickerTogglerDoc = new DocBuilder<IBasicPickerToggler>({ name: 'onClear' })
     .prop('onClear', { examples: ctx => [ctx.getCallback('onClear')] });

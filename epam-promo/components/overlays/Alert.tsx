@@ -18,9 +18,13 @@ type notificationAction = {
 };
 
 export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+    /** List of actions to display in the alert. Each action has name and 'action' callback */
     actions?: notificationAction[];
+    /** Alert color */
     color?: EpamPrimaryColor;
+    /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
     onClose?(): void;
+    /** An optional icon to show on the left of the alert */
     icon?: Icon;
 }
 

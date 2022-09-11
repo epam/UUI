@@ -73,7 +73,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     onTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
 
-    apiColumns: DataColumnProps<{ name: string, value: string }>[] = [
+    apiColumns: DataColumnProps<{ name: string, value: string, comment: string }>[] = [
         {
             key: 'name',
             caption: 'NAME',
@@ -86,8 +86,14 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             caption: 'Type',
             render: prop => <Text color='gray80'><span style={ { whiteSpace: "pre-wrap" } }>{ prop.value }</span></Text>,
             width: 200,
-            grow: 1,
             isSortable: true,
+        },
+        {
+            key: 'comment',
+            caption: 'Description',
+            render: prop => <Text color='gray80'>{ prop.comment }</Text>,
+            width: 200,
+            grow: 1,
         },
     ];
 
