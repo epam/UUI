@@ -1,3 +1,10 @@
+# editable tables branch
+
+* [Breaking Change] DataSources and DataTables-related interfaces refactored:
+  * DataTableRowProps type is moved from @epam/uui-components to @epam/uui-core
+  * columns prop is moved from DataRowProps to DataTableRowProps interface
+  * DataTableCell accepts few additional props
+
 # next version (Editable Tables Preparation)
 
 **What's New**

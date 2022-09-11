@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
-import { IDataSource, IDataSourceView } from "../../data";
-import { DataRowOptions, DataRowProps } from "../tables";
+import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps } from "../dataSources";
 import { SortingOption } from "../dataQuery";
 
 export type SinglePickerProps<TId, TItem> =

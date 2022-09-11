@@ -39,6 +39,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         const { field, direction } = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
 
         return this.props.renderCell({
+            key: column.key,
             column,
             value: this.props.value,
             onValueChange: this.props.onValueChange,

@@ -1,10 +1,9 @@
-import { DataRowProps, IEditable } from "../../../types";
-import { DataSourceState, LazyDataSourceApi } from '../types';
-import { DataSourceListProps, IDataSourceView } from './types';
+import { DataRowProps, IEditable, DataSourceState,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import isEqual from 'lodash.isequal';
-import { BaseListView, BaseListViewProps } from "./BaseListView";
+import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { LazyTree, LazyTreeFetchStrategy, LazyTreeItem, LazyTreeList, LazyTreeParams, loadLazyTree } from './LazyTree';
+import { LazyTree, LazyTreeFetchStrategy, LazyTreeList, LazyTreeLoadParams } from './LazyTree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -30,15 +29,6 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * @param item
      */
     getChildCount?(item: TItem): number;
-
-    /** Should return ID of the Item's parent. Usually it's i => i.parentId.
-     * Used to pre-fetch parents of loaded items, which are required in following cases:
-     * - when a child item is pre-selected, but not yet loaded at start. We need to load it's parent chain
-     *   to highlight parents with selected children
-     * - in flattenSearch mode, we usually want to display a path to each item (e.g. Canada/Ontario/Paris),
-     *   We need to load parents with a separate call (if backend doesn't pre-fetch them)
-     */
-    getParentId?(item: TItem): TId;
 
     /**
      * A filter to pass to API.
@@ -69,17 +59,16 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     flattenSearchResults?: boolean;
 }
 
-interface LoadResult<TItem, TId> {
+interface LoadResult<TItem, TId, TFilter> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: LazyTree<TItem, TId>;
+    tree: LazyTree<TItem, TId, TFilter>;
 }
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: LazyTree<TItem, TId>;
-    private rows: DataRowProps<TItem, TId>[] = [];
+    private tree: LazyTree<TItem, TId, TFilter>;
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
@@ -88,7 +77,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     constructor(editable: IEditable<DataSourceState<TFilter, TId>>, props: LazyListViewProps<TItem, TId, TFilter>, cache?: ListApiCache<TItem, TId, TFilter>) {
         super(editable, props);
-        this.props = props;
+        this.props = this.applyDefaultsToProps(props);
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
@@ -97,14 +86,19 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
-        this.update(editable.value, props);
+        this.update(editable.value, this.props);
     }
 
-    protected getParentId = (item: TItem) => {
-        try {
-            return this.props.getParentId ? this.props.getParentId(item) : (item as any).parentId;
-        } catch (err) {
-            throw new Error('Attempt to get parentId field for item, if you have it in another field, provide your own getParentId callback');
+    private defaultGetId = (i: any) => i.id;
+
+    protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
+        if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
+            throw new Error("LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled");
+        }
+
+        return {
+            ...props,
+            getId: props.getId ?? this.defaultGetId,
         }
     }
 
@@ -120,14 +114,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
         this.props = props;
-    }
 
-    private resetTreeItems(tree: LazyTree<TItem, TId>): LazyTree<TItem, TId> {
-        return {
-            items: [],
-            byKey: tree?.byKey || {},
-            byParentKey: tree?.byParentKey || {} ,
-        };
+        this.updateRowOptions();
     }
 
     private updateRowsAndLoadMissing(): void {
@@ -153,7 +141,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.value.page !== prevValue.page
             || this.value.pageSize !== prevValue.pageSize
         ) {
-            this.tree = this.resetTreeItems(this.tree);
+            this.tree = this.tree || LazyTree.blank<TItem, TId, TFilter>(this.props);
+            this.tree = this.tree.clearStructureAndUpdateParams({ ...this.props, api: this.api });
             completeReset = true;
         }
 
@@ -246,9 +235,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Loads node. Returns promise to a loaded node.
 
-    private inProgressPromise: Promise<LoadResult<TItem, TId>> = null;
+    private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
 
-    private loadMissing(abortInProgress: boolean, options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId>> {
+    private loadMissing(abortInProgress: boolean, options?: Partial<LazyTreeLoadParams<TItem, TId>>): Promise<LoadResult<TItem, TId, TFilter>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
@@ -260,17 +249,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LazyTreeParams<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId>> {
+    private async loadMissingImpl(options?: Partial<LazyTreeLoadParams<TItem, TId>>): Promise<LoadResult<TItem, TId, TFilter>> {
         const loadingTree = this.tree;
 
-        const newTreePromise = loadLazyTree(
-            this.tree,
+        const newTreePromise = this.tree.loadMissing(
             {
-                api: this.api,
-                filter: this.props.filter,
-                getChildCount: this.props.getChildCount,
-                getId: this.props.getId,
-                getParentId: this.getParentId,
                 isFolded: (node) => this.isFolded(node),
                 ...options,
             },
@@ -426,7 +409,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             return stats;
         };
 
-        const rootStats = iterateNode(this.tree, true, []);
+        const rootStats = iterateNode(this.tree.rootList, true, []);
 
         if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
             this.selectAll = {
@@ -434,7 +417,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onValueChange: this.handleSelectAllCheck,
                 indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
             };
-        } else if (this.tree.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && this.isSelectAllEnabled()) {
+        } else if (this.tree.rootList.items.length === 0 && this.props.rowOptions?.checkbox?.isVisible && this.isSelectAllEnabled()) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
             this.selectAll = {
                 value: false,
@@ -453,62 +436,67 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         let id = rowProps.id;
         let isChecked = !rowProps.isChecked;
-        let checkedKey = rowProps.rowKey;
 
-        this.updateChecked(isChecked, false, id, checkedKey);
+        this.updateChecked(isChecked, false, id);
     }
 
     protected handleSelectAllCheck = (value: boolean) => {
         this.updateChecked(value, true);
     }
 
-    private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null, key: string | null = null) {
+    private async updateChecked(isChecked: boolean, isRoot: boolean, id: TId | null = null) {
         let checked = this.value && this.value.checked || [];
 
         if (this.props.cascadeSelection || isRoot) {
-            let childKeys: string[] = [];
-            let checkedKeysSet = new Set(checked.map(id => this.idToKey(id)));
+            let childIds: TId[] = [];
+            let checkedIdsSet = new Set(checked);
 
-            let result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: (i) => this.idToKey(i?.id) == key });
+            let result = await this.loadMissing(false, { loadAll: isRoot, loadAllChildren: i => i?.id === id });
             let tree = result.tree;
 
-            const appendChildIds = (key: string) => {
-                const children = key != null
-                    ? tree.byParentKey[key]
-                    : tree.items.map(i => i.item);
+            const node = tree.getById(id);
+
+            if (!isRoot && !node) {
+                throw new Error(`LazyListView: attempt to check/uncheck unknown node id=${id}`);
+            }
+
+            const appendChildIds = (parentId: TId) => {
+                const children = tree.getByParentId(parentId);
 
                 if (children?.length > 0) {
                     children.forEach(item => {
                         const id = this.props.getId(item);
-                        const key = this.idToKey(id);
-
-                        childKeys.push(key);
-                        appendChildIds(key);
+                        childIds.push(id);
+                        appendChildIds(id);
                     });
                 }
             };
 
-            appendChildIds(key);
+            const addAllIds = () => {
+                tree.byId.forEach((item, id) => childIds.push(id));
+            };
+
+            isRoot ? addAllIds() : appendChildIds(id);
 
             if (isChecked) {
-                !isRoot && checkedKeysSet.add(key);
+                !isRoot && checkedIdsSet.add(id);
 
-                childKeys.forEach(key => {
-                    const item = this.cache.itemsById.map.get(key);
-                    const { isCheckable } = this.getRowProps(item.value, null, []);
+                childIds.forEach(childId => {
+                    const item = tree.getById(childId);
+                    const { isCheckable } = this.getRowProps(item, null, []);
                     if (isCheckable) {
-                        checkedKeysSet.add(key);
+                        checkedIdsSet.add(childId);
                     }
                 });
             } else {
-                const keysToUnset = new Set(childKeys);
-                !isRoot && keysToUnset.add(key);
+                const idsToUnset = new Set(childIds);
+                !isRoot && idsToUnset.add(id);
 
-                keysToUnset.forEach(key => {
-                    const item = this.cache.itemsById.map.get(key);
-                    const { isCheckable } = this.getRowProps(item.value, null, []);
-                    if (isCheckable || keysToUnset.has(key)) {
-                        checkedKeysSet.delete(key);
+                idsToUnset.forEach(itemToUnsetId => {
+                    const item = tree.getById(itemToUnsetId);
+                    const { isCheckable } = this.getRowProps(item, null, []);
+                    if (isCheckable || idsToUnset.has(itemToUnsetId)) {
+                        checkedIdsSet.delete(itemToUnsetId);
                     }
                 });
             }
@@ -516,37 +504,36 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const getParentIds = (id: TId) => {
                 const parentIds: TId[] = [];
 
-                const getParent = (id: TId) => {
-                    const node = tree.byKey[this.idToKey(id)];
-                    const parentId = this.getParentId(node);
-                    if (parentId) {
+                const appendParentIds = (id: TId) => {
+                    const node = tree.getById(id);
+                    const parentId = this.props.getParentId(node);
+                    if (parentId != null) {
                         parentIds.push(parentId);
-                        getParent(parentId);
+                        appendParentIds(parentId);
                     }
                 };
 
-                getParent(id);
+                this.props.getParentId && appendParentIds(id);
                 return parentIds;
             };
 
             // check/uncheck parents if all/no siblings checked
             if (!isRoot) {
                 getParentIds(id).forEach(parentId => {
-                    const parentKey = this.idToKey(parentId);
-                    const children = tree.byParentKey[parentKey];
-                    const isAllChildrenChecked = children.every(i => checkedKeysSet.has(this.idToKey(this.props.getId(i))));
+                    const children = tree.getByParentId(parentId);
+                    const isAllChildrenChecked = children.every(i => checkedIdsSet.has(this.props.getId(i)));
 
                     if (isAllChildrenChecked) {
-                        checkedKeysSet.add(parentKey);
+                        checkedIdsSet.add(parentId);
                     } else {
-                        if (this.idToKey(parentId) !== key) {
-                            checkedKeysSet.delete(parentKey);
+                        if (parentId !== id) {
+                            checkedIdsSet.delete(parentId);
                         }
                     }
                 });
             }
 
-            this.handleCheckedChange(Array.from(checkedKeysSet).map(key => this.keyToId(key)));
+            this.handleCheckedChange(Array.from(checkedIdsSet));
 
         } else {
             let result = [...checked];
@@ -597,17 +584,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let totalCount: number;
         let exactRowsCount: number;
         let lastVisibleIndex = this.value.topIndex + this.value.visibleCount;
+        let rootList = this.tree.rootList;
 
-        if (!this.props.getChildCount && this.tree.count) {
+        if (!this.props.getChildCount && rootList.count) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
-            rowsCount = this.tree.count;
-            exactRowsCount = this.tree.count;
-            totalCount = this.tree.count;
+            rowsCount = rootList.count;
+            exactRowsCount = rootList.count;
+            totalCount = rootList.count;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
             exactRowsCount = this.rows.length;
-            totalCount = this.tree.recursiveCount;
+            totalCount = rootList.recursiveCount;
         }  else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.

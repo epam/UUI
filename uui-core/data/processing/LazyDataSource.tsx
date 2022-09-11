@@ -1,13 +1,13 @@
-import { LazyDataSourceApiRequestOptions, DataSourceState, ILazyDataSource } from './types';
 import { LazyListView, LazyListViewProps } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from "./BaseDataSource";
 import { useEffect } from "react";
+import { DataSourceState } from '../../types';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {
 }
 
-export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> implements ILazyDataSource<TItem, TFilter, TId> {
+export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
     cache: ListApiCache<TItem, TId, TFilter> = null;
 
@@ -16,6 +16,10 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.props = props;
         this.initCache();
     }
+
+    public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
+    }
+
 
     public getById = (id: TId) => {
         return this.cache.byId(id);
@@ -69,9 +73,5 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 
         return this.getView(value, onValueChange, props);
-    }
-
-    public getList(from: number, count: number, options: LazyDataSourceApiRequestOptions<TItem, TFilter>) {
-        return this.cache.query({ ...options, filter: { ...this.props.filter, ...options.filter }, range: { from, count }});
     }
 }
