@@ -8,17 +8,39 @@ import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
+
+    /** Minimum value (default is 0) */
     min?: number;
+
+    /** Overrides the up/increase icon */
     upIcon?: Icon;
+
+    /** Overrides the down/decrease icon */
     downIcon?: Icon;
+
+    /** Increase/decrease step (for icons and ) */
     step?: number;
+
+    /** CSS classes to put directly on the Input element */
     inputCx?: CX;
+
+    /** HTML ID */
     id?: string;
+
+    /** Turn off up/down (increase/decrease) buttons */
     disableArrows?: boolean;
+
+    /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */
     align?: "left" | "right";
+
+    /** Turns off locale-based formatting, standard Number.toString() is used instead */
     disableLocaleFormatting?: boolean;
+
+    /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */
     formatOptions?: Intl.NumberFormatOptions;
+
     // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
     /**
      * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
@@ -88,9 +110,9 @@ export const NumericInput = (props: NumericInputProps) => {
     };
 
     const handleDecreaseValue = () => {
-        let newValue = getCalculatedValue({ value: +props.value, step, action: "decr" });
+        let newValue = getCalculatedValue({ value, step, action: "decr" });
         newValue = getMinMaxValidatedValue({ value: newValue, min, max });
-        props.onValueChange(value);
+        props.onValueChange(newValue);
     };
 
     const handleArrowKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
