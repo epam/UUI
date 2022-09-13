@@ -13,7 +13,8 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>(JSON.parse(localStorage.getItem('presets')));
+
 
     useEffect(() => {
         svc.api.presets.getPresets()
