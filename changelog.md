@@ -1,14 +1,16 @@
 # next version (Editable Tables Preparation)
 
 **What's New**
-* Metadata<T> type - 'all' prop now infer the type of array element or object key (was typed as 'any')
-* [Breaking Change] DataTableColumn props simplified
-    * DataTableColumn props no longer accepts shrink prop.
-      Is actually wasn't supported before this change, so you can safely remove them.
-      Column can't be less than width, as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
-    * 'width' prop is now required (was optional)
-      * If you didn't have 'width' on some column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space
-    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing
+
+* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
+
+* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
+    * shrink prop - marked @deprecated. Id will be removed in future versions.
+      'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
+      Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional).
+      If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
 
 * useForm now provides two new callbacks: setValue and replaceValue.
     They work the same way as setState of React.useState.
@@ -24,7 +26,7 @@
   * Formatting can be disabled with the 'disableLocaleFormatting' prop
   * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
   * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
-  * See more at the [docs page](https://uui.epam.com/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
+  * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
 
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
