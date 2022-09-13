@@ -3,6 +3,7 @@ export const i18n = {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
         noRecordsSubTitle: 'Check your spelling, or search for a different keyword',
+        removeCaption: 'REMOVE FILTER',
     },
     fileCard: {
         fileSizeProgress: ' of ',
@@ -20,6 +21,8 @@ export const i18n = {
         clearSelectionButton: 'CLEAR ALL',
         clearSelectionButtonSingle: 'CLEAR',
         selectAllButton: 'SELECT ALL',
+        emptyFilterField: 'ALL',
+        itemsPlaceholder: 'items',
     },
     notificationCard: {
         closeAllNotificationsButton: 'CLOSE ALL NOTIFICATIONS',
@@ -35,9 +38,15 @@ export const i18n = {
             saveButton: 'Save',
         },
     },
+    datePicker: {
+        emptyPlaceholder: 'Select date',
+    },
     rangeDatePicker: {
         pickerPlaceholderFrom: 'From:',
         pickerPlaceholderTo: 'To:',
+        emptyPickerPlaceholder: 'Select period',
+        emptyPlaceholderFrom: 'Select From',
+        emptyPlaceholderTo: 'Select To',
     },
     tables: {
         columnsConfigurationModal: {
@@ -103,5 +112,8 @@ export const i18n = {
     dataTable: {
         title: 'No results found',
         message: 'We can’t find any item matching your request',
+    },
+    filterToolbar: {
+        addCaption: 'Add filter',
     },
 };
