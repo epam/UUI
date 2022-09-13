@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import sortBy from "lodash.sortby";
+import { i18n } from "../../i18n";
 import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
     getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
@@ -23,6 +24,9 @@ const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
         const key = keys[n];
         const filterValue: any = filter[key];
         if (filterValue && typeof filterValue === "object") {
+            if ('from' in filterValue && 'to' in filterValue) {
+                continue;
+            }
             if ('in' in filterValue && (!Array.isArray(filterValue.in) || !filterValue.in.length)) {
                 delete filter[key];
             }
@@ -63,7 +67,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         const newFilter: any = {};
 
         const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, f => f?.order);
-        let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1].order : null;
+        let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
         filters.forEach(filter => {
             if (tableState.filtersConfig && tableState?.filtersConfig[filter?.columnKey]) {
                 newConfig[filter.columnKey] = tableState?.filtersConfig[filter?.columnKey];
@@ -124,7 +128,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
             size="36"
             onClick={ props.onClick }
             ref={ props.ref }
-            caption="Add filter"
+            caption={ i18n.filterToolbar.addCaption }
             icon={ addIcon }
             iconPosition="left"
             fill="light"
