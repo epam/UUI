@@ -127,7 +127,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     };
 
     const renderErrorPage = (errorInfo: UuiErrorInfo) => {
-        return <ErrorPage cx={ props.cx } { ...errorInfo } />;
+        return <ErrorPage cx={ props.cx } theme={ props.theme }  { ...errorInfo } />;
     };
 
     if (errorType == 'error') {
