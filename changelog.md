@@ -1,4 +1,4 @@
-# 4.8.5 - 05.09.2022
+# 4.8.5 - 15.09.2022
 
 **What’s Fixed**
 * [RTE]: fix readonly mode
