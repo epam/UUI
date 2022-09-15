@@ -1,3 +1,9 @@
+# 4.8.5 - 05.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
+
 # 4.8.4 - 09.09.2022
 
 **What’s Fixed**
