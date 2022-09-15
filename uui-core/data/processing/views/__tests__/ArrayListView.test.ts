@@ -96,8 +96,12 @@ describe('ArrayListView', () => {
     });
 
     it('should return rows', () => {
-        view.update({ ...initialValue, topIndex: 2, visibleCount: 15 }, viewProps);
-        expect(view.getVisibleRows()).toHaveLength(rootNodesCount - 2);
+        const topIndex = 2;
+        view.update({ ...initialValue, topIndex, visibleCount: 15 }, viewProps);
+        const rows = view.getVisibleRows();
+        const rootTestItems = testItems.filter(i => i.parentId == null).slice(topIndex);
+        expect(rows).toMatchObject(rootTestItems.map(i => ({ id: i.id, value: i })));
+        expect(view.getVisibleRows()).toHaveLength(rootTestItems.length);
     });
 
     it('should return all nodes, if isFoldedByDefault is false', () => {
@@ -109,8 +113,9 @@ describe('ArrayListView', () => {
                 isFoldedByDefault: () => false,
             },
         );
-
-        expect(view.getVisibleRows()).toHaveLength(totalRowsCount);
+        const rows = view.getVisibleRows();
+        expect(rows).toMatchObject(testItems.map(i => ({ id: i.id, value: i })));
+        expect(view.getVisibleRows()).toHaveLength(testItems.length);
     });
 
     describe('sorting', () => {
