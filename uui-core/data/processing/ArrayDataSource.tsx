@@ -24,8 +24,10 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         } else {
             this.tree = Tree.create({
                     ...this.props,
-                    // This default is added for compatibility reasons. We require getId callback in other APIs
+                    // These defaults are added for compatibility reasons.
+                    // We'll require getId and getParentId callbacks in other APIs, including the views.
                     getId: this.getId,
+                    getParentId: props?.getParentId || this.defaultGetParentId,
                 },
                 this.props.items
             );
@@ -36,12 +38,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return this.tree.getById(id);
     }
 
-    protected getKey(item: TItem) {
-        return JSON.stringify(this.getId(item));
-    }
-
-    protected idToKey(id: TId) {
-        return JSON.stringify(id);
+    private defaultGetParentId = (item: TItem) => {
+        return (item as any) ['parentId'];
     }
 
     setItem(item: TItem): void {
@@ -58,8 +56,10 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             ...this.props,
             items: this.tree,
             ...options,
-            // This default is added for compatibility reasons. We require getId callback in other APIs
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
+            getParentId: options?.getParentId || this.defaultGetParentId,
         };
 
         if (view) {
