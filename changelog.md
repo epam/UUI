@@ -42,6 +42,13 @@
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
 
+# 4.8.4 - 09.09.2022
+
+**What’s Fixed**
+* [RTE]: fix wrong image size on first render
+* [RTE]: fix cursor jumping on new text typing in chrome 105+ version
+* [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
+
 # 4.8.3 - 01.09.2022
 
 **What’s Fixed**
