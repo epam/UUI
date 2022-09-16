@@ -220,6 +220,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             }
         }
 
+        // TBD: don't fetch at all, if all IDS were in cache
         const response = await this.props.api(rq, ctx);
 
         if (this.cache && response.items) {

@@ -194,4 +194,56 @@ export class Tree<TItem, TId> {
             newByParentId,
         );
     }
+
+    static truePredicate = () => true;
+
+    public cascadeSelection(
+        currentSelection: TId[],
+        selectedId: TId,
+        isSelected: boolean,
+        options: {
+            isSelectable: (item: TItem) => boolean,
+            cascade: boolean,
+        }
+    ) {
+        let selectedIdsSet = new Set(currentSelection);
+        options = { isSelectable: Tree.truePredicate, cascade: true, ...options };
+
+        const forEachChildren = (action: (id: TId) => void) => {
+            this.forEach((item, id) => {
+                if (options.isSelectable(item)) {
+                    action(id);
+                }
+            }, { parentId: selectedId });
+        };
+
+        if (isSelected) {
+            selectedIdsSet.add(selectedId);
+
+            if (options.cascade) {
+                // check all children recursively
+                forEachChildren(id => selectedIdsSet.add(id));
+
+                // check parents if all children is checked
+                this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
+                    const childrenIds = this.getChildrenIdsByParentId(parentId);
+
+                    if (childrenIds && childrenIds.every(childId => selectedIdsSet.has(childId))) {
+                        selectedIdsSet.add(parentId);
+                    }
+                });
+            }
+        } else {
+            selectedIdsSet.delete(selectedId);
+
+            if (options.cascade) {
+                // uncheck all parents recursively
+                this.getParentIdsRecursive(selectedId).forEach(parentId => selectedIdsSet.delete(parentId));
+                // uncheck all children recursively
+                forEachChildren(id => selectedIdsSet.delete(id));
+            }
+        }
+
+        return Array.from(selectedIdsSet);
+    }
 }
