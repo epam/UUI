@@ -250,46 +250,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         let checked = this.value && this.value.checked || [];
         let isChecked = !rowProps.isChecked;
-        let checkedIdsSet = new Set(checked);
 
-        const checkedItemId = rowProps.id;
-
-        const forEachChildren = (action: (id: TId) => void) => {
-            this.tree.forEach((item, id) => {
-                const { isCheckable } = this.getRowProps(item, null, []);
-                if (isCheckable) { /* filter && isSelectable */
-                    action(id);
+        checked = this.tree.cascadeSelection(
+            checked,
+            rowProps.id,
+            isChecked,
+            {
+                cascade: this.props.cascadeSelection,
+                isSelectable: (item: TItem) => {
+                    const { isCheckable } = this.getRowProps(item, null, []);
+                    return isCheckable;
                 }
-            }, { parentId: checkedItemId });
-        };
-
-        if (isChecked) {
-            checkedIdsSet.add(checkedItemId);
-
-            if (this.props.cascadeSelection) {
-                // check all children recursively
-                forEachChildren(id => checkedIdsSet.add(id));
-
-                // check parents if all children is checked
-                this.tree.getParentIdsRecursive(checkedItemId).reverse().forEach(parentId => {
-                    const childrenIds = this.tree.getChildrenIdsByParentId(parentId);
-
-                    if (childrenIds && childrenIds.every(childId => checkedIdsSet.has(childId))) {
-                        checkedIdsSet.add(parentId);
-                    }
-                });
             }
-        } else {
-            checkedIdsSet.delete(checkedItemId);
+        );
 
-            if (this.props.cascadeSelection) {
-                // uncheck all parents recursively
-                this.tree.getParentIdsRecursive(checkedItemId).forEach(parentId => checkedIdsSet.delete(parentId));
-                // uncheck all children recursively
-                forEachChildren(id => checkedIdsSet.delete(id));
-            }
-        }
-
-        this.handleCheckedChange(Array.from(checkedIdsSet));
+        this.handleCheckedChange(checked);
     }
 }
