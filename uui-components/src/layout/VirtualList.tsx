@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui';
-import { PositionValues, ScrollBars } from '../layout';
+import { PositionValues, ScrollBars, ScrollbarsApi } from '../layout';
 import * as css from './VirtualList.scss';
 
 export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
@@ -23,7 +23,7 @@ export interface VirtualListProps<List extends HTMLElement = any, ScrollContaine
     onScroll?(value: PositionValues): void;
 }
 
-export function VirtualList(props: VirtualListProps) {
+export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
     const {
         listContainerRef,
         offsetY,
@@ -36,6 +36,8 @@ export function VirtualList(props: VirtualListProps) {
         onScroll: props.onScroll,
         rowsCount: props.rowsCount,
     });
+
+    React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
 
     const scrollShadows = useScrollShadows({ root: scrollContainerRef.current });
 
@@ -72,4 +74,4 @@ export function VirtualList(props: VirtualListProps) {
             { renderRows() }
         </ScrollBars>
     );
-}
+});

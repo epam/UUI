@@ -96,7 +96,8 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     this.props.cx
                 ) }
                 onClick={ this.handleMouseClick }
-                {...this.props.rawProps}
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <div
                     ref={ slider => this.slider = slider }
@@ -122,7 +123,7 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                     isActive={ this.state.activeHandle === 'from' }
                     offset={ fromHandleOffset }
                     tooltipContent={ normValueFrom }
-                    onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
+                    onUpdate={ (mouseX) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
                     onKeyDownUpdate={ type => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
                     handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
                     rawProps={{

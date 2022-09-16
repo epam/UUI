@@ -103,7 +103,7 @@ export default function ModalWithFormExampleToggler() {
             caption='Show modal'
             onClick={ () => svc.uuiModals
                 .show((props) => <ModalWithFormExample { ...props }/>)
-                .then((person: Person) => svc.uuiNotifications.show((props: INotification) =>
+                .then(person => svc.uuiNotifications.show(props =>
                     <SuccessNotification { ...props } >
                         <Text>Data has been saved!</Text>
                         <Text>Person: { JSON.stringify(person) }</Text>

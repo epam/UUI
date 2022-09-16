@@ -8,6 +8,6 @@ export interface MainMenuIconProps extends ButtonProps, IAdaptiveItem {
     icon: Icon;
 }
 
-export const MainMenuIcon = (props: MainMenuIconProps) => (
-    <IconButton icon={ props.icon } cx={ cx(props.cx, css.container) } { ...props } />
-);
+export const MainMenuIcon = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, MainMenuIconProps>((props, ref) => (
+    <IconButton ref={ ref } icon={ props.icon } cx={ cx(props.cx, css.container) } { ...props } />
+));

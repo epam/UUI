@@ -1,47 +1,59 @@
 import * as React from 'react';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui';
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui';
 import * as css from './CalendarPresets.scss';
 
 export const uuiPresets = {
     container: 'uui-presets-container',
     header: 'uui-presets-header',
     item: 'uui-presets-item',
-};
+} as const;
 
-type PresetValue = {
+interface PresetValue {
     from: string,
     to: string,
     order?: number,
 };
 
-export type Presets = {
+export interface Presets {
     [key: string]: {
         name: string,
         getRange: () => PresetValue,
     },
 };
 
-export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     presets: Presets;
-    onPresetSet: (nV: PresetValue) => any;
+    onPresetSet: (nV: PresetValue) => void;
 }
 
-export class CalendarPresets extends React.Component<CalendarPresetsProps, any> {
+export class CalendarPresets extends React.Component<CalendarPresetsProps> {
+    getPresets() {
+        const presets = [];
 
-    render() {
-        let presets = [];
-        for (let key in this.props.presets) {
-            this.props.presets[key] && presets.push({...this.props.presets[key].getRange(), name: this.props.presets[key].name});
+        for (const key in this.props.presets) {
+            if (!this.props.presets[key]) return;
+            presets.push({
+                ...this.props.presets[key].getRange(),
+                name: this.props.presets[key].name
+            });
         }
 
-        presets.sort((a: PresetValue, b: PresetValue) => {
-            return a.order - b.order;
-        });
+        return presets.sort((a, b) => a.order - b.order);
+    }
 
+    render() {
         return (
-            <div className={ cx(css.container, uuiPresets.container, this.props.cx) } {...this.props.rawProps} >
+            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
                 <div className={ uuiPresets.header }>Presets</div>
-                { presets.map(item => <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>{ item.name }</div>) }
+                { this.getPresets().map(item => (
+                    <div
+                        key={ item.name }
+                        className={ uuiPresets.item }
+                        onClick={ () => this.props.onPresetSet(item) }
+                    >
+                        { item.name }
+                    </div>
+                )) }
             </div>
         );
     }

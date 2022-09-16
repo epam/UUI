@@ -3,14 +3,19 @@ import { UuiContexts, UuiContext } from '@epam/uui';
 
 export class Modals extends React.Component {
     static contextType = UuiContext;
+    context: UuiContexts;
 
-    constructor(props: any, context: UuiContexts) {
-        super(props, context);
+    constructor(props: {}) {
+        super(props);
+    }
+
+    componentDidMount() {
+        if (!this.context) return;
         this.context.uuiModals.subscribe(() => this.forceUpdate());
     }
 
     public render() {
-        return this.context.uuiModals.getOperations().map((modalOperation: any) => {
+        return this.context.uuiModals.getOperations().map(modalOperation => {
             return React.createElement(modalOperation.component, modalOperation.props);
         });
     }

@@ -65,6 +65,7 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     isOpen?: boolean;
     isDropdown?: boolean;
     toggleDropdownOpening?: (value: boolean) => void;
+    ref?: React.Ref<any>;
 }
 
 /**
@@ -139,6 +140,10 @@ export interface IHasRawProps<T> {
     rawProps?: React.HTMLAttributes<T> & Record<string, any>;
 }
 
+export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
+    forwardedRef?: React.ForwardedRef<T>;
+}
+
 export type FlexRowProps = IHasCX
     & IClickable
     & React.Attributes
@@ -162,7 +167,7 @@ export type FlexCellProps = IHasCX
         children?: any;
     };
 
-export type VPanelProps = types.IHasCX & types.IHasChildren & types.IClickable & types.IHasRawProps<HTMLDivElement> & IAnalyticableClick & {
+export type VPanelProps = types.IHasCX & types.IHasChildren & types.IClickable & types.IHasRawProps<HTMLDivElement> & types.IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {
     style?: React.CSSProperties;
 };
 

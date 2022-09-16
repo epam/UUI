@@ -3,10 +3,6 @@ import { renderWithContextAsync } from "@epam/test-utils";
 import { dataSource } from "./dataMocks";
 import { PickerModal } from "../PickerModal";
 
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
-
 describe("PickerModal", () => {
     it("should be rendered correctly", async () => {
         const tree = await renderWithContextAsync(

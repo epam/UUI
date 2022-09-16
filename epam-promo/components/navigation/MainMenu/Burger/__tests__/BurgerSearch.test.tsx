@@ -1,22 +1,23 @@
 import React from 'react';
 import { BurgerSearch } from '../BurgerSearch';
-import renderer from 'react-test-renderer';
 import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
+import { renderWithContextAsync } from '@epam/test-utils';
 
 describe('BurgerSearch', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<BurgerSearch
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <BurgerSearch
                 value={ null }
                 onValueChange={ () => {} }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<BurgerSearch
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <BurgerSearch
                 value={ null }
                 onValueChange={ () => {} }
                 onAccept={ () => {} }
@@ -25,8 +26,9 @@ describe('BurgerSearch', () => {
                 iconPosition='right'
                 isDropdown
                 isOpen
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

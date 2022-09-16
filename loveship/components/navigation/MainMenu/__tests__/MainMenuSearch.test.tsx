@@ -1,18 +1,22 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import { renderWithContextAsync } from '@epam/test-utils';
 import {MainMenuSearch} from "../MainMenuSearch";
 
 describe("MainMenuSearch", () => {
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<MainMenuSearch value="test" onValueChange={ jest.fn() }/>)
-            .toJSON();
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(
+            <MainMenuSearch
+                value="test"
+                onValueChange={ jest.fn() }
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it("should be rendered correctly with props", () => {
-        const tree = renderer
-            .create(<MainMenuSearch
+    it("should be rendered correctly with props", async () => {
+        const tree = await renderWithContextAsync(
+            <MainMenuSearch
                 value='test'
                 onValueChange={ jest.fn() }
                 caption='Test button'
@@ -21,8 +25,9 @@ describe("MainMenuSearch", () => {
                 estimatedWidth={ 120 }
                 showInBurgerMenu
                 priority={ 6 }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

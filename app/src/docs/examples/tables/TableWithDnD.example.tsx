@@ -11,7 +11,7 @@ export default function TableWithDnDExample() {
 
     const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
         items: items,
-    }, []);
+    }, [items]);
 
     const view = dataSource.useView(value, onValueChange, {
         getRowOptions: (i, index) => ({
@@ -25,7 +25,7 @@ export default function TableWithDnDExample() {
                         ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
                         : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
 
-                    const result = items.map(i => i === data.srcData ? { ...data.srcData, order: newOrder} : i);
+                    const result = items.map(i => i === data.srcData ? { ...data.srcData, order: newOrder } : i);
                     const sortedResult = sortBy(result, i => i.order);
 
                     setItems(sortedResult);

@@ -60,6 +60,11 @@ export interface DndActorRenderParams {
      * Some of these markers are used by the DndActor internally, so they must be added even if no used by component itself to apply styles.
      */
     classNames: string[];
+
+    /**
+     * Ref to the DOM element to perform DnD actions
+     */
+    ref?: React.Ref<any>;
 }
 
 export interface IDndActor<TSrcData, TDstData> {

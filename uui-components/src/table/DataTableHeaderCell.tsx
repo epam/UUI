@@ -1,11 +1,11 @@
-import React, { createRef, ReactElement, Component, PropsWithRef } from 'react';
+import * as React from 'react';
 import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked } from "@epam/uui";
 
 interface DataTableRenderProps {
-    renderCellContent: (props: HeaderCellContentProps) => ReactElement;
+    renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;
 }
 
-export interface HeaderCellContentProps extends DndActorRenderParams, PropsWithRef<any> {
+export interface HeaderCellContentProps extends DndActorRenderParams {
     onResizeStart: (e: React.MouseEvent) => void;
     onResizeEnd: (e: React.MouseEvent) => void;
     onResize: (e: MouseEvent) => void;
@@ -16,16 +16,16 @@ interface DataTableHeaderCellState {
     isResizing: boolean;
 }
 
-export abstract class DataTableHeaderCell<TItem, TId> extends Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps, DataTableHeaderCellState> {
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps> {
     state: DataTableHeaderCellState = {
         isResizing: false,
     };
 
-    cellRef = createRef<HTMLElement>();
+    cellRef = React.createRef<HTMLElement>();
 
     toggleSort = (e: React.MouseEvent) => {
-        if (isClickableChildClicked(e)) return;
-        this.props.column.isSortable && this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
+        if (isClickableChildClicked(e) || !this.props.column.isSortable) return;
+        this.props.onSort(this.props.sortDirection === 'asc' ? 'desc' : 'asc');
     }
 
     canAcceptDrop(params: AcceptDropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>) {
@@ -77,16 +77,20 @@ export abstract class DataTableHeaderCell<TItem, TId> extends Component<DataTabl
             onResizeEnd: this.onResizeEnd,
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
-            ref: this.cellRef,
             ...dndProps,
+            ref: node => {
+                (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;
+                if (!dndProps?.ref) return;
+                (dndProps.ref as React.MutableRefObject<HTMLElement>).current = node;
+            },
         });
     }
-
 
     render() {
         if (this.props.allowColumnsReordering) {
             return (
                 <DndActor
+                    key={ this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '') }
                     dstData={ this.props.column }
                     srcData={ this.props.column.fix ? null : this.props.column }
                     canAcceptDrop={ this.canAcceptDrop }

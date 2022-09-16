@@ -6,7 +6,6 @@ exports[`PickerToggler should be rendered correctly 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onKeyDown={[Function]}
   tabIndex={0}
 >
   <div
@@ -34,7 +33,7 @@ exports[`PickerToggler should be rendered correctly with extra props 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  onKeyDown={[Function]}
+  onKeyDown={[MockFunction]}
   tabIndex={0}
 >
   <div

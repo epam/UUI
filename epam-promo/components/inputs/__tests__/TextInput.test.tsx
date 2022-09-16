@@ -1,22 +1,23 @@
 import React from 'react';
 import { TextInput } from '../TextInput';
-import renderer from 'react-test-renderer';
+import { renderWithContextAsync } from '@epam/test-utils';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TextInput', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TextInput
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <TextInput
                 value={ null }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TextInput
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <TextInput
                 value={ null }
                 onValueChange={ jest.fn }
                 onAccept={ jest.fn }
@@ -26,8 +27,9 @@ describe('TextInput', () => {
                 size='36'
                 isDropdown
                 isOpen
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

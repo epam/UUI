@@ -1,36 +1,34 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {TimePicker} from "../TimePicker";
-
-jest.mock("react-dom", () => ({
-    findDOMNode: jest.fn(),
-}));
+import { renderWithContextAsync } from '@epam/test-utils';
+import { TimePicker } from "../TimePicker";
 
 describe("TimePicker", () => {
-    const value = {
-        hours: 1,
-        minutes: 1,
-    };
+    const value = { hours: 1, minutes: 1 };
     const onChange = jest.fn();
 
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<TimePicker value={ value } onValueChange={ onChange }/>)
-            .toJSON();
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(
+            <TimePicker
+                value={ value }
+                onValueChange={ onChange }
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it("should be rendered correctly with extra props", () => {
-        const tree = renderer
-            .create(<TimePicker
+    it("should be rendered correctly with extra props", async () => {
+        const tree = await renderWithContextAsync(
+            <TimePicker
                 value={ value }
                 onValueChange={ onChange }
                 format={ 24 }
                 minutesStep={ 5 }
                 size='36'
                 isDisabled
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

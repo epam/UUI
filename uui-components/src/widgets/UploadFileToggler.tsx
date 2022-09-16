@@ -1,35 +1,31 @@
 import * as React from 'react';
 import * as css from './UploadFileToggler.scss';
-import { IHasRawProps } from '@epam/uui';
+import { IHasForwardedRef, IHasRawProps } from '@epam/uui';
 
 interface UploadFileTogglerRenderParams {
     onClick(): any;
 }
 
-interface UploadFileTogglerProps extends IHasRawProps<HTMLDivElement> {
+interface UploadFileTogglerProps extends IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLInputElement> {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
     onFilesAdded(files: File[]): any;
     accept?: string;
     single?: boolean;
 }
 
-export class UploadFileToggler extends React.Component<UploadFileTogglerProps, any> {
-    fileInput: HTMLElement | null;
+export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
+    fileInput = React.createRef<HTMLInputElement>();
 
     onClick = () => {
-        this.fileInput?.click();
+        this.fileInput.current?.click();
     }
 
     render() {
-        const params: UploadFileTogglerRenderParams = {
-            onClick: this.onClick,
-        };
-
         return (
-            <div {...this.props.rawProps}>
+            <div ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <input
                     className={ css.fileInput }
-                    ref={ (ref) => { this.fileInput = ref; } }
+                    ref={ this.fileInput }
                     onChange={ e => {
                         this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));
                         e.currentTarget.value = null;
@@ -38,7 +34,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps, a
                     multiple={ !this.props.single }
                     accept={ this.props.accept }
                 />
-                { this.props.render(params) }
+                { this.props.render({ onClick: this.onClick }) }
             </div>
         );
     }

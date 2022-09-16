@@ -28,6 +28,7 @@ export class VPanel extends React.Component<VPanelProps> {
                     css.container,
                     this.props.onClick && uuiMarkers.clickable
                 ) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 { this.props.children }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TimePickerBody } from '../TimePickerBody';
-import renderer from 'react-test-renderer';
+import { renderWithContextAsync } from '@epam/test-utils';
 import MockDate from 'mockdate';
 import { systemIcons } from "./../../../icons/icons";
 const arrowIcon = systemIcons[30].foldingArrow;
@@ -14,27 +14,29 @@ afterEach(() => {
 });
 
 describe('TimePickerBody', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TimePickerBody
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <TimePickerBody
                 value={ { hours: 12, minutes: 30 } }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TimePickerBody
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <TimePickerBody
                 value={ { hours: 12, minutes: 30 } }
                 onValueChange={ jest.fn }
                 format={ 12 }
                 minutesStep={ 5 }
                 addIcon={ arrowIcon }
                 subtractIcon={ arrowIcon }
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

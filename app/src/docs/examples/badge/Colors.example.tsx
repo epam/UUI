@@ -14,6 +14,7 @@ export default function ColorsBadgeExample() {
                 <Badge color='orange' fill='solid' caption='Status' />
                 <Badge color='purple' fill='solid' caption='Status' />
                 <Badge color='violet' fill='solid' caption='Status' />
+                <Badge color='gray30' fill='solid' caption='Status' />
             </FlexRow>
             <FlexRow spacing='12' >
                 <Badge color='blue' fill='semitransparent' caption='Status' />
@@ -24,6 +25,7 @@ export default function ColorsBadgeExample() {
                 <Badge color='orange' fill='semitransparent' caption='Status' />
                 <Badge color='purple' fill='semitransparent' caption='Status' />
                 <Badge color='violet' fill='semitransparent' caption='Status' />
+                <Badge color='gray30' fill='semitransparent' caption='Status' />
             </FlexRow>
             <FlexRow spacing='12' >
                 <Badge color='blue' fill='transparent' caption='Status' />
@@ -34,6 +36,7 @@ export default function ColorsBadgeExample() {
                 <Badge color='orange' fill='transparent' caption='Status' />
                 <Badge color='purple' fill='transparent' caption='Status' />
                 <Badge color='violet' fill='transparent' caption='Status' />
+                <Badge color='gray30' fill='transparent' caption='Status' />
             </FlexRow>
         </FlexCell>
     );
