@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as css from './Switch.scss';
-import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext } from "@epam/uui";
+import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef } from "@epam/uui";
 
-export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement> {
+export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
     tabIndex?: number;
     id?: string;
 }
 
-export class Switch extends React.Component<SwitchProps, any> {
+export class Switch extends React.Component<SwitchProps> {
     static contextType = UuiContext;
     context: UuiContexts;
 
@@ -29,6 +29,7 @@ export class Switch extends React.Component<SwitchProps, any> {
                     this.props.isDisabled && uuiMod.disabled,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }>

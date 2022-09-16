@@ -1,3 +1,10 @@
+# 4.6.0 -
+
+**Breaking Change**
+* [Tooltip]: the Tooltip target needs to accept ref correctly
+* [Dropdown]: renderTarget now returns a ref, that needs to passed correctly to the target component
+* [DndActor]: ref needs to be passed to the root node in the render prop
+
 # 4.5.4 - 10.02.2022
 
 **What’s Fixed**
@@ -49,7 +56,7 @@
 * [Breaking Change]: Changed VirtualList component api. Introduced new useVirtualList hook.
     More information here - https://uui.epam.com/documents?category=components&id=virtualList#advanced
 
-* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.  
+* Improved SSR support and introduced uui next.js app template. More information here - https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template.
 * Added rawProps attribute to ModalHeader, ModalFooter, PickerInput, RangeDatePicker, DatePicker, TimePicker. Removed 'id' prop from PickerInput, DatePicker, TimePicker.
 * [FileCard]: Added extension to file card. Bugfixes.
 * [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute

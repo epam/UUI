@@ -66,7 +66,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
         />
         <div
           className="flexCell"
-          onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,
@@ -98,7 +97,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
       <div
         className="flexCell subHeaderWrapper"
-        onClick={[Function]}
         style={
           Object {
             "alignSelf": undefined,
@@ -204,7 +202,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -239,7 +236,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -274,7 +270,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -309,7 +304,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -344,7 +338,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -379,7 +372,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -414,7 +406,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -449,7 +440,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -484,7 +474,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -519,7 +508,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
-                    onClick={[Function]}
                     style={
                       Object {
                         "alignSelf": undefined,

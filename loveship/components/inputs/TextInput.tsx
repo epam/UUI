@@ -36,20 +36,21 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions> {
-    render() {
-        return <IEditableDebouncer
-            { ...this.props }
-            render={ (iEditable =>
+export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>(
+    (props, ref) => (
+        <IEditableDebouncer
+            { ...props }
+            render={ iEditable => (
                 <TextInput
-                    icon={ systemIcons[this.props.size || defaultSize].search }
-                    onCancel={ !!this.props.value ? (() => iEditable.onValueChange('')) : undefined }
+                    icon={ systemIcons[props.size || defaultSize].search }
+                    onCancel={ !!props.value ? (() => iEditable.onValueChange('')) : undefined }
                     type="search"
                     inputMode="search"
-                    { ...this.props }
+                    ref={ ref }
+                    { ...props }
                     { ...iEditable }
                 />
             ) }
-        />;
-    }
-}
+        />
+    )
+);

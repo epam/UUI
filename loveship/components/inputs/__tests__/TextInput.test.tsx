@@ -1,22 +1,26 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {TextInput} from "../TextInput";
+import { renderWithContextAsync } from '@epam/test-utils';
+import { TextInput } from "../TextInput";
 import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe("TextInput", () => {
     const value = "test";
     const onChange = jest.fn();
 
-    it("should be rendered correctly", () => {
-        const tree = renderer
-            .create(<TextInput value={ value } onValueChange={ onChange }/>)
-            .toJSON();
+    it("should be rendered correctly", async () => {
+        const tree = await renderWithContextAsync(
+            <TextInput
+                value={ value }
+                onValueChange={ onChange }
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 
-    it("should be rendered correctly with extra props", () => {
-        const tree = renderer
-            .create(<TextInput
+    it("should be rendered correctly with extra props", async () => {
+        const tree = await renderWithContextAsync(
+            <TextInput
                 value={ value }
                 onValueChange={ onChange }
                 onAccept={ jest.fn() }
@@ -26,8 +30,9 @@ describe("TextInput", () => {
                 isDropdown
                 isOpen
                 size='60'
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 });

@@ -50,7 +50,6 @@ Array [
       >
         <div
           className="flexCell"
-          onClick={[Function]}
           style={
             Object {
               "alignSelf": undefined,

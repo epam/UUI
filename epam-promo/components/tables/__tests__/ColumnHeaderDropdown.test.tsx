@@ -6,7 +6,6 @@ import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 
 jest.mock('react-dom', () => ({
     createPortal: jest.fn((element, node) => element),
-    findDOMNode: jest.fn(),
 }));
 
 describe('ColumnHeaderDropdown', () => {
@@ -18,10 +17,11 @@ describe('ColumnHeaderDropdown', () => {
     afterEach(() => {
         jest.restoreAllMocks();
     });
-    
+
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(<ColumnHeaderDropdown
+                title=""
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
                 isOpen
                 onOpenChange={ jest.fn }

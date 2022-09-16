@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import renderer from 'react-test-renderer';
 import dayjs from 'dayjs';
 import { RangeDatePicker } from '..';
-import {toCustomDateRangeFormat, valueFormat} from '@epam/uui-components';
-
-jest.mock('react-dom', () => ({
-    findDOMNode: jest.fn(),
-}));
+import { toCustomDateRangeFormat, valueFormat } from '@epam/uui-components';
+import { renderWithContextAsync } from '@epam/test-utils';
 
 describe('RangeDataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
@@ -16,20 +12,20 @@ describe('RangeDataPicker', () => {
         wrapper && wrapper.unmount();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<RangeDatePicker
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <RangeDatePicker
                 format="MMM D, YYYY"
                 value={ null }
                 onValueChange={ jest.fn }
-            />)
-            .toJSON();
+            />
+        );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<RangeDatePicker
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <RangeDatePicker
                 format="MMM D, YYYY"
                 value={ null }
                 onValueChange={ jest.fn }
@@ -39,8 +35,9 @@ describe('RangeDataPicker', () => {
                 isDisabled
                 isReadonly
                 isInvalid
-            />)
-            .toJSON();
+            />
+        );
+
         expect(tree).toMatchSnapshot();
     });
 

@@ -11,7 +11,7 @@ import * as css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);
 
 export function weekCount(displayedDate: Dayjs) {
-    let days: any[] = [];
+    let days: Dayjs[] = [];
     const dayOfLastWeekInPrevMonth = displayedDate.subtract(1, 'month').endOf('month').day();
     days = days.concat(new Array(dayOfLastWeekInPrevMonth).fill(undefined));
     // get days of current month
@@ -206,6 +206,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
             <>
                 <div className={ uuiRangeDatePickerBody.separator } />
                 <CalendarPresets
+                    forwardedRef={ this.props.forwardedRef }
                     onPresetSet={ (presetVal) => {
                         this.props.onValueChange({
                             view: 'DAY_SELECTION',

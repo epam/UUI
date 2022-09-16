@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
 import { DataTableHeaderRowProps, withMods } from '@epam/uui';
 import { ReactComponent as GearIcon } from './../icons/settings-18.svg';
