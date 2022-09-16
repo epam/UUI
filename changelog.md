@@ -42,6 +42,12 @@
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
 
+# 4.8.5 - 15.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
+
 # 4.8.4 - 09.09.2022
 
 **What’s Fixed**
