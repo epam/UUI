@@ -35,12 +35,20 @@
   * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
   * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
 
+* Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
 * useForm
   * fixed revert/undo/redo behavior after save
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
+
+# 4.8.5 - 15.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
 
 # 4.8.4 - 09.09.2022
 
