@@ -22,7 +22,8 @@
     "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
     "generate-components-api": "cd uui-build && yarn generate-components-api",
     "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
-    "release": "lerna publish --force-publish"
+    "release": "lerna publish --force-publish",
+    "build-modules": "learn run build"
   },
   "repository": {
     "type": "git",
