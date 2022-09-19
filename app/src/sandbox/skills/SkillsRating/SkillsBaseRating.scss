@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+    }
+
+    &--readonly {
+        cursor: default;
+    }
+}
+
+
