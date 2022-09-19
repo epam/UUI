@@ -26,13 +26,14 @@ export const FilterItemBody = (props: IFilterItemBodyProps<any>) => {
             return (
                 <FilterDataPickerBody
                     { ...props }
-                    format="DD/MM/YYYY"
+                    format={ props.format || "DD/MM/YYYY" }
                 />
             );
         case "rangeDatePicker":
             return (
                 <FilterRangeDatePickerBody
                     { ...props }
+                    format={ props.format || "DD/MM/YYYY" }
                     value={ props.value || { from: null, to: null } }
                 />
             );
