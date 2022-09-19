@@ -308,9 +308,9 @@ export type IFilterPredicate = {
 type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
-    columnKey?: string;
+    columnKey: string;
     isAlwaysVisible?: boolean;
-    predicates?: IFilterPredicate[]
+    predicates?: IFilterPredicate[];
 };
 
 type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -318,10 +318,12 @@ type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
+    valueType?: "id";
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "datePicker" | "rangeDatePicker";
+    format?: string;
 };
 
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
