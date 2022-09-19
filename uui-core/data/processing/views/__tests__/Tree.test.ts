@@ -156,4 +156,47 @@ describe('Tree', () => {
             expect(subtotals.get(undefined)).toBe(19);
         })
     });
+
+    describe('cascadeSelection', () => {
+        it('can select single (cascade)', () => {
+            const selection = testTree.cascadeSelection([200], 100, true).sort();
+            expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
+        })
+
+        it('can un-select single (cascade)', () => {
+            const selection = testTree.cascadeSelection([100, 110, 120, 121, 200], 100, false).sort();
+            expect(selection).toEqual([200]);
+        })
+
+        it('can select single (no cascade)', () => {
+            const selection = testTree.cascadeSelection([100], 200, true, { cascade: false }).sort();
+            expect(selection).toEqual([100, 200]);
+        })
+
+        it('can un-select single (no cascade)', () => {
+            const selection = testTree.cascadeSelection([100], 200, false, { cascade: false }).sort();
+            expect(selection).toEqual([100]);
+        })
+
+        it('it selects parents when all children are checked', () => {
+            const selection = testTree.cascadeSelection([100, 110, 121, 200], 122, true).sort();
+            expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
+        })
+
+        it('it unselects parents when any children is unchecked', () => {
+            const selection = testTree.cascadeSelection([100, 110, 120, 121, 122, 200], 121, false).sort();
+            expect(selection).toEqual([110, 122, 200]);
+        })
+
+        it('can select all', () => {
+            const selection = testTree.cascadeSelection([200], undefined, true, { cascade: true }).sort();
+            const allTestTreeIds = testData.map(i => i.id).sort();
+            expect(selection).toEqual(allTestTreeIds);
+        })
+
+        it('can unselect all', () => {
+            const selection = testTree.cascadeSelection([100, 110, 120, 122, 200], undefined, false).sort();
+            expect(selection).toEqual([]);
+        })
+    });
 });
