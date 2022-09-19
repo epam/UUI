@@ -35,6 +35,8 @@
   * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
   * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
 
+* Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+
 **What’s Fixed**
 * DnD Actor - improved 'inside' position calculation
 * useForm
