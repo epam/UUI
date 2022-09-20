@@ -2,11 +2,10 @@ import * as React from 'react';
 import { DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
 import { PickerBase, PickerBaseState } from './index';
 
-export interface PickerModalOptions<TItem, TId> {
+export interface PickerModalOptions<TItem, TId> extends IHasRawProps<HTMLDivElement> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
     renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
     disallowClickOutside?: boolean;
-    rawProps?: IHasRawProps<HTMLDivElement>['rawProps']
 }
 
 export type PickerModalImplProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
