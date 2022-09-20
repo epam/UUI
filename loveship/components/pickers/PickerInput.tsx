@@ -22,7 +22,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...restProps }
-            rawProps={rawProps.body}
+            rawProps={rawProps?.body}
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
