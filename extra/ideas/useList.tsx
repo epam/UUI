@@ -1,12 +1,11 @@
 import { Button, DataTable } from "epam-promo";
 import React, { useState } from "react";
-import { ArrayListViewProps, DataColumnProps, DataQueryFilter, DataRowProps, DataTableState, IDataSourceView, IEditable, LazyDataSourceApi, LazyListViewProps, Tree, useTableState } from "uui-core";
+import { ArrayListViewProps, DataColumnProps, DataQueryFilter, DataRowProps, DataTableState, IDataSourceView, IEditable, LazyDataSourceApi, LazyListViewProps, Metadata, Tree, useForm, useTableState } from "uui-core";
 
-interface UseListProps<TItem, TId, TFilter>
-    extends
-        // these two will be merged into ListViewProps, or even to the UseListProps directly
-        Partial<LazyListViewProps<TItem, TId, TFilter>>, Partial<ArrayListViewProps<TItem, TId, TFilter>>
-    {
+type UseListProps<TItem, TId, TFilter> =
+        // these two will be merged into BaseListViewProps, or even to the UseListProps directly
+        (LazyListViewProps<TItem, TId, TFilter> | Partial<ArrayListViewProps<TItem, TId, TFilter>)
+    & {
     /**
      * Set to false to disable fetching of visible rows. This doesn't disable fetching selected/checked items.
      * Useful for scenarios when list is not visible until user action (e.g. in PickerInput - until user opens dropdown)
@@ -14,19 +13,21 @@ interface UseListProps<TItem, TId, TFilter>
      * */
     fetchRows?: boolean;
 
+    // TableState is passed to the dataSource.useView/getView via 1nd and 2rd parameters (useView(value, onValueChange, options))
+    // We don't need metadata and validation for these, supplying them via lenses is a rare case, so let's put them like this:
     tableState?: DataTableState<TFilter>;
     setTableState?: (state: DataTableState<TFilter>) => void;
-
-    // Option 1 - use tree directly.
-    // Pros:
-    // - most efficient (no conversion)
-    // - user can use Tree helpers
-    // Cons:
-    // - need to adjust lenses and form/validate somehow to work with Tree
-    // -
-    tree?: Tree<TItem, TId>;
-    setTree?: (update: (current: Tree<TItem, TId>) => Tree<TItem, TId>) => void;
 }
+    // We need to decide on how to put items/setItems into useList
+    //
+    // We want to support several formats:
+    // - items: TItem[] // simple, backward-compatible. Tree manipulation is hard, and we need to re-build the tree on each change
+    // - [maybe] byId: Map<TId, TItem> // a bit more efficient and convenient. However, it can't store the order of items. And we'd need to re-build the tree anyway
+    // - tree: Tree<TItem, TId> // convenient and efficient. But not serializable, and we need to adjust metadata/validate/lenses to support it
+    //
+    // We also need to pass metadata and validationState along with the value. It seems like we are forced to use IEditable here.
+    // Let's try to use IEditable directly:
+& (Partial<IEditable<TItem>> | Partial<IEditable<Tree<TItem, TId>>>)
 
 interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     extends
@@ -50,7 +51,7 @@ interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     //tableState?: DataTableState<TFilter>;
     //setTableState?: (state: DataTableState<TFilter>) => void;
 
-    addItem(item: Partial<TItem>): void;
+    addItem(): void;
     deleteItem(id: TId): void;
 }
 
@@ -115,25 +116,47 @@ function TreeTable() {
 }
 
 // editable tree
+interface FormState {
+    items: Tree<MyItem, number>;
+    someOtherField: string;
+}
+
+const formMetadata: Metadata<FormState> = {
+    props: {
+        items: {
+            all: {
+                // props: { // need to do some type-fu here
+                // }
+            }
+        },
+        someOtherField: { isRequired: true },
+    },
+}
+
 function EditableTree() {
-    const [tree, setTree] = useState<Tree<MyItem, number>>(Tree.blank({}));
+    const { lens } = useForm({
+        value: {
+            items: Tree.blank<MyItem, number>({}),
+            someOtherField: "",
+        },
+        getMetadata: () => formMetadata,
+        onSave: () => Promise.resolve(),
+    });
 
     const [tableState, setTableState] = useState<DataTableState>();
 
     const list = useList<MyItem, number>({
-        tree,
-        setTree,
         getId: i => i.id,
         tableState,
         setTableState,
+        ...lens.prop('items').toProps(),
     });
-
 
     return <div>
         <DataTable
             columns={ columns }
             { ...list }
         />;
-        <Button caption="" onClick={ list./>
+        <Button caption="Add Item" onClick={ () => list.addItem() } />
     </div>
 }
