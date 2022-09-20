@@ -29,7 +29,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
 
 exports[`PickerToggler should be rendered correctly with extra props 1`] = `
 <div
-  className="container uui-input-box -clickable colorSky root size-24 mode-cell"
+  className="container uui-input-box colorSky root size-24 mode-cell"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}

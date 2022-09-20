@@ -29,7 +29,7 @@ exports[`PickerToggler should be rendered correctly 1`] = `
 
 exports[`PickerToggler should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box -clickable root size-48 mode-form"
+  className="container uui-input-box root size-48 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
