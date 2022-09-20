@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { IAnalyticableOnChange, IEditable } from "../props";
+import { IAnalyticableOnChange, IEditable, IHasRawProps } from "../props";
 import { IDataSource, IDataSourceView } from "../../data";
 import { DataRowOptions, DataRowProps } from "../tables";
 import { SortingOption } from "../dataQuery";
@@ -76,6 +76,11 @@ export type PickerBaseOptions<TItem, TId> = {
 
     /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */
     getSearchFields?(item: TItem): string[];
+
+    rawProps?: {
+        input?: IHasRawProps<HTMLDivElement>['rawProps'];
+        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+    } | IHasRawProps<HTMLDivElement>['rawProps']
 };
 
 export type PickerFooterProps<TItem, TId> = {
