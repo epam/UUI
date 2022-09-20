@@ -50,7 +50,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
 
         return (
             <ModalBlocker blockerShadow='dark' { ...this.props } >
-                <ModalWindow width='600' height='700' rawProps={this.props.rawProps}>
+                <ModalWindow width='600' height='700'>
                     <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort() } />
                     <FlexCell cx={ css.subHeaderWrapper }>
                         <FlexRow vPadding='24'>
