@@ -152,7 +152,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
-                (!props.isReadonly && !props.isDisabled && props.onClick) && (props.isOpen && uuiMarkers.clickable),
+                (!props.isReadonly && !props.isDisabled && props.onClick) && uuiMarkers.clickable,
                 (!props.isReadonly && !props.isDisabled && inFocus) && (props.isOpen && uuiMod.focus),
                 props.cx,
             ) }
