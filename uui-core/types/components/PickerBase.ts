@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { IAnalyticableOnChange, IEditable, IHasRawProps } from "../props";
+import { IAnalyticableOnChange, IEditable } from "../props";
 import { IDataSource, IDataSourceView } from "../../data";
 import { DataRowOptions, DataRowProps } from "../tables";
 import { SortingOption } from "../dataQuery";
