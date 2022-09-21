@@ -1,0 +1,32 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+//* {
+//    font-family: $font-sans;
+//}
+
+.target-body-container {
+    padding: 0 12px;
+    border: 1px solid #CED0DB;
+
+    & *:not(:last-of-type) {
+        margin-right: 6px;
+    }
+}
+
+.drop-container {
+    min-width: 300px;
+    border-radius: 6px;
+
+    &:global(.uui-dropdown-body) {
+        min-width: 300px;
+    }
+
+    .drop-container-row {
+        box-sizing: border-box;
+        padding: 12px;
+        min-width: 100%;
+        justify-content: space-between;
+    }
+}
+

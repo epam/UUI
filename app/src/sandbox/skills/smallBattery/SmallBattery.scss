@@ -1,0 +1,29 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+.rating-wrapper {
+    box-sizing: border-box;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 6px);
+    column-gap: 1px;
+
+    .rating-block {
+        box-sizing: border-box;
+        width: 6px;
+        height: 12px;
+        border: 1px solid #CED0DB;
+
+        &.active {
+            background-color: #88CC00;
+            border: 1px solid #88CC00;
+        }
+
+        &:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        &:last-of-type {
+            border-radius: 0 3px 3px 0;
+        }
+    }
+}
