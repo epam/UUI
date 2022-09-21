@@ -1,0 +1,51 @@
+@use '~@epam/promo/assets/styles/colors' as *;
+@use '~@epam/promo/assets/styles/fonts' as *;
+
+.rating-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+    padding: 0 12px 12px;
+    min-width: 100%;
+
+    & *:not(:last-of-type) {
+        margin-right: 3px;
+    }
+
+    .itemContainer {
+        box-sizing: border-box;
+        flex-grow: 1;
+        flex-basis: 25%;
+
+        &:first-of-type {
+            .rating-block {
+                border-radius: 3px 0 0 3px;
+            }
+        }
+
+        &:last-of-type {
+            .rating-block {
+                border-radius: 0 3px 3px 0;
+            }
+        }
+
+        .rating-block {
+            box-sizing: border-box;
+            height: 24px;
+            width: 100%;
+            border: 1px solid #CED0DB;
+
+            &.active {
+                background-color: #88CC00;
+                border: 1px solid #88CC00;
+            }
+        }
+
+        .itemText {
+            text-align: center;
+            font-size: 10px;
+            line-height: 9px;
+            color: $gray50;
+        }
+    }
+}
