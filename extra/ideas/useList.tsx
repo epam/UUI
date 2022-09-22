@@ -1,3 +1,4 @@
+import FormWIthClassesExample from "app/src/docs/examples/form/FormWIthClasses.example";
 import { Button, DataTable } from "epam-promo";
 import React, { useState } from "react";
 import { ArrayListViewProps, DataColumnProps, DataQueryFilter, DataRowProps, DataTableState, IDataSourceView, IEditable, LazyDataSourceApi, LazyListViewProps, Metadata, Tree, useForm, useTableState } from "uui-core";
@@ -13,6 +14,8 @@ type UseListProps<TItem, TId, TFilter> =
      * */
     fetchRows?: boolean;
 
+    fetchById?: boolean;
+
     // TableState is passed to the dataSource.useView/getView via 1nd and 2rd parameters (useView(value, onValueChange, options))
     // We don't need metadata and validation for these, supplying them via lenses is a rare case, so let's put them like this:
     tableState?: DataTableState<TFilter>;
@@ -27,7 +30,7 @@ type UseListProps<TItem, TId, TFilter> =
     //
     // We also need to pass metadata and validationState along with the value. It seems like we are forced to use IEditable here.
     // Let's try to use IEditable directly:
-& (Partial<IEditable<TItem>> | Partial<IEditable<Tree<TItem, TId>>>)
+& (Partial<IEditable<TItem[]>> | Partial<IEditable<Tree<TItem, TId>>>)
 
 interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     extends
@@ -46,6 +49,8 @@ interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     rows: DataRowProps<TItem, TId>[];
 
     getById(id: TId): DataRowProps<TItem, TId>;
+
+    reload(): void;
 
     // Pass-through table-state API via these props, instead of value/onValueChange?
     //tableState?: DataTableState<TFilter>;
@@ -72,6 +77,7 @@ const columns: DataColumnProps<MyItem, number>[] = [];
 
 // plain list, table state is controlled by useList
 function LazyPlainList() {
+    //const list = useList<MyItem, number>({ api: testApi, getId: i => i.id });
     const list = useList<MyItem, number>({ api: testApi, getId: i => i.id });
 
     return <DataTable
@@ -106,8 +112,11 @@ function TreeTable() {
         api: testApi,
         getId: i => i.id,
         getParentId: i => i.parentId,
+        fetchRows: false,
         ...tableState,
     });
+
+    list.reload()
 
     return <DataTable
         columns={ columns }
@@ -117,7 +126,7 @@ function TreeTable() {
 
 // editable tree
 interface FormState {
-    items: Tree<MyItem, number>;
+    items: MyItem[]; //Tree<MyItem, number>;
     someOtherField: string;
 }
 
@@ -136,19 +145,15 @@ const formMetadata: Metadata<FormState> = {
 function EditableTree() {
     const { lens } = useForm({
         value: {
-            items: Tree.blank<MyItem, number>({}),
+            items: [],
             someOtherField: "",
         },
         getMetadata: () => formMetadata,
         onSave: () => Promise.resolve(),
     });
 
-    const [tableState, setTableState] = useState<DataTableState>();
-
     const list = useList<MyItem, number>({
         getId: i => i.id,
-        tableState,
-        setTableState,
         ...lens.prop('items').toProps(),
     });
 

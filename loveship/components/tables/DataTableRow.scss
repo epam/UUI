@@ -2,33 +2,22 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
-    :global(.uui-table-loading-row) {
-        background-color: $night50;
-        height: 10px;
-        display: inline-block;
-    }
-
     &:global(.uui-table-row) {
-        background: $white;
-
-        :global(.uui-table-fixed-section-left),
-        :global(.uui-table-fixed-section-right) {
-            z-index: 2;
-            background: $white;
-        }
 
         &:global(.-clickable) {
             cursor: pointer;
 
-            &:hover,
-            &:hover > *:global(.uui-table-fixed-section-left),
-            &:hover > *:global(.uui-table-fixed-section-right) {
-                background-color: $night100;
+            &:hover {
+                --uui-dt-row-background: #{$night100};
             }
         }
 
         &:global(.-draggable) {
             @include dnd-cursor-style();
+        }
+
+        &:global(.uui-invalid) {
+            --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
         }
 
         &:global(.uui-dragged-out) {
@@ -40,7 +29,7 @@
         }
 
         &:global(.uui-focus) {
-            background-color: $night100;
+            --uui-dt-row-background: #{$night100};
         }
 
         &.size-24 { min-height: 24px; }
@@ -55,17 +44,23 @@
     }
 
     &.background-night50 {
-        background: $night50;
+        --uui-dt-row-background: #{$night50};
     }
 
     &.background-white {
-        background: $white;
+        --uui-dt-row-background: #{$white};
     }
 
-    // Border
+    &.background-red {
+        --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
+    }
+
+    // Borders
+    --uui-dt-row-border-color: transparent;
+    --uui-dt-row-border-width: 0;
+    
     &.border-night300 {
-        &:global(.uui-table-row) {
-            border-bottom: 1px solid $night300; // TODO: add new border
-        }
+    	--uui-dt-row-border-color: #{$night300};
+	    --uui-dt-row-border-width: 1px;    	
     }
 }

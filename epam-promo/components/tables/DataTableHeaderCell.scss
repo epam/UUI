@@ -15,6 +15,11 @@
     position: relative;
     width: 0;
 
+    // to align with cell's borders
+    border-right: 1px solid transparent;
+    margin-left: -1px;
+    background-clip: padding-box;
+
     &:global(.-clickable) {
         cursor: pointer;
 

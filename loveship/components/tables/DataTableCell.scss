@@ -1,13 +1,21 @@
 @use '../../assets/styles/scss/index' as *;
 
 .cell {
-    position: relative;
-    box-sizing: border-box;
-    width: 0;
+    --uui-dt-cell-background: transparent;
+    --uui-dt-cell-border-width: 1px;
+    --uui-dt-cell-border-color: transparent;
+    --uui-dt-cell-editor-border-width: 1px;
+    --uui-dt-cell-editor-hover-border-color: #{$night600};
+    --uui-dt-cell-editor-focus-border-color: #{$night600};
+    --uui-dt-cell-editor-invalid-border-color: #{$fire};
 
-    &.wrapper {
-        display: flex;
-        align-items: flex-start;
+    &.border-night300 {
+        --uui-dt-cell-border-color: #{$night300};
+    }
+
+    &:global(.uui-focus) {
+        --uui-dt-cell-editor-background: white;
+        --uui-dt-cell-editor-border-width:2px;
     }
 
     &.align-widgets-top {
@@ -42,9 +50,7 @@
         }
     }
 
-    &.align-widgets-center {
-        align-self: center;
-    }
+    &.align-widgets-center { align-self: center; }
 
     &.padding-12 { padding: 0 12px; }
     &.padding-24 { padding: 0 24px; }
@@ -53,6 +59,26 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    &:global(.uui-invalid) {
+        --uui-dt-cell-editor-background: #{$fire-lightest};
+    }
+
+    &.background-sky {
+        --uui-dt-cell-editor-background: #{$sky-transparent};
+    }
+    &.background-grass {
+        --uui-dt-cell-editor-background: #{$grass-transparent};
+    }
+    &.background-sun {
+        --uui-dt-cell-editor-background: #{$sun-transparent};
+    }
+    &.background-fire {
+        --uui-dt-cell-editor-background: #{$fire-transparent};
+    }
+    &.background-night50 {
+        --uui-dt-cell-editor-background: #{$night50};
+    }
 }
 
 .drag-handle {

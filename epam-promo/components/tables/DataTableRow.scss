@@ -2,58 +2,64 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
-    :global(.uui-table-loading-row) {
-        background-color: $gray5;
-        height: 10px;
-        display: inline-block;
-    }
+    &:global(.-clickable) {
+        cursor: pointer;
 
-    &:global(.uui-table-row) {
-        background: $white;
-
-        :global(.uui-table-fixed-section-left),
-        :global(.uui-table-fixed-section-right) {
-            z-index: 2;
-            background: $white;
-        }
-
-        &:global(.-clickable) {
-            cursor: pointer;
-
-            &:hover,
-            &:hover > *:global(.uui-table-fixed-section-left),
-            &:hover > *:global(.uui-table-fixed-section-right) {
-                background-color: $gray20;
-            }
-        }
-
-        &:global(.-draggable) {
-            @include dnd-cursor-style();
-        }
-
-        &:global(.uui-dragged-out) {
-            opacity: 0.5;
-        }
-
-        &:global(.uui-drag-ghost) {
-            @include dnd-ghost-shadow();
-        }
-
-        &:global(.uui-focus) {
-            border: 1px solid $blue;
-        }
-
-        &.size-24 { min-height: 24px; }
-        &.size-30 { min-height: 30px; }
-        &.size-36 { min-height: 36px; }
-        &.size-48 { min-height: 48px; }
-        &.size-60 { min-height: 60px; }
-    }
-
-    // Border
-    &.border-gray30 {
-        &:global(.uui-table-row) {
-            border-bottom: 1px solid $gray30;
+        &:hover {
+            --uui-dt-row-background: #{$gray20};
         }
     }
+
+    &:global(.-draggable) {
+        @include dnd-cursor-style();
+    }
+
+        &:global(.uui-invalid) {
+            --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
+        }
+
+    &:global(.uui-dragged-out) {
+        opacity: 0.5;
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include dnd-ghost-shadow();
+    }
+
+    &:global(.uui-focus) {
+        border: 1px solid $blue;
+    }
+
+    // Borders
+    --uui-dt-row-border-color: transparent;
+    --uui-dt-row-border-width: 0;
+}
+
+// Sizes
+
+.size-24 { min-height: 24px; }
+.size-30 { min-height: 30px; }
+.size-36 { min-height: 36px; }
+.size-48 { min-height: 48px; }
+.size-60 { min-height: 60px; }
+
+// Borders
+
+.border-gray30 {
+    --uui-dt-row-border-color: #{$gray30};
+    --uui-dt-row-border-width: 1px;
+}
+
+// Backgrounds
+
+.background-white {
+    --uui-dt-row-background: white;
+}
+
+.background-gray5 {
+    --uui-dt-row-background: #{$gray5};
+}
+
+.background-red {
+    --uui-dt-row-background: #FEF7F6;
 }

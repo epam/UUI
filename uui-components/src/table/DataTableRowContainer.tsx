@@ -58,8 +58,11 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             <div
                 style={ getSectionStyle(columns) }
                 className={ cx({
+                    [css.section]: true,
                     [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
+                    [css.fixedColumnsSectionLeft]: direction === 'left',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
+                    [css.fixedColumnsSectionRight]: direction === 'right',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
                 }) }>
                 { renderCells(columns) }
@@ -74,6 +77,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         return (
             <div
                 className={ cx(
+                    css.section,
                     css.scrollingSection,
                     uuiDataTableRowCssMarkers.uuiTableScrollingSection,
                 ) }
