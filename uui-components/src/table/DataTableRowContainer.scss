@@ -1,27 +1,56 @@
 @use '~@epam/assets/scss/index' as *;
 
+/*
+    Row z-indexes layout.
+
+    Left fixed: 5
+    Center
+    Right fixed: 5
+
+    Cell:
+        Overlay
+        * borders can overlay cell on top, impossible to overlay bottom cells because position: sticky creates isolation context:
+            Hover: 1
+            Focus: 2
+            Invalid: 3
+
+    DropMarker: 10
+*/
+
 .container {
     position: relative;
     display: flex;
     align-items: stretch;
 }
 
+.section {
+    display: flex;
+    border-bottom: var(--uui-dt-row-border-width) solid var(--uui-dt-row-border-color);
+    background: var(--uui-dt-row-background);
+    background-clip: content-box;
+    box-sizing: border-box;
+}
+
 .scrolling-section {
 	position: relative;
-    display: flex;
     align-items: stretch;
 }
 
-:global(.uui-table-fixed-section-left), :global(.uui-table-fixed-section-right) {
-    display: flex;
+.fixed-columns-section-left, .fixed-columns-section-right {
     position: sticky;
+    z-index: 5;
 }
 
-:global(.uui-table-fixed-section-left) {
+.fixed-columns-section-left {
     left: 0;
+
+    // Compensate negative padding of cells to overlap borders
+    // W/o this, we'll have additional --uui-cell-border-width pixels at the right
+    // We don't have access to the --uui-cell-border-width var. Hard-coded 1px for now.
+    border-right: 1px solid transparent;
 }
 
-:global(.uui-table-fixed-section-right) {
+.fixed-columns-section-right {
     right: 0;
 }
 

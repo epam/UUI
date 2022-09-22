@@ -47,6 +47,8 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     /** Aligns cell content horizontally */
     textAlign?: 'left' | 'center' | 'right';
 
+    justifyContent?: CSS.JustifyContentProperty;
+
     /** Align cell content vertically */
     alignSelf?: CSS.AlignSelfProperty;
 
@@ -122,20 +124,12 @@ export interface DataTableColumnsConfigOptions {
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     columns?: DataColumnProps<TItem, TId>[];
     renderCell?: (props: DataTableCellProps<TItem, TId, any>) => ReactNode;
-    showCellDivider?: boolean;
     renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
 }
 
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
     rowProps: DataRowProps<TItem, TId>;
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
-}
-
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
 export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, Partial<IEditable<TCellValue>> {
@@ -147,11 +141,10 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     isLastColumn: boolean;
     role?: React.HTMLAttributes<HTMLElement>['role'];
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-    // addons?: React.ReactNode;
-    // renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
-    // renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
-    // renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
-    // renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    addons?: React.ReactNode;
+    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
 export interface RenderCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellProps<TItem, TId, TCellValue> {

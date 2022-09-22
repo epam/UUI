@@ -146,6 +146,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const rowProps = {
             id,
             parentId,
+            key,
             rowKey: key,
             index,
             value: item,

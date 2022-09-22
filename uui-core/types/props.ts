@@ -236,6 +236,8 @@ export type FlexCellProps = IHasCX
         textAlign?: 'left' | 'center' | 'right';
         /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
         alignSelf?: CSS.AlignSelfProperty;
+        /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
+        style?: React.CSSProperties;
     };
 
 export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLDivElement> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {

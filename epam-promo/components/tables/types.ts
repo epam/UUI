@@ -10,16 +10,20 @@ export interface DataTableMods {
     headerTextCase?: 'upper' | 'normal';
 }
 
-export interface DataTableRowMods extends DataTableCellMods {
-    borderBottom?: 'none' | 'gray30';
-}
-
-export interface DataTableCellMods {
+interface TableSizesAndPositionMods {
     size?: ControlSize | '60';
     padding?: '0' | '12' | '24';
-    isFirstColumn?: boolean;
-    isLastColumn?: boolean;
     alignActions?: 'top' | 'center';
+}
+
+export interface DataTableRowMods extends TableSizesAndPositionMods {
+    borderBottom?: 'none' | 'gray30';
+    background?: 'white' | 'gray5' | 'red';
+}
+
+export interface DataTableCellMods extends TableSizesAndPositionMods {
+    background?: 'gray5' | 'red' | 'blue' | 'green' | 'amber';
+    border?: 'gray30';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {

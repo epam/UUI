@@ -26,7 +26,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
-    const renderRow = React.useCallback((rowProps: DataTableRowProps<TItem, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
