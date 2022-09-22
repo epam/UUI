@@ -32,7 +32,7 @@
     "slate-drop-or-paste-images": "^0.9.1",
     "slate-history": "^0.66.0",
     "slate-html-serializer": "^0.8.13",
-    "slate-react": "^0.82.0",
+    "slate-react": "^0.82.2",
     "slate-soft-break": "^0.9.0",
     "slate-uui-table-plugin": "^1.0.6"
   },

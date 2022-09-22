@@ -1,232 +1,300 @@
-import React, { useCallback, useMemo } from 'react';
-import isHotkey from 'is-hotkey';
-import { Editable, withReact, useSlate, Slate } from 'slate-react';
+import React, { useMemo } from 'react';
+import { Editable, withReact, Slate } from 'slate-react';
 import {
-    Editor,
-    Transforms,
     createEditor,
-    Descendant,
-    Element as SlateElement,
 } from 'slate';
 import { withHistory } from 'slate-history';
 
 import SoftBreak from "slate-soft-break";
-//import htmlclean from 'htmlclean';
-//import { Descendant, Editor } from 'slate';
-//import { ScrollBars } from '@epam/uui-components';
 
-import { IEditable, UuiContexts, uuiMod, IHasCX, UuiContext, cx, IHasRawProps } from '@epam/uui-core';
+import { paragraphPlugin, colorPlugin, baseMarksPlugin } from "./plugins";
+import { Toolbar } from "./implementation/Toolbar";
 
-// import {Toolbar} from "./implementation/Toolbar";
-// import {Sidebar} from './implementation/Sidebar';
-//import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
-//import { getSerializer, isEditorEmpty } from './helpers';
-
-import * as style from '@epam/assets/scss/promo/typography.scss';
-import * as css from './SlateEditor.scss';
-
-export const slateEditorEmptyValue: Descendant = {
-    document: {
-        nodes: [
+// @ts-ignore
+const data: any = {
+    "object": "value",
+    "document": {
+        "object": "document",
+        "data": {},
+        "nodes": [
             {
-                object: 'block',
-                type: 'paragraph',
-                //key: KeyUtils.create(),
-                nodes: [
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
                     {
-                        object: 'text',
-                        text: '',
+                        "object": "text",
+                        "text": "A powerful content editor, styled to match UI, and extensible to host any React component.",
+                        "marks": ['uui-richTextEditor-bold'],
+                    },
+                ],
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Based on Slate.JS, which is the framework to build such editors. Read more on ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "url": "https://docs.slatejs.org/",
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "Slate.JS",
+                                "marks": [],
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": " documentation site.",
+                        "marks": [],
+                    },
+                ],
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap this with convenient API.",
+                        "marks": [],
+                    },
+                ],
+            },
+            {
+                "object": "block",
+                "type": "note-error",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "This component does't have dependencies on skin packages and uses skinManager approach to get components from your app skin. So it's required to pass ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "text",
+                        "text": "skinContexsdft",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {},
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": " propsdf into ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                            "url": "/documents?category=contexts&id=contextProvider&",
+                        },
+                        "nodes": [
+                            {
+                                "object": "text",
+                                "text": "ContextProvider",
+                                "marks": [],
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": ". You can import skinContext object from your skin package.\n\nAlso it required to import css from editor package, pleasesdf add the following code into you app entry file: \n",
+                        "marks": [],
+                    },
+                    {
+                        "object": "text",
+                        "text": "import '@epam/uui-editor/styles.css';",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {},
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                "object": "block",
+                "type": "note-warning",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.",
+                        "marks": [],
+                    },
+                ],
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "data": {},
+                "nodes": [
+                    {
+                        "object": "text",
+                        "text": "When you manipulate with server-side use ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "text",
+                        "text": "Value.toJSON(value)",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {},
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": " and ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "text",
+                        "text": "Value.fromJSON(value)",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {},
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": " functions from ",
+                        "marks": [],
+                    },
+                    {
+                        "object": "text",
+                        "text": "slate",
+                        "marks": [
+                            {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {},
+                            },
+                        ],
+                    },
+                    {
+                        "object": "text",
+                        "text": " package, to convert slate state to JSON model and vice versa.",
+                        "marks": [],
                     },
                 ],
             },
         ],
     },
-} as any;
-
-const schema: any = {
-    blocks: {
-        attachment: {
-            isVoid: true,
-        },
-        iframe: {
-            isVoid: true,
-        },
-        separatorBLock: {
-            isVoid: true,
-        },
-        video: {
-            isVoid: true,
-        },
-        loader: {
-            isVoid: true,
-        },
-        image: {
-            isVoid: true,
-        },
-    },
-    inlines: {
-        placeholder: {
-            isVoid: true,
-        },
-    },
 };
 
 export const defaultPlugins = [
     SoftBreak({ shift: true }),
-    // paragraphPlugin(),
-    // utilsPlugin(),
+    paragraphPlugin(),
+    colorPlugin(),
+    //utilsPlugin(),
 ];
 
 export const basePlugins = [
-    //baseMarksPlugin(),
+    baseMarksPlugin(),
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement> {
-    isReadonly?: boolean;
-    plugins?: Plugin[];
-    autoFocus?: boolean;
-    minHeight?: number | 'none';
-    placeholder?: string;
-    mode?: 'form' | 'inline';
-    fontSize?: '14' | '16';
-    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
-    onBlur?: (event: FocusEvent, value: any | null) => void;
-    scrollbars?: boolean;
-}
+/**
+ * Slate's schema has changed vastly under 2 years. The text editor is still
+ * a better candidate than the other OSS editors out there, so we must live
+ * with the major changes.
+ *
+ * Migrate a schema from the old version 0.33 to current version 0.6x
+ * Inspiration taken wholly from
+ * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
+ */
 
-interface SlateEditorState {
-    inFocus?: boolean;
-}
-
-const HOTKEYS = {
-    'mod+b': 'bold',
-    'mod+i': 'italic',
-    'mod+u': 'underline',
-    'mod+`': 'code',
+const migrateTextNode = (oldNode: any) => {
+   // console.log(oldNode);
+    return {
+        text: oldNode.text,
+        ...oldNode.marks?.reduce(
+            (acc: any, mark: any) => ({
+                ...acc,
+                bold: true,
+                [mark.type]: true,
+            }),
+            {},
+        ),
+    };
 };
 
-const LIST_TYPES = ['numbered-list', 'bulleted-list'];
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify'];
-
-const Leaf = ({ attributes, children, leaf }: any) => {
-    if (leaf.bold) {
-        children = <strong>{ children }</strong>;
-    }
-
-    if (leaf.code) {
-        children = <code>{ children }</code>;
-    }
-
-    if (leaf.italic) {
-        children = <em>{ children }</em>;
-    }
-
-    if (leaf.underline) {
-        children = <u>{ children }</u>;
-    }
-
-    return <span { ...attributes }>{ children }</span>;
+const migrateElementNode = (node: any) => {
+    return {
+        data: node.data ?? {},
+        type: node.type,
+        children: node.nodes?.map(migrateNode).flat() ?? [],
+    };
 };
 
-const Element = ({ attributes, children, element }: any) => {
-    const style = { textAlign: element.align };
-    switch (element.type) {
-        case 'block-quote':
-            return (
-                <blockquote style={ style } { ...attributes }>
-                    { children }
-                </blockquote>
-            );
-        case 'bulleted-list':
-            return (
-                <ul style={ style } { ...attributes }>
-                    { children }
-                </ul>
-            );
-        case 'heading-one':
-            return (
-                <h1 style={ style } { ...attributes }>
-                    { children }
-                </h1>
-            );
-        case 'heading-two':
-            return (
-                <h2 style={ style } { ...attributes }>
-                    { children }
-                </h2>
-            );
-        case 'list-item':
-            return (
-                <li style={ style } { ...attributes }>
-                    { children }
-                </li>
-            );
-        case 'numbered-list':
-            return (
-                <ol style={ style } { ...attributes }>
-                    { children }
-                </ol>
-            );
-        default:
-            return (
-                <p style={ style } { ...attributes }>
-                    { children }
-                </p>
-            );
+const migrateNode = (oldNode: any) => {
+    if (oldNode.object === 'text') {
+        return migrateTextNode(oldNode);
+    } else {
+        return migrateElementNode(oldNode);
     }
 };
 
-const initialValue: any[] = [
-    {
-        type: 'paragraph',
-        children: [
-            { text: 'This is editable ' },
-            { text: 'rich', bold: true },
-            { text: ' text, ' },
-            { text: 'much', italic: true },
-            { text: ' better than a ' },
-            { text: '<textarea>', code: true },
-            { text: '!' },
-        ],
-    },
-    {
-        type: 'paragraph',
-        children: [
-            {
-                text:
-                    "Since it's rich text, you can do things like turn a selection of text ",
-            },
-            { text: 'bold', bold: true },
-            {
-                text:
-                    ', or add a semantically rendered block quote in the middle of the page, like this:',
-            },
-        ],
-    },
-    {
-        type: 'block-quote',
-        children: [{ text: 'A wise quote.' }],
-    },
-    {
-        type: 'paragraph',
-        align: 'center',
-        children: [{ text: 'Try it out for yourself!' }],
-    },
-];
-
+export const migrateSchema = (oldSchema: any) => {
+    return oldSchema.document.nodes.map(migrateNode);
+};
 
 export function SlateEditor() {
-    const renderElement = useCallback(props => <Element { ...props } />, []);
-    const renderLeaf = useCallback(props => <Leaf { ...props } />, []);
-    //@ts-ignore
     const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+    const renderMark = (props: any) => {
+
+        if (props.leaf['uui-richTextEditor-bold']) {
+            return <strong { ...props.attributes }>{ props.children }</strong>;
+        }
+        if (props.leaf['uui-richTextEditor-italic']) {
+            return <i { ...props.attributes }>{ props.children }</i>;
+        }
+        if (props.leaf['uui-richTextEditor-underlined']) {
+            return <u { ...props.attributes }>{ props.children }</u>;
+        }
+        if (props.leaf['uui-richTextEditor-superscript']) {
+            return <sup { ...props.attributes }>{ props.children }</sup>;
+        }
+
+        if (props.leaf['uui-richTextEditor-code']) {
+            return <code { ...props.attributes }>{ props.children }</code>;
+        }
+
+        return <span { ...props.attributes } >{ props.children }</span>;
+    };
 
     return (
-        <Slate editor={ editor } value={ initialValue }>
+        <Slate
+            editor={ editor }
+            value={ migrateSchema(data) }
+        >
+            <Toolbar editor={ editor } plugins={ basePlugins } />
             <Editable
-                renderElement={ renderElement }
-                renderLeaf={ renderLeaf }
+                renderLeaf={ renderMark }
                 placeholder="Enter some rich text…"
                 spellCheck
                 autoFocus

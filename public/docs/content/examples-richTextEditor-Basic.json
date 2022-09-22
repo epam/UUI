@@ -71,7 +71,7 @@
           },
           {
             "object": "text",
-            "text": "skinContext",
+            "text": "skinContexsdft",
             "marks": [
               {
                 "object": "mark",
@@ -82,7 +82,7 @@
           },
           {
             "object": "text",
-            "text": " prop into ",
+            "text": " propsdf into ",
             "marks": []
           },
           {
@@ -101,7 +101,7 @@
           },
           {
             "object": "text",
-            "text": ". You can import skinContext object from your skin package.\n\nAlso it required to import css from editor package, please add the following code into you app entry file: \n",
+            "text": ". You can import skinContext object from your skin package.\n\nAlso it required to import css from editor package, pleasesdf add the following code into you app entry file: \n",
             "marks": []
           },
           {

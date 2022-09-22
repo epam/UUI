@@ -1,6 +1,6 @@
 // export * from './headerPlugin/headerPlugin';
 // export * from './attachmentPlugin/attachmentPlugin';
-// export * from './baseMarksPlugin/baseMarksPlugin';
+export * from './baseMarksPlugin/baseMarksPlugin';
 // export * from './imagePlugin/imagePlugin';
 // export * from './videoPlugin/videoPlugin';
 // export * from './linkPlugin/linkPlugin';
@@ -10,7 +10,7 @@
 // export * from './notePlugin/notePlugin';
 // export * from './separatorPlugin/separatorPlugin';
 // export * from './uploadFilePlugin/uploadFilePlugin';
-// export * from './colorPlugin/colorPlugin';
+export * from './colorPlugin/colorPlugin';
 // export * from './quotePlugin/quotePlugin';
 // export * from './tablePlugin/tablePlugin';
 // export * from './superscriptPlugin/superscriptPlugin';
@@ -19,4 +19,4 @@
 // export * from './tableMergePlugin/tableMergePlugin';
 // export * from './placeholderPlugin/placeholderPlugin';
 // export * from './codeBlockPlugin/codeBlockPlugin';
-// export * from './paragraphPlugin/paragraphPlugin';
+export * from './paragraphPlugin/paragraphPlugin';

@@ -1,35 +1,35 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
-// import { Editor } from "slate-react";
-// import { Block, Text as SlateText, Value } from "slate";
+import { useSlate, useFocused } from "slate-react";
+import { Editor } from "slate";
 //
-// export function getBlockDesirialiser(blockTags: Record<string, string>) {
-//     return (el: any, next: any) => {
-//         const block = blockTags[el.tagName.toLowerCase()];
-//
-//         if (block) {
-//             return {
-//                 object: 'block',
-//                 type: block,
-//                 nodes: next(el.childNodes),
-//             };
-//         }
-//     };
-// }
-//
-// export function getMarkDeserializer(marks: Record<string, string>) {
-//     return (el: any, next: any) => {
-//         const mark = marks[el.tagName.toLowerCase()];
-//
-//         if (mark) {
-//             return {
-//                 object: 'mark',
-//                 type: mark,
-//                 nodes: next(el.childNodes),
-//             };
-//         }
-//     };
-// }
+export function getBlockDesirialiser(blockTags: Record<string, string>) {
+    return (el: any, next: any) => {
+        const block = blockTags[el.tagName.toLowerCase()];
+
+        if (block) {
+            return {
+                object: 'block',
+                type: block,
+                nodes: next(el.childNodes),
+            };
+        }
+    };
+}
+
+export function getMarkDeserializer(marks: Record<string, string>) {
+    return (el: any, next: any) => {
+        const mark = marks[el.tagName.toLowerCase()];
+
+        if (mark) {
+            return {
+                object: 'mark',
+                type: mark,
+                nodes: next(el.childNodes),
+            };
+        }
+    };
+}
 //
 // export function getSerializer(plugins: any) {
 //     let rules: any = [];
@@ -43,9 +43,10 @@
 //     return new Html({ rules: rules });
 // }
 //
-// export function isTextSelected(editor: Editor) {
-//     return editor && !(editor.value.selection.isBlurred || editor.value.selection.isCollapsed || editor.value.fragment.text === '');
-// }
+export function isTextSelected(editor: any) {
+    return  true;
+    return editor && !(editor?.selection?.isBlurred || editor?.selection?.isCollapsed || editor?.fragment?.text === '');
+}
 //
 // export const isEditorEmpty = (value: Value) => {
 //     const blocks: Block[] = value.get('document').get('nodes').toArray();
