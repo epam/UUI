@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
-import css from "./FiltersToolbarItem.scss";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
+import { i18n } from "../../i18n";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
 import { Panel } from "../layout";
 import { LinkButton } from "../buttons";
@@ -11,7 +11,8 @@ import { MultiSwitch } from "../inputs";
 import { Text, TextPlaceholder } from "../typography";
 import { FilterItemBody } from "./FilterItemBody";
 import { DropdownContainer } from "../overlays";
-import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/action-deleteforever-12.svg';
+import { ReactComponent as RemoveIcon } from "@epam/assets/icons/common/action-deleteforever-12.svg";
+import css from "./FiltersToolbarItem.scss";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -57,7 +58,14 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     size='24'
                 /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
             }
-            { !props?.isAlwaysVisible && <LinkButton cx={ css.removeButton } caption="REMOVE FILTER" onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon }/> }
+            { !props?.isAlwaysVisible && (
+                <LinkButton
+                    cx={ css.removeButton }
+                    caption={ i18n.filterToolbar.datePicker.removeCaption }
+                    onClick={ removeOnclickHandler }
+                    size="24"
+                    icon={ RemoveIcon }/>
+            ) }
         </div>
     );
 
@@ -76,18 +84,19 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const getTogglerValue = () => {
         const currentValue = getValue();
+        const defaultFormat = "MMM DD, YYYY";
 
         switch (props.type) {
             case "multiPicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } items` : null;
+                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
                 let isLoading = false;
 
                 const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
                     const item = view.getById(i, null);
                     isLoading = item.isLoading;
-                    return item.isLoading ? <TextPlaceholder key={ item.rowKey } color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
-                }) : ['All'];
+                    return item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item.value) : item.value.name);
+                }) : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
@@ -96,20 +105,20 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 const view = props.dataSource.getView({}, forceUpdate);
                 const item = (currentValue !== null && currentValue !== undefined) && view.getById(currentValue, null);
                 if (!item) {
-                    return { selection: 'All' };
+                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
-                const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item) : item.value.name);
+                const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item.value) : item.value.name);
                 return { selection };
             }
             case "datePicker": {
-                return { selection: currentValue ? dayjs(currentValue).format('MMM DD, YYYY') : "Select date" };
+                return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : i18n.filterToolbar.datePicker.placeholder };
             }
             case "rangeDatePicker": {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
-                    return { selection: "Select period" };
+                    return { selection: i18n.filterToolbar.rangeDatePicker.emptyPickerPlaceholder };
                 }
-                const currentValueFrom = currentValue?.from ? dayjs(currentValue?.from).format('MMM DD, YYYY') : 'Select From';
-                const currentValueTo = currentValue?.to ? dayjs(currentValue?.to).format('MMM DD, YYYY') : 'Select To';
+                const currentValueFrom = currentValue?.from ? dayjs(currentValue?.from).format(props.format || defaultFormat) : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderFrom;
+                const currentValueTo = currentValue?.to ? dayjs(currentValue?.to).format(props.format || defaultFormat) : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderTo;
                 const selection = `${ currentValueFrom } - ${ currentValueTo }`;
                 return { selection };
             }
