@@ -188,6 +188,12 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      */
     getId?(item: TItem): TId;
 
+    /**
+     * Set to true, if you use IDs which can't act as javascript Map key (objects or arrays).
+     * In this case, IDs will be internally JSON.stringify-ed to be used as Maps keys.
+     */
+    complexIds?: boolean;
+
     /** Should return ID of the Item's parent. Usually it's i => i.parentId.
      * If specified, Data Source will build items hierarchy.
      *

@@ -20,7 +20,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
     }
 
-
     public getById = (id: TId) => {
         return this.cache.byId(id);
     }
