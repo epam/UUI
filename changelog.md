@@ -7,14 +7,16 @@
   * columns prop is moved from DataRowProps to DataTableRowProps interface
   * DataTableCell accepts few additional props
 
-* FlexCell - added style attribute
+* FlexCell - added `style` attribute
 
 * [Breaking Change] DataTableCell layout reworked.
   * Cells and tables tweaked to support vertical borders, hover/focus border effects for editable cells
-  * Now, cells are rendered in flexbox context (was block). Please review cells layout (alignment and width of the cells content)
+  * Now, cell content are rendered in flexbox context (was block). Please review cells layout (alignment and width of the cells content)
   * DataTableColumn - new prop: justifyContent, which sets appropriate flexbox property. Can be used to align items horizontally. If omitted, we use existing textAlign property to set it. I.e. you can still use textAlign: left/center/right to align textual cell content.
 
-
+* [Breaking Change] DataSources doesn't work with array/object ids by-default.
+  * If you use such ids, set `complexIds = true` prop when creating DataSource. In this case, DataSource will use JSON.stringify to use IDs as Map keys internally. This was default behavior prior this change, which has impact on performance.
+  * number and string ids are supported correctly by default
 
 # next version (Editable Tables Preparation)
 
