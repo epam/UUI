@@ -126,7 +126,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             /> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
-                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, uuiMarkers.clickable) }
+                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) }
                 icon={ props.dropdownIcon }
                 flipY={ props.isOpen }
             /> }

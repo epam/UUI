@@ -42,7 +42,7 @@ exports[`TextInput should be rendered correctly 2`] = `
     />
   </div>
   <div
-    className="container uui-icon uui-enabled -clickable"
+    className="container uui-icon uui-enabled pointer"
     style={Object {}}
   >
     <svg
