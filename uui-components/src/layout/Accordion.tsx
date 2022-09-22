@@ -4,9 +4,12 @@ import { IconContainer } from '../layout';
 import * as css from './Accordion.scss';
 
 export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+    /** Accordion title */
     title: string;
+    /** Overrides the default dropdown (folding) icon */
     dropdownIcon?: Icon;
-    renderAdditionalItems?: (isOpened: boolean) => React.ReactNode;
+    /** Renders additional items to component's header (after the title, and before the folding icon) */
+    renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;
 }
 
 export interface AccordionState {

@@ -1,6 +1,6 @@
 module.exports = {
     ...require('./getData'),
     ...require('./getOrderComparer'),
-    ...require('./getPatternPredicate'),
+    ...require('./getFilterPredicate'),
     ...require('./generateTestData'),
 };

@@ -30,6 +30,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
             mode={ this.props.mode }
             isDropdown={ false }
             placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
+            rawProps={ this.props.rawProps?.input }
         />
     )
 
@@ -39,6 +40,7 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
                 <TimePickerBody
                     { ...this.props }
                     value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
+                    rawProps={ this.props.rawProps?.body }
                 />
             </DropdownContainer>
         )

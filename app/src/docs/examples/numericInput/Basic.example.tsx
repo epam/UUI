@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell, NumericInput } from '@epam/promo';
+import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
 import * as css from './BasicExample.scss';
 
 export default function BasicExample() {
@@ -7,11 +7,21 @@ export default function BasicExample() {
 
     return (
         <FlexCell width='auto' cx={ css.container } >
-            <NumericInput value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput step={ 2 } value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput placeholder='Age' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } isDisabled />
-            <NumericInput value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } isReadonly />
+            <LabeledInput label='Default settings'>
+                <NumericInput value={ value } onValueChange={ onValueChange } />
+            </LabeledInput>
+            <LabeledInput label='With placeholder'>
+                <NumericInput placeholder='Amount' value={ value } onValueChange={ onValueChange } />
+            </LabeledInput>
+            <LabeledInput label='Step = 10, Min = -100, Max = 100'>
+                <NumericInput step={ 10 } value={ value } onValueChange={ onValueChange } min={ -100 } max={ 100 } />
+            </LabeledInput>
+            <LabeledInput label='isDisabled'>
+                <NumericInput value={ value } onValueChange={ onValueChange } isDisabled />
+            </LabeledInput>
+            <LabeledInput label='isReadonly'>
+                <NumericInput value={ value } onValueChange={ onValueChange } isReadonly />
+            </LabeledInput>
         </FlexCell>
     );
 }

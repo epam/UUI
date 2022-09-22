@@ -1,13 +1,13 @@
 import * as React from 'react';
 import dayjs from "dayjs";
-import { BaseRangeDatePickerProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
+import { BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
 import { BaseRangeDatePicker } from '@epam/uui-components';
 import { FlexRow, i18n, RangeDatePickerBody, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
 import cx from "classnames";
 import * as css from "../datePickers/RangeDatePicker.scss";
 import { systemIcons } from "../../icons/icons";
 
-export interface RangeDatePickerProps extends BaseRangeDatePickerProps {}
+export interface RangeDatePickerProps extends BaseRangeDatePickerProps, IDropdownBodyProps {}
 
 export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePickerProps> {
     state = {
@@ -24,6 +24,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         onValueChange={ this.onRangeChange }
                         filter={ this.props.filter }
                         focusPart={ this.state.inFocus }
+                        changeIsOpen={ this.props.onClose }
                     />
                 </FlexRow>
                 <FlexCell alignSelf="stretch">
@@ -34,7 +35,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
                                 size={ '30' }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }
-                                value={ dayjs(this.state.inputValue.from).isValid() ? dayjs(this.state.inputValue.from).format('MMM DD, YYYY') : this.state.inputValue.from }
+                                value={ dayjs(this.state.inputValue.from).isValid() ? dayjs(this.state.inputValue.from).format(this.props.format || 'MMM DD, YYYY') : this.state.inputValue.from }
                                 onValueChange={ this.getChangeHandler('from') }
                                 onFocus={ () => this.handleFocus('from') }
                                 onBlur={ () => this.handleBlur('from') }
@@ -44,7 +45,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
                                 size={ '30' }
-                                value={ dayjs(this.state.inputValue.to).isValid() ? dayjs(this.state.inputValue.to).format('MMM DD, YYYY') : this.state.inputValue.to }
+                                value={ dayjs(this.state.inputValue.to).isValid() ? dayjs(this.state.inputValue.to).format(this.props.format || 'MMM DD, YYYY') : this.state.inputValue.to }
                                 onCancel={ this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                                 onValueChange={ this.getChangeHandler('to') }
                                 onFocus={ () => this.handleFocus('to') }
@@ -54,7 +55,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         <FlexSpacer/>
                         <LinkButton
                             isDisabled={ !this.state.inputValue.from && !this.state.inputValue.to }
-                            caption="CLEAR ALL"
+                            caption={ i18n.pickerModal.clearAllButton }
                             onClick={ this.handleCancel }
                         />
                     </FlexRow>

@@ -31,6 +31,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         {
             key: 'name',
             grow: 1,
+            width: 0,
             render: (item, rowProps) => <div key={ rowProps.id }  className={ css.renderItem }>
                 { this.props.renderItem(item, rowProps) }
                 <FlexSpacer />

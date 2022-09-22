@@ -1,3 +1,102 @@
+# next version (Editable Tables Preparation)
+
+**What's New**
+
+* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
+
+* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
+    * shrink prop - marked @deprecated. Id will be removed in future versions.
+      'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
+      Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional).
+      If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
+
+* useForm now provides two new callbacks: setValue and replaceValue.
+    They work the same way as setState of React.useState.
+    Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
+    setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
+    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state.
+
+* Lenses now memoizes all methods calls (.prop, .item, etc.).
+    This allows to not re-create onValueChange callbacks on re-renders.
+    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components.
+
+* Numeric Input - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
+  * Formatting can be disabled with the 'disableLocaleFormatting' prop
+  * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
+  * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
+  * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
+
+* Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+
+**What’s Fixed**
+* DnD Actor - improved 'inside' position calculation
+* useForm
+  * fixed revert/undo/redo behavior after save
+  * onValueChange now triggers internal validation logic (as with changes made with lenses)
+  * refactored to remove unnecessary re-renders in some cases
+
+# 4.8.5 - 15.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
+
+# 4.8.4 - 09.09.2022
+
+**What’s Fixed**
+* [RTE]: fix wrong image size on first render
+* [RTE]: fix cursor jumping on new text typing in chrome 105+ version
+* [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
+
+# 4.8.3 - 01.09.2022
+
+**What’s Fixed**
+* [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
+* [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
+* [useVirtual]: Improved visible range computation:
+
+  Virtual lists now adjust visible area in fixed-sized 'blocks'. E.g. topIndex, visibleCount, and from/count in LazyDataSource requests will be always divisible by Block Size. This helps to avoid cases when only several rows are requested on small scrolls. This also can help with pageNo/pageSize-oriented API. Block size defaults to 20, and configurable with `blockSize` prop.
+
+  We also render more rows above and below visible area to avoid blank areas and loading rows when scrolling at normal speed. This is also configurable with `overdrawRows` setting (defaults to 20, meaning at least 20 rows above/below the visible area are rendered)
+
+  This change also fixes the problem when lazy-loading stops, while the end of the list is not reached.
+* [FilterPanel]: fix filter toggler value if selected item id === 0
+* [FilterPanel]: fix add new filter error after all filters was cleared
+* [FilterPanel]: remove filter value when uncheck filter from 'Add filter' dropdown
+
+# 4.8.2 - 22.08.2022
+
+**What's New**
+* [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
+* [DataTable]: add possibility to reset sorting to default value
+
+**What’s Fixed**
+* [PickerInput]: fix input with minCharsToSearch props. Fix toggler input size in 'multi' mode
+
+# 4.8.1 - 10.08.2022
+
+**What's New**
+* Add `rawProps` prop for the rest part of the components
+* Updated icon pack
+* [PickerItem]: add possibility to pass icon
+* [FiltersPanel]: add possibility to provide your own `renderRow` callback
+* [DatePicker]: add `placement` props
+* [DataTable]: add default 'not results found' state
+* [PickerModal]: add default 'not results found' state
+* [FilterToolbar]: small improvements and bugfixes
+
+
+**What’s Fixed**
+* [PickerInput]: rework styles for selected value in toggler
+* [DataTable]: fix table rerender when columns prop changed
+* [NumericInput]: don't allow '+' and 'e' symbols
+* [LinkButton]: fix focus state
+* [RangeDatePicker]: fix error when preset is `null`
+* [NotificationCard]: rework styles
+
+
 # 4.8.0 - 21.07.2022
 
 **What's New**
@@ -19,7 +118,7 @@
 * [Badge]: fixed semitransparent hover colors
 * [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
 * [RangeDatePicker]: fix preset styles
-* [MainMenuButton]: reworked styles for dropdown items 
+* [MainMenuButton]: reworked styles for dropdown items
 
 # 4.7.1 - 06.06.2022
 
@@ -27,10 +126,10 @@
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
 **What’s Fixed**
-* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area 
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
-* [DataTable]: added missing sizes styles for header 
+* [DataTable]: added missing sizes styles for header
 * [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
 * [useForm]: handle rejected promise after save
 * [Burger]: fix scroll on body when burger closes

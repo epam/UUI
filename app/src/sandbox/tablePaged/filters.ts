@@ -1,5 +1,5 @@
 import { TableFiltersConfig, LazyDataSource } from "@epam/uui-core";
-import { svc } from "../../../services";
+import { svc } from "../../services";
 
 export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersConfig<TFilter>[] => {
     return [

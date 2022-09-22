@@ -30,14 +30,17 @@ export const allFontStyles: FontStyle[] = ['sans', 'sans-semibold', 'sans-italic
 
 // Mod interfaces
 export interface ColorMod {
+    /** Component's base color */
     color?: EpamColor;
 }
 
 export interface SizeMod {
+    /** Component's size in px. This is 'logical' size, defined in how many pixels components occupies vertically. */
     size?: ControlSize;
 }
 
 export interface FontMod {
+    /** Font to use for text */
     font?: FontStyle;
 }
 
@@ -46,6 +49,7 @@ export interface RowSizeMod {
 }
 
 export interface IHasEditMode {
+    /** Defines input mode: 'form' is default and usual look, 'cell' is for using components as table cells  */
     mode?: 'form' | 'cell';
 }
 

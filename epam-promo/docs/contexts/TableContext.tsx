@@ -51,14 +51,14 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
                 renderCell: propsCell => <DataTableCell padding='24' isFirstColumn={ true } { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
-                grow: 0, shrink: 0, width: 200,
+                width: 200,
             },
             {
                 key: 'name',
                 caption: 'Name',
                 render: item => <Text size={ props.size }>{ item.name }</Text>,
                 isSortable: true,
-                grow: 0, minWidth: 170,
+                width: 170,
             },
             {
                 key: 'demo_second',
@@ -67,13 +67,14 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
                 renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
-                grow: 0, shrink: 0, width: 170,
+                width: 170,
             },
             {
                 key: 'phoneNumber',
                 caption: 'Phone Number',
                 render: item => <Text size={ props.size }>{ item.phoneNumber }</Text>,
-                grow: 1, shrink: 0, width: 150,
+                grow: 1,
+                width: 150,
             },
             {
                 key: 'demo_third',
@@ -82,7 +83,7 @@ export class TableContext extends React.Component<DemoComponentProps, DemoCompon
                 renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
                 isSortable: true,
                 isAlwaysVisible: true,
-                grow: 0, shrink: 0, width: 170,
+                width: 170,
             },
         ];
 

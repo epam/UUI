@@ -6,7 +6,10 @@ import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 
 export interface TabButtonMods {
+    /** Tab button size */
     size?: '36' | '48' | '60';
+
+    /** Show notification red dot */
     withNotify?: boolean;
 }
 

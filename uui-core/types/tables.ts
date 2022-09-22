@@ -1,10 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { Attributes, ReactNode } from 'react';
 import * as props from './props';
-import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection, IDropdownToggler, IHasCX, DropParams } from '../types';
+import { IEditable, IDisableable, ICanBeInvalid, ICheckable, IDndActor, SortDirection,
+    IDropdownToggler, IHasCX, DropParams, FilterPredicateName } from '../types';
 import { DataSourceListProps, DataSourceState, IDataSource } from '../data/processing';
-import { IDropdownBodyProps } from "./props";
+import { IClickable, IDropdownBodyProps, IHasRawProps } from "./props";
 import { ILens } from '..';
 import { Link } from '../types';
+import * as CSS from 'csstype';
 
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
@@ -41,19 +43,82 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
     presetId?: number | null;
 }
 
-export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends props.FlexCellProps {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
+    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
+    /**
+     * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
+     * Also, used as React key for cells, header cells, and other components inside tables.
+     */
     key: string;
+
+    /** Column caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
+
+    /** If specified, will make column fixed - it would not scroll horizontally */
     fix?: 'left' | 'right';
-    width?: number;
+
+    /**
+     * The width of the column. Usually, columns has exact this width.
+     * When all columns fit, and there's spare horizontal space, you can use 'grow' prop to use this space for certain columns.
+     * DataTable's columns can't shrink below width - table will add horizontal scrolling instead of shrinking columns
+     */
+    width: number;
+
+    /** Minimal width to which column can be resized manually */
+    minWidth?: number;
+
+    /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
+    grow?: number;
+
+    /** @deprecated Shrink prop doesn't affect anything in table columns. This prop will be removed in future versions. */
+    shrink?: number;
+
+    /** Aligns cell content horizontally */
+    textAlign?: 'left' | 'center' | 'right';
+
+    /** Align cell content vertically */
+    alignSelf?: CSS.AlignSelfProperty;
+
+    /**
+     * Enables sorting arrows on the column.
+     * Sorting state is kept in DataSourceState.sorting
+     */
     isSortable?: boolean;
+
+    /** Disallows to hide column via ColumnsConfiguration */
     isAlwaysVisible?: boolean;
+
+    /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */
     isHiddenByDefault?: boolean;
+
+    /** Info tooltip displayed in the table header */
     info?: React.ReactNode;
+
+    /**
+     *  Should return true, if current filter affects the column.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
-    render?(d: TItem, rowProps: DataRowProps<TItem, TId>): any;
+
+    /** Render the cell content. The item props is the value of the whole row (TItem). */
+    render?(item: TItem, props: DataRowProps<TItem, TId>): any;
+
+    /** Overrides rendering of the whole cell */
     renderCell?(props: DataTableCellProps<TItem, TId>): any;
+
+    /**
+     * Renders column header dropdown.
+     * Usually, this prop is filled automatically by the useTableState hook.
+     * If you use the useTableState hook, you don't need to specify it manually.
+     */
     renderDropdown?(): React.ReactNode;
+
+    /**
+     * Renders column filter.
+     * If you use useTableState hook, and you specify filter for the column, default filter will be rendered automatically.
+     * You can use this prop to render a custom filter component.
+     */
     renderFilter?(lens: ILens<TFilter>, dropdownProps: IDropdownBodyProps): React.ReactNode;
 }
 
@@ -82,12 +147,11 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX {
+export interface DataTableCellProps<TItem = any, TId = any> extends IHasCX, props.IHasTabIndex {
     rowProps: DataRowProps<TItem, TId>;
     column: DataColumnProps<TItem, TId>;
     index?: number;
     role?: React.HTMLAttributes<HTMLElement>['role'];
-    tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
 export interface DataRowOptions<TItem, TId> extends IDisableable {
@@ -132,6 +196,9 @@ export type DataRowProps<TItem, TId> = props.FlexRowProps & DataRowOptions<TItem
 
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
     value?: TItem;
+
+    /** ID of the parent TItem */
+    parentId?: TId;
 
     /** Hierarchical path from the root node to the item (excluding the item itself) */
     path?: DataRowPathItem<TId, TItem>[];
@@ -214,7 +281,7 @@ export type IColumnConfig =  {
 };
 
 export type FiltersConfig = {
-    [key: string]: IFilterConfig;  
+    [key: string]: IFilterConfig;
 };
 
 export type IFilterConfig = {
@@ -232,11 +299,18 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     columns: DataColumnProps<any, any>[],
 };
 
+export type IFilterPredicate = {
+    name: string;
+    predicate: FilterPredicateName;
+    isDefault?: boolean;
+};
+
 type FilterConfigBase<TFilter> = {
     title: string;
     field: keyof TFilter;
-    columnKey?: string;
+    columnKey: string;
     isAlwaysVisible?: boolean;
+    predicates?: IFilterPredicate[];
 };
 
 type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -244,10 +318,12 @@ type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
+    valueType?: "id";
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: "datePicker" | "rangeDatePicker";
+    format?: string;
 };
 
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
@@ -265,12 +341,13 @@ export interface IPresetsApi {
     activePresetId: number | null;
     isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
-    createNewPreset(name: string): void;
+    createNewPreset(name: string): Promise<number>;
     resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
-    deletePreset(preset: ITablePreset): void;
-    updatePreset(preset: ITablePreset): void;
+    deletePreset(preset: ITablePreset): Promise<void>;
+    updatePreset(preset: ITablePreset): Promise<void>;
+    presets: ITablePreset[];
 }
 
 export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
@@ -279,5 +356,4 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    presets: ITablePreset<TFilter>[];
 }

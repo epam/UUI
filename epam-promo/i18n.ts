@@ -104,4 +104,21 @@ export const i18n = {
         title: 'No results found',
         message: 'We can’t find any item matching your request',
     },
+    filterToolbar: {
+        addCaption: 'Add filter',
+        datePicker: {
+            placeholder: 'Select date',
+            removeCaption: 'REMOVE FILTER',
+            clearCaption: 'CLEAR',
+        },
+        rangeDatePicker: {
+            emptyPickerPlaceholder: 'Select period',
+            emptyPlaceholderFrom: 'Select From',
+            emptyPlaceholderTo: 'Select To',
+        },
+        pickerInput: {
+            itemsPlaceholder: 'items',
+            emptyValueCaption: 'ALL',
+        },
+    },
 };
