@@ -21,8 +21,14 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
     const renderRow = (props: DataTableRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
-        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
+        const isGroup = !props.isLoading && props.value?.__typename !== 'Person';
+        const cols = (isGroup) ? groupColumns : personColumnsSync;
+        return <DataTableRow
+            key={ String(props.id) }
+            { ...props }
+            columns={ cols }
+            background={ isGroup ? 'night50' : 'white' }
+        />;
     };
 
     const getRows = () => {
