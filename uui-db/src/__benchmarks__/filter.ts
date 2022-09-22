@@ -1,7 +1,7 @@
 import * as b from 'benny';
 import { Person } from './testData';
 import range from 'lodash.range';
-import { getPatternPredicate } from '@epam/uui-core';
+import { getFilterPredicate } from '@epam/uui-core';
 
 const testPersons = range(0, 1e4).
     map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
@@ -26,14 +26,14 @@ b.suite(
     }),
 
     b.add('array.filter, getPatternPredicate', () => {
-        const predicate = getPatternPredicate<Person>({ departmentId: 5 });
+        const predicate = getFilterPredicate<Person>({ departmentId: 5 });
         return () => {
             testPersons.filter(predicate);
         };
     }),
 
     b.add('for-loop, array.push, getPatternPredicate', () => {
-        const predicate = getPatternPredicate<Person>({ departmentId: 5 });
+        const predicate = getFilterPredicate<Person>({ departmentId: 5 });
         return () => {
             const result = [];
             for (let n = 0; n < testPersons.length; n++) {

@@ -11,8 +11,11 @@ export const allButtonColors: ButtonColor[] = ['blue', 'green', 'red', 'gray50']
 const defaultSize = '36';
 
 export interface ButtonMods {
+    /** Button size */
     size?: ControlSize | '18';
+    /** Fill style: solid (normal), light (washed color), white, or none (just button label is visible) */
     fill?: FillStyle;
+    /** Button color */
     color?: ButtonColor;
 }
 

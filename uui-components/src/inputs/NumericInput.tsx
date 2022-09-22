@@ -1,30 +1,51 @@
 import * as React from 'react';
 import {
-    IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod,
-    uuiElement, CX, ICanBeReadonly, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, ICanFocus,
+    IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
+    CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
+    i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
-export interface ICanBeFormatted<T> {
-    formatter?(value: T): T;
-}
+export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+    /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
+    max?: number;
 
-export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, ICanBeFormatted<number>, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    max: number;
-    min: number;
+    /** Minimum value (default is 0) */
+    min?: number;
+
+    /** Overrides the up/increase icon */
     upIcon?: Icon;
-    downIcon?: Icon;
-    step?: number;
-    inputCx?: CX;
-    id?: string;
-    disableArrows?: boolean;
-    align?: "left" | "right";
-}
 
-export interface NumericInputState {
-    value: string;
-    inFocus?: boolean;
+    /** Overrides the down/decrease icon */
+    downIcon?: Icon;
+
+    /** Increase/decrease step (for icons and ) */
+    step?: number;
+
+    /** CSS classes to put directly on the Input element */
+    inputCx?: CX;
+
+    /** HTML ID */
+    id?: string;
+
+    /** Turn off up/down (increase/decrease) buttons */
+    disableArrows?: boolean;
+
+    /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */
+    align?: "left" | "right";
+
+    /** Turns off locale-based formatting, standard Number.toString() is used instead */
+    disableLocaleFormatting?: boolean;
+
+    /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */
+    formatOptions?: Intl.NumberFormatOptions;
+
+    // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
+    /**
+     * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
+     */
+    formatter?(value: number): number;
 }
 
 export const uuiNumericInput = {
@@ -34,153 +55,141 @@ export const uuiNumericInput = {
     withoutArrows: "uui-numeric-input-without-arrows",
 } as const;
 
-export class NumericInput extends React.Component<NumericInputProps, NumericInputState> {
-    static contextType = UuiContext;
-    context: UuiContexts;
+const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
+    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
+    return maximumFractionDigits;
+};
 
-    state = {
-        value: this.props.value !== null && this.props.value !== undefined && !Number.isNaN(this.props.value) ? this.props.value.toString() : "",
-        inFocus: false,
+export const NumericInput = (props: NumericInputProps) => {
+    let { value, min, max, step, formatter, formatOptions } = props;
+
+    if (value != null) {
+        value = +value;
+    }
+
+    min = min ?? 0;
+    max = max ?? Number.MAX_SAFE_INTEGER;
+    formatOptions = formatOptions ?? { maximumFractionDigits: 0 };
+
+    const context = useUuiContext();
+
+    const [inFocus, setInFocus] = React.useState<boolean>(false);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let newValue = event.target.value === "" ? null : +event.target.value;
+        const fractionDigits = getFractionDigits(formatOptions);
+        if (newValue !== null) {
+            newValue = +newValue.toFixed(fractionDigits);
+        }
+        if (formatter) {
+            newValue = formatter(newValue);
+        }
+        props.onValueChange(newValue);
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
+            context.uuiAnalytics.sendEvent(event);
+        }
     };
 
-    componentDidUpdate(prevProps: Readonly<NumericInputProps>, prevState: Readonly<NumericInputState>): void {
-        if (prevProps.value !== this.props.value && this.props.value !== +prevState.value) {
-            this.setState({ value: this.props.value ? this.getValidatedValue(this.props.value).toString() : "" });
-        }
-    }
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        setInFocus(true);
+        props.onFocus?.(event);
+    };
 
-    getValidatedValue = (value: number) => {
-        const { min, max } = this.props;
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        setInFocus(false);
+        const validatedValue = getMinMaxValidatedValue({ value, min, max });
+        if (validatedValue !== props.value) props.onValueChange(validatedValue);
+        props.onBlur?.(event);
+    };
 
-        if (value > max) {
-            return max;
-        } else if (value < min) {
-            return min;
-        } else {
-            return value;
-        }
-    }
+    const handleIncreaseValue = () => {
+        let newValue = getCalculatedValue({ value, step, action: "incr" });
+        newValue = getMinMaxValidatedValue({ value: newValue, min, max });
+        props.onValueChange(newValue);
+    };
 
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === "" || /^-?\d*[,.]?\d*$/.test(e.target.value)) {
-            this.setState({ value: e.target.value });
-        }
-    }
+    const handleDecreaseValue = () => {
+        let newValue = getCalculatedValue({ value, step, action: "decr" });
+        newValue = getMinMaxValidatedValue({ value: newValue, min, max });
+        props.onValueChange(newValue);
+    };
 
-    handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-        this.setState({ inFocus: true });
-        this.props.onFocus?.(event);
-    }
-
-    handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-        let value: number | null;
-        if (this.state.value === "") {
-            value = null;
-            this.props.onValueChange(value);
-            this.setState({ value: "" });
-        } else {
-            value = this.getValidatedValue(+this.state.value);
-            if (this.props.formatter) {
-                value = this.props.formatter(value);
-            }
-            this.props.onValueChange(value);
-            this.setState({ value: value.toString() });
-        }
-        this.setState({ inFocus: false });
-        this.props.onBlur?.(event);
-        if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(value, this.props.value);
-            this.context.uuiAnalytics.sendEvent(event);
-        }
-    }
-
-    handleIncreaseValue = () => {
-        const increasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "incr" });
-        const value = this.getValidatedValue(increasedValue);
-        this.props.onValueChange(value);
-        this.setState({ value: value.toString() });
-    }
-
-    handleDecreaseValue = () => {
-        const decreasedValue = getCalculatedValue({ value: +this.state.value, step: this.props.step, action: "decr" });
-        const value = this.getValidatedValue(decreasedValue);
-        this.props.onValueChange(value);
-        this.setState({ value: value.toString() });
-    }
-
-    handleArrowKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleArrowKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "ArrowUp") {
             e.preventDefault();
-            this.handleIncreaseValue();
+            handleIncreaseValue();
         }
         if (e.key === "ArrowDown") {
             e.preventDefault();
-            this.handleDecreaseValue();
+            handleDecreaseValue();
         }
-    }
+    };
 
-    handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === '+' || e.code === 'KeyE') {
-            e.preventDefault();
-        }
-    }
+    const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
+    const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);
 
-    render() {
-        const showArrows = !this.props.disableArrows && !this.props.isReadonly && !this.props.isDisabled;
+    const placeholderValue = React.useMemo(() => {
+        if (!value && value !== 0) return props.placeholder || "0";
+        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+    }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
-        return (
-            <div
-                className={ cx(css.container, uuiElement.inputBox,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.isInvalid && uuiMod.invalid,
-                    (!this.props.isReadonly && this.state.inFocus) && uuiMod.focus,
-                    this.props.cx,
-                    !showArrows && uuiNumericInput.withoutArrows,
-                ) }
-                onClick={ this.props.onClick }
-                onBlur={ this.handleBlur }
-                onFocus={ this.handleFocus }
-                onKeyDown={ this.handleArrowKeyDown }
-                tabIndex={ -1 }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
-                <input
-                    type="number"
-                    onKeyPress={ this.handleKeyPress }
-                    className={ cx(uuiElement.input, this.props.inputCx, this.props.align === "right" && css.alignRight) }
-                    disabled={ this.props.isDisabled }
-                    readOnly={ this.props.isReadonly }
-                    tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
-                    aria-required={ this.props.isRequired }
-                    value={ this.state.value }
-                    inputMode="numeric"
-                    placeholder={ this.props.placeholder || "0" }
-                    onChange={ this.handleChange }
-                    min={ this.props.min || 0 }
-                    max={ this.props.max }
-                    step={ this.props.step || 1 }
-                    id={ this.props.id }
-                />
-                {
-                    showArrows &&
-                    <div className={ uuiNumericInput.buttonGroup }>
-                        <IconContainer
-                            cx={ cx(uuiNumericInput.upButton) }
-                            icon={ this.props.upIcon }
-                            onClick={ this.handleIncreaseValue }
-                            isDisabled={ this.props.isDisabled }
-                        />
-                        <IconContainer
-                            cx={ cx(uuiNumericInput.downButton) }
-                            icon={ this.props.downIcon }
-                            onClick={ this.handleDecreaseValue }
-                            isDisabled={ this.props.isDisabled }
-                        />
-                    </div>
-                }
-            </div>
-        );
-    }
-}
+    const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;
+
+    return (
+        <div
+            className={ cx(
+                css.container,
+                uuiElement.inputBox,
+                props.isReadonly && uuiMod.readonly,
+                props.isDisabled && uuiMod.disabled,
+                props.isInvalid && uuiMod.invalid,
+                (!props.isReadonly && inFocus) && uuiMod.focus,
+                (!props.isReadonly && !props.isDisabled) && uuiMarkers.clickable,
+                !showArrows && uuiNumericInput.withoutArrows,
+                props.cx,
+            ) }
+            onClick={ props.onClick }
+            onBlur={ handleBlur }
+            onFocus={ handleFocus }
+            onKeyDown={ handleArrowKeyDown }
+            tabIndex={ -1 }
+            ref={ props.forwardedRef }
+            { ...props.rawProps }
+        >
+            <input
+                type="number"
+                className={ cx(uuiElement.input, props.inputCx, props.align === "right" && css.alignRight, isPlaceholderColored && uuiElement.valueInPlaceholder) }
+                disabled={ props.isDisabled }
+                readOnly={ props.isReadonly }
+                tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
+                aria-required={ props.isRequired }
+                value={ inputValue }
+                inputMode="numeric"
+                placeholder={ placeholderValue }
+                onChange={ handleChange }
+                min={ min }
+                max={ max }
+                step={ step }
+                id={ props.id }
+            />
+
+        { showArrows && (
+                <div className={ uuiNumericInput.buttonGroup }>
+                    <IconContainer
+                        cx={ uuiNumericInput.upButton }
+                        icon={ props.upIcon }
+                        onClick={ handleIncreaseValue }
+                        isDisabled={ props.isDisabled }
+                    />
+                    <IconContainer
+                        cx={ uuiNumericInput.downButton }
+                        icon={ props.downIcon }
+                        onClick={ handleDecreaseValue }
+                        isDisabled={ props.isDisabled }
+                    />
+                </div>
+        ) }
+        </div>
+    );
+};

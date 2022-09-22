@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState } from "@epam/uui-core";
+import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps } from "@epam/uui-core";
 import { Presets, FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
 import type { TApi } from '../../../data';
-import { getFilters, api } from './data';
+import { getFilters } from './filters';
 import { personColumns } from './columns';
 import { FilterPanel } from './FilterPanel';
 import { InfoSidebarPanel } from './InfoSidebarPanel';
@@ -36,7 +36,12 @@ export const MasterDetailedTable: React.FC = () => {
     });
 
     const dataSource = useLazyDataSource<Person, number, Person>({
-        api,
+        api: request => svc.api.demo.persons(request),
+    }, []);
+
+    const clickHandler = useCallback((rowProps: DataRowProps<Person, number>) => {
+        rowProps.onSelect(rowProps);
+        setIsInfoPanelOpened(true);
     }, []);
 
 
@@ -44,11 +49,8 @@ export const MasterDetailedTable: React.FC = () => {
         rowOptions: {
             checkbox: { isVisible: true },
             isSelectable: true,
-            onClick(rowProps) {
-                rowProps.onSelect(rowProps);
-                setIsInfoPanelOpened(true);
+            onClick: clickHandler,
             },
-        }
     });
 
     return (

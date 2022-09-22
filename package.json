@@ -15,14 +15,15 @@
     "build": "cd ./app && yarn build --stats",
     "build-dev": "cd ./app && yarn build-dev",
     "start-server": "cd ./app && yarn server",
-    "release": "node uui-build/scripts/buildModules",
     "lint": "npx tslint -p ./tsconfig.json -e node_modules",
     "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
     "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "build-server-helpers": "npx tsc ./uui/data/querying/getOrderComparer.ts uui/data/querying/getPatternPredicate.ts --outDir ./server/helpers/",
     "generate-components-api": "cd uui-build && yarn generate-components-api",
-    "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter"
+    "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
+    "release": "lerna publish --force-publish",
+    "build-modules": "learn run build"
   },
   "repository": {
     "type": "git",

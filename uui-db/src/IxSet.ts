@@ -1,6 +1,6 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
-import { SortingOption, DataQueryFilterCondition, DataQueryFilter, getPatternPredicate } from '@epam/uui-core';
+import { SortingOption, DataQueryFilterCondition, DataQueryFilter, getFilterPredicate } from '@epam/uui-core';
 import orderBy from 'lodash.orderby';
 
 export interface IxSetIndexDefinition<TEntity> {
@@ -216,7 +216,7 @@ export class IxSet<TEntity, TId> {
 
         const result: TEntity[] = [];
 
-        const filterPredicate = getPatternPredicate(plan ? plan.remainingFilter : filter);
+        const filterPredicate = getFilterPredicate(plan ? plan.remainingFilter : filter);
 
         let current;
         let index = 0;

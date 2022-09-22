@@ -27,6 +27,9 @@ import { ReactComponent as DeskIcon } from '../../icons/desk.svg';
 import { ReactComponent as TalkIcon } from '../../icons/talk-logo.svg';
 import { ReactComponent as TelescopeIcon } from '@epam/assets/icons/common/communication-telescope-24.svg';
 import { ReactComponent as BillingIcon } from '../../icons/billing.svg';
+import { ReactComponent as TrainingCenterIcon } from '../../icons/training-center-logo.svg';
+import { ReactComponent as RewardsIcon } from '../../icons/rewards-logo.svg';
+import { ReactComponent as InviteIcon } from '../../icons/Invite-logo.svg';
 
 export const projectsList: Array<{ projectName: string, projectCode: string, icon: Icon, url: string }> = [
     { projectName: 'Learn', projectCode: 'EPM-TMC', icon: LearnIcon, url: 'https://learn.epam.com' },
@@ -56,6 +59,10 @@ export const projectsList: Array<{ projectName: string, projectCode: string, ico
     { projectName: 'EPM-TALK', projectCode: 'EPM-TALK', icon: TalkIcon, url: 'https://telescope.epam.com/who/?tab=wall' },
     { projectName: 'Global Menu', projectCode: 'EPM-HIVE', icon: MenuIcon, url: 'https://menu.epam.com/app' },
     { projectName: 'Desk', projectCode: 'EPM-OSM', icon: DeskIcon, url: 'https://desk.epam.com/app-react/home' },
+    { projectName: 'Training center', projectCode: 'EPM-RDPT', icon: TrainingCenterIcon, url: 'https://training.by' },
+    { projectName: 'Rewards', projectCode: 'EPM-RCGN', icon: RewardsIcon, url: 'https://rewards.epam.com/' },
+    { projectName: 'Invite', projectCode: 'EPM-REF', icon: InviteIcon, url: 'https://invite.epam.com/' },
+    { projectName: 'Experts', projectCode: 'EPMD-CERT', icon: InviteIcon, url: 'https://experts.epam.com/' },
 ];
 
 export class ProjectsDoc extends React.Component {

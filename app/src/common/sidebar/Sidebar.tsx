@@ -1,43 +1,43 @@
 import * as React from 'react';
 import * as css from './Sidebar.scss';
 import { ScrollBars, SearchInput } from '@epam/promo';
-import { Tree, TreeListItem, TreeNodeProps } from '@epam/uui-components';
+import { Tree, TreeListItem } from '@epam/uui-components';
 import { SidebarButton } from './SidebarButton';
-import { Link, useUuiContext } from "@epam/uui";
+import { DataRowProps, DataSourceState, Link, useUuiContext } from "@epam/uui";
 import { analyticsEvents } from "../../analyticsEvents";
 
 export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
     value: string;
-    onValueChange: (newVal: TreeNodeProps<TItem>) => void;
-    getItemLink?: (item: TreeNodeProps<TItem>) => Link;
+    onValueChange: (newVal: DataRowProps<TItem, string>) => void;
+    getItemLink?: (item: DataRowProps<TItem, string>) => Link;
     items: TItem[];
     renderSearch?: () => React.ReactNode;
 }
 
 export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) {
     const { uuiAnalytics } = useUuiContext();
-    const [searchValue, setSearchValue] = React.useState<string>('');
-    const [unfoldedIds, setUnfoldedIds] = React.useState<string[]>([]);
+    const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {} });
 
     React.useEffect(() => {
-        const { parentId } = props.items.find(i => i.id === props.value);
-        if (!unfoldedIds.includes(parentId) && parentId !== undefined) {
-            setUnfoldedIds([...unfoldedIds, parentId]);
+        const { parentId } = props.items.find(i => i.id == props.value);
+        if (parentId != null) {
+            const parentKey = JSON.stringify(parentId);
+            setValue((value) => ({...value, folded: { ...value.folded, [ parentKey ]: false } }));
         }
     }, [props.value]);
 
-    const handleClick = React.useCallback((item: TreeNodeProps) => {
-        item.isDropdown && item.onClick();
-        const type = item.isDropdown ? 'folder' : 'document';
-        uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument(type, item.data.name, item.parentId));
+    const handleClick = React.useCallback((row: DataRowProps<TItem, string>) => {
+        row.isFoldable && row.onFold(row);
+        const type = row.isFoldable ? 'folder' : 'document';
+        uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument(type, row.value.name, row.parentId));
     }, []);
 
     return (
         <aside className={ css.root }>
             <SearchInput
                 cx={ css.search }
-                value={ searchValue }
-                onValueChange={ setSearchValue }
+                value={ value.search }
+                onValueChange={ (search) => setValue(v => ({ ...v, search }))}
                 autoFocus
                 placeholder='Search'
                 getValueChangeAnalyticsEvent={ value => analyticsEvents.document.search(value) }
@@ -46,18 +46,18 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                 <ScrollBars>
                     <Tree<TItem>
                         items={ props.items }
-                        value={ unfoldedIds }
-                        search={ searchValue }
-                        onValueChange={ setUnfoldedIds }
-                        renderRow={ item => (
+                        value={ value }
+                        onValueChange={ setValue }
+                        renderRow={ row => (
                             <SidebarButton
-                                link={ props.getItemLink(item) }
-                                indent={ item.depth * 12 }
-                                isOpen={ item.isOpen }
-                                isDropdown={ item.isDropdown }
-                                isActive={ item.id === props.value }
-                                caption={ item.data.name }
-                                onClick={ () => handleClick(item) }
+                                key={ row.key }
+                                link={ props.getItemLink(row) }
+                                indent={ (row.depth - 1) * 12 }
+                                isOpen={ !row.isFolded }
+                                isDropdown={ row.isFoldable }
+                                isActive={ row.id === props.value }
+                                caption={ row.value.name }
+                                onClick={ () => handleClick(row) }
                             />
                         ) }
                     />

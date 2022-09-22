@@ -1,15 +1,20 @@
 import * as React from 'react';
 import * as css from './IconContainer.scss';
-import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps } from '@epam/uui-core';
+import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex } from '@epam/uui-core';
 import { Svg } from '../widgets';
 
-export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTMLDivElement> {
+export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTMLDivElement>, IHasTabIndex {
+    /** Icon to display */
     icon?: Icon;
+    /** Flips the icon vertically */
     flipY?: boolean;
+    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise)) */
     rotate?: '0' | '90cw' | '180' | '90ccw';
+    /** Click handler */
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
-    tabIndex?: number;
+    /** CSS style prop to put on the component */
     style?: React.CSSProperties;
+    /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */
     size?: number;
 }
 

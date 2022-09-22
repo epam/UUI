@@ -3,10 +3,19 @@ import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Avatar.scss';
 
 export interface AvatarProps extends IHasCX, IHasRawProps<HTMLImageElement>, IHasForwardedRef<HTMLImageElement> {
+    /** HTML alt attribute value */
     alt?: string;
+
+    /** Image URL */
     img: string;
+
+    /** Size  */
     size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144';
+
+    /** True to show placeholder */
     isLoading?: boolean;
+
+    /** Click handler */
     onClick?: () => void;
 }
 

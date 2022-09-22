@@ -31,7 +31,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ...newValue,
             filter: newFilter,
         }));
-
+        const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
@@ -39,10 +39,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filtersConfig: newValue.filtersConfig,
         };
 
-        context.uuiRouter.redirect({
-            pathname: location.pathname,
-            query: newQuery,
-        });
+        // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
+        if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
+            context.uuiRouter.redirect({
+                pathname: location.pathname,
+                query: newQuery,
+            });
+        }
+
     }, []);
 
     const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
@@ -126,6 +130,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
         setPresets(prevValue => [...prevValue, newPreset]);
         choosePreset(newPreset);
+        return newPreset.id;
     }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
 
     const resetToDefault = useCallback(() => {
@@ -152,19 +157,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, []);
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
-        const newPreset = {
-            ...preset,
-            filter: tableStateValue.filter,
-            columnsConfig: tableStateValue.columnsConfig,
-        };
-        await params?.onPresetUpdate(newPreset);
+        await params?.onPresetUpdate(preset);
 
         setPresets(prevValue => {
             const newPresets = [...prevValue];
-            newPresets.splice(presets.findIndex(p => p.id === preset.id), 1, newPreset);
+            newPresets.splice(prevValue.findIndex(p => p.id === preset.id), 1, preset);
             return newPresets;
         });
-    }, [tableStateValue.filter, tableStateValue.columnsConfig]);
+    }, []);
 
     return {
         tableState: tableStateValue,

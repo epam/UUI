@@ -41,9 +41,14 @@ exports[`DataTable should be rendered correctly 1`] = `
       <div
         className="container uui-table-row-container root uui-table-header-row container align-items-center"
         role="row"
+        style={
+          Object {
+            "minWidth": "0px",
+          }
+        }
       >
         <div
-          className="container"
+          className="scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "1 0 0px",

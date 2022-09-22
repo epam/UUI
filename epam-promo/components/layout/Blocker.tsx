@@ -5,6 +5,7 @@ import { Blocker as uuiBlocker, BlockerProps } from '@epam/uui-components';
 import { Spinner, SpinnerColor } from '../widgets';
 
 export interface BlockerMods {
+    /** Spinner icon color */
     color?: SpinnerColor;
 }
 
