@@ -44,13 +44,12 @@ export const MasterDetailedTable: React.FC = () => {
         setIsInfoPanelOpened(true);
     }, []);
 
-
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             checkbox: { isVisible: true },
             isSelectable: true,
             onClick: clickHandler,
-            },
+        },
     });
 
     return (
@@ -92,7 +91,7 @@ export const MasterDetailedTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ tableStateApi.tableState.selectedId && dataSource.getById(tableStateApi.tableState.selectedId) as Person }
+                data={ tableStateApi.tableState.selectedId && view.getById(tableStateApi.tableState.selectedId, 0).value as Person }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
