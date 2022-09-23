@@ -32,8 +32,13 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             selectionMode={ this.props.selectionMode }
             valueType={ this.props.valueType }
         />)
-            .then(newSelection => this.handleSelectionValueChange(newSelection))
-            .catch(() => null);
+            .then(newSelection => {
+                this.handleSelectionValueChange(newSelection)
+                this.returnFocusToInput()
+            })
+            .catch(() => {
+                this.returnFocusToInput()
+            });
     }
 
     getRowSize() {
@@ -112,7 +117,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
-                    close={ () => this.toggleBodyOpening(false) }
+                    close={ () => {
+                        this.returnFocusToInput()
+                        this.toggleBodyOpening(false)
+                    } }
                 >
                     <DataPickerBody
                         { ...props }
