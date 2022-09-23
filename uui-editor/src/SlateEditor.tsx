@@ -11,7 +11,7 @@ import { paragraphPlugin, colorPlugin, baseMarksPlugin } from "./plugins";
 import { Toolbar } from "./implementation/Toolbar";
 
 // @ts-ignore
-const data: any = {
+const defaultData: any = {
     "object": "value",
     "document": {
         "object": "document",
@@ -209,7 +209,7 @@ const data: any = {
 export const defaultPlugins = [
     SoftBreak({ shift: true }),
     paragraphPlugin(),
-    colorPlugin(),
+    //colorPlugin(),
     //utilsPlugin(),
 ];
 
@@ -262,34 +262,35 @@ export const migrateSchema = (oldSchema: any) => {
     return oldSchema.document.nodes.map(migrateNode);
 };
 
-export function SlateEditor() {
+export function SlateEditor(props: any) {
     const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-    const renderMark = (props: any) => {
+    const renderMark = ({ leaf, children, attributes }: any) => {
 
-        if (props.leaf['uui-richTextEditor-bold']) {
-            return <strong { ...props.attributes }>{ props.children }</strong>;
+        if (leaf['uui-richTextEditor-bold']) {
+            children = <strong>{ children }</strong>;
         }
-        if (props.leaf['uui-richTextEditor-italic']) {
-            return <i { ...props.attributes }>{ props.children }</i>;
+        if (leaf['uui-richTextEditor-italic']) {
+            children = <i>{ children }</i>;
         }
-        if (props.leaf['uui-richTextEditor-underlined']) {
-            return <u { ...props.attributes }>{ props.children }</u>;
+        if (leaf['uui-richTextEditor-underlined']) {
+            children = <u>{ children }</u>;
         }
-        if (props.leaf['uui-richTextEditor-superscript']) {
-            return <sup { ...props.attributes }>{ props.children }</sup>;
-        }
-
-        if (props.leaf['uui-richTextEditor-code']) {
-            return <code { ...props.attributes }>{ props.children }</code>;
+        if (leaf['uui-richTextEditor-superscript']) {
+            children = <sup>{ children }</sup>;
         }
 
-        return <span { ...props.attributes } >{ props.children }</span>;
+        if (leaf['uui-richTextEditor-code']) {
+            children = <code>{ children }</code>;
+        }
+
+        return <span { ...attributes } >{ children }</span>;
     };
+    const dataForMigration = props?.value || defaultData;
 
     return (
         <Slate
             editor={ editor }
-            value={ migrateSchema(data) }
+            value={ migrateSchema(dataForMigration) }
         >
             <Toolbar editor={ editor } plugins={ basePlugins } />
             <Editable
