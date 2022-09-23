@@ -153,7 +153,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
                 (!props.isReadonly && !props.isDisabled && props.onClick) && uuiMarkers.clickable,
-                (!props.isReadonly && !props.isDisabled && inFocus) && (props.isOpen && uuiMod.focus),
+                (!props.isReadonly && !props.isDisabled && inFocus) && uuiMod.focus,
                 props.cx,
             ) }
             tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
