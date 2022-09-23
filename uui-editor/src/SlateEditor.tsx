@@ -229,7 +229,6 @@ export const basePlugins = [
  */
 
 const migrateTextNode = (oldNode: any) => {
-   // console.log(oldNode);
     return {
         text: oldNode.text,
         ...oldNode.marks?.reduce(

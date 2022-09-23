@@ -1,7 +1,7 @@
 // import flatten from 'lodash.flatten';
 // import Html from 'slate-html-serializer';
 import { useSlate, useFocused } from "slate-react";
-import { Editor } from "slate";
+import { Range, Editor } from 'slate';
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -43,9 +43,10 @@ export function getMarkDeserializer(marks: Record<string, string>) {
 //     return new Html({ rules: rules });
 // }
 //
-export function isTextSelected(editor: any) {
-    return  true;
-    return editor && !(editor?.selection?.isBlurred || editor?.selection?.isCollapsed || editor?.fragment?.text === '');
+export function isTextSelected(editor: any, inFocus: boolean) {
+    const { selection } = editor;
+
+    return !(!selection || !inFocus || Range.isCollapsed(selection) || Editor.string(editor, selection) === '');
 }
 //
 // export const isEditorEmpty = (value: Value) => {
