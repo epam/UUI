@@ -14,9 +14,9 @@
         @include dnd-cursor-style();
     }
 
-        &:global(.uui-invalid) {
-            --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
-        }
+    &:global(.uui-invalid) {
+        --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
+    }
 
     &:global(.uui-dragged-out) {
         opacity: 0.5;
