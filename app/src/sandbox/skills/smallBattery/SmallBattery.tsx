@@ -1,29 +1,17 @@
 import React, { useCallback } from "react";
 import css from './SmallBattery.scss';
 import cx from "classnames";
-import { ISkillRating } from "../SkillsBattery";
 import { Text, IconContainer } from "@epam/promo";
 import { ReactComponent as CrossIcon } from "../icons/navigation-close_popup-7.svg";
+import { ISkillLevel } from "../index";
 
 
 interface ISmallBatteryProps {
-    rating: ISkillRating;
+    rating: ISkillLevel;
 }
 
 export const SmallBattery = (props: ISmallBatteryProps) => {
     switch (props.rating) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            return (
-                <div className={ cx(css.ratingWrapper) }>
-                    <div className={ cx(css.ratingBlock, props.rating >= 1 && css.active) }></div>
-                    <div className={ cx(css.ratingBlock, props.rating >= 2 && css.active) }></div>
-                    <div className={ cx(css.ratingBlock, props.rating >= 3 && css.active) }></div>
-                    <div className={ cx(css.ratingBlock, props.rating === 4 && css.active) }></div>
-                </div>
-            );
         case "NA":
         case "Rank":
             return (
@@ -38,6 +26,13 @@ export const SmallBattery = (props: ISmallBatteryProps) => {
                 </div>
             );
         default:
-            return null;
+            return (
+                <div className={ cx(css.ratingWrapper) }>
+                    <div key={ `b-1` } className={ cx(css.ratingBlock, props.rating >= 1 && css.active) }></div>
+                    <div key={ `b-2` } className={ cx(css.ratingBlock, props.rating >= 2 && css.active) }></div>
+                    <div key={ `b-3` } className={ cx(css.ratingBlock, props.rating >= 3 && css.active) }></div>
+                    <div key={ `b-4` } className={ cx(css.ratingBlock, props.rating === 4 && css.active) }></div>
+                </div>
+            );
     }
 };

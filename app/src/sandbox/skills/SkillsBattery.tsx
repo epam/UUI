@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import dayjs from "dayjs";
 import { SmallBattery } from "./smallBattery/SmallBattery";
-import { Button, Dropdown, FlexRow, LinkButton, Tooltip, Text, DropdownContainer, IconContainer, IconButton, FlexCell } from "@epam/promo";
+import { Button, Dropdown, FlexRow, Tooltip, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
 import { cx, IDropdownToggler } from "@epam/uui-core";
 import { DropdownBodyProps } from "@epam/uui-components";
 import css from './SkillsBattery.scss';
@@ -12,24 +13,30 @@ import { ReactComponent as noSkillIcon } from './icons/no-skill-18.svg';
 import { ReactComponent as noActiveIcon } from './icons/no-active-18.svg';
 import { ReactComponent as recommendedIcon } from './icons/recommended-18.svg';
 import { ReactComponent as infoLogo } from './icons/notification-info-outline-10.svg';
-import { ReactComponent as medalLogo } from './icons/Medal.svg';
-import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { BigBattery } from "./bigBattery/BigBattery";
+import { IInnerSkill, ISkill, ISkillLevel } from "./index";
 
-export type ISkillRating = 1 | 2 | 3 | 4 | 'NA' | 'NoSkill' | 'Rank';
 
-export const SkillsBattery = () => {
-    const [isFavorite, setIsFavorite] = useState<boolean>(false);
-    const [isRecommended, setIsRecommended] = useState<boolean>(false);
-    const [rating, setRating] = useState<ISkillRating>('NA');
-    const [skillText, setSkillText] = useState();
+const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
+
+interface ISkillsBatteryProps {
+    data: ISkill;
+}
+
+export const SkillsBattery = (props: ISkillsBatteryProps) => {
     const targetBodyRef = React.createRef();
+    const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isFavourite);
+    const [isRecommended, setIsRecommended] = useState<IInnerSkill>(props.data?.options.isRecommended);
+    const [level, setLevel] = useState<ISkillLevel>(props.data?.level);
+    const [skillText, setSkillText] = useState(props.data?.caption);
+    const [comment, setComment] = useState(props.data?.comment);
 
-    const renderDropdownBody = (props: DropdownBodyProps) => {
+
+    const renderDropdownBody = (bodyProps: DropdownBodyProps) => {
         return (
-            <DropdownContainer cx={ cx(css.dropContainer) }>
+            <DropdownContainer cx={ cx(css.dropContainer) } { ...bodyProps }>
                 <FlexRow cx={ cx(css.headerRow) }>
-                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }><b>Software process</b></Text>
+                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }><b>{ skillText }</b></Text>
                     <FlexRow spacing="6">
                         <IconButton icon={ goFromPoint } color="gray50" onClick={ () => null }/>
                         <IconButton icon={ arrowExpandIcon } color="gray50" onClick={ () => null }/>
@@ -40,54 +47,64 @@ export const SkillsBattery = () => {
                     <IconButton icon={ infoLogo } color="gray50" onClick={ () => null }/>
                 </FlexRow>
                 <FlexRow cx={ cx(css.descriptionRow) }>
-                    <Text fontSize="12" lineHeight="18" font="sans" color='gray60' cx={ cx(css.rowText) }>At this level, user can understand the main points of clear texts in standard language.</Text>
+                    <Text fontSize="12" lineHeight="18" font="sans" color="gray60" cx={ cx(css.rowText) }>At this level, user can understand the main points of clear texts in standard language.</Text>
                 </FlexRow>
-                <BigBattery rating={ rating } setRating={ setRating }/>
+                <BigBattery rating={ level } setRating={ setLevel }/>
                 <FlexRow cx={ css.iconButtonsRow }>
-                    <Button cx={ css.iconBtn } icon={ heartIconFilled } fill='light' color={ isFavorite ? 'red' : 'gray50' } onClick={ () => setIsFavorite((prev) => !prev) }/>
-                    <Button cx={ css.iconBtn } icon={ recommendedIcon } fill='light' color={ isRecommended ? 'green' : 'gray50' } onClick={ () => setIsRecommended((prev) => !prev) }/>
-                    <Button cx={ css.iconBtn } icon={ noSkillIcon } fill='light' color="gray50" onClick={ () => setRating('NoSkill') }/>
-                    <Button cx={ css.iconBtn } icon={ noActiveIcon } fill='light' color="gray50" onClick={ () => setRating('NA') }/>
+                    <Button cx={ css.iconBtn } icon={ heartIconFilled } fill="light" color={ isFavorite?.status ? 'red' : 'gray50' } onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }/>
+                    <Button cx={ css.iconBtn } icon={ recommendedIcon } fill="light" color={ isRecommended?.status ? 'green' : 'gray50' } onClick={ () => setIsRecommended((prev) => ({ ...prev, status: !prev.status })) }/>
+                    <Button cx={ css.iconBtn } icon={ noSkillIcon } fill="light" color="gray50" onClick={ () => setLevel('NoSkill') }/>
+                    <Button cx={ css.iconBtn } icon={ noActiveIcon } fill="light" color="gray50" onClick={ () => setLevel('NA') }/>
                 </FlexRow>
                 <div className={ css.infoBlock }>
-                    <FlexRow spacing="6" cx={ css.infoBlockRow } >
-                        <IconContainer cx={ css.infoItem } icon={ doneIcon } />
-                        <Text cx={ css.infoItem } color="gray80">Last updated</Text>
-                        <Text cx={ css.infoItem } color="gray60">on Dec 10, 2019</Text>
-                    </FlexRow>
-                    <FlexRow spacing="6" cx={ css.infoBlockRow }>
-                        <IconContainer cx={ css.infoItem } icon={ medalLogo } />
-                        <Text cx={ css.infoItem } color="gray80">Confirmed by Assessment</Text>
-                        <Text cx={ css.infoItem } color="gray60">on Jun 6, 2020</Text>
-                    </FlexRow>
-                    <FlexRow spacing="6" cx={ css.infoBlockRow }>
-                        <IconContainer cx={ css.infoItem } icon={ doneIcon } />
-                        <Text cx={ css.infoItem } color="gray80">Last updated</Text>
-                        <Text cx={ css.infoItem } color="gray60">on Dec 10, 2019</Text>
-                    </FlexRow>
+                    { Object.entries(props?.data.options).map((val, index) => (
+                        <FlexRow key={ `${ index }-option` } spacing="6" cx={ css.infoBlockRow }>
+                            <IconContainer cx={ css.infoItem } icon={ val[1].icon }/>
+                            <Text cx={ css.infoItem } color="gray80">{ val[1].prefix }</Text>
+                            <Text cx={ css.infoItem } color="gray60">{ getDateInFormat(val[1].date) }</Text>
+                        </FlexRow>
+                    )) }
                 </div>
+                <TextInput value={ comment } onValueChange={ setComment } placeholder="Click to leave a comment..." mode="cell" size="30"/>
             </DropdownContainer>
         );
     };
 
-    const TargetBody = React.forwardRef((props, ref) => {
+    const TargetBody = React.forwardRef((bodyProps, ref) => {
         return (
             <FlexRow ref={ ref } cx={ cx(css.targetBodyContainer) } size="30">
-                <IconContainer icon={ isFavorite ? heartIconFilled : heartIconOutline } color={ isFavorite ? 'red' : 'gray50' }/>
-                <SmallBattery rating={ rating }/>
+                <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
+                <SmallBattery rating={ level }/>
                 <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ skillText }</Text>
+                { Object.entries(props?.data.options).map((val, index) => (
+                    <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
+                )) }
             </FlexRow>
         );
     });
 
-
-    const renderTarget = (props: IDropdownToggler) => {
+    const getTooltipContent = () => {
         return (
-            <div { ...props }>
+            <div className={ css.tooltipContainer }>
+                { Object.entries(props?.data.options).map((val, index) => (
+                    <FlexRow key={ `${ index }-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
+                        <IconContainer cx={ css.tooltipItem } icon={ val[1].icon }/>
+                        <Text cx={ css.tooltipItem } color="gray60">{ val[1].prefix }</Text>
+                        <Text cx={ css.tooltipItem } color="gray5">{ getDateInFormat(val[1].date) }</Text>
+                    </FlexRow>
+                )) }
+            </div>
+        );
+    };
+
+
+    const renderTarget = (targetProps: IDropdownToggler) => {
+        return (
+            <div { ...targetProps }>
                 {
-                    props.isOpen
+                    targetProps.isOpen
                         ? <TargetBody/>
-                        : <Tooltip trigger="hover" content={ <h1>Rendered content</h1> } placement="top" color="white">
+                        : <Tooltip trigger="hover" content={ getTooltipContent() } placement="top">
                             <TargetBody ref={ targetBodyRef }/>
                         </Tooltip>
                 }
@@ -98,8 +115,8 @@ export const SkillsBattery = () => {
     return (
         <div style={ { padding: '3rem 1rem 0' } }>
             <Dropdown
-                renderBody={ (props) => renderDropdownBody(props) }
-                renderTarget={ (props: IDropdownToggler) => renderTarget(props) }
+                renderBody={ (bodyProps) => renderDropdownBody(bodyProps) }
+                renderTarget={ (targetProps: IDropdownToggler) => renderTarget(targetProps) }
                 closeOnTargetClick={ true }
                 placement="bottom-start"
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }

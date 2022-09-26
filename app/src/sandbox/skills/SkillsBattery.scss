@@ -16,7 +16,6 @@
 
 .drop-container {
     width: 334px;
-    border-radius: 6px;
 
     &:global(.uui-dropdown-body) {
         min-width: 300px;
@@ -71,6 +70,7 @@
         box-sizing: border-box;
         width: 100%;
         padding: 12px;
+        background-color: $white;
 
         .info-block-row {
             min-height: auto;
@@ -84,6 +84,23 @@
                 padding-bottom: 0;
             }
         }
+    }
+}
+
+.tooltip-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 12px;
+    margin: 0;
+
+    .tooltip-block-row {
+        margin: 0;
+        padding: 0;
+
+        //&:not(:last-of-type) {
+        //    margin: 0;
+        //    padding: 0;
+        //}
     }
 }
 

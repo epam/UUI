@@ -3,12 +3,12 @@ import css from './BigBattery.scss';
 import cx from "classnames";
 import { Button, FlexRow, Text } from "@epam/promo";
 import { ReactComponent as CrossIcon } from "@epam/assets/icons/common/navigation-close-18.svg";
-import { ISkillRating } from "../SkillsBattery";
+import { ISkillLevel } from "../index";
 
 
 interface IBigBatteryProps {
-    rating: ISkillRating;
-    setRating: (val: ISkillRating) => void;
+    rating: ISkillLevel;
+    setRating: (val: ISkillLevel) => void;
 }
 
 export const BigBattery = (props: IBigBatteryProps) => {
