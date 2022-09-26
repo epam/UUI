@@ -1,7 +1,7 @@
 import { Task, Resource } from "./types";
 import { resources } from './demoData';
 import React from "react";
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea } from '@epam/loveship';
+import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
@@ -28,7 +28,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         isSortable: true,
         renderCell: (props) => <DataTableCell
             { ...props.rowLens.prop('estimate').toProps() }
-            background={ 'sky' }
+            background={ 'green' }
             renderEditor={ props => <NumericInput
                 { ...props }
                 formatOptions={ { maximumFractionDigits: 1 } }
