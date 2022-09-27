@@ -19,6 +19,48 @@ import { IInnerSkill, ISkill, ISkillLevel } from "./index";
 
 const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
 
+const getLevel = (level: ISkillLevel): string => {
+    switch (level) {
+        case 1:
+            return 'Novice';
+        case 2:
+            return 'Intermediate';
+        case 3:
+            return 'Advanced';
+        case 4:
+            return 'Expert';
+        case 'NA':
+            return 'Not check';
+        case "NoSkill":
+            return 'No skill';
+        case 'Rank':
+            return 'Rank';
+        default:
+            return null;
+    }
+};
+
+const getLevelDescription = (level: ISkillLevel): string => {
+    switch (level) {
+        case 1:
+            return 'Novice description Lorem ipsum dolor sit amet.';
+        case 2:
+            return 'Intermediate description Lorem ipsum dolor sit amet.';
+        case 3:
+            return 'Advanced description Lorem ipsum dolor sit amet.';
+        case 4:
+            return 'Expert  description Lorem ipsum dolor sit amet.';
+        case 'NA':
+            return 'Not check';
+        case "NoSkill":
+            return 'No skill';
+        case 'Rank':
+            return 'Rank description';
+        default:
+            return null;
+    }
+};
+
 interface ISkillsBatteryProps {
     data: ISkill;
 }
@@ -43,13 +85,13 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
                     </FlexRow>
                 </FlexRow>
                 <FlexRow cx={ cx(css.levelRow) }>
-                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.rowText) }>Current Level: Advanced</Text>
+                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.rowText) }>Current Level: { getLevel(level) }</Text>
                     <IconButton icon={ infoLogo } color="gray50" onClick={ () => null }/>
                 </FlexRow>
                 <FlexRow cx={ cx(css.descriptionRow) }>
-                    <Text fontSize="12" lineHeight="18" font="sans" color="gray60" cx={ cx(css.rowText) }>At this level, user can understand the main points of clear texts in standard language.</Text>
+                    <Text fontSize="12" lineHeight="18" font="sans" color="gray60" cx={ cx(css.rowText) }>{ getLevelDescription(level) }</Text>
                 </FlexRow>
-                <BigBattery rating={ level } setRating={ setLevel }/>
+                <BigBattery rating={ level } setRating={ setLevel } isExtended={ true }/>
                 <FlexRow cx={ css.iconButtonsRow }>
                     <Button cx={ css.iconBtn } icon={ heartIconFilled } fill="light" color={ isFavorite?.status ? 'red' : 'gray50' } onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }/>
                     <Button cx={ css.iconBtn } icon={ recommendedIcon } fill="light" color={ isRecommended?.status ? 'green' : 'gray50' } onClick={ () => setIsRecommended((prev) => ({ ...prev, status: !prev.status })) }/>
@@ -76,7 +118,7 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
                 <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
                 <SmallBattery rating={ level }/>
                 <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ skillText }</Text>
-                { Object.entries(props?.data.options).map((val, index) => (
+                { Object.entries(props?.data.options).map((val) => (
                     <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
                 )) }
             </FlexRow>
@@ -86,6 +128,10 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
     const getTooltipContent = () => {
         return (
             <div className={ css.tooltipContainer }>
+                <FlexRow spacing="6" cx={ css.tooltipHeader }>
+                    <Text cx={ css.tooltipHeaderItem } color="gray60">Current level:</Text>
+                    <Text cx={ css.tooltipHeaderItem } color="gray5">{ getLevel(level) }</Text>
+                </FlexRow>
                 { Object.entries(props?.data.options).map((val, index) => (
                     <FlexRow key={ `${ index }-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
                         <IconContainer cx={ css.tooltipItem } icon={ val[1].icon }/>
