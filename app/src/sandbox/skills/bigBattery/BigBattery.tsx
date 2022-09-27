@@ -9,6 +9,7 @@ import { ISkillLevel } from "../index";
 interface IBigBatteryProps {
     rating: ISkillLevel;
     setRating: (val: ISkillLevel) => void;
+    isExtended: boolean;
 }
 
 export const BigBattery = (props: IBigBatteryProps) => {
@@ -61,9 +62,13 @@ export const BigBattery = (props: IBigBatteryProps) => {
                 </div>
             </FlexRow>
 
-            <div className={ css.batteryDivider }></div>
-
-            <Button fill="none" color="gray50" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating("NoSkill") }/>
+            {
+                props.isExtended
+                && <>
+                    <div className={ css.batteryDivider }></div>
+                    <Button fill="none" color="gray50" icon={ CrossIcon } cx={ cx(css.mainCloseBtn) } onClick={ () => props.setRating("NoSkill") }/>
+                </>
+            }
 
         </FlexRow>
     );

@@ -71,6 +71,7 @@
         width: 100%;
         padding: 12px;
         background-color: $white;
+        border-bottom: 1px solid $gray30;
 
         .info-block-row {
             min-height: auto;
@@ -87,20 +88,45 @@
     }
 }
 
+:global(.uui-tooltip-container) {
+    :global(.uui-tooltip-body) {
+        margin: 0;
+        padding: 0;
+        background-color: $gray80;
+    }
+}
+
+
+
 .tooltip-container {
     box-sizing: border-box;
     width: 100%;
-    padding: 6px 12px;
-    margin: 0;
+
+    .tooltip-header {
+        background-color: $gray90;
+        min-height: auto;
+        padding: 0 12px;
+
+        .tooltip-header-item {
+            padding: 6px 0 6px;
+        }
+    }
 
     .tooltip-block-row {
-        margin: 0;
-        padding: 0;
+        min-height: auto;
+        padding: 0 12px;
 
-        //&:not(:last-of-type) {
-        //    margin: 0;
-        //    padding: 0;
-        //}
+        &:first-of-type {
+            padding-top: 3px;
+        }
+
+        &:last-of-type {
+            padding-bottom: 3px;
+        }
+
+        .tooltip-item {
+            padding: 3px 0 3px;
+        }
     }
 }
 

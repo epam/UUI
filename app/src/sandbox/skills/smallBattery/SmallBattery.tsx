@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import css from './SmallBattery.scss';
 import cx from "classnames";
 import { Text, IconContainer } from "@epam/promo";
