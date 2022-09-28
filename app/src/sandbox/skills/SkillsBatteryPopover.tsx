@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { SmallBattery } from "./smallBattery/SmallBattery";
+import css from './SkillsBatteryPopover.scss';
+import { SmallBattery } from "./components/SmallBattery";
+import { BigBattery } from "./components/BigBattery";
+import { IInnerSkill, ISkill, ISkillLevel } from "./index";
 import { Button, Dropdown, FlexRow, Tooltip, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
 import { cx, IDropdownToggler } from "@epam/uui-core";
 import { DropdownBodyProps } from "@epam/uui-components";
-import css from './SkillsBattery.scss';
 import { ReactComponent as heartIconOutline } from '@epam/assets/icons/common/fav-rates-favorite-outline-18.svg';
 import { ReactComponent as heartIconFilled } from '@epam/assets/icons/common/fav-rates-favorite-18.svg';
 import { ReactComponent as arrowExpandIcon } from './icons/navigation-arrows_expand-18.svg';
@@ -13,9 +15,6 @@ import { ReactComponent as noSkillIcon } from './icons/no-skill-18.svg';
 import { ReactComponent as noActiveIcon } from './icons/no-active-18.svg';
 import { ReactComponent as recommendedIcon } from './icons/recommended-18.svg';
 import { ReactComponent as infoLogo } from './icons/notification-info-outline-10.svg';
-import { BigBattery } from "./bigBattery/BigBattery";
-import { IInnerSkill, ISkill, ISkillLevel } from "./index";
-
 
 const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
 
@@ -65,12 +64,11 @@ interface ISkillsBatteryProps {
     data: ISkill;
 }
 
-export const SkillsBattery = (props: ISkillsBatteryProps) => {
+export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
     const targetBodyRef = React.createRef();
     const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isFavourite);
     const [isRecommended, setIsRecommended] = useState<IInnerSkill>(props.data?.options.isRecommended);
     const [level, setLevel] = useState<ISkillLevel>(props.data?.level);
-    const [skillText, setSkillText] = useState(props.data?.caption);
     const [comment, setComment] = useState(props.data?.comment);
 
 
@@ -78,7 +76,7 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
         return (
             <DropdownContainer cx={ cx(css.dropContainer) } { ...bodyProps }>
                 <FlexRow cx={ cx(css.headerRow) }>
-                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }><b>{ skillText }</b></Text>
+                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }><b>{ props.data?.caption }</b></Text>
                     <FlexRow spacing="6">
                         <IconButton icon={ goFromPoint } color="gray50" onClick={ () => null }/>
                         <IconButton icon={ arrowExpandIcon } color="gray50" onClick={ () => null }/>
@@ -117,7 +115,7 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
             <FlexRow ref={ ref } cx={ cx(css.targetBodyContainer) } size="30">
                 <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
                 <SmallBattery rating={ level }/>
-                <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ skillText }</Text>
+                <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
                 { Object.entries(props?.data.options).map((val) => (
                     <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
                 )) }
@@ -134,7 +132,7 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
                 </FlexRow>
                 { Object.entries(props?.data.options).map((val, index) => (
                     <FlexRow key={ `${ index }-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
-                        <IconContainer cx={ css.tooltipItem } icon={ val[1].icon }/>
+                        <IconContainer cx={ css.tooltipItem } icon={ val[1].icon } color={ val[1].activeColor }/>
                         <Text cx={ css.tooltipItem } color="gray60">{ val[1].prefix }</Text>
                         <Text cx={ css.tooltipItem } color="gray5">{ getDateInFormat(val[1].date) }</Text>
                     </FlexRow>
@@ -142,7 +140,6 @@ export const SkillsBattery = (props: ISkillsBatteryProps) => {
             </div>
         );
     };
-
 
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
