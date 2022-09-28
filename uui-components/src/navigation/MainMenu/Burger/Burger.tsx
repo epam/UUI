@@ -11,7 +11,7 @@ interface BurgerState {
 export interface BurgerProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     burgerIcon?: Icon;
     crossIcon?: Icon;
-    width: number;
+    width?: number;
     burgerContentCx?: string;
     renderBurgerContent?: (props: { onClose: () => void }) => React.ReactNode;
     bg?: string;

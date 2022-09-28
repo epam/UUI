@@ -6,6 +6,7 @@ const defaultPreset: ITablePreset<any> = {
     filter: undefined,
     columnsConfig: undefined,
     isReadonly: true,
+    order: 'a',
 } as const;
 
 export const constants = {

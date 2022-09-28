@@ -1,14 +1,17 @@
 import React, { useCallback, useState } from "react";
-import css from "./PresetPanel.scss";
-import { FlexRow, TabButton } from "../../index";
-import { DataTableState, IPresetsApi } from "@epam/uui-core";
+import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
+import { DataTableState, IPresetsApi, ITablePreset, getOrderBetween } from "@epam/uui-core";
 import { Preset } from "./Preset";
 import { PresetInput } from "./PresetInput";
+import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
+import sortBy from "lodash.sortby";
 
 export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
 }
+
+type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
 export const PresetPanel = (props: IPresetsBlockProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
@@ -23,30 +26,79 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const {presets, ...presetApi} = props;
 
-    return (
-        <FlexRow spacing='12'>
+    const renderDefaultPreset = () => {
+        return (
             <TabButton
                 caption='Default Preset'
                 onClick={ props.resetToDefault }
                 size="60"
                 isLinkActive={ !props.activePresetId }
             />
-            { props.presets.map(preset => <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi }/>) }
-            <FlexRow>
-                { !isAddingPreset
-                    ?
-                    <TabButton
-                        caption={ 'Add Preset' }
-                        onClick={ setAddingPreset }
-                        size="36"
-                        icon={ PlusIcon }
-                        iconPosition="left"
-                    />
-                    : <PresetInput
-                        onCancel={ cancelAddingPreset }
-                        onSuccess={ props.createNewPreset }
-                    /> }
+        );
+    };
+
+    const renderPreset = (preset: ITablePreset) => {
+        return (
+            <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi }/>
+        );
+    };
+
+    const renderAddPresetButton = useCallback(() => {
+        return !isAddingPreset ?
+            <TabButton
+                caption={ 'Add Preset' }
+                onClick={ setAddingPreset }
+                size="36"
+                icon={ PlusIcon }
+                iconPosition="left"
+            />
+            : <PresetInput
+                onCancel={ cancelAddingPreset }
+                key={'createPresetInput'}
+                onSuccess={ props.createNewPreset }
+            />;
+    }, [isAddingPreset]);
+
+    const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
+        const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
+        props.choosePreset(preset.preset);
+        props.updatePreset({...preset.preset, order: getOrderBetween(maxOrder, null) });
+    };
+
+    const renderMoreButton = (hiddenItems: PresetAdaptiveItem[]) => {
+        return (
+            <Dropdown
+                renderTarget={ (props) => <Button fill='light' color='gray50' caption={ `${hiddenItems?.length || ''} more` } { ...props } /> }
+                renderBody={ () => <DropdownContainer>
+                    {
+                        hiddenItems.map(item =>
+                            <DropdownMenuButton
+                                onClick={ () => onPresetDropdownSelect(item) }
+                                caption={ item.preset.name }
+                            />)
+                    }
+                </DropdownContainer> }
+            />
+        );
+    };
+
+    const getPanelItems = (): PresetAdaptiveItem[] => {
+        return [
+            {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
+            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: index, preset: preset })),
+            { id: 'collapsedContainer', render: (item, hiddenItems) => renderMoreButton(hiddenItems),
+                priority: 100, collapsedContainer: true,
+            },
+            {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100500 },
+        ];
+    };
+
+    return (
+        <FlexCell grow={ 1 }>
+            <FlexRow spacing='12'>
+                <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
-        </FlexRow>
+        </FlexCell>
+
     );
 };
