@@ -13,6 +13,7 @@ import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { TreeListItem } from 'uui-components';
 import { DataRowProps } from 'uui-core';
+import { Skills } from "./skills";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -24,6 +25,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
