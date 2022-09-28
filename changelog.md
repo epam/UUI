@@ -1,3 +1,55 @@
+# next version (Editable Tables Preparation)
+
+**What's New**
+
+* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
+
+* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
+    * shrink prop - marked @deprecated. Id will be removed in future versions.
+      'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
+      Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional).
+      If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
+
+* useForm now provides two new callbacks: setValue and replaceValue.
+    They work the same way as setState of React.useState.
+    Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
+    setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
+    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state.
+
+* Lenses now memoizes all methods calls (.prop, .item, etc.).
+    This allows to not re-create onValueChange callbacks on re-renders.
+    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components.
+
+* Numeric Input - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
+  * Formatting can be disabled with the 'disableLocaleFormatting' prop
+  * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
+  * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
+  * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
+
+* Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+
+**What’s Fixed**
+* DnD Actor - improved 'inside' position calculation
+* useForm
+  * fixed revert/undo/redo behavior after save
+  * onValueChange now triggers internal validation logic (as with changes made with lenses)
+  * refactored to remove unnecessary re-renders in some cases
+
+# 4.8.5 - 15.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
+
+# 4.8.4 - 09.09.2022
+
+**What’s Fixed**
+* [RTE]: fix wrong image size on first render
+* [RTE]: fix cursor jumping on new text typing in chrome 105+ version
+* [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
+
 # 4.8.3 - 01.09.2022
 
 **What’s Fixed**

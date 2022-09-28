@@ -13,7 +13,8 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>(JSON.parse(localStorage.getItem('presets')));
+
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -61,7 +62,7 @@ export const FilteredTable: React.FC = () => {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" cx={ css.presetsTitle }>Profiles Dashboard</Text>
+                <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
                 <PresetPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>

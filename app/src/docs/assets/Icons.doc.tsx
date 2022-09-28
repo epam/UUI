@@ -267,7 +267,7 @@ export class IconsDoc extends React.Component {
                         icon in our package. But we can add it in the next release.
                     </Text>
                     <FlexRow>
-                        <Button caption='Request an Icon' color='green' href='https://kb.epam.com/pages/viewpage.action?pageId=717764058' />
+                        <Button caption='Request an Icon' color='green' href='https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=14983%3A274834' />
                     </FlexRow>
                 </div>
             );

@@ -5,6 +5,7 @@ export const uuiElement = {
     inputBox: 'uui-input-box',
     input: 'uui-input',
     placeholder: 'uui-placeholder',
+    valueInPlaceholder: 'uui-value-in-placeholder',
     checkbox: 'uui-checkbox',
     radioInput: 'uui-radioinput',
     icon: 'uui-icon',
