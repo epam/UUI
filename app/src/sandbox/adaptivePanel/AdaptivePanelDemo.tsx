@@ -1,19 +1,25 @@
 import React from 'react';
-import { AdaptivePanel, AdoptiveItemProps } from './AdaptivePanel';
 import { Button, Dropdown, FlexRow, Text, DropdownContainer } from "@epam/promo";
-import { FlexCell } from "@epam/uui-components";
+import { FlexCell, AdaptivePanel, AdaptiveItemProps  } from "@epam/uui-components";
 
-const items: AdoptiveItemProps[] = [
-    { id: 1, render: () => <Button caption='Some preset-99' />, priority: 99 },
-    { id: 2, render: () => <Button caption='Administrators-3' />, priority: 4 },
-    { id: 3, render: () => <Button caption='Only age more thanfgdgdfgdg 40-1' />, priority: 1 },
-    { id: 4, render: () => <Button caption='Managers-2' />, priority: 2 },
-    { id: 6, render: () => <Button caption='Senior Admins-11' />, priority: 2 },
-    { id: 5, render: (hiddenItems) => <Dropdown
-            renderTarget={ (props) => <Button caption='More-10' {...props} /> }
-            renderBody={ () => <DropdownContainer><Text>{hiddenItems.map(i => i.render())}</Text></DropdownContainer> }
+const items: AdaptiveItemProps<{data?: {name: string}}>[] = [
+    // { id: '1', render: (hiddenItems) => <Dropdown
+    //         renderTarget={ (props) => <Button caption='More-99' { ...props } /> }
+    //         renderBody={ () => <DropdownContainer><Text>{ hiddenItems.map(i => i.render()) }</Text></DropdownContainer> }
+    //     />,
+    //     collapsedContainer: true, priority: 99 },
+    { id: '2', render: () => <Button caption='Administrators-4' />, priority: 4 },
+    { id: '3', render: () => <Button caption='Only age more thanfgdgdfgdg 40-1' />, priority: 1 },
+    { id: '4', render: () => <Button caption='Managers-2' />, priority: 2 },
+    { id: '6', render: () => <Button caption='Senior Admins-11' />, priority: 11 },
+    { id: '7', render: () => <Button caption='Senior Admins-12' />, priority: 12 },
+    { id: '8', render: () => <Button caption='Senior Admins-13' />, priority: 13 },
+    { id: '5', render: (item, hiddenItems) => <Dropdown
+            renderTarget={ (props) => <Button caption='More-10' { ...props } /> }
+            renderBody={ () => <DropdownContainer><Text>{ hiddenItems.map(i => i.render(item, hiddenItems)) }</Text></DropdownContainer> }
         />,
-        priority: 10, collapsedContainer: true },
+        priority: 10, collapsedContainer: true,
+    },
 ];
 
 export const AdaptivePanelDemo = () => {
