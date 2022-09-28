@@ -52,8 +52,8 @@ export default function MainMenuBasicExample() {
                     logoUrl='/static/images/app-logos/learn_logo.svg'
                 />,
             },
-            { id: 'trainingCatalog', priority: 3, render: () => <MainMenuButton caption="Training Catalog" priority={ 3 } /> },
-            { id: 'requests', priority: 3, render: () => <MainMenuButton caption="Requests" priority={ 3 } /> },
+            { id: 'trainingCatalog', priority: 3, render: () => <MainMenuButton  href='/' caption="Training Catalog" /> },
+            { id: 'requests', priority: 3, render: () => <MainMenuButton href='/' caption="Requests" /> },
             { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> },
             { id: 'help', priority: 1, render: () => <MainMenuIcon
                     href='https://support.epam.com'

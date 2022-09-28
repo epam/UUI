@@ -198,7 +198,7 @@
           },
           {
             "object": "text",
-            "text": " and add any fields into the adaptive item config. It can be useful, if you need to have a different render for hidden items inside collapsedContainer and you can use this field for it.",
+            "text": " to add any you own fields into the adaptive item config. It can be useful, if you need to have a different render for hidden items inside collapsedContainer and you can use this fields for it.",
             "marks": []
           }
         ]
