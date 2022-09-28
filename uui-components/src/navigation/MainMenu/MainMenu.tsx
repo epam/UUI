@@ -57,15 +57,16 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
         let maxCollapseToMorePriority = 0;
         const items: AdaptiveItemProps<{props?: any}>[] = React.Children.map(children, (child, index) => {
             if (child) {
+                const priority = child.props.priority || index;
                 if (child.props.collapseToMore) {
                     lastItemsIndexWithCollapseToMore = index;
-                    if (child.props.priority > maxCollapseToMorePriority) {
-                        maxCollapseToMorePriority = child.props.priority;
+                    if (priority > maxCollapseToMorePriority) {
+                        maxCollapseToMorePriority = priority;
                     }
                 }
                 return {
                     id: index,
-                    priority: child.props.priority || 0,
+                    priority: priority,
                     render: (item, hiddenItems) =>  {
                         if (child.props.collapsedContainer) {
                             return React.cloneElement(child, { children: hiddenItems?.map(i => i.render(item, hiddenItems))});

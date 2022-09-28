@@ -6,7 +6,7 @@ import { IHasCX } from "@epam/uui-core";
 
 export type AdaptiveItemProps<T = unknown> = T & {
     render: (item: AdaptiveItemProps<T>, hiddenItems: AdaptiveItemProps<T>[]) => any;
-    priority?: number;
+    priority: number;
     collapsedContainer?: boolean;
     id: string;
 };
