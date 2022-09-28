@@ -1,13 +1,9 @@
-@import '~@epam/assets/scss/index';
-
 .main-wrapper {
-    font-family: $font-sans;
     width: 100%;
 
     .adaptive-row {
         min-width: 100%;
         width: max-content;
-        border: 3px solid lightgreen;
         box-sizing: border-box;
     }
 }
