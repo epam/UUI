@@ -9,10 +9,15 @@ const ESCAPE = 'Escape';
 export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export interface TextInputProps extends TextInputCoreProps {
+    /** Overrides accept (check) icon */
     acceptIcon?: Icon;
+    /** Overrides cancel (cross) icon */
     cancelIcon?: Icon;
+    /** Overrides dropdown (chevron) icon */
     dropdownIcon?: Icon;
+    /** CSS class(es) to put to the HTML Input element */
     inputCx?: CX;
+    /** overrides rendering of HTML Input element  */
     renderInput?: (props: IRenderInputProps) => JSX.Element;
 }
 
@@ -121,7 +126,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             /> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
-                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, uuiMarkers.clickable) }
+                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) }
                 icon={ props.dropdownIcon }
                 flipY={ props.isOpen }
             /> }

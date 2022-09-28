@@ -79,6 +79,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: "cityName",
             title: "City",
             type: "multiPicker",
+            getName: (item) => `${item.name} (${item.countryName})`,
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
         },
         {
@@ -105,6 +106,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: "birthDate",
             title: "Birth Date",
             type: "rangeDatePicker",
+            format: "YYYY-MM-DD",
             predicates: [
                 { predicate: 'inRange', name: 'In Range', isDefault: true },
                 { predicate: 'notInRange', name: 'Not in Range' },

@@ -7,9 +7,13 @@ import * as css from './Blocker.scss';
 //import { EpamColor, SpinnerMods } from '@epam/oswald';
 
 export interface BlockerProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+    /** Turns the blocker on or off */
     isEnabled: boolean;
+    /** Disables spinner animation display */
     hideSpinner?: boolean;
+    /** Sets the minimal height in px, for cases when blocked content is empty */
     spacerHeight?: number;
+    /** Replaces default spinner */
     renderSpinner?(props: any): React.ReactNode; //React.ComponentClass<SpinnerMods>;
 }
 

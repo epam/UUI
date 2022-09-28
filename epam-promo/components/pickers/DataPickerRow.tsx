@@ -30,6 +30,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     column: DataColumnProps<TItem> =
         {
             key: 'name',
+            width: 0,
             grow: 1,
             render: (item, rowProps) => <div key={ rowProps.id }  className={ css.renderItem }>
                 { this.props.renderItem(item, rowProps) }

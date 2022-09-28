@@ -146,10 +146,15 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         const x = (params.offsetLeft / params.targetWidth - 0.5) * 2;
         const y = (params.offsetTop / params.targetHeight - 0.5) * 2;
 
-        const centerOffset = Math.sqrt(x * x + y * y); // normalized distance to the center
+        if (options.inside) {
+            const insideBoxLeft = options.left ? -0.5 : -1;
+            const insideBoxRight = options.right ? 0.5 : 1;
+            const insideBoxTop = options.top ? -0.5 : -1;
+            const insideBoxBottom = options.bottom ? 0.5 : 1;
 
-        if (options.inside && centerOffset < (2 / 3)) { // if 'inside' drop is allowed, the center is always drops to inside
-            return 'inside';
+            if (insideBoxLeft < x && x < insideBoxRight && insideBoxTop < y && y < insideBoxBottom) {
+                return 'inside';
+            }
         }
 
         // Compute the sector#. Basically it's clock-wise angle of mouse pointer normalized to [0,7) range

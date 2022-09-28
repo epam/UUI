@@ -17,6 +17,7 @@ export type FontStyle = 'regular' | 'semibold' | 'italic' | 'primary' | 'promo';
 export const allFontStyles: FontStyle[] = ['regular', 'semibold', 'italic', 'primary', 'promo'];
 
 export interface ColorMod {
+    /** Component color */
     color?: EpamSemanticColor;
 }
 

@@ -1,16 +1,22 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, IHasForwardedRef, CX, cx } from '@epam/uui-core';
+import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, IHasForwardedRef, CX, cx, ICanFocus } from '@epam/uui-core';
 import * as css from './TextArea.scss';
 
-export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly,
+    IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {
+    /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
+    /** Enables auto-resizing height to fit text. Rows prop is ignored in this mode */
     autoSize?: boolean;
-    onBlur?(e?: any): void;
-    onFocus?(e?: any): void;
+    /** onKeyDown event handler to put on HTML Input  */
     onKeyDown?(e?: any): void;
+    /** Automatically sets input focus to component, when its mounted */
     autoFocus?: boolean;
+    /** CSS class names to put to the HTML Input element */
     inputCx?: CX;
+    /** Maximum text length, in characters */
     maxLength?: number;
+    /** HTML id attribute to put on the HTML Input element */
     id?: string;
 }
 

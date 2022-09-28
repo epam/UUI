@@ -40,24 +40,25 @@ export default function ProductTable() {
             render: product => <Text color='gray60'>{ product.ProductID }</Text>,
             isSortable: true,
             isAlwaysVisible: true,
-            grow: 0, shrink: 0, width: 96,
+            width: 96,
         }, {
             key: 'name',
             caption: 'NAME',
             render: product => <Text color='gray80' font='sans-semibold'>{ product.Name }</Text>,
             isSortable: true,
-            grow: 1, minWidth: 224,
+            grow: 1,
+            width: 224,
         }, {
             key: 'productNumber',
             caption: 'PRODUCT NUMBER',
             render: product => <Text>{ product.ProductNumber }</Text>,
-            grow: 0, shrink: 0, width: 144,
+            width: 144,
         },
         {
             key: 'color',
             caption: 'COLOR',
             render: product => <Text>{ product.Color }</Text>,
-            grow: 0, shrink: 0, width: 156,
+            width: 156,
         },
     ], []);
 

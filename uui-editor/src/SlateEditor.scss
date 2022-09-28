@@ -13,6 +13,11 @@
         margin: 12px 0;
     }
 
+    // TODO: remove it when update slate on 0.5+ version
+    .contentEditable {
+        -webkit-user-modify: read-write !important;
+    }
+
     :global(.ordered-list),
     :global(.unordered-list) {
         ul, ol {
