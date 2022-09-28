@@ -57,7 +57,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
             uuiApi.unsubscribe(forceUpdate);
             uuiErrors.unsubscribe(forceUpdate);
         };
-    });
+    }, []);
 
     const getDefaultErrorInfo = (errorCode: number): UuiErrorInfo => {
         switch (errorCode) {
