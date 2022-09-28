@@ -56,15 +56,15 @@ export default function MainMenuResponsiveExample() {
                     logoUrl='/static/images/app-logos/learn_logo.svg'
                 />,
             },
-            { id: 'People', priority: 9, render: () => <MainMenuButton caption="People" />, caption: "People" },
+            { id: 'People', priority: 9, render: () => <MainMenuButton href='/' caption="People" />, caption: "People" },
             { id: 'Projects', priority: 7, render: () => <MainMenuButton caption="Projects" />, caption: "Projects" },
-            { id: 'Positions', priority: 6, render: () => <MainMenuButton caption="Positions" />, caption: "Positions" },
-            { id: 'Companies', priority: 5, render: () => <MainMenuButton caption="Companies" />, caption: "Companies" },
-            { id: 'Processes', priority: 5, render: () => <MainMenuButton caption="Processes" />, caption: "Processes" },
-            { id: 'Tasks', priority: 4, render: () => <MainMenuButton caption="Tasks" />, caption: "Tasks" },
-            { id: 'Talks', priority: 4, render: () => <MainMenuButton caption="Talks" />, caption: "Talks" },
-            { id: 'Action Items', priority: 3, render: () => <MainMenuButton caption="Action Items" />, caption: "Action Items" },
-            { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton caption="Subscriptions" />, caption: "Subscriptions" },
+            { id: 'Positions', priority: 6, render: () => <MainMenuButton href='/' caption="Positions" />, caption: "Positions" },
+            { id: 'Companies', priority: 5, render: () => <MainMenuButton href='/' caption="Companies" />, caption: "Companies" },
+            { id: 'Processes', priority: 5, render: () => <MainMenuButton href='/' caption="Processes" />, caption: "Processes" },
+            { id: 'Tasks', priority: 4, render: () => <MainMenuButton href='/' caption="Tasks" />, caption: "Tasks" },
+            { id: 'Talks', priority: 4, render: () => <MainMenuButton href='/' caption="Talks" />, caption: "Talks" },
+            { id: 'Action Items', priority: 3, render: () => <MainMenuButton href='/' caption="Action Items" />, caption: "Action Items" },
+            { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
                     children={ hiddenItems?.map(i => i.render(item, hiddenItems)) }
