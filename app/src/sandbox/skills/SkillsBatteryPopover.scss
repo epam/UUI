@@ -1,10 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 @use '~@epam/promo/assets/styles/fonts' as *;
 
-//* {
-//    font-family: $font-sans;
-//}
-
 .target-body-container {
     padding: 0 12px;
     border: 1px solid #CED0DB;
@@ -96,8 +92,6 @@
     }
 }
 
-
-
 .tooltip-container {
     box-sizing: border-box;
     width: 100%;
@@ -129,6 +123,3 @@
         }
     }
 }
-
-
-

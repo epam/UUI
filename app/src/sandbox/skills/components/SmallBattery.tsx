@@ -1,9 +1,9 @@
 import React from "react";
-import css from './SmallBattery.scss';
 import cx from "classnames";
+import css from './SmallBattery.scss';
 import { Text, IconContainer } from "@epam/promo";
-import { ReactComponent as CrossIcon } from "../icons/navigation-close_popup-7.svg";
 import { ISkillLevel } from "../index";
+import { ReactComponent as CrossIcon } from "../icons/navigation-close_popup-7.svg";
 
 
 interface ISmallBatteryProps {
