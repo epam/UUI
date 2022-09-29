@@ -31,6 +31,7 @@ export default function BasicAccordionExample() {
     return (
         <FlexCell width='100%' cx={ css.container }>
             <Accordion title='Accordion block mode' renderTitle={renderTitle} renderContent={renderContent} mode='block' />
+            <Accordion title='Accordion block mode' renderTitle={renderTitle} renderContent={renderContent} mode='block' dropdownIcon={null} />
         </FlexCell>
     );
 }
