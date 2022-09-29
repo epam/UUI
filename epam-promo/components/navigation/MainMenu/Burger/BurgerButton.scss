@@ -15,9 +15,11 @@
         color: var(--color);
         fill: var(--fill);
 
-        &:hover {
-            color: var(--color-hover);
-            fill: var(--fill-hover);
+        &:global(.-clickable) {
+            &:hover {
+                color: var(--color-hover);
+                fill: var(--fill-hover);
+            }
         }
     }
 
