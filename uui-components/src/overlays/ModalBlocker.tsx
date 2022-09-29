@@ -19,7 +19,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
     }
 
     keydownHandler = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' && !this.props.disableCloseByEsc) {
             this.props.abort();
         }
     }
