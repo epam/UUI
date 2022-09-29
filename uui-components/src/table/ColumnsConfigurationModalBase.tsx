@@ -62,7 +62,9 @@ export abstract class ColumnsConfigurationModalBase<TItem, TId> extends Componen
 
         const newOrder = params.position === 'bottom'
             ? getOrderBetween(this.state.columnsConfig[params.dstData.key].order, nextColumnOrder)
-            : getOrderBetween(prevColumnOrder, this.state.columnsConfig[params.dstData.key].order);
+            : this.state.columnsConfig[params.dstData.key].order !== prevColumnOrder
+                ? getOrderBetween(prevColumnOrder, this.state.columnsConfig[params.dstData.key].order)
+                : getOrderBetween(null, this.state.columnsConfig[params.dstData.key].order)
 
         this.setState({
             columnsConfig: {
