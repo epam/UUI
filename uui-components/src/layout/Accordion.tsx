@@ -6,8 +6,12 @@ import * as css from './Accordion.scss';
 export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     /** Accordion title */
     title: string;
-    /** Overrides the default dropdown (folding) icon */
-    dropdownIcon?: Icon;
+    /** Overrides default title rendering.*/
+    renderTitle?: (isOpen: boolean) => React.ReactElement;
+    /** Can be passed instead of children, to render accordion content.*/
+    renderContent?: () => React.ReactElement;
+    /** Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely */
+    dropdownIcon?: Icon | null;
     /** Renders additional items to component's header (after the title, and before the folding icon) */
     renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;
 }
@@ -60,17 +64,23 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                 { ...this.props.rawProps }
             >
                 <div className={ cx(uuiAccordion.toggleContainer) }>
-                    <div className={ cx(uuiAccordion.title) }>
-                        { this.props.title }
-                    </div>
+                    { this.props.renderTitle ? (
+                        this.props.renderTitle(this.state.opened)
+                    ) : (
+                        <div className={ cx(uuiAccordion.title) }>
+                            { this.props.title }
+                        </div>
+                    ) }
 
                     { this.props.renderAdditionalItems?.(this.state.opened) }
 
-                    <IconContainer
-                        icon={ this.props.dropdownIcon }
-                        flipY={ isAccordionOpened }
-                        cx={ [this.props.isDisabled && uuiMod.disabled, css.arrow] }
-                    />
+                    { this.props.dropdownIcon !== null && (
+                        <IconContainer
+                            icon={this.props.dropdownIcon}
+                            flipY={isAccordionOpened}
+                            cx={[this.props.isDisabled && uuiMod.disabled, css.arrow]}
+                        />
+                    ) }
                 </div>
             </div>
         );
@@ -78,7 +88,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
     renderBody = () => (
         <div className={ uuiAccordion.body } role='region'>
-            { this.props.children }
+            { this.props.renderContent ? this.props.renderContent() : this.props.children }
         </div>
     )
 
@@ -96,7 +106,9 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                     this.props.cx,
                 ) }>
                 { this.renderHeader() }
-                { this.props.children && isAccordionOpened ? this.renderBody() : null }
+                { (this.props.renderContent || this.props.children) && isAccordionOpened ? (
+                    this.renderBody()
+                ) : null }
             </div>
         );
     }
