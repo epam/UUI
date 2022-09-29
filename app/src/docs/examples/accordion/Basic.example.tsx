@@ -12,6 +12,11 @@ const componentAsDemoContent = <>
     </FlexRow>
 </>;
 
+const renderTitle = () => (
+    <div>
+        Accordion override title with callback
+    </div>
+)
 export default function BasicAccordionExample() {
     return (
         <FlexCell width='100%' cx={ css.container }>
@@ -24,7 +29,13 @@ export default function BasicAccordionExample() {
             <Accordion title='Disabled Accordion' mode='block' isDisabled >
                 { demoData.loremIpsum }
             </Accordion>
+            <Accordion  title='Accordion' renderTitle={renderTitle} mode='block' >
+                { demoData.loremIpsum }
+            </Accordion>
             <Accordion title='Accordion with react components children' mode='block' >
+                { componentAsDemoContent }
+            </Accordion>
+            <Accordion title='Accordion without icon' mode='block' dropdownIcon={null} >
                 { componentAsDemoContent }
             </Accordion>
         </FlexCell>
