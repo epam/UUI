@@ -1,5 +1,16 @@
 @import '~@epam/promo/assets/styles/colors.scss';
 
+.container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    > :not(:last-child) {
+        margin-bottom: 18px;
+    }
+}
+
 .titleWrap {
     justify-content: space-between;
     width: 100%;
