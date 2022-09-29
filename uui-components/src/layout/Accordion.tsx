@@ -5,7 +5,7 @@ import * as css from './Accordion.scss';
 
 export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     /** Accordion title */
-    title: string;
+    title: string | React.ReactElement;
     /** Overrides default title rendering.*/
     renderTitle?: (isOpen: boolean) => React.ReactElement;
     /** Can be passed instead of children, to render accordion content.*/
