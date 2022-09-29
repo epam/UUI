@@ -20,6 +20,9 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+    const currentPredicate = props.value ? Object.keys(props.value)[0] : null;
+    const predicateName: string | null = currentPredicate && props?.predicates ? props.predicates.filter(p => p.predicate === Object.keys(props.value)[0])[0].name : null;
+
     const getDefaultPredicate = () => {
         if (!props.predicates) {
             return null;
@@ -85,6 +88,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const getTogglerValue = () => {
         const currentValue = getValue();
         const defaultFormat = "MMM DD, YYYY";
+        const maxWidth = '300';
 
         switch (props.type) {
             case "multiPicker": {
@@ -99,7 +103,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 }) : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
-                return { selection: selectionText, postfix };
+                return { selection: selectionText, postfix, maxWidth };
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
@@ -108,7 +112,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
                 const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item.value) : item.value.name);
-                return { selection };
+                return { selection, maxWidth };
             }
             case "datePicker": {
                 return { selection: currentValue ? dayjs(currentValue).format(props.format || defaultFormat) : i18n.filterToolbar.datePicker.placeholder };
@@ -130,6 +134,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
+            predicateName={ predicateName }
         />
     );
 
