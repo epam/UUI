@@ -1,0 +1,15 @@
+@import '~@epam/promo/assets/styles/colors.scss';
+
+.titleWrap {
+    justify-content: space-between;
+    width: 100%;
+    flex: auto;
+
+    .userAvatar {
+        margin-right: 6px;
+    }
+}
+
+.contentWrap {
+    border: 1px dashed $blue;
+}
