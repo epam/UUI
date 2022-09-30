@@ -4,7 +4,8 @@ const helpers = require("../helpers");
 const _ = require("lodash");
 
 function calculateTotal(totalData, result) {
-    const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
+    const totalSalary = totalData.reduce((acc, person) => acc + person.salary, 0).toFixed(1);
+    // const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
     result.summary = { totalSalary };
     result.totalCount = totalData.length;
     return result;

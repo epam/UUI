@@ -1,0 +1,17 @@
+@use '../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+
+.container {
+    margin: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .label {
+        margin-right: 12px;
+    }
+
+    :global(.uui-input-box) {
+        width: 210px;
+    }
+}

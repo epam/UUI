@@ -1,4 +1,4 @@
-import { DataQueryFilter, DataQueryFilterCondition } from "../../types/dataQuery";
+import { DataQueryFilter, DataQueryFilterCondition } from "../../types";
 import dayjs from "dayjs";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
