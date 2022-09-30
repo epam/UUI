@@ -8,8 +8,6 @@ export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDi
     title: string | React.ReactElement;
     /** Overrides default title rendering.*/
     renderTitle?: (isOpen: boolean) => React.ReactElement;
-    /** Can be passed instead of children, to render accordion content.*/
-    renderContent?: () => React.ReactElement;
     /** Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely */
     dropdownIcon?: Icon | null;
     /** Renders additional items to component's header (after the title, and before the folding icon) */
@@ -88,7 +86,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
     renderBody = () => (
         <div className={ uuiAccordion.body } role='region'>
-            { this.props.renderContent ? this.props.renderContent() : this.props.children }
+            { this.props.children }
         </div>
     )
 
@@ -106,9 +104,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                     this.props.cx,
                 ) }>
                 { this.renderHeader() }
-                { (this.props.renderContent || this.props.children) && isAccordionOpened ? (
-                    this.renderBody()
-                ) : null }
+                { this.props.children && isAccordionOpened ? this.renderBody() : null }
             </div>
         );
     }
