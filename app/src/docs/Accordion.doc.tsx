@@ -25,6 +25,10 @@ export class AccordionDoc extends BaseDocsBlock {
                     title='Handle Accordion state by yourself'
                     path='./examples/accordion/HandleStateByYourself.example.tsx'
                 />
+                <DocExample
+                    title='Custom accordion'
+                    path='./examples/accordion/Custom.example.tsx'
+                />
             </>
         );
     }
