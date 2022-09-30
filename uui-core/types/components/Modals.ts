@@ -5,6 +5,8 @@ export interface ModalWindowProps extends VPanelProps, IHasForwardedRef<HTMLDivE
 
 export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
     disableFocusLock?: boolean;
+    disableCloseByEsc?: boolean;
+    disallowClickOutside?: boolean;
 }
 
 export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
