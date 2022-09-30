@@ -1,1 +1,130 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"To prevent modal closing on click outside modal - pass ","marks":[]},{"object":"text","text":"disallowClickOutside={ true }","marks":[{"object":"mark","type":"uui-richTextEditor-code","data":{}}]},{"object":"text","text":" prop to ModalBlocker;","marks":[]}]},{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"To remove cross icon in modal header, do not pass ","marks":[]},{"object":"text","text":"onClose","marks":[{"object":"mark","type":"uui-richTextEditor-code","data":{}}]},{"object":"text","text":" prop to ModalHeader;","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To prevent modal closing on click outside modal - pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "disallowClickOutside={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop to ModalBlocker;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To remove cross icon in modal header, do not pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onClose",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop to ModalHeader;",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To prevent modal closing by pressing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Esc",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " button - pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "disableCloseByEsc={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "#ce9178",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "prop to ModalBlocker;",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

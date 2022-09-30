@@ -186,7 +186,6 @@ export interface IModal<TResult> {
     zIndex: number;
     success(result: TResult): void;
     abort(): void;
-    disallowClickOutside?: boolean;
 }
 
 export interface INotification {
