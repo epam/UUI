@@ -29,6 +29,14 @@ export const personColumns = [
         isFilterActive: f => !!f.profileStatusId,
     },
     {
+        key: 'salary',
+        caption: 'salary',
+        render: p => <Text>{ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+p.salary) }</Text>,
+        width: 150,
+        textAlign: 'right',
+        isSortable: true,
+    },
+    {
         key: 'jobTitle',
         caption: "Title",
         render: r => <Text>{ r.jobTitle }</Text>,

@@ -96,6 +96,16 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             ],
         },
         {
+            field: "salary",
+            columnKey: "salary",
+            title: "Salary",
+            type: "numeric",
+            predicates: [
+                { predicate: 'inRange', name: 'In Range', isDefault: true },
+                { predicate: 'notInRange', name: 'Not in Range' },
+            ],
+        },
+        {
             field: "hireDate",
             columnKey: "hireDate",
             title: "Hire Date",
