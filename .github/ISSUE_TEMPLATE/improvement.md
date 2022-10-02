@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-## Now
+## Current state
 
-## To Do
+## What should be changed
 
 ## Describe the solution you'd like (optional)
