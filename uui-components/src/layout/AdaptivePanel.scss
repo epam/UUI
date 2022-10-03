@@ -1,9 +1,4 @@
 .main-wrapper {
     width: 100%;
-
-    .adaptive-row {
-        min-width: 100%;
-        width: max-content;
-        box-sizing: border-box;
-    }
+    display: flex;
 }
