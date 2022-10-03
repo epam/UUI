@@ -89,7 +89,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                     if (typeof value === "string" && isDate(conditionValue)) {
                         return dayjs(value).isSameOrAfter(conditionValue);
                     }
-                    return !value || value >= conditionValue;
+                    return !(value !== null && value !== undefined) || value >= conditionValue;
                 });
             }
 
@@ -100,7 +100,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                     if (typeof value === "string" && isDate(conditionValue)) {
                         return dayjs(value).isSameOrBefore(conditionValue);
                     }
-                    return !value || value <= conditionValue;
+                    return !(value !== null && value !== undefined) || value <= conditionValue;
                 });
             }
 
@@ -111,7 +111,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                     if (typeof value === "string" && isDate(conditionValue)) {
                         return dayjs(value).isAfter(conditionValue);
                     }
-                    return !value || value > conditionValue;
+                    return !(value !== null && value !== undefined) || value > conditionValue;
                 });
             }
 
@@ -122,7 +122,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                     if (typeof value === "string" && isDate(conditionValue)) {
                         return dayjs(value).isBefore(conditionValue);
                     }
-                    return !value || value < conditionValue;
+                    return !(value !== null && value !== undefined) || value < conditionValue;
                 });
             }
 

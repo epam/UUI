@@ -84,7 +84,7 @@ function getFilterPredicate(filter) {
                     if (typeof value === "string" && isDate(conditionValue_1)) {
                         return (0, dayjs_1["default"])(value).isSameOrAfter(conditionValue_1);
                     }
-                    return !value || value >= conditionValue_1;
+                    return !(value !== null && value !== undefined) || value >= conditionValue_1;
                 });
             }
             if (condition.lte != null) {
@@ -94,7 +94,7 @@ function getFilterPredicate(filter) {
                     if (typeof value === "string" && isDate(conditionValue_2)) {
                         return (0, dayjs_1["default"])(value).isSameOrBefore(conditionValue_2);
                     }
-                    return !value || value <= conditionValue_2;
+                    return !(value !== null && value !== undefined) || value <= conditionValue_2;
                 });
             }
             if (condition.gt != null) {
@@ -104,7 +104,7 @@ function getFilterPredicate(filter) {
                     if (typeof value === "string" && isDate(conditionValue_3)) {
                         return (0, dayjs_1["default"])(value).isAfter(conditionValue_3);
                     }
-                    return !value || value > conditionValue_3;
+                    return !(value !== null && value !== undefined) || value > conditionValue_3;
                 });
             }
             if (condition.lt != null) {
@@ -114,7 +114,7 @@ function getFilterPredicate(filter) {
                     if (typeof value === "string" && isDate(conditionValue_4)) {
                         return (0, dayjs_1["default"])(value).isBefore(conditionValue_4);
                     }
-                    return !value || value < conditionValue_4;
+                    return !(value !== null && value !== undefined) || value < conditionValue_4;
                 });
             }
             if (condition.eq) {
