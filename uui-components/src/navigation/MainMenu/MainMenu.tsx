@@ -190,6 +190,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
             >
                 <AdaptivePanel
                     items={ this.props.items || this.getMenuItems() }
+                    cx={ css.itemsContainer }
                 />
                 { this.renderServerBadge() }
             </nav>

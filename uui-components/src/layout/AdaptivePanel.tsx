@@ -3,6 +3,7 @@ import css from './AdaptivePanel.scss';
 import { FlexRow } from "./flexItems";
 import sortBy from "lodash.sortby";
 import { IHasCX } from "@epam/uui-core";
+import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
     render: (item: AdaptiveItemProps<T>, hiddenItems: AdaptiveItemProps<T>[]) => any;
@@ -113,8 +114,8 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     };
 
     return (
-        <div className={ css.mainWrapper } ref={ wrapperRef }>
-            <FlexRow cx={ [css.adaptiveRow, props.cx] } ref={ shownRowRef }>
+        <div className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
+            <FlexRow ref={ shownRowRef }>
                 { renderItems() }
             </FlexRow>
         </div>
