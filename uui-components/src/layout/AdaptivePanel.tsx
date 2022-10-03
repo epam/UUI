@@ -70,6 +70,9 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     const shownRowRef = useRef<HTMLDivElement>(null);
 
     const getItemsWidth = () => {
+        if (!shownRowRef.current) {
+            return;
+        }
         const children = Array.from(shownRowRef.current.children);
 
         if (!children.length) return;

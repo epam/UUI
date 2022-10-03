@@ -102,8 +102,8 @@ export class AppHeader extends React.Component {
         return [
             { id: 'burger', priority: 100500, collapsedContainer: true, render: () => <Burger
                     key={ 'burger' }
-                    width={ 300 }
                     renderBurgerContent={ this.renderBurger }
+                    logoUrl='/static/logo.svg'
                 />,
             },
             {id: 'logo', priority: 100499, render: () => <MainMenuLogo

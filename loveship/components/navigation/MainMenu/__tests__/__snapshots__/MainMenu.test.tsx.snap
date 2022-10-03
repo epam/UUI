@@ -4,13 +4,45 @@ exports[`MainMenu should be rendered correctly 1`] = `
 <nav
   className="root uui-mainmenu-container container"
 >
-  <button
-    className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-    href={null}
-    onClick={[Function]}
-    role="button"
-    tabIndex={-1}
-  />
+  <div>
+    <div
+      className="container align-items-center"
+    >
+      <div
+        className="root uui-burger-menu container"
+      >
+        <div
+          className="uui-burger-button"
+          onClick={[Function]}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="root burgerContent uui-burger-overlay"
+        onClick={[Function]}
+      >
+        <div
+          className="root uui-burger-items"
+          onClick={[Function]}
+        />
+      </div>
+      <button
+        className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      />
+    </div>
+  </div>
 </nav>
 `;
 
@@ -18,13 +50,45 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
 <nav
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
-  <button
-    className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-    href={null}
-    onClick={[Function]}
-    role="button"
-    tabIndex={-1}
-  />
+  <div>
+    <div
+      className="container align-items-center"
+    >
+      <div
+        className="root uui-burger-menu container"
+      >
+        <div
+          className="uui-burger-button"
+          onClick={[Function]}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="root burgerContent uui-burger-overlay"
+        onClick={[Function]}
+      >
+        <div
+          className="root uui-burger-items"
+          onClick={[Function]}
+        />
+      </div>
+      <button
+        className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
+        href={null}
+        onClick={[Function]}
+        role="button"
+        tabIndex={-1}
+      />
+    </div>
+  </div>
   <div
     className="uui-mainmenu-server-badge"
   >
