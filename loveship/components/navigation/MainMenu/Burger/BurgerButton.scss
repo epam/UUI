@@ -13,9 +13,11 @@
         color: $white;
         fill: $white;
 
-        &:hover {
-            color: $sky;
-            fill: $sky;
+        &:global(.-clickable) {
+            &:hover {
+                color: $sky;
+                fill: $sky;
+            }
         }
     }
 

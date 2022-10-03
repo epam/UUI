@@ -17,5 +17,5 @@ function applyAccordionMods(mods: AccordionMods & AccordionProps) {
 }
 
 export const Accordion = withMods<AccordionProps, AccordionMods>(uuiAccordion, applyAccordionMods, (mods: AccordionMods & AccordionProps) => ({
-    dropdownIcon: systemIcons[mods.mode === 'block' ? '60' : '36'].foldingArrow,
+    dropdownIcon: mods.dropdownIcon !== null && systemIcons[mods.mode === 'block' ? '60' : '36'].foldingArrow,
 }));

@@ -2,6 +2,8 @@
 
 **What's New**
 
+* [Modals]: Add disallowClickOutside to ModalBlockerProps interface
+
 * Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
 
 * [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
@@ -1698,3 +1700,4 @@ To update, please add make this changes:
 * Fixed dropdown crash and popper flickering
 * [breaking change] withMods helper API changed. Now default props in a function accepting mods. This allow to change child components according to mods (e.g. PickerInput can change color of PickerInputToggler according to it's mods)
 * [breaking change] VirtualList reworked, now it's delegates visible range state via IEditable<VirtualListStateProps>. This allows parent component to know up-front what rows are visible.
+

@@ -39,10 +39,12 @@
         @include icon-layout(36px);
     }
 
-    &:hover, &:focus {
-        background-color: $night900;
-        color: $white;
-        fill: $white;
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: $night900;
+            color: $white;
+            fill: $white;
+        }
     }
 
     &:global(.uui-active) {
