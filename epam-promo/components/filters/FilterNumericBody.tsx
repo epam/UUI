@@ -1,36 +1,56 @@
-import React, { useState } from "react";
-import { DropdownBodyProps } from "@epam/uui-components";
+import React, { useEffect, useState } from "react";
+import { DropdownBodyProps, FlexSpacer } from "@epam/uui-components";
 import { NumericInput } from "../inputs";
 import { Text } from "../typography";
 import css from './FilterNumericBody.scss';
 import cx from "classnames";
-import { IDisableable, IEditable, isMobile } from "@epam/uui-core";
-import { DataPickerFooter } from "../pickers";
+import { isMobile } from "@epam/uui-core";
 import { FlexCell, FlexRow } from "../layout";
 import { LinkButton } from "../buttons";
 import { i18n } from "../../i18n";
 
+type NumericRangeValueType = { from: number | null, to: number | null };
+
 interface IFilterNumericBodyProps extends DropdownBodyProps {
+    onValueChange: (value: NumericRangeValueType) => void;
+    value: { from: number, to: number } | undefined;
 }
 
 export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
-    const [from, setFrom] = useState(0);
-    const [to, setTo] = useState(0);
+    const [value, setValue] = useState<NumericRangeValueType>({ from: null, to: null });
 
-    console.log('props', props);
+    useEffect(() => {
+        if (props?.value) {
+            setValue(props.value);
+        }
+    }, []);
+
+    const changeValueHandler = (type: 'from' | 'to') => (val: number) => {
+        switch (type) {
+            case "from":
+                setValue(prev => ({ ...prev, from: val }));
+                props.onValueChange({ from: val, to: value.to });
+                break;
+            case "to":
+                setValue(prev => ({ ...prev, to: val }));
+                props.onValueChange({ from: value.from, to: val });
+                break;
+        }
+    };
 
     const renderFooter = () => {
         const size = isMobile() ? '48' : '36';
-        const clearSelection = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-            setFrom(0);
-            setTo(0);
+        const clearSelection = () => {
+            setValue({ from: null, to: null });
+            props.onValueChange({ from: null, to: null });
         };
 
         return (
-            <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
+            <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) } >
+                <FlexSpacer/>
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        isDisabled={ from === 0 && to === 0 }
+                        isDisabled={ (value?.from === null) && (value?.to === null) }
                         size={ size }
                         caption={ i18n.pickerInput.clearSelectionButtonSingle }
                         onClick={ clearSelection }
@@ -43,21 +63,21 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
     return (
         <div>
             <div className={ cx(css.container) }>
-                <Text cx={ css.label }>From: </Text>
+                <Text cx={ css.label }>From:</Text>
                 <NumericInput
-                    value={ from }
-                    onValueChange={ setFrom }
+                    value={ value.from }
+                    onValueChange={ changeValueHandler('from') }
                     size="30"
-                    min={ Number.MIN_SAFE_INTEGER }
+                    placeholder='-'
                 />
             </div>
             <div className={ cx(css.container) }>
-                <Text cx={ css.label }>To: </Text>
+                <Text cx={ css.label }>To:</Text>
                 <NumericInput
-                    value={ to }
-                    onValueChange={ setTo }
+                    value={ value.to }
+                    onValueChange={ changeValueHandler('to') }
                     size="30"
-                    min={ Number.MIN_SAFE_INTEGER }
+                    placeholder='-'
                 />
             </div>
             { renderFooter() }

@@ -52,10 +52,10 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <div className={ cx(css.header) }>
             {
                 props.predicates ? <MultiSwitch
-                    items={ props.predicates.map(i => ({id: i.predicate, caption: i.name})) }
+                    items={ props.predicates.map(i => ({ id: i.predicate, caption: i.name })) }
                     value={ predicate }
                     onValueChange={ changePredicate }
-                    size='24'
+                    size="24"
                 /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
             }
             { !props?.isAlwaysVisible && (
@@ -89,7 +89,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         switch (props.type) {
             case "multiPicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
+                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } ${ i18n.filterToolbar.pickerInput.itemsPlaceholder }` : null;
                 let isLoading = false;
 
                 const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
@@ -100,6 +100,13 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
+            }
+            case "numeric": {
+                if (!currentValue || (!currentValue.from && !currentValue.to)) {
+                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                }
+                const selection = `${ currentValue?.from ?? 'all' } - ${ currentValue?.to ?? 'all' }`;
+                return { selection };
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
