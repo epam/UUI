@@ -25,6 +25,9 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
     /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 
+    /** Returns rendered rows */
+    getRenderedDataRows?: (rows: DataRowProps<TItem, TId>[], renderCallback: (rowProps: DataRowProps<TItem, TId>) => React.ReactNode) => React.ReactNode[];
+
     /** Defines where search field is:
      * 'input' - try to place search inside the toggler (default for single-select),
      * 'body' - put search inside the dropdown (default for multi-select)
@@ -275,6 +278,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             },
             opened: !this.state.opened && value.length > 0 ? true : this.state.opened,
         });
+    }
+
+    renderDataRows(rows: DataRowProps<TItem, TId>[], renderCallback: (rowProps: DataRowProps<TItem, TId>) => React.ReactNode) {
+        return rows.map((rowProps) => renderCallback(rowProps));
     }
 
     getRows() {
