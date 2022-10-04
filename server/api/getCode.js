@@ -17,7 +17,7 @@ router.post('/get-code', async (req, res) => {
             return res.status(500).json({ error: `path ${filePath} is not inside docs examples folder)}` });
         }
 
-        const gitUrl = 'https://git.epam.com/epm-tmc/ui/blob/develop/'
+        const gitUrl = 'https://github.com/epam/UUI/tree/develop'
             + path.join(...params.path).replace('\\', '/');
 
         const raw = await fs.readFile(filePath, "utf8");
