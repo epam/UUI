@@ -32,7 +32,7 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
                 value: [
                     "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
                     "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
+                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
                 ],
                 isDefault: true,
             },
@@ -46,6 +46,13 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
     .prop('direction', {
         examples: [{ name: 'left', value: 'left', isDefault: true }, 'right'],
         isRequired: true,
+    })
+    .prop('avatarsCount', {
+        examples: [
+            1,
+            2,
+            3
+        ]
     })
     .prop('renderItem', {
         examples: [
