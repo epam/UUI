@@ -1756,26 +1756,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "At EPAM",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://git.epam.com/epm-tmc/ui-template"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", we can't afford limiting our UI to just re-coloring existing library. We want to be able to create first-class visual look, communicating our brand and voice with no compromises . To allow that, we can't limit our designers to some other's choice - we need them to be able to tweak everything. At the other hand, as engineers, we know that brand is changing, and we want to re-use as much as possible.",
+            "text": "At EPAM, we can't afford limiting our UI to just re-coloring existing library. We want to be able to create first-class visual look, communicating our brand and voice with no compromises . To allow that, we can't limit our designers to some other's choice - we need them to be able to tweak everything. At the other hand, as engineers, we know that brand is changing, and we want to re-use as much as possible.",
             "marks": []
           }
         ]
