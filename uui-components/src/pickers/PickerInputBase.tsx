@@ -26,6 +26,7 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
     }
     renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
     fixedBodyPosition?: boolean;
+    getCaptionCount?(data: DataRowProps<TItem, TId>[]): number;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -197,6 +198,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
+            getCaptionCount: this.props.getCaptionCount,
         };
     }
 

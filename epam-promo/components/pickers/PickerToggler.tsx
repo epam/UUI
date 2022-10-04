@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataRowProps } from '@epam/uui-core';
-import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
+import { i18n, PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
@@ -44,7 +44,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
         if (row.isLoading) {
             return <TextPlaceholder />;
         } else if (!props.getName || props.selection?.length > maxItems) {
-            return row.value;
+            return props.getCaptionCount ?  i18n.pickerToggler.createItemValue(props.getCaptionCount(props.selection), props.entityName || '') : row.value;
         } else {
             return props.getName(row.value as any);
         }

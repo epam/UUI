@@ -22,6 +22,7 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     minCharsToSearch?: number;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
+    getCaptionCount?(data: DataRowProps<TItem, TId>[]): number;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
