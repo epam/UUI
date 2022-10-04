@@ -27,7 +27,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
         props.onClick?.();
     };
 
-    const getName = props.predicateName ? `${props.title} ${props.predicateName}` : `${ props.title }:`;
+    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${ props.title }:`;
 
     return (
         <FlexRow
@@ -42,7 +42,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text color="gray60" cx={ css.title }>{ getName }</Text>
+                <Text color="gray60" cx={ css.title }>{ getTitle }</Text>
                 <div className={ css.textWrapper }>
                     <Text color="gray90" cx={ css.selection }>{ props.selection }</Text>
                     { props.postfix && <Text color="gray90" cx={ css.postfix }>{ props.postfix }</Text> }
