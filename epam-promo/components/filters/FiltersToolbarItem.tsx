@@ -20,8 +20,6 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
-    const currentPredicate = props.value ? Object.keys(props.value)[0] : null;
-    const predicateName: string | null = currentPredicate && props?.predicates ? props.predicates.filter(p => p.predicate === Object.keys(props.value)[0])[0].name : null;
 
     const getDefaultPredicate = () => {
         if (!props.predicates) {
@@ -32,6 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
+    const predicateName: string | null = predicate && props.value ? props.predicates.find(p => p.predicate === predicate).name : null;
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
