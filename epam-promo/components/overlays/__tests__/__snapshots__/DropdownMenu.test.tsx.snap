@@ -95,14 +95,22 @@ Array [
         <div
           className="flexSpacer"
         />
-        <div
-          className="container uui-icon uui-enabled icon iconAfter"
-          style={Object {}}
+        <button
+          className="container uui-button-box uui-enabled root icon-color-gray60 icon iconAfter"
+          href={null}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
         >
-          <svg
-            className=""
-          />
-        </div>
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </button>
       </div>
     </div>
   </menu>,
