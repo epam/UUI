@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
-import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
+import sortBy from "lodash.sortby";
 import { DataTableState, IPresetsApi, ITablePreset, getOrderBetween } from "@epam/uui-core";
+import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
+import css from './PresetPanel.scss';
+import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
 import { Preset } from "./Preset";
 import { PresetInput } from "./PresetInput";
-import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
-import sortBy from "lodash.sortby";
+import { ReactComponent as DeleteIcon } from "@epam/assets/icons/common/action-deleteforever-18.svg";
 
 export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
@@ -54,28 +56,39 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
             />
             : <PresetInput
                 onCancel={ cancelAddingPreset }
-                key={'createPresetInput'}
+                key={ 'createPresetInput' }
                 onSuccess={ props.createNewPreset }
             />;
     }, [isAddingPreset]);
 
     const onPresetDropdownSelect = (preset: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
-        const shownItems = presets.filter(i => !hiddenItems.find((hiddenItem) => (hiddenItem.preset.id === i.id && !hiddenItem.collapsedContainer)));
-        const sortedShownItems = sortBy(shownItems, (i) => i.order).reverse();
+        const displayedPresets = presets.filter(i => !hiddenItems.find((hiddenItem) => (hiddenItem.preset.id === i.id && !hiddenItem.collapsedContainer)));
+        const sortedDisplayedPresets = sortBy(displayedPresets, (i) => i.order).reverse();
         props.choosePreset(preset.preset);
-        props.updatePreset({...preset.preset, order: getOrderBetween(sortedShownItems[1].order, sortedShownItems[0].order) });
+        props.updatePreset({
+            ...preset.preset,
+            order: getOrderBetween(sortedDisplayedPresets[1].order, sortedDisplayedPresets[0].order),
+        });
     };
 
-    const renderMoreButton = (hiddenItems: PresetAdaptiveItem[]) => {
+    const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
         return (
             <Dropdown
-                renderTarget={ (props) => <Button fill='light' color='gray50' caption={ `${hiddenItems?.length || ''} more` } { ...props } /> }
-                renderBody={ () => <DropdownContainer>
+                renderTarget={ (props) =>
+                    <FlexRow>
+                        <div className={ css.divider } />
+                        <Button fill='light' color='gray50' caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                    </FlexRow>
+            }
+                renderBody={ () => <DropdownContainer width={ 230 }>
                     {
                         hiddenItems.map(item =>
                             <DropdownMenuButton
                                 onClick={ () => onPresetDropdownSelect(item, hiddenItems) }
                                 caption={ item.preset.name }
+                                icon={ DeleteIcon }
+                                iconPosition='right'
+                                onIconClick={ () => props.deletePreset(item.preset) }
                             />)
                     }
                 </DropdownContainer> }
@@ -87,7 +100,7 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
         return [
             {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
             ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: 1000 - index, preset: preset })),
-            { id: 'collapsedContainer', render: (item, hiddenItems) => renderMoreButton(hiddenItems),
+            { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100500, collapsedContainer: true,
             },
             {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100500 },

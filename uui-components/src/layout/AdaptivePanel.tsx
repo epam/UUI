@@ -6,7 +6,7 @@ import { IHasCX } from "@epam/uui-core";
 import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
-    render: (item: AdaptiveItemProps<T>, hiddenItems: AdaptiveItemProps<T>[]) => any;
+    render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[]) => any;
     priority: number;
     collapsedContainer?: boolean;
     id: string;
@@ -17,7 +17,7 @@ interface AdaptivePanelProps extends IHasCX {
 }
 
 interface MeasuredItems {
-    shown: AdaptiveItemProps[];
+    displayed: AdaptiveItemProps[];
     hidden: AdaptiveItemProps[];
     maxHiddenItemPriority: number;
 }
@@ -38,7 +38,7 @@ const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWi
     });
 
     return {
-        shown: items.filter(i => i.priority > maxHiddenItemPriority),
+        displayed: items.filter(i => i.priority > maxHiddenItemPriority),
         hidden: items.filter(i => i.priority <= maxHiddenItemPriority),
         maxHiddenItemPriority: maxHiddenItemPriority,
     };
@@ -68,13 +68,13 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     const [itemsWidth, setItemsWidth] = useState<Record<string, number>>();
     const [isChanged, setIsChanged] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const shownRowRef = useRef<HTMLDivElement>(null);
+    const displayedRowRef = useRef<HTMLDivElement>(null);
 
     const getItemsWidth = () => {
-        if (!shownRowRef.current) {
+        if (!displayedRowRef.current) {
             return;
         }
-        const children = Array.from(shownRowRef.current.children);
+        const children = Array.from(displayedRowRef.current.children);
 
         if (!children.length) return;
         const itemsWidth: Record<string, number> = {};
@@ -96,7 +96,7 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
             setIsChanged(true);
         });
 
-        resizeObserver.observe(shownRowRef.current);
+        resizeObserver.observe(displayedRowRef.current);
         resizeObserver.observe(wrapperRef.current);
         return () => {
             resizeObserver.disconnect();
@@ -105,17 +105,17 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
     const renderItems = () => {
         if (isChanged || !itemsWidth) {
-            return props.items.map(i => i.render(i, []));
+            return props.items.map(i => i.render(i, [], props.items));
         }
         const wrapperWidth = wrapperRef?.current ? wrapperRef.current.getBoundingClientRect().width : 0;
 
         const measuredItems = measureAdaptiveItems(props.items, wrapperWidth, itemsWidth);
-        return measuredItems.shown.map(i => i.render(i, measuredItems.hidden));
+        return measuredItems.displayed.map(i => i.render(i, measuredItems.hidden, measuredItems.displayed));
     };
 
     return (
         <div className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow ref={ shownRowRef }>
+            <FlexRow ref={ displayedRowRef }>
                 { renderItems() }
             </FlexRow>
         </div>
