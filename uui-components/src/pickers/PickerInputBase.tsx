@@ -25,8 +25,8 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
     /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 
-    /** Returns rendered rows */
-    getRenderedDataRows?: (rows: DataRowProps<TItem, TId>[], renderCallback: (rowProps: DataRowProps<TItem, TId>) => React.ReactNode) => React.ReactNode[];
+    /** Replaces onSelect handler for dropdown rows */
+    replaceOnSelectForDropdownRow?: (rowProps:DataRowProps<TItem, TId>) => React.ReactNode[];
 
     /** Defines where search field is:
      * 'input' - try to place search inside the toggler (default for single-select),
@@ -280,18 +280,29 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    renderDataRows(rows: DataRowProps<TItem, TId>[], renderCallback: (rowProps: DataRowProps<TItem, TId>) => React.ReactNode) {
-        return rows.map((rowProps) => renderCallback(rowProps));
+    replaceOnSelectForDropdownRow(rowProps: DataRowProps<TItem, TId>) {
+        if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
+            rowProps.onSelect = this.onSelect;
+        }
+
+        return rowProps
     }
 
     getRows() {
         if (!this.shouldShowBody()) return [];
 
+        let preparedRows: DataRowProps<TItem, TId>[];
+
         const { showSelected, dataSourceState: { topIndex, visibleCount } } = this.state;
         const { getVisibleRows, getSelectedRows } = this.getView();
 
-        if (!showSelected) return getVisibleRows();
-        return getSelectedRows().slice(topIndex, topIndex + visibleCount);
+        if (!showSelected) {
+            preparedRows = getVisibleRows()
+        } else {
+            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount)
+        }
+
+        return preparedRows.map((rowProps) => this.replaceOnSelectForDropdownRow(rowProps));
     }
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
