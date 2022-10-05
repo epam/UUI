@@ -57,14 +57,26 @@ export abstract class ColumnsConfigurationModalBase<TItem, TId> extends Componen
         return { top: true, bottom: true };
     }
 
+    renderSortedColumns = (sortedColumns: DataColumnProps<TItem, TId, any>[], renderRow: (column: DataColumnProps<TItem, TId>, prevColumn: string, nextColumn: string) => JSX.Element) => {
+        return sortedColumns
+            .filter((column) => !!column.caption)
+            .map((item, index) => {
+                const prevItem = sortedColumns[index - 1];
+                const nextItem = sortedColumns[index + 1];
+                return renderRow(
+                    item,
+                    this.state.columnsConfig[prevItem?.key]?.order,
+                    this.state.columnsConfig[nextItem?.key]?.order
+                );
+            });
+    };
+
     onDrop = (params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>, prevColumnOrder: string, nextColumnOrder: string) => {
         const draggedColumn = this.state.columnsConfig[params.srcData.key];
 
         const newOrder = params.position === 'bottom'
             ? getOrderBetween(this.state.columnsConfig[params.dstData.key].order, nextColumnOrder)
-            : this.state.columnsConfig[params.dstData.key].order !== prevColumnOrder
-                ? getOrderBetween(prevColumnOrder, this.state.columnsConfig[params.dstData.key].order)
-                : getOrderBetween(null, this.state.columnsConfig[params.dstData.key].order)
+            : getOrderBetween(prevColumnOrder, this.state.columnsConfig[params.dstData.key].order)
 
         this.setState({
             columnsConfig: {
