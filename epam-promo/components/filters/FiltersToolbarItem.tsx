@@ -20,6 +20,7 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+
     const getDefaultPredicate = () => {
         if (!props.predicates) {
             return null;
@@ -29,6 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
+    const predicateName: string | null = predicate && props.value ? props.predicates.find(p => p.predicate === predicate).name : null;
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
@@ -130,6 +132,8 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
+            predicateName={ predicateName }
+            maxWidth={ (props.type === 'datePicker' || props.type === 'rangeDatePicker') ? null : '300' }
         />
     );
 

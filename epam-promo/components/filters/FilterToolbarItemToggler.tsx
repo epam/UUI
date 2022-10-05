@@ -8,7 +8,6 @@ import { Text } from "../typography";
 
 
 const defaultSize = "36";
-const defaultWidth = "267";
 
 export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
     selection: string | null | JSX.Element;
@@ -17,6 +16,7 @@ export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
     maxWidth?: string;
     size?: '24' | '30' | '36' | '42' | '48';
     cx?: IHasCX;
+    predicateName: string | null;
 }
 
 export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
@@ -27,10 +27,12 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
         props.onClick?.();
     };
 
+    const getTitle = props.predicateName ? `${props.title} ${props.predicateName}` : `${ props.title }:`;
+
     return (
         <FlexRow
             { ...props }
-            rawProps={ { style: { maxWidth: `${ (props.maxWidth || defaultWidth) + 'px' }` } } }
+            rawProps={ { style: { maxWidth: `${ (props.maxWidth ? (props.maxWidth + 'px') : 'auto') }` } } }
             cx={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
@@ -40,7 +42,7 @@ export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterT
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text color="gray60" cx={ css.title }>{ `${ props.title }:` }</Text>
+                <Text color="gray60" cx={ css.title }>{ getTitle }</Text>
                 <div className={ css.textWrapper }>
                     <Text color="gray90" cx={ css.selection }>{ props.selection }</Text>
                     { props.postfix && <Text color="gray90" cx={ css.postfix }>{ props.postfix }</Text> }
