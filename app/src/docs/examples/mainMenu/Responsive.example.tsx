@@ -67,7 +67,7 @@ export default function MainMenuResponsiveExample() {
             { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
-                    children={ hiddenItems?.map(i => i.render(item, hiddenItems)) }
+                    children={ hiddenItems?.map(i => i.render(item)) }
                 />,
             },
             { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer />},

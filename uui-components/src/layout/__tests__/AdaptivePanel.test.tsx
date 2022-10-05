@@ -23,7 +23,7 @@ const itemsWidth = {
 describe('layout apaptive items', () => {
     it('should show all items if items width less than container', () => {
         expect(measureAdaptiveItems(items, 1000, itemsWidth)).toEqual({
-            shown: items.filter(i => !i.collapsedContainer),
+            displayed: items.filter(i => !i.collapsedContainer),
             hidden: [],
             maxHiddenItemPriority: -1,
         });
@@ -31,7 +31,7 @@ describe('layout apaptive items', () => {
 
     it('should hide items with lower priorities when container width is not enough', () => {
         expect(measureAdaptiveItems(items, 600, itemsWidth)).toEqual({
-            shown: [
+            displayed: [
                 { id: '1', priority: 10  },
                 { id: 'container1',  priority: 4, collapsedContainer: true },
                 { id: '5', priority: 5  },
@@ -47,7 +47,7 @@ describe('layout apaptive items', () => {
 
     it('should hide all items with the same priority, if it least one item not fit', () => {
         expect(measureAdaptiveItems(items, 999, itemsWidth)).toEqual({
-            shown: [
+            displayed: [
                 { id: '1', priority: 10  },
                 { id: '4', priority: 3  },
                 { id: 'container1',  priority: 4, collapsedContainer: true },
@@ -63,7 +63,7 @@ describe('layout apaptive items', () => {
 
     it('should sown collapsedContainer with priority not lower than max hidden item priority', () => {
         expect(measureAdaptiveItems(items, 400, itemsWidth)).toEqual({
-            shown: [
+            displayed: [
                 { id: 'container2', priority: 100, collapsedContainer: true },
                 { id: '1', priority: 10  },
             ],
@@ -79,7 +79,7 @@ describe('layout apaptive items', () => {
 
     it("if items don't have collapsed container just hide items which not fit", () => {
         expect(measureAdaptiveItems(items.filter(i => !i.collapsedContainer), 400, itemsWidth)).toEqual({
-            shown: [
+            displayed: [
                 { id: '1', priority: 10  },
                 { id: '5', priority: 5  },
             ],
