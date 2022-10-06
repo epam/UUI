@@ -26,6 +26,7 @@
     "dayjs": "1.10.7",
     "lodash.clone": "4.5.0",
     "lodash.isequal": "4.5.0",
+    "lodash.sortby": "4.5.0",
     "lodash.orderby": "4.6.0",
     "lodash.range": "3.2.0",
     "react-custom-scrollbars-2": "^4.4.0",

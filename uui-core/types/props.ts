@@ -178,6 +178,7 @@ export interface IAdaptiveItem {
     priority?: number;
     showInBurgerMenu?: boolean;
     collapseToMore?: boolean;
+    collapsedContainer?: boolean;
 }
 
 export interface IModal<TResult> {
