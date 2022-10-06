@@ -1,0 +1,14 @@
+.divider {
+    position: relative;
+    margin: 0 15px 0 15px;
+    box-sizing: content-box;
+    width: 1px;
+    height: 24px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        border-right: thin solid var(--secondary-color);
+    }
+}
