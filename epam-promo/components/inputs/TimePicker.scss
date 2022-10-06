@@ -61,12 +61,14 @@
             fill: var(--icon-color);
         }
     }
+
+    :global(.uui-dropdown-body) {
+        align-items: center;
+    }
 }
 
 .date-input {
     width: 100%;
 }
 
-:global(.uui-dropdown-body) {
-    align-items: center;
-}
+

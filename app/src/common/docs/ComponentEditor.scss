@@ -13,7 +13,7 @@
     min-width: 480px;
     max-width: 726px;
     border-right: 1px solid $gray40;
-    flex: 1 1 100%;
+    flex: 1 1 0px;
 
     .box-sizing {
         box-sizing: border-box;
@@ -44,14 +44,14 @@
 .demo-context {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    flex: 3 1 0;
+    flex: 1 1 0;
+    min-width: 0px;
     align-items: flex-start;
 
     .context-setting-row {
-        width: inherit;
         justify-content: center;
         box-sizing: border-box;
+        width: 100%;
     }
 }
 

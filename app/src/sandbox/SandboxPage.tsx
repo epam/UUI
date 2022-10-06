@@ -11,8 +11,9 @@ import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
-import { TreeListItem } from 'uui-components';
-import { DataRowProps } from 'uui-core';
+import { AdaptivePanelDemo } from "./adaptivePanel/AdaptivePanelDemo";
+import { TreeListItem } from '@epam/uui-components';
+import { DataRowProps } from '@epam/uui-core';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -24,6 +25,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
